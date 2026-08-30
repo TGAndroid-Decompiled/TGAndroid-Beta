@@ -1,22 +1,38 @@
 package o8;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-public abstract class a extends Activity {
-    public abstract Class getServiceClass();
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.RemoteException;
+import java.util.ArrayList;
+public final class a extends g0 {
+    public final IBinder h;
+    public final jf.a f16465n;
+
+    public a(jf.a aVar, IBinder iBinder) {
+        this.h = iBinder;
+        this.f16465n = aVar;
+    }
 
     @Override
-    public final void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Intent intent = new Intent(this, getServiceClass());
-        intent.putExtra("SearchActionVerificationClientExtraIntent", getIntent());
-        if (Build.VERSION.SDK_INT >= 26) {
-            startForegroundService(intent);
-        } else {
-            startService(intent);
+    public final void b() {
+        c cVar = (c) this.f16465n.f9369b;
+        cVar.f16478n = (IInterface) cVar.f16473i.a(this.h);
+        f0 f0Var = cVar.f16469b;
+        int i10 = 0;
+        f0Var.b("linkToDeath", new Object[0]);
+        try {
+            cVar.f16478n.asBinder().linkToDeath(cVar.f16475k, 0);
+        } catch (RemoteException e) {
+            f0Var.a(e, "linkToDeath failed", new Object[0]);
         }
-        finish();
+        cVar.f16472g = false;
+        ArrayList arrayList = cVar.d;
+        int size = arrayList.size();
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ((Runnable) obj).run();
+        }
+        cVar.d.clear();
     }
 }

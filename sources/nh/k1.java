@@ -1,60 +1,27 @@
 package nh;
 
-import android.content.Context;
-import org.telegram.ui.Components.ex;
-import org.telegram.ui.Components.fz;
-import org.telegram.ui.d61;
-import org.telegram.ui.r41;
-public final class k1 extends uh.n {
-    public final int f17988q;
-    public final Object f17989r;
-
-    public k1(Object obj, Context context, int i10) {
-        super(context, 2);
-        this.f17988q = i10;
-        this.f17989r = obj;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class k1 extends TLRPC.TL_messageMediaStory {
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z4) {
+        this.user_id = inputSerializedData.readInt64(z4);
+        this.f19206id = inputSerializedData.readInt32(z4);
+        this.storyItem = TL_stories.StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z4), z4);
+        this.via_mention = inputSerializedData.readBool(z4);
+        this.peer = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(this.user_id);
     }
 
     @Override
-    public void e() {
-        switch (this.f17988q) {
-            case 0:
-                ((n1) this.f17989r).X2 = true;
-                return;
-            case 1:
-                ((fz) this.f17989r).f28578b0 = true;
-                return;
-            case 2:
-            case 3:
-            default:
-                return;
-            case 4:
-                ((d61) this.f17989r).f37360s1 = true;
-                return;
-        }
-    }
-
-    @Override
-    public final void i() {
-        switch (this.f17988q) {
-            case 0:
-                ((n1) this.f17989r).X2 = false;
-                return;
-            case 1:
-                ((fz) this.f17989r).f28578b0 = false;
-                return;
-            case 2:
-                ((ex) this.f17989r).Q.f28578b0 = false;
-                return;
-            case 3:
-                ((r41) this.f17989r).R.f37360s1 = false;
-                return;
-            case 4:
-                ((d61) this.f17989r).f37360s1 = false;
-                return;
-            default:
-                ((r41) this.f17989r).R.f37360s1 = false;
-                return;
-        }
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        outputSerializedData.writeInt32(-946147811);
+        outputSerializedData.writeInt64(this.user_id);
+        outputSerializedData.writeInt32(this.f19206id);
+        this.storyItem.serializeToStream(outputSerializedData);
+        outputSerializedData.writeBool(this.via_mention);
     }
 }

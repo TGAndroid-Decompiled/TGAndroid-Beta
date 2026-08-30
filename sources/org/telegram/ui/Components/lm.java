@@ -1,315 +1,246 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Point;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.HashMap;
+import android.os.SystemClock;
+import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
-public final class lm extends fi {
-    public static final HashMap Q = new HashMap();
-    public float A;
-    public float B;
-    public float C;
-    public float D;
-    public float E;
-    public im F;
-    public boolean G;
-    public ValueAnimator H;
-    public float I;
-    public Drawable J;
-    public ViewPropertyAnimator K;
-    public ChatAttachAlertPhotoLayout L;
-    public boolean M;
-    public int N;
-    public boolean O;
-    public boolean P;
-    public org.telegram.ui.ActionBar.c6 f30371n;
-    public jh.e1 f30372r;
-    public f2.j0 f30373s;
-    public km v;
-    public UndoView f30374w;
-    public TextView f30375x;
-    public float f30376y;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SharedConfig;
+public final class lm {
+    public TextPaint B;
+    public TextPaint C;
+    public final mm O;
+    public mm f26790a;
+    public MediaController.PhotoEntry f26791b;
+    public ImageReceiver f26792c;
+    public ImageReceiver d;
+    public boolean e;
+    public float f26798l;
+    public float f26799m;
+    public float f26800n;
+    public float f26801o;
+    public ih.j f26805s;
+    public Bitmap v;
+    public RectF f26793f = null;
+    public final RectF f26794g = new RectF();
+    public long h = 0;
+    public int f26795i = 0;
+    public float f26796j = 1.0f;
+    public float f26797k = 0.0f;
+    public RectF f26802p = null;
+    public final RectF f26803q = new RectF();
+    public String f26804r = null;
+    public final Path f26806t = new Path();
+    public final float[] f26807u = new float[8];
+    public float f26808w = 1.0f;
+    public final Paint f26809x = new Paint(1);
+    public final RectF f26810y = new RectF();
+    public final Paint f26811z = new Paint(1);
+    public final Paint A = new Paint(1);
+    public final Paint D = new Paint(1);
+    public Bitmap E = null;
+    public String F = null;
+    public Bitmap G = null;
+    public String H = null;
+    public final Rect I = new Rect();
+    public final Rect J = new Rect();
+    public final Rect K = new Rect();
+    public final Rect L = new Rect();
+    public float M = 1.0f;
+    public long N = 0;
 
-    @Override
-    public final void B(int i10) {
-        ni niVar = this.f28403b;
-        if (i10 > 1) {
-            niVar.W0.K(0);
+    public lm(mm mmVar) {
+        this.O = mmVar;
+        this.f26790a = mmVar;
+    }
+
+    public static void a(lm lmVar, MediaController.PhotoEntry photoEntry) {
+        mm mmVar = lmVar.O;
+        lmVar.f26791b = photoEntry;
+        if (photoEntry.isVideo) {
+            lmVar.f26804r = AndroidUtilities.formatShortDuration(photoEntry.duration);
         } else {
-            niVar.W0.r(0);
+            lmVar.f26804r = null;
         }
-    }
-
-    @Override
-    public final void D(fi fiVar) {
-        km kmVar = this.v;
-        this.M = true;
-        if (fiVar instanceof ChatAttachAlertPhotoLayout) {
-            this.L = (ChatAttachAlertPhotoLayout) fiVar;
-            kmVar.f30098c.clear();
-            ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.L;
-            kmVar.h = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            kmVar.d = chatAttachAlertPhotoLayout.getSelectedPhotos();
-            kmVar.c();
-            kmVar.requestLayout();
-            this.f30373s.h1(0, 0);
-            this.f30372r.post(new z2(22, this, fiVar));
-            postDelayed(new ig(this, 25), 250L);
-            kmVar.i(this.L, false);
-        } else {
-            F();
+        if (lmVar.f26792c == null) {
+            lmVar.f26792c = new ImageReceiver(mmVar.f27074z);
+            lmVar.d = new ImageReceiver(mmVar.f27074z);
+            lmVar.f26792c.setDelegate(new o1(14, lmVar, photoEntry));
         }
-        ViewPropertyAnimator viewPropertyAnimator = this.K;
-        if (viewPropertyAnimator != null) {
-            viewPropertyAnimator.cancel();
-        }
-        ViewPropertyAnimator interpolator = this.f30375x.animate().alpha(1.0f).setDuration(150L).setInterpolator(jr.f29800f);
-        this.K = interpolator;
-        interpolator.start();
-    }
-
-    @Override
-    public final void F() {
-        this.f30372r.x0(0);
-    }
-
-    public final void J() {
-        ArrayList arrayList = this.v.f30097b;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ArrayList arrayList2 = ((jm) obj).h;
-            int size2 = arrayList2.size();
-            int i11 = 0;
-            while (i11 < size2) {
-                Object obj2 = arrayList2.get(i11);
-                i11++;
-                im imVar = (im) obj2;
-                RectF d = imVar.d();
-                Bitmap createBitmap = Bitmap.createBitmap(Math.max(1, Math.round(d.width())), Math.max(1, Math.round(d.height())), Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(createBitmap);
-                canvas.save();
-                canvas.translate(-d.left, -d.top);
-                imVar.c(canvas, false);
-                canvas.restore();
-                Bitmap bitmap = imVar.v;
-                if (bitmap != null && !bitmap.isRecycled()) {
-                    imVar.v.recycle();
-                }
-                imVar.v = createBitmap;
-                imVar.f29427w = 0.0f;
-                imVar.O.f29760z.invalidate();
+        String str = photoEntry.thumbPath;
+        if (str != null) {
+            lmVar.f26792c.setImage(ImageLocation.getForPath(str), null, null, null, org.telegram.ui.ActionBar.j6.R4, 0L, null, null, 0);
+        } else if (photoEntry.path != null) {
+            if (photoEntry.isVideo) {
+                ImageReceiver imageReceiver = lmVar.f26792c;
+                imageReceiver.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), null, null, null, org.telegram.ui.ActionBar.j6.R4, 0L, null, null, 0);
+                lmVar.f26792c.setAllowStartAnimation(true);
+                return;
             }
+            lmVar.f26792c.setOrientation(photoEntry.orientation, true);
+            ImageReceiver imageReceiver2 = lmVar.f26792c;
+            imageReceiver2.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), null, null, null, org.telegram.ui.ActionBar.j6.R4, 0L, null, null, 0);
+        } else {
+            lmVar.f26792c.setImageBitmap(org.telegram.ui.ActionBar.j6.R4);
         }
     }
 
-    @Override
-    public final void a(CharSequence charSequence) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.L;
-        if (chatAttachAlertPhotoLayout != null) {
-            chatAttachAlertPhotoLayout.a(charSequence);
-        }
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Drawable d;
-        int i10;
-        org.telegram.ui.rn rnVar = this.f28403b.f31040r;
-        boolean z10 = false;
-        if (rnVar != null && (d = rnVar.d()) != null) {
-            int currentItemTop = getCurrentItemTop();
-            if (AndroidUtilities.isTablet()) {
-                i10 = 16;
+    public static void b(lm lmVar, gm gmVar, MessageObject.GroupedMessagePosition groupedMessagePosition, boolean z4) {
+        float f10;
+        float f11;
+        float f12;
+        RectF rectF = lmVar.f26803q;
+        RectF rectF2 = lmVar.f26794g;
+        if (gmVar != null && groupedMessagePosition != null) {
+            lmVar.f26795i = groupedMessagePosition.flags;
+            if (z4) {
+                float e = lmVar.e();
+                RectF rectF3 = lmVar.f26793f;
+                if (rectF3 != null) {
+                    AndroidUtilities.lerp(rectF3, rectF2, e, rectF3);
+                }
+                RectF rectF4 = lmVar.f26802p;
+                if (rectF4 != null) {
+                    AndroidUtilities.lerp(rectF4, rectF, e, rectF4);
+                }
+                lmVar.f26796j = AndroidUtilities.lerp(lmVar.f26796j, lmVar.f26797k, e);
+                lmVar.h = SystemClock.elapsedRealtime();
+            }
+            float f13 = groupedMessagePosition.left;
+            float f14 = gmVar.f25195c;
+            float f15 = f13 / f14;
+            float f16 = groupedMessagePosition.top;
+            float f17 = gmVar.f25196f;
+            float f18 = f16 / f17;
+            lmVar.f26797k = 1.0f;
+            rectF2.set(f15, f18, (groupedMessagePosition.pw / f14) + f15, (groupedMessagePosition.f16666ph / f17) + f18);
+            float dp = AndroidUtilities.dp(2.0f);
+            float dp2 = AndroidUtilities.dp(SharedConfig.bubbleRadius - 1);
+            int i10 = lmVar.f26795i;
+            if ((i10 & 5) == 5) {
+                f10 = dp2;
             } else {
-                Point point = AndroidUtilities.displaySize;
-                if (point.x > point.y) {
-                    i10 = 6;
-                } else {
-                    i10 = 12;
-                }
+                f10 = dp;
             }
-            if (currentItemTop < org.telegram.ui.ActionBar.l.getCurrentActionBarHeight()) {
-                currentItemTop -= AndroidUtilities.dp((1.0f - (currentItemTop / org.telegram.ui.ActionBar.l.getCurrentActionBarHeight())) * i10);
+            if ((i10 & 6) == 6) {
+                f11 = dp2;
+            } else {
+                f11 = dp;
             }
-            int max = Math.max(0, currentItemTop);
-            canvas.save();
-            canvas.clipRect(0, max, getWidth(), getHeight());
-            d.setBounds(0, max, getWidth(), AndroidUtilities.displaySize.y + max);
-            d.draw(canvas);
-            z10 = true;
-        }
-        super.dispatchDraw(canvas);
-        if (z10) {
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public int getCurrentItemTop() {
-        jh.e1 e1Var = this.f30372r;
-        if (e1Var.getChildCount() <= 0) {
-            e1Var.setTopGlowOffset(e1Var.getPaddingTop());
-            return Integer.MAX_VALUE;
-        }
-        View childAt = e1Var.getChildAt(0);
-        vk0 vk0Var = (vk0) e1Var.G(childAt);
-        int top = childAt.getTop();
-        int dp = AndroidUtilities.dp(8.0f);
-        if (top < AndroidUtilities.dp(8.0f) || vk0Var == null || vk0Var.b() != 0) {
-            top = dp;
-        }
-        e1Var.setTopGlowOffset(top);
-        return top;
-    }
-
-    @Override
-    public int getFirstOffset() {
-        return AndroidUtilities.dp(56.0f) + getListTopPadding();
-    }
-
-    @Override
-    public int getListTopPadding() {
-        return this.f30372r.getPaddingTop();
-    }
-
-    public float getPreviewScale() {
-        Point point = AndroidUtilities.displaySize;
-        if (point.y > point.x) {
-            return 0.8f;
-        }
-        return 0.45f;
-    }
-
-    @Override
-    public int getSelectedItemsCount() {
-        em emVar;
-        ArrayList arrayList;
-        ArrayList arrayList2 = this.v.f30097b;
-        int size = arrayList2.size();
-        int i10 = 0;
-        for (int i11 = 0; i11 < size; i11++) {
-            jm jmVar = (jm) arrayList2.get(i11);
-            if (jmVar != null && (emVar = jmVar.f29746k) != null && (arrayList = emVar.f28112g) != null) {
-                i10 = arrayList.size() + i10;
+            if ((i10 & 10) == 10) {
+                f12 = dp2;
+            } else {
+                f12 = dp;
             }
-        }
-        return i10;
-    }
-
-    @Override
-    public final int h() {
-        return 1;
-    }
-
-    @Override
-    public final boolean i() {
-        this.f28403b.Z1(false);
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        boolean z11;
-        km kmVar = this.v;
-        super.onLayout(z10, i10, i11, i12, i13);
-        Point point = AndroidUtilities.displaySize;
-        if (point.y > point.x) {
-            z11 = true;
+            if ((i10 & 9) == 9) {
+                dp = dp2;
+            }
+            rectF.set(f10, f11, f12, dp);
+            if (lmVar.f26793f == null) {
+                RectF rectF5 = new RectF();
+                lmVar.f26793f = rectF5;
+                rectF5.set(rectF2);
+            }
+            if (lmVar.f26802p == null) {
+                RectF rectF6 = new RectF();
+                lmVar.f26802p = rectF6;
+                rectF6.set(rectF);
+            }
+        } else if (z4) {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            lmVar.f26796j = AndroidUtilities.lerp(lmVar.f26796j, lmVar.f26797k, lmVar.e());
+            RectF rectF7 = lmVar.f26793f;
+            if (rectF7 != null) {
+                AndroidUtilities.lerp(rectF7, rectF2, lmVar.e(), lmVar.f26793f);
+            }
+            lmVar.f26797k = 0.0f;
+            lmVar.h = elapsedRealtime;
         } else {
-            z11 = false;
+            lmVar.f26796j = 0.0f;
+            lmVar.f26797k = 0.0f;
         }
-        if (this.P != z11) {
-            this.P = z11;
-            int size = kmVar.f30097b.size();
-            for (int i14 = 0; i14 < size; i14++) {
-                jm jmVar = (jm) kmVar.f30097b.get(i14);
-                if (jmVar.f29746k.f28112g.size() == 1) {
-                    jm.a(jmVar, jmVar.f29746k, true);
-                }
+    }
+
+    public final boolean c(android.graphics.Canvas r34, boolean r35) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.lm.c(android.graphics.Canvas, boolean):boolean");
+    }
+
+    public final Object clone() {
+        lm lmVar = new lm(this.O);
+        lmVar.f26794g.set(this.f26794g);
+        lmVar.f26792c = this.f26792c;
+        lmVar.f26791b = this.f26791b;
+        return lmVar;
+    }
+
+    public final RectF d() {
+        float f10 = 0.0f;
+        if (this.f26794g != null && this.f26792c != null) {
+            nm nmVar = this.O.f27074z;
+            lm lmVar = nmVar.M.G;
+            if (lmVar != null && lmVar.f26791b == this.f26791b) {
+                f10 = nmVar.D;
             }
+            float lerp = (((1.0f - f10) * 0.2f) + 0.8f) * AndroidUtilities.lerp(this.f26796j, this.f26797k, e());
+            RectF f11 = f(e());
+            float f12 = 1.0f - lerp;
+            float f13 = lerp + 1.0f;
+            f11.set(android.support.v4.media.a.d(f11.width(), f12, 2.0f, f11.left), ((f11.height() * f12) / 2.0f) + f11.top, android.support.v4.media.a.d(f11.width(), f13, 2.0f, f11.left), ((f11.height() * f13) / 2.0f) + f11.top);
+            return f11;
         }
+        RectF rectF = this.f26810y;
+        rectF.set(0.0f, 0.0f, 0.0f, 0.0f);
+        return rectF;
     }
 
-    @Override
-    public final void q() {
-        MediaController.PhotoEntry photoEntry;
-        this.F = null;
-        UndoView undoView = this.f30374w;
-        if (undoView != null) {
-            undoView.e(0, false);
-        }
-        ArrayList arrayList = this.v.f30097b;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ArrayList arrayList2 = ((jm) obj).h;
-            int size2 = arrayList2.size();
-            int i11 = 0;
-            while (i11 < size2) {
-                Object obj2 = arrayList2.get(i11);
-                i11++;
-                im imVar = (im) obj2;
-                if (imVar.f29411e && (photoEntry = imVar.f29409b) != null) {
-                    photoEntry.isChatPreviewSpoilerRevealed = false;
-                }
+    public final float e() {
+        return this.O.f27059j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - this.h)) / 200.0f));
+    }
+
+    public final RectF f(float f10) {
+        RectF rectF;
+        RectF rectF2 = this.f26810y;
+        RectF rectF3 = this.f26794g;
+        if (rectF3 != null && this.f26792c != null) {
+            mm mmVar = this.O;
+            float f11 = (rectF3.left * mmVar.f27067r) + mmVar.f27063n;
+            float f12 = (rectF3.top * mmVar.f27068s) + mmVar.f27065p;
+            float width = rectF3.width() * mmVar.f27067r;
+            float height = rectF3.height() * mmVar.f27068s;
+            if (f10 < 1.0f && (rectF = this.f26793f) != null) {
+                f11 = AndroidUtilities.lerp((rectF.left * mmVar.f27067r) + mmVar.f27063n, f11, f10);
+                f12 = AndroidUtilities.lerp((this.f26793f.top * mmVar.f27068s) + mmVar.f27065p, f12, f10);
+                width = AndroidUtilities.lerp(this.f26793f.width() * mmVar.f27067r, width, f10);
+                height = AndroidUtilities.lerp(this.f26793f.height() * mmVar.f27068s, height, f10);
             }
+            int i10 = this.f26795i;
+            if ((i10 & 4) == 0) {
+                int i11 = mmVar.f27062m;
+                f12 += i11;
+                height -= i11;
+            }
+            if ((i10 & 8) == 0) {
+                height -= mmVar.f27062m;
+            }
+            if ((i10 & 1) == 0) {
+                int i12 = mmVar.f27062m;
+                f11 += i12;
+                width -= i12;
+            }
+            if ((i10 & 2) == 0) {
+                width -= mmVar.f27062m;
+            }
+            rectF2.set(f11, f12, width + f11, height + f12);
+            return rectF2;
         }
-    }
-
-    @Override
-    public final void r() {
-        ni niVar;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout;
-        this.M = false;
-        ViewPropertyAnimator viewPropertyAnimator = this.K;
-        if (viewPropertyAnimator != null) {
-            viewPropertyAnimator.cancel();
-        }
-        ViewPropertyAnimator interpolator = this.f30375x.animate().alpha(0.0f).setDuration(150L).setInterpolator(jr.f29803j);
-        this.K = interpolator;
-        interpolator.start();
-        if (getSelectedItemsCount() > 1 && (chatAttachAlertPhotoLayout = (niVar = this.f28403b).f31005f0) != null) {
-            chatAttachAlertPhotoLayout.Y0.setIcon(R.drawable.msg_view_file);
-            niVar.f31005f0.Y0.setText(LocaleController.getString(R.string.AttachMediaPreviewButton));
-            niVar.f31005f0.Y0.setRightIcon(R.drawable.msg_arrowright);
-        }
-        this.v.i(this.L, true);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.O) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    @Override
-    public final void t(int i10) {
-        try {
-            this.f28403b.f31005f0.t(i10);
-        } catch (Exception unused) {
-        }
-    }
-
-    @Override
-    public final void y(int r5, int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.lm.y(int, int):void");
+        rectF2.set(0.0f, 0.0f, 0.0f, 0.0f);
+        return rectF2;
     }
 }

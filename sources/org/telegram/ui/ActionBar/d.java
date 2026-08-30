@@ -1,43 +1,68 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class d extends AnimatorListenerAdapter {
-    public final int f22830a;
-    public final boolean f22831b;
-    public final l f22832c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import org.telegram.ui.Components.qv0;
+public final class d extends z {
+    public final k h;
 
-    public d(l lVar, boolean z10, int i10) {
-        this.f22830a = i10;
-        this.f22832c = lVar;
-        this.f22831b = z10;
+    public d(k kVar, Context context, k kVar2) {
+        super(context, kVar2);
+        this.h = kVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f9;
-        float f10;
-        switch (this.f22830a) {
-            case 0:
-                if (this.f22831b) {
-                    f9 = 1.0f;
-                } else {
-                    f9 = 0.0f;
-                }
-                l lVar = this.f22832c;
-                lVar.f23620n1 = f9;
-                lVar.b();
-                return;
-            default:
-                if (this.f22831b) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                l lVar2 = this.f22832c;
-                lVar2.f23620n1 = f10;
-                lVar2.b();
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        k kVar = this.h;
+        Paint paint = kVar.I0;
+        if (kVar.H0 && this.f20772a && kVar.f20349w != 0) {
+            kVar.J0.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            paint.setColor(kVar.f20349w);
+            canvas2 = canvas;
+            kVar.G0.J(canvas2, 0.0f, kVar.J0, paint, true);
+        } else {
+            canvas2 = canvas;
+        }
+        super.dispatchDraw(canvas2);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        qv0 qv0Var = this.h.G0;
+        if (qv0Var != null) {
+            qv0Var.Q.add(this);
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        qv0 qv0Var = this.h.G0;
+        if (qv0Var != null) {
+            qv0Var.Q.remove(this);
+        }
+    }
+
+    @Override
+    public final void setAlpha(float f10) {
+        super.setAlpha(f10);
+        k kVar = this.h;
+        kVar.invalidate();
+        Runnable runnable = kVar.Q0;
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    @Override
+    public final void setBackgroundColor(int i10) {
+        k kVar = this.h;
+        kVar.f20349w = i10;
+        if (!kVar.H0) {
+            super.setBackgroundColor(i10);
         }
     }
 }

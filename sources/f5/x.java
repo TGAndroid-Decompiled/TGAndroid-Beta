@@ -1,47 +1,34 @@
 package f5;
+
+import h5.d0;
+import j3.g2;
+import j3.q2;
 public final class x {
-    public static final x f6643c = new x(-1, -1);
-    public final int f6644a;
-    public final int f6645b;
+    public final int f6000a;
+    public final g2[] f6001b;
+    public final c[] f6002c;
+    public final q2 d;
+    public final Object e;
 
-    static {
-        new x(0, 0);
+    public x(g2[] g2VarArr, c[] cVarArr, q2 q2Var, s sVar) {
+        this.f6001b = g2VarArr;
+        this.f6002c = (c[]) cVarArr.clone();
+        this.d = q2Var;
+        this.e = sVar;
+        this.f6000a = g2VarArr.length;
     }
 
-    public x(int i10, int i11) {
-        boolean z10;
-        if ((i10 != -1 && i10 < 0) || (i11 != -1 && i11 < 0)) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        a.f(z10);
-        this.f6644a = i10;
-        this.f6645b = i11;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == null) {
+    public final boolean a(x xVar, int i10) {
+        if (xVar == null || !d0.a(this.f6001b[i10], xVar.f6001b[i10]) || !d0.a(this.f6002c[i10], xVar.f6002c[i10])) {
             return false;
         }
-        if (this == obj) {
+        return true;
+    }
+
+    public final boolean b(int i10) {
+        if (this.f6001b[i10] != null) {
             return true;
         }
-        if (obj instanceof x) {
-            x xVar = (x) obj;
-            if (this.f6644a == xVar.f6644a && this.f6645b == xVar.f6645b) {
-                return true;
-            }
-        }
         return false;
-    }
-
-    public final int hashCode() {
-        int i10 = this.f6644a;
-        return ((i10 >>> 16) | (i10 << 16)) ^ this.f6645b;
-    }
-
-    public final String toString() {
-        return this.f6644a + "x" + this.f6645b;
     }
 }

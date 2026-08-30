@@ -1,35 +1,31 @@
 package nh;
 
-import org.telegram.messenger.Utilities;
-public final class o implements Utilities.Callback {
-    public final int f18205a;
-    public final wa f18206b;
+import android.animation.ValueAnimator;
+import org.telegram.ui.gx;
+public final class o implements Runnable {
+    public final int f15680a;
+    public final p f15681b;
 
-    public o(wa waVar, int i10) {
-        this.f18205a = i10;
-        this.f18206b = waVar;
+    public o(p pVar, int i10) {
+        this.f15680a = i10;
+        this.f15681b = pVar;
     }
 
     @Override
-    public final void run(Object obj) {
-        Integer num = (Integer) obj;
-        switch (this.f18205a) {
+    public final void run() {
+        switch (this.f15680a) {
             case 0:
-                int intValue = num.intValue();
-                wa waVar = this.f18206b;
-                waVar.setPeriod(intValue);
-                Utilities.Callback callback = waVar.f18492x1;
-                if (callback != null) {
-                    callback.run(num);
-                    return;
+                gx gxVar = this.f15681b.V;
+                ValueAnimator valueAnimator = gxVar.f15765g0;
+                if (valueAnimator != null) {
+                    valueAnimator.start();
                 }
+                gxVar.f15766h0 = null;
                 return;
             default:
-                Utilities.Callback callback2 = this.f18206b.f18493y1;
-                if (callback2 != null) {
-                    callback2.run(num);
-                    return;
-                }
+                p pVar = this.f15681b;
+                pVar.f15733w = false;
+                pVar.invalidate();
                 return;
         }
     }

@@ -1,42 +1,77 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class ui0 implements View.OnClickListener {
-    public final int f43273a;
-    public final zi0 f43274b;
+public final class ui0 implements RequestDelegate {
+    public final int f38951a;
+    public final aj0 f38952b;
 
-    public ui0(zi0 zi0Var, int i10) {
-        this.f43273a = i10;
-        this.f43274b = zi0Var;
+    public ui0(aj0 aj0Var, int i10) {
+        this.f38951a = i10;
+        this.f38952b = aj0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f43273a) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f38951a) {
             case 0:
-                zi0 zi0Var = this.f43274b;
-                yi0 yi0Var = zi0Var.m0;
-                HashSet hashSet = zi0Var.Z;
-                if (hashSet.size() != 0 && yi0Var != null) {
-                    ArrayList arrayList = new ArrayList();
-                    for (TLRPC.User user : zi0Var.f45241e0.values()) {
-                        if (hashSet.contains(Long.valueOf(user.f22539id))) {
-                            arrayList.add(Long.valueOf(user.f22539id));
+                final aj0 aj0Var = this.f38952b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                aj0.U(aj0Var, tL_error, tLObject);
+                                return;
+                            case 1:
+                                aj0.W(aj0Var, tL_error, tLObject);
+                                return;
+                            default:
+                                aj0.V(aj0Var, tL_error, tLObject);
+                                return;
                         }
                     }
-                    yi0Var.a(arrayList);
-                    zi0Var.dismiss();
-                    return;
-                }
+                });
+                return;
+            case 1:
+                final aj0 aj0Var2 = this.f38952b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                aj0.U(aj0Var2, tL_error, tLObject);
+                                return;
+                            case 1:
+                                aj0.W(aj0Var2, tL_error, tLObject);
+                                return;
+                            default:
+                                aj0.V(aj0Var2, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
                 return;
             default:
-                zi0 zi0Var2 = this.f43274b;
-                zi0Var2.Z.clear();
-                zi0Var2.U.d.b(true);
-                zi0Var2.U(true, false);
+                final aj0 aj0Var3 = this.f38952b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                aj0.U(aj0Var3, tL_error, tLObject);
+                                return;
+                            case 1:
+                                aj0.W(aj0Var3, tL_error, tLObject);
+                                return;
+                            default:
+                                aj0.V(aj0Var3, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
                 return;
         }
     }

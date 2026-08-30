@@ -1,65 +1,23 @@
 package u6;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Looper;
-import com.google.android.gms.common.api.k;
-import com.google.android.gms.common.api.l;
-import m.s3;
-public final class c extends z5.g {
-    public final Bundle Q;
+import android.os.Parcel;
+import android.os.Parcelable;
+import j7.f5;
+import r5.c0;
+public final class c extends c6.a {
+    public static final Parcelable.Creator<c> CREATOR = new c0(17);
+    public final boolean f45158a;
 
-    public c(Context context, Looper looper, k kVar, l lVar, s3 s3Var) {
-        super(context, looper, 212, s3Var, kVar, lVar, 0);
-        this.Q = new Bundle();
+    public c(boolean z4) {
+        this.f45158a = z4;
     }
 
     @Override
-    public final boolean C() {
-        return true;
-    }
-
-    @Override
-    public final int k() {
-        return 17895000;
-    }
-
-    @Override
-    public final IInterface q(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
-        }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.auth.api.identity.internal.ISignInService");
-        if (queryLocalInterface instanceof i) {
-            return (i) queryLocalInterface;
-        }
-        return new com.google.android.gms.internal.cast.a(iBinder, "com.google.android.gms.auth.api.identity.internal.ISignInService", 9);
-    }
-
-    @Override
-    public final w5.c[] r() {
-        return d.f49119b;
-    }
-
-    @Override
-    public final Bundle t() {
-        return this.Q;
-    }
-
-    @Override
-    public final String v() {
-        return "com.google.android.gms.auth.api.identity.internal.ISignInService";
-    }
-
-    @Override
-    public final String w() {
-        return "com.google.android.gms.auth.api.identity.service.signin.START";
-    }
-
-    @Override
-    public final boolean y() {
-        return true;
+    public final void writeToParcel(Parcel dest, int i10) {
+        kotlin.jvm.internal.j.e(dest, "dest");
+        int q10 = f5.q(dest, 20293);
+        f5.s(dest, 1, 4);
+        dest.writeInt(this.f45158a ? 1 : 0);
+        f5.r(dest, q10);
     }
 }

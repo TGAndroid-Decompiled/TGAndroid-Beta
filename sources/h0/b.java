@@ -1,6 +1,5 @@
 package h0;
 
-import ag.j2;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -11,37 +10,38 @@ import android.util.Base64;
 import android.util.Log;
 import android.util.TypedValue;
 import android.util.Xml;
+import b4.e0;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 public abstract class b {
-    public static final float[][] f7471a = {new float[]{0.401288f, 0.650173f, -0.051461f}, new float[]{-0.250268f, 1.204414f, 0.045854f}, new float[]{-0.002079f, 0.048952f, 0.953127f}};
-    public static final float[][] f7472b = {new float[]{1.8620678f, -1.0112547f, 0.14918678f}, new float[]{0.38752654f, 0.62144744f, -0.00897398f}, new float[]{-0.0158415f, -0.03412294f, 1.0499644f}};
-    public static final float[] f7473c = {95.047f, 100.0f, 108.883f};
+    public static final float[][] f6856a = {new float[]{0.401288f, 0.650173f, -0.051461f}, new float[]{-0.250268f, 1.204414f, 0.045854f}, new float[]{-0.002079f, 0.048952f, 0.953127f}};
+    public static final float[][] f6857b = {new float[]{1.8620678f, -1.0112547f, 0.14918678f}, new float[]{0.38752654f, 0.62144744f, -0.00897398f}, new float[]{-0.0158415f, -0.03412294f, 1.0499644f}};
+    public static final float[] f6858c = {95.047f, 100.0f, 108.883f};
     public static final float[][] d = {new float[]{0.41233894f, 0.35762063f, 0.18051042f}, new float[]{0.2126f, 0.7152f, 0.0722f}, new float[]{0.01932141f, 0.11916382f, 0.9503448f}};
 
-    public static j2 a(TypedArray typedArray, XmlPullParser xmlPullParser, Resources.Theme theme, String str, int i10) {
-        j2 j2Var;
+    public static e0 a(TypedArray typedArray, XmlPullParser xmlPullParser, Resources.Theme theme, String str, int i10) {
+        e0 e0Var;
         if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", str) != null) {
             TypedValue typedValue = new TypedValue();
             typedArray.getValue(i10, typedValue);
             int i11 = typedValue.type;
             if (i11 >= 28 && i11 <= 31) {
-                return new j2((Shader) null, (ColorStateList) null, typedValue.data);
+                return new e0((Shader) null, (ColorStateList) null, typedValue.data);
             }
             try {
-                j2Var = j2.e(typedArray.getResources(), typedArray.getResourceId(i10, 0), theme);
-            } catch (Exception e10) {
-                Log.e("ComplexColorCompat", "Failed to inflate ComplexColor.", e10);
-                j2Var = null;
+                e0Var = e0.e(typedArray.getResources(), typedArray.getResourceId(i10, 0), theme);
+            } catch (Exception e) {
+                Log.e("ComplexColorCompat", "Failed to inflate ComplexColor.", e);
+                e0Var = null;
             }
-            if (j2Var != null) {
-                return j2Var;
+            if (e0Var != null) {
+                return e0Var;
             }
         }
-        return new j2((Shader) null, (ColorStateList) null, 0);
+        return new e0((Shader) null, (ColorStateList) null, 0);
     }
 
     public static String b(TypedArray typedArray, XmlPullParser xmlPullParser, String str, int i10) {
@@ -58,47 +58,47 @@ public abstract class b {
         return false;
     }
 
-    public static int d(float f9) {
-        float f10;
-        boolean z10;
+    public static int d(float f10) {
         float f11;
-        if (f9 < 1.0f) {
+        boolean z4;
+        float f12;
+        if (f10 < 1.0f) {
             return -16777216;
         }
-        if (f9 > 99.0f) {
+        if (f10 > 99.0f) {
             return -1;
         }
-        float f12 = (f9 + 16.0f) / 116.0f;
-        if (f9 > 8.0f) {
-            f10 = f12 * f12 * f12;
+        float f13 = (f10 + 16.0f) / 116.0f;
+        if (f10 > 8.0f) {
+            f11 = f13 * f13 * f13;
         } else {
-            f10 = f9 / 903.2963f;
+            f11 = f10 / 903.2963f;
         }
-        float f13 = f12 * f12 * f12;
-        if (f13 > 0.008856452f) {
-            z10 = true;
+        float f14 = f13 * f13 * f13;
+        if (f14 > 0.008856452f) {
+            z4 = true;
         } else {
-            z10 = false;
+            z4 = false;
         }
-        if (z10) {
-            f11 = f13;
+        if (z4) {
+            f12 = f14;
         } else {
-            f11 = ((f12 * 116.0f) - 16.0f) / 903.2963f;
+            f12 = ((f13 * 116.0f) - 16.0f) / 903.2963f;
         }
-        if (!z10) {
-            f13 = ((f12 * 116.0f) - 16.0f) / 903.2963f;
+        if (!z4) {
+            f14 = ((f13 * 116.0f) - 16.0f) / 903.2963f;
         }
-        float[] fArr = f7473c;
-        return i0.a.c(f11 * fArr[0], f10 * fArr[1], f13 * fArr[2]);
+        float[] fArr = f6858c;
+        return i0.a.c(f12 * fArr[0], f11 * fArr[1], f14 * fArr[2]);
     }
 
     public static float e(int i10) {
         float pow;
-        float f9 = i10 / 255.0f;
-        if (f9 <= 0.04045f) {
-            pow = f9 / 12.92f;
+        float f10 = i10 / 255.0f;
+        if (f10 <= 0.04045f) {
+            pow = f10 / 12.92f;
         } else {
-            pow = (float) Math.pow((f9 + 0.055f) / 1.055f, 2.4000000953674316d);
+            pow = (float) Math.pow((f10 + 0.055f) / 1.055f, 2.4000000953674316d);
         }
         return pow * 100.0f;
     }
@@ -113,7 +113,7 @@ public abstract class b {
     public static d g(XmlResourceParser xmlResourceParser, Resources resources) {
         int next;
         int i10;
-        boolean z10;
+        boolean z4;
         int i11;
         int i12;
         o0.d dVar;
@@ -126,7 +126,7 @@ public abstract class b {
         if (next == 2) {
             xmlResourceParser.require(2, null, "font-family");
             if (xmlResourceParser.getName().equals("font-family")) {
-                TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f5244b);
+                TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f4082b);
                 String string = obtainAttributes.getString(0);
                 String string2 = obtainAttributes.getString(5);
                 String string3 = obtainAttributes.getString(6);
@@ -152,7 +152,7 @@ public abstract class b {
                 while (xmlResourceParser.next() != 3) {
                     if (xmlResourceParser.getEventType() == 2) {
                         if (xmlResourceParser.getName().equals("font")) {
-                            TypedArray obtainAttributes2 = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f5245c);
+                            TypedArray obtainAttributes2 = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f4083c);
                             int i13 = 8;
                             if (!obtainAttributes2.hasValue(8)) {
                                 i13 = 1;
@@ -164,9 +164,9 @@ public abstract class b {
                                 i10 = 2;
                             }
                             if (1 == obtainAttributes2.getInt(i10, 0)) {
-                                z10 = true;
+                                z4 = true;
                             } else {
-                                z10 = false;
+                                z4 = false;
                             }
                             int i15 = 9;
                             if (!obtainAttributes2.hasValue(9)) {
@@ -190,7 +190,7 @@ public abstract class b {
                             while (xmlResourceParser.next() != 3) {
                                 i(xmlResourceParser);
                             }
-                            arrayList.add(new f(string7, i14, z10, string6, i16, resourceId2));
+                            arrayList.add(new f(string7, i14, z4, string6, i16, resourceId2));
                         } else {
                             i(xmlResourceParser);
                         }

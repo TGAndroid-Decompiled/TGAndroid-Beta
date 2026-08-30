@@ -14,15 +14,15 @@ public abstract class e0 {
         return view.isScreenReaderFocusable();
     }
 
-    public static void d(View view, boolean z10) {
-        view.setAccessibilityHeading(z10);
+    public static void d(View view, boolean z4) {
+        view.setAccessibilityHeading(z4);
     }
 
     public static void e(View view, CharSequence charSequence) {
         view.setAccessibilityPaneTitle(charSequence);
     }
 
-    public static void f(View view, boolean z10) {
-        view.setScreenReaderFocusable(z10);
+    public static void f(View view, boolean z4) {
+        view.setScreenReaderFocusable(z4);
     }
 }

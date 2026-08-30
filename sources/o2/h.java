@@ -3,15 +3,15 @@ package o2;
 import j$.util.Objects;
 import org.chromium.support_lib_boundary.WebMessagePayloadBoundaryInterface;
 public final class h implements WebMessagePayloadBoundaryInterface {
-    public final byte[] f19061a;
+    public final byte[] f16213a;
 
     public h(byte[] bArr) {
-        this.f19061a = bArr;
+        this.f16213a = bArr;
     }
 
     @Override
     public final byte[] getAsArrayBuffer() {
-        byte[] bArr = this.f19061a;
+        byte[] bArr = this.f16213a;
         Objects.requireNonNull(bArr);
         return bArr;
     }

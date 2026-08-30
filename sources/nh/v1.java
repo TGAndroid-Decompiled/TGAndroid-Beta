@@ -1,14 +1,41 @@
 package nh;
 
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class v1 extends FrameLayout {
-    public org.telegram.ui.Components.t9 f18740a;
-    public int f18741b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.o70;
+public final class v1 implements View.OnLongClickListener {
+    public final int f15983a;
+    public final d4 f15984b;
+
+    public v1(d4 d4Var, int i10) {
+        this.f15983a = i10;
+        this.f15984b = d4Var;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.max(AndroidUtilities.dp(170.0f), (AndroidUtilities.displaySize.y * 0.34999996f) - AndroidUtilities.dp(142.0f)), 1073741824));
+    public final boolean onLongClick(View view) {
+        switch (this.f15983a) {
+            case 0:
+                d4 d4Var = this.f15984b;
+                boolean z4 = false;
+                if (d4Var.D0(true)) {
+                    return false;
+                }
+                o70 F = o70.F(d4Var.G0.v, d4Var.f15257y0, view);
+                F.c(R.drawable.msg_edit, LocaleController.getString(R.string.LiveStoryMessageEditStars), new w1(d4Var, 6), false);
+                if (d4Var.I3 > 0) {
+                    z4 = true;
+                }
+                F.l(R.drawable.menu_delete_paid, LocaleController.getString(R.string.LiveStoryMessageRemoveStars), new w1(d4Var, 7), z4);
+                F.V(5);
+                F.U = true;
+                F.Z();
+                return true;
+            default:
+                d4 d4Var2 = this.f15984b;
+                d4Var2.I0.k(d4Var2.D0(false));
+                return true;
+        }
     }
 }

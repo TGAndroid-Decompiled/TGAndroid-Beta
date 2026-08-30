@@ -14,55 +14,55 @@ import android.os.Parcelable;
 import androidx.core.graphics.drawable.IconCompat;
 import java.util.ArrayList;
 public final class t {
-    public f0.h A;
+    public f0.i A;
     public int B;
     public final boolean C;
     public r D;
     public final Notification E;
     public final ArrayList F;
-    public final Context f5731a;
-    public final ArrayList f5732b;
-    public final ArrayList f5733c;
+    public final Context f5017a;
+    public final ArrayList f5018b;
+    public final ArrayList f5019c;
     public final ArrayList d;
-    public CharSequence f5734e;
-    public CharSequence f5735f;
-    public PendingIntent f5736g;
+    public CharSequence e;
+    public CharSequence f5020f;
+    public PendingIntent f5021g;
     public IconCompat h;
-    public int f5737i;
-    public int f5738j;
-    public boolean f5739k;
-    public b0 f5740l;
-    public CharSequence f5741m;
-    public int f5742n;
-    public int f5743o;
-    public boolean f5744p;
-    public String f5745q;
-    public boolean f5746r;
-    public String f5747s;
-    public boolean f5748t;
-    public String f5749u;
+    public int f5022i;
+    public int f5023j;
+    public boolean f5024k;
+    public b0 f5025l;
+    public CharSequence f5026m;
+    public int f5027n;
+    public int f5028o;
+    public boolean f5029p;
+    public String f5030q;
+    public boolean f5031r;
+    public String f5032s;
+    public boolean f5033t;
+    public String f5034u;
     public Bundle v;
-    public int f5750w;
-    public int f5751x;
-    public String f5752y;
-    public String f5753z;
+    public int f5035w;
+    public int f5036x;
+    public String f5037y;
+    public String f5038z;
 
     public t(Context context, String str) {
-        this.f5732b = new ArrayList();
-        this.f5733c = new ArrayList();
+        this.f5018b = new ArrayList();
+        this.f5019c = new ArrayList();
         this.d = new ArrayList();
-        this.f5739k = true;
-        this.f5748t = false;
-        this.f5750w = 0;
-        this.f5751x = 0;
+        this.f5024k = true;
+        this.f5033t = false;
+        this.f5035w = 0;
+        this.f5036x = 0;
         this.B = 0;
         Notification notification = new Notification();
         this.E = notification;
-        this.f5731a = context;
-        this.f5752y = str;
+        this.f5017a = context;
+        this.f5037y = str;
         notification.when = System.currentTimeMillis();
         notification.audioStreamType = -1;
-        this.f5738j = 0;
+        this.f5023j = 0;
         this.F = new ArrayList();
         this.C = true;
     }
@@ -82,20 +82,20 @@ public final class t {
         if (i10 != 0) {
             iconCompat = IconCompat.e(null, "", i10);
         }
-        this.f5732b.add(new k(iconCompat, str, pendingIntent, new Bundle(), null, null, true, 0, true));
+        this.f5018b.add(new k(iconCompat, str, pendingIntent, new Bundle(), null, null, true, 0, true));
     }
 
     public final Notification b() {
         Notification build;
         Bundle bundle;
-        i0 i0Var = new i0(this);
-        t tVar = (t) i0Var.d;
-        b0 b0Var = tVar.f5740l;
+        a4.k kVar = new a4.k(this);
+        t tVar = (t) kVar.d;
+        b0 b0Var = tVar.f5025l;
         if (b0Var != null) {
-            b0Var.b(i0Var);
+            b0Var.b(kVar);
         }
-        Notification.Builder builder = (Notification.Builder) i0Var.f5679c;
-        int i10 = i0Var.f5677a;
+        Notification.Builder builder = (Notification.Builder) kVar.f87c;
+        int i10 = kVar.f85a;
         int i11 = Build.VERSION.SDK_INT;
         if (i11 >= 26) {
             build = builder.build();
@@ -103,26 +103,26 @@ public final class t {
             build = builder.build();
             if (i10 != 0) {
                 if (build.getGroup() != null && (build.flags & 512) != 0 && i10 == 2) {
-                    i0.d(build);
+                    a4.k.d(build);
                 }
                 if (build.getGroup() != null && (build.flags & 512) == 0 && i10 == 1) {
-                    i0.d(build);
+                    a4.k.d(build);
                 }
             }
         } else {
-            builder.setExtras((Bundle) i0Var.f5680e);
+            builder.setExtras((Bundle) kVar.e);
             build = builder.build();
             if (i10 != 0) {
                 if (build.getGroup() != null && (build.flags & 512) != 0 && i10 == 2) {
-                    i0.d(build);
+                    a4.k.d(build);
                 }
                 if (build.getGroup() != null && (build.flags & 512) == 0 && i10 == 1) {
-                    i0.d(build);
+                    a4.k.d(build);
                 }
             }
         }
         if (b0Var != null) {
-            tVar.f5740l.getClass();
+            tVar.f5025l.getClass();
         }
         if (b0Var != null && (bundle = build.extras) != null) {
             b0Var.a(bundle);
@@ -135,9 +135,9 @@ public final class t {
         Notification.Action.Builder d;
         Bundle bundle;
         Bundle bundle2 = new Bundle();
-        if (!g0Var.f5669a.isEmpty()) {
-            ArrayList<? extends Parcelable> arrayList = new ArrayList<>(g0Var.f5669a.size());
-            ArrayList arrayList2 = g0Var.f5669a;
+        if (!g0Var.f4967a.isEmpty()) {
+            ArrayList<? extends Parcelable> arrayList = new ArrayList<>(g0Var.f4967a.size());
+            ArrayList arrayList2 = g0Var.f4967a;
             int size = arrayList2.size();
             int i11 = 0;
             while (i11 < size) {
@@ -151,7 +151,7 @@ public final class t {
                     if (a2 != null) {
                         icon = a2.m(null);
                     }
-                    d = d0.a(icon, kVar.h, kVar.f5696i);
+                    d = d0.a(icon, kVar.h, kVar.f4989i);
                 } else {
                     IconCompat a10 = kVar.a();
                     if (a10 != null && a10.i() == 2) {
@@ -159,26 +159,26 @@ public final class t {
                     } else {
                         i10 = 0;
                     }
-                    d = c0.d(i10, kVar.h, kVar.f5696i);
+                    d = c0.d(i10, kVar.h, kVar.f4989i);
                 }
-                Bundle bundle3 = kVar.f5690a;
-                boolean z10 = kVar.d;
+                Bundle bundle3 = kVar.f4984a;
+                boolean z4 = kVar.d;
                 if (bundle3 != null) {
-                    bundle = new Bundle(kVar.f5690a);
+                    bundle = new Bundle(kVar.f4984a);
                 } else {
                     bundle = new Bundle();
                 }
-                bundle.putBoolean("android.support.allowGeneratedReplies", z10);
+                bundle.putBoolean("android.support.allowGeneratedReplies", z4);
                 if (i12 >= 24) {
-                    e0.a(d, z10);
+                    e0.a(d, z4);
                 }
                 if (i12 >= 31) {
                     f0.a(d, false);
                 }
                 c0.a(d, bundle);
-                r0[] r0VarArr = kVar.f5692c;
-                if (r0VarArr != null) {
-                    for (RemoteInput remoteInput : r0.a(r0VarArr)) {
+                q0[] q0VarArr = kVar.f4986c;
+                if (q0VarArr != null) {
+                    for (RemoteInput remoteInput : q0.a(q0VarArr)) {
                         c0.b(d, remoteInput);
                     }
                 }
@@ -186,27 +186,27 @@ public final class t {
             }
             bundle2.putParcelableArrayList("actions", arrayList);
         }
-        int i13 = g0Var.f5670b;
+        int i13 = g0Var.f4968b;
         if (i13 != 1) {
             bundle2.putInt("flags", i13);
         }
-        if (!g0Var.f5671c.isEmpty()) {
-            ArrayList arrayList3 = g0Var.f5671c;
+        if (!g0Var.f4969c.isEmpty()) {
+            ArrayList arrayList3 = g0Var.f4969c;
             bundle2.putParcelableArray("pages", (Parcelable[]) arrayList3.toArray(new Notification[arrayList3.size()]));
         }
         int i14 = g0Var.d;
         if (i14 != 8388613) {
             bundle2.putInt("contentIconGravity", i14);
         }
-        int i15 = g0Var.f5672e;
+        int i15 = g0Var.e;
         if (i15 != -1) {
             bundle2.putInt("contentActionIndex", i15);
         }
-        int i16 = g0Var.f5673f;
+        int i16 = g0Var.f4970f;
         if (i16 != 80) {
             bundle2.putInt("gravity", i16);
         }
-        String str = g0Var.f5674g;
+        String str = g0Var.f4971g;
         if (str != null) {
             bundle2.putString("dismissalId", str);
         }
@@ -221,20 +221,20 @@ public final class t {
     }
 
     public final void e(String str) {
-        this.f5752y = str;
+        this.f5037y = str;
     }
 
     public final void f(String str) {
-        this.f5735f = d(str);
+        this.f5020f = d(str);
     }
 
     public final void g(CharSequence charSequence) {
-        this.f5734e = d(charSequence);
+        this.e = d(charSequence);
     }
 
-    public final void h(int i10, boolean z10) {
+    public final void h(int i10, boolean z4) {
         Notification notification = this.E;
-        if (z10) {
+        if (z4) {
             notification.flags = i10 | notification.flags;
             return;
         }
@@ -251,7 +251,7 @@ public final class t {
             c3 = null;
         } else {
             if (Build.VERSION.SDK_INT < 27) {
-                Resources resources = this.f5731a.getResources();
+                Resources resources = this.f5017a.getResources();
                 int dimensionPixelSize = resources.getDimensionPixelSize(2131165308);
                 int dimensionPixelSize2 = resources.getDimensionPixelSize(2131165307);
                 if (bitmap.getWidth() > dimensionPixelSize || bitmap.getHeight() > dimensionPixelSize2) {
@@ -265,11 +265,11 @@ public final class t {
     }
 
     public final void k() {
-        this.f5748t = true;
+        this.f5033t = true;
     }
 
     public final void l(String str) {
-        this.f5747s = str;
+        this.f5032s = str;
     }
 
     public final void m(Uri uri) {
@@ -280,17 +280,17 @@ public final class t {
     }
 
     public final void n(b0 b0Var) {
-        if (this.f5740l != b0Var) {
-            this.f5740l = b0Var;
-            if (b0Var.f5655a != this) {
-                b0Var.f5655a = this;
+        if (this.f5025l != b0Var) {
+            this.f5025l = b0Var;
+            if (b0Var.f4955a != this) {
+                b0Var.f4955a = this;
                 n(b0Var);
             }
         }
     }
 
     public final void o(String str) {
-        this.f5741m = d(str);
+        this.f5026m = d(str);
     }
 
     public final void p(String str) {

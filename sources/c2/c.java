@@ -1,29 +1,29 @@
 package c2;
 public final class c implements Runnable {
-    public final int f2797a;
-    public final androidx.emoji2.text.o f2798b;
-    public final int f2799c;
+    public final int f1902a;
+    public final androidx.emoji2.text.p f1903b;
+    public final int f1904c;
 
-    public c(androidx.emoji2.text.o oVar, int i10, int i11) {
-        this.f2797a = i11;
-        this.f2798b = oVar;
-        this.f2799c = i10;
+    public c(androidx.emoji2.text.p pVar, int i10, int i11) {
+        this.f1902a = i11;
+        this.f1903b = pVar;
+        this.f1904c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f2797a) {
+        switch (this.f1902a) {
             case 0:
-                b0 b0Var = ((e) ((androidx.biometric.e) this.f2798b.f1369f).d).d;
-                if (b0Var != null) {
-                    b0Var.j(this.f2799c);
+                a0 a0Var = ((e) ((androidx.biometric.e) this.f1903b.f782f).d).d;
+                if (a0Var != null) {
+                    a0Var.j(this.f1904c);
                     return;
                 }
                 return;
             default:
-                b0 b0Var2 = ((e) ((androidx.biometric.e) this.f2798b.f1369f).d).d;
-                if (b0Var2 != null) {
-                    b0Var2.k(this.f2799c);
+                a0 a0Var2 = ((e) ((androidx.biometric.e) this.f1903b.f782f).d).d;
+                if (a0Var2 != null) {
+                    a0Var2.k(this.f1904c);
                     return;
                 }
                 return;

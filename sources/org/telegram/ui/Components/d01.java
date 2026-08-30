@@ -1,39 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public class d01 extends MetricAffectingSpan {
-    public final TextPaint f27626a;
-    public final String f27627b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class d01 extends qv0 {
+    public final org.telegram.ui.g20 f24092t0;
+    public final org.telegram.ui.ActionBar.f6 f24093u0;
+    public final b01 f24094v0;
 
-    public d01(TextPaint textPaint, String str) {
-        this.f27626a = textPaint;
-        this.f27627b = str;
+    public d01(Context context, org.telegram.ui.ActionBar.f6 f6Var, b01 b01Var) {
+        super(context, null);
+        this.f24093u0 = f6Var;
+        this.f24094v0 = b01Var;
+        this.f24092t0 = new org.telegram.ui.g20();
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f27626a;
-        if (textPaint2 != null) {
-            textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
-        }
+    public final boolean P() {
+        return false;
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f27626a;
-        if (textPaint2 != null) {
-            textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
+    public final boolean Q() {
+        return false;
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        if (view == this.f24094v0) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+            boolean drawChild = super.drawChild(canvas, view, j10);
+            canvas.save();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, AndroidUtilities.dp(45.0f), getHeight());
+            this.f24092t0.b(canvas, rectF, 0, 1.0f);
+            canvas.restore();
+            canvas.restore();
+            return drawChild;
         }
+        return super.drawChild(canvas, view, j10);
+    }
+
+    @Override
+    public final org.telegram.ui.ActionBar.f6 getResourceProvider() {
+        return this.f24093u0;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, 1073741824);
+        b01 b01Var = this.f24094v0;
+        b01Var.measure(makeMeasureSpec, i11);
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), b01Var.getMeasuredHeight() + AndroidUtilities.dp(24.0f));
     }
 }

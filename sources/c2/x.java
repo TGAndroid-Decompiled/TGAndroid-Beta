@@ -1,39 +1,13 @@
 package c2;
-public abstract class x {
-    public abstract void e(b0 b0Var);
+public final class x {
+    public final c0 f2022a;
+    public final w f2023b;
+    public v f2024c = v.f2010c;
+    public int d;
+    public long e;
 
-    public void h(d0 d0Var, b0 b0Var, int i10) {
-        g(b0Var);
-    }
-
-    public void j(d0 d0Var, b0 b0Var, int i10) {
-        i();
-    }
-
-    public void a() {
-    }
-
-    public void b() {
-    }
-
-    public void c() {
-    }
-
-    public void i() {
-    }
-
-    public void d(b0 b0Var) {
-    }
-
-    public void f(b0 b0Var) {
-    }
-
-    public void g(b0 b0Var) {
-    }
-
-    public void k(b0 b0Var) {
-    }
-
-    public void l(g0 g0Var) {
+    public x(c0 c0Var, w wVar) {
+        this.f2022a = c0Var;
+        this.f2023b = wVar;
     }
 }

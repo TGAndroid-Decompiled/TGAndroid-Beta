@@ -1,17 +1,16 @@
 package l7;
-public final class m7 implements s9.d {
-    public static final m7 f14885a = new Object();
+public final class m7 {
+    public final Long f11553a;
+    public final t7 f11554b;
+    public final Boolean f11555c;
+    public final Boolean d;
+    public final Boolean e;
 
-    static {
-        com.google.android.recaptcha.internal.a.t(j7.l1.q(w.class, new s(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            s9.e eVar = (s9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public m7(c5.j jVar) {
+        this.f11553a = (Long) jVar.f2129a;
+        this.f11554b = (t7) jVar.f2130b;
+        this.f11555c = (Boolean) jVar.f2131c;
+        this.d = (Boolean) jVar.d;
+        this.e = (Boolean) jVar.e;
     }
 }

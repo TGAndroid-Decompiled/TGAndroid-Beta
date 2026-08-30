@@ -11,11 +11,11 @@ import android.hardware.camera2.CaptureRequest;
 import android.os.Handler;
 import android.util.Range;
 import android.view.Surface;
-import j7.l1;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import lh.d1;
+import kh.a2;
+import nh.e1;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraSession;
 public class Camera2Session implements CameraSession {
@@ -67,7 +67,7 @@ public class Camera2Session implements CameraSession {
                     if (i10 != 3) {
                         if (i10 != 4) {
                             if (i10 != 5) {
-                                return l1.k(i10, "Unknown camera error: ");
+                                return a2.j(i10, "Unknown camera error: ");
                             }
                             return "Camera service has encountered a fatal error.";
                         }
@@ -89,16 +89,16 @@ public class Camera2Session implements CameraSession {
 
         @Override
         public void onDisconnected(CameraDevice cameraDevice) {
-            boolean z10;
+            boolean z4;
             Camera2Session.this.checkIsOnCameraThread();
             if (Camera2Session.this.captureSession == null && Camera2Session.this.state != SessionState.STOPPED) {
-                z10 = true;
+                z4 = true;
             } else {
-                z10 = false;
+                z4 = false;
             }
             Camera2Session.this.state = SessionState.STOPPED;
             Camera2Session.this.stopInternal();
-            if (z10) {
+            if (z4) {
                 Camera2Session.this.callback.onFailure(CameraSession.FailureType.DISCONNECTED, "Camera disconnected / evicted.");
             } else {
                 Camera2Session.this.events.onCameraDisconnected(Camera2Session.this);
@@ -120,9 +120,9 @@ public class Camera2Session implements CameraSession {
             Camera2Session.this.surface = new Surface(Camera2Session.this.surfaceTextureHelper.getSurfaceTexture());
             try {
                 cameraDevice.createCaptureSession(Arrays.asList(Camera2Session.this.surface), new CaptureSessionCallback(), Camera2Session.this.cameraThreadHandler);
-            } catch (CameraAccessException e10) {
+            } catch (CameraAccessException e) {
                 Camera2Session camera2Session = Camera2Session.this;
-                camera2Session.reportError("Failed to create capture session. " + e10);
+                camera2Session.reportError("Failed to create capture session. " + e);
             }
         }
     }
@@ -205,9 +205,9 @@ public class Camera2Session implements CameraSession {
                 Camera2Session.this.surfaceTextureHelper.startListening(new a(this, 1));
                 Logging.d("Camera2Session", "Camera device successfully started.");
                 Camera2Session.this.callback.onDone(Camera2Session.this);
-            } catch (CameraAccessException e10) {
+            } catch (CameraAccessException e) {
                 Camera2Session camera2Session = Camera2Session.this;
-                camera2Session.reportError("Failed to start capture request. " + e10);
+                camera2Session.reportError("Failed to start capture request. " + e);
             }
         }
     }
@@ -267,7 +267,7 @@ public class Camera2Session implements CameraSession {
 
     public int getFrameOrientation() {
         int orientation;
-        if (d1.S != null) {
+        if (e1.T != null) {
             orientation = 0;
         } else {
             orientation = this.orientationHelper.getOrientation();
@@ -286,23 +286,23 @@ public class Camera2Session implements CameraSession {
         this.events.onCameraOpening();
         try {
             this.cameraManager.openCamera(this.cameraId, new CameraStateCallback(), this.cameraThreadHandler);
-        } catch (Exception e10) {
-            reportError("Failed to open camera: " + e10);
+        } catch (Exception e) {
+            reportError("Failed to open camera: " + e);
         }
     }
 
     public void reportError(String str) {
-        boolean z10;
+        boolean z4;
         checkIsOnCameraThread();
         Logging.e("Camera2Session", "Error: " + str);
         if (this.captureSession == null && this.state != SessionState.STOPPED) {
-            z10 = true;
+            z4 = true;
         } else {
-            z10 = false;
+            z4 = false;
         }
         this.state = SessionState.STOPPED;
         stopInternal();
-        if (z10) {
+        if (z4) {
             this.callback.onFailure(CameraSession.FailureType.ERROR, str);
         } else {
             this.events.onCameraError(this, str);
@@ -310,7 +310,7 @@ public class Camera2Session implements CameraSession {
     }
 
     private void start() {
-        boolean z10;
+        boolean z4;
         checkIsOnCameraThread();
         Logging.d("Camera2Session", "start");
         try {
@@ -318,11 +318,11 @@ public class Camera2Session implements CameraSession {
             this.orientationHelper.start();
             this.cameraOrientation = ((Integer) this.cameraCharacteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)).intValue();
             if (((Integer) this.cameraCharacteristics.get(CameraCharacteristics.LENS_FACING)).intValue() == 0) {
-                z10 = true;
+                z4 = true;
             } else {
-                z10 = false;
+                z4 = false;
             }
-            this.isCameraFrontFacing = z10;
+            this.isCameraFrontFacing = z4;
             findCaptureFormat();
             openCamera();
         } catch (Throwable th2) {

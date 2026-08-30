@@ -1,30 +1,129 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class bk extends org.telegram.ui.Components.no {
-    public final tn f36818f;
+import android.content.SharedPreferences;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class bk extends org.telegram.ui.Components.pa0 {
+    public boolean S;
+    public final xn T;
 
-    public bk(tn tnVar, Context context) {
-        super(context);
-        this.f36818f = tnVar;
+    public bk(xn xnVar, Context context, long j10, long j11, xn xnVar2, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, j10, j11, xnVar2, f6Var);
+        this.T = xnVar;
+        this.S = true;
     }
 
     @Override
-    public final void a(boolean z10) {
-        tn tnVar = this.f36818f;
-        tnVar.t7();
-        tnVar.r7();
-        tnVar.u7();
-        tnVar.v7();
-        uk ukVar = tnVar.Xa;
-        if (ukVar != null) {
-            ukVar.setTranslationY(tnVar.f42969s9 + getCurrentHeight());
+    public final boolean a() {
+        xn xnVar = this.T;
+        if (xnVar.O.getVisibility() == 0 && !xnVar.f40074k3) {
+            return false;
         }
-        if (z10) {
-            tnVar.f43059z9 = true;
-            tnVar.jc();
-            return;
+        return true;
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (getAlpha() <= 0.0f) {
+            return false;
         }
-        tnVar.o9();
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void j() {
+        this.T.sc();
+    }
+
+    @Override
+    public final void k(TLRPC.BotInlineResult botInlineResult) {
+        xn xnVar = this.T;
+        if (xnVar.getParentActivity() != null && botInlineResult.content != null) {
+            if (!botInlineResult.type.equals("video") && !botInlineResult.type.equals("web_player_video")) {
+                xnVar.xa(0, botInlineResult.content.url, null, null, false);
+                return;
+            }
+            int[] inlineResultWidthAndHeight = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
+            yl ylVar = xnVar.Fa;
+            String str = botInlineResult.title;
+            if (str == null) {
+                str = "";
+            }
+            String str2 = botInlineResult.description;
+            String str3 = botInlineResult.content.url;
+            org.telegram.ui.Components.pu.I(xnVar, null, ylVar, str, str2, str3, str3, inlineResultWidthAndHeight[0], inlineResultWidthAndHeight[1], -1, xnVar.x9());
+        }
+    }
+
+    @Override
+    public final void l(boolean z4) {
+        String str;
+        xn xnVar = this.T;
+        jk jkVar = xnVar.V;
+        if (jkVar != null) {
+            tf.u0 adapter = getAdapter();
+            TLRPC.User user = adapter.f44860t0;
+            if (user != null) {
+                str = user.bot_inline_placeholder;
+            } else {
+                String str2 = adapter.f44852n0;
+                if (str2 != null && str2.equals("gif")) {
+                    str = LocaleController.getString(R.string.SearchGifsTitle);
+                } else {
+                    str = null;
+                }
+            }
+            jkVar.setCaption(str);
+            org.telegram.ui.Components.ne neVar = xnVar.V.L1;
+            if (neVar != null) {
+                if (z4) {
+                    neVar.e = true;
+                    neVar.f24346b = System.currentTimeMillis();
+                    neVar.invalidateSelf();
+                    return;
+                }
+                neVar.e = false;
+            }
+        }
+    }
+
+    @Override
+    public final void m() {
+        xn xnVar = this.T;
+        if (xnVar.W4 && ((getAdapter().O == null || xnVar.X4 || xnVar.Y4) && xnVar.h != null && getAdapter().O != null)) {
+            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+            if (!globalMainSettings.getBoolean("secretbot", false)) {
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xnVar.getParentActivity(), 0, xnVar.f39968ba);
+                alertDialog$Builder.f19503a.O = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.f19503a.Q = LocaleController.getString(R.string.SecretChatContextBotAlert);
+                alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+                xnVar.showDialog(alertDialog$Builder.f19503a);
+                globalMainSettings.edit().putBoolean("secretbot", true).commit();
+            }
+        }
+        xnVar.sc();
+    }
+
+    @Override
+    public final void n(boolean z4) {
+        boolean z10;
+        if (this.S != z4) {
+            xn xnVar = this.T;
+            org.telegram.ui.Components.qy0 qy0Var = xnVar.f39946a1;
+            if (!xnVar.isInPreviewMode() && z4) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            AndroidUtilities.updateViewShow(qy0Var, z10, false, true);
+            this.S = z4;
+        }
     }
 }

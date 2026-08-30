@@ -1,36 +1,31 @@
 package org.telegram.ui;
 
-import android.os.AsyncTask;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class rn0 extends AsyncTask {
-    public final ec.a f42163a;
-    public final bo0 f42164b;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class rn0 implements ho0 {
+    public final jo0 f38087a;
 
-    public rn0(bo0 bo0Var, ec.a aVar) {
-        this.f42164b = bo0Var;
-        this.f42163a = aVar;
+    public rn0(jo0 jo0Var) {
+        this.f38087a = jo0Var;
     }
 
     @Override
-    public final java.lang.Object doInBackground(java.lang.Object[] r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.rn0.doInBackground(java.lang.Object[]):java.lang.Object");
+    public final boolean c(String str, String str2, boolean z4, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        return false;
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        String str = (String) obj;
-        bo0 bo0Var = this.f42164b;
-        if (bo0Var.M0) {
-            return;
-        }
-        if (str == null) {
-            org.telegram.ui.Components.c5.w0(bo0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
-        } else {
-            bo0Var.f36865s0 = str;
-            bo0Var.t0();
-        }
-        bo0Var.H0(true, false);
-        bo0Var.D0(false);
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
+        jo0 jo0Var = this.f38087a;
+        jo0Var.F0 = tL_payments_validateRequestedInfo;
+        jo0Var.B0(tL_payments_validateRequestedInfo.info);
+    }
+
+    @Override
+    public final void a(TL_account.Password password) {
+    }
+
+    @Override
+    public final void b() {
     }
 }

@@ -1,35 +1,89 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class ou0 extends nu0 {
-    public final pu0 C;
+import android.graphics.Canvas;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.util.SparseArray;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashSet;
+public abstract class ou0 extends pt0 {
+    public final HashSet c3;
+    public final ArrayList f27667d3;
+    public final ArrayList f27668e3;
+    public final ArrayList f27669f3;
+    public TextPaint f27670g3;
+    public StaticLayout f27671h3;
+    public float f27672i3;
+    public float f27673j3;
+    public nh.q9 f27674k3;
+    public int f27675l3;
+    public final ArrayList f27676m3;
 
-    public ou0(pu0 pu0Var, Context context, int i10) {
-        super(pu0Var.f31776e, context, i10, false);
-        this.C = pu0Var;
+    public ou0(Context context) {
+        super(context, null);
+        this.c3 = new HashSet();
+        this.f27667d3 = new ArrayList();
+        this.f27668e3 = new ArrayList();
+        this.f27669f3 = new ArrayList();
+        this.f27676m3 = new ArrayList();
+    }
+
+    public abstract boolean A1();
+
+    public boolean B1() {
+        return true;
     }
 
     @Override
-    public final void l() {
-        boolean z10;
-        super.l();
-        pu0 pu0Var = this.C;
-        qu0 qu0Var = pu0Var.f31776e;
-        int i10 = pu0Var.f31773a;
-        int[] iArr = qu0.Z1;
-        it0 W = qu0Var.W(i10);
-        if (W != null && W.f29469r.getVisibility() == 0) {
-            pu0Var.d.l();
+    public void dispatchDraw(android.graphics.Canvas r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ou0.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        cl0 movingAdapter = getMovingAdapter();
+        if (B1() && getAdapter() == movingAdapter && z1() && (view instanceof org.telegram.ui.Cells.r7)) {
+            return true;
         }
-        if (W != null) {
-            zr0 zr0Var = W.f29471w;
-            lh.k6 k6Var = this.f31151s;
-            if (k6Var != null && (k6Var.k() || (qu0Var.i0() && this.f31151s.g() > 0))) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            zr0Var.e(z10, true);
-        }
+        return super.drawChild(canvas, view, j10);
+    }
+
+    public int getAnimateToColumnsCount() {
+        return 3;
+    }
+
+    public float getChangeColumnsProgress() {
+        return 0.0f;
+    }
+
+    public int getColumnsCount() {
+        return 3;
+    }
+
+    public SparseArray<Float> getMessageAlphaEnter() {
+        return null;
+    }
+
+    public cl0 getMovingAdapter() {
+        return null;
+    }
+
+    public int getPinchCenterPosition() {
+        return 0;
+    }
+
+    public cl0 getSupportingAdapter() {
+        return null;
+    }
+
+    public pt0 getSupportingListView() {
+        return null;
+    }
+
+    public abstract boolean z1();
+
+    public void y1(org.telegram.ui.Cells.r7 r7Var) {
     }
 }

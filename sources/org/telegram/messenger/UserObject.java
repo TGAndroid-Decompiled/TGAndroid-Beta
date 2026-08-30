@@ -75,7 +75,7 @@ public class UserObject {
         if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
             return peerColor.color;
         }
-        return (int) (user.f22539id % 7);
+        return (int) (user.f19331id % 7);
     }
 
     public static long getEmojiId(TLRPC.User user) {
@@ -176,7 +176,7 @@ public class UserObject {
         return 0L;
     }
 
-    public static String getPublicUsername(TLRPC.User user, boolean z10) {
+    public static String getPublicUsername(TLRPC.User user, boolean z4) {
         if (user == null) {
             return null;
         }
@@ -186,7 +186,7 @@ public class UserObject {
         if (user.usernames != null) {
             for (int i10 = 0; i10 < user.usernames.size(); i10++) {
                 TLRPC.TL_username tL_username = user.usernames.get(i10);
-                if (tL_username != null && (((tL_username.active && !z10) || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
+                if (tL_username != null && (((tL_username.active && !z4) || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
                     return tL_username.username;
                 }
             }
@@ -213,7 +213,7 @@ public class UserObject {
         if (user != null && !isDeleted(user)) {
             String removeRTL = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(ContactsController.formatName(user.first_name, user.last_name)));
             if (removeRTL.length() == 0 && !TextUtils.isEmpty(user.phone)) {
-                return x3.k(new StringBuilder("+"), user.phone, qe.b.c());
+                return y3.j(new StringBuilder("+"), user.phone, se.b.c());
             }
             return removeRTL;
         }
@@ -254,7 +254,7 @@ public class UserObject {
     }
 
     public static boolean isAnonymous(TLRPC.User user) {
-        if (user != null && user.f22539id == 2666000) {
+        if (user != null && user.f19331id == 2666000) {
             return true;
         }
         return false;
@@ -315,7 +315,7 @@ public class UserObject {
 
     public static boolean areGiftsDisabled(TLRPC.UserFull userFull) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        return (userFull == null || userFull.f22540id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
+        return (userFull == null || userFull.f19332id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
     }
 
     public static Long getEmojiStatusDocumentId(TLRPC.EmojiStatus emojiStatus) {
@@ -339,12 +339,12 @@ public class UserObject {
         }
     }
 
-    public static String getFirstName(TLRPC.User user, boolean z10) {
+    public static String getFirstName(TLRPC.User user, boolean z4) {
         if (user != null && !isDeleted(user)) {
             String str = user.first_name;
             if (TextUtils.isEmpty(str)) {
                 str = user.last_name;
-            } else if (!z10 && str.length() <= 2) {
+            } else if (!z4 && str.length() <= 2) {
                 return ContactsController.formatName(user.first_name, user.last_name);
             }
             return !TextUtils.isEmpty(str) ? str : LocaleController.getString(R.string.HiddenName);
@@ -354,7 +354,7 @@ public class UserObject {
 
     public static boolean isReplyUser(TLRPC.User user) {
         if (user != null) {
-            long j10 = user.f22539id;
+            long j10 = user.f19331id;
             return j10 == 708513 || j10 == 1271266957;
         }
         return false;

@@ -1,26 +1,117 @@
 package ph;
 
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import org.telegram.messenger.Utilities;
-public final class o0 implements LocationListener {
-    public final LocationManager f45925a;
-    public final LocationListener[] f45926b;
-    public final Utilities.Callback f45927c;
-    public final q0 d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.CornerPathEffect;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.nr;
+public final class o0 extends View {
+    public final Paint f42032a;
+    public final TextPaint f42033b;
+    public final StaticLayout f42034c;
+    public final float d;
+    public final float e;
+    public final Path f42035f;
+    public org.telegram.ui.web.o0 h;
+    public boolean f42036n;
+    public final org.telegram.ui.Components.z5 f42037r;
 
-    public o0(q0 q0Var, LocationManager locationManager, LocationListener[] locationListenerArr, Utilities.Callback callback) {
-        this.d = q0Var;
-        this.f45925a = locationManager;
-        this.f45926b = locationListenerArr;
-        this.f45927c = callback;
+    public o0(Context context) {
+        super(context);
+        float f10;
+        float f11;
+        Paint paint = new Paint(1);
+        this.f42032a = paint;
+        TextPaint textPaint = new TextPaint(1);
+        this.f42033b = textPaint;
+        this.f42035f = new Path();
+        org.telegram.ui.Components.z5 z5Var = new org.telegram.ui.Components.z5(this);
+        this.f42037r = z5Var;
+        paint.setColor(-869783512);
+        paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(6.0f)));
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setColor(-1);
+        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(LocaleController.getString("StoryDraftSaved"), textPaint, AndroidUtilities.displaySize.x, TextUtils.TruncateAt.END), textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f42034c = staticLayout;
+        if (staticLayout.getLineCount() > 0) {
+            f10 = staticLayout.getLineWidth(0);
+        } else {
+            f10 = 0.0f;
+        }
+        this.d = f10;
+        if (staticLayout.getLineCount() > 0) {
+            f11 = staticLayout.getLineLeft(0);
+        } else {
+            f11 = 0.0f;
+        }
+        this.e = f11;
+        z5Var.d(0.0f, true);
+    }
+
+    public final void a(boolean z4) {
+        org.telegram.ui.web.o0 o0Var;
+        if (!z4 && (o0Var = this.h) != null) {
+            AndroidUtilities.cancelRunOnUIThread(o0Var);
+            this.h = null;
+        }
+        this.f42036n = z4;
+        invalidate();
     }
 
     @Override
-    public final void onLocationChanged(Location location) {
-        this.f45925a.removeUpdates(this.f45926b[0]);
-        this.d.getClass();
-        this.f45927c.run(q0.h(location));
+    public final void dispatchDraw(Canvas canvas) {
+        float f10;
+        float e = this.f42037r.e(this.f42036n);
+        if (e <= 0.0f) {
+            return;
+        }
+        canvas.save();
+        if (this.f42036n) {
+            f10 = nr.f27350k.getInterpolation(e);
+        } else {
+            f10 = 1.0f;
+        }
+        canvas.translate(0.0f, f10 * AndroidUtilities.dp(12.0f));
+        float interpolation = nr.h.getInterpolation(e);
+        float measuredWidth = getMeasuredWidth();
+        float measuredHeight = getMeasuredHeight();
+        float dp = AndroidUtilities.dp(22.0f) + this.d;
+        float min = (measuredWidth / 2.0f) - Math.min(AndroidUtilities.dp(135.0f), 0.35f * measuredWidth);
+        float max = Math.max(AndroidUtilities.dp(8.0f), min - (dp / 2.0f));
+        Path path = this.f42035f;
+        path.rewind();
+        path.moveTo(max, 0.0f);
+        float f11 = dp + max;
+        path.lineTo(f11, 0.0f);
+        path.lineTo(f11, measuredHeight - AndroidUtilities.dp(18.0f));
+        path.lineTo(AndroidUtilities.dp(7.0f) + min, measuredHeight - AndroidUtilities.dp(18.0f));
+        path.lineTo(AndroidUtilities.dp(1.0f) + min, measuredHeight - AndroidUtilities.dp(12.0f));
+        path.lineTo(min - AndroidUtilities.dp(1.0f), measuredHeight - AndroidUtilities.dp(12.0f));
+        path.lineTo(min - AndroidUtilities.dp(7.0f), measuredHeight - AndroidUtilities.dp(18.0f));
+        path.lineTo(max, measuredHeight - AndroidUtilities.dp(18.0f));
+        path.close();
+        Paint paint = this.f42032a;
+        paint.setAlpha((int) (204.0f * interpolation));
+        canvas.drawPath(path, paint);
+        canvas.save();
+        StaticLayout staticLayout = this.f42034c;
+        canvas.translate((max + AndroidUtilities.dp(11.0f)) - this.e, ((measuredHeight - AndroidUtilities.dp(18.0f)) - staticLayout.getHeight()) / 2.0f);
+        this.f42033b.setAlpha((int) (interpolation * 255.0f));
+        staticLayout.draw(canvas);
+        canvas.restore();
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(50.0f));
     }
 }

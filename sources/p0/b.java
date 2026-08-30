@@ -3,23 +3,23 @@ package p0;
 import android.text.SpannableStringBuilder;
 import c2.u;
 public final class b {
-    public static final String f45404b;
-    public static final String f45405c;
+    public static final String f40927b;
+    public static final String f40928c;
     public static final b d;
-    public static final b f45406e;
-    public final boolean f45407a;
+    public static final b e;
+    public final boolean f40929a;
 
     static {
-        u uVar = f.f45414c;
-        f45404b = Character.toString((char) 8206);
-        f45405c = Character.toString((char) 8207);
+        u uVar = f.f40936c;
+        f40927b = Character.toString((char) 8206);
+        f40928c = Character.toString((char) 8207);
         d = new b(false);
-        f45406e = new b(true);
+        e = new b(true);
     }
 
-    public b(boolean z10) {
-        u uVar = f.f45412a;
-        this.f45407a = z10;
+    public b(boolean z4) {
+        u uVar = f.f40934a;
+        this.f40929a = z4;
     }
 
     public static int a(java.lang.CharSequence r9) {
@@ -28,10 +28,10 @@ public final class b {
 
     public static int b(CharSequence charSequence) {
         a aVar = new a(charSequence);
-        aVar.f45403c = aVar.f45402b;
+        aVar.f40926c = aVar.f40925b;
         int i10 = 0;
         int i11 = 0;
-        while (aVar.f45403c > 0) {
+        while (aVar.f40926c > 0) {
             byte a2 = aVar.a();
             if (a2 != 0) {
                 if (a2 != 1 && a2 != 2) {
@@ -88,31 +88,31 @@ public final class b {
         String str;
         u uVar2;
         char c3;
-        u uVar3 = f.f45414c;
+        u uVar3 = f.f40936c;
         if (charSequence == null) {
             return null;
         }
         boolean g10 = uVar3.g(charSequence.length(), charSequence);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (g10) {
-            uVar = f.f45413b;
+            uVar = f.f40935b;
         } else {
-            uVar = f.f45412a;
+            uVar = f.f40934a;
         }
         boolean g11 = uVar.g(charSequence.length(), charSequence);
         String str2 = "";
-        String str3 = f45405c;
-        String str4 = f45404b;
-        boolean z10 = this.f45407a;
-        if (!z10 && (g11 || a(charSequence) == 1)) {
+        String str3 = f40928c;
+        String str4 = f40927b;
+        boolean z4 = this.f40929a;
+        if (!z4 && (g11 || a(charSequence) == 1)) {
             str = str4;
-        } else if (!z10 || (g11 && a(charSequence) != -1)) {
+        } else if (!z4 || (g11 && a(charSequence) != -1)) {
             str = "";
         } else {
             str = str3;
         }
         spannableStringBuilder.append((CharSequence) str);
-        if (g10 != z10) {
+        if (g10 != z4) {
             if (g10) {
                 c3 = 8235;
             } else {
@@ -125,14 +125,14 @@ public final class b {
             spannableStringBuilder.append(charSequence);
         }
         if (g10) {
-            uVar2 = f.f45413b;
+            uVar2 = f.f40935b;
         } else {
-            uVar2 = f.f45412a;
+            uVar2 = f.f40934a;
         }
         boolean g12 = uVar2.g(charSequence.length(), charSequence);
-        if (!z10 && (g12 || b(charSequence) == 1)) {
+        if (!z4 && (g12 || b(charSequence) == 1)) {
             str2 = str4;
-        } else if (z10 && (!g12 || b(charSequence) == -1)) {
+        } else if (z4 && (!g12 || b(charSequence) == -1)) {
             str2 = str3;
         }
         spannableStringBuilder.append((CharSequence) str2);

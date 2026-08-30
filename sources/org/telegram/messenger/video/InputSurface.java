@@ -22,11 +22,11 @@ public class InputSurface {
     }
 
     private void checkEglError(String str) {
-        boolean z10 = false;
+        boolean z4 = false;
         while (EGL14.eglGetError() != 12288) {
-            z10 = true;
+            z4 = true;
         }
-        if (!z10) {
+        if (!z4) {
             return;
         }
         throw new RuntimeException("EGL error encountered (see log)");

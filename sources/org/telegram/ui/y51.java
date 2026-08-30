@@ -1,63 +1,334 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class y51 extends AnimatorListenerAdapter {
-    public final boolean f44748a;
-    public final Runnable f44749b;
-    public final boolean[] f44750c;
-    public final boolean d;
-    public final Runnable f44751e;
-    public final z51 f44752f;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SvgHelper;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class y51 extends View {
+    public Drawable B;
+    public Rect C;
+    public float D;
+    public boolean E;
+    public ValueAnimator F;
+    public x51 G;
+    public Emoji.EmojiDrawable H;
+    public boolean I;
+    public boolean J;
+    public float K;
+    public float L;
+    public int M;
+    public boolean N;
+    public float O;
+    public float P;
+    public float Q;
+    public final o50 R;
+    public final q61 S;
+    public boolean f40399a;
+    public boolean f40400b;
+    public int f40401c;
+    public TLRPC.Document d;
+    public org.telegram.ui.Components.u5 e;
+    public final ImageReceiver.BackgroundThreadDrawHolder[] f40402f;
+    public ImageReceiver h;
+    public final ImageReceiver f40403n;
+    public ImageReceiver f40404r;
+    public boolean f40405s;
+    public TL_stars.TL_starGiftUnique v;
+    public Integer f40406w;
+    public mg.q0 f40407x;
+    public boolean f40408y;
 
-    public y51(z51 z51Var, boolean z10, Runnable runnable, boolean[] zArr, boolean z11, Runnable runnable2) {
-        this.f44752f = z51Var;
-        this.f44748a = z10;
-        this.f44749b = runnable;
-        this.f44750c = zArr;
-        this.d = z11;
-        this.f44751e = runnable2;
+    public y51(q61 q61Var, Context context) {
+        super(context);
+        this.S = q61Var;
+        this.f40399a = false;
+        this.f40400b = false;
+        this.f40402f = new ImageReceiver.BackgroundThreadDrawHolder[2];
+        ImageReceiver imageReceiver = new ImageReceiver();
+        this.f40403n = imageReceiver;
+        this.Q = 1.0f;
+        this.R = new o50(this, 1);
+        imageReceiver.ignoreNotifications = true;
+        setFocusable(true);
+    }
+
+    public final void a(View view) {
+        if (this.h == null) {
+            ImageReceiver imageReceiver = new ImageReceiver(view);
+            this.h = imageReceiver;
+            imageReceiver.setLayerNum(7);
+            if (this.E) {
+                this.h.onAttachedToWindow();
+            }
+            this.h.setAspectFit(true);
+        }
+    }
+
+    public final void b() {
+        Paint paint;
+        x51 x51Var = this.G;
+        if (x51Var == null) {
+            Context context = getContext();
+            int i10 = eg.s1.I;
+            this.G = new x51(this, context);
+            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.66f), 1073741824);
+            this.G.measure(makeMeasureSpec, makeMeasureSpec);
+            x51 x51Var2 = this.G;
+            x51Var2.layout(0, 0, x51Var2.getMeasuredWidth(), this.G.getMeasuredHeight());
+            return;
+        }
+        x51Var.h = false;
+        x51Var.f5499n = -1;
+        if (x51Var.f5495a == 2 && (paint = x51Var.f5503x) != null) {
+            paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19852a7, false));
+        }
+    }
+
+    public final void c(TLRPC.Document document, r51 r51Var) {
+        String str;
+        this.d = document;
+        a(r51Var);
+        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.j6.f20067m6, 0.2f);
+        if (this.S.T == 6) {
+            ImageReceiver imageReceiver = this.h;
+            ImageLocation forDocument = ImageLocation.getForDocument(document);
+            if (!LiteMode.isEnabled(16388)) {
+                str = "34_34_firstframe";
+            } else {
+                str = "34_34";
+            }
+            imageReceiver.setImage(forDocument, str, null, null, svgThumb, document.size, null, document, 0);
+        } else {
+            this.h.setImage(ImageLocation.getForDocument(document), "100_100_firstframe", null, null, svgThumb, 0L, "tgs", document, 0);
+        }
+        this.N = true;
+        this.e = null;
+    }
+
+    public final void d(boolean z4, boolean z10) {
+        float f10;
+        if (this.I != z4) {
+            this.I = z4;
+            if (!z10) {
+                float f11 = 0.0f;
+                if (z4) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                this.O = f10;
+                if (z4) {
+                    f11 = 1.0f;
+                }
+                this.P = f11;
+            }
+        }
+    }
+
+    public final void e(boolean z4, boolean z10) {
+        if (!this.I && z4 && z10 && this.S.T != 14) {
+            this.J = true;
+            this.P = 1.0f;
+            this.O = 1.0f;
+            ValueAnimator valueAnimator = this.F;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                this.F.cancel();
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.K, 1.6f, 0.7f);
+            this.F = ofFloat;
+            ofFloat.addUpdateListener(new v51(this, 2));
+            this.F.addListener(new w51(this, 2));
+            this.F.setInterpolator(new LinearInterpolator());
+            this.F.setDuration(200L);
+            this.F.start();
+            return;
+        }
+        this.J = false;
+        d(z4, z10);
+    }
+
+    public final void f() {
+        if (this.I && this.S.T != 14) {
+            ValueAnimator valueAnimator = this.F;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                this.F.cancel();
+            }
+            this.K = 1.0f;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
+            this.F = ofFloat;
+            ofFloat.addUpdateListener(new v51(this, 1));
+            this.F.addListener(new w51(this, 1));
+            this.F.setInterpolator(new OvershootInterpolator(5.0f));
+            this.F.setDuration(350L);
+            this.F.start();
+            d(false, true);
+        }
+    }
+
+    public float getAnimatedScale() {
+        return this.Q;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f9;
-        Runnable runnable;
-        z51 z51Var = this.f44752f;
-        n0 n0Var = z51Var.f45081s;
-        boolean z10 = this.f44748a;
-        if (z10) {
-            f9 = 1.0f;
+    public final void invalidate() {
+        if (mg.g0.f14004b || getParent() == null) {
+            return;
+        }
+        ((View) getParent()).invalidate();
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.E) {
+            return;
+        }
+        this.E = true;
+        Drawable drawable = this.B;
+        if (drawable instanceof org.telegram.ui.Components.l5) {
+            ((org.telegram.ui.Components.l5) drawable).b(this.R);
+        }
+        ImageReceiver imageReceiver = this.h;
+        if (imageReceiver != null) {
+            imageReceiver.setParentView((View) getParent());
+            this.h.onAttachedToWindow();
+        }
+        this.f40403n.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (!this.E) {
+            return;
+        }
+        this.E = false;
+        Drawable drawable = this.B;
+        if (drawable instanceof org.telegram.ui.Components.l5) {
+            ((org.telegram.ui.Components.l5) drawable).p(this.R);
+            nh.y2 y2Var = ((org.telegram.ui.Components.l5) this.B).f26569k;
+            if (y2Var != null) {
+                y2Var.setEmojiPaused(false);
+            }
+        }
+        ImageReceiver imageReceiver = this.h;
+        if (imageReceiver != null) {
+            imageReceiver.onDetachedFromWindow();
+            this.h.setEmojiPaused(false);
+        }
+        this.f40403n.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        String str;
+        org.telegram.ui.Components.u5 u5Var;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (this.f40399a) {
+            str = LocaleController.getString(R.string.RemoveStatus);
         } else {
-            f9 = 0.0f;
-        }
-        z51Var.E = f9;
-        AndroidUtilities.lerp(z51Var.f45076c, z51Var.d, f9, z51Var.f45077e);
-        n0Var.invalidate();
-        if (!z10) {
-            z51Var.v.setAlpha(z51Var.E);
-        }
-        if (z51Var.E < 0.5f && !z10 && (runnable = this.f44749b) != null) {
-            boolean[] zArr = this.f44750c;
-            if (!zArr[0]) {
-                zArr[0] = true;
-                runnable.run();
+            mg.q0 q0Var = this.f40407x;
+            if (q0Var == null || (str = q0Var.f14107f) == null) {
+                TLRPC.Document document = this.d;
+                if (document == null && (u5Var = this.e) != null && (document = u5Var.document) == null) {
+                    document = org.telegram.ui.Components.l5.f(this.S.S, u5Var.getDocumentId());
+                }
+                if (document != null) {
+                    str = MessageObject.findAnimatedEmojiEmoticon(document, null);
+                } else {
+                    str = null;
+                }
             }
         }
-        if (!z10) {
-            if (this.d) {
-                z51Var.f45074a.f40427b = false;
-                z51Var.L.f37326d0.invalidate();
+        if (str != null) {
+            accessibilityNodeInfo.setContentDescription(str);
+        }
+        accessibilityNodeInfo.setSelected(this.I);
+        accessibilityNodeInfo.setClickable(true);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
+    }
+
+    public void setAnimatedScale(float f10) {
+        this.Q = f10;
+    }
+
+    public void setDrawable(Drawable drawable) {
+        Drawable drawable2 = this.B;
+        if (drawable2 != drawable) {
+            boolean z4 = this.E;
+            o50 o50Var = this.R;
+            if (z4 && drawable2 != null && (drawable2 instanceof org.telegram.ui.Components.l5)) {
+                ((org.telegram.ui.Components.l5) drawable2).p(o50Var);
             }
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 4);
+            this.B = drawable;
+            if (this.E && (drawable instanceof org.telegram.ui.Components.l5)) {
+                ((org.telegram.ui.Components.l5) drawable).b(o50Var);
+            }
         }
-        z51Var.G = null;
-        n0Var.invalidate();
-        Runnable runnable2 = this.f44751e;
-        if (runnable2 != null) {
-            runnable2.run();
+    }
+
+    public void setEmojicon(String str) {
+        if (TextUtils.isEmpty(str)) {
+            this.H = null;
+        } else {
+            this.H = Emoji.getEmojiDrawable(str);
         }
+    }
+
+    @Override
+    public void setPressed(boolean z4) {
+        ValueAnimator valueAnimator;
+        if (isPressed() != z4) {
+            super.setPressed(z4);
+            invalidate();
+            if (z4 && (valueAnimator = this.F) != null) {
+                valueAnimator.removeAllListeners();
+                this.F.cancel();
+            }
+            if (!z4) {
+                float f10 = this.K;
+                if (f10 != 0.0f && this.S.T != 14) {
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
+                    this.F = ofFloat;
+                    ofFloat.addUpdateListener(new v51(this, 0));
+                    this.F.addListener(new w51(this, 0));
+                    this.F.setInterpolator(new OvershootInterpolator(5.0f));
+                    this.F.setDuration(350L);
+                    this.F.start();
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void invalidate(int i10, int i11, int i12, int i13) {
+        if (mg.g0.f14004b) {
+            return;
+        }
+        super.invalidate(i10, i11, i12, i13);
     }
 }

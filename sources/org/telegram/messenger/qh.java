@@ -1,39 +1,35 @@
 package org.telegram.messenger;
 
-import android.os.SystemClock;
-import org.telegram.messenger.SharedConfig;
-public final class qh implements Runnable {
-    public final int f21370a;
-    public final SharedConfig.ProxyInfo f21371b;
-    public final long f21372c;
+import android.content.Context;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class qh implements Utilities.Callback2 {
+    public final int f18226a = 0;
+    public final int f18227b;
+    public final Object f18228c;
+    public final Object d;
 
-    public qh(SharedConfig.ProxyInfo proxyInfo, long j10, int i10) {
-        this.f21370a = i10;
-        this.f21371b = proxyInfo;
-        this.f21372c = j10;
+    public qh(Context context, int i10, Utilities.Callback2 callback2) {
+        this.f18228c = callback2;
+        this.d = context;
+        this.f18227b = i10;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f21370a;
-        long j10 = this.f21372c;
-        SharedConfig.ProxyInfo proxyInfo = this.f21371b;
-        switch (i10) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f18226a) {
             case 0:
-                ProxyRotationController.lambda$new$0(proxyInfo, j10);
+                PasskeysController.lambda$create$7((Utilities.Callback2) this.f18228c, (Context) this.d, this.f18227b, (v0.c) obj, (Throwable) obj2);
                 return;
             default:
-                proxyInfo.availableCheckTime = SystemClock.elapsedRealtime();
-                proxyInfo.checking = false;
-                if (j10 == -1) {
-                    proxyInfo.available = false;
-                    proxyInfo.ping = 0L;
-                } else {
-                    proxyInfo.ping = j10;
-                    proxyInfo.available = true;
-                }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxyCheckDone, proxyInfo);
+                ((TranslateController) this.f18228c).lambda$pushToSummarize$19(this.f18227b, (Utilities.Callback) this.d, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
                 return;
         }
+    }
+
+    public qh(TranslateController translateController, int i10, Utilities.Callback callback) {
+        this.f18228c = translateController;
+        this.f18227b = i10;
+        this.d = callback;
     }
 }

@@ -3,7 +3,7 @@ package org.telegram.SQLite;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-import u3.c;
+import vh.v2;
 public class SQLiteDatabase {
     private boolean inTransaction;
     private boolean isOpen = true;
@@ -39,9 +39,9 @@ public class SQLiteDatabase {
             try {
                 commitTransaction();
                 closedb(this.sqliteHandle);
-            } catch (SQLiteException e10) {
+            } catch (SQLiteException e) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e(e10.getMessage(), e10);
+                    FileLog.e(e.getMessage(), e);
                 }
             }
             this.isOpen = false;
@@ -79,15 +79,15 @@ public class SQLiteDatabase {
 
     public void explainQuery(String str, Object... objArr) {
         checkOpened();
-        SQLiteCursor query = new SQLitePreparedStatement(this, c.e("EXPLAIN QUERY PLAN ", str)).query(objArr);
+        SQLiteCursor query = new SQLitePreparedStatement(this, v2.e("EXPLAIN QUERY PLAN ", str)).query(objArr);
         while (query.next()) {
             int columnCount = query.getColumnCount();
-            StringBuilder sb2 = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             for (int i10 = 0; i10 < columnCount; i10++) {
-                sb2.append(query.stringValue(i10));
-                sb2.append(", ");
+                sb.append(query.stringValue(i10));
+                sb.append(", ");
             }
-            FileLog.d("EXPLAIN QUERY PLAN " + sb2.toString());
+            FileLog.d("EXPLAIN QUERY PLAN " + sb.toString());
         }
         query.dispose();
     }

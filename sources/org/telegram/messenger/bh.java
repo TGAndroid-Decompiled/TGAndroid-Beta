@@ -1,35 +1,22 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class bh implements Runnable {
-    public final int f19827a;
-    public final NotificationsController f19828b;
-    public final ArrayList f19829c;
-
-    public bh(NotificationsController notificationsController, ArrayList arrayList, int i10) {
-        this.f19827a = i10;
-        this.f19828b = notificationsController;
-        this.f19829c = arrayList;
+import android.app.NotificationChannel;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+public final class bh implements org.telegram.ui.ActionBar.c2, Vector.TLDeserializer {
+    public static NotificationChannel a(Object obj) {
+        return (NotificationChannel) obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19827a) {
-            case 0:
-                NotificationsController.F(this.f19828b, this.f19829c);
-                return;
-            case 1:
-                NotificationsController.S(this.f19828b, this.f19829c);
-                return;
-            case 2:
-                NotificationsController.M(this.f19828b, this.f19829c);
-                return;
-            case 3:
-                NotificationsController.I(this.f19828b, this.f19829c);
-                return;
-            default:
-                NotificationsController.a0(this.f19828b, this.f19829c);
-                return;
-        }
+    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z4) {
+        return TLRPC.PollAnswer.TLdeserialize(inputSerializedData, i10, z4);
+    }
+
+    @Override
+    public void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        SharedConfig.lambda$checkSdCard$1(d2Var, i10);
     }
 }

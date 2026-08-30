@@ -1,13 +1,21 @@
 package org.telegram.ui.Components;
-public final class q50 implements Runnable {
-    public final r50 f31860a;
 
-    public q50(r50 r50Var) {
-        this.f31860a = r50Var;
-    }
+import android.app.Activity;
+import android.view.View;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.VideoEditedInfo;
+public interface q50 {
+    long a();
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.q50.run():void");
-    }
+    boolean c();
+
+    int getClassGuid();
+
+    View getFragmentView();
+
+    Activity getParentActivity();
+
+    void r(MediaController.PhotoEntry photoEntry, VideoEditedInfo videoEditedInfo, boolean z4, int i10, int i11, boolean z10, long j10);
+
+    boolean v();
 }

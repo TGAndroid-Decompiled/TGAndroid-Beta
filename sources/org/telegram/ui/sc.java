@@ -1,31 +1,70 @@
 package org.telegram.ui;
 
-import android.widget.Toast;
-import java.util.List;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.ResultCallback;
-import org.telegram.tgnet.TLRPC;
-public final class sc implements ResultCallback {
-    public final int f42353a;
-    public final tc f42354b;
+import android.app.Activity;
+import android.view.MotionEvent;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+public final class sc extends FrameLayout {
+    public final org.telegram.ui.ActionBar.f6 f38291a;
+    public final jb1 f38292b;
+    public final f2.i0 f38293c;
+    public final int d;
+    public int e;
 
-    public sc(tc tcVar, int i10) {
-        this.f42354b = tcVar;
-        this.f42353a = i10;
+    public sc(int i10, Activity activity, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(activity);
+        this.d = i10;
+        this.f38291a = f6Var;
+        jb1 jb1Var = new jb1(activity, 2, f6Var);
+        this.f38292b = jb1Var;
+        jb1Var.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(6.0f), 0);
+        jb1Var.setClipToPadding(false);
+        jb1Var.setAdapter(new qc(this, activity, f6Var, i10));
+        f2.i0 i0Var = new f2.i0();
+        this.f38293c = i0Var;
+        i0Var.j1(0);
+        jb1Var.setLayoutManager(i0Var);
+        addView(jb1Var, k7.b6.c(-1.0f, -1));
+    }
+
+    public final void a(int i10, boolean z4) {
+        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.d).peerColors;
+        int i11 = 0;
+        if (peerColors != null) {
+            int i12 = 0;
+            while (true) {
+                if (i12 >= peerColors.colors.size()) {
+                    break;
+                } else if (peerColors.colors.get(i12).f16671id == i10) {
+                    i11 = i12;
+                    break;
+                } else {
+                    i12++;
+                }
+            }
+        }
+        if (i11 != this.e) {
+            this.e = i11;
+            if (!z4) {
+                this.f38293c.h1(i11, (AndroidUtilities.displaySize.x - AndroidUtilities.dp(56.0f)) / 2);
+            }
+            AndroidUtilities.forEachViews((RecyclerView) this.f38292b, (h5.d) new pc(0, this, z4));
+        }
     }
 
     @Override
-    public final void onComplete(Object obj) {
-        NotificationCenter.getInstance(this.f42353a).doOnIdle(new org.telegram.ui.ActionBar.c(23, this, (List) obj));
-    }
-
-    @Override
-    public final void onError(Throwable th2) {
-        org.telegram.tgnet.k.a(this, th2);
-    }
-
-    @Override
-    public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f42354b.getContext(), tL_error.text, 0).show();
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (getParent() != null) {
+            ViewParent parent = getParent();
+            boolean z4 = true;
+            if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
+                z4 = false;
+            }
+            parent.requestDisallowInterceptTouchEvent(z4);
+        }
+        return super.onInterceptTouchEvent(motionEvent);
     }
 }

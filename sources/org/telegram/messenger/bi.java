@@ -1,29 +1,30 @@
 package org.telegram.messenger;
 public final class bi implements Runnable {
-    public final int f19830a;
-    public final SecretChatHelper f19831b;
-    public final long f19832c;
+    public final int f16871a;
+    public final SavedMessagesController f16872b;
 
-    public bi(SecretChatHelper secretChatHelper, long j10, int i10) {
-        this.f19830a = i10;
-        this.f19831b = secretChatHelper;
-        this.f19832c = j10;
+    public bi(SavedMessagesController savedMessagesController, int i10) {
+        this.f16871a = i10;
+        this.f16872b = savedMessagesController;
     }
 
     @Override
     public final void run() {
-        switch (this.f19830a) {
+        switch (this.f16871a) {
             case 0:
-                SecretChatHelper.x(this.f19831b, this.f19832c);
+                this.f16872b.update();
                 return;
             case 1:
-                SecretChatHelper.t(this.f19831b, this.f19832c);
+                SavedMessagesController.k(this.f16872b);
                 return;
             case 2:
-                SecretChatHelper.j(this.f19831b, this.f19832c);
+                SavedMessagesController.h(this.f16872b);
+                return;
+            case 3:
+                SavedMessagesController.j(this.f16872b);
                 return;
             default:
-                SecretChatHelper.w(this.f19831b, this.f19832c);
+                SavedMessagesController.b(this.f16872b);
                 return;
         }
     }

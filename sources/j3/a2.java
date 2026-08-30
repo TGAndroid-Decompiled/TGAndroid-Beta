@@ -1,68 +1,68 @@
 package j3;
 
-import java.util.List;
+import android.os.Looper;
 public interface a2 {
-    void onAudioAttributesChanged(l3.e eVar);
+    Looper A();
 
-    void onAvailableCommandsChanged(y1 y1Var);
+    boolean B();
 
-    void onCues(List list);
+    long C();
 
-    void onCues(t4.c cVar);
+    long D();
 
-    void onDeviceInfoChanged(m mVar);
+    void a();
 
-    void onDeviceVolumeChanged(int i10, boolean z10);
+    int b();
 
-    void onEvents(c2 c2Var, z1 z1Var);
+    void c(v1 v1Var);
 
-    void onIsLoadingChanged(boolean z10);
+    v1 d();
 
-    void onIsPlayingChanged(boolean z10);
+    void e(int i10);
 
-    void onLoadingChanged(boolean z10);
+    boolean f();
 
-    void onMediaItemTransition(f1 f1Var, int i10);
+    int g();
 
-    void onMediaMetadataChanged(h1 h1Var);
+    long getDuration();
 
-    void onMetadata(b4.c cVar);
+    long h();
 
-    void onPlayWhenReadyChanged(boolean z10, int i10);
+    w1 i();
 
-    void onPlaybackParametersChanged(x1 x1Var);
+    boolean j();
 
-    void onPlaybackStateChanged(int i10);
+    void k(boolean z4);
 
-    void onPlaybackSuppressionReasonChanged(int i10);
+    void l();
 
-    void onPlayerError(v1 v1Var);
+    int m();
 
-    void onPlayerErrorChanged(v1 v1Var);
+    void n(y1 y1Var);
 
-    void onPlayerStateChanged(boolean z10, int i10);
+    int o();
 
-    void onPositionDiscontinuity(int i10);
+    void p(boolean z4);
 
-    void onPositionDiscontinuity(b2 b2Var, b2 b2Var2, int i10);
+    long q();
 
-    void onRenderedFirstFrame();
+    long r();
 
-    void onRepeatModeChanged(int i10);
+    long s();
 
-    void onSeekProcessed();
+    void stop();
 
-    void onShuffleModeEnabledChanged(boolean z10);
+    q2 t();
 
-    void onSkipSilenceEnabledChanged(boolean z10);
+    void u(y1 y1Var);
 
-    void onSurfaceSizeChanged(int i10, int i11);
+    n v();
 
-    void onTimelineChanged(r2 r2Var, int i10);
+    int w();
 
-    void onTracksChanged(t2 t2Var);
+    int x();
 
-    void onVideoSizeChanged(g5.y yVar);
+    int y();
 
-    void onVolumeChanged(float f9);
+    o2 z();
 }

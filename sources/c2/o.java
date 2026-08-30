@@ -2,42 +2,42 @@ package c2;
 
 import android.os.Bundle;
 public final class o {
-    public final Bundle f2871a;
-    public w f2872b;
+    public final Bundle f1974a;
+    public v f1975b;
 
-    public o(w wVar, boolean z10) {
-        if (wVar != null) {
+    public o(v vVar, boolean z4) {
+        if (vVar != null) {
             Bundle bundle = new Bundle();
-            this.f2871a = bundle;
-            this.f2872b = wVar;
-            bundle.putBundle("selector", wVar.f2915a);
-            bundle.putBoolean("activeScan", z10);
+            this.f1974a = bundle;
+            this.f1975b = vVar;
+            bundle.putBundle("selector", vVar.f2011a);
+            bundle.putBoolean("activeScan", z4);
             return;
         }
         throw new IllegalArgumentException("selector must not be null");
     }
 
     public final void a() {
-        if (this.f2872b == null) {
-            w b10 = w.b(this.f2871a.getBundle("selector"));
-            this.f2872b = b10;
+        if (this.f1975b == null) {
+            v b10 = v.b(this.f1974a.getBundle("selector"));
+            this.f1975b = b10;
             if (b10 == null) {
-                this.f2872b = w.f2914c;
+                this.f1975b = v.f2010c;
             }
         }
     }
 
     public final boolean b() {
-        return this.f2871a.getBoolean("activeScan");
+        return this.f1974a.getBoolean("activeScan");
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof o) {
             o oVar = (o) obj;
             a();
-            w wVar = this.f2872b;
+            v vVar = this.f1975b;
             oVar.a();
-            if (wVar.equals(oVar.f2872b) && b() == oVar.b()) {
+            if (vVar.equals(oVar.f1975b) && b() == oVar.b()) {
                 return true;
             }
         }
@@ -46,21 +46,21 @@ public final class o {
 
     public final int hashCode() {
         a();
-        return this.f2872b.hashCode() ^ b();
+        return this.f1975b.hashCode() ^ b();
     }
 
     public final String toString() {
-        StringBuilder sb2 = new StringBuilder("DiscoveryRequest{ selector=");
+        StringBuilder sb = new StringBuilder("DiscoveryRequest{ selector=");
         a();
-        sb2.append(this.f2872b);
-        sb2.append(", activeScan=");
-        sb2.append(b());
-        sb2.append(", isValid=");
+        sb.append(this.f1975b);
+        sb.append(", activeScan=");
+        sb.append(b());
+        sb.append(", isValid=");
         a();
-        w wVar = this.f2872b;
-        wVar.a();
-        sb2.append(!wVar.f2916b.contains(null));
-        sb2.append(" }");
-        return sb2.toString();
+        v vVar = this.f1975b;
+        vVar.a();
+        sb.append(!vVar.f2012b.contains(null));
+        sb.append(" }");
+        return sb.toString();
     }
 }

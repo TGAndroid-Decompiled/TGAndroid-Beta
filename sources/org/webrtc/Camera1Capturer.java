@@ -6,9 +6,9 @@ import org.webrtc.CameraVideoCapturer;
 public class Camera1Capturer extends CameraCapturer {
     private final boolean captureToTexture;
 
-    public Camera1Capturer(String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler, boolean z10) {
-        super(str, cameraEventsHandler, new Camera1Enumerator(z10));
-        this.captureToTexture = z10;
+    public Camera1Capturer(String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler, boolean z4) {
+        super(str, cameraEventsHandler, new Camera1Enumerator(z4));
+        this.captureToTexture = z4;
     }
 
     @Override

@@ -1,150 +1,81 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseArray;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MessageObject;
-public final class fu0 {
-    public boolean f28539g;
-    public boolean h;
-    public int f28542k;
-    public int f28544m;
-    public int f28545n;
-    public boolean f28546o;
-    public int f28547p;
-    public boolean f28549r;
-    public int f28551t;
-    public int f28552u;
-    public boolean v;
-    public boolean f28553w;
-    public final ArrayList f28534a = new ArrayList();
-    public final SparseArray[] f28535b = {new SparseArray(), new SparseArray()};
-    public final ArrayList f28536c = new ArrayList();
-    public final HashMap d = new HashMap();
-    public final ArrayList f28537e = new ArrayList();
-    public final int[] f28538f = {0, 0};
-    public final boolean[] f28540i = {false, true};
-    public final int[] f28541j = {0, 0};
-    public boolean f28543l = true;
-    public int f28548q = 0;
-    public final ArrayList f28550s = new ArrayList();
-    public f2.c1 f28554x = new f2.c1();
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.SavedMessagesController;
+public final class fu0 extends f2.b0 {
+    public final hu0 d;
 
-    public final boolean a(MessageObject messageObject, int i10, boolean z10, boolean z11) {
-        SparseArray[] sparseArrayArr = this.f28535b;
-        if (sparseArrayArr[i10].indexOfKey(messageObject.getId()) >= 0) {
+    public fu0(hu0 hu0Var) {
+        this.d = hu0Var;
+    }
+
+    @Override
+    public final void a(RecyclerView recyclerView, f2.l1 l1Var) {
+        super.a(recyclerView, l1Var);
+        l1Var.f5785a.setPressed(false);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, f2.l1 l1Var) {
+        SavedMessagesController.SavedDialog r10;
+        int l10 = f2.b0.l(0, 0);
+        yu0 yu0Var = this.d.f25497x;
+        if (yu0Var.f31161z1 && recyclerView.getAdapter() != yu0Var.P && (r10 = r(l1Var)) != null && r10.pinned) {
+            return f2.b0.l(3, 0);
+        }
+        return l10;
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, f2.l1 l1Var, f2.l1 l1Var2) {
+        hu0 hu0Var = this.d;
+        ArrayList arrayList = hu0Var.f25492f;
+        yu0 yu0Var = hu0Var.f25497x;
+        if (yu0Var.f31161z1 && recyclerView.getAdapter() != yu0Var.P) {
+            SavedMessagesController.SavedDialog r10 = r(l1Var);
+            SavedMessagesController.SavedDialog r11 = r(l1Var2);
+            if (r10 != null && r11 != null && r10.pinned && r11.pinned) {
+                int b10 = l1Var.b();
+                int b11 = l1Var2.b();
+                arrayList.remove(b10);
+                arrayList.add(b11, r10);
+                hu0Var.p(b10, b11);
+                hu0Var.h = true;
+                return true;
+            }
             return false;
         }
-        String str = messageObject.monthKey;
-        HashMap hashMap = this.d;
-        ArrayList arrayList = (ArrayList) hashMap.get(str);
-        if (arrayList == null) {
-            arrayList = new ArrayList();
-            hashMap.put(messageObject.monthKey, arrayList);
-            ArrayList arrayList2 = this.f28536c;
-            if (z10) {
-                arrayList2.add(0, messageObject.monthKey);
-            } else {
-                arrayList2.add(messageObject.monthKey);
+        return false;
+    }
+
+    @Override
+    public final void p(f2.l1 l1Var, int i10) {
+        pt0 pt0Var;
+        hu0 hu0Var = this.d;
+        nq0 nq0Var = hu0Var.f25493n;
+        if (l1Var != null && (pt0Var = hu0Var.f25495s) != null) {
+            pt0Var.d1(false);
+        }
+        if (i10 == 0) {
+            AndroidUtilities.cancelRunOnUIThread(nq0Var);
+            AndroidUtilities.runOnUIThread(nq0Var, 300L);
+        }
+    }
+
+    public final SavedMessagesController.SavedDialog r(f2.l1 l1Var) {
+        int b10;
+        if (l1Var != null && (b10 = l1Var.b()) >= 0) {
+            hu0 hu0Var = this.d;
+            if (b10 < hu0Var.f25492f.size()) {
+                return (SavedMessagesController.SavedDialog) hu0Var.f25492f.get(b10);
             }
         }
-        ArrayList arrayList3 = this.f28534a;
-        if (z10) {
-            arrayList.add(0, messageObject);
-            arrayList3.add(0, messageObject);
-        } else {
-            arrayList.add(messageObject);
-            arrayList3.add(messageObject);
-        }
-        sparseArrayArr[i10].put(messageObject.getId(), messageObject);
-        int[] iArr = this.f28541j;
-        if (!z11) {
-            if (messageObject.getId() > 0) {
-                iArr[i10] = Math.min(messageObject.getId(), iArr[i10]);
-                this.f28542k = Math.max(messageObject.getId(), this.f28542k);
-            }
-        } else {
-            iArr[i10] = Math.max(messageObject.getId(), iArr[i10]);
-            this.f28542k = Math.min(messageObject.getId(), this.f28542k);
-        }
-        if (!this.v && messageObject.isVideo()) {
-            this.v = true;
-        }
-        if (!this.f28553w && messageObject.isPhoto()) {
-            this.f28553w = true;
-        }
-        return true;
+        return null;
     }
 
-    public final MessageObject b(int i10, int i11) {
-        SparseArray[] sparseArrayArr = this.f28535b;
-        MessageObject messageObject = (MessageObject) sparseArrayArr[i11].get(i10);
-        if (messageObject == null) {
-            return null;
-        }
-        String str = messageObject.monthKey;
-        HashMap hashMap = this.d;
-        ArrayList arrayList = (ArrayList) hashMap.get(str);
-        if (arrayList == null) {
-            return null;
-        }
-        arrayList.remove(messageObject);
-        this.f28534a.remove(messageObject);
-        sparseArrayArr[i11].remove(messageObject.getId());
-        if (arrayList.isEmpty()) {
-            hashMap.remove(messageObject.monthKey);
-            this.f28536c.remove(messageObject.monthKey);
-        }
-        int[] iArr = this.f28538f;
-        int i12 = iArr[i11] - 1;
-        iArr[i11] = i12;
-        if (i12 < 0) {
-            iArr[i11] = 0;
-        }
-        return messageObject;
-    }
-
-    public final ArrayList c() {
-        if (this.f28549r) {
-            return this.f28550s;
-        }
-        return this.f28534a;
-    }
-
-    public final int d() {
-        if (this.f28549r) {
-            return this.f28551t;
-        }
-        return this.f28544m;
-    }
-
-    public final int e() {
-        int[] iArr = this.f28538f;
-        return iArr[0] + iArr[1];
-    }
-
-    public final void f(int i10, int i11, int i12) {
-        SparseArray[] sparseArrayArr = this.f28535b;
-        MessageObject messageObject = (MessageObject) sparseArrayArr[i10].get(i11);
-        if (messageObject != null) {
-            sparseArrayArr[i10].remove(i11);
-            sparseArrayArr[i10].put(i12, messageObject);
-            messageObject.messageOwner.f22413id = i12;
-            int[] iArr = this.f28541j;
-            iArr[i10] = Math.min(i12, iArr[i10]);
-        }
-    }
-
-    public final void g(boolean z10) {
-        if (this.f28549r != z10) {
-            this.f28549r = z10;
-            if (z10) {
-                this.f28551t = this.f28544m;
-                this.f28552u = this.f28545n;
-                ArrayList arrayList = this.f28550s;
-                arrayList.clear();
-                arrayList.addAll(this.f28534a);
-            }
-        }
+    @Override
+    public final void q(f2.l1 l1Var) {
     }
 }

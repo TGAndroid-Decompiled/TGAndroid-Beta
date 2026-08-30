@@ -1,27 +1,30 @@
 package org.telegram.ui;
+public final class dj extends org.telegram.ui.ActionBar.p1 {
+    public final xn f33670o;
 
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.TLRPC;
-public final class dj implements MessagesStorage.BooleanCallback {
-    public final boolean f37548a;
-    public final ej f37549b;
-
-    public dj(ej ejVar, boolean z10) {
-        this.f37549b = ejVar;
-        this.f37548a = z10;
+    public dj(xn xnVar, bj bjVar) {
+        super(bjVar, -2, -2);
+        this.f33670o = xnVar;
     }
 
     @Override
-    public final void run(boolean z10) {
-        tn tnVar = this.f37549b.f37848b;
-        if (z10) {
-            TLRPC.User user = tnVar.f42801f;
-            boolean z11 = this.f37548a;
-            if (user != null || z11) {
-                tnVar.getMessagesStorage().getMessagesCount(tnVar.P5, new cj(1, this, z11));
-                return;
+    public final void dismiss() {
+        d(true);
+        xn xnVar = this.f33670o;
+        if (xnVar.N8 == this) {
+            xnVar.N8 = null;
+            xnVar.Q8 = null;
+            xnVar.P8 = null;
+            xnVar.f40220w0.R = true;
+            if (xnVar.O8) {
+                xnVar.g8(false, true, 0.0f);
+            } else {
+                xnVar.O8 = true;
+            }
+            jk jkVar = xnVar.V;
+            if (jkVar != null && jkVar.getEditField() != null) {
+                xnVar.V.getEditField().setAllowDrawCursor(true);
             }
         }
-        tnVar.qa(tnVar.Z3, z10);
     }
 }

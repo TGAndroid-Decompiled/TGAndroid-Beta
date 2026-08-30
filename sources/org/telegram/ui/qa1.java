@@ -1,56 +1,72 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.animation.ValueAnimator;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class qa1 extends View {
-    public static final int f41610c = 0;
-    public final Paint f41611a;
-    public int[] f41612b;
+import android.graphics.PointF;
+import android.graphics.RectF;
+import android.graphics.drawable.NinePatchDrawable;
+import android.text.StaticLayout;
+import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.MessageObject;
+public final class qa1 implements sh0 {
+    public final xn A;
+    public final LinearGradient B;
+    public final float C;
+    public final AnimationNotificationsLocker D;
+    public final MessageObject.TextLayoutBlock E;
+    public final NinePatchDrawable F;
+    public final jk G;
+    public final org.telegram.ui.Components.q5 H;
+    public float I;
+    public float J;
+    public final float K;
+    public final int L;
+    public final int M;
+    public final org.telegram.ui.ActionBar.f6 N;
+    public final PointF O;
+    public final RectF P;
+    public final RectF Q;
+    public float[] R;
+    public final float S;
+    public float f37693a;
+    public final Paint f37694b;
+    public final boolean f37695c;
+    public final ValueAnimator d;
+    public final float e;
+    public final float f37696f;
+    public final float f37697g;
+    public final int h;
+    public final int f37698i;
+    public final float f37699j;
+    public final MessageObject f37700k;
+    public final float f37701l;
+    public final float f37702m;
+    public final boolean f37703n;
+    public final boolean f37704o;
+    public final StaticLayout f37705p;
+    public final StaticLayout f37706q;
+    public final org.telegram.ui.Cells.t1 f37707r;
+    public final org.telegram.ui.Components.sl0 f37708s;
+    public final org.telegram.ui.Components.ki f37709t;
+    public final Matrix f37710u;
+    public final Paint v;
+    public final int f37711w;
+    public final float f37712x;
+    public final float f37713y;
+    public final float f37714z;
 
-    public qa1(Context context) {
-        super(context);
-        this.f41611a = new Paint(1);
-        this.f41612b = new int[7];
+    public qa1(org.telegram.ui.Cells.t1 r35, org.telegram.ui.xn r36, org.telegram.ui.Components.sl0 r37, org.telegram.ui.Components.ki r38, org.telegram.ui.ActionBar.f6 r39) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qa1.<init>(org.telegram.ui.Cells.t1, org.telegram.ui.xn, org.telegram.ui.Components.sl0, org.telegram.ui.Components.ki, org.telegram.ui.ActionBar.f6):void");
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float measuredWidth = getMeasuredWidth() * 0.5f;
-        float measuredHeight = getMeasuredHeight() * 0.5f;
-        float dp = AndroidUtilities.dp(5.0f);
-        float dp2 = AndroidUtilities.dp(20.0f) - dp;
-        Paint.Style style = Paint.Style.FILL;
-        Paint paint = this.f41611a;
-        paint.setStyle(style);
-        int i10 = 0;
-        paint.setColor(this.f41612b[0]);
-        canvas.drawCircle(measuredWidth, measuredHeight, dp, paint);
-        double d = 0.0d;
-        while (i10 < 6) {
-            i10++;
-            paint.setColor(this.f41612b[i10]);
-            canvas.drawCircle((((float) Math.sin(d)) * dp2) + measuredWidth, measuredHeight - (((float) Math.cos(d)) * dp2), dp, paint);
-            d += 1.0471975511965976d;
-        }
+    public final void a(android.graphics.Canvas r58) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qa1.a(android.graphics.Canvas):void");
     }
 
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", R.string.ColorPickerMainColor));
-        accessibilityNodeInfo.setClassName(Button.class.getName());
-        accessibilityNodeInfo.setEnabled(true);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824));
+    public final int b(int i10) {
+        return org.telegram.ui.ActionBar.j6.v0(i10, this.N);
     }
 }

@@ -1,185 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Path;
+import android.graphics.Paint;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
+import android.text.SpannableStringBuilder;
 import org.telegram.messenger.AndroidUtilities;
-public final class fs extends f6 {
-    public boolean A;
-    public boolean B;
-    public ng.d f28523s;
-    public final Path v;
-    public final RectF f28524w;
-    public int f28525x;
-    public FragmentContextView f28526y;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+public final class fs {
+    public int f24946a;
+    public int f24947b;
+    public k01 f24948c;
+    public int d;
+    public int e;
 
-    public fs(Context context) {
-        super(context);
-        this.v = new Path();
-        this.f28524w = new RectF();
-        this.f28525x = 24;
-        setOrientation(1);
-        ng.d dVar = this.f28523s;
-        if (dVar != null) {
-            dVar.u();
+    public static fs b(org.telegram.ui.Cells.r2 r2Var, MessagesController.DialogFilter dialogFilter) {
+        ?? obj = new Object();
+        obj.f24946a = dialogFilter.f16669id;
+        obj.f24947b = dialogFilter.color;
+        String str = dialogFilter.name;
+        if (str == null) {
+            str = "";
         }
-        invalidate();
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str.toUpperCase());
+        k01 k01Var = new k01(spannableStringBuilder, 10.0f, AndroidUtilities.bold());
+        k01Var.s(r2Var);
+        obj.f24948c = k01Var;
+        obj.f24948c.r(MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, k01Var.f26082a.getFontMetricsInt(), false), dialogFilter.entities, obj.f24948c.f26082a.getFontMetricsInt()));
+        obj.f24948c.p(26);
+        int dp = AndroidUtilities.dp(9.32f);
+        k01 k01Var2 = obj.f24948c;
+        obj.e = dp + ((int) k01Var2.f26084c);
+        k01Var2.j();
+        int[] iArr = org.telegram.ui.ActionBar.j6.f20160r8;
+        obj.d = org.telegram.ui.ActionBar.j6.w0(null, iArr[dialogFilter.color % iArr.length], false);
+        return obj;
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        boolean z10;
-        int currentStyle;
-        FragmentContextView fragmentContextView;
-        Canvas canvas2 = canvas;
-        if (getMetadata().f49521c.f49531a != 0.0f) {
-            ng.d dVar = this.f28523s;
-            if (dVar != null) {
-                dVar.draw(canvas2);
-            }
-            FragmentContextView fragmentContextView2 = this.f28526y;
-            vd.i iVar = this.f28322c;
-            View view = null;
-            if (fragmentContextView2 != null && ((currentStyle = fragmentContextView2.getCurrentStyle()) == 3 || currentStyle == 1)) {
-                int entriesCount = getEntriesCount();
-                for (int i10 = 0; i10 < entriesCount; i10++) {
-                    vd.f n10 = iVar.n(i10);
-                    float paddingTop = getPaddingTop() + n10.b().top;
-                    View view2 = ((e6) n10.f49514a).f27932a;
-                    float c3 = n10.c();
-                    if (c3 > 0.0f && (fragmentContextView = this.f28526y) != null && (fragmentContextView == view2 || fragmentContextView.getParent() == view2)) {
-                        cd capsuleBlobDrawable = this.f28526y.getCapsuleBlobDrawable();
-                        int dp = AndroidUtilities.dp(1.0f) + ((int) capsuleBlobDrawable.c());
-                        int i11 = -dp;
-                        capsuleBlobDrawable.setBounds(getPaddingLeft() - dp, i11, (getMeasuredWidth() - getPaddingRight()) + dp, (dp * 2) + AndroidUtilities.dp(36.0f) + i11);
-                        capsuleBlobDrawable.setAlpha((int) (c3 * 255.0f));
-                        canvas2.save();
-                        canvas2.translate(0.0f, paddingTop);
-                        capsuleBlobDrawable.draw(canvas2);
-                        canvas2.restore();
-                        view = view2;
-                    }
-                }
-            }
-            View view3 = view;
-            canvas2.save();
-            canvas2.clipPath(this.v);
-            int entriesCount2 = getEntriesCount();
-            int i12 = 0;
-            while (i12 < entriesCount2) {
-                vd.f n11 = iVar.n(i12);
-                float paddingTop2 = getPaddingTop() + n11.b().top;
-                View view4 = ((e6) n11.f49514a).f27932a;
-                float min = Math.min(1.0f, n11.f49516c.f49531a) * n11.c();
-                if (min > 0.0f && view3 != view4) {
-                    int alpha = org.telegram.ui.ActionBar.g6.f23183k0.getAlpha();
-                    org.telegram.ui.ActionBar.g6.f23183k0.setAlpha((int) (alpha * min));
-                    float f9 = 1.0f - min;
-                    canvas2.drawLine(getPaddingLeft() + (AndroidUtilities.dp(16.0f) * f9), paddingTop2, getWidth() - ((AndroidUtilities.dp(16.0f) * f9) + getPaddingRight()), paddingTop2, org.telegram.ui.ActionBar.g6.f23183k0);
-                    org.telegram.ui.ActionBar.g6.f23183k0.setAlpha(alpha);
-                }
-                i12++;
-                canvas2 = canvas;
-            }
-            if (view3 != null) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            this.A = z10;
-            this.B = false;
-            super.dispatchDraw(canvas);
-            canvas.restore();
-            if (view3 != null) {
-                this.B = true;
-                this.A = false;
-                super.dispatchDraw(canvas);
-            }
-        }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        ng.d dVar;
-        if (!super.dispatchTouchEvent(motionEvent)) {
-            if (motionEvent.getAction() != 0 || (dVar = this.f28523s) == null || !dVar.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                return false;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        boolean z10;
-        FragmentContextView fragmentContextView = this.f28526y;
-        if (fragmentContextView != null && (fragmentContextView == view || fragmentContextView.getParent() == view)) {
-            z10 = true;
+    public final void a(Canvas canvas) {
+        float f10;
+        Paint paint = org.telegram.ui.ActionBar.j6.A0;
+        int i10 = this.d;
+        if (org.telegram.ui.ActionBar.j6.I.q()) {
+            f10 = 0.2f;
         } else {
-            z10 = false;
+            f10 = 0.1f;
         }
-        if ((z10 && this.A) || (!z10 && this.B)) {
-            return false;
-        }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void e() {
-        j();
-        invalidate();
-    }
-
-    public final void j() {
-        float f9 = getMetadata().f49524g.f49531a;
-        float f10 = getMetadata().f49521c.f49531a;
-        RectF rectF = this.f28524w;
-        rectF.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getPaddingTop() + f9);
-        float min = Math.min(AndroidUtilities.dp(this.f28525x), Math.min(rectF.width(), rectF.height()) / 2.0f);
-        Path path = this.v;
-        path.rewind();
-        path.addRoundRect(rectF, min, min, Path.Direction.CW);
-        ng.d dVar = this.f28523s;
-        if (dVar != null) {
-            dVar.setAlpha((int) (f10 * 255.0f));
-            this.f28523s.setBounds(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(14.0f), getMeasuredWidth() - AndroidUtilities.dp(4.0f), ((getPaddingBottom() + getPaddingTop()) + ((int) f9)) - AndroidUtilities.dp(14.0f));
-            this.f28523s.p(Math.min(AndroidUtilities.dp(this.f28525x), f9 / 2.0f));
-        }
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        j();
-    }
-
-    public void setBlurredBackground(ng.d dVar) {
-        this.f28523s = dVar;
-    }
-
-    public void setCallFragmentContextView(FragmentContextView fragmentContextView) {
-        this.f28526y = fragmentContextView;
-        fragmentContextView.getCapsuleBlobDrawable().setCallback(this);
-    }
-
-    public void setDefaultRadiusDp(int i10) {
-        this.f28525x = i10;
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable)) {
-            FragmentContextView fragmentContextView = this.f28526y;
-            if (fragmentContextView == null || fragmentContextView.getCapsuleBlobDrawable() != drawable) {
-                return false;
-            }
-            return true;
-        }
-        return true;
+        paint.setColor(org.telegram.ui.ActionBar.j6.l1(f10, i10));
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, this.e, AndroidUtilities.dp(14.66f));
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.j6.A0);
+        this.f24948c.c(AndroidUtilities.dp(4.66f), AndroidUtilities.dp(14.66f) / 2.0f, 1.0f, this.d, canvas);
     }
 }

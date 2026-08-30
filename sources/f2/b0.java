@@ -5,11 +5,11 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.my;
+import org.telegram.ui.vy;
 public abstract class b0 {
-    public static final a0 f6275b = new a0(0);
-    public static final a0 f6276c = new a0(1);
-    public int f6277a = -1;
+    public static final a0 f5664b = new a0(0);
+    public static final a0 f5665c = new a0(1);
+    public int f5666a = -1;
 
     public static int c(int i10, int i11) {
         int i12;
@@ -33,12 +33,12 @@ public abstract class b0 {
         return (i10 << 16) | (i11 << 8) | i12;
     }
 
-    public void a(RecyclerView recyclerView, n1 n1Var) {
-        View view = n1Var.f6432a;
+    public void a(RecyclerView recyclerView, l1 l1Var) {
+        View view = l1Var.f5785a;
         Object tag = view.getTag();
         if (tag instanceof Float) {
             float floatValue = ((Float) tag).floatValue();
-            WeakHashMap weakHashMap = r0.j0.f46829a;
+            WeakHashMap weakHashMap = r0.j0.f43118a;
             r0.b0.i(view, floatValue);
         }
         view.setTag(null);
@@ -63,8 +63,8 @@ public abstract class b0 {
         return i14 | i12;
     }
 
-    public long d(RecyclerView recyclerView, int i10, float f9, float f10) {
-        u0 itemAnimator = recyclerView.getItemAnimator();
+    public long d(RecyclerView recyclerView, int i10, float f10, float f11) {
+        t0 itemAnimator = recyclerView.getItemAnimator();
         if (itemAnimator == null) {
             if (i10 == 8) {
                 return 200L;
@@ -77,23 +77,23 @@ public abstract class b0 {
         }
     }
 
-    public abstract int e(RecyclerView recyclerView, n1 n1Var);
+    public abstract int e(RecyclerView recyclerView, l1 l1Var);
 
     public float g() {
         return 0.5f;
     }
 
     public final int i(int i10, int i11, long j10) {
-        if (this.f6277a == -1) {
-            this.f6277a = AndroidUtilities.dp(20.0f);
+        if (this.f5666a == -1) {
+            this.f5666a = AndroidUtilities.dp(20.0f);
         }
-        int i12 = this.f6277a;
-        float f9 = 1.0f;
-        int interpolation = (int) (f6276c.getInterpolation(Math.min(1.0f, (Math.abs(i11) * 1.0f) / i10)) * ((int) Math.signum(i11)) * i12);
+        int i12 = this.f5666a;
+        float f10 = 1.0f;
+        int interpolation = (int) (f5665c.getInterpolation(Math.min(1.0f, (Math.abs(i11) * 1.0f) / i10)) * ((int) Math.signum(i11)) * i12);
         if (j10 <= 500) {
-            f9 = ((float) j10) / 500.0f;
+            f10 = ((float) j10) / 500.0f;
         }
-        int interpolation2 = (int) (f6275b.getInterpolation(f9) * interpolation);
+        int interpolation2 = (int) (f5664b.getInterpolation(f10) * interpolation);
         if (interpolation2 == 0) {
             if (i11 <= 0) {
                 return -1;
@@ -108,70 +108,70 @@ public abstract class b0 {
     }
 
     public boolean k() {
-        return !(this instanceof my);
+        return !(this instanceof vy);
     }
 
-    public void m(Canvas canvas, RecyclerView recyclerView, n1 n1Var, float f9, float f10, int i10, boolean z10) {
-        View view = n1Var.f6432a;
-        if (z10 && view.getTag() == null) {
-            WeakHashMap weakHashMap = r0.j0.f46829a;
+    public void m(Canvas canvas, RecyclerView recyclerView, l1 l1Var, float f10, float f11, int i10, boolean z4) {
+        View view = l1Var.f5785a;
+        if (z4 && view.getTag() == null) {
+            WeakHashMap weakHashMap = r0.j0.f43118a;
             Float valueOf = Float.valueOf(r0.b0.e(view));
             int childCount = recyclerView.getChildCount();
-            float f11 = 0.0f;
+            float f12 = 0.0f;
             for (int i11 = 0; i11 < childCount; i11++) {
                 View childAt = recyclerView.getChildAt(i11);
                 if (childAt != view) {
-                    WeakHashMap weakHashMap2 = r0.j0.f46829a;
-                    float e10 = r0.b0.e(childAt);
-                    if (e10 > f11) {
-                        f11 = e10;
+                    WeakHashMap weakHashMap2 = r0.j0.f43118a;
+                    float e = r0.b0.e(childAt);
+                    if (e > f12) {
+                        f12 = e;
                     }
                 }
             }
-            r0.b0.i(view, f11 + 1.0f);
+            r0.b0.i(view, f12 + 1.0f);
             view.setTag(valueOf);
         }
-        view.setTranslationX(f9);
-        view.setTranslationY(f10);
+        view.setTranslationX(f10);
+        view.setTranslationY(f11);
     }
 
-    public abstract boolean n(RecyclerView recyclerView, n1 n1Var, n1 n1Var2);
+    public abstract boolean n(RecyclerView recyclerView, l1 l1Var, l1 l1Var2);
 
-    public void o(RecyclerView recyclerView, n1 n1Var, n1 n1Var2, int i10, int i11, int i12) {
-        View view = n1Var2.f6432a;
-        w0 layoutManager = recyclerView.getLayoutManager();
-        if (layoutManager instanceof j0) {
-            ((j0) layoutManager).b1(n1Var.f6432a, view, i11, i12);
+    public void o(RecyclerView recyclerView, l1 l1Var, l1 l1Var2, int i10, int i11, int i12) {
+        View view = l1Var2.f5785a;
+        v0 layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof i0) {
+            ((i0) layoutManager).b1(l1Var.f5785a, view, i11, i12);
             return;
         }
         if (layoutManager.d()) {
-            if (w0.x(view) <= recyclerView.getPaddingLeft()) {
+            if (v0.x(view) <= recyclerView.getPaddingLeft()) {
                 recyclerView.u0(i10);
             }
-            if (w0.y(view) >= recyclerView.getWidth() - recyclerView.getPaddingRight()) {
+            if (v0.y(view) >= recyclerView.getWidth() - recyclerView.getPaddingRight()) {
                 recyclerView.u0(i10);
             }
         }
         if (layoutManager.e()) {
-            if (w0.z(view) <= recyclerView.getPaddingTop()) {
+            if (v0.z(view) <= recyclerView.getPaddingTop()) {
                 recyclerView.u0(i10);
             }
-            if (w0.v(view) >= recyclerView.getHeight() - recyclerView.getPaddingBottom()) {
+            if (v0.v(view) >= recyclerView.getHeight() - recyclerView.getPaddingBottom()) {
                 recyclerView.u0(i10);
             }
         }
     }
 
-    public abstract void q(n1 n1Var);
+    public abstract void q(l1 l1Var);
 
-    public float f(float f9) {
-        return f9;
+    public float f(float f10) {
+        return f10;
     }
 
-    public float h(float f9) {
-        return f9;
+    public float h(float f10) {
+        return f10;
     }
 
-    public void p(n1 n1Var, int i10) {
+    public void p(l1 l1Var, int i10) {
     }
 }

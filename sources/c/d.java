@@ -3,9 +3,10 @@ package c;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import b9.e;
 public class d implements Parcelable {
-    public static final Parcelable.Creator<d> CREATOR = new w.a(24);
-    public b f2720a;
+    public static final Parcelable.Creator<d> CREATOR = new e(1);
+    public b f1837a;
 
     @Override
     public final int describeContents() {
@@ -16,10 +17,10 @@ public class d implements Parcelable {
     public final void writeToParcel(Parcel parcel, int i10) {
         synchronized (this) {
             try {
-                if (this.f2720a == null) {
-                    this.f2720a = new c(this);
+                if (this.f1837a == null) {
+                    this.f1837a = new c(this);
                 }
-                parcel.writeStrongBinder(this.f2720a.asBinder());
+                parcel.writeStrongBinder(this.f1837a.asBinder());
             } catch (Throwable th2) {
                 throw th2;
             }

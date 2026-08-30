@@ -1,32 +1,42 @@
 package af;
+public class f {
+    public Runnable f164a;
+    public Runnable f165b;
+    public Runnable f166c;
 
-import android.app.Activity;
-import android.view.View;
-import j3.k0;
-import org.telegram.ui.LaunchActivity;
-public final class f {
-    public final Activity f386a;
-    public final cf.a f387b;
-    public String f388c;
-    public int d;
-    public int f389e = 0;
-    public boolean f390f = false;
-    public k0 f391g;
-    public int h;
-    public int f392i;
-    public View f393j;
-    public View f394k;
-
-    public f(Activity activity, cf.a aVar) {
-        this.f386a = activity;
-        this.f387b = aVar;
+    public f(Runnable runnable, Runnable runnable2) {
+        this.f164a = runnable;
+        this.f166c = runnable2;
     }
 
-    public final g a() {
-        Activity activity = this.f386a;
-        if (activity instanceof bf.a) {
-            return new g(((LaunchActivity) ((bf.a) activity)).f35579i0, this);
+    public final void a(boolean z4) {
+        Runnable runnable = this.f165b;
+        if (runnable != null) {
+            runnable.run();
         }
-        return null;
+        c(z4);
+    }
+
+    public void b() {
+        c(false);
+    }
+
+    public void c(boolean z4) {
+        Runnable runnable = this.f166c;
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public void d() {
+        Runnable runnable = this.f164a;
+        if (runnable != null) {
+            runnable.run();
+            this.f164a = null;
+        }
+    }
+
+    public final void e(Runnable runnable) {
+        this.f165b = runnable;
     }
 }

@@ -26,12 +26,12 @@ public class AndroidGraphics2D implements Graphics2D {
     }
 
     @Override
-    public void draw(Rectangle2D.Float r9) {
+    public void draw(Rectangle2D.Float r92) {
         this.paint.setStyle(Paint.Style.STROKE);
         Canvas canvas = this.canvas;
-        float f9 = r9.f47468x;
-        float f10 = r9.f47469y;
-        canvas.drawRect(f9, f10, f9 + r9.f47467w, f10 + r9.h, this.paint);
+        float f10 = r92.f43889x;
+        float f11 = r92.f43890y;
+        canvas.drawRect(f10, f11, f10 + r92.f43888w, f11 + r92.h, this.paint);
     }
 
     @Override
@@ -52,12 +52,12 @@ public class AndroidGraphics2D implements Graphics2D {
     }
 
     @Override
-    public void fill(Rectangle2D.Float r9) {
+    public void fill(Rectangle2D.Float r92) {
         this.paint.setStyle(Paint.Style.FILL);
         Canvas canvas = this.canvas;
-        float f9 = r9.f47468x;
-        float f10 = r9.f47469y;
-        canvas.drawRect(f9, f10, f9 + r9.f47467w, f10 + r9.h, this.paint);
+        float f10 = r92.f43889x;
+        float f11 = r92.f43890y;
+        canvas.drawRect(f10, f11, f10 + r92.f43888w, f11 + r92.h, this.paint);
     }
 
     @Override
@@ -163,19 +163,19 @@ public class AndroidGraphics2D implements Graphics2D {
     }
 
     @Override
-    public void draw(Line2D.Float r9) {
+    public void draw(Line2D.Float r92) {
         this.paint.setStyle(Paint.Style.STROKE);
-        this.canvas.drawLine((float) r9.f47461x1, (float) r9.f47463y1, (float) r9.f47462x2, (float) r9.f47464y2, this.paint);
+        this.canvas.drawLine((float) r92.f43882x1, (float) r92.f43884y1, (float) r92.f43883x2, (float) r92.f43885y2, this.paint);
     }
 
     @Override
-    public void draw(RoundRectangle2D.Float r6) {
+    public void draw(RoundRectangle2D.Float r62) {
         this.paint.setStyle(Paint.Style.STROKE);
         RectF rectF = this.rectF;
-        float f9 = r6.f47470x;
-        float f10 = r6.f47471y;
-        rectF.set(f9, f10, r6.width + f9, r6.height + f10);
-        this.canvas.drawRoundRect(this.rectF, r6.arcwidth, r6.archeight, this.paint);
+        float f10 = r62.f43891x;
+        float f11 = r62.f43892y;
+        rectF.set(f10, f11, r62.width + f10, r62.height + f11);
+        this.canvas.drawRoundRect(this.rectF, r62.arcwidth, r62.archeight, this.paint);
     }
 
     @Override

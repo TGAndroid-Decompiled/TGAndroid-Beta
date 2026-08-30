@@ -1,53 +1,47 @@
 package nh;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-public final class r6 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f18522a;
-    public final float f18523b;
-    public final float f18524c;
-    public final float d;
-    public final float f18525e;
-    public final Object f18526f;
+import java.io.File;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public final class r6 implements Utilities.Callback {
+    public final int f15843a;
+    public final s6 f15844b;
 
-    public r6(Object obj, float f9, float f10, float f11, float f12, int i10) {
-        this.f18522a = i10;
-        this.f18526f = obj;
-        this.f18523b = f9;
-        this.f18524c = f10;
-        this.d = f11;
-        this.f18525e = f12;
+    public r6(s6 s6Var, int i10) {
+        this.f15843a = i10;
+        this.f15844b = s6Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f18522a) {
+    public final void run(Object obj) {
+        switch (this.f15843a) {
             case 0:
-                p pVar = (p) this.f18526f;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                s6 s6Var = pVar.f18672a;
-                float f9 = this.f18523b;
-                float f10 = this.f18524c;
-                s6Var.setScaleX(AndroidUtilities.lerp(f9, f10, floatValue));
-                s6Var.setScaleY(AndroidUtilities.lerp(f9, f10, floatValue));
-                s6Var.setTranslationX(this.d * floatValue);
-                s6Var.setTranslationY(this.f18525e * floatValue);
-                float f11 = 1.0f - floatValue;
-                s6Var.setAlpha(f11);
-                pVar.f18679s = f11;
-                pVar.invalidate();
+                s6 s6Var = this.f15844b;
+                ph.u6 u6Var = s6Var.f15883c;
+                u6Var.f42405c0 = (TLRPC.Document) obj;
+                TLRPC.TL_inputFileStoryDocument tL_inputFileStoryDocument = new TLRPC.TL_inputFileStoryDocument();
+                tL_inputFileStoryDocument.doc = MessagesController.toInputDocument(u6Var.f42405c0);
+                s6Var.c(tL_inputFileStoryDocument);
                 return;
             default:
-                tf.j jVar = (tf.j) this.f18526f;
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f12 = this.f18524c;
-                float f13 = this.f18523b;
-                jVar.f48308k = com.google.android.recaptcha.internal.a.z(f12, f13, floatValue2, f13);
-                float f14 = this.f18525e;
-                float f15 = this.d;
-                jVar.f48309l = com.google.android.recaptcha.internal.a.z(f14, f15, floatValue2, f15);
-                jVar.f48300a.a(f12, f14, false);
-                return;
+                VideoEditedInfo videoEditedInfo = (VideoEditedInfo) obj;
+                s6 s6Var2 = this.f15844b;
+                s6Var2.C = videoEditedInfo;
+                s6Var2.B.videoEditedInfo = videoEditedInfo;
+                s6Var2.f15890y = videoEditedInfo.estimatedDuration / 1000;
+                if (videoEditedInfo.needConvert()) {
+                    MediaController.getInstance().scheduleVideoConvert(s6Var2.B, false, false, false);
+                    return;
+                } else if (new File(s6Var2.B.videoEditedInfo.originalPath).renameTo(new File(s6Var2.e))) {
+                    FileLoader.getInstance(s6Var2.J.f15917a).uploadFile(s6Var2.e, false, false, 33554432);
+                    return;
+                } else {
+                    return;
+                }
         }
     }
 }

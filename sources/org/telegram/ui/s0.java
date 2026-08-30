@@ -1,25 +1,30 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class s0 extends i7.b6 {
-    public final m4 f42240a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class s0 extends AnimatorListenerAdapter {
+    public final int f38155a;
+    public final Runnable f38156b;
 
-    public s0(m4 m4Var) {
-        this.f42240a = m4Var;
+    public s0(int i10, Runnable runnable) {
+        this.f38155a = i10;
+        this.f38156b = runnable;
     }
 
     @Override
-    public final void a(boolean z10) {
-        if (z10) {
-            this.f42240a.f40392d0.h(false);
-        }
-    }
-
-    @Override
-    public final void b() {
-        if (AndroidUtilities.shouldShowClipboardToast()) {
-            b.n(R.string.TextCopied, new org.telegram.ui.Components.tc(this.f42240a.f40391c0, null));
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f38155a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                Runnable runnable = this.f38156b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            default:
+                this.f38156b.run();
+                return;
         }
     }
 }

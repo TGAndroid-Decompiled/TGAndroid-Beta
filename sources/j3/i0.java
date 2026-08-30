@@ -1,44 +1,18 @@
 package j3;
+public final class i0 {
+    public final o4.v f8623a;
+    public final long f8624b;
+    public final long f8625c;
+    public final boolean d;
+    public final boolean e;
+    public final boolean f8626f;
 
-import android.media.MediaFormat;
-public final class i0 implements g5.n, d2 {
-    public g5.n f10526a;
-    public i0 f10527b;
-
-    @Override
-    public final void a(long j10, long j11, t0 t0Var, MediaFormat mediaFormat) {
-        g5.n nVar = this.f10526a;
-        if (nVar != null) {
-            nVar.a(j10, j11, t0Var, mediaFormat);
-        }
-    }
-
-    public final void b() {
-        i0 i0Var = this.f10527b;
-        if (i0Var != null) {
-            i0Var.b();
-        }
-    }
-
-    public final void c() {
-        i0 i0Var = this.f10527b;
-        if (i0Var != null) {
-            i0Var.c();
-        }
-    }
-
-    @Override
-    public final void handleMessage(int i10, Object obj) {
-        if (i10 != 7) {
-            if (i10 != 8) {
-                if (i10 != 10000 || obj == null) {
-                    return;
-                }
-                throw new ClassCastException();
-            }
-            this.f10527b = (i0) obj;
-            return;
-        }
-        this.f10526a = (g5.n) obj;
+    public i0(o4.v vVar, long j10, long j11, boolean z4, boolean z10, boolean z11) {
+        this.f8623a = vVar;
+        this.f8624b = j10;
+        this.f8625c = j11;
+        this.d = z4;
+        this.e = z10;
+        this.f8626f = z11;
     }
 }

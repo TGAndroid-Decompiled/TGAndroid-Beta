@@ -1,13 +1,63 @@
 package q4;
 
-import i7.p7;
-import java.util.ArrayList;
-public final class c implements j {
-    public static final int[] f46257b = {8, 13, 11, 2, 0, 1, 7};
+import h5.d0;
+import h5.w;
+import j3.n0;
+import org.telegram.ui.yh;
+import r3.u;
+import r3.v;
+public final class c implements v {
+    public final int f42718a;
+    public final n0 f42719b;
+    public final r3.j f42720c = new r3.j();
+    public n0 d;
+    public v e;
+    public long f42721f;
 
-    public static void a(int i10, ArrayList arrayList) {
-        if (p7.c(i10, 0, 7, f46257b) != -1 && !arrayList.contains(Integer.valueOf(i10))) {
-            arrayList.add(Integer.valueOf(i10));
+    public c(int i10, int i11, n0 n0Var) {
+        this.f42718a = i11;
+        this.f42719b = n0Var;
+    }
+
+    @Override
+    public final void a(int i10, w wVar) {
+        v vVar = this.e;
+        int i11 = d0.f6937a;
+        vVar.d(i10, wVar);
+    }
+
+    @Override
+    public final void b(n0 n0Var) {
+        n0 n0Var2 = this.f42719b;
+        if (n0Var2 != null) {
+            n0Var = n0Var.c(n0Var2);
         }
+        this.d = n0Var;
+        v vVar = this.e;
+        int i10 = d0.f6937a;
+        vVar.b(n0Var);
+    }
+
+    @Override
+    public final void c(long j10, int i10, int i11, int i12, u uVar) {
+        long j11 = this.f42721f;
+        if (j11 != -9223372036854775807L && j10 >= j11) {
+            this.e = this.f42720c;
+        }
+        v vVar = this.e;
+        int i13 = d0.f6937a;
+        vVar.c(j10, i10, i11, i12, uVar);
+    }
+
+    @Override
+    public final void d(int i10, w wVar) {
+        yh.a(this, wVar, i10);
+    }
+
+    @Override
+    public final int e(g5.j jVar, int i10, boolean z4) {
+        v vVar = this.e;
+        int i11 = d0.f6937a;
+        return vVar.e(jVar, i10, z4);
     }
 }

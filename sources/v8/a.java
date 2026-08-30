@@ -1,3 +1,5 @@
 package v8;
-public interface a {
+
+import java.util.concurrent.Future;
+public interface a extends Future {
 }

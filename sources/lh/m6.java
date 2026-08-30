@@ -1,37 +1,19 @@
 package lh;
 
-import org.telegram.tgnet.ConnectionsManager;
-public final class m6 {
-    public final int f15928a;
-    public final int f15929b;
-    public final long f15930c;
+import org.telegram.messenger.Utilities;
+public final class m6 implements Utilities.Callback {
+    public final int f12800a;
+    public final boolean f12801b;
+    public final Object f12802c;
 
-    public m6(int i10, int i11, long j10) {
-        this.f15929b = i10;
-        this.f15930c = j10;
-        this.f15928a = i11;
+    public m6(int i10, Object obj, boolean z4) {
+        this.f12800a = i10;
+        this.f12802c = obj;
+        this.f12801b = z4;
     }
 
-    public final boolean a(int i10, int i11) {
-        int i12 = this.f15929b;
-        if (i12 != 1) {
-            if ((i12 == 2 || i12 == 3) && ConnectionsManager.getInstance(i10).getCurrentTime() >= this.f15930c) {
-                return false;
-            }
-        } else if (this.f15928a >= i11) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int b() {
-        int i10 = this.f15929b;
-        if (i10 != 2) {
-            if (i10 != 3) {
-                return 14;
-            }
-            return 16;
-        }
-        return 15;
+    @Override
+    public final void run(java.lang.Object r27) {
+        throw new UnsupportedOperationException("Method not decompiled: lh.m6.run(java.lang.Object):void");
     }
 }

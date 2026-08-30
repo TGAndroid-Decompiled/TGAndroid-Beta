@@ -1,54 +1,29 @@
 package ag;
 
-import org.telegram.messenger.R;
-public final class c extends m {
-    @Override
-    public final float a() {
-        return 0.3f;
+import org.telegram.ui.kf1;
+import org.telegram.ui.xn;
+public final class c implements Runnable {
+    public final int f183a;
+    public final xn f184b;
+
+    public c(xn xnVar, int i10) {
+        this.f183a = i10;
+        this.f184b = xnVar;
     }
 
     @Override
-    public final float b() {
-        return (float) Math.toRadians(0.0d);
-    }
-
-    @Override
-    public final int c() {
-        return -10742;
-    }
-
-    @Override
-    public final float d() {
-        return 0.5f;
-    }
-
-    @Override
-    public final int e() {
-        return R.raw.photo_marker;
-    }
-
-    @Override
-    public final float f() {
-        return 0.45f;
-    }
-
-    @Override
-    public final float g() {
-        return 0.4f;
-    }
-
-    @Override
-    public final float h() {
-        return 1.5f;
-    }
-
-    @Override
-    public final float k() {
-        return 0.04f;
-    }
-
-    @Override
-    public final int l() {
-        return R.drawable.paint_elliptical_brush;
+    public final void run() {
+        switch (this.f183a) {
+            case 0:
+                xn xnVar = this.f184b;
+                if (xnVar.getParentLayout() != null) {
+                    kf1.I0(xnVar);
+                    return;
+                }
+                return;
+            default:
+                this.f184b.Yb();
+                return;
+        }
     }
 }

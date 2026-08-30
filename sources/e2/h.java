@@ -1,10 +1,9 @@
 package e2;
 
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
+import android.os.Handler;
+import android.os.Looper;
 public abstract class h {
-    public static PackageInfo a(PackageManager packageManager, Context context) {
-        return packageManager.getPackageInfo(context.getPackageName(), PackageManager.PackageInfoFlags.of(0L));
+    public static Handler a(Looper looper) {
+        return Handler.createAsync(looper);
     }
 }

@@ -1,59 +1,40 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class gb0 extends uh.m {
-    public int W;
-    public Runnable X;
-    public final lb0 Y;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class gb0 extends org.telegram.ui.ActionBar.g1 {
+    public final int I;
 
-    public gb0(lb0 lb0Var, eb0 eb0Var, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(null, eb0Var, c6Var);
-        this.Y = lb0Var;
-        this.W = -1;
+    public gb0(int i10, int i11, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z4, boolean z10) {
+        super(i10, context, f6Var, z4, z10);
+        this.I = i11;
     }
 
     @Override
-    public final void N() {
-        super.N();
-        Runnable runnable = this.X;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-        }
-        fb0 fb0Var = new fb0(this, 0);
-        this.X = fb0Var;
-        AndroidUtilities.runOnUIThread(fb0Var);
-        lb0 lb0Var = this.Y;
-        if (lb0Var.R) {
-            lb0Var.R = false;
-            AndroidUtilities.runOnUIThread(new fb0(this, 1));
+    public final void i() {
+        switch (this.I) {
+            case 0:
+                setBackground(null);
+                return;
+            default:
+                setBackground(null);
+                return;
         }
     }
 
     @Override
-    public final void W() {
-        rb0 rb0Var = this.Y.V;
-        AndroidUtilities.cancelRunOnUIThread(rb0Var.f32259y);
-        rb0Var.f32259y.run();
-        if (this.W == -1) {
-            this.W = NotificationCenter.getInstance(rb0Var.f32257w).setAnimationInProgress(this.W, null, false);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.I) {
+            case 0:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+            default:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
         }
-        Runnable runnable = this.X;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.X = null;
-        }
-    }
-
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.X;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-        }
-        fb0 fb0Var = new fb0(this, 2);
-        this.X = fb0Var;
-        AndroidUtilities.runOnUIThread(fb0Var);
     }
 }

@@ -1,72 +1,70 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.widget.LinearLayout;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class h4 extends LinearLayout {
-    public final int f29050a;
-    public boolean f29051b;
-    public final qc0 f29052c;
+import org.telegram.messenger.MessagesController;
+import org.telegram.ui.StickersActivity;
+public final class h4 extends m51 {
+    public final int e;
+    public Object f25321f;
 
-    public h4(Context context, qc0 qc0Var, int i10) {
-        super(context);
-        this.f29050a = i10;
-        this.f29052c = qc0Var;
-        this.f29051b = false;
+    public h4(Object obj, int i10) {
+        super("@stickers", (s01) null);
+        this.e = i10;
+        this.f25321f = obj;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
+    public final void onClick(View view) {
+        int i10;
+        int i11;
         int i12;
-        int i13;
-        switch (this.f29050a) {
+        switch (this.e) {
             case 0:
-                g4 g4Var = (g4) this.f29052c;
-                this.f29051b = true;
-                Point point = AndroidUtilities.displaySize;
-                if (point.x > point.y) {
-                    i12 = 3;
-                } else {
-                    i12 = 5;
-                }
-                g4Var.setItemCount(i12);
-                g4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-                this.f29051b = false;
-                super.onMeasure(i10, i11);
+                ((org.telegram.ui.ActionBar.p2) this.f25321f).dismissCurrentDialog();
+                super.onClick(view);
+                return;
+            case 1:
+                xx0 xx0Var = (xx0) this.f25321f;
+                i10 = ((org.telegram.ui.ActionBar.g3) xx0Var).currentAccount;
+                MessagesController.getInstance(i10).openByUserName(getURL(), xx0Var.I, 1);
+                xx0Var.dismiss();
+                return;
+            case 2:
+                AndroidUtilities.addToClipboard(getURL());
+                qc.a0((uf.q) this.f25321f).k(false).j();
+                return;
+            case 3:
+                org.telegram.ui.m70 m70Var = ((org.telegram.ui.k70) this.f25321f).d;
+                i11 = ((org.telegram.ui.ActionBar.p2) m70Var).currentAccount;
+                MessagesController.getInstance(i11).openByUserName("stickers", m70Var, 1);
+                return;
+            case 4:
+                ((org.telegram.ui.lm0) this.f25321f).f36108a.dismissCurrentDialog();
+                super.onClick(view);
                 return;
             default:
-                l4 l4Var = (l4) this.f29052c;
-                this.f29051b = true;
-                Point point2 = AndroidUtilities.displaySize;
-                if (point2.x > point2.y) {
-                    i13 = 3;
-                } else {
-                    i13 = 5;
-                }
-                l4Var.setItemCount(i13);
-                l4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
-                this.f29051b = false;
-                super.onMeasure(i10, i11);
+                StickersActivity stickersActivity = (StickersActivity) this.f25321f;
+                i12 = ((org.telegram.ui.ActionBar.p2) stickersActivity).currentAccount;
+                MessagesController.getInstance(i12).openByUserName("stickers", stickersActivity, 3);
                 return;
         }
     }
 
-    @Override
-    public final void requestLayout() {
-        switch (this.f29050a) {
-            case 0:
-                if (!this.f29051b) {
-                    super.requestLayout();
-                    return;
-                }
-                return;
-            default:
-                if (!this.f29051b) {
-                    super.requestLayout();
-                    return;
-                }
-                return;
-        }
+    public h4(String str, int i10, Object obj) {
+        super(str, (s01) null);
+        this.e = i10;
+        this.f25321f = obj;
+    }
+
+    public h4(String str, s01 s01Var) {
+        super(str, s01Var);
+        this.e = 2;
+    }
+
+    public h4(org.telegram.ui.ActionBar.p2 p2Var, String str) {
+        super(str, (s01) null);
+        this.e = 0;
+        this.f25321f = p2Var;
     }
 }

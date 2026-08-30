@@ -1,301 +1,512 @@
 package j3;
 
-import android.net.Uri;
-import android.os.Bundle;
-import java.util.Arrays;
-public final class h1 implements g {
-    public static final String A0;
-    public static final String B0;
-    public static final d0 C0;
-    public static final h1 U = new h1(new Object());
-    public static final String V;
-    public static final String W;
-    public static final String X;
-    public static final String Y;
-    public static final String Z;
-    public static final String f10478a0;
-    public static final String f10479b0;
-    public static final String f10480c0;
-    public static final String f10481d0;
-    public static final String f10482e0;
-    public static final String f10483f0;
-    public static final String f10484g0;
-    public static final String f10485h0;
-    public static final String f10486i0;
-    public static final String f10487j0;
-    public static final String f10488k0;
-    public static final String f10489l0;
-    public static final String m0;
-    public static final String f10490n0;
-    public static final String f10491o0;
-    public static final String f10492p0;
-    public static final String f10493q0;
-    public static final String f10494r0;
-    public static final String f10495s0;
-    public static final String f10496t0;
-    public static final String f10497u0;
-    public static final String f10498v0;
-    public static final String f10499w0;
-    public static final String f10500x0;
-    public static final String f10501y0;
-    public static final String f10502z0;
-    public final Integer A;
-    public final Boolean B;
-    public final Boolean C;
-    public final Integer D;
-    public final Integer E;
-    public final Integer F;
-    public final Integer G;
-    public final Integer H;
-    public final Integer I;
-    public final Integer J;
-    public final CharSequence K;
-    public final CharSequence L;
-    public final CharSequence M;
-    public final Integer N;
-    public final Integer O;
-    public final CharSequence P;
-    public final CharSequence Q;
-    public final CharSequence R;
-    public final Integer S;
-    public final Bundle T;
-    public final CharSequence f10503a;
-    public final CharSequence f10504b;
-    public final CharSequence f10505c;
-    public final CharSequence d;
-    public final CharSequence f10506e;
-    public final CharSequence f10507f;
-    public final CharSequence h;
-    public final g2 f10508n;
-    public final g2 f10509r;
-    public final byte[] f10510s;
-    public final Integer v;
-    public final Uri f10511w;
-    public final Integer f10512x;
-    public final Integer f10513y;
+import android.util.Pair;
+public final class h1 {
+    public final m2 f8599a = new m2();
+    public final n2 f8600b = new n2();
+    public final k3.f f8601c;
+    public final h5.a0 d;
+    public long e;
+    public int f8602f;
+    public boolean f8603g;
+    public f1 h;
+    public f1 f8604i;
+    public f1 f8605j;
+    public int f8606k;
+    public Object f8607l;
+    public long f8608m;
 
-    static {
-        int i10 = f5.d0.f6579a;
-        V = Integer.toString(0, 36);
-        W = Integer.toString(1, 36);
-        X = Integer.toString(2, 36);
-        Y = Integer.toString(3, 36);
-        Z = Integer.toString(4, 36);
-        f10478a0 = Integer.toString(5, 36);
-        f10479b0 = Integer.toString(6, 36);
-        f10480c0 = Integer.toString(8, 36);
-        f10481d0 = Integer.toString(9, 36);
-        f10482e0 = Integer.toString(10, 36);
-        f10483f0 = Integer.toString(11, 36);
-        f10484g0 = Integer.toString(12, 36);
-        f10485h0 = Integer.toString(13, 36);
-        f10486i0 = Integer.toString(14, 36);
-        f10487j0 = Integer.toString(15, 36);
-        f10488k0 = Integer.toString(16, 36);
-        f10489l0 = Integer.toString(17, 36);
-        m0 = Integer.toString(18, 36);
-        f10490n0 = Integer.toString(19, 36);
-        f10491o0 = Integer.toString(20, 36);
-        f10492p0 = Integer.toString(21, 36);
-        f10493q0 = Integer.toString(22, 36);
-        f10494r0 = Integer.toString(23, 36);
-        f10495s0 = Integer.toString(24, 36);
-        f10496t0 = Integer.toString(25, 36);
-        f10497u0 = Integer.toString(26, 36);
-        f10498v0 = Integer.toString(27, 36);
-        f10499w0 = Integer.toString(28, 36);
-        f10500x0 = Integer.toString(29, 36);
-        f10501y0 = Integer.toString(30, 36);
-        f10502z0 = Integer.toString(31, 36);
-        A0 = Integer.toString(32, 36);
-        B0 = Integer.toString(1000, 36);
-        C0 = new d0(7);
+    public h1(k3.f fVar, h5.a0 a0Var) {
+        this.f8601c = fVar;
+        this.d = a0Var;
     }
 
-    public h1(g1 g1Var) {
-        Boolean bool = g1Var.f10461p;
-        Integer num = g1Var.f10460o;
-        Integer num2 = g1Var.F;
-        int i10 = 1;
-        int i11 = 0;
-        if (bool != null) {
-            if (!bool.booleanValue()) {
-                num = -1;
-            } else if (num == null || num.intValue() == -1) {
-                if (num2 != null) {
-                    switch (num2.intValue()) {
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 4:
-                        case 5:
-                        case 6:
-                        case 7:
-                        case 8:
-                        case 9:
-                        case 10:
-                        case 11:
-                        case 12:
-                        case 13:
-                        case 14:
-                        case 15:
-                        case 16:
-                        case 17:
-                        case 18:
-                        case 19:
-                        case 31:
-                        case 32:
-                        case 33:
-                        case 34:
-                        case 35:
-                            break;
-                        case 20:
-                        case 26:
-                        case 27:
-                        case 28:
-                        case 29:
-                        case 30:
-                        default:
-                            i10 = 0;
-                            break;
-                        case 21:
-                            i10 = 2;
-                            break;
-                        case 22:
-                            i10 = 3;
-                            break;
-                        case 23:
-                            i10 = 4;
-                            break;
-                        case 24:
-                            i10 = 5;
-                            break;
-                        case 25:
-                            i10 = 6;
-                            break;
+    public static o4.v m(o2 o2Var, Object obj, long j10, long j11, n2 n2Var, m2 m2Var) {
+        int i10;
+        o2Var.g(obj, m2Var);
+        o2Var.n(m2Var.f8704c, n2Var);
+        int b10 = o2Var.b(obj);
+        Object obj2 = obj;
+        while (true) {
+            int i11 = m2Var.h.f41048a;
+            if (i11 == 0) {
+                break;
+            }
+            if ((i11 == 1 && m2Var.g(0)) || !m2Var.h(m2Var.h.d)) {
+                break;
+            }
+            long j12 = 0;
+            if (m2Var.c(0L) != -1) {
+                break;
+            }
+            if (m2Var.d != 0) {
+                if (m2Var.g(i11 - 1)) {
+                    i10 = 2;
+                } else {
+                    i10 = 1;
+                }
+                int i12 = i11 - i10;
+                for (int i13 = 0; i13 <= i12; i13++) {
+                    j12 += m2Var.h.a(i13).h;
+                }
+                if (m2Var.d > j12) {
+                    break;
+                }
+            }
+            if (b10 > n2Var.C) {
+                break;
+            }
+            o2Var.f(b10, m2Var, true);
+            obj2 = m2Var.f8703b;
+            obj2.getClass();
+            b10++;
+        }
+        o2Var.g(obj2, m2Var);
+        int c3 = m2Var.c(j10);
+        if (c3 == -1) {
+            return new o4.v(obj2, j11, m2Var.b(j10));
+        }
+        return new o4.u(c3, m2Var.f(c3), -1, j11, obj2);
+    }
+
+    public final f1 a() {
+        f1 f1Var = this.h;
+        if (f1Var == null) {
+            return null;
+        }
+        if (f1Var == this.f8604i) {
+            this.f8604i = f1Var.f8578l;
+        }
+        f1Var.f();
+        int i10 = this.f8606k - 1;
+        this.f8606k = i10;
+        if (i10 == 0) {
+            this.f8605j = null;
+            f1 f1Var2 = this.h;
+            this.f8607l = f1Var2.f8571b;
+            this.f8608m = f1Var2.f8573f.f8585a.d;
+        }
+        this.h = this.h.f8578l;
+        k();
+        return this.h;
+    }
+
+    public final void b() {
+        if (this.f8606k == 0) {
+            return;
+        }
+        f1 f1Var = this.h;
+        h5.a.j(f1Var);
+        this.f8607l = f1Var.f8571b;
+        this.f8608m = f1Var.f8573f.f8585a.d;
+        while (f1Var != null) {
+            f1Var.f();
+            f1Var = f1Var.f8578l;
+        }
+        this.h = null;
+        this.f8605j = null;
+        this.f8604i = null;
+        this.f8606k = 0;
+        k();
+    }
+
+    public final g1 c(o2 o2Var, f1 f1Var, long j10) {
+        Object obj;
+        long j11;
+        long j12;
+        long j13;
+        boolean z4;
+        g1 g1Var = f1Var.f8573f;
+        o4.v vVar = g1Var.f8585a;
+        long j14 = g1Var.f8587c;
+        int d = o2Var.d(o2Var.b(vVar.f16424a), this.f8599a, this.f8600b, this.f8602f, this.f8603g);
+        if (d != -1) {
+            m2 m2Var = this.f8599a;
+            int i10 = o2Var.f(d, m2Var, true).f8704c;
+            Object obj2 = m2Var.f8703b;
+            obj2.getClass();
+            long j15 = vVar.d;
+            long j16 = 0;
+            if (o2Var.m(i10, this.f8600b, 0L).B == d) {
+                Pair j17 = o2Var.j(this.f8600b, this.f8599a, i10, -9223372036854775807L, Math.max(0L, j10));
+                if (j17 == null) {
+                    return null;
+                }
+                Object obj3 = j17.first;
+                long longValue = ((Long) j17.second).longValue();
+                f1 f1Var2 = f1Var.f8578l;
+                if (f1Var2 != null && f1Var2.f8571b.equals(obj3)) {
+                    j15 = f1Var2.f8573f.f8585a.d;
+                } else {
+                    j15 = this.e;
+                    this.e = 1 + j15;
+                }
+                obj = obj3;
+                j11 = longValue;
+                j16 = -9223372036854775807L;
+            } else {
+                obj = obj2;
+                j11 = 0;
+            }
+            o4.v m9 = m(o2Var, obj, j11, j15, this.f8600b, this.f8599a);
+            if (j16 != -9223372036854775807L && j14 != -9223372036854775807L) {
+                int i11 = o2Var.g(vVar.f16424a, m2Var).h.f41048a;
+                int i12 = m2Var.h.d;
+                if (i11 > 0 && m2Var.h(i12) && (i11 > 1 || m2Var.d(i12) != Long.MIN_VALUE)) {
+                    z4 = true;
+                } else {
+                    z4 = false;
+                }
+                if (m9.a() && z4) {
+                    j12 = j11;
+                    j13 = j14;
+                    return e(o2Var, m9, j13, j12);
+                } else if (z4) {
+                    j12 = j14;
+                    j13 = j16;
+                    return e(o2Var, m9, j13, j12);
+                }
+            }
+            j12 = j11;
+            j13 = j16;
+            return e(o2Var, m9, j13, j12);
+        }
+        return null;
+    }
+
+    public final g1 d(o2 o2Var, f1 f1Var, long j10) {
+        boolean z4;
+        long j11;
+        m2 m2Var;
+        o2 o2Var2;
+        long j12;
+        g1 g1Var = f1Var.f8573f;
+        long j13 = (f1Var.f8581o + g1Var.e) - j10;
+        if (g1Var.f8589g) {
+            return c(o2Var, f1Var, j13);
+        }
+        o4.v vVar = g1Var.f8585a;
+        Object obj = vVar.f16424a;
+        int i10 = vVar.e;
+        m2 m2Var2 = this.f8599a;
+        o2Var.g(obj, m2Var2);
+        if (vVar.a()) {
+            int i11 = vVar.f16425b;
+            int i12 = m2Var2.h.a(i11).f41039b;
+            if (i12 != -1) {
+                int a2 = m2Var2.h.a(i11).a(vVar.f16426c);
+                if (a2 < i12) {
+                    return f(o2Var, vVar.f16424a, i11, a2, g1Var.f8587c, vVar.d);
+                }
+                long j14 = g1Var.f8587c;
+                if (j14 == -9223372036854775807L) {
+                    Pair j15 = o2Var.j(this.f8600b, m2Var2, m2Var2.f8704c, -9223372036854775807L, Math.max(0L, j13));
+                    m2Var = m2Var2;
+                    o2Var2 = o2Var;
+                    if (j15 == null) {
+                        return null;
                     }
-                    i11 = i10;
+                    j14 = ((Long) j15.second).longValue();
+                } else {
+                    m2Var = m2Var2;
+                    o2Var2 = o2Var;
                 }
-                num = Integer.valueOf(i11);
-            }
-        } else if (num != null) {
-            boolean z10 = num.intValue() != -1;
-            bool = Boolean.valueOf(z10);
-            if (z10 && num2 == null) {
-                switch (num.intValue()) {
-                    case 1:
-                        break;
-                    case 2:
-                        i11 = 21;
-                        break;
-                    case 3:
-                        i11 = 22;
-                        break;
-                    case 4:
-                        i11 = 23;
-                        break;
-                    case 5:
-                        i11 = 24;
-                        break;
-                    case 6:
-                        i11 = 25;
-                        break;
-                    default:
-                        i11 = 20;
-                        break;
+                int i13 = vVar.f16425b;
+                o2Var2.g(obj, m2Var);
+                long d = m2Var.d(i13);
+                if (d == Long.MIN_VALUE) {
+                    j12 = m2Var.d;
+                } else {
+                    j12 = m2Var.h.a(i13).h + d;
                 }
-                num2 = Integer.valueOf(i11);
+                return g(o2Var, vVar.f16424a, Math.max(j12, j14), g1Var.f8587c, vVar.d);
             }
+            return null;
+        } else if (i10 != -1 && m2Var2.g(i10)) {
+            return c(o2Var, f1Var, j13);
+        } else {
+            int f10 = m2Var2.f(i10);
+            if (m2Var2.h(i10) && m2Var2.e(i10, f10) == 3) {
+                z4 = true;
+            } else {
+                z4 = false;
+            }
+            if (f10 != m2Var2.h.a(i10).f41039b && !z4) {
+                return f(o2Var, vVar.f16424a, vVar.e, f10, g1Var.e, vVar.d);
+            }
+            o2Var.g(obj, m2Var2);
+            long d10 = m2Var2.d(i10);
+            if (d10 == Long.MIN_VALUE) {
+                j11 = m2Var2.d;
+            } else {
+                j11 = m2Var2.h.a(i10).h + d10;
+            }
+            return g(o2Var, vVar.f16424a, j11, g1Var.e, vVar.d);
         }
-        this.f10503a = g1Var.f10448a;
-        this.f10504b = g1Var.f10449b;
-        this.f10505c = g1Var.f10450c;
-        this.d = g1Var.d;
-        this.f10506e = g1Var.f10451e;
-        this.f10507f = g1Var.f10452f;
-        this.h = g1Var.f10453g;
-        this.f10508n = g1Var.h;
-        this.f10509r = g1Var.f10454i;
-        this.f10510s = g1Var.f10455j;
-        this.v = g1Var.f10456k;
-        this.f10511w = g1Var.f10457l;
-        this.f10512x = g1Var.f10458m;
-        this.f10513y = g1Var.f10459n;
-        this.A = num;
-        this.B = bool;
-        this.C = g1Var.f10462q;
-        Integer num3 = g1Var.f10463r;
-        this.D = num3;
-        this.E = num3;
-        this.F = g1Var.f10464s;
-        this.G = g1Var.f10465t;
-        this.H = g1Var.f10466u;
-        this.I = g1Var.v;
-        this.J = g1Var.f10467w;
-        this.K = g1Var.f10468x;
-        this.L = g1Var.f10469y;
-        this.M = g1Var.f10470z;
-        this.N = g1Var.A;
-        this.O = g1Var.B;
-        this.P = g1Var.C;
-        this.Q = g1Var.D;
-        this.R = g1Var.E;
-        this.S = num2;
-        this.T = g1Var.G;
     }
 
-    public final g1 a() {
-        ?? obj = new Object();
-        obj.f10448a = this.f10503a;
-        obj.f10449b = this.f10504b;
-        obj.f10450c = this.f10505c;
-        obj.d = this.d;
-        obj.f10451e = this.f10506e;
-        obj.f10452f = this.f10507f;
-        obj.f10453g = this.h;
-        obj.h = this.f10508n;
-        obj.f10454i = this.f10509r;
-        obj.f10455j = this.f10510s;
-        obj.f10456k = this.v;
-        obj.f10457l = this.f10511w;
-        obj.f10458m = this.f10512x;
-        obj.f10459n = this.f10513y;
-        obj.f10460o = this.A;
-        obj.f10461p = this.B;
-        obj.f10462q = this.C;
-        obj.f10463r = this.E;
-        obj.f10464s = this.F;
-        obj.f10465t = this.G;
-        obj.f10466u = this.H;
-        obj.v = this.I;
-        obj.f10467w = this.J;
-        obj.f10468x = this.K;
-        obj.f10469y = this.L;
-        obj.f10470z = this.M;
-        obj.A = this.N;
-        obj.B = this.O;
-        obj.C = this.P;
-        obj.D = this.Q;
-        obj.E = this.R;
-        obj.F = this.S;
-        obj.G = this.T;
-        return obj;
+    public final g1 e(o2 o2Var, o4.v vVar, long j10, long j11) {
+        o2Var.g(vVar.f16424a, this.f8599a);
+        if (vVar.a()) {
+            return f(o2Var, vVar.f16424a, vVar.f16425b, vVar.f16426c, j10, vVar.d);
+        }
+        return g(o2Var, vVar.f16424a, j11, j10, vVar.d);
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final g1 f(o2 o2Var, Object obj, int i10, int i11, long j10, long j11) {
+        long j12;
+        ?? uVar = new o4.u(i10, i11, -1, j11, obj);
+        m2 m2Var = this.f8599a;
+        long a2 = o2Var.g(obj, m2Var).a(i10, i11);
+        if (i11 == m2Var.f(i10)) {
+            j12 = m2Var.h.f41049b;
+        } else {
+            j12 = 0;
         }
-        if (obj != null && h1.class == obj.getClass()) {
-            h1 h1Var = (h1) obj;
-            if (f5.d0.a(this.f10503a, h1Var.f10503a) && f5.d0.a(this.f10504b, h1Var.f10504b) && f5.d0.a(this.f10505c, h1Var.f10505c) && f5.d0.a(this.d, h1Var.d) && f5.d0.a(this.f10506e, h1Var.f10506e) && f5.d0.a(this.f10507f, h1Var.f10507f) && f5.d0.a(this.h, h1Var.h) && f5.d0.a(this.f10508n, h1Var.f10508n) && f5.d0.a(this.f10509r, h1Var.f10509r) && Arrays.equals(this.f10510s, h1Var.f10510s) && f5.d0.a(this.v, h1Var.v) && f5.d0.a(this.f10511w, h1Var.f10511w) && f5.d0.a(this.f10512x, h1Var.f10512x) && f5.d0.a(this.f10513y, h1Var.f10513y) && f5.d0.a(this.A, h1Var.A) && f5.d0.a(this.B, h1Var.B) && f5.d0.a(this.C, h1Var.C) && f5.d0.a(this.E, h1Var.E) && f5.d0.a(this.F, h1Var.F) && f5.d0.a(this.G, h1Var.G) && f5.d0.a(this.H, h1Var.H) && f5.d0.a(this.I, h1Var.I) && f5.d0.a(this.J, h1Var.J) && f5.d0.a(this.K, h1Var.K) && f5.d0.a(this.L, h1Var.L) && f5.d0.a(this.M, h1Var.M) && f5.d0.a(this.N, h1Var.N) && f5.d0.a(this.O, h1Var.O) && f5.d0.a(this.P, h1Var.P) && f5.d0.a(this.Q, h1Var.Q) && f5.d0.a(this.R, h1Var.R) && f5.d0.a(this.S, h1Var.S)) {
+        boolean h = m2Var.h(i10);
+        if (a2 != -9223372036854775807L && j12 >= a2) {
+            j12 = Math.max(0L, a2 - 1);
+        }
+        return new g1(uVar, j12, j10, -9223372036854775807L, a2, h, false, false, false);
+    }
+
+    public final j3.g1 g(j3.o2 r27, java.lang.Object r28, long r29, long r31, long r33) {
+        throw new UnsupportedOperationException("Method not decompiled: j3.h1.g(j3.o2, java.lang.Object, long, long, long):j3.g1");
+    }
+
+    public final g1 h(o2 o2Var, g1 g1Var) {
+        boolean z4;
+        long j10;
+        long j11;
+        boolean z10;
+        o4.v vVar = g1Var.f8585a;
+        boolean a2 = vVar.a();
+        int i10 = vVar.e;
+        if (!a2 && i10 == -1) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        int i11 = vVar.f16425b;
+        boolean j12 = j(o2Var, vVar);
+        boolean i12 = i(o2Var, vVar, z4);
+        Object obj = vVar.f16424a;
+        m2 m2Var = this.f8599a;
+        o2Var.g(obj, m2Var);
+        if (!vVar.a() && i10 != -1) {
+            j10 = m2Var.d(i10);
+        } else {
+            j10 = -9223372036854775807L;
+        }
+        if (vVar.a()) {
+            j11 = m2Var.a(i11, vVar.f16426c);
+        } else if (j10 != -9223372036854775807L && j10 != Long.MIN_VALUE) {
+            j11 = j10;
+        } else {
+            j11 = m2Var.d;
+        }
+        if (vVar.a()) {
+            z10 = m2Var.h(i11);
+        } else if (i10 != -1 && m2Var.h(i10)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        return new g1(vVar, g1Var.f8586b, g1Var.f8587c, j10, j11, z10, z4, j12, i12);
+    }
+
+    public final boolean i(o2 o2Var, o4.v vVar, boolean z4) {
+        int b10 = o2Var.b(vVar.f16424a);
+        if (!o2Var.m(o2Var.f(b10, this.f8599a, false).f8704c, this.f8600b, 0L).f8754r) {
+            if (o2Var.d(b10, this.f8599a, this.f8600b, this.f8602f, this.f8603g) == -1 && z4) {
                 return true;
             }
         }
         return false;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f10503a, this.f10504b, this.f10505c, this.d, this.f10506e, this.f10507f, this.h, this.f10508n, this.f10509r, Integer.valueOf(Arrays.hashCode(this.f10510s)), this.v, this.f10511w, this.f10512x, this.f10513y, this.A, this.B, this.C, this.E, this.F, this.G, this.H, this.I, this.J, this.K, this.L, this.M, this.N, this.O, this.P, this.Q, this.R, this.S});
+    public final boolean j(o2 o2Var, o4.v vVar) {
+        boolean z4;
+        if (!vVar.a() && vVar.e == -1) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        Object obj = vVar.f16424a;
+        if (z4) {
+            int i10 = o2Var.g(obj, this.f8599a).f8704c;
+            if (o2Var.m(i10, this.f8600b, 0L).C == o2Var.b(obj)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final void k() {
+        o4.v vVar;
+        s8.t tVar = s8.v.f44157b;
+        com.google.android.gms.common.api.internal.w wVar = new com.google.android.gms.common.api.internal.w();
+        for (f1 f1Var = this.h; f1Var != null; f1Var = f1Var.f8578l) {
+            wVar.b(f1Var.f8573f.f8585a);
+        }
+        f1 f1Var2 = this.f8604i;
+        if (f1Var2 == null) {
+            vVar = null;
+        } else {
+            vVar = f1Var2.f8573f.f8585a;
+        }
+        this.d.c(new androidx.car.app.utils.b(this, wVar, vVar, 12));
+    }
+
+    public final boolean l(f1 f1Var) {
+        boolean z4;
+        boolean z10 = false;
+        if (f1Var != null) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        h5.a.i(z4);
+        if (f1Var.equals(this.f8605j)) {
+            return false;
+        }
+        this.f8605j = f1Var;
+        while (true) {
+            f1Var = f1Var.f8578l;
+            if (f1Var == null) {
+                break;
+            }
+            if (f1Var == this.f8604i) {
+                this.f8604i = this.h;
+                z10 = true;
+            }
+            f1Var.f();
+            this.f8606k--;
+        }
+        f1 f1Var2 = this.f8605j;
+        if (f1Var2.f8578l != null) {
+            f1Var2.b();
+            f1Var2.f8578l = null;
+            f1Var2.c();
+        }
+        k();
+        return z10;
+    }
+
+    public final o4.v n(o2 o2Var, Object obj, long j10) {
+        long j11;
+        int b10;
+        Object obj2 = obj;
+        m2 m2Var = this.f8599a;
+        int i10 = o2Var.g(obj2, m2Var).f8704c;
+        Object obj3 = this.f8607l;
+        if (obj3 != null && (b10 = o2Var.b(obj3)) != -1 && o2Var.f(b10, m2Var, false).f8704c == i10) {
+            j11 = this.f8608m;
+        } else {
+            f1 f1Var = this.h;
+            while (true) {
+                if (f1Var != null) {
+                    if (f1Var.f8571b.equals(obj2)) {
+                        j11 = f1Var.f8573f.f8585a.d;
+                        break;
+                    }
+                    f1Var = f1Var.f8578l;
+                } else {
+                    f1 f1Var2 = this.h;
+                    while (true) {
+                        if (f1Var2 != null) {
+                            int b11 = o2Var.b(f1Var2.f8571b);
+                            if (b11 != -1 && o2Var.f(b11, m2Var, false).f8704c == i10) {
+                                j11 = f1Var2.f8573f.f8585a.d;
+                                break;
+                            }
+                            f1Var2 = f1Var2.f8578l;
+                        } else {
+                            j11 = this.e;
+                            this.e = 1 + j11;
+                            if (this.h == null) {
+                                this.f8607l = obj2;
+                                this.f8608m = j11;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        o2Var.g(obj2, m2Var);
+        int i11 = m2Var.f8704c;
+        n2 n2Var = this.f8600b;
+        o2Var.n(i11, n2Var);
+        boolean z4 = false;
+        for (int b12 = o2Var.b(obj); b12 >= n2Var.B; b12--) {
+            boolean z10 = true;
+            o2Var.f(b12, m2Var, true);
+            if (m2Var.h.f41048a <= 0) {
+                z10 = false;
+            }
+            z4 |= z10;
+            if (m2Var.c(m2Var.d) != -1) {
+                obj2 = m2Var.f8703b;
+                obj2.getClass();
+            }
+            if (z4 && (!z10 || m2Var.d != 0)) {
+                break;
+            }
+        }
+        return m(o2Var, obj2, j10, j11, this.f8600b, this.f8599a);
+    }
+
+    public final boolean o(o2 o2Var) {
+        o2 o2Var2;
+        f1 f1Var;
+        f1 f1Var2 = this.h;
+        if (f1Var2 == null) {
+            return true;
+        }
+        int b10 = o2Var.b(f1Var2.f8571b);
+        while (true) {
+            o2Var2 = o2Var;
+            b10 = o2Var2.d(b10, this.f8599a, this.f8600b, this.f8602f, this.f8603g);
+            while (true) {
+                f1Var = f1Var2.f8578l;
+                if (f1Var == null || f1Var2.f8573f.f8589g) {
+                    break;
+                }
+                f1Var2 = f1Var;
+            }
+            if (b10 == -1 || f1Var == null || o2Var2.b(f1Var.f8571b) != b10) {
+                break;
+            }
+            f1Var2 = f1Var;
+            o2Var = o2Var2;
+        }
+        boolean l10 = l(f1Var2);
+        f1Var2.f8573f = h(o2Var2, f1Var2.f8573f);
+        return !l10;
+    }
+
+    public final boolean p(o2 o2Var, long j10) {
+        boolean l10;
+        g1 g1Var;
+        f1 f1Var = null;
+        for (f1 f1Var2 = this.h; f1Var2 != null; f1Var2 = f1Var2.f8578l) {
+            g1 g1Var2 = f1Var2.f8573f;
+            if (f1Var == null) {
+                g1Var = h(o2Var, g1Var2);
+            } else {
+                g1 d = d(o2Var, f1Var, j10);
+                if (d == null) {
+                    l10 = l(f1Var);
+                } else if (g1Var2.f8586b == d.f8586b && g1Var2.f8585a.equals(d.f8585a)) {
+                    g1Var = d;
+                } else {
+                    l10 = l(f1Var);
+                }
+                return !l10;
+            }
+            f1Var2.f8573f = g1Var.a(g1Var2.f8587c);
+            f1Var = f1Var2;
+        }
+        return true;
     }
 }

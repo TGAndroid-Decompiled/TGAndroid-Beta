@@ -1,22 +1,18 @@
 package k1;
+public final class w {
+    public final ud.a f9617a;
+    public final kotlin.jvm.internal.o f9618b;
+    public final kotlin.jvm.internal.q f9619c;
+    public final d0 d;
 
-import java.io.FileInputStream;
-public final class w extends uc.c {
-    public a0 f13310a;
-    public FileInputStream f13311b;
-    public Object f13312c;
-    public final a0 d;
-    public int f13313e;
-
-    public w(a0 a0Var, uc.c cVar) {
-        super(cVar);
-        this.d = a0Var;
+    public w(ud.a aVar, kotlin.jvm.internal.o oVar, kotlin.jvm.internal.q qVar, d0 d0Var) {
+        this.f9617a = aVar;
+        this.f9618b = oVar;
+        this.f9619c = qVar;
+        this.d = d0Var;
     }
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f13312c = obj;
-        this.f13313e |= Integer.MIN_VALUE;
-        return this.d.g(this);
+    public final java.lang.Object a(k1.f r10, wc.c r11) {
+        throw new UnsupportedOperationException("Method not decompiled: k1.w.a(k1.f, wc.c):java.lang.Object");
     }
 }

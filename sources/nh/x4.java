@@ -1,34 +1,23 @@
 package nh;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-public final class x4 extends bg.h2 {
-    public final Path c3;
-    public final ja f18826d3;
+import org.telegram.ui.LaunchActivity;
+public final class x4 extends org.telegram.ui.Cells.n6 {
+    public final z4 H;
 
-    public x4(ja jaVar, Context context) {
-        super(context);
-        this.f18826d3 = jaVar;
-        this.c3 = new Path();
+    public x4(int i10, Context context, b bVar, z4 z4Var) {
+        super(1, i10, context, bVar, false, true);
+        this.H = z4Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        ViewGroup barView;
-        ja jaVar = this.f18826d3;
-        barView = jaVar.getBarView();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(AndroidUtilities.lerp(barView.getLeft() - getLeft(), 0, jaVar.f18671z1), AndroidUtilities.lerp(barView.getTop() - getTop(), 0, jaVar.f18671z1), AndroidUtilities.lerp(barView.getRight() - getLeft(), getWidth(), jaVar.f18671z1), AndroidUtilities.lerp(barView.getBottom() - getTop(), getHeight(), jaVar.f18671z1));
-        Path path = this.c3;
-        path.rewind();
-        path.addRoundRect(rectF, AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f), Path.Direction.CW);
-        canvas.save();
-        canvas.clipPath(path);
-        super.draw(canvas);
-        canvas.restore();
+    public final void b(long j10) {
+        org.telegram.ui.ActionBar.p2 R = LaunchActivity.R();
+        if (R == null) {
+            return;
+        }
+        i9 createOverlayStoryViewer = R.createOverlayStoryViewer();
+        createOverlayStoryViewer.getClass();
+        createOverlayStoryViewer.D(getContext(), j10, c7.a(this.H.d.f15270r));
     }
 }

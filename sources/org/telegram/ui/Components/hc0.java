@@ -1,12 +1,58 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public interface hc0 {
-    void addOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Matrix;
+import android.graphics.Shader;
+import android.os.Build;
+import java.lang.ref.WeakReference;
+public final class hc0 {
+    public final Shader.TileMode f25389a;
+    public final Matrix f25390b = new Matrix();
+    public boolean f25391c;
+    public BitmapShader d;
+    public WeakReference e;
 
-    int getMeasuredHeight();
+    public hc0(Shader.TileMode tileMode) {
+        this.f25389a = tileMode;
+    }
 
-    int getTop();
+    public final void a(boolean z4) {
+        BitmapShader bitmapShader;
+        int i10;
+        if (this.f25391c != z4) {
+            this.f25391c = z4;
+            if (Build.VERSION.SDK_INT >= 33 && (bitmapShader = this.d) != null) {
+                if (z4) {
+                    i10 = 1;
+                } else {
+                    i10 = 2;
+                }
+                bitmapShader.setFilterMode(i10);
+            }
+        }
+    }
 
-    void removeOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
+    public final boolean b(Bitmap bitmap) {
+        int i10;
+        WeakReference weakReference = this.e;
+        if (weakReference != null && weakReference.get() == bitmap) {
+            return false;
+        }
+        this.e = new WeakReference(bitmap);
+        Shader.TileMode tileMode = this.f25389a;
+        BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+        this.d = bitmapShader;
+        bitmapShader.setLocalMatrix(this.f25390b);
+        if (Build.VERSION.SDK_INT >= 33) {
+            BitmapShader bitmapShader2 = this.d;
+            if (this.f25391c) {
+                i10 = 1;
+            } else {
+                i10 = 2;
+            }
+            bitmapShader2.setFilterMode(i10);
+        }
+        return true;
+    }
 }

@@ -1,132 +1,213 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.text.Layout;
 import android.text.SpannableString;
-import android.text.style.CharacterStyle;
-import android.text.style.ClickableSpan;
-import android.view.MotionEvent;
-import android.view.ViewConfiguration;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.KeyEvent;
+import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
-public final class bu extends gh.s {
-    public final v80 N;
-    public z80 O;
-    public boolean P;
-    public boolean Q;
-    public boolean R;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class bu implements ky {
+    public final du f23749a;
 
-    public bu(Context context) {
-        super(context, null, true);
-        this.N = new v80(this);
+    public bu(du duVar) {
+        this.f23749a = duVar;
     }
 
     @Override
-    public final ClickableSpan a(int i10, int i11) {
-        Layout layout = getLayout();
-        if (layout == null) {
-            return null;
-        }
-        int paddingLeft = i10 - getPaddingLeft();
-        int paddingTop = i11 - getPaddingTop();
-        int lineForVertical = layout.getLineForVertical(paddingTop);
-        float f9 = paddingLeft;
-        int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f9);
-        float lineLeft = getLayout().getLineLeft(lineForVertical);
-        if (lineLeft <= f9 && layout.getLineWidth(lineForVertical) + lineLeft >= f9 && paddingTop >= 0 && paddingTop <= layout.getHeight()) {
-            ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(layout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
-            if (clickableSpanArr.length != 0 && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
-                return clickableSpanArr[0];
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float paddingLeft;
-        canvas.save();
-        if (!this.P) {
-            float f9 = 0.0f;
-            if (this.Q) {
-                paddingLeft = 0.0f;
-            } else {
-                paddingLeft = getPaddingLeft();
-            }
-            if (!this.R) {
-                f9 = getPaddingTop();
-            }
-            canvas.translate(paddingLeft, f9);
-        }
-        if (this.N.f(canvas)) {
-            invalidate();
-        }
-        canvas.restore();
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        CharacterStyle characterStyle;
-        v80 v80Var = this.N;
-        if (v80Var != null) {
-            Layout layout = getLayout();
-            ClickableSpan a2 = a((int) motionEvent.getX(), (int) motionEvent.getY());
-            if (a2 != null && motionEvent.getAction() == 0) {
-                z80 z80Var = new z80(a2, null, motionEvent.getX(), motionEvent.getY(), 0);
-                this.O = z80Var;
-                v80Var.a(z80Var, null);
-                SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.O.f35285i);
-                int spanEnd = spannableString.getSpanEnd(this.O.f35285i);
-                s80 b10 = this.O.b();
-                b10.d(layout, spanStart, getPaddingTop());
-                layout.getSelectionPath(spanStart, spanEnd, b10);
-                AndroidUtilities.runOnUIThread(new rp(this, z80Var, a2), ViewConfiguration.getLongPressTimeout());
-                return true;
-            }
-            if (motionEvent.getAction() == 1) {
-                v80Var.d(true);
-                z80 z80Var2 = this.O;
-                if (z80Var2 != null && (characterStyle = z80Var2.f35285i) == a2) {
-                    if (characterStyle != null) {
-                        ((ClickableSpan) characterStyle).onClick(this);
-                    }
-                    this.O = null;
-                    return true;
-                }
-                this.O = null;
-            }
-            if (motionEvent.getAction() == 3) {
-                v80Var.d(true);
-                this.O = null;
-            }
-        }
-        if (this.O != null || super.onTouchEvent(motionEvent)) {
-            return true;
-        }
+    public final boolean A() {
         return false;
     }
 
     @Override
-    public void setDisablePaddingsOffset(boolean z10) {
-        this.P = z10;
+    public final long a() {
+        return 0L;
     }
 
     @Override
-    public void setDisablePaddingsOffsetX(boolean z10) {
-        this.Q = z10;
+    public final boolean b() {
+        return false;
     }
 
     @Override
-    public void setDisablePaddingsOffsetY(boolean z10) {
-        this.R = z10;
+    public final boolean c() {
+        return false;
     }
 
     @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final void i(int i10) {
+        boolean z4;
+        du duVar = this.f23749a;
+        if (duVar.b()) {
+            if (i10 != 0) {
+                z4 = true;
+            } else {
+                z4 = false;
+            }
+            duVar.f24375x = z4;
+            duVar.y();
+            qv0 qv0Var = duVar.f24370f;
+            if (qv0Var != null) {
+                qv0Var.S();
+            }
+        }
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        yt ytVar = this.f23749a.f24367a;
+        if (ytVar.length() == 0) {
+            return false;
+        }
+        ytVar.dispatchKeyEvent(new KeyEvent(0, 67));
+        return true;
+    }
+
+    @Override
+    public final void l(String str) {
+        yt ytVar = this.f23749a.f24367a;
+        int selectionEnd = ytVar.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            CharSequence replaceEmoji = Emoji.replaceEmoji(str, ytVar.getPaint().getFontMetricsInt(), false);
+            ytVar.setText(ytVar.getText().insert(selectionEnd, replaceEmoji));
+            int length = selectionEnd + replaceEmoji.length();
+            ytVar.setSelection(length, length);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final void n() {
+        du duVar = this.f23749a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(duVar.getContext(), 0, duVar.J);
+        alertDialog$Builder.f19503a.O = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f19503a.Q = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new u81(this));
+        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+        org.telegram.ui.ActionBar.p2 p2Var = duVar.h;
+        if (p2Var != null) {
+            p2Var.showDialog(alertDialog$Builder.f19503a);
+        } else {
+            alertDialog$Builder.o();
+        }
+    }
+
+    @Override
+    public final float p() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void q() {
+        org.telegram.ui.ActionBar.p2 p2Var = this.f23749a.h;
+        if (p2Var == null) {
+            new eg.o1((org.telegram.ui.ActionBar.p2) new eg.y1(this, 6), 11, false).show();
+        } else {
+            p2Var.showDialog(new eg.o1(p2Var, 11, false));
+        }
+    }
+
+    @Override
+    public final void x(long j10, TLRPC.Document document, String str, boolean z4) {
+        u5 u5Var;
+        du duVar = this.f23749a;
+        yt ytVar = duVar.f24367a;
+        int selectionEnd = ytVar.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            SpannableString spannableString = new SpannableString(str);
+            if (document != null) {
+                u5Var = new u5(document, ytVar.getPaint().getFontMetricsInt());
+            } else {
+                u5Var = new u5(j10, ytVar.getPaint().getFontMetricsInt());
+            }
+            u5Var.cacheType = duVar.d.f26416c;
+            spannableString.setSpan(u5Var, 0, spannableString.length(), 33);
+            ytVar.setText(ytVar.getText().insert(selectionEnd, spannableString));
+            int length = selectionEnd + spannableString.length();
+            ytVar.setSelection(length, length);
+        } catch (Exception e) {
+            FileLog.e(e);
+        } catch (Throwable th2) {
+            throw th2;
+        }
+    }
+
+    @Override
+    public final boolean z() {
+        return this.f23749a.f24375x;
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void o(e51 e51Var) {
+    }
+
+    @Override
+    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void s(int i10) {
+    }
+
+    @Override
+    public final void t(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
+    }
+
+    @Override
+    public final void y(long j10) {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z4) {
+    }
+
+    @Override
+    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z4, int i10) {
+    }
+
+    @Override
+    public final void v(View view, Object obj, String str, Object obj2, boolean z4, int i10, int i11) {
     }
 }

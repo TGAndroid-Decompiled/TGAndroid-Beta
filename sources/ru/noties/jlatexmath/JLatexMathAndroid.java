@@ -24,8 +24,8 @@ public abstract class JLatexMathAndroid {
         try {
             AssetManager assets = context().getAssets();
             return assets.open("org/scilab/forge/jlatexmath/" + str);
-        } catch (IOException e10) {
-            throw new RuntimeException(e10);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

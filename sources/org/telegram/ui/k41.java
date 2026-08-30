@@ -1,43 +1,65 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-public final class k41 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39750a;
-    public final d61 f39751b;
-    public final boolean f39752c;
+import org.telegram.messenger.MediaController;
+public final class k41 implements Runnable {
+    public final int f35567a;
+    public final p41 f35568b;
 
-    public k41(d61 d61Var, boolean z10, int i10) {
-        this.f39750a = i10;
-        this.f39751b = d61Var;
-        this.f39752c = z10;
+    public k41(p41 p41Var, int i10) {
+        this.f35567a = i10;
+        this.f35568b = p41Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f39750a) {
+    public final void run() {
+        switch (this.f35567a) {
             case 0:
-                d61 d61Var = this.f39751b;
-                a51 a51Var = d61Var.f37326d0;
-                q41 q41Var = d61Var.f37329e0;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (!this.f39752c) {
-                    floatValue = 1.0f - floatValue;
+                p41 p41Var = this.f35568b;
+                k41 k41Var = p41Var.W;
+                org.telegram.ui.Components.i71 i71Var = p41Var.f37180w;
+                if (i71Var != null) {
+                    p41Var.X = ((float) i71Var.n()) / ((float) p41Var.f37180w.p());
+                    n41 n41Var = p41Var.K;
+                    if (n41Var != null) {
+                        n41Var.Ud = (p41Var.f37180w.p() - p41Var.f37180w.n()) / 1000;
+                        p41Var.K.q4();
+                        org.telegram.ui.Components.mo0 seekBarWaveform = p41Var.K.getSeekBarWaveform();
+                        if (seekBarWaveform != null) {
+                            float f10 = p41Var.X;
+                            seekBarWaveform.J = true;
+                            seekBarWaveform.K = f10;
+                            org.telegram.ui.Cells.t1 t1Var = seekBarWaveform.f27093n;
+                            if (t1Var != null) {
+                                t1Var.invalidate();
+                            }
+                        }
+                    }
+                    if (p41Var.f37180w.y()) {
+                        AndroidUtilities.cancelRunOnUIThread(k41Var);
+                        AndroidUtilities.runOnUIThread(k41Var, 16L);
+                        return;
+                    }
+                    return;
                 }
-                float f9 = 1.0f - floatValue;
-                a51Var.setAlpha(f9);
-                a51Var.setTranslationY(AndroidUtilities.dp(8.0f) * floatValue);
-                q41Var.setAlpha(floatValue);
-                q41Var.setTranslationY(AndroidUtilities.dp(8.0f) * f9);
-                d61Var.f37332f0.setAlpha(q41Var.getAlpha() * floatValue);
+                return;
+            case 1:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+            case 2:
+                super/*android.app.Dialog*/.dismiss();
                 return;
             default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (!this.f39752c) {
-                    floatValue2 = 1.0f - floatValue2;
+                p41 p41Var2 = this.f35568b;
+                if (p41Var2.d == null) {
+                    AndroidUtilities.runOnUIThread(new k41(p41Var2, 2));
+                    org.telegram.ui.Cells.t1 t1Var2 = p41Var2.L;
+                    if (t1Var2 != null) {
+                        t1Var2.setVisibility(0);
+                        p41Var2.L.invalidate();
+                    }
                 }
-                d61 d61Var2 = this.f39751b;
-                d61Var2.f37332f0.setAlpha(d61Var2.f37329e0.getAlpha() * floatValue2);
+                MediaController.getInstance().tryResumePausedAudio();
                 return;
         }
     }

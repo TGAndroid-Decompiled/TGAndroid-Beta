@@ -11,10 +11,10 @@ public class HorizontalBox extends Box {
     protected List<Integer> breakPositions;
     private float curPos;
 
-    public HorizontalBox(Box box, float f9, int i10) {
+    public HorizontalBox(Box box, float f10, int i10) {
         this.curPos = 0.0f;
-        if (f9 != Float.POSITIVE_INFINITY) {
-            float width = f9 - box.getWidth();
+        if (f10 != Float.POSITIVE_INFINITY) {
+            float width = f10 - box.getWidth();
             if (width <= 0.0f) {
                 add(box);
                 return;
@@ -41,19 +41,19 @@ public class HorizontalBox extends Box {
     }
 
     private void recalculate(Box box) {
-        float f9;
+        float f10;
         this.width = box.getWidth() + this.width;
-        float f10 = Float.NEGATIVE_INFINITY;
+        float f11 = Float.NEGATIVE_INFINITY;
         if (this.children.size() == 0) {
-            f9 = Float.NEGATIVE_INFINITY;
+            f10 = Float.NEGATIVE_INFINITY;
         } else {
-            f9 = this.height;
+            f10 = this.height;
         }
-        this.height = Math.max(f9, box.height - box.shift);
+        this.height = Math.max(f10, box.height - box.shift);
         if (this.children.size() != 0) {
-            f10 = this.depth;
+            f11 = this.depth;
         }
-        this.depth = Math.max(f10, box.depth + box.shift);
+        this.depth = Math.max(f11, box.depth + box.shift);
     }
 
     @Override
@@ -76,13 +76,13 @@ public class HorizontalBox extends Box {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f9, float f10) {
-        startDraw(graphics2D, f9, f10);
+    public void draw(Graphics2D graphics2D, float f10, float f11) {
+        startDraw(graphics2D, f10, f11);
         Iterator<Box> it = this.children.iterator();
         while (it.hasNext()) {
             Box next = it.next();
-            next.draw(graphics2D, f9, next.shift + f10);
-            f9 += next.getWidth();
+            next.draw(graphics2D, f10, next.shift + f11);
+            f10 += next.getWidth();
         }
         endDraw(graphics2D);
     }

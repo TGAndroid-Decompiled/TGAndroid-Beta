@@ -21,7 +21,7 @@ public class BetaUpdaterController {
     private String version;
     private int versionCode;
     private boolean firstCheck = true;
-    private final Runnable scheduledUpdateCheck = new u(this, 1);
+    private final Runnable scheduledUpdateCheck = new v(this, 1);
 
     public BetaUpdaterController() {
         load();
@@ -30,8 +30,8 @@ public class BetaUpdaterController {
     private String getCurrentVersion() {
         try {
             return ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionName;
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "";
         }
     }
@@ -39,8 +39,8 @@ public class BetaUpdaterController {
     private int getCurrentVersionCode() {
         try {
             return ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode;
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             return 0;
         }
     }
@@ -61,7 +61,7 @@ public class BetaUpdaterController {
     }
 
     public void lambda$checkForUpdate$2(Runnable runnable, String str) {
-        AndroidUtilities.runOnUIThread(new f0(this, str, runnable, 6));
+        AndroidUtilities.runOnUIThread(new g0(this, str, runnable, 6));
     }
 
     public void lambda$downloadUpdate$3() {
@@ -73,8 +73,8 @@ public class BetaUpdaterController {
             if (!TextUtils.isEmpty(this.path)) {
                 try {
                     new File(this.path).delete();
-                } catch (Exception e10) {
-                    FileLog.e(e10);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
             }
             this.path = file.getAbsolutePath();
@@ -89,11 +89,11 @@ public class BetaUpdaterController {
     }
 
     public void lambda$downloadUpdate$5(File file) {
-        AndroidUtilities.runOnUIThread(new d3(12, this, file));
+        AndroidUtilities.runOnUIThread(new e3(12, this, file));
     }
 
-    public void lambda$downloadUpdate$6(Float f9) {
-        this.downloadingProgress = f9.floatValue();
+    public void lambda$downloadUpdate$6(Float f10) {
+        this.downloadingProgress = f10.floatValue();
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
     }
 
@@ -163,13 +163,13 @@ public class BetaUpdaterController {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
     }
 
-    public void checkForUpdate(boolean z10, Runnable runnable) {
+    public void checkForUpdate(boolean z4, Runnable runnable) {
         long j10;
         if (!this.checkingForUpdate) {
             if (this.firstCheck) {
-                z10 = true;
+                z4 = true;
             }
-            if (!z10) {
+            if (!z4) {
                 long currentTimeMillis = System.currentTimeMillis() - this.lastCheck;
                 if (ApplicationLoader.mainInterfacePaused) {
                     j10 = 86400000;
@@ -188,7 +188,7 @@ public class BetaUpdaterController {
             }
             this.checkingForUpdate = true;
             this.firstCheck = false;
-            new org.telegram.ui.web.f1(new w(0, this, runnable)).execute("null");
+            new org.telegram.ui.web.g1(new x(0, this, runnable)).execute("null");
         }
     }
 
@@ -226,7 +226,7 @@ public class BetaUpdaterController {
         return this.downloading;
     }
 
-    private void downloadUpdate(boolean z10) {
+    private void downloadUpdate(boolean z4) {
         if (this.downloading || !TextUtils.isEmpty(this.path)) {
             return;
         }
@@ -235,46 +235,46 @@ public class BetaUpdaterController {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
         if (!TextUtils.isEmpty(this.fileUrl)) {
             HttpGetFileTask overrideExtension = new HttpGetFileTask(new Utilities.Callback(this) {
-                public final BetaUpdaterController f21776b;
+                public final BetaUpdaterController f18863b;
 
                 {
-                    this.f21776b = this;
+                    this.f18863b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f21776b.lambda$downloadUpdate$5((File) obj);
+                            this.f18863b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f21776b.lambda$downloadUpdate$6((Float) obj);
+                            this.f18863b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }
             }, new Utilities.Callback(this) {
-                public final BetaUpdaterController f21776b;
+                public final BetaUpdaterController f18863b;
 
                 {
-                    this.f21776b = this;
+                    this.f18863b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f21776b.lambda$downloadUpdate$5((File) obj);
+                            this.f18863b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f21776b.lambda$downloadUpdate$6((Float) obj);
+                            this.f18863b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }
             }).setOverrideExtension("apk");
             this.downloadingTask = overrideExtension;
             overrideExtension.execute(this.fileUrl);
-        } else if (!z10) {
-            checkForUpdate(true, new u(this, 0));
+        } else if (!z4) {
+            checkForUpdate(true, new v(this, 0));
         } else {
             this.downloading = false;
         }

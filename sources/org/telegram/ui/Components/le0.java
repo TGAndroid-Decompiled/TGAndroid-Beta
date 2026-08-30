@@ -1,37 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Path;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-public final class le0 extends Path {
-    public int f30295a;
-    public int f30296b;
-    public int f30297c;
+import android.app.Activity;
+import android.view.ViewGroup;
+public final class le0 extends org.telegram.ui.ActionBar.k {
+    public final se0 f26625q1;
 
-    public final void a(int i10, int i11, int i12) {
-        if (this.f30295a == i10 && this.f30296b == i11 && this.f30297c == i12) {
-            return;
-        }
-        rewind();
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f9 = i10 - i12;
-        float f10 = i11 + i12;
-        rectF.set(f9, i11 - i12, i10 + i12, f10);
-        arcTo(rectF, -180.0f, 270.0f, false);
-        float f11 = i12 / 81.0f;
-        float f12 = i10;
-        float f13 = f10 - (3.0f * f11);
-        cubicTo(f12 - (13.0f * f11), f10, f12 - (25.0f * f11), f13, f12 - (36.0f * f11), f10 - (8.42f * f11));
-        float f14 = f10 - f11;
-        cubicTo(f12 - (52.0f * f11), f14, f12 - (56.5f * f11), f14, f12 - (78.02f * f11), f14);
-        cubicTo(f12 - (80.0f * f11), f14, f12 - (81.0f * f11), f13, f12 - (79.52f * f11), f10 - (4.5f * f11));
-        float f15 = f12 - (63.73f * f11);
-        cubicTo(f12 - (78.0f * f11), f10 - (6.0f * f11), f15, f10 - (15.0f * f11), f15, f10 - (31.0f * f11));
-        float f16 = i11;
-        cubicTo(f12 - (74.5f * f11), f10 - (44.75f * f11), f9, (f11 * 18.87f) + f16, f9, f16);
-        close();
-        this.f30295a = i10;
-        this.f30296b = i11;
-        this.f30297c = i12;
+    public le0(se0 se0Var, Activity activity) {
+        super(activity, null);
+        this.f26625q1 = se0Var;
+    }
+
+    @Override
+    public final void setAlpha(float f10) {
+        ViewGroup viewGroup;
+        super.setAlpha(f10);
+        viewGroup = ((org.telegram.ui.ActionBar.g3) this.f26625q1).containerView;
+        viewGroup.invalidate();
     }
 }

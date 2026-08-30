@@ -1,98 +1,49 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.view.ViewGroup;
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public final class j7 extends e7 {
-    public final ArrayList f39451n;
-    public final q7 f39452r;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class j7 extends yt0 {
+    public org.telegram.ui.Components.sl0 f35247a;
+    public final u7 f35248b;
 
-    public j7(q7 q7Var) {
-        super(q7Var, 2);
-        this.f39452r = q7Var;
-        this.f39451n = new ArrayList();
+    public j7(u7 u7Var) {
+        this.f35248b = u7Var;
     }
 
     @Override
-    public final void F() {
-        boolean z10;
-        super.F();
-        ArrayList arrayList = this.f39451n;
-        arrayList.clear();
-        int i10 = 0;
+    public final ju0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z4, boolean z10) {
+        org.telegram.ui.Cells.r7 r7Var;
+        org.telegram.ui.Components.sl0 listView = this.f35248b.getListView();
+        int i11 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f37378e;
-            if (i10 < arrayList2.size()) {
-                String path = ((k7) arrayList2.get(i10)).d.f13889a.getPath();
-                if (((k7) arrayList2.get(i10)).d.d == 1) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+            if (i11 < listView.getChildCount()) {
+                View childAt = listView.getChildAt(i11);
+                if (RecyclerView.R(childAt) == i10 && (childAt instanceof org.telegram.ui.Cells.r7)) {
+                    r7Var = (org.telegram.ui.Cells.r7) childAt;
+                    break;
                 }
-                arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, path, 0, z10, 0, 0, 0L));
-                i10++;
+                i11++;
             } else {
-                return;
+                r7Var = null;
+                break;
             }
         }
-    }
-
-    @Override
-    public final void v(f2.n1 n1Var, int i10) {
-        boolean z10;
-        boolean z11;
-        String name;
-        float f9;
-        View view = n1Var.f6432a;
-        i7 i7Var = (i7) view;
-        org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) i7Var.f39137b.getChildAt(0);
-        ArrayList arrayList = this.f37378e;
-        kh.a aVar = ((k7) arrayList.get(i10)).d;
-        if (aVar == view.getTag()) {
-            z10 = true;
-        } else {
-            z10 = false;
+        if (r7Var == null) {
+            return null;
         }
-        if (i10 != arrayList.size() - 1) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        view.setTag(aVar);
-        File file = aVar.f13889a;
-        long lastModified = file.lastModified();
-        if (aVar.h == 5) {
-            name = LocaleController.getString(R.string.AttachRound);
-        } else {
-            name = file.getName();
-        }
-        g7Var.d(z11, name, 0, LocaleController.formatDateAudio(lastModified / 1000, true), Utilities.getExtension(file.getName()), null);
-        if (!z10) {
-            g7Var.setPhoto(file.getPath());
-        }
-        org.telegram.ui.Components.t9 imageView = g7Var.getImageView();
-        if (aVar.h == 5) {
-            f9 = 20.0f;
-        } else {
-            f9 = 4.0f;
-        }
-        imageView.setRoundRadius(AndroidUtilities.dp(f9));
-        i7Var.d = z11;
-        i7Var.f39138c.setText(AndroidUtilities.formatFileSize(aVar.f13891c));
-        i7Var.f39136a.a(this.f39452r.f41551f.f13902j.contains(aVar), z10);
-    }
-
-    @Override
-    public final f2.n1 x(ViewGroup viewGroup, int i10) {
-        i7 i7Var = new i7(this, viewGroup.getContext(), 0);
-        i7Var.f39139e = 2;
-        i7Var.f39137b.addView(new org.telegram.ui.Cells.g7(viewGroup.getContext(), 3, null));
-        return new f2.n1(i7Var);
+        int[] iArr = new int[2];
+        r7Var.getLocationInWindow(iArr);
+        ju0 ju0Var = new ju0();
+        ju0Var.f35496b = iArr[0];
+        ju0Var.f35497c = iArr[1];
+        ju0Var.d = this.f35247a;
+        ImageReceiver imageReceiver = r7Var.f21769c;
+        ju0Var.f35495a = imageReceiver;
+        ju0Var.e = imageReceiver.getBitmapSafe();
+        ju0Var.f35502k = r7Var.getScaleX();
+        return ju0Var;
     }
 }

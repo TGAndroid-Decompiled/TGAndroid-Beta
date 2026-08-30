@@ -1,58 +1,37 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MrzRecognizer;
-import org.telegram.tgnet.TLObject;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class m71 implements q9 {
-    public TLObject f40482a = null;
-    public TLRPC.TL_error f40483b = null;
-    public final SessionsActivity f40484c;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class m71 implements View.OnClickListener {
+    public final x71 f36226a;
+    public final TLRPC.TL_authorization f36227b;
+    public final SessionsActivity f36228c;
+    public final o71 d;
 
-    public m71(SessionsActivity sessionsActivity) {
-        this.f40484c = sessionsActivity;
+    public m71(o71 o71Var, x71 x71Var, TLRPC.TL_authorization tL_authorization, SessionsActivity sessionsActivity) {
+        this.d = o71Var;
+        this.f36226a = x71Var;
+        this.f36227b = tL_authorization;
+        this.f36228c = sessionsActivity;
     }
 
     @Override
-    public final String E0() {
-        return null;
-    }
-
-    @Override
-    public final void J(String str) {
-        TLObject tLObject = this.f40482a;
-        if (tLObject instanceof TLRPC.TL_authorization) {
-            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
-            boolean z10 = tL_authorization.password_pending;
-            SessionsActivity sessionsActivity = this.f40484c;
-            if (z10) {
-                sessionsActivity.f36242f.add(0, tL_authorization);
-                sessionsActivity.R = 4;
-                sessionsActivity.k0(false);
-            } else {
-                sessionsActivity.f36241e.add(0, tL_authorization);
-            }
-            sessionsActivity.m0();
-            sessionsActivity.f36238a.l();
-            sessionsActivity.f36245s.m(0L, this.f40482a, 11);
-        } else if (this.f40483b != null) {
-            AndroidUtilities.runOnUIThread(new l71(this, 0));
+    public final void onClick(View view) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.d.f36809c.getParentActivity());
+        alertDialog$Builder.f19503a.Q = LocaleController.getString(R.string.TerminateSessionText);
+        alertDialog$Builder.f19503a.O = LocaleController.getString(R.string.AreYouSureSessionTitle);
+        alertDialog$Builder.k(LocaleController.getString(R.string.Terminate), new d7(this, this.f36226a, this.f36227b, 21));
+        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+        SessionsActivity sessionsActivity = this.f36228c;
+        org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f19503a;
+        sessionsActivity.showDialog(d2Var);
+        TextView textView = (TextView) d2Var.d(-1);
+        if (textView != null) {
+            textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20141q7, false));
         }
-    }
-
-    @Override
-    public final boolean d1(String str, i9 i9Var) {
-        this.f40482a = null;
-        this.f40483b = null;
-        AndroidUtilities.runOnUIThread(new xe0(this, str, i9Var, 29), 750L);
-        return true;
-    }
-
-    @Override
-    public final void S0(MrzRecognizer.Result result) {
-    }
-
-    @Override
-    public final void onDismiss() {
     }
 }

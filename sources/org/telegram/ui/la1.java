@@ -1,39 +1,38 @@
 package org.telegram.ui;
 
-import android.location.Address;
-import android.location.Geocoder;
-import java.util.List;
-import java.util.Locale;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-public final class la1 implements Runnable {
-    public final int f40150a;
-    public final ThemeActivity f40151b;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class la1 implements Utilities.Callback5, Utilities.Callback5Return {
+    public final StickersActivity f36051a;
 
-    public la1(ThemeActivity themeActivity, int i10) {
-        this.f40150a = i10;
-        this.f40151b = themeActivity;
+    public la1(StickersActivity stickersActivity) {
+        this.f36051a = stickersActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40150a) {
-            case 0:
-                ThemeActivity themeActivity = this.f40151b;
-                themeActivity.f36292b.e1(new ha1(themeActivity, 0), 700, true);
-                return;
-            default:
-                ThemeActivity themeActivity2 = this.f40151b;
-                String str = null;
-                try {
-                    List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, Locale.getDefault()).getFromLocation(org.telegram.ui.ActionBar.g6.f23412x, org.telegram.ui.ActionBar.g6.f23426y, 1);
-                    if (fromLocation.size() > 0) {
-                        str = fromLocation.get(0).getLocality();
-                    }
-                } catch (Exception unused) {
-                }
-                AndroidUtilities.runOnUIThread(new t31(9, themeActivity2, str));
-                return;
+    public void mo28run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        StickersActivity.U(this.f36051a, (org.telegram.ui.Components.i51) obj, (View) obj2);
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        boolean z4;
+        org.telegram.ui.Components.i51 i51Var = (org.telegram.ui.Components.i51) obj;
+        View view = (View) obj2;
+        ((Integer) obj3).intValue();
+        ((Float) obj4).floatValue();
+        ((Float) obj5).floatValue();
+        StickersActivity stickersActivity = this.f36051a;
+        if (stickersActivity.f32301x.isEmpty() && (i51Var.G instanceof TLRPC.TL_messages_stickerSet)) {
+            stickersActivity.n0((org.telegram.ui.Cells.k8) view);
+            z4 = true;
+        } else {
+            z4 = false;
         }
+        return Boolean.valueOf(z4);
     }
 }

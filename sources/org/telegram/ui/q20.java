@@ -1,41 +1,32 @@
 package org.telegram.ui;
-public final class q20 extends f2.v {
-    public final r50 f41507c;
 
-    public q20(r50 r50Var) {
-        this.f41507c = r50Var;
+import android.view.View;
+public final class q20 implements View.OnClickListener {
+    public final int f37577a;
+    public final org.telegram.ui.Cells.z1[] f37578b;
+
+    public q20(org.telegram.ui.Cells.z1[] z1VarArr, int i10) {
+        this.f37577a = i10;
+        this.f37578b = z1VarArr;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        l50 l50Var;
-        int i12;
-        int i13;
-        int i14;
-        if (r50.B3) {
-            i11 = 6;
-        } else {
-            i11 = 2;
+    public final void onClick(View view) {
+        switch (this.f37577a) {
+            case 0:
+                Integer num = (Integer) view.getTag();
+                int intValue = num.intValue();
+                org.telegram.ui.Cells.z1[] z1VarArr = this.f37578b;
+                z1VarArr[intValue].c(!z1VarArr[num.intValue()].b(), true);
+                return;
+            case 1:
+                org.telegram.ui.Cells.z1 z1Var = this.f37578b[0];
+                z1Var.c(!z1Var.b(), true);
+                return;
+            default:
+                org.telegram.ui.Cells.z1 z1Var2 = this.f37578b[0];
+                z1Var2.c(!z1Var2.b(), true);
+                return;
         }
-        if (!r50.C3 && i10 >= (i12 = (l50Var = this.f41507c.L).C) && i10 < (i13 = l50Var.D)) {
-            int i15 = i13 - i12;
-            if (i10 == i13 - 1 && (r50.B3 || i15 % 2 != 0)) {
-                i14 = 2;
-            } else {
-                i14 = 1;
-            }
-            if (r50.B3) {
-                if (i15 == 1) {
-                    return 6;
-                }
-                if (i15 != 2) {
-                    return 2;
-                }
-                return 3;
-            }
-            return i14;
-        }
-        return i11;
     }
 }

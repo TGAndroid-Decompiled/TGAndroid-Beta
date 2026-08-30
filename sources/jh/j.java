@@ -1,59 +1,44 @@
 package jh;
 
-import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.widget.TextView;
+import lh.g5;
 import org.telegram.messenger.AndroidUtilities;
-public final class j implements TextView.OnEditorActionListener {
-    public final int f12278a;
-    public final Object f12279b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class j implements RequestDelegate {
+    public final int f9443a = 0;
+    public final boolean f9444b;
+    public final boolean f9445c;
+    public final Object d;
+    public final Object e;
+    public final Object f9446f;
 
-    public j(Object obj, int i10) {
-        this.f12278a = i10;
-        this.f12279b = obj;
+    public j(v vVar, boolean z4, i iVar, String str, boolean z10) {
+        this.d = vVar;
+        this.f9444b = z4;
+        this.e = iVar;
+        this.f9446f = str;
+        this.f9445c = z10;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        th.c1 c1Var;
-        switch (this.f12278a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f9443a) {
             case 0:
-                q qVar = (q) this.f12279b;
-                if (i10 == 5) {
-                    qVar.k0();
-                    return true;
-                }
-                qVar.getClass();
-                return false;
-            case 1:
-                sf.l0 l0Var = (sf.l0) this.f12279b;
-                sf.h0 h0Var = l0Var.B;
-                boolean z10 = false;
-                if (i10 == 6) {
-                    l0Var.f47869x = false;
-                    AndroidUtilities.cancelRunOnUIThread(h0Var);
-                    z10 = true;
-                    if (TextUtils.isEmpty(l0Var.f47864f.getText())) {
-                        l0Var.f47870y = null;
-                        l0Var.d.b();
-                        l0Var.f47862c.U2.N(true);
-                    } else {
-                        AndroidUtilities.runOnUIThread(h0Var);
-                    }
-                    l0Var.b0();
-                }
-                return z10;
+                AndroidUtilities.runOnUIThread(new k((v) this.d, this.f9444b, (Runnable) this.e, (String) this.f9446f, tL_error, tLObject, this.f9445c));
+                return;
             default:
-                th.d1 d1Var = (th.d1) this.f12279b;
-                if (i10 == 5 && (c1Var = d1Var.f48399c) != null && !d1Var.f48405w) {
-                    if (d1Var.f48403r) {
-                        d1Var.p();
-                    } else {
-                        c1Var.S0(d1Var);
-                    }
-                    return true;
-                }
-                return false;
+                AndroidUtilities.runOnUIThread(new k((g5) this.d, tLObject, this.f9444b, (TLRPC.Document) this.e, this.f9445c, tL_error, (TL_stars.saveStarGift) this.f9446f));
+                return;
         }
+    }
+
+    public j(g5 g5Var, boolean z4, TLRPC.Document document, boolean z10, TL_stars.saveStarGift savestargift) {
+        this.d = g5Var;
+        this.f9444b = z4;
+        this.e = document;
+        this.f9445c = z10;
+        this.f9446f = savestargift;
     }
 }

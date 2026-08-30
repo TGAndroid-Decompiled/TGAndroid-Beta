@@ -1,53 +1,57 @@
 package org.telegram.ui;
 
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import java.util.ArrayList;
-public final class y11 implements org.telegram.ui.ActionBar.h6 {
-    public boolean f44698a = false;
-    public final z11 f44699b;
+import android.graphics.Bitmap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SvgHelper;
+public final class y11 implements Runnable {
+    public final int f40356a;
+    public final m21 f40357b;
 
-    public y11(z11 z11Var) {
-        this.f44699b = z11Var;
+    public y11(m21 m21Var, int i10) {
+        this.f40356a = i10;
+        this.f40357b = m21Var;
     }
 
     @Override
-    public final void a(float f9) {
-        ArrayList arrayList;
-        z11 z11Var = this.f44699b;
-        if (f9 == 0.0f && !this.f44698a) {
-            org.telegram.ui.Components.ep epVar = z11Var.f45025b;
-            if (epVar != null && (arrayList = epVar.d) != null) {
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((org.telegram.ui.Components.fp) obj).f28514c = z11Var.I ? 1 : 0;
+    public final void run() {
+        switch (this.f40356a) {
+            case 0:
+                l21 l21Var = this.f40357b.f36172f;
+                if (l21Var != null) {
+                    l21Var.f35895s.setClickable(true);
+                    return;
                 }
-            }
-            if (!z11Var.M) {
-                org.telegram.ui.Components.ep epVar2 = z11Var.f45025b;
-                for (int i11 = 0; i11 < epVar2.h(); i11++) {
-                    ((org.telegram.ui.Components.fp) epVar2.d.get(i11)).getClass();
+                return;
+            case 1:
+                m21 m21Var = this.f40357b;
+                m21Var.d0(0, m21Var.G, true);
+                org.telegram.ui.Components.gj0 animatedDrawable = m21Var.C.getAnimatedDrawable();
+                if (m21Var.F == null && animatedDrawable != null) {
+                    m21Var.F = Bitmap.createBitmap(animatedDrawable.f25148b, animatedDrawable.f25150c, Bitmap.Config.ARGB_8888);
+                    animatedDrawable.b();
+                    animatedDrawable.B0 = 33;
+                    animatedDrawable.a(m21Var.F);
+                    animatedDrawable.c();
+                    return;
                 }
-            }
-            this.f44698a = true;
+                return;
+            case 2:
+                int i10 = R.raw.default_pattern;
+                m21 m21Var2 = this.f40357b;
+                AndroidUtilities.runOnUIThread(new l01(2, m21Var2, SvgHelper.getBitmap(i10, m21Var2.f36176w.getWidth(), m21Var2.f36176w.getHeight(), -16777216)));
+                return;
+            case 3:
+                m21 m21Var3 = this.f40357b;
+                n7.qa qaVar = m21Var3.f36169a;
+                qaVar.f14702b = m21Var3.G.b(((org.telegram.ui.ActionBar.p2) ((m21) qaVar.f14703c)).currentAccount, m21Var3.H ? 1 : 0);
+                return;
+            case 4:
+                m21.X(this.f40357b);
+                return;
+            default:
+                m21.V(this.f40357b);
+                return;
         }
-        z11Var.A.setColorFilter(new PorterDuffColorFilter(z11Var.d.getThemedColor(org.telegram.ui.ActionBar.g6.Oh), PorterDuff.Mode.SRC_IN));
-        if (z11Var.M) {
-            org.telegram.ui.Components.ep epVar3 = z11Var.f45025b;
-            for (int i12 = 0; i12 < epVar3.h(); i12++) {
-                ((org.telegram.ui.Components.fp) epVar3.d.get(i12)).getClass();
-            }
-        }
-        if (f9 == 1.0f && this.f44698a) {
-            z11Var.M = false;
-            this.f44698a = false;
-        }
-    }
-
-    @Override
-    public final void b() {
     }
 }

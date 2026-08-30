@@ -1,25 +1,24 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class s0 implements RequestDelegate {
-    public final int f21484a;
-    public final ChatMessagesMetadataController f21485b;
+import com.google.android.gms.tasks.OnFailureListener;
+import org.telegram.messenger.CaptchaController;
+public final class s0 implements OnFailureListener {
+    public final int f18349a;
+    public final CaptchaController.Request f18350b;
 
-    public s0(ChatMessagesMetadataController chatMessagesMetadataController, int i10) {
-        this.f21484a = i10;
-        this.f21485b = chatMessagesMetadataController;
+    public s0(CaptchaController.Request request, int i10) {
+        this.f18349a = i10;
+        this.f18350b = request;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f21484a) {
+    public final void onFailure(Exception exc) {
+        switch (this.f18349a) {
             case 0:
-                this.f21485b.lambda$loadExtendedMediaForMessages$4(tLObject, tL_error);
+                CaptchaController.d(this.f18350b, exc);
                 return;
             default:
-                this.f21485b.lambda$loadReactionsForMessages$3(tLObject, tL_error);
+                CaptchaController.b(this.f18350b, exc);
                 return;
         }
     }

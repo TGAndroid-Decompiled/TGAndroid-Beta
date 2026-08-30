@@ -1,106 +1,112 @@
 package lh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.jr;
-import org.telegram.ui.Components.mc;
-public final class h3 extends t {
-    public final org.telegram.ui.Components.d6 d;
-    public final org.telegram.ui.Components.d6 f15651e;
-    public final org.telegram.ui.Components.voip.h f15652f;
-    public final org.telegram.ui.Components.d6 h;
-    public final org.telegram.ui.Components.d6 f15653n;
-    public boolean f15654r;
-    public boolean f15655s;
-    public final a4 v;
-    public final i9 f15656w;
-    public final d4 f15657x;
+import android.view.KeyEvent;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stars;
+public final class h3 implements Utilities.Callback {
+    public final int f12538a = 1;
+    public final int f12539b;
+    public final int f12540c;
+    public final int d;
+    public final KeyEvent.Callback e;
+    public final Object f12541f;
+    public final Object f12542g;
 
-    public h3(d4 d4Var, Context context, a4 a4Var, i9 i9Var) {
-        super(context);
-        this.f15657x = d4Var;
-        this.v = a4Var;
-        this.f15656w = i9Var;
-        jr jrVar = jr.f29800f;
-        this.d = new org.telegram.ui.Components.d6(this, 150L, jrVar);
-        this.f15651e = new org.telegram.ui.Components.d6(this, 150L, jrVar);
-        this.f15652f = new org.telegram.ui.Components.voip.h(32, 102, 240);
-        org.telegram.ui.Components.d6 d6Var = new org.telegram.ui.Components.d6(this);
-        this.h = d6Var;
-        org.telegram.ui.Components.d6 d6Var2 = new org.telegram.ui.Components.d6(this);
-        this.f15653n = d6Var2;
-        d6Var.f27669g = 500L;
-        d6Var2.f27669g = 100L;
-    }
-
-    public final void b(android.graphics.Canvas r34) {
-        throw new UnsupportedOperationException("Method not decompiled: lh.h3.b(android.graphics.Canvas):void");
+    public h3(int i10, int i11, org.telegram.ui.Components.m3 m3Var, org.telegram.ui.Components.o3 o3Var, int i12, org.telegram.ui.Components.n3 n3Var) {
+        this.f12539b = i10;
+        this.f12540c = i11;
+        this.e = m3Var;
+        this.f12541f = o3Var;
+        this.d = i12;
+        this.f12542g = n3Var;
     }
 
     @Override
-    public final void dispatchDraw(android.graphics.Canvas r21) {
-        throw new UnsupportedOperationException("Method not decompiled: lh.h3.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        d1 d1Var;
-        d4 d4Var = this.f15657x;
-        c4 c4Var = d4Var.I2;
-        if (d4Var.G1 && !d4Var.Y2 && c4Var.d != null && (d1Var = c4Var.f15426a) != null && d1Var.n() && c4Var.d.dispatchTouchEvent(motionEvent)) {
-            return true;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view != this.f15657x.f15481f1) {
-            if (this.f15654r) {
-                mc mcVar = mc.f30644w;
-                if (mcVar != null && view == mcVar.f30648e) {
-                    if (this.f15655s) {
-                        return super.drawChild(canvas, view, j10);
-                    }
-                    return true;
+    public final void run(Object obj) {
+        int i10;
+        int i11;
+        switch (this.f12538a) {
+            case 0:
+                g5.E0((g5) this.e, this.f12539b, this.f12540c, this.d, (TL_stars.TL_starGiftUnique) this.f12541f, (gg.v2[]) this.f12542g, (Long) obj);
+                return;
+            default:
+                org.telegram.ui.Components.m3 m3Var = (org.telegram.ui.Components.m3) this.e;
+                org.telegram.ui.Components.o3 o3Var = (org.telegram.ui.Components.o3) this.f12541f;
+                org.telegram.ui.Components.n3 n3Var = (org.telegram.ui.Components.n3) this.f12542g;
+                Boolean bool = (Boolean) obj;
+                int i12 = this.f12539b;
+                int i13 = i12 % 60;
+                int i14 = (i12 - i13) / 60;
+                int i15 = this.f12540c;
+                int i16 = i15 % 60;
+                int i17 = (i15 - i16) / 60;
+                int i18 = 59;
+                if (i16 == 0 && i17 > 0) {
+                    i17--;
+                    i16 = 59;
                 }
-                return super.drawChild(canvas, view, j10);
-            }
-            return super.drawChild(canvas, view, j10);
+                if (bool.booleanValue()) {
+                    i11 = m3Var.getValue();
+                    i10 = o3Var.getValue();
+                } else {
+                    int i19 = this.d;
+                    i10 = i19 % 60;
+                    i11 = (i19 - i10) / 60;
+                    if (i11 == 24) {
+                        i11--;
+                        i10 = 59;
+                    }
+                }
+                m3Var.setMinValue(i14);
+                m3Var.setMaxValue(i17);
+                if (i11 > i17) {
+                    m3Var.setValue(i17);
+                    i11 = i17;
+                } else if (i11 < i14) {
+                    m3Var.setValue(i14);
+                    i11 = i14;
+                }
+                if (i11 <= i14) {
+                    o3Var.setMinValue(i13);
+                    if (i14 == i17) {
+                        i18 = i16;
+                    }
+                    o3Var.setMaxValue(i18);
+                } else if (i11 >= i17) {
+                    if (i14 != i17) {
+                        i13 = 0;
+                    }
+                    o3Var.setMinValue(i13);
+                    o3Var.setMaxValue(i16);
+                } else if (i14 == i17) {
+                    o3Var.setMinValue(i13);
+                    o3Var.setMaxValue(i16);
+                } else {
+                    o3Var.setMinValue(0);
+                    o3Var.setMaxValue(59);
+                }
+                if (i10 > o3Var.getMaxValue()) {
+                    i10 = o3Var.getMaxValue();
+                    o3Var.setValue(i10);
+                } else if (i10 < o3Var.getMinValue()) {
+                    i10 = o3Var.getMinValue();
+                    o3Var.setValue(i10);
+                }
+                if (!bool.booleanValue()) {
+                    m3Var.setValue(i11);
+                    o3Var.setValue(i10);
+                }
+                n3Var.invalidate();
+                return;
         }
-        return true;
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f15657x.f15484g1.j();
-        mc.a(this, new ih.u0(this, 2));
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        d4 d4Var = this.f15657x;
-        d4Var.f15484g1.k();
-        mc.h(this);
-        x3 x3Var = d4Var.M1;
-        if (x3Var != null) {
-            i9 i9Var = ((z8) x3Var).d;
-            i9Var.U0 = false;
-            i9Var.P();
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f15657x.f15527u0.getLayoutParams();
-        layoutParams.rightMargin = AndroidUtilities.dp(42.0f);
-        layoutParams.topMargin = AndroidUtilities.dp(15.0f);
-        super.onMeasure(i10, i11);
+    public h3(g5 g5Var, int i10, int i11, int i12, TL_stars.TL_starGiftUnique tL_starGiftUnique, gg.v2[] v2VarArr) {
+        this.e = g5Var;
+        this.f12539b = i10;
+        this.f12540c = i11;
+        this.d = i12;
+        this.f12541f = tL_starGiftUnique;
+        this.f12542g = v2VarArr;
     }
 }

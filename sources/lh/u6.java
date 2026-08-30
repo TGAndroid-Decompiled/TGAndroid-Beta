@@ -1,35 +1,572 @@
 package lh;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.TextView;
+import android.content.Context;
+import android.util.Pair;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-public final class u6 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final TextView f16302a;
-    public final View f16303b;
-    public final TextView f16304c;
-    public final w6 d;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.TopicsController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.tgnet.tl.TL_update;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.re1;
+import org.telegram.ui.wh0;
+import org.telegram.ui.xn;
+import org.telegram.ui.yh;
+public final class u6 implements Runnable {
+    public final int f13214a = 5;
+    public final long f13215b;
+    public final int f13216c;
+    public final Object d;
+    public final Object e;
+    public final Object f13217f;
+    public final Object h;
 
-    public u6(w6 w6Var, TextView textView, View view, TextView textView2) {
-        this.d = w6Var;
-        this.f16302a = textView;
-        this.f16303b = view;
-        this.f16304c = textView2;
+    public u6(int i10, long j10, Context context, TL_payments.connectedBotStarRef connectedbotstarref, org.telegram.ui.ActionBar.g3 g3Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f13216c = i10;
+        this.d = context;
+        this.f13215b = j10;
+        this.e = connectedbotstarref;
+        this.f13217f = g3Var;
+        this.h = f6Var;
     }
 
     @Override
-    public final void onGlobalLayout() {
-        int[] iArr = new int[2];
-        TextView textView = this.f16302a;
-        textView.getLocationOnScreen(iArr);
-        int dp = AndroidUtilities.dp(24.0f) + iArr[1];
-        int measuredHeight = this.f16303b.getMeasuredHeight();
-        w6 w6Var = this.d;
-        if (dp > measuredHeight) {
-            textView.setLayoutParams(i7.f6.k(0.0f, 13.0f, 0.0f, 0.0f, -2, -2));
-            this.f16304c.setLayoutParams(i7.f6.k(68.0f, 8.0f, 68.0f, 13.0f, -2, -2));
-            w6Var.requestLayout();
+    public final void run() {
+        long j10;
+        switch (this.f13214a) {
+            case 0:
+                m5 m5Var = (m5) this.d;
+                ArrayList arrayList = (ArrayList) this.e;
+                int i10 = this.f13216c;
+                long j11 = this.f13215b;
+                m5Var.mo28run(arrayList, Integer.valueOf(i10), Long.valueOf(j11), (ArrayList) this.f13217f, (ArrayList) this.h);
+                return;
+            case 1:
+                ((TopicsController) this.d).lambda$loadTopics$5((TLRPC.TL_messages_forumTopics) this.e, this.f13215b, (TLRPC.TL_messages_forumTopics) this.f13217f, (a0.h) this.h, this.f13216c);
+                return;
+            case 2:
+                org.telegram.ui.Cells.f6.a((org.telegram.ui.Cells.f6) this.d, (TLObject) this.f13217f, (MessagesStorage) this.h, this.f13215b, this.f13216c, (ArrayList) this.e);
+                return;
+            case 3:
+                TLObject tLObject = (TLObject) this.d;
+                int i11 = this.f13216c;
+                ph.d dVar = (ph.d) this.e;
+                org.telegram.ui.ActionBar.g3 g3Var = (org.telegram.ui.ActionBar.g3) this.f13217f;
+                long j12 = this.f13215b;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
+                TLRPC.GroupCall groupCall = null;
+                if (tLObject instanceof TLRPC.Updates) {
+                    TLRPC.Updates updates = (TLRPC.Updates) tLObject;
+                    MessagesController.getInstance(i11).putUsers(updates.users, false);
+                    MessagesController.getInstance(i11).putChats(updates.chats, false);
+                    ArrayList findUpdates = MessagesController.findUpdates(updates, TL_update.TL_updateGroupCall.class);
+                    int size = findUpdates.size();
+                    int i12 = 0;
+                    while (i12 < size) {
+                        Object obj = findUpdates.get(i12);
+                        i12++;
+                        groupCall = ((TL_update.TL_updateGroupCall) obj).call;
+                    }
+                    Utilities.stageQueue.postRunnable(new org.telegram.tgnet.g(i11, updates, 1));
+                    if (groupCall != null && LaunchActivity.D1 != null) {
+                        g3Var.dismiss();
+                        SendMessagesHelper.getInstance(i11).sendMessage(SendMessagesHelper.SendMessageParams.of(groupCall.invite_link, j12));
+                        org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
+                        if (U != null) {
+                            if (U instanceof xn) {
+                                xn xnVar = (xn) U;
+                                if (xnVar.a() == j12 && xnVar.O3 == 0) {
+                                    return;
+                                }
+                            }
+                            U.presentFragment(xn.R9(j12));
+                            return;
+                        }
+                        return;
+                    }
+                    dVar.setLoading(false);
+                    return;
+                } else if (tLObject instanceof TL_phone.groupCall) {
+                    TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
+                    MessagesController.getInstance(i11).putUsers(groupcall.users, false);
+                    MessagesController.getInstance(i11).putChats(groupcall.chats, false);
+                    if (LaunchActivity.D1 == null) {
+                        dVar.setLoading(false);
+                        return;
+                    }
+                    TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
+                    TLRPC.GroupCall groupCall2 = groupcall.call;
+                    tL_inputGroupCall.f19201id = groupCall2.f19194id;
+                    tL_inputGroupCall.access_hash = groupCall2.access_hash;
+                    g3Var.dismiss();
+                    org.telegram.ui.Components.voip.f2.h(LaunchActivity.D1, i11, tL_inputGroupCall, false, groupcall.call, null);
+                    SendMessagesHelper.getInstance(i11).sendMessage(SendMessagesHelper.SendMessageParams.of(groupcall.call.invite_link, j12));
+                    return;
+                } else if (tL_error != null) {
+                    yh.u(g3Var.topBulletinContainer, null, tL_error, false);
+                    return;
+                } else {
+                    return;
+                }
+            case 4:
+                final wh0 wh0Var = (wh0) this.d;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.e;
+                TLObject tLObject2 = (TLObject) this.f13217f;
+                long j13 = this.f13215b;
+                final int i13 = this.f13216c;
+                TLRPC.Chat chat = (TLRPC.Chat) this.h;
+                if (tL_error2 == null && (tLObject2 instanceof Vector)) {
+                    Vector vector = (Vector) tLObject2;
+                    ArrayList arrayList2 = new ArrayList();
+                    ArrayList arrayList3 = new ArrayList();
+                    long j14 = j13;
+                    final HashMap hashMap = new HashMap();
+                    final ArrayList arrayList4 = new ArrayList();
+                    int size2 = vector.objects.size();
+                    int i14 = 0;
+                    while (i14 < size2) {
+                        Object obj2 = vector.objects.get(i14);
+                        if (obj2 instanceof TLRPC.TL_readParticipantDate) {
+                            TLRPC.TL_readParticipantDate tL_readParticipantDate = (TLRPC.TL_readParticipantDate) obj2;
+                            int i15 = tL_readParticipantDate.date;
+                            j10 = j14;
+                            long j15 = tL_readParticipantDate.user_id;
+                            Long valueOf = Long.valueOf(j15);
+                            if (j10 != j15) {
+                                MessagesController.getInstance(i13).getUser(valueOf);
+                                arrayList4.add(new Pair(valueOf, Integer.valueOf(i15)));
+                                arrayList2.add(valueOf);
+                            }
+                        } else {
+                            j10 = j14;
+                            if (obj2 instanceof Long) {
+                                Long l10 = (Long) obj2;
+                                if (j10 != l10.longValue()) {
+                                    if (l10.longValue() > 0) {
+                                        MessagesController.getInstance(i13).getUser(l10);
+                                        arrayList4.add(new Pair(l10, 0));
+                                        arrayList2.add(l10);
+                                    } else {
+                                        MessagesController.getInstance(i13).getChat(Long.valueOf(-l10.longValue()));
+                                        arrayList4.add(new Pair(l10, 0));
+                                        arrayList3.add(l10);
+                                    }
+                                }
+                            }
+                        }
+                        i14++;
+                        j14 = j10;
+                    }
+                    if (arrayList2.isEmpty()) {
+                        for (int i16 = 0; i16 < arrayList4.size(); i16++) {
+                            Pair pair = (Pair) arrayList4.get(i16);
+                            wh0Var.f39741a.add((Long) pair.first);
+                            wh0Var.f39742b.add((Integer) pair.second);
+                            wh0Var.f39743c.add((TLObject) hashMap.get(pair.first));
+                        }
+                        wh0Var.b();
+                        return;
+                    } else if (ChatObject.isChannel(chat)) {
+                        TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
+                        tL_channels_getParticipants.limit = MessagesController.getInstance(i13).chatReadMarkSizeThreshold;
+                        tL_channels_getParticipants.offset = 0;
+                        tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
+                        tL_channels_getParticipants.channel = MessagesController.getInstance(i13).getInputChannel(chat.f19184id);
+                        ConnectionsManager.getInstance(i13).sendRequest(tL_channels_getParticipants, new RequestDelegate() {
+                            @Override
+                            public final void run(final TLObject tLObject3, TLRPC.TL_error tL_error3) {
+                                switch (r5) {
+                                    case 0:
+                                        final wh0 wh0Var2 = wh0Var;
+                                        final int i17 = i13;
+                                        final HashMap hashMap2 = hashMap;
+                                        final ArrayList arrayList5 = arrayList4;
+                                        AndroidUtilities.runOnUIThread(new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                switch (r6) {
+                                                    case 0:
+                                                        wh0 wh0Var3 = wh0Var2;
+                                                        TLObject tLObject4 = tLObject3;
+                                                        if (tLObject4 != null) {
+                                                            wh0Var3.getClass();
+                                                            TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject4;
+                                                            int i18 = 0;
+                                                            int i19 = 0;
+                                                            while (true) {
+                                                                int size3 = tL_channels_channelParticipants.users.size();
+                                                                HashMap hashMap3 = hashMap2;
+                                                                if (i19 < size3) {
+                                                                    TLRPC.User user = tL_channels_channelParticipants.users.get(i19);
+                                                                    MessagesController.getInstance(i17).putUser(user, false);
+                                                                    hashMap3.put(Long.valueOf(user.f19331id), user);
+                                                                    i19++;
+                                                                } else {
+                                                                    while (true) {
+                                                                        ArrayList arrayList6 = arrayList5;
+                                                                        if (i18 < arrayList6.size()) {
+                                                                            Pair pair2 = (Pair) arrayList6.get(i18);
+                                                                            wh0Var3.f39741a.add((Long) pair2.first);
+                                                                            wh0Var3.f39742b.add((Integer) pair2.second);
+                                                                            wh0Var3.f39743c.add((TLObject) hashMap3.get(pair2.first));
+                                                                            i18++;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        wh0Var3.b();
+                                                        return;
+                                                    default:
+                                                        wh0 wh0Var4 = wh0Var2;
+                                                        TLObject tLObject5 = tLObject3;
+                                                        if (tLObject5 != null) {
+                                                            wh0Var4.getClass();
+                                                            TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject5;
+                                                            int i20 = 0;
+                                                            int i21 = 0;
+                                                            while (true) {
+                                                                int size4 = tL_messages_chatFull.users.size();
+                                                                HashMap hashMap4 = hashMap2;
+                                                                if (i21 < size4) {
+                                                                    TLRPC.User user2 = tL_messages_chatFull.users.get(i21);
+                                                                    MessagesController.getInstance(i17).putUser(user2, false);
+                                                                    hashMap4.put(Long.valueOf(user2.f19331id), user2);
+                                                                    i21++;
+                                                                } else {
+                                                                    while (true) {
+                                                                        ArrayList arrayList7 = arrayList5;
+                                                                        if (i20 < arrayList7.size()) {
+                                                                            Pair pair3 = (Pair) arrayList7.get(i20);
+                                                                            wh0Var4.f39741a.add((Long) pair3.first);
+                                                                            wh0Var4.f39742b.add((Integer) pair3.second);
+                                                                            wh0Var4.f39743c.add((TLObject) hashMap4.get(pair3.first));
+                                                                            i20++;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        wh0Var4.b();
+                                                        return;
+                                                }
+                                            }
+                                        });
+                                        return;
+                                    default:
+                                        final wh0 wh0Var3 = wh0Var;
+                                        final int i18 = i13;
+                                        final HashMap hashMap3 = hashMap;
+                                        final ArrayList arrayList6 = arrayList4;
+                                        AndroidUtilities.runOnUIThread(new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                switch (r6) {
+                                                    case 0:
+                                                        wh0 wh0Var32 = wh0Var3;
+                                                        TLObject tLObject4 = tLObject3;
+                                                        if (tLObject4 != null) {
+                                                            wh0Var32.getClass();
+                                                            TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject4;
+                                                            int i182 = 0;
+                                                            int i19 = 0;
+                                                            while (true) {
+                                                                int size3 = tL_channels_channelParticipants.users.size();
+                                                                HashMap hashMap32 = hashMap3;
+                                                                if (i19 < size3) {
+                                                                    TLRPC.User user = tL_channels_channelParticipants.users.get(i19);
+                                                                    MessagesController.getInstance(i18).putUser(user, false);
+                                                                    hashMap32.put(Long.valueOf(user.f19331id), user);
+                                                                    i19++;
+                                                                } else {
+                                                                    while (true) {
+                                                                        ArrayList arrayList62 = arrayList6;
+                                                                        if (i182 < arrayList62.size()) {
+                                                                            Pair pair2 = (Pair) arrayList62.get(i182);
+                                                                            wh0Var32.f39741a.add((Long) pair2.first);
+                                                                            wh0Var32.f39742b.add((Integer) pair2.second);
+                                                                            wh0Var32.f39743c.add((TLObject) hashMap32.get(pair2.first));
+                                                                            i182++;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        wh0Var32.b();
+                                                        return;
+                                                    default:
+                                                        wh0 wh0Var4 = wh0Var3;
+                                                        TLObject tLObject5 = tLObject3;
+                                                        if (tLObject5 != null) {
+                                                            wh0Var4.getClass();
+                                                            TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject5;
+                                                            int i20 = 0;
+                                                            int i21 = 0;
+                                                            while (true) {
+                                                                int size4 = tL_messages_chatFull.users.size();
+                                                                HashMap hashMap4 = hashMap3;
+                                                                if (i21 < size4) {
+                                                                    TLRPC.User user2 = tL_messages_chatFull.users.get(i21);
+                                                                    MessagesController.getInstance(i18).putUser(user2, false);
+                                                                    hashMap4.put(Long.valueOf(user2.f19331id), user2);
+                                                                    i21++;
+                                                                } else {
+                                                                    while (true) {
+                                                                        ArrayList arrayList7 = arrayList6;
+                                                                        if (i20 < arrayList7.size()) {
+                                                                            Pair pair3 = (Pair) arrayList7.get(i20);
+                                                                            wh0Var4.f39741a.add((Long) pair3.first);
+                                                                            wh0Var4.f39742b.add((Integer) pair3.second);
+                                                                            wh0Var4.f39743c.add((TLObject) hashMap4.get(pair3.first));
+                                                                            i20++;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        wh0Var4.b();
+                                                        return;
+                                                }
+                                            }
+                                        });
+                                        return;
+                                }
+                            }
+                        });
+                        return;
+                    } else {
+                        TLRPC.TL_messages_getFullChat tL_messages_getFullChat = new TLRPC.TL_messages_getFullChat();
+                        tL_messages_getFullChat.chat_id = chat.f19184id;
+                        ConnectionsManager.getInstance(i13).sendRequest(tL_messages_getFullChat, new RequestDelegate() {
+                            @Override
+                            public final void run(final TLObject tLObject3, TLRPC.TL_error tL_error3) {
+                                switch (r5) {
+                                    case 0:
+                                        final wh0 wh0Var2 = wh0Var;
+                                        final int i17 = i13;
+                                        final HashMap hashMap2 = hashMap;
+                                        final ArrayList arrayList5 = arrayList4;
+                                        AndroidUtilities.runOnUIThread(new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                switch (r6) {
+                                                    case 0:
+                                                        wh0 wh0Var32 = wh0Var2;
+                                                        TLObject tLObject4 = tLObject3;
+                                                        if (tLObject4 != null) {
+                                                            wh0Var32.getClass();
+                                                            TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject4;
+                                                            int i182 = 0;
+                                                            int i19 = 0;
+                                                            while (true) {
+                                                                int size3 = tL_channels_channelParticipants.users.size();
+                                                                HashMap hashMap32 = hashMap2;
+                                                                if (i19 < size3) {
+                                                                    TLRPC.User user = tL_channels_channelParticipants.users.get(i19);
+                                                                    MessagesController.getInstance(i17).putUser(user, false);
+                                                                    hashMap32.put(Long.valueOf(user.f19331id), user);
+                                                                    i19++;
+                                                                } else {
+                                                                    while (true) {
+                                                                        ArrayList arrayList62 = arrayList5;
+                                                                        if (i182 < arrayList62.size()) {
+                                                                            Pair pair2 = (Pair) arrayList62.get(i182);
+                                                                            wh0Var32.f39741a.add((Long) pair2.first);
+                                                                            wh0Var32.f39742b.add((Integer) pair2.second);
+                                                                            wh0Var32.f39743c.add((TLObject) hashMap32.get(pair2.first));
+                                                                            i182++;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        wh0Var32.b();
+                                                        return;
+                                                    default:
+                                                        wh0 wh0Var4 = wh0Var2;
+                                                        TLObject tLObject5 = tLObject3;
+                                                        if (tLObject5 != null) {
+                                                            wh0Var4.getClass();
+                                                            TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject5;
+                                                            int i20 = 0;
+                                                            int i21 = 0;
+                                                            while (true) {
+                                                                int size4 = tL_messages_chatFull.users.size();
+                                                                HashMap hashMap4 = hashMap2;
+                                                                if (i21 < size4) {
+                                                                    TLRPC.User user2 = tL_messages_chatFull.users.get(i21);
+                                                                    MessagesController.getInstance(i17).putUser(user2, false);
+                                                                    hashMap4.put(Long.valueOf(user2.f19331id), user2);
+                                                                    i21++;
+                                                                } else {
+                                                                    while (true) {
+                                                                        ArrayList arrayList7 = arrayList5;
+                                                                        if (i20 < arrayList7.size()) {
+                                                                            Pair pair3 = (Pair) arrayList7.get(i20);
+                                                                            wh0Var4.f39741a.add((Long) pair3.first);
+                                                                            wh0Var4.f39742b.add((Integer) pair3.second);
+                                                                            wh0Var4.f39743c.add((TLObject) hashMap4.get(pair3.first));
+                                                                            i20++;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        wh0Var4.b();
+                                                        return;
+                                                }
+                                            }
+                                        });
+                                        return;
+                                    default:
+                                        final wh0 wh0Var3 = wh0Var;
+                                        final int i18 = i13;
+                                        final HashMap hashMap3 = hashMap;
+                                        final ArrayList arrayList6 = arrayList4;
+                                        AndroidUtilities.runOnUIThread(new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                switch (r6) {
+                                                    case 0:
+                                                        wh0 wh0Var32 = wh0Var3;
+                                                        TLObject tLObject4 = tLObject3;
+                                                        if (tLObject4 != null) {
+                                                            wh0Var32.getClass();
+                                                            TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject4;
+                                                            int i182 = 0;
+                                                            int i19 = 0;
+                                                            while (true) {
+                                                                int size3 = tL_channels_channelParticipants.users.size();
+                                                                HashMap hashMap32 = hashMap3;
+                                                                if (i19 < size3) {
+                                                                    TLRPC.User user = tL_channels_channelParticipants.users.get(i19);
+                                                                    MessagesController.getInstance(i18).putUser(user, false);
+                                                                    hashMap32.put(Long.valueOf(user.f19331id), user);
+                                                                    i19++;
+                                                                } else {
+                                                                    while (true) {
+                                                                        ArrayList arrayList62 = arrayList6;
+                                                                        if (i182 < arrayList62.size()) {
+                                                                            Pair pair2 = (Pair) arrayList62.get(i182);
+                                                                            wh0Var32.f39741a.add((Long) pair2.first);
+                                                                            wh0Var32.f39742b.add((Integer) pair2.second);
+                                                                            wh0Var32.f39743c.add((TLObject) hashMap32.get(pair2.first));
+                                                                            i182++;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        wh0Var32.b();
+                                                        return;
+                                                    default:
+                                                        wh0 wh0Var4 = wh0Var3;
+                                                        TLObject tLObject5 = tLObject3;
+                                                        if (tLObject5 != null) {
+                                                            wh0Var4.getClass();
+                                                            TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject5;
+                                                            int i20 = 0;
+                                                            int i21 = 0;
+                                                            while (true) {
+                                                                int size4 = tL_messages_chatFull.users.size();
+                                                                HashMap hashMap4 = hashMap3;
+                                                                if (i21 < size4) {
+                                                                    TLRPC.User user2 = tL_messages_chatFull.users.get(i21);
+                                                                    MessagesController.getInstance(i18).putUser(user2, false);
+                                                                    hashMap4.put(Long.valueOf(user2.f19331id), user2);
+                                                                    i21++;
+                                                                } else {
+                                                                    while (true) {
+                                                                        ArrayList arrayList7 = arrayList6;
+                                                                        if (i20 < arrayList7.size()) {
+                                                                            Pair pair3 = (Pair) arrayList7.get(i20);
+                                                                            wh0Var4.f39741a.add((Long) pair3.first);
+                                                                            wh0Var4.f39742b.add((Integer) pair3.second);
+                                                                            wh0Var4.f39743c.add((TLObject) hashMap4.get(pair3.first));
+                                                                            i20++;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        wh0Var4.b();
+                                                        return;
+                                                }
+                                            }
+                                        });
+                                        return;
+                                }
+                            }
+                        });
+                        return;
+                    }
+                }
+                wh0Var.b();
+                return;
+            default:
+                int i17 = this.f13216c;
+                Context context = (Context) this.d;
+                long j16 = this.f13215b;
+                TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) this.e;
+                b0.g(i17).f(context, j16, connectedbotstarref.bot_id, new re1(i17, j16, context, connectedbotstarref, (org.telegram.ui.ActionBar.g3) this.f13217f, (org.telegram.ui.ActionBar.f6) this.h));
+                return;
         }
-        w6Var.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+    }
+
+    public u6(m5 m5Var, ArrayList arrayList, int i10, long j10, ArrayList arrayList2, ArrayList arrayList3) {
+        this.d = m5Var;
+        this.e = arrayList;
+        this.f13216c = i10;
+        this.f13215b = j10;
+        this.f13217f = arrayList2;
+        this.h = arrayList3;
+    }
+
+    public u6(TopicsController topicsController, TLRPC.TL_messages_forumTopics tL_messages_forumTopics, long j10, TLRPC.TL_messages_forumTopics tL_messages_forumTopics2, a0.h hVar, int i10) {
+        this.d = topicsController;
+        this.e = tL_messages_forumTopics;
+        this.f13215b = j10;
+        this.f13217f = tL_messages_forumTopics2;
+        this.h = hVar;
+        this.f13216c = i10;
+    }
+
+    public u6(TLObject tLObject, int i10, ph.d dVar, org.telegram.ui.ActionBar.g3 g3Var, long j10, TLRPC.TL_error tL_error) {
+        this.d = tLObject;
+        this.f13216c = i10;
+        this.e = dVar;
+        this.f13217f = g3Var;
+        this.f13215b = j10;
+        this.h = tL_error;
+    }
+
+    public u6(org.telegram.ui.Cells.f6 f6Var, TLObject tLObject, MessagesStorage messagesStorage, long j10, int i10, ArrayList arrayList) {
+        this.d = f6Var;
+        this.f13217f = tLObject;
+        this.h = messagesStorage;
+        this.f13215b = j10;
+        this.f13216c = i10;
+        this.e = arrayList;
+    }
+
+    public u6(wh0 wh0Var, TLRPC.TL_error tL_error, TLObject tLObject, long j10, int i10, TLRPC.Chat chat) {
+        this.d = wh0Var;
+        this.e = tL_error;
+        this.f13217f = tLObject;
+        this.f13215b = j10;
+        this.f13216c = i10;
+        this.h = chat;
     }
 }

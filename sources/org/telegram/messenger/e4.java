@@ -1,36 +1,21 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-public final class e4 implements Utilities.Callback {
-    public final int f20092a = 0;
-    public final long f20093b;
-    public final BaseController f20094c;
-    public final Object d;
+import java.util.function.ToIntFunction;
+import org.telegram.messenger.GiftAuctionController;
+public final class e4 implements ToIntFunction {
+    public final int f17099a;
 
-    public e4(GiftAuctionController giftAuctionController, long j10, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState) {
-        this.f20094c = giftAuctionController;
-        this.f20093b = j10;
-        this.d = tL_StarGiftAuctionState;
+    public e4(int i10) {
+        this.f17099a = i10;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f20092a) {
+    public final int applyAsInt(Object obj) {
+        switch (this.f17099a) {
             case 0:
-                ((GiftAuctionController) this.f20094c).lambda$subscribeToGiftAuctionStateInternal$0(this.f20093b, (TL_payments.TL_StarGiftAuctionState) this.d, (ArrayList) obj);
-                return;
+                return GiftAuctionController.d((GiftAuctionController.Auction) obj);
             default:
-                ((TranslateController) this.f20094c).lambda$checkTranslation$4((MessageObject) this.d, this.f20093b, (TLRPC.TL_textWithEntities) obj);
-                return;
+                return Integer.parseInt((String) obj);
         }
-    }
-
-    public e4(TranslateController translateController, MessageObject messageObject, long j10) {
-        this.f20094c = translateController;
-        this.d = messageObject;
-        this.f20093b = j10;
     }
 }

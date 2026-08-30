@@ -1,58 +1,77 @@
 package org.telegram.ui.Components;
-public final class ih implements Runnable {
-    public final int f29389a;
-    public final ni f29390b;
-    public final boolean f29391c;
 
-    public ih(ni niVar, boolean z10, int i10) {
-        this.f29389a = i10;
-        this.f29390b = niVar;
-        this.f29391c = z10;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+public final class ih extends AnimatorListenerAdapter {
+    public final int f25717a;
+    public final boolean f25718b;
+    public final rh f25719c;
+
+    public ih(rh rhVar, boolean z4, int i10) {
+        this.f25717a = i10;
+        this.f25719c = rhVar;
+        this.f25718b = z4;
     }
 
     @Override
-    public final void run() {
-        switch (this.f29389a) {
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        switch (this.f25717a) {
             case 0:
-                boolean z10 = this.f29391c;
-                ni niVar = this.f29390b;
-                if (!z10) {
-                    niVar.Y0.setVisibility(8);
-                    return;
+                rh rhVar = this.f25719c;
+                li liVar = rhVar.e;
+                boolean z4 = this.f25718b;
+                if (!z4) {
+                    liVar.B1.setVisibility(8);
                 } else {
-                    niVar.getClass();
+                    liVar.f26746u1.setVisibility(8);
+                }
+                if (z4) {
+                    i10 = AndroidUtilities.dp(36.0f);
+                } else {
+                    i10 = 0;
+                }
+                for (int i11 = 0; i11 < liVar.f26745u0.size(); i11++) {
+                    ((rh.o3) liVar.f26745u0.valueAt(i11)).setMeasureOffsetY(i10);
+                }
+                if (rhVar.f28464a == animator) {
+                    rhVar.f28464a = null;
                     return;
                 }
-            case 1:
-                boolean z11 = this.f29391c;
-                ni niVar2 = this.f29390b;
-                if (!z11) {
-                    niVar2.f31057w.setVisibility(8);
-                    return;
-                } else {
-                    niVar2.getClass();
-                    return;
-                }
-            case 2:
-                boolean z12 = this.f29391c;
-                ni niVar3 = this.f29390b;
-                if (!z12) {
-                    niVar3.f31065y.setVisibility(8);
-                    return;
-                } else {
-                    niVar3.getClass();
-                    return;
-                }
+                return;
             default:
-                boolean z13 = this.f29391c;
-                ni niVar4 = this.f29390b;
-                if (z13) {
-                    niVar4.f31049t1.setVisibility(4);
-                    return;
-                } else {
-                    niVar4.getClass();
+                li liVar2 = this.f25719c.e;
+                boolean z10 = this.f25718b;
+                liVar2.f26761y1 = z10;
+                if (!z10) {
+                    liVar2.f26764z1.setVisibility(8);
                     return;
                 }
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f25717a) {
+            case 0:
+                li liVar = this.f25719c.e;
+                if (this.f25718b) {
+                    liVar.B1.setAlpha(0.0f);
+                    liVar.B1.setVisibility(0);
+                    int dp = AndroidUtilities.dp(36.0f);
+                    for (int i10 = 0; i10 < liVar.f26745u0.size(); i10++) {
+                        ((rh.o3) liVar.f26745u0.valueAt(i10)).setMeasureOffsetY(dp);
+                    }
+                    return;
+                }
+                liVar.f26746u1.setAlpha(0.0f);
+                liVar.f26746u1.setVisibility(0);
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
     }
 }

@@ -25,8 +25,8 @@ public class ContactsSyncAdapterService extends Service {
         public void onPerformSync(Account account, Bundle bundle, String str, ContentProviderClient contentProviderClient, SyncResult syncResult) {
             try {
                 ContactsSyncAdapterService.performSync(this.mContext, account, bundle, str, contentProviderClient, syncResult);
-            } catch (OperationCanceledException e10) {
-                FileLog.e(e10);
+            } catch (OperationCanceledException e) {
+                FileLog.e(e);
             }
         }
     }

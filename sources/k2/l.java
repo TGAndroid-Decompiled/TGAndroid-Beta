@@ -1,37 +1,37 @@
 package k2;
 
-import h7.c8;
+import j7.y7;
 public abstract class l extends k {
-    public i0.d[] f13364a;
-    public String f13365b;
-    public int f13366c;
+    public i0.d[] f9662a;
+    public String f9663b;
+    public int f9664c;
 
     public l() {
-        this.f13364a = null;
-        this.f13366c = 0;
+        this.f9662a = null;
+        this.f9664c = 0;
     }
 
     public i0.d[] getPathData() {
-        return this.f13364a;
+        return this.f9662a;
     }
 
     public String getPathName() {
-        return this.f13365b;
+        return this.f9663b;
     }
 
     public void setPathData(i0.d[] dVarArr) {
-        if (!c8.a(this.f13364a, dVarArr)) {
-            this.f13364a = c8.e(dVarArr);
+        if (!y7.a(this.f9662a, dVarArr)) {
+            this.f9662a = y7.e(dVarArr);
             return;
         }
-        i0.d[] dVarArr2 = this.f13364a;
+        i0.d[] dVarArr2 = this.f9662a;
         for (int i10 = 0; i10 < dVarArr.length; i10++) {
-            dVarArr2[i10].f8190a = dVarArr[i10].f8190a;
+            dVarArr2[i10].f7217a = dVarArr[i10].f7217a;
             int i11 = 0;
             while (true) {
-                float[] fArr = dVarArr[i10].f8191b;
+                float[] fArr = dVarArr[i10].f7218b;
                 if (i11 < fArr.length) {
-                    dVarArr2[i10].f8191b[i11] = fArr[i11];
+                    dVarArr2[i10].f7218b[i11] = fArr[i11];
                     i11++;
                 }
             }
@@ -39,9 +39,9 @@ public abstract class l extends k {
     }
 
     public l(l lVar) {
-        this.f13364a = null;
-        this.f13366c = 0;
-        this.f13365b = lVar.f13365b;
-        this.f13364a = c8.e(lVar.f13364a);
+        this.f9662a = null;
+        this.f9664c = 0;
+        this.f9663b = lVar.f9663b;
+        this.f9662a = y7.e(lVar.f9662a);
     }
 }

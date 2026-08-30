@@ -32,8 +32,8 @@ public class AccountInstance {
         return accountInstance2;
     }
 
-    public ag.h1 getColorPalette() {
-        return ag.h1.e(this.currentAccount);
+    public cg.f1 getColorPalette() {
+        return cg.f1.e(this.currentAccount);
     }
 
     public ConnectionsManager getConnectionsManager() {

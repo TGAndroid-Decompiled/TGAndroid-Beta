@@ -1,24 +1,25 @@
 package org.telegram.ui;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class yn0 extends ClickableSpan {
-    public final bo0 f44914a;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class yn0 {
+    public final jo0 f40546a;
 
-    public yn0(bo0 bo0Var) {
-        this.f44914a = bo0Var;
+    public yn0(jo0 jo0Var) {
+        this.f40546a = jo0Var;
     }
 
-    @Override
-    public final void onClick(View view) {
-        bo0 bo0Var = this.f44914a;
-        bo0Var.presentFragment(new cg1(6, bo0Var.W));
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        textPaint.setUnderlineText(false);
+    public final void a(Exception exc) {
+        jo0 jo0Var = this.f40546a;
+        if (jo0Var.N0) {
+            return;
+        }
+        jo0Var.H0(true, false);
+        jo0Var.D0(false);
+        if (!(exc instanceof fc.a) && !(exc instanceof fc.b)) {
+            org.telegram.ui.Components.z4.w0(jo0Var, exc.getMessage());
+        } else {
+            org.telegram.ui.Components.z4.w0(jo0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
+        }
     }
 }

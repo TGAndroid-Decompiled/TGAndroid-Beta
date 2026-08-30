@@ -7,53 +7,53 @@ import android.util.AttributeSet;
 import android.view.ViewTreeObserver;
 import android.widget.ListAdapter;
 public final class n0 extends e2 implements p0 {
-    public CharSequence O;
-    public k0 P;
-    public final Rect Q;
-    public int R;
-    public final q0 S;
+    public CharSequence P;
+    public k0 Q;
+    public final Rect R;
+    public int S;
+    public final q0 T;
 
     public n0(q0 q0Var, Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 2130968938);
-        this.S = q0Var;
-        this.Q = new Rect();
-        this.A = q0Var;
-        this.J = true;
-        this.K.setFocusable(true);
-        this.B = new l0(this, 0);
+        this.T = q0Var;
+        this.R = new Rect();
+        this.B = q0Var;
+        this.K = true;
+        this.L.setFocusable(true);
+        this.C = new l0(this, 0);
     }
 
     @Override
     public final CharSequence d() {
-        return this.O;
+        return this.P;
     }
 
     @Override
     public final void i(CharSequence charSequence) {
-        this.O = charSequence;
+        this.P = charSequence;
     }
 
     @Override
     public final void l(int i10) {
-        this.R = i10;
+        this.S = i10;
     }
 
     @Override
     public final void m(int i10, int i11) {
         ViewTreeObserver viewTreeObserver;
-        y yVar = this.K;
-        boolean isShowing = yVar.isShowing();
+        x xVar = this.L;
+        boolean isShowing = xVar.isShowing();
         s();
-        yVar.setInputMethodMode(2);
-        h();
-        s1 s1Var = this.f16531c;
+        xVar.setInputMethodMode(2);
+        g();
+        s1 s1Var = this.f13492c;
         s1Var.setChoiceMode(1);
-        h0.d(s1Var, i10);
-        h0.c(s1Var, i11);
-        q0 q0Var = this.S;
+        g0.d(s1Var, i10);
+        g0.c(s1Var, i11);
+        q0 q0Var = this.T;
         int selectedItemPosition = q0Var.getSelectedItemPosition();
-        s1 s1Var2 = this.f16531c;
-        if (yVar.isShowing() && s1Var2 != null) {
+        s1 s1Var2 = this.f13492c;
+        if (xVar.isShowing() && s1Var2 != null) {
             s1Var2.setListSelectionHidden(false);
             s1Var2.setSelection(selectedItemPosition);
             if (s1Var2.getChoiceMode() != 0) {
@@ -61,25 +61,25 @@ public final class n0 extends e2 implements p0 {
             }
         }
         if (!isShowing && (viewTreeObserver = q0Var.getViewTreeObserver()) != null) {
-            androidx.mediarouter.app.h hVar = new androidx.mediarouter.app.h(this, 4);
-            viewTreeObserver.addOnGlobalLayoutListener(hVar);
-            yVar.setOnDismissListener(new m0(this, hVar));
+            androidx.mediarouter.app.k kVar = new androidx.mediarouter.app.k(this, 4);
+            viewTreeObserver.addOnGlobalLayoutListener(kVar);
+            xVar.setOnDismissListener(new m0(this, kVar));
         }
     }
 
     @Override
-    public final void p(ListAdapter listAdapter) {
-        super.p(listAdapter);
-        this.P = (k0) listAdapter;
+    public final void o(ListAdapter listAdapter) {
+        super.o(listAdapter);
+        this.Q = (k0) listAdapter;
     }
 
     public final void s() {
         int i10;
         int i11;
-        q0 q0Var = this.S;
-        Rect rect = q0Var.f16656n;
-        y yVar = this.K;
-        Drawable background = yVar.getBackground();
+        q0 q0Var = this.T;
+        Rect rect = q0Var.f13610n;
+        x xVar = this.L;
+        Drawable background = xVar.getBackground();
         if (background != null) {
             background.getPadding(rect);
             if (v3.a(q0Var)) {
@@ -97,7 +97,7 @@ public final class n0 extends e2 implements p0 {
         int width = q0Var.getWidth();
         int i12 = q0Var.h;
         if (i12 == -2) {
-            int a2 = q0Var.a(this.P, yVar.getBackground());
+            int a2 = q0Var.a(this.Q, xVar.getBackground());
             int i13 = (q0Var.getContext().getResources().getDisplayMetrics().widthPixels - rect.left) - rect.right;
             if (a2 > i13) {
                 a2 = i13;
@@ -109,10 +109,10 @@ public final class n0 extends e2 implements p0 {
             r(i12);
         }
         if (v3.a(q0Var)) {
-            i11 = (((width - paddingRight) - this.f16532e) - this.R) + i10;
+            i11 = (((width - paddingRight) - this.e) - this.S) + i10;
         } else {
-            i11 = paddingLeft + this.R + i10;
+            i11 = paddingLeft + this.S + i10;
         }
-        this.f16533f = i11;
+        this.f13493f = i11;
     }
 }

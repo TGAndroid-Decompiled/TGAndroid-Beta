@@ -1,27 +1,29 @@
 package org.telegram.ui;
+public final class ff implements Runnable {
+    public final int f34240a;
+    public final xn f34241b;
+    public final boolean f34242c;
 
-import android.view.View;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class ff implements View.OnClickListener {
-    public final int f38140a;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f38141b;
-
-    public ff(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int i10) {
-        this.f38140a = i10;
-        this.f38141b = actionBarPopupWindow$ActionBarPopupWindowLayout;
+    public ff(xn xnVar, boolean z4, int i10) {
+        this.f34240a = i10;
+        this.f34241b = xnVar;
+        this.f34242c = z4;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f38140a) {
+    public final void run() {
+        String str;
+        switch (this.f34240a) {
             case 0:
-                this.f38141b.getSwipeBack().b(true);
-                return;
-            case 1:
-                this.f38141b.getSwipeBack().b(true);
+                if (this.f34242c) {
+                    str = "upload_speed";
+                } else {
+                    str = "download_speed";
+                }
+                this.f34241b.presentFragment(new PremiumPreviewFragment(0, str));
                 return;
             default:
-                this.f38141b.getSwipeBack().b(true);
+                this.f34241b.yc(0, this.f34242c);
                 return;
         }
     }

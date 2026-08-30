@@ -1,20 +1,9 @@
 package lh;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.voip.VoIPService;
-import org.webrtc.VideoFrame;
-public final class b1 extends VoIPService.ProxyVideoSink {
-    public final d1 f15369a;
-
-    public b1(d1 d1Var) {
-        this.f15369a = d1Var;
-    }
-
+import android.view.View;
+public final class b1 extends f2.l {
     @Override
-    public final synchronized void onFrame(VideoFrame videoFrame) {
-        super.onFrame(videoFrame);
-        if (this.f15369a.f15460s) {
-            AndroidUtilities.runOnUIThread(new jh.o(this, 22));
-        }
+    public final float A(View view) {
+        return 0.3f;
     }
 }

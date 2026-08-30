@@ -1,38 +1,35 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.DownloadController;
-public final class gy implements DownloadController.FileDownloadProgressListener {
-    public long f38690a;
-    public long f38691b;
-    public final String f38692c;
-    public final hy d;
+import android.content.Context;
+public final class gy implements Runnable {
+    public final int f34698a;
+    public final hy f34699b;
 
-    public gy(hy hyVar, String str) {
-        this.d = hyVar;
-        this.f38692c = str;
+    public gy(hy hyVar, int i10) {
+        this.f34698a = i10;
+        this.f34699b = hyVar;
     }
 
     @Override
-    public final int getObserverTag() {
-        return 0;
-    }
-
-    @Override
-    public final void onProgressDownload(String str, long j10, long j11) {
-        this.f38691b = j10;
-        this.f38690a = j11;
-        this.d.c();
-    }
-
-    @Override
-    public final void onSuccessDownload(String str) {
-    }
-
-    @Override
-    public final void onFailedDownload(String str, boolean z10) {
-    }
-
-    @Override
-    public final void onProgressUpload(String str, long j10, long j11, boolean z10) {
+    public final void run() {
+        int i10;
+        switch (this.f34698a) {
+            case 0:
+                hy hyVar = this.f34699b;
+                oy oyVar = hyVar.B0;
+                Context context = hyVar.getContext();
+                i10 = ((org.telegram.ui.ActionBar.p2) oyVar).currentAccount;
+                oyVar.showDialog(new eg.v0(3, i10, context, oyVar, null));
+                return;
+            default:
+                oy oyVar2 = this.f34699b.B0;
+                lx lxVar = oyVar2.J0;
+                if (lxVar != null) {
+                    lxVar.dismiss();
+                    oyVar2.J0 = null;
+                    return;
+                }
+                return;
+        }
     }
 }

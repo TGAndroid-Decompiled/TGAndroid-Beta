@@ -1,25 +1,22 @@
 package o3;
 
-import android.os.Parcel;
-import com.google.android.gms.tasks.TaskCompletionSource;
-public final class y implements com.google.android.gms.common.api.internal.s {
-    public final String[] f19129a;
-
-    public y(s5.s sVar, String[] strArr) {
-        this.f19129a = strArr;
+import android.media.MediaDrm;
+import android.media.metrics.LogSessionId;
+public abstract class y {
+    public static boolean a(MediaDrm mediaDrm, String str) {
+        return mediaDrm.requiresSecureDecoder(str);
     }
 
-    @Override
-    public void accept(Object obj, Object obj2) {
-        s5.r rVar = new s5.r(2, (TaskCompletionSource) obj2);
-        s5.i iVar = (s5.i) ((s5.t) obj).u();
-        Parcel M0 = iVar.M0();
-        com.google.android.gms.internal.cast.u.d(M0, rVar);
-        M0.writeStringArray(this.f19129a);
-        iVar.R0(M0, 7);
-    }
-
-    public y(String[] strArr) {
-        this.f19129a = strArr;
+    public static void b(MediaDrm mediaDrm, byte[] bArr, k3.k kVar) {
+        LogSessionId logSessionId;
+        k3.j jVar = kVar.f9735a;
+        jVar.getClass();
+        LogSessionId logSessionId2 = jVar.f9734a;
+        logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
+        if (!logSessionId2.equals(logSessionId)) {
+            MediaDrm.PlaybackComponent playbackComponent = mediaDrm.getPlaybackComponent(bArr);
+            playbackComponent.getClass();
+            playbackComponent.setLogSessionId(logSessionId2);
+        }
     }
 }

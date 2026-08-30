@@ -7,18 +7,18 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import j$.util.Objects;
 public final class c {
-    public final TextPaint f45408a;
-    public final TextDirectionHeuristic f45409b;
-    public final int f45410c;
+    public final TextPaint f40930a;
+    public final TextDirectionHeuristic f40931b;
+    public final int f40932c;
     public final int d;
 
     public c(TextPaint textPaint, TextDirectionHeuristic textDirectionHeuristic, int i10, int i11) {
         if (Build.VERSION.SDK_INT >= 29) {
             new PrecomputedText.Params.Builder(textPaint).setBreakStrategy(i10).setHyphenationFrequency(i11).setTextDirection(textDirectionHeuristic).build();
         }
-        this.f45408a = textPaint;
-        this.f45409b = textDirectionHeuristic;
-        this.f45410c = i10;
+        this.f40930a = textPaint;
+        this.f40931b = textDirectionHeuristic;
+        this.f40932c = i10;
         this.d = i11;
     }
 
@@ -27,10 +27,10 @@ public final class c {
             if (obj instanceof c) {
                 c cVar = (c) obj;
                 int i10 = Build.VERSION.SDK_INT;
-                if (i10 < 23 || (this.f45410c == cVar.f45410c && this.d == cVar.d)) {
-                    TextPaint textPaint = this.f45408a;
+                if (i10 < 23 || (this.f40932c == cVar.f40932c && this.d == cVar.d)) {
+                    TextPaint textPaint = this.f40930a;
                     float textSize = textPaint.getTextSize();
-                    TextPaint textPaint2 = cVar.f45408a;
+                    TextPaint textPaint2 = cVar.f40930a;
                     if (textSize == textPaint2.getTextSize() && textPaint.getTextScaleX() == textPaint2.getTextScaleX() && textPaint.getTextSkewX() == textPaint2.getTextSkewX() && textPaint.getLetterSpacing() == textPaint2.getLetterSpacing() && TextUtils.equals(textPaint.getFontFeatureSettings(), textPaint2.getFontFeatureSettings()) && textPaint.getFlags() == textPaint2.getFlags()) {
                         if (i10 >= 24) {
                             if (!textPaint.getTextLocales().equals(textPaint2.getTextLocales())) {
@@ -46,7 +46,7 @@ public final class c {
                         } else if (!textPaint.getTypeface().equals(textPaint2.getTypeface())) {
                             return false;
                         }
-                        if (this.f45409b == cVar.f45409b) {
+                        if (this.f40931b == cVar.f40931b) {
                             return true;
                         }
                         return false;
@@ -62,10 +62,10 @@ public final class c {
 
     public final int hashCode() {
         int i10 = Build.VERSION.SDK_INT;
-        TextDirectionHeuristic textDirectionHeuristic = this.f45409b;
+        TextDirectionHeuristic textDirectionHeuristic = this.f40931b;
         int i11 = this.d;
-        int i12 = this.f45410c;
-        TextPaint textPaint = this.f45408a;
+        int i12 = this.f40932c;
+        TextPaint textPaint = this.f40930a;
         if (i10 >= 24) {
             return Objects.hash(Float.valueOf(textPaint.getTextSize()), Float.valueOf(textPaint.getTextScaleX()), Float.valueOf(textPaint.getTextSkewX()), Float.valueOf(textPaint.getLetterSpacing()), Integer.valueOf(textPaint.getFlags()), textPaint.getTextLocales(), textPaint.getTypeface(), Boolean.valueOf(textPaint.isElegantTextHeight()), textDirectionHeuristic, Integer.valueOf(i12), Integer.valueOf(i11));
         }
@@ -73,36 +73,36 @@ public final class c {
     }
 
     public final String toString() {
-        StringBuilder sb2 = new StringBuilder("{");
-        StringBuilder sb3 = new StringBuilder("textSize=");
-        TextPaint textPaint = this.f45408a;
-        sb3.append(textPaint.getTextSize());
-        sb2.append(sb3.toString());
-        sb2.append(", textScaleX=" + textPaint.getTextScaleX());
-        sb2.append(", textSkewX=" + textPaint.getTextSkewX());
+        StringBuilder sb = new StringBuilder("{");
+        StringBuilder sb2 = new StringBuilder("textSize=");
+        TextPaint textPaint = this.f40930a;
+        sb2.append(textPaint.getTextSize());
+        sb.append(sb2.toString());
+        sb.append(", textScaleX=" + textPaint.getTextScaleX());
+        sb.append(", textSkewX=" + textPaint.getTextSkewX());
         int i10 = Build.VERSION.SDK_INT;
-        sb2.append(", letterSpacing=" + textPaint.getLetterSpacing());
-        sb2.append(", elegantTextHeight=" + textPaint.isElegantTextHeight());
+        sb.append(", letterSpacing=" + textPaint.getLetterSpacing());
+        sb.append(", elegantTextHeight=" + textPaint.isElegantTextHeight());
         if (i10 >= 24) {
-            sb2.append(", textLocale=" + textPaint.getTextLocales());
+            sb.append(", textLocale=" + textPaint.getTextLocales());
         } else {
-            sb2.append(", textLocale=" + textPaint.getTextLocale());
+            sb.append(", textLocale=" + textPaint.getTextLocale());
         }
-        sb2.append(", typeface=" + textPaint.getTypeface());
+        sb.append(", typeface=" + textPaint.getTypeface());
         if (i10 >= 26) {
-            sb2.append(", variationSettings=" + textPaint.getFontVariationSettings());
+            sb.append(", variationSettings=" + textPaint.getFontVariationSettings());
         }
-        sb2.append(", textDir=" + this.f45409b);
-        sb2.append(", breakStrategy=" + this.f45410c);
-        sb2.append(", hyphenationFrequency=" + this.d);
-        sb2.append("}");
-        return sb2.toString();
+        sb.append(", textDir=" + this.f40931b);
+        sb.append(", breakStrategy=" + this.f40932c);
+        sb.append(", hyphenationFrequency=" + this.d);
+        sb.append("}");
+        return sb.toString();
     }
 
     public c(PrecomputedText.Params params) {
-        this.f45408a = params.getTextPaint();
-        this.f45409b = params.getTextDirection();
-        this.f45410c = params.getBreakStrategy();
+        this.f40930a = params.getTextPaint();
+        this.f40931b = params.getTextDirection();
+        this.f40932c = params.getBreakStrategy();
         this.d = params.getHyphenationFrequency();
     }
 }

@@ -1,34 +1,82 @@
 package org.telegram.ui.Components;
-public final class ho0 implements o1.g {
-    public final int f29208a;
-    public final po0 f29209b;
-    public final o1.k f29210c;
 
-    public ho0(po0 po0Var, o1.k kVar, int i10) {
-        this.f29208a = i10;
-        this.f29209b = po0Var;
-        this.f29210c = kVar;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import java.util.HashMap;
+import java.util.WeakHashMap;
+public abstract class ho0 extends View.AccessibilityDelegate {
+    public static final String f25458c = "android.widget.SeekBar";
+    public final HashMap f25459a = new HashMap(4);
+    public final ff.b f25460b = new ff.b(this, 13);
+
+    public abstract boolean a();
+
+    public abstract boolean b();
+
+    public abstract void c(boolean z4);
+
+    public CharSequence d() {
+        return null;
+    }
+
+    public void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        accessibilityNodeInfo.setClassName(f25458c);
+        CharSequence d = d();
+        if (!TextUtils.isEmpty(d)) {
+            accessibilityNodeInfo.setText(d);
+        }
+        if (a()) {
+            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_BACKWARD);
+        }
+        if (b()) {
+            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD);
+        }
+    }
+
+    public final void f(AccessibilityNodeInfo accessibilityNodeInfo) {
+        e(null, accessibilityNodeInfo);
+    }
+
+    public boolean g(View view, int i10, Bundle bundle) {
+        boolean z4 = false;
+        if (i10 != 4096 && i10 != 8192) {
+            return false;
+        }
+        if (i10 == 8192) {
+            z4 = true;
+        }
+        c(z4);
+        if (view != null) {
+            WeakHashMap weakHashMap = r0.j0.f43118a;
+            if (view.isAttachedToWindow()) {
+                HashMap hashMap = this.f25459a;
+                Runnable runnable = (Runnable) hashMap.get(view);
+                if (runnable == null) {
+                    runnable = new i80(14, this, view);
+                    hashMap.put(view, runnable);
+                    view.addOnAttachStateChangeListener(this.f25460b);
+                } else {
+                    view.removeCallbacks(runnable);
+                }
+                view.postDelayed(runnable, 400L);
+            }
+        }
+        return true;
     }
 
     @Override
-    public final void a(o1.i iVar, boolean z10, float f9, float f10) {
-        switch (this.f29208a) {
-            case 0:
-                if (!z10) {
-                    this.f29209b.f31729z.remove(this.f29210c);
-                    iVar.c();
-                    return;
-                }
-                return;
-            default:
-                po0 po0Var = this.f29209b;
-                if (!z10) {
-                    po0Var.f31729z.remove(this.f29210c);
-                    iVar.c();
-                    return;
-                }
-                po0Var.getClass();
-                return;
+    public final void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+        e(view, accessibilityNodeInfo);
+    }
+
+    @Override
+    public final boolean performAccessibilityAction(View view, int i10, Bundle bundle) {
+        if (super.performAccessibilityAction(view, i10, bundle)) {
+            return true;
         }
+        return g(view, i10, bundle);
     }
 }

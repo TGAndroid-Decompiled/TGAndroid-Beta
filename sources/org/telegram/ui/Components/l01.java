@@ -1,27 +1,69 @@
 package org.telegram.ui.Components;
-public final class l01 implements Runnable {
-    public final int f30184a;
-    public final n01 f30185b;
-    public final m01 f30186c;
 
-    public l01(n01 n01Var, m01 m01Var, int i10) {
-        this.f30184a = i10;
-        this.f30185b = n01Var;
-        this.f30186c = m01Var;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.style.ReplacementSpan;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+public final class l01 extends ReplacementSpan {
+    public static final int f26504f = 0;
+    public ImageReceiver f26505a;
+    public int f26506b;
+    public int f26507c;
+    public final boolean d;
+    public final int e;
+
+    public l01(View view, Bitmap bitmap, int i10, int i11, int i12, int i13) {
+        this.f26506b = i10;
+        this.f26507c = i11;
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.f26505a = imageReceiver;
+        imageReceiver.setInvalidateAll(true);
+        imageReceiver.setImageBitmap(bitmap);
+        imageReceiver.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
+        this.e = i13;
+        this.d = true;
     }
 
     @Override
-    public final void run() {
-        switch (this.f30184a) {
-            case 0:
-                this.f30185b.b(this.f30186c);
-                return;
-            case 1:
-                this.f30185b.b(this.f30186c);
-                return;
-            default:
-                this.f30185b.b(this.f30186c);
-                return;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
+        int i15 = this.f26506b;
+        int i16 = this.f26507c;
+        ImageReceiver imageReceiver = this.f26505a;
+        canvas.save();
+        if (this.d) {
+            imageReceiver.setImageCoords((int) f10, i13 - (i16 - this.e), i15, i16);
+        } else {
+            imageReceiver.setImageCoords((int) f10, kh.a2.d(org.telegram.messenger.y3.B(4.0f, i14, i12), i16, 2, i12), i15, i16);
         }
+        imageReceiver.draw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        int i12 = this.f26507c;
+        if (fontMetricsInt != null) {
+            if (this.d) {
+                int i13 = this.e;
+                int i14 = -(i12 - i13);
+                fontMetricsInt.ascent = i14;
+                fontMetricsInt.top = i14;
+                fontMetricsInt.descent = i13;
+                fontMetricsInt.bottom = i13;
+            } else {
+                int dp = ((-i12) / 2) - AndroidUtilities.dp(4.0f);
+                fontMetricsInt.ascent = dp;
+                fontMetricsInt.top = dp;
+                int dp2 = (i12 - (i12 / 2)) - AndroidUtilities.dp(4.0f);
+                fontMetricsInt.descent = dp2;
+                fontMetricsInt.bottom = dp2;
+            }
+        }
+        return this.f26506b;
     }
 }

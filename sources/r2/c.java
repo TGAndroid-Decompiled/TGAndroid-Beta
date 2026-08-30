@@ -3,7 +3,7 @@ package r2;
 import com.googlecode.mp4parser.e;
 public abstract class c extends e {
     static {
-        ac.c.a(c.class);
+        cc.c.a(c.class);
     }
 
     public static byte[] d(String str) {

@@ -1,18 +1,22 @@
 package b7;
+public final class c implements o8.n {
+    public final Object f1672a;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class c {
-    public static final int f1941a = 0;
-
-    static {
-        c.class.getClassLoader();
+    public c(Object obj) {
+        this.f1672a = obj;
     }
 
-    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() == 0) {
-            return null;
+    @Override
+    public Object a() {
+        return this.f1672a;
+    }
+
+    public Object b() {
+        if (b.f1665b == null) {
+            b.f1665b = new Exception();
         }
-        return (Parcelable) creator.createFromParcel(parcel);
+        synchronized (b.f1664a) {
+        }
+        throw new IllegalStateException("Must call PhenotypeContext.setContext() first");
     }
 }

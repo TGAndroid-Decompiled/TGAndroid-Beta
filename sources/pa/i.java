@@ -1,68 +1,28 @@
 package pa;
 
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-public final class i implements Iterator {
-    public k f45684a;
-    public k f45685b = null;
-    public int f45686c;
-    public final l d;
-    public final int f45687e;
-
-    public i(l lVar, int i10) {
-        this.f45687e = i10;
-        this.d = lVar;
-        this.f45684a = lVar.f45702f.d;
-        this.f45686c = lVar.f45701e;
-    }
-
-    public final Object a() {
-        return b();
-    }
-
-    public final k b() {
-        k kVar = this.f45684a;
-        l lVar = this.d;
-        if (kVar != lVar.f45702f) {
-            if (lVar.f45701e == this.f45686c) {
-                this.f45684a = kVar.d;
-                this.f45685b = kVar;
-                return kVar;
-            }
-            throw new ConcurrentModificationException();
+import java.io.IOException;
+import java.io.StringWriter;
+public abstract class i {
+    public final l i() {
+        if (this instanceof l) {
+            return (l) this;
         }
-        throw new NoSuchElementException();
+        throw new IllegalStateException("Not a JSON Object: " + this);
     }
 
-    @Override
-    public final boolean hasNext() {
-        if (this.f45684a != this.d.f45702f) {
-            return true;
-        }
-        return false;
+    public String n() {
+        throw new UnsupportedOperationException(getClass().getSimpleName());
     }
 
-    @Override
-    public Object next() {
-        switch (this.f45687e) {
-            case 1:
-                return b().f45694f;
-            default:
-                return a();
+    public final String toString() {
+        try {
+            StringWriter stringWriter = new StringWriter();
+            xa.b bVar = new xa.b(stringWriter);
+            bVar.f46883n = 1;
+            ra.d.l(this, bVar);
+            return stringWriter.toString();
+        } catch (IOException e) {
+            throw new AssertionError(e);
         }
-    }
-
-    @Override
-    public final void remove() {
-        k kVar = this.f45685b;
-        if (kVar != null) {
-            l lVar = this.d;
-            lVar.c(kVar, true);
-            this.f45685b = null;
-            this.f45686c = lVar.f45701e;
-            return;
-        }
-        throw new IllegalStateException();
     }
 }

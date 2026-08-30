@@ -1,25 +1,29 @@
 package org.telegram.ui;
 
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-public final class nz0 extends URLSpan {
-    public final String f40940a;
-    public final vz0 f40941b;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class nz0 implements gq {
+    public final oy f36753a;
+    public final oz0 f36754b;
 
-    public nz0(vz0 vz0Var, String str, String str2) {
-        super(str);
-        this.f40941b = vz0Var;
-        this.f40940a = str2;
+    public nz0(oz0 oz0Var, oy oyVar) {
+        this.f36754b = oz0Var;
+        this.f36753a = oyVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        ye.d.s(this.f40941b.f43803e.getParentActivity(), this.f40940a);
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        oz0 oz0Var = this.f36754b;
+        oz0Var.f37135b.K1 = true;
+        this.f36753a.removeSelfFromStack();
+        NotificationCenter notificationCenter = oz0Var.f37135b.getNotificationCenter();
+        ProfileActivity profileActivity = oz0Var.f37135b;
+        int i11 = NotificationCenter.closeChats;
+        notificationCenter.removeObserver(profileActivity, i11);
+        oz0Var.f37135b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i11, new Object[0]);
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(true);
+    public final void a(TLRPC.User user) {
     }
 }

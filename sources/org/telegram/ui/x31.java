@@ -1,26 +1,47 @@
 package org.telegram.ui;
-public final class x31 extends org.telegram.ui.Components.x61 {
-    public final SecretMediaViewer f44452i0;
 
-    public x31(SecretMediaViewer secretMediaViewer) {
-        this.f44452i0 = secretMediaViewer;
+import j$.util.Objects;
+import org.telegram.messenger.SaveToGallerySettingsHelper;
+public final class x31 extends bg.b {
+    public final SaveToGallerySettingsHelper.DialogException f39852c;
+    public final String d;
+
+    public x31(int i10) {
+        super(i10, false);
+        this.f39852c = null;
     }
 
-    @Override
-    public final void C() {
-        super.C();
-        this.f44452i0.S.a(false, true);
+    public final boolean equals(Object obj) {
+        SaveToGallerySettingsHelper.DialogException dialogException;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || x31.class != obj.getClass()) {
+            return false;
+        }
+        x31 x31Var = (x31) obj;
+        if (this.f1808a != x31Var.f1808a) {
+            return false;
+        }
+        String str = this.d;
+        if (str != null) {
+            return Objects.equals(str, x31Var.d);
+        }
+        SaveToGallerySettingsHelper.DialogException dialogException2 = this.f39852c;
+        if (dialogException2 == null || (dialogException = x31Var.f39852c) == null || dialogException2.dialogId == dialogException.dialogId) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void D() {
-        super.D();
-        this.f44452i0.S.a(true, true);
+    public x31(SaveToGallerySettingsHelper.DialogException dialogException) {
+        super(2, false);
+        this.f39852c = dialogException;
     }
 
-    @Override
-    public final void Q(boolean z10) {
-        super.Q(z10);
-        this.f44452i0.S.a(z10, true);
+    public x31(int i10, String str) {
+        super(i10, false);
+        this.d = str;
+        this.f39852c = null;
     }
 }

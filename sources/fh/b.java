@@ -1,94 +1,241 @@
 package fh;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import i7.w;
-import org.telegram.messenger.Utilities;
-public final class b extends Drawable {
-    public final a f6765b;
-    public Bitmap f6766c;
-    public Canvas d;
-    public int f6767e;
-    public float f6768f;
-    public int f6769g;
-    public int h;
-    public final Paint f6764a = new Paint(2);
-    public int f6770i = 255;
+import android.text.TextUtils;
+import b4.e0;
+import java.util.ArrayList;
+import lf.r;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.y3;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Cells.t1;
+import org.telegram.ui.Components.RadialProgress2;
+import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.j6;
+import org.telegram.ui.Components.nr;
+import xd.g;
+public final class b extends Drawable implements DownloadController.FileDownloadProgressListener {
+    public final RadialProgress2 B;
+    public MessageObject C;
+    public final e0 D;
+    public String E;
+    public final int F;
+    public boolean G;
+    public int H;
+    public int I;
+    public final j6 f6195a;
+    public final f9 f6196b;
+    public final ImageReceiver f6197c;
+    public final t1 d;
+    public final int e;
+    public boolean f6198f;
+    public boolean h;
+    public boolean f6199n;
+    public boolean f6200r;
+    public Drawable f6201s;
+    public boolean v;
+    public final Paint f6202w;
+    public final Paint f6203x;
+    public final xd.a f6204y;
 
-    public b(a aVar) {
-        this.f6765b = aVar;
+    public b(int i10, t1 t1Var) {
+        Paint paint = new Paint(1);
+        this.f6202w = paint;
+        this.f6203x = new Paint(1);
+        this.D = new e0((char) 0, 18);
+        this.e = i10;
+        this.d = t1Var;
+        this.f6204y = new xd.a(t1Var, nr.h, 380L);
+        j6 j6Var = new j6(false, false, false, false);
+        this.f6195a = j6Var;
+        j6Var.f25884b = 21;
+        j6Var.t(AndroidUtilities.dp(11.0f));
+        j6Var.setCallback(t1Var);
+        this.f6196b = new f9(i10, t1Var, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(8.33f), AndroidUtilities.dpf2(1.0f));
+        ImageReceiver imageReceiver = new ImageReceiver(t1Var);
+        this.f6197c = imageReceiver;
+        imageReceiver.setRoundRadius(AndroidUtilities.dp(5.0f));
+        paint.setColor(1073741824);
+        RadialProgress2 radialProgress2 = new RadialProgress2(t1Var, null);
+        this.B = radialProgress2;
+        radialProgress2.setCircleRadius(AndroidUtilities.dp(18.0f));
+        radialProgress2.d = -1;
+        this.F = DownloadController.getInstance(i10).generateObserverTag();
     }
 
-    public final void a(int i10, int i11, float f9, int i12) {
-        int i13 = i12 * 2;
-        int i14 = (int) ((i10 + i13) / f9);
-        int i15 = (int) ((i11 + i13) / f9);
-        Bitmap bitmap = this.f6766c;
-        if (bitmap != null && bitmap.getWidth() == i14 && this.f6766c.getHeight() == i15) {
-            this.f6766c.eraseColor(0);
+    public final void a(TLRPC.Photo photo, Object obj) {
+        long j10;
+        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 40);
+        TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(36.0f), false, closestPhotoSizeWithSize, true);
+        ImageLocation forObject = ImageLocation.getForObject(closestPhotoSizeWithSize2, photo);
+        ImageLocation forObject2 = ImageLocation.getForObject(closestPhotoSizeWithSize, photo);
+        if (closestPhotoSizeWithSize2 != null) {
+            j10 = closestPhotoSizeWithSize2.size;
         } else {
-            Bitmap bitmap2 = this.f6766c;
-            if (bitmap2 != null) {
-                bitmap2.recycle();
-            }
-            this.f6766c = Bitmap.createBitmap(i14, i15, Bitmap.Config.ARGB_8888);
-            this.d = new Canvas(this.f6766c);
+            j10 = 0;
         }
-        this.f6768f = f9;
-        this.f6767e = i12;
-        this.d.save();
-        float f10 = i12 / f9;
-        this.d.translate(f10, f10);
-        float f11 = 1.0f / f9;
-        this.d.scale(f11, f11);
-        this.f6765b.p(this.d, 255);
-        Utilities.stackBlurBitmap(this.f6766c, (int) f10);
-        this.d.restore();
+        this.f6197c.setImage(forObject, "36_36", forObject2, "36_36_b", null, j10, null, obj, 1);
+    }
+
+    public final void b(boolean z4) {
+        int i10;
+        if (!this.C.isSending() && !this.C.isEditing()) {
+            if (!TextUtils.isEmpty(this.E) && FileLoader.getInstance(this.e).isLoadingFile(this.E)) {
+                g(3, z4);
+                return;
+            }
+            if (this.v) {
+                i10 = 0;
+            } else {
+                i10 = 4;
+            }
+            g(i10, z4);
+        }
+    }
+
+    public final void c(Canvas canvas) {
+        float f10;
+        int i10;
+        int i11;
+        int w02;
+        Rect bounds = getBounds();
+        if (this.f6198f) {
+            f10 = 56.33f;
+        } else {
+            f10 = 19.0f;
+        }
+        int dp = AndroidUtilities.dp(f10);
+        if (this.f6204y.e > 0.0f) {
+            g gVar = this.f6196b.f24805c.d;
+            float f11 = gVar.f46905c.f46913a;
+            int i12 = (int) gVar.f46906f.f46913a;
+            int lerp = (bounds.right - dp) - AndroidUtilities.lerp(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f) + i12, f11);
+            if (f11 > 0.0f) {
+                f9 f9Var = this.f6196b;
+                f9Var.f24808i = (int) (this.f6204y.e * 255.0f);
+                f9Var.setBounds((bounds.right - dp) - i12, bounds.bottom - AndroidUtilities.dp(31.33f), bounds.right - dp, bounds.bottom);
+                this.f6196b.c(canvas);
+            }
+            int dp2 = bounds.bottom - AndroidUtilities.dp(21.33f);
+            j6 j6Var = this.f6195a;
+            j6Var.f25901w = (int) (this.f6204y.e * 255.0f);
+            j6Var.setBounds(bounds.left, AndroidUtilities.dp(15.0f) + dp2, lerp, dp2 - AndroidUtilities.dp(15.0f));
+            this.f6195a.draw(canvas);
+        }
+        if (this.h) {
+            int dp3 = AndroidUtilities.dp(36.0f);
+            Rect rect = AndroidUtilities.rectTmp2;
+            rect.set(y3.B(9.0f, bounds.right, dp3), y3.B(4.0f, bounds.bottom, dp3), bounds.right - AndroidUtilities.dp(9.0f), bounds.bottom - AndroidUtilities.dp(4.0f));
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(rect);
+            RadialProgress2 radialProgress2 = this.B;
+            radialProgress2.f23112a.set(rectF.left, rectF.top, rectF.right, rectF.bottom);
+            this.f6197c.setImageCoords(rect);
+            if (!this.f6199n || this.f6200r) {
+                this.f6197c.draw(canvas);
+            }
+            if (this.v || this.f6199n) {
+                if (this.f6199n && !this.f6200r) {
+                    Paint paint = this.f6203x;
+                    if (this.C.isOutOwner()) {
+                        i10 = org.telegram.ui.ActionBar.j6.f19947fc;
+                    } else {
+                        i10 = org.telegram.ui.ActionBar.j6.f19929ec;
+                    }
+                    paint.setColor(i0.a.k(org.telegram.ui.ActionBar.j6.w0(null, i10, false), 16));
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.f6203x);
+                } else {
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.f6202w);
+                }
+            }
+            if (this.f6199n) {
+                if (this.f6201s == null) {
+                    this.f6201s = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.media_link_24).mutate();
+                }
+                Drawable drawable = this.f6201s;
+                e0 e0Var = this.D;
+                if (this.f6200r) {
+                    w02 = -1;
+                } else {
+                    if (this.C.isOutOwner()) {
+                        i11 = org.telegram.ui.ActionBar.j6.sb;
+                    } else {
+                        i11 = org.telegram.ui.ActionBar.j6.f20091nd;
+                    }
+                    w02 = org.telegram.ui.ActionBar.j6.w0(null, i11, false);
+                }
+                PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+                e0Var.getClass();
+                if (((PorterDuffColorFilter) e0Var.f1368c) == null || e0Var.f1367b != w02 || ((PorterDuff.Mode) e0Var.d) != mode) {
+                    e0Var.f1368c = new PorterDuffColorFilter(w02, mode);
+                    e0Var.f1367b = w02;
+                    e0Var.d = mode;
+                }
+                drawable.setColorFilter((PorterDuffColorFilter) e0Var.f1368c);
+                r.e(this.f6201s, rectF.centerX(), rectF.centerY(), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), 17);
+                this.f6201s.draw(canvas);
+            }
+            b(true);
+            if (this.G) {
+                this.B.draw(canvas);
+            }
+        }
+    }
+
+    public final float d(float f10) {
+        f9 f9Var = this.f6196b;
+        float d = this.f6195a.d() + f9Var.f24805c.d.f46906f.f46913a;
+        float dp = f9Var.f24805c.d.f46905c.f46913a * AndroidUtilities.dp(4.0f);
+        float f11 = this.f6204y.e;
+        return (f10 * f11) + (dp * f11) + d;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        int i10 = this.f6770i;
-        a aVar = this.f6765b;
-        if (i10 == 255) {
-            canvas.save();
-            canvas.translate(this.f6769g, this.h);
-            aVar.p(canvas, 255);
-            canvas.restore();
-        } else if (i10 != 0) {
-            double d = i10 / 255.0d;
-            double d10 = d / ((1.0d - d) * 6.0d);
-            double d11 = 1.0d + d10;
-            double sqrt = ((-d11) + Math.sqrt((d11 * d11) - (((-d10) * 4.0d) * (-d)))) / ((-2.0d) * d10);
-            int b10 = w.b((int) (d10 * sqrt * 255.0d), 0, 255);
-            int b11 = w.b((int) (sqrt * 255.0d), 0, 255);
-            if (b11 > 0 && this.f6766c != null) {
-                Paint paint = this.f6764a;
-                paint.setAlpha(b11);
-                canvas.save();
-                int i11 = this.f6769g;
-                int i12 = this.f6767e;
-                canvas.translate(i11 - i12, this.h - i12);
-                float f9 = this.f6768f;
-                canvas.scale(f9, f9);
-                canvas.drawBitmap(this.f6766c, 0.0f, 0.0f, paint);
-                canvas.restore();
-            }
-            if (b10 > 0) {
-                canvas.save();
-                canvas.translate(this.f6769g, this.h);
-                aVar.p(canvas, b10);
-                canvas.restore();
-            }
+        c(canvas);
+    }
+
+    public final float e() {
+        int i10;
+        float f10 = this.f6195a.d;
+        int i11 = this.H;
+        if (i11 > 0) {
+            i10 = AndroidUtilities.dp((i11 * 9.34f) + 8.66f);
+        } else {
+            i10 = 0;
+        }
+        return f10 + i10;
+    }
+
+    public final void f(boolean z4) {
+        this.f6198f = z4;
+    }
+
+    public final void g(int i10, boolean z4) {
+        if (this.I != i10) {
+            this.I = i10;
+            this.B.setIcon(i10, true, z4);
         }
     }
 
     @Override
-    public final int getAlpha() {
-        return this.f6770i;
+    public final int getObserverTag() {
+        return this.F;
     }
 
     @Override
@@ -96,19 +243,88 @@ public final class b extends Drawable {
         return 0;
     }
 
-    @Override
-    public final void setAlpha(int i10) {
-        this.f6770i = i10;
+    public final void h(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.MessageMedia r18, org.telegram.messenger.MessageObject r19, java.lang.String r20, boolean r21) {
+        throw new UnsupportedOperationException("Method not decompiled: fh.b.h(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$MessageMedia, org.telegram.messenger.MessageObject, java.lang.String, boolean):void");
+    }
+
+    public final void i(ArrayList arrayList, boolean z4) {
+        int i10;
+        if (arrayList != null) {
+            i10 = arrayList.size();
+        } else {
+            i10 = 0;
+        }
+        this.H = i10;
+        this.f6196b.d(arrayList, z4);
+    }
+
+    public final void j(int i10, boolean z4) {
+        String str = null;
+        if (i10 > 0) {
+            str = LocaleController.formatShortNumber(i10, null);
+        }
+        this.f6195a.q(str, z4, true);
+    }
+
+    public final void k(int i10) {
+        this.f6195a.r(i10);
     }
 
     @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        this.f6769g = i10;
-        this.h = i11;
-        super.setBounds(i10, i11, i12, i13);
+    public final void onProgressDownload(String str, long j10, long j11) {
+        float min;
+        int i10;
+        if (j11 == 0) {
+            min = 0.0f;
+        } else {
+            min = Math.min(1.0f, ((float) j10) / ((float) j11));
+        }
+        this.B.o(min, true);
+        if (min < 1.0f) {
+            i10 = 3;
+        } else if (this.v) {
+            i10 = 0;
+        } else {
+            i10 = 4;
+        }
+        g(i10, true);
+        this.d.invalidate();
+    }
+
+    @Override
+    public final void onProgressUpload(String str, long j10, long j11, boolean z4) {
+        float min;
+        int i10;
+        if (j11 == 0) {
+            min = 0.0f;
+        } else {
+            min = Math.min(1.0f, ((float) j10) / ((float) j11));
+        }
+        this.B.o(min, true);
+        if (min < 1.0f) {
+            i10 = 3;
+        } else if (this.v) {
+            i10 = 0;
+        } else {
+            i10 = 4;
+        }
+        g(i10, true);
+        this.d.invalidate();
+    }
+
+    @Override
+    public final void onSuccessDownload(String str) {
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    @Override
+    public final void onFailedDownload(String str, boolean z4) {
     }
 }

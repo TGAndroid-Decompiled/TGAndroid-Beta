@@ -1,69 +1,76 @@
 package s5;
 
-import android.os.SystemClock;
-import android.text.TextUtils;
-import java.util.AbstractCollection;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
-import java.util.regex.Pattern;
-import org.json.JSONObject;
-import org.telegram.ui.th;
-public abstract class a {
-    public static final Pattern f47578a = Pattern.compile("urn:x-cast:[-A-Za-z0-9_]+(\\.[-A-Za-z0-9_]+)*");
-    public static final Random f47579b = new Random(SystemClock.elapsedRealtime());
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.RemoteException;
+import j7.f5;
+import r5.c0;
+public final class a extends c6.a {
+    public final String f44041a;
+    public final String f44042b;
+    public final k f44043c;
+    public final f d;
+    public final boolean e;
+    public final boolean f44044f;
+    public static final u5.b h = new u5.b("CastMediaOptions", null);
+    public static final Parcelable.Creator<a> CREATOR = new c0(1);
 
-    public static String a(String str, JSONObject jSONObject) {
-        if (jSONObject != null && jSONObject.has(str)) {
-            return jSONObject.optString(str);
-        }
-        return null;
-    }
-
-    public static void b(String str) {
-        if (!TextUtils.isEmpty(str)) {
-            if (str.length() <= 128) {
-                if (str.startsWith("urn:x-cast:")) {
-                    if (str.length() != 11) {
-                        return;
-                    }
-                    throw new IllegalArgumentException("Namespace must begin with the prefix \"urn:x-cast:\" and have non-empty suffix");
-                }
-                throw new IllegalArgumentException("Namespace must begin with the prefix \"urn:x-cast:\"");
+    public a(String str, String str2, IBinder iBinder, f fVar, boolean z4, boolean z10) {
+        k aVar;
+        this.f44041a = str;
+        this.f44042b = str2;
+        if (iBinder == null) {
+            aVar = 0;
+        } else {
+            IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.cast.framework.media.IImagePicker");
+            if (queryLocalInterface instanceof k) {
+                aVar = (k) queryLocalInterface;
+            } else {
+                aVar = new a7.a(iBinder, "com.google.android.gms.cast.framework.media.IImagePicker", 1);
             }
-            throw new IllegalArgumentException("Invalid namespace length");
         }
-        throw new IllegalArgumentException("Namespace cannot be null or empty");
+        this.f44043c = aVar;
+        this.d = fVar;
+        this.e = z4;
+        this.f44044f = z10;
     }
 
-    public static ArrayList c(int[] iArr) {
-        ArrayList arrayList = new ArrayList();
-        int length = iArr.length;
-        int i10 = 0;
-        while (i10 < length) {
-            i10 = th.d(iArr[i10], i10, 1, arrayList);
+    public final void e() {
+        k kVar = this.f44043c;
+        if (kVar != null) {
+            try {
+                Parcel O0 = kVar.O0(kVar.M0(), 2);
+                l6.a J0 = l6.b.J0(O0.readStrongBinder());
+                O0.recycle();
+                if (l6.b.K0(J0) != null) {
+                    throw new ClassCastException();
+                }
+            } catch (RemoteException e) {
+                h.a(e, "Unable to call %s on %s.", "getWrappedClientObject", k.class.getSimpleName());
+            }
         }
-        return arrayList;
     }
 
-    public static boolean d(Object obj, Object obj2) {
-        if (obj == null && obj2 == null) {
-            return true;
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        IBinder iBinder;
+        int q10 = f5.q(parcel, 20293);
+        f5.l(parcel, 2, this.f44041a);
+        f5.l(parcel, 3, this.f44042b);
+        k kVar = this.f44043c;
+        if (kVar == null) {
+            iBinder = null;
+        } else {
+            iBinder = kVar.f124b;
         }
-        if (obj != null && obj2 != null && obj.equals(obj2)) {
-            return true;
-        }
-        return false;
-    }
-
-    public static int[] e(AbstractCollection abstractCollection) {
-        int[] iArr = new int[abstractCollection.size()];
-        Iterator it = abstractCollection.iterator();
-        int i10 = 0;
-        while (it.hasNext()) {
-            iArr[i10] = ((Integer) it.next()).intValue();
-            i10++;
-        }
-        return iArr;
+        f5.f(parcel, 4, iBinder);
+        f5.k(parcel, 5, this.d, i10);
+        f5.s(parcel, 6, 4);
+        parcel.writeInt(this.e ? 1 : 0);
+        f5.s(parcel, 7, 4);
+        parcel.writeInt(this.f44044f ? 1 : 0);
+        f5.r(parcel, q10);
     }
 }

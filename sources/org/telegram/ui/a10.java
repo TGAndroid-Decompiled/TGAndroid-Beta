@@ -1,80 +1,41 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-public final class a10 extends org.telegram.ui.Components.il0 {
-    public final h10 f36394c;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.style.ReplacementSpan;
+import org.telegram.messenger.AndroidUtilities;
+public final class a10 extends ReplacementSpan {
+    public final org.telegram.ui.ActionBar.f6 f32429a;
+    public final Paint f32430b;
+    public final int f32431c;
+    public final org.telegram.ui.Components.k01 d;
 
-    public a10(h10 h10Var) {
-        this.f36394c = h10Var;
+    public a10(String str, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        Paint paint = new Paint(1);
+        this.f32430b = paint;
+        this.f32429a = f6Var;
+        this.f32431c = i10;
+        this.d = new org.telegram.ui.Components.k01(str, 9.33f, AndroidUtilities.bold());
+        paint.setStyle(Paint.Style.FILL);
     }
 
     @Override
-    public final boolean D(f2.n1 n1Var) {
-        return true;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
+        int v02 = org.telegram.ui.ActionBar.j6.v0(this.f32431c, this.f32429a);
+        int l1 = org.telegram.ui.ActionBar.j6.l1(0.15f, v02);
+        Paint paint2 = this.f32430b;
+        paint2.setColor(l1);
+        float f11 = (i14 + i12) / 2.0f;
+        RectF rectF = AndroidUtilities.rectTmp;
+        float dp = AndroidUtilities.dp(14.66f) / 2.0f;
+        rectF.set(f10, f11 - dp, this.d.l() + f10 + AndroidUtilities.dp(9.33f), dp + f11);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint2);
+        this.d.c(f10 + AndroidUtilities.dp(4.66f), f11, 1.0f, v02, canvas);
     }
 
     @Override
-    public final int h() {
-        h10 h10Var = this.f36394c;
-        if (h10Var.f38727f.isEmpty()) {
-            return 0;
-        }
-        return h10Var.f38727f.size() + (!h10Var.J ? 1 : 0);
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 >= this.f36394c.f38727f.size()) {
-            return 3;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(f2.n1 n1Var, int i10) {
-        boolean z10;
-        boolean z11;
-        if (n1Var.f6436f == 0) {
-            org.telegram.ui.Cells.p2 p2Var = (org.telegram.ui.Cells.p2) n1Var.f6432a;
-            h10 h10Var = this.f36394c;
-            MessageObject messageObject = (MessageObject) h10Var.f38727f.get(i10);
-            p2Var.K = h10Var.f38734l0;
-            p2Var.W(messageObject.getDialogId(), messageObject, messageObject.messageOwner.date, false, false);
-            if (i10 != h() - 1) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            p2Var.f24898o2 = z10;
-            if (p2Var.getMessage() != null && p2Var.getMessage().getId() == messageObject.getId()) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            p2Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Components.hk(this, p2Var, messageObject, z11, 1));
-        }
-    }
-
-    @Override
-    public final f2.n1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Components.au0 au0Var;
-        if (i10 != 0) {
-            if (i10 != 3) {
-                org.telegram.ui.Cells.s3 s3Var = new org.telegram.ui.Cells.s3(viewGroup.getContext(), null);
-                s3Var.setText(LocaleController.getString(R.string.SearchMessages));
-                au0Var = s3Var;
-            } else {
-                org.telegram.ui.Components.p00 p00Var = new org.telegram.ui.Components.p00(viewGroup.getContext(), null);
-                p00Var.setIsSingleCell(true);
-                p00Var.setViewType(1);
-                au0Var = p00Var;
-            }
-        } else {
-            au0Var = new org.telegram.ui.Components.au0(1, viewGroup.getContext(), true);
-        }
-        return th.m(au0Var, au0Var, -1, -2);
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return (int) (this.d.l() + AndroidUtilities.dp(9.33f));
     }
 }

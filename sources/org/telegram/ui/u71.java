@@ -1,21 +1,36 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class u71 extends org.telegram.ui.Components.dq0 {
-    public final b81 X0;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_account;
+public final class u71 implements Utilities.Callback {
+    public final int f38871a;
+    public final SessionsActivity f38872b;
 
-    public u71(b81 b81Var, Activity activity, String str) {
-        super(activity, null, str, false, null, false, null);
-        this.X0 = b81Var;
+    public u71(SessionsActivity sessionsActivity, int i10) {
+        this.f38871a = i10;
+        this.f38872b = sessionsActivity;
     }
 
     @Override
-    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
+    public final void run(Object obj) {
+        switch (this.f38871a) {
+            case 0:
+                TL_account.connectedBots connectedbots = (TL_account.connectedBots) obj;
+                SessionsActivity sessionsActivity = this.f38872b;
+                sessionsActivity.getClass();
+                if (connectedbots != null) {
+                    sessionsActivity.h = connectedbots.connected_bots;
+                    if (sessionsActivity.f32281a != null) {
+                        sessionsActivity.m0();
+                        sessionsActivity.f32281a.l();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                SessionsActivity.V(this.f38872b, (Boolean) obj);
+                return;
         }
-        AndroidUtilities.runOnUIThread(new t31(this, hVar, i10), 250L);
     }
 }

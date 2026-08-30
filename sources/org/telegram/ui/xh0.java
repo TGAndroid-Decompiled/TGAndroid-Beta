@@ -1,43 +1,43 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class xh0 extends org.telegram.ui.Components.og {
-    public final org.telegram.ui.Components.og f44594h0;
-    public final boolean f44595i0;
-    public final ki0 f44596j0;
+import org.telegram.messenger.AndroidUtilities;
+public final class xh0 implements Runnable {
+    public final int f39923a;
+    public final si0 f39924b;
 
-    public xh0(ki0 ki0Var, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var, org.telegram.ui.Components.og ogVar, boolean z10) {
-        super(i10, context, c6Var, false);
-        this.f44596j0 = ki0Var;
-        this.f44594h0 = ogVar;
-        this.f44595i0 = z10;
+    public xh0(si0 si0Var, int i10) {
+        this.f39923a = i10;
+        this.f39924b = si0Var;
     }
 
     @Override
-    public final boolean d() {
-        return this.f44594h0.d();
-    }
-
-    @Override
-    public final boolean e() {
-        return this.f44594h0.e();
-    }
-
-    @Override
-    public final boolean f() {
-        if (this.f44595i0 && this.f44596j0.m0 && this.f31358r <= 0) {
-            return false;
+    public final void run() {
+        switch (this.f39923a) {
+            case 0:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+            case 1:
+                si0 si0Var = this.f39924b;
+                si0Var.getClass();
+                ih.j.f(false);
+                ih.j jVar = si0Var.f38359f0;
+                if (jVar != null) {
+                    jVar.b(si0Var.C);
+                }
+                AndroidUtilities.runOnUIThread(new xh0(si0Var, 0));
+                return;
+            case 2:
+                ih.j.f(false);
+                si0 si0Var2 = this.f39924b;
+                ih.j jVar2 = si0Var2.f38359f0;
+                if (jVar2 != null) {
+                    jVar2.b(si0Var2.C);
+                }
+                AndroidUtilities.runOnUIThread(new xh0(si0Var2, 3));
+                return;
+            default:
+                super/*android.app.Dialog*/.dismiss();
+                return;
         }
-        return true;
-    }
-
-    @Override
-    public final int getFillColor() {
-        return this.f44594h0.getFillColor();
-    }
-
-    @Override
-    public final boolean j() {
-        return this.f44594h0.j();
     }
 }

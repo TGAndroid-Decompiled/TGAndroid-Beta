@@ -1,22 +1,54 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_stars;
-public final class ae {
-    public String f36520b;
-    public CharSequence f36521c;
-    public long d;
-    public long f36522e;
-    public String f36523f;
-    public boolean f36524g;
-    public String h;
-    public long f36526j;
-    public boolean f36519a = true;
-    public TL_stars.StarsAmount f36525i = TL_stars.StarsAmount.ofStars(0);
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import org.telegram.messenger.AndroidUtilities;
+public final class ae implements TextWatcher {
+    public final ke f32557a;
 
-    public static ae a(String str, String str2) {
-        ae aeVar = new ae();
-        aeVar.f36520b = str;
-        aeVar.f36521c = str2;
-        return aeVar;
+    public ae(ke keVar) {
+        this.f32557a = keVar;
+    }
+
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        long parseLong;
+        ke keVar = this.f32557a;
+        od odVar = keVar.f35635f1;
+        lh.n nVar = keVar.V0;
+        if (keVar.S0) {
+            return;
+        }
+        if (TextUtils.isEmpty(editable)) {
+            parseLong = 0;
+        } else {
+            parseLong = Long.parseLong(editable.toString());
+        }
+        keVar.U0 = parseLong;
+        long j10 = keVar.K0.amount;
+        boolean z4 = true;
+        if (parseLong > j10) {
+            keVar.U0 = j10;
+            keVar.S0 = true;
+            nVar.setText(Long.toString(j10));
+            nVar.setSelection(nVar.getText().length());
+            keVar.S0 = false;
+        }
+        if (keVar.U0 != keVar.K0.amount) {
+            z4 = false;
+        }
+        keVar.T0 = z4;
+        AndroidUtilities.cancelRunOnUIThread(odVar);
+        odVar.run();
+        keVar.T0 = false;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

@@ -1,28 +1,53 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.tgnet.tl.TL_stories;
-public final class qo implements f5.d {
-    public final int f32015a;
-    public final gp f32016b;
+import org.telegram.ui.ga1;
+public final class qo implements Runnable {
+    public final int f28200a;
+    public final kp f28201b;
 
-    public qo(gp gpVar, int i10) {
-        this.f32015a = i10;
-        this.f32016b = gpVar;
+    public qo(kp kpVar, int i10) {
+        this.f28200a = i10;
+        this.f28201b = kpVar;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f32015a) {
+    public final void run() {
+        switch (this.f28200a) {
             case 0:
-                gp gpVar = this.f32016b;
-                gpVar.f28933b0 = (TL_stories.TL_premium_boostsStatus) obj;
-                gpVar.f28931a0 = true;
-                gpVar.E(true);
-                gpVar.Z = false;
+                this.f28201b.h.l();
+                return;
+            case 1:
+                this.f28201b.s(true);
+                return;
+            case 2:
+                kp kpVar = this.f28201b;
+                org.telegram.ui.xn xnVar = kpVar.v;
+                org.telegram.ui.ActionBar.p2 d02 = ga1.d0(xnVar.getMessagesController().getChat(Long.valueOf(-xnVar.a())), true);
+                ?? obj = new Object();
+                obj.f20478a = true;
+                d02.setResourceProvider(xnVar.getResourceProvider());
+                obj.f20480c = new mc(5);
+                obj.d = new qo(kpVar, 3);
+                obj.f20479b = new qo(kpVar, 4);
+                obj.e = true;
+                kpVar.U = d02;
+                xnVar.showAsSheet(d02, obj);
+                return;
+            case 3:
+                this.f28201b.u();
+                return;
+            case 4:
+                this.f28201b.U = null;
+                return;
+            case 5:
+                this.f28201b.u();
+                return;
+            case 6:
+                this.f28201b.U = null;
                 return;
             default:
-                gp.m(this.f32016b, (ChannelBoostsController.CanApplyBoost) obj);
+                kp kpVar2 = this.f28201b;
+                kpVar2.R.f(kpVar2.D, true);
                 return;
         }
     }

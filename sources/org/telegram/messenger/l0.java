@@ -1,44 +1,35 @@
 package org.telegram.messenger;
-public final class l0 implements Runnable {
-    public final int f20805a;
-    public final long f20806b;
-    public final long f20807c;
-    public final long d;
-    public final Object f20808e;
 
-    public l0(long j10, long j11, long j12, org.telegram.ui.b5 b5Var) {
-        this.f20805a = 2;
-        this.f20806b = j10;
-        this.f20807c = j11;
-        this.d = j12;
-        this.f20808e = b5Var;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class l0 implements Utilities.Callback2 {
+    public final int f17719a;
+
+    public l0(int i10) {
+        this.f17719a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20805a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f17719a) {
             case 0:
-                ((BotGuardHelper) this.f20808e).lambda$openGuardBotWebApp$0(this.f20806b, this.f20807c, this.d);
+                BotForumHelper.lambda$stopStreaming$2((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                ((MediaDataController) this.f20808e).lambda$loadMusic$142(this.f20806b, this.f20807c, this.d);
+                MessagesController.lambda$revertWelcomeEphemeralMessage$126((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 2:
+                MessagesController.lambda$toggleCommunityCollapsedInDialogs$254((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 3:
+                MessagesController.lambda$deleteEphemeralMessage$127((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 4:
+                MessagesController.lambda$deleteEphemeralMessage$128((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                long j10 = this.f20806b;
-                long j11 = this.f20807c;
-                org.telegram.ui.x6.f44481j0 = Long.valueOf(j10 * j11);
-                Long valueOf = Long.valueOf(this.d * j11);
-                org.telegram.ui.x6.f44482k0 = valueOf;
-                ((org.telegram.ui.b5) this.f20808e).run(org.telegram.ui.x6.f44481j0, valueOf);
+                MessagesController.lambda$deleteAllReactionsFrom$131((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
                 return;
         }
-    }
-
-    public l0(BaseController baseController, long j10, long j11, long j12, int i10) {
-        this.f20805a = i10;
-        this.f20808e = baseController;
-        this.f20806b = j10;
-        this.f20807c = j11;
-        this.d = j12;
     }
 }

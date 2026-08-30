@@ -1,66 +1,81 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-public final class p20 extends f2.a1 {
-    public final r50 f41283a;
+import org.telegram.messenger.voip.VoIPService;
+public final class p20 implements Runnable {
+    public final int f37154a;
+    public final c60 f37155b;
 
-    public p20(r50 r50Var) {
-        this.f41283a = r50Var;
+    public p20(c60 c60Var, int i10) {
+        this.f37154a = i10;
+        this.f37155b = c60Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        int i11;
-        r50 r50Var = this.f41283a;
-        x40 x40Var = r50Var.M;
-        if (i10 == 0) {
-            int dp = AndroidUtilities.dp(74.0f);
-            i11 = ((org.telegram.ui.ActionBar.f3) r50Var).backgroundPaddingTop;
-            if ((r50Var.f41951u0 - dp) + i11 < org.telegram.ui.ActionBar.l.getCurrentActionBarHeight() && x40Var.canScrollVertically(1)) {
-                x40Var.getChildAt(0);
-                org.telegram.ui.Components.vk0 vk0Var = (org.telegram.ui.Components.vk0) x40Var.K(0);
-                if (vk0Var != null) {
-                    View view = vk0Var.f6432a;
-                    if (view.getTop() > 0) {
-                        x40Var.v0(0, view.getTop(), null);
-                        return;
-                    }
+    public final void run() {
+        switch (this.f37154a) {
+            case 0:
+                c60 c60Var = this.f37155b;
+                if (c60Var.r1() && AndroidUtilities.checkInlinePermissions(c60Var.f33119f0) && !org.telegram.ui.Components.voip.g1.f29636a0.S) {
+                    c60Var.dismiss();
+                    AndroidUtilities.runOnUIThread(new p20(c60Var, 4), 100L);
                     return;
                 }
                 return;
-            }
-            return;
-        }
-        org.telegram.ui.Components.g40 g40Var = r50Var.f41902i0;
-        if (g40Var != null) {
-            g40Var.b(true);
-        }
-        org.telegram.ui.Components.g40 g40Var2 = r50Var.f41906j0;
-        if (g40Var2 != null) {
-            g40Var2.b(true);
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ChatObject.Call call;
-        ViewGroup viewGroup;
-        r50 r50Var = this.f41283a;
-        if (r50Var.M.getChildCount() > 0 && (call = r50Var.W0) != null) {
-            if (!call.loadingMembers && !call.membersLoadEndReached && r50Var.U.N0() > r50Var.L.B - 5) {
-                r50Var.W0.loadMembers(false);
-            }
-            r50.J0(r50Var);
-            g50 g50Var = r50Var.Q0;
-            if (g50Var != null) {
-                g50Var.invalidate();
-            }
-            viewGroup = ((org.telegram.ui.ActionBar.f3) r50Var).containerView;
-            viewGroup.invalidate();
+            case 1:
+                c60 c60Var2 = this.f37155b;
+                if (c60Var2.X0 != null && c60Var2.O1 && VoIPService.getSharedInstance() != null) {
+                    try {
+                        c60Var2.f33188w.performHapticFeedback(3, 2);
+                    } catch (Exception unused) {
+                    }
+                    c60Var2.J1(1, true);
+                    AndroidUtilities.runOnUIThread(c60Var2.f33182u2, 80L);
+                    c60Var2.O1 = false;
+                    c60Var2.P1 = true;
+                    return;
+                }
+                return;
+            case 2:
+                c60 c60Var3 = this.f37155b;
+                int i10 = c60Var3.Q1;
+                if (i10 == 1 || i10 == 2 || i10 == 6 || i10 == 5) {
+                    c60Var3.N1(true, false);
+                    return;
+                }
+                return;
+            case 3:
+                this.f37155b.v1();
+                return;
+            case 4:
+                org.telegram.ui.Components.voip.g1.n(this.f37155b.f33119f0);
+                return;
+            case 5:
+                this.f37155b.dismiss();
+                return;
+            case 6:
+                c60 c60Var4 = this.f37155b;
+                c60Var4.K1();
+                AndroidUtilities.runOnUIThread(c60Var4.A1, 1000L);
+                return;
+            case 7:
+                y40 y40Var = this.f37155b.f33154o0;
+                if (y40Var != null) {
+                    y40Var.show();
+                    return;
+                }
+                return;
+            case 8:
+                c60.t(this.f37155b);
+                return;
+            case 9:
+                this.f37155b.d.getMessagesController().deleteUserPhoto(null);
+                return;
+            default:
+                c60 c60Var5 = this.f37155b;
+                c60Var5.f33183u3 = null;
+                c60Var5.H1(true);
+                return;
         }
     }
 }

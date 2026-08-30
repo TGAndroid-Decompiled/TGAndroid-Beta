@@ -6,7 +6,7 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.th;
+import org.telegram.ui.yh;
 public class SQLitePreparedStatement {
     private boolean isFinalized = false;
     private String query;
@@ -85,19 +85,19 @@ public class SQLitePreparedStatement {
             if (BuildVars.LOGS_ENABLED) {
                 long elapsedRealtime = SystemClock.elapsedRealtime() - this.startTime;
                 if (elapsedRealtime > 500) {
-                    StringBuilder sb2 = new StringBuilder("sqlite query ");
-                    sb2.append(this.query);
-                    sb2.append(" took ");
-                    sb2.append(elapsedRealtime);
-                    th.v("ms", sb2);
+                    StringBuilder sb = new StringBuilder("sqlite query ");
+                    sb.append(this.query);
+                    sb.append(" took ");
+                    sb.append(elapsedRealtime);
+                    yh.w("ms", sb);
                 }
             }
             try {
                 this.isFinalized = true;
                 finalize(this.sqliteStatementHandle);
-            } catch (SQLiteException e10) {
+            } catch (SQLiteException e) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e(e10.getMessage(), e10);
+                    FileLog.e(e.getMessage(), e);
                 }
             }
         }

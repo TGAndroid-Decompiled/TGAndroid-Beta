@@ -40,17 +40,17 @@ public class Timer {
         }
 
         public String toString() {
-            String p10;
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.task);
-            sb2.append(": ");
+            String q10;
+            StringBuilder sb = new StringBuilder();
+            sb.append(this.task);
+            sb.append(": ");
             if (this.endTime < 0) {
-                p10 = "not done";
+                q10 = "not done";
             } else {
-                p10 = a4.w.p(new StringBuilder(), this.endTime - this.startTime, "ms");
+                q10 = android.support.v4.media.a.q(new StringBuilder(), this.endTime - this.startTime, "ms");
             }
-            sb2.append(p10);
-            return sb2.toString();
+            sb.append(q10);
+            return sb.toString();
         }
     }
 
@@ -92,25 +92,25 @@ public class Timer {
 
     private void finish() {
         long currentTimeMillis = System.currentTimeMillis() - this.startTime;
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(this.name);
-        sb2.append(" total=");
-        sb2.append(currentTimeMillis);
-        sb2.append("ms\n");
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.name);
+        sb.append(" total=");
+        sb.append(currentTimeMillis);
+        sb.append("ms\n");
         for (int i10 = 0; i10 < this.tasks.size(); i10++) {
             if (this.tasks.get(i10) != null) {
-                sb2.append("#");
-                sb2.append(i10);
+                sb.append("#");
+                sb.append(i10);
                 int i11 = this.tasks.get(i10).pad;
                 for (int i12 = 0; i12 < i11; i12++) {
-                    sb2.append(" ");
+                    sb.append(" ");
                 }
-                sb2.append(" ");
-                sb2.append(this.tasks.get(i10));
-                sb2.append("\n");
+                sb.append(" ");
+                sb.append(this.tasks.get(i10));
+                sb.append("\n");
             }
         }
-        FileLog.d(sb2.toString());
+        FileLog.d(sb.toString());
     }
 
     private void log(String str) {

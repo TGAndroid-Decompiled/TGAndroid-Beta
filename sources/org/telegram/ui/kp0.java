@@ -1,87 +1,81 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class kp0 extends org.telegram.ui.ActionBar.o2 {
-    public Bitmap f39988a;
-    public BitmapDrawable f39989b;
-    public jp0 f39990c;
-    public ip0 d;
-    public boolean f39991e;
-    public boolean f39992f;
+public final class kp0 extends org.telegram.ui.Components.qv0 {
+    public int f35782t0;
+    public boolean f35783u0;
+    public final pp0 f35784v0;
 
-    @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackgroundColor(-13421773);
-        this.actionBar.B(-12763843, false);
-        this.actionBar.setTitleColor(-1);
-        this.actionBar.C(-1, false);
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.CropImage));
-        this.actionBar.setActionBarMenuOnItemClick(new al0(this, 1));
-        this.actionBar.n().h(1, R.drawable.ic_ab_done, LocaleController.getString(R.string.Done), AndroidUtilities.dp(56.0f));
-        ip0 ip0Var = new ip0(this, context);
-        this.d = ip0Var;
-        this.fragmentView = ip0Var;
-        ip0Var.C = getArguments().getBoolean("freeform", false);
-        this.fragmentView.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
-        return this.fragmentView;
+    public kp0(pp0 pp0Var, Context context) {
+        super(context, null);
+        this.f35784v0 = pp0Var;
     }
 
     @Override
-    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return false;
+    public final void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kp0.onLayout(boolean, int, int, int, int):void");
     }
 
     @Override
-    public final boolean onFragmentCreate() {
-        int max;
-        if (this.f39988a == null) {
-            String string = getArguments().getString("photoPath");
-            Uri uri = (Uri) getArguments().getParcelable("photoUri");
-            if (string == null && uri == null) {
-                return false;
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        float f10;
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        setMeasuredDimension(size, size2);
+        int dp = AndroidUtilities.dp(20.0f);
+        int i13 = 0;
+        pp0 pp0Var = this.f35784v0;
+        if (dp >= 0) {
+            if (!AndroidUtilities.isInMultiwindow) {
+                size2 -= pp0Var.J.getEmojiPadding();
+                i11 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
             }
-            if (string != null && !com.google.android.recaptcha.internal.a.v(string)) {
-                return false;
-            }
-            if (AndroidUtilities.isTablet()) {
-                max = AndroidUtilities.dp(520.0f);
-            } else {
-                Point point = AndroidUtilities.displaySize;
-                max = Math.max(point.x, point.y);
-            }
-            float f9 = max;
-            Bitmap loadBitmap = ImageLoader.loadBitmap(string, uri, f9, f9, true);
-            this.f39988a = loadBitmap;
-            if (loadBitmap == null) {
-                return false;
-            }
+        } else {
+            this.f35783u0 = true;
+            pp0Var.J.j();
+            this.f35783u0 = false;
         }
-        this.f39989b = new BitmapDrawable(this.f39988a);
-        super.onFragmentCreate();
-        return true;
+        int i14 = i11;
+        int childCount = getChildCount();
+        while (i13 < childCount) {
+            View childAt = getChildAt(i13);
+            if (childAt != null && childAt.getVisibility() != 8) {
+                org.telegram.ui.Components.du duVar = pp0Var.J;
+                if (duVar != null && duVar.l(childAt)) {
+                    if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
+                    } else if (AndroidUtilities.isTablet()) {
+                        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
+                        if (AndroidUtilities.isTablet()) {
+                            f10 = 200.0f;
+                        } else {
+                            f10 = 320.0f;
+                        }
+                        childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(f10), getPaddingTop() + (size2 - AndroidUtilities.statusBarHeight)), 1073741824));
+                    } else {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size2 - AndroidUtilities.statusBarHeight), 1073741824));
+                    }
+                } else {
+                    i12 = i10;
+                    measureChildWithMargins(childAt, i12, 0, i14, 0);
+                    i13++;
+                    i10 = i12;
+                }
+            }
+            i12 = i10;
+            i13++;
+            i10 = i12;
+        }
     }
 
     @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        Bitmap bitmap = this.f39988a;
-        if (bitmap != null && !this.f39991e) {
-            bitmap.recycle();
-            this.f39988a = null;
+    public final void requestLayout() {
+        if (this.f35783u0) {
+            return;
         }
-        this.f39989b = null;
+        super.requestLayout();
     }
 }

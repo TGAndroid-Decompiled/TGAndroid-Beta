@@ -1,61 +1,66 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.SurfaceView;
-import android.view.TextureView;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-public final class os0 extends e5.c {
-    public final PhotoViewer h;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import org.telegram.messenger.MediaController;
+import org.telegram.ui.Components.Crop.CropAreaView;
+public final class os0 extends AnimatorListenerAdapter {
+    public final float f36972a;
+    public final Runnable f36973b;
+    public final PhotoViewer f36974c;
 
-    public os0(Context context, PhotoViewer photoViewer) {
-        super(context);
-        this.h = photoViewer;
+    public os0(PhotoViewer photoViewer, float f10, Runnable runnable) {
+        this.f36974c = photoViewer;
+        this.f36972a = f10;
+        this.f36973b = runnable;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (this.h.O8) {
-            return;
-        }
-        super.draw(canvas);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        PhotoViewer photoViewer = this.h;
-        if (view == photoViewer.A3 && photoViewer.f35669c4) {
-            return true;
-        }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        PhotoViewer photoViewer = this.h;
-        ImageView imageView = photoViewer.f35821t3;
-        if (imageView != null) {
-            ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
-            layoutParams.width = getMeasuredWidth();
-            layoutParams.height = getMeasuredHeight();
-        }
-        TextureView textureView = photoViewer.f35858x2;
-        if (textureView instanceof org.telegram.ui.Components.l61) {
-            textureView.setPivotX(textureView.getMeasuredWidth() / 2);
-            photoViewer.A2.setPivotX(photoViewer.f35858x2.getMeasuredWidth() / 2);
-        } else {
-            if (textureView != null) {
-                textureView.setPivotX(0.0f);
+    public final void onAnimationEnd(Animator animator) {
+        PhotoViewer photoViewer = this.f36974c;
+        photoViewer.f31808m6 = null;
+        photoViewer.f31720c6 = 0.0f;
+        photoViewer.Y5 = 0.0f;
+        photoViewer.f31729d6 = 0.0f;
+        float r22 = photoViewer.r2(false);
+        photoViewer.f31711b6 = r22;
+        photoViewer.X5 = r22;
+        photoViewer.f31705b0.invalidate();
+        CropAreaView cropAreaView = photoViewer.f31924z1.f31004b.f47246a;
+        float r23 = photoViewer.r2(false);
+        cropAreaView.f23010k0 = 0.0f;
+        cropAreaView.f23011l0 = r23;
+        cropAreaView.m0 = 0.0f;
+        cropAreaView.f23013n0 = 0.0f;
+        cropAreaView.invalidate();
+        photoViewer.f31924z1.f31005c.setRotated(false);
+        float f10 = this.f36972a;
+        if (Math.abs(f10) > 0.0f) {
+            org.telegram.ui.Components.ye0 ye0Var = photoViewer.f31924z1;
+            yf.e eVar = ye0Var.f31005c;
+            if (eVar != null) {
+                eVar.b(0.0f);
+                eVar.setRotated(false);
             }
-            SurfaceView surfaceView = photoViewer.f35867y2;
-            if (surfaceView != null) {
-                surfaceView.setPivotX(0.0f);
+            if (ye0Var.f31004b.m(f10)) {
+                photoViewer.Y0.setColorFilter(new PorterDuffColorFilter(photoViewer.z1(org.telegram.ui.ActionBar.j6.f20304zf), PorterDuff.Mode.MULTIPLY));
+            } else {
+                photoViewer.Y0.setColorFilter((ColorFilter) null);
             }
-            photoViewer.A2.setPivotX(0.0f);
         }
-        photoViewer.z0();
+        MediaController.CropState cropState = photoViewer.U4.f40304c;
+        if (cropState != null) {
+            cropState.cropPy = 0.0f;
+            cropState.cropPx = 0.0f;
+            cropState.cropPh = 1.0f;
+            cropState.cropPw = 1.0f;
+        }
+        Runnable runnable = this.f36973b;
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 }

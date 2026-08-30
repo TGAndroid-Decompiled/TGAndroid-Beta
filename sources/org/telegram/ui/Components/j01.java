@@ -1,42 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.ViewSwitcher;
-public class j01 extends ViewSwitcher {
-    public final void a(CharSequence charSequence, boolean z10, boolean z11) {
-        if (z11 || !TextUtils.equals(charSequence, getCurrentView().getText())) {
-            if (z10) {
-                getNextView().setText(charSequence);
-                showNext();
-                return;
-            }
-            getCurrentView().setText(charSequence);
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class j01 extends FrameLayout {
+    public static final int e = 0;
+    public TextView f25846a;
+    public i01 f25847b;
+    public TLRPC.TL_help_termsOfService f25848c;
+    public int d;
+
+    public final void a() {
+        i01 i01Var = this.f25847b;
+        int i10 = this.d;
+        org.telegram.ui.na0 na0Var = (org.telegram.ui.na0) i01Var;
+        na0Var.getClass();
+        UserConfig.getInstance(i10).unacceptedTermsOfService = null;
+        UserConfig.getInstance(i10).saveConfig(false);
+        LaunchActivity launchActivity = na0Var.f36556a;
+        ArrayList arrayList = launchActivity.f31614a0;
+        if (!arrayList.isEmpty()) {
+            ((org.telegram.ui.ActionBar.p2) kh.a2.i(1, arrayList)).onResume();
         }
+        launchActivity.f31661z0.animate().alpha(0.0f).setDuration(150L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new org.telegram.ui.c10(na0Var, 15)).start();
+        TLRPC.TL_help_acceptTermsOfService tL_help_acceptTermsOfService = new TLRPC.TL_help_acceptTermsOfService();
+        tL_help_acceptTermsOfService.f19239id = this.f25848c.f19241id;
+        ConnectionsManager.getInstance(this.d).sendRequest(tL_help_acceptTermsOfService, new nh.p5(12));
     }
 
-    @Override
-    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
-        if (view instanceof TextView) {
-            super.addView(view, i10, layoutParams);
-            return;
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public void setText(CharSequence charSequence) {
-        a(charSequence, true, false);
-    }
-
-    @Override
-    public TextView getCurrentView() {
-        return (TextView) super.getCurrentView();
-    }
-
-    @Override
-    public TextView getNextView() {
-        return (TextView) super.getNextView();
+    public void setDelegate(i01 i01Var) {
+        this.f25847b = i01Var;
     }
 }

@@ -1,41 +1,19 @@
 package h7;
-public final class e implements i {
-    public final int f7599a;
 
-    public e(int i10) {
-        this.f7599a = i10;
+import org.telegram.ui.yh;
+public final class e {
+    public final Object f7016a;
+    public final Object f7017b;
+    public final Object f7018c;
+
+    public e(Object obj, Object obj2, Object obj3) {
+        this.f7016a = obj;
+        this.f7017b = obj2;
+        this.f7018c = obj3;
     }
 
-    @Override
-    public final Class annotationType() {
-        return i.class;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof i) {
-                if (this.f7599a == ((e) ((i) obj)).f7599a) {
-                    Object obj2 = h.f7632a;
-                    if (obj2.equals(obj2)) {
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int hashCode() {
-        return (this.f7599a ^ 14552422) + (h.f7632a.hashCode() ^ 2041407134);
-    }
-
-    @Override
-    public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f7599a + "intEncoding=" + h.f7632a + ')';
+    public final IllegalArgumentException a() {
+        Object obj = this.f7016a;
+        return new IllegalArgumentException(android.support.v4.media.a.p(String.valueOf(obj), "=", String.valueOf(this.f7018c), yh.m("Multiple entries with same key: ", String.valueOf(obj), "=", String.valueOf(this.f7017b), " and ")));
     }
 }

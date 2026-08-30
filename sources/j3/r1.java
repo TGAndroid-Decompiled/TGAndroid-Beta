@@ -1,24 +1,35 @@
 package j3;
 
-import java.util.ArrayList;
-public final class r1 implements l1 {
-    public final l4.w f10725a;
-    public int d;
-    public boolean f10728e;
-    public final ArrayList f10727c = new ArrayList();
-    public final Object f10726b = new Object();
+import java.io.IOException;
+public class r1 extends IOException {
+    public final boolean f8810a;
+    public final int f8811b;
 
-    public r1(l4.a aVar, boolean z10) {
-        this.f10725a = new l4.w(aVar, z10);
+    public r1(String str, Throwable th2, boolean z4, int i10) {
+        super(str, th2);
+        this.f8810a = z4;
+        this.f8811b = i10;
+    }
+
+    public static r1 a(String str, Exception exc) {
+        return new r1(str, exc, true, 1);
+    }
+
+    public static r1 b(String str, Exception exc) {
+        return new r1(str, exc, true, 4);
+    }
+
+    public static r1 c(String str) {
+        return new r1(str, null, false, 1);
     }
 
     @Override
-    public final Object a() {
-        return this.f10726b;
-    }
-
-    @Override
-    public final r2 b() {
-        return this.f10725a.f14453o;
+    public final String getMessage() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.getMessage());
+        sb.append("{contentIsMalformed=");
+        sb.append(this.f8810a);
+        sb.append(", dataType=");
+        return android.support.v4.media.a.m(this.f8811b, "}", sb);
     }
 }

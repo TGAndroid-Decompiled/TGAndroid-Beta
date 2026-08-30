@@ -1,46 +1,30 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.NotificationCenter;
-public final class g31 extends AnimatorListenerAdapter {
-    public final int f38447a;
-    public final h31 f38448b;
+import org.telegram.messenger.AndroidUtilities;
+public final class g31 implements Runnable {
+    public final int f34444a;
+    public final j31 f34445b;
 
-    public g31(h31 h31Var, int i10) {
-        this.f38447a = i10;
-        this.f38448b = h31Var;
+    public g31(j31 j31Var, int i10) {
+        this.f34444a = i10;
+        this.f34445b = j31Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f38447a) {
+    public final void run() {
+        switch (this.f34444a) {
             case 0:
-                h31 h31Var = this.f38448b;
-                if (h31Var.h != null) {
-                    h31Var.h = null;
-                    h31Var.f38759e = 0.0f;
-                    h31Var.g();
-                    h31Var.f38761n.unlock();
-                    hx hxVar = h31Var.f38756a;
-                    if (hxVar != null) {
-                        hxVar.onPause();
-                        h31Var.f38756a.onFragmentDestroy();
-                        h31Var.removeAllViews();
-                        h31Var.f38756a = null;
-                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
-                    }
-                    h31Var.d(false);
+                j31 j31Var = this.f34445b;
+                k31 k31Var = j31Var.v;
+                if (j31Var.f35216a == 0) {
+                    k31Var.dismiss();
+                    return;
+                } else {
+                    k31Var.onBackPressed();
                     return;
                 }
-                return;
             default:
-                h31 h31Var2 = this.f38448b;
-                if (h31Var2.h != null) {
-                    h31Var2.h = null;
-                    h31Var2.d(true);
-                    return;
-                }
+                AndroidUtilities.showKeyboard(this.f34445b.f35220n.f21199b);
                 return;
         }
     }

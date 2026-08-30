@@ -1,103 +1,74 @@
 package d2;
-
-import android.graphics.Color;
-import java.util.Arrays;
 public final class e {
-    public final int f5282a;
-    public final int f5283b;
-    public final int f5284c;
-    public final int d;
-    public final int f5285e;
-    public boolean f5286f;
-    public int f5287g;
-    public int h;
-    public float[] f5288i;
+    public static final e d;
+    public static final e e;
+    public static final e f4120f;
+    public static final e f4121g;
+    public static final e h;
+    public static final e f4122i;
+    public final float[] f4123a;
+    public final float[] f4124b;
+    public final float[] f4125c;
 
-    public e(int i10, int i11) {
-        this.f5282a = Color.red(i10);
-        this.f5283b = Color.green(i10);
-        this.f5284c = Color.blue(i10);
-        this.d = i10;
-        this.f5285e = i11;
+    static {
+        e eVar = new e();
+        d = eVar;
+        float[] fArr = eVar.f4124b;
+        fArr[0] = 0.55f;
+        fArr[1] = 0.74f;
+        float[] fArr2 = eVar.f4123a;
+        fArr2[0] = 0.35f;
+        fArr2[1] = 1.0f;
+        e eVar2 = new e();
+        e = eVar2;
+        float[] fArr3 = eVar2.f4124b;
+        fArr3[0] = 0.3f;
+        fArr3[1] = 0.5f;
+        fArr3[2] = 0.7f;
+        float[] fArr4 = eVar2.f4123a;
+        fArr4[0] = 0.35f;
+        fArr4[1] = 1.0f;
+        e eVar3 = new e();
+        f4120f = eVar3;
+        float[] fArr5 = eVar3.f4124b;
+        fArr5[1] = 0.26f;
+        fArr5[2] = 0.45f;
+        float[] fArr6 = eVar3.f4123a;
+        fArr6[0] = 0.35f;
+        fArr6[1] = 1.0f;
+        e eVar4 = new e();
+        f4121g = eVar4;
+        float[] fArr7 = eVar4.f4124b;
+        fArr7[0] = 0.55f;
+        fArr7[1] = 0.74f;
+        float[] fArr8 = eVar4.f4123a;
+        fArr8[1] = 0.3f;
+        fArr8[2] = 0.4f;
+        e eVar5 = new e();
+        h = eVar5;
+        float[] fArr9 = eVar5.f4124b;
+        fArr9[0] = 0.3f;
+        fArr9[1] = 0.5f;
+        fArr9[2] = 0.7f;
+        float[] fArr10 = eVar5.f4123a;
+        fArr10[1] = 0.3f;
+        fArr10[2] = 0.4f;
+        e eVar6 = new e();
+        f4122i = eVar6;
+        float[] fArr11 = eVar6.f4124b;
+        fArr11[1] = 0.26f;
+        fArr11[2] = 0.45f;
+        float[] fArr12 = eVar6.f4123a;
+        fArr12[1] = 0.3f;
+        fArr12[2] = 0.4f;
     }
 
-    public final void a() {
-        int k9;
-        int k10;
-        if (!this.f5286f) {
-            int i10 = this.d;
-            int g10 = i0.a.g(4.5f, -1, i10);
-            int g11 = i0.a.g(3.0f, -1, i10);
-            if (g10 != -1 && g11 != -1) {
-                this.h = i0.a.k(-1, g10);
-                this.f5287g = i0.a.k(-1, g11);
-                this.f5286f = true;
-                return;
-            }
-            int g12 = i0.a.g(4.5f, -16777216, i10);
-            int g13 = i0.a.g(3.0f, -16777216, i10);
-            if (g12 != -1 && g13 != -1) {
-                this.h = i0.a.k(-16777216, g12);
-                this.f5287g = i0.a.k(-16777216, g13);
-                this.f5286f = true;
-                return;
-            }
-            if (g10 != -1) {
-                k9 = i0.a.k(-1, g10);
-            } else {
-                k9 = i0.a.k(-16777216, g12);
-            }
-            this.h = k9;
-            if (g11 != -1) {
-                k10 = i0.a.k(-1, g11);
-            } else {
-                k10 = i0.a.k(-16777216, g13);
-            }
-            this.f5287g = k10;
-            this.f5286f = true;
-        }
-    }
-
-    public final float[] b() {
-        if (this.f5288i == null) {
-            this.f5288i = new float[3];
-        }
-        i0.a.b(this.f5288i, this.f5282a, this.f5283b, this.f5284c);
-        return this.f5288i;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && e.class == obj.getClass()) {
-            e eVar = (e) obj;
-            if (this.f5285e == eVar.f5285e && this.d == eVar.d) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return (this.d * 31) + this.f5285e;
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder(e.class.getSimpleName());
-        sb2.append(" [RGB: #");
-        sb2.append(Integer.toHexString(this.d));
-        sb2.append("] [HSL: ");
-        sb2.append(Arrays.toString(b()));
-        sb2.append("] [Population: ");
-        sb2.append(this.f5285e);
-        sb2.append("] [Title Text: #");
-        a();
-        sb2.append(Integer.toHexString(this.f5287g));
-        sb2.append("] [Body Text: #");
-        a();
-        sb2.append(Integer.toHexString(this.h));
-        sb2.append(']');
-        return sb2.toString();
+    public e() {
+        this.f4123a = r1;
+        this.f4124b = r2;
+        this.f4125c = r0;
+        float[] fArr = {0.0f, 0.5f, 1.0f};
+        float[] fArr2 = {0.0f, 0.5f, 1.0f};
+        float[] fArr3 = {0.24f, 0.52f, 0.24f};
     }
 }

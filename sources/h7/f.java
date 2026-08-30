@@ -1,94 +1,41 @@
 package h7;
 
-import java.io.OutputStream;
-public final class f extends OutputStream {
-    public final int f7615a;
-    public long f7616b;
+import java.util.Set;
+public abstract class f extends a implements Set, j$.util.Set {
+    public transient d f7019b;
 
     @Override
-    public final void write(int i10) {
-        switch (this.f7615a) {
-            case 0:
-                this.f7616b++;
-                return;
-            case 1:
-                this.f7616b++;
-                return;
-            case 2:
-                this.f7616b++;
-                return;
-            case 3:
-                this.f7616b++;
-                return;
-            default:
-                this.f7616b++;
-                return;
+    public final boolean equals(Object obj) {
+        if (obj == this || obj == this) {
+            return true;
         }
+        if (obj instanceof Set) {
+            Set set = (Set) obj;
+            try {
+                if (size() == set.size()) {
+                    if (containsAll(set)) {
+                        return true;
+                    }
+                    return false;
+                }
+            } catch (ClassCastException | NullPointerException unused) {
+            }
+        }
+        return false;
     }
 
     @Override
-    public final void write(byte[] bArr) {
-        switch (this.f7615a) {
-            case 0:
-                this.f7616b += bArr.length;
-                return;
-            case 1:
-                this.f7616b += bArr.length;
-                return;
-            case 2:
-                this.f7616b += bArr.length;
-                return;
-            case 3:
-                this.f7616b += bArr.length;
-                return;
-            default:
-                this.f7616b += bArr.length;
-                return;
+    public final int hashCode() {
+        int i10;
+        int i11 = 0;
+        for (Object obj : this) {
+            if (obj != null) {
+                i10 = obj.hashCode();
+            } else {
+                i10 = 0;
+            }
+            i11 += i10;
         }
-    }
-
-    @Override
-    public final void write(byte[] bArr, int i10, int i11) {
-        int length;
-        int i12;
-        int length2;
-        int i13;
-        int length3;
-        int i14;
-        int length4;
-        int i15;
-        int i16;
-        switch (this.f7615a) {
-            case 0:
-                if (i10 >= 0 && i10 <= (length = bArr.length) && i11 >= 0 && (i12 = i10 + i11) <= length && i12 >= 0) {
-                    this.f7616b += i11;
-                    return;
-                }
-                throw new IndexOutOfBoundsException();
-            case 1:
-                if (i10 >= 0 && i10 <= (length2 = bArr.length) && i11 >= 0 && (i13 = i10 + i11) <= length2 && i13 >= 0) {
-                    this.f7616b += i11;
-                    return;
-                }
-                throw new IndexOutOfBoundsException();
-            case 2:
-                if (i10 >= 0 && i10 <= (length3 = bArr.length) && i11 >= 0 && (i14 = i10 + i11) <= length3 && i14 >= 0) {
-                    this.f7616b += i11;
-                    return;
-                }
-                throw new IndexOutOfBoundsException();
-            case 3:
-                if (i10 >= 0 && i10 <= (length4 = bArr.length) && i11 >= 0 && (i15 = i10 + i11) <= length4 && i15 >= 0) {
-                    this.f7616b += i11;
-                    return;
-                }
-                throw new IndexOutOfBoundsException();
-            default:
-                if (i10 >= 0 && i10 <= bArr.length && i11 >= 0 && (i16 = i10 + i11) <= bArr.length && i16 >= 0) {
-                    this.f7616b += i11;
-                    return;
-                }
-                throw new IndexOutOfBoundsException();
-        }
+        return i11;
     }
 }

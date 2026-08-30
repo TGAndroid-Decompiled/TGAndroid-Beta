@@ -1,6 +1,6 @@
 package org.webrtc;
 public interface CapturerObserver {
-    void onCapturerStarted(boolean z10);
+    void onCapturerStarted(boolean z4);
 
     void onCapturerStopped();
 

@@ -1,38 +1,36 @@
 package qc;
 
-import kotlin.jvm.internal.j;
-public final class b implements Comparable {
-    public static final b f46593b = new b();
-    public final int f46594a = 131348;
+import java.util.regex.Pattern;
+import ne.p;
+import ne.s;
+public final class b extends h {
+    public static final Pattern e = i.f43002m;
 
     @Override
-    public final int compareTo(Object obj) {
-        b other = (b) obj;
-        j.e(other, "other");
-        return this.f46594a - other.f46594a;
+    public final p b() {
+        this.d++;
+        if (c() == '\n') {
+            ne.g gVar = new ne.g(1);
+            this.d++;
+            return gVar;
+        }
+        if (this.d < this.f42998c.length()) {
+            String str = this.f42998c;
+            int i10 = this.d;
+            if (e.matcher(str.substring(i10, i10 + 1)).matches()) {
+                String str2 = this.f42998c;
+                int i11 = this.d;
+                this.f42996a.getClass();
+                s sVar = new s(str2.substring(i11, i11 + 1));
+                this.d++;
+                return sVar;
+            }
+        }
+        return f("\\");
     }
 
-    public final boolean equals(Object obj) {
-        b bVar;
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof b) {
-            bVar = (b) obj;
-        } else {
-            bVar = null;
-        }
-        if (bVar != null && this.f46594a == bVar.f46594a) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.f46594a;
-    }
-
-    public final String toString() {
-        return "2.1.20";
+    @Override
+    public final char d() {
+        return '\\';
     }
 }

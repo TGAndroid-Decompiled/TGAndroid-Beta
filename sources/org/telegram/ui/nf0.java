@@ -1,23 +1,23 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class nf0 implements Runnable {
-    public final int f40792a;
-    public final x3 f40793b;
+import android.content.DialogInterface;
+public final class nf0 implements DialogInterface.OnDismissListener {
+    public final int f36616a;
+    public final rf0 f36617b;
 
-    public nf0(x3 x3Var, int i10) {
-        this.f40792a = i10;
-        this.f40793b = x3Var;
+    public nf0(rf0 rf0Var, int i10) {
+        this.f36616a = i10;
+        this.f36617b = rf0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40792a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f36616a) {
             case 0:
-                this.f40793b.run("CANCELLED");
+                this.f36617b.f38034p0.finishFragment();
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new nf0(this.f40793b, 0));
+                this.f36617b.f38034p0.finishFragment();
                 return;
         }
     }

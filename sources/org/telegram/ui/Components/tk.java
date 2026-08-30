@@ -1,24 +1,30 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-public final class tk extends f2.k0 {
-    public final gj f32967r;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class tk extends tf.i0 {
+    public final al K;
 
-    public tk(gj gjVar, Context context) {
-        super(context);
-        this.f32967r = gjVar;
+    public tk(al alVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z4) {
+        super(context, f6Var, z4, false);
+        this.K = alVar;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        int k9 = super.k(i10, view);
-        bl blVar = (bl) this.f32967r.V;
-        return k9 - (blVar.L.getPaddingTop() - (blVar.f27177w0 - blVar.f27175v0));
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 4;
+    public final void l() {
+        al alVar = this.K;
+        tk tkVar = alVar.O;
+        org.telegram.ui.ActionBar.w0 w0Var = alVar.B;
+        if (w0Var != null) {
+            w0Var.setShowSearchProgress(tkVar.G);
+        }
+        TextView textView = alVar.f23446y;
+        if (textView != null) {
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, tkVar.f44674x)));
+        }
+        super.l();
     }
 }

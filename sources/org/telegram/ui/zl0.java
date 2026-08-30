@@ -1,70 +1,61 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class zl0 extends AnimatorListenerAdapter {
-    public final int f45257a;
-    public final boolean f45258b;
-    public final vm0 f45259c;
+import android.text.TextWatcher;
+import java.util.regex.Pattern;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class zl0 implements TextWatcher {
+    public final int f40824a;
+    public final Object f40825b;
+    public String f40826c;
+    public final Object d;
 
-    public zl0(vm0 vm0Var, boolean z10, int i10) {
-        this.f45257a = i10;
-        this.f45259c = vm0Var;
-        this.f45258b = z10;
+    public zl0(dn0 dn0Var, EditTextBoldCursor editTextBoldCursor, String str, int i10) {
+        this.f40824a = i10;
+        this.d = dn0Var;
+        this.f40825b = editTextBoldCursor;
+        this.f40826c = str;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f45257a) {
+    public final void afterTextChanged(android.text.Editable r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zl0.afterTextChanged(android.text.Editable):void");
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        switch (this.f40824a) {
             case 0:
-                vm0 vm0Var = this.f45259c;
-                AnimatorSet animatorSet = vm0Var.I;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    vm0Var.I = null;
-                    return;
-                }
+            case 1:
                 return;
             default:
-                vm0 vm0Var2 = this.f45259c;
-                AnimatorSet animatorSet2 = vm0Var2.I;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    vm0Var2.I = null;
-                    return;
-                }
+                this.f40826c = charSequence.toString();
                 return;
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f45257a) {
-            case 0:
-                vm0 vm0Var = this.f45259c;
-                AnimatorSet animatorSet = vm0Var.I;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f45258b) {
-                        vm0Var.J.setVisibility(4);
-                        return;
-                    } else {
-                        vm0Var.H.getContentView().setVisibility(4);
-                        return;
-                    }
-                }
-                return;
-            default:
-                vm0 vm0Var2 = this.f45259c;
-                AnimatorSet animatorSet2 = vm0Var2.I;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    if (!this.f45258b) {
-                        vm0Var2.L.setVisibility(4);
-                        return;
-                    } else {
-                        vm0Var2.K.setVisibility(4);
-                        return;
-                    }
-                }
-                return;
-        }
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f40824a;
+    }
+
+    public zl0(cg.d0 d0Var) {
+        this.f40824a = 2;
+        this.d = d0Var;
+        this.f40825b = Pattern.compile("^[0-9a-fA-F]*$");
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

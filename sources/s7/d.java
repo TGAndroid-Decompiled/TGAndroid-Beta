@@ -1,4 +1,21 @@
 package s7;
-public abstract class d {
-    public static final com.google.android.gms.common.api.e f47670a = d7.c.f5431k;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import j7.f5;
+import r5.c0;
+public final class d extends c6.a {
+    public static final Parcelable.Creator<d> CREATOR = new c0(5);
+    public final byte[] f44101a;
+
+    public d(byte[] bArr) {
+        this.f44101a = bArr;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q10 = f5.q(parcel, 20293);
+        f5.c(parcel, 2, this.f44101a);
+        f5.r(parcel, q10);
+    }
 }

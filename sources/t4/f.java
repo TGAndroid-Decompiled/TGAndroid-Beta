@@ -1,12 +1,26 @@
 package t4;
 
 import java.util.List;
-public interface f {
-    int e(long j10);
+public final class f extends q4.b {
+    public final List d;
+    public final long e;
 
-    long m(int i10);
+    public f(long j10, List list) {
+        super(0L, list.size() - 1);
+        this.e = j10;
+        this.d = list;
+    }
 
-    List q(long j10);
+    @Override
+    public final long B() {
+        a();
+        u4.g gVar = (u4.g) this.d.get((int) this.f42717c);
+        return this.e + gVar.e + gVar.f45026c;
+    }
 
-    int v();
+    @Override
+    public final long p() {
+        a();
+        return this.e + ((u4.g) this.d.get((int) this.f42717c)).e;
+    }
 }

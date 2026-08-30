@@ -1,36 +1,23 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class of implements Runnable {
-    public final int f21179a;
-    public final MessagesStorage f21180b;
-    public final ArrayList f21181c;
-    public final Runnable d;
+    public final int f18028a;
+    public final MessagesStorage f18029b;
+    public final boolean f18030c;
 
-    public of(MessagesStorage messagesStorage, ArrayList arrayList, Runnable runnable, int i10) {
-        this.f21179a = i10;
-        this.f21180b = messagesStorage;
-        this.f21181c = arrayList;
-        this.d = runnable;
+    public of(MessagesStorage messagesStorage, boolean z4, int i10) {
+        this.f18028a = i10;
+        this.f18029b = messagesStorage;
+        this.f18030c = z4;
     }
 
     @Override
     public final void run() {
-        switch (this.f21179a) {
+        switch (this.f18028a) {
             case 0:
-                this.f21180b.lambda$loadMessageAttachPaths$235(this.f21181c, this.d);
-                return;
-            case 1:
-                this.f21180b.lambda$processAnchoredEphemeralMessages$203(this.f21181c, this.d);
-                return;
-            case 2:
-                this.f21180b.lambda$processEphemeralMessages$201(this.f21181c, this.d);
-                return;
-            case 3:
-                this.f21180b.lambda$checkLoadedRemoteFilters$69(this.f21181c, this.d);
+                this.f18029b.lambda$getCachedPhoneBook$150(this.f18030c);
                 return;
             default:
-                this.f21180b.lambda$processEphemeralEditedMessages$202(this.f21181c, this.d);
+                this.f18029b.lambda$cleanup$6(this.f18030c);
                 return;
         }
     }

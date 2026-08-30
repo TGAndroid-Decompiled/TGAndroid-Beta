@@ -1,47 +1,67 @@
 package nh;
 
-import android.content.Context;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class k3 extends View {
-    public int f18000a;
-    public final n3 f18001b;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.nr;
+public final class k3 implements Runnable {
+    public final int f15532a;
+    public final i9 f15533b;
 
-    public k3(n3 n3Var, Context context) {
-        super(context);
-        this.f18001b = n3Var;
+    public k3(i9 i9Var, int i10) {
+        this.f15532a = i10;
+        this.f15533b = i9Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        int i13;
-        n3 n3Var = this.f18001b;
-        x2 x2Var = n3Var.f18174e;
-        ArrayList arrayList = n3Var.U;
-        int size = View.MeasureSpec.getSize(i10);
-        int i14 = this.f18000a;
-        if (i14 == -1) {
-            if (n3Var.f18168a0 == n3.f18166f0) {
-                i12 = arrayList.size();
-            } else {
-                ArrayList arrayList2 = n3Var.f18170b0;
-                if (arrayList2 != null) {
-                    int size2 = arrayList2.size() + (n3Var.V ? 1 : 0);
-                    if (n3Var.W) {
-                        i13 = arrayList.size();
-                    } else {
-                        i13 = 0;
+    public final void run() {
+        switch (this.f15532a) {
+            case 0:
+                this.f15533b.P();
+                return;
+            case 1:
+                i9 i9Var = this.f15533b;
+                i9Var.Z = true;
+                i9Var.n(true);
+                return;
+            case 2:
+                i9 i9Var2 = this.f15533b;
+                if (i9Var2.C != null) {
+                    x8 x8Var = i9Var2.v;
+                    if (x8Var != null) {
+                        u.f15945c = true;
+                        x8Var.setLayerType(2, null);
                     }
-                    i12 = i13 + size2;
-                } else {
-                    i12 = 0;
+                    i9Var2.C.addListener(new r8(i9Var2, 0));
+                    i9Var2.C.setDuration(320L);
+                    i9Var2.C.setInterpolator(nr.h);
+                    i9Var2.C.start();
+                    return;
                 }
-            }
-            setMeasuredDimension(size, Math.max(0, (AndroidUtilities.displaySize.y - AndroidUtilities.dp(62.0f)) - (((int) (((int) (size / x2Var.J)) * n3Var.K)) * ((int) Math.ceil(i12 / x2Var.J)))));
-            return;
+                return;
+            case 3:
+                i9 i9Var3 = this.f15533b;
+                i9Var3.f15489s0 = null;
+                i9Var3.P();
+                return;
+            case 4:
+                this.f15533b.L(true);
+                return;
+            case 5:
+                i9 i9Var4 = this.f15533b;
+                i9Var4.Q();
+                f9 f9Var = i9Var4.f15481p0;
+                ImageReceiver imageReceiver = f9Var.f15333b;
+                if (imageReceiver != null) {
+                    imageReceiver.setVisible(false, true);
+                }
+                ImageReceiver imageReceiver2 = f9Var.f15334c;
+                if (imageReceiver2 != null) {
+                    imageReceiver2.setVisible(false, true);
+                    return;
+                }
+                return;
+            default:
+                this.f15533b.m();
+                return;
         }
-        setMeasuredDimension(size, i14);
     }
 }

@@ -1,22 +1,22 @@
 package f2;
 public final class j {
-    public n1 f6357a;
-    public n1 f6358b;
-    public final int f6359c;
+    public l1 f5753a;
+    public l1 f5754b;
+    public final int f5755c;
     public final int d;
-    public final int f6360e;
-    public final int f6361f;
+    public final int e;
+    public final int f5756f;
 
-    public j(n1 n1Var, n1 n1Var2, int i10, int i11, int i12, int i13) {
-        this.f6357a = n1Var;
-        this.f6358b = n1Var2;
-        this.f6359c = i10;
+    public j(l1 l1Var, l1 l1Var2, int i10, int i11, int i12, int i13) {
+        this.f5753a = l1Var;
+        this.f5754b = l1Var2;
+        this.f5755c = i10;
         this.d = i11;
-        this.f6360e = i12;
-        this.f6361f = i13;
+        this.e = i12;
+        this.f5756f = i13;
     }
 
     public final String toString() {
-        return "ChangeInfo{oldHolder=" + this.f6357a + ", newHolder=" + this.f6358b + ", fromX=" + this.f6359c + ", fromY=" + this.d + ", toX=" + this.f6360e + ", toY=" + this.f6361f + '}';
+        return "ChangeInfo{oldHolder=" + this.f5753a + ", newHolder=" + this.f5754b + ", fromX=" + this.f5755c + ", fromY=" + this.d + ", toX=" + this.e + ", toY=" + this.f5756f + '}';
     }
 }

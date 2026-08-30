@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.h01;
+import org.telegram.ui.Components.s01;
 public class CodeHighlighting {
     public static final int MATCH_COMMENT = 6;
     public static final int MATCH_CONSTANT = 3;
@@ -74,19 +74,19 @@ public class CodeHighlighting {
         public int getColorKey() {
             switch (this.group) {
                 case 1:
-                    return org.telegram.ui.ActionBar.g6.Ik;
+                    return org.telegram.ui.ActionBar.j6.Ik;
                 case 2:
-                    return org.telegram.ui.ActionBar.g6.Jk;
+                    return org.telegram.ui.ActionBar.j6.Jk;
                 case 3:
-                    return org.telegram.ui.ActionBar.g6.Kk;
+                    return org.telegram.ui.ActionBar.j6.Kk;
                 case 4:
-                    return org.telegram.ui.ActionBar.g6.Lk;
+                    return org.telegram.ui.ActionBar.j6.Lk;
                 case 5:
-                    return org.telegram.ui.ActionBar.g6.Mk;
+                    return org.telegram.ui.ActionBar.j6.Mk;
                 case 6:
-                    return org.telegram.ui.ActionBar.g6.Nk;
+                    return org.telegram.ui.ActionBar.j6.Nk;
                 case 7:
-                    return org.telegram.ui.ActionBar.g6.Ok;
+                    return org.telegram.ui.ActionBar.j6.Ok;
                 default:
                     return -1;
             }
@@ -94,7 +94,7 @@ public class CodeHighlighting {
 
         @Override
         public void updateDrawState(TextPaint textPaint) {
-            textPaint.setColor(org.telegram.ui.ActionBar.g6.w0(null, getColorKey(), false));
+            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, getColorKey(), false));
         }
     }
 
@@ -325,11 +325,11 @@ public class CodeHighlighting {
         public final float decrementSize;
         public final String lng;
         public final boolean smallerSize;
-        public final h01 style;
+        public final s01 style;
 
-        public Span(boolean z10, int i10, h01 h01Var, String str, String str2) {
+        public Span(boolean z4, int i10, s01 s01Var, String str, String str2) {
             int length;
-            this.smallerSize = z10;
+            this.smallerSize = z4;
             this.lng = str;
             this.code = str2;
             if (str2 == null) {
@@ -339,7 +339,7 @@ public class CodeHighlighting {
             }
             this.decrementSize = CodeHighlighting.getTextSizeDecrement(length);
             this.currentType = i10;
-            this.style = h01Var;
+            this.style = s01Var;
         }
 
         @Override
@@ -351,13 +351,13 @@ public class CodeHighlighting {
             if (i10 == 2) {
                 textPaint.setColor(-1);
             } else if (i10 == 1) {
-                textPaint.setColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23104fc, false));
+                textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19947fc, false));
             } else {
-                textPaint.setColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23086ec, false));
+                textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19929ec, false));
             }
-            h01 h01Var = this.style;
-            if (h01Var != null) {
-                h01Var.a(textPaint);
+            s01 s01Var = this.style;
+            if (s01Var != null) {
+                s01Var.a(textPaint);
                 return;
             }
             textPaint.setTypeface(Typeface.MONOSPACE);
@@ -517,11 +517,11 @@ public class CodeHighlighting {
         return 2;
     }
 
-    public static void highlight(Spannable spannable, int i10, int i11, String str, int i12, h01 h01Var, boolean z10) {
+    public static void highlight(Spannable spannable, int i10, int i11, String str, int i12, s01 s01Var, boolean z4) {
         if (spannable == null) {
             return;
         }
-        Utilities.searchQueue.postRunnable(new y4(spannable, i10, i11, str, 1));
+        Utilities.searchQueue.postRunnable(new z4(spannable, i10, i11, str, 1));
     }
 
     public static void highlightEditable(CharSequence charSequence, String str, Utilities.Callback<SpannableString> callback) {
@@ -533,7 +533,7 @@ public class CodeHighlighting {
         }
         SpannableString spannableString = new SpannableString(charSequence);
         if (!TextUtils.isEmpty(str) && spannableString.length() != 0) {
-            Utilities.searchQueue.postRunnable(new ok(spannableString.toString(), str, spannableString, callback, 4));
+            Utilities.searchQueue.postRunnable(new sk(spannableString.toString(), str, spannableString, callback, 4));
             return;
         }
         callback.run(spannableString);
@@ -570,8 +570,8 @@ public class CodeHighlighting {
                 tokenPatternArr = hashMap.get(str);
             }
             stringTokenArr[0] = tokenize(charSequence, tokenPatternArr, 0).toArray();
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
         FileLog.d("[CodeHighlighter] tokenize took " + (System.currentTimeMillis() - currentTimeMillis) + "ms");
         long currentTimeMillis2 = System.currentTimeMillis();
@@ -586,10 +586,10 @@ public class CodeHighlighting {
                     spannable.setSpan(new ColorSpan(cachedToSpan.group), cachedToSpan.start, cachedToSpan.end, 33);
                 }
                 FileLog.d("[CodeHighlighter] applying " + arrayList.size() + " colorize spans took " + (System.currentTimeMillis() - currentTimeMillis3) + "ms in another thread");
-                AndroidUtilities.runOnUIThread(new d1((LockedSpannableString) spannable, 15));
+                AndroidUtilities.runOnUIThread(new e1((LockedSpannableString) spannable, 15));
                 return;
             }
-            AndroidUtilities.runOnUIThread(new d3(22, arrayList, spannable));
+            AndroidUtilities.runOnUIThread(new e3(22, arrayList, spannable));
         }
     }
 
@@ -616,18 +616,18 @@ public class CodeHighlighting {
                 tokenPatternArr = hashMap.get(str2);
             }
             spannableString2 = spannableString;
-        } catch (Exception e10) {
-            e = e10;
+        } catch (Exception e) {
+            e = e;
             spannableString2 = spannableString;
         }
         try {
             colorize(spannableString2, 0, spannableString.length(), tokenize(str, tokenPatternArr, 0).toArray(), -1, arrayList);
-        } catch (Exception e11) {
-            e = e11;
+        } catch (Exception e6) {
+            e = e6;
             FileLog.e(e);
-            AndroidUtilities.runOnUIThread(new f0(arrayList, (Object) spannableString2, (Object) callback, 12));
+            AndroidUtilities.runOnUIThread(new g0(arrayList, (Object) spannableString2, (Object) callback, 12));
         }
-        AndroidUtilities.runOnUIThread(new f0(arrayList, (Object) spannableString2, (Object) callback, 12));
+        AndroidUtilities.runOnUIThread(new g0(arrayList, (Object) spannableString2, (Object) callback, 12));
     }
 
     public static void lambda$prepare$2() {
@@ -658,8 +658,8 @@ public class CodeHighlighting {
             match.length = i12;
             match.string = str.substring(i11, i12 + i11);
             return match;
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             return null;
         }
     }
@@ -672,12 +672,12 @@ public class CodeHighlighting {
         if (compiledPatterns != null) {
             return;
         }
-        Utilities.searchQueue.postRunnable(new w1(7));
+        Utilities.searchQueue.postRunnable(new x1(7));
     }
 
     private static TokenPattern[] readTokens(StreamReader streamReader, ParsedPattern[] parsedPatternArr, HashMap<Integer, String[]> hashMap) {
+        boolean z4;
         boolean z10;
-        boolean z11;
         int readUint8 = streamReader.readUint8();
         TokenPattern[] tokenPatternArr = new TokenPattern[readUint8];
         for (int i10 = 0; i10 < readUint8; i10++) {
@@ -685,14 +685,14 @@ public class CodeHighlighting {
             int i11 = readUint82 & 3;
             int i12 = (readUint82 >> 2) & 7;
             if ((readUint82 & 32) != 0) {
+                z4 = true;
+            } else {
+                z4 = false;
+            }
+            if ((readUint82 & 64) != 0) {
                 z10 = true;
             } else {
                 z10 = false;
-            }
-            if ((readUint82 & 64) != 0) {
-                z11 = true;
-            } else {
-                z11 = false;
             }
             int readUint16 = streamReader.readUint16();
             if (i11 == 0) {
@@ -706,10 +706,10 @@ public class CodeHighlighting {
             } else if (i11 == 2) {
                 tokenPatternArr[i10] = new TokenPattern(parsedPatternArr[readUint16].getCachedPattern(), hashMap.get(Integer.valueOf(streamReader.readUint8()))[0]);
             }
-            if (z10) {
+            if (z4) {
                 tokenPatternArr[i10].greedy = true;
             }
-            if (z11) {
+            if (z10) {
                 tokenPatternArr[i10].lookbehind = true;
             }
         }

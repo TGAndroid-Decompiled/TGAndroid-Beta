@@ -1,38 +1,62 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class xe implements ValueAnimator.AnimatorUpdateListener {
-    public final int f44572a;
-    public final tn f44573b;
-    public final View f44574c;
+import org.telegram.messenger.MessageSuggestionParams;
+import org.telegram.messenger.Utilities;
+public final class xe implements Utilities.Callback {
+    public final int f39903a;
+    public final xn f39904b;
 
-    public xe(tn tnVar, org.telegram.ui.Cells.v0 v0Var, int i10) {
-        this.f44572a = i10;
-        this.f44573b = tnVar;
-        this.f44574c = v0Var;
+    public xe(xn xnVar, int i10) {
+        this.f39903a = i10;
+        this.f39904b = xnVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f44572a) {
+    public final void run(Object obj) {
+        int i10 = this.f39903a;
+        xn xnVar = this.f39904b;
+        switch (i10) {
             case 0:
-                tn tnVar = this.f44573b;
-                tnVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                tnVar.f43022w9 = AndroidUtilities.dp(30.0f) * floatValue;
-                tnVar.o9();
-                this.f44574c.setAlpha(floatValue);
+                MessageSuggestionParams messageSuggestionParams = (MessageSuggestionParams) obj;
+                xn xnVar2 = this.f39904b;
+                xnVar2.f39989d5 = messageSuggestionParams;
+                xnVar2.f40100m5.messageOwner.suggested_post = messageSuggestionParams.toTl();
+                xnVar2.yb(true, null, xnVar2.f40100m5, null, null, null, false, true);
+                return;
+            case 1:
+                xnVar.vb(true, false);
+                if (((Boolean) obj).booleanValue()) {
+                    xnVar.finishFragment();
+                    return;
+                }
+                return;
+            case 2:
+                xnVar.da((String) obj, false);
+                return;
+            case 3:
+                xnVar.Db((MessageSuggestionParams) obj);
+                return;
+            case 4:
+                Long l10 = (Long) obj;
+                org.telegram.ui.Components.w21 w21Var = xnVar.O1;
+                if (w21Var != null) {
+                    w21Var.m(l10.longValue(), true);
+                    return;
+                }
+                return;
+            case 5:
+                cs csVar = xnVar.f39945a0;
+                csVar.f33419c.add(((org.telegram.ui.ActionBar.w0) obj).getIconView());
+                return;
+            case 6:
+                int intValue = ((Integer) obj).intValue();
+                int i11 = xn.Ec;
+                xnVar.Ba(intValue);
                 return;
             default:
-                tn tnVar2 = this.f44573b;
-                tnVar2.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                tnVar2.f43022w9 = AndroidUtilities.dp(30.0f) * floatValue2;
-                tnVar2.o9();
-                tnVar2.r9();
-                this.f44574c.setAlpha(floatValue2);
+                int intValue2 = ((Integer) obj).intValue();
+                int i12 = xn.Ec;
+                xnVar.Ba(intValue2);
                 return;
         }
     }

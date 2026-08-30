@@ -1,80 +1,84 @@
 package org.telegram.ui.Cells;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.widget.Button;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.TLRPC;
-public abstract class t3 extends FrameLayout {
-    public org.telegram.ui.Components.t9 f25692a;
-    public org.telegram.ui.ActionBar.h5 f25693b;
-    public org.telegram.ui.ActionBar.h5 f25694c;
-    public ImageView d;
-    public org.telegram.ui.Components.e9 f25695e;
-    public TLRPC.User f25696f;
-    public Paint h;
-    public int f25697n;
-    public boolean f25698r;
+public final class t3 extends org.telegram.ui.Components.k6 {
+    public final int f22343s;
 
-    public final void a(int i10, int i11) {
-        this.f25697n = i10;
-        ImageView imageView = this.d;
-        imageView.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
-        this.f25694c.setTextColor(i11);
-        org.telegram.ui.ActionBar.g6.B1(imageView.getDrawable(), i11 & 620756991, true);
+    public t3(Context context, boolean z4, boolean z10, boolean z11, int i10) {
+        super(context, z4, z10, z11);
+        this.f22343s = i10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        float dp;
-        int i10;
-        if (this.f25698r) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(68.0f);
-            }
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(68.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas2 = canvas;
-            canvas2.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, this.h);
-        } else {
-            canvas2 = canvas;
+    public CharSequence getAccessibilityClassName() {
+        switch (this.f22343s) {
+            case 0:
+                return Button.class.getName();
+            case 1:
+                return Button.class.getName();
+            default:
+                return super.getAccessibilityClassName();
         }
-        super.dispatchDraw(canvas2);
-    }
-
-    public CharSequence getName() {
-        return this.f25693b.getText();
-    }
-
-    public TLRPC.User getUser() {
-        return this.f25696f;
     }
 
     @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
+    public void invalidate() {
+        switch (this.f22343s) {
+            case 4:
+                if (mg.g0.b(this)) {
+                    return;
+                }
+                super.invalidate();
+                return;
+            default:
+                super.invalidate();
+                return;
+        }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f22343s) {
+            case 2:
+                canvas.save();
+                canvas.translate(AndroidUtilities.dp(17.0f), 0.0f);
+                super.onDraw(canvas);
+                canvas.restore();
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
     }
 
     @Override
     public void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
+        switch (this.f22343s) {
+            case 3:
+                super.onMeasure(i10, i11);
+                setPivotX(getMeasuredWidth());
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
     }
 
-    public void setDrawDivider(boolean z10) {
-        this.f25698r = z10;
-        invalidate();
+    @Override
+    public void invalidate(int i10, int i11, int i12, int i13) {
+        switch (this.f22343s) {
+            case 4:
+                if (mg.g0.b(this)) {
+                    return;
+                }
+                super.invalidate(i10, i11, i12, i13);
+                return;
+            default:
+                super.invalidate(i10, i11, i12, i13);
+                return;
+        }
     }
 }

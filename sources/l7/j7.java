@@ -1,17 +1,24 @@
 package l7;
-public final class j7 implements s9.d {
-    public static final j7 f14849a = new Object();
+public enum j7 implements f0 {
+    UNKNOWN_FORMAT(0),
+    NV16(1),
+    NV21(2),
+    YV12(3),
+    YUV_420_888(7),
+    JPEG(8),
+    BITMAP(4),
+    CM_SAMPLE_BUFFER_REF(5),
+    UI_IMAGE(6),
+    CV_PIXEL_BUFFER_REF(9);
+    
+    public final int f11511a;
 
-    static {
-        com.google.android.recaptcha.internal.a.t(j7.l1.q(w.class, j7.l1.r(4, j7.l1.q(w.class, j7.l1.r(3, j7.l1.q(w.class, j7.l1.r(2, j7.l1.q(w.class, new s(1)))))))));
+    j7(int i10) {
+        this.f11511a = i10;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            s9.e eVar = (s9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final int zza() {
+        return this.f11511a;
     }
 }

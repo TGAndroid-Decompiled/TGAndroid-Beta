@@ -1,26 +1,69 @@
 package eg;
 
+import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-public final class b2 implements View.OnClickListener {
-    public final int f5929a;
-    public final g2 f5930b;
+import android.widget.TextView;
+import org.telegram.messenger.Emoji;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.e90;
+public final class b2 extends e90 {
+    public final int I;
 
-    public b2(g2 g2Var, int i10) {
-        this.f5929a = i10;
-        this.f5930b = g2Var;
+    public b2(Context context, int i10, f6 f6Var) {
+        super(context, f6Var);
+        this.I = i10;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f5929a) {
+    public int a() {
+        switch (this.I) {
             case 0:
-                g2 g2Var = this.f5930b;
-                g2Var.f6003a0.clear();
-                g2Var.U.d.b(true);
-                g2Var.b0(true, false);
+                return 3;
+            default:
+                return super.a();
+        }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.I) {
+            case 5:
+                if (getAlpha() < 0.9f) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.I) {
+            case 1:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
                 return;
             default:
-                this.f5930b.W(false);
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        switch (this.I) {
+            case 2:
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+                return;
+            case 3:
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+                return;
+            case 4:
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+                return;
+            default:
+                super.setText(charSequence, bufferType);
                 return;
         }
     }

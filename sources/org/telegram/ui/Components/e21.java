@@ -1,51 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class e21 extends Drawable {
-    public final Drawable f27912a;
-    public final Paint f27913b = new Paint(1);
-    public final RectF f27914c = new RectF();
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class e21 implements xd.b, Utilities.Callback5, Utilities.Callback5Return {
+    public final w21 f24441a;
 
-    public e21(Context context) {
-        this.f27912a = context.getResources().getDrawable(R.drawable.menu_topic_add).mutate();
+    @Override
+    public void L(int i10, float f10, float f11, xd.c cVar) {
+        this.f24441a.g();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Paint paint = this.f27913b;
-        canvas.drawRoundRect(this.f27914c, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint);
-        this.f27912a.draw(canvas);
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        return Boolean.valueOf(w21.c(this.f24441a, (i51) obj, (View) obj2));
     }
 
     @Override
-    public final int getOpacity() {
-        return 0;
+    public void mo28run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        w21.a(this.f24441a, (i51) obj);
     }
 
     @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        this.f27914c.set(rect);
-        int centerX = rect.centerX() - AndroidUtilities.dp(12.0f);
-        int centerY = rect.centerY() - AndroidUtilities.dp(12.0f);
-        this.f27912a.setBounds(centerX, centerY, AndroidUtilities.dp(24.0f) + centerX, AndroidUtilities.dp(24.0f) + centerY);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f27913b.setAlpha(i10);
-        this.f27912a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void z(float f10, int i10) {
     }
 }

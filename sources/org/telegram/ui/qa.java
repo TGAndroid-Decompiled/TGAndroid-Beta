@@ -1,36 +1,83 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class qa implements mg.a {
-    public final int f41603a;
-    public final Object f41604b;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+public final class qa implements RequestDelegate {
+    public final int f37686a;
+    public final sb f37687b;
 
-    public qa(Object obj, int i10) {
-        this.f41603a = i10;
-        this.f41604b = obj;
+    public qa(sb sbVar, int i10) {
+        this.f37686a = i10;
+        this.f37687b = sbVar;
     }
 
     @Override
-    public final void e(Canvas canvas, RectF rectF) {
-        switch (this.f41603a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f37686a) {
             case 0:
-                ((lb) this.f41604b).Z(canvas, rectF);
+                AndroidUtilities.runOnUIThread(new s1(this.f37687b, tL_error, tLObject, 9));
+                return;
+            case 1:
+                if (tLObject != null) {
+                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
+                    final sb sbVar = this.f37687b;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    sb.U(sbVar, tL_channels_adminLogResults);
+                                    return;
+                                default:
+                                    sb.Y(sbVar, tL_channels_adminLogResults);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
+                return;
+            case 2:
+                sb sbVar2 = this.f37687b;
+                sbVar2.getClass();
+                if (tLObject instanceof Vector) {
+                    ArrayList<T> arrayList = ((Vector) tLObject).objects;
+                    ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
+                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                        if (arrayList.get(i10) instanceof TLRPC.User) {
+                            arrayList2.add((TLRPC.User) arrayList.get(i10));
+                        }
+                    }
+                    sbVar2.getMessagesController().putUsers(arrayList2, false);
+                    return;
+                }
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.b(29, this.f37687b, tLObject));
                 return;
             default:
-                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f41604b;
-                org.telegram.ui.Components.jl0 jl0Var = premiumPreviewFragment.f35905a;
-                rg.c.b(jl0Var, canvas, rectF, jl0Var, premiumPreviewFragment.Z);
-                return;
-        }
-    }
-
-    @Override
-    public final void g(g.x xVar, RectF rectF) {
-        switch (this.f41603a) {
-            case 0:
-            default:
-                xVar.f6956b = true;
+                if (tLObject != null) {
+                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults2 = (TLRPC.TL_channels_adminLogResults) tLObject;
+                    final sb sbVar3 = this.f37687b;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    sb.U(sbVar3, tL_channels_adminLogResults2);
+                                    return;
+                                default:
+                                    sb.Y(sbVar3, tL_channels_adminLogResults2);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
                 return;
         }
     }

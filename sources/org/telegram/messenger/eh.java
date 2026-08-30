@@ -1,25 +1,34 @@
 package org.telegram.messenger;
-public final class eh implements Runnable {
-    public final int f20150a;
-    public final NotificationsController f20151b;
-    public final long f20152c;
-    public final int d;
 
-    public eh(NotificationsController notificationsController, long j10, int i10, int i11) {
-        this.f20150a = i11;
-        this.f20151b = notificationsController;
-        this.f20152c = j10;
-        this.d = i10;
+import java.util.ArrayList;
+public final class eh implements Runnable {
+    public final int f17151a;
+    public final NotificationsController f17152b;
+    public final ArrayList f17153c;
+
+    public eh(NotificationsController notificationsController, ArrayList arrayList, int i10) {
+        this.f17151a = i10;
+        this.f17152b = notificationsController;
+        this.f17153c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f20150a) {
+        switch (this.f17151a) {
             case 0:
-                this.f20151b.lambda$processDeleteStory$15(this.f20152c, this.d);
+                this.f17152b.lambda$removeDeletedHisoryFromNotifications$11(this.f17153c);
+                return;
+            case 1:
+                this.f17152b.lambda$processReadMessages$20(this.f17153c);
+                return;
+            case 2:
+                this.f17152b.lambda$forceShowPopupForReply$6(this.f17153c);
+                return;
+            case 3:
+                this.f17152b.lambda$removeDeletedMessagesFromNotifications$8(this.f17153c);
                 return;
             default:
-                this.f20151b.lambda$processReadStories$16(this.f20152c, this.d);
+                this.f17152b.lambda$processDialogsUpdateRead$28(this.f17153c);
                 return;
         }
     }

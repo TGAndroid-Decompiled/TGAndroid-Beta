@@ -8,8 +8,8 @@ public class MultlineAtom extends Atom {
     private boolean isPartial;
     private int type;
 
-    public MultlineAtom(boolean z10, ArrayOfAtoms arrayOfAtoms, int i10) {
-        this.isPartial = z10;
+    public MultlineAtom(boolean z4, ArrayOfAtoms arrayOfAtoms, int i10) {
+        this.isPartial = z4;
         this.column = arrayOfAtoms;
         this.type = i10;
     }

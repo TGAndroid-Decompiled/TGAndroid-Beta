@@ -6,24 +6,24 @@ import android.os.Bundle;
 import android.view.ContentInfo;
 import java.util.Locale;
 public final class f implements e, g {
-    public final int f46808a = 0;
-    public ClipData f46809b;
-    public int f46810c;
+    public final int f43099a = 0;
+    public ClipData f43100b;
+    public int f43101c;
     public int d;
-    public Uri f46811e;
-    public Bundle f46812f;
+    public Uri e;
+    public Bundle f43102f;
 
     public f() {
     }
 
     @Override
     public ClipData a() {
-        return this.f46809b;
+        return this.f43100b;
     }
 
     @Override
     public void b(Uri uri) {
-        this.f46811e = uri;
+        this.e = uri;
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class f implements e, g {
 
     @Override
     public int e() {
-        return this.f46810c;
+        return this.f43101c;
     }
 
     @Override
@@ -53,20 +53,20 @@ public final class f implements e, g {
 
     @Override
     public void setExtras(Bundle bundle) {
-        this.f46812f = bundle;
+        this.f43102f = bundle;
     }
 
     public String toString() {
         String str;
         String valueOf;
         String str2;
-        switch (this.f46808a) {
+        switch (this.f43099a) {
             case 1:
-                Uri uri = this.f46811e;
-                StringBuilder sb2 = new StringBuilder("ContentInfoCompat{clip=");
-                sb2.append(this.f46809b.getDescription());
-                sb2.append(", source=");
-                int i10 = this.f46810c;
+                Uri uri = this.e;
+                StringBuilder sb = new StringBuilder("ContentInfoCompat{clip=");
+                sb.append(this.f43100b.getDescription());
+                sb.append(", source=");
+                int i10 = this.f43101c;
                 if (i10 != 0) {
                     if (i10 != 1) {
                         if (i10 != 2) {
@@ -92,46 +92,46 @@ public final class f implements e, g {
                 } else {
                     str = "SOURCE_APP";
                 }
-                sb2.append(str);
-                sb2.append(", flags=");
+                sb.append(str);
+                sb.append(", flags=");
                 int i11 = this.d;
                 if ((i11 & 1) != 0) {
                     valueOf = "FLAG_CONVERT_TO_PLAIN_TEXT";
                 } else {
                     valueOf = String.valueOf(i11);
                 }
-                sb2.append(valueOf);
+                sb.append(valueOf);
                 String str3 = "";
                 if (uri == null) {
                     str2 = "";
                 } else {
                     str2 = ", hasLinkUri(" + uri.toString().length() + ")";
                 }
-                sb2.append(str2);
-                if (this.f46812f != null) {
+                sb.append(str2);
+                if (this.f43102f != null) {
                     str3 = ", hasExtras";
                 }
-                return a4.w.q(sb2, str3, "}");
+                return android.support.v4.media.a.r(sb, str3, "}");
             default:
                 return super.toString();
         }
     }
 
     public f(f fVar) {
-        ClipData clipData = fVar.f46809b;
+        ClipData clipData = fVar.f43100b;
         clipData.getClass();
-        this.f46809b = clipData;
-        int i10 = fVar.f46810c;
+        this.f43100b = clipData;
+        int i10 = fVar.f43101c;
         if (i10 < 0) {
             Locale locale = Locale.US;
             throw new IllegalArgumentException("source is out of range of [0, 5] (too low)");
         } else if (i10 <= 5) {
-            this.f46810c = i10;
+            this.f43101c = i10;
             int i11 = fVar.d;
             if ((i11 & 1) == i11) {
                 this.d = i11;
-                this.f46811e = fVar.f46811e;
-                this.f46812f = fVar.f46812f;
+                this.e = fVar.e;
+                this.f43102f = fVar.f43102f;
                 return;
             }
             throw new IllegalArgumentException("Requested flags 0x" + Integer.toHexString(i11) + ", but only 0x" + Integer.toHexString(1) + " are allowed");

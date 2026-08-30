@@ -1,69 +1,95 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class ba1 extends org.telegram.ui.ActionBar.f3 {
-    public static ba1 f36756b;
+import org.telegram.tgnet.tl.TL_stats;
+public final class ba1 {
+    public String A;
+    public boolean B;
+    public boolean C;
+    public String D;
+    public String E;
+    public String F;
+    public boolean G;
+    public boolean H;
+    public String f32866a;
+    public String f32867b;
+    public String f32868c;
+    public boolean d;
+    public String e;
+    public String f32869f;
+    public String f32870g;
+    public boolean h;
+    public String f32871i;
+    public String f32872j;
+    public String f32873k;
+    public boolean f32874l;
+    public String f32875m;
+    public String f32876n;
+    public String f32877o;
+    public String f32878p;
+    public String f32879q;
+    public boolean f32880r;
+    public boolean f32881s;
+    public String f32882t;
+    public String f32883u;
+    public String v;
+    public boolean f32884w;
+    public boolean f32885x;
+    public String f32886y;
+    public String f32887z;
 
-    public static void m(ba1 ba1Var, fy fyVar) {
-        if (fyVar.getParentActivity() == null) {
-            return;
+    public static com.google.firebase.messaging.r a(TL_stats.TL_statsAbsValueAndPrev tL_statsAbsValueAndPrev) {
+        float abs;
+        boolean z4;
+        double d = tL_statsAbsValueAndPrev.current;
+        double d10 = tL_statsAbsValueAndPrev.previous;
+        int i10 = (int) (d - d10);
+        if (d10 == 0.0d) {
+            abs = 0.0f;
+        } else {
+            abs = Math.abs((i10 / ((float) d10)) * 100.0f);
         }
-        MessagesController.getInstance(ba1Var.currentAccount).clearQueryTime();
-        fyVar.getMessagesStorage().clearLocalDatabase();
-    }
-
-    public static void n(fy fyVar) {
-        if (f36756b == null) {
-            ?? f3Var = new org.telegram.ui.ActionBar.f3(fyVar.getParentActivity(), false);
-            Activity parentActivity = fyVar.getParentActivity();
-            LinearLayout f9 = org.telegram.messenger.x3.f(parentActivity, 1);
-            org.telegram.ui.Components.rw0 rw0Var = new org.telegram.ui.Components.rw0(parentActivity, f3Var.currentAccount);
-            rw0Var.setStickerNum(7);
-            rw0Var.getImageReceiver().setAutoRepeat(1);
-            f9.addView(rw0Var, i7.f6.t(144, 144, 1, 0, 16, 0, 0));
-            TextView textView = new TextView(parentActivity);
-            textView.setGravity(8388611);
-            int i10 = org.telegram.ui.ActionBar.g6.f23169j5;
-            org.telegram.messenger.x3.t(textView, org.telegram.ui.ActionBar.g6.w0(null, i10, false), 1, 20.0f);
-            textView.setText(LocaleController.getString(R.string.SuggestClearDatabaseTitle));
-            f9.addView(textView, i7.f6.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
-            TextView textView2 = new TextView(parentActivity);
-            textView2.setGravity(8388611);
-            textView2.setTextSize(1, 15.0f);
-            textView2.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, i10, false));
-            textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString("SuggestClearDatabaseMessage", R.string.SuggestClearDatabaseMessage, AndroidUtilities.formatFileSize(fyVar.getMessagesStorage().getDatabaseSize()))));
-            f9.addView(textView2, i7.f6.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
-            TextView textView3 = new TextView(parentActivity);
-            textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-            textView3.setGravity(17);
-            textView3.setTextSize(1, 14.0f);
-            textView3.setTypeface(AndroidUtilities.bold());
-            textView3.setText(LocaleController.getString(R.string.ClearLocalDatabase));
-            textView3.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.Sh, false));
-            int dp = AndroidUtilities.dp(6.0f);
-            int w02 = org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.Oh, false);
-            int k9 = i0.a.k(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23062d6, false), 120);
-            textView3.setBackgroundDrawable(org.telegram.ui.ActionBar.g6.i0(dp, dp, dp, dp, w02, k9, k9));
-            f9.addView(textView3, i7.f6.d(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
-            textView3.setOnClickListener(new t70(26, f3Var, fyVar));
-            ScrollView scrollView = new ScrollView(parentActivity);
-            scrollView.addView(f9);
-            f3Var.setCustomView(scrollView);
-            f36756b = f3Var;
-            f3Var.show();
+        String formatWholeNumber = AndroidUtilities.formatWholeNumber((int) tL_statsAbsValueAndPrev.current, 0);
+        boolean z10 = true;
+        String str = "";
+        if (i10 != 0 && abs != 0.0f) {
+            int i11 = (int) abs;
+            if (abs == i11) {
+                Locale locale = Locale.ENGLISH;
+                StringBuilder sb = new StringBuilder();
+                if (i10 > 0) {
+                    str = "+";
+                }
+                sb.append(str);
+                sb.append(AndroidUtilities.formatWholeNumber(i10, 0));
+                str = sb.toString() + " (" + i11 + "%)";
+            } else {
+                Locale locale2 = Locale.ENGLISH;
+                StringBuilder sb2 = new StringBuilder();
+                if (i10 > 0) {
+                    str = "+";
+                }
+                sb2.append(str);
+                sb2.append(AndroidUtilities.formatWholeNumber(i10, 0));
+                str = String.format(locale2, "%s (%.1f%s)", sb2.toString(), Float.valueOf(abs), "%");
+            }
         }
-    }
-
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        f36756b = null;
+        if (i10 >= 0) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        if (i10 == 0 && tL_statsAbsValueAndPrev.current == 0.0d) {
+            z10 = false;
+        }
+        Boolean valueOf = Boolean.valueOf(z4);
+        Boolean valueOf2 = Boolean.valueOf(z10);
+        com.google.firebase.messaging.r rVar = new com.google.firebase.messaging.r(22, false);
+        rVar.f4028b = formatWholeNumber;
+        rVar.e = str;
+        rVar.f4029c = valueOf;
+        rVar.d = valueOf2;
+        return rVar;
     }
 }

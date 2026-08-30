@@ -1,18 +1,17 @@
 package j7;
-public final class z1 implements s9.d {
-    public static final z1 f11270a = new Object();
-    public static final s9.c f11271b = new s9.c("errorCode", u3.c.h(com.google.android.recaptcha.internal.a.r(h0.class, new e0(1))));
-    public static final s9.c f11272c = new s9.c("isColdCall", u3.c.h(com.google.android.recaptcha.internal.a.r(h0.class, new e0(2))));
-    public static final s9.c d = new s9.c("imageInfo", u3.c.h(com.google.android.recaptcha.internal.a.r(h0.class, new e0(3))));
-    public static final s9.c f11273e = new s9.c("detectorOptions", u3.c.h(com.google.android.recaptcha.internal.a.r(h0.class, new e0(4))));
+public final class z1 implements u9.d {
+    public static final z1 f9236a = new Object();
+
+    static {
+        e2.c.r(e2.c.n(i.class, e2.c.f(3, e2.c.n(i.class, e2.c.f(2, e2.c.n(i.class, new e(1)))))));
+    }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        w0 w0Var = (w0) obj;
-        s9.e eVar = (s9.e) obj2;
-        eVar.e(f11271b, w0Var.f11238a);
-        eVar.e(f11272c, w0Var.f11239b);
-        eVar.e(d, null);
-        eVar.e(f11273e, w0Var.f11240c);
+        if (obj == null) {
+            u9.e eVar = (u9.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

@@ -8,7 +8,7 @@ import java.util.Calendar;
 import java.util.Locale;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
-import org.telegram.ui.Components.voip.h2;
+import org.telegram.ui.Components.voip.f2;
 public class VoIPController {
     public static final int DATA_SAVING_ALWAYS = 2;
     public static final int DATA_SAVING_MOBILE = 1;
@@ -45,7 +45,7 @@ public class VoIPController {
     protected long nativeInst = nativeInit(new File(ApplicationLoader.applicationContext.getFilesDir(), "voip_persistent_state.json").getAbsolutePath());
 
     public interface ConnectionStateListener {
-        void onConnectionStateChanged(int i10, boolean z10);
+        void onConnectionStateChanged(int i10, boolean z4);
 
         void onSignalBarCountChanged(int i10);
     }
@@ -115,15 +115,15 @@ public class VoIPController {
 
     private native void nativeRequestCallUpgrade(long j10);
 
-    private native void nativeSetAudioOutputGainControlEnabled(long j10, boolean z10);
+    private native void nativeSetAudioOutputGainControlEnabled(long j10, boolean z4);
 
-    private native void nativeSetConfig(long j10, double d, double d10, int i10, boolean z10, boolean z11, boolean z12, String str, String str2, boolean z13);
+    private native void nativeSetConfig(long j10, double d, double d10, int i10, boolean z4, boolean z10, boolean z11, String str, String str2, boolean z12);
 
     private native void nativeSetEchoCancellationStrength(long j10, int i10);
 
-    private native void nativeSetEncryptionKey(long j10, byte[] bArr, boolean z10);
+    private native void nativeSetEncryptionKey(long j10, byte[] bArr, boolean z4);
 
-    private native void nativeSetMicMute(long j10, boolean z10);
+    private native void nativeSetMicMute(long j10, boolean z4);
 
     private static native void nativeSetNativeBufferSize(int i10);
 
@@ -208,9 +208,9 @@ public class VoIPController {
         nativeRequestCallUpgrade(this.nativeInst);
     }
 
-    public void setAudioOutputGainControlEnabled(boolean z10) {
+    public void setAudioOutputGainControlEnabled(boolean z4) {
         ensureNativeInstance();
-        nativeSetAudioOutputGainControlEnabled(this.nativeInst, z10);
+        nativeSetAudioOutputGainControlEnabled(this.nativeInst, z4);
     }
 
     public void setConfig(double r17, double r19, int r21, long r22) {
@@ -226,18 +226,18 @@ public class VoIPController {
         nativeSetEchoCancellationStrength(this.nativeInst, i10);
     }
 
-    public void setEncryptionKey(byte[] bArr, boolean z10) {
+    public void setEncryptionKey(byte[] bArr, boolean z4) {
         if (bArr.length == 256) {
             ensureNativeInstance();
-            nativeSetEncryptionKey(this.nativeInst, bArr, z10);
+            nativeSetEncryptionKey(this.nativeInst, bArr, z4);
             return;
         }
         throw new IllegalArgumentException("key length must be exactly 256 bytes but is " + bArr.length);
     }
 
-    public void setMicMute(boolean z10) {
+    public void setMicMute(boolean z4) {
         ensureNativeInstance();
-        nativeSetMicMute(this.nativeInst, z10);
+        nativeSetMicMute(this.nativeInst, z4);
     }
 
     public void setNetworkType(int i10) {
@@ -260,9 +260,9 @@ public class VoIPController {
     }
 
     private String getLogFilePath(long j10) {
-        File f9 = h2.f();
+        File f10 = f2.f();
         if (!BuildVars.DEBUG_VERSION) {
-            ArrayList arrayList = new ArrayList(Arrays.asList(f9.listFiles()));
+            ArrayList arrayList = new ArrayList(Arrays.asList(f10.listFiles()));
             while (arrayList.size() > 20) {
                 int i10 = 0;
                 File file = (File) arrayList.get(0);
@@ -279,6 +279,6 @@ public class VoIPController {
                 arrayList.remove(file);
             }
         }
-        return new File(f9, j10 + ".log").getAbsolutePath();
+        return new File(f10, j10 + ".log").getAbsolutePath();
     }
 }

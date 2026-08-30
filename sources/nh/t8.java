@@ -1,52 +1,28 @@
 package nh;
 
-import android.view.ViewGroup;
-public final class t8 extends f2.l {
-    public final y8 F;
+import android.animation.ValueAnimator;
+public final class t8 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f15942a;
+    public final w8 f15943b;
 
-    public t8(y8 y8Var) {
-        this.F = y8Var;
+    public t8(w8 w8Var, int i10) {
+        this.f15942a = i10;
+        this.f15943b = w8Var;
     }
 
     @Override
-    public final void M() {
-        ViewGroup viewGroup;
-        y8 y8Var = this.F;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) y8Var.S).containerView;
-        viewGroup.invalidate();
-        y8Var.f18904e.invalidate();
-    }
-
-    @Override
-    public final void O() {
-        ViewGroup viewGroup;
-        y8 y8Var = this.F;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) y8Var.S).containerView;
-        viewGroup.invalidate();
-        y8Var.f18904e.invalidate();
-    }
-
-    @Override
-    public final void P(f2.n1 n1Var) {
-        ViewGroup viewGroup;
-        y8 y8Var = this.F;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) y8Var.S).containerView;
-        viewGroup.invalidate();
-        y8Var.f18904e.invalidate();
-        y8Var.f18905f.invalidate();
-    }
-
-    @Override
-    public final void Q() {
-        ViewGroup viewGroup;
-        y8 y8Var = this.F;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) y8Var.S).containerView;
-        viewGroup.invalidate();
-        y8Var.f18904e.invalidate();
-    }
-
-    @Override
-    public final boolean t(f2.n1 n1Var) {
-        return true;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f15942a) {
+            case 0:
+                i9 i9Var = this.f15943b.F0;
+                i9Var.U = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                i9.k(i9Var);
+                return;
+            default:
+                i9 i9Var2 = this.f15943b.F0;
+                i9Var2.T = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                i9.k(i9Var2);
+                return;
+        }
     }
 }

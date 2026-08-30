@@ -1,35 +1,96 @@
 package org.telegram.ui.Components;
 
-import java.util.Arrays;
-import java.util.Comparator;
-public final class eg0 implements Comparator {
-    public final lg0 f28060a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.PhotoViewer;
+public final class eg0 implements Runnable {
+    public final int f24571a;
+    public final lg0 f24572b;
 
-    public eg0(lg0 lg0Var) {
-        this.f28060a = lg0Var;
-    }
-
-    public final int a(kg0 kg0Var) {
-        lg0 lg0Var = this.f28060a;
-        int size = lg0Var.f30320r.answers.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            if (Arrays.equals(lg0Var.f30320r.answers.get(i10).option, kg0Var.d)) {
-                return i10;
-            }
-        }
-        return 0;
+    public eg0(lg0 lg0Var, int i10) {
+        this.f24571a = i10;
+        this.f24572b = lg0Var;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int a2 = a((kg0) obj);
-        int a10 = a((kg0) obj2);
-        if (a2 > a10) {
-            return 1;
+    public final void run() {
+        boolean z4;
+        switch (this.f24571a) {
+            case 0:
+                this.f24572b.u();
+                return;
+            case 1:
+                lg0 lg0Var = this.f24572b;
+                PhotoViewer photoViewer = lg0Var.S;
+                if (photoViewer != null) {
+                    vf0 vf0Var = lg0Var.f26673r;
+                    if (vf0Var != null) {
+                        lg0Var.W = vf0Var.getCurrentPosition() / lg0Var.f26673r.getVideoDuration();
+                        lg0Var.X = lg0Var.f26673r.getBufferedPosition();
+                    } else {
+                        i71 i71Var = photoViewer.C2;
+                        if (i71Var != null) {
+                            float m9 = (float) lg0Var.m();
+                            lg0Var.W = ((float) i71Var.n()) / m9;
+                            lg0Var.X = ((float) i71Var.j()) / m9;
+                        } else {
+                            return;
+                        }
+                    }
+                    lg0Var.Y.invalidate();
+                    AndroidUtilities.runOnUIThread(lg0Var.f26661b0, 500L);
+                    return;
+                }
+                return;
+            case 2:
+                lg0 lg0Var2 = this.f24572b;
+                PhotoViewer photoViewer2 = lg0Var2.S;
+                if (photoViewer2 != null) {
+                    if ((photoViewer2.C2 != null || lg0Var2.f26673r != null) && !lg0Var2.Z && !lg0Var2.V && !lg0Var2.f26675w && !lg0Var2.f26674s.isInProgress() && lg0Var2.f26663c0) {
+                        i71 i71Var2 = lg0Var2.S.C2;
+                        if (lg0Var2.f26664d0[0] >= lg0Var2.t() * lg0Var2.G * 0.5f) {
+                            z4 = true;
+                        } else {
+                            z4 = false;
+                        }
+                        long l10 = lg0Var2.l();
+                        long m10 = lg0Var2.m();
+                        if (l10 != -9223372036854775807L && m10 >= 15000) {
+                            vf0 vf0Var2 = lg0Var2.f26673r;
+                            if (vf0Var2 != null) {
+                                PhotoViewer photoViewer3 = lg0Var2.S;
+                                photoViewer3.Z3.startRewind(vf0Var2, z4, lg0Var2.f26664d0[0], photoViewer3.f31840q1, lg0Var2.O);
+                            } else {
+                                PhotoViewer photoViewer4 = lg0Var2.S;
+                                photoViewer4.Z3.startRewind(i71Var2, z4, lg0Var2.f26664d0[0], photoViewer4.f31840q1, lg0Var2.O);
+                            }
+                            if (!lg0Var2.B) {
+                                lg0Var2.B = true;
+                                lg0Var2.y(true);
+                                if (!lg0Var2.f26667f0) {
+                                    AndroidUtilities.runOnUIThread(lg0Var2.f26668g0, 1500L);
+                                    lg0Var2.f26667f0 = true;
+                                    return;
+                                }
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                lg0 lg0Var3 = this.f24572b;
+                PhotoViewer photoViewer5 = lg0Var3.S;
+                if (photoViewer5 != null && photoViewer5.Z3.rewinding) {
+                    AndroidUtilities.runOnUIThread(lg0Var3.f26668g0, 1500L);
+                    return;
+                }
+                lg0Var3.B = false;
+                lg0Var3.y(false);
+                lg0Var3.f26667f0 = false;
+                return;
         }
-        if (a2 < a10) {
-            return -1;
-        }
-        return 0;
     }
 }

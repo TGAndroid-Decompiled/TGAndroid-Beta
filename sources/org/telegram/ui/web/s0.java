@@ -6,44 +6,43 @@ import android.os.Build;
 import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import nh.m6;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.f6;
 public final class s0 extends WebViewClient {
-    public final WebView f44195a;
-    public final t0 f44196b;
+    public final WebView f39625a;
+    public final t0 f39626b;
 
     public s0(t0 t0Var, WebView webView) {
-        this.f44196b = t0Var;
-        this.f44195a = webView;
+        this.f39626b = t0Var;
+        this.f39625a = webView;
     }
 
     @Override
     public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        c6 c6Var;
+        f6 f6Var;
         Integer valueOf;
         Boolean valueOf2;
-        w0 w0Var = this.f44196b.f44205e;
+        w0 w0Var = this.f39626b.e;
         if (Build.VERSION.SDK_INT >= 26) {
-            StringBuilder sb2 = new StringBuilder("newWebView.onRenderProcessGone priority=");
+            StringBuilder sb = new StringBuilder("newWebView.onRenderProcessGone priority=");
             if (renderProcessGoneDetail == null) {
                 valueOf = null;
             } else {
                 valueOf = Integer.valueOf(renderProcessGoneDetail.rendererPriorityAtExit());
             }
-            sb2.append(valueOf);
-            sb2.append(" didCrash=");
+            sb.append(valueOf);
+            sb.append(" didCrash=");
             if (renderProcessGoneDetail == null) {
                 valueOf2 = null;
             } else {
                 valueOf2 = Boolean.valueOf(renderProcessGoneDetail.didCrash());
             }
-            sb2.append(valueOf2);
-            w0Var.c(sb2.toString());
+            sb.append(valueOf2);
+            w0Var.c(sb.toString());
         } else {
             w0Var.c("newWebView.onRenderProcessGone");
         }
@@ -52,31 +51,31 @@ public final class s0 extends WebViewClient {
                 return true;
             }
             Context context = w0Var.getContext();
-            z0 z0Var = w0Var.M;
-            if (z0Var == null) {
-                c6Var = null;
+            a1 a1Var = w0Var.N;
+            if (a1Var == null) {
+                f6Var = null;
             } else {
-                c6Var = z0Var.f44267e;
+                f6Var = a1Var.e;
             }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, c6Var);
-            alertDialog$Builder.f22714a.N = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f22714a.P = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new m6(this, 26));
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
+            alertDialog$Builder.f19503a.O = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f19503a.Q = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new o0(this, 1));
             alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.f22714a.setOnDismissListener(new cg.d0(this, 10));
+            alertDialog$Builder.f19503a.setOnDismissListener(new eg.d0(this, 10));
             alertDialog$Builder.o();
             return true;
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             return false;
         }
     }
 
     @Override
     public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        z0 z0Var = this.f44196b.f44205e.M;
-        if (z0Var != null) {
-            z0Var.D(Uri.parse(str), null, !z0Var.f44275k0, false, false);
-            this.f44195a.destroy();
+        a1 a1Var = this.f39626b.e.N;
+        if (a1Var != null) {
+            a1Var.D(Uri.parse(str), null, !a1Var.f39435l0, false, false);
+            this.f39625a.destroy();
         }
         return true;
     }

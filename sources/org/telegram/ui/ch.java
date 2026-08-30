@@ -1,39 +1,42 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-public final class ch implements Utilities.Callback {
-    public final int f37121a;
-    public final long f37122b;
-    public final long f37123c;
-    public final Long d;
-    public final Object f37124e;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ch implements Runnable {
+    public final int f33372a;
+    public final EditTextBoldCursor f33373b;
 
-    public ch(Object obj, long j10, long j11, Long l10, int i10) {
-        this.f37121a = i10;
-        this.f37124e = obj;
-        this.f37122b = j10;
-        this.f37123c = j11;
-        this.d = l10;
+    public ch(int i10, EditTextBoldCursor editTextBoldCursor) {
+        this.f33372a = i10;
+        this.f33373b = editTextBoldCursor;
     }
 
     @Override
-    public final void run(Object obj) {
-        int i10;
-        boolean z10;
-        switch (this.f37121a) {
+    public final void run() {
+        switch (this.f33372a) {
             case 0:
-                tn.Y((tn) this.f37124e, this.f37122b, this.f37123c, this.d, (Boolean) obj);
+                AndroidUtilities.showKeyboard(this.f33373b);
+                return;
+            case 1:
+                EditTextBoldCursor editTextBoldCursor = this.f33373b;
+                editTextBoldCursor.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor);
+                return;
+            case 2:
+                EditTextBoldCursor editTextBoldCursor2 = this.f33373b;
+                editTextBoldCursor2.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor2);
+                return;
+            case 3:
+                AndroidUtilities.showKeyboard(this.f33373b);
+                return;
+            case 4:
+                AndroidUtilities.showKeyboard(this.f33373b);
                 return;
             default:
-                Boolean bool = (Boolean) obj;
-                i10 = ((org.telegram.ui.ActionBar.o2) ((ej) this.f37124e).f37848b).currentAccount;
-                jh.s7 y8 = jh.s7.y(i10, false);
-                if (this.d.longValue() > 0 && bool.booleanValue()) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                y8.i0(this.f37122b, this.f37123c, z10, true);
+                EditTextBoldCursor editTextBoldCursor3 = this.f33373b;
+                editTextBoldCursor3.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor3);
                 return;
         }
     }

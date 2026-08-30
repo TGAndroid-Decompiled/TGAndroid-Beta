@@ -1,41 +1,128 @@
 package l7;
 
-import java.util.Set;
-public abstract class j extends e implements Set {
-    public transient i f14840b;
+import java.util.AbstractSet;
+import java.util.Iterator;
+import java.util.Map;
+public final class j extends AbstractSet {
+    public final int f11495a;
+    public final n f11496b;
 
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this || obj == this) {
-            return true;
-        }
-        if (obj instanceof Set) {
-            Set set = (Set) obj;
-            try {
-                if (size() == set.size()) {
-                    if (containsAll(set)) {
-                        return true;
-                    }
-                    return false;
-                }
-            } catch (ClassCastException | NullPointerException unused) {
-            }
-        }
-        return false;
+    public j(n nVar, int i10) {
+        this.f11495a = i10;
+        this.f11496b = nVar;
     }
 
     @Override
-    public final int hashCode() {
-        int i10;
-        int i11 = 0;
-        for (Object obj : this) {
-            if (obj != null) {
-                i10 = obj.hashCode();
-            } else {
-                i10 = 0;
-            }
-            i11 += i10;
+    public final void clear() {
+        switch (this.f11495a) {
+            case 0:
+                this.f11496b.clear();
+                return;
+            default:
+                this.f11496b.clear();
+                return;
         }
-        return i11;
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        switch (this.f11495a) {
+            case 0:
+                n nVar = this.f11496b;
+                Map a2 = nVar.a();
+                if (a2 != null) {
+                    return a2.entrySet().contains(obj);
+                }
+                if (obj instanceof Map.Entry) {
+                    Map.Entry entry = (Map.Entry) obj;
+                    int e = nVar.e(entry.getKey());
+                    if (e != -1) {
+                        Object[] objArr = nVar.d;
+                        objArr.getClass();
+                        if (k7.i.a(objArr[e], entry.getValue())) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            default:
+                return this.f11496b.containsKey(obj);
+        }
+    }
+
+    @Override
+    public final Iterator iterator() {
+        switch (this.f11495a) {
+            case 0:
+                n nVar = this.f11496b;
+                Map a2 = nVar.a();
+                if (a2 != null) {
+                    return a2.entrySet().iterator();
+                }
+                return new i(nVar, 1);
+            default:
+                n nVar2 = this.f11496b;
+                Map a10 = nVar2.a();
+                if (a10 != null) {
+                    return a10.keySet().iterator();
+                }
+                return new i(nVar2, 0);
+        }
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        switch (this.f11495a) {
+            case 0:
+                n nVar = this.f11496b;
+                Map a2 = nVar.a();
+                if (a2 != null) {
+                    return a2.entrySet().remove(obj);
+                }
+                if (obj instanceof Map.Entry) {
+                    Map.Entry entry = (Map.Entry) obj;
+                    if (!nVar.c()) {
+                        int d = nVar.d();
+                        Object key = entry.getKey();
+                        Object value = entry.getValue();
+                        Object obj2 = nVar.f11561a;
+                        obj2.getClass();
+                        int[] iArr = nVar.f11562b;
+                        iArr.getClass();
+                        Object[] objArr = nVar.f11563c;
+                        objArr.getClass();
+                        Object[] objArr2 = nVar.d;
+                        objArr2.getClass();
+                        int a10 = j7.y8.a(key, value, d, obj2, iArr, objArr, objArr2);
+                        if (a10 != -1) {
+                            nVar.b(a10, d);
+                            nVar.f11564f--;
+                            nVar.e += 32;
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            default:
+                n nVar2 = this.f11496b;
+                Map a11 = nVar2.a();
+                if (a11 != null) {
+                    return a11.keySet().remove(obj);
+                }
+                if (nVar2.g(obj) == n.f11560s) {
+                    return false;
+                }
+                return true;
+        }
+    }
+
+    @Override
+    public final int size() {
+        switch (this.f11495a) {
+            case 0:
+                return this.f11496b.size();
+            default:
+                return this.f11496b.size();
+        }
     }
 }

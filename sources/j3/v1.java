@@ -1,20 +1,52 @@
 package j3;
-public abstract class v1 extends Exception implements g {
-    public final int f10822a;
-    public final long f10823b;
+
+import java.util.Locale;
+public final class v1 implements g {
+    public static final v1 d = new v1(1.0f, 1.0f);
+    public final float f8856a;
+    public final float f8857b;
+    public final int f8858c;
 
     static {
-        int i10 = f5.d0.f6579a;
+        int i10 = h5.d0.f6937a;
         Integer.toString(0, 36);
         Integer.toString(1, 36);
-        Integer.toString(2, 36);
-        Integer.toString(3, 36);
-        Integer.toString(4, 36);
     }
 
-    public v1(String str, Throwable th2, int i10, long j10) {
-        super(str, th2);
-        this.f10822a = i10;
-        this.f10823b = j10;
+    public v1(float f10, float f11) {
+        boolean z4;
+        if (f10 > 0.0f) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        h5.a.f(z4);
+        h5.a.f(f11 > 0.0f);
+        this.f8856a = f10;
+        this.f8857b = f11;
+        this.f8858c = Math.round(f10 * 1000.0f);
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && v1.class == obj.getClass()) {
+            v1 v1Var = (v1) obj;
+            if (this.f8856a == v1Var.f8856a && this.f8857b == v1Var.f8857b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Float.floatToRawIntBits(this.f8857b) + ((Float.floatToRawIntBits(this.f8856a) + 527) * 31);
+    }
+
+    public final String toString() {
+        Object[] objArr = {Float.valueOf(this.f8856a), Float.valueOf(this.f8857b)};
+        int i10 = h5.d0.f6937a;
+        return String.format(Locale.US, "PlaybackParameters(speed=%.2f, pitch=%.2f)", objArr);
     }
 }

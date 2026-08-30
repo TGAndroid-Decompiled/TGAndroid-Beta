@@ -1,25 +1,44 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-public final class l60 extends org.telegram.ui.Cells.sa {
-    public final TextView T;
-    public final TextView U;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class l60 implements org.telegram.ui.mb0 {
+    public final m60 f26579a;
 
-    public l60(Context context) {
-        super(context, 6, 0, true);
-        LinearLayout g10 = org.telegram.messenger.x3.g(context, 1);
-        TextView textView = new TextView(context);
-        this.T = textView;
-        org.telegram.messenger.x3.t(textView, org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.G6, false), 1, 16.0f);
-        g10.addView(textView, i7.f6.q(-2, -2, 5));
-        TextView textView2 = new TextView(context);
-        this.U = textView2;
-        textView2.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23450z6, false));
-        textView2.setTextSize(1, 13.0f);
-        g10.addView(textView2, i7.f6.t(-2, -2, 5, 0, 1, 0, 0));
-        addView(g10, i7.f6.d(-2, -2.0f, (LocaleController.isRTL ? 3 : 5) | 16, 18.0f, 0.0f, 18.0f, 0.0f));
+    public l60(m60 m60Var) {
+        this.f26579a = m60Var;
+    }
+
+    @Override
+    public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
+        int i10;
+        org.telegram.ui.eb ebVar = this.f26579a.f26951a.f27204c.f28646g0;
+        if (ebVar != null) {
+            TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
+            TLRPC.TL_channelAdminLogEventActionExportedInviteEdit tL_channelAdminLogEventActionExportedInviteEdit = new TLRPC.TL_channelAdminLogEventActionExportedInviteEdit();
+            tL_channelAdminLogEventActionExportedInviteEdit.new_invite = tL_chatInviteExported;
+            tL_channelAdminLogEventActionExportedInviteEdit.prev_invite = tL_chatInviteExported;
+            tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteEdit;
+            tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
+            org.telegram.ui.sb sbVar = ebVar.f33973a;
+            tL_channelAdminLogEvent.user_id = sbVar.getAccountInstance().getUserConfig().clientUserId;
+            i10 = ((org.telegram.ui.ActionBar.p2) sbVar).currentAccount;
+            if (new MessageObject(i10, tL_channelAdminLogEvent, (ArrayList<MessageObject>) sbVar.f38268o0, (HashMap<String, ArrayList<MessageObject>>) sbVar.f38267n0, sbVar.f38273s, sbVar.U, true).contentType >= 0) {
+                sbVar.R0();
+                sbVar.F.l();
+                org.telegram.ui.sb.K0(sbVar);
+            }
+        }
+    }
+
+    @Override
+    public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    }
+
+    @Override
+    public final void c(TLObject tLObject) {
     }
 }

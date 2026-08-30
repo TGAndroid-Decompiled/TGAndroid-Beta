@@ -1,56 +1,61 @@
 package org.telegram.ui;
-public final class er implements org.telegram.ui.Cells.y4, org.telegram.ui.Components.kv0 {
-    public final int f37896a;
-    public final fr f37897b;
 
-    public er(fr frVar, int i10) {
-        this.f37896a = i10;
-        this.f37897b = frVar;
+import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class er implements ir {
+    public final pr f34071a;
+
+    public er(pr prVar) {
+        this.f34071a = prVar;
     }
 
     @Override
-    public boolean d(org.telegram.ui.Cells.z4 z4Var, boolean z10) {
-        jr jrVar = this.f37897b.d;
-        return jrVar.h0(jrVar.f39618a.E(((Integer) z4Var.getTag()).intValue()), !z10, z4Var);
+    public final void a(TLRPC.User user) {
+        pr.c0(this.f34071a, user);
     }
 
     @Override
-    public void h(int i10) {
-        boolean z10;
-        switch (this.f37896a) {
-            case 1:
-                jr jrVar = this.f37897b.d;
-                if (jrVar.f39659s != null) {
-                    int i11 = jrVar.l1;
-                    if ((i11 > 0 && i10 == 0) || (i11 == 0 && i10 > 0)) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    jrVar.l1 = i10;
-                    if (z10) {
-                        dr w02 = jrVar.w0();
-                        jrVar.B0();
-                        jrVar.A0(w02);
-                    }
-                    jrVar.f39618a.m(jrVar.L0);
-                    return;
-                }
-                return;
-            default:
-                this.f37897b.d.f39651o1 = i10 + 1;
-                return;
+    public final void b(long j10) {
+        pr prVar = this.f34071a;
+        ArrayList arrayList = prVar.C;
+        a0.h hVar = prVar.H;
+        TLRPC.User user = prVar.getMessagesController().getUser(Long.valueOf(j10));
+        if (user != null) {
+            AndroidUtilities.runOnUIThread(new hp(6, this, user), 200L);
+        }
+        if (hVar.f(j10) == null) {
+            jr w02 = prVar.w0();
+            TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
+            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+            tL_channelParticipantAdmin.peer = tL_peerUser;
+            tL_peerUser.user_id = user.f19331id;
+            tL_channelParticipantAdmin.date = prVar.getConnectionsManager().getCurrentTime();
+            tL_channelParticipantAdmin.promoted_by = prVar.getAccountInstance().getUserConfig().clientUserId;
+            arrayList.add(tL_channelParticipantAdmin);
+            hVar.k(tL_channelParticipantAdmin, user.f19331id);
+            Collections.sort(arrayList, new nh.e4(15));
+            prVar.A0(w02);
         }
     }
 
     @Override
-    public void m() {
-        int i10 = this.f37896a;
+    public final void c(long j10, TLObject tLObject) {
+        pr prVar = this.f34071a;
+        ArrayList arrayList = prVar.C;
+        a0.h hVar = prVar.H;
+        if (tLObject != null && hVar.f(j10) == null) {
+            jr w02 = prVar.w0();
+            arrayList.add(tLObject);
+            hVar.k(tLObject, j10);
+            Collections.sort(arrayList, new nh.e4(15));
+            prVar.A0(w02);
+        }
     }
 
-    private final void a() {
-    }
-
-    private final void b() {
+    @Override
+    public final void d(long j10) {
     }
 }

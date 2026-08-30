@@ -1,28 +1,60 @@
 package f7;
 
-import java.util.concurrent.Callable;
-public final class q implements Callable {
-    public final int f6675a;
-    public final ab.l f6676b;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+public abstract class q {
+    public static final StringBuilder f6040a;
 
-    public q(ab.l lVar, int i10) {
-        this.f6675a = i10;
-        this.f6676b = lVar;
+    static {
+        Locale locale = Locale.ROOT;
+        new SimpleDateFormat("MM-dd HH:mm:ss.SSS", locale);
+        new SimpleDateFormat("MM-dd HH:mm:ss", locale);
+        f6040a = new StringBuilder(33);
     }
 
-    @Override
-    public final Object call() {
-        switch (this.f6675a) {
-            case 0:
-                return this.f6676b.a();
-            case 1:
-                return this.f6676b.a();
-            case 2:
-                return this.f6676b.a();
-            case 3:
-                return this.f6676b.a();
-            default:
-                return this.f6676b.a();
+    public static void a(StringBuilder sb, long j10) {
+        int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
+        if (i10 == 0) {
+            sb.append("0s");
+            return;
+        }
+        sb.ensureCapacity(sb.length() + 27);
+        boolean z4 = false;
+        if (i10 < 0) {
+            sb.append("-");
+            if (j10 != Long.MIN_VALUE) {
+                j10 = -j10;
+            } else {
+                j10 = Long.MAX_VALUE;
+                z4 = true;
+            }
+        }
+        if (j10 >= 86400000) {
+            sb.append(j10 / 86400000);
+            sb.append("d");
+            j10 %= 86400000;
+        }
+        if (true == z4) {
+            j10 = 25975808;
+        }
+        if (j10 >= 3600000) {
+            sb.append(j10 / 3600000);
+            sb.append("h");
+            j10 %= 3600000;
+        }
+        if (j10 >= 60000) {
+            sb.append(j10 / 60000);
+            sb.append("m");
+            j10 %= 60000;
+        }
+        if (j10 >= 1000) {
+            sb.append(j10 / 1000);
+            sb.append("s");
+            j10 %= 1000;
+        }
+        if (j10 > 0) {
+            sb.append(j10);
+            sb.append("ms");
         }
     }
 }

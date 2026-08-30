@@ -1,78 +1,39 @@
 package f7;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-public abstract class m implements ExecutorService, AutoCloseable {
-    @Override
-    public final boolean awaitTermination(long j10, TimeUnit timeUnit) {
-        return ((ab.i) this).f314a.awaitTermination(j10, timeUnit);
+import android.app.PendingIntent;
+import android.os.Build;
+import android.os.IBinder;
+import android.os.Parcel;
+import android.os.Parcelable;
+import j7.f5;
+public final class m extends c6.a {
+    public static final Parcelable.Creator<m> CREATOR = new n(0);
+    public final int f6030a;
+    public final IBinder f6031b;
+    public final IBinder f6032c;
+    public final PendingIntent d;
+    public final String e;
+    public final String f6033f;
+
+    public m(int i10, IBinder iBinder, IBinder iBinder2, PendingIntent pendingIntent, String str, String str2) {
+        this.f6030a = i10;
+        this.f6031b = iBinder;
+        this.f6032c = iBinder2;
+        this.d = pendingIntent;
+        this.e = Build.VERSION.SDK_INT >= 30 ? null : str;
+        this.f6033f = str2;
     }
 
     @Override
-    public final void close() {
-        b9.b.f(this);
-    }
-
-    @Override
-    public final List invokeAll(Collection collection) {
-        return ((ab.i) this).f314a.invokeAll(collection);
-    }
-
-    @Override
-    public final Object invokeAny(Collection collection) {
-        return ((ab.i) this).f314a.invokeAny(collection);
-    }
-
-    @Override
-    public final boolean isShutdown() {
-        return ((ab.i) this).f314a.isShutdown();
-    }
-
-    @Override
-    public final boolean isTerminated() {
-        return ((ab.i) this).f314a.isTerminated();
-    }
-
-    @Override
-    public final void shutdown() {
-        ((ab.i) this).f314a.shutdown();
-    }
-
-    @Override
-    public final List shutdownNow() {
-        return ((ab.i) this).f314a.shutdownNow();
-    }
-
-    @Override
-    public final Future submit(Runnable runnable) {
-        return ((ab.i) this).f314a.submit(runnable);
-    }
-
-    public final String toString() {
-        return ((ab.i) this).f314a.toString();
-    }
-
-    @Override
-    public final List invokeAll(Collection collection, long j10, TimeUnit timeUnit) {
-        return ((ab.i) this).f314a.invokeAll(collection, j10, timeUnit);
-    }
-
-    @Override
-    public final Object invokeAny(Collection collection, long j10, TimeUnit timeUnit) {
-        return ((ab.i) this).f314a.invokeAny(collection, j10, timeUnit);
-    }
-
-    @Override
-    public final Future submit(Runnable runnable, Object obj) {
-        return ((ab.i) this).f314a.submit(runnable, obj);
-    }
-
-    @Override
-    public final Future submit(Callable callable) {
-        return ((ab.i) this).f314a.submit(callable);
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q10 = f5.q(parcel, 20293);
+        f5.s(parcel, 1, 4);
+        parcel.writeInt(this.f6030a);
+        f5.f(parcel, 2, this.f6031b);
+        f5.f(parcel, 3, this.f6032c);
+        f5.k(parcel, 4, this.d, i10);
+        f5.l(parcel, 5, this.e);
+        f5.l(parcel, 6, this.f6033f);
+        f5.r(parcel, q10);
     }
 }

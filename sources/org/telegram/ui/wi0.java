@@ -1,33 +1,45 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class wi0 extends ig.k {
-    public boolean F;
-    public final zi0 G;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+public final class wi0 extends org.telegram.ui.Components.zn {
+    public final aj0 f39751s0;
 
-    public wi0(zi0 zi0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, c6Var);
-        this.G = zi0Var;
+    public wi0(aj0 aj0Var, Context context) {
+        super(context, null, false, null);
+        this.f39751s0 = aj0Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        int dp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
-        zi0 zi0Var = this.G;
-        zi0Var.f45244h0 = dp;
-        zi0Var.f45243g0.G();
-        if (this.F != zi0Var.isKeyboardVisible()) {
-            boolean isKeyboardVisible = zi0Var.isKeyboardVisible();
-            this.F = isKeyboardVisible;
-            if (isKeyboardVisible) {
-                org.telegram.ui.Components.jl0 jl0Var = zi0Var.d;
-                uh.n nVar = new uh.n(zi0Var.getContext(), 2, 0.6f);
-                nVar.f6373a = 1;
-                nVar.f49306p = AndroidUtilities.dp(36.0f);
-                jl0Var.getLayoutManager().w0(nVar);
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        aj0 aj0Var = this.f39751s0;
+        aj0Var.T.setImageCoords(aj0Var.Y.getAvatarImageView().getX(), aj0Var.Y.getAvatarImageView().getY(), aj0Var.Y.getAvatarImageView().getWidth(), aj0Var.Y.getAvatarImageView().getHeight());
+        if (aj0Var.V) {
+            canvas.save();
+            canvas.scale(0.9f, 0.9f, aj0Var.T.getCenterX(), aj0Var.T.getCenterY());
+            aj0Var.T.draw(canvas);
+            canvas.restore();
         }
+        if (aj0Var.U) {
+            int centerX = (int) (aj0Var.T.getCenterX() - (org.telegram.ui.ActionBar.j6.U0.getIntrinsicWidth() / 2));
+            int centerY = (int) (aj0Var.T.getCenterY() - (org.telegram.ui.ActionBar.j6.U0.getIntrinsicHeight() / 2));
+            Drawable drawable = org.telegram.ui.ActionBar.j6.U0;
+            drawable.setBounds(centerX, centerY, drawable.getIntrinsicWidth() + centerX, org.telegram.ui.ActionBar.j6.U0.getIntrinsicHeight() + centerY);
+            org.telegram.ui.ActionBar.j6.U0.draw(canvas);
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f39751s0.T.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f39751s0.T.onDetachedFromWindow();
     }
 }

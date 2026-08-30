@@ -1,15 +1,19 @@
 package ph;
+public final class m2 extends f2.w {
+    public final a3 Q;
 
-import android.graphics.Point;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class m2 extends org.telegram.ui.ActionBar.l {
+    public m2(a3 a3Var) {
+        super(3);
+        this.Q = a3Var;
+    }
+
     @Override
-    public final void onMeasure(int i10, int i11) {
-        if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
-            Point point = AndroidUtilities.displaySize;
-            i10 = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
+    public final void b0(bf.f fVar, f2.i1 i1Var) {
+        super.b0(fVar, i1Var);
+        a3 a3Var = this.Q;
+        if (a3Var.R) {
+            a3Var.R = false;
+            a3Var.a();
         }
-        super.onMeasure(i10, i11);
     }
 }

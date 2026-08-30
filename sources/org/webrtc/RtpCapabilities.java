@@ -59,10 +59,10 @@ public class RtpCapabilities {
         private final int preferredId;
         private final String uri;
 
-        public HeaderExtensionCapability(String str, int i10, boolean z10) {
+        public HeaderExtensionCapability(String str, int i10, boolean z4) {
             this.uri = str;
             this.preferredId = i10;
-            this.preferredEncrypted = z10;
+            this.preferredEncrypted = z4;
         }
 
         public boolean getPreferredEncrypted() {

@@ -2,40 +2,41 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ProfileActivity;
-public final class yn0 extends a8 {
-    public final Context A;
-    public final Object B;
-    public final int f35109y;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class yn0 extends rs {
+    public final org.telegram.ui.oy f31061a0;
+    public final org.telegram.ui.xx f31062b0;
 
-    public yn0(Object obj, Context context, Context context2, int i10) {
-        super(context);
-        this.f35109y = i10;
-        this.B = obj;
-        this.A = context2;
+    public yn0(org.telegram.ui.xx xxVar, sl0 sl0Var, Context context, int i10, int i11, org.telegram.ui.oy oyVar) {
+        super(sl0Var, context, i10, i11);
+        this.f31062b0 = xxVar;
+        this.f31061a0 = oyVar;
     }
 
     @Override
-    public final TextView a() {
-        switch (this.f35109y) {
-            case 0:
-                n90 n90Var = new n90(this.A);
-                n90Var.setTextColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.Si, ((ao0) this.B).I));
-                n90Var.setTextSize(1, 12.0f);
-                n90Var.setEllipsize(TextUtils.TruncateAt.END);
-                n90Var.setSingleLine(true);
-                n90Var.setPadding(AndroidUtilities.dp(0.0f), 0, AndroidUtilities.dp(0.0f), AndroidUtilities.dp(0.0f));
-                return n90Var;
-            default:
-                TextView textView = new TextView(this.A);
-                textView.setTextColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.Pi, ((ProfileActivity) this.B).f36129v0));
-                textView.setTextSize(0, AndroidUtilities.dp(13.5f));
-                textView.setSingleLine(true);
-                textView.setEllipsize(TextUtils.TruncateAt.END);
-                textView.setGravity(3);
-                return textView;
+    public final void N(boolean z4) {
+        boolean z10;
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        ArrayList arrayList3;
+        ArrayList arrayList4;
+        super.N(z4);
+        qn0 qn0Var = this.f31062b0.f24320d0;
+        if (!this.T && !this.U && (arrayList = this.M) != null && arrayList.isEmpty() && (arrayList2 = this.N) != null && arrayList2.isEmpty() && (arrayList3 = this.P) != null && arrayList3.isEmpty() && (arrayList4 = this.O) != null && arrayList4.isEmpty()) {
+            z10 = false;
+        } else {
+            z10 = true;
         }
+        qn0Var.e(z10, z4);
+        if (TextUtils.isEmpty(this.Y)) {
+            qn0Var.d.setText(LocaleController.getString(R.string.NoChannelsTitle));
+            qn0Var.e.setVisibility(0);
+            qn0Var.e.setText(LocaleController.getString(R.string.NoChannelsMessage));
+            return;
+        }
+        qn0Var.d.setText(LocaleController.getString(R.string.NoResult));
+        qn0Var.e.setVisibility(8);
     }
 }

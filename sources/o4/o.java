@@ -1,97 +1,52 @@
 package o4;
 
-import android.os.Handler;
-import com.google.android.exoplayer2.upstream.r;
-import f5.d0;
-import j3.t0;
-import j3.t1;
-import j3.u0;
-import j7.l1;
-import l4.b1;
-import l4.w0;
-import o3.v;
-import o3.w;
-public final class o implements w {
-    public final b1 f19201a;
-    public final u0 f19202b = new Object();
-    public final b4.e f19203c = new b4.e();
-    public long d = -9223372036854775807L;
-    public final p f19204e;
+import j3.m2;
+import j3.n2;
+import j3.o2;
+public final class o extends h {
+    public static final Object e = new Object();
+    public final Object f16388c;
+    public final Object d;
 
-    public o(p pVar, r rVar) {
-        this.f19204e = pVar;
-        this.f19201a = new b1(rVar, null, null);
+    public o(o2 o2Var, Object obj, Object obj2) {
+        super(o2Var);
+        this.f16388c = obj;
+        this.d = obj2;
     }
 
     @Override
-    public final int a(com.google.android.exoplayer2.upstream.j jVar, int i10, boolean z10) {
-        b1 b1Var = this.f19201a;
-        b1Var.getClass();
-        return b1Var.C(jVar, i10, z10);
-    }
-
-    @Override
-    public final void b(t0 t0Var) {
-        this.f19201a.b(t0Var);
-    }
-
-    @Override
-    public final void c(long j10, int i10, int i11, int i12, v vVar) {
-        long g10;
-        long j11;
-        this.f19201a.c(j10, i10, i11, i12, vVar);
-        while (this.f19201a.u(false)) {
-            b4.e eVar = this.f19203c;
-            eVar.clear();
-            if (this.f19201a.z(this.f19202b, eVar, 0, false) == -4) {
-                eVar.c();
-            } else {
-                eVar = null;
-            }
-            if (eVar != null) {
-                long j12 = eVar.d;
-                b4.c a2 = this.f19204e.f19207c.a(eVar);
-                if (a2 != null) {
-                    d4.a aVar = (d4.a) a2.f1919a[0];
-                    String str = aVar.f5302a;
-                    String str2 = aVar.f5303b;
-                    if ("urn:mpeg:dash:event:2012".equals(str) && ("1".equals(str2) || "2".equals(str2) || "3".equals(str2))) {
-                        try {
-                            j11 = d0.K(d0.l(aVar.f5305e));
-                        } catch (t1 unused) {
-                            j11 = -9223372036854775807L;
-                        }
-                        if (j11 != -9223372036854775807L) {
-                            n nVar = new n(j12, j11);
-                            Handler handler = this.f19204e.d;
-                            handler.sendMessage(handler.obtainMessage(1, nVar));
-                        }
-                    }
-                }
-            }
+    public final int b(Object obj) {
+        Object obj2;
+        if (e.equals(obj) && (obj2 = this.d) != null) {
+            obj = obj2;
         }
-        b1 b1Var = this.f19201a;
-        w0 w0Var = b1Var.f14266a;
-        synchronized (b1Var) {
-            int i13 = b1Var.f14282s;
-            if (i13 == 0) {
-                g10 = -1;
-            } else {
-                g10 = b1Var.g(i13);
-            }
+        return this.f16346b.b(obj);
+    }
+
+    @Override
+    public final m2 f(int i10, m2 m2Var, boolean z4) {
+        this.f16346b.f(i10, m2Var, z4);
+        if (h5.d0.a(m2Var.f8703b, this.d) && z4) {
+            m2Var.f8703b = e;
         }
-        w0Var.b(g10);
+        return m2Var;
     }
 
     @Override
-    public final void d(int i10, f5.w wVar) {
-        b1 b1Var = this.f19201a;
-        b1Var.getClass();
-        b1Var.d(i10, wVar);
+    public final Object l(int i10) {
+        Object l10 = this.f16346b.l(i10);
+        if (h5.d0.a(l10, this.d)) {
+            return e;
+        }
+        return l10;
     }
 
     @Override
-    public final void e(int i10, f5.w wVar) {
-        l1.a(this, wVar, i10);
+    public final n2 m(int i10, n2 n2Var, long j10) {
+        this.f16346b.m(i10, n2Var, j10);
+        if (h5.d0.a(n2Var.f8749a, this.f16388c)) {
+            n2Var.f8749a = n2.E;
+        }
+        return n2Var;
     }
 }

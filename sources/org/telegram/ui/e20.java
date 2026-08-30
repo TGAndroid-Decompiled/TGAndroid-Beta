@@ -1,32 +1,89 @@
 package org.telegram.ui;
+public final class e20 implements org.telegram.ui.Components.jo0 {
+    public final int f33871a;
+    public final fg.a f33872b;
 
-import android.view.View;
-public final class e20 implements View.OnClickListener {
-    public final int f37682a;
-    public final org.telegram.ui.Cells.y1[] f37683b;
-
-    public e20(org.telegram.ui.Cells.y1[] y1VarArr, int i10) {
-        this.f37682a = i10;
-        this.f37683b = y1VarArr;
+    public e20(fg.a aVar, int i10) {
+        this.f33871a = i10;
+        this.f33872b = aVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f37682a) {
+    public final void B() {
+        int i10 = this.f33871a;
+    }
+
+    @Override
+    public final void Y(float f10, boolean z4) {
+        switch (this.f33871a) {
             case 0:
-                Integer num = (Integer) view.getTag();
-                int intValue = num.intValue();
-                org.telegram.ui.Cells.y1[] y1VarArr = this.f37683b;
-                y1VarArr[intValue].c(!y1VarArr[num.intValue()].b(), true);
+                fg.j jVar = this.f33872b.f6119c;
+                if (jVar != null) {
+                    jVar.v = f10 * 2.0f;
+                    return;
+                }
                 return;
             case 1:
-                org.telegram.ui.Cells.y1 y1Var = this.f37683b[0];
-                y1Var.c(!y1Var.b(), true);
+                fg.j jVar2 = this.f33872b.f6119c;
+                if (jVar2 != null) {
+                    jVar2.f6187w = f10 * 2.0f;
+                    return;
+                }
+                return;
+            case 2:
+                fg.j jVar3 = this.f33872b.f6119c;
+                if (jVar3 != null) {
+                    jVar3.f6188x = f10;
+                    return;
+                }
                 return;
             default:
-                org.telegram.ui.Cells.y1 y1Var2 = this.f37683b[0];
-                y1Var2.c(!y1Var2.b(), true);
+                fg.j jVar4 = this.f33872b.f6119c;
+                if (jVar4 != null) {
+                    jVar4.A = f10 * 2.0f;
+                    return;
+                }
                 return;
         }
+    }
+
+    @Override
+    public final CharSequence getContentDescription() {
+        switch (this.f33871a) {
+            case 0:
+                return null;
+            case 1:
+                return null;
+            case 2:
+                return null;
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public final int j0() {
+        switch (this.f33871a) {
+            case 0:
+                return 0;
+            case 1:
+                return 0;
+            case 2:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
+    }
+
+    private final void c() {
+    }
+
+    private final void d() {
     }
 }

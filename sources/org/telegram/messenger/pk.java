@@ -1,34 +1,51 @@
 package org.telegram.messenger;
 
-import android.icu.text.Collator;
-import java.util.Comparator;
-import java.util.HashMap;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.TranslateController;
-public final class pk implements Comparator {
-    public final int f21289a;
-    public final Object f21290b;
+import java.io.Serializable;
+import java.util.ArrayList;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class pk implements RequestDelegate {
+    public final int f18163a = 0;
+    public final boolean f18164b;
+    public final NotificationCenter.NotificationCenterDelegate f18165c;
+    public final Serializable d;
+    public final Object e;
+    public final Serializable f18166f;
+    public final Object f18167g;
+    public final Object h;
 
-    public pk(Object obj, int i10) {
-        this.f21289a = i10;
-        this.f21290b = obj;
+    public pk(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, SendMessagesHelper.DelayedMessage delayedMessage, SendMessagesHelper sendMessagesHelper, TLObject tLObject, boolean z4) {
+        this.f18165c = sendMessagesHelper;
+        this.d = arrayList;
+        this.f18167g = tLObject;
+        this.e = arrayList2;
+        this.f18166f = arrayList3;
+        this.h = delayedMessage;
+        this.f18164b = z4;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$getMusicDialogsSortedByVisibleOrder$1;
-        int lambda$getLocales$3;
-        int lambda$getLanguages$1;
-        switch (this.f21289a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18163a) {
             case 0:
-                lambda$getMusicDialogsSortedByVisibleOrder$1 = TelegramMediaSession.lambda$getMusicDialogsSortedByVisibleOrder$1((HashMap) this.f21290b, (Long) obj, (Long) obj2);
-                return lambda$getMusicDialogsSortedByVisibleOrder$1;
-            case 1:
-                lambda$getLocales$3 = TranslateController.lambda$getLocales$3((LocaleController.LocaleInfo) this.f21290b, (LocaleController.LocaleInfo) obj, (LocaleController.LocaleInfo) obj2);
-                return lambda$getLocales$3;
+                ((SendMessagesHelper) this.f18165c).lambda$performSendMessageRequestMulti$74((ArrayList) this.d, (TLObject) this.f18167g, (ArrayList) this.e, (ArrayList) this.f18166f, (SendMessagesHelper.DelayedMessage) this.h, this.f18164b, tLObject, tL_error);
+                return;
             default:
-                lambda$getLanguages$1 = TranslateController.lambda$getLanguages$1((Collator) this.f21290b, (TranslateController.Language) obj, (TranslateController.Language) obj2);
-                return lambda$getLanguages$1;
+                AndroidUtilities.runOnUIThread(new t1((tf.u0) this.f18165c, (String) this.d, this.f18164b, tLObject, (TLRPC.User) this.e, (String) this.f18166f, (MessagesStorage) this.f18167g, (String) this.h));
+                return;
         }
+    }
+
+    public pk(tf.u0 u0Var, String str, boolean z4, TLRPC.User user, String str2, MessagesStorage messagesStorage, String str3) {
+        this.f18165c = u0Var;
+        this.d = str;
+        this.f18164b = z4;
+        this.e = user;
+        this.f18166f = str2;
+        this.f18167g = messagesStorage;
+        this.h = str3;
     }
 }

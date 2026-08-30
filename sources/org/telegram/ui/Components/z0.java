@@ -1,26 +1,51 @@
 package org.telegram.ui.Components;
+public final class z0 implements org.telegram.ui.ActionBar.c2 {
+    public final int f31193a;
+    public final Runnable f31194b;
 
-import java.util.function.ToLongFunction;
-import org.telegram.messenger.MessageObject;
-import org.telegram.ui.q91;
-public final class z0 implements ToLongFunction {
-    public final int f35165a;
-
-    public z0(int i10) {
-        this.f35165a = i10;
+    public z0(int i10, Runnable runnable) {
+        this.f31193a = i10;
+        this.f31194b = runnable;
     }
 
     @Override
-    public final long applyAsLong(Object obj) {
-        switch (this.f35165a) {
+    public final void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f31193a) {
             case 0:
-                return ((MessageObject) obj).getFromChatId();
-            default:
-                MessageObject messageObject = ((q91) obj).f41602b;
-                if (messageObject == null) {
-                    return 0L;
+                Runnable runnable = this.f31194b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
                 }
-                return messageObject.messageOwner.date;
+                return;
+            case 1:
+                this.f31194b.run();
+                return;
+            case 2:
+                this.f31194b.run();
+                return;
+            case 3:
+                this.f31194b.run();
+                return;
+            case 4:
+                this.f31194b.run();
+                d2Var.dismiss();
+                return;
+            case 5:
+                Runnable runnable2 = this.f31194b;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
+                }
+                return;
+            default:
+                d2Var.dismiss();
+                Runnable runnable3 = this.f31194b;
+                if (runnable3 != null) {
+                    runnable3.run();
+                    return;
+                }
+                return;
         }
     }
 }

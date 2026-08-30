@@ -1,22 +1,28 @@
 package org.telegram.ui.Components;
-public final class cf implements o1.h {
-    public boolean f27463a = false;
-    public final float f27464b;
-    public final xu0 f27465c;
 
-    public cf(float f9, xu0 xu0Var) {
-        this.f27464b = f9;
-        this.f27465c = xu0Var;
+import android.content.Context;
+public final class cf extends org.telegram.ui.si0 {
+    public final int f23980x0;
+    public final Object f23981y0;
+
+    public cf(Object obj, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        super(context, f6Var);
+        this.f23980x0 = i10;
+        this.f23981y0 = obj;
     }
 
     @Override
-    public final void a(o1.i iVar, float f9, float f10) {
-        if (!this.f27463a && f9 >= this.f27464b) {
-            this.f27463a = true;
-            try {
-                this.f27465c.performHapticFeedback(3, 2);
-            } catch (Exception unused) {
-            }
+    public final void m(long j10) {
+        switch (this.f23980x0) {
+            case 0:
+                ((ChatActivityEnterView) this.f23981y0).setEffectId(j10);
+                return;
+            default:
+                li liVar = (li) this.f23981y0;
+                vh vhVar = liVar.F0;
+                liVar.K0 = j10;
+                vhVar.setEffect(j10);
+                return;
         }
     }
 }

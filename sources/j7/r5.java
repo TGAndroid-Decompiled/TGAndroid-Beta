@@ -1,17 +1,21 @@
 package j7;
-public final class r5 implements s9.d {
-    public static final r5 f11166a = new Object();
 
-    static {
-        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.r(h0.class, l1.h(8, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(7, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(6, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(5, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(4, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(3, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(2, com.google.android.recaptcha.internal.a.r(h0.class, new e0(1)))))))))))))))));
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public abstract class r5 {
+    public static void a(Status status, Object obj, TaskCompletionSource taskCompletionSource) {
+        if (status.e()) {
+            taskCompletionSource.setResult(obj);
+        } else {
+            taskCompletionSource.setException(b6.m.m(status));
+        }
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            s9.e eVar = (s9.e) obj2;
-            throw null;
+    public static void b(Status status, Object obj, TaskCompletionSource taskCompletionSource) {
+        if (status.e()) {
+            taskCompletionSource.trySetResult(obj);
+        } else {
+            taskCompletionSource.trySetException(b6.m.m(status));
         }
-        throw new ClassCastException();
     }
 }

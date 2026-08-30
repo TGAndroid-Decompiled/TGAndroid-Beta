@@ -15,63 +15,63 @@ public class MessageCustomParamsHelper {
         final TLRPC.Message message;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            boolean z11;
-            boolean z12 = true;
+        public void readParams(InputSerializedData inputSerializedData, boolean z4) {
+            boolean z10;
+            boolean z11 = true;
             int readInt32 = inputSerializedData.readInt32(true);
             this.flags = readInt32;
             if ((readInt32 & 1) != 0) {
-                this.message.voiceTranscription = inputSerializedData.readString(z10);
+                this.message.voiceTranscription = inputSerializedData.readString(z4);
             }
             TLRPC.Message message = this.message;
             int i10 = this.flags;
             if ((i10 & 2) != 0) {
-                z11 = true;
+                z10 = true;
             } else {
+                z10 = false;
+            }
+            message.voiceTranscriptionForce = z10;
+            if ((i10 & 512) == 0) {
                 z11 = false;
             }
-            message.voiceTranscriptionForce = z11;
-            if ((i10 & 512) == 0) {
-                z12 = false;
-            }
-            message.summarizedOpen = z12;
-            message.voiceTranscriptionOpen = inputSerializedData.readBool(z10);
-            this.message.voiceTranscriptionFinal = inputSerializedData.readBool(z10);
-            this.message.voiceTranscriptionRated = inputSerializedData.readBool(z10);
-            this.message.voiceTranscriptionId = inputSerializedData.readInt64(z10);
-            this.message.premiumEffectWasPlayed = inputSerializedData.readBool(z10);
+            message.summarizedOpen = z11;
+            message.voiceTranscriptionOpen = inputSerializedData.readBool(z4);
+            this.message.voiceTranscriptionFinal = inputSerializedData.readBool(z4);
+            this.message.voiceTranscriptionRated = inputSerializedData.readBool(z4);
+            this.message.voiceTranscriptionId = inputSerializedData.readInt64(z4);
+            this.message.premiumEffectWasPlayed = inputSerializedData.readBool(z4);
             if ((this.flags & 4) != 0) {
-                this.message.originalLanguage = inputSerializedData.readString(z10);
+                this.message.originalLanguage = inputSerializedData.readString(z4);
             }
             if ((this.flags & 8) != 0) {
-                this.message.translatedToLanguage = inputSerializedData.readString(z10);
+                this.message.translatedToLanguage = inputSerializedData.readString(z4);
             }
             if ((this.flags & 16) != 0) {
-                this.message.translatedText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.message.translatedText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z4), z4);
             }
             if ((this.flags & 32) != 0) {
-                this.message.translatedPoll = TranslateController.PollText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.message.translatedPoll = TranslateController.PollText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z4), z4);
             }
             if ((this.flags & 64) != 0) {
-                this.message.errorAllowedPriceStars = inputSerializedData.readInt64(z10);
+                this.message.errorAllowedPriceStars = inputSerializedData.readInt64(z4);
             }
             if ((this.flags & 128) != 0) {
-                this.message.errorNewPriceStars = inputSerializedData.readInt64(z10);
+                this.message.errorNewPriceStars = inputSerializedData.readInt64(z4);
             }
             if ((this.flags & 256) != 0) {
-                this.message.translatedVoiceTranscription = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.message.translatedVoiceTranscription = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z4), z4);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
-                this.message.summaryText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.message.summaryText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z4), z4);
             }
             if (TLObject.hasFlag(this.flags, 2048)) {
-                this.message.translatedSummaryText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.message.translatedSummaryText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z4), z4);
             }
             if (TLObject.hasFlag(this.flags, 4096)) {
-                this.message.translatedSummaryLanguage = inputSerializedData.readString(z10);
+                this.message.translatedSummaryLanguage = inputSerializedData.readString(z4);
             }
             if (TLObject.hasFlag(this.flags, 8192)) {
-                this.message.translatedRichMessage = TL_iv.RichMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.message.translatedRichMessage = TL_iv.RichMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z4), z4);
             }
         }
 
@@ -206,7 +206,7 @@ public class MessageCustomParamsHelper {
             new Params_v1(message).readParams(nativeByteBuffer, true);
             return;
         }
-        throw new RuntimeException(j7.l1.k(readInt32, "can't read params version = "));
+        throw new RuntimeException(kh.a2.j(readInt32, "can't read params version = "));
     }
 
     public static NativeByteBuffer writeLocalParams(TLRPC.Message message) {
@@ -218,8 +218,8 @@ public class MessageCustomParamsHelper {
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(params_v1.getObjectSize());
             params_v1.serializeToStream(nativeByteBuffer);
             return nativeByteBuffer;
-        } catch (Exception e10) {
-            e10.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }

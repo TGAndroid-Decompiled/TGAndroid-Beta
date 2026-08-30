@@ -1,128 +1,55 @@
 package v5;
 
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Looper;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
-import android.util.Log;
-import com.google.android.exoplayer2.upstream.w;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
-import org.telegram.ui.Components.rk0;
-public final class a {
-    public static int h;
-    public static PendingIntent f49398i;
-    public static final Pattern f49399j = Pattern.compile("\\|ID\\|([^|]+)\\|:?+(.*)");
-    public final Context f49401b;
-    public final w f49402c;
-    public final ScheduledThreadPoolExecutor d;
-    public Messenger f49404f;
-    public g f49405g;
-    public final a0.k f49400a = new a0.k(0);
-    public final Messenger f49403e = new Messenger(new d(this, Looper.getMainLooper()));
+import java.util.Iterator;
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import u5.b;
+public abstract class a {
+    public static final b f45614a = new b("MetadataUtils", null);
+    public static final String[] f45615b;
+    public static final String f45616c;
 
-    public a(Context context) {
-        this.f49401b = context;
-        this.f49402c = new w(context);
-        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1);
-        scheduledThreadPoolExecutor.setKeepAliveTime(60L, TimeUnit.SECONDS);
-        scheduledThreadPoolExecutor.allowCoreThreadTimeOut(true);
-        this.d = scheduledThreadPoolExecutor;
+    static {
+        String[] strArr = {"Z", "+hh", "+hhmm", "+hh:mm"};
+        f45615b = strArr;
+        f45616c = "yyyyMMdd'T'HHmmss".concat(String.valueOf(strArr[0]));
     }
 
-    public static synchronized String b() {
-        String num;
-        synchronized (a.class) {
-            int i10 = h;
-            h = i10 + 1;
-            num = Integer.toString(i10);
-        }
-        return num;
+    public static java.util.Calendar a(java.lang.String r8) {
+        throw new UnsupportedOperationException("Method not decompiled: v5.a.a(java.lang.String):java.util.Calendar");
     }
 
-    public static synchronized void c(Context context, Intent intent) {
-        synchronized (a.class) {
+    public static JSONArray b(List list) {
+        list.getClass();
+        JSONArray jSONArray = new JSONArray();
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            a6.a aVar = (a6.a) it.next();
+            aVar.getClass();
+            JSONObject jSONObject = new JSONObject();
             try {
-                if (f49398i == null) {
-                    Intent intent2 = new Intent();
-                    intent2.setPackage("com.google.example.invalidpackage");
-                    f49398i = PendingIntent.getBroadcast(context, 0, intent2, x6.a.f50097a);
-                }
-                intent.putExtra("app", f49398i);
-            } catch (Throwable th2) {
-                throw th2;
+                jSONObject.put("url", aVar.f121b.toString());
+                jSONObject.put("width", aVar.f122c);
+                jSONObject.put("height", aVar.d);
+            } catch (JSONException unused) {
             }
+            jSONArray.put(jSONObject);
         }
+        return jSONArray;
     }
 
-    public final Task a(Bundle bundle) {
-        String b10 = b();
-        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        synchronized (this.f49400a) {
-            this.f49400a.put(b10, taskCompletionSource);
-        }
-        Intent intent = new Intent();
-        intent.setPackage("com.google.android.gms");
-        if (this.f49402c.g() == 2) {
-            intent.setAction("com.google.iid.TOKEN_REQUEST");
-        } else {
-            intent.setAction("com.google.android.c2dm.intent.REGISTER");
-        }
-        intent.putExtras(bundle);
-        c(this.f49401b, intent);
-        intent.putExtra("kid", "|ID|" + b10 + "|");
-        if (Log.isLoggable("Rpc", 3)) {
-            Log.d("Rpc", "Sending ".concat(String.valueOf(intent.getExtras())));
-        }
-        intent.putExtra("google.messenger", this.f49403e);
-        if (this.f49404f != null || this.f49405g != null) {
-            Message obtain = Message.obtain();
-            obtain.obj = intent;
-            try {
-                Messenger messenger = this.f49404f;
-                if (messenger != null) {
-                    messenger.send(obtain);
-                } else {
-                    Messenger messenger2 = this.f49405g.f49412a;
-                    messenger2.getClass();
-                    messenger2.send(obtain);
-                }
-            } catch (RemoteException unused) {
-                if (Log.isLoggable("Rpc", 3)) {
-                    Log.d("Rpc", "Messenger failed, fallback to startService");
+    public static void c(List list, JSONArray jSONArray) {
+        try {
+            list.clear();
+            for (int i10 = 0; i10 < jSONArray.length(); i10++) {
+                try {
+                    list.add(new a6.a(jSONArray.getJSONObject(i10)));
+                } catch (IllegalArgumentException unused) {
                 }
             }
-            taskCompletionSource.getTask().addOnCompleteListener(m.f49429a, new c(this, b10, this.d.schedule(new rk0(taskCompletionSource, 11), 30L, TimeUnit.SECONDS), 0));
-            return taskCompletionSource.getTask();
-        }
-        if (this.f49402c.g() == 2) {
-            this.f49401b.sendBroadcast(intent);
-        } else {
-            this.f49401b.startService(intent);
-        }
-        taskCompletionSource.getTask().addOnCompleteListener(m.f49429a, new c(this, b10, this.d.schedule(new rk0(taskCompletionSource, 11), 30L, TimeUnit.SECONDS), 0));
-        return taskCompletionSource.getTask();
-    }
-
-    public final void d(String str, Bundle bundle) {
-        synchronized (this.f49400a) {
-            try {
-                TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f49400a.remove(str);
-                if (taskCompletionSource == null) {
-                    Log.w("Rpc", "Missing callback for " + str);
-                    return;
-                }
-                taskCompletionSource.setResult(bundle);
-            } catch (Throwable th2) {
-                throw th2;
-            }
+        } catch (JSONException unused2) {
         }
     }
 }

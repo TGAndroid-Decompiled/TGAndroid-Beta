@@ -1,51 +1,67 @@
 package org.telegram.ui;
-public final class hb0 implements Runnable {
-    public final int f38842a;
-    public final mb0 f38843b;
-    public final String f38844c;
 
-    public hb0(mb0 mb0Var, String str, int i10) {
-        this.f38842a = i10;
-        this.f38843b = mb0Var;
-        this.f38844c = str;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.Emoji;
+public final class hb0 implements TextWatcher {
+    public final int f34807a;
+    public final nb0 f34808b;
+
+    public hb0(nb0 nb0Var, int i10) {
+        this.f34807a = i10;
+        this.f34808b = nb0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38842a) {
+    public final void afterTextChanged(Editable editable) {
+        switch (this.f34807a) {
             case 0:
-                mb0 mb0Var = this.f38843b;
-                mb0Var.getClass();
-                String str = this.f38844c;
-                if ("disable".equalsIgnoreCase(str)) {
-                    mb0Var.o("turnPasswordOffRow");
-                }
-                if ("change".equalsIgnoreCase(str)) {
-                    mb0Var.o("changePasswordRow");
-                }
-                if ("change-email".equalsIgnoreCase(str)) {
-                    mb0Var.o("emailRow");
-                    return;
-                }
+                Emoji.replaceEmoji(editable, this.f34808b.H.getPaint().getFontMetricsInt(), false);
                 return;
             default:
-                mb0 mb0Var2 = this.f38843b;
-                mb0Var2.getClass();
-                String str2 = this.f38844c;
-                if ("disable".equalsIgnoreCase(str2)) {
-                    mb0Var2.o("disablePasscodeRow");
-                }
-                if ("change".equalsIgnoreCase(str2)) {
-                    mb0Var2.o("changePasscodeRow");
-                }
-                if ("auto-lock".equalsIgnoreCase(str2)) {
-                    mb0Var2.o("autoLockRow");
-                }
-                if ("fingerprint".equalsIgnoreCase(str2)) {
-                    mb0Var2.o("fingerprintRow");
-                    return;
+                nb0 nb0Var = this.f34808b;
+                if (!nb0Var.L) {
+                    if (editable.toString().equals("0")) {
+                        nb0Var.C.setText("");
+                        return;
+                    }
+                    try {
+                        int parseInt = Integer.parseInt(editable.toString());
+                        if (parseInt > 100000) {
+                            nb0Var.X();
+                            return;
+                        } else {
+                            nb0Var.W(parseInt);
+                            return;
+                        }
+                    } catch (NumberFormatException unused) {
+                        nb0Var.X();
+                        return;
+                    }
                 }
                 return;
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f34807a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f34807a;
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

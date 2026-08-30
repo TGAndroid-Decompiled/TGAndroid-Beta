@@ -1,38 +1,164 @@
 package i5;
 
-import g9.l;
+import h5.d0;
 import java.util.Arrays;
-public final class b implements com.google.android.gms.common.api.b {
-    public static final b f8250c;
-    public final boolean f8251a;
-    public final String f8252b;
+public final class b implements j3.g {
+    public static final b f7256f = new b(1, 2, 3, null);
+    public static final String h;
+    public static final String f7257n;
+    public static final String f7258r;
+    public static final String f7259s;
+    public static final f0.d v;
+    public final int f7260a;
+    public final int f7261b;
+    public final int f7262c;
+    public final byte[] d;
+    public int e;
 
     static {
-        l lVar = new l(7, (byte) 0);
-        lVar.f7168b = Boolean.FALSE;
-        f8250c = new b(lVar);
+        int i10 = d0.f6937a;
+        h = Integer.toString(0, 36);
+        f7257n = Integer.toString(1, 36);
+        f7258r = Integer.toString(2, 36);
+        f7259s = Integer.toString(3, 36);
+        v = new f0.d(18);
     }
 
-    public b(l lVar) {
-        this.f8251a = ((Boolean) lVar.f7168b).booleanValue();
-        this.f8252b = (String) lVar.f7169c;
+    public b(int i10, int i11, int i12, byte[] bArr) {
+        this.f7260a = i10;
+        this.f7261b = i11;
+        this.f7262c = i12;
+        this.d = bArr;
+    }
+
+    public static String a(int i10) {
+        if (i10 != -1) {
+            if (i10 != 10) {
+                if (i10 != 1) {
+                    if (i10 != 2) {
+                        if (i10 != 3) {
+                            if (i10 != 6) {
+                                if (i10 != 7) {
+                                    return "Undefined color transfer";
+                                }
+                                return "HLG";
+                            }
+                            return "ST2084 PQ";
+                        }
+                        return "SDR SMPTE 170M";
+                    }
+                    return "sRGB";
+                }
+                return "Linear";
+            }
+            return "Gamma 2.2";
+        }
+        return "Unset color transfer";
+    }
+
+    public static int b(int i10) {
+        if (i10 == 1) {
+            return 1;
+        }
+        if (i10 == 9) {
+            return 6;
+        }
+        if (i10 != 4 && i10 != 5 && i10 != 6 && i10 != 7) {
+            return -1;
+        }
+        return 2;
+    }
+
+    public static int c(int i10) {
+        if (i10 != 1) {
+            if (i10 != 4) {
+                if (i10 != 13) {
+                    if (i10 == 16) {
+                        return 6;
+                    }
+                    if (i10 == 18) {
+                        return 7;
+                    }
+                    if (i10 != 6 && i10 != 7) {
+                        return -1;
+                    }
+                    return 3;
+                }
+                return 2;
+            }
+            return 10;
+        }
+        return 3;
     }
 
     public final boolean equals(Object obj) {
-        if (obj == this) {
+        if (this == obj) {
             return true;
         }
-        if (!(obj instanceof b)) {
-            return false;
-        }
-        b bVar = (b) obj;
-        if (z5.l.l(null, null) && this.f8251a == bVar.f8251a && z5.l.l(this.f8252b, bVar.f8252b)) {
-            return true;
+        if (obj != null && b.class == obj.getClass()) {
+            b bVar = (b) obj;
+            if (this.f7260a == bVar.f7260a && this.f7261b == bVar.f7261b && this.f7262c == bVar.f7262c && Arrays.equals(this.d, bVar.d)) {
+                return true;
+            }
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{null, Boolean.valueOf(this.f8251a), this.f8252b});
+        if (this.e == 0) {
+            this.e = Arrays.hashCode(this.d) + ((((((527 + this.f7260a) * 31) + this.f7261b) * 31) + this.f7262c) * 31);
+        }
+        return this.e;
+    }
+
+    public final String toString() {
+        String str;
+        String str2;
+        StringBuilder sb = new StringBuilder("ColorInfo(");
+        boolean z4 = true;
+        int i10 = this.f7260a;
+        if (i10 != -1) {
+            if (i10 != 6) {
+                if (i10 != 1) {
+                    if (i10 != 2) {
+                        str = "Undefined color space";
+                    } else {
+                        str = "BT601";
+                    }
+                } else {
+                    str = "BT709";
+                }
+            } else {
+                str = "BT2020";
+            }
+        } else {
+            str = "Unset color space";
+        }
+        sb.append(str);
+        sb.append(", ");
+        int i11 = this.f7261b;
+        if (i11 != -1) {
+            if (i11 != 1) {
+                if (i11 != 2) {
+                    str2 = "Undefined color range";
+                } else {
+                    str2 = "Limited range";
+                }
+            } else {
+                str2 = "Full range";
+            }
+        } else {
+            str2 = "Unset color range";
+        }
+        sb.append(str2);
+        sb.append(", ");
+        sb.append(a(this.f7262c));
+        sb.append(", ");
+        if (this.d == null) {
+            z4 = false;
+        }
+        sb.append(z4);
+        sb.append(")");
+        return sb.toString();
     }
 }

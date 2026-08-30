@@ -1,21 +1,12 @@
 package n3;
-
-import ag.j2;
-import java.util.UUID;
 public interface e {
-    boolean B(String str);
+    Object b();
 
-    d D();
+    Object c();
 
-    m3.b E();
+    void d(Object obj);
 
-    UUID e();
+    void flush();
 
-    void l(j2 j2Var);
-
-    void p(j2 j2Var);
-
-    boolean r();
-
-    int t();
+    void release();
 }

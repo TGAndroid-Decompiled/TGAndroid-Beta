@@ -1,46 +1,65 @@
 package bh;
 
-import android.text.TextUtils;
-import java.io.File;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class a {
-    public final int f2641a;
-    public final TLRPC.Document f2642b;
-    public final String f2643c;
-    public final MessageObject d;
-    public final String f2644e;
-    public boolean f2645f;
-    public boolean f2646g;
+import org.telegram.messenger.R;
+public enum a {
+    CONTACTS(R.raw.tab_contacts),
+    CALLS(R.raw.tab_calls),
+    CHATS(R.raw.tab_chats),
+    SETTINGS(R.raw.tab_settings),
+    f1814s("CHECKLIST", R.raw.tab_checklist_reverse),
+    v("COLORS", R.raw.tab_colors_reverse),
+    f1815w("FILES", R.raw.tab_files_reverse),
+    f1816x("GALLERY", R.raw.tab_gallery_reverse),
+    EF7("GIFT", R.raw.tab_gift_reverse),
+    f1817y("LOCATION", R.raw.tab_location_reverse),
+    B("STICKER", R.raw.tab_sticker_reverse),
+    C("EMOJI", R.raw.tab_emoji_reverse),
+    D("MODELS", R.raw.tab_models_reverse),
+    E("MUSIC", R.raw.tab_music_reverse),
+    F("POLL", R.raw.tab_poll_reverse),
+    G("SYMBOLS", R.raw.tab_symbols_reverse),
+    H("REPLIES", R.raw.tab_reply_reverse),
+    EF0("WALLET", R.raw.tab_wallet_reverse),
+    I,
+    J("ARTICLE", R.raw.tab_article_reverse),
+    BOOSTS(R.raw.boosts, 25, 49),
+    MONETIZATION(R.raw.monetize, 19, 45);
+    
+    public final int f1818a;
+    public final int f1819b;
+    public final int f1820c;
+    public final int d;
+    public final int e;
 
-    public a(int i10, MessageObject messageObject, TLRPC.Document document, String str) {
-        this.f2641a = i10;
-        this.d = messageObject;
-        this.f2642b = document;
-        this.f2643c = str;
-        this.f2644e = TextUtils.isEmpty(str) ? FileLoader.getAttachFileName(document) : str;
-        a();
+    a(int i10, int i11, int i12) {
+        this.f1818a = i10;
+        this.f1819b = i10;
+        this.d = i11;
+        this.e = i12;
+        this.f1820c = -1;
     }
 
-    public final void a() {
-        boolean z10;
-        boolean z11 = false;
-        String str = this.f2643c;
-        if (str != null) {
-            z10 = new File(str).exists();
-        } else {
-            z10 = false;
-        }
-        int i10 = this.f2641a;
-        if (!z10) {
-            z10 = FileLoader.getInstance(i10).getPathToAttach(this.f2642b).exists();
-        }
-        this.f2645f = z10;
-        String str2 = this.f2644e;
-        if (!TextUtils.isEmpty(str2) && FileLoader.getInstance(i10).isLoadingFile(str2)) {
-            z11 = true;
-        }
-        this.f2646g = z11;
+    a(int i10) {
+        this.f1820c = i10;
+        this.f1818a = -1;
+        this.f1819b = -1;
+        this.d = -1;
+        this.e = -1;
+    }
+
+    a(int i10) {
+        this.f1818a = i10;
+        this.f1819b = i10;
+        this.d = -1;
+        this.e = -1;
+        this.f1820c = -1;
+    }
+
+    a(String str, int i10) {
+        this.f1818a = r2;
+        this.f1819b = i10;
+        this.d = -1;
+        this.e = -1;
+        this.f1820c = -1;
     }
 }

@@ -1,91 +1,57 @@
 package gh;
 
-import android.animation.ValueAnimator;
-import android.graphics.Path;
-import android.text.Layout;
+import android.content.Context;
 import android.view.View;
-import i7.w;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ct;
-import org.telegram.ui.Components.mi0;
-public final class c extends Path {
-    public final View f7362a;
-    public final Layout f7363b;
-    public final Stack f7364c;
-    public final List d;
-    public final int f7365e;
-    public final int f7366f;
-    public final ArrayList f7367g;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.g20;
+import org.telegram.ui.Components.il0;
+import org.telegram.ui.Components.n30;
+import org.telegram.ui.Components.qc;
+public final class c implements il0 {
+    public final f6 f6831a;
+    public final Context f6832b;
+    public final f f6833c;
 
-    public c(View view, Layout layout, Stack stack, List list, int i10, int i11, ArrayList arrayList) {
-        this.f7362a = view;
-        this.f7363b = layout;
-        this.f7364c = stack;
-        this.d = list;
-        this.f7365e = i10;
-        this.f7366f = i11;
-        this.f7367g = arrayList;
+    public c(Context context, f fVar, f6 f6Var) {
+        this.f6833c = fVar;
+        this.f6831a = f6Var;
+        this.f6832b = context;
     }
 
     @Override
-    public final void addRect(float f9, float f10, float f11, float f12, Path.Direction direction) {
-        k kVar;
-        float f13;
-        Stack stack = this.f7364c;
-        int i10 = 0;
-        if (stack != null && !stack.isEmpty()) {
-            kVar = (k) stack.remove(0);
-        } else {
-            kVar = new k();
+    public final void f(int i10, View view) {
+        TLRPC.TL_help_country tL_help_country;
+        f fVar = this.f6833c;
+        g20 g20Var = fVar.f6843e0;
+        HashMap hashMap = fVar.f6845g0;
+        if (i10 == 0 || (tL_help_country = (TLRPC.TL_help_country) fVar.f6839a0.G(i10 - 1).G) == null) {
+            return;
         }
-        kVar.f7424y = false;
-        ArrayList arrayList = this.f7367g;
-        if (arrayList != null) {
-            float f14 = (f10 + f12) / 2.0f;
-            while (true) {
-                if (i10 >= arrayList.size()) {
-                    break;
-                }
-                mi0 mi0Var = (mi0) arrayList.get(i10);
-                if (f14 >= mi0Var.f30708b && f14 <= mi0Var.f30709c) {
-                    kVar.f7424y = true;
-                    break;
-                }
-                i10++;
+        boolean z4 = false;
+        if (hashMap.containsKey(tL_help_country.iso2)) {
+            g20Var.c((n30) hashMap.remove(tL_help_country.iso2));
+        } else {
+            int size = hashMap.size();
+            int i11 = fVar.f6848j0;
+            if (size >= i11) {
+                new qc(fVar.f6849k0, this.f6831a).Q(R.raw.info, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.PollV2YouCanAddXCountriesOnly, Integer.valueOf(i11)))).j();
+                return;
             }
+            n30 n30Var = new n30(this.f6832b, tL_help_country);
+            n30Var.setOnClickListener(new a(fVar, 4));
+            g20Var.a(n30Var);
+            hashMap.put(tL_help_country.iso2, n30Var);
+            z4 = true;
         }
-        kVar.f7414n = -1.0f;
-        ValueAnimator valueAnimator = kVar.f7418r;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
+        if (view instanceof kg.c) {
+            ((kg.c) view).c(z4, true);
         }
-        kVar.f7416p = true;
-        int max = (int) Math.max(f9, this.f7365e);
-        int i11 = (int) f10;
-        int i12 = this.f7366f;
-        if (i12 <= 0) {
-            f13 = 2.1474836E9f;
-        } else {
-            f13 = i12;
-        }
-        kVar.setBounds(max, i11, (int) Math.min(f11, f13), (int) f12);
-        kVar.h(this.f7363b.getPaint().getColor());
-        kVar.f7420t = ct.f27566c;
-        int width = kVar.getBounds().width() / AndroidUtilities.dp(6.0f);
-        int i13 = k.B;
-        int b10 = w.b(width * i13, i13, k.A);
-        Stack stack2 = kVar.f7405c;
-        kVar.d = b10;
-        while (kVar.h.size() + stack2.size() < b10) {
-            stack2.push(new Object());
-        }
-        View view = this.f7362a;
-        if (view != null) {
-            kVar.f7409i = view;
-        }
-        this.d.add(kVar);
+        fVar.f6839a0.N(true);
+        fVar.f6840b0.c(hashMap.size(), true);
     }
 }

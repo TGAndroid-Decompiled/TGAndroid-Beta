@@ -1,22 +1,48 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class xw extends lh.p {
-    public final fy K0;
+import android.view.View;
+public final class xw extends org.telegram.ui.Components.m6 {
+    public final int f40318b;
+    public final oy f40319c;
 
-    public xw(fy fyVar, Context context, fy fyVar2, int i10, int i11) {
-        super(context, fyVar2, i10, i11);
-        this.K0 = fyVar;
+    public xw(oy oyVar, int i10) {
+        super("animationValue", 0);
+        this.f40318b = i10;
+        switch (i10) {
+            case 1:
+                this.f40319c = oyVar;
+                super("viewPagerTranslation", 0);
+                return;
+            default:
+                this.f40319c = oyVar;
+                return;
+        }
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.l lVar;
-        lVar = ((org.telegram.ui.ActionBar.o2) this.K0).actionBar;
-        if (!lVar.s() && super.dispatchTouchEvent(motionEvent)) {
-            return true;
+    public final void b(Object obj, float f10) {
+        switch (this.f40318b) {
+            case 0:
+                ((oy) obj).C4(f10);
+                return;
+            default:
+                oy oyVar = this.f40319c;
+                oyVar.F0 = f10;
+                ((View) obj).setTranslationY(oyVar.G0 + f10);
+                oyVar.F3();
+                return;
         }
-        return false;
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        switch (this.f40318b) {
+            case 0:
+                oy oyVar = (oy) obj;
+                return Float.valueOf(this.f40319c.K);
+            default:
+                View view = (View) obj;
+                return Float.valueOf(this.f40319c.F0);
+        }
     }
 }

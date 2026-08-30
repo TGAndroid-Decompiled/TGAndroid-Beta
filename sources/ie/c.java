@@ -1,21 +1,25 @@
 package ie;
-
-import le.s;
 public final class c {
-    public final s f8889a;
-    public final char f8890b;
-    public final boolean f8891c;
-    public final boolean d;
-    public c f8892e;
-    public c f8893f;
-    public int f8894g = 1;
-    public int h = 1;
+    public static final c f7484a;
+    public static final c f7485b;
+    public static final c f7486c;
+    public static final c[] d;
 
-    public c(s sVar, char c3, boolean z10, boolean z11, c cVar) {
-        this.f8889a = sVar;
-        this.f8890b = c3;
-        this.f8891c = z10;
-        this.d = z11;
-        this.f8892e = cVar;
+    static {
+        ?? r02 = new Enum("LEFT", 0);
+        f7484a = r02;
+        ?? r12 = new Enum("CENTER", 1);
+        f7485b = r12;
+        ?? r32 = new Enum("RIGHT", 2);
+        f7486c = r32;
+        d = new c[]{r02, r12, r32};
+    }
+
+    public static c valueOf(String str) {
+        return (c) Enum.valueOf(c.class, str);
+    }
+
+    public static c[] values() {
+        return (c[]) d.clone();
     }
 }

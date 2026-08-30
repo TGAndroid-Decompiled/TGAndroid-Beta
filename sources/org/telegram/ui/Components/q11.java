@@ -1,42 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class q11 extends TextView {
-    public View f31827a;
-    public ViewPropertyAnimator f31828b;
-    public boolean f31829c;
-    public fq0 d;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class q11 extends EditTextBoldCursor {
+    public final s11 f28038b;
 
-    public final void a() {
-        if (this.f31827a == null) {
-            return;
-        }
-        View view = (View) getParent();
-        int i10 = 0;
-        int i11 = 0;
-        int i12 = 0;
-        for (View view2 = this.f31827a; view2 != view; view2 = (View) view2.getParent()) {
-            i12 += view2.getTop();
-            i11 += view2.getLeft();
-        }
-        int width = ((this.f31827a.getWidth() / 2) + i11) - (getMeasuredWidth() / 2);
-        if (width >= 0) {
-            if (getMeasuredWidth() + width > view.getMeasuredWidth()) {
-                i10 = (view.getMeasuredWidth() - getMeasuredWidth()) - AndroidUtilities.dp(16.0f);
-            } else {
-                i10 = width;
-            }
-        }
-        setTranslationX(i10);
-        setTranslationY(i12 - getMeasuredHeight());
+    public q11(s11 s11Var, Context context) {
+        super(context);
+        this.f28038b = s11Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        a();
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        ViewGroup viewGroup;
+        MotionEvent obtain = MotionEvent.obtain(motionEvent);
+        float rawX = obtain.getRawX();
+        float rawY = obtain.getRawY();
+        ThemeEditorView.EditorAlert editorAlert = this.f28038b.f28593c;
+        viewGroup = ((org.telegram.ui.ActionBar.g3) editorAlert).containerView;
+        obtain.setLocation(rawX, rawY - viewGroup.getTranslationY());
+        editorAlert.f23204c.dispatchTouchEvent(obtain);
+        obtain.recycle();
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

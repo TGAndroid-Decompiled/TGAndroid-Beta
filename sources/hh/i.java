@@ -1,25 +1,11 @@
 package hh;
-public final class i implements Runnable {
-    public final int f8077a;
-    public final v f8078b;
+public abstract class i {
+    public static final int f7153a;
+    public static final int f7154b;
 
-    public i(v vVar, int i10) {
-        this.f8077a = i10;
-        this.f8078b = vVar;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f8077a) {
-            case 0:
-                this.f8078b.e();
-                return;
-            case 1:
-                v.k(this.f8078b.f8134q, true, true);
-                return;
-            default:
-                this.f8078b.e();
-                return;
-        }
+    static {
+        int i10 = 21 * 2;
+        f7153a = i10;
+        f7154b = (7 * 2) + i10;
     }
 }

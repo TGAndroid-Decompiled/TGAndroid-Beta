@@ -1,52 +1,37 @@
 package j7;
 
-import java.util.Iterator;
-import java.util.Map;
-public final class y extends t {
-    public final transient com.google.android.gms.internal.cast.j0 f11260c;
-    public final transient Object[] d;
-    public final transient int f11261e = 1;
-
-    public y(com.google.android.gms.internal.cast.j0 j0Var, Object[] objArr) {
-        this.f11260c = j0Var;
-        this.d = objArr;
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (obj instanceof Map.Entry) {
-            Map.Entry entry = (Map.Entry) obj;
-            Object key = entry.getKey();
-            Object value = entry.getValue();
-            if (value != null && value.equals(this.f11260c.get(key))) {
-                return true;
-            }
+import android.content.Context;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+public abstract class y {
+    public static int a(Context context) {
+        boolean z4;
+        int i10;
+        float fraction;
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        if (displayMetrics.widthPixels < displayMetrics.heightPixels) {
+            z4 = true;
+        } else {
+            z4 = false;
         }
-        return false;
-    }
-
-    @Override
-    public final int i(Object[] objArr) {
-        s sVar = this.f11179b;
-        if (sVar == null) {
-            sVar = new x(this);
-            this.f11179b = sVar;
+        TypedValue typedValue = new TypedValue();
+        Resources resources = context.getResources();
+        if (z4) {
+            i10 = 2131165335;
+        } else {
+            i10 = 2131165334;
         }
-        return sVar.i(objArr);
-    }
-
-    @Override
-    public final Iterator iterator() {
-        s sVar = this.f11179b;
-        if (sVar == null) {
-            sVar = new x(this);
-            this.f11179b = sVar;
+        resources.getValue(i10, typedValue, true);
+        int i11 = typedValue.type;
+        if (i11 == 5) {
+            fraction = typedValue.getDimension(displayMetrics);
+        } else if (i11 == 6) {
+            int i12 = displayMetrics.widthPixels;
+            fraction = typedValue.getFraction(i12, i12);
+        } else {
+            return -2;
         }
-        return sVar.listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        return this.f11261e;
+        return (int) fraction;
     }
 }

@@ -1,87 +1,59 @@
 package mc;
 
+import java.util.ArrayList;
 import java.util.Map;
-public final class a implements Map.Entry, Cloneable {
-    public String f16971a;
-    public String f16972b;
-    public b f16973c;
+public final class a extends c {
+    public final a e;
+    public ArrayList f13910f;
 
-    public final Object clone() {
-        try {
-            return (a) super.clone();
-        } catch (CloneNotSupportedException e10) {
-            throw new RuntimeException(e10);
-        }
+    public a(String str, int i10, Map map, a aVar) {
+        super(i10, str, map);
+        this.e = aVar;
     }
 
     @Override
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final Map a() {
+        return this.f13913c;
+    }
+
+    public final void b(int i10) {
+        if (this.d > -1) {
+            return;
         }
-        if (obj != null && a.class == obj.getClass()) {
-            a aVar = (a) obj;
-            String str = aVar.f16971a;
-            String str2 = this.f16971a;
-            if (str2 == null ? str != null : !str2.equals(str)) {
-                return false;
-            }
-            String str3 = this.f16972b;
-            String str4 = aVar.f16972b;
-            if (str3 != null) {
-                return str3.equals(str4);
-            }
-            if (str4 == null) {
-                return true;
+        this.d = i10;
+        ArrayList arrayList = this.f13910f;
+        if (arrayList != null) {
+            int size = arrayList.size();
+            int i11 = 0;
+            while (i11 < size) {
+                Object obj = arrayList.get(i11);
+                i11++;
+                ((a) obj).b(i10);
             }
         }
-        return false;
     }
 
-    @Override
-    public final Object getKey() {
-        return this.f16971a;
-    }
-
-    @Override
-    public final Object getValue() {
-        return this.f16972b;
-    }
-
-    @Override
-    public final int hashCode() {
-        int i10;
-        String str = this.f16971a;
-        int i11 = 0;
-        if (str != null) {
-            i10 = str.hashCode();
-        } else {
-            i10 = 0;
-        }
-        int i12 = i10 * 31;
-        String str2 = this.f16972b;
-        if (str2 != null) {
-            i11 = str2.hashCode();
-        }
-        return i12 + i11;
-    }
-
-    @Override
-    public final Object setValue(Object obj) {
+    public final String toString() {
         String str;
-        String str2 = (String) obj;
-        b bVar = this.f16973c;
-        String str3 = this.f16971a;
-        int i10 = bVar.i(str3);
-        String str4 = "";
-        if (i10 != -1 && (str = bVar.f16976c[i10]) != null) {
-            str4 = str;
+        StringBuilder sb = new StringBuilder("BlockImpl{name='");
+        sb.append(this.f13911a);
+        sb.append("', start=");
+        sb.append(this.f13912b);
+        sb.append(", end=");
+        sb.append(this.d);
+        sb.append(", attributes=");
+        sb.append(this.f13913c);
+        sb.append(", parent=");
+        a aVar = this.e;
+        if (aVar != null) {
+            str = aVar.f13911a;
+        } else {
+            str = null;
         }
-        int i11 = bVar.i(str3);
-        if (i11 != -1) {
-            bVar.f16976c[i11] = str2;
-        }
-        this.f16972b = str2;
-        return str4;
+        sb.append(str);
+        sb.append(", children=");
+        sb.append(this.f13910f);
+        sb.append('}');
+        return sb.toString();
     }
 }

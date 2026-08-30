@@ -1,29 +1,26 @@
 package nh;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class l2 implements Runnable {
-    public final int f18036a;
-    public final p2 f18037b;
-    public final b0 f18038c;
+public final class l2 extends AnimatorListenerAdapter {
+    public final int f15564a;
+    public final View f15565b;
 
-    public l2(p2 p2Var, b0 b0Var, int i10) {
-        this.f18036a = i10;
-        this.f18037b = p2Var;
-        this.f18038c = b0Var;
+    public l2(int i10, View view) {
+        this.f15564a = i10;
+        this.f15565b = view;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18036a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f15564a) {
             case 0:
-                p2 p2Var = this.f18037b;
-                p2Var.getClass();
-                AndroidUtilities.runOnUIThread(new l2(p2Var, this.f18038c, 1), 320L);
+                AndroidUtilities.removeFromParent(this.f15565b);
                 return;
             default:
-                p2 p2Var2 = this.f18037b;
-                p2Var2.getClass();
-                this.f18038c.run(new b0(p2Var2, 2));
+                AndroidUtilities.removeFromParent(this.f15565b);
                 return;
         }
     }

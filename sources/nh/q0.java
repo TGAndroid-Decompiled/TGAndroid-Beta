@@ -1,56 +1,53 @@
 package nh;
 
-import android.net.Uri;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public final class q0 implements Utilities.Callback {
-    public final int f18389a;
-    public final u0 f18390b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.g20;
+public final class q0 extends TextView {
+    public int f15790a;
+    public final g20 f15791b;
 
-    public q0(u0 u0Var, int i10) {
-        this.f18389a = i10;
-        this.f18390b = u0Var;
+    public q0(Context context) {
+        super(context);
+        this.f15790a = -1;
+        this.f15791b = new g20();
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f18389a) {
-            case 0:
-                Float f9 = (Float) obj;
-                t0 t0Var = this.f18390b.f18707n;
-                if (t0Var != null) {
-                    t0Var.setProgress(f9.floatValue());
-                    return;
-                }
-                return;
-            case 1:
-                Uri uri = (Uri) obj;
-                u0 u0Var = this.f18390b;
-                if (u0Var.f18704c && u0Var.f18708r != null) {
-                    u0Var.f18707n.b(R.raw.ic_save_to_gallery, 3500, LocaleController.getString("VideoSavedHint"));
-                    u0Var.f18704c = false;
-                    u0Var.d();
-                    u0Var.v = uri;
-                    return;
-                }
-                return;
-            default:
-                Uri uri2 = (Uri) obj;
-                u0 u0Var2 = this.f18390b;
-                u0Var2.f18704c = false;
-                u0Var2.d();
-                t0 t0Var2 = u0Var2.f18707n;
-                if (t0Var2 != null) {
-                    t0Var2.a();
-                    u0Var2.f18707n = null;
-                }
-                t0 t0Var3 = new t0(u0Var2.getContext());
-                u0Var2.f18707n = t0Var3;
-                t0Var3.b(R.raw.ic_save_to_gallery, 2500, LocaleController.getString("PhotoSavedHint"));
-                u0Var2.f18703b.addView(u0Var2.f18707n);
-                u0Var2.v = uri2;
-                return;
+    public final void onDraw(Canvas canvas) {
+        if (this.f15790a < 0) {
+            int i10 = 0;
+            if (getLayout() != null) {
+                i10 = (int) getLayout().getLineWidth(0);
+            }
+            this.f15790a = i10;
         }
+        if (this.f15790a > AndroidUtilities.dp(100.0f)) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+            super.onDraw(canvas);
+            canvas.save();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(getWidth() - AndroidUtilities.dp(15.0f), 0.0f, getWidth(), getHeight());
+            this.f15791b.b(canvas, rectF, 2, 1.0f);
+            canvas.restore();
+            canvas.restore();
+            return;
+        }
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE), i11);
+    }
+
+    @Override
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(charSequence, bufferType);
+        this.f15790a = -1;
     }
 }

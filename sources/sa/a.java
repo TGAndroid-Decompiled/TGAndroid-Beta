@@ -1,27 +1,21 @@
 package sa;
 
-import i7.r7;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-public final class a extends r7 {
+import java.lang.reflect.GenericArrayType;
+import java.lang.reflect.Type;
+public class a implements pa.v {
     @Override
-    public final Method a(Class cls, Field field) {
-        throw new UnsupportedOperationException("Records are not supported on this JVM, this method should not be called");
-    }
-
-    @Override
-    public final Constructor b(Class cls) {
-        throw new UnsupportedOperationException("Records are not supported on this JVM, this method should not be called");
-    }
-
-    @Override
-    public final String[] c(Class cls) {
-        throw new UnsupportedOperationException("Records are not supported on this JVM, this method should not be called");
-    }
-
-    @Override
-    public final boolean d(Class cls) {
-        return false;
+    public final pa.u create(pa.g gVar, wa.a aVar) {
+        Type componentType;
+        Type type = aVar.f46506b;
+        boolean z4 = type instanceof GenericArrayType;
+        if (!z4 && (!(type instanceof Class) || !((Class) type).isArray())) {
+            return null;
+        }
+        if (z4) {
+            componentType = ((GenericArrayType) type).getGenericComponentType();
+        } else {
+            componentType = ((Class) type).getComponentType();
+        }
+        return new b(gVar, gVar.b(new wa.a(componentType)), ra.d.h(componentType));
     }
 }

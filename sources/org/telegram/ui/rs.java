@@ -1,47 +1,73 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class rs implements TextWatcher {
-    public final EditTextBoldCursor f42194a;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class rs implements org.telegram.ui.ActionBar.c2, org.telegram.ui.Components.yk0, org.telegram.ui.Components.kl0, r0.o {
+    public final ContactsActivity f38110a;
 
-    public rs(EditTextBoldCursor editTextBoldCursor) {
-        this.f42194a = editTextBoldCursor;
+    public rs(ContactsActivity contactsActivity) {
+        this.f38110a = contactsActivity;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        try {
-            String obj = editable.toString();
-            if (!obj.isEmpty()) {
-                int intValue = Utilities.parseInt((CharSequence) obj).intValue();
-                EditTextBoldCursor editTextBoldCursor = this.f42194a;
-                if (intValue < 0) {
-                    editTextBoldCursor.setText("0");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                } else if (intValue > 300) {
-                    editTextBoldCursor.setText("300");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                } else {
-                    if (!obj.equals("" + intValue)) {
-                        editTextBoldCursor.setText("" + intValue);
-                        editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                    }
-                }
+    public r0.m1 N0(View view, r0.m1 m1Var) {
+        int i10 = AndroidUtilities.getDefaultWindowInsets(m1Var, false).d;
+        ContactsActivity contactsActivity = this.f38110a;
+        contactsActivity.f31552n0 = i10;
+        contactsActivity.j0();
+        contactsActivity.i0();
+        contactsActivity.h0();
+        return r0.m1.f43129b;
+    }
+
+    @Override
+    public void d() {
+        this.f38110a.g0();
+    }
+
+    @Override
+    public boolean f(int i10, View view) {
+        ContactsActivity contactsActivity = this.f38110a;
+        f2.o0 adapter = contactsActivity.f31543f.getAdapter();
+        ws wsVar = contactsActivity.d;
+        if (adapter == wsVar) {
+            int S = wsVar.S(i10);
+            int Q = contactsActivity.d.Q(i10);
+            org.telegram.ui.Components.ic icVar = org.telegram.ui.Components.ic.f25665w;
+            if (icVar != null) {
+                icVar.b();
             }
-        } catch (Exception e10) {
-            FileLog.e(e10);
+            if (Q < 0 || S < 0) {
+                return false;
+            }
+        }
+        boolean z4 = contactsActivity.H;
+        if (!z4 && !contactsActivity.I && (view instanceof org.telegram.ui.Cells.va)) {
+            contactsActivity.r0((org.telegram.ui.Cells.va) view);
+            return true;
+        } else if (!z4 && !contactsActivity.I && (view instanceof org.telegram.ui.Cells.h6)) {
+            org.telegram.ui.Cells.h6 h6Var = (org.telegram.ui.Cells.h6) view;
+            if (h6Var.getUser() != null && h6Var.getUser().contact) {
+                contactsActivity.r0(h6Var);
+            }
+            return true;
+        } else {
+            return false;
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        ContactsActivity contactsActivity = this.f38110a;
+        contactsActivity.getClass();
+        a0.h hVar = contactsActivity.f31536a0;
+        ArrayList arrayList = new ArrayList(hVar.m());
+        for (int i11 = 0; i11 < hVar.m(); i11++) {
+            arrayList.add((TLRPC.User) hVar.f(hVar.j(i11)));
+        }
+        contactsActivity.getContactsController().deleteContactsUndoable(contactsActivity.getParentActivity(), contactsActivity, arrayList);
+        contactsActivity.o0();
     }
 }

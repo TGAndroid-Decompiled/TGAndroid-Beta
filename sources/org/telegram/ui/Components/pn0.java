@@ -1,8 +1,13 @@
 package org.telegram.ui.Components;
-public interface pn0 {
-    void e(float f9);
+public final class pn0 extends f2.l {
+    public final org.telegram.ui.xx F;
 
-    void f(org.telegram.ui.Cells.p2 p2Var);
+    public pn0(org.telegram.ui.xx xxVar) {
+        this.F = xxVar;
+    }
 
-    void finish();
+    @Override
+    public final void P(f2.l1 l1Var) {
+        this.F.invalidate();
+    }
 }

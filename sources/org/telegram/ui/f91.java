@@ -1,36 +1,49 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
-public final class f91 {
-    public boolean f38069a;
-    public String f38070b;
-    public long f38071c;
-    public uf.b d;
-    public uf.b f38072e;
-    public String f38073f;
-    public String f38074g;
-    public boolean h;
-    public final int f38075i;
-    public final String f38076j;
-    public boolean f38077k;
-    public boolean f38078l;
-    public boolean f38079m;
-    public boolean f38080n;
-    public boolean f38081o;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class f91 extends f2.z0 {
+    public final int f34199a;
+    public final ga1 f34200b;
 
-    public f91(String str, int i10) {
-        this.f38076j = str;
-        this.f38075i = i10;
+    public f91(ga1 ga1Var, int i10) {
+        this.f34199a = i10;
+        this.f34200b = ga1Var;
     }
 
-    public final void a(int i10, int i11, int i12, Utilities.Callback0Return callback0Return) {
-        if (!this.f38077k) {
-            this.f38077k = true;
-            TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-            tL_loadAsyncGraph.token = this.f38073f;
-            ConnectionsManager.getInstance(i10).bindRequestToGuid(ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new u80(27, this, callback0Return), null, null, 0, i12, 1, true), i11);
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ng.e eVar;
+        ga1 ga1Var;
+        ng.e eVar2;
+        ga1 ga1Var2;
+        ng.e eVar3;
+        switch (this.f34199a) {
+            case 0:
+                ga1 ga1Var3 = this.f34200b;
+                if (ga1Var3.f34545o0.size() != ga1Var3.f34546p0.size() && !ga1Var3.f34552t0 && ga1Var3.R.N0() > ga1Var3.U.Z - 20) {
+                    ga1Var3.h0();
+                }
+                if (Build.VERSION.SDK_INT >= 31 && (eVar = ga1Var3.f34561z0) != null) {
+                    eVar.f(i10, i11);
+                    ga1.W(ga1Var3);
+                    return;
+                }
+                return;
+            case 1:
+                if (Build.VERSION.SDK_INT >= 31 && (eVar2 = (ga1Var = this.f34200b).f34561z0) != null) {
+                    eVar2.f(i10, i11);
+                    ga1.W(ga1Var);
+                    return;
+                }
+                return;
+            default:
+                if (Build.VERSION.SDK_INT >= 31 && (eVar3 = (ga1Var2 = this.f34200b).f34561z0) != null) {
+                    eVar3.f(i10, i11);
+                    ga1.W(ga1Var2);
+                    return;
+                }
+                return;
         }
     }
 }

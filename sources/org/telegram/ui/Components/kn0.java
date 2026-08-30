@@ -1,22 +1,33 @@
 package org.telegram.ui.Components;
+public final class kn0 extends f2.q {
+    public final on0 f26316b;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class kn0 extends c40 {
-    public final org.telegram.ui.ox Y;
-
-    public kn0(org.telegram.ui.ox oxVar, jl0 jl0Var, Context context, int i10) {
-        super(jl0Var, context, i10);
-        this.Y = oxVar;
+    public kn0(on0 on0Var) {
+        this.f26316b = on0Var;
     }
 
     @Override
-    public final void N(boolean z10) {
-        super.N(z10);
-        gn0 gn0Var = this.Y.f33001o0;
-        gn0Var.e(false, z10);
-        gn0Var.d.setText(LocaleController.getString(R.string.NoResult));
-        gn0Var.f32122e.setVisibility(8);
+    public final boolean a(int i10, int i11) {
+        on0 on0Var = this.f26316b;
+        return ((ln0) on0Var.f27604n.get(i10)).equals(on0Var.f27605r.get(i11));
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        on0 on0Var = this.f26316b;
+        if (((ln0) on0Var.f27604n.get(i10)).f26817a.h == ((ln0) on0Var.f27605r.get(i11)).f26817a.h) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f26316b.f27605r.size();
+    }
+
+    @Override
+    public final int e() {
+        return this.f26316b.f27604n.size();
     }
 }

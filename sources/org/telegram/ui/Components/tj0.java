@@ -1,21 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class tj0 implements ValueAnimator.AnimatorUpdateListener {
-    public final float f32965a;
-    public final fk0 f32966b;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+public final class tj0 extends t00 {
+    public final yj0 R;
 
-    public tj0(fk0 fk0Var, float f9) {
-        this.f32966b = fk0Var;
-        this.f32965a = f9;
+    public tj0(yj0 yj0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        this.R = yj0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        fk0 fk0Var = this.f32966b;
-        fk0Var.f28452k0 = floatValue;
-        fk0Var.f28451j0 = (1.0f - fk0Var.f28452k0) * this.f32965a;
-        fk0Var.invalidate();
+    public final int getAdditionalHeight() {
+        va0 va0Var;
+        yj0 yj0Var = this.R;
+        if (!yj0Var.E.isEmpty() && (va0Var = yj0Var.G) != null) {
+            return AndroidUtilities.dp(8.0f) + va0Var.getMeasuredHeight();
+        }
+        return 0;
     }
 }

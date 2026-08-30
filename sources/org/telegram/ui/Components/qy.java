@@ -1,52 +1,80 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.LiteMode;
-public final class qy extends ow0 {
-    public final int f32133v3;
-    public final ry f32134w3;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class qy extends FrameLayout {
+    public final ImageView f28300a;
+    public final TextView f28301b;
+    public final RadialProgressView f28302c;
+    public boolean d;
+    public final kz e;
 
-    public qy(ry ryVar, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11) {
-        super(context, i10, c6Var);
-        this.f32134w3 = ryVar;
-        this.f32133v3 = i11;
+    public qy(kz kzVar, Context context) {
+        super(context);
+        this.e = kzVar;
+        ImageView imageView = new ImageView(getContext());
+        this.f28300a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.gif_empty);
+        int i10 = org.telegram.ui.ActionBar.j6.Le;
+        imageView.setColorFilter(new PorterDuffColorFilter(kzVar.A(i10), PorterDuff.Mode.MULTIPLY));
+        addView(imageView, k7.b6.d(-2, -2.0f, 17, 0.0f, 8.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(getContext());
+        this.f28301b = textView;
+        textView.setText(LocaleController.getString(R.string.NoGIFsFound));
+        textView.setTextSize(1, 16.0f);
+        textView.setTextColor(kzVar.A(i10));
+        addView(textView, k7.b6.d(-2, -2.0f, 17, 0.0f, 42.0f, 0.0f, 0.0f));
+        RadialProgressView radialProgressView = new RadialProgressView(context, kzVar.W1);
+        this.f28302c = radialProgressView;
+        radialProgressView.setVisibility(8);
+        radialProgressView.setProgressColor(kzVar.A(org.telegram.ui.ActionBar.j6.f19978h6));
+        addView(radialProgressView, k7.b6.e(-2, -2, 17));
+    }
+
+    public final void a(boolean z4) {
+        int i10;
+        int i11;
+        if (this.d != z4) {
+            this.d = z4;
+            int i12 = 0;
+            if (z4) {
+                i10 = 8;
+            } else {
+                i10 = 0;
+            }
+            this.f28300a.setVisibility(i10);
+            if (z4) {
+                i11 = 8;
+            } else {
+                i11 = 0;
+            }
+            this.f28301b.setVisibility(i11);
+            if (!z4) {
+                i12 = 8;
+            }
+            this.f28302c.setVisibility(i12);
+        }
     }
 
     @Override
-    public final boolean A1() {
-        return LiteMode.isEnabled(8200);
-    }
-
-    @Override
-    public final void E1(int i10) {
-        boolean z10;
-        pw pwVar;
-        bw bwVar;
-        super.E1(i10);
-        ry ryVar = this.f32134w3;
-        fz fzVar = ryVar.C;
-        qy qyVar = ryVar.f32415r;
-        boolean z11 = true;
-        if (qyVar.getSelectedCategory() == null) {
-            z10 = true;
+    public final void onMeasure(int i10, int i11) {
+        int dp;
+        kz kzVar = this.e;
+        int measuredHeight = kzVar.f26423e0.getMeasuredHeight();
+        if (!this.d) {
+            dp = (int) (org.telegram.ui.b.x(8.0f, measuredHeight - kzVar.Y0, 3) * 1.7f);
         } else {
-            z10 = false;
+            dp = measuredHeight - AndroidUtilities.dp(80.0f);
         }
-        int i11 = fz.K2;
-        fzVar.O(z10);
-        int i12 = this.f32133v3;
-        if (i12 == 1 && (bwVar = fzVar.E) != null) {
-            if (qyVar.getSelectedCategory() != null) {
-                z11 = false;
-            }
-            bwVar.n(z11);
-        } else if (i12 == 0 && (pwVar = fzVar.f28650x0) != null) {
-            if (qyVar.getSelectedCategory() != null) {
-                z11 = false;
-            }
-            pwVar.f28498k0 = z11;
-            pwVar.invalidate();
-        }
-        ryVar.g(false);
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(dp, 1073741824));
     }
 }

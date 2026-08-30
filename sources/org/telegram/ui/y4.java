@@ -1,18 +1,24 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.NotificationCenter;
-public final class y4 implements NotificationCenter.NotificationCenterDelegate {
-    public final z4 f44737a;
-
-    public y4(z4 z4Var) {
-        this.f44737a = z4Var;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class y4 extends b5 {
+    @Override
+    public final void a() {
+        MessagesController.getInstance(UserConfig.selectedAccount).loadFullChat(((TLRPC.Chat) this.f32792c).f19184id, this.d, false);
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        z4 z4Var = this.f44737a;
-        if (z4Var.f45068g && i10 == z4Var.f45066e) {
-            z4Var.b(objArr);
+    public final void b(Object... objArr) {
+        boolean z4;
+        TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
+        if (chatFull != null && chatFull.f19185id == ((TLRPC.Chat) this.f32792c).f19184id && (z4 = this.f32794g)) {
+            if (z4) {
+                this.f32794g = false;
+                this.f32791b.removeObserver(this.f32790a, this.e);
+            }
+            this.f32793f.accept(chatFull);
         }
     }
 }

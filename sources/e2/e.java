@@ -1,80 +1,708 @@
 package e2;
 
-import android.content.Context;
-import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import androidx.profileinstaller.ProfileInstallerInitializer;
-import java.util.Random;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import jh.f0;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ib0;
-public final class e implements Runnable {
-    public final int f5787a;
-    public final Context f5788b;
+import android.content.pm.PackageInfo;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.BitSet;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.zip.Deflater;
+import java.util.zip.DeflaterOutputStream;
+import kh.a2;
+public abstract class e {
+    public static final cb.b f5060a = new cb.b(5);
+    public static final byte[] f5061b = {112, 114, 111, 0};
+    public static final byte[] f5062c = {112, 114, 109, 0};
+    public static final byte[] d = {48, 49, 53, 0};
+    public static final byte[] e = {48, 49, 48, 0};
+    public static final byte[] f5063f = {48, 48, 57, 0};
+    public static final byte[] f5064g = {48, 48, 53, 0};
+    public static final byte[] h = {48, 48, 49, 0};
+    public static final byte[] f5065i = {48, 48, 49, 0};
+    public static final byte[] f5066j = {48, 48, 50, 0};
 
-    public e(Context context, int i10) {
-        this.f5787a = i10;
-        this.f5788b = context;
-    }
-
-    @Override
-    public final void run() {
-        Handler handler;
-        switch (this.f5787a) {
-            case 0:
-                if (Build.VERSION.SDK_INT >= 28) {
-                    handler = g.a(Looper.getMainLooper());
-                } else {
-                    handler = new Handler(Looper.getMainLooper());
-                }
-                handler.postDelayed(new e(this.f5788b, 1), new Random().nextInt(Math.max(1000, 1)) + 5000);
-                return;
-            case 1:
-                new ThreadPoolExecutor(0, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue()).execute(new e(this.f5788b, 2));
-                return;
-            case 2:
-                d.s(this.f5788b, new ib0(1), d.f5779a, false);
-                return;
-            case 3:
-                new f0(this.f5788b).show();
-                return;
-            case 4:
-                ye.d.s(this.f5788b, LocaleController.getString(R.string.StarsTOSLink));
-                return;
-            case 5:
-                new f0(this.f5788b).show();
-                return;
-            case 6:
-                ye.d.s(this.f5788b, LocaleController.getString(R.string.StarsTOSLink));
-                return;
-            case 7:
-                ye.d.s(this.f5788b, LocaleController.getString(R.string.StarsTOSLink));
-                return;
-            case 8:
-                ye.d.s(this.f5788b, LocaleController.getString(R.string.PaidContentInfoLink));
-                return;
-            case 9:
-                ye.d.s(this.f5788b, LocaleController.getString(R.string.StarsSubscribeInfoLink));
-                return;
-            case 10:
-                ye.d.s(this.f5788b, LocaleController.getString(R.string.StarsReactionTermsLink));
-                return;
-            case 11:
-                new f0(this.f5788b).show();
-                return;
-            default:
-                ye.d.s(this.f5788b, LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfoLink));
-                return;
+    public static byte[] a(byte[] bArr) {
+        Deflater deflater = new Deflater(1);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        try {
+            DeflaterOutputStream deflaterOutputStream = new DeflaterOutputStream(byteArrayOutputStream, deflater);
+            deflaterOutputStream.write(bArr);
+            deflaterOutputStream.close();
+            deflater.end();
+            return byteArrayOutputStream.toByteArray();
+        } catch (Throwable th2) {
+            deflater.end();
+            throw th2;
         }
     }
 
-    public e(ProfileInstallerInitializer profileInstallerInitializer, Context context) {
-        this.f5787a = 0;
-        this.f5788b = context;
+    public static byte[] b(b[] bVarArr, byte[] bArr) {
+        int i10 = 0;
+        for (b bVar : bVarArr) {
+            i10 += ((((bVar.f5058g * 2) + 7) & (-8)) / 8) + (bVar.e * 2) + d(bVar.f5054a, bVar.f5055b, bArr).getBytes(StandardCharsets.UTF_8).length + 16 + bVar.f5057f;
+        }
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(i10);
+        if (Arrays.equals(bArr, f5063f)) {
+            for (b bVar2 : bVarArr) {
+                p(byteArrayOutputStream, bVar2, d(bVar2.f5054a, bVar2.f5055b, bArr));
+                r(byteArrayOutputStream, bVar2);
+                int[] iArr = bVar2.h;
+                int length = iArr.length;
+                int i11 = 0;
+                int i12 = 0;
+                while (i11 < length) {
+                    int i13 = iArr[i11];
+                    u(byteArrayOutputStream, i13 - i12);
+                    i11++;
+                    i12 = i13;
+                }
+                q(byteArrayOutputStream, bVar2);
+            }
+        } else {
+            for (b bVar3 : bVarArr) {
+                p(byteArrayOutputStream, bVar3, d(bVar3.f5054a, bVar3.f5055b, bArr));
+            }
+            for (b bVar4 : bVarArr) {
+                r(byteArrayOutputStream, bVar4);
+                int[] iArr2 = bVar4.h;
+                int length2 = iArr2.length;
+                int i14 = 0;
+                int i15 = 0;
+                while (i14 < length2) {
+                    int i16 = iArr2[i14];
+                    u(byteArrayOutputStream, i16 - i15);
+                    i14++;
+                    i15 = i16;
+                }
+                q(byteArrayOutputStream, bVar4);
+            }
+        }
+        if (byteArrayOutputStream.size() == i10) {
+            return byteArrayOutputStream.toByteArray();
+        }
+        throw new IllegalStateException("The bytes saved do not match expectation. actual=" + byteArrayOutputStream.size() + " expected=" + i10);
+    }
+
+    public static boolean c(File file) {
+        if (file.isDirectory()) {
+            File[] listFiles = file.listFiles();
+            if (listFiles == null) {
+                return false;
+            }
+            boolean z4 = true;
+            for (File file2 : listFiles) {
+                if (c(file2) && z4) {
+                    z4 = true;
+                } else {
+                    z4 = false;
+                }
+            }
+            return z4;
+        }
+        file.delete();
+        return true;
+    }
+
+    public static String d(String str, String str2, byte[] bArr) {
+        Object obj;
+        byte[] bArr2 = h;
+        boolean equals = Arrays.equals(bArr, bArr2);
+        byte[] bArr3 = f5064g;
+        String str3 = "!";
+        if (!equals && !Arrays.equals(bArr, bArr3)) {
+            obj = "!";
+        } else {
+            obj = ":";
+        }
+        if (str.length() <= 0) {
+            if ("!".equals(obj)) {
+                return str2.replace(":", "!");
+            }
+            if (":".equals(obj)) {
+                return str2.replace("!", ":");
+            }
+        } else if (str2.equals("classes.dex")) {
+            return str;
+        } else {
+            if (!str2.contains("!") && !str2.contains(":")) {
+                if (!str2.endsWith(".apk")) {
+                    return android.support.v4.media.a.r(c.l(str), (Arrays.equals(bArr, bArr2) || Arrays.equals(bArr, bArr3)) ? ":" : ":", str2);
+                }
+            } else if ("!".equals(obj)) {
+                return str2.replace(":", "!");
+            } else {
+                if (":".equals(obj)) {
+                    return str2.replace("!", ":");
+                }
+            }
+        }
+        return str2;
+    }
+
+    public static void e(PackageInfo packageInfo, File file) {
+        try {
+            DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(new File(file, "profileinstaller_profileWrittenFor_lastUpdateTime.dat")));
+            dataOutputStream.writeLong(packageInfo.lastUpdateTime);
+            dataOutputStream.close();
+        } catch (IOException unused) {
+        }
+    }
+
+    public static byte[] f(int i10, InputStream inputStream) {
+        byte[] bArr = new byte[i10];
+        int i11 = 0;
+        while (i11 < i10) {
+            int read = inputStream.read(bArr, i11, i10 - i11);
+            if (read >= 0) {
+                i11 += read;
+            } else {
+                throw new IllegalStateException(a2.j(i10, "Not enough bytes to read: "));
+            }
+        }
+        return bArr;
+    }
+
+    public static int[] g(ByteArrayInputStream byteArrayInputStream, int i10) {
+        int[] iArr = new int[i10];
+        int i11 = 0;
+        for (int i12 = 0; i12 < i10; i12++) {
+            i11 += (int) m(2, byteArrayInputStream);
+            iArr[i12] = i11;
+        }
+        return iArr;
+    }
+
+    public static byte[] h(java.io.FileInputStream r8, int r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: e2.e.h(java.io.FileInputStream, int, int):byte[]");
+    }
+
+    public static b[] i(FileInputStream fileInputStream, byte[] bArr, byte[] bArr2, b[] bVarArr) {
+        byte[] bArr3 = f5065i;
+        if (Arrays.equals(bArr, bArr3)) {
+            if (!Arrays.equals(d, bArr2)) {
+                if (Arrays.equals(bArr, bArr3)) {
+                    int m9 = (int) m(1, fileInputStream);
+                    byte[] h9 = h(fileInputStream, (int) m(4, fileInputStream), (int) m(4, fileInputStream));
+                    if (fileInputStream.read() <= 0) {
+                        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(h9);
+                        try {
+                            b[] j10 = j(byteArrayInputStream, m9, bVarArr);
+                            byteArrayInputStream.close();
+                            return j10;
+                        } catch (Throwable th2) {
+                            try {
+                                byteArrayInputStream.close();
+                            } catch (Throwable th3) {
+                                th2.addSuppressed(th3);
+                            }
+                            throw th2;
+                        }
+                    }
+                    throw new IllegalStateException("Content found after the end of file");
+                }
+                throw new IllegalStateException("Unsupported meta version");
+            }
+            throw new IllegalStateException("Requires new Baseline Profile Metadata. Please rebuild the APK with Android Gradle Plugin 7.2 Canary 7 or higher");
+        } else if (Arrays.equals(bArr, f5066j)) {
+            int m10 = (int) m(2, fileInputStream);
+            byte[] h10 = h(fileInputStream, (int) m(4, fileInputStream), (int) m(4, fileInputStream));
+            if (fileInputStream.read() <= 0) {
+                ByteArrayInputStream byteArrayInputStream2 = new ByteArrayInputStream(h10);
+                try {
+                    b[] k10 = k(byteArrayInputStream2, bArr2, m10, bVarArr);
+                    byteArrayInputStream2.close();
+                    return k10;
+                } catch (Throwable th4) {
+                    try {
+                        byteArrayInputStream2.close();
+                    } catch (Throwable th5) {
+                        th4.addSuppressed(th5);
+                    }
+                    throw th4;
+                }
+            }
+            throw new IllegalStateException("Content found after the end of file");
+        } else {
+            throw new IllegalStateException("Unsupported meta version");
+        }
+    }
+
+    public static b[] j(ByteArrayInputStream byteArrayInputStream, int i10, b[] bVarArr) {
+        if (byteArrayInputStream.available() == 0) {
+            return new b[0];
+        }
+        if (i10 == bVarArr.length) {
+            String[] strArr = new String[i10];
+            int[] iArr = new int[i10];
+            for (int i11 = 0; i11 < i10; i11++) {
+                int m9 = (int) m(2, byteArrayInputStream);
+                iArr[i11] = (int) m(2, byteArrayInputStream);
+                strArr[i11] = new String(f(m9, byteArrayInputStream), StandardCharsets.UTF_8);
+            }
+            for (int i12 = 0; i12 < i10; i12++) {
+                b bVar = bVarArr[i12];
+                if (bVar.f5055b.equals(strArr[i12])) {
+                    int i13 = iArr[i12];
+                    bVar.e = i13;
+                    bVar.h = g(byteArrayInputStream, i13);
+                } else {
+                    throw new IllegalStateException("Order of dexfiles in metadata did not match baseline");
+                }
+            }
+            return bVarArr;
+        }
+        throw new IllegalStateException("Mismatched number of dex files found in metadata");
+    }
+
+    public static b[] k(ByteArrayInputStream byteArrayInputStream, byte[] bArr, int i10, b[] bVarArr) {
+        String str;
+        if (byteArrayInputStream.available() == 0) {
+            return new b[0];
+        }
+        if (i10 == bVarArr.length) {
+            for (int i11 = 0; i11 < i10; i11++) {
+                m(2, byteArrayInputStream);
+                String str2 = new String(f((int) m(2, byteArrayInputStream), byteArrayInputStream), StandardCharsets.UTF_8);
+                long m9 = m(4, byteArrayInputStream);
+                int m10 = (int) m(2, byteArrayInputStream);
+                b bVar = null;
+                if (bVarArr.length > 0) {
+                    int indexOf = str2.indexOf("!");
+                    if (indexOf < 0) {
+                        indexOf = str2.indexOf(":");
+                    }
+                    if (indexOf > 0) {
+                        str = str2.substring(indexOf + 1);
+                    } else {
+                        str = str2;
+                    }
+                    int i12 = 0;
+                    while (true) {
+                        if (i12 >= bVarArr.length) {
+                            break;
+                        } else if (bVarArr[i12].f5055b.equals(str)) {
+                            bVar = bVarArr[i12];
+                            break;
+                        } else {
+                            i12++;
+                        }
+                    }
+                }
+                if (bVar != null) {
+                    bVar.d = m9;
+                    int[] g10 = g(byteArrayInputStream, m10);
+                    if (Arrays.equals(bArr, h)) {
+                        bVar.e = m10;
+                        bVar.h = g10;
+                    }
+                } else {
+                    throw new IllegalStateException("Missing profile key: ".concat(str2));
+                }
+            }
+            return bVarArr;
+        }
+        throw new IllegalStateException("Mismatched number of dex files found in metadata");
+    }
+
+    public static b[] l(FileInputStream fileInputStream, byte[] bArr, String str) {
+        if (Arrays.equals(bArr, e)) {
+            int m9 = (int) m(1, fileInputStream);
+            byte[] h9 = h(fileInputStream, (int) m(4, fileInputStream), (int) m(4, fileInputStream));
+            if (fileInputStream.read() <= 0) {
+                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(h9);
+                try {
+                    b[] n10 = n(byteArrayInputStream, str, m9);
+                    byteArrayInputStream.close();
+                    return n10;
+                } catch (Throwable th2) {
+                    try {
+                        byteArrayInputStream.close();
+                    } catch (Throwable th3) {
+                        th2.addSuppressed(th3);
+                    }
+                    throw th2;
+                }
+            }
+            throw new IllegalStateException("Content found after the end of file");
+        }
+        throw new IllegalStateException("Unsupported version");
+    }
+
+    public static long m(int i10, InputStream inputStream) {
+        byte[] f10 = f(i10, inputStream);
+        long j10 = 0;
+        for (int i11 = 0; i11 < i10; i11++) {
+            j10 += (f10[i11] & 255) << (i11 * 8);
+        }
+        return j10;
+    }
+
+    public static b[] n(ByteArrayInputStream byteArrayInputStream, String str, int i10) {
+        int i11;
+        if (byteArrayInputStream.available() == 0) {
+            return new b[0];
+        }
+        b[] bVarArr = new b[i10];
+        for (int i12 = 0; i12 < i10; i12++) {
+            int m9 = (int) m(2, byteArrayInputStream);
+            bVarArr[i12] = new b(str, new String(f((int) m(2, byteArrayInputStream), byteArrayInputStream), StandardCharsets.UTF_8), m(4, byteArrayInputStream), m9, (int) m(4, byteArrayInputStream), (int) m(4, byteArrayInputStream), new int[m9], new TreeMap());
+        }
+        int i13 = 0;
+        while (i13 < i10) {
+            b bVar = bVarArr[i13];
+            int available = byteArrayInputStream.available();
+            int i14 = bVar.f5057f;
+            int i15 = bVar.f5058g;
+            TreeMap treeMap = bVar.f5059i;
+            int i16 = available - i14;
+            int i17 = 0;
+            while (byteArrayInputStream.available() > i16) {
+                i17 += (int) m(2, byteArrayInputStream);
+                treeMap.put(Integer.valueOf(i17), 1);
+                int m10 = (int) m(2, byteArrayInputStream);
+                while (m10 > 0) {
+                    m(2, byteArrayInputStream);
+                    int m11 = (int) m(1, byteArrayInputStream);
+                    if (m11 != 6 && m11 != 7) {
+                        while (m11 > 0) {
+                            m(1, byteArrayInputStream);
+                            int i18 = i13;
+                            for (int m12 = (int) m(1, byteArrayInputStream); m12 > 0; m12--) {
+                                m(2, byteArrayInputStream);
+                            }
+                            m11--;
+                            i13 = i18;
+                        }
+                    }
+                    m10--;
+                    i13 = i13;
+                }
+            }
+            int i19 = i13;
+            if (byteArrayInputStream.available() == i16) {
+                bVar.h = g(byteArrayInputStream, bVar.e);
+                BitSet valueOf = BitSet.valueOf(f((((i15 * 2) + 7) & (-8)) / 8, byteArrayInputStream));
+                for (int i20 = 0; i20 < i15; i20++) {
+                    if (valueOf.get(i20)) {
+                        i11 = 2;
+                    } else {
+                        i11 = 0;
+                    }
+                    if (valueOf.get(i20 + i15)) {
+                        i11 |= 4;
+                    }
+                    if (i11 != 0) {
+                        Integer num = (Integer) treeMap.get(Integer.valueOf(i20));
+                        if (num == null) {
+                            num = 0;
+                        }
+                        treeMap.put(Integer.valueOf(i20), Integer.valueOf(i11 | num.intValue()));
+                    }
+                }
+                i13 = i19 + 1;
+            } else {
+                throw new IllegalStateException("Read too much data during profile line parse");
+            }
+        }
+        return bVarArr;
+    }
+
+    public static boolean o(ByteArrayOutputStream byteArrayOutputStream, byte[] bArr, b[] bVarArr) {
+        long j10;
+        ArrayList arrayList;
+        int length;
+        byte[] bArr2 = d;
+        if (Arrays.equals(bArr, bArr2)) {
+            ArrayList arrayList2 = new ArrayList(3);
+            ArrayList arrayList3 = new ArrayList(3);
+            ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
+            try {
+                u(byteArrayOutputStream2, bVarArr.length);
+                int i10 = 2;
+                for (b bVar : bVarArr) {
+                    t(byteArrayOutputStream2, bVar.f5056c, 4);
+                    t(byteArrayOutputStream2, bVar.d, 4);
+                    t(byteArrayOutputStream2, bVar.f5058g, 4);
+                    String d10 = d(bVar.f5054a, bVar.f5055b, bArr2);
+                    Charset charset = StandardCharsets.UTF_8;
+                    int length2 = d10.getBytes(charset).length;
+                    u(byteArrayOutputStream2, length2);
+                    i10 = i10 + 14 + length2;
+                    byteArrayOutputStream2.write(d10.getBytes(charset));
+                }
+                byte[] byteArray = byteArrayOutputStream2.toByteArray();
+                if (i10 == byteArray.length) {
+                    l lVar = new l(1, false, byteArray);
+                    byteArrayOutputStream2.close();
+                    arrayList2.add(lVar);
+                    ByteArrayOutputStream byteArrayOutputStream3 = new ByteArrayOutputStream();
+                    int i11 = 0;
+                    for (int i12 = 0; i12 < bVarArr.length; i12++) {
+                        try {
+                            b bVar2 = bVarArr[i12];
+                            u(byteArrayOutputStream3, i12);
+                            u(byteArrayOutputStream3, bVar2.e);
+                            i11 = i11 + 4 + (bVar2.e * 2);
+                            int[] iArr = bVar2.h;
+                            int length3 = iArr.length;
+                            int i13 = 0;
+                            int i14 = 0;
+                            while (i13 < length3) {
+                                int i15 = iArr[i13];
+                                u(byteArrayOutputStream3, i15 - i14);
+                                i13++;
+                                i14 = i15;
+                            }
+                        } catch (Throwable th2) {
+                            throw th2;
+                        }
+                    }
+                    byte[] byteArray2 = byteArrayOutputStream3.toByteArray();
+                    if (i11 == byteArray2.length) {
+                        l lVar2 = new l(3, true, byteArray2);
+                        byteArrayOutputStream3.close();
+                        arrayList2.add(lVar2);
+                        byteArrayOutputStream3 = new ByteArrayOutputStream();
+                        int i16 = 0;
+                        int i17 = 0;
+                        while (i16 < bVarArr.length) {
+                            try {
+                                b bVar3 = bVarArr[i16];
+                                int i18 = 0;
+                                for (Map.Entry entry : bVar3.f5059i.entrySet()) {
+                                    i18 |= ((Integer) entry.getValue()).intValue();
+                                }
+                                ByteArrayOutputStream byteArrayOutputStream4 = new ByteArrayOutputStream();
+                                q(byteArrayOutputStream4, bVar3);
+                                byte[] byteArray3 = byteArrayOutputStream4.toByteArray();
+                                byteArrayOutputStream4.close();
+                                ByteArrayOutputStream byteArrayOutputStream5 = new ByteArrayOutputStream();
+                                r(byteArrayOutputStream5, bVar3);
+                                byte[] byteArray4 = byteArrayOutputStream5.toByteArray();
+                                byteArrayOutputStream5.close();
+                                u(byteArrayOutputStream3, i16);
+                                int length4 = byteArray3.length + 2 + byteArray4.length;
+                                int i19 = i17 + 6;
+                                ArrayList arrayList4 = arrayList3;
+                                t(byteArrayOutputStream3, length4, 4);
+                                u(byteArrayOutputStream3, i18);
+                                byteArrayOutputStream3.write(byteArray3);
+                                byteArrayOutputStream3.write(byteArray4);
+                                i17 = i19 + length4;
+                                i16++;
+                                arrayList3 = arrayList4;
+                            } finally {
+                                try {
+                                    byteArrayOutputStream3.close();
+                                } catch (Throwable th3) {
+                                    th2.addSuppressed(th3);
+                                }
+                            }
+                        }
+                        ArrayList arrayList5 = arrayList3;
+                        byte[] byteArray5 = byteArrayOutputStream3.toByteArray();
+                        if (i17 == byteArray5.length) {
+                            l lVar3 = new l(4, true, byteArray5);
+                            byteArrayOutputStream3.close();
+                            arrayList2.add(lVar3);
+                            long j11 = 4;
+                            long size = j11 + j11 + 4 + (arrayList2.size() * 16);
+                            t(byteArrayOutputStream, arrayList2.size(), 4);
+                            int i20 = 0;
+                            while (i20 < arrayList2.size()) {
+                                l lVar4 = (l) arrayList2.get(i20);
+                                int i21 = lVar4.f5075a;
+                                byte[] bArr3 = lVar4.f5076b;
+                                if (i21 != 1) {
+                                    if (i21 != 2) {
+                                        if (i21 != 3) {
+                                            if (i21 != 4) {
+                                                if (i21 == 5) {
+                                                    j10 = 4;
+                                                } else {
+                                                    throw null;
+                                                }
+                                            } else {
+                                                j10 = 3;
+                                            }
+                                        } else {
+                                            j10 = 2;
+                                        }
+                                    } else {
+                                        j10 = 1;
+                                    }
+                                } else {
+                                    j10 = 0;
+                                }
+                                t(byteArrayOutputStream, j10, 4);
+                                t(byteArrayOutputStream, size, 4);
+                                if (lVar4.f5077c) {
+                                    byte[] a2 = a(bArr3);
+                                    arrayList = arrayList5;
+                                    arrayList.add(a2);
+                                    t(byteArrayOutputStream, a2.length, 4);
+                                    t(byteArrayOutputStream, bArr3.length, 4);
+                                    length = a2.length;
+                                } else {
+                                    arrayList = arrayList5;
+                                    arrayList.add(bArr3);
+                                    t(byteArrayOutputStream, bArr3.length, 4);
+                                    t(byteArrayOutputStream, 0L, 4);
+                                    length = bArr3.length;
+                                }
+                                size += length;
+                                i20++;
+                                arrayList5 = arrayList;
+                            }
+                            ArrayList arrayList6 = arrayList5;
+                            for (int i22 = 0; i22 < arrayList6.size(); i22++) {
+                                byteArrayOutputStream.write((byte[]) arrayList6.get(i22));
+                            }
+                            return true;
+                        }
+                        throw new IllegalStateException("Expected size " + i17 + ", does not match actual size " + byteArray5.length);
+                    }
+                    throw new IllegalStateException("Expected size " + i11 + ", does not match actual size " + byteArray2.length);
+                }
+                throw new IllegalStateException("Expected size " + i10 + ", does not match actual size " + byteArray.length);
+            } catch (Throwable th4) {
+                try {
+                    byteArrayOutputStream2.close();
+                } catch (Throwable th5) {
+                    th4.addSuppressed(th5);
+                }
+                throw th4;
+            }
+        }
+        byte[] bArr4 = e;
+        if (Arrays.equals(bArr, bArr4)) {
+            byte[] b10 = b(bVarArr, bArr4);
+            t(byteArrayOutputStream, bVarArr.length, 1);
+            t(byteArrayOutputStream, b10.length, 4);
+            byte[] a10 = a(b10);
+            t(byteArrayOutputStream, a10.length, 4);
+            byteArrayOutputStream.write(a10);
+            return true;
+        }
+        byte[] bArr5 = f5064g;
+        if (Arrays.equals(bArr, bArr5)) {
+            t(byteArrayOutputStream, bVarArr.length, 1);
+            for (b bVar4 : bVarArr) {
+                String d11 = d(bVar4.f5054a, bVar4.f5055b, bArr5);
+                Charset charset2 = StandardCharsets.UTF_8;
+                u(byteArrayOutputStream, d11.getBytes(charset2).length);
+                u(byteArrayOutputStream, bVar4.h.length);
+                t(byteArrayOutputStream, bVar4.f5059i.size() * 4, 4);
+                t(byteArrayOutputStream, bVar4.f5056c, 4);
+                byteArrayOutputStream.write(d11.getBytes(charset2));
+                for (Integer num : bVar4.f5059i.keySet()) {
+                    u(byteArrayOutputStream, num.intValue());
+                    u(byteArrayOutputStream, 0);
+                }
+                for (int i23 : bVar4.h) {
+                    u(byteArrayOutputStream, i23);
+                }
+            }
+            return true;
+        }
+        byte[] bArr6 = f5063f;
+        if (Arrays.equals(bArr, bArr6)) {
+            byte[] b11 = b(bVarArr, bArr6);
+            t(byteArrayOutputStream, bVarArr.length, 1);
+            t(byteArrayOutputStream, b11.length, 4);
+            byte[] a11 = a(b11);
+            t(byteArrayOutputStream, a11.length, 4);
+            byteArrayOutputStream.write(a11);
+            return true;
+        }
+        byte[] bArr7 = h;
+        if (Arrays.equals(bArr, bArr7)) {
+            u(byteArrayOutputStream, bVarArr.length);
+            for (b bVar5 : bVarArr) {
+                String str = bVar5.f5054a;
+                TreeMap treeMap = bVar5.f5059i;
+                String d12 = d(str, bVar5.f5055b, bArr7);
+                Charset charset3 = StandardCharsets.UTF_8;
+                u(byteArrayOutputStream, d12.getBytes(charset3).length);
+                u(byteArrayOutputStream, treeMap.size());
+                u(byteArrayOutputStream, bVar5.h.length);
+                t(byteArrayOutputStream, bVar5.f5056c, 4);
+                byteArrayOutputStream.write(d12.getBytes(charset3));
+                for (Integer num2 : treeMap.keySet()) {
+                    u(byteArrayOutputStream, num2.intValue());
+                }
+                for (int i24 : bVar5.h) {
+                    u(byteArrayOutputStream, i24);
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public static void p(ByteArrayOutputStream byteArrayOutputStream, b bVar, String str) {
+        Charset charset = StandardCharsets.UTF_8;
+        u(byteArrayOutputStream, str.getBytes(charset).length);
+        u(byteArrayOutputStream, bVar.e);
+        t(byteArrayOutputStream, bVar.f5057f, 4);
+        t(byteArrayOutputStream, bVar.f5056c, 4);
+        t(byteArrayOutputStream, bVar.f5058g, 4);
+        byteArrayOutputStream.write(str.getBytes(charset));
+    }
+
+    public static void q(ByteArrayOutputStream byteArrayOutputStream, b bVar) {
+        byte[] bArr = new byte[(((bVar.f5058g * 2) + 7) & (-8)) / 8];
+        for (Map.Entry entry : bVar.f5059i.entrySet()) {
+            int intValue = ((Integer) entry.getKey()).intValue();
+            int intValue2 = ((Integer) entry.getValue()).intValue();
+            if ((intValue2 & 2) != 0) {
+                int i10 = intValue / 8;
+                bArr[i10] = (byte) (bArr[i10] | (1 << (intValue % 8)));
+            }
+            if ((intValue2 & 4) != 0) {
+                int i11 = intValue + bVar.f5058g;
+                int i12 = i11 / 8;
+                bArr[i12] = (byte) ((1 << (i11 % 8)) | bArr[i12]);
+            }
+        }
+        byteArrayOutputStream.write(bArr);
+    }
+
+    public static void r(ByteArrayOutputStream byteArrayOutputStream, b bVar) {
+        int i10 = 0;
+        for (Map.Entry entry : bVar.f5059i.entrySet()) {
+            int intValue = ((Integer) entry.getKey()).intValue();
+            if ((((Integer) entry.getValue()).intValue() & 1) != 0) {
+                u(byteArrayOutputStream, intValue - i10);
+                u(byteArrayOutputStream, 0);
+                i10 = intValue;
+            }
+        }
+    }
+
+    public static void s(android.content.Context r18, java.util.concurrent.Executor r19, e2.d r20, boolean r21) {
+        throw new UnsupportedOperationException("Method not decompiled: e2.e.s(android.content.Context, java.util.concurrent.Executor, e2.d, boolean):void");
+    }
+
+    public static void t(ByteArrayOutputStream byteArrayOutputStream, long j10, int i10) {
+        byte[] bArr = new byte[i10];
+        for (int i11 = 0; i11 < i10; i11++) {
+            bArr[i11] = (byte) ((j10 >> (i11 * 8)) & 255);
+        }
+        byteArrayOutputStream.write(bArr);
+    }
+
+    public static void u(ByteArrayOutputStream byteArrayOutputStream, int i10) {
+        t(byteArrayOutputStream, i10, 2);
     }
 }

@@ -1,14 +1,86 @@
 package org.telegram.ui.Components;
 
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-public final class sf extends MessageObject {
-    @Override
-    public final boolean isOutOwner() {
-        return true;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.LaunchActivity;
+public final class sf implements Runnable {
+    public final MessageObject f28701a;
+    public final long f28702b;
+    public final TL_keyboard.KeyboardButtonProto f28703c;
+    public final MessageObject d;
+    public final TLRPC.User e;
+    public final ChatActivityEnterView f28704f;
+
+    public sf(ChatActivityEnterView chatActivityEnterView, MessageObject messageObject, long j10, TL_keyboard.KeyboardButtonProto keyboardButtonProto, MessageObject messageObject2, TLRPC.User user) {
+        this.f28704f = chatActivityEnterView;
+        this.f28701a = messageObject;
+        this.f28702b = j10;
+        this.f28703c = keyboardButtonProto;
+        this.d = messageObject2;
+        this.e = user;
     }
 
     @Override
-    public final boolean needDrawShareButton() {
-        return false;
+    public final void run() {
+        int i10;
+        long N8;
+        String restrictionReason;
+        ChatActivityEnterView chatActivityEnterView = this.f28704f;
+        org.telegram.ui.xn xnVar = chatActivityEnterView.L2;
+        if (chatActivityEnterView.f22781i1.R() <= AndroidUtilities.dp(20.0f) && !chatActivityEnterView.t0()) {
+            if (xnVar != null) {
+                int i11 = chatActivityEnterView.N;
+                long j10 = this.f28701a.messageOwner.dialog_id;
+                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f28703c;
+                String text = keyboardButtonProto.getText();
+                String url = keyboardButtonProto.getUrl();
+                boolean c3 = mf.c.c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class);
+                MessageObject messageObject = this.d;
+                if (messageObject != null) {
+                    i10 = messageObject.messageOwner.f19205id;
+                } else {
+                    i10 = 0;
+                }
+                if (xnVar == null) {
+                    N8 = 0;
+                } else {
+                    N8 = xnVar.N8();
+                }
+                rh.z3 b10 = rh.z3.b(i11, j10, this.f28702b, text, url, c3 ? 1 : 0, i10, N8, null, false, null, null, 0, false, false);
+                LaunchActivity launchActivity = LaunchActivity.D1;
+                if (launchActivity != null && launchActivity.P() != null && LaunchActivity.D1.P().m(b10) != null) {
+                    rh.a0 a0Var = chatActivityEnterView.f22780i0;
+                    if (a0Var != null) {
+                        a0Var.setOpened(false);
+                        return;
+                    }
+                    return;
+                }
+                TLRPC.User user = this.e;
+                if (user == null) {
+                    restrictionReason = null;
+                } else {
+                    restrictionReason = MessagesController.getInstance(chatActivityEnterView.N).getRestrictionReason(user.restriction_reason);
+                }
+                if (!TextUtils.isEmpty(restrictionReason)) {
+                    MessagesController.getInstance(chatActivityEnterView.N);
+                    MessagesController.showCantOpenAlert(xnVar, restrictionReason);
+                    return;
+                }
+                rh.q2 q2Var = new rh.q2(chatActivityEnterView.getContext(), chatActivityEnterView.S3);
+                q2Var.f43689h0 = chatActivityEnterView.K2;
+                q2Var.s(xnVar, b10);
+                q2Var.show();
+                return;
+            }
+            return;
+        }
+        chatActivityEnterView.m0(false);
+        AndroidUtilities.hideKeyboard(chatActivityEnterView);
+        AndroidUtilities.runOnUIThread(this, 150L);
     }
 }

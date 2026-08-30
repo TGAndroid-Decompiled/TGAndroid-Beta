@@ -1,21 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class sp0 extends org.telegram.ui.Cells.c7 {
-    public final up0 J;
+import android.view.View;
+import java.util.concurrent.atomic.AtomicReference;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class sp0 implements NotificationCenter.NotificationCenterDelegate {
+    public final TLRPC.Dialog f28793a;
+    public final AtomicReference f28794b;
+    public final View f28795c;
+    public final lq0 d;
 
-    public sp0(up0 up0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, 0, c6Var);
-        this.J = up0Var;
+    public sp0(lq0 lq0Var, TLRPC.Dialog dialog, AtomicReference atomicReference, View view) {
+        this.d = lq0Var;
+        this.f28793a = dialog;
+        this.f28794b = atomicReference;
+        this.f28795c = view;
     }
 
     @Override
-    public final String a() {
-        if (this.J.f33290f.W) {
-            return LocaleController.getString(R.string.RepostToStory);
-        }
-        return LocaleController.getString(R.string.FwdMyStory);
+    public final void didReceivedNotification(int r9, int r10, java.lang.Object... r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.sp0.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 }

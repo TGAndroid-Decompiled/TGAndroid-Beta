@@ -1,15 +1,15 @@
 package org.telegram.ui;
-public final class fw0 {
-    public final int f38243a;
-    public final int f38244b;
-    public final CharSequence f38245c;
-    public final String d;
-    public int f38246e;
+public final class fw0 extends g61 {
+    public final PremiumPreviewFragment e;
 
-    public fw0(int i10, int i11, String str, String str2) {
-        this.f38243a = i10;
-        this.f38244b = i11;
-        this.f38245c = str;
-        this.d = str2;
+    public fw0(PremiumPreviewFragment premiumPreviewFragment, ew0 ew0Var) {
+        super(ew0Var);
+        this.e = premiumPreviewFragment;
+    }
+
+    @Override
+    public final void dismiss() {
+        super.dismiss();
+        this.e.f31970p0 = null;
     }
 }

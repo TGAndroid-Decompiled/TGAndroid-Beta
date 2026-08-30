@@ -1,54 +1,63 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class ag0 implements ViewSwitcher.ViewFactory {
-    public final int f36546a;
-    public final Object f36547b;
+import org.telegram.messenger.Utilities;
+public final class ag0 extends AnimatorListenerAdapter {
+    public final int f32581a;
+    public final bg0 f32582b;
 
-    public ag0(Object obj, int i10) {
-        this.f36546a = i10;
-        this.f36547b = obj;
+    public ag0(bg0 bg0Var, int i10) {
+        this.f32581a = i10;
+        this.f32582b = bg0Var;
     }
 
     @Override
-    public final View makeView() {
-        int i10;
-        int i11 = this.f36546a;
-        Object obj = this.f36547b;
-        switch (i11) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f32581a) {
             case 0:
-                TextView textView = new TextView((Context) obj);
-                textView.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f));
-                textView.setTextSize(1, 16.0f);
-                textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.G6, false));
-                textView.setHintTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.H6, false));
-                textView.setMaxLines(1);
-                textView.setSingleLine(true);
-                textView.setEllipsize(TextUtils.TruncateAt.END);
-                if (LocaleController.isRTL) {
-                    i10 = 5;
-                } else {
-                    i10 = 3;
+                if (AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
+                    this.f32582b.h.requestFocus();
+                    return;
                 }
-                textView.setGravity(i10 | 1);
-                return textView;
-            case 1:
-                TextView textView2 = new TextView((Context) obj);
-                th.s(org.telegram.ui.ActionBar.g6.D6, null, false, textView2, 1);
-                textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-                textView2.setTextSize(1, 15.0f);
-                return textView2;
+                return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) obj;
-                Drawable[] drawableArr = PhotoViewer.P8;
-                return new mt0(photoViewer.A, photoViewer.P1, photoViewer.M, new nq0(photoViewer, 0), new xf0(photoViewer, 1));
+                bg0 bg0Var = this.f32582b;
+                if (bg0Var.getParent() instanceof ViewGroup) {
+                    ((ViewGroup) bg0Var.getParent()).removeView(bg0Var);
+                }
+                bg0Var.f32956c.setVisibility(0);
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f32581a) {
+            case 0:
+                bg0 bg0Var = this.f32582b;
+                bg0Var.f32956c.setVisibility(8);
+                int measuredWidth = (int) (bg0Var.f32955b.getMeasuredWidth() / 10.0f);
+                int measuredHeight = (int) (bg0Var.f32955b.getMeasuredHeight() / 10.0f);
+                Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(createBitmap);
+                canvas.scale(0.1f, 0.1f);
+                canvas.drawColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19906d6, false));
+                bg0Var.f32955b.draw(canvas);
+                Utilities.stackBlurBitmap(createBitmap, Math.max(8, Math.max(measuredWidth, measuredHeight) / 150));
+                bg0Var.d.setBackground(new BitmapDrawable(bg0Var.getContext().getResources(), createBitmap));
+                bg0Var.d.setAlpha(0.0f);
+                bg0Var.d.setVisibility(0);
+                bg0Var.f32955b.addView(bg0Var);
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
     }
 }

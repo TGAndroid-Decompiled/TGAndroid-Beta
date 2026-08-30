@@ -1,97 +1,64 @@
 package cg;
 
-import android.content.DialogInterface;
-import jh.l6;
-import lh.i9;
-import lh.m5;
+import android.content.Context;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import k7.b6;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class d0 implements DialogInterface.OnDismissListener {
-    public final int f3087a;
-    public final Object f3088b;
+import org.telegram.ui.zl0;
+public final class d0 extends LinearLayout {
+    public final c0 f2330a;
+    public final c0 f2331b;
+    public final c0 f2332c;
+    public final EditTextBoldCursor d;
+    public boolean e;
+    public final e0 f2333f;
 
-    public d0(Object obj, int i10) {
-        this.f3087a = i10;
-        this.f3088b = obj;
-    }
-
-    @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        org.telegram.ui.web.f0 f0Var;
-        switch (this.f3087a) {
-            case 0:
-                v0 v0Var = (v0) this.f3088b;
-                v0Var.f3402b0 = false;
-                v0Var.f3419t0.W = true;
-                v0Var.A0.invalidate();
-                v0Var.f3419t0.invalidate();
-                return;
-            case 1:
-                f2 f2Var = (f2) this.f3088b;
-                i iVar = f2Var.f3134n0;
-                if (iVar != null) {
-                    iVar.setDialogVisible(false);
-                }
-                f2Var.m0.setPaused(false);
-                return;
-            case 2:
-                ((hh.v) this.f3088b).f8136s = null;
-                return;
-            case 3:
-                ((l6) this.f3088b).run();
-                return;
-            case 4:
-                AndroidUtilities.hideKeyboard((EditTextBoldCursor) this.f3088b);
-                return;
-            case 5:
-                ((jh.w2) this.f3088b).run();
-                return;
-            case 6:
-                ((m5) this.f3088b).run();
-                return;
-            case 7:
-                i9 i9Var = (i9) this.f3088b;
-                if (dialogInterface == i9Var.f15778q0) {
-                    i9Var.f15778q0 = null;
-                    i9Var.P();
-                    return;
-                }
-                return;
-            case 8:
-                Runnable[] runnableArr = (Runnable[]) this.f3088b;
-                Runnable runnable = runnableArr[0];
-                if (runnable != null) {
-                    runnable.run();
-                    runnableArr[0] = null;
-                    return;
-                }
-                return;
-            case 9:
-                org.telegram.ui.web.z0 z0Var = ((org.telegram.ui.web.l0) this.f3088b).f44109e.M;
-                if (z0Var != null && (f0Var = z0Var.f44264c) != null) {
-                    f0Var.y();
-                    return;
-                }
-                return;
-            case 10:
-                org.telegram.ui.web.f0 f0Var2 = ((org.telegram.ui.web.s0) this.f3088b).f44196b.f44205e.M.f44264c;
-                if (f0Var2 != null) {
-                    f0Var2.y();
-                    return;
-                }
-                return;
-            case 11:
-                AndroidUtilities.hideKeyboard((sf.o) this.f3088b);
-                return;
-            case 12:
-                AndroidUtilities.hideKeyboard((sf.h1) this.f3088b);
-                return;
-            case 13:
-                ((th.p) this.f3088b).K = null;
-                return;
-            default:
-                ((th.x1) this.f3088b).K0 = null;
-                return;
-        }
+    public d0(e0 e0Var, Context context) {
+        super(context);
+        this.f2333f = e0Var;
+        setOrientation(1);
+        setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
+        c0 c0Var = new c0(e0Var, context);
+        this.f2330a = c0Var;
+        c0Var.a(0);
+        addView(c0Var, b6.p(-1, -2, 0.0f, 0, 0, 0, 0, 16));
+        c0 c0Var2 = new c0(e0Var, context);
+        this.f2331b = c0Var2;
+        c0Var2.a(1);
+        addView(c0Var2, b6.p(-1, -2, 0.0f, 0, 0, 0, 0, 16));
+        c0 c0Var3 = new c0(e0Var, context);
+        this.f2332c = c0Var3;
+        c0Var3.a(2);
+        addView(c0Var3, b6.p(-1, -2, 0.0f, 0, 0, 0, 0, 16));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setGravity(21);
+        addView(linearLayout, b6.c(64.0f, -1));
+        TextView textView = new TextView(context);
+        textView.setTextColor(-1711276033);
+        textView.setTextSize(1, 16.0f);
+        textView.setText(LocaleController.getString(R.string.PaintPaletteSlidersHexColor).toUpperCase());
+        textView.setTypeface(AndroidUtilities.bold());
+        linearLayout.addView(textView, b6.k(0.0f, 0.0f, 8.0f, 0.0f, -2, -2));
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
+        this.d = editTextBoldCursor;
+        editTextBoldCursor.setTextSize(1, 16.0f);
+        editTextBoldCursor.setBackground(j6.b0(AndroidUtilities.dp(10.0f), 436207615));
+        editTextBoldCursor.setPadding(0, 0, 0, 0);
+        editTextBoldCursor.setTextColor(-1);
+        editTextBoldCursor.setGravity(17);
+        editTextBoldCursor.setSingleLine();
+        editTextBoldCursor.setImeOptions(6);
+        editTextBoldCursor.setImeActionLabel(LocaleController.getString(R.string.Done), 6);
+        editTextBoldCursor.setTypeface(AndroidUtilities.bold());
+        editTextBoldCursor.addTextChangedListener(new zl0(this));
+        editTextBoldCursor.setOnFocusChangeListener(new z(this, 1));
+        editTextBoldCursor.setOnEditorActionListener(new a0(1));
+        linearLayout.addView(editTextBoldCursor, b6.n(72, 36));
     }
 }

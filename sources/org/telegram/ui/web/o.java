@@ -2,13 +2,13 @@ package org.telegram.ui.web;
 
 import android.text.TextUtils;
 import android.widget.EditText;
-import nh.m6;
+import nh.n5;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.e5;
-import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.o51;
-public final class o extends e5 {
-    public final m6 f44126f = new m6(this, 24);
+import org.telegram.ui.ActionBar.h5;
+import org.telegram.ui.ActionBar.p2;
+import org.telegram.ui.Components.a61;
+public final class o extends h5 {
+    public final n5 f39591f = new n5(this, 29);
     public final p h;
 
     public o(p pVar) {
@@ -18,17 +18,17 @@ public final class o extends e5 {
     @Override
     public final void m() {
         p pVar = this.h;
-        pVar.f44136s = null;
-        AndroidUtilities.cancelRunOnUIThread(this.f44126f);
-        j jVar = pVar.f44132e;
-        if (jVar != null) {
-            jVar.c();
-            pVar.f44132e = null;
+        pVar.f39599s = null;
+        AndroidUtilities.cancelRunOnUIThread(this.f39591f);
+        i iVar = pVar.e;
+        if (iVar != null) {
+            iVar.c();
+            pVar.e = null;
         }
-        o51 o51Var = pVar.f31601a;
-        if (o51Var != null) {
-            o51Var.U2.N(true);
-            pVar.f31601a.T2.h1(0, 0);
+        a61 a61Var = pVar.f23580a;
+        if (a61Var != null) {
+            a61Var.V2.N(true);
+            pVar.f23580a.U2.h1(0, 0);
         }
     }
 
@@ -36,27 +36,27 @@ public final class o extends e5 {
     public final void q(EditText editText) {
         int i10;
         p pVar = this.h;
-        boolean z10 = !TextUtils.isEmpty(pVar.f44136s);
+        boolean z4 = !TextUtils.isEmpty(pVar.f39599s);
         String obj = editText.getText().toString();
-        if (!TextUtils.equals(pVar.f44136s, obj)) {
-            pVar.f44136s = obj;
-            j jVar = pVar.f44132e;
-            if (jVar != null) {
-                jVar.c();
+        if (!TextUtils.equals(pVar.f39599s, obj)) {
+            pVar.f39599s = obj;
+            i iVar = pVar.e;
+            if (iVar != null) {
+                iVar.c();
             }
-            i10 = ((o2) pVar).currentAccount;
-            j jVar2 = new j(obj, i10, new m(pVar, 1));
-            pVar.f44132e = jVar2;
-            jVar2.a();
-            m6 m6Var = this.f44126f;
-            AndroidUtilities.cancelRunOnUIThread(m6Var);
-            AndroidUtilities.runOnUIThread(m6Var, 500L);
+            i10 = ((p2) pVar).currentAccount;
+            i iVar2 = new i(obj, i10, new l(pVar, 1));
+            pVar.e = iVar2;
+            iVar2.a();
+            n5 n5Var = this.f39591f;
+            AndroidUtilities.cancelRunOnUIThread(n5Var);
+            AndroidUtilities.runOnUIThread(n5Var, 500L);
         }
-        o51 o51Var = pVar.f31601a;
-        if (o51Var != null) {
-            o51Var.U2.N(true);
-            if (z10 != (!TextUtils.isEmpty(obj))) {
-                pVar.f31601a.T2.h1(0, 0);
+        a61 a61Var = pVar.f23580a;
+        if (a61Var != null) {
+            a61Var.V2.N(true);
+            if (z4 != (!TextUtils.isEmpty(obj))) {
+                pVar.f23580a.U2.h1(0, 0);
             }
         }
     }

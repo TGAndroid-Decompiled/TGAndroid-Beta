@@ -6,10 +6,10 @@ import android.media.AudioRecord;
 import android.media.projection.MediaProjection;
 import android.os.Build;
 import android.os.Process;
-import j7.l1;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
+import kh.a2;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.webrtc.Logging;
@@ -89,8 +89,8 @@ public class WebRtcAudioRecord {
                         try {
                             WebRtcAudioRecord webRtcAudioRecord = WebRtcAudioRecord.this;
                             webRtcAudioRecord.nativeDataIsRecorded(read, webRtcAudioRecord.nativeAudioRecord);
-                        } catch (UnsatisfiedLinkError e10) {
-                            FileLog.e(e10);
+                        } catch (UnsatisfiedLinkError e) {
+                            FileLog.e(e);
                             this.keepAlive = false;
                         }
                     }
@@ -110,8 +110,8 @@ public class WebRtcAudioRecord {
                 if (WebRtcAudioRecord.this.audioRecord != null) {
                     WebRtcAudioRecord.this.audioRecord.stop();
                 }
-            } catch (IllegalStateException e11) {
-                Logging.e("WebRtcAudioRecord", "AudioRecord.stop failed: " + e11.getMessage());
+            } catch (IllegalStateException e6) {
+                Logging.e("WebRtcAudioRecord", "AudioRecord.stop failed: " + e6.getMessage());
             }
         }
 
@@ -179,8 +179,8 @@ public class WebRtcAudioRecord {
         }
     }
 
-    private static void assertTrue(boolean z10) {
-        if (z10) {
+    private static void assertTrue(boolean z4) {
+        if (z4) {
             return;
         }
         throw new AssertionError("Expected condition to be true");
@@ -193,24 +193,24 @@ public class WebRtcAudioRecord {
         return 12;
     }
 
-    private boolean enableBuiltInAEC(boolean z10) {
-        Logging.d("WebRtcAudioRecord", "enableBuiltInAEC(" + z10 + ')');
+    private boolean enableBuiltInAEC(boolean z4) {
+        Logging.d("WebRtcAudioRecord", "enableBuiltInAEC(" + z4 + ')');
         WebRtcAudioEffects webRtcAudioEffects = this.effects;
         if (webRtcAudioEffects == null) {
             Logging.e("WebRtcAudioRecord", "Built-in AEC is not supported on this platform");
             return false;
         }
-        return webRtcAudioEffects.setAEC(z10);
+        return webRtcAudioEffects.setAEC(z4);
     }
 
-    private boolean enableBuiltInNS(boolean z10) {
-        Logging.d("WebRtcAudioRecord", "enableBuiltInNS(" + z10 + ')');
+    private boolean enableBuiltInNS(boolean z4) {
+        Logging.d("WebRtcAudioRecord", "enableBuiltInNS(" + z4 + ')');
         WebRtcAudioEffects webRtcAudioEffects = this.effects;
         if (webRtcAudioEffects == null) {
             Logging.e("WebRtcAudioRecord", "Built-in NS is not supported on this platform");
             return false;
         }
-        return webRtcAudioEffects.setNS(z10);
+        return webRtcAudioEffects.setNS(z4);
     }
 
     private static int getDefaultAudioSource() {
@@ -264,8 +264,8 @@ public class WebRtcAudioRecord {
                 } else {
                     try {
                         this.audioRecord = new AudioRecord(audioSource, i10, channelCountToConfiguration, 2, max);
-                    } catch (IllegalArgumentException e10) {
-                        reportWebRtcAudioRecordInitError("AudioRecord ctor error: " + e10.getMessage());
+                    } catch (IllegalArgumentException e) {
+                        reportWebRtcAudioRecordInitError("AudioRecord ctor error: " + e.getMessage());
                         releaseAudioResources(false);
                         return -1;
                     }
@@ -283,7 +283,7 @@ public class WebRtcAudioRecord {
                 releaseAudioResources(false);
                 return -1;
             }
-            reportWebRtcAudioRecordInitError(l1.k(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+            reportWebRtcAudioRecordInitError(a2.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
             return -1;
         }
         return -1;
@@ -310,9 +310,9 @@ public class WebRtcAudioRecord {
         }
     }
 
-    private void releaseAudioResources(boolean z10) {
-        Logging.d("WebRtcAudioRecord", "releaseAudioResources " + z10);
-        if (z10) {
+    private void releaseAudioResources(boolean z4) {
+        Logging.d("WebRtcAudioRecord", "releaseAudioResources " + z4);
+        if (z4) {
             AudioRecord audioRecord = this.deviceAudioRecord;
             if (audioRecord != null) {
                 audioRecord.release();
@@ -367,9 +367,9 @@ public class WebRtcAudioRecord {
         errorCallback = webRtcAudioRecordErrorCallback;
     }
 
-    public static void setMicrophoneMute(boolean z10) {
-        Logging.w("WebRtcAudioRecord", "setMicrophoneMute(" + z10 + ")");
-        microphoneMute = z10;
+    public static void setMicrophoneMute(boolean z4) {
+        Logging.w("WebRtcAudioRecord", "setMicrophoneMute(" + z4 + ")");
+        microphoneMute = z4;
     }
 
     public static void setOnAudioSamplesReady(WebRtcAudioRecordSamplesReadyCallback webRtcAudioRecordSamplesReadyCallback) {
@@ -377,21 +377,21 @@ public class WebRtcAudioRecord {
     }
 
     private boolean startRecording() {
+        boolean z4;
         boolean z10;
-        boolean z11;
         Logging.d("WebRtcAudioRecord", "startRecording");
         if (this.audioRecord != null) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        assertTrue(z4);
+        if (this.audioThread == null) {
             z10 = true;
         } else {
             z10 = false;
         }
         assertTrue(z10);
-        if (this.audioThread == null) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        assertTrue(z11);
         try {
             this.audioRecord.startRecording();
             if (this.audioRecord.getRecordingState() != 3) {
@@ -403,22 +403,22 @@ public class WebRtcAudioRecord {
             this.audioThread = audioRecordThread;
             audioRecordThread.start();
             return true;
-        } catch (IllegalStateException e10) {
+        } catch (IllegalStateException e) {
             AudioRecordStartErrorCode audioRecordStartErrorCode2 = AudioRecordStartErrorCode.AUDIO_RECORD_START_EXCEPTION;
-            reportWebRtcAudioRecordStartError(audioRecordStartErrorCode2, "AudioRecord.startRecording failed: " + e10.getMessage());
+            reportWebRtcAudioRecordStartError(audioRecordStartErrorCode2, "AudioRecord.startRecording failed: " + e.getMessage());
             return false;
         }
     }
 
     private boolean stopRecording() {
-        boolean z10;
+        boolean z4;
         Logging.d("WebRtcAudioRecord", "stopRecording");
         if (this.audioThread != null) {
-            z10 = true;
+            z4 = true;
         } else {
-            z10 = false;
+            z4 = false;
         }
-        assertTrue(z10);
+        assertTrue(z4);
         this.audioThread.stopThread();
         if (!ThreadUtils.joinUninterruptibly(this.audioThread, 2000L)) {
             Logging.e("WebRtcAudioRecord", "Join of AudioRecordJavaThread timed out");
@@ -466,9 +466,9 @@ public class WebRtcAudioRecord {
                                 return;
                             }
                             return;
-                        } catch (IllegalStateException e10) {
+                        } catch (IllegalStateException e) {
                             AudioRecordStartErrorCode audioRecordStartErrorCode2 = AudioRecordStartErrorCode.AUDIO_RECORD_START_EXCEPTION;
-                            reportWebRtcAudioRecordStartError(audioRecordStartErrorCode2, "AudioRecord.startRecording failed: " + e10.getMessage());
+                            reportWebRtcAudioRecordStartError(audioRecordStartErrorCode2, "AudioRecord.startRecording failed: " + e.getMessage());
                             return;
                         }
                     }
@@ -481,7 +481,7 @@ public class WebRtcAudioRecord {
                     return;
                 }
             }
-            reportWebRtcAudioRecordInitError(l1.k(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+            reportWebRtcAudioRecordInitError(a2.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
         }
     }
 

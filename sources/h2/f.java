@@ -1,12 +1,17 @@
 package h2;
-public final class f {
-    public final String f7521a;
-    public final String f7522b;
-    public final g0.c f7523c;
 
-    public f(g0.c cVar, String str, String str2) {
-        this.f7523c = cVar;
-        this.f7521a = str;
-        this.f7522b = str2;
+import java.util.concurrent.Callable;
+public final class f implements Callable {
+    public final int f6902a;
+    public final Object f6903b;
+
+    public f(Object obj, int i10) {
+        this.f6902a = i10;
+        this.f6903b = obj;
+    }
+
+    @Override
+    public final java.lang.Object call() {
+        throw new UnsupportedOperationException("Method not decompiled: h2.f.call():java.lang.Object");
     }
 }

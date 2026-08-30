@@ -99,13 +99,13 @@ public class Font {
         return this.typeface;
     }
 
-    private Font(Typeface typeface, int i10, float f9) {
+    private Font(Typeface typeface, int i10, float f10) {
         this.typeface = applyStyle(typeface, i10);
         this.style = i10;
-        this.size = f9;
+        this.size = f10;
     }
 
-    public static Font createFont(Typeface typeface, float f9) {
-        return new Font(typeface, 0, f9);
+    public static Font createFont(Typeface typeface, float f10) {
+        return new Font(typeface, 0, f10);
     }
 }

@@ -1,56 +1,51 @@
 package j3;
 
 import android.net.Uri;
-public final class d1 implements g {
-    public static final d1 f10413c = new d1(new androidx.biometric.e(20, false));
-    public static final String d;
-    public static final String f10414e;
-    public static final String f10415f;
-    public static final d0 h;
-    public final Uri f10416a;
-    public final String f10417b;
+import android.os.Bundle;
+public final class d1 {
+    public Integer A;
+    public Integer B;
+    public CharSequence C;
+    public CharSequence D;
+    public CharSequence E;
+    public Integer F;
+    public Bundle G;
+    public CharSequence f8465a;
+    public CharSequence f8466b;
+    public CharSequence f8467c;
+    public CharSequence d;
+    public CharSequence e;
+    public CharSequence f8468f;
+    public CharSequence f8469g;
+    public f2 h;
+    public f2 f8470i;
+    public byte[] f8471j;
+    public Integer f8472k;
+    public Uri f8473l;
+    public Integer f8474m;
+    public Integer f8475n;
+    public Integer f8476o;
+    public Boolean f8477p;
+    public Boolean f8478q;
+    public Integer f8479r;
+    public Integer f8480s;
+    public Integer f8481t;
+    public Integer f8482u;
+    public Integer v;
+    public Integer f8483w;
+    public CharSequence f8484x;
+    public CharSequence f8485y;
+    public CharSequence f8486z;
 
-    static {
-        int i10 = f5.d0.f6579a;
-        d = Integer.toString(0, 36);
-        f10414e = Integer.toString(1, 36);
-        f10415f = Integer.toString(2, 36);
-        h = new d0(6);
-    }
-
-    public d1(androidx.biometric.e eVar) {
-        this.f10416a = (Uri) eVar.f1030b;
-        this.f10417b = (String) eVar.f1031c;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final void a(int i10, byte[] bArr) {
+        if (this.f8471j != null) {
+            Integer valueOf = Integer.valueOf(i10);
+            int i11 = h5.d0.f6937a;
+            if (!valueOf.equals(3) && h5.d0.a(this.f8472k, 3)) {
+                return;
+            }
         }
-        if (!(obj instanceof d1)) {
-            return false;
-        }
-        d1 d1Var = (d1) obj;
-        if (f5.d0.a(this.f10416a, d1Var.f10416a) && f5.d0.a(this.f10417b, d1Var.f10417b)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        int hashCode;
-        int i10 = 0;
-        Uri uri = this.f10416a;
-        if (uri == null) {
-            hashCode = 0;
-        } else {
-            hashCode = uri.hashCode();
-        }
-        int i11 = hashCode * 31;
-        String str = this.f10417b;
-        if (str != null) {
-            i10 = str.hashCode();
-        }
-        return i11 + i10;
+        this.f8471j = (byte[]) bArr.clone();
+        this.f8472k = Integer.valueOf(i10);
     }
 }

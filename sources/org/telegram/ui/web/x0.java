@@ -3,38 +3,38 @@ package org.telegram.ui.web;
 import org.json.JSONObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.j6;
 public final class x0 {
-    public final String f44242a;
-    public final String f44243b;
-    public final int f44244c;
+    public final String f39699a;
+    public final String f39700b;
+    public final int f39701c;
 
     public x0(JSONObject jSONObject) {
-        this.f44244c = -1;
-        this.f44242a = jSONObject.getString("id");
+        this.f39701c = -1;
+        this.f39699a = jSONObject.getString("id");
         String string = jSONObject.getString("type");
         switch (string.hashCode()) {
             case -1829997182:
                 if (string.equals("destructive")) {
-                    this.f44244c = g6.f23295q7;
+                    this.f39701c = j6.f20141q7;
                     break;
                 }
                 break;
             case -1367724422:
                 if (string.equals("cancel")) {
-                    this.f44243b = LocaleController.getString(R.string.Cancel);
+                    this.f39700b = LocaleController.getString(R.string.Cancel);
                     return;
                 }
                 break;
             case 3548:
                 if (string.equals("ok")) {
-                    this.f44243b = LocaleController.getString(R.string.OK);
+                    this.f39700b = LocaleController.getString(R.string.OK);
                     return;
                 }
                 break;
             case 94756344:
                 if (string.equals("close")) {
-                    this.f44243b = LocaleController.getString(R.string.Close);
+                    this.f39700b = LocaleController.getString(R.string.Close);
                     return;
                 }
                 break;
@@ -42,6 +42,6 @@ public final class x0 {
                 string.equals("default");
                 break;
         }
-        this.f44243b = jSONObject.getString("text");
+        this.f39700b = jSONObject.getString("text");
     }
 }

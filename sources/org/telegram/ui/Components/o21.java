@@ -1,37 +1,51 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
-public final class o21 implements Runnable {
-    public final int f31241a;
-    public final MessageObject f31242b;
-    public final long f31243c;
-    public final String d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class o21 extends Drawable {
+    public final Drawable f27435a;
+    public final Paint f27436b = new Paint(1);
+    public final RectF f27437c = new RectF();
 
-    public o21(String str, MessageObject messageObject, long j10, int i10) {
-        this.f31241a = i10;
-        this.f31242b = messageObject;
-        this.f31243c = j10;
-        this.d = str;
+    public o21(Context context) {
+        this.f27435a = context.getResources().getDrawable(R.drawable.menu_topic_add).mutate();
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f31241a;
-        String str = this.d;
-        long j10 = this.f31243c;
-        MessageObject messageObject = this.f31242b;
-        switch (i10) {
-            case 0:
-                NotificationCenter notificationCenter = NotificationCenter.getInstance(messageObject.currentAccount);
-                int i11 = NotificationCenter.voiceTranscriptionUpdate;
-                Long valueOf = Long.valueOf(j10);
-                Boolean bool = Boolean.TRUE;
-                notificationCenter.lambda$postNotificationNameOnUIThread$1(i11, messageObject, valueOf, str, bool, bool);
-                return;
-            default:
-                t21.g(messageObject, j10, str);
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        Paint paint = this.f27436b;
+        canvas.drawRoundRect(this.f27437c, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint);
+        this.f27435a.draw(canvas);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        this.f27437c.set(rect);
+        int centerX = rect.centerX() - AndroidUtilities.dp(12.0f);
+        int centerY = rect.centerY() - AndroidUtilities.dp(12.0f);
+        this.f27435a.setBounds(centerX, centerY, AndroidUtilities.dp(24.0f) + centerX, AndroidUtilities.dp(24.0f) + centerY);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f27436b.setAlpha(i10);
+        this.f27435a.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

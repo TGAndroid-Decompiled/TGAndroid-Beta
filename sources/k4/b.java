@@ -2,31 +2,34 @@ package k4;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import i4.g;
-public final class b implements Comparable, Parcelable {
-    public static final Parcelable.Creator<b> CREATOR = new g(20);
-    public final int f13446a;
-    public final int f13447b;
-    public final int f13448c;
+import j3.d1;
+import j3.n0;
+import j8.t;
+import k7.z7;
+public final class b implements e4.b {
+    public static final Parcelable.Creator<b> CREATOR = new t(12);
+    public final long f9739a;
+    public final long f9740b;
+    public final long f9741c;
+    public final long d;
+    public final long e;
 
-    public b() {
-        this.f13446a = -1;
-        this.f13447b = -1;
-        this.f13448c = -1;
+    public b(long j10, long j11, long j12, long j13, long j14) {
+        this.f9739a = j10;
+        this.f9740b = j11;
+        this.f9741c = j12;
+        this.d = j13;
+        this.e = j14;
     }
 
     @Override
-    public final int compareTo(Object obj) {
-        b bVar = (b) obj;
-        int i10 = this.f13446a - bVar.f13446a;
-        if (i10 == 0) {
-            int i11 = this.f13447b - bVar.f13447b;
-            if (i11 == 0) {
-                return this.f13448c - bVar.f13448c;
-            }
-            return i11;
-        }
-        return i10;
+    public final n0 b() {
+        return null;
+    }
+
+    @Override
+    public final byte[] d() {
+        return null;
     }
 
     @Override
@@ -40,7 +43,7 @@ public final class b implements Comparable, Parcelable {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f13446a == bVar.f13446a && this.f13447b == bVar.f13447b && this.f13448c == bVar.f13448c) {
+            if (this.f9739a == bVar.f9739a && this.f9740b == bVar.f9740b && this.f9741c == bVar.f9741c && this.d == bVar.d && this.e == bVar.e) {
                 return true;
             }
         }
@@ -48,23 +51,34 @@ public final class b implements Comparable, Parcelable {
     }
 
     public final int hashCode() {
-        return (((this.f13446a * 31) + this.f13447b) * 31) + this.f13448c;
+        int a2 = z7.a(this.f9740b);
+        int a10 = z7.a(this.f9741c);
+        int a11 = z7.a(this.d);
+        return z7.a(this.e) + ((a11 + ((a10 + ((a2 + ((z7.a(this.f9739a) + 527) * 31)) * 31)) * 31)) * 31);
     }
 
     public final String toString() {
-        return this.f13446a + "." + this.f13447b + "." + this.f13448c;
+        return "Motion photo metadata: photoStartPosition=" + this.f9739a + ", photoSize=" + this.f9740b + ", photoPresentationTimestampUs=" + this.f9741c + ", videoStartPosition=" + this.d + ", videoSize=" + this.e;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f13446a);
-        parcel.writeInt(this.f13447b);
-        parcel.writeInt(this.f13448c);
+        parcel.writeLong(this.f9739a);
+        parcel.writeLong(this.f9740b);
+        parcel.writeLong(this.f9741c);
+        parcel.writeLong(this.d);
+        parcel.writeLong(this.e);
     }
 
     public b(Parcel parcel) {
-        this.f13446a = parcel.readInt();
-        this.f13447b = parcel.readInt();
-        this.f13448c = parcel.readInt();
+        this.f9739a = parcel.readLong();
+        this.f9740b = parcel.readLong();
+        this.f9741c = parcel.readLong();
+        this.d = parcel.readLong();
+        this.e = parcel.readLong();
+    }
+
+    @Override
+    public final void c(d1 d1Var) {
     }
 }

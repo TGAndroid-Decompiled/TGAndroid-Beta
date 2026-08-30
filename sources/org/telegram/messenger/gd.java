@@ -1,54 +1,25 @@
 package org.telegram.messenger;
-public final class gd implements Runnable {
-    public final int f20342a;
-    public final MessagesController f20343b;
 
-    public gd(MessagesController messagesController, int i10) {
-        this.f20342a = i10;
-        this.f20343b = messagesController;
+import org.telegram.tgnet.TLRPC;
+public final class gd implements Runnable {
+    public final int f17305a;
+    public final MessagesController f17306b;
+    public final TLRPC.TL_help_peerColors f17307c;
+
+    public gd(MessagesController messagesController, TLRPC.TL_help_peerColors tL_help_peerColors, int i10) {
+        this.f17305a = i10;
+        this.f17306b = messagesController;
+        this.f17307c = tL_help_peerColors;
     }
 
     @Override
     public final void run() {
-        switch (this.f20342a) {
+        switch (this.f17305a) {
             case 0:
-                this.f20343b.lambda$processLoadedDeleteTask$87();
-                return;
-            case 1:
-                this.f20343b.lambda$markAllTopicsAsRead$5();
-                return;
-            case 2:
-                this.f20343b.lambda$hidePromoDialog$136();
-                return;
-            case 3:
-                this.f20343b.removePromoDialog();
-                return;
-            case 4:
-                this.f20343b.lambda$putUsers$57();
-                return;
-            case 5:
-                this.f20343b.lambda$didReceivedNotification$42();
-                return;
-            case 6:
-                this.f20343b.lambda$addWebBrowserException$512();
-                return;
-            case 7:
-                this.f20343b.lambda$markAllTopicsAsRead$6();
-                return;
-            case 8:
-                this.f20343b.lambda$removeWebBrowserException$514();
-                return;
-            case 9:
-                this.f20343b.lambda$new$13();
-                return;
-            case 10:
-                this.f20343b.loadAppConfig();
-                return;
-            case 11:
-                this.f20343b.lambda$new$17();
+                this.f17306b.lambda$checkPeerColors$492(this.f17307c);
                 return;
             default:
-                this.f20343b.lambda$new$0();
+                this.f17306b.lambda$checkPeerColors$490(this.f17307c);
                 return;
         }
     }

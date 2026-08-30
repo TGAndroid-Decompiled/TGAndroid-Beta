@@ -1,17 +1,13 @@
 package j7;
-public final class x5 implements s9.d {
-    public static final x5 f11255a = new Object();
+public abstract class x5 {
+    public final int f9184a = 1;
 
-    static {
-        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.r(h0.class, l1.h(2, com.google.android.recaptcha.internal.a.r(h0.class, new e0(1)))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            s9.e eVar = (s9.e) obj2;
-            throw null;
+    public String toString() {
+        switch (this.f9184a) {
+            case 1:
+                return ((com.google.android.gms.internal.cast.n4) this).f3109b.toString();
+            default:
+                return super.toString();
         }
-        throw new ClassCastException();
     }
 }

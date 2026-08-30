@@ -1,10 +1,10 @@
 package qg;
-
-import android.graphics.Canvas;
 public interface a {
-    void E0(Canvas canvas, float f9, float f10, float f11, float f12);
+    int D2();
 
-    void q();
+    int W1();
 
-    ng.d v();
+    int X0();
+
+    int x0();
 }

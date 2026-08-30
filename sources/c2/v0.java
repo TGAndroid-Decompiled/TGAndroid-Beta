@@ -1,28 +1,22 @@
 package c2;
 
-import android.os.Handler;
-import android.os.Looper;
-public class v0 extends Handler {
-    public v0(Looper looper, int i10) {
-        super(looper);
-        switch (i10) {
-            case 4:
-                super(looper);
-                Looper.getMainLooper();
-                return;
-            case 5:
-            default:
-                Looper.getMainLooper();
-                return;
-            case 6:
-                super(looper);
-                Looper.getMainLooper();
-                return;
-        }
+import android.os.Bundle;
+import android.util.Log;
+public final class v0 {
+    public final w0 f2013a;
+
+    public v0(w0 w0Var) {
+        this.f2013a = w0Var;
     }
 
-    public v0(Looper looper, Handler.Callback callback) {
-        super(looper, callback);
-        Looper.getMainLooper();
+    public static void a(String str, Bundle bundle) {
+        Log.d("MediaRouteProviderProxy", "Error: " + str + ", data: " + bundle);
+    }
+
+    public final void b(Bundle bundle) {
+        String string = bundle.getString("groupableTitle");
+        w0 w0Var = this.f2013a;
+        w0Var.f2015g = string;
+        w0Var.h = bundle.getString("transferableTitle");
     }
 }

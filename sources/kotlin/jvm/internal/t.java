@@ -1,21 +1,20 @@
 package kotlin.jvm.internal;
 
-import a4.w;
-import j7.l1;
+import kh.a2;
 public abstract class t {
     public static void a(int i10, Object obj) {
         int i11;
         if (obj != null) {
-            if (obj instanceof qc.a) {
+            if (obj instanceof sc.a) {
                 if (obj instanceof g) {
                     i11 = ((g) obj).getArity();
-                } else if (obj instanceof bd.a) {
+                } else if (obj instanceof dd.a) {
                     i11 = 0;
-                } else if (obj instanceof bd.l) {
+                } else if (obj instanceof dd.l) {
                     i11 = 1;
-                } else if (obj instanceof bd.p) {
+                } else if (obj instanceof dd.p) {
                     i11 = 2;
-                } else if (obj instanceof bd.q) {
+                } else if (obj instanceof dd.q) {
                     i11 = 3;
                 } else {
                     i11 = -1;
@@ -24,7 +23,7 @@ public abstract class t {
                     return;
                 }
             }
-            ClassCastException classCastException = new ClassCastException(w.y(obj.getClass().getName(), " cannot be cast to ", l1.k(i10, "kotlin.jvm.functions.Function")));
+            ClassCastException classCastException = new ClassCastException(android.support.v4.media.a.z(obj.getClass().getName(), " cannot be cast to ", a2.j(i10, "kotlin.jvm.functions.Function")));
             j.f(classCastException, t.class.getName());
             throw classCastException;
         }

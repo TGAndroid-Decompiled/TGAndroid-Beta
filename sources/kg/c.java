@@ -1,106 +1,155 @@
 package kg;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.th;
-public final class c {
-    public float f13651a;
-    public float f13652b;
-    public float f13653c;
-    public float d;
-    public float f13654e;
-    public float f13655f;
-    public float f13656g;
-    public float h;
-    public long f13657i;
-    public boolean f13658j;
-    public float f13659k;
-    public final d f13660l;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import k7.b6;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.lp;
+public final class c extends ig.d {
+    public final lp f10412r;
+    public TLRPC.TL_help_country f10413s;
+    public final TextPaint v;
+    public final ef.e f10414w;
 
-    public c(d dVar) {
-        this.f13660l = dVar;
+    public c(Context context, f6 f6Var) {
+        super(context, f6Var);
+        int i10;
+        TextPaint textPaint = new TextPaint();
+        this.v = textPaint;
+        this.f10414w = new ef.e(this, 21);
+        textPaint.setTextSize(AndroidUtilities.dp(20.0f));
+        this.f7502f.setVisibility(8);
+        this.f7501c.setVisibility(8);
+        lp lpVar = new lp(context, 21, f6Var);
+        this.f10412r = lpVar;
+        lpVar.b(j6.B5, j6.f20014j7, j6.C5);
+        lpVar.setDrawUnchecked(true);
+        lpVar.setDrawBackgroundAsArc(10);
+        addView(lpVar);
+        lpVar.a(false, false);
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        lpVar.setLayoutParams(b6.d(24, 24.0f, i10 | 16, 13.0f, 0.0f, 14.0f, 0.0f));
     }
 
-    public final void a() {
-        d dVar;
-        float f9;
-        float f10 = 0.0f;
-        this.h = 0.0f;
-        float b10 = b();
-        float c3 = c();
-        int i10 = 0;
-        while (true) {
-            dVar = this.f13660l;
-            if (i10 >= 20) {
-                break;
-            }
-            float b11 = b();
-            float c6 = c();
-            float f11 = 2.1474836E9f;
-            for (int i11 = 0; i11 < dVar.f13673c.size(); i11++) {
-                float f12 = ((c) dVar.f13673c.get(i11)).f13653c - b11;
-                float f13 = ((c) dVar.f13673c.get(i11)).d - c6;
-                float f14 = (f13 * f13) + (f12 * f12);
-                if (f14 < f11) {
-                    f11 = f14;
-                }
-            }
-            if (f11 > f10) {
-                b10 = b11;
-                c3 = c6;
-                f10 = f11;
-            }
-            i10++;
-        }
-        if (dVar.f13675f) {
-            f9 = 0.8f;
-        } else {
-            f9 = 0.5f;
-        }
-        this.f13653c = b10;
-        if (b10 > dVar.f13672b.width() * f9) {
-            this.f13651a = dVar.f13672b.width() * f9;
-        } else {
-            float width = dVar.f13672b.width() * f9;
-            this.f13651a = width;
-            if (this.f13653c > width) {
-                this.f13653c = width - 0.1f;
-            }
-        }
-        float height = dVar.f13672b.height() * 0.1f;
-        this.f13652b = u3.c.c(th.f(Utilities.fastRandom, 100), 100.0f, height, dVar.f13672b.height() * 0.45f);
-        if (dVar.f13675f) {
-            float width2 = dVar.f13672b.width() * 0.1f;
-            float c10 = u3.c.c(th.f(Utilities.fastRandom, 100), 100.0f, width2, dVar.f13672b.width() * 0.05f);
-            this.f13655f = c10;
-            this.f13656g = (((th.f(Utilities.fastRandom, 100) / 100.0f) * 1.5f) + 1.5f) * c10;
-            float height2 = dVar.f13672b.height() * 0.1f;
-            this.d = u3.c.c(th.f(Utilities.fastRandom, 100), 100.0f, height2, this.f13655f / 2.0f);
-            this.f13654e = dVar.f13672b.height() + this.f13655f;
-            this.f13657i = Math.abs(Utilities.fastRandom.nextInt() % 600) + 1000;
-        } else {
-            float width3 = dVar.f13672b.width() * 0.1f;
-            float c11 = u3.c.c(th.f(Utilities.fastRandom, 100), 100.0f, width3, dVar.f13672b.width() * 0.05f);
-            this.f13655f = c11;
-            this.f13656g = (((th.f(Utilities.fastRandom, 100) / 100.0f) * 0.5f) + 1.5f) * c11;
-            this.d = c3;
-            this.f13654e = c3 + dVar.f13672b.height();
-            this.f13657i = 1800L;
-        }
-        this.f13657i = ((float) this.f13657i) / 1.75f;
-        this.f13658j = Utilities.fastRandom.nextBoolean();
-        this.f13659k = ((Utilities.fastRandom.nextInt() % 100) / 100.0f) * 20.0f;
+    @Override
+    public final int a() {
+        return 22;
     }
 
-    public final float b() {
-        d dVar = this.f13660l;
-        if (dVar.f13675f) {
-            float width = dVar.f13672b.width() * 1.5f;
-            return u3.c.c(th.f(Utilities.fastRandom, 100), 100.0f, width, dVar.f13672b.width() * (-0.25f));
-        }
-        return (th.f(Utilities.fastRandom, 100) / 100.0f) * dVar.f13672b.width();
+    @Override
+    public final boolean b() {
+        return true;
     }
 
-    public final float c() {
-        return (th.f(Utilities.fastRandom, 100) / 100.0f) * this.f13660l.f13672b.height() * 0.5f;
+    @Override
+    public final void c(boolean z4, boolean z10) {
+        lp lpVar = this.f10412r;
+        if (lpVar.getVisibility() == 0) {
+            lpVar.a(z4, z10);
+        }
+    }
+
+    @Override
+    public final void d() {
+        int i10;
+        float f10;
+        float f11;
+        int i11;
+        float f12;
+        float f13;
+        float f14;
+        float f15;
+        boolean z4 = LocaleController.isRTL;
+        int i12 = 3;
+        if (z4) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        int i13 = i10 | 16;
+        if (z4) {
+            f10 = 20.0f;
+        } else {
+            f10 = 52.0f;
+        }
+        if (z4) {
+            f11 = 52.0f;
+        } else {
+            f11 = 20.0f;
+        }
+        this.d.setLayoutParams(b6.d(-1, -2.0f, i13, f10, 0.0f, f11, 0.0f));
+        boolean z10 = LocaleController.isRTL;
+        if (z10) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        int i14 = i11 | 16;
+        if (z10) {
+            f12 = 20.0f;
+        } else {
+            f12 = 52.0f;
+        }
+        if (z10) {
+            f13 = 52.0f;
+        } else {
+            f13 = 20.0f;
+        }
+        this.e.setLayoutParams(b6.d(-1, -2.0f, i14, f12, 0.0f, f13, 0.0f));
+        boolean z11 = LocaleController.isRTL;
+        if (z11) {
+            i12 = 5;
+        }
+        int i15 = i12 | 16;
+        if (z11) {
+            f14 = 15.0f;
+        } else {
+            f14 = 20.0f;
+        }
+        if (z11) {
+            f15 = 20.0f;
+        } else {
+            f15 = 15.0f;
+        }
+        this.f7502f.setLayoutParams(b6.d(22, 22.0f, i15, f14, 0.0f, f15, 0.0f));
+    }
+
+    public final void f() {
+        TLRPC.TL_help_country tL_help_country = this.f10413s;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        CharSequence replaceWithRestrictedEmoji = Emoji.replaceWithRestrictedEmoji(LocaleController.getLanguageFlag(tL_help_country.iso2), this.v.getFontMetricsInt(), 0, this.f10414w);
+        if (replaceWithRestrictedEmoji != null) {
+            spannableStringBuilder.append(replaceWithRestrictedEmoji).append((CharSequence) " ");
+            spannableStringBuilder.setSpan(new b(16), replaceWithRestrictedEmoji.length(), replaceWithRestrictedEmoji.length() + 1, 0);
+        } else {
+            spannableStringBuilder.append((CharSequence) " ");
+            spannableStringBuilder.setSpan(new b(34), 0, 1, 0);
+        }
+        String countryName = LocaleController.getCountryName(tL_help_country.iso2);
+        if (TextUtils.isEmpty(countryName)) {
+            countryName = tL_help_country.default_name;
+        }
+        spannableStringBuilder.append((CharSequence) countryName);
+        this.d.k(spannableStringBuilder);
+    }
+
+    public TLRPC.TL_help_country getCountry() {
+        return this.f10413s;
+    }
+
+    @Override
+    public int getFullHeight() {
+        return 44;
     }
 }

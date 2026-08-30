@@ -1,20 +1,13 @@
 package org.telegram.ui;
+public final class fh1 {
+    public final org.telegram.ui.ActionBar.p2 f34260a;
+    public boolean f34261b;
+    public boolean f34262c;
+    public boolean d;
+    public boolean e;
+    public float f34263f;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class fh1 extends AnimatorListenerAdapter {
-    public final oh1 f38186a;
-
-    public fh1(oh1 oh1Var) {
-        this.f38186a = oh1Var;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        oh1 oh1Var = this.f38186a;
-        oh1Var.A.setText(LocaleController.getString(R.string.VoipCallEnded));
-        oh1Var.A.animate().alpha(1.0f).setDuration(70L).setListener(null).start();
+    public fh1(org.telegram.ui.ActionBar.p2 p2Var) {
+        this.f34260a = p2Var;
     }
 }

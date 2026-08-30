@@ -1,88 +1,35 @@
 package org.telegram.ui;
+public final class eg1 implements org.telegram.ui.ActionBar.c2 {
+    public final int f34016a;
+    public final og1 f34017b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.WeakHashMap;
-import org.telegram.messenger.AndroidUtilities;
-public final class eg1 extends ViewGroup {
-    public final Paint f37821a;
-    public View f37822b;
-    public boolean f37823c;
-
-    public eg1(Context context) {
-        super(context);
-        this.f37821a = new Paint(1);
-        setClipToPadding(false);
+    public eg1(og1 og1Var, int i10) {
+        this.f34016a = i10;
+        this.f34017b = og1Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int paddingBottom = getPaddingBottom();
-        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
-        int w02 = org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.Oh, false);
-        int h = i0.a.h(org.telegram.ui.ActionBar.g6.l1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23062d6, false)), w02);
-        Paint paint = this.f37821a;
-        paint.setColor(w02);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
-        paint.setColor(h);
-        canvas.drawRect(0.0f, getMeasuredHeight() - paddingBottom, getMeasuredWidth(), getMeasuredHeight(), paint);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        boolean z10;
-        int i12;
-        View view = this.f37822b;
-        if (view != null && view.getVisibility() == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int size = View.MeasureSpec.getSize(i10);
-        if (z10) {
-            i12 = getPaddingBottom() + AndroidUtilities.dp(44.0f);
-        } else {
-            i12 = 0;
-        }
-        setMeasuredDimension(size, i12);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
-        int childCount = getChildCount();
-        for (int i13 = 0; i13 < childCount; i13++) {
-            getChildAt(i13).measure(makeMeasureSpec, makeMeasureSpec2);
-        }
-        if (this.f37823c != z10) {
-            this.f37823c = z10;
-            WeakHashMap weakHashMap = r0.j0.f46829a;
-            r0.z.c(this);
-        }
-    }
-
-    @Override
-    public final void onViewAdded(View view) {
-        super.onViewAdded(view);
-        this.f37822b = view;
-    }
-
-    @Override
-    public final void setPadding(int i10, int i11, int i12, int i13) {
-        super.setPadding(i10, i11, i12, i13);
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            getChildAt(i14).setPadding(i10, i11, i12, i13);
+    public final void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f34016a) {
+            case 0:
+                this.f34017b.finishFragment();
+                return;
+            case 1:
+                og1 og1Var = this.f34017b;
+                og1Var.B0();
+                og1Var.finishFragment();
+                return;
+            case 2:
+                og1 og1Var2 = this.f34017b;
+                og1Var2.O = "";
+                og1Var2.E0(false);
+                return;
+            case 3:
+                og1.a0(this.f34017b);
+                return;
+            default:
+                og1.X(this.f34017b);
+                return;
         }
     }
 }

@@ -1,38 +1,58 @@
 package org.telegram.messenger;
-public final class ni implements Runnable {
-    public final int f21083a;
-    public final CharSequence f21084b;
-    public final AccountInstance f21085c;
-    public final long d;
-    public final long f21086e;
-    public final boolean f21087f;
-    public final int h;
-    public final int f21088n;
-    public final long f21089r;
 
-    public ni(CharSequence charSequence, AccountInstance accountInstance, long j10, long j11, boolean z10, int i10, int i11, long j12, int i12) {
-        this.f21083a = i12;
-        this.f21084b = charSequence;
-        this.f21085c = accountInstance;
-        this.d = j10;
-        this.f21086e = j11;
-        this.f21087f = z10;
-        this.h = i10;
-        this.f21088n = i11;
-        this.f21089r = j12;
+import java.util.HashMap;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLObject;
+public final class ni implements Runnable {
+    public final int f17953a;
+    public final SendMessagesHelper f17954b;
+    public final TLObject f17955c;
+    public final MessageObject d;
+    public final String e;
+    public final SendMessagesHelper.DelayedMessage f17956f;
+    public final boolean h;
+    public final SendMessagesHelper.DelayedMessage f17957n;
+    public final Object f17958r;
+    public final HashMap f17959s;
+    public final boolean v;
+
+    public ni(SendMessagesHelper sendMessagesHelper, TLObject tLObject, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z4, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z10, int i10) {
+        this.f17953a = i10;
+        this.f17954b = sendMessagesHelper;
+        this.f17955c = tLObject;
+        this.d = messageObject;
+        this.e = str;
+        this.f17956f = delayedMessage;
+        this.h = z4;
+        this.f17957n = delayedMessage2;
+        this.f17958r = obj;
+        this.f17959s = hashMap;
+        this.v = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f21083a) {
+        switch (this.f17953a) {
             case 0:
-                SendMessagesHelper.lambda$prepareSendingText$126(this.f21084b, this.f21085c, this.d, this.f21086e, this.f21087f, this.h, this.f21088n, this.f21089r);
+                HashMap hashMap = this.f17959s;
+                boolean z4 = this.v;
+                Object obj = this.f17958r;
+                String str = this.e;
+                this.f17954b.lambda$performSendMessageRequest$77(this.f17955c, this.d, str, this.f17956f, this.h, this.f17957n, obj, hashMap, z4);
                 return;
             case 1:
-                SendMessagesHelper.lambda$prepareSendingText$124(this.f21084b, this.f21085c, this.d, this.f21086e, this.f21087f, this.h, this.f21088n, this.f21089r);
+                HashMap hashMap2 = this.f17959s;
+                boolean z10 = this.v;
+                Object obj2 = this.f17958r;
+                String str2 = this.e;
+                this.f17954b.lambda$performSendMessageRequest$78(this.f17955c, this.d, str2, this.f17956f, this.h, this.f17957n, obj2, hashMap2, z10);
                 return;
             default:
-                SendMessagesHelper.lambda$prepareSendingText$125(this.f21084b, this.f21085c, this.d, this.f21086e, this.f21087f, this.h, this.f21088n, this.f21089r);
+                HashMap hashMap3 = this.f17959s;
+                boolean z11 = this.v;
+                Object obj3 = this.f17958r;
+                String str3 = this.e;
+                this.f17954b.lambda$performSendMessageRequest$82(this.f17955c, this.d, str3, this.f17956f, this.h, this.f17957n, obj3, hashMap3, z11);
                 return;
         }
     }

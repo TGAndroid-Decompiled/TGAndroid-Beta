@@ -1,31 +1,46 @@
 package nh;
-public final class b1 implements Runnable {
-    public final int f17409a;
-    public final c1 f17410b;
 
-    public b1(c1 c1Var, int i10) {
-        this.f17409a = i10;
-        this.f17410b = c1Var;
+import java.util.HashMap;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.voip.VoIPService;
+public final class b1 implements Runnable {
+    public final int f15102a;
+    public final int f15103b;
+    public final long f15104c;
+    public final int d;
+    public final Object e;
+
+    public b1(int i10, int i11, int i12, long j10, Object obj) {
+        this.f15102a = i12;
+        this.e = obj;
+        this.f15103b = i10;
+        this.f15104c = j10;
+        this.d = i11;
     }
 
     @Override
     public final void run() {
-        switch (this.f17409a) {
+        String str;
+        switch (this.f15102a) {
             case 0:
-                c1 c1Var = this.f17410b;
-                if (c1Var.G > 0) {
-                    c1Var.dualToggleShape();
-                    try {
-                        c1Var.performHapticFeedback(0, 1);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
+                e1 e1Var = (e1) this.e;
+                HashMap hashMap = e1Var.C;
+                int i10 = this.f15103b;
+                long j10 = this.f15104c;
+                if (i10 == 0) {
+                    str = android.support.v4.media.a.n(j10, "");
+                } else {
+                    str = i10 + "_" + j10 + "_" + this.d;
+                }
+                Integer num = (Integer) hashMap.get(str);
+                if (num != null) {
+                    AccountInstance.getInstance(e1Var.e).getConnectionsManager().cancelRequest(num.intValue(), true);
+                    hashMap.remove(str);
+                    return;
                 }
                 return;
             default:
-                c1 c1Var2 = this.f17410b;
-                c1Var2.focusToPoint((int) c1Var2.E, (int) c1Var2.F);
+                ((VoIPService) this.e).lambda$createGroupInstance$76(this.f15103b, this.f15104c, this.d);
                 return;
         }
     }

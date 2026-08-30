@@ -1,39 +1,330 @@
 package j3;
 
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.util.Pair;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import k7.b6;
+import lh.k7;
+import lh.r5;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.FileLoadOperation;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.camera.CameraController;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.messenger.y3;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.kz;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.ap;
+import org.telegram.ui.au;
+import org.telegram.ui.cp;
+import org.telegram.ui.dp;
+import org.telegram.ui.ke;
+import org.telegram.ui.xn;
+import org.telegram.ui.zd;
 public final class n1 implements Runnable {
-    public final int f10643a;
-    public final g9.l f10644b;
-    public final Pair f10645c;
-    public final l4.p d;
-    public final l4.x f10646e;
+    public final int f8745a;
+    public final Object f8746b;
+    public final Object f8747c;
+    public final Object d;
+    public final boolean e;
+    public final Object f8748f;
+    public final Object h;
 
-    public n1(g9.l lVar, Pair pair, l4.p pVar, l4.x xVar, int i10) {
-        this.f10643a = i10;
-        this.f10644b = lVar;
-        this.f10645c = pair;
-        this.d = pVar;
-        this.f10646e = xVar;
+    public n1(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, boolean z4, int i10) {
+        this.f8745a = i10;
+        this.f8748f = obj;
+        this.h = obj2;
+        this.f8746b = obj3;
+        this.f8747c = obj4;
+        this.d = obj5;
+        this.e = z4;
     }
 
     @Override
     public final void run() {
-        switch (this.f10643a) {
+        int i10;
+        int i11;
+        int dp;
+        int i12;
+        int i13;
+        int dp2;
+        int i14;
+        int i15;
+        switch (this.f8745a) {
             case 0:
-                k3.f fVar = ((s1) this.f10644b.f7169c).h;
-                Pair pair = this.f10645c;
-                fVar.h(((Integer) pair.first).intValue(), (l4.c0) pair.second, this.d, this.f10646e);
+                Pair pair = (Pair) this.h;
+                ((q1) ((f7.b) this.f8748f).f6013c).h.g(((Integer) pair.first).intValue(), (o4.v) pair.second, (o4.j) this.f8746b, (o4.r) this.f8747c, (IOException) this.d, this.e);
                 return;
             case 1:
-                k3.f fVar2 = ((s1) this.f10644b.f7169c).h;
-                Pair pair2 = this.f10645c;
-                fVar2.g(((Integer) pair2.first).intValue(), (l4.c0) pair2.second, this.d, this.f10646e);
+                b4.e0 e0Var = (b4.e0) this.f8748f;
+                int i16 = e0Var.f1367b;
+                o4.v vVar = (o4.v) e0Var.f1368c;
+                this.h.g(i16, vVar, (o4.j) this.f8746b, (o4.r) this.f8747c, (IOException) this.d, this.e);
+                return;
+            case 2:
+                ((ContactsController) this.f8748f).lambda$mergePhonebookAndTelegramContacts$41(this.e, (ArrayList) this.h, (HashMap) this.f8746b, (HashMap) this.f8747c, (ArrayList) this.d);
+                return;
+            case 3:
+                ((FileLoadOperation) this.f8748f).lambda$onFinishLoadingFile$20((File) this.h, (File) this.f8746b, (File) this.f8747c, (File) this.d, this.e);
+                return;
+            case 4:
+                ((MessagesController) this.f8748f).lambda$processDialogsUpdate$228((TLRPC.messages_Dialogs) this.h, (a0.h) this.f8746b, (a0.h) this.f8747c, this.e, (LongSparseIntArray) this.d);
+                return;
+            case 5:
+                ((SendMessagesHelper) this.f8748f).lambda$requestUrlAuth$36((TLObject) this.h, (TLRPC.TL_messages_requestUrlAuth) this.f8746b, (xn) this.f8747c, (String) this.d, this.e);
+                return;
+            case 6:
+                ((CameraController) this.f8748f).lambda$recordVideo$13(this.h, (CameraController.ICameraView) this.f8746b, (File) this.f8747c, this.e, (Runnable) this.d);
+                return;
+            case 7:
+                ke keVar = (ke) this.f8748f;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f8746b;
+                Activity activity = (Activity) this.f8747c;
+                TLObject tLObject = (TLObject) this.d;
+                boolean z4 = this.e;
+                if (tL_error != null) {
+                    if (!"PASSWORD_MISSING".equals(tL_error.text) && !tL_error.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
+                        if ("SRP_ID_INVALID".equals(tL_error.text)) {
+                            ConnectionsManager.getInstance(keVar.f35651v0).sendRequest(new TL_account.getPassword(), new k7(keVar, twoStepVerificationActivity, z4, 1), 8);
+                            return;
+                        }
+                        if (twoStepVerificationActivity != null) {
+                            twoStepVerificationActivity.o0();
+                            twoStepVerificationActivity.finishFragment();
+                        }
+                        qc.b0(tL_error);
+                        return;
+                    }
+                    if (twoStepVerificationActivity != null) {
+                        twoStepVerificationActivity.o0();
+                    }
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
+                    alertDialog$Builder.f19503a.O = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
+                    LinearLayout linearLayout = new LinearLayout(activity);
+                    linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
+                    linearLayout.setOrientation(1);
+                    alertDialog$Builder.n(linearLayout);
+                    TextView textView = new TextView(activity);
+                    int i17 = j6.f20012j5;
+                    textView.setTextColor(j6.w0(null, i17, false));
+                    textView.setTextSize(1, 16.0f);
+                    if (LocaleController.isRTL) {
+                        i10 = 5;
+                    } else {
+                        i10 = 3;
+                    }
+                    textView.setGravity(i10 | 48);
+                    textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.WithdrawChannelAlertText)));
+                    linearLayout.addView(textView, b6.n(-1, -2));
+                    LinearLayout linearLayout2 = new LinearLayout(activity);
+                    linearLayout2.setOrientation(0);
+                    linearLayout.addView(linearLayout2, b6.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
+                    ImageView imageView = new ImageView(activity);
+                    imageView.setImageResource(R.drawable.list_circle);
+                    if (LocaleController.isRTL) {
+                        i11 = AndroidUtilities.dp(11.0f);
+                    } else {
+                        i11 = 0;
+                    }
+                    int dp3 = AndroidUtilities.dp(9.0f);
+                    if (LocaleController.isRTL) {
+                        dp = 0;
+                    } else {
+                        dp = AndroidUtilities.dp(11.0f);
+                    }
+                    imageView.setPadding(i11, dp3, dp, 0);
+                    int w02 = j6.w0(null, i17, false);
+                    PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+                    imageView.setColorFilter(new PorterDuffColorFilter(w02, mode));
+                    TextView textView2 = new TextView(activity);
+                    textView2.setTextColor(j6.w0(null, i17, false));
+                    textView2.setTextSize(1, 16.0f);
+                    if (LocaleController.isRTL) {
+                        i12 = 5;
+                    } else {
+                        i12 = 3;
+                    }
+                    textView2.setGravity(i12 | 48);
+                    y3.q(R.string.EditAdminTransferAlertText1, textView2);
+                    if (LocaleController.isRTL) {
+                        linearLayout2.addView(textView2, b6.n(-1, -2));
+                        linearLayout2.addView(imageView, b6.q(-2, -2, 5));
+                    } else {
+                        linearLayout2.addView(imageView, b6.n(-2, -2));
+                        linearLayout2.addView(textView2, b6.n(-1, -2));
+                    }
+                    LinearLayout h = kh.a2.h(activity, 0);
+                    linearLayout.addView(h, b6.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
+                    ImageView imageView2 = new ImageView(activity);
+                    imageView2.setImageResource(R.drawable.list_circle);
+                    if (LocaleController.isRTL) {
+                        i13 = AndroidUtilities.dp(11.0f);
+                    } else {
+                        i13 = 0;
+                    }
+                    int dp4 = AndroidUtilities.dp(9.0f);
+                    if (LocaleController.isRTL) {
+                        dp2 = 0;
+                    } else {
+                        dp2 = AndroidUtilities.dp(11.0f);
+                    }
+                    imageView2.setPadding(i13, dp4, dp2, 0);
+                    imageView2.setColorFilter(new PorterDuffColorFilter(j6.w0(null, i17, false), mode));
+                    TextView textView3 = new TextView(activity);
+                    textView3.setTextColor(j6.w0(null, i17, false));
+                    textView3.setTextSize(1, 16.0f);
+                    if (LocaleController.isRTL) {
+                        i14 = 5;
+                    } else {
+                        i14 = 3;
+                    }
+                    textView3.setGravity(i14 | 48);
+                    y3.q(R.string.EditAdminTransferAlertText2, textView3);
+                    if (LocaleController.isRTL) {
+                        h.addView(textView3, b6.n(-1, -2));
+                        h.addView(imageView2, b6.q(-2, -2, 5));
+                    } else {
+                        h.addView(imageView2, b6.n(-2, -2));
+                        h.addView(textView3, b6.n(-1, -2));
+                    }
+                    if ("PASSWORD_MISSING".equals(tL_error.text)) {
+                        alertDialog$Builder.k(LocaleController.getString(R.string.EditAdminTransferSetPassword), new zd(keVar));
+                        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                    } else {
+                        TextView textView4 = new TextView(activity);
+                        textView4.setTextColor(j6.w0(null, i17, false));
+                        textView4.setTextSize(1, 16.0f);
+                        if (LocaleController.isRTL) {
+                            i15 = 5;
+                        } else {
+                            i15 = 3;
+                        }
+                        textView4.setGravity(i15 | 48);
+                        textView4.setText(LocaleController.getString(R.string.EditAdminTransferAlertText3));
+                        linearLayout.addView(textView4, b6.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
+                        alertDialog$Builder.h(LocaleController.getString(R.string.OK), null);
+                    }
+                    if (twoStepVerificationActivity != null) {
+                        twoStepVerificationActivity.showDialog(alertDialog$Builder.f19503a);
+                        return;
+                    } else {
+                        keVar.f35648t0.showDialog(alertDialog$Builder.f19503a);
+                        return;
+                    }
+                }
+                twoStepVerificationActivity.o0();
+                twoStepVerificationActivity.finishFragment();
+                if (tLObject instanceof TLRPC.TL_payments_starsRevenueWithdrawalUrl) {
+                    af.g.s(keVar.getContext(), ((TLRPC.TL_payments_starsRevenueWithdrawalUrl) tLObject).url);
+                    if (z4) {
+                        keVar.c0(true);
+                    }
+                }
+                keVar.e0();
+                return;
+            case 8:
+                xn xnVar = (xn) this.f8748f;
+                org.telegram.ui.ActionBar.d2 d2Var = (org.telegram.ui.ActionBar.d2) this.h;
+                boolean[] zArr = (boolean[]) this.f8746b;
+                MessageObject messageObject = (MessageObject) this.f8747c;
+                TLRPC.WebPage webPage = (TLRPC.WebPage) this.d;
+                try {
+                    d2Var.dismiss();
+                } catch (Throwable unused) {
+                }
+                if (!zArr[0]) {
+                    if (this.e) {
+                        xnVar.createArticleViewer(false).N(messageObject, webPage, null, null);
+                        return;
+                    }
+                    try {
+                        AndroidUtilities.openForView(messageObject, xnVar.getParentActivity(), xnVar.f39968ba, false);
+                        return;
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        xnVar.z6(messageObject);
+                        return;
+                    }
+                }
+                return;
+            case 9:
+                ap apVar = (ap) this.f8748f;
+                TLRPC.TL_username tL_username = (TLRPC.TL_username) this.f8747c;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.d;
+                cp cpVar = apVar.f32684a;
+                dp dpVar = cpVar.X2;
+                dpVar.M.remove(((TLRPC.TL_channels_toggleUsername) this.h).username);
+                boolean z10 = ((TLObject) this.f8746b) instanceof TLRPC.TL_boolTrue;
+                boolean z11 = this.e;
+                if (z10) {
+                    cpVar.w1(tL_username, !z11, false);
+                } else if (tL_error2 != null && "USERNAMES_ACTIVE_TOO_MUCH".equals(tL_error2.text)) {
+                    AndroidUtilities.runOnUIThread(new r5(apVar, tL_username, z11, 10));
+                } else {
+                    cpVar.w1(tL_username, z11, true);
+                    dpVar.V();
+                }
+                dpVar.getMessagesController().updateUsernameActiveness(dpVar.U, tL_username.username, tL_username.active);
+                return;
+            case 10:
+                ((kz) this.f8748f).K((ah.c) this.h, (TLObject) this.f8746b, (TLRPC.StickerSet) this.f8747c, (TLRPC.Document) this.d, this.e, true);
                 return;
             default:
-                k3.f fVar3 = ((s1) this.f10644b.f7169c).h;
-                Pair pair3 = this.f10645c;
-                fVar3.a(((Integer) pair3.first).intValue(), (l4.c0) pair3.second, this.d, this.f10646e);
+                au.Q((au) this.f8748f, (TLObject) this.h, (ph.d) this.f8746b, this.e, (HashSet) this.f8747c, (TLRPC.TL_error) this.d);
                 return;
         }
+    }
+
+    public n1(Object obj, Object obj2, Object obj3, Object obj4, boolean z4, Object obj5, int i10) {
+        this.f8745a = i10;
+        this.f8748f = obj;
+        this.h = obj2;
+        this.f8746b = obj3;
+        this.f8747c = obj4;
+        this.e = z4;
+        this.d = obj5;
+    }
+
+    public n1(Object obj, Object obj2, Object obj3, boolean z4, Object obj4, TLObject tLObject, int i10) {
+        this.f8745a = i10;
+        this.f8748f = obj;
+        this.h = obj2;
+        this.f8746b = obj3;
+        this.e = z4;
+        this.f8747c = obj4;
+        this.d = tLObject;
+    }
+
+    public n1(ContactsController contactsController, boolean z4, ArrayList arrayList, HashMap hashMap, HashMap hashMap2, ArrayList arrayList2) {
+        this.f8745a = 2;
+        this.f8748f = contactsController;
+        this.e = z4;
+        this.h = arrayList;
+        this.f8746b = hashMap;
+        this.f8747c = hashMap2;
+        this.d = arrayList2;
     }
 }

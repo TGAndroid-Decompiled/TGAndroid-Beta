@@ -1,41 +1,31 @@
 package kg;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.os.Build;
-import org.telegram.messenger.NotificationCenter;
-public final class m extends AnimatorListenerAdapter {
-    public final int f13762a;
-    public final s f13763b;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.w51;
+public final class m extends h51 {
+    public static final int f10447a = 0;
 
-    public m(s sVar, int i10) {
-        this.f13762a = i10;
-        this.f13763b = sVar;
+    static {
+        h51.setup(new h51());
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f13762a;
-        s sVar = this.f13763b;
-        switch (i10) {
-            case 0:
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-                sVar.f13856c.setVisibility(4);
-                if (Build.MODEL.toLowerCase().startsWith("zte") && Build.VERSION.SDK_INT <= 28) {
-                    sVar.f13858f.setFocusableInTouchMode(false);
-                    return;
-                }
-                return;
-            case 1:
-                sVar.f13859n.setFocusableInTouchMode(true);
-                return;
-            case 2:
-                sVar.f13862w.setVisibility(4);
-                return;
-            default:
-                sVar.f13859n.setFocusableInTouchMode(false);
-                sVar.f13858f.setVisibility(4);
-                return;
-        }
+    public final void bindView(View view, i51 i51Var, boolean z4, w51 w51Var, g61 g61Var) {
+        n nVar = (n) view;
+        nVar.setUser((TLRPC.User) i51Var.G);
+        nVar.c(i51Var.e, false);
+        nVar.setDivider(z4);
+    }
+
+    @Override
+    public final View createView(Context context, sl0 sl0Var, int i10, int i11, f6 f6Var) {
+        return new n(context, true, false, f6Var, false);
     }
 }

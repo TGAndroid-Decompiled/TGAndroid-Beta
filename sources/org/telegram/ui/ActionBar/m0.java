@@ -1,124 +1,54 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.ImageView;
-import java.util.ArrayList;
-import org.telegram.ui.Components.a90;
-import org.telegram.ui.Components.gq;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.cg1;
-import org.telegram.ui.vr0;
-public final class m0 extends ImageView {
-    public final int f23671a;
-    public final Object f23672b;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.dq;
+import org.telegram.ui.Components.en0;
+import org.telegram.ui.Components.wy;
+import org.telegram.ui.g51;
+public final class m0 extends dq {
+    public final int h;
+    public final Object f20446i;
 
-    public m0(Object obj, Context context, int i10) {
-        super(context);
-        this.f23671a = i10;
-        this.f23672b = obj;
+    public m0(int i10, FrameLayout frameLayout) {
+        this.h = i10;
+        this.f20446i = frameLayout;
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        switch (this.f23671a) {
+    public final int a() {
+        switch (this.h) {
             case 0:
-                getBackground().draw(canvas);
-                super.draw(canvas);
-                return;
-            default:
-                super.draw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        switch (this.f23671a) {
-            case 0:
-                w0 w0Var = (w0) this.f23672b;
-                super.onDetachedFromWindow();
-                clearAnimation();
-                if (getTag() == null) {
-                    w0Var.f23936s.setVisibility(4);
-                    w0Var.f23936s.setAlpha(0.0f);
-                    w0Var.f23936s.setRotation(45.0f);
-                    w0Var.f23936s.setScaleX(0.0f);
-                    w0Var.f23936s.setScaleY(0.0f);
-                    return;
-                }
-                w0Var.f23936s.setAlpha(1.0f);
-                w0Var.f23936s.setRotation(0.0f);
-                w0Var.f23936s.setScaleX(1.0f);
-                w0Var.f23936s.setScaleY(1.0f);
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
-        }
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f23671a) {
-            case 3:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                boolean z10 = true;
-                accessibilityNodeInfo.setCheckable(true);
-                if (((cg1) this.f23672b).f37115n.getTransformationMethod() != null) {
-                    z10 = false;
-                }
-                accessibilityNodeInfo.setChecked(z10);
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
-    }
-
-    @Override
-    public void setAlpha(float f9) {
-        switch (this.f23671a) {
+                return ((w0) this.f20446i).f20651c.f20773b.f20337o0;
             case 1:
-                super.setAlpha(f9);
-                ((gq) this.f23672b).f28955x.invalidate();
-                return;
+                return j6.v0(j6.Je, ((wy) this.f20446i).D.W1);
+            case 2:
+                return j6.v0(j6.Q5, ((en0) this.f20446i).f24619f);
+            case 3:
+                return j6.v0(j6.Je, ((g51) this.f20446i).f33911y.W0);
             default:
-                super.setAlpha(f9);
-                return;
+                return j6.v0(j6.Je, (f6) this.f20446i);
         }
     }
 
-    @Override
-    public void setTranslationY(float f9) {
-        switch (this.f23671a) {
-            case 2:
-                super.setTranslationY(f9);
-                PhotoViewer photoViewer = (PhotoViewer) this.f23672b;
-                ArrayList arrayList = photoViewer.f35674d1;
-                if (arrayList != null) {
-                    int size = arrayList.size();
-                    int i10 = 0;
-                    while (i10 < size) {
-                        Object obj = arrayList.get(i10);
-                        i10++;
-                        ((nh.t3) obj).setTranslationY(f9);
-                    }
-                }
-                vr0 vr0Var = photoViewer.f35667c1;
-                if (vr0Var != null) {
-                    vr0Var.setTranslationY(f9);
-                }
-                a90 a90Var = photoViewer.f35657b1;
-                if (a90Var != null) {
-                    a90Var.setTranslationY(f9);
-                    return;
-                }
-                return;
-            default:
-                super.setTranslationY(f9);
-                return;
-        }
+    public m0(wy wyVar) {
+        super(1.25f);
+        this.h = 1;
+        this.f20446i = wyVar;
+        this.f24348f = AndroidUtilities.dp(7.0f);
+    }
+
+    public m0(f6 f6Var) {
+        super(1.25f);
+        this.h = 4;
+        this.f20446i = f6Var;
+        this.f24348f = AndroidUtilities.dp(7.0f);
+    }
+
+    public m0(g51 g51Var) {
+        super(1.25f);
+        this.h = 3;
+        this.f20446i = g51Var;
+        this.f24348f = AndroidUtilities.dp(7.0f);
     }
 }

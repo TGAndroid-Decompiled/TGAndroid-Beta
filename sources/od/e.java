@@ -1,19 +1,15 @@
 package od;
 
-import jd.c0;
-public final class e implements c0 {
-    public final sc.h f19510a;
-
-    public e(sc.h hVar) {
-        this.f19510a = hVar;
-    }
+import kotlin.jvm.internal.q;
+public final class e extends wc.c {
+    public q f16550a;
+    public Object f16551b;
+    public int f16552c;
 
     @Override
-    public final sc.h c() {
-        return this.f19510a;
-    }
-
-    public final String toString() {
-        return "CoroutineScope(coroutineContext=" + this.f19510a + ')';
+    public final Object invokeSuspend(Object obj) {
+        this.f16551b = obj;
+        this.f16552c |= Integer.MIN_VALUE;
+        return n.a(null, null, this);
     }
 }

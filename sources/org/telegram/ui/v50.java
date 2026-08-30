@@ -2,25 +2,25 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class v50 extends org.telegram.ui.Components.voip.l {
-    public final x50 h;
+    public final w50 h;
 
-    public v50(x50 x50Var, Context context) {
-        super(context, true);
-        this.h = x50Var;
+    public v50(w50 w50Var, Context context) {
+        super(context, false);
+        this.h = w50Var;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        x50 x50Var = this.h;
-        if (x50Var.f44473r && getParticipant() != null) {
-            x50Var.E(this, true);
+        c60 c60Var = this.h.J;
+        if (c60Var.N.getVisibility() == 0 && c60Var.M2) {
+            c60.N(c60Var, this, true);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.h.E(this, false);
+        c60.N(this.h.J, this, false);
     }
 }

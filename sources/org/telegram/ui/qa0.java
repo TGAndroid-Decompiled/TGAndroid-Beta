@@ -1,68 +1,77 @@
 package org.telegram.ui;
 
-import android.window.BackEvent;
-import android.window.OnBackAnimationCallback;
+import android.os.Bundle;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class qa0 implements OnBackAnimationCallback {
-    public boolean f41606b;
-    public boolean f41608e;
-    public final LaunchActivity f41609f;
-    public final AnimationNotificationsLocker f41605a = new AnimationNotificationsLocker();
-    public boolean f41607c = false;
-    public boolean d = false;
+public final class qa0 implements MessagesController.MessagesLoadedCallback {
+    public final g00 f37688a;
+    public final String f37689b;
+    public final org.telegram.ui.ActionBar.p2 f37690c;
+    public final long d;
+    public final Integer e;
+    public final Bundle f37691f;
+    public final LaunchActivity f37692g;
 
-    public qa0(LaunchActivity launchActivity) {
-        this.f41609f = launchActivity;
+    public qa0(LaunchActivity launchActivity, g00 g00Var, String str, org.telegram.ui.ActionBar.p2 p2Var, long j10, Integer num, Bundle bundle) {
+        this.f37692g = launchActivity;
+        this.f37688a = g00Var;
+        this.f37689b = str;
+        this.f37690c = p2Var;
+        this.d = j10;
+        this.e = num;
+        this.f37691f = bundle;
     }
 
-    public final void onBackCancelled() {
-        ActionBarLayout actionBarLayout;
-        this.f41607c = false;
-        this.d = false;
-        if (this.f41606b) {
-            this.f41605a.unlock();
-            this.f41606b = false;
+    @Override
+    public final void onError() {
+        LaunchActivity launchActivity = this.f37692g;
+        if (!launchActivity.isFinishing()) {
+            org.telegram.ui.Components.z4.u0((org.telegram.ui.ActionBar.p2) kh.a2.i(1, launchActivity.f31614a0), null, LocaleController.getString(R.string.JoinToGroupErrorNotExist), null);
         }
-        if (!AndroidUtilities.isTablet() && (actionBarLayout = this.f41609f.m0) != null && actionBarLayout.Y0) {
-            actionBarLayout.Y0 = false;
-            actionBarLayout.e(true);
+        try {
+            this.f37688a.run();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
-    public final void onBackInvoked() {
-        this.d = true;
-        if (this.f41606b) {
-            this.f41605a.unlock();
-            this.f41606b = false;
+    @Override
+    public final void onMessagesLoaded(boolean z4) {
+        try {
+            this.f37688a.run();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        if (AndroidUtilities.isTablet()) {
-            this.f41609f.onBackPressed();
-        } else if (!this.f41609f.c0(true)) {
-        } else {
-            LaunchActivity launchActivity = this.f41609f;
-            ActionBarLayout actionBarLayout = launchActivity.m0;
-            if (actionBarLayout != null) {
-                if (!actionBarLayout.Y0) {
-                    actionBarLayout.G();
-                    return;
+        LaunchActivity launchActivity = this.f37692g;
+        if (!launchActivity.isFinishing()) {
+            String str = this.f37689b;
+            long j10 = this.d;
+            org.telegram.ui.ActionBar.p2 p2Var = this.f37690c;
+            if (str == null || !(p2Var instanceof xn) || ((xn) p2Var).a() != j10) {
+                if (p2Var instanceof xn) {
+                    xn xnVar = (xn) p2Var;
+                    if (xnVar.a() == j10 && this.e == null) {
+                        AndroidUtilities.shakeViewSpring(xnVar.f40193u0, 5.0f);
+                        BotWebViewVibrationEffect.APP_ERROR.vibrate();
+                        jk jkVar = xnVar.V;
+                        for (int i10 = 0; i10 < jkVar.getChildCount(); i10++) {
+                            AndroidUtilities.shakeViewSpring(jkVar.getChildAt(i10), 5.0f);
+                        }
+                        org.telegram.ui.ActionBar.k actionBar = xnVar.getActionBar();
+                        for (int i11 = 0; i11 < actionBar.getChildCount(); i11++) {
+                            AndroidUtilities.shakeViewSpring(actionBar.getChildAt(i11), 5.0f);
+                        }
+                    }
                 }
-                actionBarLayout.Y0 = false;
-                actionBarLayout.e(false);
-                return;
+                p2Var = new xn(this.f37691f);
+                ((ActionBarLayout) launchActivity.O()).P(p2Var);
             }
-            launchActivity.onBackPressed();
+            AndroidUtilities.runOnUIThread(new org.telegram.messenger.ci(this, this.f37689b, this.d, p2Var, 9), 150L);
         }
-    }
-
-    public final void onBackProgressed(android.window.BackEvent r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qa0.onBackProgressed(android.window.BackEvent):void");
-    }
-
-    public final void onBackStarted(BackEvent backEvent) {
-        this.f41607c = true;
-        this.d = false;
-        this.f41608e = false;
     }
 }

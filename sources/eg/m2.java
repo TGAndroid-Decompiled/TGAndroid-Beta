@@ -1,48 +1,38 @@
 package eg;
 
-import android.view.KeyEvent;
-import android.view.View;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.Components.al0;
-import org.telegram.ui.Components.rt;
-import org.telegram.ui.Components.st;
-public final class m2 implements al0, rt {
-    public final int f6092a;
-    public final int f6093b;
-    public final KeyEvent.Callback f6094c;
-    public final Object d;
+import android.graphics.RectF;
+import org.telegram.messenger.Utilities;
+public final class m2 {
+    public float f5357a;
+    public float f5358b;
+    public float f5359c;
+    public float d;
+    public long e;
+    public float f5360f;
+    public final n2 f5361g;
 
-    public m2(w2 w2Var, int i10, c6 c6Var, int i11) {
-        this.f6094c = w2Var;
-        this.f6092a = i10;
-        this.d = c6Var;
-        this.f6093b = i11;
+    public m2(n2 n2Var) {
+        this.f5361g = n2Var;
     }
 
-    @Override
-    public void b(float f9, float f10, int i10, View view) {
-        int i11 = this.f6093b;
-        w2.Q((w2) this.f6094c, this.f6092a, (c6) this.d, i11, view);
-    }
-
-    @Override
-    public boolean b1(View view) {
-        return false;
-    }
-
-    @Override
-    public void run(String str) {
-        st.k((st) this.f6094c, this.f6092a, this.f6093b, (Runnable) this.d, str);
-    }
-
-    public m2(st stVar, int i10, int i11, Runnable runnable) {
-        this.f6094c = stVar;
-        this.f6092a = i10;
-        this.f6093b = i11;
-        this.d = runnable;
-    }
-
-    @Override
-    public void o0(View view, float f9, float f10) {
+    public final void a(long j10, boolean z4) {
+        RectF rectF;
+        n2 n2Var = this.f5361g;
+        RectF rectF2 = n2Var.f5373a;
+        this.e = j10 + n2Var.h + Utilities.fastRandom.nextInt(1000);
+        if (z4) {
+            rectF = n2Var.f5374b;
+        } else {
+            rectF = rectF2;
+        }
+        float abs = Math.abs(Utilities.fastRandom.nextInt() % rectF.width()) + rectF.left;
+        float f10 = rectF.top;
+        this.f5357a = abs;
+        this.f5358b = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + f10;
+        double atan2 = Math.atan2(abs - rectF2.centerX(), this.f5358b - rectF2.centerY());
+        this.f5359c = (float) Math.sin(atan2);
+        this.d = (float) Math.cos(atan2);
+        Utilities.fastRandom.nextInt(50);
+        this.f5360f = 0.0f;
     }
 }

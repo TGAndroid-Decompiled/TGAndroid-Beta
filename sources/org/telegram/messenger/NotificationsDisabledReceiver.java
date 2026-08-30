@@ -95,11 +95,11 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                         FileLog.d("apply channel{else} " + stringExtra + " state");
                                     }
                                     SharedPreferences.Editor edit4 = notificationsSettings.edit();
-                                    String e10 = u3.c.e("notify2_", sharedPrefKey);
+                                    String e = vh.v2.e("notify2_", sharedPrefKey);
                                     if (booleanExtra) {
                                         i10 = 2;
                                     }
-                                    edit4.putInt(e10, i10);
+                                    edit4.putInt(e, i10);
                                     if (!booleanExtra) {
                                         edit4.remove("notifyuntil_" + sharedPrefKey);
                                     }

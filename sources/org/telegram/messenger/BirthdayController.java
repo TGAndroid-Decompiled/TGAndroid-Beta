@@ -79,7 +79,7 @@ public class BirthdayController {
                         if (i21 < contactbirthdays.users.size()) {
                             arrayList2 = arrayList3;
                             i10 = i17;
-                            if (contactbirthdays.users.get(i21).f22539id == tL_contactBirthday2.contact_id) {
+                            if (contactbirthdays.users.get(i21).f19331id == tL_contactBirthday2.contact_id) {
                                 user = contactbirthdays.users.get(i21);
                                 break;
                             }
@@ -112,7 +112,7 @@ public class BirthdayController {
             while (i10 < size) {
                 TLRPC.User user = arrayList.get(i10);
                 i10++;
-                if (user.f22539id == j10) {
+                if (user.f19331id == j10) {
                     return true;
                 }
             }
@@ -122,7 +122,7 @@ public class BirthdayController {
             while (i11 < size2) {
                 TLRPC.User user2 = arrayList2.get(i11);
                 i11++;
-                if (user2.f22539id == j10) {
+                if (user2.f19331id == j10) {
                     return true;
                 }
             }
@@ -132,7 +132,7 @@ public class BirthdayController {
             while (i12 < size3) {
                 TLRPC.User user3 = arrayList3.get(i12);
                 i12++;
-                if (user3.f22539id == j10) {
+                if (user3.f19331id == j10) {
                     return true;
                 }
             }
@@ -152,28 +152,28 @@ public class BirthdayController {
             this.contacts = new ArrayList<>();
         }
 
-        public static TL_birthdays TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static TL_birthdays TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z4) {
             TL_birthdays tL_birthdays;
             if (i10 != 290452237) {
                 tL_birthdays = null;
             } else {
                 tL_birthdays = new TL_birthdays();
             }
-            return (TL_birthdays) TLObject.TLdeserialize(TL_birthdays.class, tL_birthdays, inputSerializedData, i10, z10);
+            return (TL_birthdays) TLObject.TLdeserialize(TL_birthdays.class, tL_birthdays, inputSerializedData, i10, z4);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int readInt32 = inputSerializedData.readInt32(z10);
+        public void readParams(InputSerializedData inputSerializedData, boolean z4) {
+            int readInt32 = inputSerializedData.readInt32(z4);
             if (readInt32 != 481674261) {
-                if (z10) {
+                if (z4) {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                 }
                 return;
             }
-            int readInt322 = inputSerializedData.readInt32(z10);
+            int readInt322 = inputSerializedData.readInt32(z4);
             for (int i10 = 0; i10 < readInt322; i10++) {
-                this.contacts.add(TL_account.TL_contactBirthday.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10));
+                this.contacts.add(TL_account.TL_contactBirthday.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z4), z4));
             }
         }
 
@@ -207,8 +207,8 @@ public class BirthdayController {
             try {
                 SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
                 TLdeserialize = TL_birthdays.TLdeserialize(serializedData, serializedData.readInt32(true), true);
-            } catch (Exception e10) {
-                e = e10;
+            } catch (Exception e) {
+                e = e;
                 birthdayController = this;
             }
             if (TLdeserialize != null && !TLdeserialize.contacts.isEmpty()) {
@@ -216,8 +216,8 @@ public class BirthdayController {
                 for (int i11 = 0; i11 < TLdeserialize.contacts.size(); i11++) {
                     try {
                         arrayList.add(Long.valueOf(TLdeserialize.contacts.get(i11).contact_id));
-                    } catch (Exception e11) {
-                        exc = e11;
+                    } catch (Exception e6) {
+                        exc = e6;
                         birthdayController = this;
                         FileLog.e(exc);
                         birthdayController.hiddenDays = mainSettings.getStringSet("bday_hidden", new HashSet());
@@ -225,9 +225,9 @@ public class BirthdayController {
                 }
                 birthdayController = this;
                 try {
-                    MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new h0(birthdayController, i10, arrayList, TLdeserialize, 0));
-                } catch (Exception e12) {
-                    e = e12;
+                    MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new i0(birthdayController, i10, arrayList, TLdeserialize, 0));
+                } catch (Exception e10) {
+                    e = e10;
                     exc = e;
                     FileLog.e(exc);
                     birthdayController.hiddenDays = mainSettings.getStringSet("bday_hidden", new HashSet());
@@ -282,7 +282,7 @@ public class BirthdayController {
     }
 
     public void lambda$check$3(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new d3(13, this, tLObject));
+        AndroidUtilities.runOnUIThread(new e3(13, this, tLObject));
     }
 
     public void lambda$new$0(TL_birthdays tL_birthdays, ArrayList arrayList) {
@@ -293,22 +293,22 @@ public class BirthdayController {
     }
 
     public void lambda$new$1(int i10, ArrayList arrayList, TL_birthdays tL_birthdays) {
-        AndroidUtilities.runOnUIThread(new f0(this, tL_birthdays, MessagesStorage.getInstance(i10).getUsers(arrayList), 0));
+        AndroidUtilities.runOnUIThread(new g0(this, tL_birthdays, MessagesStorage.getInstance(i10).getUsers(arrayList), 0));
     }
 
     public void check() {
-        boolean z10;
+        boolean z4;
         int i10;
         if (!this.loading) {
             long currentTimeMillis = System.currentTimeMillis();
             long j10 = this.lastCheckDate;
-            boolean z11 = false;
+            boolean z10 = false;
             if (j10 == 0) {
-                z10 = true;
+                z4 = true;
             } else {
-                z10 = false;
+                z4 = false;
             }
-            if (!z10) {
+            if (!z4) {
                 long j11 = currentTimeMillis - j10;
                 if (BuildVars.DEBUG_PRIVATE_VERSION) {
                     i10 = 25000;
@@ -316,23 +316,23 @@ public class BirthdayController {
                     i10 = 43200000;
                 }
                 if (j11 > i10) {
-                    z10 = true;
+                    z4 = true;
                 } else {
-                    z10 = false;
+                    z4 = false;
                 }
             }
-            if (!z10) {
+            if (!z4) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(this.lastCheckDate);
                 Calendar calendar2 = Calendar.getInstance();
                 calendar2.setTimeInMillis(currentTimeMillis);
-                z10 = (calendar.get(5) == calendar2.get(5) && calendar.get(2) == calendar2.get(2) && calendar.get(1) == calendar2.get(1)) ? true : true;
+                z4 = (calendar.get(5) == calendar2.get(5) && calendar.get(2) == calendar2.get(2) && calendar.get(1) == calendar2.get(1)) ? true : true;
             }
-            if (!z10) {
+            if (!z4) {
                 return;
             }
             this.loading = true;
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getBirthdays(), new g0(this, 0));
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getBirthdays(), new h0(this, 0));
         }
     }
 

@@ -1,19 +1,28 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class iw extends ry {
-    public final fz D;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class iw extends FrameLayout {
+    public final kz f25792a;
 
-    public iw(fz fzVar, Context context) {
-        super(fzVar, context, 2);
-        this.D = fzVar;
+    public iw(kz kzVar, Context context) {
+        super(context);
+        this.f25792a = kzVar;
     }
 
     @Override
-    public final void setTranslationY(float f9) {
-        if (getTranslationY() != f9) {
-            super.setTranslationY(f9);
-            this.D.f28582c0.invalidate();
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        kz kzVar = this.f25792a;
+        mw mwVar = kzVar.f26445l0;
+        if (view == kzVar.f26423e0) {
+            canvas.save();
+            canvas.clipRect(0.0f, mwVar.getY() + mwVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
+            boolean drawChild = super.drawChild(canvas, view, j10);
+            canvas.restore();
+            return drawChild;
         }
+        return super.drawChild(canvas, view, j10);
     }
 }

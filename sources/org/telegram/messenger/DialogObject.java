@@ -77,10 +77,10 @@ public class DialogObject {
 
     public static long getDialogId(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return ((TLRPC.User) tLObject).f22539id;
+            return ((TLRPC.User) tLObject).f19331id;
         }
         if (tLObject instanceof TLRPC.Chat) {
-            return -((TLRPC.Chat) tLObject).f22392id;
+            return -((TLRPC.Chat) tLObject).f19184id;
         }
         return 0L;
     }
@@ -248,26 +248,26 @@ public class DialogObject {
     }
 
     public static void initDialog(TLRPC.Dialog dialog) {
-        if (dialog != null && dialog.f22396id == 0) {
+        if (dialog != null && dialog.f19188id == 0) {
             if (dialog instanceof TLRPC.TL_dialog) {
                 TLRPC.Peer peer = dialog.peer;
                 if (peer != null) {
                     long j10 = peer.user_id;
                     if (j10 != 0) {
-                        dialog.f22396id = j10;
+                        dialog.f19188id = j10;
                         return;
                     }
                     long j11 = peer.chat_id;
                     if (j11 != 0) {
-                        dialog.f22396id = -j11;
+                        dialog.f19188id = -j11;
                     } else {
-                        dialog.f22396id = -peer.channel_id;
+                        dialog.f19188id = -peer.channel_id;
                     }
                 }
             } else if (dialog instanceof TLRPC.TL_dialogFolder) {
-                dialog.f22396id = makeFolderDialogId(((TLRPC.TL_dialogFolder) dialog).folder.f22443id);
+                dialog.f19188id = makeFolderDialogId(((TLRPC.TL_dialogFolder) dialog).folder.f19235id);
             } else if (dialog instanceof TLRPC.TL_dialogCommunity) {
-                dialog.f22396id = -dialog.community_id;
+                dialog.f19188id = -dialog.community_id;
             }
         }
     }
@@ -341,45 +341,45 @@ public class DialogObject {
         return 2305843009213693952L | i10;
     }
 
-    public static String setDialogPhotoTitle(ImageReceiver imageReceiver, org.telegram.ui.Components.e9 e9Var, TLObject tLObject) {
+    public static String setDialogPhotoTitle(ImageReceiver imageReceiver, org.telegram.ui.Components.z8 z8Var, TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) tLObject;
             if (UserObject.isReplyUser(user)) {
                 String string = LocaleController.getString(R.string.RepliesTitle);
-                if (e9Var != null) {
-                    e9Var.g(12);
+                if (z8Var != null) {
+                    z8Var.g(12);
                 }
                 if (imageReceiver != null) {
-                    imageReceiver.setForUserOrChat(null, e9Var);
+                    imageReceiver.setForUserOrChat(null, z8Var);
                 }
                 return string;
             } else if (UserObject.isUserSelf(user)) {
                 String string2 = LocaleController.getString(R.string.SavedMessages);
-                if (e9Var != null) {
-                    e9Var.g(1);
+                if (z8Var != null) {
+                    z8Var.g(1);
                 }
                 if (imageReceiver != null) {
-                    imageReceiver.setForUserOrChat(null, e9Var);
+                    imageReceiver.setForUserOrChat(null, z8Var);
                 }
                 return string2;
             } else {
                 String userName = UserObject.getUserName(user);
-                if (e9Var != null) {
-                    e9Var.r(user);
+                if (z8Var != null) {
+                    z8Var.r(user);
                 }
                 if (imageReceiver != null) {
-                    imageReceiver.setForUserOrChat(tLObject, e9Var);
+                    imageReceiver.setForUserOrChat(tLObject, z8Var);
                 }
                 return userName;
             }
         } else if (tLObject instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
             String str = chat.title;
-            if (e9Var != null) {
-                e9Var.q(chat);
+            if (z8Var != null) {
+                z8Var.q(chat);
             }
             if (imageReceiver != null) {
-                imageReceiver.setForUserOrChat(tLObject, e9Var);
+                imageReceiver.setForUserOrChat(tLObject, z8Var);
             }
             return str;
         } else {
@@ -525,17 +525,17 @@ public class DialogObject {
         }
     }
 
-    public static String getPublicUsername(String str, ArrayList<TLRPC.TL_username> arrayList, boolean z10) {
-        if (TextUtils.isEmpty(str) || z10) {
+    public static String getPublicUsername(String str, ArrayList<TLRPC.TL_username> arrayList, boolean z4) {
+        if (TextUtils.isEmpty(str) || z4) {
             if (arrayList != null) {
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     TLRPC.TL_username tL_username = arrayList.get(i10);
-                    if (tL_username != null && (((tL_username.active && !z10) || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
+                    if (tL_username != null && (((tL_username.active && !z4) || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
                         return tL_username.username;
                     }
                 }
             }
-            if (TextUtils.isEmpty(str) || !z10) {
+            if (TextUtils.isEmpty(str) || !z4) {
                 return null;
             }
             if (arrayList != null && arrayList.size() > 0) {
@@ -545,9 +545,9 @@ public class DialogObject {
         return str;
     }
 
-    public static String setDialogPhotoTitle(org.telegram.ui.Components.t9 t9Var, TLObject tLObject) {
-        if (t9Var != null) {
-            return setDialogPhotoTitle(t9Var.getImageReceiver(), t9Var.getAvatarDrawable(), tLObject);
+    public static String setDialogPhotoTitle(org.telegram.ui.Components.p9 p9Var, TLObject tLObject) {
+        if (p9Var != null) {
+            return setDialogPhotoTitle(p9Var.getImageReceiver(), p9Var.getAvatarDrawable(), tLObject);
         }
         return setDialogPhotoTitle(null, null, tLObject);
     }

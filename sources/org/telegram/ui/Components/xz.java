@@ -1,336 +1,161 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.text.Layout;
-import android.text.SpannableStringBuilder;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-public final class xz extends f2.l {
-    public final f00 F;
+import android.opengl.GLES20;
+import java.util.Locale;
+public final class xz {
+    public final String f30794a;
+    public final String f30795b;
+    public int f30796c;
+    public int d;
+    public int e;
+    public int f30797f;
+    public int f30798g;
+    public int h;
 
-    public xz(f00 f00Var) {
-        this.F = f00Var;
-    }
-
-    @Override
-    public final void C(f2.n1 n1Var, f2.k kVar) {
-        super.C(n1Var, kVar);
-        View view = n1Var.f6432a;
-        if (view instanceof d00) {
-            d00 d00Var = (d00) view;
-            if (d00Var.f27623w) {
-                ValueAnimator valueAnimator = d00Var.f27606a;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllListeners();
-                    d00Var.f27606a.removeAllUpdateListeners();
-                    d00Var.f27606a.cancel();
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                ofFloat.addUpdateListener(new wz(d00Var, 0));
-                ofFloat.addListener(new org.telegram.ui.bm(d00Var, 29));
-                d00Var.f27606a = ofFloat;
-                ofFloat.setDuration(this.f6487e);
-                ofFloat.start();
+    public xz(float f10, float f11, boolean z4) {
+        int i10;
+        float f12;
+        int i11;
+        double d = 6.283185307179586d;
+        if (z4) {
+            f12 = Math.round(f10);
+            if (f12 >= 1.0f) {
+                double d10 = f12;
+                int floor = (int) Math.floor(Math.sqrt(Math.log(Math.sqrt(Math.pow(d10, 2.0d) * 6.283185307179586d) * 0.00390625f) * Math.pow(d10, 2.0d) * (-2.0d)));
+                i10 = (floor % 2) + floor;
+            } else {
+                i10 = 0;
+            }
+        } else {
+            i10 = (int) f10;
+            f12 = f11;
+        }
+        int i12 = (i10 * 2) + 1;
+        float[] fArr = new float[i12];
+        int i13 = 0;
+        float f13 = 0.0f;
+        while (true) {
+            i11 = i10 + 1;
+            if (i13 >= i11) {
+                break;
+            }
+            double d11 = d;
+            double d12 = f12;
+            float[] fArr2 = fArr;
+            float exp = (float) (Math.exp((-Math.pow(i13, 2.0d)) / (Math.pow(d12, 2.0d) * 2.0d)) * (1.0d / Math.sqrt(Math.pow(d12, 2.0d) * d11)));
+            fArr2[i13] = exp;
+            if (i13 == 0) {
+                f13 += exp;
+            } else {
+                f13 = (float) ((exp * 2.0d) + f13);
+            }
+            i13++;
+            d = d11;
+            fArr = fArr2;
+        }
+        double d13 = d;
+        float[] fArr3 = fArr;
+        for (int i14 = 0; i14 < i11; i14++) {
+            fArr3[i14] = fArr3[i14] / f13;
+        }
+        int i15 = (i10 % 2) + (i10 / 2);
+        int min = Math.min(i15, 7);
+        StringBuilder sb = new StringBuilder("uniform sampler2D sTexture;\nuniform highp float texelWidthOffset;\nuniform highp float texelHeightOffset;\n");
+        Locale locale = Locale.US;
+        sb.append("varying highp vec2 blurCoordinates[" + ((min * 2) + 1) + "];\n");
+        sb.append("void main()\n{\nlowp vec4 sum = vec4(0.0);\n");
+        sb.append(String.format(locale, "sum += texture2D(sTexture, blurCoordinates[0]) * %f;\n", Float.valueOf(fArr3[0])));
+        for (int i16 = 0; i16 < min; i16++) {
+            int i17 = i16 * 2;
+            int i18 = i17 + 1;
+            int i19 = i17 + 2;
+            float f14 = fArr3[i18] + fArr3[i19];
+            Locale locale2 = Locale.US;
+            sb.append(String.format(locale2, "sum += texture2D(sTexture, blurCoordinates[%d]) * %f;\n", Integer.valueOf(i18), Float.valueOf(f14)));
+            sb.append(String.format(locale2, "sum += texture2D(sTexture, blurCoordinates[%d]) * %f;\n", Integer.valueOf(i19), Float.valueOf(f14)));
+        }
+        if (i15 > min) {
+            sb.append("highp vec2 singleStepOffset = vec2(texelWidthOffset, texelHeightOffset);\n");
+            while (min < i15) {
+                int i20 = min * 2;
+                int i21 = i20 + 1;
+                float f15 = fArr3[i21];
+                int i22 = i20 + 2;
+                float f16 = fArr3[i22];
+                float f17 = f15 + f16;
+                float v = e2.c.v(f16, i22, f15 * i21, f17);
+                Locale locale3 = Locale.US;
+                sb.append(String.format(locale3, "sum += texture2D(sTexture, blurCoordinates[0] + singleStepOffset * %f) * %f;\n", Float.valueOf(v), Float.valueOf(f17)));
+                sb.append(String.format(locale3, "sum += texture2D(sTexture, blurCoordinates[0] - singleStepOffset * %f) * %f;\n", Float.valueOf(v), Float.valueOf(f17)));
+                min++;
             }
         }
+        sb.append("gl_FragColor = sum;\n}\n");
+        this.f30795b = sb.toString();
+        float[] fArr4 = new float[i12];
+        float f18 = 0.0f;
+        for (int i23 = 0; i23 < i11; i23++) {
+            double d14 = f12;
+            float f19 = f18;
+            float exp2 = (float) (Math.exp((-Math.pow(i23, 2.0d)) / (Math.pow(d14, 2.0d) * 2.0d)) * (1.0d / Math.sqrt(Math.pow(d14, 2.0d) * d13)));
+            fArr4[i23] = exp2;
+            if (i23 == 0) {
+                f18 = f19 + exp2;
+            } else {
+                f18 = (float) ((exp2 * 2.0d) + f19);
+            }
+        }
+        float f20 = f18;
+        for (int i24 = 0; i24 < i11; i24++) {
+            fArr4[i24] = fArr4[i24] / f20;
+        }
+        int min2 = Math.min(i15, 7);
+        float[] fArr5 = new float[min2];
+        for (int i25 = 0; i25 < min2; i25++) {
+            int i26 = i25 * 2;
+            int i27 = i26 + 1;
+            float f21 = fArr4[i27];
+            int i28 = i26 + 2;
+            float f22 = fArr4[i28];
+            fArr5[i25] = e2.c.v(f22, i28, f21 * i27, f21 + f22);
+        }
+        StringBuilder sb2 = new StringBuilder("attribute vec4 position;\nattribute vec4 inputTexCoord;\nuniform float texelWidthOffset;\nuniform float texelHeightOffset;\n");
+        Locale locale4 = Locale.US;
+        sb2.append("varying vec2 blurCoordinates[" + ((min2 * 2) + 1) + "];\n");
+        sb2.append("void main()\n{\ngl_Position = position;\nvec2 singleStepOffset = vec2(texelWidthOffset, texelHeightOffset);\nblurCoordinates[0] = inputTexCoord.xy;\n");
+        for (int i29 = 0; i29 < min2; i29++) {
+            int i30 = i29 * 2;
+            sb2.append(String.format(Locale.US, "blurCoordinates[%d] = inputTexCoord.xy + singleStepOffset * %f;\nblurCoordinates[%d] = inputTexCoord.xy - singleStepOffset * %f;\n", Integer.valueOf(i30 + 1), Float.valueOf(fArr5[i29]), Integer.valueOf(i30 + 2), Float.valueOf(fArr5[i29])));
+        }
+        sb2.append("}");
+        this.f30794a = sb2.toString();
     }
 
-    @Override
-    public final void f(f2.n1 n1Var) {
-        super.f(n1Var);
-        View view = n1Var.f6432a;
-        view.setTranslationX(0.0f);
-        if (view instanceof d00) {
-            ((d00) view).a();
+    public final boolean a() {
+        int h = zz.h(35633, this.f30794a);
+        int h9 = zz.h(35632, this.f30795b);
+        if (h == 0 || h9 == 0) {
+            return false;
         }
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.f6405p.isEmpty();
-        boolean isEmpty2 = this.f6407r.isEmpty();
-        boolean isEmpty3 = this.f6408s.isEmpty();
-        boolean isEmpty4 = this.f6406q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.1f);
-            ofFloat.addUpdateListener(new j6(this, 23));
-            ofFloat.setDuration(this.f6487e);
-            ofFloat.start();
+        int glCreateProgram = GLES20.glCreateProgram();
+        this.f30796c = glCreateProgram;
+        GLES20.glAttachShader(glCreateProgram, h);
+        GLES20.glAttachShader(this.f30796c, h9);
+        GLES20.glBindAttribLocation(this.f30796c, 0, "position");
+        GLES20.glBindAttribLocation(this.f30796c, 1, "inputTexCoord");
+        GLES20.glLinkProgram(this.f30796c);
+        int[] iArr = new int[1];
+        GLES20.glGetProgramiv(this.f30796c, 35714, iArr, 0);
+        if (iArr[0] == 0) {
+            GLES20.glDeleteProgram(this.f30796c);
+            this.f30796c = 0;
+        } else {
+            this.d = GLES20.glGetAttribLocation(this.f30796c, "position");
+            this.e = GLES20.glGetAttribLocation(this.f30796c, "inputTexCoord");
+            this.f30797f = GLES20.glGetUniformLocation(this.f30796c, "sTexture");
+            this.f30798g = GLES20.glGetUniformLocation(this.f30796c, "texelWidthOffset");
+            this.h = GLES20.glGetUniformLocation(this.f30796c, "texelHeightOffset");
         }
-        super.m();
-    }
-
-    @Override
-    public final boolean r(f2.n1 n1Var, a5.e eVar, int i10, int i11, int i12, int i13) {
-        int i14;
-        int i15;
-        int i16;
-        ?? r32;
-        boolean z10;
-        String str;
-        int i17;
-        int i18;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        CharSequence charSequence;
-        CharSequence charSequence2;
-        boolean z14;
-        boolean z15;
-        int i19;
-        int i20;
-        boolean z16;
-        float f9;
-        int i21;
-        int i22;
-        float f10;
-        boolean z17;
-        boolean z18;
-        int i23;
-        View view = n1Var.f6432a;
-        if (view instanceof d00) {
-            int translationX = i10 + ((int) view.getTranslationX());
-            int translationY = i11 + ((int) view.getTranslationY());
-            R(n1Var);
-            int i24 = i12 - translationX;
-            int i25 = i13 - translationY;
-            if (i24 != 0) {
-                view.setTranslationX(-i24);
-            }
-            if (i25 != 0) {
-                view.setTranslationY(-i25);
-            }
-            d00 d00Var = (d00) view;
-            f00 f00Var = d00Var.f27619i0;
-            TextPaint textPaint = f00Var.f28228b;
-            TextPaint textPaint2 = f00Var.f28230c;
-            int i26 = d00Var.f27608b.d;
-            int i27 = d00Var.E;
-            if (i26 != i27) {
-                d00Var.D = true;
-                d00Var.F = i27;
-                d00Var.f27609b0 = d00Var.W;
-                d00Var.f27611c0 = d00Var.f27607a0;
-                if (i27 > 0 && i26 > 0) {
-                    String valueOf = String.valueOf(i27);
-                    String valueOf2 = String.valueOf(d00Var.f27608b.d);
-                    if (valueOf.length() == valueOf2.length()) {
-                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(valueOf);
-                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(valueOf2);
-                        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(valueOf2);
-                        int i28 = 0;
-                        while (i28 < valueOf.length()) {
-                            int i29 = translationX;
-                            if (valueOf.charAt(i28) == valueOf2.charAt(i28)) {
-                                i23 = translationY;
-                                int i30 = i28 + 1;
-                                spannableStringBuilder.setSpan(new gz(false), i28, i30, 0);
-                                spannableStringBuilder2.setSpan(new gz(false), i28, i30, 0);
-                            } else {
-                                i23 = translationY;
-                                spannableStringBuilder3.setSpan(new gz(false), i28, i28 + 1, 0);
-                            }
-                            i28++;
-                            translationY = i23;
-                            translationX = i29;
-                        }
-                        i14 = translationX;
-                        i15 = translationY;
-                        z18 = false;
-                        int ceil = (int) Math.ceil(org.telegram.ui.ActionBar.g6.L0.measureText(valueOf));
-                        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-                        z17 = true;
-                        d00Var.H = new StaticLayout(spannableStringBuilder, textPaint2, ceil, alignment, 1.0f, 0.0f, false);
-                        d00Var.I = new StaticLayout(spannableStringBuilder3, textPaint2, ceil, alignment, 1.0f, 0.0f, false);
-                        d00Var.G = new StaticLayout(spannableStringBuilder2, textPaint2, ceil, alignment, 1.0f, 0.0f, false);
-                    } else {
-                        i14 = translationX;
-                        i15 = translationY;
-                        z17 = true;
-                        z18 = false;
-                        Layout.Alignment alignment2 = Layout.Alignment.ALIGN_CENTER;
-                        d00Var.H = new StaticLayout(valueOf, textPaint2, (int) Math.ceil(org.telegram.ui.ActionBar.g6.L0.measureText(valueOf)), alignment2, 1.0f, 0.0f, false);
-                        d00Var.G = new StaticLayout(valueOf2, textPaint2, (int) Math.ceil(org.telegram.ui.ActionBar.g6.L0.measureText(valueOf2)), alignment2, 1.0f, 0.0f, false);
-                    }
-                } else {
-                    i14 = translationX;
-                    i15 = translationY;
-                    z17 = true;
-                    z18 = false;
-                }
-                z10 = true;
-                i16 = z17;
-                r32 = z18;
-            } else {
-                i14 = translationX;
-                i15 = translationY;
-                i16 = 1;
-                r32 = 0;
-                z10 = false;
-            }
-            int i31 = d00Var.f27608b.d;
-            if (i31 > 0) {
-                Object[] objArr = new Object[i16];
-                objArr[r32] = Integer.valueOf(i31);
-                str = String.format("%d", objArr);
-                i17 = Math.max(AndroidUtilities.dp(7.333f), (int) Math.ceil(textPaint2.measureText(str))) + AndroidUtilities.dp(10.0f);
-            } else {
-                str = null;
-                i17 = 0;
-            }
-            int i32 = d00Var.f27608b.f27253c;
-            if (i17 != 0) {
-                if (str != null) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = f00Var.f28255w;
-                }
-                i18 = AndroidUtilities.dp(f10 * 6.0f) + i17;
-            } else {
-                i18 = 0;
-            }
-            int i33 = i18 + i32;
-            float f11 = d00Var.A;
-            if ((d00Var.getMeasuredWidth() - i33) / 2 != f11) {
-                d00Var.C = i16;
-                d00Var.B = f11;
-                z11 = true;
-            } else {
-                z11 = z10;
-            }
-            CharSequence charSequence3 = d00Var.J;
-            if (charSequence3 != null && !d00Var.f27608b.f27252b.equals(charSequence3)) {
-                if (d00Var.J.length() > d00Var.f27608b.f27252b.length()) {
-                    charSequence = d00Var.J;
-                    charSequence2 = d00Var.f27608b.f27252b;
-                    z14 = true;
-                } else {
-                    charSequence = d00Var.f27608b.f27252b;
-                    charSequence2 = d00Var.J;
-                    z14 = false;
-                }
-                int charSequenceIndexOf = AndroidUtilities.charSequenceIndexOf(charSequence, charSequence2);
-                if (charSequenceIndexOf >= 0) {
-                    CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, textPaint.getFontMetricsInt(), r32);
-                    SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(replaceEmoji);
-                    SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder(replaceEmoji);
-                    if (charSequenceIndexOf != 0) {
-                        spannableStringBuilder5.setSpan(new gz((boolean) r32), r32, charSequenceIndexOf, r32);
-                    }
-                    if (charSequence2.length() + charSequenceIndexOf != charSequence.length()) {
-                        spannableStringBuilder5.setSpan(new gz((boolean) r32), charSequence2.length() + charSequenceIndexOf, charSequence.length(), r32);
-                    }
-                    spannableStringBuilder4.setSpan(new gz((boolean) r32), charSequenceIndexOf, charSequence2.length() + charSequenceIndexOf, r32);
-                    int dp = AndroidUtilities.dp(400.0f);
-                    boolean z19 = z14;
-                    Layout.Alignment alignment3 = Layout.Alignment.ALIGN_NORMAL;
-                    z12 = false;
-                    StaticLayout staticLayout = new StaticLayout(spannableStringBuilder4, textPaint, dp, alignment3, 1.0f, 0.0f, false);
-                    d00Var.L = staticLayout;
-                    if (d00Var.f27618h0) {
-                        if (d00Var.f27608b.f27256g) {
-                            i22 = 26;
-                        } else {
-                            i22 = 0;
-                        }
-                        d00Var.K = y5.update(i22, d00Var, d00Var.K, staticLayout);
-                    }
-                    StaticLayout staticLayout2 = new StaticLayout(spannableStringBuilder5, textPaint, AndroidUtilities.dp(400.0f), alignment3, 1.0f, 0.0f, false);
-                    d00Var.P = staticLayout2;
-                    if (d00Var.f27618h0) {
-                        if (d00Var.f27608b.f27256g) {
-                            i21 = 26;
-                        } else {
-                            i21 = 0;
-                        }
-                        z16 = true;
-                        d00Var.O = y5.update(i21, d00Var, d00Var.O, staticLayout2);
-                    } else {
-                        z16 = true;
-                    }
-                    d00Var.Q = z16;
-                    d00Var.R = z19;
-                    if (charSequenceIndexOf == 0) {
-                        f9 = 0.0f;
-                    } else {
-                        f9 = -d00Var.P.getPrimaryHorizontal(charSequenceIndexOf);
-                    }
-                    d00Var.T = f9;
-                    d00Var.V = d00Var.U;
-                    d00Var.N = null;
-                    y5.release(d00Var, d00Var.M);
-                } else {
-                    z12 = false;
-                    CharSequence charSequence4 = d00Var.f27608b.f27252b;
-                    int dp2 = AndroidUtilities.dp(400.0f);
-                    Layout.Alignment alignment4 = Layout.Alignment.ALIGN_NORMAL;
-                    StaticLayout staticLayout3 = new StaticLayout(charSequence4, textPaint, dp2, alignment4, 1.0f, 0.0f, false);
-                    d00Var.L = staticLayout3;
-                    if (d00Var.f27618h0) {
-                        if (d00Var.f27608b.f27256g) {
-                            i20 = 26;
-                        } else {
-                            i20 = 0;
-                        }
-                        d00Var.K = y5.update(i20, d00Var, d00Var.K, staticLayout3);
-                    }
-                    StaticLayout staticLayout4 = new StaticLayout(d00Var.J, textPaint, AndroidUtilities.dp(400.0f), alignment4, 1.0f, 0.0f, false);
-                    d00Var.N = staticLayout4;
-                    if (d00Var.f27618h0) {
-                        if (d00Var.f27608b.f27256g) {
-                            i19 = 26;
-                        } else {
-                            i19 = 0;
-                        }
-                        z15 = true;
-                        d00Var.M = y5.update(i19, d00Var, d00Var.M, staticLayout4);
-                    } else {
-                        z15 = true;
-                    }
-                    d00Var.P = null;
-                    y5.release(d00Var, d00Var.O);
-                    d00Var.Q = z15;
-                    d00Var.T = 0.0f;
-                    d00Var.V = d00Var.U;
-                }
-                z11 = true;
-            } else {
-                z12 = false;
-            }
-            if (i33 != d00Var.f27612d0 || d00Var.getMeasuredWidth() != d00Var.f27616f0) {
-                z13 = true;
-                d00Var.S = true;
-                d00Var.f27614e0 = d00Var.f27612d0;
-                z11 = true;
-            } else {
-                z13 = true;
-            }
-            if (z11) {
-                d00Var.f27624x = 0.0f;
-                d00Var.f27623w = z13;
-                f00 f00Var2 = this.F;
-                f00Var2.B.invalidate();
-                f00Var2.invalidate();
-            }
-            if (i24 == 0 && i25 == 0 && !z11) {
-                v(n1Var);
-                return z12;
-            }
-            this.f6407r.add(new f2.k(n1Var, i14, i15, i12, i13));
-            return z13;
-        }
-        return super.r(n1Var, eVar, i10, i11, i12, i13);
-    }
-
-    @Override
-    public final void x(f2.n1 n1Var) {
-        n1Var.f6432a.setTranslationX(0.0f);
-        View view = n1Var.f6432a;
-        if (view instanceof d00) {
-            ((d00) view).a();
-        }
+        return true;
     }
 }

@@ -1,43 +1,18 @@
 package eg;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.kb;
-import org.telegram.ui.Components.mc;
-public final class p1 implements kb {
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+public final class p1 extends BitmapDrawable {
+    public int[] f5425a;
+    public Drawable f5426b;
+
     @Override
-    public final boolean a() {
-        return true;
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 
     @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final int f(int i10) {
-        return 0;
-    }
-
-    @Override
-    public final boolean g(int i10) {
-        return false;
-    }
-
-    @Override
-    public final int h(int i10) {
-        return AndroidUtilities.statusBarHeight;
-    }
-
-    @Override
-    public final void b(mc mcVar) {
-    }
-
-    @Override
-    public final void c(float f9) {
-    }
-
-    @Override
-    public final void d(mc mcVar) {
+    public final void setColorFilter(int i10, PorterDuff.Mode mode) {
     }
 }

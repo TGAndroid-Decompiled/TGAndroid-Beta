@@ -1,52 +1,73 @@
 package org.telegram.ui.ActionBar;
 
-import android.util.SparseIntArray;
-import java.util.ArrayList;
+import android.util.Pair;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-public final class a4 implements qf.a {
-    public f6 f22730a;
-    public TLRPC.TL_theme f22731b;
-    public TLRPC.TL_chatThemeUniqueGift f22732c;
-    public int d;
-    public int f22733e = -1;
-    public SparseIntArray f22734f;
-    public String f22735g;
-    public int h;
-    public int f22736i;
-    public int f22737j;
-    public int f22738k;
-    public int f22739l;
-    public int f22740m;
-    public int f22741n;
-    public int f22742o;
+import org.telegram.ui.Components.xw0;
+import ph.z7;
+public final class a4 implements Utilities.Callback {
+    public final int f19512a;
+    public final long f19513b;
+    public final Object f19514c;
 
-    public final long a() {
-        TLRPC.TL_theme tL_theme = this.f22731b;
-        if (tL_theme != null) {
-            return tL_theme.f22529id;
-        }
-        TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f22732c;
-        if (tL_chatThemeUniqueGift != null) {
-            return tL_chatThemeUniqueGift.gift.gift_id;
-        }
-        return 0L;
+    public a4(Object obj, long j10, int i10) {
+        this.f19512a = i10;
+        this.f19514c = obj;
+        this.f19513b = j10;
     }
 
-    public final TLRPC.ThemeSettings b(int i10) {
-        ArrayList<TLRPC.ThemeSettings> arrayList;
-        TLRPC.TL_theme tL_theme = this.f22731b;
-        if (tL_theme != null) {
-            arrayList = tL_theme.settings;
-        } else {
-            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f22732c;
-            if (tL_chatThemeUniqueGift != null) {
-                arrayList = tL_chatThemeUniqueGift.theme_settings;
-            }
-            return null;
+    @Override
+    public final void run(Object obj) {
+        long j10;
+        switch (this.f19512a) {
+            case 0:
+                ResultCallback resultCallback = (ResultCallback) this.f19514c;
+                qf.a aVar = (qf.a) obj;
+                if (resultCallback != null) {
+                    resultCallback.onComplete(new Pair(Long.valueOf(this.f19513b), aVar));
+                    return;
+                }
+                return;
+            case 1:
+                xw0 xw0Var = (xw0) this.f19514c;
+                TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
+                if (tL_messages_emojiGroups != null) {
+                    NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new i5.v(xw0Var, tL_messages_emojiGroups, this.f19513b, 24));
+                    return;
+                }
+                return;
+            default:
+                z7 z7Var = (z7) this.f19514c;
+                TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) obj;
+                d2 d2Var = z7Var.D;
+                if (d2Var != null) {
+                    d2Var.c(350L);
+                    z7Var.D = null;
+                }
+                if (tL_channels_channelParticipants != null && !tL_channels_channelParticipants.participants.isEmpty()) {
+                    TLRPC.TL_chatParticipants tL_chatParticipants = new TLRPC.TL_chatParticipants();
+                    for (int i10 = 0; i10 < tL_channels_channelParticipants.participants.size(); i10++) {
+                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i10);
+                        TLRPC.TL_chatParticipant tL_chatParticipant = new TLRPC.TL_chatParticipant();
+                        TLRPC.Peer peer = channelParticipant.peer;
+                        if (peer != null) {
+                            j10 = DialogObject.getPeerDialogId(peer);
+                            if (j10 < 0) {
+                            }
+                        } else {
+                            j10 = channelParticipant.user_id;
+                        }
+                        tL_chatParticipant.user_id = j10;
+                        tL_chatParticipants.participants.add(tL_chatParticipant);
+                    }
+                    z7Var.d(this.f19513b, tL_chatParticipants);
+                    return;
+                }
+                return;
         }
-        if (arrayList != null && i10 >= 0 && arrayList.size() > i10) {
-            return arrayList.get(i10);
-        }
-        return null;
     }
 }

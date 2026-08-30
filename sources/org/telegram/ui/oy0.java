@@ -1,43 +1,49 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Stories.ProfileStoriesView;
-public final class oy0 extends ProfileStoriesView {
-    public final Context f41248p0;
-    public final ProfileActivity f41249q0;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class oy0 extends f2.i0 {
+    public final ProfileActivity I;
 
-    public oy0(ProfileActivity profileActivity, Context context, int i10, long j10, boolean z10, n0 n0Var, ly0 ly0Var, org.telegram.ui.ActionBar.c6 c6Var, Context context2) {
-        super(context, i10, j10, z10, n0Var, ly0Var, c6Var);
-        this.f41249q0 = profileActivity;
-        this.f41248p0 = context2;
+    public oy0(ProfileActivity profileActivity) {
+        this.I = profileActivity;
     }
 
     @Override
-    public final void e(ha.c cVar) {
-        TL_stories.PeerStories peerStories;
-        TL_stories.PeerStories peerStories2;
-        ProfileActivity profileActivity = this.f41249q0;
-        long a2 = profileActivity.a();
-        lh.s6 storiesController = profileActivity.getMessagesController().getStoriesController();
-        boolean I = storiesController.I(a2);
-        Context context = this.f41248p0;
-        if (!I && !storiesController.K(a2) && !storiesController.N(a2)) {
-            TLRPC.UserFull userFull = profileActivity.f36106r2;
-            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f35986a1 != profileActivity.getUserConfig().clientUserId) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f36106r2.stories, cVar);
-                return;
+    public final int o0(int i10, bf.f fVar, f2.i1 i1Var) {
+        ProfileActivity profileActivity = this.I;
+        View m9 = profileActivity.f32043c.m(0);
+        if (m9 != null && !profileActivity.C0) {
+            int top = m9.getTop() - profileActivity.T3();
+            boolean z4 = profileActivity.f32107l2;
+            boolean z10 = true;
+            if (!z4 && top > i10) {
+                if (!profileActivity.f32099k0.U0.isEmpty() && profileActivity.f32036b0.getImageReceiver().hasNotThumb() && !AndroidUtilities.isAccessibilityScreenReaderEnabled() && ((!profileActivity.f32101k2 && !AndroidUtilities.isTablet()) || profileActivity.F0)) {
+                    if (profileActivity.G2 != null) {
+                        z10 = false;
+                    }
+                    profileActivity.f32107l2 = z10;
+                }
+            } else if (z4) {
+                if (i10 >= top) {
+                    profileActivity.f32107l2 = false;
+                } else if (profileActivity.f32028a.getScrollState() == 1 && !profileActivity.f32113m2) {
+                    i10 /= 2;
+                }
             }
-            TLRPC.ChatFull chatFull = profileActivity.f36099q2;
-            if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f36099q2.stories, cVar);
-                return;
-            } else {
-                profileActivity.K3();
-                return;
-            }
+            i10 = top;
         }
-        profileActivity.getOrCreateStoryViewer().D(context, a2, cVar);
+        if (profileActivity.L1 && !profileActivity.f32028a.L0) {
+            return 0;
+        }
+        return super.o0(i10, fVar, i1Var);
+    }
+
+    @Override
+    public final boolean y0() {
+        if (this.I.f32119n0 != null) {
+            return true;
+        }
+        return false;
     }
 }

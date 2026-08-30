@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import a4.w;
+import android.support.v4.media.a;
 import java.util.HashMap;
 public class NewCommandMacro {
     protected static HashMap<String, String> macrocode = new HashMap<>();
@@ -17,7 +17,7 @@ public class NewCommandMacro {
             MacroInfo.Commands.put(str, new MacroInfo("org.scilab.forge.jlatexmath.NewCommandMacro", "executeMacro", i10));
             return;
         }
-        throw new ParseException(w.n("Command ", str, " is not defined ! Use newcommand instead ..."));
+        throw new ParseException(a.o("Command ", str, " is not defined ! Use newcommand instead ..."));
     }
 
     public static boolean isMacro(String str) {
@@ -40,6 +40,6 @@ public class NewCommandMacro {
             MacroInfo.Commands.put(str, new MacroInfo("org.scilab.forge.jlatexmath.NewCommandMacro", "executeMacro", i10, 1.0f));
             return;
         }
-        throw new ParseException(w.n("Command ", str, " already exists ! Use renewcommand instead ..."));
+        throw new ParseException(a.o("Command ", str, " already exists ! Use renewcommand instead ..."));
     }
 }

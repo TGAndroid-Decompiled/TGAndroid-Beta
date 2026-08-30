@@ -1,19 +1,38 @@
 package nh;
-public final class n7 {
-    public int f18192a;
-    public int f18193b;
 
-    public final int a() {
-        if (this.f18192a == 6) {
-            int i10 = this.f18193b;
-            if (i10 == 7) {
-                return 1;
-            }
-            if (i10 == 6) {
-                return 2;
-            }
-            return 0;
+import android.content.Context;
+import android.view.View;
+public final class n7 extends d4 {
+    public final o7 f15667b4;
+
+    public n7(o7 o7Var, Context context, i9 i9Var, a4 a4Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, i9Var, a4Var, f6Var);
+        this.f15667b4 = o7Var;
+    }
+
+    @Override
+    public final boolean K0() {
+        if (getParent() != null && ((Integer) ((View) getParent()).getTag()).intValue() == this.f15667b4.f15712g.getCurrentItem()) {
+            return true;
         }
-        return 0;
+        return false;
+    }
+
+    @Override
+    public final void invalidate() {
+        if (u.f15945c) {
+            u.f15944b.add(this);
+        } else {
+            super.invalidate();
+        }
+    }
+
+    @Override
+    public final void invalidate(int i10, int i11, int i12, int i13) {
+        if (u.f15945c) {
+            u.f15944b.add(this);
+        } else {
+            super.invalidate(i10, i11, i12, i13);
+        }
     }
 }

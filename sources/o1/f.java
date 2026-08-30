@@ -1,5 +1,4 @@
 package o1;
-public final class f {
-    public float f19025a;
-    public float f19026b;
+public interface f {
+    void a(h hVar, boolean z4, float f10, float f11);
 }

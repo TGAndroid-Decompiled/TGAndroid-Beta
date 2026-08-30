@@ -1,32 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
+import android.graphics.Rect;
 import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-public final class bk0 extends ImageReceiver {
-    public final int f27151a;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+public final class bk0 extends f2.u0 {
+    public final int f23693a;
+    public final pk0 f23694b;
 
-    public bk0(int i10, View view) {
-        super(view);
-        this.f27151a = i10;
+    public bk0(pk0 pk0Var, int i10) {
+        this.f23693a = i10;
+        this.f23694b = pk0Var;
     }
 
     @Override
-    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
-        switch (this.f27151a) {
+    public final void a(Rect rect, View view, RecyclerView recyclerView, f2.i1 i1Var) {
+        switch (this.f23693a) {
             case 0:
-                if (drawable instanceof xi0) {
-                    ((xi0) drawable).L(0, false, true);
+                super.a(rect, view, recyclerView, i1Var);
+                pk0 pk0Var = this.f23694b;
+                if (!pk0Var.q()) {
+                    recyclerView.getClass();
+                    int R = RecyclerView.R(view);
+                    if (R == 0) {
+                        rect.left = AndroidUtilities.dp(6.0f);
+                    }
+                    rect.right = AndroidUtilities.dp(4.0f);
+                    if (R == pk0Var.U.h() - 1) {
+                        if ((!pk0Var.R.isEmpty() && !MessagesController.getInstance(pk0Var.G).premiumFeaturesBlocked()) || pk0Var.q()) {
+                            rect.right = AndroidUtilities.dp(2.0f);
+                            return;
+                        } else {
+                            rect.right = AndroidUtilities.dp(6.0f);
+                            return;
+                        }
+                    }
+                    return;
                 }
-                return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
+                rect.left = 0;
+                rect.right = 0;
+                return;
             default:
-                boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (imageBitmapByKey && (drawable instanceof xi0)) {
-                    xi0 xi0Var = (xi0) drawable;
-                    xi0Var.L(0, false, true);
-                    xi0Var.stop();
+                recyclerView.getClass();
+                int R2 = RecyclerView.R(view);
+                if (R2 == 0) {
+                    rect.left = AndroidUtilities.dp(8.0f);
                 }
-                return imageBitmapByKey;
+                if (R2 == this.f23694b.U.h() - 1) {
+                    rect.right = AndroidUtilities.dp(8.0f);
+                    return;
+                }
+                return;
         }
     }
 }

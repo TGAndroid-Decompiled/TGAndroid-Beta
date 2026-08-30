@@ -1,10 +1,12 @@
 package o3;
 public interface m {
-    public static final ab.b f19102u = new ab.b(16);
+    void b(int i10, o4.v vVar);
 
-    void D1(t tVar);
+    void c(int i10, o4.v vVar, int i11);
 
-    w Z1(int i10, int i11);
+    void e(int i10, o4.v vVar, Exception exc);
 
-    void e1();
+    void j(int i10, o4.v vVar);
+
+    void k(int i10, o4.v vVar);
 }

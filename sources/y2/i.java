@@ -1,32 +1,31 @@
 package y2;
 
-import a4.w;
 import android.util.Base64;
 import java.util.Arrays;
 public final class i {
-    public final String f50187a;
-    public final byte[] f50188b;
-    public final v2.d f50189c;
+    public final String f47014a;
+    public final byte[] f47015b;
+    public final v2.d f47016c;
 
     public i(String str, byte[] bArr, v2.d dVar) {
-        this.f50187a = str;
-        this.f50188b = bArr;
-        this.f50189c = dVar;
+        this.f47014a = str;
+        this.f47015b = bArr;
+        this.f47016c = dVar;
     }
 
-    public static v5.c a() {
-        v5.c cVar = new v5.c(4);
-        cVar.d = v2.d.f49328a;
-        return cVar;
+    public static s5.m a() {
+        s5.m mVar = new s5.m();
+        mVar.d = v2.d.f45560a;
+        return mVar;
     }
 
     public final i b(v2.d dVar) {
-        v5.c a2 = a();
-        a2.h(this.f50187a);
+        s5.m a2 = a();
+        a2.n(this.f47014a);
         if (dVar != null) {
             a2.d = dVar;
-            a2.f49409b = this.f50188b;
-            return a2.d();
+            a2.f44089c = this.f47015b;
+            return a2.f();
         }
         throw new NullPointerException("Null priority");
     }
@@ -37,7 +36,7 @@ public final class i {
         }
         if (obj instanceof i) {
             i iVar = (i) obj;
-            if (this.f50187a.equals(iVar.f50187a) && Arrays.equals(this.f50188b, iVar.f50188b) && this.f50189c.equals(iVar.f50189c)) {
+            if (this.f47014a.equals(iVar.f47014a) && Arrays.equals(this.f47015b, iVar.f47015b) && this.f47016c.equals(iVar.f47016c)) {
                 return true;
             }
         }
@@ -45,22 +44,22 @@ public final class i {
     }
 
     public final int hashCode() {
-        return ((((this.f50187a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f50188b)) * 1000003) ^ this.f50189c.hashCode();
+        return ((((this.f47014a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f47015b)) * 1000003) ^ this.f47016c.hashCode();
     }
 
     public final String toString() {
         String encodeToString;
-        byte[] bArr = this.f50188b;
+        byte[] bArr = this.f47015b;
         if (bArr == null) {
             encodeToString = "";
         } else {
             encodeToString = Base64.encodeToString(bArr, 2);
         }
-        StringBuilder sb2 = new StringBuilder("TransportContext(");
-        sb2.append(this.f50187a);
-        sb2.append(", ");
-        sb2.append(this.f50189c);
-        sb2.append(", ");
-        return w.q(sb2, encodeToString, ")");
+        StringBuilder sb = new StringBuilder("TransportContext(");
+        sb.append(this.f47014a);
+        sb.append(", ");
+        sb.append(this.f47016c);
+        sb.append(", ");
+        return android.support.v4.media.a.r(sb, encodeToString, ")");
     }
 }

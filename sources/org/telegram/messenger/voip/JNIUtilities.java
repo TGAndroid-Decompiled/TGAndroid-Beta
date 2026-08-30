@@ -96,8 +96,8 @@ public class JNIUtilities {
                 }
             }
             return null;
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             return null;
         }
     }

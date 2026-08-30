@@ -1,116 +1,197 @@
 package nh;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
+import java.util.Arrays;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
-public final class t1 extends u1 implements NotificationCenter.NotificationCenterDelegate {
-    public final jh.e1 f18579b;
-    public final r1 f18580c;
-    public final d2 d;
-    public final s1 f18581e;
-    public final p1 f18582f;
-    public final ArrayList h;
-    public final ArrayList f18583n;
-    public final k2 f18584r;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class t1 implements org.telegram.ui.ActionBar.c2, wg.a {
+    public final int f15901a;
+    public final d4 f15902b;
 
-    public t1(k2 k2Var, Context context) {
-        super(context);
-        org.telegram.ui.ActionBar.c6 c6Var;
-        this.f18584r = k2Var;
-        this.f18582f = new Object();
-        this.h = new ArrayList();
-        this.f18583n = new ArrayList();
-        jh.e1 e1Var = new jh.e1(this, context, 2);
-        this.f18579b = e1Var;
-        r1 r1Var = new r1(this);
-        this.f18580c = r1Var;
-        e1Var.setAdapter(r1Var);
-        s1 s1Var = new s1(this);
-        this.f18581e = s1Var;
-        e1Var.setLayoutManager(s1Var);
-        e1Var.i(new eg.f2(this, 1));
-        e1Var.setClipToPadding(true);
-        e1Var.setVerticalScrollBarEnabled(false);
-        bg.o oVar = new bg.o(this, 14);
-        e1Var.setOnTouchListener(new o1(0, this, oVar));
-        e1Var.setOnItemClickListener(oVar);
-        e1Var.setOnScrollListener(new cg.g2(this, 13));
-        addView(e1Var, i7.f6.d(-1, -1.0f, 119, 0.0f, 58.0f, 0.0f, 40.0f));
-        c6Var = ((org.telegram.ui.ActionBar.f3) k2Var).resourcesProvider;
-        d2 d2Var = new d2(context, c6Var);
-        this.d = d2Var;
-        d2Var.v = new bg.t1(this, 26);
-        d2Var.a(2, false);
-        addView(d2Var, i7.f6.e(-1, -2, 48));
+    public t1(d4 d4Var, int i10) {
+        this.f15901a = i10;
+        this.f15902b = d4Var;
     }
 
     @Override
-    public final void a(int i10) {
-        r1 r1Var = this.f18580c;
-        r1.E(r1Var, false);
-        if (this.f18583n.isEmpty() && TextUtils.isEmpty(this.f18584r.f17990b)) {
-            r1Var.G();
-        }
-        r1Var.H(null);
-    }
-
-    @Override
-    public final float b() {
-        int i10 = 0;
-        while (true) {
-            jh.e1 e1Var = this.f18579b;
-            if (i10 < e1Var.getChildCount()) {
-                View childAt = e1Var.getChildAt(i10);
-                Object tag = childAt.getTag();
-                if ((tag instanceof Integer) && ((Integer) tag).intValue() == 34) {
-                    return Math.max(0, childAt.getBottom());
+    public void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        long j10;
+        TLRPC.ChatFull chatFull;
+        TL_stories.PeerStories peerStories;
+        TLRPC.UserFull userFull;
+        boolean z4;
+        boolean z10;
+        TL_stories.StoryItem storyItem;
+        int i11 = this.f15901a;
+        d4 d4Var = this.f15902b;
+        switch (i11) {
+            case 0:
+                o2 o2Var = d4Var.Y1;
+                if (o2Var != null) {
+                    o2Var.B();
+                    return;
                 }
-                i10++;
-            } else {
-                return 0.0f;
-            }
+                return;
+            default:
+                b4 b4Var = d4Var.L1;
+                boolean z11 = true;
+                TLRPC.ChatFull chatFull2 = null;
+                if (b4Var.f15114f && (storyItem = b4Var.f15111a) != null) {
+                    TLRPC.MessageMedia messageMedia = storyItem.media;
+                    if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
+                        TLRPC.InputGroupCall inputGroupCall = ((TLRPC.TL_messageMediaVideoStream) messageMedia).call;
+                        e1 e1Var = e1.T;
+                        if (e1Var != null && e1Var.f(inputGroupCall)) {
+                            e1.T.e();
+                            if (e1.T != null) {
+                                e1.T = null;
+                                NotificationCenter.getInstance(d4Var.f15263z2).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(e1.T.g()));
+                            }
+                        }
+                    }
+                }
+                TL_stories.StoryItem storyItem2 = b4Var.f15111a;
+                if (storyItem2 instanceof c6) {
+                    d6 d6Var = ((c6) storyItem2).f15162a;
+                    TLRPC.MessageMedia messageMedia2 = storyItem2.media;
+                    d6Var.getClass();
+                    d6Var.F(new ArrayList(Arrays.asList(messageMedia2)));
+                } else if (storyItem2 != null) {
+                    d4 d4Var2 = b4Var.f15118k;
+                    t6 t6Var = d4Var2.P1;
+                    long j11 = d4Var2.f15258y1;
+                    a0.h hVar = t6Var.f15922i;
+                    int i12 = t6Var.f15917a;
+                    if (!(storyItem2 instanceof TL_stories.TL_storyItemDeleted)) {
+                        int i13 = 0;
+                        while (i13 < 2) {
+                            if (i13 == 0) {
+                                j10 = 0;
+                                TLRPC.ChatFull chatFull3 = chatFull2;
+                                chatFull = chatFull3;
+                                peerStories = (TL_stories.PeerStories) hVar.f(j11);
+                                userFull = chatFull3;
+                            } else if (j11 >= 0) {
+                                TLRPC.UserFull userFull2 = MessagesController.getInstance(i12).getUserFull(j11);
+                                if (userFull2 != null) {
+                                    j10 = 0;
+                                    chatFull = chatFull2;
+                                    userFull = userFull2;
+                                    peerStories = userFull2.stories;
+                                } else {
+                                    j10 = 0;
+                                    chatFull = chatFull2;
+                                    userFull = userFull2;
+                                    peerStories = chatFull;
+                                }
+                            } else {
+                                j10 = 0;
+                                TLRPC.ChatFull chatFull4 = MessagesController.getInstance(i12).getChatFull(-j11);
+                                if (chatFull4 != null) {
+                                    chatFull = chatFull4;
+                                    peerStories = chatFull4.stories;
+                                    userFull = chatFull2;
+                                } else {
+                                    TLRPC.ChatFull chatFull5 = chatFull2;
+                                    chatFull = chatFull4;
+                                    peerStories = chatFull5;
+                                    userFull = chatFull5;
+                                }
+                            }
+                            if (peerStories != null) {
+                                int i14 = 0;
+                                while (true) {
+                                    if (i14 < peerStories.stories.size()) {
+                                        if (peerStories.stories.get(i14).f19419id == storyItem2.f19419id) {
+                                            peerStories.stories.remove(i14);
+                                            if (peerStories.stories.size() == 0) {
+                                                if (!t6Var.K(j11)) {
+                                                    hVar.l(j11);
+                                                    t6Var.f15921g.remove(peerStories);
+                                                    t6Var.h.remove(peerStories);
+                                                }
+                                                if (j11 > j10) {
+                                                    TLRPC.User user = MessagesController.getInstance(i12).getUser(Long.valueOf(j11));
+                                                    if (user != null) {
+                                                        user.stories_unavailable = z11;
+                                                    }
+                                                } else {
+                                                    TLRPC.Chat chat = MessagesController.getInstance(i12).getChat(Long.valueOf(-j11));
+                                                    if (chat != null) {
+                                                        chat.stories_unavailable = true;
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            i14++;
+                                            z11 = true;
+                                        }
+                                    }
+                                }
+                            }
+                            if (chatFull != null) {
+                                z4 = false;
+                                MessagesStorage.getInstance(i12).updateChatInfo(chatFull, false);
+                            } else {
+                                z4 = false;
+                            }
+                            if (userFull != 0) {
+                                MessagesStorage.getInstance(i12).updateUserInfo(userFull, z4);
+                            }
+                            i13++;
+                            z11 = true;
+                            chatFull2 = null;
+                        }
+                        TL_stories.TL_stories_deleteStories tL_stories_deleteStories = new TL_stories.TL_stories_deleteStories();
+                        tL_stories_deleteStories.peer = MessagesController.getInstance(i12).getInputPeer(j11);
+                        tL_stories_deleteStories.f19422id.add(Integer.valueOf(storyItem2.f19419id));
+                        ConnectionsManager.getInstance(i12).sendRequest(tL_stories_deleteStories, new s5(t6Var, 5));
+                        g7 g7Var = t6Var.f15924k;
+                        g7Var.f15366b.getStorageQueue().postRunnable(new e7(g7Var, j11, storyItem2.f19419id, 0));
+                        NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                        MessagesController.getInstance(i12).checkArchiveFolder();
+                        t6Var.k0(j11, Arrays.asList(storyItem2));
+                    }
+                } else {
+                    s6 s6Var = b4Var.f15112b;
+                    if (s6Var != null) {
+                        s6Var.a();
+                    }
+                }
+                d4Var.j1();
+                if (d4Var.H1 && d4Var.f15254x1 == 0) {
+                    ((z8) d4Var.N1).j();
+                    return;
+                }
+                int i15 = d4Var.G1;
+                int i16 = d4Var.f15254x1;
+                if (i15 >= i16) {
+                    d4Var.G1 = i16 - 1;
+                    z10 = false;
+                } else {
+                    z10 = false;
+                    if (i15 < 0) {
+                        d4Var.G1 = 0;
+                    }
+                }
+                d4Var.f1(z10);
+                i9 i9Var = d4Var.G0;
+                if (i9Var != null) {
+                    i9Var.p();
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final void c() {
-        this.d.setTranslationY(AndroidUtilities.dp(10.0f) + Math.max(0.0f, b()));
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.recentDocumentsDidLoad) {
-            r1.E(this.f18580c, true);
+    public void k(int i10) {
+        if (i10 == 0) {
+            this.f15902b.P0();
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        int i10;
-        super.onAttachedToWindow();
-        i10 = ((org.telegram.ui.ActionBar.f3) this.f18584r).currentAccount;
-        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.recentDocumentsDidLoad);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        int i10;
-        super.onDetachedFromWindow();
-        i10 = ((org.telegram.ui.ActionBar.f3) this.f18584r).currentAccount;
-        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.recentDocumentsDidLoad);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        int i13;
-        k2 k2Var = this.f18584r;
-        i12 = ((org.telegram.ui.ActionBar.f3) k2Var).backgroundPaddingLeft;
-        i13 = ((org.telegram.ui.ActionBar.f3) k2Var).backgroundPaddingLeft;
-        setPadding(i12, 0, i13, AndroidUtilities.navigationBarHeight);
-        super.onMeasure(i10, i11);
     }
 }

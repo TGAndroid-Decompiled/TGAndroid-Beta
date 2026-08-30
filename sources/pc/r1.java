@@ -1,0 +1,37 @@
+package pc;
+public enum r1 extends a2 {
+    public r1() {
+        super("DoctypeSystemIdentifier_doubleQuoted", 62);
+    }
+
+    @Override
+    public final void d(k kVar, a aVar) {
+        f fVar = kVar.f41181m;
+        char d = aVar.d();
+        if (d != 0) {
+            if (d != '\"') {
+                v vVar = a2.f41127a;
+                if (d != '>') {
+                    if (d != 65535) {
+                        fVar.e.append(d);
+                        return;
+                    }
+                    kVar.l(this);
+                    fVar.getClass();
+                    kVar.j();
+                    kVar.f41174c = vVar;
+                    return;
+                }
+                kVar.m(this);
+                fVar.getClass();
+                kVar.j();
+                kVar.f41174c = vVar;
+                return;
+            }
+            kVar.f41174c = a2.f41160y0;
+            return;
+        }
+        kVar.m(this);
+        fVar.e.append((char) 65533);
+    }
+}

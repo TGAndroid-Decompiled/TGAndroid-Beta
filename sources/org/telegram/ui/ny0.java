@@ -1,67 +1,43 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-public final class ny0 extends org.telegram.ui.Components.t80 {
-    public final ProfileActivity L0;
+public final class ny0 extends f2.l {
+    public int F = -1;
+    public final ProfileActivity G;
 
-    public ny0(ProfileActivity profileActivity, Context context) {
-        super(context);
-        this.L0 = profileActivity;
+    public ny0(ProfileActivity profileActivity) {
+        this.G = profileActivity;
     }
 
     @Override
-    public final void setAlpha(float f9) {
-        super.setAlpha(f9);
-        this.L0.B3();
+    public final long K(long j10, long j11, long j12) {
+        return 0L;
     }
 
     @Override
-    public final void setTextColor(int i10) {
-        int l1;
-        super.setTextColor(i10);
-        ProfileActivity profileActivity = this.L0;
-        org.telegram.ui.ActionBar.h5[] h5VarArr = profileActivity.f36103r;
-        org.telegram.ui.ActionBar.h5 h5Var = h5VarArr[2];
-        if (h5Var != null) {
-            h5Var.setTextColor(i10);
-            h5VarArr[3].setTextColor(i10);
-        }
-        h01 h01Var = profileActivity.X5;
-        if (h01Var != null && h01Var.f38713c != (l1 = org.telegram.ui.ActionBar.g6.l1(1.4f, org.telegram.ui.ActionBar.g6.b(-0.02f, 0.15f, i10)))) {
-            h01Var.f38713c = l1;
-            h01Var.invalidateSelf();
-        }
+    public final void N() {
+        AndroidUtilities.runOnUIThread(new el0(this, 29));
     }
 
     @Override
-    public final void setTranslationX(float f9) {
-        super.setTranslationX(f9);
-        ProfileActivity profileActivity = this.L0;
-        profileActivity.Z3();
-        profileActivity.getClass();
-        profileActivity.f36103r[2].setTranslationX(f9);
-        profileActivity.f36103r[3].setTranslationX(f9);
-        org.telegram.ui.Components.aw0 aw0Var = profileActivity.P;
-        if (aw0Var != null) {
-            aw0Var.setTranslationX(f9 - profileActivity.Z3());
-        }
+    public final void P(f2.l1 l1Var) {
+        this.G.U4();
     }
 
     @Override
-    public final void setTranslationY(float f9) {
-        super.setTranslationY(f9);
-        ProfileActivity profileActivity = this.L0;
-        org.telegram.ui.ActionBar.h5[] h5VarArr = profileActivity.f36103r;
-        if (profileActivity.P != null) {
-            AndroidUtilities.dp(3.0f);
-            profileActivity.P.getVisibilityFactor();
+    public final void m() {
+        boolean isEmpty = this.f5774p.isEmpty();
+        boolean isEmpty2 = this.f5776r.isEmpty();
+        boolean isEmpty3 = this.f5777s.isEmpty();
+        boolean isEmpty4 = this.f5775q.isEmpty();
+        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            ofFloat.addUpdateListener(new e3(this, 26));
+            ofFloat.setDuration(this.e);
+            ofFloat.start();
+            this.F = this.G.getNotificationCenter().setAnimationInProgress(this.F, null);
         }
-        h5VarArr[2].setTranslationY(f9);
-        h5VarArr[3].setTranslationY(f9);
-        org.telegram.ui.Components.aw0 aw0Var = profileActivity.P;
-        if (aw0Var != null) {
-            aw0Var.setTranslationY(f9 - AndroidUtilities.dp(5.0f));
-        }
+        super.m();
     }
 }

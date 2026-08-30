@@ -1,60 +1,71 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.PhotoViewer;
-public final class r7 extends fd {
-    public final int f32227b;
-    public final NotificationCenter.NotificationCenterDelegate f32228c;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class r7 extends FrameLayout {
+    public final RectF f28398a;
+    public boolean f28399b;
+    public int f28400c;
+    public int d;
+    public final c8 e;
 
-    public r7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10) {
+    public r7(c8 c8Var, Context context) {
         super(context);
-        this.f32227b = i10;
-        this.f32228c = notificationCenterDelegate;
+        this.e = c8Var;
+        this.f28398a = new RectF();
+        this.f28399b = false;
     }
 
     @Override
-    public final void c(boolean z10) {
-        boolean z11;
-        int i10;
-        switch (this.f32227b) {
-            case 0:
-                g8 g8Var = (g8) this.f32228c;
-                g8Var.D0();
-                org.telegram.ui.nr nrVar = g8Var.K;
-                if (nrVar != null) {
-                    nrVar.a(d1.f.u());
-                    return;
-                }
-                return;
-            default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f32228c;
-                org.telegram.ui.ActionBar.g1 g1Var = photoViewer.B0;
-                if (g1Var != null) {
-                    g1Var.d(z10);
-                    org.telegram.ui.ActionBar.g1 g1Var2 = photoViewer.B0;
-                    if (z10) {
-                        i10 = 259241196;
-                    } else {
-                        i10 = 268435455;
-                    }
-                    g1Var2.setSelectorColor(i10);
-                }
-                x61 x61Var = photoViewer.B2;
-                if (x61Var != null) {
-                    if (!d1.f.u() && !photoViewer.f35799r) {
-                        z11 = false;
-                    } else {
-                        z11 = true;
-                    }
-                    x61Var.P(z11);
-                }
-                org.telegram.ui.nr nrVar2 = photoViewer.f35809s0;
-                if (nrVar2 != null) {
-                    nrVar2.a(d1.f.u());
-                    return;
-                }
-                return;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        ic.a(this, new kh.t0(this, 5));
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        ic.h(this);
+    }
+
+    @Override
+    public final void onDraw(android.graphics.Canvas r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r7.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(android.view.MotionEvent r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r7.onInterceptTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    @Override
+    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        super.onLayout(z4, i10, i11, i12, i13);
+        c8 c8Var = this.e;
+        c8.P(c8Var);
+        c8Var.E0();
+    }
+
+    @Override
+    public final void onMeasure(int r10, int r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r7.onMeasure(int, int):void");
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.e.isDismissed() && super.onTouchEvent(motionEvent)) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f28399b) {
+            return;
+        }
+        super.requestLayout();
     }
 }

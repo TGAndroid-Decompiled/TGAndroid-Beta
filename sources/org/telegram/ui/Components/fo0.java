@@ -1,3 +1,6 @@
 package org.telegram.ui.Components;
-public final class fo0 extends yb {
+public interface fo0 {
+    void b(float f10);
+
+    void d(float f10);
 }

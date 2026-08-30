@@ -1,92 +1,61 @@
 package x3;
 
-import f5.w;
-import java.io.EOFException;
-import o3.l;
+import r3.l;
 public final class e {
-    public final f f50065a = new f();
-    public final w f50066b = new w(new byte[65025], 0);
-    public int f50067c = -1;
-    public int d;
-    public boolean f50068e;
+    public static final long[] d = {128, 64, 32, 16, 8, 4, 2, 1};
+    public final byte[] f46763a = new byte[8];
+    public int f46764b;
+    public int f46765c;
 
-    public final int a(int i10) {
-        int i11;
-        int i12 = 0;
-        this.d = 0;
-        do {
-            int i13 = this.d;
-            int i14 = i10 + i13;
-            f fVar = this.f50065a;
-            if (i14 >= fVar.f50071c) {
-                break;
-            }
-            int[] iArr = fVar.f50073f;
-            this.d = i13 + 1;
-            i11 = iArr[i14];
-            i12 += i11;
-        } while (i11 == 255);
-        return i12;
+    public static long a(int i10, boolean z4, byte[] bArr) {
+        long j10 = bArr[0] & 255;
+        if (z4) {
+            j10 &= ~d[i10 - 1];
+        }
+        for (int i11 = 1; i11 < i10; i11++) {
+            j10 = (j10 << 8) | (bArr[i11] & 255);
+        }
+        return j10;
     }
 
-    public final boolean b(l lVar) {
-        boolean z10;
-        boolean z11;
-        int i10;
-        if (lVar != null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        f5.a.i(z10);
-        boolean z12 = this.f50068e;
-        w wVar = this.f50066b;
-        if (z12) {
-            this.f50068e = false;
-            wVar.z(0);
-        }
-        while (!this.f50068e) {
-            int i11 = this.f50067c;
-            f fVar = this.f50065a;
-            if (i11 < 0) {
-                if (fVar.b(lVar, -1L) && fVar.a(lVar, true)) {
-                    int i12 = fVar.d;
-                    if ((fVar.f50069a & 1) == 1 && wVar.f6642c == 0) {
-                        i12 += a(0);
-                        i10 = this.d;
-                    } else {
-                        i10 = 0;
-                    }
-                    try {
-                        lVar.t(i12);
-                        this.f50067c = i10;
-                    } catch (EOFException unused) {
-                    }
-                }
-                return false;
+    public final long b(l lVar, boolean z4, boolean z10, int i10) {
+        int i11;
+        int i12 = this.f46764b;
+        byte[] bArr = this.f46763a;
+        if (i12 == 0) {
+            if (!lVar.d(bArr, 0, 1, z4)) {
+                return -1L;
             }
-            int a2 = a(this.f50067c);
-            int i13 = this.f50067c + this.d;
-            if (a2 > 0) {
-                wVar.b(wVar.f6642c + a2);
-                try {
-                    lVar.readFully(wVar.f6640a, wVar.f6642c, a2);
-                    wVar.B(wVar.f6642c + a2);
-                    if (fVar.f50073f[i13 - 1] != 255) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
+            int i13 = bArr[0] & 255;
+            int i14 = 0;
+            while (true) {
+                if (i14 < 8) {
+                    if ((d[i14] & i13) != 0) {
+                        i11 = i14 + 1;
+                        break;
                     }
-                    this.f50068e = z11;
-                } catch (EOFException unused2) {
-                    return false;
+                    i14++;
+                } else {
+                    i11 = -1;
+                    break;
                 }
             }
-            if (i13 == fVar.f50071c) {
-                i13 = -1;
+            this.f46765c = i11;
+            if (i11 != -1) {
+                this.f46764b = 1;
+            } else {
+                throw new IllegalStateException("No valid varint length mask found");
             }
-            this.f50067c = i13;
         }
-        return true;
+        int i15 = this.f46765c;
+        if (i15 > i10) {
+            this.f46764b = 0;
+            return -2L;
+        }
+        if (i15 != 1) {
+            lVar.readFully(bArr, 1, i15 - 1);
+        }
+        this.f46764b = 0;
+        return a(this.f46765c, z10, bArr);
     }
 }

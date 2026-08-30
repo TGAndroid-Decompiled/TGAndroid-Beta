@@ -1,18 +1,42 @@
 package j3;
-public final class o0 {
-    public final l4.c0 f10652a;
-    public final long f10653b;
-    public final long f10654c;
-    public final boolean d;
-    public final boolean f10655e;
-    public final boolean f10656f;
 
-    public o0(l4.c0 c0Var, long j10, long j11, boolean z10, boolean z11, boolean z12) {
-        this.f10652a = c0Var;
-        this.f10653b = j10;
-        this.f10654c = j11;
-        this.d = z10;
-        this.f10655e = z11;
-        this.f10656f = z12;
+import java.util.Arrays;
+public final class o0 extends f2 {
+    public static final String e;
+    public static final String f8761f;
+    public static final f0.d h;
+    public final boolean f8762c;
+    public final boolean d;
+
+    static {
+        int i10 = h5.d0.f6937a;
+        e = Integer.toString(1, 36);
+        f8761f = Integer.toString(2, 36);
+        h = new f0.d(28);
+    }
+
+    public o0() {
+        this.f8762c = false;
+        this.d = false;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof o0) {
+            o0 o0Var = (o0) obj;
+            if (this.d == o0Var.d && this.f8762c == o0Var.f8762c) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f8762c), Boolean.valueOf(this.d)});
+    }
+
+    public o0(boolean z4) {
+        this.f8762c = true;
+        this.d = z4;
     }
 }

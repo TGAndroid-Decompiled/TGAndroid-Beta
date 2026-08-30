@@ -1,3 +1,3 @@
 package l7;
-public abstract class pa {
+public final class pa extends a7.a {
 }

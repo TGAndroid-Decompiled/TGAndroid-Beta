@@ -29,8 +29,8 @@ public interface VideoEncoder {
     public static class Capabilities {
         public final boolean lossNotification;
 
-        public Capabilities(boolean z10) {
-            this.lossNotification = z10;
+        public Capabilities(boolean z4) {
+            this.lossNotification = z4;
         }
     }
 
@@ -61,9 +61,9 @@ public interface VideoEncoder {
         public final boolean applyAlignmentToAllSimulcastLayers;
         public final int requestedResolutionAlignment;
 
-        public EncoderInfo(int i10, boolean z10) {
+        public EncoderInfo(int i10, boolean z4) {
             this.requestedResolutionAlignment = i10;
-            this.applyAlignmentToAllSimulcastLayers = z10;
+            this.applyAlignmentToAllSimulcastLayers = z4;
         }
 
         public boolean getApplyAlignmentToAllSimulcastLayers() {
@@ -126,18 +126,18 @@ public interface VideoEncoder {
         public final int width;
 
         @Deprecated
-        public Settings(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10) {
-            this(i10, i11, i12, i13, i14, i15, z10, new Capabilities(false));
+        public Settings(int i10, int i11, int i12, int i13, int i14, int i15, boolean z4) {
+            this(i10, i11, i12, i13, i14, i15, z4, new Capabilities(false));
         }
 
-        public Settings(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, Capabilities capabilities) {
+        public Settings(int i10, int i11, int i12, int i13, int i14, int i15, boolean z4, Capabilities capabilities) {
             this.numberOfCores = i10;
             this.width = i11;
             this.height = i12;
             this.startBitrate = i13;
             this.maxFramerate = i14;
             this.numberOfSimulcastStreams = i15;
-            this.automaticResizeOn = z10;
+            this.automaticResizeOn = z4;
             this.capabilities = capabilities;
         }
     }
@@ -190,15 +190,15 @@ public interface VideoEncoder {
         }
 
         @Deprecated
-        public ScalingSettings(boolean z10) {
-            this.on = z10;
+        public ScalingSettings(boolean z4) {
+            this.on = z4;
             this.low = null;
             this.high = null;
         }
 
         @Deprecated
-        public ScalingSettings(boolean z10, int i10, int i11) {
-            this.on = z10;
+        public ScalingSettings(boolean z4, int i10, int i11) {
+            this.on = z4;
             this.low = Integer.valueOf(i10);
             this.high = Integer.valueOf(i11);
         }

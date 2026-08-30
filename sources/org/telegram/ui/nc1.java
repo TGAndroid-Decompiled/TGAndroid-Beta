@@ -1,8 +1,16 @@
 package org.telegram.ui;
-public final class nc1 {
-    public final oc1 f40778a;
 
-    public nc1(oc1 oc1Var) {
-        this.f40778a = oc1Var;
+import android.widget.EditText;
+public final class nc1 extends org.telegram.ui.ActionBar.h5 {
+    @Override
+    public final void m() {
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void q(EditText editText) {
     }
 }

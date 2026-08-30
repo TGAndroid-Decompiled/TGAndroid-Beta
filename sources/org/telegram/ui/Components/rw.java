@@ -1,64 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-public final class rw extends m2.g {
-    public final fz f32400s0;
+import org.telegram.tgnet.TLRPC;
+public final class rw extends f2.v {
+    public final kz f28545c;
 
-    public rw(fz fzVar, Context context) {
-        super(context);
-        this.f32400s0 = fzVar;
+    public rw(kz kzVar) {
+        this.f28545c = kzVar;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f32400s0.f28592f) {
-            return false;
-        }
-        if (getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
-        }
-        try {
-            return super.onInterceptTouchEvent(motionEvent);
-        } catch (IllegalArgumentException unused) {
-            return false;
-        }
-    }
-
-    @Override
-    public final void x(int i10, boolean z10) {
-        boolean z11;
-        fz fzVar = this.f32400s0;
-        bw bwVar = fzVar.E;
-        if (i10 == 1) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        fz.a(fzVar, z11);
-        if (i10 == getCurrentItem()) {
+    public final int i(int i10) {
+        kz kzVar = this.f28545c;
+        fz fzVar = kzVar.f26480w0;
+        f2.o0 adapter = kzVar.A0.getAdapter();
+        bz bzVar = kzVar.f26476v0;
+        if (adapter == bzVar) {
             if (i10 == 0) {
-                fzVar.M0[1] = 0;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(bwVar, ViewGroup.TRANSLATION_Y, 0.0f);
-                ofFloat.setDuration(150L);
-                ofFloat.setInterpolator(jr.h);
-                ofFloat.start();
-                fzVar.H(1, 0);
-                if (bwVar != null) {
-                    bwVar.j(0, true);
-                    return;
-                }
-                return;
-            } else if (i10 == 1) {
-                fzVar.f28585d0.x0(0);
-                return;
-            } else {
-                fzVar.f28657z0.x0(1);
-                return;
+                return bzVar.d;
             }
+            if (i10 == bzVar.f23768s || (bzVar.h.get(i10) != null && !(bzVar.h.get(i10) instanceof TLRPC.Document))) {
+                return bzVar.d;
+            }
+            return 1;
+        } else if (i10 != fzVar.f24998x && (fzVar.f24995r.get(i10) == null || (fzVar.f24995r.get(i10) instanceof TLRPC.Document))) {
+            return 1;
+        } else {
+            return bzVar.d;
         }
-        super.x(i10, z10);
     }
 }

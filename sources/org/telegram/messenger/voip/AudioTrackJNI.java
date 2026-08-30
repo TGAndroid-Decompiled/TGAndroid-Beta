@@ -1,8 +1,8 @@
 package org.telegram.messenger.voip;
 
 import android.media.AudioTrack;
-import j7.l1;
 import java.nio.ByteBuffer;
+import kh.a2;
 public class AudioTrackJNI {
     private AudioTrack audioTrack;
     private byte[] buffer = new byte[1920];
@@ -46,8 +46,8 @@ public class AudioTrackJNI {
                         nativeCallback(this.buffer);
                         this.audioTrack.write(this.buffer, 0, 1920);
                     }
-                } catch (Exception e10) {
-                    VLog.e(e10);
+                } catch (Exception e) {
+                    VLog.e(e);
                 }
                 if (!this.running) {
                     this.audioTrack.stop();
@@ -56,8 +56,8 @@ public class AudioTrackJNI {
                 continue;
             }
             VLog.i("audiotrack thread exits");
-        } catch (Exception e11) {
-            VLog.e("error starting AudioTrack", e11);
+        } catch (Exception e6) {
+            VLog.e("error starting AudioTrack", e6);
         }
     }
 
@@ -66,7 +66,7 @@ public class AudioTrackJNI {
     private void startThread() {
         if (this.thread == null) {
             this.running = true;
-            Thread thread = new Thread(new r0(this, 2));
+            Thread thread = new Thread(new s0(this, 2));
             this.thread = thread;
             thread.start();
             return;
@@ -93,7 +93,7 @@ public class AudioTrackJNI {
                 } catch (Throwable unused) {
                 }
                 int bufferSize2 = getBufferSize(i13 * 6, 44100);
-                VLog.d(l1.k(bufferSize2, "buffer size: "));
+                VLog.d(a2.j(bufferSize2, "buffer size: "));
                 if (i12 == 1) {
                     i15 = 4;
                 } else {
@@ -114,8 +114,8 @@ public class AudioTrackJNI {
         if (thread != null) {
             try {
                 thread.join();
-            } catch (InterruptedException e10) {
-                VLog.e(e10);
+            } catch (InterruptedException e) {
+                VLog.e(e);
             }
             this.thread = null;
         }

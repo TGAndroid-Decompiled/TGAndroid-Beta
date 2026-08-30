@@ -1,32 +1,35 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.messenger.voip.VoIPService;
-public final class r0 implements Runnable {
-    public final int f22006a;
-    public final Object f22007b;
+import android.content.DialogInterface;
+import android.view.KeyEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.g3;
+public final class r0 implements DialogInterface.OnShowListener {
+    public final int f18830a;
+    public final KeyEvent.Callback f18831b;
+    public final Object f18832c;
 
-    public r0(Object obj, int i10) {
-        this.f22006a = i10;
-        this.f22007b = obj;
+    public r0(KeyEvent.Callback callback, Object obj, int i10) {
+        this.f18830a = i10;
+        this.f18831b = callback;
+        this.f18832c = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f22006a) {
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f18830a) {
             case 0:
-                ((VoIPService.AnonymousClass1) this.f22007b).lambda$run$0();
-                return;
-            case 1:
-                ((VoIPService.AnonymousClass9) this.f22007b).lambda$run$0();
-                return;
-            case 2:
-                AudioTrackJNI.a((AudioTrackJNI) this.f22007b);
-                return;
-            case 3:
-                VoIPPendingCall.a((VoIPPendingCall) this.f22007b);
+                VoIPService.lambda$toggleSpeakerphoneOrShowRouteSheet$94((g3) this.f18831b, (Integer) this.f18832c, dialogInterface);
                 return;
             default:
-                ((NativeInstance) this.f22007b).stopGroup();
+                View view = (View) this.f18831b;
+                uf.n nVar = (uf.n) this.f18832c;
+                if (view != null) {
+                    view.clearFocus();
+                }
+                nVar.requestFocus();
+                AndroidUtilities.showKeyboard(nVar);
                 return;
         }
     }

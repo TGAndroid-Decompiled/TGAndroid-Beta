@@ -1,40 +1,56 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.CacheByChatsController;
-public final class x5 implements v70 {
-    public final int f44466a;
-    public final a6 f44467b;
-    public final CacheByChatsController.KeepMediaException f44468c;
+import j$.util.Objects;
+import org.telegram.tgnet.tl.TL_stories;
+public final class x5 extends bg.b {
+    public final String f39858c;
+    public final TL_stories.Boost d;
+    public TL_stories.PrepaidGiveaway e;
+    public boolean f39859f;
+    public final int f39860g;
 
-    public x5(a6 a6Var, CacheByChatsController.KeepMediaException keepMediaException, int i10) {
-        this.f44466a = i10;
-        this.f44467b = a6Var;
-        this.f44468c = keepMediaException;
+    public x5(int i10, String str) {
+        super(i10, false);
+        this.f39858c = str;
     }
 
-    @Override
-    public final void a(int i10) {
-        switch (this.f44466a) {
-            case 0:
-                int i11 = CacheByChatsController.KEEP_MEDIA_DELETE;
-                a6 a6Var = this.f44467b;
-                CacheByChatsController.KeepMediaException keepMediaException = this.f44468c;
-                if (i10 == i11) {
-                    a6Var.d.remove(keepMediaException);
-                    a6Var.U();
-                } else {
-                    keepMediaException.keepMedia = i10;
-                    AndroidUtilities.updateVisibleRows(a6Var.f36437b);
-                }
-                a6Var.getMessagesController().getCacheByChatsController().saveKeepMediaExceptions(a6Var.f36439e, a6Var.d);
-                return;
-            default:
-                this.f44468c.keepMedia = i10;
-                a6 a6Var2 = this.f44467b;
-                a6Var2.getMessagesController().getCacheByChatsController().saveKeepMediaExceptions(a6Var2.f36439e, a6Var2.d);
-                AndroidUtilities.updateVisibleRows(a6Var2.f36437b);
-                return;
+    public final boolean equals(Object obj) {
+        TL_stories.PrepaidGiveaway prepaidGiveaway;
+        boolean z4 = this.f39859f;
+        if (this == obj) {
+            return true;
         }
+        if (obj == null || x5.class != obj.getClass()) {
+            return false;
+        }
+        x5 x5Var = (x5) obj;
+        TL_stories.Boost boost = x5Var.d;
+        boolean z10 = x5Var.f39859f;
+        TL_stories.PrepaidGiveaway prepaidGiveaway2 = this.e;
+        if (prepaidGiveaway2 != null && (prepaidGiveaway = x5Var.e) != null) {
+            if (prepaidGiveaway2.f19418id == prepaidGiveaway.f19418id && z4 == z10) {
+                return true;
+            }
+            return false;
+        }
+        TL_stories.Boost boost2 = this.d;
+        if (boost2 == null || boost == null) {
+            return true;
+        }
+        if (boost2.f19414id.hashCode() == boost.f19414id.hashCode() && z4 == z10 && this.f39860g == x5Var.f39860g) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(this.f39858c, this.d, this.e, Boolean.valueOf(this.f39859f), Integer.valueOf(this.f39860g));
+    }
+
+    public x5(TL_stories.Boost boost, boolean z4, int i10) {
+        super(5, true);
+        this.d = boost;
+        this.f39859f = z4;
+        this.f39860g = i10;
     }
 }

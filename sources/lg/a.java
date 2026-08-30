@@ -1,69 +1,73 @@
 package lg;
 
-import android.os.Build;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.Iterator;
-import kg.w;
-public final class a {
-    public final qg.a f15221a;
-    public zd.b f15222b;
-    public zd.b f15223c;
-    public sg.i d;
-    public ViewGroup f15224e;
-    public boolean f15225f;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class a extends Drawable {
+    public final TextPaint f12075a;
+    public final TextPaint f12076b;
+    public final RectF f12077c;
+    public final Drawable d;
+    public float e;
+    public String f12078f;
 
-    public a(qg.a aVar) {
-        this.f15221a = aVar;
+    public a(Context context) {
+        TextPaint textPaint = new TextPaint(1);
+        this.f12075a = textPaint;
+        TextPaint textPaint2 = new TextPaint(1);
+        this.f12076b = textPaint2;
+        this.f12077c = new RectF();
+        textPaint.setColor(-1);
+        textPaint.setTypeface(AndroidUtilities.bold());
+        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        textPaint2.setColor(-6915073);
+        this.d = context.getDrawable(R.drawable.mini_boost_badge);
     }
 
-    public final ng.d a(View view) {
-        return c(view, null, false);
-    }
-
-    public final ng.d b(View view, og.a aVar) {
-        return c(view, aVar, false);
-    }
-
-    public final ng.d c(View view, og.a aVar, boolean z10) {
-        ViewGroup viewGroup;
-        ng.d v = this.f15221a.v();
-        if (this.f15225f && Build.VERSION.SDK_INT >= 33 && (v instanceof ng.e)) {
-            ng.e eVar = (ng.e) v;
-            eVar.N = new f(eVar.I);
-        }
-        v.n(aVar);
-        zd.b bVar = this.f15223c;
-        if (bVar != null && view != null) {
-            bVar.add(view);
-        }
-        sg.i iVar = this.d;
-        if (iVar != null && (viewGroup = this.f15224e) != null && view != null) {
-            iVar.d(view, viewGroup, new w(1, v, view), z10);
-        }
-        zd.b bVar2 = this.f15222b;
-        if (bVar2 != null) {
-            bVar2.add(v);
-        }
-        return v;
-    }
-
-    public final void d() {
-        zd.b bVar = this.f15223c;
-        if (bVar != null) {
-            Iterator it = bVar.iterator();
-            while (it.hasNext()) {
-                ((View) it.next()).invalidate();
-            }
+    @Override
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.f12077c;
+        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f12076b);
+        int dp = AndroidUtilities.dp(2.0f) + bounds.left;
+        int dp2 = AndroidUtilities.dp(1.0f) + bounds.top;
+        int dp3 = AndroidUtilities.dp(2.0f) + bounds.left;
+        Drawable drawable = this.d;
+        drawable.setBounds(dp, dp2, drawable.getIntrinsicWidth() + dp3, drawable.getIntrinsicHeight() + AndroidUtilities.dp(1.0f) + getBounds().top);
+        drawable.draw(canvas);
+        String str = this.f12078f;
+        if (str != null) {
+            canvas.drawText(str, AndroidUtilities.dp(16.5f) + bounds.left, AndroidUtilities.dp(13.0f) + bounds.top, this.f12075a);
         }
     }
 
-    public final void e(zd.b bVar) {
-        this.f15223c = bVar;
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
     }
 
-    public final void f(sg.i iVar, ViewGroup viewGroup) {
-        this.d = iVar;
-        this.f15224e = viewGroup;
+    @Override
+    public final int getIntrinsicWidth() {
+        return (int) (AndroidUtilities.dp(23.0f) + this.e);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -1;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

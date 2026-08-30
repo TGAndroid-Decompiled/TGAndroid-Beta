@@ -1,57 +1,87 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class pc implements Utilities.Callback {
-    public final int f31641a = 0;
-    public final long f31642b;
-    public final int f31643c;
-    public final Object d;
+public final class pc {
+    public static final pc B;
+    public static final pc C;
+    public static final pc D;
+    public static final pc E;
+    public static final pc F;
+    public static final pc[] G;
+    public static final pc e;
+    public static final pc f27811f;
+    public static final pc h;
+    public static final pc f27812n;
+    public static final pc f27813r;
+    public static final pc f27814s;
+    public static final pc v;
+    public static final pc f27815w;
+    public static final pc f27816x;
+    public static final pc f27817y;
+    public final String f27818a;
+    public final int f27819b;
+    public final boolean f27820c;
+    public final oc d;
 
-    public pc(int i10, mc mcVar, long j10) {
-        this.f31643c = i10;
-        this.d = mcVar;
-        this.f31642b = j10;
+    static {
+        int i10 = R.string.PhotoSavedHint;
+        oc ocVar = oc.SAVED_TO_GALLERY;
+        pc pcVar = new pc("PHOTO", 0, "PhotoSavedHint", i10, ocVar);
+        e = pcVar;
+        pc pcVar2 = new pc("PHOTOS", 1, "PhotosSavedHint", ocVar);
+        f27811f = pcVar2;
+        pc pcVar3 = new pc("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, ocVar);
+        h = pcVar3;
+        pc pcVar4 = new pc("VIDEOS", 3, "VideosSavedHint", ocVar);
+        f27812n = pcVar4;
+        pc pcVar5 = new pc("LIVEPHOTO", 4, "LivePhotoSavedHint", R.string.LivePhotoSavedHint, ocVar);
+        f27813r = pcVar5;
+        pc pcVar6 = new pc("LIVEPHOTOS", 5, "LivePhotosSavedHint", ocVar);
+        f27814s = pcVar6;
+        pc pcVar7 = new pc("MEDIA", 6, "MediaSavedHint", ocVar);
+        v = pcVar7;
+        int i11 = R.string.PhotoSavedToDownloadsHintLinked;
+        oc ocVar2 = oc.SAVED_TO_DOWNLOADS;
+        pc pcVar8 = new pc("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", i11, ocVar2);
+        f27815w = pcVar8;
+        pc pcVar9 = new pc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", R.string.VideoSavedToDownloadsHintLinked, ocVar2);
+        f27816x = pcVar9;
+        pc pcVar10 = new pc("GIF", 9, "GifSavedHint", R.string.GifSavedHint, oc.SAVED_TO_GIFS);
+        f27817y = pcVar10;
+        pc pcVar11 = new pc("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", R.string.GifSavedToDownloadsHintLinked, ocVar2);
+        B = pcVar11;
+        int i12 = R.string.AudioSavedHint;
+        oc ocVar3 = oc.SAVED_TO_MUSIC;
+        pc pcVar12 = new pc("AUDIO", 11, "AudioSavedHint", i12, ocVar3);
+        C = pcVar12;
+        pc pcVar13 = new pc("AUDIOS", 12, "AudiosSavedHint", ocVar3);
+        D = pcVar13;
+        pc pcVar14 = new pc("UNKNOWN", 13, "FileSavedHintLinked", R.string.FileSavedHintLinked, ocVar2);
+        E = pcVar14;
+        pc pcVar15 = new pc("UNKNOWNS", 14, "FilesSavedHintLinked", ocVar2);
+        F = pcVar15;
+        G = new pc[]{pcVar, pcVar2, pcVar3, pcVar4, pcVar5, pcVar6, pcVar7, pcVar8, pcVar9, pcVar10, pcVar11, pcVar12, pcVar13, pcVar14, pcVar15};
     }
 
-    @Override
-    public final void run(Object obj) {
-        Object string;
-        TLRPC.StickerSet stickerSet;
-        int i10 = this.f31641a;
-        int i11 = this.f31643c;
-        long j10 = this.f31642b;
-        Object obj2 = this.d;
-        switch (i10) {
-            case 0:
-                mc mcVar = (mc) obj2;
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null) {
-                    if (i11 == 1) {
-                        string = AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, stickerSet.title));
-                    } else if (i11 == 2) {
-                        string = AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, stickerSet.title));
-                    } else {
-                        string = AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, stickerSet.title));
-                    }
-                } else {
-                    string = LocaleController.getString(R.string.AddEmojiNotFound);
-                }
-                AndroidUtilities.runOnUIThread(new z2(2, mcVar, string), Math.max(1L, 750 - (System.currentTimeMillis() - j10)));
-                return;
-            default:
-                ((qu0) obj2).getStoriesController().b(i11, j10, (ArrayList) obj);
-                return;
-        }
+    public pc(String str, int i10, String str2, int i11, oc ocVar) {
+        this.f27818a = str2;
+        this.f27819b = i11;
+        this.d = ocVar;
+        this.f27820c = false;
     }
 
-    public pc(qu0 qu0Var, long j10, int i10) {
-        this.d = qu0Var;
-        this.f31642b = j10;
-        this.f31643c = i10;
+    public static pc valueOf(String str) {
+        return (pc) Enum.valueOf(pc.class, str);
+    }
+
+    public static pc[] values() {
+        return (pc[]) G.clone();
+    }
+
+    public pc(String str, int i10, String str2, oc ocVar) {
+        this.f27818a = str2;
+        this.d = ocVar;
+        this.f27819b = 0;
+        this.f27820c = true;
     }
 }

@@ -1,10 +1,18 @@
 package o7;
 
-import java.io.Closeable;
-public final class a implements Closeable {
-    public static final a f19467a = new Object();
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class a {
+    public static final int f16460a = 0;
 
-    @Override
-    public final void close() {
+    static {
+        a.class.getClassLoader();
+    }
+
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
+        }
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 }

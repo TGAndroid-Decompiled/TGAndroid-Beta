@@ -1,22 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class so implements ValueAnimator.AnimatorUpdateListener {
-    public boolean f32695a = false;
-    public final gp f32696b;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.tgnet.tl.TL_stories;
+public final class so implements h5.d {
+    public final int f28785a;
+    public final kp f28786b;
 
-    public so(gp gpVar) {
-        this.f32696b = gpVar;
+    public so(kp kpVar, int i10) {
+        this.f28785a = i10;
+        this.f28786b = kpVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        gp gpVar = this.f32696b;
-        gpVar.O = floatValue;
-        gpVar.N.invalidate();
-        if (!this.f32695a && gpVar.O > 0.5f) {
-            this.f32695a = true;
+    public final void accept(Object obj) {
+        switch (this.f28785a) {
+            case 0:
+                kp kpVar = this.f28786b;
+                kpVar.f26340c0 = (TL_stories.TL_premium_boostsStatus) obj;
+                kpVar.f26338b0 = true;
+                kpVar.E(true);
+                kpVar.f26336a0 = false;
+                return;
+            default:
+                kp.m(this.f28786b, (ChannelBoostsController.CanApplyBoost) obj);
+                return;
         }
     }
 }

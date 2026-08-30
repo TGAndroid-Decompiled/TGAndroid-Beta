@@ -1,121 +1,118 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.os.SystemClock;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
+import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class o11 {
-    public long f31226a;
-    public boolean f31227b;
-    public final ArrayList f31228c;
-    public final ArrayList d;
-    public final int f31229e;
-    public boolean f31230f;
-    public float f31231g;
-    public float h;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class o11 extends rl0 {
+    public final Context f27427c;
+    public int d;
+    public ArrayList e = new ArrayList();
+    public ArrayList f27428f = new ArrayList();
+    public ey h;
+    public String f27429n;
+    public final ThemeEditorView.EditorAlert f27430r;
 
-    public o11() {
-        this(40);
+    public o11(ThemeEditorView.EditorAlert editorAlert, Context context) {
+        this.f27430r = editorAlert;
+        this.f27427c = context;
     }
 
-    public final void a(float f9, float f10, Canvas canvas, Paint paint, RectF rectF) {
-        n11 n11Var;
-        ArrayList arrayList = this.f31228c;
-        int size = arrayList.size();
+    public static CharSequence E(String str, String str2) {
+        if (TextUtils.isEmpty(str)) {
+            return "";
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        String trim = str.trim();
+        String lowerCase = trim.toLowerCase();
         int i10 = 0;
-        for (int i11 = 0; i11 < size; i11++) {
-            n11 n11Var2 = (n11) arrayList.get(i11);
-            paint.setAlpha((int) (n11Var2.f30821f * 255.0f * f10));
-            canvas.drawPoint(n11Var2.f30817a, n11Var2.f30818b, paint);
+        while (true) {
+            int indexOf = lowerCase.indexOf(str2, i10);
+            if (indexOf == -1) {
+                break;
+            }
+            int length = str2.length() + indexOf;
+            if (i10 != 0 && i10 != indexOf + 1) {
+                spannableStringBuilder.append((CharSequence) trim.substring(i10, indexOf));
+            } else if (i10 == 0 && indexOf != 0) {
+                spannableStringBuilder.append((CharSequence) trim.substring(0, indexOf));
+            }
+            String substring = trim.substring(indexOf, Math.min(trim.length(), length));
+            if (substring.startsWith(" ")) {
+                spannableStringBuilder.append((CharSequence) " ");
+            }
+            String trim2 = substring.trim();
+            int length2 = spannableStringBuilder.length();
+            spannableStringBuilder.append((CharSequence) trim2);
+            spannableStringBuilder.setSpan(new ForegroundColorSpan(-11697229), length2, trim2.length() + length2, 33);
+            i10 = length;
         }
-        double d = (f9 - 90.0f) * 0.017453292519943295d;
-        double sin = Math.sin(d);
-        double d10 = -Math.cos(d);
-        double width = rectF.width() / 2.0f;
-        float centerX = (float) (((-d10) * width) + rectF.centerX());
-        float centerY = (float) ((width * sin) + rectF.centerY());
-        ArrayList arrayList2 = this.d;
-        int clamp = Utilities.clamp(arrayList2.size() / 12, 3, 1);
-        int i12 = 0;
-        while (i12 < clamp) {
-            if (!arrayList2.isEmpty()) {
-                arrayList2.remove(i10);
-                n11Var = (n11) arrayList2.get(i10);
-            } else {
-                n11Var = new Object();
-            }
-            if (this.f31227b && this.f31230f) {
-                float f11 = (i12 + 1) / clamp;
-                n11Var.f30817a = AndroidUtilities.lerp(this.f31231g, centerX, f11);
-                n11Var.f30818b = AndroidUtilities.lerp(this.h, centerY, f11);
-            } else {
-                n11Var.f30817a = centerX;
-                n11Var.f30818b = centerY;
-            }
-            double d11 = sin;
-            double nextInt = (Utilities.random.nextInt(140) - 70) * 0.017453292519943295d;
-            if (nextInt < 0.0d) {
-                nextInt += 6.283185307179586d;
-            }
-            n11Var.f30819c = (float) ((Math.cos(nextInt) * d11) - (Math.sin(nextInt) * d10));
-            n11 n11Var3 = n11Var;
-            n11Var3.d = (float) j7.l1.b(nextInt, d10, Math.sin(nextInt) * d11);
-            n11Var3.f30821f = 1.0f;
-            n11Var3.h = 0.0f;
-            if (this.f31227b) {
-                n11Var3.f30822g = Utilities.random.nextInt(200) + 600;
-                n11Var3.f30820e = (Utilities.random.nextFloat() * 20.0f) + 30.0f;
-            } else {
-                n11Var3.f30822g = Utilities.random.nextInt(100) + 400;
-                n11Var3.f30820e = (Utilities.random.nextFloat() * 4.0f) + 20.0f;
-            }
-            arrayList.add(n11Var3);
-            i12++;
-            sin = d11;
-            i10 = 0;
+        if (i10 != -1 && i10 < trim.length()) {
+            spannableStringBuilder.append((CharSequence) trim.substring(i10));
         }
-        this.f31230f = true;
-        this.f31231g = centerX;
-        this.h = centerY;
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long min = Math.min(20L, elapsedRealtime - this.f31226a);
-        int size2 = arrayList.size();
-        int i13 = 0;
-        while (i13 < size2) {
-            n11 n11Var4 = (n11) arrayList.get(i13);
-            float f12 = n11Var4.h;
-            float f13 = n11Var4.f30822g;
-            if (f12 >= f13) {
-                if (arrayList2.size() < this.f31229e) {
-                    arrayList2.add(n11Var4);
-                }
-                arrayList.remove(i13);
-                i13--;
-                size2--;
-            } else {
-                n11Var4.f30821f = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation(f12 / f13);
-                float f14 = n11Var4.f30817a;
-                float f15 = n11Var4.f30819c;
-                float f16 = n11Var4.f30820e;
-                float f17 = (float) min;
-                n11Var4.f30817a = a4.w.d(f15 * f16, f17, 200.0f, f14);
-                n11Var4.f30818b = (((n11Var4.d * f16) * f17) / 200.0f) + n11Var4.f30818b;
-                n11Var4.h += f17;
-            }
-            i13++;
-        }
-        this.f31226a = elapsedRealtime;
+        return spannableStringBuilder;
     }
 
-    public o11(int i10) {
-        this.f31228c = new ArrayList();
-        this.d = new ArrayList();
-        this.f31229e = i10;
-        for (int i11 = 0; i11 < i10; i11++) {
-            this.d.add(new Object());
+    @Override
+    public final boolean D(f2.l1 l1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        if (this.e.isEmpty()) {
+            return 0;
         }
+        return this.e.size() + 1;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(f2.l1 l1Var, int i10) {
+        int b10;
+        if (l1Var.f5788f == 0) {
+            boolean z4 = true;
+            int i11 = i10 - 1;
+            org.telegram.ui.ActionBar.l6 l6Var = (org.telegram.ui.ActionBar.l6) ((ArrayList) this.e.get(i11)).get(0);
+            if (l6Var.f20434f == org.telegram.ui.ActionBar.j6.Nd) {
+                b10 = 0;
+            } else {
+                b10 = l6Var.b();
+            }
+            org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) l1Var.f5785a;
+            v8Var.f22506a.setText((CharSequence) this.f27428f.get(i11));
+            v8Var.f22507b = b10;
+            if (b10 != 0) {
+                z4 = false;
+            }
+            v8Var.setWillNotDraw(z4);
+            v8Var.invalidate();
+        }
+    }
+
+    @Override
+    public final f2.l1 x(ViewGroup viewGroup, int i10) {
+        View v8Var;
+        Context context = this.f27427c;
+        if (i10 != 0) {
+            v8Var = new View(context);
+            v8Var.setLayoutParams(new f2.w0(-1, AndroidUtilities.dp(56.0f)));
+        } else {
+            v8Var = new org.telegram.ui.Cells.v8(context);
+            v8Var.setLayoutParams(new f2.w0(-1, -2));
+        }
+        return new f2.l1(v8Var);
     }
 }

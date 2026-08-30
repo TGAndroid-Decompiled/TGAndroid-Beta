@@ -1,53 +1,100 @@
 package nh;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.jr;
-public final class s3 extends View implements o2 {
-    public final org.telegram.ui.Components.n6 f18545a;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.jj0;
+public final class s3 implements Utilities.Callback4 {
+    public final int f15875a;
+    public final w3 f15876b;
+    public final a4 f15877c;
 
-    public s3(Activity activity) {
-        super(activity);
-        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(true, true, true, false);
-        this.f18545a = n6Var;
-        n6Var.k(0.35f, 300L, jr.h);
-        n6Var.r(-1);
-        n6Var.t(AndroidUtilities.dp(14.0f));
-        n6Var.p(AndroidUtilities.dp(1.4f), AndroidUtilities.dp(0.4f), 1275068416);
-        n6Var.f30862b = 1;
-        n6Var.setCallback(this);
-        n6Var.G = AndroidUtilities.displaySize.x;
+    public s3(w3 w3Var, a4 a4Var, int i10) {
+        this.f15875a = i10;
+        this.f15876b = w3Var;
+        this.f15877c = a4Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        super.draw(canvas);
-        int width = getWidth();
-        int height = getHeight();
-        org.telegram.ui.Components.n6 n6Var = this.f18545a;
-        n6Var.setBounds(0, 0, width, height);
-        n6Var.draw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        this.f18545a.G = getMeasuredWidth();
-    }
-
-    @Override
-    public void setInvert(float f9) {
-        this.f18545a.r(i0.a.d(f9, -1, -16777216));
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f18545a && !super.verifyDrawable(drawable)) {
-            return false;
+    public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
+        switch (this.f15875a) {
+            case 0:
+                Long l10 = (Long) obj;
+                Runnable runnable = (Runnable) obj2;
+                Boolean bool = (Boolean) obj3;
+                Long l11 = (Long) obj4;
+                long currentTimeMillis = System.currentTimeMillis();
+                d4 d4Var = this.f15876b.f16027l;
+                c4 c4Var = d4Var.J2;
+                h9 h9Var = c4Var.f15142b;
+                if (h9Var == null) {
+                    ((z8) d4Var.N1).g(false);
+                    d4Var.setActive(true);
+                    d4Var.R3 = false;
+                    d4Var.f15196f1 = new d2(1, runnable);
+                    if (bool.booleanValue()) {
+                        d4Var.f1(false);
+                    }
+                    AndroidUtilities.runOnUIThread(runnable, 400L);
+                    return;
+                }
+                h9Var.firstFrameRendered = false;
+                c4Var.f15144f = false;
+                h9Var.setOnReadyListener(new e2(1, currentTimeMillis, runnable));
+                ((z8) d4Var.N1).g(false);
+                jj0 jj0Var = d4Var.f15249w0;
+                if (jj0Var != null) {
+                    jj0Var.setAnimation(this.f15877c.f15069u);
+                }
+                if (d4Var.O2 > 0 && l10.longValue() > d4Var.O2 - 1400) {
+                    l10 = 0L;
+                }
+                d4Var.T0(l10.longValue(), true);
+                d4Var.R3 = false;
+                AndroidUtilities.runOnUIThread(runnable, 400L);
+                if (bool.booleanValue()) {
+                    d4Var.f1(false);
+                    return;
+                }
+                return;
+            default:
+                Long l12 = (Long) obj;
+                Runnable runnable2 = (Runnable) obj2;
+                Boolean bool2 = (Boolean) obj3;
+                Long l13 = (Long) obj4;
+                long currentTimeMillis2 = System.currentTimeMillis();
+                d4 d4Var2 = this.f15876b.f16027l;
+                c4 c4Var2 = d4Var2.J2;
+                h9 h9Var2 = c4Var2.f15142b;
+                if (h9Var2 == null) {
+                    ((z8) d4Var2.N1).g(false);
+                    d4Var2.setActive(true);
+                    d4Var2.R3 = false;
+                    d4Var2.f15196f1 = new d2(2, runnable2);
+                    if (bool2.booleanValue()) {
+                        d4Var2.f1(false);
+                    }
+                    AndroidUtilities.runOnUIThread(runnable2, 400L);
+                    return;
+                }
+                h9Var2.firstFrameRendered = false;
+                c4Var2.f15144f = false;
+                h9Var2.setOnReadyListener(new e2(2, currentTimeMillis2, runnable2));
+                ((z8) d4Var2.N1).g(false);
+                jj0 jj0Var2 = d4Var2.f15249w0;
+                if (jj0Var2 != null) {
+                    jj0Var2.setAnimation(this.f15877c.f15069u);
+                }
+                if (d4Var2.O2 > 0 && l12.longValue() > d4Var2.O2 - 1400) {
+                    l12 = 0L;
+                }
+                d4Var2.T0(l12.longValue(), true);
+                d4Var2.R3 = false;
+                AndroidUtilities.runOnUIThread(runnable2, 400L);
+                if (bool2.booleanValue()) {
+                    d4Var2.f1(false);
+                    return;
+                }
+                return;
         }
-        return true;
     }
 }

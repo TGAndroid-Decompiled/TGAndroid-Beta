@@ -1,42 +1,36 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
 public final class ph implements Runnable {
-    public final int f41411a = 1;
-    public final tn f41412b;
-    public final int f41413c;
-    public final MessageObject d;
+    public final int f37314a = 0;
+    public final xn f37315b;
+    public final TLRPC.TL_error f37316c;
+    public final TLRPC.TL_attachMenuBot d;
+    public final TLRPC.User e;
 
-    public ph(tn tnVar, int i10, MessageObject messageObject) {
-        this.f41412b = tnVar;
-        this.f41413c = i10;
-        this.d = messageObject;
+    public ph(xn xnVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.TL_error tL_error, TLRPC.User user) {
+        this.f37315b = xnVar;
+        this.d = tL_attachMenuBot;
+        this.f37316c = tL_error;
+        this.e = user;
     }
 
     @Override
     public final void run() {
-        switch (this.f41411a) {
+        switch (this.f37314a) {
             case 0:
-                this.f41412b.f42855j4 = null;
-                this.d.messageOwner.replies.read_max_id = this.f41413c;
+                xn.w1(this.f37315b, this.d, this.f37316c, this.e);
                 return;
             default:
-                tn tnVar = this.f41412b;
-                org.telegram.ui.Components.tc.a0(tnVar).c(LocaleController.getString(R.string.AdHidden)).j();
-                MessagesController.getInstance(this.f41413c).disableAds(false);
-                MessageObject messageObject = this.d;
-                tnVar.Fa(messageObject);
-                tnVar.Ha(messageObject);
+                xn.W(this.f37315b, this.d, this.f37316c, this.e);
                 return;
         }
     }
 
-    public ph(tn tnVar, MessageObject messageObject, int i10) {
-        this.f41412b = tnVar;
-        this.d = messageObject;
-        this.f41413c = i10;
+    public ph(xn xnVar, TLRPC.TL_error tL_error, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.User user) {
+        this.f37315b = xnVar;
+        this.f37316c = tL_error;
+        this.d = tL_attachMenuBot;
+        this.e = user;
     }
 }

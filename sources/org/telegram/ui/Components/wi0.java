@@ -1,11 +1,82 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
-public final class wi0 {
-    public int[] f34422a;
-    public int f34423b;
-    public int f34424c;
-    public File d;
-    public String f34425e;
-    public String f34426f;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class wi0 extends Drawable {
+    public final View f30374a;
+    public final Paint f30375b;
+    public final Path f30376c;
+    public int d;
+    public boolean e;
+    public final z5 f30377f;
+
+    public wi0(View view) {
+        Paint paint = new Paint(1);
+        this.f30375b = paint;
+        Path path = new Path();
+        this.f30376c = path;
+        this.d = 255;
+        this.f30374a = view;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        this.f30377f = new z5(view, 0L, 350L, nr.h);
+        float dpf2 = AndroidUtilities.dpf2(4.66f);
+        float dpf22 = AndroidUtilities.dpf2(2.16f);
+        path.rewind();
+        path.moveTo(dpf2 / 2.0f, 0.0f);
+        float f10 = (-dpf2) / 2.0f;
+        path.lineTo(f10, 0.0f);
+        float f11 = f10 + dpf22;
+        path.lineTo(f11, -dpf22);
+        path.moveTo(f10, 0.0f);
+        path.lineTo(f11, dpf22);
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int centerX = getBounds().centerX();
+        int centerY = getBounds().centerY();
+        float e = this.f30377f.e(this.e);
+        float dpf2 = AndroidUtilities.dpf2(2.51f);
+        canvas.save();
+        canvas.translate(centerX, centerY);
+        canvas.save();
+        canvas.translate(dpf2, dpf2);
+        canvas.rotate(45.0f);
+        canvas.scale(AndroidUtilities.lerp(-1.0f, 1.0f, e), 1.0f);
+        Path path = this.f30376c;
+        Paint paint = this.f30375b;
+        canvas.drawPath(path, paint);
+        canvas.restore();
+        canvas.save();
+        float f10 = -dpf2;
+        canvas.translate(f10, f10);
+        canvas.rotate(225.0f);
+        canvas.scale(AndroidUtilities.lerp(-1.0f, 1.0f, e), 1.0f);
+        canvas.drawPath(path, paint);
+        canvas.restore();
+        canvas.restore();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.d = i10;
+        this.f30375b.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+    }
 }

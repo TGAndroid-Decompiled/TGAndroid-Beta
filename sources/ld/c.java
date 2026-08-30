@@ -1,16 +1,46 @@
 package ld;
 
-import bd.p;
-public final class c extends kotlin.jvm.internal.i implements p {
-    public static final c f15168a = new kotlin.jvm.internal.i(2, d.class, "createSegment", "createSegment(JLkotlinx/coroutines/channels/ChannelSegment;)Lkotlinx/coroutines/channels/ChannelSegment;", 1);
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+public final class c extends k1 {
+    public static final AtomicReferenceFieldUpdater f11863n = AtomicReferenceFieldUpdater.newUpdater(c.class, Object.class, "_disposer$volatile");
+    private volatile Object _disposer$volatile;
+    public final m e;
+    public o0 f11864f;
+    public final e h;
+
+    public c(e eVar, m mVar) {
+        this.h = eVar;
+        this.e = mVar;
+    }
 
     @Override
-    public final Object invoke(Object obj, Object obj2) {
-        long longValue = ((Number) obj).longValue();
-        h hVar = (h) obj2;
-        h hVar2 = d.f15169a;
-        b bVar = hVar.f15187e;
-        kotlin.jvm.internal.j.b(bVar);
-        return new h(longValue, hVar, bVar, 0);
+    public final void a(Throwable th2) {
+        m mVar = this.e;
+        if (th2 != null) {
+            mVar.getClass();
+            i5.c F = mVar.F(null, new v(th2, false));
+            if (F != null) {
+                mVar.e(F);
+                d dVar = (d) f11863n.get(this);
+                if (dVar != null) {
+                    dVar.b();
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = e.f11871b;
+        e eVar = this.h;
+        if (atomicIntegerFieldUpdater.decrementAndGet(eVar) == 0) {
+            h0[] h0VarArr = eVar.f11872a;
+            ArrayList arrayList = new ArrayList(h0VarArr.length);
+            for (h0 h0Var : h0VarArr) {
+                arrayList.add(h0Var.getCompleted());
+            }
+            mVar.resumeWith(arrayList);
+        }
     }
 }

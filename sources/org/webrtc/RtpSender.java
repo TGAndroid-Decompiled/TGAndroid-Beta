@@ -98,7 +98,7 @@ public class RtpSender {
         nativeSetStreams(this.nativeRtpSender, list);
     }
 
-    public boolean setTrack(MediaStreamTrack mediaStreamTrack, boolean z10) {
+    public boolean setTrack(MediaStreamTrack mediaStreamTrack, boolean z4) {
         long nativeMediaStreamTrack;
         checkRtpSenderExists();
         long j10 = this.nativeRtpSender;
@@ -115,7 +115,7 @@ public class RtpSender {
             mediaStreamTrack2.dispose();
         }
         this.cachedTrack = mediaStreamTrack;
-        this.ownsTrack = z10;
+        this.ownsTrack = z4;
         return true;
     }
 

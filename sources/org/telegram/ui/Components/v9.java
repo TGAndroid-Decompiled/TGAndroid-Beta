@@ -1,136 +1,103 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
+import android.graphics.drawable.GradientDrawable;
+import android.util.Property;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class v9 extends Drawable {
-    public TextPaint f33496a;
-    public final Paint f33497b;
-    public final Paint f33498c;
-    public final Paint d;
-    public final float f33499e;
-    public float f33500f;
-    public float f33501g;
-    public final RectF h;
-    public ValueAnimator f33502i;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class v9 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public TextView f29391a;
+    public TextView f29392b;
+    public dg.u2 f29393c;
+    public dg.u2 d;
+    public kj0 e;
+    public ScrollView f29394f;
+    public AnimatorSet h;
+    public TLRPC.TL_help_appUpdate f29395n;
+    public String f29396r;
+    public int f29397s;
+    public int v;
+    public GradientDrawable f29398w;
+    public GradientDrawable f29399x;
 
-    public v9() {
-        Paint paint = new Paint(1);
-        this.f33497b = paint;
-        this.f33498c = new Paint(1);
-        this.d = new Paint(1);
-        this.f33499e = 1.0f;
-        this.f33500f = 0.0f;
-        this.f33501g = 1.0f;
-        this.h = new RectF();
-        paint.setStyle(Paint.Style.STROKE);
-    }
-
-    public final void a(float f9, boolean z10) {
-        float max = Math.max(Math.min(f9, 1.0f), 0.0f);
-        ValueAnimator valueAnimator = this.f33502i;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f33502i = null;
+    public final void a(boolean z4) {
+        dg.u2 u2Var = this.d;
+        TextView textView = this.f29392b;
+        dg.u2 u2Var2 = this.f29393c;
+        AnimatorSet animatorSet = this.h;
+        if (animatorSet != null) {
+            animatorSet.cancel();
         }
-        if (!z10) {
-            this.f33501g = max;
-            invalidateSelf();
-            return;
+        this.h = new AnimatorSet();
+        Property property = View.ALPHA;
+        Property property2 = View.SCALE_Y;
+        Property property3 = View.SCALE_X;
+        if (z4) {
+            u2Var2.setVisibility(0);
+            u2Var.setEnabled(false);
+            this.h.playTogether(ObjectAnimator.ofFloat(textView, property3, 0.1f), ObjectAnimator.ofFloat(textView, property2, 0.1f), ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(u2Var2, property3, 1.0f), ObjectAnimator.ofFloat(u2Var2, property2, 1.0f), ObjectAnimator.ofFloat(u2Var2, property, 1.0f));
+        } else {
+            textView.setVisibility(0);
+            u2Var.setEnabled(true);
+            this.h.playTogether(ObjectAnimator.ofFloat(u2Var2, property3, 0.1f), ObjectAnimator.ofFloat(u2Var2, property2, 0.1f), ObjectAnimator.ofFloat(u2Var2, property, 0.0f), ObjectAnimator.ofFloat(textView, property3, 1.0f), ObjectAnimator.ofFloat(textView, property2, 1.0f), ObjectAnimator.ofFloat(textView, property, 1.0f));
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f33501g, max);
-        this.f33502i = ofFloat;
-        ofFloat.addUpdateListener(new j6(this, 5));
-        this.f33502i.addListener(new org.telegram.ui.ActionBar.a1(this, max, 4));
-        this.f33502i.setInterpolator(jr.h);
-        this.f33502i.setDuration(200L);
-        this.f33502i.start();
+        this.h.addListener(new dg.w2(22, this, z4));
+        this.h.setDuration(150L);
+        this.h.start();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (getBounds() != null) {
-            int i10 = getBounds().left;
-            int i11 = getBounds().top + ((int) this.f33500f);
-            int width = getBounds().width();
-            int height = getBounds().height();
-            int centerX = getBounds().centerX();
-            int centerY = getBounds().centerY() + ((int) this.f33500f);
-            TextPaint textPaint = this.f33496a;
-            Paint paint = this.d;
-            Paint paint2 = this.f33498c;
-            Paint paint3 = this.f33497b;
-            if (textPaint != null) {
-                int color = textPaint.getColor();
-                paint3.setColor(color);
-                paint2.setColor(color);
-                paint.setColor(color);
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.fileLoaded) {
+            String str = (String) objArr[0];
+            String str2 = this.f29396r;
+            if (str2 != null && str2.equals(str)) {
+                a(false);
+                ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.f29395n.document);
             }
-            if (this.f33499e != 1.0f) {
-                canvas.save();
-                float f9 = this.f33499e;
-                canvas.scale(f9, f9, centerX, centerY);
+        } else if (i10 == NotificationCenter.fileLoadFailed) {
+            String str3 = (String) objArr[0];
+            String str4 = this.f29396r;
+            if (str4 != null && str4.equals(str3)) {
+                a(false);
             }
-            paint3.setStrokeWidth(AndroidUtilities.dpf2(1.1f));
-            float f10 = i10;
-            float f11 = width;
-            float f12 = i11;
-            float f13 = height;
-            RectF rectF = this.h;
-            rectF.set((((f11 - AndroidUtilities.dpf2(16.33f)) / 2.0f) + f10) - AndroidUtilities.dpf2(1.33f), ((f13 - AndroidUtilities.dpf2(10.33f)) / 2.0f) + f12, (((AndroidUtilities.dpf2(16.33f) + f11) / 2.0f) + f10) - AndroidUtilities.dpf2(1.33f), ((AndroidUtilities.dpf2(10.33f) + f13) / 2.0f) + f12);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(2.33f), AndroidUtilities.dpf2(2.33f), paint3);
-            rectF.set((((f11 - AndroidUtilities.dpf2(13.0f)) / 2.0f) + f10) - AndroidUtilities.dpf2(1.66f), ((f13 - AndroidUtilities.dpf2(7.33f)) / 2.0f) + f12, Math.max(AndroidUtilities.dpf2(1.1f), this.f33501g * AndroidUtilities.dpf2(13.0f)) + ((((f11 - AndroidUtilities.dpf2(13.0f)) / 2.0f) + f10) - AndroidUtilities.dpf2(1.66f)), ((AndroidUtilities.dpf2(7.33f) + f13) / 2.0f) + f12);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(0.83f), AndroidUtilities.dpf2(0.83f), paint);
-            float f14 = centerY;
-            rectF.set((((AndroidUtilities.dpf2(17.5f) + f11) - AndroidUtilities.dpf2(4.66f)) / 2.0f) + f10, f14 - AndroidUtilities.dpf2(2.65f), ((AndroidUtilities.dpf2(4.66f) + (AndroidUtilities.dpf2(17.5f) + f11)) / 2.0f) + f10, AndroidUtilities.dpf2(2.65f) + f14);
-            canvas.drawArc(rectF, -90.0f, 180.0f, false, paint2);
-            if (this.f33499e != 1.0f) {
-                canvas.restore();
+        } else if (i10 == NotificationCenter.fileLoadProgressChanged) {
+            String str5 = (String) objArr[0];
+            String str6 = this.f29396r;
+            if (str6 != null && str6.equals(str5)) {
+                this.e.e(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())), true);
             }
         }
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(this.f33499e * 24.0f);
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        GradientDrawable gradientDrawable = this.f29398w;
+        ScrollView scrollView = this.f29394f;
+        gradientDrawable.setBounds(scrollView.getLeft(), scrollView.getTop(), scrollView.getRight(), AndroidUtilities.dp(16.0f) + scrollView.getTop());
+        gradientDrawable.draw(canvas);
+        GradientDrawable gradientDrawable2 = this.f29399x;
+        gradientDrawable2.setBounds(scrollView.getLeft(), scrollView.getBottom() - AndroidUtilities.dp(18.0f), scrollView.getRight(), scrollView.getBottom());
+        gradientDrawable2.draw(canvas);
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(this.f33499e * 24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f33497b.setAlpha(i10);
-        this.f33498c.setAlpha(i10);
-        this.d.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f33497b.setColorFilter(colorFilter);
-        this.f33498c.setColorFilter(colorFilter);
-        this.d.setColorFilter(colorFilter);
-    }
-
-    public v9(float f9, int i10) {
-        this();
-        a(f9, false);
-        this.f33497b.setColor(-1);
-        this.f33498c.setColor(-1);
-        this.d.setColor(i10);
-        this.f33499e = 1.3f;
-        invalidateSelf();
+    public void setVisibility(int i10) {
+        super.setVisibility(i10);
+        if (i10 == 8) {
+            NotificationCenter.getInstance(this.f29397s).removeObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(this.f29397s).removeObserver(this, NotificationCenter.fileLoadFailed);
+            NotificationCenter.getInstance(this.f29397s).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
+        }
     }
 }

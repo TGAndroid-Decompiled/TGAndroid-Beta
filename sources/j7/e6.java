@@ -1,17 +1,12 @@
 package j7;
-public final class e6 implements s9.d {
-    public static final e6 f10998a = new Object();
+public final class e6 {
+    public final Long f8984a;
+    public final l6 f8985b;
+    public final Boolean f8986c;
 
-    static {
-        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.r(h0.class, l1.h(3, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(2, com.google.android.recaptcha.internal.a.r(h0.class, new e0(1)))))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            s9.e eVar = (s9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public e6(androidx.biometric.e eVar) {
+        this.f8984a = (Long) eVar.f478b;
+        this.f8985b = (l6) eVar.f479c;
+        this.f8986c = (Boolean) eVar.d;
     }
 }

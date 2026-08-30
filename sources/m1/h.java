@@ -27,7 +27,7 @@ public final class h extends x {
     public static void i(h hVar, Set set) {
         int i10;
         z zVar = hVar.strings_;
-        if (!((androidx.datastore.preferences.protobuf.b) zVar).f1202a) {
+        if (!((androidx.datastore.preferences.protobuf.b) zVar).f625a) {
             int size = zVar.size();
             if (size == 0) {
                 i10 = 10;
@@ -37,7 +37,7 @@ public final class h extends x {
             hVar.strings_ = zVar.e(i10);
         }
         z zVar2 = hVar.strings_;
-        Charset charset = a0.f1193a;
+        Charset charset = a0.f617a;
         if (set instanceof f0) {
             List h = ((f0) set).h();
             f0 f0Var = (f0) zVar2;

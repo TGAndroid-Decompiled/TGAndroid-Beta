@@ -1,67 +1,62 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.webkit.WebView;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class wm0 implements Runnable {
-    public final int f44326a;
-    public final bo0 f44327b;
-    public final TLObject f44328c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+public final class wm0 extends TextView {
+    public final int f39772a;
 
-    public wm0(bo0 bo0Var, TLObject tLObject, int i10) {
-        this.f44326a = i10;
-        this.f44327b = bo0Var;
-        this.f44328c = tLObject;
+    public wm0(Context context, int i10) {
+        super(context);
+        this.f39772a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f44326a) {
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f39772a) {
+            case 2:
+                super.dispatchDraw(canvas);
+                canvas.drawCircle(AndroidUtilities.dp(3.5f), AndroidUtilities.dp(11.5f), AndroidUtilities.dp(2.5f), getPaint());
+                return;
+            case 3:
+            default:
+                super.dispatchDraw(canvas);
+                return;
+            case 4:
+                if (getPaddingLeft() > 0) {
+                    canvas.drawCircle((getPaddingLeft() - AndroidUtilities.dp(2.5f)) / 2.0f, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(2.5f), getPaint());
+                }
+                super.dispatchDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f39772a) {
             case 0:
-                bo0.e0(this.f44327b, this.f44328c);
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
                 return;
             case 1:
-                bo0 bo0Var = this.f44327b;
-                Utilities.Callback callback = bo0Var.Z0;
-                TLObject tLObject = this.f44328c;
-                if (callback != null) {
-                    callback.run((TLRPC.TL_payments_paymentVerificationNeeded) tLObject);
-                }
-                bo0Var.D0(false);
-                bo0Var.f36868v0 = true;
-                bo0Var.H0(true, true);
-                org.telegram.ui.Components.nq nqVar = bo0Var.f36862r;
-                if (nqVar != null) {
-                    nqVar.setVisibility(0);
-                }
-                org.telegram.ui.ActionBar.w0 w0Var = bo0Var.f36857n;
-                if (w0Var != null) {
-                    w0Var.setEnabled(false);
-                    bo0Var.f36857n.getContentView().setVisibility(4);
-                }
-                org.telegram.ui.ActionBar.b5 parentLayout = bo0Var.getParentLayout();
-                Activity parentActivity = bo0Var.getParentActivity();
-                bo0Var.getMessagesController().newMessageCallback = new z6(bo0Var, parentLayout, parentActivity, 17);
-                WebView webView = bo0Var.f36869w;
-                if (webView != null) {
-                    webView.setVisibility(0);
-                    WebView webView2 = bo0Var.f36869w;
-                    String str = ((TLRPC.TL_payments_paymentVerificationNeeded) tLObject).url;
-                    bo0Var.f36871x = str;
-                    webView2.loadUrl(str);
-                }
-                bo0Var.W0 = true;
-                bo0Var.f36843b1 = 3;
-                ao0 ao0Var = bo0Var.V0;
-                if (ao0Var != null) {
-                    ao0Var.a(3);
-                    return;
-                }
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(AndroidUtilities.dp(26.0f)), 1073741824));
                 return;
             default:
-                bo0.c0(this.f44327b, this.f44328c);
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        switch (this.f39772a) {
+            case 3:
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+                return;
+            default:
+                super.setText(charSequence, bufferType);
                 return;
         }
     }

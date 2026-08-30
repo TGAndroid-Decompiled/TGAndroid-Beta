@@ -1,26 +1,18 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.MessageObject;
-public final class cm extends org.telegram.ui.Components.q6 {
-    public final dm f37177b;
+import android.content.Context;
+public final class cm extends org.telegram.ui.Cells.h0 {
+    public final jm I;
 
-    public cm(dm dmVar) {
-        super("alpha", 0);
-        this.f37177b = dmVar;
+    public cm(jm jmVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, i10, f6Var);
+        this.I = jmVar;
     }
 
     @Override
-    public final void b(Object obj, float f9) {
-        ((MessageObject.SendAnimationData) obj).timeAlpha = f9;
-        View view = this.f37177b.f37560b.M.fragmentView;
-        if (view != null) {
-            view.invalidate();
-        }
-    }
-
-    @Override
-    public final Object get(Object obj) {
-        return Float.valueOf(((MessageObject.SendAnimationData) obj).timeAlpha);
+    public final int getSideMenuWidth() {
+        xn xnVar = this.I.N;
+        int i10 = xn.Ec;
+        return xnVar.R8();
     }
 }

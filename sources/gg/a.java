@@ -1,86 +1,104 @@
 package gg;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.view.View;
-import android.widget.FrameLayout;
-import i7.f6;
-import org.telegram.messenger.LocaleController;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableString;
+import android.text.TextPaint;
+import android.text.style.ReplacementSpan;
+import android.util.Pair;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-public final class a extends FrameLayout {
-    public final nh.d f7276a;
-    public final View f7277b;
-    public final c6 f7278c;
-    public final Paint d;
-    public boolean f7279e;
+import org.telegram.ui.Components.j6;
+import org.telegram.ui.Components.nr;
+public final class a extends ReplacementSpan {
+    public final Drawable f6548a;
+    public final Drawable f6549b;
+    public boolean f6550c;
+    public boolean d;
+    public final j6 e;
+    public final TextPaint f6551f;
+    public final int h;
 
-    public a(Context context, c6 c6Var) {
-        super(context);
-        this.d = new Paint(1);
-        this.f7278c = c6Var;
-        View view = new View(context);
-        this.f7277b = view;
-        addView(view, f6.n(-1, -1));
-        nh.d dVar = new nh.d(context, c6Var, true);
-        this.f7276a = dVar;
-        addView(dVar, f6.d(-1, 48.0f, 17, 14.0f, 0.0f, 14.0f, 0.0f));
+    public a(org.telegram.ui.Cells.t1 t1Var, TextPaint textPaint, int i10) {
+        this.f6551f = textPaint;
+        j6 j6Var = new j6(false, false, true, false);
+        this.e = j6Var;
+        j6Var.k(0.3f, 250L, nr.h);
+        j6Var.setCallback(t1Var);
+        j6Var.t(AndroidUtilities.dp(11.5f));
+        j6Var.u(AndroidUtilities.bold());
+        j6Var.q("", true, true);
+        j6Var.f25884b = 17;
+        Drawable mutate = t1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge).mutate();
+        this.f6548a = mutate;
+        Drawable mutate2 = t1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge2).mutate();
+        this.f6549b = mutate2;
+        mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
+        mutate2.setBounds(0, 0, mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
+        this.h = i10;
+        j6Var.q(i10 > 1 ? String.valueOf(i10) : "", false, true);
     }
 
-    public final void a(int i10, boolean z10) {
-        this.f7279e = true;
-        nh.d dVar = this.f7276a;
-        dVar.k();
-        dVar.setShowZero(true);
-        dVar.setEnabled(true);
-        dVar.c(i10, z10);
-        dVar.g(LocaleController.getString(R.string.BoostingStartGiveaway), z10, true);
-        this.f7277b.setBackgroundColor(g6.v0(g6.f23133h5, this.f7278c));
+    public static Pair a(org.telegram.ui.Cells.t1 t1Var, TextPaint textPaint, int i10) {
+        SpannableString spannableString = new SpannableString("d");
+        a aVar = new a(t1Var, textPaint, i10);
+        spannableString.setSpan(aVar, 0, 1, 33);
+        return new Pair(spannableString, aVar);
     }
 
-    public final void b(boolean z10) {
-        this.f7276a.setLoading(z10);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (this.f7279e) {
-            int v02 = g6.v0(g6.f23009a7, this.f7278c);
-            Paint paint = this.d;
-            paint.setColor(v02);
-            paint.setAlpha(255);
-            canvas.drawRect(0.0f, 0.0f, getWidth(), 1.0f, paint);
-        }
-    }
-
-    public void setCloseStyle(boolean z10) {
-        this.f7279e = false;
-        nh.d dVar = this.f7276a;
-        dVar.setShowZero(false);
-        dVar.setEnabled(true);
-        dVar.g(LocaleController.formatString("Close", R.string.Close, new Object[0]), false, true);
-        this.f7279e = z10;
-    }
-
-    public void setOkStyle(boolean z10) {
-        String formatString;
-        this.f7279e = false;
-        nh.d dVar = this.f7276a;
-        dVar.setShowZero(false);
-        dVar.setEnabled(true);
-        if (z10) {
-            formatString = LocaleController.formatString("BoostingUseLink", R.string.BoostingUseLink, new Object[0]);
+    public final int b() {
+        int i10;
+        if (this.d) {
+            i10 = 8;
         } else {
-            formatString = LocaleController.formatString("OK", R.string.OK, new Object[0]);
+            i10 = 0;
         }
-        dVar.g(formatString, false, true);
+        return (int) (this.e.e() + AndroidUtilities.dp(i10 + 16));
     }
 
     @Override
-    public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.f7276a.setOnClickListener(onClickListener);
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
+        int i15;
+        TextPaint textPaint = this.f6551f;
+        int color = textPaint.getColor();
+        j6 j6Var = this.e;
+        int color2 = j6Var.f25883a.getColor();
+        Drawable drawable = this.f6549b;
+        Drawable drawable2 = this.f6548a;
+        if (color != color2) {
+            j6Var.r(textPaint.getColor());
+            int color3 = j6Var.f25883a.getColor();
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            drawable2.setColorFilter(new PorterDuffColorFilter(color3, mode));
+            drawable.setColorFilter(new PorterDuffColorFilter(j6Var.f25883a.getColor(), mode));
+        }
+        canvas.save();
+        if (this.d && !this.f6550c) {
+            i15 = AndroidUtilities.dp(8.0f);
+        } else {
+            i15 = 0;
+        }
+        canvas.translate(f10 + i15, -AndroidUtilities.dp(0.2f));
+        if (this.h == 1) {
+            canvas.translate(AndroidUtilities.dp(1.5f), 0.0f);
+            drawable2.draw(canvas);
+        } else {
+            drawable.draw(canvas);
+        }
+        canvas.translate(AndroidUtilities.dp(16.0f), 0.0f);
+        Rect rect = AndroidUtilities.rectTmp2;
+        rect.set(0, 0, (int) j6Var.d(), (int) j6Var.e);
+        j6Var.setBounds(rect);
+        j6Var.draw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return b();
     }
 }

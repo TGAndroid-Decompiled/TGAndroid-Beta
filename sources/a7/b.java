@@ -1,8 +1,10 @@
 package a7;
-public abstract class b {
-    public static final int f215a = 0;
+public class b extends RuntimeException {
+    public b() {
+        super("Message was missing required fields.  (Lite runtime could not determine which fields were missing).");
+    }
 
-    static {
-        b.class.getClassLoader();
+    public b(java.lang.String r3, android.os.Parcel r4) {
+        throw new UnsupportedOperationException("Method not decompiled: a7.b.<init>(java.lang.String, android.os.Parcel):void");
     }
 }

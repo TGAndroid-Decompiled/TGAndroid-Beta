@@ -1,42 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class c50 extends AnimatorListenerAdapter {
-    public final int f27309a;
-    public final s50 f27310b;
+import android.opengl.GLES20;
+import org.telegram.messenger.R;
+public class c50 {
+    public final int f23843a;
+    public final int f23844b;
+    public final int f23845c;
+    public final int d;
+    public final int e;
+    public final int f23846f;
 
-    public c50(s50 s50Var, int i10) {
-        this.f27309a = i10;
-        this.f27310b = s50Var;
+    public c50(int i10) {
+        int a2 = d50.a(35633, R.raw.round_blur_vert);
+        this.f23844b = a2;
+        int a10 = d50.a(35632, i10);
+        this.f23845c = a10;
+        int glCreateProgram = GLES20.glCreateProgram();
+        GLES20.glAttachShader(glCreateProgram, a2);
+        GLES20.glAttachShader(glCreateProgram, a10);
+        GLES20.glLinkProgram(glCreateProgram);
+        int[] iArr = new int[1];
+        GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
+        if (iArr[0] == 0) {
+            GLES20.glDeleteProgram(glCreateProgram);
+            glCreateProgram = 0;
+        }
+        this.f23843a = glCreateProgram;
+        this.d = GLES20.glGetAttribLocation(glCreateProgram, "aPosition");
+        this.e = GLES20.glGetAttribLocation(glCreateProgram, "aTextureCoord");
+        this.f23846f = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f27309a) {
-            case 0:
-                s50 s50Var = this.f27310b;
-                if (animator.equals(s50Var.C)) {
-                    s50Var.C = null;
-                    return;
-                }
-                return;
-            case 1:
-                s50 s50Var2 = this.f27310b;
-                if (s50Var2.X0 != null) {
-                    s50Var2.X0 = null;
-                    return;
-                }
-                return;
-            default:
-                s50 s50Var3 = this.f27310b;
-                if (animator.equals(s50Var3.S)) {
-                    s50Var3.h(true);
-                    s50Var3.S0 = false;
-                    s50Var3.setVisibility(4);
-                    return;
-                }
-                return;
-        }
+    public final void a() {
+        GLES20.glDeleteProgram(this.f23843a);
+        GLES20.glDeleteShader(this.f23844b);
+        GLES20.glDeleteShader(this.f23845c);
     }
 }

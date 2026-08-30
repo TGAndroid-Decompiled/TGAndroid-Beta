@@ -1,30 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class q7 extends aj0 {
-    public float f31862r;
-    public float f31863s;
-    public boolean v;
-    public final lh.m7 f31864w;
-    public final float f31865x;
-    public final g8 f31866y;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class q7 extends AnimatorListenerAdapter {
+    public final int f28075a;
+    public final c8 f28076b;
 
-    public q7(g8 g8Var, Context context, float f9) {
-        super(context);
-        this.f31866y = g8Var;
-        this.f31865x = f9;
-        this.f31864w = new lh.m7(this, 13);
+    public q7(c8 c8Var, int i10) {
+        this.f28075a = i10;
+        this.f28076b = c8Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.addAction(16);
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f28075a) {
+            case 2:
+                this.f28076b.f23918z0 = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.q7.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f28075a) {
+            case 0:
+                this.f28076b.f23897j0 = false;
+                return;
+            case 1:
+                c8 c8Var = this.f28076b;
+                c8Var.f23893f0.setVisibility(4);
+                c8Var.f23894g0.setImageBitmap(null);
+                c8Var.f23897j0 = false;
+                return;
+            default:
+                return;
+        }
+    }
+
+    private final void a(Animator animator) {
     }
 }

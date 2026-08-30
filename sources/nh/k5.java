@@ -1,62 +1,88 @@
 package nh;
-public final class k5 implements ag.s1 {
-    public final ja f18005a;
 
-    public k5(ja jaVar) {
-        this.f18005a = jaVar;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+public final class k5 extends FrameLayout implements r0.n {
+    public final c5.e f15538a;
+    public final m5 f15539b;
+
+    public k5(m5 m5Var, Context context) {
+        super(context);
+        this.f15539b = m5Var;
+        this.f15538a = new Object();
     }
 
     @Override
-    public final void b() {
-        l5 l5Var = this.f18005a.L0;
-        if (l5Var != null) {
-            l5Var.invalidate();
+    public final void E(ViewGroup viewGroup, int i10, int i11, int[] iArr, int i12) {
+        m5 m5Var = this.f15539b;
+        i9 i9Var = m5Var.f15613r;
+        if (m5Var.f15616x <= 0) {
+            float f10 = i9Var.f15452b0;
+            float f11 = m5Var.f15610c;
+            if (f10 < f11 && i11 > 0) {
+                float f12 = f10 + i11;
+                iArr[1] = i11;
+                if (f12 <= f11) {
+                    f11 = f12;
+                }
+                m5Var.setOffset(f11);
+                i9Var.f15452b0 = f11;
+                d4 currentPeerView = i9Var.f15472k0.getCurrentPeerView();
+                if (currentPeerView != null) {
+                    currentPeerView.invalidate();
+                }
+                x8 x8Var = i9Var.v;
+                if (x8Var != null) {
+                    x8Var.invalidate();
+                }
+            }
         }
     }
 
     @Override
-    public final void c() {
-        ja jaVar = this.f18005a;
-        if (jaVar.Y0) {
-            jaVar.Y0 = false;
-            return;
+    public final void i(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
+        m5 m5Var = this.f15539b;
+        i9 i9Var = m5Var.f15613r;
+        if (m5Var.f15616x <= 0 && i13 != 0 && i11 == 0) {
+            float f10 = i9Var.f15452b0;
+            float f11 = i13 + f10;
+            if (f11 <= f10) {
+                f10 = f11;
+            }
+            m5Var.setOffset(f10);
+            i9Var.f15452b0 = f10;
+            d4 currentPeerView = i9Var.f15472k0.getCurrentPeerView();
+            if (currentPeerView != null) {
+                currentPeerView.invalidate();
+            }
+            x8 x8Var = i9Var.v;
+            if (x8Var != null) {
+                x8Var.invalidate();
+            }
         }
-        jaVar.f18634g1.b(1);
-        jaVar.q((ag.m) ag.m.f584a.get(0));
     }
 
     @Override
-    public final boolean d() {
-        boolean z10;
-        ja jaVar = this.f18005a;
-        if (jaVar.F0 == null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (!z10) {
-            jaVar.D0(null, true);
-        }
-        return z10;
+    public final void n(int i10, View view) {
+        this.f15538a.f2085a = 0;
     }
 
     @Override
-    public final void e() {
-        ja jaVar = this.f18005a;
-        jaVar.f18670z0.f617a.e();
-        jaVar.Z0.setViewHidden(false);
-    }
-
-    @Override
-    public final void f() {
-        ja jaVar = this.f18005a;
-        if (jaVar.F0 != null) {
-            jaVar.D0(null, true);
+    public final boolean o(View view, View view2, int i10, int i11) {
+        if (this.f15539b.f15616x <= 0 && i10 == 2) {
+            return true;
         }
-        jaVar.Z0.setViewHidden(true);
+        return false;
     }
 
     @Override
-    public final void a() {
+    public final void s(View view, View view2, int i10, int i11) {
+        this.f15538a.f2085a = i10;
+    }
+
+    @Override
+    public final void c(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
     }
 }

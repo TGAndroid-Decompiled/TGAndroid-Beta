@@ -1,131 +1,153 @@
 package org.telegram.ui;
 
-import android.view.View;
+import android.content.Context;
+import android.util.Pair;
+import j$.util.Objects;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_bots;
 public final class lo implements RequestDelegate {
-    public final int f40248a;
-    public final yo f40249b;
+    public final int f36114a;
+    public final Object f36115b;
+    public final Object f36116c;
 
-    public lo(yo yoVar, int i10) {
-        this.f40248a = i10;
-        this.f40249b = yoVar;
+    public lo(int i10, Object obj, Object obj2) {
+        this.f36114a = i10;
+        this.f36115b = obj;
+        this.f36116c = obj2;
     }
 
     @Override
-    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f40248a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i10 = this.f36114a;
+        Object obj = this.f36116c;
+        Object obj2 = this.f36115b;
+        switch (i10) {
             case 0:
-                if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    AndroidUtilities.runOnUIThread(new no(this.f40249b, 3));
+                po poVar = (po) obj2;
+                TL_bots.setBotInfo setbotinfo = (TL_bots.setBotInfo) obj;
+                TLRPC.UserFull userFull = poVar.B0;
+                if (userFull != null) {
+                    userFull.about = setbotinfo.about;
+                    poVar.getMessagesStorage().updateUserInfo(poVar.B0, false);
+                }
+                AndroidUtilities.runOnUIThread(new jo(poVar, 2));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new yb(29, (qp) obj2, (org.telegram.ui.ActionBar.d2[]) obj));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new ih((Object) ((jq) obj2), (Object) tL_error, tLObject, (Object) ((TwoStepVerificationActivity) obj), 3));
+                return;
+            case 3:
+                org.telegram.ui.Components.h5 h5Var = (org.telegram.ui.Components.h5) obj2;
+                NotificationCenter.getInstance(h5Var.e).doOnIdle(new org.telegram.ui.Components.g5(h5Var, (ArrayList) obj, tLObject, 0));
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new lh.p6((org.telegram.ui.Components.c8) obj2, (org.telegram.ui.ActionBar.d2) obj, tLObject, 24));
+                return;
+            case 5:
+                AndroidUtilities.runOnUIThread(new hp(20, (org.telegram.ui.Components.li) obj2, (org.telegram.ui.Components.ei) obj));
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new hp(21, (org.telegram.ui.Components.li) obj2, (TLRPC.TL_attachMenuBot) obj));
+                return;
+            case 7:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.hp((org.telegram.ui.Components.ip) obj2, tLObject, (org.telegram.ui.ActionBar.i6) obj, 0));
+                return;
+            case 8:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.il(22, (org.telegram.ui.Components.c10) obj2, (Pair) obj));
+                return;
+            case 9:
+                AndroidUtilities.runOnUIThread(new ih((Object) ((org.telegram.ui.Components.c10) obj2), (Object) tL_error, tLObject, (Object) ((Utilities.Callback) obj), 13));
+                return;
+            case 10:
+                AndroidUtilities.runOnUIThread(new ih((Object) ((org.telegram.ui.Components.t30) obj2), (Object) tL_error, tLObject, (Object) ((TLRPC.TL_channels_getParticipants) obj), 15));
+                return;
+            case 11:
+                AndroidUtilities.runOnUIThread(new ih((org.telegram.ui.Components.x80) obj2, (TLRPC.TL_chatInviteExported) obj, tL_error, tLObject));
+                return;
+            case 12:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.hp((Object) ((org.telegram.ui.Components.vg0) obj2), (Object) ((org.telegram.ui.Components.ug0) obj), tLObject, 13));
+                return;
+            case 13:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.i80((org.telegram.ui.Components.lq0) obj2, tLObject, (Context) obj, 17));
+                return;
+            case 14:
+                AndroidUtilities.runOnUIThread(new ih((Object) ((org.telegram.ui.Components.xx0) obj2), (Object) tL_error, tLObject, (Object) ((MediaDataController) obj), 23));
+                return;
+            case 15:
+                AndroidUtilities.runOnUIThread(new ih((Object) ((vr0) obj2), (Object) tL_error, tLObject, (Object) ((TLRPC.TL_messages_getAttachedStickers) obj), 24));
+                return;
+            case 16:
+                AndroidUtilities.runOnUIThread(new ih((org.telegram.ui.Components.j01) obj2, (org.telegram.ui.ActionBar.d2) obj, tLObject, tL_error));
+                return;
+            case 17:
+                AndroidUtilities.runOnUIThread(new ih((Object) ((org.telegram.ui.Components.v31) obj2), (Object) tL_error, tLObject, (Object) ((TLRPC.TL_textWithEntities) obj), 27));
+                return;
+            case 18:
+                AndroidUtilities.runOnUIThread(new rq((bz) obj2, tLObject, (MessageObject) obj, 4));
+                return;
+            case 19:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.k41(25, (wz) obj2, (org.telegram.ui.ActionBar.d2) obj));
+                return;
+            case 20:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.k41(29, (b10) obj2, (org.telegram.ui.ActionBar.d2) obj));
+                return;
+            case 21:
+                AndroidUtilities.runOnUIThread(new rq((u00) obj2, tL_error, (t00) obj, 8));
+                return;
+            case 22:
+                AndroidUtilities.runOnUIThread(new g00(1, (FiltersSetupActivity) obj2, (TLRPC.TL_messages_toggleDialogFilterTags) obj));
+                return;
+            case 23:
+                AndroidUtilities.runOnUIThread(new a30((Object) ((k50) obj2), (Object) tL_error, tLObject, (Object) ((String) obj), 1));
+                return;
+            case 24:
+                i70 i70Var = (i70) obj2;
+                if (Objects.equals(i70Var.f35036a.e, (String) obj)) {
+                    AndroidUtilities.runOnUIThread(new g00(9, i70Var, tLObject));
                     return;
                 }
                 return;
-            case 1:
-                final yo yoVar = this.f40249b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                boolean z10 = tLObject instanceof TLRPC.TL_boolTrue;
-                                yo yoVar2 = yoVar;
-                                if (z10) {
-                                    for (int i10 = 0; i10 < yoVar2.T.usernames.size(); i10++) {
-                                        TLRPC.TL_username tL_username = yoVar2.T.usernames.get(i10);
-                                        if (tL_username != null && tL_username.active && !tL_username.editable) {
-                                            tL_username.active = false;
-                                        }
-                                    }
-                                }
-                                yoVar2.f44935p0 = false;
-                                AndroidUtilities.runOnUIThread(new no(yoVar2, 4));
-                                return;
-                            default:
-                                yo yoVar3 = yoVar;
-                                ArrayList arrayList = yoVar3.f44918b0;
-                                yoVar3.Z = false;
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 != null && yoVar3.getParentActivity() != null) {
-                                    for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                                        yoVar3.h.removeView((View) arrayList.get(i11));
-                                    }
-                                    arrayList.clear();
-                                    TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject2;
-                                    for (int i12 = 0; i12 < tL_messages_chats.chats.size(); i12++) {
-                                        org.telegram.ui.Cells.n nVar = new org.telegram.ui.Cells.n(yoVar3.getParentActivity(), new po(yoVar3, 0), false, 0);
-                                        TLRPC.Chat chat = tL_messages_chats.chats.get(i12);
-                                        boolean z11 = true;
-                                        if (i12 != tL_messages_chats.chats.size() - 1) {
-                                            z11 = false;
-                                        }
-                                        nVar.a(chat, z11);
-                                        arrayList.add(nVar);
-                                        yoVar3.f44939x.addView(nVar, i7.f6.n(-1, 72));
-                                    }
-                                    yoVar3.b0();
-                                    return;
-                                }
-                                return;
+            case 25:
+                u70 u70Var = (u70) obj2;
+                String str = (String) obj;
+                if (tLObject instanceof Vector) {
+                    Vector vector = (Vector) tLObject;
+                    if (!vector.objects.isEmpty()) {
+                        TLRPC.LangPackString langPackString = (TLRPC.LangPackString) vector.objects.get(0);
+                        if (langPackString instanceof TLRPC.TL_langPackString) {
+                            AndroidUtilities.runOnUIThread(new rq(u70Var, (TLRPC.TL_langPackString) langPackString, str, 11));
+                            return;
                         }
+                        return;
                     }
-                });
+                    return;
+                }
                 return;
-            case 2:
-                final yo yoVar2 = this.f40249b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                boolean z10 = tLObject instanceof TLRPC.TL_boolTrue;
-                                yo yoVar22 = yoVar2;
-                                if (z10) {
-                                    for (int i10 = 0; i10 < yoVar22.T.usernames.size(); i10++) {
-                                        TLRPC.TL_username tL_username = yoVar22.T.usernames.get(i10);
-                                        if (tL_username != null && tL_username.active && !tL_username.editable) {
-                                            tL_username.active = false;
-                                        }
-                                    }
-                                }
-                                yoVar22.f44935p0 = false;
-                                AndroidUtilities.runOnUIThread(new no(yoVar22, 4));
-                                return;
-                            default:
-                                yo yoVar3 = yoVar2;
-                                ArrayList arrayList = yoVar3.f44918b0;
-                                yoVar3.Z = false;
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 != null && yoVar3.getParentActivity() != null) {
-                                    for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                                        yoVar3.h.removeView((View) arrayList.get(i11));
-                                    }
-                                    arrayList.clear();
-                                    TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject2;
-                                    for (int i12 = 0; i12 < tL_messages_chats.chats.size(); i12++) {
-                                        org.telegram.ui.Cells.n nVar = new org.telegram.ui.Cells.n(yoVar3.getParentActivity(), new po(yoVar3, 0), false, 0);
-                                        TLRPC.Chat chat = tL_messages_chats.chats.get(i12);
-                                        boolean z11 = true;
-                                        if (i12 != tL_messages_chats.chats.size() - 1) {
-                                            z11 = false;
-                                        }
-                                        nVar.a(chat, z11);
-                                        arrayList.add(nVar);
-                                        yoVar3.f44939x.addView(nVar, i7.f6.n(-1, 72));
-                                    }
-                                    yoVar3.b0();
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
+            case 26:
+                Pattern pattern = LaunchActivity.f31612y1;
+                AndroidUtilities.runOnUIThread(new rq((LaunchActivity) obj2, tLObject, (org.telegram.ui.ActionBar.i6) obj, 17));
+                return;
+            case 27:
+                Pattern pattern2 = LaunchActivity.f31612y1;
+                AndroidUtilities.runOnUIThread(new a30((Object) ((org.telegram.ui.ActionBar.d2) obj2), tLObject, (Object) ((i) obj), (Object) tL_error, 5));
+                return;
+            case 28:
+                AndroidUtilities.runOnUIThread(new rq((wb0) obj2, tLObject, (String) obj, 19));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new vf(19, this.f40249b, tL_error));
+                AndroidUtilities.runOnUIThread(new rq((tb0) obj2, tLObject, (TLRPC.User) obj, 20));
                 return;
         }
     }

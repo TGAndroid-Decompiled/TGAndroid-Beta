@@ -1,41 +1,48 @@
 package o3;
-public final class s {
-    public final u f19115a;
-    public final u f19116b;
 
-    public s(u uVar, u uVar2) {
-        this.f19115a = uVar;
-        this.f19116b = uVar2;
+import java.util.UUID;
+public final class s implements i {
+    public final h f16274a;
+
+    public s(h hVar) {
+        this.f16274a = hVar;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && s.class == obj.getClass()) {
-            s sVar = (s) obj;
-            if (this.f19115a.equals(sVar.f19115a) && this.f19116b.equals(sVar.f19116b)) {
-                return true;
-            }
-        }
+    @Override
+    public final UUID a() {
+        return j3.h.f8593a;
+    }
+
+    @Override
+    public final boolean b() {
         return false;
     }
 
-    public final int hashCode() {
-        return this.f19116b.hashCode() + (this.f19115a.hashCode() * 31);
+    @Override
+    public final int e() {
+        return 1;
     }
 
-    public final String toString() {
-        String str;
-        StringBuilder sb2 = new StringBuilder("[");
-        u uVar = this.f19115a;
-        sb2.append(uVar);
-        u uVar2 = this.f19116b;
-        if (uVar.equals(uVar2)) {
-            str = "";
-        } else {
-            str = ", " + uVar2;
-        }
-        return a4.w.q(sb2, str, "]");
+    @Override
+    public final boolean f(String str) {
+        return false;
+    }
+
+    @Override
+    public final h g() {
+        return this.f16274a;
+    }
+
+    @Override
+    public final n3.b h() {
+        return null;
+    }
+
+    @Override
+    public final void c(l lVar) {
+    }
+
+    @Override
+    public final void d(l lVar) {
     }
 }

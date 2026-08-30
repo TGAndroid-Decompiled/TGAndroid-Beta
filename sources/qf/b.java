@@ -1,70 +1,23 @@
 package qf;
 
-import android.text.TextUtils;
-import org.telegram.tgnet.TLRPC;
-public final class b {
-    public final String f46659a;
-    public final String f46660b;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import java.util.List;
+public final class b extends BitmapDrawable {
+    public final List f43053a;
 
-    public b(String str, String str2) {
-        this.f46659a = str;
-        this.f46660b = str2;
+    public b(Bitmap bitmap, List list) {
+        super(bitmap);
+        this.f43053a = list;
     }
 
-    public static boolean a(b bVar, b bVar2) {
-        if (bVar == bVar2) {
-            return true;
-        }
-        if (bVar != null && bVar2 != null) {
-            return bVar.equals(bVar2);
-        }
-        return false;
-    }
-
-    public static b c(TLRPC.ChatTheme chatTheme) {
-        if (chatTheme instanceof TLRPC.TL_chatTheme) {
-            return new b(((TLRPC.TL_chatTheme) chatTheme).emoticon, null);
-        }
-        if (!(chatTheme instanceof TLRPC.TL_chatThemeUniqueGift)) {
+    public static BitmapDrawable a(Bitmap bitmap, List list) {
+        if (bitmap == null) {
             return null;
         }
-        return new b(null, ((TLRPC.TL_chatThemeUniqueGift) chatTheme).gift.slug);
-    }
-
-    public static b d(String str) {
-        return new b(str, null);
-    }
-
-    public final boolean b() {
-        if (TextUtils.isEmpty(this.f46659a) && TextUtils.isEmpty(this.f46660b)) {
-            return true;
+        if (list != null && !list.isEmpty()) {
+            return new b(bitmap, list);
         }
-        return false;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof b) {
-            b bVar = (b) obj;
-            if (TextUtils.equals(this.f46659a, bVar.f46659a) && TextUtils.equals(this.f46660b, bVar.f46660b)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        int i10;
-        int i11 = 0;
-        String str = this.f46659a;
-        if (str != null) {
-            i10 = str.hashCode();
-        } else {
-            i10 = 0;
-        }
-        String str2 = this.f46660b;
-        if (str2 != null) {
-            i11 = str2.hashCode();
-        }
-        return i11 ^ i10;
+        return new BitmapDrawable(bitmap);
     }
 }

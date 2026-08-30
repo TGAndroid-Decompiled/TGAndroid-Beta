@@ -5,127 +5,126 @@ import android.animation.TypeEvaluator;
 import android.content.res.TypedArray;
 import android.util.TypedValue;
 import android.view.InflateException;
-import h7.c8;
-import j7.l1;
+import j7.y7;
 public abstract class a {
-    public static final int[] f13328a = {16842755, 16843041, 16843093, 16843097, 16843551, 16843754, 16843771, 16843778, 16843779};
-    public static final int[] f13329b = {16842755, 16843189, 16843190, 16843556, 16843557, 16843558, 16843866, 16843867};
-    public static final int[] f13330c = {16842755, 16843780, 16843781, 16843782, 16843783, 16843784, 16843785, 16843786, 16843787, 16843788, 16843789, 16843979, 16843980, 16844062};
+    public static final int[] f9629a = {16842755, 16843041, 16843093, 16843097, 16843551, 16843754, 16843771, 16843778, 16843779};
+    public static final int[] f9630b = {16842755, 16843189, 16843190, 16843556, 16843557, 16843558, 16843866, 16843867};
+    public static final int[] f9631c = {16842755, 16843780, 16843781, 16843782, 16843783, 16843784, 16843785, 16843786, 16843787, 16843788, 16843789, 16843979, 16843980, 16844062};
     public static final int[] d = {16842755, 16843781, 16844062};
-    public static final int[] f13331e = {16843161};
-    public static final int[] f13332f = {16842755, 16843213};
-    public static final int[] f13333g = {16843073, 16843160, 16843198, 16843199, 16843200, 16843486, 16843487, 16843488};
+    public static final int[] e = {16843161};
+    public static final int[] f9632f = {16842755, 16843213};
+    public static final int[] f9633g = {16843073, 16843160, 16843198, 16843199, 16843200, 16843486, 16843487, 16843488};
     public static final int[] h = {16843490};
-    public static final int[] f13334i = {16843486, 16843487, 16843488, 16843489};
-    public static final int[] f13335j = {16842788, 16843073, 16843488, 16843992};
-    public static final int[] f13336k = {16843489, 16843781, 16843892, 16843893};
+    public static final int[] f9634i = {16843486, 16843487, 16843488, 16843489};
+    public static final int[] f9635j = {16842788, 16843073, 16843488, 16843992};
+    public static final int[] f9636k = {16843489, 16843781, 16843892, 16843893};
 
     public static android.animation.Animator a(android.content.Context r26, android.content.res.Resources r27, android.content.res.Resources.Theme r28, org.xmlpull.v1.XmlPullParser r29, android.util.AttributeSet r30, android.animation.AnimatorSet r31, int r32) {
         throw new UnsupportedOperationException("Method not decompiled: k2.a.a(android.content.Context, android.content.res.Resources, android.content.res.Resources$Theme, org.xmlpull.v1.XmlPullParser, android.util.AttributeSet, android.animation.AnimatorSet, int):android.animation.Animator");
     }
 
     public static PropertyValuesHolder b(TypedArray typedArray, int i10, int i11, int i12, String str) {
-        boolean z10;
+        boolean z4;
         int i13;
-        boolean z11;
+        boolean z10;
         int i14;
-        boolean z12;
+        boolean z11;
         f fVar;
         int i15;
         int i16;
         int i17;
-        float f9;
-        PropertyValuesHolder ofFloat;
         float f10;
+        PropertyValuesHolder ofFloat;
         float f11;
+        float f12;
         TypedValue peekValue = typedArray.peekValue(i11);
         if (peekValue != null) {
-            z10 = true;
+            z4 = true;
         } else {
-            z10 = false;
+            z4 = false;
         }
-        if (z10) {
+        if (z4) {
             i13 = peekValue.type;
         } else {
             i13 = 0;
         }
         TypedValue peekValue2 = typedArray.peekValue(i12);
         if (peekValue2 != null) {
-            z11 = true;
+            z10 = true;
         } else {
-            z11 = false;
+            z10 = false;
         }
-        if (z11) {
+        if (z10) {
             i14 = peekValue2.type;
         } else {
             i14 = 0;
         }
         if (i10 == 4) {
-            if ((z10 && c(i13)) || (z11 && c(i14))) {
+            if ((z4 && c(i13)) || (z10 && c(i14))) {
                 i10 = 3;
             } else {
                 i10 = 0;
             }
         }
         if (i10 == 0) {
-            z12 = true;
+            z11 = true;
         } else {
-            z12 = false;
+            z11 = false;
         }
         PropertyValuesHolder propertyValuesHolder = null;
         if (i10 == 2) {
             String string = typedArray.getString(i11);
             String string2 = typedArray.getString(i12);
-            i0.d[] c3 = c8.c(string);
-            i0.d[] c6 = c8.c(string2);
-            if (c3 != null || c6 != null) {
+            i0.d[] c3 = y7.c(string);
+            i0.d[] c10 = y7.c(string2);
+            if (c3 != null || c10 != null) {
                 if (c3 != null) {
                     ?? obj = new Object();
-                    if (c6 != null) {
-                        if (c8.a(c3, c6)) {
-                            return PropertyValuesHolder.ofObject(str, (TypeEvaluator) obj, c3, c6);
+                    if (c10 != null) {
+                        if (y7.a(c3, c10)) {
+                            return PropertyValuesHolder.ofObject(str, (TypeEvaluator) obj, c3, c10);
                         }
-                        throw new InflateException(l1.n(" Can't morph from ", string, " to ", string2));
+                        throw new InflateException(e2.c.k(" Can't morph from ", string, " to ", string2));
                     }
                     return PropertyValuesHolder.ofObject(str, (TypeEvaluator) obj, c3);
-                } else if (c6 != null) {
-                    return PropertyValuesHolder.ofObject(str, (TypeEvaluator) new Object(), c6);
+                } else if (c10 != null) {
+                    return PropertyValuesHolder.ofObject(str, (TypeEvaluator) new Object(), c10);
                 }
             }
             return null;
         }
         if (i10 == 3) {
-            fVar = f.f13344a;
+            fVar = f.f9644a;
         } else {
             fVar = null;
         }
-        if (z12) {
-            if (z10) {
+        if (z11) {
+            if (z4) {
                 if (i13 == 5) {
-                    f10 = typedArray.getDimension(i11, 0.0f);
+                    f11 = typedArray.getDimension(i11, 0.0f);
                 } else {
-                    f10 = typedArray.getFloat(i11, 0.0f);
+                    f11 = typedArray.getFloat(i11, 0.0f);
                 }
-                if (z11) {
+                if (z10) {
                     if (i14 == 5) {
-                        f11 = typedArray.getDimension(i12, 0.0f);
+                        f12 = typedArray.getDimension(i12, 0.0f);
                     } else {
-                        f11 = typedArray.getFloat(i12, 0.0f);
+                        f12 = typedArray.getFloat(i12, 0.0f);
                     }
-                    ofFloat = PropertyValuesHolder.ofFloat(str, f10, f11);
+                    ofFloat = PropertyValuesHolder.ofFloat(str, f11, f12);
                 } else {
-                    ofFloat = PropertyValuesHolder.ofFloat(str, f10);
+                    ofFloat = PropertyValuesHolder.ofFloat(str, f11);
                 }
             } else {
                 if (i14 == 5) {
-                    f9 = typedArray.getDimension(i12, 0.0f);
+                    f10 = typedArray.getDimension(i12, 0.0f);
                 } else {
-                    f9 = typedArray.getFloat(i12, 0.0f);
+                    f10 = typedArray.getFloat(i12, 0.0f);
                 }
-                ofFloat = PropertyValuesHolder.ofFloat(str, f9);
+                ofFloat = PropertyValuesHolder.ofFloat(str, f10);
             }
             propertyValuesHolder = ofFloat;
-        } else if (z10) {
+        } else if (z4) {
             if (i13 == 5) {
                 i16 = (int) typedArray.getDimension(i11, 0.0f);
             } else if (c(i13)) {
@@ -133,7 +132,7 @@ public abstract class a {
             } else {
                 i16 = typedArray.getInt(i11, 0);
             }
-            if (z11) {
+            if (z10) {
                 if (i14 == 5) {
                     i17 = (int) typedArray.getDimension(i12, 0.0f);
                 } else if (c(i14)) {
@@ -145,7 +144,7 @@ public abstract class a {
             } else {
                 propertyValuesHolder = PropertyValuesHolder.ofInt(str, i16);
             }
-        } else if (z11) {
+        } else if (z10) {
             if (i14 == 5) {
                 i15 = (int) typedArray.getDimension(i12, 0.0f);
             } else if (c(i14)) {

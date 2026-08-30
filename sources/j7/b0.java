@@ -1,19 +1,27 @@
 package j7;
-public final class b0 extends com.google.android.gms.internal.cast.j0 {
-    public final transient Object[] f10954e;
 
-    public b0(Object[] objArr) {
-        super(5);
-        this.f10954e = objArr;
+import android.os.CancellationSignal;
+import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
+public abstract class b0 {
+    public static void a(CancellationSignal cancellationSignal, dd.a onResultOrException) {
+        kotlin.jvm.internal.j.e(onResultOrException, "onResultOrException");
+        CredentialProviderPlayServicesImpl.Companion.getClass();
+        if (a1.g.a(cancellationSignal)) {
+            return;
+        }
+        onResultOrException.invoke();
     }
 
-    @Override
-    public final java.lang.Object get(java.lang.Object r4) {
-        throw new UnsupportedOperationException("Method not decompiled: j7.b0.get(java.lang.Object):java.lang.Object");
-    }
-
-    @Override
-    public final int size() {
-        return 1;
+    public static boolean b(int i10, dd.p pVar, dd.l lVar, CancellationSignal cancellationSignal) {
+        if (i10 != -1) {
+            ?? obj = new Object();
+            obj.f10990a = new w0.h(kh.a2.k(i10, "activity with result code: ", " indicating not RESULT_OK"), 2);
+            if (i10 == 0) {
+                obj.f10990a = new w0.g("activity is cancelled by the user.");
+            }
+            pVar.invoke(cancellationSignal, new b1.c(lVar, obj, 1));
+            return true;
+        }
+        return false;
     }
 }

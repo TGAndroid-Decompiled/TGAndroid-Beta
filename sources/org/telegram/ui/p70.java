@@ -1,57 +1,85 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class p70 implements TextWatcher {
-    public final q70 f41310a;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.style.ReplacementSpan;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+public final class p70 extends ReplacementSpan {
+    public final Paint f37200a;
+    public final ImageReceiver f37201b;
+    public final float f37202c;
+    public float d;
+    public final View e;
+    public boolean f37203f;
+    public float h;
+    public int f37204n;
 
-    public p70(q70 q70Var) {
-        this.f41310a = q70Var;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        s70 s70Var = this.f41310a.f41559f;
-        if (s70Var.d.d.length() != 0) {
-            s70Var.A = true;
-            s70Var.f42303y = true;
-            o70 o70Var = s70Var.f42300s;
-            if (!o70Var.h) {
-                o70Var.h = true;
-                o70Var.l();
+    public p70(View view, float f10, int i10) {
+        h5 h5Var = new h5(this, 2);
+        this.f37203f = true;
+        this.f37204n = 255;
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.f37201b = imageReceiver;
+        imageReceiver.setCurrentAccount(i10);
+        this.f37202c = f10;
+        Paint paint = new Paint(1);
+        this.f37200a = paint;
+        paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), 855638016);
+        View view2 = this.e;
+        if (view2 != view) {
+            if (view2 != null) {
+                view2.removeOnAttachStateChangeListener(h5Var);
+                if (this.e.isAttachedToWindow() && !view.isAttachedToWindow()) {
+                    imageReceiver.onDetachedFromWindow();
+                }
             }
-            s70Var.f42300s.E(s70Var.d.d.toString());
-            s70Var.h.setFastScrollVisible(false);
-            s70Var.h.setVerticalScrollBarEnabled(true);
-            s70Var.f42299r.e(true, true);
-            s70Var.f42299r.setStickerType(1);
-            s70Var.f42299r.d.setText(LocaleController.getString(R.string.NoResult));
-            s70Var.f42299r.f32122e.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-            return;
+            View view3 = this.e;
+            if ((view3 == null || !view3.isAttachedToWindow()) && view != null && view.isAttachedToWindow()) {
+                imageReceiver.onAttachedToWindow();
+            }
+            this.e = view;
+            imageReceiver.setParentView(view);
+            if (view != null) {
+                view.addOnAttachStateChangeListener(h5Var);
+            }
         }
-        s70Var.A = false;
-        s70Var.f42303y = false;
-        o70 o70Var2 = s70Var.f42300s;
-        if (o70Var2.h) {
-            o70Var2.h = false;
-            o70Var2.l();
-        }
-        s70Var.f42300s.E(null);
-        s70Var.h.setFastScrollVisible(true);
-        s70Var.h.setVerticalScrollBarEnabled(false);
-        s70Var.f42299r.e(false, true);
-        s70Var.f42299r.setStickerType(0);
-        s70Var.f42299r.d.setText(LocaleController.getString(R.string.NoContacts));
-        s70Var.f42299r.f32122e.setText("");
+    }
+
+    public final void a(float f10) {
+        float dp = AndroidUtilities.dp(f10);
+        this.d = dp;
+        this.f37201b.setRoundRadius((int) dp);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
+        boolean z4 = this.f37203f;
+        Paint paint2 = this.f37200a;
+        if (z4 && this.f37204n != paint.getAlpha()) {
+            int alpha = paint.getAlpha();
+            this.f37204n = alpha;
+            paint2.setAlpha(alpha);
+            paint2.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.j6.l1(this.f37204n / 255.0f, 855638016));
+        }
+        float f11 = this.h + f10;
+        float dp = (((i12 + i14) / 2.0f) + 0.0f) - (AndroidUtilities.dp(this.f37202c) / 2.0f);
+        if (this.f37203f) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(f11, dp, AndroidUtilities.dp(this.f37202c) + f11, AndroidUtilities.dp(this.f37202c) + dp);
+            float f12 = this.d;
+            canvas.drawRoundRect(rectF, f12, f12, paint2);
+        }
+        ImageReceiver imageReceiver = this.f37201b;
+        imageReceiver.setImageCoords(f11, dp, AndroidUtilities.dp(this.f37202c), AndroidUtilities.dp(this.f37202c));
+        imageReceiver.setAlpha(paint.getAlpha() / 255.0f);
+        imageReceiver.draw(canvas);
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return AndroidUtilities.dp(this.f37202c);
     }
 }

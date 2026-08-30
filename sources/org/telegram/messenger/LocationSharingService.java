@@ -46,10 +46,10 @@ public class LocationSharingService extends Service implements NotificationCente
 
     public void lambda$onCreate$1() {
         this.handler.postDelayed(this.runnable, 1000L);
-        Utilities.stageQueue.postRunnable(new w1(13));
+        Utilities.stageQueue.postRunnable(new x1(13));
     }
 
-    private void updateNotification(boolean z10) {
+    private void updateNotification(boolean z4) {
         String formatPluralString;
         String string;
         if (this.builder != null) {
@@ -77,8 +77,8 @@ public class LocationSharingService extends Service implements NotificationCente
             String format = String.format(string, LocaleController.getString(R.string.AttachLiveLocation), formatPluralString);
             this.builder.p(format);
             this.builder.f(format);
-            if (z10) {
-                new e0.n0(ApplicationLoader.applicationContext).d(6, this.builder.b());
+            if (z4) {
+                new e0.m0(ApplicationLoader.applicationContext).d(6, this.builder.b());
             }
         }
     }
@@ -87,7 +87,7 @@ public class LocationSharingService extends Service implements NotificationCente
     public void didReceivedNotification(int i10, int i11, Object... objArr) {
         Handler handler;
         if (i10 == NotificationCenter.liveLocationsChanged && (handler = this.handler) != null) {
-            handler.post(new v5(this, 1));
+            handler.post(new w5(this, 1));
         }
     }
 
@@ -101,9 +101,9 @@ public class LocationSharingService extends Service implements NotificationCente
         super.onCreate();
         Handler handler = new Handler();
         this.handler = handler;
-        v5 v5Var = new v5(this, 0);
-        this.runnable = v5Var;
-        handler.postDelayed(v5Var, 1000L);
+        w5 w5Var = new w5(this, 0);
+        this.runnable = w5Var;
+        handler.postDelayed(w5Var, 1000L);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class LocationSharingService extends Service implements NotificationCente
             handler.removeCallbacks(this.runnable);
         }
         stopForeground(true);
-        new e0.n0(ApplicationLoader.applicationContext).b(6);
+        new e0.m0(ApplicationLoader.applicationContext).b(6);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.liveLocationsChanged);
     }
 
@@ -134,10 +134,10 @@ public class LocationSharingService extends Service implements NotificationCente
                 tVar.E.when = System.currentTimeMillis();
                 e0.t tVar2 = this.builder;
                 tVar2.E.icon = R.drawable.live_loc;
-                tVar2.f5736g = activity;
+                tVar2.f5021g = activity;
                 NotificationsController.checkOtherNotificationsChannel();
                 e0.t tVar3 = this.builder;
-                tVar3.f5752y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+                tVar3.f5037y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
                 tVar3.g(LocaleController.getString(R.string.AppName));
                 this.builder.a(0, LocaleController.getString(R.string.StopLiveLocation), PendingIntent.getBroadcast(ApplicationLoader.applicationContext, 2, new Intent(ApplicationLoader.applicationContext, StopLiveLocationReceiver.class), 167772160));
             }

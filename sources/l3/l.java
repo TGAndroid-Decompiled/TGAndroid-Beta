@@ -1,40 +1,45 @@
 package l3;
 
-import jh.d3;
-public final class l implements Runnable {
-    public final int f14142a;
-    public final n f14143b;
-    public final m3.f f14144c;
+import java.util.Arrays;
+public final class l {
+    public static final l e = new l(-1, -1, -1);
+    public final int f11194a;
+    public final int f11195b;
+    public final int f11196c;
+    public final int d;
 
-    public l(n nVar, m3.f fVar, int i10) {
-        this.f14142a = i10;
-        this.f14143b = nVar;
-        this.f14144c = fVar;
+    public l(int i10, int i11, int i12) {
+        int i13;
+        this.f11194a = i10;
+        this.f11195b = i11;
+        this.f11196c = i12;
+        if (h5.d0.D(i12)) {
+            i13 = h5.d0.x(i12, i11);
+        } else {
+            i13 = -1;
+        }
+        this.d = i13;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f14142a) {
-            case 0:
-                n nVar = this.f14143b;
-                m3.f fVar = this.f14144c;
-                o oVar = nVar.f14151b;
-                int i10 = f5.d0.f6579a;
-                k3.f fVar2 = ((j3.h0) oVar).f10477a.f10594r;
-                k3.a k9 = fVar2.k();
-                fVar2.l(k9, 1007, new k3.d(k9, fVar, 2));
-                return;
-            default:
-                n nVar2 = this.f14143b;
-                m3.f fVar3 = this.f14144c;
-                synchronized (fVar3) {
-                }
-                o oVar2 = nVar2.f14151b;
-                int i11 = f5.d0.f6579a;
-                k3.f fVar4 = ((j3.h0) oVar2).f10477a.f10594r;
-                k3.a i12 = fVar4.i((l4.c0) fVar4.d.f2121e);
-                fVar4.l(i12, 1013, new d3(i12, fVar3, 20));
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof l)) {
+            return false;
+        }
+        l lVar = (l) obj;
+        if (this.f11194a == lVar.f11194a && this.f11195b == lVar.f11195b && this.f11196c == lVar.f11196c) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f11194a), Integer.valueOf(this.f11195b), Integer.valueOf(this.f11196c)});
+    }
+
+    public final String toString() {
+        return "AudioFormat[sampleRate=" + this.f11194a + ", channelCount=" + this.f11195b + ", encoding=" + this.f11196c + ']';
     }
 }

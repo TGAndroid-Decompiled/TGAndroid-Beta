@@ -1,25 +1,59 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
 import android.view.View;
-import org.telegram.messenger.MessagesController;
-public final class dv extends a51 {
-    public final ev f27879e;
+import android.view.animation.OvershootInterpolator;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class dv extends View {
+    public ImageReceiver.BackgroundThreadDrawHolder[] f24377a;
+    public nh.y2 f24378b;
+    public u5 f24379c;
+    public ValueAnimator d;
+    public float e;
 
-    public dv(ev evVar, String str) {
-        super(str, (h01) null);
-        this.f27879e = evVar;
+    public TLRPC.Document getDocument() {
+        u5 u5Var = this.f24379c;
+        if (u5Var != null) {
+            TLRPC.Document document = u5Var.document;
+            if (document == null) {
+                return l5.f(UserConfig.selectedAccount, u5Var.getDocumentId());
+            }
+            return document;
+        }
+        return null;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        ev evVar = this.f27879e;
-        i10 = ((org.telegram.ui.ActionBar.f3) evVar.f28192x).currentAccount;
-        MessagesController messagesController = MessagesController.getInstance(i10);
-        String url = getURL();
-        jv jvVar = evVar.f28192x;
-        messagesController.openByUserName(url, jvVar.f29824c, 1);
-        jvVar.Y();
-        jvVar.dismiss();
+    public final void onMeasure(int i10, int i11) {
+        setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
+    }
+
+    @Override
+    public void setPressed(boolean z4) {
+        ValueAnimator valueAnimator;
+        if (isPressed() != z4) {
+            super.setPressed(z4);
+            invalidate();
+            if (z4 && (valueAnimator = this.d) != null) {
+                valueAnimator.removeAllListeners();
+                this.d.cancel();
+            }
+            if (!z4) {
+                float f10 = this.e;
+                if (f10 != 0.0f) {
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
+                    this.d = ofFloat;
+                    ofFloat.addUpdateListener(new f6(this, 17));
+                    this.d.addListener(new a9(this, 17));
+                    this.d.setInterpolator(new OvershootInterpolator(5.0f));
+                    this.d.setDuration(350L);
+                    this.d.start();
+                }
+            }
+        }
     }
 }

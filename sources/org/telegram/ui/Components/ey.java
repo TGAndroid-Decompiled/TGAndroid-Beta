@@ -1,198 +1,192 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class ey extends il0 {
-    public boolean A;
-    public final fz B;
-    public final yx f28195c;
-    public long d;
-    public TLRPC.StickerSet f28196e;
-    public ArrayList f28197f;
-    public final ArrayList h = new ArrayList();
-    public final ArrayList f28198n = new ArrayList();
-    public final ArrayList f28199r = new ArrayList();
-    public final ArrayList f28200s = new ArrayList();
-    public String v;
-    public String f28201w;
-    public dy f28202x;
-    public boolean f28203y;
+import org.telegram.ui.LaunchActivity;
+public final class ey implements Runnable {
+    public final int f24698a;
+    public final int f24699b;
+    public final Object f24700c;
+    public final Object d;
 
-    public ey(fz fzVar, Context context) {
-        this.B = fzVar;
-        ?? aVar = new yg.a(context, fzVar.Y0, new d(this, 11), new cv(this, 1), fzVar.V1);
-        this.f28195c = aVar;
-        aVar.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f));
-        aVar.setClipToPadding(false);
-        aVar.U2.f29939r = false;
-        aVar.setNestedScrollingEnabled(false);
-        aVar.setDrawSelection(false);
-        aVar.setOnTouchListener(new m.d2(this, 1));
+    public ey(int i10, Object obj, Object obj2, int i11) {
+        this.f24698a = i11;
+        this.f24699b = i10;
+        this.f24700c = obj;
+        this.d = obj2;
     }
 
-    public static void E(ey eyVar, Runnable runnable, ArrayList arrayList, boolean z10) {
-        String str;
-        fz fzVar = eyVar.B;
-        String[] strArr = fzVar.S0;
-        if (strArr != null && strArr.length != 0) {
-            str = strArr[0];
-        } else {
-            str = "";
+    private final void a() {
+        int i10;
+        o11 o11Var = (o11) this.f24700c;
+        String str = (String) this.d;
+        int i11 = this.f24699b;
+        n11 n11Var = o11Var.f27430r.f23206n;
+        try {
+            String lowerCase = str.trim().toLowerCase();
+            if (lowerCase.length() == 0) {
+                o11Var.d = -1;
+                AndroidUtilities.runOnUIThread(new cg.v1((Object) o11Var, o11Var.d, new ArrayList(), (Serializable) new ArrayList(), 28));
+                return;
+            }
+            String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
+            translitString = (lowerCase.equals(translitString) || translitString.length() == 0) ? null : null;
+            if (translitString != null) {
+                i10 = 1;
+            } else {
+                i10 = 0;
+            }
+            int i12 = i10 + 1;
+            String[] strArr = new String[i12];
+            strArr[0] = lowerCase;
+            if (translitString != null) {
+                strArr[1] = translitString;
+            }
+            ArrayList arrayList = new ArrayList();
+            ArrayList arrayList2 = new ArrayList();
+            int size = n11Var.d.size();
+            for (int i13 = 0; i13 < size; i13++) {
+                ArrayList arrayList3 = (ArrayList) n11Var.d.get(i13);
+                String i14 = org.telegram.ui.ActionBar.h5.i(((org.telegram.ui.ActionBar.l6) arrayList3.get(0)).f20434f);
+                String lowerCase2 = i14.toLowerCase();
+                int i15 = 0;
+                while (true) {
+                    if (i15 < i12) {
+                        String str2 = strArr[i15];
+                        if (lowerCase2.contains(str2)) {
+                            arrayList.add(arrayList3);
+                            arrayList2.add(o11.E(i14, str2));
+                            break;
+                        }
+                        i15++;
+                    }
+                }
+            }
+            AndroidUtilities.runOnUIThread(new cg.v1((Object) o11Var, i11, arrayList, (Serializable) arrayList2, 28));
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        String str2 = str;
-        String str3 = eyVar.v;
-        if (str3 == null) {
+    }
+
+    private final void b() {
+        org.telegram.ui.my myVar = (org.telegram.ui.my) this.f24700c;
+        TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
+        org.telegram.ui.ny nyVar = myVar.f36411g;
+        org.telegram.ui.oy oyVar = myVar.h;
+        oyVar.P1 = true;
+        oyVar.getMessagesController().addDialogToFolder(dialog.f19188id, 0, this.f24699b, 0L);
+        oyVar.P1 = false;
+        ArrayList<TLRPC.Dialog> dialogs = oyVar.getMessagesController().getDialogs(0);
+        int indexOf = dialogs.indexOf(dialog);
+        if (indexOf >= 0) {
+            ArrayList<TLRPC.Dialog> dialogs2 = oyVar.getMessagesController().getDialogs(1);
+            if (!dialogs2.isEmpty() || indexOf != 1) {
+                oyVar.A4(true, true);
+                nyVar.f36749x.D();
+                nyVar.q(true);
+                oyVar.o3();
+            }
+            if (dialogs2.isEmpty()) {
+                dialogs.remove(0);
+                if (indexOf == 1) {
+                    oyVar.A4(true, true);
+                    nyVar.q(true);
+                    oyVar.o3();
+                    return;
+                }
+                if (!oyVar.O1.isEmpty()) {
+                    oyVar.O1.remove(0);
+                }
+                nyVar.f36749x.D();
+                nyVar.q(true);
+                return;
+            }
             return;
         }
-        MediaDataController.getInstance(fzVar.Y0).searchStickers(true, str2, str3, new eg.d1((Object) eyVar, str3, (Object) arrayList, (Object) runnable, 10), z10);
+        nyVar.q(false);
     }
 
-    @Override
-    public final boolean D(f2.n1 n1Var) {
-        int i10 = n1Var.f6436f;
-        if (i10 != 0 && i10 != 4) {
-            return false;
+    private final void c() {
+        org.telegram.ui.c60 c60Var = (org.telegram.ui.c60) this.f24700c;
+        org.telegram.ui.ActionBar.d2[] d2VarArr = (org.telegram.ui.ActionBar.d2[]) this.d;
+        org.telegram.ui.ActionBar.d2 d2Var = d2VarArr[0];
+        if (d2Var == null) {
+            return;
         }
-        return true;
+        d2Var.setOnCancelListener(new lh.w(c60Var, this.f24699b, 6));
+        d2VarArr[0].show();
     }
 
-    public final void F(String str, boolean z10) {
-        fz fzVar = this.B;
-        dx dxVar = fzVar.L;
-        long j10 = 0;
-        if (TextUtils.isEmpty(str)) {
-            this.v = null;
-            f2.p0 adapter = dxVar.getAdapter();
-            nx nxVar = fzVar.N;
-            if (adapter != nxVar) {
-                dxVar.setAdapter(nxVar);
-                this.f28203y = false;
+    private final void e() {
+        LaunchActivity launchActivity = (LaunchActivity) this.f24700c;
+        TLRPC.TL_help_appUpdate tL_help_appUpdate = (TLRPC.TL_help_appUpdate) this.d;
+        Pattern pattern = LaunchActivity.f31612y1;
+        TLRPC.TL_help_appUpdate tL_help_appUpdate2 = SharedConfig.pendingAppUpdate;
+        if ((tL_help_appUpdate2 == null || !tL_help_appUpdate2.version.equals(tL_help_appUpdate.version)) && SharedConfig.setNewAppVersionAvailable(tL_help_appUpdate)) {
+            boolean z4 = tL_help_appUpdate.can_not_skip;
+            int i10 = this.f24699b;
+            if (z4) {
+                launchActivity.I0(i10, tL_help_appUpdate, false);
+            } else if (ApplicationLoader.isStandaloneBuild() || BuildVars.DEBUG_VERSION) {
+                ApplicationLoader.applicationLoaderInstance.showUpdateAppPopup(launchActivity, tL_help_appUpdate, i10);
             }
-            this.d = 0L;
-            fzVar.f28577b.a(false, true);
-            l();
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
+        }
+    }
+
+    private final void f() {
+        boolean z4;
+        org.telegram.ui.ii iiVar = (org.telegram.ui.ii) this.f24700c;
+        TLObject tLObject = (TLObject) this.d;
+        if (tLObject instanceof TLRPC.User) {
+            iiVar.f38052a = (TLRPC.User) tLObject;
+            MessagesController.getInstance(this.f24699b).putUser(iiVar.f38052a, false);
+        }
+        t00 t00Var = iiVar.f38054c;
+        e90 e90Var = iiVar.f38053b;
+        if (iiVar.f38052a != null) {
+            z4 = true;
         } else {
-            this.v = str.toLowerCase();
+            z4 = false;
         }
-        dy dyVar = this.f28202x;
-        if (dyVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(dyVar);
+        iiVar.setEnabled(z4);
+        TLRPC.User user = iiVar.f38052a;
+        if (user != null) {
+            e90Var.setText(AndroidUtilities.premiumText(LocaleController.formatString(R.string.MessageAuthorSentBy, UserObject.getUserName(user)), new gg.y1(iiVar, user.f19331id, 23)));
         }
-        if (!TextUtils.isEmpty(this.v)) {
-            this.f28198n.clear();
-            this.A = false;
-            fzVar.R.e(true);
-            dy dyVar2 = new dy(this);
-            this.f28202x = dyVar2;
-            if (z10) {
-                j10 = 300;
-            }
-            AndroidUtilities.runOnUIThread(dyVar2, j10);
-        }
+        e90Var.animate().alpha(1.0f).setDuration(220L).start();
+        t00Var.animate().alpha(0.0f).setDuration(220L).setListener(new l00(t00Var)).start();
     }
 
     @Override
-    public final int h() {
-        if (this.d != 0) {
-            return this.f28197f.size() + 4;
-        }
-        ArrayList arrayList = this.h;
-        boolean isEmpty = arrayList.isEmpty();
-        ArrayList arrayList2 = this.f28200s;
-        ArrayList arrayList3 = this.f28199r;
-        if (isEmpty && arrayList3.isEmpty() && arrayList2.isEmpty() && !this.f28203y) {
-            return this.B.getRecentEmoji().size() + 1;
-        }
-        int i10 = 2;
-        if (arrayList.isEmpty() && arrayList3.isEmpty() && arrayList2.isEmpty()) {
-            return 2;
-        }
-        if (!arrayList2.isEmpty()) {
-            i10 = 3;
-        } else if (arrayList.isEmpty()) {
-            i10 = 1;
-        }
-        int size = arrayList.size() + i10;
-        if (!arrayList3.isEmpty()) {
-            return arrayList3.size() + size + 1;
-        }
-        return size;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ey.run():void");
     }
 
-    @Override
-    public final int j(int r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ey.j(int):int");
+    public ey(Object obj, int i10, Object obj2, int i11) {
+        this.f24698a = i11;
+        this.f24700c = obj;
+        this.f24699b = i10;
+        this.d = obj2;
     }
 
-    @Override
-    public final void l() {
-        this.f28195c.U2.N(false);
-        super.l();
-    }
-
-    @Override
-    public final void v(f2.n1 r11, int r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ey.v(f2.n1, int):void");
-    }
-
-    @Override
-    public final f2.n1 x(ViewGroup viewGroup, int i10) {
-        bg.x2 x2Var;
-        fz fzVar = this.B;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 3) {
-                    if (i10 != 4) {
-                        if (i10 != 5) {
-                            bg.x2 x2Var2 = new bg.x2(this, fzVar.getContext(), 21);
-                            TextView textView = new TextView(fzVar.getContext());
-                            textView.setText(LocaleController.getString(R.string.NoEmojiFound));
-                            textView.setTextSize(1, 16.0f);
-                            int i11 = org.telegram.ui.ActionBar.g6.Le;
-                            textView.setTextColor(fzVar.A(i11));
-                            x2Var2.addView(textView, i7.f6.d(-2, -2.0f, 49, 0.0f, 10.0f, 0.0f, 0.0f));
-                            ImageView imageView = new ImageView(fzVar.getContext());
-                            imageView.setScaleType(ImageView.ScaleType.CENTER);
-                            imageView.setImageResource(R.drawable.msg_emoji_question);
-                            imageView.setColorFilter(new PorterDuffColorFilter(fzVar.A(i11), PorterDuff.Mode.MULTIPLY));
-                            x2Var2.addView(imageView, i7.f6.e(48, 48, 85));
-                            imageView.setOnClickListener(new ay(this));
-                            x2Var2.setLayoutParams(new f2.x0(-1, -2));
-                            x2Var = x2Var2;
-                        } else {
-                            View view = new View(fzVar.getContext());
-                            view.setLayoutParams(new f2.x0(-1, AndroidUtilities.dp(68.0f)));
-                            x2Var = view;
-                        }
-                    } else {
-                        ViewGroup.LayoutParams x0Var = new f2.x0(-1, AndroidUtilities.dp(79.0f));
-                        View view2 = this.f28195c;
-                        view2.setLayoutParams(x0Var);
-                        x2Var = view2;
-                    }
-                } else {
-                    x2Var = new org.telegram.ui.Cells.k8(fzVar.getContext(), true, false, fzVar.V1, fzVar.f28591e2);
-                }
-            } else {
-                View view3 = new View(fzVar.getContext());
-                view3.setLayoutParams(new f2.x0(-1, fzVar.X0));
-                x2Var = view3;
-            }
-        } else {
-            x2Var = new ny(fzVar.getContext());
-        }
-        return new f2.n1(x2Var);
+    public ey(Object obj, Object obj2, int i10, int i11) {
+        this.f24698a = i11;
+        this.f24700c = obj;
+        this.d = obj2;
+        this.f24699b = i10;
     }
 }

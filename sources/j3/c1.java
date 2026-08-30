@@ -1,80 +1,75 @@
 package j3;
 
-import android.net.Uri;
-import h7.n8;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-public final class c1 {
-    public final Uri f10401a;
-    public final String f10402b;
-    public final List f10403c;
-    public final String d;
-    public final q8.z f10404e;
-    public final Object f10405f;
+public final class c1 implements g {
+    public static final c1 h;
+    public static final String f8442n;
+    public static final String f8443r;
+    public static final String f8444s;
+    public static final String v;
+    public static final String f8445w;
+    public static final String f8446x;
+    public static final f0.d f8447y;
+    public final String f8448a;
+    public final y0 f8449b;
+    public final x0 f8450c;
+    public final e1 d;
+    public final u0 e;
+    public final z0 f8451f;
 
-    public c1(Uri uri, String str, n8 n8Var, List list, String str2, q8.z zVar, Object obj) {
-        this.f10401a = uri;
-        this.f10402b = str;
-        this.f10403c = list;
-        this.d = str2;
-        this.f10404e = zVar;
-        q8.x xVar = q8.z.f46511b;
-        q8.l.a(4, "initialCapacity");
-        Object[] objArr = new Object[4];
-        int i10 = 0;
-        int i11 = 0;
-        while (i10 < zVar.size()) {
-            ((e1) zVar.get(i10)).getClass();
-            Object obj2 = new Object();
-            int i12 = i11 + 1;
-            if (objArr.length < i12) {
-                objArr = Arrays.copyOf(objArr, q8.w.d(objArr.length, i12));
-            }
-            objArr[i11] = obj2;
-            i10++;
-            i11 = i12;
-        }
-        q8.z.s(i11, objArr);
-        this.f10405f = obj;
+    static {
+        s0 s0Var = new s0();
+        s8.t tVar = s8.v.f44157b;
+        s8.i0 i0Var = s8.i0.e;
+        List list = Collections.EMPTY_LIST;
+        s8.i0 i0Var2 = s8.i0.e;
+        h = new c1("", new t0(s0Var), null, new x0(-9223372036854775807L, -9223372036854775807L, -9223372036854775807L, -3.4028235E38f, -3.4028235E38f), e1.V, z0.f8896c);
+        int i10 = h5.d0.f6937a;
+        f8442n = Integer.toString(0, 36);
+        f8443r = Integer.toString(1, 36);
+        f8444s = Integer.toString(2, 36);
+        v = Integer.toString(3, 36);
+        f8445w = Integer.toString(4, 36);
+        f8446x = Integer.toString(5, 36);
+        f8447y = new f0.d(29);
+    }
+
+    public c1(String str, u0 u0Var, y0 y0Var, x0 x0Var, e1 e1Var, z0 z0Var) {
+        this.f8448a = str;
+        this.f8449b = y0Var;
+        this.f8450c = x0Var;
+        this.d = e1Var;
+        this.e = u0Var;
+        this.f8451f = z0Var;
     }
 
     public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof c1)) {
+        if (this != obj) {
+            if (obj instanceof c1) {
+                c1 c1Var = (c1) obj;
+                if (h5.d0.a(this.f8448a, c1Var.f8448a) && this.e.equals(c1Var.e) && h5.d0.a(this.f8449b, c1Var.f8449b) && h5.d0.a(this.f8450c, c1Var.f8450c) && h5.d0.a(this.d, c1Var.d) && h5.d0.a(this.f8451f, c1Var.f8451f)) {
+                    return true;
+                }
+                return false;
+            }
             return false;
         }
-        c1 c1Var = (c1) obj;
-        if (this.f10401a.equals(c1Var.f10401a) && f5.d0.a(this.f10402b, c1Var.f10402b) && f5.d0.a(null, null) && this.f10403c.equals(c1Var.f10403c) && f5.d0.a(this.d, c1Var.d) && this.f10404e.equals(c1Var.f10404e) && f5.d0.a(this.f10405f, c1Var.f10405f)) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     public final int hashCode() {
-        int hashCode;
-        int hashCode2;
-        int hashCode3 = this.f10401a.hashCode() * 31;
-        int i10 = 0;
-        String str = this.f10402b;
-        if (str == null) {
-            hashCode = 0;
+        int i10;
+        int hashCode = this.f8448a.hashCode() * 31;
+        y0 y0Var = this.f8449b;
+        if (y0Var != null) {
+            i10 = y0Var.hashCode();
         } else {
-            hashCode = str.hashCode();
+            i10 = 0;
         }
-        int hashCode4 = (this.f10403c.hashCode() + ((hashCode3 + hashCode) * 29791)) * 31;
-        String str2 = this.d;
-        if (str2 == null) {
-            hashCode2 = 0;
-        } else {
-            hashCode2 = str2.hashCode();
-        }
-        int hashCode5 = (this.f10404e.hashCode() + ((hashCode4 + hashCode2) * 31)) * 31;
-        Object obj = this.f10405f;
-        if (obj != null) {
-            i10 = obj.hashCode();
-        }
-        return hashCode5 + i10;
+        int hashCode2 = this.f8450c.hashCode();
+        int hashCode3 = this.e.hashCode();
+        int hashCode4 = this.d.hashCode();
+        return this.f8451f.hashCode() + ((hashCode4 + ((hashCode3 + ((hashCode2 + ((hashCode + i10) * 31)) * 31)) * 31)) * 31);
     }
 }

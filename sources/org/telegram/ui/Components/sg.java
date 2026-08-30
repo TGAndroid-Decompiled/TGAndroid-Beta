@@ -1,46 +1,163 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.R;
-public final class sg {
-    public static final sg d;
-    public static final sg f32635e;
-    public static final sg[] f32636f;
-    public final rg f32637a;
-    public final rg f32638b;
-    public final int f32639c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class sg extends b6 {
+    public pg.b f28707s;
+    public final Path v;
+    public final RectF f28708w;
+    public FragmentContextView f28709x;
 
-    static {
-        int i10 = R.raw.voice_and_video;
-        rg rgVar = rg.f32293a;
-        rg rgVar2 = rg.f32294b;
-        sg sgVar = new sg("VOICE_TO_VIDEO", 0, rgVar, rgVar2, i10);
-        d = sgVar;
-        int i11 = R.raw.sticker_to_keyboard;
-        rg rgVar3 = rg.f32295c;
-        rg rgVar4 = rg.d;
-        sg sgVar2 = new sg("STICKER_TO_KEYBOARD", 1, rgVar3, rgVar4, i11);
-        int i12 = R.raw.smile_to_keyboard;
-        rg rgVar5 = rg.f32296e;
-        sg sgVar3 = new sg("SMILE_TO_KEYBOARD", 2, rgVar5, rgVar4, i12);
-        sg sgVar4 = new sg("VIDEO_TO_VOICE", 3, rgVar2, rgVar, i10);
-        f32635e = sgVar4;
-        sg sgVar5 = new sg("KEYBOARD_TO_STICKER", 4, rgVar4, rgVar3, R.raw.keyboard_to_sticker);
-        int i13 = R.raw.keyboard_to_gif;
-        rg rgVar6 = rg.f32297f;
-        f32636f = new sg[]{sgVar, sgVar2, sgVar3, sgVar4, sgVar5, new sg("KEYBOARD_TO_GIF", 5, rgVar4, rgVar6, i13), new sg("KEYBOARD_TO_SMILE", 6, rgVar4, rgVar5, R.raw.keyboard_to_smile), new sg("GIF_TO_KEYBOARD", 7, rgVar6, rgVar4, R.raw.gif_to_keyboard), new sg("GIF_TO_SMILE", 8, rgVar6, rgVar5, R.raw.gif_to_smile), new sg("SMILE_TO_GIF", 9, rgVar5, rgVar6, R.raw.smile_to_gif), new sg("SMILE_TO_STICKER", 10, rgVar5, rgVar3, R.raw.smile_to_sticker), new sg("STICKER_TO_SMILE", 11, rgVar3, rgVar5, R.raw.sticker_to_smile)};
+    public sg(Context context) {
+        super(context);
+        this.v = new Path();
+        this.f28708w = new RectF();
+        setOrientation(1);
+        pg.b bVar = this.f28707s;
+        if (bVar != null) {
+            bVar.u();
+        }
+        Color.alpha(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19906d6, false));
+        invalidate();
     }
 
-    public sg(String str, int i10, rg rgVar, rg rgVar2, int i11) {
-        this.f32637a = rgVar;
-        this.f32638b = rgVar2;
-        this.f32639c = i11;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        boolean z4;
+        FragmentContextView fragmentContextView;
+        int currentStyle;
+        FragmentContextView fragmentContextView2;
+        Canvas canvas2 = canvas;
+        if (getMetadata().f46905c.f46913a == 0.0f) {
+            return;
+        }
+        pg.b bVar = this.f28707s;
+        if (bVar != null) {
+            bVar.draw(canvas2);
+        }
+        FragmentContextView fragmentContextView3 = this.f28709x;
+        xd.h hVar = this.f23573c;
+        if (fragmentContextView3 != null && ((currentStyle = fragmentContextView3.getCurrentStyle()) == 3 || currentStyle == 1)) {
+            int entriesCount = getEntriesCount();
+            boolean z10 = false;
+            for (int i10 = 0; i10 < entriesCount; i10++) {
+                xd.e n10 = hVar.n(i10);
+                float paddingTop = getPaddingTop() + n10.b().top;
+                View view = ((a6) n10.f46899a).f23299a;
+                float c3 = n10.c();
+                if (c3 > 0.0f && ((fragmentContextView2 = this.f28709x) == view || fragmentContextView2.getParent() == view)) {
+                    zc capsuleBlobDrawable = this.f28709x.getCapsuleBlobDrawable();
+                    int dp = AndroidUtilities.dp(1.0f) + ((int) capsuleBlobDrawable.c());
+                    int i11 = -dp;
+                    capsuleBlobDrawable.setBounds(getPaddingLeft() - dp, i11, (getMeasuredWidth() - getPaddingRight()) + dp, (dp * 2) + AndroidUtilities.dp(36.0f) + i11);
+                    capsuleBlobDrawable.setAlpha((int) (c3 * 255.0f));
+                    canvas2.save();
+                    canvas2.translate(0.0f, paddingTop);
+                    capsuleBlobDrawable.draw(canvas2);
+                    canvas2.restore();
+                    z10 = true;
+                }
+            }
+            z4 = z10;
+        } else {
+            z4 = false;
+        }
+        canvas2.save();
+        canvas2.clipPath(this.v);
+        int entriesCount2 = getEntriesCount();
+        int i12 = 0;
+        while (i12 < entriesCount2) {
+            xd.e n11 = hVar.n(i12);
+            float paddingTop2 = getPaddingTop() + n11.b().top;
+            View view2 = ((a6) n11.f46899a).f23299a;
+            float min = Math.min(1.0f, n11.f46901c.f46913a) * n11.c();
+            if (min > 0.0f && (!z4 || (fragmentContextView = this.f28709x) == null || (fragmentContextView != view2 && fragmentContextView.getParent() != view2))) {
+                int alpha = org.telegram.ui.ActionBar.j6.f20025k0.getAlpha();
+                org.telegram.ui.ActionBar.j6.f20025k0.setAlpha((int) (alpha * min));
+                float f10 = 1.0f - min;
+                canvas2.drawLine(getPaddingLeft() + (AndroidUtilities.dp(16.0f) * f10), paddingTop2, getWidth() - ((AndroidUtilities.dp(16.0f) * f10) + getPaddingRight()), paddingTop2, org.telegram.ui.ActionBar.j6.f20025k0);
+                org.telegram.ui.ActionBar.j6.f20025k0.setAlpha(alpha);
+            }
+            i12++;
+            canvas2 = canvas;
+        }
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
-    public static sg valueOf(String str) {
-        return (sg) Enum.valueOf(sg.class, str);
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        pg.b bVar;
+        if (!super.dispatchTouchEvent(motionEvent)) {
+            if (motionEvent.getAction() != 0 || (bVar = this.f28707s) == null || !bVar.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                return false;
+            }
+            return true;
+        }
+        return true;
     }
 
-    public static sg[] values() {
-        return (sg[]) f32636f.clone();
+    @Override
+    public final void e() {
+        j();
+        invalidate();
+    }
+
+    public final void j() {
+        float f10 = getMetadata().f46907g.f46913a;
+        float f11 = getMetadata().f46905c.f46913a;
+        RectF rectF = this.f28708w;
+        rectF.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getPaddingTop() + f10);
+        float min = Math.min(AndroidUtilities.dp(18.0f), Math.min(rectF.width(), rectF.height()) / 2.0f);
+        Path path = this.v;
+        path.rewind();
+        path.addRoundRect(rectF, min, min, Path.Direction.CW);
+        pg.b bVar = this.f28707s;
+        if (bVar != null) {
+            bVar.setAlpha((int) (f11 * 255.0f));
+            this.f28707s.setBounds(getPaddingLeft() - AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f) + (getMeasuredWidth() - getPaddingRight()), getPaddingBottom() + getPaddingTop() + ((int) f10));
+            this.f28707s.p(Math.min(AndroidUtilities.dp(18.0f), f10 / 2.0f));
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        super.onLayout(z4, i10, i11, i12, i13);
+        j();
+    }
+
+    public void setBlurredBackground(pg.b bVar) {
+        this.f28707s = bVar;
+    }
+
+    public void setCallFragmentContextView(FragmentContextView fragmentContextView) {
+        this.f28709x = fragmentContextView;
+        fragmentContextView.getCapsuleBlobDrawable().setCallback(this);
+    }
+
+    @Override
+    public final void setPadding(int i10, int i11, int i12, int i13) {
+        super.setPadding(i10, i11, i12, i13);
+        j();
+        invalidate();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (!super.verifyDrawable(drawable)) {
+            FragmentContextView fragmentContextView = this.f28709x;
+            if (fragmentContextView == null || fragmentContextView.getCapsuleBlobDrawable() != drawable) {
+                return false;
+            }
+            return true;
+        }
+        return true;
     }
 }

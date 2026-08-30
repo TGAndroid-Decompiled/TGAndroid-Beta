@@ -1,98 +1,124 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.util.SparseIntArray;
-import java.util.ArrayList;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class a51 extends f51 {
-    public final int f36435b3;
-    public final d61 c3;
+public final class a51 extends FrameLayout {
+    public final int f32461a;
 
-    public a51(d61 d61Var, Context context, int i10) {
-        super(d61Var, context);
-        this.c3 = d61Var;
-        this.f36435b3 = i10;
+    public a51(Context context, int i10) {
+        super(context);
+        this.f32461a = i10;
     }
 
     @Override
-    public final void j0(int i10) {
-        int i11;
-        d61 d61Var = this.c3;
-        u41 u41Var = d61Var.f37321b0;
-        if (i10 == 0) {
-            d61Var.f37360s1 = false;
-            if (d61Var.f37317a != -1 && u41Var.getVisibility() == 0 && u41Var.getTranslationY() > (-AndroidUtilities.dp(51.0f))) {
-                if (u41Var.getTranslationY() > (-AndroidUtilities.dp(16.0f))) {
-                    i11 = 0;
-                } else {
-                    i11 = 1;
-                }
-                d61.a(d61Var, i11, 0);
-            }
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f32461a) {
+            case 6:
+                org.telegram.ui.ActionBar.j6.f19993i3.setBounds(0, 0, getMeasuredWidth(), org.telegram.ui.ActionBar.j6.f19993i3.getIntrinsicHeight());
+                org.telegram.ui.ActionBar.j6.f19993i3.draw(canvas);
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
     }
 
     @Override
-    public final void k0(int i10, int i11) {
-        int i12;
-        org.telegram.ui.Components.rx rxVar;
-        int i13;
-        int i14;
-        d61 d61Var = this.c3;
-        d61Var.h();
-        boolean z10 = false;
-        if (!d61Var.f37360s1) {
-            int I0 = d61Var.f37347n0.I0();
-            ArrayList arrayList = d61Var.f37376z0;
-            SparseIntArray sparseIntArray = d61Var.f37359s0;
-            if (I0 != -1) {
-                int i15 = 40;
-                if (arrayList.size() <= 40 || d61Var.f37374y0) {
-                    i15 = arrayList.size() + (d61Var.J0 ? 1 : 0);
-                }
-                if (I0 > i15 && I0 > d61Var.E0.size()) {
-                    int i16 = 0;
-                    while (true) {
-                        if (i16 >= sparseIntArray.size()) {
-                            break;
-                        }
-                        int keyAt = sparseIntArray.keyAt(i16);
-                        int valueAt = sparseIntArray.valueAt(i16);
-                        if (valueAt >= 0) {
-                            rxVar = (org.telegram.ui.Components.rx) d61Var.I0.get(valueAt);
-                        } else {
-                            rxVar = null;
-                        }
-                        if (rxVar != null) {
-                            boolean z11 = rxVar.h;
-                            int size = rxVar.f32403c.size();
-                            if (!z11) {
-                                size = Math.min(24, size);
-                            }
-                            if (I0 > keyAt && I0 <= keyAt + 1 + size) {
-                                org.telegram.ui.Components.tv tvVar = d61Var.W;
-                                if (tvVar.f33048y != null) {
-                                    i13 = 1;
-                                } else {
-                                    i13 = 0;
-                                }
-                                if (tvVar.A != null && tvVar.U) {
-                                    i14 = 1;
-                                } else {
-                                    i14 = 0;
-                                }
-                                tvVar.j(i14 + i13 + valueAt, true);
-                            }
-                        }
-                        i16++;
+    public void onDraw(Canvas canvas) {
+        switch (this.f32461a) {
+            case 5:
+                super.onDraw(canvas);
+                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, org.telegram.ui.ActionBar.j6.f20025k0);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        switch (this.f32461a) {
+            case 2:
+                int childCount = getChildCount();
+                int i14 = 0;
+                int i15 = 0;
+                for (int i16 = 0; i16 < childCount; i16++) {
+                    if (getChildAt(i16).getMeasuredWidth() + i14 > getMeasuredWidth()) {
+                        i15 += getChildAt(i16).getMeasuredHeight();
+                        i14 = 0;
                     }
-                } else {
-                    d61Var.W.j(0, true);
+                    getChildAt(i16).layout(i14, i15, getChildAt(i16).getMeasuredWidth() + i14, getChildAt(i16).getMeasuredHeight() + i15);
+                    i14 += getChildAt(i16).getMeasuredWidth();
                 }
-            }
+                return;
+            default:
+                super.onLayout(z4, i10, i11, i12, i13);
+                return;
         }
-        d61Var.C();
-        AndroidUtilities.updateViewVisibilityAnimated(d61Var.f37318a0, (d61Var.f37326d0.computeVerticalScrollOffset() != 0 || (i12 = this.f36435b3) == 0 || i12 == 12 || i12 == 10 || i12 == 1 || i12 == 11 || i12 == 6) ? true : true, 1.0f, true);
-        d61Var.m();
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        int i12;
+        switch (this.f32461a) {
+            case 0:
+                super.onMeasure(i10, b.B(36.0f, View.MeasureSpec.getSize(i11), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(i10, i11);
+                return;
+            case 2:
+                int size = View.MeasureSpec.getSize(i10);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
+                int childCount = getChildCount();
+                int i13 = 0;
+                if (childCount > 0) {
+                    i12 = getChildAt(0).getMeasuredHeight();
+                } else {
+                    i12 = 0;
+                }
+                int i14 = 0;
+                int i15 = 0;
+                for (int i16 = 0; i16 < childCount; i16++) {
+                    if (getChildAt(i16).getMeasuredWidth() + i14 > size) {
+                        i15 += getChildAt(i16).getMeasuredHeight();
+                        i14 = 0;
+                    }
+                    i14 += getChildAt(i16).getMeasuredWidth();
+                }
+                int measuredWidth = getMeasuredWidth();
+                if (getChildCount() != 0) {
+                    i13 = AndroidUtilities.dp(16.0f) + i12 + i15;
+                }
+                setMeasuredDimension(measuredWidth, i13);
+                return;
+            case 3:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+                return;
+            case 4:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+                return;
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 9:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(12.0f), 1073741824));
+                return;
+            case 10:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
+                return;
+            case 11:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(60.0f)), View.MeasureSpec.getMode(i11)));
+                return;
+        }
     }
 }

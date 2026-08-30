@@ -2,82 +2,70 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.jr;
-import org.telegram.ui.Components.np;
-public final class oa extends TextView {
-    public boolean f24819a;
-    public final org.telegram.ui.Components.d6 f24820b;
-    public np f24821c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.tgnet.TLRPC;
+public final class oa extends FrameLayout {
+    public final org.telegram.ui.Components.p9 f21537a;
+    public final TextView f21538b;
+    public TLRPC.TL_forumTopic f21539c;
+    public boolean d;
 
     public oa(Context context) {
         super(context);
-        this.f24820b = new org.telegram.ui.Components.d6(this, 0L, 350L, jr.h);
-    }
-
-    public final void a(boolean z10, boolean z11) {
-        this.f24819a = z10;
-        boolean z12 = true;
-        if (!z11) {
-            this.f24820b.f(z10, true);
-        }
-        if (!isPressed() && !z10) {
-            z12 = false;
-        }
-        super.setPressed(z12);
-        invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float e10 = this.f24820b.e(this.f24819a);
-        if (e10 > 0.0f) {
-            if (e10 < 1.0f) {
-                canvas2 = canvas;
-                canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - e10) * 255.0f), 31);
-                float f9 = 1.0f - (0.2f * e10);
-                canvas2.scale(f9, f9, getWidth() / 2.0f, getHeight() / 2.0f);
-                canvas2.translate(0.0f, AndroidUtilities.dp(-12.0f) * e10);
-                super.onDraw(canvas2);
-                canvas2.restore();
-            } else {
-                canvas2 = canvas;
-            }
-            if (this.f24821c == null) {
-                np npVar = new np(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(2.0f), getCurrentTextColor());
-                this.f24821c = npVar;
-                npVar.setCallback(this);
-            }
-            this.f24821c.b(getCurrentTextColor());
-            float f10 = 1.0f - e10;
-            this.f24821c.setBounds(getWidth() / 2, (getHeight() / 2) + ((int) (AndroidUtilities.dp(12.0f) * f10)), getWidth() / 2, (getHeight() / 2) + ((int) (f10 * AndroidUtilities.dp(12.0f))));
-            this.f24821c.setAlpha((int) (e10 * 255.0f));
-            this.f24821c.draw(canvas2);
-            invalidate();
+        org.telegram.ui.Components.p9 p9Var = new org.telegram.ui.Components.p9(context);
+        this.f21537a = p9Var;
+        TextView textView = new TextView(context);
+        this.f21538b = textView;
+        org.telegram.messenger.y3.t(textView, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false), 1, 16.0f);
+        if (LocaleController.isRTL) {
+            addView(p9Var, k7.b6.d(30, 30.0f, 21, 12.0f, 0.0f, 12.0f, 0.0f));
+            addView(textView, k7.b6.d(-1, -2.0f, 21, 12.0f, 0.0f, 56.0f, 0.0f));
             return;
         }
-        super.onDraw(canvas);
+        addView(p9Var, k7.b6.d(30, 30.0f, 16, 12.0f, 0.0f, 12.0f, 0.0f));
+        addView(textView, k7.b6.d(-1, -2.0f, 16, 56.0f, 0.0f, 12.0f, 0.0f));
     }
 
     @Override
-    public final void setPressed(boolean z10) {
-        boolean z11;
-        if (!z10 && !this.f24819a) {
-            z11 = false;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.d) {
+            int dp = AndroidUtilities.dp(56.0f);
+            if (LocaleController.isRTL) {
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - dp, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f20025k0);
+            } else {
+                canvas.drawLine(dp, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f20025k0);
+            }
+        }
+    }
+
+    public TLRPC.TL_forumTopic getTopic() {
+        return this.f21539c;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    }
+
+    public void setTopic(TLRPC.TL_forumTopic tL_forumTopic) {
+        this.f21539c = tL_forumTopic;
+        boolean isEmpty = TextUtils.isEmpty(tL_forumTopic.searchQuery);
+        TextView textView = this.f21538b;
+        if (isEmpty) {
+            textView.setText(AndroidUtilities.removeDiacritics(tL_forumTopic.title));
         } else {
-            z11 = true;
+            textView.setText(AndroidUtilities.highlightText(AndroidUtilities.removeDiacritics(tL_forumTopic.title), tL_forumTopic.searchQuery, (org.telegram.ui.ActionBar.f6) null));
         }
-        super.setPressed(z11);
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f24821c != drawable && !super.verifyDrawable(drawable)) {
-            return false;
+        org.telegram.ui.Components.p9 p9Var = this.f21537a;
+        ag.f.p(p9Var, tL_forumTopic, false, false, null);
+        if (p9Var != null && p9Var.getImageReceiver() != null && (p9Var.getImageReceiver().getDrawable() instanceof ag.e)) {
+            ((ag.e) p9Var.getImageReceiver().getDrawable()).a(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19891c9, false));
         }
-        return true;
     }
 }

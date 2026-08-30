@@ -1,30 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class hn0 extends ls {
-    public final org.telegram.ui.ox f29207e0;
-
-    public hn0(org.telegram.ui.ox oxVar, jl0 jl0Var, Context context, int i10, int i11) {
-        super(jl0Var, context, i10, i11, false, null);
-        this.f29207e0 = oxVar;
+import android.view.View;
+public final class hn0 extends f2.l {
+    @Override
+    public final boolean r(f2.l1 l1Var, c5.e eVar, int i10, int i11, int i12, int i13) {
+        nn0 nn0Var;
+        mn0 mn0Var;
+        View view = l1Var.f5785a;
+        if ((view instanceof nn0) && (mn0Var = (nn0Var = (nn0) view).f27324a) != null) {
+            mn0Var.f14085i = mn0Var.N;
+            mn0Var.f14083g = mn0Var.O;
+            mn0Var.h = mn0Var.P;
+            nn0Var.f27325b.d(0.0f, true);
+            nn0Var.invalidate();
+        }
+        int translationX = i10 + ((int) view.getTranslationX());
+        int translationY = i11 + ((int) view.getTranslationY());
+        R(l1Var);
+        int i14 = i12 - translationX;
+        int i15 = i13 - translationY;
+        if (i14 == 0 && i15 == 0) {
+            v(l1Var);
+            return false;
+        }
+        if (i14 != 0) {
+            view.setTranslationX(-i14);
+        }
+        if (i15 != 0) {
+            view.setTranslationY(-i15);
+        }
+        this.f5776r.add(new f2.k(l1Var, translationX, translationY, i12, i13));
+        return true;
     }
 
     @Override
-    public final void N(boolean z10) {
-        boolean z11;
-        ArrayList arrayList;
-        super.N(z10);
-        gn0 gn0Var = this.f29207e0.f32995h0;
-        if (!this.V && !this.W && (arrayList = this.P) != null && arrayList.isEmpty()) {
-            z11 = false;
-        } else {
-            z11 = true;
-        }
-        gn0Var.e(z11, z10);
-        gn0Var.d.setText(LocaleController.getString(R.string.NoResult));
-        gn0Var.f32122e.setVisibility(8);
+    public final boolean t(f2.l1 l1Var) {
+        return true;
     }
 }

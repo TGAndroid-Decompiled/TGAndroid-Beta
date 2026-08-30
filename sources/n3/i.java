@@ -1,20 +1,88 @@
 package n3;
 
-import ag.j2;
-import android.os.Looper;
-import j3.t0;
-public interface i {
-    public static final ab.b f17106o = new ab.b(14);
+import j3.l0;
+import java.nio.ByteBuffer;
+public class i extends a {
+    public final d f14241c = new d();
+    public ByteBuffer d;
+    public boolean e;
+    public long f14242f;
+    public ByteBuffer h;
+    public final int f14243n;
+    public final int f14244r;
 
-    void a();
+    static {
+        l0.a("goog.exo.decoder");
+    }
 
-    int b(t0 t0Var);
+    public i(int i10, int i11) {
+        this.f14243n = i10;
+        this.f14244r = i11;
+    }
 
-    e h(j2 j2Var, t0 t0Var);
+    @Override
+    public void c() {
+        this.f14222b = 0;
+        ByteBuffer byteBuffer = this.d;
+        if (byteBuffer != null) {
+            byteBuffer.clear();
+        }
+        ByteBuffer byteBuffer2 = this.h;
+        if (byteBuffer2 != null) {
+            byteBuffer2.clear();
+        }
+        this.e = false;
+    }
 
-    h m(j2 j2Var, t0 t0Var);
+    public final ByteBuffer j(int i10) {
+        int capacity;
+        int i11 = this.f14243n;
+        if (i11 == 1) {
+            return ByteBuffer.allocate(i10);
+        }
+        if (i11 == 2) {
+            return ByteBuffer.allocateDirect(i10);
+        }
+        ByteBuffer byteBuffer = this.d;
+        if (byteBuffer == null) {
+            capacity = 0;
+        } else {
+            capacity = byteBuffer.capacity();
+        }
+        throw new IllegalStateException("Buffer too small (" + capacity + " < " + i10 + ")");
+    }
 
-    void q(Looper looper, k3.k kVar);
+    public final void k(int i10) {
+        int i11 = i10 + this.f14244r;
+        ByteBuffer byteBuffer = this.d;
+        if (byteBuffer == null) {
+            this.d = j(i11);
+            return;
+        }
+        int capacity = byteBuffer.capacity();
+        int position = byteBuffer.position();
+        int i12 = i11 + position;
+        if (capacity >= i12) {
+            this.d = byteBuffer;
+            return;
+        }
+        ByteBuffer j10 = j(i12);
+        j10.order(byteBuffer.order());
+        if (position > 0) {
+            byteBuffer.flip();
+            j10.put(byteBuffer);
+        }
+        this.d = j10;
+    }
 
-    void release();
+    public final void l() {
+        ByteBuffer byteBuffer = this.d;
+        if (byteBuffer != null) {
+            byteBuffer.flip();
+        }
+        ByteBuffer byteBuffer2 = this.h;
+        if (byteBuffer2 != null) {
+            byteBuffer2.flip();
+        }
+    }
 }

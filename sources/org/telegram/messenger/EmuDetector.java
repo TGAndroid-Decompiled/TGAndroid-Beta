@@ -43,7 +43,7 @@ public class EmuDetector {
     }
 
     public interface OnEmulatorDetectorListener {
-        void onResult(boolean z10);
+        void onResult(boolean z4);
     }
 
     public static class Property {
@@ -93,7 +93,7 @@ public class EmuDetector {
     private boolean checkFiles(String[] strArr, EmulatorTypes emulatorTypes) {
         File file;
         for (String str : strArr) {
-            if (f0.e.b(this.mContext, "android.permission.READ_EXTERNAL_STORAGE") == 0) {
+            if (f0.f.b(this.mContext, "android.permission.READ_EXTERNAL_STORAGE") == 0) {
                 if ((str.contains("/") && emulatorTypes == EmulatorTypes.NOX) || emulatorTypes == EmulatorTypes.BLUE) {
                     file = new File(Environment.getExternalStorageDirectory() + str);
                 } else {
@@ -121,11 +121,11 @@ public class EmuDetector {
 
     private boolean checkIp() {
         String[] split;
-        if (f0.e.b(this.mContext, "android.permission.INTERNET") != 0) {
+        if (f0.f.b(this.mContext, "android.permission.INTERNET") != 0) {
             return false;
         }
         String[] strArr = {"/system/bin/netcfg"};
-        StringBuilder sb2 = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         try {
             ProcessBuilder processBuilder = new ProcessBuilder(strArr);
             processBuilder.directory(new File("/system/bin/"));
@@ -133,16 +133,16 @@ public class EmuDetector {
             InputStream inputStream = processBuilder.start().getInputStream();
             byte[] bArr = new byte[1024];
             while (inputStream.read(bArr) != -1) {
-                sb2.append(new String(bArr));
+                sb.append(new String(bArr));
             }
             inputStream.close();
         } catch (Exception unused) {
         }
-        String sb3 = sb2.toString();
-        if (TextUtils.isEmpty(sb3)) {
+        String sb2 = sb.toString();
+        if (TextUtils.isEmpty(sb2)) {
             return false;
         }
-        for (String str : sb3.split("\n")) {
+        for (String str : sb2.split("\n")) {
             if ((str.contains("wlan0") || str.contains("tunl0") || str.contains("eth0")) && str.contains("10.0.2.15")) {
                 return true;
             }
@@ -187,8 +187,8 @@ public class EmuDetector {
                     FileInputStream fileInputStream = new FileInputStream(file);
                     fileInputStream.read(bArr);
                     fileInputStream.close();
-                } catch (Exception e10) {
-                    e10.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 String str = new String(bArr);
                 for (String str2 : QEMU_DRIVERS) {
@@ -222,7 +222,7 @@ public class EmuDetector {
     }
 
     private boolean checkTelephony() {
-        if (f0.e.b(this.mContext, "android.permission.READ_PHONE_STATE") == 0 && this.isTelephony && isSupportTelePhony()) {
+        if (f0.f.b(this.mContext, "android.permission.READ_PHONE_STATE") == 0 && this.isTelephony && isSupportTelePhony()) {
             if (checkPhoneNumber() || checkDeviceId() || checkImsi() || checkOperatorNameAndroid()) {
                 return true;
             }
@@ -291,13 +291,13 @@ public class EmuDetector {
         return this.isTelephony;
     }
 
-    public EmuDetector setCheckPackage(boolean z10) {
-        this.isCheckPackage = z10;
+    public EmuDetector setCheckPackage(boolean z4) {
+        this.isCheckPackage = z4;
         return this;
     }
 
-    public EmuDetector setCheckTelephony(boolean z10) {
-        this.isTelephony = z10;
+    public EmuDetector setCheckTelephony(boolean z4) {
+        this.isTelephony = z4;
         return this;
     }
 

@@ -1,31 +1,52 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class vy extends org.telegram.ui.Cells.b8 {
-    public final int K;
+import org.telegram.messenger.LiteMode;
+public final class vy extends xw0 {
+    public final int f30106w3;
+    public final wy f30107x3;
 
-    public vy(int i10, Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
-        super(context, c6Var, z10);
-        this.K = i10;
+    public vy(wy wyVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
+        super(context, i10, f6Var);
+        this.f30107x3 = wyVar;
+        this.f30106w3 = i11;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.K) {
-            case 0:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
-                return;
-            case 1:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
-                return;
-            case 2:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
-                return;
+    public final boolean A1() {
+        return LiteMode.isEnabled(8200);
+    }
+
+    @Override
+    public final void E1(int i10) {
+        boolean z4;
+        tw twVar;
+        fw fwVar;
+        super.E1(i10);
+        wy wyVar = this.f30107x3;
+        kz kzVar = wyVar.D;
+        vy vyVar = wyVar.f30441r;
+        boolean z10 = true;
+        if (vyVar.getSelectedCategory() == null) {
+            z4 = true;
+        } else {
+            z4 = false;
         }
+        int i11 = kz.L2;
+        kzVar.O(z4);
+        int i12 = this.f30106w3;
+        if (i12 == 1 && (fwVar = kzVar.F) != null) {
+            if (vyVar.getSelectedCategory() != null) {
+                z10 = false;
+            }
+            fwVar.n(z10);
+        } else if (i12 == 0 && (twVar = kzVar.f26488y0) != null) {
+            if (vyVar.getSelectedCategory() != null) {
+                z10 = false;
+            }
+            twVar.f27949l0 = z10;
+            twVar.invalidate();
+        }
+        wyVar.g(false);
     }
 }

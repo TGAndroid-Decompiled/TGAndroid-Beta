@@ -1,3 +1,3 @@
 package j7;
-public abstract class t0 {
+public final class t0 extends androidx.biometric.e {
 }

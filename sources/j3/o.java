@@ -1,29 +1,46 @@
 package j3;
-public final class o implements p8.i {
-    public final int f10650a;
-    public final Object f10651b;
 
-    public o(Object obj, int i10) {
-        this.f10650a = i10;
-        this.f10651b = obj;
+import android.content.Context;
+import android.content.Intent;
+public final class o implements r8.i, org.telegram.ui.ActionBar.c2 {
+    public final int f8759a;
+    public final Context f8760b;
+
+    public o(Context context, int i10) {
+        this.f8759a = i10;
+        this.f8760b = context;
     }
 
     @Override
-    public final Object get() {
-        switch (this.f10650a) {
+    public Object get() {
+        switch (this.f8759a) {
             case 0:
-                return (j) this.f10651b;
+                return new l(this.f8760b);
             case 1:
-                return (d5.u) this.f10651b;
+                return new ab.a(this.f8760b, new Object());
             case 2:
-                return (l) this.f10651b;
-            case 3:
-                return Boolean.valueOf(((q0) this.f10651b).K);
+                return new f5.p(this.f8760b, new db.a(6));
+            default:
+                return g5.s.b(this.f8760b);
+        }
+    }
+
+    @Override
+    public void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f8759a) {
+            case 4:
+                try {
+                    this.f8760b.startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+                    return;
+                } catch (Exception unused) {
+                    return;
+                }
             default:
                 try {
-                    return (l4.b0) ((Class) this.f10651b).getConstructor(null).newInstance(null);
-                } catch (Exception e10) {
-                    throw new IllegalStateException(e10);
+                    this.f8760b.startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+                    return;
+                } catch (Exception unused2) {
+                    return;
                 }
         }
     }

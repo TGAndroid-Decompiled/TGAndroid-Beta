@@ -102,7 +102,7 @@ public class SQLiteCursor {
     }
 
     public boolean next() {
-        boolean z10;
+        boolean z4;
         SQLitePreparedStatement sQLitePreparedStatement = this.preparedStatement;
         int step = sQLitePreparedStatement.step(sQLitePreparedStatement.getStatementHandle());
         if (step == -1) {
@@ -118,8 +118,8 @@ public class SQLiteCursor {
                     }
                     Thread.sleep(500L);
                     step = this.preparedStatement.step();
-                } catch (Exception e10) {
-                    FileLog.e(e10);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
                 if (step == 0) {
                     break;
@@ -131,12 +131,12 @@ public class SQLiteCursor {
             }
         }
         if (step == 0) {
-            z10 = true;
+            z4 = true;
         } else {
-            z10 = false;
+            z4 = false;
         }
-        this.inRow = z10;
-        return z10;
+        this.inRow = z4;
+        return z4;
     }
 
     public String stringValue(int i10) {
@@ -144,13 +144,13 @@ public class SQLiteCursor {
         return columnStringValue(this.preparedStatement.getStatementHandle(), i10);
     }
 
-    public <T extends TLObject> T tlObjectValue(int i10, Vector.TLDeserializer<T> tLDeserializer, boolean z10) {
+    public <T extends TLObject> T tlObjectValue(int i10, Vector.TLDeserializer<T> tLDeserializer, boolean z4) {
         NativeByteBuffer byteBufferValue = byteBufferValue(i10);
         if (byteBufferValue == null) {
             return null;
         }
         try {
-            return tLDeserializer.deserialize(byteBufferValue, byteBufferValue.readInt32(z10), z10);
+            return tLDeserializer.deserialize(byteBufferValue, byteBufferValue.readInt32(z4), z4);
         } finally {
             byteBufferValue.reuse();
         }

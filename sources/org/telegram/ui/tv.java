@@ -1,24 +1,25 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.Utilities;
-public final class tv implements Utilities.Callback {
-    public final int f43100a;
-    public final Activity f43101b;
+import android.animation.ValueAnimator;
+public final class tv implements ValueAnimator.AnimatorUpdateListener {
+    public final int f38762a;
+    public final oy f38763b;
+    public final float f38764c;
 
-    public tv(Activity activity, int i10) {
-        this.f43100a = i10;
-        this.f43101b = activity;
+    public tv(oy oyVar, float f10, int i10) {
+        this.f38762a = i10;
+        this.f38763b = oyVar;
+        this.f38764c = f10;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f43100a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f38762a) {
             case 0:
-                fy.A0(this.f43101b, (Boolean) obj);
+                oy.V(this.f38763b, this.f38764c, valueAnimator);
                 return;
             default:
-                fy.r0(this.f43101b, (Boolean) obj);
+                oy.E0(this.f38763b, this.f38764c, valueAnimator);
                 return;
         }
     }

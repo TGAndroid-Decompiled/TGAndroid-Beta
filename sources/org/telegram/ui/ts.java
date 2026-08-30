@@ -1,35 +1,22 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-public final class ts implements Runnable {
-    public final int f43092a;
-    public final ht f43093b;
+import android.graphics.Canvas;
+import android.view.View;
+public final class ts implements ng.j {
+    public final int f38733a;
+    public final org.telegram.ui.Components.sl0 f38734b;
 
-    public ts(ht htVar, int i10) {
-        this.f43092a = i10;
-        this.f43093b = htVar;
+    public ts(org.telegram.ui.Components.sl0 sl0Var, int i10) {
+        this.f38733a = i10;
+        this.f38734b = sl0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43092a) {
+    public final boolean a(Canvas canvas, View view, long j10) {
+        switch (this.f38733a) {
             case 0:
-                this.f43093b.f39023c0 = null;
-                return;
-            case 1:
-                ht htVar = this.f43093b;
-                htVar.A.setImageBitmap((Bitmap) null);
-                org.telegram.ui.Components.bd0 bd0Var = htVar.C;
-                if (bd0Var != null) {
-                    bd0Var.a();
-                    htVar.f39045z.removeView(htVar.C);
-                    htVar.C = null;
-                    return;
-                }
-                return;
             default:
-                this.f43093b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.jr.h).start();
-                return;
+                return this.f38734b.drawChild(canvas, view, j10);
         }
     }
 }

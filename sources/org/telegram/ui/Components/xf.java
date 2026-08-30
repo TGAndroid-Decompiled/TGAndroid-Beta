@@ -1,22 +1,392 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.ViewGroup;
+import android.app.Activity;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class xf extends fz {
-    public final ChatActivityEnterView L2;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.StickersActivity;
+public final class xf implements ky {
+    public final ChatActivityEnterView f30668a;
 
-    public xf(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.ActionBar.o2 o2Var, boolean z10, Context context, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z11, org.telegram.ui.ActionBar.c6 c6Var, boolean z12, boolean z13) {
-        super(o2Var, z10, true, true, context, true, chatFull, viewGroup, z11, c6Var, z12, z13);
-        this.L2 = chatActivityEnterView;
+    public xf(ChatActivityEnterView chatActivityEnterView) {
+        this.f30668a = chatActivityEnterView;
     }
 
     @Override
-    public final void setTranslationY(float f9) {
-        super.setTranslationY(f9);
-        ChatActivityEnterView chatActivityEnterView = this.L2;
-        if (chatActivityEnterView.R0 != null && chatActivityEnterView.f26145j3 == 0) {
-            chatActivityEnterView.U2.v(f9);
+    public final boolean A() {
+        return this.f30668a.f22850v3;
+    }
+
+    public final void B(View view, Object obj, String str, Object obj2, boolean z4, int i10, int i11, MediaController.PhotoEntry photoEntry, boolean z10) {
+        mg mgVar;
+        ChatActivityEnterView chatActivityEnterView = this.f30668a;
+        mg mgVar2 = chatActivityEnterView.C0;
+        org.telegram.ui.xn xnVar = chatActivityEnterView.L2;
+        org.telegram.ui.nn nnVar = chatActivityEnterView.R2;
+        if (nnVar != null && xnVar != null && nnVar.f36694f) {
+            xnVar.Rb();
+        } else if (c() && i10 == 0) {
+            z4.M(chatActivityEnterView.K2, xnVar.a(), new org.telegram.ui.pq(this, view, obj, str, obj2, photoEntry, z10), chatActivityEnterView.S3);
+        } else if (chatActivityEnterView.D0 > 0 && !c()) {
+            eg egVar = chatActivityEnterView.V2;
+            if (egVar != null) {
+                if (view != null) {
+                    mgVar = view;
+                } else {
+                    mgVar = mgVar2;
+                }
+                egVar.v1(mgVar, mgVar2.f27010a.getText(), true);
+            }
+        } else {
+            z4.a0(chatActivityEnterView.N, 1, chatActivityEnterView.M2, new vd(this, obj, photoEntry, z4, i10, i11, z10, str, obj2));
         }
+    }
+
+    @Override
+    public final long a() {
+        return this.f30668a.M2;
+    }
+
+    @Override
+    public final boolean b() {
+        org.telegram.ui.xn xnVar = this.f30668a.L2;
+        if (xnVar != null && xnVar.D6()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        org.telegram.ui.xn xnVar = this.f30668a.L2;
+        if (xnVar != null && xnVar.c()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z4) {
+        ChatActivityEnterView chatActivityEnterView = this.f30668a;
+        wf wfVar = chatActivityEnterView.W2;
+        if (wfVar != null && !wfVar.isDismissed()) {
+            chatActivityEnterView.W2.e.b(stickerSet, inputStickerSet);
+            return;
+        }
+        org.telegram.ui.ActionBar.p2 p2Var = chatActivityEnterView.L2;
+        if (p2Var == null) {
+            p2Var = LaunchActivity.R();
+        }
+        org.telegram.ui.ActionBar.p2 p2Var2 = p2Var;
+        if (p2Var2 != null && chatActivityEnterView.K2 != null) {
+            if (stickerSet != null) {
+                inputStickerSet = new TLRPC.TL_inputStickerSetID();
+                inputStickerSet.access_hash = stickerSet.access_hash;
+                inputStickerSet.f19204id = stickerSet.f19211id;
+            }
+            xx0 xx0Var = new xx0(chatActivityEnterView.K2, p2Var2, inputStickerSet, null, chatActivityEnterView, chatActivityEnterView.S3);
+            p2Var2.showDialog(xx0Var);
+            if (z4) {
+                xx0Var.p0();
+            }
+        }
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+        File file;
+        ChatActivityEnterView chatActivityEnterView = this.f30668a;
+        org.telegram.ui.xn xnVar = chatActivityEnterView.L2;
+        if (xnVar != null) {
+            PhotoViewer.t1().K2(null, xnVar, xnVar.f39968ba);
+            if (obj instanceof TLRPC.Document) {
+                file = FileLoader.getInstance(chatActivityEnterView.N).getPathToAttach((TLRPC.Document) obj);
+            } else {
+                file = null;
+            }
+            if (file != null) {
+                File file2 = new File(FileLoader.getDirectory(4), file.getName());
+                if (!file.exists()) {
+                    if (file2.exists()) {
+                        file = file2;
+                    } else {
+                        return;
+                    }
+                }
+                ArrayList arrayList = new ArrayList();
+                MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, false, 0, 0, 0L);
+                photoEntry.caption = null;
+                photoEntry.isVideo = true;
+                arrayList.add(photoEntry);
+                PhotoViewer.t1().f2(arrayList, 0, 12, false, new vf(this, obj, obj2, photoEntry), chatActivityEnterView.L2);
+            }
+        }
+    }
+
+    @Override
+    public final int f() {
+        int threadMessageId;
+        threadMessageId = this.f30668a.getThreadMessageId();
+        return threadMessageId;
+    }
+
+    @Override
+    public final boolean g() {
+        ChatActivityEnterView chatActivityEnterView = this.f30668a;
+        if (chatActivityEnterView.M2 == UserConfig.getInstance(chatActivityEnterView.N).getClientUserId()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+        ChatActivityEnterView chatActivityEnterView = this.f30668a;
+        MediaDataController.getInstance(chatActivityEnterView.N).toggleStickerSet(chatActivityEnterView.K2, stickerSetCovered, 0, chatActivityEnterView.L2, false, false);
+    }
+
+    @Override
+    public final void i(int i10) {
+        boolean z4;
+        int i11 = ChatActivityEnterView.f22729j5;
+        ChatActivityEnterView chatActivityEnterView = this.f30668a;
+        chatActivityEnterView.m1(i10, true);
+        if (i10 != 0) {
+            if (i10 == 1) {
+                z4 = true;
+            } else {
+                z4 = false;
+            }
+            chatActivityEnterView.n1(true, true, false, z4);
+        }
+        if (chatActivityEnterView.f22845u3 && chatActivityEnterView.N1 == 2) {
+            chatActivityEnterView.K();
+        }
+    }
+
+    @Override
+    public final boolean j() {
+        return true;
+    }
+
+    @Override
+    public final boolean k() {
+        ChatActivityEnterView chatActivityEnterView = this.f30668a;
+        TextView textView = chatActivityEnterView.Q4;
+        if (textView == null) {
+            textView = chatActivityEnterView.B0;
+        }
+        if (textView == null || textView.length() == 0) {
+            return false;
+        }
+        textView.dispatchKeyEvent(new KeyEvent(0, 67));
+        return true;
+    }
+
+    @Override
+    public final void l(String str) {
+        ChatActivityEnterView chatActivityEnterView = this.f30668a;
+        EditText editText = chatActivityEnterView.Q4;
+        if (editText == null) {
+            editText = chatActivityEnterView.B0;
+        }
+        if (editText == null) {
+            return;
+        }
+        int selectionEnd = editText.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            chatActivityEnterView.O2 = 2;
+            CharSequence replaceEmoji = Emoji.replaceEmoji((CharSequence) str, editText.getPaint().getFontMetricsInt(), false, (int[]) null);
+            editText.setText(editText.getText().insert(selectionEnd, replaceEmoji));
+            int length = selectionEnd + replaceEmoji.length();
+            editText.setSelection(length, length);
+        } catch (Exception e) {
+            FileLog.e(e);
+        } finally {
+            chatActivityEnterView.O2 = 0;
+        }
+    }
+
+    @Override
+    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z4, int i10) {
+        ChatActivityEnterView chatActivityEnterView = this.f30668a;
+        mg mgVar = chatActivityEnterView.C0;
+        if (!chatActivityEnterView.f22779h5) {
+            wf wfVar = chatActivityEnterView.W2;
+            if (wfVar != null) {
+                wfVar.dismiss();
+                chatActivityEnterView.W2 = null;
+            }
+            if (chatActivityEnterView.D0 > 0 && !c()) {
+                eg egVar = chatActivityEnterView.V2;
+                if (egVar != null) {
+                    if (view == null) {
+                        view = mgVar;
+                    }
+                    egVar.v1(view, mgVar.f27010a.getText(), true);
+                    return;
+                }
+                return;
+            }
+            if (chatActivityEnterView.f22850v3) {
+                if (chatActivityEnterView.N1 != 0) {
+                    chatActivityEnterView.m1(0, true);
+                    chatActivityEnterView.R0.s(MessageObject.getStickerSetId(document), true);
+                    chatActivityEnterView.R0.B();
+                }
+                chatActivityEnterView.n1(false, true, false, true);
+            }
+            chatActivityEnterView.d(document, str, obj, sendAnimationData, false, z4, i10, 0);
+            if (DialogObject.isEncryptedDialog(chatActivityEnterView.M2) && MessageObject.isGifDocument(document)) {
+                chatActivityEnterView.O.getMessagesController().saveGif(obj, document);
+            }
+        }
+    }
+
+    @Override
+    public final void n() {
+        Activity activity;
+        ChatActivityEnterView chatActivityEnterView = this.f30668a;
+        org.telegram.ui.xn xnVar = chatActivityEnterView.L2;
+        if (xnVar != null && (activity = chatActivityEnterView.K2) != null) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, chatActivityEnterView.S3);
+            alertDialog$Builder.f19503a.O = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+            alertDialog$Builder.f19503a.Q = LocaleController.getString(R.string.ClearRecentEmojiText);
+            alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new t(this, 17));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            xnVar.showDialog(alertDialog$Builder.f19503a);
+        }
+    }
+
+    @Override
+    public final void o(e51 e51Var) {
+        ChatActivityEnterView chatActivityEnterView = this.f30668a;
+        org.telegram.ui.ActionBar.p2 p2Var = chatActivityEnterView.L2;
+        if (p2Var == null) {
+            p2Var = LaunchActivity.R();
+        }
+        org.telegram.ui.ActionBar.p2 p2Var2 = p2Var;
+        if (p2Var2 != null) {
+            chatActivityEnterView.W2 = new wf(this, chatActivityEnterView.getContext(), p2Var2, e51Var, chatActivityEnterView.S3);
+            eg egVar = chatActivityEnterView.V2;
+            if (egVar != null) {
+                egVar.z(true);
+            }
+            p2Var2.showDialog(chatActivityEnterView.W2);
+        }
+    }
+
+    @Override
+    public final float p() {
+        return this.f30668a.f22837t0;
+    }
+
+    @Override
+    public final void q() {
+        org.telegram.ui.ActionBar.p2 p2Var = this.f30668a.L2;
+        if (p2Var == null) {
+            p2Var = LaunchActivity.R();
+        }
+        p2Var.showDialog(new eg.o1(p2Var, 11, false));
+    }
+
+    @Override
+    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
+        ChatActivityEnterView chatActivityEnterView = this.f30668a;
+        MediaDataController.getInstance(chatActivityEnterView.N).toggleStickerSet(chatActivityEnterView.K2, stickerSetCovered, 2, chatActivityEnterView.L2, false, false);
+    }
+
+    @Override
+    public final void s(int i10) {
+        boolean z4;
+        ChatActivityEnterView chatActivityEnterView = this.f30668a;
+        chatActivityEnterView.V2.Y();
+        eg egVar = chatActivityEnterView.V2;
+        if (i10 == 3) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        egVar.n2(z4);
+        chatActivityEnterView.post(chatActivityEnterView.f22813o3);
+    }
+
+    @Override
+    public final void t(ArrayList arrayList) {
+        org.telegram.ui.xn xnVar = this.f30668a.L2;
+        if (xnVar != null) {
+            xnVar.presentFragment(new StickersActivity(5, arrayList));
+        }
+    }
+
+    @Override
+    public final void u() {
+        this.f30668a.invalidate();
+    }
+
+    @Override
+    public final void v(View view, Object obj, String str, Object obj2, boolean z4, int i10, int i11) {
+        B(view, obj, str, obj2, z4, i10, i11, null, false);
+    }
+
+    @Override
+    public final void w() {
+        org.telegram.ui.xn xnVar = this.f30668a.L2;
+        if (xnVar != null) {
+            xnVar.presentFragment(new StickersActivity(0, null));
+        }
+    }
+
+    @Override
+    public final void x(long j10, TLRPC.Document document, String str, boolean z4) {
+        ChatActivityEnterView chatActivityEnterView = this.f30668a;
+        EditTextBoldCursor editTextBoldCursor = chatActivityEnterView.Q4;
+        if (editTextBoldCursor == null) {
+            editTextBoldCursor = chatActivityEnterView.B0;
+        }
+        AndroidUtilities.runOnUIThread(new lh.j(this, editTextBoldCursor, str, document, j10, z4));
+    }
+
+    @Override
+    public final void y(long j10) {
+        ChatActivityEnterView chatActivityEnterView = this.f30668a;
+        org.telegram.ui.xn xnVar = chatActivityEnterView.L2;
+        if (xnVar != null) {
+            if (AndroidUtilities.isTablet()) {
+                chatActivityEnterView.m0(false);
+            }
+            org.telegram.ui.m70 m70Var = new org.telegram.ui.m70(j10);
+            m70Var.e0(chatActivityEnterView.Z1);
+            xnVar.presentFragment(m70Var);
+        }
+    }
+
+    @Override
+    public final boolean z() {
+        if (this.f30668a.N1 != 0) {
+            return true;
+        }
+        return false;
     }
 }

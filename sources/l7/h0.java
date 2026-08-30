@@ -1,3 +1,3 @@
 package l7;
-public abstract class h0 {
+public @interface h0 {
 }

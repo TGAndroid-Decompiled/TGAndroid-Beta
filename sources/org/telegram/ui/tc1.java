@@ -1,8 +1,8 @@
 package org.telegram.ui;
+public interface tc1 {
+    boolean V0();
 
-import android.content.DialogInterface;
-public final class tc1 implements DialogInterface.OnCancelListener {
-    @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-    }
+    boolean a();
+
+    void n1(boolean z4);
 }

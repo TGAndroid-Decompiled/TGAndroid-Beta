@@ -59,7 +59,7 @@ public class Color {
         this(android.graphics.Color.rgb(i10, i11, i12));
     }
 
-    public Color(float f9, float f10, float f11) {
-        this((int) ((f9 * 255.0f) + 0.5f), (int) ((f10 * 255.0f) + 0.5f), (int) ((f11 * 255.0f) + 0.5f));
+    public Color(float f10, float f11, float f12) {
+        this((int) ((f10 * 255.0f) + 0.5f), (int) ((f11 * 255.0f) + 0.5f), (int) ((f12 * 255.0f) + 0.5f));
     }
 }

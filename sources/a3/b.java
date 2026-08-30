@@ -1,3 +1,3 @@
 package a3;
-public interface b extends pc.a {
+public interface b extends rc.a {
 }

@@ -1,24 +1,13 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import org.telegram.messenger.AndroidUtilities;
-public final class j40 implements ViewTreeObserver.OnPreDrawListener {
-    public final r50 f39425a;
-
-    public j40(r50 r50Var) {
-        this.f39425a = r50Var;
+import org.telegram.messenger.LocaleController;
+public final class j40 extends org.telegram.ui.Components.wc0 {
+    public j40(LaunchActivity launchActivity) {
+        super(launchActivity, null);
     }
 
     @Override
-    public final boolean onPreDraw() {
-        ViewGroup viewGroup;
-        r50 r50Var = this.f39425a;
-        r50Var.M.getViewTreeObserver().removeOnPreDrawListener(this);
-        r50Var.W1.j(null);
-        AndroidUtilities.updateVisibleRows(r50Var.f41904i2);
-        viewGroup = ((org.telegram.ui.ActionBar.f3) r50Var).containerView;
-        viewGroup.requestLayout();
-        return false;
+    public final CharSequence d(int i10) {
+        return LocaleController.formatPluralString("Minutes", i10, new Object[0]);
     }
 }

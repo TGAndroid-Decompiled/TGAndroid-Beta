@@ -1,24 +1,12 @@
 package j7;
-public enum j7 implements f0 {
-    UNKNOWN_FORMAT(0),
-    NV16(1),
-    NV21(2),
-    YV12(3),
-    YUV_420_888(7),
-    JPEG(8),
-    BITMAP(4),
-    CM_SAMPLE_BUFFER_REF(5),
-    UI_IMAGE(6),
-    CV_PIXEL_BUFFER_REF(9);
-    
-    public final int f11058a;
+public final class j7 {
+    public final e6 f9049a;
+    public final j6 f9050b;
+    public final h7 f9051c;
 
-    j7(int i10) {
-        this.f11058a = i10;
-    }
-
-    @Override
-    public final int zza() {
-        return this.f11058a;
+    public j7(androidx.biometric.e eVar) {
+        this.f9049a = (e6) eVar.f478b;
+        this.f9050b = (j6) eVar.f479c;
+        this.f9051c = (h7) eVar.d;
     }
 }

@@ -1,19 +1,35 @@
 package kc;
 
-import java.util.Map;
-public abstract class c {
-    public final String f13614a;
-    public final int f13615b;
-    public final Map f13616c;
-    public int d = -1;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+public final class c implements Iterable {
+    public final HashMap f10288a = new HashMap();
+    public final ArrayList f10289b = new ArrayList();
 
-    public c(int i10, String str, Map map) {
-        this.f13614a = str;
-        this.f13615b = i10;
-        this.f13616c = map;
+    public c(HashMap hashMap) {
+        String str = (String) hashMap.get("cookie");
+        if (str != null) {
+            for (String str2 : str.split(";")) {
+                String[] split = str2.trim().split("=");
+                if (split.length == 2) {
+                    this.f10288a.put(split[0], split[1]);
+                }
+            }
+        }
     }
 
-    public Map a() {
-        return this.f13616c;
+    public final void i() {
+        Iterator it = this.f10289b.iterator();
+        if (!it.hasNext()) {
+            return;
+        }
+        it.next().getClass();
+        throw new ClassCastException();
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return this.f10288a.keySet().iterator();
     }
 }

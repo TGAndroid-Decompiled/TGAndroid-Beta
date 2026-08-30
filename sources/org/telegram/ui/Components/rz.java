@@ -1,144 +1,78 @@
 package org.telegram.ui.Components;
 
-import android.graphics.PointF;
-import java.nio.ByteBuffer;
-import org.telegram.messenger.MediaController;
-public final class rz implements tz {
-    public final MediaController.SavedFilterState f32422a;
+import android.graphics.Point;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.SharedConfig;
+public final class rz implements Runnable {
+    public final int f28563a;
+    public final vz f28564b;
+    public final int f28565c;
+    public final int d;
 
-    public rz(MediaController.SavedFilterState savedFilterState) {
-        this.f32422a = savedFilterState;
+    public rz(vz vzVar, int i10, int i11, int i12) {
+        this.f28563a = i12;
+        this.f28564b = vzVar;
+        this.f28565c = i10;
+        this.d = i11;
     }
 
     @Override
-    public final ByteBuffer a() {
-        MediaController.SavedFilterState savedFilterState = this.f32422a;
-        savedFilterState.curvesToolValue.a();
-        return savedFilterState.curvesToolValue.f26764e;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return !this.f32422a.curvesToolValue.b();
-    }
-
-    @Override
-    public final float getBlurAngle() {
-        return this.f32422a.blurAngle;
-    }
-
-    @Override
-    public final float getBlurExcludeBlurSize() {
-        return this.f32422a.blurExcludeBlurSize;
-    }
-
-    @Override
-    public final PointF getBlurExcludePoint() {
-        return this.f32422a.blurExcludePoint;
-    }
-
-    @Override
-    public final float getBlurExcludeSize() {
-        return this.f32422a.blurExcludeSize;
-    }
-
-    @Override
-    public final int getBlurType() {
-        return this.f32422a.blurType;
-    }
-
-    @Override
-    public final float getContrastValue() {
-        return u3.c.c(this.f32422a.contrastValue, 100.0f, 0.3f, 1.0f);
-    }
-
-    @Override
-    public final float getEnhanceValue() {
-        return this.f32422a.enhanceValue / 100.0f;
-    }
-
-    @Override
-    public final float getExposureValue() {
-        return this.f32422a.exposureValue / 100.0f;
-    }
-
-    @Override
-    public final float getFadeValue() {
-        return this.f32422a.fadeValue / 100.0f;
-    }
-
-    @Override
-    public final float getGrainValue() {
-        return (this.f32422a.grainValue / 100.0f) * 0.04f;
-    }
-
-    @Override
-    public final float getHighlightsValue() {
-        return com.google.android.recaptcha.internal.a.y(this.f32422a.highlightsValue, 0.75f, 100.0f, 100.0f);
-    }
-
-    @Override
-    public final float getSaturationValue() {
-        float f9 = this.f32422a.saturationValue / 100.0f;
-        if (f9 > 0.0f) {
-            f9 *= 1.05f;
+    public final void run() {
+        int i10;
+        switch (this.f28563a) {
+            case 0:
+                vz vzVar = this.f28564b;
+                int i11 = this.f28565c;
+                int i12 = this.d;
+                if (vzVar.T != i11 || vzVar.U != i12) {
+                    vzVar.T = i11;
+                    vzVar.U = i12;
+                    int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+                    int i13 = 1920;
+                    if (devicePerformanceClass != 1) {
+                        if (devicePerformanceClass != 2) {
+                            i13 = 720;
+                        } else {
+                            Point point = AndroidUtilities.displaySize;
+                            i13 = Math.min(1920, Math.max(point.x, point.y));
+                        }
+                    }
+                    if (SharedConfig.getDevicePerformanceClass() == 0 && ((i10 = vzVar.T) > 1280 || vzVar.U > 1280)) {
+                        vzVar.T = i10 / 2;
+                        vzVar.U /= 2;
+                    }
+                    int i14 = vzVar.T;
+                    if (i14 > i13 || vzVar.U > i13) {
+                        int i15 = vzVar.U;
+                        if (i14 > i15) {
+                            vzVar.U = (int) (i15 / (i13 / i14));
+                            vzVar.T = i13;
+                        } else {
+                            vzVar.T = (int) (i14 / (i13 / i15));
+                            vzVar.U = i13;
+                        }
+                    }
+                    vzVar.W = false;
+                    vzVar.g();
+                    vzVar.f30110a0.run();
+                    return;
+                }
+                return;
+            case 1:
+                vz vzVar2 = this.f28564b;
+                int i16 = this.f28565c;
+                int i17 = this.d;
+                vzVar2.f30114n = i16;
+                vzVar2.f30115r = i17;
+                return;
+            default:
+                vz vzVar3 = this.f28564b;
+                int i18 = this.f28565c;
+                int i19 = this.d;
+                ha haVar = vzVar3.F;
+                haVar.f25375l = i18;
+                haVar.f25376m = i19;
+                return;
         }
-        return f9 + 1.0f;
-    }
-
-    @Override
-    public final float getShadowsValue() {
-        return com.google.android.recaptcha.internal.a.y(this.f32422a.shadowsValue, 0.55f, 100.0f, 100.0f);
-    }
-
-    @Override
-    public final float getSharpenValue() {
-        return u3.c.c(this.f32422a.sharpenValue, 100.0f, 0.6f, 0.11f);
-    }
-
-    @Override
-    public final float getSoftenSkinValue() {
-        return this.f32422a.softenSkinValue / 100.0f;
-    }
-
-    @Override
-    public final int getTintHighlightsColor() {
-        return this.f32422a.tintHighlightsColor;
-    }
-
-    @Override
-    public final float getTintHighlightsIntensityValue() {
-        if (this.f32422a.tintHighlightsColor == 0) {
-            return 0.0f;
-        }
-        return 0.5f;
-    }
-
-    @Override
-    public final int getTintShadowsColor() {
-        return this.f32422a.tintShadowsColor;
-    }
-
-    @Override
-    public final float getTintShadowsIntensityValue() {
-        if (this.f32422a.tintShadowsColor == 0) {
-            return 0.0f;
-        }
-        return 0.5f;
-    }
-
-    @Override
-    public final float getVignetteValue() {
-        return this.f32422a.vignetteValue / 100.0f;
-    }
-
-    @Override
-    public final float getWarmthValue() {
-        return this.f32422a.warmthValue / 100.0f;
     }
 }

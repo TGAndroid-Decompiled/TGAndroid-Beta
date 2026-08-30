@@ -1,10 +1,18 @@
 package s7;
 
-import com.google.android.gms.location.LocationAvailability;
-import com.google.android.gms.location.LocationResult;
+import android.os.Parcel;
+import android.os.Parcelable;
 public abstract class c {
-    public abstract void onLocationResult(LocationResult locationResult);
+    public static final int f44100a = 0;
 
-    public void onLocationAvailability(LocationAvailability locationAvailability) {
+    static {
+        c.class.getClassLoader();
+    }
+
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
+        }
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 }

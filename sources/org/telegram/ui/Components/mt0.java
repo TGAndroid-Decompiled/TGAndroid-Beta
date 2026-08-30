@@ -1,67 +1,79 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class mt0 extends FrameLayout {
-    public final org.telegram.ui.Cells.f6 f30763a;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class mt0 implements tf.j1, org.telegram.ui.Cells.a5 {
+    public final ot0 f27119a;
 
-    public mt0(int i10, Context context, boolean z10, org.telegram.ui.ActionBar.c6 c6Var, fq0 fq0Var) {
-        super(context);
-        int i11;
-        int i12;
-        org.telegram.ui.Cells.f6 f6Var = new org.telegram.ui.Cells.f6(context, c6Var);
-        this.f30763a = f6Var;
-        f6Var.setBackground(org.telegram.ui.ActionBar.g6.f0(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.f23152i6, c6Var), 2, -1));
-        addView(f6Var, i7.f6.c(-2.0f, -1));
-        View view = new View(context);
-        GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
-        int i13 = org.telegram.ui.ActionBar.g6.f23062d6;
-        view.setBackground(new GradientDrawable(orientation, new int[]{org.telegram.ui.ActionBar.g6.l1(0.4f, org.telegram.ui.ActionBar.g6.v0(i13, c6Var)), org.telegram.ui.ActionBar.g6.v0(i13, c6Var)}));
-        addView(view, i7.f6.c(60.0f, -1));
-        nh.d dVar = new nh.d(context, c6Var, true);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        if (z10) {
-            i11 = R.string.MoreSimilarBotsButton;
-        } else {
-            i11 = R.string.MoreSimilarButton;
-        }
-        spannableStringBuilder.append((CharSequence) LocaleController.getString(i11));
-        spannableStringBuilder.append((CharSequence) " ");
-        SpannableString spannableString = new SpannableString("l");
-        spannableString.setSpan(new iq(R.drawable.msg_mini_lock2, 0), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) spannableString);
-        dVar.g(spannableStringBuilder, false, true);
-        addView(dVar, i7.f6.d(-1, 48.0f, 48, 14.0f, 38.0f, 14.0f, 0.0f));
-        dVar.setOnClickListener(new u70(fq0Var, 17));
-        y80 y80Var = new y80(context, c6Var);
-        y80Var.setTextSize(1, 13.0f);
-        y80Var.setTextAlignment(4);
-        y80Var.setGravity(17);
-        y80Var.setTextColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.G6, c6Var));
-        y80Var.setLinkTextColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.f23241n6, c6Var));
-        y80Var.setLineSpacing(AndroidUtilities.dp(3.0f), 1.0f);
-        if (z10) {
-            i12 = R.string.MoreSimilarBotsText;
-        } else {
-            i12 = R.string.MoreSimilarText;
-        }
-        SpannableStringBuilder premiumText = AndroidUtilities.premiumText(LocaleController.getString(i12), new fq0(fq0Var, 4));
-        SpannableString spannableString2 = new SpannableString("" + MessagesController.getInstance(i10).recommendedChannelsLimitPremium);
-        spannableString2.setSpan(new t41(AndroidUtilities.bold()), 0, spannableString2.length(), 33);
-        y80Var.setText(AndroidUtilities.replaceCharSequence("%s", premiumText, spannableString2));
-        addView(y80Var, i7.f6.d(-1, -2.0f, 49, 24.0f, 96.0f, 24.0f, 12.0f));
+    public mt0(ot0 ot0Var) {
+        this.f27119a = ot0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(145.0f), 1073741824));
+    public a0.h I() {
+        return null;
+    }
+
+    @Override
+    public boolean Q(int i10) {
+        return true;
+    }
+
+    @Override
+    public boolean c(org.telegram.ui.Cells.b5 b5Var, boolean z4) {
+        int intValue = ((Integer) b5Var.getTag()).intValue();
+        ot0 ot0Var = this.f27119a;
+        TLObject E = ot0Var.E(intValue);
+        if (E instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
+            TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
+            tL_chatChannelParticipant.channelParticipant = channelParticipant;
+            tL_chatChannelParticipant.user_id = MessageObject.getPeerId(channelParticipant.peer);
+            tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
+            tL_chatChannelParticipant.date = channelParticipant.date;
+            return ot0Var.f27665s.A1.h(tL_chatChannelParticipant, true, !z4, b5Var);
+        }
+        return false;
+    }
+
+    @Override
+    public void g(int i10) {
+        ot0 ot0Var = this.f27119a;
+        ot0Var.l();
+        if (i10 == 1) {
+            int i11 = ot0Var.f27664r - 1;
+            ot0Var.f27664r = i11;
+            if (i11 == 0) {
+                int i12 = 0;
+                while (true) {
+                    yu0 yu0Var = ot0Var.f27665s;
+                    qt0[] qt0VarArr = yu0Var.f31120h0;
+                    if (i12 < qt0VarArr.length) {
+                        qt0 qt0Var = qt0VarArr[i12];
+                        if (qt0Var.C == 7) {
+                            if (ot0Var.h == 0) {
+                                qt0Var.f28244w.e(false, true);
+                            } else {
+                                yu0Var.z(qt0Var.h, 0, null);
+                            }
+                        }
+                        i12++;
+                    } else {
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public a0.h t() {
+        return null;
+    }
+
+    @Override
+    public void T(ArrayList arrayList) {
     }
 }

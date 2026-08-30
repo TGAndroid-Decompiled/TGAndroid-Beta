@@ -1,17 +1,9 @@
 package j7;
-public final class k5 implements s9.d {
-    public static final k5 f11069a = new Object();
-
-    static {
-        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.r(h0.class, l1.h(3, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(2, com.google.android.recaptcha.internal.a.r(h0.class, new e0(1)))))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            s9.e eVar = (s9.e) obj2;
-            throw null;
+public abstract class k5 {
+    public static int a(long j10) {
+        if (j10 <= 2147483647L && j10 >= -2147483648L) {
+            return (int) j10;
         }
-        throw new ClassCastException();
+        throw new RuntimeException(e2.c.i(j10, "A cast to int has gone wrong. Please contact the mp4parser discussion group (", ")"));
     }
 }

@@ -1,22 +1,23 @@
 package org.telegram.ui;
+public final class ki implements org.telegram.ui.Components.zg0 {
+    public boolean f35732a = true;
+    public final org.telegram.ui.Components.pk0 f35733b;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-public final class ki extends org.telegram.ui.Components.co {
-    public final tn I;
-
-    public ki(tn tnVar, Activity activity, int i10, TLRPC.Document document, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(activity, i10, document, c6Var);
-        this.I = tnVar;
+    public ki(org.telegram.ui.Components.pk0 pk0Var) {
+        this.f35733b = pk0Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        float y8 = getY();
-        tn tnVar = this.I;
-        float y10 = tnVar.N0.getY() + y8;
-        this.F = tnVar.T0.getBackgroundSizeY();
-        this.E = y10;
+    public final void a(float f10, float f11) {
+        org.telegram.ui.Components.pk0 pk0Var = this.f35733b;
+        if (f10 == 0.0f && !this.f35732a) {
+            pk0Var.r(false);
+            this.f35732a = true;
+        } else if (f10 == 1.0f && this.f35732a) {
+            pk0Var.setAlpha(1.0f - f11);
+            if (f11 == 1.0f) {
+                this.f35732a = false;
+            }
+        }
     }
 }

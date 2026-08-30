@@ -1,22 +1,23 @@
 package eg;
-public final class h1 implements Runnable {
-    public final int f6027a;
-    public final j1 f6028b;
 
-    public h1(j1 j1Var, int i10) {
-        this.f6027a = i10;
-        this.f6028b = j1Var;
+import android.content.Context;
+import android.widget.Scroller;
+public final class h1 extends Scroller {
+    public final i1 f5298a;
+
+    public h1(i1 i1Var, Context context) {
+        super(context);
+        this.f5298a = i1Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f6027a) {
-            case 0:
-                j1.e0(this.f6028b);
-                return;
-            default:
-                j1.d0(this.f6028b);
-                return;
+    public final void startScroll(int i10, int i11, int i12, int i13, int i14) {
+        int i15;
+        if (this.f5298a.f5304u0) {
+            i15 = 3;
+        } else {
+            i15 = 1;
         }
+        super.startScroll(i10, i11, i12, i13, i15 * i14);
     }
 }

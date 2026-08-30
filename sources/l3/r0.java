@@ -1,193 +1,329 @@
 package l3;
 
-import java.nio.ByteBuffer;
-public final class r0 extends y {
-    public final long f14162i = 150000;
-    public final long f14163j = 20000;
-    public final short f14164k = 1024;
-    public int f14165l;
-    public boolean f14166m;
-    public byte[] f14167n;
-    public byte[] f14168o;
-    public int f14169p;
-    public int f14170q;
-    public int f14171r;
-    public boolean f14172s;
-    public long f14173t;
+import java.util.Arrays;
+public final class r0 {
+    public final int f11229a;
+    public final int f11230b;
+    public final float f11231c;
+    public final float d;
+    public final float e;
+    public final int f11232f;
+    public final int f11233g;
+    public final int h;
+    public final short[] f11234i;
+    public short[] f11235j;
+    public int f11236k;
+    public short[] f11237l;
+    public int f11238m;
+    public short[] f11239n;
+    public int f11240o;
+    public int f11241p;
+    public int f11242q;
+    public int f11243r;
+    public int f11244s;
+    public int f11245t;
+    public int f11246u;
+    public int v;
 
-    public r0() {
-        byte[] bArr = f5.d0.f6583f;
-        this.f14167n = bArr;
-        this.f14168o = bArr;
+    public r0(int i10, float f10, int i11, float f11, int i12) {
+        this.f11229a = i10;
+        this.f11230b = i11;
+        this.f11231c = f10;
+        this.d = f11;
+        this.e = i10 / i12;
+        this.f11232f = i10 / 400;
+        int i13 = i10 / 65;
+        this.f11233g = i13;
+        int i14 = i13 * 2;
+        this.h = i14;
+        this.f11234i = new short[i14];
+        this.f11235j = new short[i14 * i11];
+        this.f11237l = new short[i14 * i11];
+        this.f11239n = new short[i14 * i11];
     }
 
-    @Override
-    public final void b(ByteBuffer byteBuffer) {
-        int position;
-        while (byteBuffer.hasRemaining() && !this.f14253g.hasRemaining()) {
-            int i10 = this.f14169p;
-            if (i10 != 0) {
-                if (i10 != 1) {
-                    if (i10 == 2) {
-                        int limit = byteBuffer.limit();
-                        int k9 = k(byteBuffer);
-                        byteBuffer.limit(k9);
-                        this.f14173t += byteBuffer.remaining() / this.f14165l;
-                        m(byteBuffer, this.f14168o, this.f14171r);
-                        if (k9 < limit) {
-                            l(this.f14171r, this.f14168o);
-                            this.f14169p = 0;
-                            byteBuffer.limit(limit);
-                        }
-                    } else {
-                        throw new IllegalStateException();
-                    }
-                } else {
-                    int limit2 = byteBuffer.limit();
-                    int k10 = k(byteBuffer);
-                    int position2 = k10 - byteBuffer.position();
-                    byte[] bArr = this.f14167n;
-                    int length = bArr.length;
-                    int i11 = this.f14170q;
-                    int i12 = length - i11;
-                    if (k10 < limit2 && position2 < i12) {
-                        l(i11, bArr);
-                        this.f14170q = 0;
-                        this.f14169p = 0;
-                    } else {
-                        int min = Math.min(position2, i12);
-                        byteBuffer.limit(byteBuffer.position() + min);
-                        byteBuffer.get(this.f14167n, this.f14170q, min);
-                        int i13 = this.f14170q + min;
-                        this.f14170q = i13;
-                        byte[] bArr2 = this.f14167n;
-                        if (i13 == bArr2.length) {
-                            if (this.f14172s) {
-                                l(this.f14171r, bArr2);
-                                this.f14173t += (this.f14170q - (this.f14171r * 2)) / this.f14165l;
-                            } else {
-                                this.f14173t += (i13 - this.f14171r) / this.f14165l;
-                            }
-                            m(byteBuffer, this.f14167n, this.f14170q);
-                            this.f14170q = 0;
-                            this.f14169p = 2;
-                        }
-                        byteBuffer.limit(limit2);
-                    }
-                }
-            } else {
-                int limit3 = byteBuffer.limit();
-                byteBuffer.limit(Math.min(limit3, byteBuffer.position() + this.f14167n.length));
-                int limit4 = byteBuffer.limit() - 2;
+    public static void e(int i10, int i11, short[] sArr, int i12, short[] sArr2, int i13, short[] sArr3, int i14) {
+        for (int i15 = 0; i15 < i11; i15++) {
+            int i16 = (i12 * i11) + i15;
+            int i17 = (i14 * i11) + i15;
+            int i18 = (i13 * i11) + i15;
+            for (int i19 = 0; i19 < i10; i19++) {
+                sArr[i16] = (short) (((sArr3[i17] * i19) + ((i10 - i19) * sArr2[i18])) / i10);
+                i16 += i11;
+                i18 += i11;
+                i17 += i11;
+            }
+        }
+    }
+
+    public final void a(short[] sArr, int i10, int i11) {
+        short[] c3 = c(this.f11237l, this.f11238m, i11);
+        this.f11237l = c3;
+        int i12 = this.f11230b;
+        System.arraycopy(sArr, i10 * i12, c3, this.f11238m * i12, i12 * i11);
+        this.f11238m += i11;
+    }
+
+    public final void b(short[] sArr, int i10, int i11) {
+        int i12 = this.h / i11;
+        int i13 = this.f11230b;
+        int i14 = i11 * i13;
+        int i15 = i10 * i13;
+        for (int i16 = 0; i16 < i12; i16++) {
+            int i17 = 0;
+            for (int i18 = 0; i18 < i14; i18++) {
+                i17 += sArr[(i16 * i14) + i15 + i18];
+            }
+            this.f11234i[i16] = (short) (i17 / i14);
+        }
+    }
+
+    public final short[] c(short[] sArr, int i10, int i11) {
+        int length = sArr.length;
+        int i12 = this.f11230b;
+        int i13 = length / i12;
+        if (i10 + i11 <= i13) {
+            return sArr;
+        }
+        return Arrays.copyOf(sArr, (((i13 * 3) / 2) + i11) * i12);
+    }
+
+    public final int d(short[] sArr, int i10, int i11, int i12) {
+        int i13 = i10 * this.f11230b;
+        int i14 = 255;
+        int i15 = 1;
+        int i16 = 0;
+        int i17 = 0;
+        while (i11 <= i12) {
+            int i18 = 0;
+            for (int i19 = 0; i19 < i11; i19++) {
+                i18 += Math.abs(sArr[i13 + i19] - sArr[(i13 + i11) + i19]);
+            }
+            if (i18 * i16 < i15 * i11) {
+                i16 = i11;
+                i15 = i18;
+            }
+            if (i18 * i14 > i17 * i11) {
+                i14 = i11;
+                i17 = i18;
+            }
+            i11++;
+        }
+        this.f11246u = i15 / i16;
+        this.v = i17 / i14;
+        return i16;
+    }
+
+    public final void f() {
+        int i10;
+        float f10;
+        float f11;
+        float f12;
+        double d;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18;
+        boolean z4;
+        int i19 = this.f11238m;
+        float f13 = this.f11231c;
+        float f14 = this.d;
+        float f15 = f13 / f14;
+        float f16 = this.e * f14;
+        double d10 = f15;
+        int i20 = this.f11229a;
+        int i21 = 1;
+        int i22 = this.f11230b;
+        if (d10 <= 1.00001d && d10 >= 0.99999d) {
+            a(this.f11235j, 0, this.f11236k);
+            this.f11236k = 0;
+        } else {
+            int i23 = this.f11236k;
+            int i24 = this.h;
+            if (i23 >= i24) {
+                int i25 = 0;
                 while (true) {
-                    if (limit4 >= byteBuffer.position()) {
-                        if (Math.abs((int) byteBuffer.getShort(limit4)) > this.f14164k) {
-                            int i14 = this.f14165l;
-                            position = ((limit4 / i14) * i14) + i14;
-                            break;
-                        }
-                        limit4 -= 2;
+                    int i26 = this.f11243r;
+                    if (i26 > 0) {
+                        int min = Math.min(i24, i26);
+                        a(this.f11235j, i25, min);
+                        this.f11243r -= min;
+                        i25 += min;
+                        f11 = f15;
+                        f12 = f16;
+                        d = d10;
+                        f10 = 1.0f;
                     } else {
-                        position = byteBuffer.position();
+                        short[] sArr = this.f11235j;
+                        if (i20 > 4000) {
+                            i10 = i20 / 4000;
+                        } else {
+                            i10 = 1;
+                        }
+                        f10 = 1.0f;
+                        int i27 = this.f11233g;
+                        int i28 = this.f11232f;
+                        if (i22 == i21 && i10 == i21) {
+                            i11 = d(sArr, i25, i28, i27);
+                            f11 = f15;
+                            f12 = f16;
+                            d = d10;
+                        } else {
+                            b(sArr, i25, i10);
+                            f11 = f15;
+                            f12 = f16;
+                            short[] sArr2 = this.f11234i;
+                            d = d10;
+                            int d11 = d(sArr2, 0, i28 / i10, i27 / i10);
+                            if (i10 != 1) {
+                                int i29 = d11 * i10;
+                                int i30 = i10 * 4;
+                                int i31 = i29 - i30;
+                                int i32 = i29 + i30;
+                                if (i31 >= i28) {
+                                    i28 = i31;
+                                }
+                                if (i32 <= i27) {
+                                    i27 = i32;
+                                }
+                                if (i22 == 1) {
+                                    i11 = d(sArr, i25, i28, i27);
+                                } else {
+                                    b(sArr, i25, 1);
+                                    i11 = d(sArr2, 0, i28, i27);
+                                }
+                            } else {
+                                i11 = d11;
+                            }
+                        }
+                        int i33 = this.f11246u;
+                        int i34 = this.v;
+                        if (i33 == 0 || (i12 = this.f11244s) == 0 || i34 > i33 * 3 || i33 * 2 <= this.f11245t * 3) {
+                            i12 = i11;
+                        }
+                        this.f11245t = i33;
+                        this.f11244s = i11;
+                        if (d > 1.0d) {
+                            short[] sArr3 = this.f11235j;
+                            if (f11 >= 2.0f) {
+                                i14 = (int) (i12 / (f11 - 1.0f));
+                            } else {
+                                this.f11243r = (int) (((2.0f - f11) * i12) / (f11 - 1.0f));
+                                i14 = i12;
+                            }
+                            short[] c3 = c(this.f11237l, this.f11238m, i14);
+                            this.f11237l = c3;
+                            int i35 = i25 + i12;
+                            int i36 = i25;
+                            int i37 = i14;
+                            e(i37, this.f11230b, c3, this.f11238m, sArr3, i36, sArr3, i35);
+                            this.f11238m += i37;
+                            i25 = i12 + i37 + i36;
+                        } else {
+                            int i38 = i25;
+                            short[] sArr4 = this.f11235j;
+                            if (f11 < 0.5f) {
+                                i13 = (int) ((i12 * f11) / (1.0f - f11));
+                            } else {
+                                this.f11243r = (int) ((((2.0f * f11) - 1.0f) * i12) / (1.0f - f11));
+                                i13 = i12;
+                            }
+                            int i39 = i12 + i13;
+                            short[] c10 = c(this.f11237l, this.f11238m, i39);
+                            this.f11237l = c10;
+                            System.arraycopy(sArr4, i38 * i22, c10, this.f11238m * i22, i12 * i22);
+                            e(i13, this.f11230b, this.f11237l, this.f11238m + i12, sArr4, i38 + i12, sArr4, i38);
+                            this.f11238m += i39;
+                            i25 = i38 + i13;
+                        }
+                    }
+                    if (i25 + i24 > i23) {
                         break;
                     }
+                    f15 = f11;
+                    f16 = f12;
+                    d10 = d;
+                    i21 = 1;
                 }
-                if (position == byteBuffer.position()) {
-                    this.f14169p = 1;
-                } else {
-                    byteBuffer.limit(position);
-                    int remaining = byteBuffer.remaining();
-                    j(remaining).put(byteBuffer).flip();
-                    if (remaining > 0) {
-                        this.f14172s = true;
+                int i40 = this.f11236k - i25;
+                short[] sArr5 = this.f11235j;
+                System.arraycopy(sArr5, i25 * i22, sArr5, 0, i40 * i22);
+                this.f11236k = i40;
+                if (f12 == f10 && this.f11238m != i19) {
+                    int i41 = (int) (i20 / f12);
+                    while (true) {
+                        if (i41 <= 16384 && i20 <= 16384) {
+                            break;
+                        }
+                        i41 /= 2;
+                        i20 /= 2;
                     }
+                    int i42 = this.f11238m - i19;
+                    short[] c11 = c(this.f11239n, this.f11240o, i42);
+                    this.f11239n = c11;
+                    System.arraycopy(this.f11237l, i19 * i22, c11, this.f11240o * i22, i42 * i22);
+                    this.f11238m = i19;
+                    this.f11240o += i42;
+                    int i43 = 0;
+                    while (true) {
+                        i15 = this.f11240o;
+                        i16 = i15 - 1;
+                        if (i43 >= i16) {
+                            break;
+                        }
+                        while (true) {
+                            i17 = this.f11241p + 1;
+                            int i44 = i17 * i41;
+                            i18 = this.f11242q;
+                            if (i44 <= i18 * i20) {
+                                break;
+                            }
+                            this.f11237l = c(this.f11237l, this.f11238m, 1);
+                            for (int i45 = 0; i45 < i22; i45++) {
+                                short[] sArr6 = this.f11239n;
+                                int i46 = (i43 * i22) + i45;
+                                short s6 = sArr6[i46];
+                                short s9 = sArr6[i46 + i22];
+                                int i47 = this.f11241p;
+                                int i48 = i47 * i41;
+                                int i49 = (i47 + 1) * i41;
+                                int i50 = i49 - (this.f11242q * i20);
+                                int i51 = i49 - i48;
+                                this.f11237l[(this.f11238m * i22) + i45] = (short) ((((i51 - i50) * s9) + (s6 * i50)) / i51);
+                            }
+                            this.f11242q++;
+                            this.f11238m++;
+                        }
+                        this.f11241p = i17;
+                        if (i17 == i20) {
+                            this.f11241p = 0;
+                            if (i18 == i41) {
+                                z4 = true;
+                            } else {
+                                z4 = false;
+                            }
+                            h5.a.i(z4);
+                            this.f11242q = 0;
+                        }
+                        i43++;
+                    }
+                    if (i16 != 0) {
+                        short[] sArr7 = this.f11239n;
+                        System.arraycopy(sArr7, i16 * i22, sArr7, 0, (i15 - i16) * i22);
+                        this.f11240o -= i16;
+                        return;
+                    }
+                    return;
                 }
-                byteBuffer.limit(limit3);
             }
         }
-    }
-
-    @Override
-    public final h f(h hVar) {
-        if (hVar.f14101c == 2) {
-            if (this.f14166m) {
-                return hVar;
-            }
-            return h.f14098e;
+        f12 = f16;
+        f10 = 1.0f;
+        if (f12 == f10) {
         }
-        throw new i(hVar);
-    }
-
-    @Override
-    public final void g() {
-        if (this.f14166m) {
-            h hVar = this.f14249b;
-            int i10 = hVar.d;
-            this.f14165l = i10;
-            int i11 = hVar.f14099a;
-            int i12 = ((int) ((this.f14162i * i11) / 1000000)) * i10;
-            if (this.f14167n.length != i12) {
-                this.f14167n = new byte[i12];
-            }
-            int i13 = ((int) ((this.f14163j * i11) / 1000000)) * i10;
-            this.f14171r = i13;
-            if (this.f14168o.length != i13) {
-                this.f14168o = new byte[i13];
-            }
-        }
-        this.f14169p = 0;
-        this.f14173t = 0L;
-        this.f14170q = 0;
-        this.f14172s = false;
-    }
-
-    @Override
-    public final void h() {
-        int i10 = this.f14170q;
-        if (i10 > 0) {
-            l(i10, this.f14167n);
-        }
-        if (!this.f14172s) {
-            this.f14173t += this.f14171r / this.f14165l;
-        }
-    }
-
-    @Override
-    public final void i() {
-        this.f14166m = false;
-        this.f14171r = 0;
-        byte[] bArr = f5.d0.f6583f;
-        this.f14167n = bArr;
-        this.f14168o = bArr;
-    }
-
-    @Override
-    public final boolean isActive() {
-        return this.f14166m;
-    }
-
-    public final int k(ByteBuffer byteBuffer) {
-        for (int position = byteBuffer.position(); position < byteBuffer.limit(); position += 2) {
-            if (Math.abs((int) byteBuffer.getShort(position)) > this.f14164k) {
-                int i10 = this.f14165l;
-                return (position / i10) * i10;
-            }
-        }
-        return byteBuffer.limit();
-    }
-
-    public final void l(int i10, byte[] bArr) {
-        j(i10).put(bArr, 0, i10).flip();
-        if (i10 > 0) {
-            this.f14172s = true;
-        }
-    }
-
-    public final void m(ByteBuffer byteBuffer, byte[] bArr, int i10) {
-        int min = Math.min(byteBuffer.remaining(), this.f14171r);
-        int i11 = this.f14171r - min;
-        System.arraycopy(bArr, i10 - i11, this.f14168o, 0, i11);
-        byteBuffer.position(byteBuffer.limit() - min);
-        byteBuffer.get(this.f14168o, i11, min);
     }
 }

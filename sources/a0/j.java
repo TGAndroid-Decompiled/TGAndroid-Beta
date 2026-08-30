@@ -1,20 +1,19 @@
 package a0;
 
-import ag.o1;
 import java.util.LinkedHashMap;
 public class j {
-    public final int f21a;
-    public final o1 f22b;
-    public final ya.a f23c;
+    public final int f19a;
+    public final a3.c f20b;
+    public final ab.a f21c;
     public int d;
-    public int f24e;
-    public int f25f;
+    public int e;
+    public int f22f;
 
     public j(int i10) {
-        this.f21a = i10;
+        this.f19a = i10;
         if (i10 > 0) {
-            this.f22b = new o1(3);
-            this.f23c = new ya.a(3);
+            this.f20b = new a3.c();
+            this.f21c = new ab.a(3);
             return;
         }
         throw new IllegalArgumentException("maxSize <= 0");
@@ -22,15 +21,15 @@ public class j {
 
     public final Object a(Object key) {
         kotlin.jvm.internal.j.e(key, "key");
-        synchronized (this.f23c) {
-            o1 o1Var = this.f22b;
-            o1Var.getClass();
-            Object obj = ((LinkedHashMap) o1Var.f624b).get(key);
+        synchronized (this.f21c) {
+            a3.c cVar = this.f20b;
+            cVar.getClass();
+            Object obj = ((LinkedHashMap) cVar.f46b).get(key);
             if (obj != null) {
-                this.f24e++;
+                this.e++;
                 return obj;
             }
-            this.f25f++;
+            this.f22f++;
             return null;
         }
     }
@@ -38,16 +37,16 @@ public class j {
     public final Object b(Object key, Object obj) {
         Object put;
         kotlin.jvm.internal.j.e(key, "key");
-        synchronized (this.f23c) {
+        synchronized (this.f21c) {
             this.d++;
-            o1 o1Var = this.f22b;
-            o1Var.getClass();
-            put = ((LinkedHashMap) o1Var.f624b).put(key, obj);
+            a3.c cVar = this.f20b;
+            cVar.getClass();
+            put = ((LinkedHashMap) cVar.f46b).put(key, obj);
             if (put != null) {
                 this.d--;
             }
         }
-        c(this.f21a);
+        c(this.f19a);
         return put;
     }
 
@@ -58,16 +57,16 @@ public class j {
     public final String toString() {
         int i10;
         String str;
-        synchronized (this.f23c) {
+        synchronized (this.f21c) {
             try {
-                int i11 = this.f24e;
-                int i12 = this.f25f + i11;
+                int i11 = this.e;
+                int i12 = this.f22f + i11;
                 if (i12 != 0) {
                     i10 = (i11 * 100) / i12;
                 } else {
                     i10 = 0;
                 }
-                str = "LruCache[maxSize=" + this.f21a + ",hits=" + this.f24e + ",misses=" + this.f25f + ",hitRate=" + i10 + "%]";
+                str = "LruCache[maxSize=" + this.f19a + ",hits=" + this.e + ",misses=" + this.f22f + ",hitRate=" + i10 + "%]";
             } catch (Throwable th2) {
                 throw th2;
             }

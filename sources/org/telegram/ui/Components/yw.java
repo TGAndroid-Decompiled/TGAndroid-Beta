@@ -1,66 +1,189 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public final class yw extends p41 {
-    public final fz f35137b;
+import org.telegram.messenger.MessagesController;
+public final class yw implements m2.f {
+    public final boolean f31173a;
+    public final kz f31174b;
 
-    public yw(fz fzVar) {
-        this.f35137b = fzVar;
+    public yw(kz kzVar, boolean z4) {
+        this.f31174b = kzVar;
+        this.f31173a = z4;
     }
 
     @Override
-    public final boolean a() {
-        return this.f35137b.f28623p1.b();
-    }
-
-    @Override
-    public final String[] b() {
-        return this.f35137b.S0;
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f35137b.f28623p1.c();
-    }
-
-    @Override
-    public final boolean d(i41 i41Var, MotionEvent motionEvent) {
-        org.telegram.ui.ht q6 = org.telegram.ui.ht.q();
-        fz fzVar = this.f35137b;
-        fzVar.getMeasuredHeight();
-        return q6.r(motionEvent, i41Var, fzVar.f28584c2, fzVar.V1);
-    }
-
-    @Override
-    public final boolean e(i41 i41Var, k kVar, MotionEvent motionEvent) {
-        org.telegram.ui.ht q6 = org.telegram.ui.ht.q();
-        fz fzVar = this.f35137b;
-        fzVar.getMeasuredHeight();
-        return q6.s(motionEvent, i41Var, kVar, fzVar.f28584c2, fzVar.V1);
-    }
-
-    @Override
-    public final void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
-        this.f35137b.f28623p1.m(null, document, null, obj, null, z10, i10);
-    }
-
-    @Override
-    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
-        fz fzVar = this.f35137b;
-        fzVar.f28623p1.r(stickerSetCovered);
-        if (z10) {
-            fzVar.Z(true);
+    public final void a(int i10) {
+        boolean z4;
+        int i11;
+        kz kzVar = this.f31174b;
+        vw vwVar = kzVar.h;
+        boolean z10 = false;
+        if (vwVar != null) {
+            int currentItem = vwVar.getCurrentItem();
+            if (currentItem == 2) {
+                i11 = 1;
+            } else if (currentItem == 1) {
+                i11 = 2;
+            } else {
+                i11 = 0;
+            }
+            if (kzVar.f26485x1 != i11) {
+                kzVar.f26485x1 = i11;
+                MessagesController.getGlobalEmojiSettings().edit().putInt("selected_page", i11).commit();
+            }
+        }
+        if (i10 == 0) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        kzVar.N(z4, true);
+        if (i10 == 2 && (this.f31173a || kzVar.f26467s0)) {
+            z10 = true;
+        }
+        kzVar.S(z10, true);
+        if (kzVar.f26460q1.z()) {
+            if (i10 == 0) {
+                gw gwVar = kzVar.S;
+                if (gwVar != null) {
+                    gwVar.d.requestFocus();
+                }
+            } else if (i10 == 1) {
+                mw mwVar = kzVar.f26445l0;
+                if (mwVar != null) {
+                    mwVar.d.requestFocus();
+                }
+            } else {
+                sw swVar = kzVar.D0;
+                if (swVar != null) {
+                    swVar.d.requestFocus();
+                }
+            }
         }
     }
 
     @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        this.f35137b.f28623p1.h(stickerSetCovered);
+    public final void b(float f10, int i10, int i11) {
+        float f11;
+        wy wyVar;
+        wy wyVar2;
+        int i12;
+        int i13;
+        int i14;
+        kz kzVar = this.f31174b;
+        wy wyVar3 = kzVar.D0;
+        wy wyVar4 = kzVar.f26445l0;
+        wy wyVar5 = kzVar.S;
+        uw uwVar = kzVar.f26491z0;
+        pw pwVar = kzVar.A0;
+        px pxVar = kzVar.m0;
+        jw jwVar = kzVar.f26423e0;
+        ix ixVar = kzVar.M;
+        int i15 = 2;
+        boolean z4 = true;
+        if (kzVar.f26473u0 == null || kzVar.f26420d0 == null) {
+            f11 = 0.0f;
+        } else {
+            int i16 = 8;
+            if (i10 == 0) {
+                ixVar.setVisibility(0);
+                int i17 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
+                if (i17 == 0) {
+                    i13 = 8;
+                } else {
+                    i13 = 0;
+                }
+                f11 = 0.0f;
+                jwVar.setVisibility(i13);
+                if (i17 == 0) {
+                    i14 = 8;
+                } else {
+                    i14 = 0;
+                }
+                pxVar.setVisibility(i14);
+                pwVar.setVisibility(8);
+                if (uwVar != null) {
+                    uwVar.setVisibility(8);
+                }
+            } else {
+                f11 = 0.0f;
+                if (i10 == 1) {
+                    ixVar.setVisibility(8);
+                    jwVar.setVisibility(0);
+                    pxVar.setVisibility(0);
+                    int i18 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
+                    if (i18 == 0) {
+                        i12 = 8;
+                    } else {
+                        i12 = 0;
+                    }
+                    pwVar.setVisibility(i12);
+                    if (uwVar != null) {
+                        if (i18 != 0) {
+                            i16 = 0;
+                        }
+                        uwVar.setVisibility(i16);
+                    }
+                } else if (i10 == 2) {
+                    ixVar.setVisibility(8);
+                    jwVar.setVisibility(8);
+                    pxVar.setVisibility(8);
+                    pwVar.setVisibility(0);
+                    if (uwVar != null) {
+                        uwVar.setVisibility(0);
+                    }
+                }
+            }
+        }
+        kzVar.getMeasuredWidth();
+        kzVar.getPaddingLeft();
+        kzVar.getPaddingRight();
+        ky kyVar = kzVar.f26460q1;
+        if (kyVar != null) {
+            if (i10 == 1) {
+                if (i11 == 0) {
+                    i15 = 0;
+                }
+                kyVar.s(i15);
+            } else if (i10 == 2) {
+                kyVar.s(3);
+            } else {
+                kyVar.s(0);
+            }
+        }
+        kzVar.O(true);
+        int currentItem = kzVar.h.getCurrentItem();
+        if (currentItem == 0) {
+            wyVar = wyVar5;
+        } else if (currentItem == 1) {
+            wyVar = wyVar4;
+        } else {
+            wyVar = wyVar3;
+        }
+        String obj = wyVar.d.getText().toString();
+        for (int i19 = 0; i19 < 3; i19++) {
+            if (i19 == 0) {
+                wyVar2 = wyVar5;
+            } else if (i19 == 1) {
+                wyVar2 = wyVar4;
+            } else {
+                wyVar2 = wyVar3;
+            }
+            if (wyVar2 != null) {
+                gq gqVar = wyVar2.d;
+                if (wyVar2 != wyVar && gqVar != null && !gqVar.getText().toString().equals(obj)) {
+                    gqVar.setText(obj);
+                    gqVar.setSelection(obj.length());
+                }
+            }
+        }
+        if ((i10 != 0 || f10 <= f11) && i10 != 1) {
+            z4 = false;
+        }
+        kz.a(kzVar, z4);
+        kzVar.a0();
     }
 
     @Override
-    public final void i(String[] strArr) {
-        this.f35137b.S0 = strArr;
+    public final void c(int i10) {
     }
 }

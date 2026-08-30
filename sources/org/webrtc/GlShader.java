@@ -54,7 +54,7 @@ public class GlShader {
             if (glGetAttribLocation >= 0) {
                 return glGetAttribLocation;
             }
-            throw new RuntimeException(a4.w.n("Could not locate '", str, "' in program"));
+            throw new RuntimeException(android.support.v4.media.a.o("Could not locate '", str, "' in program"));
         }
         throw new RuntimeException("The program has been released");
     }
@@ -66,7 +66,7 @@ public class GlShader {
             if (glGetUniformLocation >= 0) {
                 return glGetUniformLocation;
             }
-            throw new RuntimeException(a4.w.n("Could not locate uniform '", str, "' in program"));
+            throw new RuntimeException(android.support.v4.media.a.o("Could not locate uniform '", str, "' in program"));
         }
         throw new RuntimeException("The program has been released");
     }

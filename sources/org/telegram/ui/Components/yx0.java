@@ -1,20 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.text.StaticLayout;
-public final class yx0 {
-    public final EditTextBoldCursor f35141a;
-    public StaticLayout f35142b;
-    public StaticLayout f35143c;
-    public StaticLayout d;
-    public boolean f35144e;
-    public boolean f35145f;
-    public boolean f35146g;
-    public float h;
-    public float f35147i;
-    public ValueAnimator f35148j;
+import android.app.Activity;
+import android.content.Context;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class yx0 extends rl0 {
+    public final Context f31179c;
+    public final zx0 d;
 
-    public yx0(EditTextBoldCursor editTextBoldCursor) {
-        this.f35141a = editTextBoldCursor;
+    public yx0(zx0 zx0Var, Activity activity) {
+        this.d = zx0Var;
+        this.f31179c = activity;
+    }
+
+    @Override
+    public final boolean D(f2.l1 l1Var) {
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.f31474c.size();
+    }
+
+    @Override
+    public final void v(f2.l1 l1Var, int i10) {
+        org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) l1Var.f5785a;
+        ArrayList arrayList = this.d.f31474c;
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i10);
+        boolean z4 = true;
+        if (i10 == arrayList.size() - 1) {
+            z4 = false;
+        }
+        wVar.b(stickerSetCovered, z4);
+    }
+
+    @Override
+    public final f2.l1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.w wVar = new org.telegram.ui.Cells.w(this.f31179c, false);
+        wVar.setLayoutParams(new f2.w0(-1, AndroidUtilities.dp(82.0f)));
+        return new f2.l1(wVar);
     }
 }

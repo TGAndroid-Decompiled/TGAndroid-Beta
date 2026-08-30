@@ -1,58 +1,35 @@
 package h7;
-public abstract class q {
-    public static final Class a(fd.c cVar) {
-        kotlin.jvm.internal.j.e(cVar, "<this>");
-        Class a2 = ((kotlin.jvm.internal.d) cVar).a();
-        if (a2.isPrimitive()) {
-            String name = a2.getName();
-            switch (name.hashCode()) {
-                case -1325958191:
-                    if (name.equals("double")) {
-                        return Double.class;
-                    }
-                    break;
-                case 104431:
-                    if (name.equals("int")) {
-                        return Integer.class;
-                    }
-                    break;
-                case 3039496:
-                    if (name.equals("byte")) {
-                        return Byte.class;
-                    }
-                    break;
-                case 3052374:
-                    if (name.equals("char")) {
-                        return Character.class;
-                    }
-                    break;
-                case 3327612:
-                    if (name.equals("long")) {
-                        return Long.class;
-                    }
-                    break;
-                case 3625364:
-                    if (name.equals("void")) {
-                        return Void.class;
-                    }
-                    break;
-                case 64711720:
-                    if (name.equals("boolean")) {
-                        return Boolean.class;
-                    }
-                    break;
-                case 97526364:
-                    if (name.equals("float")) {
-                        return Float.class;
-                    }
-                    break;
-                case 109413500:
-                    if (name.equals("short")) {
-                        return Short.class;
-                    }
-                    break;
+
+import android.content.Context;
+import j$.util.Objects;
+import java.util.HashMap;
+public final class q {
+    public static final l f7030b = l.b(1, new Object[]{"optional-module-barcode", "com.google.android.gms.vision.barcode"}, null);
+    public final String f7031a;
+
+    public q(Context context, cb.l lVar) {
+        new HashMap();
+        new HashMap();
+        context.getPackageName();
+        cb.c.a(context);
+        synchronized (u.class) {
+            if (u.f7035b == null) {
+                u.f7035b = new u(0);
             }
         }
-        return a2;
+        this.f7031a = "common";
+        cb.g a2 = cb.g.a();
+        h2.f fVar = new h2.f(this, 2);
+        a2.getClass();
+        cb.g.b(fVar);
+        cb.g a10 = cb.g.a();
+        Objects.requireNonNull(lVar);
+        p pVar = new p(lVar, 0);
+        a10.getClass();
+        cb.g.b(pVar);
+        l lVar2 = f7030b;
+        if (lVar2.containsKey("common")) {
+            m6.e.d(context, (String) lVar2.get("common"), false);
+        }
     }
 }

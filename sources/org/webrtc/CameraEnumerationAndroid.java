@@ -93,11 +93,11 @@ public class CameraEnumerationAndroid {
         }
 
         @Override
-        public int compare(T t10, T t11) {
-            return diff(t10) - diff(t11);
+        public int compare(T t6, T t9) {
+            return diff(t6) - diff(t9);
         }
 
-        public abstract int diff(T t10);
+        public abstract int diff(T t6);
     }
 
     public static CaptureFormat.FramerateRange getClosestSupportedFramerateRange(List<CaptureFormat.FramerateRange> list, final int i10) {
@@ -117,7 +117,7 @@ public class CameraEnumerationAndroid {
                 if (i11 < i12) {
                     return i11 * i13;
                 }
-                return com.google.android.recaptcha.internal.a.f(i11, i12, i14, i13 * i12);
+                return e2.c.e(i11, i12, i14, i13 * i12);
             }
 
             @Override

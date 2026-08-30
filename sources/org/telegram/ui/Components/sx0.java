@@ -1,27 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class sx0 implements TextWatcher {
-    public final NumberTextView f32737a;
-    public final rx0 f32738b;
+import android.content.Context;
+import android.view.View;
+public final class sx0 extends org.telegram.ui.Cells.d8 {
+    public final tx0 L;
 
-    public sx0(NumberTextView numberTextView, rx0 rx0Var) {
-        this.f32737a = numberTextView;
-        this.f32738b = rx0Var;
+    public sx0(tx0 tx0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var, false);
+        this.L = tx0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        this.f32737a.a(50 - Character.codePointCount(editable, 0, editable.length()), true);
-        this.f32738b.setErrorText(null);
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onMeasure(int i10, int i11) {
+        tx0 tx0Var = this.L;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(tx0Var.f29067r.L, 1073741824), View.MeasureSpec.makeMeasureSpec(tx0Var.f29067r.L, 1073741824));
     }
 }

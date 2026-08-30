@@ -1,41 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-public final class td implements ph.i0, org.telegram.ui.ActionBar.b2, qt, org.telegram.ui.ActionBar.m1 {
-    public final ChatActivityEnterView f32925a;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_iv;
+public final class td implements Utilities.Callback4 {
+    public final int f28960a;
+    public final ChatActivityEnterView f28961b;
+    public final long f28962c;
+    public final org.telegram.ui.ActionBar.f6 d;
 
-    public td(ChatActivityEnterView chatActivityEnterView) {
-        this.f32925a = chatActivityEnterView;
+    public td(ChatActivityEnterView chatActivityEnterView, long j10, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        this.f28960a = i10;
+        this.f28961b = chatActivityEnterView;
+        this.f28962c = j10;
+        this.d = f6Var;
     }
 
     @Override
-    public void e1() {
-        ChatActivityEnterView chatActivityEnterView = this.f32925a;
-        chatActivityEnterView.A0.invalidateEffects();
-        hg hgVar = chatActivityEnterView.U2;
-        if (hgVar != null) {
-            hgVar.v1(chatActivityEnterView.A0.getTextToUse());
-        }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        int i11 = ChatActivityEnterView.f26085i5;
-        ChatActivityEnterView chatActivityEnterView = this.f32925a;
-        chatActivityEnterView.O();
-        jf jfVar = chatActivityEnterView.A0;
-        if (jfVar != null) {
-            jfVar.setText("");
-        }
-    }
-
-    @Override
-    public void o(KeyEvent keyEvent) {
-        ChatActivityEnterView chatActivityEnterView;
-        ef efVar;
-        int i10 = ChatActivityEnterView.f26085i5;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (efVar = (chatActivityEnterView = this.f32925a).J0) != null && efVar.isShowing()) {
-            chatActivityEnterView.J0.dismiss();
+    public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
+        int i10 = this.f28960a;
+        org.telegram.ui.ActionBar.f6 f6Var = this.d;
+        long j10 = this.f28962c;
+        switch (i10) {
+            case 0:
+                Integer num = (Integer) obj2;
+                Integer num2 = (Integer) obj3;
+                Boolean bool = (Boolean) obj4;
+                int i11 = ChatActivityEnterView.f22729j5;
+                ChatActivityEnterView chatActivityEnterView = this.f28961b;
+                chatActivityEnterView.Q0((TL_iv.RichMessage) obj);
+                if (chatActivityEnterView.c() && num.intValue() == 0) {
+                    z4.M(chatActivityEnterView.K2, j10, new he(chatActivityEnterView, 0), f6Var);
+                    return;
+                }
+                chatActivityEnterView.T0(num.intValue(), bool.booleanValue(), num2.intValue(), true, 0L);
+                return;
+            default:
+                Integer num3 = (Integer) obj2;
+                Integer num4 = (Integer) obj3;
+                Boolean bool2 = (Boolean) obj4;
+                ChatActivityEnterView chatActivityEnterView2 = this.f28961b;
+                chatActivityEnterView2.B0.setText((CharSequence) obj);
+                if (chatActivityEnterView2.V1 != null) {
+                    chatActivityEnterView2.d0();
+                    return;
+                } else if (chatActivityEnterView2.c() && num3.intValue() == 0) {
+                    z4.M(chatActivityEnterView2.K2, j10, new ie(chatActivityEnterView2), f6Var);
+                    return;
+                } else {
+                    chatActivityEnterView2.T0(num3.intValue(), bool2.booleanValue(), num4.intValue(), true, 0L);
+                    return;
+                }
         }
     }
 }

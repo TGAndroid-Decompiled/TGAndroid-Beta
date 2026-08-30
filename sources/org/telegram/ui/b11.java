@@ -1,83 +1,83 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.content.Intent;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class b11 extends org.telegram.ui.ActionBar.k {
-    public final Context f36646a;
-    public final ProxyListActivity f36647b;
+import android.content.SharedPreferences;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationsController;
+import org.telegram.tgnet.TLRPC;
+public final class b11 extends org.telegram.ui.ActionBar.j {
+    public final String f32769a;
+    public final e11 f32770b;
 
-    public b11(ProxyListActivity proxyListActivity, Context context) {
-        this.f36647b = proxyListActivity;
-        this.f36646a = context;
+    public b11(e11 e11Var, String str) {
+        this.f32770b = e11Var;
+        this.f32769a = str;
     }
 
     @Override
     public final void b(int i10) {
         int i11;
         int i12;
-        ProxyListActivity proxyListActivity = this.f36647b;
-        ArrayList arrayList = proxyListActivity.D;
-        if (i10 != -1) {
-            int i13 = 0;
-            if (i10 != 0) {
-                if (i10 == 1) {
-                    StringBuilder sb2 = new StringBuilder();
-                    int size = arrayList.size();
-                    while (i13 < size) {
-                        Object obj = arrayList.get(i13);
-                        i13++;
-                        SharedConfig.ProxyInfo proxyInfo = (SharedConfig.ProxyInfo) obj;
-                        if (sb2.length() > 0) {
-                            sb2.append("\n\n");
-                        }
-                        sb2.append(proxyInfo.getLink());
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        e11 e11Var = this.f32770b;
+        long j10 = e11Var.f33854f;
+        long j11 = e11Var.e;
+        String str = this.f32769a;
+        if (i10 == -1) {
+            if (!e11Var.h && e11Var.f33855n) {
+                i17 = ((org.telegram.ui.ActionBar.p2) e11Var).currentAccount;
+                SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(i17).edit();
+                edit.putInt("notify2_" + str, 0).apply();
+            }
+        } else if (i10 == 1) {
+            i11 = ((org.telegram.ui.ActionBar.p2) e11Var).currentAccount;
+            SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i11);
+            SharedPreferences.Editor edit2 = notificationsSettings.edit();
+            edit2.putBoolean("custom_" + str, true);
+            i12 = ((org.telegram.ui.ActionBar.p2) e11Var).currentAccount;
+            TLRPC.Dialog dialog = (TLRPC.Dialog) MessagesController.getInstance(i12).dialogs_dict.f(j11);
+            if (e11Var.f33855n) {
+                edit2.putInt("notify2_" + str, 0);
+                if (j10 == 0) {
+                    i16 = ((org.telegram.ui.ActionBar.p2) e11Var).currentAccount;
+                    MessagesStorage.getInstance(i16).setDialogFlags(j11, 0L);
+                    if (dialog != null) {
+                        dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
                     }
-                    Intent intent = new Intent("android.intent.action.SEND");
-                    intent.setType("text/plain");
-                    intent.putExtra("android.intent.extra.TEXT", sb2.toString());
-                    if (arrayList.size() > 1) {
-                        i12 = R.string.ShareLinks;
-                    } else {
-                        i12 = R.string.ShareLink;
-                    }
-                    Intent createChooser = Intent.createChooser(intent, LocaleController.getString(i12));
-                    createChooser.setFlags(268435456);
-                    this.f36646a.startActivity(createChooser);
-                    c11 c11Var = proxyListActivity.f36161a;
-                    if (c11Var != null) {
-                        c11Var.F();
-                        return;
-                    }
-                    return;
                 }
-                return;
-            }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(proxyListActivity.getParentActivity());
-            if (arrayList.size() > 1) {
-                i11 = R.string.DeleteProxyMultiConfirm;
             } else {
-                i11 = R.string.DeleteProxyConfirm;
+                edit2.putInt("notify2_" + str, 2);
+                if (j10 == 0) {
+                    i13 = ((org.telegram.ui.ActionBar.p2) e11Var).currentAccount;
+                    NotificationsController.getInstance(i13).removeNotificationsForDialog(j11);
+                    i14 = ((org.telegram.ui.ActionBar.p2) e11Var).currentAccount;
+                    MessagesStorage.getInstance(i14).setDialogFlags(j11, 1L);
+                    if (dialog != null) {
+                        TLRPC.TL_peerNotifySettings tL_peerNotifySettings = new TLRPC.TL_peerNotifySettings();
+                        dialog.notify_settings = tL_peerNotifySettings;
+                        tL_peerNotifySettings.mute_until = Integer.MAX_VALUE;
+                    }
+                }
             }
-            alertDialog$Builder.f22714a.P = LocaleController.getString(i11);
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            alertDialog$Builder.f22714a.N = LocaleController.getString(R.string.DeleteProxyTitle);
-            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new zk0(this, 14));
-            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f22714a;
-            proxyListActivity.showDialog(c2Var);
-            TextView textView = (TextView) c2Var.d(-1);
-            if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23295q7, false));
+            edit2.apply();
+            i15 = ((org.telegram.ui.ActionBar.p2) e11Var).currentAccount;
+            NotificationsController.getInstance(i15).updateServerNotificationsSettings(j11, j10);
+            if (e11Var.f33856r != null) {
+                ?? obj = new Object();
+                obj.d = j11;
+                obj.f35369b = true;
+                int c3 = org.telegram.messenger.y3.c("notify2_", str, notificationsSettings, 0);
+                obj.f35370c = c3;
+                if (c3 != 0) {
+                    obj.f35368a = org.telegram.messenger.y3.c("notifyuntil_", str, notificationsSettings, 0);
+                }
+                e11Var.f33856r.v(obj);
             }
-        } else if (arrayList.isEmpty()) {
-            proxyListActivity.finishFragment();
-        } else {
-            proxyListActivity.f36161a.F();
         }
+        e11Var.finishFragment();
     }
 }

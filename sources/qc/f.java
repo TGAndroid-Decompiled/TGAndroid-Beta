@@ -1,40 +1,21 @@
 package qc;
 
-import java.io.Serializable;
-import kotlin.jvm.internal.j;
-public final class f implements Serializable {
-    public final Object f46598a;
+import java.util.regex.Pattern;
+import ne.p;
+public final class f extends h {
+    public static final Pattern e = Pattern.compile("^&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
 
-    public static final Throwable a(Object obj) {
-        if (obj instanceof e) {
-            return ((e) obj).f46597a;
+    @Override
+    public final p b() {
+        String a2 = a(e);
+        if (a2 != null) {
+            return f(me.b.a(a2));
         }
         return null;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof f) {
-            if (!j.a(this.f46598a, ((f) obj).f46598a)) {
-                return false;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        Object obj = this.f46598a;
-        if (obj == null) {
-            return 0;
-        }
-        return obj.hashCode();
-    }
-
-    public final String toString() {
-        Object obj = this.f46598a;
-        if (obj instanceof e) {
-            return ((e) obj).toString();
-        }
-        return "Success(" + obj + ')';
+    @Override
+    public final char d() {
+        return '&';
     }
 }

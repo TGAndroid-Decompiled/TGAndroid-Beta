@@ -1,28 +1,34 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class cw0 extends cg.l2 {
-    public final dw0 J;
+import java.util.Comparator;
+import org.telegram.messenger.MessagesController;
+public final class cw0 implements Comparator {
+    public final int f33442a;
+    public final MessagesController f33443b;
 
-    public cw0(dw0 dw0Var, Context context) {
-        super(context);
-        this.J = dw0Var;
+    public cw0(MessagesController messagesController, int i10) {
+        this.f33442a = i10;
+        this.f33443b = messagesController;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        TextView textView = this.f3206r;
-        if (textView.getVisibility() == 0) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
-            dw0 dw0Var = this.J;
-            dw0Var.d.f37915n.f35919j0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f3205n.h, dw0Var.d.f37915n.K);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), dw0Var.d.f37915n.f35919j0.f3319f);
+    public final int compare(Object obj, Object obj2) {
+        int i10;
+        int i11;
+        pw0 pw0Var = (pw0) obj;
+        pw0 pw0Var2 = (pw0) obj2;
+        switch (this.f33442a) {
+            case 0:
+                MessagesController messagesController = this.f33443b;
+                i10 = messagesController.businessFeaturesTypesToPosition.get(pw0Var.f37545a, Integer.MAX_VALUE);
+                i11 = messagesController.businessFeaturesTypesToPosition.get(pw0Var2.f37545a, Integer.MAX_VALUE);
+                break;
+            default:
+                MessagesController messagesController2 = this.f33443b;
+                i10 = messagesController2.premiumFeaturesTypesToPosition.get(pw0Var.f37545a, Integer.MAX_VALUE);
+                i11 = messagesController2.premiumFeaturesTypesToPosition.get(pw0Var2.f37545a, Integer.MAX_VALUE);
+                break;
         }
-        super.dispatchDraw(canvas);
+        return i10 - i11;
     }
 }

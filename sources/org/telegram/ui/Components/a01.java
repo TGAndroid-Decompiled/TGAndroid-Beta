@@ -1,69 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.text.style.ReplacementSpan;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
 public final class a01 extends ReplacementSpan {
-    public static final int f26610f = 0;
-    public ImageReceiver f26611a;
-    public int f26612b;
-    public int f26613c;
-    public final boolean d;
-    public final int f26614e;
+    public float f23231a;
+    public final String f23232b;
+    public final int f23233c;
+    public final Paint d;
 
-    public a01(View view, Bitmap bitmap, int i10, int i11, int i12, int i13) {
-        this.f26612b = i10;
-        this.f26613c = i11;
-        ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f26611a = imageReceiver;
-        imageReceiver.setInvalidateAll(true);
-        imageReceiver.setImageBitmap(bitmap);
-        imageReceiver.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
-        this.f26614e = i13;
-        this.d = true;
+    public a01(int i10, Paint paint, String str) {
+        this.f23232b = str;
+        this.f23233c = i10;
+        this.d = paint;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f9, int i12, int i13, int i14, Paint paint) {
-        int i15 = this.f26612b;
-        int i16 = this.f26613c;
-        ImageReceiver imageReceiver = this.f26611a;
-        canvas.save();
-        if (this.d) {
-            imageReceiver.setImageCoords((int) f9, i13 - (i16 - this.f26614e), i15, i16);
-        } else {
-            imageReceiver.setImageCoords((int) f9, j7.l1.e(org.telegram.messenger.x3.B(4.0f, i14, i12), i16, 2, i12), i15, i16);
-        }
-        imageReceiver.draw(canvas);
-        canvas.restore();
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
+        float f11 = (i12 + i14) / 2.0f;
+        paint.setColor(this.f23233c);
+        float dp = AndroidUtilities.dp(19.0f) / 2.0f;
+        canvas.drawRoundRect(f10, f11 - dp, f10 + this.f23231a + AndroidUtilities.dp(11.33f), f11 + dp, dp, dp, this.d);
+        canvas.drawText(this.f23232b, AndroidUtilities.dpf2(5.66f) + f10, i14 - AndroidUtilities.dp(6.0f), paint);
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        int i12 = this.f26613c;
-        if (fontMetricsInt != null) {
-            if (this.d) {
-                int i13 = this.f26614e;
-                int i14 = -(i12 - i13);
-                fontMetricsInt.ascent = i14;
-                fontMetricsInt.top = i14;
-                fontMetricsInt.descent = i13;
-                fontMetricsInt.bottom = i13;
-            } else {
-                int dp = ((-i12) / 2) - AndroidUtilities.dp(4.0f);
-                fontMetricsInt.ascent = dp;
-                fontMetricsInt.top = dp;
-                int dp2 = (i12 - (i12 / 2)) - AndroidUtilities.dp(4.0f);
-                fontMetricsInt.descent = dp2;
-                fontMetricsInt.bottom = dp2;
-            }
-        }
-        return this.f26612b;
+        float dpf2 = AndroidUtilities.dpf2(11.33f);
+        float measureText = paint.measureText(this.f23232b);
+        this.f23231a = measureText;
+        return (int) (dpf2 + measureText);
     }
 }

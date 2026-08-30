@@ -1,63 +1,86 @@
 package v3;
 
-import android.util.Pair;
-import f5.d0;
-import o3.s;
-import o3.u;
-public final class c implements f {
-    public final long[] f49331a;
-    public final long[] f49332b;
-    public final long f49333c;
+import cb.e;
+import h5.w;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+public final class c extends e {
+    public long f45578b;
+    public long[] f45579c;
+    public long[] d;
 
-    public c(long j10, long[] jArr, long[] jArr2) {
-        this.f49331a = jArr;
-        this.f49332b = jArr2;
-        this.f49333c = j10 == -9223372036854775807L ? d0.H(jArr2[jArr2.length - 1]) : j10;
-    }
-
-    public static Pair d(long j10, long[] jArr, long[] jArr2) {
-        double d;
-        int e10 = d0.e(jArr, j10, true);
-        long j11 = jArr[e10];
-        long j12 = jArr2[e10];
-        int i10 = e10 + 1;
-        if (i10 == jArr.length) {
-            return Pair.create(Long.valueOf(j11), Long.valueOf(j12));
-        }
-        long j13 = jArr[i10];
-        long j14 = jArr2[i10];
-        if (j13 == j11) {
-            d = 0.0d;
+    public static Serializable L(int i10, w wVar) {
+        if (i10 != 0) {
+            boolean z4 = false;
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        if (i10 != 8) {
+                            if (i10 != 10) {
+                                if (i10 != 11) {
+                                    return null;
+                                }
+                                Date date = new Date((long) Double.longBitsToDouble(wVar.o()));
+                                wVar.G(2);
+                                return date;
+                            }
+                            int x10 = wVar.x();
+                            ArrayList arrayList = new ArrayList(x10);
+                            for (int i11 = 0; i11 < x10; i11++) {
+                                Serializable L = L(wVar.u(), wVar);
+                                if (L != null) {
+                                    arrayList.add(L);
+                                }
+                            }
+                            return arrayList;
+                        }
+                        return M(wVar);
+                    }
+                    HashMap hashMap = new HashMap();
+                    while (true) {
+                        String N = N(wVar);
+                        int u10 = wVar.u();
+                        if (u10 == 9) {
+                            return hashMap;
+                        }
+                        Serializable L2 = L(u10, wVar);
+                        if (L2 != null) {
+                            hashMap.put(N, L2);
+                        }
+                    }
+                } else {
+                    return N(wVar);
+                }
+            } else {
+                if (wVar.u() == 1) {
+                    z4 = true;
+                }
+                return Boolean.valueOf(z4);
+            }
         } else {
-            d = (j10 - j11) / (j13 - j11);
+            return Double.valueOf(Double.longBitsToDouble(wVar.o()));
         }
-        return Pair.create(Long.valueOf(j10), Long.valueOf(((long) (d * (j14 - j12))) + j12));
     }
 
-    @Override
-    public final long a() {
-        return -1L;
+    public static HashMap M(w wVar) {
+        int x10 = wVar.x();
+        HashMap hashMap = new HashMap(x10);
+        for (int i10 = 0; i10 < x10; i10++) {
+            String N = N(wVar);
+            Serializable L = L(wVar.u(), wVar);
+            if (L != null) {
+                hashMap.put(N, L);
+            }
+        }
+        return hashMap;
     }
 
-    @Override
-    public final long b(long j10) {
-        return d0.H(((Long) d(j10, this.f49331a, this.f49332b).second).longValue());
-    }
-
-    @Override
-    public final boolean c() {
-        return true;
-    }
-
-    @Override
-    public final s g(long j10) {
-        Pair d = d(d0.S(d0.i(j10, 0L, this.f49333c)), this.f49332b, this.f49331a);
-        u uVar = new u(d0.H(((Long) d.first).longValue()), ((Long) d.second).longValue());
-        return new s(uVar, uVar);
-    }
-
-    @Override
-    public final long h() {
-        return this.f49333c;
+    public static String N(w wVar) {
+        int z4 = wVar.z();
+        int i10 = wVar.f7001b;
+        wVar.G(z4);
+        return new String(wVar.f7000a, i10, z4);
     }
 }

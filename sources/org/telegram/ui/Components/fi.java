@@ -1,175 +1,55 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public abstract class fi extends FrameLayout {
-    public final org.telegram.ui.ActionBar.c6 f28402a;
-    public final ni f28403b;
-    public jl0 f28404c;
-    public jl0 d;
-    public int f28405e;
-    public boolean f28406f;
-    public boolean h;
+public final class fi extends gi {
+    public int f24881b;
+    public final li f24882c;
 
-    public fi(Context context, org.telegram.ui.ActionBar.c6 c6Var, ni niVar) {
+    public fi(li liVar, Context context) {
         super(context);
-        this.f28402a = c6Var;
-        this.f28403b = niVar;
+        org.telegram.ui.ActionBar.f6 f6Var;
+        this.f24882c = liVar;
+        setWillNotDraw(false);
+        setFocusable(true);
+        f6Var = ((org.telegram.ui.ActionBar.g3) liVar).resourcesProvider;
+        bh.b bVar = new bh.b(context);
+        bVar.d = f6Var;
+        bVar.N = true;
+        TextView textView = bVar.f1821a;
+        textView.setTextSize(1, 11.0f);
+        textView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        bVar.a(false);
+        bVar.f1822b.setLayoutParams(k7.b6.d(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
+        bVar.f1828w = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.cl, f6Var);
+        bVar.f1827s = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.al, f6Var);
+        bVar.v = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.bl, f6Var);
+        bVar.f();
+        this.f25143a = bVar;
+        addView(bVar, k7.b6.c(-1.0f, -1));
     }
 
-    public boolean C(int i10) {
+    public final void a(int i10, String str, bh.a aVar) {
+        this.f25143a.setText(str);
+        this.f25143a.setTabAnimation(aVar);
+        this.f24881b = i10;
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
         return false;
     }
 
-    public boolean H(int i10, boolean z10, int i11, boolean z11, long j10) {
-        return false;
-    }
-
-    public boolean I() {
-        return !(this instanceof ph.n3);
-    }
-
-    public boolean b() {
-        return true;
-    }
-
-    public boolean c() {
-        return true;
-    }
-
-    public boolean e() {
-        return false;
-    }
-
-    public boolean f() {
-        return false;
-    }
-
-    public boolean g() {
-        return false;
-    }
-
-    public int getButtonsHideOffset() {
-        float f9;
-        if (h() != 0) {
-            f9 = 12.0f;
+    @Override
+    public final void onAttachedToWindow() {
+        boolean z4;
+        super.onAttachedToWindow();
+        if (this.f24881b == this.f24882c.T0) {
+            z4 = true;
         } else {
-            f9 = 17.0f;
+            z4 = false;
         }
-        return AndroidUtilities.dp(f9);
-    }
-
-    public int getCurrentItemTop() {
-        return 0;
-    }
-
-    public int getCustomActionBarBackground() {
-        return 0;
-    }
-
-    public int getCustomBackground() {
-        return 0;
-    }
-
-    public int getFirstOffset() {
-        return 0;
-    }
-
-    public mg.a getIBlur3Capture() {
-        return null;
-    }
-
-    public int getListTopPadding() {
-        return 0;
-    }
-
-    public int getSelectedItemsCount() {
-        return 0;
-    }
-
-    public ArrayList<org.telegram.ui.ActionBar.i6> getThemeDescriptions() {
-        return null;
-    }
-
-    public int h() {
-        return 0;
-    }
-
-    public boolean i() {
-        return false;
-    }
-
-    public boolean l(MotionEvent motionEvent) {
-        return false;
-    }
-
-    public boolean n() {
-        return false;
-    }
-
-    public boolean p() {
-        return true;
-    }
-
-    public abstract void y(int i10, int i11);
-
-    public void A() {
-    }
-
-    public void B(int i10) {
-    }
-
-    public void D(fi fiVar) {
-    }
-
-    public void E() {
-    }
-
-    public void F() {
-    }
-
-    public void a(CharSequence charSequence) {
-    }
-
-    public void d() {
-    }
-
-    public void j() {
-    }
-
-    public void k(float f9) {
-    }
-
-    public void m() {
-    }
-
-    public void o(int i10) {
-    }
-
-    public void q() {
-    }
-
-    public void r() {
-    }
-
-    public void s(float f9) {
-    }
-
-    public void t(int i10) {
-    }
-
-    public void u() {
-    }
-
-    public void v() {
-    }
-
-    public void x() {
-    }
-
-    public void w(int i10, boolean z10) {
+        this.f25143a.e(z4, false);
     }
 }

@@ -22,20 +22,20 @@ public class TextLayout {
     }
 
     public void draw(Graphics2D graphics2D, int i10, int i11) {
-        boolean z10;
+        boolean z4;
         Font font = graphics2D.getFont();
         Font font2 = this.font;
         if (font2 != font) {
-            z10 = true;
+            z4 = true;
         } else {
-            z10 = false;
+            z4 = false;
         }
-        if (z10) {
+        if (z4) {
             graphics2D.setFont(font2);
         }
         char[] cArr = this.chars;
         graphics2D.drawChars(cArr, 0, cArr.length, i10, i11);
-        if (z10) {
+        if (z4) {
             graphics2D.setFont(font);
         }
     }

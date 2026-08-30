@@ -1,77 +1,132 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Bitmap;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.text.TextUtils;
-import org.telegram.messenger.FileLog;
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-public class l3 {
-    public boolean A;
-    public boolean B;
-    public String C;
-    public Bitmap D;
-    public boolean E;
-    public String F;
-    public float G;
-    public org.telegram.ui.m4 H;
-    public ph.u0 I;
-    public boolean J;
-    public ph.y3 f23641a;
-    public org.telegram.ui.web.w0 f23642b;
-    public org.telegram.ui.q3 f23643c;
-    public Object d;
-    public int f23644e;
-    public int f23645f;
-    public int f23646g;
-    public boolean h;
-    public float f23647i = Float.MAX_VALUE;
-    public boolean f23648j = true;
-    public Bitmap f23649k;
-    public boolean f23650l;
-    public boolean f23651m;
-    public int f23652n;
-    public int f23653o;
-    public int f23654p;
-    public int f23655q;
-    public boolean f23656r;
-    public boolean f23657s;
-    public boolean f23658t;
-    public ag.j2 f23659u;
-    public String v;
-    public boolean f23660w;
-    public boolean f23661x;
-    public boolean f23662y;
-    public boolean f23663z;
+public final class l3 extends j1.b {
+    public static final int f20421r = 0;
+    public final RectF f20422o;
+    public final Rect f20423p;
+    public final n3 f20424q;
 
-    public final void a() {
-        try {
-            org.telegram.ui.web.w0 w0Var = this.f23642b;
-            if (w0Var != null) {
-                w0Var.destroy();
-                this.f23642b = null;
+    public l3(n3 n3Var, n3 n3Var2) {
+        super(n3Var2);
+        this.f20424q = n3Var;
+        this.f20422o = new RectF();
+        this.f20423p = new Rect();
+    }
+
+    @Override
+    public final int g(float f10, float f11) {
+        k3 c3;
+        n3 n3Var = this.f20424q;
+        if (n3Var.f20482b) {
+            ArrayList<m3> tabs = n3Var.getTabs();
+            if (!tabs.isEmpty() && (c3 = n3Var.c(tabs.get(0))) != null) {
+                float c10 = c3.c();
+                RectF rectF = this.f20422o;
+                n3Var.d(rectF, c10);
+                Rect bounds = c3.f20367k.getBounds();
+                if (!bounds.isEmpty() && bounds.contains((int) (f10 - rectF.left), (int) (f11 - rectF.centerY()))) {
+                    return 2;
+                }
+                if (rectF.contains(f10, f11)) {
+                    return 1;
+                }
+                return -1;
             }
-            org.telegram.ui.m4 m4Var = this.H;
-            if (m4Var != null) {
-                m4Var.s();
+            return -1;
+        }
+        return -1;
+    }
+
+    @Override
+    public final void h(ArrayList arrayList) {
+        n3 n3Var = this.f20424q;
+        if (n3Var.f20482b) {
+            ArrayList<m3> tabs = n3Var.getTabs();
+            if (tabs.isEmpty() || n3Var.c(tabs.get(0)) == null) {
+                return;
             }
-        } catch (Exception e10) {
-            FileLog.e(e10);
+            arrayList.add(1);
+            arrayList.add(2);
         }
     }
 
-    public String b() {
-        if (this.H != null) {
-            if (TextUtils.isEmpty(this.C)) {
-                return LocaleController.getString(R.string.WebEmpty);
+    @Override
+    public final boolean k(int i10, int i11) {
+        if (i11 == 16) {
+            n3 n3Var = this.f20424q;
+            ArrayList<m3> tabs = n3Var.getTabs();
+            if (!tabs.isEmpty()) {
+                m3 m3Var = tabs.get(0);
+                if (i10 == 1) {
+                    n3Var.b();
+                    return true;
+                } else if (i10 == 2) {
+                    n3Var.g(m3Var, new gg.h(2));
+                    return true;
+                }
             }
-            return this.C;
         }
-        ph.y3 y3Var = this.f23641a;
-        if (y3Var == null) {
-            return "";
+        return false;
+    }
+
+    @Override
+    public final void l(int i10, s0.e eVar) {
+        m3 m3Var;
+        String str;
+        String str2;
+        n3 n3Var = this.f20424q;
+        ArrayList<m3> tabs = n3Var.getTabs();
+        k3 k3Var = null;
+        if (tabs.isEmpty()) {
+            m3Var = null;
+        } else {
+            m3Var = tabs.get(0);
         }
-        return UserObject.getUserName(MessagesController.getInstance(y3Var.f46163a).getUser(Long.valueOf(this.f23641a.f46165c)));
+        if (m3Var != null) {
+            k3Var = n3Var.c(m3Var);
+        }
+        eVar.i("android.widget.Button");
+        eVar.b(s0.c.f43897c);
+        String str3 = "";
+        Rect rect = this.f20423p;
+        if (k3Var == null) {
+            rect.set(0, 0, 1, 1);
+            eVar.h(rect);
+            eVar.j("");
+            eVar.p(false);
+            return;
+        }
+        float c3 = k3Var.c();
+        RectF rectF = this.f20422o;
+        n3Var.d(rectF, c3);
+        if (m3Var.b() != null) {
+            str3 = m3Var.b();
+        }
+        if (i10 == 2) {
+            Rect bounds = k3Var.f20367k.getBounds();
+            rect.set((int) (rectF.left + bounds.left), (int) (rectF.centerY() + bounds.top), (int) (rectF.left + bounds.right), (int) (rectF.centerY() + bounds.bottom));
+            eVar.h(rect);
+            if (TextUtils.isEmpty(str3)) {
+                str2 = LocaleController.getString(R.string.Close);
+            } else {
+                str2 = LocaleController.getString(R.string.Close) + ", " + str3;
+            }
+            eVar.j(str2);
+            return;
+        }
+        rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        eVar.h(rect);
+        if (TextUtils.isEmpty(str3)) {
+            str = LocaleController.getString(R.string.Open);
+        } else {
+            str = LocaleController.getString(R.string.Open) + ", " + str3;
+        }
+        eVar.j(str);
     }
 }

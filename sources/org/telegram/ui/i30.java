@@ -1,18 +1,19 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class i30 extends f2.v0 {
+import android.view.animation.OvershootInterpolator;
+public final class i30 extends xg.c {
+    public final OvershootInterpolator d;
+    public int e;
+    public final c60 f35004f;
+
+    public i30(c60 c60Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f35004f = c60Var;
+        this.d = new OvershootInterpolator(1.5f);
+    }
+
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, f2.k1 k1Var) {
-        recyclerView.getClass();
-        RecyclerView.R(view);
-        if (!r50.B3) {
-            rect.set(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        } else {
-            rect.set(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
-        }
+    public final void dispatchDraw(android.graphics.Canvas r41) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.i30.dispatchDraw(android.graphics.Canvas):void");
     }
 }

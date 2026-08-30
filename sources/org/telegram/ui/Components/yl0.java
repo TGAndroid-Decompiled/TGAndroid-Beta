@@ -1,159 +1,194 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
-import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
-import android.graphics.Paint;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import java.util.WeakHashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public final class yl0 extends Dialog {
-    public static final int K = 0;
-    public Drawable A;
-    public ng.d B;
-    public float C;
-    public float D;
-    public float E;
-    public float F;
-    public float G;
-    public boolean H;
-    public boolean I;
-    public ValueAnimator J;
-    public final Context f35090a;
-    public final org.telegram.ui.ActionBar.c6 f35091b;
-    public Bitmap f35092c;
-    public BitmapShader d;
-    public Paint f35093e;
-    public Matrix f35094f;
-    public final qg.b h;
-    public final lg.a f35095n;
-    public float f35096r;
-    public final bg.x2 f35097s;
-    public final hv0 v;
-    public j70 f35098w;
-    public FrameLayout f35099x;
-    public ViewGroup f35100y;
+import android.view.View;
+import java.util.ArrayList;
+public final class yl0 extends Drawable implements Animator.AnimatorListener {
+    public final Context f31044a;
+    public ColorFilter f31045b;
+    public Drawable d;
+    public Drawable e;
+    public ValueAnimator f31047f;
+    public boolean f31049r;
+    public int f31046c = 0;
+    public float h = 1.0f;
+    public final ArrayList f31048n = new ArrayList();
 
-    public yl0(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, R.style.TransparentDialog);
-        this.F = 1.0f;
-        this.G = 1.0f;
-        this.I = false;
-        this.f35090a = context;
-        this.f35091b = c6Var;
-        bg.x2 x2Var = new bg.x2(this, context, 25);
-        this.f35097s = x2Var;
-        x2Var.setOnClickListener(new u70(this, 10));
-        hv0 hv0Var = new hv0(context, null);
-        this.v = hv0Var;
-        hv0Var.setClipToPadding(false);
-        x2Var.addView(hv0Var, i7.f6.e(-1, -1, 119));
-        qg.b bVar = new qg.b();
-        this.h = bVar;
-        lg.a aVar = new lg.a(bVar);
-        this.f35095n = aVar;
-        aVar.d = new sg.i(x2Var);
-        aVar.f15224e = x2Var;
-        o1.a aVar2 = new o1.a(this, 10);
-        WeakHashMap weakHashMap = r0.j0.f46829a;
-        r0.b0.j(x2Var, aVar2);
+    public yl0(Context context) {
+        this.f31044a = context;
     }
 
-    public static void d(Utilities.Callback2 callback2) {
-        AndroidUtilities.makeGlobalBlurBitmap(new y2(callback2, 10), 15.0f);
+    public final void a(int i10, boolean z4) {
+        if (this.f31046c == i10) {
+            return;
+        }
+        b(this.f31044a.getDrawable(i10).mutate(), z4);
+        this.f31046c = i10;
     }
 
-    public final void c(Runnable runnable, boolean z10) {
-        float f9;
-        ValueAnimator valueAnimator = this.J;
+    public final void b(Drawable drawable, boolean z4) {
+        if (drawable == null) {
+            this.d = null;
+            this.e = null;
+            invalidateSelf();
+            return;
+        }
+        z4 = (getBounds() == null || getBounds().isEmpty()) ? false : false;
+        Drawable drawable2 = this.d;
+        if (drawable == drawable2) {
+            drawable2.setColorFilter(this.f31045b);
+            return;
+        }
+        this.f31046c = 0;
+        this.e = drawable2;
+        this.d = drawable;
+        drawable.setColorFilter(this.f31045b);
+        c(this.d, getBounds());
+        c(this.e, getBounds());
+        ValueAnimator valueAnimator = this.f31047f;
         if (valueAnimator != null) {
-            valueAnimator.cancel();
+            valueAnimator.removeAllListeners();
+            this.f31047f.cancel();
         }
-        float f10 = this.f35096r;
-        if (z10) {
-            f9 = 1.0f;
+        if (!z4) {
+            this.h = 1.0f;
+            this.e = null;
+            return;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.f31047f = ofFloat;
+        ofFloat.addUpdateListener(new i70(this, 10));
+        this.f31047f.addListener(this);
+        this.f31047f.setDuration(150L);
+        this.f31047f.start();
+    }
+
+    public final void c(Drawable drawable, Rect rect) {
+        int height;
+        int intrinsicHeight;
+        int width;
+        int intrinsicWidth;
+        if (drawable == null) {
+            return;
+        }
+        if (this.f31049r) {
+            drawable.setBounds(rect);
+            return;
+        }
+        if (drawable.getIntrinsicHeight() < 0) {
+            height = rect.top;
+            intrinsicHeight = rect.bottom;
         } else {
-            f9 = 0.0f;
+            height = ((rect.height() - drawable.getIntrinsicHeight()) / 2) + rect.top;
+            intrinsicHeight = drawable.getIntrinsicHeight() + height;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f9);
-        this.J = ofFloat;
-        ofFloat.addUpdateListener(new d70(this, 11));
-        this.J.addListener(new androidx.fragment.app.g(this, z10, runnable, 7));
-        this.J.setInterpolator(jr.h);
-        this.J.setDuration(350L);
-        this.J.start();
+        if (drawable.getIntrinsicWidth() < 0) {
+            width = rect.left;
+            intrinsicWidth = rect.right;
+        } else {
+            width = ((rect.width() - drawable.getIntrinsicWidth()) / 2) + rect.left;
+            intrinsicWidth = drawable.getIntrinsicWidth() + width;
+        }
+        drawable.setBounds(width, height, intrinsicWidth, intrinsicHeight);
     }
 
     @Override
-    public final void dismiss() {
-        if (this.I) {
+    public final void draw(Canvas canvas) {
+        int centerX = getBounds().centerX();
+        int centerY = getBounds().centerY();
+        if (this.h != 1.0f && this.d != null) {
+            canvas.save();
+            float f10 = this.h;
+            canvas.scale(f10, f10, centerX, centerY);
+            this.d.setAlpha((int) (this.h * 255.0f));
+            this.d.draw(canvas);
+            canvas.restore();
+        } else {
+            Drawable drawable = this.d;
+            if (drawable != null) {
+                drawable.setAlpha(255);
+                this.d.draw(canvas);
+            }
+        }
+        float f11 = this.h;
+        if (f11 != 1.0f && this.e != null) {
+            float f12 = 1.0f - f11;
+            canvas.save();
+            canvas.scale(f12, f12, centerX, centerY);
+            this.e.setAlpha((int) (f12 * 255.0f));
+            this.e.draw(canvas);
+            canvas.restore();
             return;
         }
-        this.I = true;
-        c(new wl0(this, 1), false);
-        this.f35097s.invalidate();
-    }
-
-    public final void e(j70 j70Var) {
-        int i10 = org.telegram.ui.ActionBar.g6.E8;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f35091b;
-        j70Var.T(org.telegram.ui.ActionBar.g6.l1(0.06f, org.telegram.ui.ActionBar.g6.v0(i10, c6Var)));
-        j70Var.Q(this.f35095n, pg.a.j(c6Var), false);
-        this.f35098w = j70Var;
-        this.f35100y = j70Var.A;
-        FrameLayout frameLayout = new FrameLayout(this.f35090a);
-        this.f35099x = frameLayout;
-        frameLayout.addView(this.f35100y, i7.f6.c(-2.0f, -2));
-        this.v.addView(this.f35099x, i7.f6.c(-2.0f, -2));
-    }
-
-    public final void f(org.telegram.ui.Cells.s1 r30, android.text.style.CharacterStyle r31, java.lang.CharSequence r32, boolean r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yl0.f(org.telegram.ui.Cells.s1, android.text.style.CharacterStyle, java.lang.CharSequence, boolean):void");
-    }
-
-    @Override
-    public final boolean isShowing() {
-        return !this.I;
-    }
-
-    @Override
-    public final void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Window window = getWindow();
-        window.setWindowAnimations(R.style.DialogNoAnimation);
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        bg.x2 x2Var = this.f35097s;
-        setContentView(x2Var, layoutParams);
-        WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.width = -1;
-        attributes.height = -1;
-        attributes.gravity = 119;
-        attributes.dimAmount = 0.0f;
-        attributes.softInputMode = 16;
-        attributes.flags = (attributes.flags & (-3)) | (-1945959040);
-        AndroidUtilities.applyEdgeToEdgeLayoutParams(attributes);
-        window.setAttributes(attributes);
-        x2Var.setSystemUiVisibility(256);
-        AndroidUtilities.setLightNavigationBar(x2Var, !org.telegram.ui.ActionBar.g6.I.q());
-    }
-
-    @Override
-    public final void show() {
-        if (!AndroidUtilities.isSafeToShow(getContext())) {
-            return;
+        Drawable drawable2 = this.e;
+        if (drawable2 != null) {
+            drawable2.setAlpha(255);
+            this.e.draw(canvas);
         }
-        super.show();
-        d(new d(this, 19));
-        c(null, true);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void invalidateSelf() {
+        super.invalidateSelf();
+        ArrayList arrayList = this.f31048n;
+        if (arrayList != null) {
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                ((View) arrayList.get(i10)).invalidate();
+            }
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        this.e = null;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        c(this.d, rect);
+        c(this.e, rect);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f31045b = colorFilter;
+        Drawable drawable = this.d;
+        if (drawable != null) {
+            drawable.setColorFilter(colorFilter);
+        }
+        Drawable drawable2 = this.e;
+        if (drawable2 != null) {
+            drawable2.setColorFilter(colorFilter);
+        }
+        invalidateSelf();
+    }
+
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+    }
+
+    @Override
+    public final void onAnimationRepeat(Animator animator) {
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
     }
 }

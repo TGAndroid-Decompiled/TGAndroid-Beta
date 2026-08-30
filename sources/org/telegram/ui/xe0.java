@@ -1,29 +1,45 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.AndroidUtilities;
 public final class xe0 implements Runnable {
-    public final int f44575a;
-    public final Object f44576b;
-    public final Object f44577c;
-    public final Object d;
+    public final int f39905a;
+    public final ye0 f39906b;
 
-    public xe0(KeyEvent.Callback callback, TLObject tLObject, Object obj, int i10) {
-        this.f44575a = i10;
-        this.f44576b = callback;
-        this.f44577c = tLObject;
-        this.d = obj;
+    public xe0(ye0 ye0Var, int i10) {
+        this.f39905a = i10;
+        this.f39906b = ye0Var;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.xe0.run():void");
-    }
-
-    public xe0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f44575a = i10;
-        this.f44576b = obj;
-        this.d = obj2;
-        this.f44577c = obj3;
+        switch (this.f39905a) {
+            case 0:
+                ye0 ye0Var = this.f39906b;
+                ze0 ze0Var = ye0Var.d;
+                if (ye0Var.f40506b) {
+                    boolean z4 = ze0Var.H;
+                    org.telegram.ui.Components.gj0 gj0Var = ze0Var.G;
+                    kd kdVar = ze0Var.f40782n;
+                    if (z4 && System.currentTimeMillis() - ye0Var.f40505a >= 10000) {
+                        kdVar.setAnimation(gj0Var);
+                        gj0Var.L(0, false, false);
+                        gj0Var.f25168r0 = new xe0(ye0Var, 1);
+                        kdVar.d();
+                        ye0Var.f40505a = System.currentTimeMillis();
+                    }
+                    kdVar.postDelayed(ye0Var.f40507c, 1000L);
+                    return;
+                }
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new xe0(this.f39906b, 2));
+                return;
+            default:
+                ze0 ze0Var2 = this.f39906b.d;
+                org.telegram.ui.Components.gj0 gj0Var2 = ze0Var2.F;
+                gj0Var2.L(0, false, false);
+                ze0Var2.f40782n.setAnimation(gj0Var2);
+                return;
+        }
     }
 }

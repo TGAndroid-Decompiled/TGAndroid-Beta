@@ -1,37 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class ua extends org.telegram.ui.ActionBar.l {
-    public final hv0 f33180p1;
-    public final xa f33181q1;
+import android.widget.FrameLayout;
+public final class ua implements Runnable {
+    public final int f29171a;
+    public final ic f29172b;
 
-    public ua(xa xaVar, Context context, hv0 hv0Var) {
-        super(context, null);
-        this.f33181q1 = xaVar;
-        this.f33180p1 = hv0Var;
+    public ua(ic icVar, int i10) {
+        this.f29171a = i10;
+        this.f29172b = icVar;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        xa xaVar = this.f33181q1;
-        if (xaVar.H && xaVar.I) {
-            return false;
+    public final void run() {
+        switch (this.f29171a) {
+            case 0:
+                this.f29172b.b();
+                return;
+            case 1:
+                ic icVar = this.f29172b;
+                FrameLayout frameLayout = icVar.h;
+                nb nbVar = icVar.e;
+                fb fbVar = icVar.f25678p;
+                if (fbVar != null && !nbVar.top) {
+                    fbVar.c(0.0f);
+                    icVar.f25678p.d(icVar);
+                }
+                nbVar.transitionRunningExit = false;
+                nbVar.onExitTransitionEnd();
+                nbVar.onHide();
+                frameLayout.removeView(icVar.f25669f);
+                frameLayout.removeOnLayoutChangeListener(icVar.f25668c);
+                nbVar.onDetach();
+                Runnable runnable = icVar.v;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            default:
+                ic icVar2 = this.f29172b;
+                FrameLayout frameLayout2 = icVar2.h;
+                frameLayout2.removeView(icVar2.f25669f);
+                frameLayout2.removeOnLayoutChangeListener(icVar2.f25668c);
+                return;
         }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void setAlpha(float f9) {
-        if (getAlpha() != f9) {
-            super.setAlpha(f9);
-            this.f33180p1.invalidate();
-        }
-    }
-
-    @Override
-    public final void setTag(Object obj) {
-        super.setTag(obj);
-        this.f33181q1.L();
     }
 }

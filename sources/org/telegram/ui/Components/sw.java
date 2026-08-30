@@ -1,36 +1,19 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-public final class sw extends ImageView {
-    public final fz f32736a;
+public final class sw extends wy {
+    public final kz E;
 
-    public sw(fz fzVar, Context context) {
-        super(context);
-        this.f32736a = fzVar;
+    public sw(kz kzVar, Context context) {
+        super(kzVar, context, 0);
+        this.E = kzVar;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        fy fyVar;
-        int action = motionEvent.getAction();
-        fz fzVar = this.f32736a;
-        if (action == 0) {
-            fzVar.L1 = true;
-            fzVar.M1 = false;
-            AndroidUtilities.runOnUIThread(new i8(fzVar, 350, 4), 350);
-        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            fzVar.L1 = false;
-            if (!fzVar.M1 && (fyVar = fzVar.f28623p1) != null && fyVar.k()) {
-                try {
-                    fzVar.f28649x.performHapticFeedback(3);
-                } catch (Exception unused) {
-                }
-            }
+    public final void setTranslationY(float f10) {
+        if (f10 != getTranslationY()) {
+            super.setTranslationY(f10);
+            this.E.f26473u0.invalidate();
         }
-        super.onTouchEvent(motionEvent);
-        return true;
     }
 }

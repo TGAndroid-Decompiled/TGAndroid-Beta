@@ -81,10 +81,10 @@ public class AppGlobalConfig {
 
             @Override
             public boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
-                boolean z10;
-                if ((jSONValue instanceof TLRPC.TL_jsonBool) && (z10 = ((TLRPC.TL_jsonBool) jSONValue).value) != this.value) {
-                    this.value = z10;
-                    editor.putBoolean(this.name, z10);
+                boolean z4;
+                if ((jSONValue instanceof TLRPC.TL_jsonBool) && (z4 = ((TLRPC.TL_jsonBool) jSONValue).value) != this.value) {
+                    this.value = z4;
+                    editor.putBoolean(this.name, z4);
                     return true;
                 }
                 return false;
@@ -95,9 +95,9 @@ public class AppGlobalConfig {
                 this.value = sharedPreferences.getBoolean(this.name, this.defaultValue);
             }
 
-            private Internal(String str, boolean z10) {
+            private Internal(String str, boolean z4) {
                 this.name = str;
-                this.defaultValue = z10;
+                this.defaultValue = z4;
             }
         }
 
@@ -105,8 +105,8 @@ public class AppGlobalConfig {
             return this.handler.value;
         }
 
-        private ConfigBoolean(String str, boolean z10) {
-            this.handler = new Internal(str, z10);
+        private ConfigBoolean(String str, boolean z4) {
+            this.handler = new Internal(str, z4);
         }
     }
 
@@ -369,8 +369,8 @@ public class AppGlobalConfig {
         return MessagesController.getInstance(i10).config;
     }
 
-    private ConfigBoolean ofBoolean(String str, boolean z10) {
-        ConfigBoolean configBoolean = new ConfigBoolean(str, z10);
+    private ConfigBoolean ofBoolean(String str, boolean z4) {
+        ConfigBoolean configBoolean = new ConfigBoolean(str, z4);
         this.map.put(str, configBoolean.handler);
         return configBoolean;
     }
@@ -407,23 +407,23 @@ public class AppGlobalConfig {
 
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {
         int size = tL_jsonObject.value.size();
-        boolean z10 = false;
+        boolean z4 = false;
         for (int i10 = 0; i10 < size; i10++) {
             TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i10);
             ConfigInternal configInternal = this.map.get(tL_jsonObjectValue.key);
             if (configInternal != null) {
-                z10 |= configInternal.apply(editor, tL_jsonObjectValue.value);
+                z4 |= configInternal.apply(editor, tL_jsonObjectValue.value);
             }
         }
-        return z10;
+        return z4;
     }
 
     public void load(SharedPreferences sharedPreferences) {
         for (ConfigInternal configInternal : this.map.values()) {
             try {
                 configInternal.load(sharedPreferences);
-            } catch (ClassCastException e10) {
-                FileLog.e(e10);
+            } catch (ClassCastException e) {
+                FileLog.e(e);
             }
         }
     }

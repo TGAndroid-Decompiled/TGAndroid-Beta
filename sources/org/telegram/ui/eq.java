@@ -1,22 +1,35 @@
 package org.telegram.ui;
-public final class eq implements Runnable {
-    public final int f37883a;
-    public final jr f37884b;
 
-    public eq(jr jrVar, int i10) {
-        this.f37883a = i10;
-        this.f37884b = jrVar;
+import android.content.DialogInterface;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.DatePicker;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class eq implements DialogInterface.OnShowListener {
+    public final int f34069a;
+    public final View f34070b;
+
+    public eq(int i10, View view) {
+        this.f34069a = i10;
+        this.f34070b = view;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37883a) {
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f34069a) {
             case 0:
-                this.f37884b.r0();
+                DatePicker datePicker = (DatePicker) this.f34070b;
+                int childCount = datePicker.getChildCount();
+                for (int i10 = 0; i10 < childCount; i10++) {
+                    View childAt = datePicker.getChildAt(i10);
+                    ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
+                    layoutParams.width = -1;
+                    childAt.setLayoutParams(layoutParams);
+                }
                 return;
             default:
-                jr jrVar = this.f37884b;
-                jrVar.getMessagesController().loadFullChat(jrVar.J, 0, true);
+                AndroidUtilities.runOnUIThread(new ch(1, (EditTextBoldCursor) this.f34070b));
                 return;
         }
     }

@@ -1,151 +1,174 @@
 package yf;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.util.SparseArray;
-import android.view.View;
-import java.util.ArrayList;
+import android.content.Context;
+import android.os.SystemClock;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
+import android.view.VelocityTracker;
+import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.ui.ActionBar.g6;
-public final class b extends Drawable {
-    public static SvgHelper.SvgDrawable f50525j;
-    public static final int[] f50526k = {7322096, 16766590, 13338331, 9367192, 16749490, 16478047};
-    public static final SparseArray f50527l;
-    public final SvgHelper.SvgDrawable f50528a;
-    public LinearGradient f50529b;
-    public int f50531e;
-    public final Paint f50532f;
-    public final Paint f50533g;
-    public int[] h;
-    public final Matrix f50530c = new Matrix();
-    public final ArrayList d = new ArrayList();
-    public int f50534i = -1;
+import org.telegram.ui.Components.hg0;
+public final class b {
+    public final ScaleGestureDetector f47191a;
+    public n f47192b;
+    public float f47193c;
+    public float d;
+    public final float f47194f;
+    public VelocityTracker f47195g;
+    public boolean h;
+    public long f47198k;
+    public boolean f47199l;
+    public final float e = AndroidUtilities.dp(1.0f);
+    public int f47196i = -1;
+    public int f47197j = 0;
 
-    static {
-        SparseArray sparseArray = new SparseArray();
-        f50527l = sparseArray;
-        sparseArray.put(7322096, new int[]{-16687423, -11814913});
-        sparseArray.put(16766590, new int[]{-1419264, -9380});
-        sparseArray.put(13338331, new int[]{-6014789, -1737985});
-        sparseArray.put(9367192, new int[]{-15617007, -6823116});
-        sparseArray.put(16749490, new int[]{-1826470, -34407});
-        sparseArray.put(16478047, new int[]{-3795707, -36532});
+    public b(Context context) {
+        this.f47194f = ViewConfiguration.get(context).getScaledMinimumFlingVelocity();
+        this.f47191a = new ScaleGestureDetector(context, new hg0(this, 2));
     }
 
-    public b(int i10) {
-        if (f50525j == null) {
-            f50525j = SvgHelper.getDrawable(R.raw.topic_bubble, -1);
-        }
-        SvgHelper.SvgDrawable clone = f50525j.clone();
-        this.f50528a = clone;
-        clone.copyCommandFromPosition(0);
-        Paint paint = new Paint(1);
-        this.f50533g = paint;
-        Paint paint2 = new Paint(1);
-        this.f50532f = paint2;
-        paint2.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        paint2.setStyle(Paint.Style.STROKE);
-        clone.setPaint(paint, 1);
-        clone.setPaint(paint2, 2);
-        b(i10);
-    }
-
-    public static int a(int i10, int i11) {
-        int abs = Math.abs(Color.red(i10) - Color.red(i11));
-        return Math.abs(Color.blue(i10) - Color.blue(i11)) + Math.abs(Color.green(i10) - Color.green(i11)) + abs;
-    }
-
-    public final void b(int i10) {
-        int[] iArr;
-        int i11 = this.f50534i;
-        if (i11 == i10 && i11 == -1) {
-            return;
-        }
-        this.f50534i = i10;
-        int[] iArr2 = f50526k;
-        int a2 = a(iArr2[0], i10);
-        this.f50531e = 0;
-        for (int i12 = 0; i12 < 6; i12++) {
-            int a10 = a(iArr2[i12], i10);
-            if (a10 < a2) {
-                this.f50531e = i12;
-                a2 = a10;
-            }
-        }
-        int[] iArr3 = (int[]) f50527l.get(iArr2[this.f50531e]);
-        if (g6.I.q()) {
-            iArr = new int[]{i0.a.d(0.2f, iArr3[0], -1), i0.a.d(0.2f, iArr3[1], -1)};
-        } else {
-            iArr = iArr3;
-        }
-        this.h = iArr;
-        Paint paint = new Paint(1);
-        LinearGradient linearGradient = new LinearGradient(0.0f, 100.0f, 0.0f, 0.0f, iArr, (float[]) null, Shader.TileMode.CLAMP);
-        this.f50529b = linearGradient;
-        linearGradient.setLocalMatrix(this.f50530c);
-        paint.setShader(this.f50529b);
-        this.f50528a.setPaint(paint, 0);
-        this.f50533g.setColor(i0.a.d(0.1f, iArr[1], -1));
-        this.f50532f.setColor(i0.a.d(0.1f, iArr[0], -16777216));
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Matrix matrix = this.f50530c;
-        matrix.reset();
-        matrix.setScale(1.0f, getBounds().height() / 100.0f);
-        this.f50529b.setLocalMatrix(matrix);
-        Rect bounds = getBounds();
-        SvgHelper.SvgDrawable svgDrawable = this.f50528a;
-        svgDrawable.setBounds(bounds);
-        svgDrawable.draw(canvas);
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.d;
-            if (i10 < arrayList.size()) {
-                ((View) arrayList.get(i10)).invalidate();
-                i10++;
+    public final void a(MotionEvent motionEvent) {
+        float x10;
+        float y10;
+        float x11;
+        float y11;
+        float x12;
+        float y12;
+        m mVar;
+        int i10;
+        this.f47191a.onTouchEvent(motionEvent);
+        int action = motionEvent.getAction() & 255;
+        boolean z4 = true;
+        if (action != 0) {
+            if (action != 1 && action != 3) {
+                if (action == 6) {
+                    int action2 = (65280 & motionEvent.getAction()) >> 8;
+                    if (motionEvent.getPointerId(action2) == this.f47196i) {
+                        if (action2 == 0) {
+                            i10 = 1;
+                        } else {
+                            i10 = 0;
+                        }
+                        this.f47196i = motionEvent.getPointerId(i10);
+                        this.f47193c = motionEvent.getX(i10);
+                        this.d = motionEvent.getY(i10);
+                    }
+                }
             } else {
+                if (!this.h && SystemClock.elapsedRealtime() - this.f47198k < 800 && (mVar = this.f47192b.J) != null) {
+                    mVar.c0();
+                }
+                this.f47196i = -1;
+            }
+        } else {
+            this.f47196i = motionEvent.getPointerId(0);
+            this.f47198k = SystemClock.elapsedRealtime();
+        }
+        int i11 = this.f47196i;
+        if (i11 == -1) {
+            i11 = 0;
+        }
+        this.f47197j = motionEvent.findPointerIndex(i11);
+        int action3 = motionEvent.getAction();
+        if (action3 != 0) {
+            if (action3 != 1) {
+                if (action3 != 2) {
+                    if (action3 == 3) {
+                        VelocityTracker velocityTracker = this.f47195g;
+                        if (velocityTracker != null) {
+                            velocityTracker.recycle();
+                            this.f47195g = null;
+                        }
+                        this.f47199l = false;
+                        this.h = false;
+                        return;
+                    }
+                    return;
+                }
+            } else {
+                if (this.h) {
+                    if (this.f47195g != null) {
+                        try {
+                            x12 = motionEvent.getX(this.f47197j);
+                        } catch (Exception unused) {
+                            x12 = motionEvent.getX();
+                        }
+                        this.f47193c = x12;
+                        try {
+                            y12 = motionEvent.getY(this.f47197j);
+                        } catch (Exception unused2) {
+                            y12 = motionEvent.getY();
+                        }
+                        this.d = y12;
+                        this.f47195g.addMovement(motionEvent);
+                        this.f47195g.computeCurrentVelocity(1000);
+                        if (Math.max(Math.abs(this.f47195g.getXVelocity()), Math.abs(this.f47195g.getYVelocity())) >= this.f47194f) {
+                            this.f47192b.getClass();
+                        }
+                    }
+                    this.h = false;
+                }
+                VelocityTracker velocityTracker2 = this.f47195g;
+                if (velocityTracker2 != null) {
+                    velocityTracker2.recycle();
+                    this.f47195g = null;
+                }
+                this.f47199l = false;
                 return;
             }
         }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f50528a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+        if (!this.f47199l) {
+            VelocityTracker obtain = VelocityTracker.obtain();
+            this.f47195g = obtain;
+            if (obtain != null) {
+                obtain.addMovement(motionEvent);
+            }
+            try {
+                x11 = motionEvent.getX(this.f47197j);
+            } catch (Exception unused3) {
+                x11 = motionEvent.getX();
+            }
+            this.f47193c = x11;
+            try {
+                y11 = motionEvent.getY(this.f47197j);
+            } catch (Exception unused4) {
+                y11 = motionEvent.getY();
+            }
+            this.d = y11;
+            this.h = false;
+            this.f47199l = true;
+            return;
+        }
+        try {
+            x10 = motionEvent.getX(this.f47197j);
+        } catch (Exception unused5) {
+            x10 = motionEvent.getX();
+        }
+        try {
+            y10 = motionEvent.getY(this.f47197j);
+        } catch (Exception unused6) {
+            y10 = motionEvent.getY();
+        }
+        float f10 = x10 - this.f47193c;
+        float f11 = y10 - this.d;
+        if (!this.h) {
+            if (((float) Math.sqrt((f11 * f11) + (f10 * f10))) < this.e) {
+                z4 = false;
+            }
+            this.h = z4;
+        }
+        if (this.h) {
+            n nVar = this.f47192b;
+            if (!nVar.C) {
+                l.f(nVar.I, f10, f11);
+                nVar.r(false);
+            }
+            this.f47193c = x10;
+            this.d = y10;
+            VelocityTracker velocityTracker3 = this.f47195g;
+            if (velocityTracker3 != null) {
+                velocityTracker3.addMovement(motionEvent);
+            }
+        }
     }
 }

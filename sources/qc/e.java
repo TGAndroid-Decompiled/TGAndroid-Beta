@@ -1,30 +1,16 @@
 package qc;
 
-import java.io.Serializable;
-import kotlin.jvm.internal.j;
-public final class e implements Serializable {
-    public final Throwable f46597a;
+import java.util.regex.Pattern;
+public final class e extends h {
+    public static final Pattern e = i.f43003n;
 
-    public e(Throwable exception) {
-        j.e(exception, "exception");
-        this.f46597a = exception;
+    @Override
+    public final ne.p b() {
+        throw new UnsupportedOperationException("Method not decompiled: qc.e.b():ne.p");
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof e) {
-            if (j.a(this.f46597a, ((e) obj).f46597a)) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.f46597a.hashCode();
-    }
-
-    public final String toString() {
-        return "Failure(" + this.f46597a + ')';
+    @Override
+    public final char d() {
+        return ']';
     }
 }

@@ -1,52 +1,59 @@
 package z3;
 
-import i7.v8;
-import o3.k;
-import o3.l;
-import o3.m;
-import o3.w;
-public final class c implements k {
-    public m f50570a;
-    public w f50571b;
-    public int f50572c;
+import h5.w;
+import k7.t6;
+public final class c {
+    public final int f47280a;
+    public int f47281b;
+    public int f47282c;
     public long d;
-    public b f50573e;
-    public int f50574f;
-    public long f50575g;
+    public final boolean e;
+    public final w f47283f;
+    public final w f47284g;
+    public int h;
+    public int f47285i;
 
-    @Override
-    public final int d(o3.l r21, o3.n r22) {
-        throw new UnsupportedOperationException("Method not decompiled: z3.c.d(o3.l, o3.n):int");
+    public c(w wVar, w wVar2, boolean z4) {
+        this.f47284g = wVar;
+        this.f47283f = wVar2;
+        this.e = z4;
+        wVar2.F(12);
+        this.f47280a = wVar2.x();
+        wVar.F(12);
+        this.f47285i = wVar.x();
+        t6.a("first_chunk must be 1", wVar.g() == 1);
+        this.f47281b = -1;
     }
 
-    @Override
-    public final boolean e(l lVar) {
-        return v8.a(lVar);
-    }
-
-    @Override
-    public final void f(long j10, long j11) {
+    public final boolean a() {
+        long v;
         int i10;
-        if (j10 == 0) {
-            i10 = 0;
+        int i11 = this.f47281b + 1;
+        this.f47281b = i11;
+        if (i11 == this.f47280a) {
+            return false;
+        }
+        boolean z4 = this.e;
+        w wVar = this.f47283f;
+        if (z4) {
+            v = wVar.y();
         } else {
-            i10 = 4;
+            v = wVar.v();
         }
-        this.f50572c = i10;
-        b bVar = this.f50573e;
-        if (bVar != null) {
-            bVar.a(j11);
+        this.d = v;
+        if (this.f47281b == this.h) {
+            w wVar2 = this.f47284g;
+            this.f47282c = wVar2.x();
+            wVar2.G(4);
+            int i12 = this.f47285i - 1;
+            this.f47285i = i12;
+            if (i12 > 0) {
+                i10 = wVar2.x() - 1;
+            } else {
+                i10 = -1;
+            }
+            this.h = i10;
         }
-    }
-
-    @Override
-    public final void i(m mVar) {
-        this.f50570a = mVar;
-        this.f50571b = mVar.Z1(0, 1);
-        mVar.e1();
-    }
-
-    @Override
-    public final void release() {
+        return true;
     }
 }

@@ -1,33 +1,82 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class s01 extends AnimatorListenerAdapter {
-    public final int f32433a;
-    public final ThemeEditorView f32434b;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class s01 {
+    public int f28583a;
+    public int f28584b;
+    public int f28585c;
+    public TLRPC.MessageEntity d;
+    public boolean e;
 
-    public s01(ThemeEditorView themeEditorView, int i10) {
-        this.f32433a = i10;
-        this.f32434b = themeEditorView;
+    public s01() {
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f32433a) {
-            case 0:
-                ThemeEditorView themeEditorView = this.f32434b;
-                q01 q01Var = themeEditorView.f26565a;
-                if (q01Var != null) {
-                    q01Var.setBackground(null);
-                    themeEditorView.h.removeView(themeEditorView.f26565a);
-                    return;
+    public final void a(TextPaint textPaint) {
+        Typeface typeface;
+        if (this.e) {
+            if ((this.f28583a & 2) != 0) {
+                typeface = AndroidUtilities.getTypeface("fonts/mw_bolditalic.ttf");
+            } else {
+                typeface = AndroidUtilities.getTypeface("fonts/mw_bold.ttf");
+            }
+        } else {
+            int i10 = this.f28583a;
+            if ((i10 & 4) == 0 && (i10 & 2048) == 0) {
+                int i11 = i10 & 1;
+                if (i11 != 0 && (i10 & 2) != 0) {
+                    typeface = AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
+                } else if (i11 != 0) {
+                    typeface = AndroidUtilities.bold();
+                } else if ((i10 & 2) != 0) {
+                    typeface = AndroidUtilities.getTypeface("fonts/ritalic.ttf");
+                } else {
+                    typeface = null;
                 }
-                return;
-            default:
-                ThemeEditorView themeEditorView2 = this.f32434b;
-                org.telegram.ui.ActionBar.g6.r1(themeEditorView2.f26575m, true, false, false);
-                themeEditorView2.a();
-                return;
+            } else {
+                typeface = Typeface.MONOSPACE;
+            }
         }
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
+        }
+        if ((this.f28583a & 16) != 0) {
+            textPaint.setFlags(textPaint.getFlags() | 8);
+        } else {
+            textPaint.setFlags(textPaint.getFlags() & (-9));
+        }
+        int i12 = this.f28583a;
+        if ((i12 & 8) == 0 && (i12 & 8192) == 0) {
+            textPaint.setFlags(textPaint.getFlags() & (-17));
+        } else {
+            textPaint.setFlags(textPaint.getFlags() | 16);
+        }
+        if ((this.f28583a & 512) != 0) {
+            textPaint.bgColor = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.R9, false);
+        }
+        int i13 = this.f28583a;
+        if ((i13 & 8192) != 0) {
+            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20141q7, false));
+        } else if ((i13 & 4096) != 0) {
+            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false));
+        }
+    }
+
+    public final void b(s01 s01Var) {
+        TLRPC.MessageEntity messageEntity;
+        this.f28583a |= s01Var.f28583a;
+        if (this.d == null && (messageEntity = s01Var.d) != null) {
+            this.d = messageEntity;
+        }
+    }
+
+    public s01(s01 s01Var) {
+        this.f28583a = s01Var.f28583a;
+        this.f28584b = s01Var.f28584b;
+        this.f28585c = s01Var.f28585c;
+        this.d = s01Var.d;
+        this.e = s01Var.e;
     }
 }

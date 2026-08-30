@@ -1,26 +1,57 @@
 package o3;
-public interface l extends com.google.android.exoplayer2.upstream.j {
-    void a(int i10, int i11, byte[] bArr);
 
-    boolean c(byte[] bArr, int i10, int i11, boolean z10);
+import h5.d0;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
+import lh.p6;
+public final class l {
+    public final int f16269a;
+    public final o4.v f16270b;
+    public final CopyOnWriteArrayList f16271c;
 
-    int d(int i10, int i11, byte[] bArr);
+    public l(CopyOnWriteArrayList copyOnWriteArrayList, int i10, o4.v vVar) {
+        this.f16271c = copyOnWriteArrayList;
+        this.f16269a = i10;
+        this.f16270b = vVar;
+    }
 
-    boolean f(byte[] bArr, int i10, int i11, boolean z10);
+    public final void a() {
+        Iterator it = this.f16271c.iterator();
+        while (it.hasNext()) {
+            k kVar = (k) it.next();
+            d0.K(kVar.f16267a, new j(this, kVar.f16268b, 2));
+        }
+    }
 
-    long getLength();
+    public final void b() {
+        Iterator it = this.f16271c.iterator();
+        while (it.hasNext()) {
+            k kVar = (k) it.next();
+            d0.K(kVar.f16267a, new j(this, kVar.f16268b, 1));
+        }
+    }
 
-    long getPosition();
+    public final void c(int i10) {
+        Iterator it = this.f16271c.iterator();
+        while (it.hasNext()) {
+            k kVar = (k) it.next();
+            d0.K(kVar.f16267a, new ah.a(this, kVar.f16268b, i10, 15));
+        }
+    }
 
-    long h();
+    public final void d(Exception exc) {
+        Iterator it = this.f16271c.iterator();
+        while (it.hasNext()) {
+            k kVar = (k) it.next();
+            d0.K(kVar.f16267a, new p6(this, kVar.f16268b, exc, 10));
+        }
+    }
 
-    void i(int i10);
-
-    void readFully(byte[] bArr, int i10, int i11);
-
-    void s();
-
-    int skip(int i10);
-
-    void t(int i10);
+    public final void e() {
+        Iterator it = this.f16271c.iterator();
+        while (it.hasNext()) {
+            k kVar = (k) it.next();
+            d0.K(kVar.f16267a, new j(this, kVar.f16268b, 0));
+        }
+    }
 }

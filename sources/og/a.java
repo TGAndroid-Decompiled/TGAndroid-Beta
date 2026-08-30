@@ -1,10 +1,10 @@
 package og;
+
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import g.x;
 public interface a {
-    int h();
+    void e(Canvas canvas, RectF rectF);
 
-    int m();
-
-    int v();
-
-    int z();
+    void g(x xVar, RectF rectF);
 }

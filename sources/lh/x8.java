@@ -1,98 +1,81 @@
 package lh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
-public final class x8 extends t {
-    public final i9 d;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.LaunchActivity;
+public final class x8 implements Runnable {
+    public final int f13357a = 0;
+    public final boolean f13358b;
+    public final boolean f13359c;
+    public final int d;
+    public final Object e;
+    public final Object f13360f;
+    public final Object h;
+    public final Object f13361n;
 
-    public x8(Context context, i9 i9Var) {
-        super(context);
-        this.d = i9Var;
+    public x8(int i10, TLObject tLObject, TL_stars.StarsSubscription starsSubscription, ph.d dVar, boolean z4, boolean z10, org.telegram.ui.ActionBar.g3[] g3VarArr) {
+        this.e = dVar;
+        this.f13360f = g3VarArr;
+        this.d = i10;
+        this.f13358b = z4;
+        this.h = starsSubscription;
+        this.f13359c = z10;
+        this.f13361n = tLObject;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f9;
-        i9 i9Var = this.d;
-        d4 currentPeerView = i9Var.f15765j0.getCurrentPeerView();
-        l5 l5Var = i9Var.f15789w;
-        if (l5Var != null && currentPeerView != null) {
-            h3 h3Var = currentPeerView.Y0;
-            l5Var.setOffset(i9Var.f15743a0);
-            if (i9Var.f15789w.f15886f == 1.0f) {
-                i9Var.f15765j0.setVisibility(4);
-            } else {
-                i9Var.f15765j0.setVisibility(0);
-            }
-            i9Var.f15765j0.B();
-            float top = h3Var.getTop() + currentPeerView.getTop();
-            float f10 = i9Var.f15789w.f15886f;
-            getMeasuredHeight();
-            getMeasuredHeight();
-            if (h3Var.getMeasuredHeight() > 0) {
-                i9Var.f15770m1 = h3Var.getMeasuredHeight();
-            }
-            float lerp = AndroidUtilities.lerp(1.0f, i9Var.f15789w.f15887n / i9Var.f15770m1, f10);
-            i9Var.f15765j0.setPivotY(top);
-            i9Var.f15765j0.setPivotX(getMeasuredWidth() / 2.0f);
-            i9Var.f15765j0.setScaleX(lerp);
-            i9Var.f15765j0.setScaleY(lerp);
-            currentPeerView.R2 = true;
-            if (i9Var.f15743a0 == 0.0f) {
-                currentPeerView.X0(0.0f, 0.0f, null);
-            } else {
-                currentPeerView.X0(f10, lerp, i9Var.f15789w.getCrossfadeToImage());
-            }
-            currentPeerView.invalidate();
-            currentPeerView.f15528u1.f11662b = (int) AndroidUtilities.lerp(10.0f, 6.0f / f9, i9Var.f15789w.f15886f);
-            h3Var.invalidateOutline();
-            i9Var.f15765j0.setTranslationY((i9Var.f15789w.f15883b - top) * f10);
-        }
-        if (currentPeerView != null) {
-            i9Var.Z0.setTranslationY(((currentPeerView.Y0.getY() + currentPeerView.getY()) - i9Var.Z0.getTop()) - AndroidUtilities.dp(4.0f));
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        int size = View.MeasureSpec.getSize(i11);
-        i9 i9Var = this.d;
-        if (!i9Var.f15745b || i9Var.f15748c) {
-            View rootView = getRootView();
-            Rect rect = AndroidUtilities.rectTmp2;
-            getWindowVisibleDisplayFrame(rect);
-            int i13 = 0;
-            if (rect.bottom != 0 || rect.top != 0) {
-                int height = rootView.getHeight();
-                if (rect.top != 0) {
-                    i12 = AndroidUtilities.statusBarHeight;
-                } else {
-                    i12 = 0;
+    public final void run() {
+        String formatString;
+        int i10 = this.f13357a;
+        Object obj = this.f13361n;
+        Object obj2 = this.h;
+        Object obj3 = this.f13360f;
+        Object obj4 = this.e;
+        switch (i10) {
+            case 0:
+                TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) obj2;
+                TLObject tLObject = (TLObject) obj;
+                ((ph.d) obj4).setLoading(false);
+                org.telegram.ui.ActionBar.g3 g3Var = ((org.telegram.ui.ActionBar.g3[]) obj3)[0];
+                if (g3Var != null) {
+                    g3Var.dismiss();
                 }
-                i13 = Math.max(0, ((height - i12) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top));
-            }
-            i9Var.setKeyboardHeightFromParent(i13);
-            size += i9Var.f15769l0;
+                t7.y(this.d, false).S();
+                org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
+                if (U != null) {
+                    if (this.f13358b && !TextUtils.isEmpty(starsSubscription.title)) {
+                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledBizToastText, LocaleController.formatDateChat(starsSubscription.until_date), starsSubscription.title);
+                    } else if (this.f13359c && !TextUtils.isEmpty(starsSubscription.title)) {
+                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledBotToastText, LocaleController.formatDateChat(starsSubscription.until_date), starsSubscription.title);
+                    } else {
+                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledToastText, LocaleController.formatDateChat(starsSubscription.until_date));
+                    }
+                    qc.a0(U).V(Collections.singletonList(tLObject), LocaleController.getString(R.string.StarsSubscriptionCancelledToast), AndroidUtilities.replaceTags(formatString), null).k(false);
+                    return;
+                }
+                return;
+            default:
+                ((SendMessagesHelper) obj4).lambda$performSendMessageRequest$95(this.f13358b, (TLRPC.Message) obj3, (ArrayList) obj2, this.f13359c, (ArrayList) obj, this.d);
+                return;
         }
-        int size2 = View.MeasureSpec.getSize(i10);
-        int i14 = (int) ((size2 * 16.0f) / 9.0f);
-        if (size > i14) {
-            i9Var.f15765j0.getLayoutParams().width = -1;
-            size = i14;
-        } else {
-            int i15 = (int) ((size / 16.0f) * 9.0f);
-            i9Var.f15765j0.getLayoutParams().width = i15;
-            size2 = i15;
-        }
-        i9Var.f15787u0.getLayoutParams().height = size + 1;
-        i9Var.f15787u0.getLayoutParams().width = size2;
-        ((FrameLayout.LayoutParams) i9Var.f15787u0.getLayoutParams()).topMargin = AndroidUtilities.statusBarHeight;
-        super.onMeasure(i10, i11);
+    }
+
+    public x8(SendMessagesHelper sendMessagesHelper, boolean z4, TLRPC.Message message, ArrayList arrayList, boolean z10, ArrayList arrayList2, int i10) {
+        this.e = sendMessagesHelper;
+        this.f13358b = z4;
+        this.f13360f = message;
+        this.h = arrayList;
+        this.f13359c = z10;
+        this.f13361n = arrayList2;
+        this.d = i10;
     }
 }

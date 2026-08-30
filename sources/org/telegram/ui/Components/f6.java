@@ -1,196 +1,255 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.RectF;
+import android.animation.ValueAnimator;
 import android.view.View;
-import android.widget.LinearLayout;
-import j$.util.Comparator$CC;
-import j$.util.Comparator$EL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public abstract class f6 extends LinearLayout {
-    public static final Comparator f28319r = Comparator$EL.thenComparingInt(Comparator$CC.comparingInt(new jf.d(14)), new jf.d(15));
-    public final HashMap f28320a;
-    public final ArrayList f28321b;
-    public final vd.i f28322c;
-    public boolean d;
-    public int f28323e;
-    public int f28324f;
-    public Runnable h;
-    public float f28325n;
+import org.telegram.messenger.camera.Camera2Session;
+import org.telegram.messenger.camera.CameraSession;
+public final class f6 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f24792a;
+    public final Object f24793b;
 
-    public f6(Context context) {
-        super(context);
-        this.f28320a = new HashMap();
-        this.f28321b = new ArrayList();
-        this.f28322c = new vd.i(new u(this, 11), jr.h, 420L);
-    }
-
-    public final void a() {
-        this.f28324f = 0;
-        this.f28323e = 0;
-        int childCount = getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = getChildAt(i10);
-            e6 e6Var = (e6) this.f28320a.get(childAt);
-            if (childAt.getVisibility() == 0 && e6Var != null && e6Var.f27933b) {
-                this.f28323e = childAt.getMeasuredWidth() + this.f28323e;
-                this.f28324f = childAt.getMeasuredHeight() + this.f28324f;
-            }
-        }
-    }
-
-    public final void b() {
-        ArrayList arrayList = this.f28322c.f49526b;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            vd.f fVar = (vd.f) obj;
-            View view = ((e6) fVar.f49514a).f27932a;
-            RectF b10 = fVar.b();
-            if (getOrientation() == 1) {
-                view.setTranslationY((getPaddingTop() + b10.top) - view.getTop());
-            } else {
-                view.setTranslationX((getPaddingLeft() + b10.left) - view.getLeft());
-            }
-            f(view, fVar.c());
-        }
-        float f9 = getMetadata().f49524g.f49531a;
-        if (this.f28325n != f9) {
-            this.f28325n = f9;
-            Runnable runnable = this.h;
-            if (runnable != null) {
-                runnable.run();
-            }
-        }
-    }
-
-    public final float c(float f9) {
-        return (f9 * getMetadata().f49521c.f49531a) + getMetadata().f49524g.f49531a;
-    }
-
-    public final boolean d(View view) {
-        e6 e6Var = (e6) this.f28320a.get(view);
-        if (e6Var != null && e6Var.f27933b) {
-            return true;
-        }
-        return false;
-    }
-
-    public abstract void e();
-
-    public void f(View view, float f9) {
-        float lerp = AndroidUtilities.lerp(0.95f, 1.0f, f9);
-        view.setAlpha(f9);
-        view.setScaleX(lerp);
-        view.setScaleY(lerp);
-    }
-
-    public final void g(View view) {
-        e6 e6Var = (e6) this.f28320a.get(view);
-    }
-
-    public float getAnimatedHeightWithPadding() {
-        return c(getPaddingBottom() + getPaddingTop());
-    }
-
-    public int getEntriesCount() {
-        return this.f28322c.f49526b.size();
-    }
-
-    public vd.h getMetadata() {
-        return this.f28322c.d;
-    }
-
-    public int getSumHeightOfAllVisibleChild() {
-        return this.f28324f;
-    }
-
-    public int getSumWidthOfAllVisibleChild() {
-        return this.f28323e;
-    }
-
-    public final void h(int i10, View view) {
-        e6 e6Var = (e6) this.f28320a.get(view);
-        if (e6Var != null) {
-            e6Var.d = i10;
-        }
-    }
-
-    public final void i(View view, boolean z10, boolean z11) {
-        e6 e6Var;
-        if (view != null && (e6Var = (e6) this.f28320a.get(view)) != null) {
-            View view2 = e6Var.f27932a;
-            if (e6Var.f27933b != z10) {
-                e6Var.f27933b = z10;
-                if (z10) {
-                    view2.setVisibility(0);
-                }
-                if (!z10 && !e6Var.f27934c) {
-                    view2.setVisibility(8);
-                }
-                if (!z11) {
-                    this.d = true;
-                }
-                requestLayout();
-            }
-        }
+    public f6(Object obj, int i10) {
+        this.f24792a = i10;
+        this.f24793b = obj;
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        ArrayList arrayList = this.f28321b;
-        arrayList.clear();
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            e6 e6Var = (e6) this.f28320a.get(childAt);
-            if (e6Var != null) {
-                e6Var.f27935e = i14;
-                if (childAt.getVisibility() == 0 && e6Var.f27933b) {
-                    arrayList.add(e6Var);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f24792a) {
+            case 0:
+                j6 j6Var = (j6) this.f24793b;
+                j6Var.getClass();
+                j6Var.f25892m = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                j6Var.invalidateSelf();
+                Runnable runnable = j6Var.V;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
                 }
-            }
+                return;
+            case 1:
+                r6 r6Var = (r6) this.f24793b;
+                r6Var.f28392a.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                r6Var.invalidate();
+                return;
+            case 2:
+                c8 c8Var = (c8) this.f24793b;
+                c8Var.G.setCustomPaddingRight(((Integer) valueAnimator.getAnimatedValue()).intValue());
+                c8Var.J.setCustomPaddingRight(((Integer) valueAnimator.getAnimatedValue()).intValue());
+                return;
+            case 3:
+                w8 w8Var = (w8) this.f24793b;
+                w8Var.getClass();
+                w8Var.j0(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 4:
+                c9 c9Var = (c9) this.f24793b;
+                c9Var.getClass();
+                c9Var.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c9Var.f();
+                return;
+            case 5:
+                r9 r9Var = (r9) this.f24793b;
+                r9Var.getClass();
+                r9Var.f28420g = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                r9Var.invalidateSelf();
+                return;
+            case 6:
+                fa faVar = (fa) this.f24793b;
+                faVar.getClass();
+                faVar.f24830f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                faVar.f24828b.invalidate();
+                return;
+            case 7:
+                rc rcVar = (rc) this.f24793b;
+                rcVar.getClass();
+                rcVar.f28445i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                rcVar.b();
+                return;
+            case 8:
+                lg lgVar = (lg) this.f24793b;
+                lgVar.getClass();
+                lgVar.f26639a0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 9:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                li liVar = ((rh) this.f24793b).e;
+                mh mhVar = liVar.f26746u1;
+                mhVar.setAlpha(1.0f - floatValue);
+                liVar.B1.setAlpha(floatValue);
+                float dp = floatValue * AndroidUtilities.dp(36.0f);
+                liVar.C1 = dp;
+                mhVar.setTranslationY(dp);
+                return;
+            case 10:
+                mh mhVar2 = (mh) this.f24793b;
+                li liVar2 = mhVar2.f27019b;
+                liVar2.S1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                liVar2.f26763z0.invalidate();
+                liVar2.A0.invalidate();
+                mhVar2.invalidate();
+                return;
+            case 11:
+                lm lmVar = (lm) this.f24793b;
+                lmVar.getClass();
+                lmVar.f26798l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                lmVar.O.f27074z.invalidate();
+                return;
+            case 12:
+                po poVar = (po) this.f24793b;
+                poVar.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                poVar.d = floatValue2;
+                poVar.setShown(floatValue2);
+                poVar.a(false);
+                return;
+            case 13:
+                kp kpVar = (kp) this.f24793b;
+                kpVar.getClass();
+                kpVar.f26341d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kpVar.G.setTranslationY((-AndroidUtilities.dp(7.0f)) * kpVar.f26341d0);
+                return;
+            case 14:
+                tq tqVar = (tq) this.f24793b;
+                tqVar.getClass();
+                tqVar.f29011l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View view = tqVar.H;
+                if (view != null) {
+                    view.invalidate();
+                    return;
+                }
+                return;
+            case 15:
+                mr mrVar = (mr) this.f24793b;
+                mrVar.getClass();
+                mrVar.b(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                mrVar.invalidateSelf();
+                return;
+            case 16:
+                mv.p((mv) this.f24793b, valueAnimator);
+                return;
+            case 17:
+                dv dvVar = (dv) this.f24793b;
+                dvVar.getClass();
+                dvVar.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (dvVar.getParent() instanceof View) {
+                    ((View) dvVar.getParent()).invalidate();
+                    return;
+                }
+                return;
+            case 18:
+                hv hvVar = (hv) this.f24793b;
+                hvVar.getClass();
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hvVar.v = floatValue3;
+                TextView textView = hvVar.f25500c;
+                textView.setScaleX(1.0f - floatValue3);
+                textView.setScaleY(1.0f - hvVar.v);
+                textView.setAlpha(1.0f - hvVar.v);
+                TextView textView2 = hvVar.d;
+                textView2.setScaleX(hvVar.v);
+                textView2.setScaleY(hvVar.v);
+                textView2.setAlpha(hvVar.v);
+                return;
+            case 19:
+                tv tvVar = (tv) this.f24793b;
+                tvVar.getClass();
+                tvVar.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                tvVar.d();
+                return;
+            case 20:
+                vv vvVar = (vv) this.f24793b;
+                vvVar.getClass();
+                vvVar.f30096r = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                vvVar.invalidate();
+                vvVar.requestLayout();
+                vvVar.c();
+                vvVar.f30097s.f29253b.invalidate();
+                return;
+            case 21:
+                sy syVar = (sy) this.f24793b;
+                syVar.getClass();
+                syVar.h = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                syVar.invalidate();
+                return;
+            case 22:
+                wy wyVar = (wy) this.f24793b;
+                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                wyVar.f30443w = floatValue4;
+                View view2 = wyVar.v;
+                if (view2 != null) {
+                    view2.setAlpha(floatValue4);
+                    return;
+                }
+                ah.d dVar = wyVar.f30442s;
+                if (dVar != null) {
+                    dVar.invalidate();
+                    return;
+                }
+                return;
+            case 23:
+                j00 j00Var = ((c00) this.f24793b).F;
+                j00Var.C.invalidate();
+                j00Var.invalidate();
+                return;
+            case 24:
+                s00 s00Var = (s00) this.f24793b;
+                s00Var.getClass();
+                s00Var.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s00Var.invalidate();
+                return;
+            case 25:
+                a30 a30Var = (a30) this.f24793b;
+                y20 y20Var = a30Var.f23279a;
+                if (!a30Var.C) {
+                    float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                    a30Var.Y = floatValue5;
+                    a30Var.R.setPinnedProgress(floatValue5);
+                    y20Var.setScaleX(1.0f - (a30Var.Y * 0.6f));
+                    y20Var.setScaleY(1.0f - (a30Var.Y * 0.6f));
+                    if (a30Var.T) {
+                        a30Var.i();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 26:
+                x50 x50Var = (x50) this.f24793b;
+                if (x50Var.f30560k0) {
+                    Camera2Session camera2Session = x50Var.f30564o0;
+                    if (camera2Session != null) {
+                        camera2Session.setZoom(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                        return;
+                    }
+                    return;
+                }
+                CameraSession cameraSession = x50Var.f30561l0;
+                if (cameraSession != null) {
+                    cameraSession.setZoom(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                    return;
+                }
+                return;
+            case 27:
+                c70.P((c70) this.f24793b, valueAnimator);
+                return;
+            case 28:
+                c70 c70Var = ((b70) this.f24793b).e;
+                c70Var.f23870h0 = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                c70.U(c70Var).invalidate();
+                return;
+            default:
+                o70 o70Var = (o70) this.f24793b;
+                o70Var.getClass();
+                float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m70 m70Var = o70Var.f27493x;
+                if (m70Var != null) {
+                    m70Var.setProgress(floatValue6);
+                    return;
+                }
+                return;
         }
-        Collections.sort(arrayList, f28319r);
-        this.f28322c.r(arrayList, !this.d);
-        int size = arrayList.size();
-        int i15 = 0;
-        while (i15 < size) {
-            Object obj = arrayList.get(i15);
-            i15++;
-            ((e6) obj).f27934c = true;
-        }
-        this.d = false;
-        b();
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        a();
-    }
-
-    @Override
-    public final void onViewAdded(View view) {
-        super.onViewAdded(view);
-        view.setVisibility(8);
-        this.f28320a.put(view, new e6(view));
-    }
-
-    @Override
-    public final void onViewRemoved(View view) {
-        super.onViewRemoved(view);
-        this.f28320a.remove(view);
-    }
-
-    public void setOnAnimatedHeightChangedListener(Runnable runnable) {
-        this.h = runnable;
     }
 }

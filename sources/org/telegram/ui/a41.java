@@ -1,66 +1,49 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-public final class a41 implements Runnable {
-    public final int f36423a;
-    public final f41 f36424b;
+public final class a41 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
+    public final Path f32457a;
+    public pg.b f32458b;
 
-    public a41(f41 f41Var, int i10) {
-        this.f36423a = i10;
-        this.f36424b = f41Var;
+    public a41(Activity activity) {
+        super(activity);
+        this.f32457a = new Path();
     }
 
     @Override
-    public final void run() {
-        switch (this.f36423a) {
-            case 0:
-                f41 f41Var = this.f36424b;
-                a41 a41Var = f41Var.V;
-                org.telegram.ui.Components.x61 x61Var = f41Var.f37996w;
-                if (x61Var != null) {
-                    f41Var.W = ((float) x61Var.o()) / ((float) f41Var.f37996w.q());
-                    d41 d41Var = f41Var.J;
-                    if (d41Var != null) {
-                        d41Var.Td = (f41Var.f37996w.q() - f41Var.f37996w.o()) / 1000;
-                        f41Var.J.q4();
-                        org.telegram.ui.Components.co0 seekBarWaveform = f41Var.J.getSeekBarWaveform();
-                        if (seekBarWaveform != null) {
-                            float f9 = f41Var.W;
-                            seekBarWaveform.J = true;
-                            seekBarWaveform.K = f9;
-                            org.telegram.ui.Cells.s1 s1Var = seekBarWaveform.f27534n;
-                            if (s1Var != null) {
-                                s1Var.invalidate();
-                            }
-                        }
-                    }
-                    if (f41Var.f37996w.z()) {
-                        AndroidUtilities.cancelRunOnUIThread(a41Var);
-                        AndroidUtilities.runOnUIThread(a41Var, 16L);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                super/*android.app.Dialog*/.dismiss();
-                return;
-            case 2:
-                super/*android.app.Dialog*/.dismiss();
-                return;
-            default:
-                f41 f41Var2 = this.f36424b;
-                if (f41Var2.d == null) {
-                    AndroidUtilities.runOnUIThread(new a41(f41Var2, 2));
-                    org.telegram.ui.Cells.s1 s1Var2 = f41Var2.K;
-                    if (s1Var2 != null) {
-                        s1Var2.setVisibility(0);
-                        f41Var2.K.invalidate();
-                    }
-                }
-                MediaController.getInstance().tryResumePausedAudio();
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipPath(this.f32457a);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void e() {
+        pg.b bVar = this.f32458b;
+        if (bVar != null) {
+            bVar.u();
         }
+    }
+
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        Path path = this.f32457a;
+        path.rewind();
+        path.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i10 - AndroidUtilities.dp(9.0f), i11 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+    }
+
+    public void setBlurredBackground(pg.b bVar) {
+        this.f32458b = bVar;
+        setBackground(bVar);
     }
 }

@@ -1,37 +1,50 @@
 package af;
 
-import android.app.Activity;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.content.Context;
+import android.net.Uri;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.LaunchActivity;
-public final class a extends FrameLayout {
-    public final Activity f364a;
-    public int f365b;
-    public int f366c;
-    public boolean d;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.d2;
+import org.telegram.ui.l4;
+public final class a implements RequestDelegate {
+    public final int f150a = 0;
+    public final int f151b;
+    public final boolean f152c;
+    public final Object d;
+    public final Object e;
+    public final Object f153f;
+    public final Object f154g;
 
-    public a(LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f364a = launchActivity;
+    public a(f fVar, d2[] d2VarArr, int i10, Uri uri, Context context, boolean z4) {
+        this.d = fVar;
+        this.e = d2VarArr;
+        this.f151b = i10;
+        this.f153f = uri;
+        this.f154g = context;
+        this.f152c = z4;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        boolean z10;
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        boolean isInPictureInPictureMode = AndroidUtilities.isInPictureInPictureMode(this.f364a);
-        if (!isInPictureInPictureMode) {
-            this.f365b = size;
-            this.f366c = size2;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f150a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new d((f) this.d, (d2[]) this.e, tLObject, this.f151b, (Uri) this.f153f, (Context) this.f154g, this.f152c));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new d((l4) this.d, tLObject, this.f151b, (TLRPC.WebPage) this.e, (MessageObject) this.f153f, this.f152c, (String) this.f154g));
+                return;
         }
-        if (isInPictureInPictureMode && size < this.f365b && size2 < this.f366c) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.d = z10;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+    }
+
+    public a(l4 l4Var, int i10, TLRPC.WebPage webPage, MessageObject messageObject, boolean z4, String str) {
+        this.d = l4Var;
+        this.f151b = i10;
+        this.e = webPage;
+        this.f153f = messageObject;
+        this.f152c = z4;
+        this.f154g = str;
     }
 }

@@ -1,108 +1,100 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
+import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class e21 extends org.telegram.ui.Components.il0 {
-    public final Context f37684c;
-    public final i21 d;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+public final class e21 implements Runnable {
+    public final int f33873a;
+    public final h21 f33874b;
 
-    public e21(i21 i21Var, Context context) {
-        this.d = i21Var;
-        this.f37684c = context;
+    public e21(h21 h21Var, int i10) {
+        this.f33873a = i10;
+        this.f33874b = h21Var;
     }
 
     @Override
-    public final boolean D(f2.n1 n1Var) {
-        int i10 = n1Var.f6436f;
-        if (i10 != 3 && i10 != 2) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        int i10;
-        i21 i21Var = this.d;
-        int i11 = i21Var.h;
-        if (i21Var.f39114f < 0) {
-            i10 = i21Var.getMediaDataController().getReactionsList().size();
-        } else {
-            i10 = 0;
-        }
-        return i11 + i10 + 1;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 0;
-        }
-        i21 i21Var = this.d;
-        if (i10 == i21Var.d) {
-            return 2;
-        }
-        if (i10 == i21Var.f39114f) {
-            return 3;
-        }
-        if (i10 != h() - 1) {
-            return 1;
-        }
-        return 4;
-    }
-
-    @Override
-    public final void v(f2.n1 n1Var, int i10) {
-        int i11;
-        int i12;
-        if (j(i10) != 1) {
-            return;
-        }
-        i21 i21Var = this.d;
-        TLRPC.TL_availableReaction tL_availableReaction = i21Var.getMediaDataController().getReactionsList().get(i10 - i21Var.f39113e);
-        String str = tL_availableReaction.reaction;
-        i11 = ((org.telegram.ui.ActionBar.o2) i21Var).currentAccount;
-        boolean contains = str.contains(MediaDataController.getInstance(i11).getDoubleTapReaction());
-        i12 = ((org.telegram.ui.ActionBar.o2) i21Var).currentAccount;
-        ((org.telegram.ui.Cells.y) n1Var.f6432a).a(tL_availableReaction, contains, i12);
-    }
-
-    @Override
-    public final f2.n1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.ActionBar.b5 b5Var;
-        h21 h21Var;
-        i21 i21Var = this.d;
-        Context context = this.f37684c;
-        if (i10 == 0) {
-            b5Var = ((org.telegram.ui.ActionBar.o2) i21Var).parentLayout;
-            org.telegram.ui.Cells.ca caVar = new org.telegram.ui.Cells.ca(context, b5Var, 2);
-            caVar.setImportantForAccessibility(4);
-            caVar.f24192r = i21Var;
-            h21Var = caVar;
-        } else if (i10 != 2) {
-            if (i10 != 3) {
-                if (i10 != 4) {
-                    h21Var = new org.telegram.ui.Cells.y(context, true, true);
-                } else {
-                    View fnVar = new org.telegram.ui.Components.fn(context, 21);
-                    fnVar.setTag(-33024);
-                    h21Var = fnVar;
+    public final void run() {
+        long j10;
+        String str;
+        switch (this.f33873a) {
+            case 0:
+                h21 h21Var = this.f33874b;
+                AndroidUtilities.cancelRunOnUIThread(h21Var.K);
+                boolean z4 = h21Var.f34739r;
+                if (z4) {
+                    if (z4 && h21Var.C == null) {
+                        org.telegram.ui.Components.gj0 gj0Var = new org.telegram.ui.Components.gj0(R.raw.qr_matrix, AndroidUtilities.dp(200.0f), "qr_matrix", AndroidUtilities.dp(200.0f));
+                        h21Var.C = gj0Var;
+                        gj0Var.f25170s0 = h21Var;
+                        gj0Var.getPaint().setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+                        h21Var.C.I(1);
+                        h21Var.C.start();
+                    }
+                    String str2 = "";
+                    if (h21Var.G == 0 || System.currentTimeMillis() / 1000 >= h21Var.G) {
+                        if (h21Var.G != 0) {
+                            h21Var.F = null;
+                            Utilities.themeQueue.postRunnable(new f21(h21Var, h21Var.getWidth(), h21Var.getHeight(), 2));
+                            h21Var.f34740s.q("", true, true);
+                        }
+                        MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
+                        if (h21Var.G == 0) {
+                            j10 = 750;
+                        } else {
+                            j10 = 1750;
+                        }
+                        messagesController.requestContactToken(j10, new w3(h21Var, 18));
+                    }
+                    int i10 = h21Var.G;
+                    if (i10 > 0 && h21Var.F != null) {
+                        long max = Math.max(0L, (i10 - (System.currentTimeMillis() / 1000)) - 1);
+                        int i11 = (int) (max % 60);
+                        int min = Math.min(99, (int) (max / 60));
+                        org.telegram.ui.Components.no0 no0Var = h21Var.f34740s;
+                        StringBuilder sb = new StringBuilder();
+                        if (min >= 10) {
+                            str = "";
+                        } else {
+                            str = "0";
+                        }
+                        sb.append(str);
+                        sb.append(min);
+                        sb.append(":");
+                        if (i11 < 10) {
+                            str2 = "0";
+                        }
+                        sb.append(str2);
+                        sb.append(i11);
+                        no0Var.q(sb.toString(), true, false);
+                    }
+                    if (h21Var.isAttachedToWindow()) {
+                        AndroidUtilities.runOnUIThread(h21Var.K, 1000L);
+                        return;
+                    }
+                    return;
                 }
-            } else {
-                h21 h21Var2 = new h21(i21Var, context);
-                h21Var2.a(false);
-                h21Var = h21Var2;
-            }
-        } else {
-            org.telegram.ui.Cells.y8 y8Var = new org.telegram.ui.Cells.y8(context);
-            y8Var.setText(LocaleController.getString(R.string.DoubleTapPreviewRational));
-            h21Var = y8Var;
+                return;
+            default:
+                h21 h21Var2 = this.f33874b;
+                h21Var2.P = false;
+                Bitmap bitmap = h21Var2.h;
+                if (bitmap != null) {
+                    h21Var2.h = null;
+                    h21Var2.f34742x.d(0.0f, true);
+                    Bitmap bitmap2 = h21Var2.f34738n;
+                    if (bitmap2 != null) {
+                        bitmap2.recycle();
+                    }
+                    h21Var2.f34738n = bitmap;
+                    h21Var2.invalidate();
+                    return;
+                }
+                return;
         }
-        return new f2.n1(h21Var);
     }
 }

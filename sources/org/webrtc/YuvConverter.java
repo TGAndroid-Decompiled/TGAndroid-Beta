@@ -37,9 +37,9 @@ public class YuvConverter {
         public void onPrepareShader(GlShader glShader, float[] fArr, int i10, int i11, int i12, int i13) {
             GLES20.glUniform4fv(this.coeffsLoc, 1, this.coeffs, 0);
             int i14 = this.xUnitLoc;
-            float f9 = this.stepSize;
-            float f10 = i10;
-            GLES20.glUniform2f(i14, (fArr[0] * f9) / f10, (f9 * fArr[1]) / f10);
+            float f10 = this.stepSize;
+            float f11 = i10;
+            GLES20.glUniform2f(i14, (fArr[0] * f10) / f11, (f10 * fArr[1]) / f11);
         }
 
         public void setPlaneU() {
@@ -95,16 +95,16 @@ public class YuvConverter {
                     this.shaderCallbacks.setPlaneV();
                     VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, i16 / 2, height, i16 / 2, i14, false);
                     i11 = i14;
-                } catch (Exception e10) {
-                    e = e10;
+                } catch (Exception e) {
+                    e = e;
                     i11 = i14;
                 }
-            } catch (Exception e11) {
-                e = e11;
+            } catch (Exception e6) {
+                e = e6;
                 i11 = i14;
             }
-        } catch (Exception e12) {
-            e = e12;
+        } catch (Exception e10) {
+            e = e10;
             i10 = i13;
             i11 = i14;
             byteBuffer = nativeAllocateByteBuffer;
@@ -112,8 +112,8 @@ public class YuvConverter {
         }
         try {
             byteBuffer = nativeAllocateByteBuffer;
-        } catch (Exception e13) {
-            e = e13;
+        } catch (Exception e11) {
+            e = e11;
             byteBuffer = nativeAllocateByteBuffer;
             FileLog.e(e);
             int i17 = i10 * height;
@@ -136,8 +136,8 @@ public class YuvConverter {
             GLES20.glReadPixels(0, 0, this.i420TextureFrameBuffer.getWidth(), this.i420TextureFrameBuffer.getHeight(), 6408, 5121, byteBuffer);
             GlUtil.checkNoGLES2Error("YuvConverter.convert");
             GLES20.glBindFramebuffer(36160, 0);
-        } catch (Exception e14) {
-            e = e14;
+        } catch (Exception e12) {
+            e = e12;
             FileLog.e(e);
             int i172 = i10 * height;
             int i182 = i10 / 2;

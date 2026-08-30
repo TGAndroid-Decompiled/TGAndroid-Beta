@@ -1,55 +1,54 @@
 package lh;
 
-import org.telegram.messenger.AndroidUtilities;
+import java.util.ArrayList;
+import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.Components.mc;
-public final class y implements Runnable {
-    public final int f16408a;
-    public final f2 f16409b;
+import org.telegram.tgnet.tl.TL_payments;
+public final class y {
+    public final int f13367a;
+    public final long f13368b;
+    public int f13369c;
+    public boolean d;
+    public final ArrayList e = new ArrayList();
+    public long f13370f;
+    public boolean f13371g;
+    public boolean h;
+    public int f13372i;
 
-    public y(f2 f2Var, int i10) {
-        this.f16408a = i10;
-        this.f16409b = f2Var;
+    public y(int i10, long j10) {
+        this.f13371g = false;
+        this.h = false;
+        this.f13367a = i10;
+        this.f13368b = j10;
+        if (System.currentTimeMillis() - this.f13370f > 900000) {
+            this.f13369c = 0;
+            this.h = false;
+            this.d = false;
+            if (this.f13372i != 0) {
+                ConnectionsManager.getInstance(i10).cancelRequest(this.f13372i, true);
+                this.f13372i = 0;
+            }
+            this.f13371g = false;
+            a();
+        }
     }
 
-    @Override
-    public final void run() {
-        switch (this.f16408a) {
-            case 0:
-                f2 f2Var = this.f16409b;
-                if (f2Var.K != null && !f2Var.Q) {
-                    AndroidUtilities.cancelRunOnUIThread(f2Var.R);
-                    f2Var.Q = true;
-                    TL_phone.getGroupCallStars getgroupcallstars = new TL_phone.getGroupCallStars();
-                    getgroupcallstars.call = f2Var.K;
-                    ConnectionsManager.getInstance(f2Var.J).sendRequestTyped(getgroupcallstars, new Object(), new bh.v(7, f2Var, getgroupcallstars));
-                    return;
-                }
-                return;
-            case 1:
-                f2 f2Var2 = this.f16409b;
-                AndroidUtilities.cancelRunOnUIThread(f2Var2.W);
-                mc mcVar = f2Var2.S;
-                if (mcVar != null) {
-                    mcVar.b();
-                    f2Var2.S = null;
-                }
-                long j10 = f2Var2.N;
-                if (j10 > 0) {
-                    f2Var2.N = 0L;
-                    f2Var2.O = true;
-                    f2Var2.o(new TLRPC.TL_textWithEntities(), j10);
-                    return;
-                }
-                f2Var2.j();
-                return;
-            default:
-                f2 f2Var3 = this.f16409b;
-                f2Var3.f16281e.N(true);
-                f2Var3.f16283n.N(true);
-                return;
+    public final void a() {
+        if (!this.f13371g && !this.h && !this.d) {
+            this.f13370f = System.currentTimeMillis();
+            this.f13371g = true;
+            TL_payments.getConnectedStarRefBots getconnectedstarrefbots = new TL_payments.getConnectedStarRefBots();
+            int i10 = this.f13367a;
+            getconnectedstarrefbots.peer = MessagesController.getInstance(i10).getInputPeer(this.f13368b);
+            getconnectedstarrefbots.limit = 20;
+            ArrayList arrayList = this.e;
+            if (!arrayList.isEmpty()) {
+                TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) kh.a2.i(1, arrayList);
+                getconnectedstarrefbots.flags |= 4;
+                getconnectedstarrefbots.offset_date = connectedbotstarref.date;
+                getconnectedstarrefbots.offset_link = connectedbotstarref.url;
+            }
+            this.f13372i = ConnectionsManager.getInstance(i10).sendRequest(getconnectedstarrefbots, new gf.a(this, 6));
         }
     }
 }

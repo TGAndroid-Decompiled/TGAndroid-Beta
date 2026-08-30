@@ -1,54 +1,44 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-public final class u41 extends s51 {
-    public final d61 A;
+public final class u41 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f38840a;
+    public final q61 f38841b;
+    public final boolean f38842c;
 
-    public u41(d61 d61Var, Context context, boolean z10) {
-        super(d61Var, context, z10);
-        this.A = d61Var;
+    public u41(q61 q61Var, boolean z4, int i10) {
+        this.f38840a = i10;
+        this.f38841b = q61Var;
+        this.f38842c = z4;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float y8;
-        d61 d61Var = this.A;
-        n31 n31Var = d61Var.f37324c0;
-        u41 u41Var = d61Var.f37321b0;
-        d51 d51Var = d61Var.Q;
-        if (d51Var != null) {
-            int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
-            float x4 = n31Var.getX() + u41Var.getX();
-            float y10 = n31Var.getY() + u41Var.getY();
-            kg.w wVar = (kg.w) d51Var;
-            kg.d0 d0Var = (kg.d0) wVar.f13882b;
-            kg.c0 c0Var = d0Var.f13681a;
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f9 = 0;
-            rectF.set(f9, f9, measuredWidth, measuredHeight);
-            org.telegram.ui.Components.ek0 delegate = ((org.telegram.ui.Components.fk0) wVar.f13883c).getDelegate();
-            float x10 = c0Var.getX() + x4;
-            if (d0Var.f13702y == 1) {
-                y8 = c0Var.getY() - AndroidUtilities.statusBarHeight;
-            } else {
-                y8 = c0Var.getY() + d0Var.f13683c.getY();
-            }
-            delegate.G(canvas, rectF, 0.0f, x10, y8 + y10, 255, true);
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void setTranslationY(float f9) {
-        if (f9 != getTranslationY()) {
-            super.setTranslationY(f9);
-            if (this.A.Q != null) {
-                invalidate();
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f38840a) {
+            case 0:
+                q61 q61Var = this.f38841b;
+                m51 m51Var = q61Var.f37605e0;
+                b51 b51Var = q61Var.f37608f0;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (!this.f38842c) {
+                    floatValue = 1.0f - floatValue;
+                }
+                float f10 = 1.0f - floatValue;
+                m51Var.setAlpha(f10);
+                m51Var.setTranslationY(AndroidUtilities.dp(8.0f) * floatValue);
+                b51Var.setAlpha(floatValue);
+                b51Var.setTranslationY(AndroidUtilities.dp(8.0f) * f10);
+                q61Var.f37610g0.setAlpha(b51Var.getAlpha() * floatValue);
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (!this.f38842c) {
+                    floatValue2 = 1.0f - floatValue2;
+                }
+                q61 q61Var2 = this.f38841b;
+                q61Var2.f37610g0.setAlpha(q61Var2.f37608f0.getAlpha() * floatValue2);
+                return;
         }
     }
 }

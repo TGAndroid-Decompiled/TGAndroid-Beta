@@ -1,67 +1,68 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.Emoji;
-public final class ya0 implements TextWatcher {
-    public final int f44822a;
-    public final eb0 f44823b;
+import android.window.BackEvent;
+import android.window.OnBackAnimationCallback;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class ya0 implements OnBackAnimationCallback {
+    public boolean f40460b;
+    public boolean e;
+    public final LaunchActivity f40462f;
+    public final AnimationNotificationsLocker f40459a = new AnimationNotificationsLocker();
+    public boolean f40461c = false;
+    public boolean d = false;
 
-    public ya0(eb0 eb0Var, int i10) {
-        this.f44822a = i10;
-        this.f44823b = eb0Var;
+    public ya0(LaunchActivity launchActivity) {
+        this.f40462f = launchActivity;
     }
 
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f44822a) {
-            case 0:
-                Emoji.replaceEmoji(editable, this.f44823b.G.getPaint().getFontMetricsInt(), false);
-                return;
-            default:
-                eb0 eb0Var = this.f44823b;
-                if (!eb0Var.K) {
-                    if (editable.toString().equals("0")) {
-                        eb0Var.B.setText("");
-                        return;
-                    }
-                    try {
-                        int parseInt = Integer.parseInt(editable.toString());
-                        if (parseInt > 100000) {
-                            eb0Var.X();
-                            return;
-                        } else {
-                            eb0Var.W(parseInt);
-                            return;
-                        }
-                    } catch (NumberFormatException unused) {
-                        eb0Var.X();
-                        return;
-                    }
-                }
-                return;
+    public final void onBackCancelled() {
+        ActionBarLayout actionBarLayout;
+        this.f40461c = false;
+        this.d = false;
+        if (this.f40460b) {
+            this.f40459a.unlock();
+            this.f40460b = false;
+        }
+        if (!AndroidUtilities.isTablet() && (actionBarLayout = this.f40462f.f31638n0) != null && actionBarLayout.Z0) {
+            actionBarLayout.Z0 = false;
+            actionBarLayout.e(true);
         }
     }
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f44822a;
+    public final void onBackInvoked() {
+        this.d = true;
+        if (this.f40460b) {
+            this.f40459a.unlock();
+            this.f40460b = false;
+        }
+        if (AndroidUtilities.isTablet()) {
+            this.f40462f.onBackPressed();
+        } else if (!this.f40462f.c0(true)) {
+        } else {
+            LaunchActivity launchActivity = this.f40462f;
+            ActionBarLayout actionBarLayout = launchActivity.f31638n0;
+            if (actionBarLayout != null) {
+                if (!actionBarLayout.Z0) {
+                    actionBarLayout.G();
+                    return;
+                }
+                actionBarLayout.Z0 = false;
+                actionBarLayout.e(false);
+                return;
+            }
+            launchActivity.onBackPressed();
+        }
     }
 
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f44822a;
+    public final void onBackProgressed(android.window.BackEvent r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ya0.onBackProgressed(android.window.BackEvent):void");
     }
 
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    public final void onBackStarted(BackEvent backEvent) {
+        this.f40461c = true;
+        this.d = false;
+        this.e = false;
     }
 }

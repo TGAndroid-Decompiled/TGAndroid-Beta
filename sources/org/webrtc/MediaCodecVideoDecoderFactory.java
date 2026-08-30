@@ -24,8 +24,8 @@ class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
             }
             try {
                 mediaCodecInfo = MediaCodecList.getCodecInfoAt(i10);
-            } catch (IllegalArgumentException e10) {
-                Logging.e("MediaCodecVideoDecoderFactory", "Cannot retrieve decoder codec info", e10);
+            } catch (IllegalArgumentException e) {
+                Logging.e("MediaCodecVideoDecoderFactory", "Cannot retrieve decoder codec info", e);
             }
             if (mediaCodecInfo != null && !mediaCodecInfo.isEncoder() && isSupportedCodec(mediaCodecInfo, videoCodecMimeType)) {
                 return mediaCodecInfo;

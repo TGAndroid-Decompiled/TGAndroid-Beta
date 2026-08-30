@@ -1,50 +1,34 @@
 package eg;
 
-import android.os.Bundle;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
+import android.view.View;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.Components.tc;
-import org.telegram.ui.tn;
-public final class e1 extends fg.e {
-    public final f1 f5980r;
+import org.telegram.ui.dn0;
+public final class e1 implements View.OnClickListener {
+    public final int f5255a;
+    public final boolean f5256b;
+    public final Object f5257c;
+    public final Object d;
+    public final Object e;
 
-    public e1(f1 f1Var, c6 c6Var) {
-        super(c6Var);
-        this.f5980r = f1Var;
+    public e1(Object obj, Object obj2, boolean z4, Object obj3, int i10) {
+        this.f5255a = i10;
+        this.f5257c = obj;
+        this.d = obj2;
+        this.f5256b = z4;
+        this.e = obj3;
     }
 
     @Override
-    public final void E() {
-        String string;
-        f1 f1Var = this.f5980r;
-        String str = f1Var.W;
-        if ((str == null || str.isEmpty()) && f1Var.T.to_id == -1) {
-            string = LocaleController.getString(R.string.BoostingOnlyGiveawayCreatorSeeLink);
-        } else {
-            string = LocaleController.getString(R.string.BoostingOnlyRecipientCode);
-        }
-        new tc(f1Var.container, f1.P(f1Var)).Q(R.raw.chats_infotip, 36, string).k(true);
+    public final void onClick(android.view.View r11) {
+        throw new UnsupportedOperationException("Method not decompiled: eg.e1.onClick(android.view.View):void");
     }
 
-    @Override
-    public final void F(TLObject tLObject) {
-        f1 f1Var = this.f5980r;
-        TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = f1Var.T;
-        org.telegram.ui.ActionBar.o2 o2Var = f1Var.f34662n;
-        f1Var.dismiss();
-        if (tLObject instanceof TLRPC.Chat) {
-            o2Var.presentFragment(tn.R9(-((TLRPC.Chat) tLObject).f22392id));
-        } else if (tLObject instanceof TLRPC.User) {
-            o2Var.presentFragment(tn.R9(((TLRPC.User) tLObject).f22539id));
-        } else {
-            Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", -DialogObject.getPeerDialogId(tL_payments_checkedGiftCode.from_id));
-            bundle.putInt("message_id", tL_payments_checkedGiftCode.giveaway_msg_id);
-            o2Var.presentFragment(new tn(bundle));
-        }
+    public e1(ArrayList arrayList, TLRPC.TL_secureRequiredType tL_secureRequiredType, dn0 dn0Var, boolean z4) {
+        this.f5255a = 3;
+        this.f5257c = dn0Var;
+        this.d = arrayList;
+        this.e = tL_secureRequiredType;
+        this.f5256b = z4;
     }
 }

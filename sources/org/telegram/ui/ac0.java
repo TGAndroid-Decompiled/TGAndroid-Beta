@@ -1,52 +1,61 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.IMapsProvider;
-public final class ac0 implements Runnable {
-    public final int f36507a;
-    public final rc0 f36508b;
-    public final IMapsProvider.IMapView f36509c;
+import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ac0 extends org.telegram.ui.Components.y50 {
+    public final cc0 d;
 
-    public ac0(rc0 rc0Var, IMapsProvider.IMapView iMapView, int i10) {
-        this.f36507a = i10;
-        this.f36508b = rc0Var;
-        this.f36509c = iMapView;
+    public ac0(cc0 cc0Var) {
+        this.d = cc0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36507a) {
-            case 0:
-                rc0 rc0Var = this.f36508b;
-                IMapsProvider.IMapView iMapView = this.f36509c;
-                if (rc0Var.G != null && rc0Var.getParentActivity() != null) {
-                    try {
-                        iMapView.onCreate(null);
-                        ApplicationLoader.getMapsProvider().initializeMaps(ApplicationLoader.applicationContext);
-                        rc0Var.G.getMapAsync(new bc0(rc0Var, 0));
-                        rc0Var.f42053q0 = true;
-                        if (rc0Var.f42055r0) {
-                            rc0Var.G.onResume();
-                            return;
-                        }
-                        return;
-                    } catch (Exception e10) {
-                        FileLog.e(e10);
-                        return;
-                    }
-                }
-                return;
-            default:
-                rc0 rc0Var2 = this.f36508b;
-                IMapsProvider.IMapView iMapView2 = this.f36509c;
-                try {
-                    iMapView2.onCreate(null);
-                } catch (Exception unused) {
-                }
-                AndroidUtilities.runOnUIThread(new ac0(rc0Var2, iMapView2, 0));
-                return;
+    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.e(view, accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(true);
+    }
+
+    @Override
+    public final int h() {
+        return 5;
+    }
+
+    @Override
+    public final int i() {
+        return 100;
+    }
+
+    @Override
+    public final int j() {
+        return LiteMode.getPowerSaverLevel();
+    }
+
+    @Override
+    public final void k(int i10) {
+        cc0 cc0Var = this.d;
+        float f10 = i10 / 100.0f;
+        cc0Var.h.f26332w.Y(f10, true);
+        cc0Var.h.setProgress(f10);
+    }
+
+    @Override
+    public final void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
+        super.onPopulateAccessibilityEvent(view, accessibilityEvent);
+        StringBuilder sb = new StringBuilder(LocaleController.getString(R.string.LiteBatteryTitle));
+        sb.append(", ");
+        int powerSaverLevel = LiteMode.getPowerSaverLevel();
+        if (powerSaverLevel <= 0) {
+            sb.append(LocaleController.getString(R.string.LiteBatteryAlwaysDisabled));
+        } else if (powerSaverLevel >= 100) {
+            sb.append(LocaleController.getString(R.string.LiteBatteryAlwaysEnabled));
+        } else {
+            sb.append(LocaleController.formatString(R.string.AccDescrLiteBatteryWhenBelow, Integer.valueOf(Math.round(powerSaverLevel))));
         }
+        accessibilityEvent.setContentDescription(sb);
+        this.d.setContentDescription(sb);
     }
 }

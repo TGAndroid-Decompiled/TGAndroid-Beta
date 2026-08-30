@@ -1,58 +1,98 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.RectF;
-import android.os.Bundle;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.ImageReceiver;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-public final class xu extends org.telegram.ui.Components.vx0 {
-    public final oc.i E;
+public final class xu extends org.telegram.ui.ActionBar.p2 {
+    public static final int[][] d = {new int[]{-14899731, -15431455}, new int[]{-11154873, -14175180}, new int[]{-11565578, -13276952}, new int[]{-1007845, -1996271}, new int[]{-765355, -2148011}, new int[]{-3903756, -6335009}, new int[]{-13451058, -14836538}};
+    public static final int[] e = {org.telegram.ui.ActionBar.j6.hj, org.telegram.ui.ActionBar.j6.ij, org.telegram.ui.ActionBar.j6.lj, org.telegram.ui.ActionBar.j6.kj, org.telegram.ui.ActionBar.j6.jj, org.telegram.ui.ActionBar.j6.pj, org.telegram.ui.ActionBar.j6.qj};
+    public static final int[] f40307f = {R.drawable.msg_filled_data_videos, R.drawable.msg_filled_data_files, R.drawable.msg_filled_data_photos, R.drawable.msg_filled_data_messages, R.drawable.msg_filled_data_music, R.drawable.msg_filled_data_voice, R.drawable.msg_filled_data_calls};
+    public static final int[] h = {R.string.LocalVideoCache, R.string.LocalDocumentCache, R.string.LocalPhotoCache, R.string.MessagesSettings, R.string.LocalMusicCache, R.string.LocalAudioCache, R.string.CallsDataUsage};
+    public static final int[] f40308n = {2, 5, 4, 1, 7, 3, 0};
+    public org.telegram.ui.Components.l81 f40309a;
+    public org.telegram.ui.Components.k81 f40310b;
+    public boolean f40311c;
 
-    public xu(Context context, long j10, oc.i iVar) {
-        super(context);
-        this.E = iVar;
-        this.f34216a = new RectF();
-        this.f34220f = 0.0f;
-        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, true, true, false);
-        this.f34222r = n6Var;
-        org.telegram.ui.Components.n6 n6Var2 = new org.telegram.ui.Components.n6(false, true, false, false);
-        this.f34223s = n6Var2;
-        n6Var.setCallback(this);
-        n6Var2.setCallback(this);
-        this.f34221n = Long.valueOf(j10);
-        org.telegram.ui.Components.e9 e9Var = new org.telegram.ui.Components.e9((org.telegram.ui.ActionBar.c6) null);
-        e9Var.f27964p = 1.5f;
-        ImageReceiver imageReceiver = new ImageReceiver();
-        this.h = imageReceiver;
-        imageReceiver.setParentView(this);
-        if (j10 == Long.MAX_VALUE) {
-            this.v = LocaleController.getString(R.string.CacheOtherChats);
-            e9Var.g(14);
-            imageReceiver.setForUserOrChat(null, e9Var);
-            return;
-        }
-        String dialogPhotoTitle = DialogObject.setDialogPhotoTitle(imageReceiver, e9Var, MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j10));
-        this.v = dialogPhotoTitle;
-        this.v = Emoji.replaceEmoji(dialogPhotoTitle, null, false);
+    public xu() {
+        super(null);
     }
 
     @Override
-    public final void b() {
-        oc.i iVar = this.E;
-        x6 x6Var = (x6) iVar.f19484c;
-        x6Var.P.dismiss();
-        Bundle bundle = new Bundle();
-        long j10 = ((q6) iVar.f19483b).f41543a;
-        if (j10 > 0) {
-            bundle.putLong("user_id", j10);
-        } else {
-            bundle.putLong("chat_id", -j10);
+    public final View createView(Context context) {
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setTitle(LocaleController.getString(R.string.NetworkUsage));
+        org.telegram.ui.ActionBar.k kVar = this.actionBar;
+        int i10 = org.telegram.ui.ActionBar.j6.f20246w8;
+        kVar.setBackgroundColor(getThemedColor(i10));
+        org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
+        int i11 = org.telegram.ui.ActionBar.j6.G6;
+        kVar2.setTitleColor(getThemedColor(i11));
+        this.actionBar.C(getThemedColor(i11), false);
+        this.actionBar.B(getThemedColor(org.telegram.ui.ActionBar.j6.f19996i6), false);
+        this.actionBar.setCastShadows(false);
+        this.actionBar.setActionBarMenuOnItemClick(new org.telegram.ui.Components.y51(this, 6));
+        l0 l0Var = new l0(this, context, 6);
+        l0Var.setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.j6.f19852a7));
+        org.telegram.ui.Components.l81 l81Var = new org.telegram.ui.Components.l81(context, null);
+        this.f40309a = l81Var;
+        l81Var.setAdapter(new uu(this));
+        org.telegram.ui.Components.k81 n10 = this.f40309a.n(8, true);
+        this.f40310b = n10;
+        n10.setBackgroundColor(getThemedColor(i10));
+        l0Var.addView(this.f40310b, k7.b6.e(-1, 48, 55));
+        l0Var.addView(this.f40309a, k7.b6.d(-1, -1.0f, 119, 0.0f, 48.0f, 0.0f, 0.0f));
+        this.fragmentView = l0Var;
+        return l0Var;
+    }
+
+    @Override
+    public final org.telegram.ui.ActionBar.f6 getResourceProvider() {
+        return null;
+    }
+
+    @Override
+    public final boolean isLightStatusBar() {
+        if (!this.f40311c) {
+            return super.isLightStatusBar();
         }
-        x6Var.presentFragment(new ProfileActivity(bundle, null));
+        if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20246w8, false)) <= 0.721f) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        if (motionEvent != null) {
+            if (motionEvent.getY() <= AndroidUtilities.dp(48.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) {
+                return true;
+            }
+        }
+        if (this.f40309a.getCurrentPosition() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void onTransitionAnimationProgress(boolean z4, float f10) {
+        if (f10 > 0.5f && !this.f40311c) {
+            this.f40311c = true;
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+        }
+        super.onTransitionAnimationProgress(z4, f10);
+    }
+
+    public final void r0() {
+        View currentView = this.f40309a.getCurrentView();
+        if (!(currentView instanceof tu)) {
+            return;
+        }
+        tu tuVar = (tu) currentView;
+        tuVar.e1(new pu(tuVar), 700, true);
     }
 }

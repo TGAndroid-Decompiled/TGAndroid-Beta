@@ -1,44 +1,43 @@
 package j3;
-public final class b1 implements g {
-    public static final b1 f10381f = new b1(-9223372036854775807L, -9223372036854775807L, -9223372036854775807L, -3.4028235E38f, -3.4028235E38f);
-    public static final String h;
-    public static final String f10382n;
-    public static final String f10383r;
-    public static final String f10384s;
+
+import android.net.Uri;
+public class b1 implements g {
+    public static final q0 B;
+    public static final String f8429n;
+    public static final String f8430r;
+    public static final String f8431s;
     public static final String v;
-    public static final d0 f10385w;
-    public final long f10386a;
-    public final long f10387b;
-    public final long f10388c;
-    public final float d;
-    public final float f10389e;
+    public static final String f8432w;
+    public static final String f8433x;
+    public static final String f8434y;
+    public final Uri f8435a;
+    public final String f8436b;
+    public final String f8437c;
+    public final int d;
+    public final int e;
+    public final String f8438f;
+    public final String h;
 
     static {
-        int i10 = f5.d0.f6579a;
-        h = Integer.toString(0, 36);
-        f10382n = Integer.toString(1, 36);
-        f10383r = Integer.toString(2, 36);
-        f10384s = Integer.toString(3, 36);
-        v = Integer.toString(4, 36);
-        f10385w = new d0(5);
+        int i10 = h5.d0.f6937a;
+        f8429n = Integer.toString(0, 36);
+        f8430r = Integer.toString(1, 36);
+        f8431s = Integer.toString(2, 36);
+        v = Integer.toString(3, 36);
+        f8432w = Integer.toString(4, 36);
+        f8433x = Integer.toString(5, 36);
+        f8434y = Integer.toString(6, 36);
+        B = new q0(7);
     }
 
-    public b1(long j10, long j11, long j12, float f9, float f10) {
-        this.f10386a = j10;
-        this.f10387b = j11;
-        this.f10388c = j12;
-        this.d = f9;
-        this.f10389e = f10;
-    }
-
-    public final a1 a() {
-        ?? obj = new Object();
-        obj.f10374a = this.f10386a;
-        obj.f10375b = this.f10387b;
-        obj.f10376c = this.f10388c;
-        obj.d = this.d;
-        obj.f10377e = this.f10389e;
-        return obj;
+    public b1(c9.a aVar) {
+        this.f8435a = (Uri) aVar.d;
+        this.f8436b = (String) aVar.f2143a;
+        this.f8437c = (String) aVar.e;
+        this.d = aVar.f2144b;
+        this.e = aVar.f2145c;
+        this.f8438f = (String) aVar.f2146f;
+        this.h = (String) aVar.f2147g;
     }
 
     public final boolean equals(Object obj) {
@@ -49,30 +48,43 @@ public final class b1 implements g {
             return false;
         }
         b1 b1Var = (b1) obj;
-        if (this.f10386a == b1Var.f10386a && this.f10387b == b1Var.f10387b && this.f10388c == b1Var.f10388c && this.d == b1Var.d && this.f10389e == b1Var.f10389e) {
+        if (this.f8435a.equals(b1Var.f8435a) && h5.d0.a(this.f8436b, b1Var.f8436b) && h5.d0.a(this.f8437c, b1Var.f8437c) && this.d == b1Var.d && this.e == b1Var.e && h5.d0.a(this.f8438f, b1Var.f8438f) && h5.d0.a(this.h, b1Var.h)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        int i10;
-        long j10 = this.f10386a;
-        long j11 = this.f10387b;
-        long j12 = this.f10388c;
-        int i11 = ((((((int) (j10 ^ (j10 >>> 32))) * 31) + ((int) (j11 ^ (j11 >>> 32)))) * 31) + ((int) (j12 ^ (j12 >>> 32)))) * 31;
-        int i12 = 0;
-        float f9 = this.d;
-        if (f9 != 0.0f) {
-            i10 = Float.floatToIntBits(f9);
+        int hashCode;
+        int hashCode2;
+        int hashCode3;
+        int hashCode4 = this.f8435a.hashCode() * 31;
+        int i10 = 0;
+        String str = this.f8436b;
+        if (str == null) {
+            hashCode = 0;
         } else {
-            i10 = 0;
+            hashCode = str.hashCode();
         }
-        int i13 = (i11 + i10) * 31;
-        float f10 = this.f10389e;
-        if (f10 != 0.0f) {
-            i12 = Float.floatToIntBits(f10);
+        int i11 = (hashCode4 + hashCode) * 31;
+        String str2 = this.f8437c;
+        if (str2 == null) {
+            hashCode2 = 0;
+        } else {
+            hashCode2 = str2.hashCode();
         }
-        return i13 + i12;
+        int i12 = (((((i11 + hashCode2) * 31) + this.d) * 31) + this.e) * 31;
+        String str3 = this.f8438f;
+        if (str3 == null) {
+            hashCode3 = 0;
+        } else {
+            hashCode3 = str3.hashCode();
+        }
+        int i13 = (i12 + hashCode3) * 31;
+        String str4 = this.h;
+        if (str4 != null) {
+            i10 = str4.hashCode();
+        }
+        return i13 + i10;
     }
 }

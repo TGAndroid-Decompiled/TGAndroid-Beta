@@ -1,20 +1,20 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class d8 {
-    public MessageObject f37392a;
-    public ArrayList f37393b;
-    public int f37394c;
-    public boolean f37396f;
-    public int h;
-    public float f37398i;
-    public float f37399j;
-    public float f37400k;
-    public float f37401l;
-    public float f37402m;
-    public float f37403n;
-    public float d = 1.0f;
-    public float f37395e = 1.0f;
-    public boolean f37397g = true;
+import org.telegram.messenger.MessagesStorage;
+public final class d8 implements MessagesStorage.BooleanCallback {
+    public final xn f33529a;
+    public final e8 f33530b;
+
+    public d8(e8 e8Var, xn xnVar) {
+        this.f33530b = e8Var;
+        this.f33529a = xnVar;
+    }
+
+    @Override
+    public final void run(boolean z4) {
+        g8 g8Var = this.f33530b.f33927b;
+        g8Var.f34478x.finishFragment();
+        j8 j8Var = g8Var.f34478x;
+        this.f33529a.S7(j8Var.M, j8Var.N + 86400, z4);
+    }
 }

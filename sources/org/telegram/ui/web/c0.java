@@ -1,37 +1,32 @@
 package org.telegram.ui.web;
 
-import android.app.Activity;
-import nh.d6;
-import org.json.JSONObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.r9;
-public final class c0 implements NotificationCenter.NotificationCenterDelegate {
-    public final z0 f43994a;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.xn;
+public final class c0 extends xn {
+    public boolean Nc;
+    public final TLRPC.User Oc;
+    public final long Pc;
+    public final a1 Qc;
 
-    public c0(z0 z0Var) {
-        this.f43994a = z0Var;
+    public c0(a1 a1Var, Bundle bundle, TLRPC.User user, long j10) {
+        super(bundle);
+        this.Qc = a1Var;
+        this.Oc = user;
+        this.Pc = j10;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12 = NotificationCenter.onRequestPermissionResultReceived;
-        if (i10 == i12) {
-            int intValue = ((Integer) objArr[0]).intValue();
-            int[] iArr = (int[]) objArr[2];
-            if (intValue == 5000) {
-                NotificationCenter.getGlobalInstance().removeObserver(this, i12);
-                int i13 = iArr[0];
-                z0 z0Var = this.f43994a;
-                if (i13 == 0) {
-                    Activity activity = z0Var.S;
-                    if (activity != null) {
-                        z0Var.f44265c0 = r9.e0(activity, 3, new d6(z0Var, 11));
-                        return;
-                    }
-                    return;
-                }
-                z0Var.v("scan_qr_popup_closed", new JSONObject());
-            }
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.Nc) {
+            this.Nc = true;
+            qc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Oc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Qc.R)), new gg.y1(this, this.Pc, 25)), R.raw.contact_check).j();
         }
     }
 }

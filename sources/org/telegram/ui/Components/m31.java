@@ -1,38 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class m31 implements View.OnClickListener {
-    public final int f30565a;
-    public final v31 f30566b;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class m31 extends v31 {
+    public final Runnable Q;
 
-    public m31(v31 v31Var, int i10) {
-        this.f30565a = i10;
-        this.f30566b = v31Var;
+    public m31(Context context, String str, String str2, CharSequence charSequence, TLRPC.InputPeer inputPeer, int i10, boolean z4, Runnable runnable) {
+        super(context, str, str2, charSequence, inputPeer, i10, z4, null);
+        this.Q = runnable;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f30565a) {
-            case 0:
-                this.f30566b.dismiss();
-                return;
-            case 1:
-                this.f30566b.dismiss();
-                return;
-            case 2:
-                this.f30566b.dismiss();
-                return;
-            case 3:
-                v31 v31Var = this.f30566b;
-                CharSequence charSequence = v31Var.Y;
-                if (charSequence != null) {
-                    v31Var.Z.run(charSequence);
-                }
-                v31Var.dismiss();
-                return;
-            default:
-                v31.P(this.f30566b, view);
-                return;
+    public final void dismiss() {
+        super.dismiss();
+        Runnable runnable = this.Q;
+        if (runnable != null) {
+            runnable.run();
         }
     }
 }

@@ -1,136 +1,122 @@
 package f7;
 
-import j$.lang.Iterable$CC;
-import j$.util.Collection;
-import j$.util.Spliterator;
-import j$.util.Spliterators;
-import j$.util.stream.Stream;
-import java.io.Serializable;
-import java.util.AbstractCollection;
-import java.util.Arrays;
-import java.util.Spliterator;
-import java.util.function.Consumer;
-import java.util.function.IntFunction;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
-public abstract class a extends AbstractCollection implements Serializable, Collection {
-    public static final Object[] f6651a = new Object[0];
+import android.location.Location;
+import android.os.Parcel;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class a implements Continuation, com.google.android.gms.common.api.internal.s {
+    public static final a f6008a = new Object();
+    public static final a f6009b = new Object();
+    public static final a f6010c = new Object();
 
-    @Override
-    public final boolean add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean addAll(java.util.Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void clear() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void forEach(Consumer consumer) {
-        Iterable$CC.$default$forEach(this, consumer);
-    }
-
-    public abstract int i(Object[] objArr);
-
-    public int n() {
-        throw new UnsupportedOperationException();
-    }
-
-    public int o() {
-        throw new UnsupportedOperationException();
-    }
-
-    public Object[] p() {
-        return null;
-    }
-
-    @Override
-    public Stream parallelStream() {
-        return Stream.Wrapper.convert(parallelStream());
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean removeAll(java.util.Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean removeIf(Predicate predicate) {
-        return Collection.CC.$default$removeIf(this, predicate);
-    }
-
-    @Override
-    public final boolean retainAll(java.util.Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Spliterator spliterator() {
-        return Spliterator.Wrapper.convert(spliterator());
-    }
-
-    @Override
-    public java.util.stream.Stream stream() {
-        return Stream.Wrapper.convert(stream());
-    }
-
-    @Override
-    public Object[] toArray(IntFunction intFunction) {
-        Object[] array;
-        array = toArray((Object[]) intFunction.apply(0));
-        return array;
-    }
-
-    @Override
-    public j$.util.stream.Stream parallelStream() {
-        return Collection.CC.$default$parallelStream(this);
-    }
-
-    @Override
-    public final j$.util.Spliterator spliterator() {
-        return Spliterators.spliterator(this, 1296);
-    }
-
-    @Override
-    public j$.util.stream.Stream stream() {
-        return Collection.CC.$default$stream(this);
-    }
-
-    @Override
-    public final Object[] toArray() {
-        return toArray(f6651a);
-    }
-
-    @Override
-    public final Object[] toArray(Object[] objArr) {
-        objArr.getClass();
-        int size = size();
-        int length = objArr.length;
-        if (length < size) {
-            Object[] p10 = p();
-            if (p10 == null) {
-                if (length != 0) {
-                    objArr = Arrays.copyOf(objArr, 0);
+    public void a(l lVar, com.google.android.gms.common.api.internal.n nVar, boolean z4, TaskCompletionSource taskCompletionSource) {
+        y5.c cVar;
+        synchronized (lVar.S) {
+            try {
+                j jVar = (j) lVar.S.remove(nVar);
+                if (jVar == null) {
+                    taskCompletionSource.setResult(Boolean.FALSE);
+                    return;
                 }
-                objArr = Arrays.copyOf(objArr, size);
-            } else {
-                return Arrays.copyOfRange(p10, o(), n(), objArr.getClass());
+                com.google.android.gms.common.api.internal.p e = jVar.f6024b.e();
+                e.f2842b = null;
+                e.f2843c = null;
+                if (z4) {
+                    y5.c[] l10 = lVar.l();
+                    if (l10 != null) {
+                        int length = l10.length;
+                        int i10 = 0;
+                        while (true) {
+                            if (i10 < length) {
+                                cVar = l10[i10];
+                                if ("location_updates_with_callback".equals(cVar.f47077a)) {
+                                    break;
+                                }
+                                i10++;
+                            } else {
+                                cVar = null;
+                                break;
+                            }
+                        }
+                        if (cVar != null && cVar.e() >= 1) {
+                            a0 a0Var = (a0) lVar.u();
+                            m mVar = new m(2, null, jVar, null, null, null);
+                            f fVar = new f(Boolean.TRUE, taskCompletionSource);
+                            Parcel M0 = a0Var.M0();
+                            e.c(M0, mVar);
+                            e.d(M0, fVar);
+                            a0Var.Q0(M0, 89);
+                        }
+                    }
+                    a0 a0Var2 = (a0) lVar.u();
+                    p pVar = new p(2, null, null, jVar, null, new h(taskCompletionSource), null);
+                    Parcel M02 = a0Var2.M0();
+                    e.c(M02, pVar);
+                    a0Var2.Q0(M02, 59);
+                } else {
+                    taskCompletionSource.setResult(Boolean.TRUE);
+                }
+            } catch (Throwable th2) {
+                throw th2;
             }
-        } else if (length > size) {
-            objArr[size] = null;
         }
-        i(objArr);
-        return objArr;
+    }
+
+    @Override
+    public void accept(Object obj, Object obj2) {
+        y5.c cVar;
+        l lVar = (l) obj;
+        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
+        u7.b bVar = new u7.b(Long.MAX_VALUE, 0, false, null, null);
+        y5.c[] l10 = lVar.l();
+        if (l10 != null) {
+            int length = l10.length;
+            int i10 = 0;
+            while (true) {
+                if (i10 < length) {
+                    cVar = l10[i10];
+                    if ("get_last_location_with_request".equals(cVar.f47077a)) {
+                        break;
+                    }
+                    i10++;
+                } else {
+                    cVar = null;
+                    break;
+                }
+            }
+            if (cVar != null && cVar.e() >= 1) {
+                a0 a0Var = (a0) lVar.u();
+                g gVar = new g(0, taskCompletionSource);
+                Parcel M0 = a0Var.M0();
+                e.c(M0, bVar);
+                e.d(M0, gVar);
+                a0Var.Q0(M0, 82);
+                return;
+            }
+        }
+        a0 a0Var2 = (a0) lVar.u();
+        Parcel M02 = a0Var2.M0();
+        Parcel obtain = Parcel.obtain();
+        try {
+            try {
+                a0Var2.f124b.transact(7, M02, obtain, 0);
+                obtain.readException();
+                M02.recycle();
+                obtain.recycle();
+                taskCompletionSource.setResult((Location) e.a(obtain, Location.CREATOR));
+            } catch (RuntimeException e) {
+                obtain.recycle();
+                throw e;
+            }
+        } catch (Throwable th2) {
+            M02.recycle();
+            throw th2;
+        }
+    }
+
+    @Override
+    public Object then(Task task) {
+        return null;
     }
 }

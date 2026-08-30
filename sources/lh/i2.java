@@ -1,88 +1,78 @@
 package lh;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-public final class i2 extends AnimatorListenerAdapter {
-    public final int f15709a;
-    public final boolean f15710b;
-    public final d4 f15711c;
+import java.util.ArrayList;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.yh;
+public final class i2 implements Runnable {
+    public final int f12579a;
+    public final g5 f12580b;
+    public final TL_stars.TL_starGiftUnique f12581c;
+    public final mf.a d;
+    public final Runnable e;
 
-    public i2(d4 d4Var, boolean z10, int i10) {
-        this.f15709a = i10;
-        this.f15711c = d4Var;
-        this.f15710b = z10;
+    public i2(g5 g5Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, mf.a aVar, Runnable runnable, int i10) {
+        this.f12579a = i10;
+        this.f12580b = g5Var;
+        this.f12581c = tL_starGiftUnique;
+        this.d = aVar;
+        this.e = runnable;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f9;
-        float hideInterfaceAlpha;
-        switch (this.f15709a) {
+    public final void run() {
+        boolean z4;
+        int i10 = this.f12579a;
+        mf.b bVar = mf.b.f13930a;
+        mf.b bVar2 = mf.b.f13931b;
+        Runnable runnable = this.e;
+        mf.a aVar = this.d;
+        TL_stars.TL_starGiftUnique tL_starGiftUnique = this.f12581c;
+        g5 g5Var = this.f12580b;
+        boolean z10 = false;
+        switch (i10) {
             case 0:
-                if (!this.f15710b) {
-                    d4 d4Var = this.f15711c;
-                    d4Var.f15506n3.setVisibility(8);
-                    d4Var.f15506n3.n();
-                    return;
+                g5Var.getClass();
+                tL_starGiftUnique.flags |= 16;
+                if (aVar.f13928a == bVar2) {
+                    z4 = true;
+                } else {
+                    z4 = false;
                 }
+                tL_starGiftUnique.resale_ton_only = z4;
+                ArrayList<TL_stars.StarsAmount> arrayList = new ArrayList<>();
+                tL_starGiftUnique.resell_amount = arrayList;
+                arrayList.add(aVar.e(bVar).o());
+                tL_starGiftUnique.resell_amount.add(aVar.e(bVar2).o());
+                g5Var.f12468b0.setResellPrice(aVar);
+                kh.a3 a3Var = g5Var.f12467a1;
+                if (a3Var != null) {
+                    a3Var.run();
+                }
+                if (runnable != null) {
+                    runnable.run();
+                }
+                yh.s(R.string.Gift2ResaleEnable, new Object[]{g5Var.C1()}, g5Var.getBulletinFactory(), R.raw.contact_check, 36);
                 return;
             default:
-                d4 d4Var2 = this.f15711c;
-                n8 n8Var = d4Var2.f15543y0;
-                bh.d dVar = d4Var2.f15527u0;
-                ImageView imageView = d4Var2.f15523t0;
-                ImageView imageView2 = d4Var2.f15519s0;
-                z3 z3Var = d4Var2.f15496k1;
-                float f10 = 0.0f;
-                if (this.f15710b) {
-                    f9 = 1.0f;
-                } else {
-                    f9 = 0.0f;
+                tL_starGiftUnique.flags |= 16;
+                if (aVar.f13928a == bVar2) {
+                    z10 = true;
                 }
-                d4Var2.Z3 = f9;
-                z3Var.setTranslationY((-AndroidUtilities.dp(8.0f)) * d4Var2.Z3);
-                z3Var.setAlpha(1.0f - d4Var2.Z3);
-                imageView2.setTranslationY((-AndroidUtilities.dp(8.0f)) * d4Var2.Z3);
-                imageView2.setAlpha(1.0f - d4Var2.Z3);
-                imageView.setTranslationY((-AndroidUtilities.dp(8.0f)) * d4Var2.Z3);
-                imageView.setAlpha(1.0f - d4Var2.Z3);
-                dVar.setTranslationY((-AndroidUtilities.dp(8.0f)) * d4Var2.Z3);
-                dVar.setAlpha((1.0f - d4Var2.Z3) * d4Var2.f15469a3);
-                y2 y2Var = d4Var2.S1;
-                if (y2Var != null) {
-                    y2Var.setTranslationY(AndroidUtilities.dp(8.0f) * d4Var2.Z3);
-                    d4Var2.S1.setAlpha(1.0f - d4Var2.Z3);
+                tL_starGiftUnique.resale_ton_only = z10;
+                ArrayList<TL_stars.StarsAmount> arrayList2 = new ArrayList<>();
+                tL_starGiftUnique.resell_amount = arrayList2;
+                arrayList2.add(aVar.e(bVar).o());
+                tL_starGiftUnique.resell_amount.add(aVar.e(bVar2).o());
+                g5Var.f12468b0.setResellPrice(aVar);
+                kh.a3 a3Var2 = g5Var.f12467a1;
+                if (a3Var2 != null) {
+                    a3Var2.run();
                 }
-                if (n8Var != null) {
-                    n8Var.setTranslationY((-AndroidUtilities.dp(8.0f)) * d4Var2.Z3);
-                    n8Var.setAlpha(1.0f - d4Var2.Z3);
+                if (runnable != null) {
+                    runnable.run();
+                    return;
                 }
-                d4Var2.G0.setAlpha(1.0f - d4Var2.Z3);
-                x3 x3Var = d4Var2.M1;
-                if (x3Var != null) {
-                    f10 = ((z8) x3Var).d.R;
-                }
-                hideInterfaceAlpha = d4Var2.getHideInterfaceAlpha();
-                y2 y2Var2 = d4Var2.f15547z0;
-                if (y2Var2 != null) {
-                    y2Var2.setAlpha((1.0f - d4Var2.Z3) * (1.0f - f10) * hideInterfaceAlpha);
-                }
-                ImageView imageView3 = d4Var2.J0;
-                if (imageView3 != null) {
-                    imageView3.setAlpha((1.0f - d4Var2.Z3) * (1.0f - f10) * hideInterfaceAlpha);
-                }
-                y2 y2Var3 = d4Var2.L0;
-                if (y2Var3 != null) {
-                    y2Var3.setAlpha((1.0f - d4Var2.Z3) * (1.0f - f10) * hideInterfaceAlpha);
-                }
-                n2 n2Var = d4Var2.X1;
-                if (n2Var != null) {
-                    n2Var.setAlpha(1.0f - d4Var2.Z3);
-                    d4Var2.invalidate();
-                }
-                d4Var2.Y0.invalidate();
                 return;
         }
     }

@@ -1,58 +1,46 @@
 package j8;
 
-import j7.l1;
-public abstract class j {
-    public static final com.google.android.gms.common.api.e f11282a = new com.google.android.gms.common.api.e("Wearable.API", new b6.b(7), new Object());
-    public static final w5.c[] f11283b = {new w5.c("app_client", 4), new w5.c("carrier_auth", 1), new w5.c("wear3_oem_companion", 1), new w5.c("wear_consent", 2), new w5.c("wear_consent_recordoptin", 1), new w5.c("wear_consent_supervised", 1), new w5.c("wear_fast_pair_account_key_sync", 1), new w5.c("wear_get_related_configs", 1), new w5.c("wear_get_node_id", 1), new w5.c("wear_retry_connection", 1), new w5.c("wear_set_cloud_sync_setting_by_node", 1), new w5.c("wear_update_config", 1), new w5.c("wear_update_connection_retry_strategy", 1), new w5.c("wearable_services", 1)};
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import j7.f5;
+import java.util.ArrayList;
+public final class j extends c6.a {
+    public static final Parcelable.Creator<j> CREATOR = new f8.o(24);
+    public boolean f9276a;
+    public boolean f9277b;
+    public c f9278c;
+    public boolean d;
+    public m e;
+    public ArrayList f9279f;
+    public l h;
+    public n f9280n;
+    public boolean f9281r;
+    public String f9282s;
+    public Bundle v;
 
-    public static String a(int i10) {
-        switch (i10) {
-            case -1:
-                return "SUCCESS_CACHE";
-            case 0:
-                return "SUCCESS";
-            case 1:
-            case 9:
-            case 11:
-            case 12:
-            default:
-                return l1.k(i10, "unknown status code: ");
-            case 2:
-                return "SERVICE_VERSION_UPDATE_REQUIRED";
-            case 3:
-                return "SERVICE_DISABLED";
-            case 4:
-                return "SIGN_IN_REQUIRED";
-            case 5:
-                return "INVALID_ACCOUNT";
-            case 6:
-                return "RESOLUTION_REQUIRED";
-            case 7:
-                return "NETWORK_ERROR";
-            case 8:
-                return "INTERNAL_ERROR";
-            case 10:
-                return "DEVELOPER_ERROR";
-            case 13:
-                return "ERROR";
-            case 14:
-                return "INTERRUPTED";
-            case 15:
-                return "TIMEOUT";
-            case 16:
-                return "CANCELED";
-            case 17:
-                return "API_NOT_CONNECTED";
-            case 18:
-                return "DEAD_CLIENT";
-            case 19:
-                return "REMOTE_EXCEPTION";
-            case 20:
-                return "CONNECTION_SUSPENDED_DURING_CALL";
-            case 21:
-                return "RECONNECTION_TIMED_OUT_DURING_UPDATE";
-            case 22:
-                return "RECONNECTION_TIMED_OUT";
-        }
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q10 = f5.q(parcel, 20293);
+        boolean z4 = this.f9276a;
+        f5.s(parcel, 1, 4);
+        parcel.writeInt(z4 ? 1 : 0);
+        boolean z10 = this.f9277b;
+        f5.s(parcel, 2, 4);
+        parcel.writeInt(z10 ? 1 : 0);
+        f5.k(parcel, 3, this.f9278c, i10);
+        boolean z11 = this.d;
+        f5.s(parcel, 4, 4);
+        parcel.writeInt(z11 ? 1 : 0);
+        f5.k(parcel, 5, this.e, i10);
+        f5.h(parcel, 6, this.f9279f);
+        f5.k(parcel, 7, this.h, i10);
+        f5.k(parcel, 8, this.f9280n, i10);
+        boolean z12 = this.f9281r;
+        f5.s(parcel, 9, 4);
+        parcel.writeInt(z12 ? 1 : 0);
+        f5.l(parcel, 10, this.f9282s);
+        f5.b(parcel, 11, this.v);
+        f5.r(parcel, q10);
     }
 }

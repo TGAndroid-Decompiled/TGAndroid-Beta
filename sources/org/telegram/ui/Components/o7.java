@@ -1,87 +1,50 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class o7 implements Runnable {
-    public final int f31276a;
-    public final p7 f31277b;
+import android.content.Context;
+public final class o7 extends sl0 {
+    public boolean U2;
+    public final c8 V2;
 
-    public o7(p7 p7Var, int i10) {
-        this.f31276a = i10;
-        this.f31277b = p7Var;
+    public o7(c8 c8Var, Context context) {
+        super(context, null);
+        this.V2 = c8Var;
     }
 
     @Override
-    public final void run() {
-        long j10;
-        switch (this.f31276a) {
-            case 0:
-                p7 p7Var = this.f31277b;
-                int i10 = p7Var.v + 1;
-                p7Var.v = i10;
-                if (i10 == 1) {
-                    g8 g8Var = p7Var.D;
-                    g8Var.D0 = -1;
-                    g8Var.E0 = MediaController.getInstance().getPlayingMessageObject().audioProgress;
-                    p7Var.f31608w = System.currentTimeMillis();
-                    AndroidUtilities.runOnUIThread(this, 2000L);
-                    AndroidUtilities.runOnUIThread(p7Var.A);
-                    return;
-                } else if (i10 == 2) {
-                    AndroidUtilities.runOnUIThread(this, 2000L);
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                p7 p7Var2 = this.f31277b;
-                g8 g8Var2 = p7Var2.D;
-                long duration = MediaController.getInstance().getDuration();
-                if (duration != 0 && duration != -9223372036854775807L) {
-                    float f9 = g8Var2.E0;
-                    long currentTimeMillis = System.currentTimeMillis();
-                    long j11 = currentTimeMillis - p7Var2.f31608w;
-                    p7Var2.f31608w = currentTimeMillis;
-                    long j12 = currentTimeMillis - p7Var2.f31609x;
-                    int i11 = p7Var2.v;
-                    if (i11 == 1) {
-                        j10 = 3;
-                    } else if (i11 == 2) {
-                        j10 = 6;
-                    } else {
-                        j10 = 12;
-                    }
-                    float f10 = (float) duration;
-                    float f11 = ((f9 * f10) - ((float) (j11 * j10))) / f10;
-                    if (f11 < 0.0f) {
-                        f11 = 0.0f;
-                    }
-                    g8Var2.E0 = f11;
-                    MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-                    if (playingMessageObject != null && playingMessageObject.isMusic()) {
-                        g8Var2.G0(playingMessageObject, false);
-                    }
-                    if (g8Var2.D0 == -1 && p7Var2.v > 0) {
-                        if (j12 > 200 || g8Var2.E0 == 0.0f) {
-                            p7Var2.f31609x = currentTimeMillis;
-                            if (g8Var2.E0 == 0.0f) {
-                                MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), 0.0f);
-                                MediaController.getInstance().pauseByRewind();
-                            } else {
-                                MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f11);
-                            }
-                        }
-                        if (p7Var2.v > 0 && g8Var2.E0 > 0.0f) {
-                            AndroidUtilities.runOnUIThread(p7Var2.A, 16L);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                p7Var2.f31608w = System.currentTimeMillis();
-                return;
+    public final boolean E0(float f10) {
+        c8 c8Var = this.V2;
+        if (f10 < c8Var.B.getY() - c8Var.f23900n.getTop()) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        super.onLayout(z4, i10, i11, i12, i13);
+        c8 c8Var = this.V2;
+        int i14 = c8Var.f23903p0;
+        if (i14 != -1 && !c8Var.f23888c.f20330k0) {
+            this.U2 = true;
+            c8Var.f23905r.h1(i14, c8Var.f23904q0 - c8Var.f23900n.getPaddingTop());
+            super.onLayout(false, i10, i11, i12, i13);
+            this.U2 = false;
+            c8Var.f23903p0 = -1;
+        } else if (c8Var.f23902o0) {
+            c8Var.f23902o0 = false;
+            this.U2 = true;
+            if (c8Var.w0(true)) {
+                super.onLayout(false, i10, i11, i12, i13);
+            }
+            this.U2 = false;
+        }
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.U2) {
+            return;
+        }
+        super.requestLayout();
     }
 }

@@ -1,25 +1,31 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class qn0 {
-    public final bo0 f41755a;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class qn0 implements ho0 {
+    public final jo0 f37799a;
 
-    public qn0(bo0 bo0Var) {
-        this.f41755a = bo0Var;
+    public qn0(jo0 jo0Var) {
+        this.f37799a = jo0Var;
     }
 
-    public final void a(Exception exc) {
-        bo0 bo0Var = this.f41755a;
-        if (bo0Var.M0) {
-            return;
-        }
-        bo0Var.H0(true, false);
-        bo0Var.D0(false);
-        if (!(exc instanceof dc.a) && !(exc instanceof dc.b)) {
-            org.telegram.ui.Components.c5.w0(bo0Var, exc.getMessage());
-        } else {
-            org.telegram.ui.Components.c5.w0(bo0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
-        }
+    @Override
+    public final boolean c(String str, String str2, boolean z4, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        return false;
+    }
+
+    @Override
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
+        jo0 jo0Var = this.f37799a;
+        jo0Var.F0 = tL_payments_validateRequestedInfo;
+        jo0Var.B0(tL_payments_validateRequestedInfo.info);
+    }
+
+    @Override
+    public final void a(TL_account.Password password) {
+    }
+
+    @Override
+    public final void b() {
     }
 }

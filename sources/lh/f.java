@@ -1,48 +1,44 @@
 package lh;
 
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.jq;
-import org.telegram.ui.xw;
-public final class f extends jq {
-    public final Drawable A;
-    public final Drawable B;
-    public final xw C;
-    public int f15587y;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class f implements RequestDelegate {
+    public final int f12389a = 0;
+    public final boolean f12390b;
+    public final long f12391c;
+    public final Object d;
+    public final Object e;
+    public final Object f12392f;
 
-    public f(xw xwVar, Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
-        super(drawable, drawable2);
-        this.C = xwVar;
-        this.A = drawable3;
-        this.B = drawable4;
+    public f(q qVar, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z4, long j10) {
+        this.d = qVar;
+        this.e = twoStepVerificationActivity;
+        this.f12392f = activity;
+        this.f12390b = z4;
+        this.f12391c = j10;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int i10;
-        int i11;
-        xw xwVar = this.C;
-        int i12 = xwVar.f16044b;
-        if (i12 == 0) {
-            i10 = org.telegram.ui.ActionBar.g6.f23329s8;
-        } else {
-            i10 = org.telegram.ui.ActionBar.g6.M8;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f12389a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new g((q) this.d, tL_error, (TwoStepVerificationActivity) this.e, (Activity) this.f12392f, this.f12390b, this.f12391c, tLObject));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new j((nh.t6) this.d, tL_error, this.f12390b, this.f12391c, (h5.d) this.e, (org.telegram.ui.ActionBar.f6) this.f12392f));
+                return;
         }
-        int f9 = xwVar.f(i10);
-        if (this.f15587y != f9) {
-            this.f15587y = f9;
-            if (i12 == 0) {
-                i11 = org.telegram.ui.ActionBar.g6.A8;
-            } else {
-                i11 = org.telegram.ui.ActionBar.g6.P8;
-            }
-            int d = i0.a.d(0.1f, xwVar.f(i11), f9);
-            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            this.A.setColorFilter(new PorterDuffColorFilter(d, mode));
-            this.B.setColorFilter(new PorterDuffColorFilter(f9, mode));
-        }
-        super.draw(canvas);
+    }
+
+    public f(nh.t6 t6Var, boolean z4, long j10, h5.d dVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.d = t6Var;
+        this.f12390b = z4;
+        this.f12391c = j10;
+        this.e = dVar;
+        this.f12392f = f6Var;
     }
 }

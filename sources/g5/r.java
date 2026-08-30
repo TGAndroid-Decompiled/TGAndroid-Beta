@@ -1,72 +1,43 @@
 package g5;
 
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
-import android.os.Message;
-import android.view.Choreographer;
-import f5.d0;
-public final class r implements Choreographer.FrameCallback, Handler.Callback {
-    public static final r f7073e = new r();
-    public volatile long f7074a = -9223372036854775807L;
-    public final Handler f7075b;
-    public Choreographer f7076c;
-    public int d;
+import android.os.SystemClock;
+public final class r {
+    public final s f6414a;
 
-    public r() {
-        HandlerThread handlerThread = new HandlerThread("ExoPlayer:FrameReleaseChoreographer");
-        handlerThread.start();
-        Looper looper = handlerThread.getLooper();
-        int i10 = d0.f6579a;
-        Handler handler = new Handler(looper, this);
-        this.f7075b = handler;
-        handler.sendEmptyMessage(0);
-    }
-
-    @Override
-    public final void doFrame(long j10) {
-        this.f7074a = j10;
-        Choreographer choreographer = this.f7076c;
-        choreographer.getClass();
-        choreographer.postFrameCallbackDelayed(this, 500L);
-    }
-
-    @Override
-    public final boolean handleMessage(Message message) {
-        int i10 = message.what;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    return false;
+    public final void a(int i10) {
+        int i11;
+        s sVar = this.f6414a;
+        synchronized (sVar) {
+            synchronized (sVar) {
+                int i12 = sVar.f6431i;
+                if (i12 != 0 && !sVar.e) {
+                    return;
                 }
-                Choreographer choreographer = this.f7076c;
-                if (choreographer != null) {
-                    int i11 = this.d - 1;
-                    this.d = i11;
-                    if (i11 == 0) {
-                        choreographer.removeFrameCallback(this);
-                        this.f7074a = -9223372036854775807L;
-                        return true;
-                    }
+                if (i12 == i10) {
+                    return;
                 }
-            } else {
-                Choreographer choreographer2 = this.f7076c;
-                if (choreographer2 != null) {
-                    int i12 = this.d + 1;
-                    this.d = i12;
-                    if (i12 == 1) {
-                        choreographer2.postFrameCallback(this);
+                sVar.f6431i = i10;
+                if (i10 != 1 && i10 != 0 && i10 != 8) {
+                    sVar.f6434l = sVar.a(i10);
+                    sVar.d.getClass();
+                    long elapsedRealtime = SystemClock.elapsedRealtime();
+                    if (sVar.f6429f > 0) {
+                        i11 = (int) (elapsedRealtime - sVar.f6430g);
+                    } else {
+                        i11 = 0;
                     }
+                    sVar.c(i11, sVar.h, sVar.f6434l);
+                    sVar.f6430g = elapsedRealtime;
+                    sVar.h = 0L;
+                    sVar.f6433k = 0L;
+                    sVar.f6432j = 0L;
+                    t0 t0Var = sVar.f6428c;
+                    t0Var.f6448b.clear();
+                    t0Var.d = -1;
+                    t0Var.e = 0;
+                    t0Var.f6450f = 0;
                 }
             }
-            return true;
-        }
-        try {
-            this.f7076c = Choreographer.getInstance();
-            return true;
-        } catch (RuntimeException e10) {
-            f5.a.L("VideoFrameReleaseHelper", "Vsync sampling disabled due to platform error", e10);
-            return true;
         }
     }
 }

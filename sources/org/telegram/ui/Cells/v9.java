@@ -1,19 +1,8 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Rect;
 import android.text.Layout;
-public interface v9 {
-    Layout getLayout();
-
-    CharSequence getPrefix();
-
-    int getRow();
-
-    Rect getSelectionBounds();
+public interface v9 extends u9 {
+    Layout getStaticTextLayout();
 
     CharSequence getText();
-
-    int getX();
-
-    int getY();
 }

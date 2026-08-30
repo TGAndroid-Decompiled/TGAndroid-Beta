@@ -1,0 +1,17 @@
+package x5;
+
+import android.os.Build;
+import android.util.Log;
+public final class e extends ClassLoader {
+    @Override
+    public final Class loadClass(String str, boolean z4) {
+        if (str != "com.google.android.gms.iid.MessengerCompat" && (str == null || !str.equals("com.google.android.gms.iid.MessengerCompat"))) {
+            return super.loadClass(str, z4);
+        }
+        if (Log.isLoggable("CloudMessengerCompat", 3) || (Build.VERSION.SDK_INT == 23 && Log.isLoggable("CloudMessengerCompat", 3))) {
+            Log.d("CloudMessengerCompat", "Using renamed FirebaseIidMessengerCompat class");
+            return f.class;
+        }
+        return f.class;
+    }
+}

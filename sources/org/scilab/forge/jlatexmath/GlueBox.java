@@ -5,10 +5,10 @@ public class GlueBox extends Box {
     protected float shrink;
     protected float stretch;
 
-    public GlueBox(float f9, float f10, float f11) {
-        this.width = f9;
-        this.stretch = f10;
-        this.shrink = f11;
+    public GlueBox(float f10, float f11, float f12) {
+        this.width = f10;
+        this.stretch = f11;
+        this.shrink = f12;
     }
 
     @Override
@@ -17,6 +17,6 @@ public class GlueBox extends Box {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f9, float f10) {
+    public void draw(Graphics2D graphics2D, float f10, float f11) {
     }
 }

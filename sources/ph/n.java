@@ -1,37 +1,27 @@
 package ph;
 
-import org.telegram.messenger.FileLog;
-public final class n extends h7.v {
-    public final p f45913a;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.camera.CameraController;
+public final class n extends y5 {
+    public final p C;
 
-    public n(p pVar) {
-        this.f45913a = pVar;
+    public n(p pVar, Context context) {
+        super(context);
+        this.C = pVar;
     }
 
     @Override
-    public final void a(int i10, CharSequence charSequence) {
-        FileLog.d("BotBiometry onAuthenticationError " + i10 + " \"" + ((Object) charSequence) + "\"");
-        p pVar = this.f45913a;
-        bh.v vVar = pVar.f45948j;
-        if (vVar != null) {
-            pVar.f45948j = null;
-            vVar.run(Boolean.FALSE, null);
+    public final void c() {
+        AndroidUtilities.cancelRunOnUIThread(this.h);
+        if (this.f42621c <= 0) {
+            a(true);
+        } else {
+            CameraController.getInstance().stopVideoRecording(this.f42619a.getCameraSessionRecording(), false, false);
         }
-    }
-
-    @Override
-    public final void b() {
-        FileLog.d("BotBiometry onAuthenticationFailed");
-    }
-
-    @Override
-    public final void c(androidx.biometric.u uVar) {
-        FileLog.d("BotBiometry onAuthenticationSucceeded");
-        p pVar = this.f45913a;
-        bh.v vVar = pVar.f45948j;
-        if (vVar != null) {
-            pVar.f45948j = null;
-            vVar.run(Boolean.TRUE, uVar);
+        p pVar = this.C;
+        if (pVar.L1) {
+            pVar.z(true, false);
         }
     }
 }

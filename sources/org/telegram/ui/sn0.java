@@ -1,70 +1,31 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class sn0 extends AnimatorListenerAdapter {
-    public final int f42432a;
-    public final boolean f42433b;
-    public final bo0 f42434c;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class sn0 implements ho0 {
+    public final jo0 f38411a;
 
-    public sn0(bo0 bo0Var, boolean z10, int i10) {
-        this.f42432a = i10;
-        this.f42434c = bo0Var;
-        this.f42433b = z10;
+    public sn0(jo0 jo0Var) {
+        this.f38411a = jo0Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f42432a) {
-            case 0:
-                bo0 bo0Var = this.f42434c;
-                AnimatorSet animatorSet = bo0Var.v;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    bo0Var.v = null;
-                    return;
-                }
-                return;
-            default:
-                bo0 bo0Var2 = this.f42434c;
-                AnimatorSet animatorSet2 = bo0Var2.v;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    bo0Var2.v = null;
-                    return;
-                }
-                return;
-        }
+    public final boolean c(String str, String str2, boolean z4, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        return false;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f42432a) {
-            case 0:
-                bo0 bo0Var = this.f42434c;
-                AnimatorSet animatorSet = bo0Var.v;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f42433b) {
-                        bo0Var.f36862r.setVisibility(4);
-                        return;
-                    } else {
-                        bo0Var.f36857n.getContentView().setVisibility(4);
-                        return;
-                    }
-                }
-                return;
-            default:
-                bo0 bo0Var2 = this.f42434c;
-                AnimatorSet animatorSet2 = bo0Var2.v;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    if (!this.f42433b) {
-                        bo0Var2.f36864s.setVisibility(4);
-                        return;
-                    } else {
-                        bo0Var2.Q.setVisibility(4);
-                        return;
-                    }
-                }
-                return;
-        }
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
+        jo0 jo0Var = this.f38411a;
+        jo0Var.F0 = tL_payments_validateRequestedInfo;
+        jo0Var.B0(tL_payments_validateRequestedInfo.info);
+    }
+
+    @Override
+    public final void a(TL_account.Password password) {
+    }
+
+    @Override
+    public final void b() {
     }
 }

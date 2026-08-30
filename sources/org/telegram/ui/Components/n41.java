@@ -1,43 +1,61 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class n41 implements lx0 {
-    public final TLRPC.InputStickerSet f30843a;
-    public final s41 f30844b;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class n41 extends f2.z0 {
+    public final int f27190a;
+    public int f27191b;
+    public final Object f27192c;
 
-    public n41(s41 s41Var, TLRPC.InputStickerSet inputStickerSet) {
-        this.f30844b = s41Var;
-        this.f30843a = inputStickerSet;
+    public n41(q41 q41Var) {
+        this.f27190a = 0;
+        this.f27192c = q41Var;
     }
 
     @Override
-    public final void a() {
-        s41 s41Var = this.f30844b;
-        f2.p0 adapter = s41Var.f32485n.getAdapter();
-        r41 r41Var = s41Var.f32487s;
-        TLRPC.InputStickerSet inputStickerSet = this.f30843a;
-        int i10 = 0;
-        if (adapter == r41Var) {
-            while (i10 < r41Var.f32172e.size()) {
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) r41Var.f32172e.get(i10);
-                if (stickerSetCovered.set.f22419id == inputStickerSet.f22412id) {
-                    r41Var.F(stickerSetCovered, null);
+    public void a(RecyclerView recyclerView, int i10) {
+        switch (this.f27190a) {
+            case 0:
+                if (i10 == 0) {
+                    this.f27191b = 0;
                     return;
                 }
-                i10++;
-            }
-            return;
-        }
-        rf.m1 m1Var = s41Var.v;
-        ArrayList arrayList = m1Var.A;
-        while (i10 < arrayList.size()) {
-            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i10);
-            if (stickerSetCovered2.set.f22419id == inputStickerSet.f22412id) {
-                m1Var.F(stickerSetCovered2, null);
                 return;
-            }
-            i10++;
+            default:
+                return;
         }
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f27190a) {
+            case 0:
+                q41 q41Var = (q41) this.f27192c;
+                this.f27191b += i11;
+                if (recyclerView.getScrollState() == 1 && Math.abs(this.f27191b) > AndroidUtilities.dp(96.0f)) {
+                    View findFocus = q41Var.e.findFocus();
+                    if (findFocus == null) {
+                        findFocus = q41Var.e;
+                    }
+                    AndroidUtilities.hideKeyboard(findFocus);
+                }
+                if (i11 != 0) {
+                    q41.m(q41Var);
+                    return;
+                }
+                return;
+            default:
+                int i12 = this.f27191b + i11;
+                this.f27191b = i12;
+                ((org.telegram.ui.l21) this.f27192c).E.setAlpha((i12 * 1.0f) / AndroidUtilities.dp(6.0f));
+                return;
+        }
+    }
+
+    public n41(org.telegram.ui.l21 l21Var) {
+        this.f27190a = 1;
+        this.f27192c = l21Var;
+        this.f27191b = 0;
     }
 }

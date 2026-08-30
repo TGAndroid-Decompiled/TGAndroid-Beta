@@ -103,12 +103,12 @@ public class LiteMode {
         return lastPowerSaverApplied;
     }
 
-    public static void lambda$onPowerSaverApplied$0(boolean z10) {
+    public static void lambda$onPowerSaverApplied$0(boolean z4) {
         Iterator<Utilities.Callback<Boolean>> it = onPowerSaverAppliedListeners.iterator();
         while (it.hasNext()) {
             Utilities.Callback<Boolean> next = it.next();
             if (next != null) {
-                next.run(Boolean.valueOf(z10));
+                next.run(Boolean.valueOf(z4));
             }
         }
     }
@@ -199,25 +199,25 @@ public class LiteMode {
     private static void onFlagsUpdate(int i10, int i11) {
         int i12 = (~i10) & i11;
         if ((i12 & 28700) > 0) {
-            org.telegram.ui.Components.p5.u();
+            org.telegram.ui.Components.l5.u();
         }
         int i13 = i12 & 32;
         if (i13 > 0) {
             SvgHelper.SvgDrawable.updateLiteValues();
         }
         if (i13 > 0) {
-            org.telegram.ui.ActionBar.g6.o1(true);
+            org.telegram.ui.ActionBar.j6.o1(true);
         }
     }
 
-    private static void onPowerSaverApplied(boolean z10) {
-        if (z10) {
+    private static void onPowerSaverApplied(boolean z4) {
+        if (z4) {
             onFlagsUpdate(getValue(true), PRESET_POWER_SAVER);
         } else {
             onFlagsUpdate(PRESET_POWER_SAVER, getValue(true));
         }
         if (onPowerSaverAppliedListeners != null) {
-            AndroidUtilities.runOnUIThread(new y3(2, z10));
+            AndroidUtilities.runOnUIThread(new z3(2, z4));
         }
     }
 
@@ -272,7 +272,7 @@ public class LiteMode {
     }
 
     public static void setPowerSaverLevel(int i10) {
-        powerSaverLevel = i7.w.b(i10, 0, 100);
+        powerSaverLevel = k7.n.b(i10, 0, 100);
         savePreference();
         getValue(false);
     }
@@ -292,8 +292,8 @@ public class LiteMode {
                         PRESET_LOW = (int) ((TLRPC.TL_jsonNumber) arrayList.get(0)).value;
                         PRESET_MEDIUM = (int) ((TLRPC.TL_jsonNumber) arrayList.get(1)).value;
                         PRESET_HIGH = (int) ((TLRPC.TL_jsonNumber) arrayList.get(2)).value;
-                    } catch (Exception e10) {
-                        FileLog.e(e10);
+                    } catch (Exception e) {
+                        FileLog.e(e);
                     }
                 }
             }
@@ -305,8 +305,8 @@ public class LiteMode {
                         BATTERY_LOW = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(0)).value;
                         BATTERY_MEDIUM = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(1)).value;
                         BATTERY_HIGH = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(2)).value;
-                    } catch (Exception e11) {
-                        FileLog.e(e11);
+                    } catch (Exception e6) {
+                        FileLog.e(e6);
                     }
                 }
             }
@@ -314,11 +314,11 @@ public class LiteMode {
         loadPreference();
     }
 
-    public static int getValue(boolean z10) {
+    public static int getValue(boolean z4) {
         if (!loaded) {
             loadPreference();
         }
-        if (!z10) {
+        if (!z4) {
             int batteryLevel = getBatteryLevel();
             int i10 = powerSaverLevel;
             if (batteryLevel <= i10 && i10 > 0) {
@@ -335,9 +335,9 @@ public class LiteMode {
         return value;
     }
 
-    public static void toggleFlag(int i10, boolean z10) {
+    public static void toggleFlag(int i10, boolean z4) {
         int value2;
-        if (z10) {
+        if (z4) {
             value2 = i10 | getValue(true);
         } else {
             value2 = (~i10) & getValue(true);

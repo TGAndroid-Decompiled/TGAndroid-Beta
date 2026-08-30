@@ -1,24 +1,48 @@
 package i9;
-public final class k implements s9.d {
-    public static final k f8703a = new Object();
-    public static final s9.c f8704b = s9.c.c("execution");
-    public static final s9.c f8705c = s9.c.c("customAttributes");
-    public static final s9.c d = s9.c.c("internalKeys");
-    public static final s9.c f8706e = s9.c.c("background");
-    public static final s9.c f8707f = s9.c.c("currentProcessDetails");
-    public static final s9.c f8708g = s9.c.c("appProcessDetails");
-    public static final s9.c h = s9.c.c("uiOrientation");
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        s9.e eVar = (s9.e) obj2;
-        m0 m0Var = (m0) ((u1) obj);
-        eVar.e(f8704b, m0Var.f8730a);
-        eVar.e(f8705c, m0Var.f8731b);
-        eVar.e(d, m0Var.f8732c);
-        eVar.e(f8706e, m0Var.d);
-        eVar.e(f8707f, m0Var.f8733e);
-        eVar.e(f8708g, m0Var.f8734f);
-        eVar.b(h, m0Var.f8735g);
+import android.util.Log;
+import j$.util.Objects;
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
+public final class k {
+    public final s f7392a;
+    public final j f7393b;
+
+    public k(s sVar, n9.b bVar) {
+        this.f7392a = sVar;
+        this.f7393b = new j(bVar);
+    }
+
+    public final String a(String str) {
+        String substring;
+        j jVar = this.f7393b;
+        synchronized (jVar) {
+            if (Objects.equals(jVar.f7390b, str)) {
+                return jVar.f7391c;
+            }
+            n9.b bVar = jVar.f7389a;
+            i iVar = j.d;
+            File file = new File(bVar.f14863c, str);
+            file.mkdirs();
+            List e = n9.b.e(file.listFiles(iVar));
+            if (e.isEmpty()) {
+                substring = null;
+                Log.w("FirebaseCrashlytics", "Unable to read App Quality Sessions session id.", null);
+            } else {
+                substring = ((File) Collections.min(e, j.e)).getName().substring(4);
+            }
+            return substring;
+        }
+    }
+
+    public final void b(String str) {
+        j jVar = this.f7393b;
+        synchronized (jVar) {
+            if (!Objects.equals(jVar.f7390b, str)) {
+                j.a(jVar.f7389a, str, jVar.f7391c);
+                jVar.f7390b = str;
+            }
+        }
     }
 }

@@ -33,8 +33,8 @@ public class NativeLoader {
                 str = "armeabi";
             }
             str2 = str;
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
         String property = System.getProperty("os.arch");
         if (property != null && property.contains("686")) {

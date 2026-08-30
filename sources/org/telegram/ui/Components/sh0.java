@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.widget.FrameLayout;
-public abstract class sh0 extends FrameLayout {
+import android.view.View;
+public final class sh0 extends View {
 }

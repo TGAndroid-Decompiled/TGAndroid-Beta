@@ -23,8 +23,8 @@ public class TLJsonBuilder {
             TLJsonBuilder tLJsonBuilder = new TLJsonBuilder();
             serializable.serializeToJson(tLJsonBuilder);
             return tLJsonBuilder.result2;
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             return null;
         }
     }
@@ -32,13 +32,13 @@ public class TLJsonBuilder {
     private void write(String str, Object obj) {
         try {
             this.result2.putOpt(str, obj);
-        } catch (JSONException e10) {
-            FileLog.e(e10);
+        } catch (JSONException e) {
+            FileLog.e(e);
         }
     }
 
-    public void writeBoolean(String str, boolean z10) {
-        write(str, Boolean.valueOf(z10));
+    public void writeBoolean(String str, boolean z4) {
+        write(str, Boolean.valueOf(z4));
     }
 
     public void writeInt32(String str, int i10) {
@@ -59,8 +59,8 @@ public class TLJsonBuilder {
 
     public <T extends Serializable> void writeVector(String str, List<T> list) {
         JSONArray jSONArray = new JSONArray();
-        for (T t10 : list) {
-            JSONObject serialize = serialize(t10);
+        for (T t6 : list) {
+            JSONObject serialize = serialize(t6);
             if (serialize != null) {
                 jSONArray.put(serialize);
             }

@@ -1,10 +1,11 @@
 package z3;
 
-import o3.l;
-public interface b {
-    void a(long j10);
+import h5.w;
+public final class b extends n3.a {
+    public final w f47279c;
 
-    boolean b(l lVar, long j10);
-
-    void c(int i10, long j10);
+    public b(int i10, w wVar) {
+        super(i10, 2);
+        this.f47279c = wVar;
+    }
 }

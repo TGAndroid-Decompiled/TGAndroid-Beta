@@ -1,28 +1,28 @@
 package ph;
 
-import android.animation.ValueAnimator;
-public final class g3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f45818a;
-    public final n3 f45819b;
+import android.view.View;
+import android.widget.TextView;
+public final class g3 implements View.OnLayoutChangeListener {
+    public final int f41678a;
+    public final Object f41679b;
 
-    public g3(n3 n3Var, int i10) {
-        this.f45818a = i10;
-        this.f45819b = n3Var;
+    public g3(Object obj, int i10) {
+        this.f41678a = i10;
+        this.f41679b = obj;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f45818a) {
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        switch (this.f41678a) {
             case 0:
-                this.f45819b.E.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((i3) this.f41679b).d();
                 return;
             default:
-                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                i3 i3Var = this.f45819b.f45917n;
-                if (i3Var.getWebView() != null) {
-                    i3Var.getWebView().setScrollY(intValue);
-                    return;
-                }
+                xf.c cVar = (xf.c) this.f41679b;
+                TextView textView = cVar.f46930c;
+                textView.setPivotX(textView.getMeasuredWidth() * 0.7f);
+                TextView textView2 = cVar.f46929b;
+                textView2.setPivotX(textView2.getMeasuredWidth() * 0.7f);
                 return;
         }
     }

@@ -1,79 +1,37 @@
 package vc;
 
-import a4.w;
-import java.io.Serializable;
+import dd.p;
+import k7.p7;
 import kotlin.jvm.internal.j;
-import rc.c;
-public final class b extends c implements a, Serializable {
-    public final Enum[] f49501a;
+import kotlin.jvm.internal.t;
+import wc.g;
+public final class b extends g {
+    public int f45665a;
+    public final p f45666b;
+    public final uc.c f45667c;
 
-    public b(Enum[] entries) {
-        j.e(entries, "entries");
-        this.f49501a = entries;
+    public b(p pVar, uc.c cVar, uc.c cVar2) {
+        super(cVar);
+        this.f45666b = pVar;
+        this.f45667c = cVar2;
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        Enum r02;
-        if (obj instanceof Enum) {
-            Enum r42 = (Enum) obj;
-            int ordinal = r42.ordinal();
-            Enum[] enumArr = this.f49501a;
-            j.e(enumArr, "<this>");
-            if (ordinal >= 0 && ordinal < enumArr.length) {
-                r02 = enumArr[ordinal];
-            } else {
-                r02 = null;
+    public final Object invokeSuspend(Object obj) {
+        int i10 = this.f45665a;
+        if (i10 != 0) {
+            if (i10 == 1) {
+                this.f45665a = 2;
+                p7.b(obj);
+                return obj;
             }
-            if (r02 == r42) {
-                return true;
-            }
-            return false;
+            throw new IllegalStateException("This coroutine had already completed");
         }
-        return false;
-    }
-
-    @Override
-    public final Object get(int i10) {
-        Enum[] enumArr = this.f49501a;
-        int length = enumArr.length;
-        if (i10 >= 0 && i10 < length) {
-            return enumArr[i10];
-        }
-        throw new IndexOutOfBoundsException(w.k(i10, length, "index: ", ", size: "));
-    }
-
-    @Override
-    public final int i() {
-        return this.f49501a.length;
-    }
-
-    @Override
-    public final int indexOf(Object obj) {
-        Enum r12;
-        if (obj instanceof Enum) {
-            Enum r42 = (Enum) obj;
-            int ordinal = r42.ordinal();
-            Enum[] enumArr = this.f49501a;
-            j.e(enumArr, "<this>");
-            if (ordinal >= 0 && ordinal < enumArr.length) {
-                r12 = enumArr[ordinal];
-            } else {
-                r12 = null;
-            }
-            if (r12 == r42) {
-                return ordinal;
-            }
-            return -1;
-        }
-        return -1;
-    }
-
-    @Override
-    public final int lastIndexOf(Object obj) {
-        if (!(obj instanceof Enum)) {
-            return -1;
-        }
-        return indexOf((Enum) obj);
+        this.f45665a = 1;
+        p7.b(obj);
+        p pVar = this.f45666b;
+        j.c(pVar, "null cannot be cast to non-null type kotlin.Function2<R of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted, kotlin.coroutines.Continuation<T of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted>, kotlin.Any?>");
+        t.a(2, pVar);
+        return pVar.invoke(this.f45667c, this);
     }
 }

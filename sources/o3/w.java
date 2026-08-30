@@ -1,14 +1,29 @@
 package o3;
 
-import j3.t0;
-public interface w {
-    int a(com.google.android.exoplayer2.upstream.j jVar, int i10, boolean z10);
+import h5.d0;
+import java.util.UUID;
+public final class w implements n3.b {
+    public static final boolean d;
+    public final UUID f16279a;
+    public final byte[] f16280b;
+    public final boolean f16281c;
 
-    void b(t0 t0Var);
+    static {
+        boolean z4;
+        if ("Amazon".equals(d0.f6939c)) {
+            String str = d0.d;
+            if ("AFTM".equals(str) || "AFTB".equals(str)) {
+                z4 = true;
+                d = z4;
+            }
+        }
+        z4 = false;
+        d = z4;
+    }
 
-    void c(long j10, int i10, int i11, int i12, v vVar);
-
-    void d(int i10, f5.w wVar);
-
-    void e(int i10, f5.w wVar);
+    public w(UUID uuid, byte[] bArr, boolean z4) {
+        this.f16279a = uuid;
+        this.f16280b = bArr;
+        this.f16281c = z4;
+    }
 }

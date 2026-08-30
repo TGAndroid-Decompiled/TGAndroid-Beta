@@ -1,71 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.widget.FrameLayout;
-public final class lp0 extends AnimatorListenerAdapter {
-    public final int f30410a;
-    public final boolean f30411b;
-    public final dq0 f30412c;
+import android.os.Build;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class lp0 extends f2.z0 {
+    public final int f26840a;
+    public final lq0 f26841b;
 
-    public lp0(dq0 dq0Var, boolean z10, int i10) {
-        this.f30410a = i10;
-        this.f30412c = dq0Var;
-        this.f30411b = z10;
+    public lp0(lq0 lq0Var, int i10) {
+        this.f26840a = i10;
+        this.f26841b = lq0Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f30410a) {
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ng.e eVar;
+        nb nbVar;
+        switch (this.f26840a) {
             case 0:
-                AnimatorSet[] animatorSetArr = this.f30412c.P;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    animatorSetArr[0] = null;
+                if (i11 != 0) {
+                    lq0 lq0Var = this.f26841b;
+                    lq0.s0(lq0Var);
+                    lq0Var.f26858n0 = lq0Var.m0;
+                    return;
+                }
+                return;
+            case 1:
+                lq0 lq0Var2 = this.f26841b;
+                if (i11 != 0) {
+                    lq0.s0(lq0Var2);
+                    lq0Var2.f26858n0 = lq0Var2.m0;
+                }
+                ic icVar = ic.f25665w;
+                if (icVar != null && (nbVar = icVar.e) != null && (nbVar.getParent() instanceof View) && ((View) ic.f25665w.e.getParent()).getParent() == lq0Var2.f26869w) {
+                    ic.e();
+                }
+                if (Build.VERSION.SDK_INT >= 31 && (eVar = lq0Var2.L0) != null) {
+                    eVar.f(i10, i11);
+                    lq0.A0(lq0Var2);
                     return;
                 }
                 return;
             default:
-                dq0 dq0Var = this.f30412c;
-                if (animator.equals(dq0Var.f27859y)) {
-                    dq0Var.f27859y = null;
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f30410a) {
-            case 0:
-                dq0 dq0Var = this.f30412c;
-                AnimatorSet[] animatorSetArr = dq0Var.P;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f30411b) {
-                        dq0Var.O[0].setVisibility(4);
-                    }
-                    animatorSetArr[0] = null;
-                    return;
-                }
-                return;
-            default:
-                dq0 dq0Var2 = this.f30412c;
-                FrameLayout frameLayout = dq0Var2.h;
-                if (animator.equals(dq0Var2.f27859y)) {
-                    if (!this.f30411b) {
-                        dq0Var2.f27830c.setVisibility(4);
-                        FrameLayout frameLayout2 = dq0Var2.Y;
-                        if (frameLayout2 != null && frameLayout == null) {
-                            frameLayout2.setVisibility(4);
-                        }
-                        dq0Var2.f27835f.setVisibility(4);
-                    } else if (frameLayout != null) {
-                        frameLayout.setVisibility(4);
-                    }
-                    dq0Var2.f27859y = null;
+                if (i11 != 0) {
+                    lq0 lq0Var3 = this.f26841b;
+                    lq0.s0(lq0Var3);
+                    lq0Var3.f26858n0 = lq0Var3.m0;
                     return;
                 }
                 return;

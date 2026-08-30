@@ -1,18 +1,5 @@
 package m7;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class a {
-    public static final int f16883a = 0;
-
-    static {
-        a.class.getClassLoader();
-    }
-
-    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() == 0) {
-            return null;
-        }
-        return (Parcelable) creator.createFromParcel(parcel);
-    }
+import l7.w0;
+public final class a extends w0 {
 }

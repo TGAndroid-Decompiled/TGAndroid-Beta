@@ -1,69 +1,79 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class qj0 implements Runnable {
-    public final int f41738a;
-    public final NotificationsCustomSettingsActivity f41739b;
-    public final View f41740c;
-    public final int d;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.KeyEvent;
+import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
+public final class qj0 extends AnimatedPhoneNumberEditText {
+    public final int D;
+    public final Object E;
 
-    public qj0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, View view, int i10, int i11) {
-        this.f41738a = i11;
-        this.f41739b = notificationsCustomSettingsActivity;
-        this.f41740c = view;
-        this.d = i10;
+    public qj0(Object obj, Context context, int i10) {
+        super(context);
+        this.D = i10;
+        this.E = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41738a) {
+    public final void onFocusChanged(boolean z4, int i10, Rect rect) {
+        float f10;
+        float f11;
+        float f12;
+        switch (this.D) {
             case 0:
-                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41739b;
-                ArrayList arrayList = notificationsCustomSettingsActivity.E;
-                View view = this.f41740c;
-                if (view instanceof org.telegram.ui.Cells.s8) {
-                    int i10 = this.d;
-                    if (i10 >= 0 && i10 < arrayList.size()) {
-                        ((vj0) arrayList.get(i10)).h = notificationsCustomSettingsActivity.f0();
-                    }
-                    ((org.telegram.ui.Cells.s8) view).b(notificationsCustomSettingsActivity.f0(), LocaleController.getString("LedColor", R.string.LedColor), true);
-                    return;
+                super.onFocusChanged(z4, i10, rect);
+                sj0 sj0Var = (sj0) this.E;
+                org.telegram.ui.Components.ad0 ad0Var = sj0Var.f38391s;
+                if (!z4 && !sj0Var.N.isFocused()) {
+                    f10 = 0.0f;
+                } else {
+                    f10 = 1.0f;
                 }
-                notificationsCustomSettingsActivity.l0(true);
+                ad0Var.b(f10, f10, true);
                 return;
             case 1:
-                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity2 = this.f41739b;
-                ArrayList arrayList2 = notificationsCustomSettingsActivity2.E;
-                View view2 = this.f41740c;
-                if (view2 instanceof org.telegram.ui.Cells.y9) {
-                    int i11 = this.d;
-                    if (i11 >= 0 && i11 < arrayList2.size()) {
-                        ((vj0) arrayList2.get(i11)).f43612f = notificationsCustomSettingsActivity2.g0();
-                    }
-                    org.telegram.ui.Cells.y9 y9Var = (org.telegram.ui.Cells.y9) view2;
-                    y9Var.c(LocaleController.getString("PopupNotification", R.string.PopupNotification), notificationsCustomSettingsActivity2.g0(), true, y9Var.h);
-                    return;
+                super.onFocusChanged(z4, i10, rect);
+                sj0 sj0Var2 = (sj0) this.E;
+                org.telegram.ui.Components.ad0 ad0Var2 = sj0Var2.f38391s;
+                if (!z4 && !sj0Var2.L.isFocused()) {
+                    f11 = 0.0f;
+                } else {
+                    f11 = 1.0f;
                 }
-                notificationsCustomSettingsActivity2.l0(true);
+                ad0Var2.b(f11, f11, true);
                 return;
             default:
-                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity3 = this.f41739b;
-                ArrayList arrayList3 = notificationsCustomSettingsActivity3.E;
-                View view3 = this.f41740c;
-                if (view3 instanceof org.telegram.ui.Cells.y9) {
-                    int i12 = this.d;
-                    if (i12 >= 0 && i12 < arrayList3.size()) {
-                        ((vj0) arrayList3.get(i12)).f43612f = notificationsCustomSettingsActivity3.h0();
-                    }
-                    org.telegram.ui.Cells.y9 y9Var2 = (org.telegram.ui.Cells.y9) view3;
-                    y9Var2.c(LocaleController.getString("NotificationsImportance", R.string.NotificationsImportance), notificationsCustomSettingsActivity3.h0(), true, y9Var2.h);
+                super.onFocusChanged(z4, i10, rect);
+                mg0 mg0Var = (mg0) this.E;
+                org.telegram.ui.Components.ad0 ad0Var3 = mg0Var.f36296f;
+                if (!z4 && !mg0Var.f36294b.isFocused()) {
+                    f12 = 0.0f;
+                } else {
+                    f12 = 1.0f;
+                }
+                ad0Var3.b(f12, f12, true);
+                if (z4) {
+                    mg0Var.S.f36626c.setEditText(this);
                     return;
                 }
-                notificationsCustomSettingsActivity3.l0(true);
                 return;
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int i10, KeyEvent keyEvent) {
+        switch (this.D) {
+            case 1:
+                sj0 sj0Var = (sj0) this.E;
+                if (i10 == 67 && sj0Var.N.length() == 0) {
+                    sj0Var.L.requestFocus();
+                    qj0 qj0Var = sj0Var.L;
+                    qj0Var.setSelection(qj0Var.length());
+                    sj0Var.L.dispatchKeyEvent(keyEvent);
+                }
+                return super.onKeyDown(i10, keyEvent);
+            default:
+                return super.onKeyDown(i10, keyEvent);
         }
     }
 }

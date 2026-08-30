@@ -1,61 +1,70 @@
 package org.telegram.ui.web;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import i7.f6;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class f extends FrameLayout {
-    public final ImageView f44025a;
-    public final TextView f44026b;
-    public final ImageView f44027c;
-    public final Paint d;
-    public boolean f44028e;
+import org.telegram.ui.Components.k01;
+public final class f extends Drawable {
+    public final int f39491a;
+    public final k01 f39492b;
+    public final h f39493c;
 
-    public f(Context context) {
-        super(context);
-        this.d = new Paint(1);
-        ImageView imageView = new ImageView(context);
-        this.f44025a = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setImageResource(R.drawable.menu_clear_recent);
-        addView(imageView, f6.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
-        TextView textView = new TextView(context);
-        this.f44026b = textView;
-        textView.setTextSize(1, 16.0f);
-        addView(textView, f6.d(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.f44027c = imageView2;
-        imageView2.setScaleType(scaleType);
-        imageView2.setImageResource(R.drawable.menu_browser_arrowup);
-        addView(imageView2, f6.d(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (this.f44028e) {
-            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - Math.max(AndroidUtilities.dp(0.66f), 1), getWidth(), getHeight(), this.d);
+    public f(h hVar, String str, int i10) {
+        this.f39491a = i10;
+        switch (i10) {
+            case 1:
+                this.f39493c = hVar;
+                this.f39492b = new k01(str, 14.0f, AndroidUtilities.bold());
+                return;
+            default:
+                this.f39493c = hVar;
+                this.f39492b = new k01(str, 14.0f, AndroidUtilities.bold());
+                return;
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void draw(Canvas canvas) {
+        switch (this.f39491a) {
+            case 0:
+                this.f39492b.c(getBounds().centerX() - (this.f39492b.f26084c / 2.0f), getBounds().centerY(), 1.0f, this.f39493c.f39518s, canvas);
+                return;
+            default:
+                this.f39492b.c(getBounds().centerX() - (this.f39492b.f26084c / 2.0f), getBounds().centerY(), 1.0f, this.f39493c.f39518s, canvas);
+                return;
+        }
     }
 
-    public void setAsShowMore(l lVar) {
-        int i10 = R.drawable.arrow_more;
-        ImageView imageView = this.f44025a;
-        imageView.setImageResource(i10);
-        imageView.setColorFilter(new PorterDuffColorFilter(lVar.D, PorterDuff.Mode.SRC_IN));
+    @Override
+    public final int getOpacity() {
+        switch (this.f39491a) {
+            case 0:
+                return -2;
+            default:
+                return -2;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        int i11 = this.f39491a;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        int i10 = this.f39491a;
+    }
+
+    private final void a(int i10) {
+    }
+
+    private final void b(int i10) {
+    }
+
+    private final void c(ColorFilter colorFilter) {
+    }
+
+    private final void d(ColorFilter colorFilter) {
     }
 }

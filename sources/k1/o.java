@@ -1,42 +1,32 @@
 package k1;
-public final class o extends uc.i implements bd.p {
-    public final int f13277a;
-    public int f13278b;
-    public Object f13279c;
-    public final a0 d;
+public final class o extends kotlin.jvm.internal.k implements dd.l {
+    public final int f9589b;
+    public final Object f9590c;
 
-    public o(a0 a0Var, sc.c cVar, int i10) {
-        super(2, cVar);
-        this.f13277a = i10;
-        this.d = a0Var;
+    public o(Object obj, int i10) {
+        super(1);
+        this.f9589b = i10;
+        this.f9590c = obj;
     }
 
     @Override
-    public final sc.c create(Object obj, sc.c cVar) {
-        switch (this.f13277a) {
+    public final Object invoke(Object obj) {
+        switch (this.f9589b) {
             case 0:
-                o oVar = new o(this.d, cVar, 0);
-                oVar.f13279c = obj;
-                return oVar;
+                Throwable th2 = (Throwable) obj;
+                if (th2 != null) {
+                    ((d0) this.f9590c).f9572f.d(new h(th2));
+                }
+                Object obj2 = d0.f9568s;
+                d0 d0Var = (d0) this.f9590c;
+                synchronized (obj2) {
+                    d0.f9567r.remove(d0Var.b().getAbsolutePath());
+                }
+                return sc.i.f44253a;
             default:
-                o oVar2 = new o(this.d, cVar, 1);
-                oVar2.f13279c = obj;
-                return oVar2;
+                Throwable th3 = (Throwable) obj;
+                ((ud.h) this.f9590c).b();
+                return sc.i.f44253a;
         }
-    }
-
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
-        switch (this.f13277a) {
-            case 0:
-                return ((o) create((l) obj, (sc.c) obj2)).invokeSuspend(qc.i.f46603a);
-            default:
-                return ((o) create((md.c) obj, (sc.c) obj2)).invokeSuspend(qc.i.f46603a);
-        }
-    }
-
-    @Override
-    public final java.lang.Object invokeSuspend(java.lang.Object r8) {
-        throw new UnsupportedOperationException("Method not decompiled: k1.o.invokeSuspend(java.lang.Object):java.lang.Object");
     }
 }

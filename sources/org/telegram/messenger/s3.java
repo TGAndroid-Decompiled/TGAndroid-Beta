@@ -1,23 +1,27 @@
 package org.telegram.messenger;
 public final class s3 implements Runnable {
-    public final int f21496a;
-    public final FileUploadOperation f21497b;
-    public final int[] f21498c;
+    public final int f18358a;
+    public final FileUploadOperation f18359b;
 
-    public s3(FileUploadOperation fileUploadOperation, int[] iArr, int i10) {
-        this.f21496a = i10;
-        this.f21497b = fileUploadOperation;
-        this.f21498c = iArr;
+    public s3(FileUploadOperation fileUploadOperation, int i10) {
+        this.f18358a = i10;
+        this.f18359b = fileUploadOperation;
     }
 
     @Override
     public final void run() {
-        switch (this.f21496a) {
+        switch (this.f18358a) {
             case 0:
-                this.f21497b.lambda$startUploadRequest$5(this.f21498c);
+                FileUploadOperation.f(this.f18359b);
+                return;
+            case 1:
+                FileUploadOperation.e(this.f18359b);
+                return;
+            case 2:
+                FileUploadOperation.d(this.f18359b);
                 return;
             default:
-                this.f21497b.lambda$startUploadRequest$9(this.f21498c);
+                FileUploadOperation.b(this.f18359b);
                 return;
         }
     }

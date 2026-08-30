@@ -1,14 +1,12 @@
 package w4;
-
-import f5.w;
 public final class a {
-    public final w f49747a = new w();
-    public final int[] f49748b = new int[256];
-    public boolean f49749c;
-    public int d;
-    public int f49750e;
-    public int f49751f;
-    public int f49752g;
-    public int h;
-    public int f49753i;
+    public final int f46382a;
+    public final boolean f46383b;
+    public int f46384c;
+
+    public a(int i10, boolean z4, int i11) {
+        this.f46382a = i10;
+        this.f46383b = z4;
+        this.f46384c = i11;
+    }
 }

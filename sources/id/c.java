@@ -1,45 +1,97 @@
 package id;
 
-import i7.i8;
-import java.util.concurrent.TimeUnit;
-public final class c {
-    public static final c f8876b;
-    public static final c f8877c;
-    public static final c d;
-    public static final c f8878e;
-    public static final c f8879f;
-    public static final c h;
-    public static final c[] f8880n;
-    public final TimeUnit f8881a;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import k7.p7;
+import kotlin.jvm.internal.j;
+import uc.i;
+import wc.h;
+public final class c implements Iterator, uc.c {
+    public int f7479a;
+    public Object f7480b;
+    public uc.c f7481c;
 
-    static {
-        c cVar = new c("NANOSECONDS", 0, TimeUnit.NANOSECONDS);
-        f8876b = cVar;
-        c cVar2 = new c("MICROSECONDS", 1, TimeUnit.MICROSECONDS);
-        c cVar3 = new c("MILLISECONDS", 2, TimeUnit.MILLISECONDS);
-        f8877c = cVar3;
-        c cVar4 = new c("SECONDS", 3, TimeUnit.SECONDS);
-        d = cVar4;
-        c cVar5 = new c("MINUTES", 4, TimeUnit.MINUTES);
-        f8878e = cVar5;
-        c cVar6 = new c("HOURS", 5, TimeUnit.HOURS);
-        f8879f = cVar6;
-        c cVar7 = new c("DAYS", 6, TimeUnit.DAYS);
-        h = cVar7;
-        c[] cVarArr = {cVar, cVar2, cVar3, cVar4, cVar5, cVar6, cVar7};
-        f8880n = cVarArr;
-        i8.a(cVarArr);
+    public final RuntimeException a() {
+        int i10 = this.f7479a;
+        if (i10 != 4) {
+            if (i10 != 5) {
+                return new IllegalStateException("Unexpected state of the iterator: " + this.f7479a);
+            }
+            return new IllegalStateException("Iterator has failed.");
+        }
+        return new NoSuchElementException();
     }
 
-    public c(String str, int i10, TimeUnit timeUnit) {
-        this.f8881a = timeUnit;
+    public final void c(Object obj, h hVar) {
+        this.f7480b = obj;
+        this.f7479a = 3;
+        this.f7481c = hVar;
+        vc.a aVar = vc.a.f45663a;
     }
 
-    public static c valueOf(String str) {
-        return (c) Enum.valueOf(c.class, str);
+    @Override
+    public final uc.h getContext() {
+        return i.f45219a;
     }
 
-    public static c[] values() {
-        return (c[]) f8880n.clone();
+    @Override
+    public final boolean hasNext() {
+        int i10;
+        while (true) {
+            i10 = this.f7479a;
+            if (i10 != 0) {
+                break;
+            }
+            this.f7479a = 5;
+            uc.c cVar = this.f7481c;
+            j.b(cVar);
+            this.f7481c = null;
+            cVar.resumeWith(sc.i.f44253a);
+        }
+        if (i10 != 1) {
+            if (i10 == 2 || i10 == 3) {
+                return true;
+            }
+            if (i10 == 4) {
+                return false;
+            }
+            throw a();
+        }
+        j.b(null);
+        throw null;
+    }
+
+    @Override
+    public final Object next() {
+        int i10 = this.f7479a;
+        if (i10 != 0 && i10 != 1) {
+            if (i10 != 2) {
+                if (i10 == 3) {
+                    this.f7479a = 0;
+                    Object obj = this.f7480b;
+                    this.f7480b = null;
+                    return obj;
+                }
+                throw a();
+            }
+            this.f7479a = 1;
+            j.b(null);
+            throw null;
+        } else if (hasNext()) {
+            return next();
+        } else {
+            throw new NoSuchElementException();
+        }
+    }
+
+    @Override
+    public final void remove() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final void resumeWith(Object obj) {
+        p7.b(obj);
+        this.f7479a = 4;
     }
 }

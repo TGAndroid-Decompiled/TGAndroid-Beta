@@ -1,55 +1,40 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.View;
-public final class ws implements View.OnClickListener {
-    public final int f44367a;
-    public final ht f44368b;
+import android.content.Context;
+public final class ws extends tf.d {
+    public final ContactsActivity I;
 
-    public ws(ht htVar, int i10) {
-        this.f44367a = i10;
-        this.f44368b = htVar;
+    public ws(ContactsActivity contactsActivity, Context context, int i10, boolean z4, a0.h hVar, int i11) {
+        super(context, i10, z4, hVar, i11);
+        this.I = contactsActivity;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f44367a) {
-            case 0:
-                ht htVar = this.f44368b;
-                htVar.K = false;
-                htVar.f39045z.invalidate();
-                htVar.n();
-                return;
-            case 1:
-                ht htVar2 = this.f44368b;
-                Activity activity = htVar2.f39042w;
-                if (activity instanceof LaunchActivity) {
-                    LaunchActivity launchActivity = (LaunchActivity) activity;
-                    if (launchActivity.O() != null && launchActivity.O().getLastFragment() != null) {
-                        launchActivity.O().getLastFragment().dismissCurrentDialog();
-                    }
-                    launchActivity.p0(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(5)));
+    public final int R() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ws.R():int");
+    }
+
+    @Override
+    public final void l() {
+        boolean z4 = false;
+        X(false);
+        ContactsActivity contactsActivity = this.I;
+        org.telegram.ui.Components.sl0 sl0Var = contactsActivity.f31543f;
+        if (sl0Var != null && sl0Var.getAdapter() == this) {
+            int h = h();
+            if (contactsActivity.E) {
+                org.telegram.ui.Components.sl0 sl0Var2 = contactsActivity.f31543f;
+                if (h != 2) {
+                    z4 = true;
                 }
-                htVar2.K = false;
-                htVar2.f39045z.invalidate();
-                htVar2.n();
+                sl0Var2.setFastScrollVisible(z4);
                 return;
-            case 2:
-                ht htVar3 = this.f44368b;
-                ft ftVar = htVar3.f39032l;
-                if (ftVar != null) {
-                    ftVar.K();
-                }
-                htVar3.p();
-                return;
-            default:
-                ht htVar4 = this.f44368b;
-                ft ftVar2 = htVar4.f39032l;
-                if (ftVar2 != null) {
-                    ftVar2.q();
-                }
-                htVar4.p();
-                return;
+            }
+            org.telegram.ui.Components.sl0 sl0Var3 = contactsActivity.f31543f;
+            if (h != 0) {
+                z4 = true;
+            }
+            sl0Var3.setFastScrollVisible(z4);
         }
     }
 }

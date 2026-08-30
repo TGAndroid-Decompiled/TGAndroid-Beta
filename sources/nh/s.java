@@ -1,20 +1,18 @@
 package nh;
-public final class s {
-    public final t f18540a;
-    public final int f18541b;
-    public final int f18542c;
 
-    public s(t tVar, int i10, int i11) {
-        this.f18540a = tVar;
-        this.f18541b = i10;
-        this.f18542c = i11;
+import android.content.Context;
+import lh.bb;
+import org.telegram.messenger.Utilities;
+public final class s extends bb {
+    public final Utilities.Callback[] f15859j0;
+
+    public s(Context context, b bVar, Utilities.Callback[] callbackArr) {
+        super(context, bVar);
+        this.f15859j0 = callbackArr;
     }
 
-    public final float a(float f9) {
-        return (f9 / this.f18540a.d[this.f18542c]) * this.f18541b;
-    }
-
-    public final float b(float f9) {
-        return (f9 / this.f18540a.d[this.f18542c]) * (this.f18541b + 1);
+    @Override
+    public final void e(int i10) {
+        this.f15859j0[0].run(Integer.valueOf(i10));
     }
 }

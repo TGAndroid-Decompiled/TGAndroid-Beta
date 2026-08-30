@@ -1,39 +1,83 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class vk implements org.telegram.ui.Components.ek0 {
-    public final tn f43615a;
+import android.content.Context;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.TLRPC;
+public final class vk extends org.telegram.ui.Components.on0 {
+    public final xn F;
 
-    public vk(tn tnVar) {
-        this.f43615a = tnVar;
+    public vk(xn xnVar, Context context, xn xnVar2, int i10, long j10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(i10, j10, context, xnVar2, f6Var);
+        this.F = xnVar;
     }
 
     @Override
-    public final boolean O() {
-        return false;
+    public final void b(boolean z4) {
+        xn xnVar = this.F;
+        xnVar.t7();
+        xnVar.r7();
+        al alVar = xnVar.Ya;
+        if (alVar != null) {
+            alVar.setTranslationY(xnVar.t9 + getCurrentHeight());
+        }
+        if (z4) {
+            xnVar.A9 = true;
+            xnVar.jc();
+        }
     }
 
     @Override
-    public final void Q(android.view.View r24, kg.q0 r25, boolean r26, boolean r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.vk.Q(android.view.View, kg.q0, boolean, boolean):void");
-    }
-
-    @Override
-    public final boolean j() {
+    public final boolean f(mg.q0 q0Var) {
+        boolean z4;
+        int i10;
+        boolean z10;
+        xn xnVar = this.F;
+        xnVar.f40111n3 = q0Var;
+        if (q0Var != null) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        xnVar.f40123o3 = z4;
+        if (q0Var == null) {
+            xnVar.getMediaDataController().clearFoundMessageObjects();
+            xnVar.kb(false);
+            xnVar.Fc(0, 0, -1);
+        }
+        xnVar.Ic();
+        xnVar.vc();
+        xnVar.f40148q3 = xnVar.f40022g0.getSearchField().getText().toString();
+        MediaDataController mediaDataController = xnVar.getMediaDataController();
+        String str = xnVar.f40148q3;
+        long j10 = xnVar.Q5;
+        long j11 = xnVar.I6;
+        i10 = ((org.telegram.ui.ActionBar.p2) xnVar).classGuid;
+        long j12 = xnVar.f39948a4;
+        TLRPC.User user = xnVar.f40086l3;
+        TLRPC.Chat chat = xnVar.f40098m3;
+        if (TextUtils.isEmpty(xnVar.f40148q3) && xnVar.f40111n3 == null) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        mediaDataController.searchMessagesInChat(str, j10, j11, i10, 0, j12, false, user, chat, z10, xnVar.f40111n3);
+        AndroidUtilities.hideKeyboard(xnVar.f40022g0.getSearchField());
         return true;
     }
 
     @Override
-    public final boolean w() {
-        return false;
-    }
-
-    @Override
-    public final void H() {
-    }
-
-    @Override
-    public final void G(Canvas canvas, RectF rectF, float f9, float f10, float f11, int i10, boolean z10) {
+    public final void h(boolean z4) {
+        boolean z10;
+        super.h(z4);
+        xn xnVar = this.F;
+        org.telegram.ui.ActionBar.w0 w0Var = xnVar.f40022g0;
+        if (w0Var != null && w0Var.s() && a() && xnVar.f40161r3 == null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        g(z10);
     }
 }

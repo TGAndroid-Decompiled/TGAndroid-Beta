@@ -1,120 +1,154 @@
 package nh;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-public final class h5 implements org.telegram.ui.ActionBar.c6 {
-    public PorterDuffColorFilter f17842a;
-    public final org.telegram.ui.ActionBar.c6 f17843b;
+import android.animation.ValueAnimator;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.fd0;
+import org.telegram.ui.Components.mh0;
+public final class h5 implements m2.f {
+    public final int f15382a;
+    public final View f15383b;
 
-    public h5(org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f17843b = c6Var;
+    public h5(int i10, View view) {
+        this.f15382a = i10;
+        this.f15383b = view;
     }
 
     @Override
-    public final ColorFilter B() {
-        if (this.f17842a == null) {
-            this.f17842a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+    public final void a(int i10) {
+        boolean z4;
+        switch (this.f15382a) {
+            case 0:
+                return;
+            case 1:
+                fd0 fd0Var = (fd0) this.f15383b;
+                m2.f fVar = fd0Var.f24856c;
+                if (fVar != null) {
+                    fVar.a(i10);
+                }
+                for (int i11 = 0; i11 < fd0Var.d.getChildCount(); i11++) {
+                    View childAt = fd0Var.d.getChildAt(i11);
+                    if (i11 == i10) {
+                        z4 = true;
+                    } else {
+                        z4 = false;
+                    }
+                    childAt.setSelected(z4);
+                }
+                return;
+            default:
+                return;
         }
-        return this.f17842a;
     }
 
     @Override
-    public final int C0(int i10) {
-        if (i10 == org.telegram.ui.ActionBar.g6.G8) {
-            return -14145495;
+    public final void b(float f10, int i10, int i11) {
+        float f11;
+        switch (this.f15382a) {
+            case 0:
+                m5 m5Var = (m5) this.f15383b;
+                if (m5Var.f15615w) {
+                    f5 f5Var = m5Var.h;
+                    f5Var.d.abortAnimation();
+                    if (Math.abs(f10) <= 1.0f) {
+                        ValueAnimator valueAnimator = f5Var.J;
+                        if (valueAnimator != null) {
+                            valueAnimator.cancel();
+                            f5Var.J = null;
+                        }
+                        int i12 = f5Var.f15414s;
+                        float f12 = (i12 / 2.0f) + ((-f5Var.getMeasuredWidth()) / 2.0f) + ((i12 + f5Var.f15412n) * i10);
+                        if (f10 > 0.0f) {
+                            int i13 = f5Var.f15414s;
+                            f11 = (i13 / 2.0f) + ((-f5Var.getMeasuredWidth()) / 2.0f) + ((i10 + 1) * (i13 + f5Var.f15412n));
+                        } else {
+                            int i14 = f5Var.f15414s;
+                            f11 = (i14 / 2.0f) + ((-f5Var.getMeasuredWidth()) / 2.0f) + ((i10 - 1) * (i14 + f5Var.f15412n));
+                            f10 = -f10;
+                        }
+                        if (f10 == 0.0f) {
+                            f5Var.e = f12;
+                        } else {
+                            f5Var.e = AndroidUtilities.lerp(f12, f11, f10);
+                        }
+                        f5Var.I = false;
+                        f5Var.invalidate();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                fd0 fd0Var = (fd0) this.f15383b;
+                fd0Var.h = i10;
+                fd0Var.f24858n = f10;
+                if (fd0Var.d.getChildAt(i10) != null) {
+                    fd0.a(fd0Var, i10, (int) (fd0Var.d.getChildAt(i10).getWidth() * f10));
+                    fd0Var.invalidate();
+                    m2.f fVar = fd0Var.f24856c;
+                    if (fVar != null) {
+                        fVar.b(f10, i10, i11);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                mh0 mh0Var = (mh0) this.f15383b;
+                if (!mh0Var.f27020a && Math.abs(i10 - mh0Var.f27027w) == 1) {
+                    int i15 = mh0Var.f27027w;
+                    if (i10 > i15) {
+                        mh0.a(mh0Var, 0, 1, 1);
+                    } else if (i10 < i15) {
+                        mh0.a(mh0Var, 1, 0, 0);
+                        mh0.a(mh0Var, 2, 0, -1);
+                    }
+                }
+                int i16 = mh0Var.f27027w;
+                int i17 = mh0Var.f27028x;
+                mh0Var.f27027w = i10;
+                mh0Var.f27028x = i11;
+                if (i16 != i10 || i17 != i11) {
+                    mh0Var.E = true;
+                    mh0Var.postInvalidateOnAnimation();
+                    return;
+                }
+                return;
         }
-        if (i10 == org.telegram.ui.ActionBar.g6.E8) {
-            return -1;
-        }
-        if (i10 == org.telegram.ui.ActionBar.g6.f23133h5) {
-            return -14737633;
-        }
-        if (i10 == org.telegram.ui.ActionBar.g6.f23169j5) {
-            return -592138;
-        }
-        if (i10 == org.telegram.ui.ActionBar.g6.f23310r5) {
-            return -8553091;
-        }
-        if (i10 == org.telegram.ui.ActionBar.g6.He) {
-            return -16777216;
-        }
-        if (i10 == org.telegram.ui.ActionBar.g6.Ke) {
-            return -1610612736;
-        }
-        if (i10 == org.telegram.ui.ActionBar.g6.Ne || i10 == org.telegram.ui.ActionBar.g6.Re || i10 == org.telegram.ui.ActionBar.g6.Me) {
-            return -9539985;
-        }
-        if (i10 == org.telegram.ui.ActionBar.g6.G6) {
-            return -1;
-        }
-        int i11 = org.telegram.ui.ActionBar.g6.Mh;
-        if (i10 == i11) {
-            return -11754001;
-        }
-        if (i10 == org.telegram.ui.ActionBar.g6.f23152i6) {
-            return 536870911;
-        }
-        if (i10 == org.telegram.ui.ActionBar.g6.Fh || i10 == org.telegram.ui.ActionBar.g6.Eh || i10 == org.telegram.ui.ActionBar.g6.Gh) {
-            return -1;
-        }
-        if (i10 == org.telegram.ui.ActionBar.g6.Hh) {
-            return 352321535;
-        }
-        if (i10 != org.telegram.ui.ActionBar.g6.Je && i10 != i11) {
-            if (i10 == org.telegram.ui.ActionBar.g6.Ie) {
-                return 780633991;
-            }
-            if (i10 == org.telegram.ui.ActionBar.g6.f23009a7) {
-                return -15921907;
-            }
-            org.telegram.ui.ActionBar.c6 c6Var = this.f17843b;
-            if (c6Var != null) {
-                return c6Var.C0(i10);
-            }
-            return org.telegram.ui.ActionBar.g6.w0(null, i10, false);
-        }
-        return -7895161;
     }
 
     @Override
-    public final Paint G(String str) {
-        return this.f17843b.G(str);
+    public final void c(int i10) {
+        switch (this.f15382a) {
+            case 0:
+                m5 m5Var = (m5) this.f15383b;
+                if (i10 == 1) {
+                    m5Var.f15615w = true;
+                    return;
+                }
+                return;
+            case 1:
+                fd0 fd0Var = (fd0) this.f15383b;
+                if (i10 == 0) {
+                    fd0.a(fd0Var, fd0Var.e.getCurrentItem(), 0);
+                }
+                m2.f fVar = fd0Var.f24856c;
+                if (fVar != null) {
+                    fVar.c(i10);
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
     }
 
-    @Override
-    public final boolean a() {
-        return org.telegram.ui.ActionBar.g6.I.q();
+    private final void d(int i10) {
     }
 
-    @Override
-    public final int g1(int i10) {
-        return C0(i10);
+    private final void e(int i10) {
     }
 
-    @Override
-    public final Drawable getDrawable(String str) {
-        return null;
-    }
-
-    @Override
-    public final int h0(int i10) {
-        return C0(i10);
-    }
-
-    @Override
-    public final void l(float f9, float f10, int i10, int i11) {
-        org.telegram.ui.ActionBar.g6.q(f9, f10, i10, i11);
-    }
-
-    @Override
-    public final boolean l0() {
-        return false;
-    }
-
-    @Override
-    public final void L0(int i10, int i11) {
+    private final void f(int i10) {
     }
 }

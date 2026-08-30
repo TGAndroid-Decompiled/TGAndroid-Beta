@@ -1,92 +1,45 @@
 package vf;
 
-import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-public class f {
-    public final uf.a f49572a;
-    public final Paint f49573b;
-    public final Paint f49574c;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+public final class f {
+    public Bitmap f45681a;
+    public Canvas f45682b;
+    public final RectF f45683c = new RectF();
     public final Paint d;
-    public final Path f49575e;
-    public final Path f49576f;
-    public final Path f49577g;
-    public ValueAnimator h;
-    public ValueAnimator f49578i;
-    public int f49579j;
-    public final float[] f49580k;
-    public final float[] f49581l;
-    public int f49582m;
-    public boolean f49583n;
-    public float f49584o;
-    public final c6 f49585p;
+    public final f6 e;
+    public int f45684f;
+    public boolean f45685g;
 
-    public f(uf.a aVar, boolean z10, c6 c6Var) {
-        int length;
-        int length2;
+    public f(f6 f6Var) {
         Paint paint = new Paint(1);
-        this.f49573b = paint;
-        Paint paint2 = new Paint(1);
-        this.f49574c = paint2;
-        Paint paint3 = new Paint(1);
-        this.d = paint3;
-        this.f49575e = new Path();
-        this.f49576f = new Path();
-        this.f49577g = new Path();
-        this.f49583n = true;
-        this.f49584o = 1.0f;
-        this.f49585p = c6Var;
-        this.f49572a = aVar;
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-        Paint.Style style = Paint.Style.STROKE;
-        paint2.setStyle(style);
-        if (!tf.g.f48249w1) {
-            paint2.setStrokeJoin(Paint.Join.ROUND);
-        }
-        paint2.setColor(aVar.h);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-        paint.setStyle(style);
-        paint.setColor(aVar.h);
-        paint3.setStrokeWidth(AndroidUtilities.dpf2(10.0f));
-        paint3.setStyle(style);
-        paint3.setStrokeCap(Paint.Cap.ROUND);
-        paint3.setColor(aVar.h);
-        long[] jArr = aVar.f49190a;
-        if (z10) {
-            length = jArr.length * 8;
-        } else {
-            length = jArr.length << 2;
-        }
-        this.f49580k = new float[length];
-        long[] jArr2 = aVar.f49190a;
-        if (z10) {
-            length2 = jArr2.length * 8;
-        } else {
-            length2 = jArr2.length << 2;
-        }
-        this.f49581l = new float[length2];
+        this.d = paint;
+        this.f45684f = 0;
+        this.f45685g = true;
+        paint.setColor(0);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        this.e = f6Var;
     }
 
-    public void a() {
-        int i10;
-        uf.a aVar = this.f49572a;
-        int i11 = aVar.f49195g;
-        c6 c6Var = this.f49585p;
-        if (i11 >= 0 && g6.c1(i11)) {
-            this.f49582m = g6.v0(aVar.f49195g, c6Var);
-        } else {
-            if (i0.a.f(g6.v0(g6.f23062d6, c6Var)) < 0.5d) {
-                i10 = aVar.f49196i;
-            } else {
-                i10 = aVar.h;
-            }
-            this.f49582m = i10;
+    public final Bitmap a(int i10, int i11) {
+        int i12 = (i10 + i11) << 10;
+        if (i12 != this.f45684f || this.f45685g) {
+            this.f45685g = false;
+            this.f45684f = i12;
+            this.f45681a = Bitmap.createBitmap(i11, i10, Bitmap.Config.ARGB_8888);
+            this.f45682b = new Canvas(this.f45681a);
+            RectF rectF = this.f45683c;
+            rectF.set(0.0f, 0.0f, i11, i10);
+            this.f45682b.drawColor(j6.v0(j6.f19906d6, this.e));
+            this.f45682b.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.d);
         }
-        this.f49574c.setColor(this.f49582m);
-        this.f49573b.setColor(this.f49582m);
-        this.d.setColor(this.f49582m);
+        return this.f45681a;
     }
 }

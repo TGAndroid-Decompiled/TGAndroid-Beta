@@ -4,9 +4,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.WeakHashMap;
 public class f implements Iterable {
-    public c f18983a;
-    public c f18984b;
-    public final WeakHashMap f18985c = new WeakHashMap();
+    public c f16145a;
+    public c f16146b;
+    public final WeakHashMap f16147c = new WeakHashMap();
     public int d = 0;
 
     public final boolean equals(java.lang.Object r7) {
@@ -27,17 +27,17 @@ public class f implements Iterable {
     }
 
     public c i(Object obj) {
-        c cVar = this.f18983a;
-        while (cVar != null && !cVar.f18977a.equals(obj)) {
-            cVar = cVar.f18979c;
+        c cVar = this.f16145a;
+        while (cVar != null && !cVar.f16139a.equals(obj)) {
+            cVar = cVar.f16141c;
         }
         return cVar;
     }
 
     @Override
     public final Iterator iterator() {
-        b bVar = new b(this.f18983a, this.f18984b, 0);
-        this.f18985c.put(bVar, Boolean.FALSE);
+        b bVar = new b(this.f16145a, this.f16146b, 0);
+        this.f16147c.put(bVar, Boolean.FALSE);
         return bVar;
     }
 
@@ -47,7 +47,7 @@ public class f implements Iterable {
             return null;
         }
         this.d--;
-        WeakHashMap weakHashMap = this.f18985c;
+        WeakHashMap weakHashMap = this.f16147c;
         if (!weakHashMap.isEmpty()) {
             for (e eVar : weakHashMap.keySet()) {
                 eVar.a(i10);
@@ -55,34 +55,34 @@ public class f implements Iterable {
         }
         c cVar = i10.d;
         if (cVar != null) {
-            cVar.f18979c = i10.f18979c;
+            cVar.f16141c = i10.f16141c;
         } else {
-            this.f18983a = i10.f18979c;
+            this.f16145a = i10.f16141c;
         }
-        c cVar2 = i10.f18979c;
+        c cVar2 = i10.f16141c;
         if (cVar2 != null) {
             cVar2.d = cVar;
         } else {
-            this.f18984b = cVar;
+            this.f16146b = cVar;
         }
-        i10.f18979c = null;
+        i10.f16141c = null;
         i10.d = null;
-        return i10.f18978b;
+        return i10.f16140b;
     }
 
     public final String toString() {
-        StringBuilder sb2 = new StringBuilder("[");
+        StringBuilder sb = new StringBuilder("[");
         Iterator it = iterator();
         while (true) {
             b bVar = (b) it;
             if (bVar.hasNext()) {
-                sb2.append(((Map.Entry) bVar.next()).toString());
+                sb.append(((Map.Entry) bVar.next()).toString());
                 if (bVar.hasNext()) {
-                    sb2.append(", ");
+                    sb.append(", ");
                 }
             } else {
-                sb2.append("]");
-                return sb2.toString();
+                sb.append("]");
+                return sb.toString();
             }
         }
     }

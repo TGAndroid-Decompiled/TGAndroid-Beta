@@ -1,14 +1,7 @@
 package wf;
-public interface d {
-    boolean a();
 
-    void b();
-
-    void c();
-
-    boolean d();
-
-    void e();
-
-    void f(float f9);
+import org.telegram.messenger.SegmentTree;
+public final class d extends b {
+    public long[] f46546l;
+    public SegmentTree f46547m;
 }

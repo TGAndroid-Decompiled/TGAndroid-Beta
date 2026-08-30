@@ -1,12 +1,20 @@
 package j7;
-public final class l8 {
-    public final m7 f11083a;
-    public final n8 f11084b;
-    public final k7 f11085c;
 
-    public l8(androidx.biometric.e eVar) {
-        this.f11083a = (m7) eVar.f1030b;
-        this.f11084b = (n8) eVar.f1031c;
-        this.f11085c = (k7) eVar.d;
+import android.content.Context;
+public abstract class l8 {
+    public static c9.b a(String str, String str2) {
+        ja.a aVar = new ja.a(str, str2);
+        c9.a b10 = c9.b.b(ja.a.class);
+        b10.f2145c = 1;
+        b10.f2147g = new a1.c(aVar, 3);
+        return b10.b();
+    }
+
+    public static c9.b b(String str, s0.b bVar) {
+        c9.a b10 = c9.b.b(ja.a.class);
+        b10.f2145c = 1;
+        b10.a(c9.l.b(Context.class));
+        b10.f2147g = new c1.b(18, str, bVar);
+        return b10.b();
     }
 }

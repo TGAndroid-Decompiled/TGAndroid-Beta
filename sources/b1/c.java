@@ -1,29 +1,29 @@
 package b1;
 
-import bd.l;
+import dd.l;
 import kotlin.jvm.internal.q;
-import qc.i;
-public final class c implements bd.a {
-    public final int f1881a;
-    public final l f1882b;
-    public final q f1883c;
+import sc.i;
+public final class c implements dd.a {
+    public final int f1272a;
+    public final l f1273b;
+    public final q f1274c;
 
     public c(l lVar, q qVar, int i10) {
-        this.f1881a = i10;
-        this.f1882b = lVar;
-        this.f1883c = qVar;
+        this.f1272a = i10;
+        this.f1273b = lVar;
+        this.f1274c = qVar;
     }
 
     @Override
     public final Object invoke() {
-        switch (this.f1881a) {
+        switch (this.f1272a) {
             case 0:
-                this.f1882b.invoke(this.f1883c.f13927a);
+                this.f1273b.invoke(this.f1274c.f10990a);
                 break;
             default:
-                this.f1882b.invoke(this.f1883c.f13927a);
+                this.f1273b.invoke(this.f1274c.f10990a);
                 break;
         }
-        return i.f46603a;
+        return i.f44253a;
     }
 }

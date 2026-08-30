@@ -1,23 +1,21 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.NotificationCenter;
-public final class ce1 implements View.OnClickListener {
-    public final ze1 f37090a;
-
-    public ce1(ze1 ze1Var) {
-        this.f37090a = ze1Var;
-    }
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+public final class ce1 extends org.telegram.ui.Components.qv0 {
+    public boolean f33359t0;
 
     @Override
-    public final void onClick(View view) {
-        ze1 ze1Var = this.f37090a;
-        if (ze1Var.I == 1) {
-            org.telegram.ui.Components.c5.j0(ze1Var, -ze1Var.f45155a, null, ze1Var.g(), null, false, ze1Var.F, new pa(this, 5), ze1Var.getResourceProvider());
-            return;
+    public final void onMeasure(int i10, int i11) {
+        R();
+        if (getKeyboardHeight() == 0 && !this.f33359t0) {
+            int i12 = MessagesController.getGlobalEmojiSettings().getInt("kbd_height", AndroidUtilities.dp(200.0f));
+            this.f28277f = i12;
+            setPadding(0, 0, 0, i12);
+        } else {
+            this.f33359t0 = true;
+            setPadding(0, 0, 0, 0);
         }
-        ze1Var.getMessagesController().addUserToChat(ze1Var.f45155a, ze1Var.getUserConfig().getCurrentUser(), 0, null, ze1Var, false, new vd1(ze1Var, 2), new wd1(ze1Var));
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeSearchByActiveAction, new Object[0]);
-        ze1Var.O0(false);
+        super.onMeasure(i10, i11);
     }
 }

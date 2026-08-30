@@ -11,9 +11,9 @@ import android.os.Bundle;
 import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
 import android.view.accessibility.AccessibilityNodeInfo;
-import i7.f8;
-import i7.g8;
-import i7.u8;
+import k7.c8;
+import k7.d8;
+import k7.u8;
 import kotlin.jvm.internal.j;
 import v0.c;
 import v0.o;
@@ -37,7 +37,7 @@ public abstract class a {
         }
         Bundle data = createCredentialResponse.getData();
         j.d(data, "getData(...)");
-        return f8.a(str, data);
+        return c8.a(str, data);
     }
 
     public static i c(Intent intent) {
@@ -63,7 +63,7 @@ public abstract class a {
         j.d(type, "getType(...)");
         Bundle data = credential.getData();
         j.d(data, "getData(...)");
-        return new o(g8.a(type, data));
+        return new o(d8.a(type, data));
     }
 
     public static AccessibilityNodeInfo.AccessibilityAction e() {

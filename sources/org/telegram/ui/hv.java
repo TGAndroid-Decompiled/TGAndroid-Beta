@@ -1,28 +1,42 @@
 package org.telegram.ui;
 
+import java.util.ArrayList;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
-public final class hv implements Runnable {
-    public final int f39051a;
-    public final fy f39052b;
-    public final TLRPC.TL_attachMenuBot f39053c;
-    public final LaunchActivity d;
+public final class hv implements iy, zs {
+    public final kv f34954a;
 
-    public hv(fy fyVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, LaunchActivity launchActivity, int i10) {
-        this.f39051a = i10;
-        this.f39052b = fyVar;
-        this.f39053c = tL_attachMenuBot;
-        this.d = launchActivity;
+    public hv(kv kvVar) {
+        this.f34954a = kvVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f39051a) {
-            case 0:
-                fy.v0(this.f39052b, this.f39053c, this.d);
-                return;
-            default:
-                fy.w0(this.f39052b, this.f39053c, this.d);
-                return;
+    public boolean C() {
+        return false;
+    }
+
+    @Override
+    public boolean K(oy oyVar) {
+        return false;
+    }
+
+    @Override
+    public void b(TLRPC.User user) {
+        this.f34954a.l0(user);
+    }
+
+    @Override
+    public boolean w(oy oyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, kf1 kf1Var) {
+        if (!arrayList.isEmpty()) {
+            long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
+            if (DialogObject.isUserDialog(j10)) {
+                kv kvVar = this.f34954a;
+                kvVar.l0(kvVar.getMessagesController().getUser(Long.valueOf(j10)));
+                return true;
+            }
+            return true;
         }
+        return true;
     }
 }

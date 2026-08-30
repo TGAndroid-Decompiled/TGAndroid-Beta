@@ -1,75 +1,42 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class e9 extends FrameLayout {
-    public static final int f37755e = 0;
-    public final TextView f37756a;
-    public final TextView f37757b;
-    public final View f37758c;
-    public final org.telegram.ui.Components.aj0 d;
+import android.os.Bundle;
+import java.util.HashSet;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_phone;
+public final class e9 extends y60 {
+    public final int f33930s0;
+    public final org.telegram.ui.ActionBar.p2 f33931t0;
 
-    public e9(h9 h9Var, Context context, org.telegram.ui.Components.p00 p00Var) {
-        super(context);
-        addView(p00Var, i7.f6.c(-1.0f, -1));
-        this.f37758c = p00Var;
-        ?? imageView = new ImageView(context);
-        this.d = imageView;
-        imageView.f(R.raw.utyan_call, 110, 110, null);
-        imageView.setAutoRepeat(false);
-        addView((View) imageView, i7.f6.d(110, 110.0f, 17, 52.0f, 17.0f, 52.0f, 60.0f));
-        imageView.setOnClickListener(new a(this, 10));
-        TextView textView = new TextView(context);
-        this.f37756a = textView;
-        textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.G6, false));
-        textView.setText(LocaleController.getString(R.string.MakeYourFirstCall));
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(17);
-        addView(textView, i7.f6.d(-1, -2.0f, 17, 17.0f, 40.0f, 17.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.f37757b = textView2;
-        String formatString = LocaleController.formatString(R.string.MakeYourFirstCallHint, Integer.valueOf(h9Var.getMessagesController().conferenceCallSizeLimit));
-        if (AndroidUtilities.isTablet() && !AndroidUtilities.isSmallTablet()) {
-            formatString = formatString.replace('\n', ' ');
-        }
-        textView2.setText(formatString);
-        textView2.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23045c7, false));
-        textView2.setTextSize(1, 14.0f);
-        textView2.setGravity(17);
-        textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        addView(textView2, i7.f6.d(-1, -2.0f, 17, 17.0f, 80.0f, 17.0f, 0.0f));
-        p00Var.setAlpha(0.0f);
-        imageView.setAlpha(0.0f);
-        textView.setAlpha(0.0f);
-        textView2.setAlpha(0.0f);
-        setOnTouchListener(new mh.d(4));
-    }
-
-    public final void a() {
-        this.d.animate().alpha(0.0f).setDuration(150L).start();
-        this.f37756a.animate().alpha(0.0f).setDuration(150L).start();
-        this.f37757b.animate().alpha(0.0f).setDuration(150L).start();
-        this.f37758c.animate().alpha(1.0f).setDuration(150L).start();
-    }
-
-    public final void b() {
-        org.telegram.ui.Components.aj0 aj0Var = this.d;
-        aj0Var.animate().alpha(1.0f).setDuration(150L).start();
-        this.f37756a.animate().alpha(1.0f).setDuration(150L).start();
-        this.f37757b.animate().alpha(1.0f).setDuration(150L).start();
-        this.f37758c.animate().alpha(0.0f).setDuration(150L).start();
-        aj0Var.d();
+    public e9(Bundle bundle, int i10, org.telegram.ui.ActionBar.p2 p2Var) {
+        super(bundle);
+        this.f33930s0 = i10;
+        this.f33931t0 = p2Var;
     }
 
     @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
+    public final void n0(HashSet hashSet) {
+        int size = hashSet.size();
+        int i10 = this.f33930s0;
+        if (size == 1) {
+            TLRPC.User user = MessagesController.getInstance(i10).getUser((Long) hashSet.iterator().next());
+            TLRPC.UserFull userFull = MessagesController.getInstance(i10).getUserFull(user.f19331id);
+            if (userFull == null) {
+                TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
+                tL_users_getFullUser.f19324id = MessagesController.getInstance(i10).getInputUser(user.f19331id);
+                ConnectionsManager.getInstance(i10).sendRequest(tL_users_getFullUser, new gg.l0(this, i10, user, 3));
+                return;
+            }
+            org.telegram.ui.Components.voip.f2.n(user, false, userFull.video_calls_available, getParentActivity(), userFull, AccountInstance.getInstance(i10));
+        } else {
+            TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
+            createconferencecall.random_id = Utilities.random.nextInt();
+            ConnectionsManager.getInstance(i10).sendRequest(createconferencecall, new gg.l0(i10, hashSet, this.f33931t0));
+        }
+        finishFragment();
     }
 }

@@ -1,61 +1,51 @@
 package org.telegram.ui;
+public final class qb0 implements Runnable {
+    public final int f37715a;
+    public final wb0 f37716b;
+    public final String f37717c;
 
-import android.view.View;
-import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class qb0 extends org.telegram.ui.Components.t50 {
-    public final sb0 d;
-
-    public qb0(sb0 sb0Var) {
-        this.d = sb0Var;
+    public qb0(wb0 wb0Var, String str, int i10) {
+        this.f37715a = i10;
+        this.f37716b = wb0Var;
+        this.f37717c = str;
     }
 
     @Override
-    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.e(view, accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-    }
-
-    @Override
-    public final int h() {
-        return 5;
-    }
-
-    @Override
-    public final int i() {
-        return 100;
-    }
-
-    @Override
-    public final int j() {
-        return LiteMode.getPowerSaverLevel();
-    }
-
-    @Override
-    public final void k(int i10) {
-        sb0 sb0Var = this.d;
-        float f9 = i10 / 100.0f;
-        sb0Var.h.f26825w.W(f9, true);
-        sb0Var.h.setProgress(f9);
-    }
-
-    @Override
-    public final void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
-        super.onPopulateAccessibilityEvent(view, accessibilityEvent);
-        StringBuilder sb2 = new StringBuilder(LocaleController.getString(R.string.LiteBatteryTitle));
-        sb2.append(", ");
-        int powerSaverLevel = LiteMode.getPowerSaverLevel();
-        if (powerSaverLevel <= 0) {
-            sb2.append(LocaleController.getString(R.string.LiteBatteryAlwaysDisabled));
-        } else if (powerSaverLevel >= 100) {
-            sb2.append(LocaleController.getString(R.string.LiteBatteryAlwaysEnabled));
-        } else {
-            sb2.append(LocaleController.formatString(R.string.AccDescrLiteBatteryWhenBelow, Integer.valueOf(Math.round(powerSaverLevel))));
+    public final void run() {
+        switch (this.f37715a) {
+            case 0:
+                wb0 wb0Var = this.f37716b;
+                wb0Var.getClass();
+                String str = this.f37717c;
+                if ("disable".equalsIgnoreCase(str)) {
+                    wb0Var.o("turnPasswordOffRow");
+                }
+                if ("change".equalsIgnoreCase(str)) {
+                    wb0Var.o("changePasswordRow");
+                }
+                if ("change-email".equalsIgnoreCase(str)) {
+                    wb0Var.o("emailRow");
+                    return;
+                }
+                return;
+            default:
+                wb0 wb0Var2 = this.f37716b;
+                wb0Var2.getClass();
+                String str2 = this.f37717c;
+                if ("disable".equalsIgnoreCase(str2)) {
+                    wb0Var2.o("disablePasscodeRow");
+                }
+                if ("change".equalsIgnoreCase(str2)) {
+                    wb0Var2.o("changePasscodeRow");
+                }
+                if ("auto-lock".equalsIgnoreCase(str2)) {
+                    wb0Var2.o("autoLockRow");
+                }
+                if ("fingerprint".equalsIgnoreCase(str2)) {
+                    wb0Var2.o("fingerprintRow");
+                    return;
+                }
+                return;
         }
-        accessibilityEvent.setContentDescription(sb2);
-        this.d.setContentDescription(sb2);
     }
 }

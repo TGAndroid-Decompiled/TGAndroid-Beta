@@ -1,23 +1,18 @@
 package k1;
-public final class s extends uc.c {
-    public Object f13295a;
-    public Object f13296b;
-    public Object f13297c;
-    public kotlin.jvm.internal.q d;
-    public a0 f13298e;
-    public Object f13299f;
-    public final t h;
-    public int f13300n;
+public final class s implements od.c {
+    public final int f9600a = 0;
+    public final od.c f9601b;
 
-    public s(t tVar, uc.c cVar) {
-        super(cVar);
-        this.h = tVar;
+    public s(od.c cVar, la.z zVar) {
+        this.f9601b = cVar;
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f13299f = obj;
-        this.f13300n |= Integer.MIN_VALUE;
-        return this.h.a(null, this);
+    public final java.lang.Object c(java.lang.Object r9, wc.c r10) {
+        throw new UnsupportedOperationException("Method not decompiled: k1.s.c(java.lang.Object, wc.c):java.lang.Object");
+    }
+
+    public s(od.c cVar) {
+        this.f9601b = cVar;
     }
 }

@@ -1,43 +1,43 @@
 package j3;
-public final class k implements f5.n {
-    public final c2.e0 f10563a;
-    public final q0 f10564b;
-    public e f10565c;
-    public f5.n d;
-    public boolean f10566e = true;
-    public boolean f10567f;
+public final class k implements h5.n {
+    public final c2.d0 f8641a;
+    public final k0 f8642b;
+    public e f8643c;
+    public h5.n d;
+    public boolean e = true;
+    public boolean f8644f;
 
-    public k(q0 q0Var, f5.y yVar) {
-        this.f10564b = q0Var;
-        this.f10563a = new c2.e0(yVar);
+    public k(k0 k0Var, h5.y yVar) {
+        this.f8642b = k0Var;
+        this.f8641a = new c2.d0(yVar);
     }
 
     @Override
-    public final x1 getPlaybackParameters() {
-        f5.n nVar = this.d;
+    public final void c(v1 v1Var) {
+        h5.n nVar = this.d;
         if (nVar != null) {
-            return nVar.getPlaybackParameters();
+            nVar.c(v1Var);
+            v1Var = this.d.d();
         }
-        return (x1) this.f10563a.f2830e;
+        this.f8641a.c(v1Var);
     }
 
     @Override
-    public final long getPositionUs() {
-        if (this.f10566e) {
-            return this.f10563a.getPositionUs();
+    public final v1 d() {
+        h5.n nVar = this.d;
+        if (nVar != null) {
+            return nVar.d();
         }
-        f5.n nVar = this.d;
+        return (v1) this.f8641a.e;
+    }
+
+    @Override
+    public final long e() {
+        if (this.e) {
+            return this.f8641a.e();
+        }
+        h5.n nVar = this.d;
         nVar.getClass();
-        return nVar.getPositionUs();
-    }
-
-    @Override
-    public final void setPlaybackParameters(x1 x1Var) {
-        f5.n nVar = this.d;
-        if (nVar != null) {
-            nVar.setPlaybackParameters(x1Var);
-            x1Var = this.d.getPlaybackParameters();
-        }
-        this.f10563a.setPlaybackParameters(x1Var);
+        return nVar.e();
     }
 }

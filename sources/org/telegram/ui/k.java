@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class k extends f2.j0 {
+public final class k extends f2.i0 {
     public final int I;
 
     public k(int i10) {
@@ -10,14 +10,14 @@ public final class k extends f2.j0 {
     }
 
     @Override
-    public int W0(f2.k1 k1Var) {
+    public int W0(f2.i1 i1Var) {
         switch (this.I) {
             case 3:
                 return 5000;
             case 7:
                 return AndroidUtilities.dp(4000.0f);
             default:
-                return super.W0(k1Var);
+                return super.W0(i1Var);
         }
     }
 
@@ -32,20 +32,20 @@ public final class k extends f2.j0 {
     }
 
     @Override
-    public void v0(RecyclerView recyclerView, f2.k1 k1Var, int i10) {
+    public void v0(RecyclerView recyclerView, f2.i1 i1Var, int i10) {
         switch (this.I) {
             case 2:
-                uh.n nVar = new uh.n(recyclerView.getContext(), 0);
-                nVar.f6373a = i10;
-                w0(nVar);
+                wh.o oVar = new wh.o(recyclerView.getContext(), 0);
+                oVar.f5723a = i10;
+                w0(oVar);
                 return;
             case 13:
-                zr0 zr0Var = new zr0(recyclerView.getContext());
-                zr0Var.f6373a = i10;
-                w0(zr0Var);
+                hs0 hs0Var = new hs0(recyclerView.getContext());
+                hs0Var.f5723a = i10;
+                w0(hs0Var);
                 return;
             default:
-                super.v0(recyclerView, k1Var, i10);
+                super.v0(recyclerView, i1Var, i10);
                 return;
         }
     }
@@ -94,12 +94,12 @@ public final class k extends f2.j0 {
         }
     }
 
-    public k(int i10, boolean z10, int i11) {
-        super(i10, z10);
+    public k(int i10, boolean z4, int i11) {
+        super(i10, z4);
         this.I = i11;
     }
 
-    public k(ob obVar) {
+    public k(sb sbVar) {
         this.I = 2;
     }
 

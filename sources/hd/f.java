@@ -1,3 +1,5 @@
 package hd;
-public abstract class f extends e {
+
+import dd.p;
+public interface f extends g, p {
 }

@@ -1,60 +1,51 @@
 package org.telegram.messenger;
 
-import java.io.File;
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC;
 public final class e9 implements Runnable {
-    public final int f20105a = 0;
-    public final int f20106b;
-    public final boolean f20107c;
+    public final int f17115a = 0;
+    public final long f17116b;
+    public final boolean f17117c;
     public final boolean d;
-    public final Object f20108e;
-    public final Object f20109f;
-    public final Object h;
+    public final boolean e;
+    public final int f17118f;
+    public final BaseController h;
+    public final Object f17119n;
+    public final Object f17120r;
 
-    public e9(MediaDataController mediaDataController, boolean z10, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10, String str, boolean z11) {
-        this.f20108e = mediaDataController;
-        this.f20107c = z10;
-        this.f20109f = tL_messages_stickerSet;
-        this.f20106b = i10;
-        this.h = str;
-        this.d = z11;
+    public e9(MediaDataController mediaDataController, boolean z4, ArrayList arrayList, int i10, long j10, boolean z10, ArrayList arrayList2, boolean z11) {
+        this.h = mediaDataController;
+        this.f17117c = z4;
+        this.f17119n = arrayList;
+        this.f17118f = i10;
+        this.f17116b = j10;
+        this.d = z10;
+        this.f17120r = arrayList2;
+        this.e = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f20105a) {
+        switch (this.f17115a) {
             case 0:
-                boolean z10 = this.d;
-                ((MediaDataController) this.f20108e).lambda$processLoadedDiceStickers$89(this.f20107c, (TLRPC.TL_messages_stickerSet) this.f20109f, this.f20106b, (String) this.h, z10);
-                return;
-            case 1:
-                boolean z11 = this.d;
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.q(org.telegram.ui.ActionBar.g6.k1((org.telegram.ui.ActionBar.z5) this.f20108e, (File) this.f20109f, this.f20106b, this.f20107c, (TLRPC.Document) this.h, z11), 15));
+                boolean z4 = this.e;
+                ((MediaDataController) this.h).lambda$processLoadedFeaturedStickers$63(this.f17117c, (ArrayList) this.f17119n, this.f17118f, this.f17116b, this.d, (ArrayList) this.f17120r, z4);
                 return;
             default:
-                boolean z12 = this.f20107c;
-                boolean z13 = this.d;
-                ((rf.v0) this.f20108e).U((CharSequence) this.f20109f, this.f20106b, (ArrayList) this.h, z12, z13);
+                ((MessagesStorage) this.h).lambda$loadChatInfo$144((TLRPC.ChatFull[]) this.f17119n, this.f17116b, this.f17117c, this.d, this.e, this.f17118f, (CountDownLatch) this.f17120r);
                 return;
         }
     }
 
-    public e9(org.telegram.ui.ActionBar.z5 z5Var, File file, int i10, boolean z10, TLRPC.Document document, boolean z11) {
-        this.f20108e = z5Var;
-        this.f20109f = file;
-        this.f20106b = i10;
-        this.f20107c = z10;
-        this.h = document;
-        this.d = z11;
-    }
-
-    public e9(rf.v0 v0Var, CharSequence charSequence, int i10, ArrayList arrayList, boolean z10, boolean z11) {
-        this.f20108e = v0Var;
-        this.f20109f = charSequence;
-        this.f20106b = i10;
-        this.h = arrayList;
-        this.f20107c = z10;
-        this.d = z11;
+    public e9(MessagesStorage messagesStorage, TLRPC.ChatFull[] chatFullArr, long j10, boolean z4, boolean z10, boolean z11, int i10, CountDownLatch countDownLatch) {
+        this.h = messagesStorage;
+        this.f17119n = chatFullArr;
+        this.f17116b = j10;
+        this.f17117c = z4;
+        this.d = z10;
+        this.e = z11;
+        this.f17118f = i10;
+        this.f17120r = countDownLatch;
     }
 }

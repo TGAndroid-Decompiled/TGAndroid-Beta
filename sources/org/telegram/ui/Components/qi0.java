@@ -1,233 +1,121 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import android.text.Editable;
-import android.text.Layout;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.LeadingMarginSpan;
-import android.text.style.MetricAffectingSpan;
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.TreeSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public final class qi0 implements LeadingMarginSpan {
-    public final Path A;
-    public final Paint B;
-    public final float[] C;
-    public final Path D;
-    public int E;
-    public hi0 F;
-    public SpannableString G;
-    public final boolean f31956a;
-    public boolean f31957b = true;
-    public int f31958c;
-    public int d;
-    public boolean f31959e;
-    public boolean f31960f;
-    public boolean h;
-    public boolean f31961n;
-    public boolean f31962r;
-    public final pi0 f31963s;
-    public pa0 v;
-    public final Drawable f31964w;
-    public final Paint f31965x;
-    public final float[] f31966y;
+import org.telegram.messenger.TelegramQRCodeWriter;
+public class qi0 extends org.telegram.ui.ActionBar.g3 {
+    public final Bitmap f28137b;
+    public final TextView f28138c;
+    public final TextView d;
+    public final TextView e;
+    public final int f28139f;
+    public final jj0 h;
 
-    public qi0(boolean z10, boolean z11, pi0 pi0Var) {
-        Paint paint = new Paint(1);
-        this.f31965x = paint;
-        this.f31966y = new float[8];
-        this.A = new Path();
-        Paint paint2 = new Paint(1);
-        this.B = paint2;
-        this.C = new float[8];
-        this.D = new Path();
-        this.E = -1;
-        this.f31956a = z10;
-        this.f31963s = pi0Var;
-        this.f31959e = z11;
-        this.f31964w = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.mini_quote).mutate();
-        paint2.setColor(this.E);
-        paint.setColor(i0.a.k(this.E, 30));
+    public qi0(Context context, String str, String str2, String str3, boolean z4) {
+        super(context, null, false, false);
+        Bitmap bitmap = null;
+        fixNavigationBar();
+        setTitle(str, true);
+        ge geVar = new ge(context, 2);
+        geVar.setScaleType(ImageView.ScaleType.FIT_XY);
+        geVar.setOutlineProvider(new gg.j1(11));
+        geVar.setClipToOutline(true);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
+        Bitmap bitmap2 = this.f28137b;
+        try {
+            HashMap hashMap = new HashMap();
+            hashMap.put(ob.b.f16517a, tb.b.M);
+            hashMap.put(ob.b.f16519c, 0);
+            TelegramQRCodeWriter telegramQRCodeWriter = new TelegramQRCodeWriter();
+            Bitmap encode = telegramQRCodeWriter.encode(str2, 768, 768, hashMap, bitmap2);
+            this.f28139f = telegramQRCodeWriter.getImageSize();
+            bitmap = encode;
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        this.f28137b = bitmap;
+        geVar.setImageBitmap(bitmap);
+        ?? imageView = new ImageView(context);
+        this.h = imageView;
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageView.setBackgroundColor(-1);
+        org.telegram.ui.xl0 xl0Var = new org.telegram.ui.xl0(this, context, geVar);
+        xl0Var.addView(geVar, k7.b6.c(-1.0f, -1));
+        xl0Var.addView((View) imageView, k7.b6.e(60, 60, 17));
+        linearLayout.addView(xl0Var, k7.b6.t(220, 220, 1, 30, 0, 30, 0));
+        TextView textView = new TextView(context);
+        this.f28138c = textView;
+        textView.setTextSize(1, 14.0f);
+        textView.setText(str3);
+        textView.setGravity(1);
+        linearLayout.addView(textView, k7.b6.d(-1, -2.0f, 0, 40.0f, 8.0f, 40.0f, 8.0f));
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+        textView2.setGravity(17);
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setText(LocaleController.getString(R.string.ShareQrCode));
+        textView2.setOnClickListener(new w2(27, this, context));
+        linearLayout.addView(textView2, k7.b6.t(-1, 48, 80, 16, 15, 16, 3));
+        if (z4) {
+            TextView textView3 = new TextView(context);
+            this.e = textView3;
+            textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+            textView3.setGravity(17);
+            textView3.setTextSize(1, 14.0f);
+            textView3.setText(LocaleController.getString(R.string.ShareLink));
+            textView3.setOnClickListener(new w2(28, str2, context));
+            linearLayout.addView(textView3, k7.b6.t(-1, 48, 80, 16, 3, 16, 16));
+        }
+        n();
+        ScrollView scrollView = new ScrollView(context);
+        scrollView.addView(linearLayout);
+        setCustomView(scrollView);
     }
 
-    public static void a(SpannableStringBuilder spannableStringBuilder) {
-        boolean z10;
-        int i10;
-        int i11;
-        int i12;
-        TreeSet treeSet = new TreeSet();
-        HashMap hashMap = new HashMap();
-        pi0[] pi0VarArr = (pi0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), pi0.class);
-        int i13 = 0;
-        while (true) {
-            int i14 = 1;
-            if (i13 >= pi0VarArr.length) {
-                break;
-            }
-            pi0 pi0Var = pi0VarArr[i13];
-            int spanStart = spannableStringBuilder.getSpanStart(pi0Var);
-            int spanEnd = spannableStringBuilder.getSpanEnd(pi0Var);
-            treeSet.add(Integer.valueOf(spanStart));
-            Integer valueOf = Integer.valueOf(spanStart);
-            if (hashMap.containsKey(Integer.valueOf(spanStart))) {
-                i11 = ((Integer) hashMap.get(Integer.valueOf(spanStart))).intValue();
-            } else {
-                i11 = 0;
-            }
-            if (pi0Var.f31683a.f31959e) {
-                i14 = 16;
-            }
-            hashMap.put(valueOf, Integer.valueOf(i14 | i11));
-            treeSet.add(Integer.valueOf(spanEnd));
-            Integer valueOf2 = Integer.valueOf(spanEnd);
-            if (hashMap.containsKey(Integer.valueOf(spanEnd))) {
-                i12 = ((Integer) hashMap.get(Integer.valueOf(spanEnd))).intValue();
-            } else {
-                i12 = 0;
-            }
-            hashMap.put(valueOf2, Integer.valueOf(i12 | 2));
-            spannableStringBuilder.removeSpan(pi0Var);
-            spannableStringBuilder.removeSpan(pi0Var.f31683a);
-            i13++;
-        }
-        Iterator it = treeSet.iterator();
-        int i15 = 0;
-        int i16 = 0;
-        loop1: while (true) {
-            z10 = false;
-            while (it.hasNext()) {
-                Integer num = (Integer) it.next();
-                int intValue = num.intValue();
-                int intValue2 = ((Integer) hashMap.get(num)).intValue();
-                if (i15 != intValue) {
-                    int i17 = intValue - 1;
-                    if (i17 >= 0 && i17 < spannableStringBuilder.length() && spannableStringBuilder.charAt(i17) == '\n') {
-                        i10 = intValue - 1;
-                    } else {
-                        i10 = intValue;
-                    }
-                    if (i16 > 0) {
-                        c(spannableStringBuilder, i15, i10, z10);
-                    }
-                    i15 = intValue + 1;
-                    if (i15 >= spannableStringBuilder.length() || spannableStringBuilder.charAt(intValue) != '\n') {
-                        i15 = intValue;
-                    }
-                }
-                if ((intValue2 & 2) != 0) {
-                    i16--;
-                }
-                if ((intValue2 & 1) != 0 || (intValue2 & 16) != 0) {
-                    i16++;
-                    z10 = (intValue2 & 16) != 0 ? true : true;
-                }
-            }
-        }
-        if (i15 < spannableStringBuilder.length() && i16 > 0) {
-            c(spannableStringBuilder, i15, spannableStringBuilder.length(), z10);
-        }
+    public final void m(int i10) {
+        jj0 jj0Var = this.h;
+        jj0Var.setAutoRepeat(true);
+        jj0Var.f(i10, 60, 60, null);
+        jj0Var.d();
     }
 
-    public static void b(Spannable spannable, int i10, int i11, boolean z10) {
-        qi0[] qi0VarArr = (qi0[]) spannable.getSpans(i10, i11, qi0.class);
-        if (qi0VarArr != null && qi0VarArr.length > 0) {
-            return;
+    public final void n() {
+        int themedColor = getThemedColor(org.telegram.ui.ActionBar.j6.Sh);
+        TextView textView = this.d;
+        textView.setTextColor(themedColor);
+        int dp = AndroidUtilities.dp(24.0f);
+        int i10 = org.telegram.ui.ActionBar.j6.Oh;
+        int themedColor2 = getThemedColor(i10);
+        int themedColor3 = getThemedColor(org.telegram.ui.ActionBar.j6.Qh);
+        textView.setBackground(org.telegram.ui.ActionBar.j6.i0(dp, dp, dp, dp, themedColor2, themedColor3, themedColor3));
+        TextView textView2 = this.e;
+        if (textView2 != null) {
+            textView2.setTextColor(getThemedColor(i10));
+            textView2.setBackground(org.telegram.ui.ActionBar.j6.f0(i0.a.k(getThemedColor(i10), Math.min(255, Color.alpha(getThemedColor(org.telegram.ui.ActionBar.j6.f19996i6)) * 2)), 7, -1));
         }
-        int clamp = Utilities.clamp(i10, spannable.length(), 0);
-        int clamp2 = Utilities.clamp(i11, spannable.length(), 0);
-        ?? metricAffectingSpan = new MetricAffectingSpan();
-        qi0 qi0Var = new qi0(false, z10, metricAffectingSpan);
-        metricAffectingSpan.f31683a = qi0Var;
-        qi0Var.f31958c = clamp;
-        qi0Var.d = clamp2;
-        spannable.setSpan(metricAffectingSpan, clamp, clamp2, 33);
-        spannable.setSpan(qi0Var, clamp, clamp2, 33);
-    }
-
-    public static int c(Editable editable, int i10, int i11, boolean z10) {
-        if (editable == 0) {
-            return -1;
+        int i11 = org.telegram.ui.ActionBar.j6.f20281y6;
+        int themedColor4 = getThemedColor(i11);
+        TextView textView3 = this.f28138c;
+        textView3.setTextColor(themedColor4);
+        textView3.setTextColor(getThemedColor(i11));
+        if (getTitleView() != null) {
+            getTitleView().setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.G6));
         }
-        int clamp = Utilities.clamp(i10, editable.length(), 0);
-        int clamp2 = Utilities.clamp(i11, editable.length(), 0);
-        if (clamp > 0 && editable.charAt(clamp - 1) != '\n') {
-            editable.insert(clamp, "\n");
-            clamp++;
-            clamp2++;
-        }
-        int i12 = clamp2 + 1;
-        if (clamp2 >= editable.length() || editable.charAt(clamp2) != '\n') {
-            editable.insert(clamp2, "\n");
-        }
-        ?? metricAffectingSpan = new MetricAffectingSpan();
-        qi0 qi0Var = new qi0(true, z10, metricAffectingSpan);
-        metricAffectingSpan.f31683a = qi0Var;
-        qi0Var.f31958c = clamp;
-        qi0Var.d = clamp2;
-        editable.setSpan(qi0Var, Utilities.clamp(clamp, editable.length(), 0), Utilities.clamp(clamp2, editable.length(), 0), 33);
-        editable.setSpan(metricAffectingSpan, Utilities.clamp(clamp, editable.length(), 0), Utilities.clamp(clamp2, editable.length(), 0), 33);
-        editable.insert(Utilities.clamp(clamp2, editable.length(), 0), "\ufeff");
-        editable.delete(Utilities.clamp(clamp2, editable.length(), 0), Utilities.clamp(i12, editable.length(), 0));
-        return i12;
-    }
-
-    public static java.util.ArrayList d(org.telegram.ui.Components.ut r19, android.text.Layout r20, java.util.ArrayList r21, boolean[] r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qi0.d(org.telegram.ui.Components.ut, android.text.Layout, java.util.ArrayList, boolean[]):java.util.ArrayList");
-    }
-
-    public static ArrayList e(Layout layout, ArrayList arrayList) {
-        qi0[] qi0VarArr;
-        if (layout == null) {
-            if (arrayList != null) {
-                arrayList.clear();
-                return arrayList;
-            }
-        } else {
-            CharSequence text = layout.getText();
-            if (text != null && (text instanceof Spanned)) {
-                Spanned spanned = (Spanned) text;
-                if (arrayList != null) {
-                    arrayList.clear();
-                }
-                for (qi0 qi0Var : (qi0[]) spanned.getSpans(0, spanned.length(), qi0.class)) {
-                    boolean z10 = qi0Var.f31961n;
-                    mi0 mi0Var = new mi0(null, layout, spanned, qi0Var);
-                    if (arrayList == null) {
-                        arrayList = new ArrayList();
-                    }
-                    arrayList.add(mi0Var);
-                }
-                return arrayList;
-            } else if (arrayList != null) {
-                arrayList.clear();
-            }
-        }
-        return arrayList;
-    }
-
-    @Override
-    public final int getLeadingMargin(boolean z10) {
-        float f9;
-        if (this.f31957b) {
-            f9 = 8.0f;
-        } else {
-            f9 = 10.0f;
-        }
-        return AndroidUtilities.dp(f9);
-    }
-
-    @Override
-    public final void drawLeadingMargin(Canvas canvas, Paint paint, int i10, int i11, int i12, int i13, int i14, CharSequence charSequence, int i15, int i16, boolean z10, Layout layout) {
+        setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.j6.f19977h5));
     }
 }

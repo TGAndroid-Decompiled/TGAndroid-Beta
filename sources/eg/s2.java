@@ -1,19 +1,22 @@
 package eg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.ui.ActionBar.g6;
-public final class s2 extends View {
-    public final w2 f6125a;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.Components.nq;
+public final class s2 extends nq {
+    public final u2 f5505y;
 
-    public s2(w2 w2Var, Context context) {
-        super(context);
-        this.f6125a = w2Var;
+    public s2(u2 u2Var, j0.a aVar, Drawable drawable) {
+        super(aVar, drawable);
+        this.f5505y = u2Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.drawColor(this.f6125a.getThemedColor(g6.f23081e7));
+    public final void setBounds(int i10, int i11, int i12, int i13) {
+        u2 u2Var = this.f5505y;
+        if (u2Var.d) {
+            super.setBounds(i10, (int) (i11 - u2Var.J), i12, i13);
+        } else {
+            super.setBounds(i10, i11, i12, (int) (i13 + u2Var.J));
+        }
     }
 }

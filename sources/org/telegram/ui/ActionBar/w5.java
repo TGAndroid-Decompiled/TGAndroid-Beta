@@ -1,122 +1,53 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RippleDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RectShape;
-import android.graphics.drawable.shapes.RoundRectShape;
-import android.util.StateSet;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class w5 {
-    public static final int f23945a = g6.f23062d6;
-    public static float[] f23946b;
+import android.view.View;
+public final class w5 extends Drawable {
+    public final RectF f20718a = new RectF();
+    public final View f20719b;
+    public final View f20720c;
+    public final int d;
+    public final Paint e;
 
-    public static float[] a(float... fArr) {
-        if (fArr.length == 0) {
-            return new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
-        }
-        return fArr.length == 1 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0])} : fArr.length == 2 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1])} : fArr.length == 3 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2])} : fArr.length < 8 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[3]), AndroidUtilities.dp(fArr[3])} : new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[3]), AndroidUtilities.dp(fArr[4]), AndroidUtilities.dp(fArr[5]), AndroidUtilities.dp(fArr[6]), AndroidUtilities.dp(fArr[7])};
+    public w5(View view, View view2, int i10, Paint paint) {
+        this.f20719b = view;
+        this.f20720c = view2;
+        this.d = i10;
+        this.e = paint;
     }
 
-    public static int b(int i10) {
-        float f9;
-        float f10;
-        float f11;
-        if (f23946b == null) {
-            f23946b = new float[3];
+    @Override
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.f20718a;
+        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
+        j6.s(this.f20719b, this.f20720c, null);
+        float f10 = this.d;
+        Paint paint = this.e;
+        if (paint == null) {
+            paint = j6.S0("paintChatActionBackground");
         }
-        Color.colorToHSV(i10, f23946b);
-        float[] fArr = f23946b;
-        float f12 = fArr[1];
-        if (f12 > 0.01f) {
-            if (g6.I.q()) {
-                f10 = 0.25f;
-            } else {
-                f10 = -0.25f;
-            }
-            fArr[1] = Math.min(1.0f, Math.max(0.0f, f12 + f10));
-            float[] fArr2 = f23946b;
-            float f13 = fArr2[2];
-            if (g6.I.q()) {
-                f11 = 0.05f;
-            } else {
-                f11 = -0.05f;
-            }
-            fArr2[2] = Math.min(1.0f, Math.max(0.0f, f13 + f11));
-        } else {
-            float f14 = fArr[2];
-            if (g6.I.q()) {
-                f9 = 0.1f;
-            } else {
-                f9 = -0.1f;
-            }
-            fArr[2] = Math.min(1.0f, Math.max(0.0f, f14 + f9));
+        canvas.drawRoundRect(rectF, f10, f10, paint);
+        if (j6.a1()) {
+            canvas.drawRoundRect(rectF, f10, f10, j6.S0("paintChatActionBackgroundDarken"));
         }
-        return Color.HSVToColor(127, f23946b);
     }
 
-    public static org.telegram.ui.Cells.z c(v5 v5Var, int i10) {
-        ColorStateList colorStateList = new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i10});
-        ?? drawable = new Drawable();
-        drawable.f23908b = -1.0f;
-        if (v5.f23906c == null) {
-            Paint paint = new Paint(1);
-            v5.f23906c = paint;
-            paint.setColor(-1);
-        }
-        drawable.f23907a = v5.f23906c;
-        return new RippleDrawable(colorStateList, v5Var, drawable);
+    @Override
+    public final int getOpacity() {
+        return -2;
     }
 
-    public static org.telegram.ui.Cells.z d(float[] fArr, int i10, int i11) {
-        ShapeDrawable shapeDrawable;
-        ShapeDrawable shapeDrawable2;
-        if (i10 != 0) {
-            int i12 = 0;
-            while (true) {
-                if (i12 < Math.min(8, fArr.length)) {
-                    if (fArr[i12] > 0.0f) {
-                        ShapeDrawable shapeDrawable3 = new ShapeDrawable(new RoundRectShape(a(fArr), null, null));
-                        shapeDrawable3.getPaint().setColor(i10);
-                        shapeDrawable = shapeDrawable3;
-                        break;
-                    }
-                    i12++;
-                } else {
-                    shapeDrawable = new ColorDrawable(i10);
-                    break;
-                }
-            }
-        } else {
-            shapeDrawable = null;
-        }
-        int i13 = 0;
-        while (true) {
-            if (i13 < Math.min(8, fArr.length)) {
-                if (fArr[i13] > 0.0f) {
-                    shapeDrawable2 = new ShapeDrawable(new RoundRectShape(a(fArr), null, null));
-                    shapeDrawable2.getPaint().setColor(-1);
-                    break;
-                }
-                i13++;
-            } else {
-                shapeDrawable2 = new ShapeDrawable(new RectShape());
-                shapeDrawable2.getPaint().setColor(-1);
-                break;
-            }
-        }
-        return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i11}), shapeDrawable, shapeDrawable2);
+    @Override
+    public final void setAlpha(int i10) {
     }
 
-    public static org.telegram.ui.Cells.z e(float[] fArr, int i10) {
-        return d(fArr, i10, b(i10));
-    }
-
-    public static org.telegram.ui.Cells.z f(float[] fArr, int i10) {
-        return e(fArr, g6.w0(null, i10, false));
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

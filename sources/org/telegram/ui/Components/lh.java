@@ -1,77 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-public final class lh extends AnimatorListenerAdapter {
-    public final int f30325a;
-    public final boolean f30326b;
-    public final uh f30327c;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.VideoEditedInfo;
+public final class lh extends org.telegram.ui.yt0 {
+    public final MediaController.PhotoEntry f26678a;
+    public final li f26679b;
 
-    public lh(uh uhVar, boolean z10, int i10) {
-        this.f30325a = i10;
-        this.f30327c = uhVar;
-        this.f30326b = z10;
+    public lh(li liVar, MediaController.PhotoEntry photoEntry) {
+        this.f26679b = liVar;
+        this.f26678a = photoEntry;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        switch (this.f30325a) {
-            case 0:
-                uh uhVar = this.f30327c;
-                ni niVar = uhVar.f33236e;
-                boolean z10 = this.f30326b;
-                if (!z10) {
-                    niVar.A1.setVisibility(8);
-                } else {
-                    niVar.f31049t1.setVisibility(8);
-                }
-                if (z10) {
-                    i10 = AndroidUtilities.dp(36.0f);
-                } else {
-                    i10 = 0;
-                }
-                for (int i11 = 0; i11 < niVar.f31048t0.size(); i11++) {
-                    ((ph.n3) niVar.f31048t0.valueAt(i11)).setMeasureOffsetY(i10);
-                }
-                if (uhVar.f33233a == animator) {
-                    uhVar.f33233a = null;
-                    return;
-                }
-                return;
-            default:
-                ni niVar2 = this.f30327c.f33236e;
-                boolean z11 = this.f30326b;
-                niVar2.f31063x1 = z11;
-                if (!z11) {
-                    niVar2.f31067y1.setVisibility(8);
-                    return;
-                }
-                return;
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, final boolean z4, final int i11, int i12, final boolean z10) {
+        li liVar = this.f26679b;
+        liVar.f26730p2 = true;
+        if (liVar.W1 == null) {
+            return;
         }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f30325a) {
-            case 0:
-                ni niVar = this.f30327c.f33236e;
-                if (this.f30326b) {
-                    niVar.A1.setAlpha(0.0f);
-                    niVar.A1.setVisibility(0);
-                    int dp = AndroidUtilities.dp(36.0f);
-                    for (int i10 = 0; i10 < niVar.f31048t0.size(); i10++) {
-                        ((ph.n3) niVar.f31048t0.valueAt(i10)).setMeasureOffsetY(dp);
-                    }
-                    return;
-                }
-                niVar.f31049t1.setAlpha(0.0f);
-                niVar.f31049t1.setVisibility(0);
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
+        final MediaController.PhotoEntry photoEntry = this.f26678a;
+        photoEntry.editedInfo = videoEditedInfo;
+        z4.a0(liVar.G1, liVar.j1() + 1, 0L, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                ArrayList arrayList = ChatAttachAlertPhotoLayout.f22897q1;
+                arrayList.clear();
+                HashMap hashMap = ChatAttachAlertPhotoLayout.f22896p1;
+                hashMap.clear();
+                arrayList.add(0);
+                hashMap.put(0, photoEntry);
+                lh.this.f26679b.W1.H(7, true, z4, i11, 0, 0L, false, z10, ((Long) obj).longValue());
+            }
+        });
     }
 }

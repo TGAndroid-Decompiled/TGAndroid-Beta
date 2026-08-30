@@ -1,17 +1,58 @@
 package j7;
-public final class w5 implements s9.d {
-    public static final w5 f11245a = new Object();
 
-    static {
-        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.r(h0.class, l1.h(12, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(11, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(10, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(9, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(8, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(7, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(6, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(5, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(4, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(3, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(2, com.google.android.recaptcha.internal.a.r(h0.class, new e0(1)))))))))))))))))))))))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            s9.e eVar = (s9.e) obj2;
-            throw null;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.telegram.ui.yh;
+public abstract class w5 {
+    public static String a(String str, Object... objArr) {
+        int length;
+        int length2;
+        int indexOf;
+        String l10;
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            length = objArr.length;
+            if (i11 >= length) {
+                break;
+            }
+            Object obj = objArr[i11];
+            if (obj == null) {
+                l10 = "null";
+            } else {
+                try {
+                    l10 = obj.toString();
+                } catch (Exception e) {
+                    String z4 = android.support.v4.media.a.z(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(z4), (Throwable) e);
+                    l10 = yh.l("<", z4, " threw ", e.getClass().getName(), ">");
+                }
+            }
+            objArr[i11] = l10;
+            i11++;
         }
-        throw new ClassCastException();
+        StringBuilder sb = new StringBuilder(str.length() + (length * 16));
+        int i12 = 0;
+        while (true) {
+            length2 = objArr.length;
+            if (i10 >= length2 || (indexOf = str.indexOf("%s", i12)) == -1) {
+                break;
+            }
+            sb.append((CharSequence) str, i12, indexOf);
+            sb.append(objArr[i10]);
+            i10++;
+            i12 = indexOf + 2;
+        }
+        sb.append((CharSequence) str, i12, str.length());
+        if (i10 < length2) {
+            sb.append(" [");
+            sb.append(objArr[i10]);
+            for (int i13 = i10 + 1; i13 < objArr.length; i13++) {
+                sb.append(", ");
+                sb.append(objArr[i13]);
+            }
+            sb.append(']');
+        }
+        return sb.toString();
     }
 }

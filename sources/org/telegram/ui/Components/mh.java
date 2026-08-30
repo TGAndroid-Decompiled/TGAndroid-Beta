@@ -1,87 +1,177 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class mh implements org.telegram.ui.yp0 {
-    public boolean f30691a;
-    public final HashMap f30692b;
-    public final ArrayList f30693c;
-    public final ni d;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class mh extends FrameLayout {
+    public final int f27018a;
+    public final li f27019b;
 
-    public mh(ni niVar, HashMap hashMap, ArrayList arrayList) {
-        this.d = niVar;
-        this.f30692b = hashMap;
-        this.f30693c = arrayList;
+    public mh(li liVar, Context context, int i10) {
+        super(context);
+        this.f27018a = i10;
+        this.f27019b = liVar;
     }
 
     @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final void h(int i10, boolean z10, boolean z11) {
-        String str;
-        if (!z10) {
-            HashMap hashMap = this.f30692b;
-            if (!hashMap.isEmpty() && !this.f30691a) {
-                this.f30691a = true;
-                ArrayList arrayList = new ArrayList();
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList2 = this.f30693c;
-                    if (i11 < arrayList2.size()) {
-                        Object obj = hashMap.get(arrayList2.get(i11));
-                        SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                        arrayList.add(sendingMediaInfo);
-                        MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                        String str2 = searchImage.imagePath;
-                        if (str2 != null) {
-                            sendingMediaInfo.path = str2;
-                        } else {
-                            sendingMediaInfo.searchImage = searchImage;
-                        }
-                        sendingMediaInfo.thumbPath = searchImage.thumbPath;
-                        sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
-                        CharSequence charSequence = searchImage.caption;
-                        if (charSequence != null) {
-                            str = charSequence.toString();
-                        } else {
-                            str = null;
-                        }
-                        sendingMediaInfo.caption = str;
-                        sendingMediaInfo.entities = searchImage.entities;
-                        sendingMediaInfo.masks = searchImage.stickers;
-                        sendingMediaInfo.ttl = searchImage.ttl;
-                        TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
-                        if (botInlineResult != null && searchImage.type == 1) {
-                            sendingMediaInfo.inlineResult = botInlineResult;
-                            sendingMediaInfo.params = searchImage.params;
-                        }
-                        searchImage.date = (int) (System.currentTimeMillis() / 1000);
-                        i11++;
-                    } else {
-                        ((org.telegram.ui.tn) this.d.f30990b0).d8(i10, arrayList, z11);
-                        return;
-                    }
-                }
-            }
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f27018a) {
+            case 2:
+                canvas.save();
+                canvas.clipRect(0.0f, this.f27019b.S1, getMeasuredWidth(), getMeasuredHeight());
+                super.dispatchDraw(canvas);
+                canvas.restore();
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
     }
 
     @Override
-    public final void a() {
+    public void onDraw(Canvas canvas) {
+        switch (this.f27018a) {
+            case 2:
+                li liVar = this.f27019b;
+                mh mhVar = liVar.A0;
+                if (liVar.f26763z0.getAlpha() > 0.0f) {
+                    float f10 = liVar.T1;
+                    if (f10 != 0.0f && f10 != mhVar.getTop() + liVar.T1) {
+                        ValueAnimator valueAnimator = liVar.U1;
+                        if (valueAnimator != null) {
+                            valueAnimator.cancel();
+                        }
+                        float top = liVar.T1 - (mhVar.getTop() + liVar.S1);
+                        liVar.S1 = top;
+                        ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
+                        liVar.U1 = ofFloat;
+                        ofFloat.addUpdateListener(new f6(this, 10));
+                        liVar.U1.setInterpolator(nr.f27346f);
+                        liVar.U1.setDuration(200L);
+                        liVar.U1.start();
+                        liVar.T1 = 0.0f;
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
     }
 
     @Override
-    public final void b(Editable editable) {
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f27018a) {
+            case 3:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                li liVar = this.f27019b;
+                di diVar = liVar.f26748v0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = liVar.f26702g0;
+                if (diVar == chatAttachAlertPhotoLayout) {
+                    accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendPhotos", chatAttachAlertPhotoLayout.getSelectedItemsCount(), new Object[0]));
+                } else {
+                    hk hkVar = liVar.m0;
+                    if (diVar == hkVar) {
+                        accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendFiles", hkVar.getSelectedItemsCount(), new Object[0]));
+                    } else {
+                        wi wiVar = liVar.f26708i0;
+                        if (diVar == wiVar) {
+                            accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendAudio", wiVar.getSelectedItemsCount(), new Object[0]));
+                        }
+                    }
+                }
+                accessibilityNodeInfo.setClassName(Button.class.getName());
+                accessibilityNodeInfo.setLongClickable(true);
+                accessibilityNodeInfo.setClickable(true);
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
     }
 
     @Override
-    public final void g() {
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.f27018a) {
+            case 0:
+                if (this.f27019b.f26700f1.getVisibility() != 0) {
+                    return false;
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            default:
+                return super.onInterceptTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f27018a) {
+            case 1:
+                li liVar = this.f27019b;
+                if (liVar.E && liVar.F != 0) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(80.0f) * Integer.bitCount(liVar.F))), 1073741824), i11);
+                    return;
+                }
+                super.onMeasure(i10, i11);
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f27018a) {
+            case 0:
+                if (this.f27019b.f26700f1.getVisibility() != 0) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void setAlpha(float f10) {
+        switch (this.f27018a) {
+            case 0:
+                super.setAlpha(f10);
+                li liVar = this.f27019b;
+                liVar.a2(0);
+                li.O(liVar).invalidate();
+                return;
+            case 1:
+            default:
+                super.setAlpha(f10);
+                return;
+            case 2:
+                super.setAlpha(f10);
+                invalidate();
+                return;
+        }
+    }
+
+    @Override
+    public void setTranslationY(float f10) {
+        switch (this.f27018a) {
+            case 1:
+                super.setTranslationY(f10);
+                this.f27019b.f26748v0.j();
+                return;
+            default:
+                super.setTranslationY(f10);
+                return;
+        }
     }
 }

@@ -1,30 +1,38 @@
 package gb;
 
-import a5.j;
-import a9.e;
-import android.util.Log;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.mlkit.vision.common.internal.MobileVisionBase;
-public final class a implements OnFailureListener, e {
-    public static final a f7258a = new Object();
-    public static final a f7259b = new Object();
-    public static final a f7260c = new Object();
+import j7.c9;
+import j7.g9;
+import j7.z8;
+public final class a {
+    public final c9 f6490a;
+    public final e f6491b;
+    public final cb.d f6492c;
 
-    @Override
-    public Object I0(j jVar) {
-        return new c(jVar.r(b.class));
-    }
-
-    @Override
-    public void onFailure(Exception exc) {
-        d9.c cVar = MobileVisionBase.f5229e;
-        if (Log.isLoggable(cVar.f5536b, 6)) {
-            String str = cVar.f5537c;
-            String str2 = "Error preloading model resource";
-            if (str != null) {
-                str2 = str.concat("Error preloading model resource");
-            }
-            Log.e("MobileVisionBase", str2, exc);
+    public a(e eVar, cb.d dVar) {
+        String str;
+        c9 b10;
+        this.f6491b = eVar;
+        this.f6492c = dVar;
+        if (true != eVar.f6501g) {
+            str = "play-services-mlkit-language-id";
+        } else {
+            str = "language-id";
         }
+        synchronized (g9.class) {
+            byte b11 = (byte) (((byte) 1) | 2);
+            if (b11 == 3) {
+                b10 = g9.b(new z8(str));
+            } else {
+                StringBuilder sb = new StringBuilder();
+                if ((b11 & 1) == 0) {
+                    sb.append(" enableFirelog");
+                }
+                if ((b11 & 2) == 0) {
+                    sb.append(" firelogEventType");
+                }
+                throw new IllegalStateException("Missing required properties:".concat(sb.toString()));
+            }
+        }
+        this.f6490a = b10;
     }
 }

@@ -1,51 +1,10 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import android.widget.LinearLayout;
-public abstract class mv0 extends LinearLayout {
-    public boolean a() {
-        return this instanceof org.telegram.ui.pd0;
-    }
-
-    public boolean b() {
-        return this instanceof org.telegram.ui.pd0;
-    }
-
-    public boolean c(boolean z10) {
-        return true;
-    }
-
-    public String getHeaderName() {
-        return "";
-    }
-
-    public void d() {
-    }
-
-    public void f() {
-    }
-
-    public void g() {
-    }
-
-    public void h(String str) {
-    }
-
-    public void i() {
-    }
-
-    public void j() {
-    }
-
-    public void k(Bundle bundle) {
-    }
-
-    public void l(Bundle bundle) {
-    }
-
-    public void n() {
-    }
-
-    public void m(Bundle bundle, boolean z10) {
-    }
+import android.graphics.Bitmap;
+public final class mv0 {
+    public int f27132a;
+    public ov0 f27133b;
+    public Bitmap f27134c;
+    public float d;
+    public float e;
 }

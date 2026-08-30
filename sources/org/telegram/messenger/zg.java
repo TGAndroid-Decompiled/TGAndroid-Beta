@@ -1,41 +1,21 @@
 package org.telegram.messenger;
 public final class zg implements Runnable {
-    public final int f22373a;
-    public final NotificationsController f22374b;
-    public final int f22375c;
+    public final int f19150a;
+    public final NotificationCenter f19151b;
 
-    public zg(NotificationsController notificationsController, int i10, int i11) {
-        this.f22373a = i11;
-        this.f22374b = notificationsController;
-        this.f22375c = i10;
+    public zg(NotificationCenter notificationCenter, int i10) {
+        this.f19150a = i10;
+        this.f19151b = notificationCenter;
     }
 
     @Override
     public final void run() {
-        switch (this.f22373a) {
+        switch (this.f19150a) {
             case 0:
-                this.f22374b.lambda$processDialogsUpdateRead$29(this.f22375c);
-                return;
-            case 1:
-                this.f22374b.lambda$removeDeletedHisoryFromNotifications$12(this.f22375c);
-                return;
-            case 2:
-                this.f22374b.lambda$processSeenStoryReactions$14(this.f22375c);
-                return;
-            case 3:
-                this.f22374b.lambda$processNewMessages$24(this.f22375c);
-                return;
-            case 4:
-                this.f22374b.lambda$processNewMessages$26(this.f22375c);
-                return;
-            case 5:
-                this.f22374b.lambda$setLastOnlineFromOtherDevice$5(this.f22375c);
-                return;
-            case 6:
-                this.f22374b.lambda$processLoadedUnreadMessages$32(this.f22375c);
+                NotificationCenter.g(this.f19151b);
                 return;
             default:
-                this.f22374b.lambda$removeDeletedMessagesFromNotifications$9(this.f22375c);
+                NotificationCenter.b(this.f19151b);
                 return;
         }
     }

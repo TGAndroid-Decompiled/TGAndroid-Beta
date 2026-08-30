@@ -5,68 +5,68 @@ import android.os.Bundle;
 import androidx.core.graphics.drawable.IconCompat;
 import java.util.ArrayList;
 public final class j {
-    public final IconCompat f5681a;
-    public final CharSequence f5682b;
-    public final PendingIntent f5683c;
+    public final IconCompat f4977a;
+    public final CharSequence f4978b;
+    public final PendingIntent f4979c;
     public boolean d;
-    public final Bundle f5684e;
-    public ArrayList f5685f;
-    public int f5686g;
+    public final Bundle e;
+    public ArrayList f4980f;
+    public int f4981g;
     public boolean h;
 
     public j(int i10, String str, PendingIntent pendingIntent) {
-        IconCompat e10;
+        IconCompat e;
         if (i10 == 0) {
-            e10 = null;
+            e = null;
         } else {
-            e10 = IconCompat.e(null, "", i10);
+            e = IconCompat.e(null, "", i10);
         }
         Bundle bundle = new Bundle();
         this.d = true;
         this.h = true;
-        this.f5681a = e10;
-        this.f5682b = t.d(str);
-        this.f5683c = pendingIntent;
-        this.f5684e = bundle;
-        this.f5685f = null;
+        this.f4977a = e;
+        this.f4978b = t.d(str);
+        this.f4979c = pendingIntent;
+        this.e = bundle;
+        this.f4980f = null;
         this.d = true;
-        this.f5686g = 0;
+        this.f4981g = 0;
         this.h = true;
     }
 
-    public final void a(r0 r0Var) {
-        if (this.f5685f == null) {
-            this.f5685f = new ArrayList();
+    public final void a(q0 q0Var) {
+        if (this.f4980f == null) {
+            this.f4980f = new ArrayList();
         }
-        this.f5685f.add(r0Var);
+        this.f4980f.add(q0Var);
     }
 
     public final k b() {
-        r0[] r0VarArr;
+        q0[] q0VarArr;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
-        ArrayList arrayList3 = this.f5685f;
+        ArrayList arrayList3 = this.f4980f;
         if (arrayList3 != null) {
             int size = arrayList3.size();
             int i10 = 0;
             while (i10 < size) {
                 Object obj = arrayList3.get(i10);
                 i10++;
-                r0 r0Var = (r0) obj;
-                r0Var.getClass();
-                arrayList2.add(r0Var);
+                q0 q0Var = (q0) obj;
+                q0Var.getClass();
+                arrayList2.add(q0Var);
             }
         }
-        r0[] r0VarArr2 = null;
+        q0[] q0VarArr2 = null;
         if (arrayList.isEmpty()) {
-            r0VarArr = null;
+            q0VarArr = null;
         } else {
-            r0VarArr = (r0[]) arrayList.toArray(new r0[arrayList.size()]);
+            q0VarArr = (q0[]) arrayList.toArray(new q0[arrayList.size()]);
         }
         if (!arrayList2.isEmpty()) {
-            r0VarArr2 = (r0[]) arrayList2.toArray(new r0[arrayList2.size()]);
+            q0VarArr2 = (q0[]) arrayList2.toArray(new q0[arrayList2.size()]);
         }
-        return new k(this.f5681a, this.f5682b, this.f5683c, this.f5684e, r0VarArr2, r0VarArr, this.d, this.f5686g, this.h);
+        return new k(this.f4977a, this.f4978b, this.f4979c, this.e, q0VarArr2, q0VarArr, this.d, this.f4981g, this.h);
     }
 
     public final void c() {

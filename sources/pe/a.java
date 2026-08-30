@@ -1,29 +1,31 @@
 package pe;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ThreadPoolExecutor;
-import org.telegram.messenger.FileLog;
-public final class a extends ThreadPoolExecutor implements AutoCloseable {
-    public final c f45718a;
-
-    public a(pe.c r8, java.util.concurrent.PriorityBlockingQueue r9) {
-        throw new UnsupportedOperationException("Method not decompiled: pe.a.<init>(pe.c, java.util.concurrent.PriorityBlockingQueue):void");
+import j4.h;
+import je.b;
+import ke.e;
+public abstract class a {
+    public boolean b(ne.a aVar) {
+        return this instanceof ke.a;
     }
 
-    @Override
-    public final void beforeExecute(Thread thread, Runnable runnable) {
-        CountDownLatch countDownLatch = this.f45718a.f45722b;
-        if (countDownLatch != null) {
-            try {
-                countDownLatch.await();
-            } catch (InterruptedException e10) {
-                FileLog.e(e10);
-            }
-        }
+    public boolean c() {
+        return this instanceof b;
     }
 
-    @Override
-    public final void close() {
-        b9.b.h(this);
+    public abstract ne.a e();
+
+    public boolean f() {
+        return this instanceof ke.a;
+    }
+
+    public abstract h h(e eVar);
+
+    public void d() {
+    }
+
+    public void a(CharSequence charSequence) {
+    }
+
+    public void g(oe.a aVar) {
     }
 }

@@ -1,128 +1,98 @@
 package org.telegram.ui;
 
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AccountInstance;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class x50 extends org.telegram.ui.Components.il0 {
-    public ChatObject.Call f44469c;
-    public final int d;
-    public ArrayList f44471f;
-    public j30 h;
-    public final r50 f44472n;
-    public final ArrayList f44470e = new ArrayList();
-    public boolean f44473r = false;
+public final class x50 extends Drawable {
+    public final Paint f39861a;
+    public final Paint f39862b;
+    public long f39863c;
+    public float d;
+    public int e;
+    public boolean f39864f;
+    public View f39865g;
 
-    public x50(ChatObject.Call call, int i10, r50 r50Var) {
-        this.f44469c = call;
-        this.d = i10;
-        this.f44472n = r50Var;
+    public x50() {
+        Paint paint = new Paint(1);
+        this.f39861a = paint;
+        this.f39862b = new Paint(1);
+        this.d = 1.0f;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
+    }
+
+    public final void a(ImageView imageView) {
+        this.f39865g = imageView;
     }
 
     @Override
-    public final boolean D(f2.n1 n1Var) {
-        return false;
-    }
-
-    public final void E(org.telegram.ui.Components.voip.l lVar, boolean z10) {
-        if (z10 && lVar.getRenderer() == null) {
-            lVar.setRenderer(org.telegram.ui.Components.voip.u.c(this.f44471f, this.h, null, null, lVar, lVar.getParticipant(), this.f44469c, this.f44472n));
-        } else if (!z10 && lVar.getRenderer() != null) {
-            lVar.getRenderer().setTabletGridView(null);
-            lVar.setRenderer(null);
+    public final void draw(Canvas canvas) {
+        int i10;
+        float centerX = getBounds().centerX();
+        float centerY = getBounds().centerY();
+        canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(10.0f), this.f39861a);
+        if (this.f39864f) {
+            i10 = -1147527;
+        } else {
+            i10 = -1;
         }
-    }
-
-    public final int F() {
-        org.telegram.ui.Components.jl0 jl0Var = this.f44472n.f41908j2;
-        int size = this.f44470e.size();
-        if (size <= 1) {
-            return jl0Var.getMeasuredHeight();
-        }
-        if (size <= 4) {
-            return jl0Var.getMeasuredHeight() / 2;
-        }
-        return (int) (jl0Var.getMeasuredHeight() / 2.5f);
-    }
-
-    public final void G(ArrayList arrayList, j30 j30Var) {
-        this.f44471f = arrayList;
-        this.h = j30Var;
-    }
-
-    public final void H(org.telegram.ui.Components.jl0 jl0Var, boolean z10, boolean z11) {
-        this.f44473r = z10;
-        if (z11) {
-            for (int i10 = 0; i10 < jl0Var.getChildCount(); i10++) {
-                View childAt = jl0Var.getChildAt(i10);
-                if (childAt instanceof org.telegram.ui.Components.voip.l) {
-                    org.telegram.ui.Components.voip.l lVar = (org.telegram.ui.Components.voip.l) childAt;
-                    if (lVar.getParticipant() != null) {
-                        E(lVar, z10);
-                    }
+        Paint paint = this.f39862b;
+        paint.setColor(i10);
+        paint.setAlpha((int) (this.d * 255.0f));
+        canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(5.0f), paint);
+        if (this.f39864f) {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            long j10 = elapsedRealtime - this.f39863c;
+            if (j10 > 17) {
+                j10 = 17;
+            }
+            this.f39863c = elapsedRealtime;
+            int i11 = this.e;
+            if (i11 == 0) {
+                float f10 = (((float) j10) / 2000.0f) + this.d;
+                this.d = f10;
+                if (f10 >= 1.0f) {
+                    this.d = 1.0f;
+                    this.e = 1;
+                }
+            } else if (i11 == 1) {
+                float f11 = this.d - (((float) j10) / 2000.0f);
+                this.d = f11;
+                if (f11 < 0.5f) {
+                    this.d = 0.5f;
+                    this.e = 0;
                 }
             }
-        }
-    }
-
-    public final void I(org.telegram.ui.Components.jl0 jl0Var, boolean z10) {
-        if (this.f44469c == null) {
-            return;
-        }
-        ArrayList arrayList = this.f44470e;
-        if (z10) {
-            ArrayList arrayList2 = new ArrayList();
-            arrayList2.addAll(arrayList);
-            arrayList.clear();
-            arrayList.addAll(this.f44469c.visibleVideoParticipants);
-            f2.q.c(new w50(this, arrayList2), true).b(this);
-            AndroidUtilities.updateVisibleRows(jl0Var);
-            return;
-        }
-        arrayList.clear();
-        arrayList.addAll(this.f44469c.visibleVideoParticipants);
-        l();
-    }
-
-    @Override
-    public final int h() {
-        return this.f44470e.size();
-    }
-
-    @Override
-    public final void v(f2.n1 n1Var, int i10) {
-        org.telegram.ui.Components.voip.l lVar = (org.telegram.ui.Components.voip.l) n1Var.f6432a;
-        ChatObject.VideoParticipant participant = lVar.getParticipant();
-        ArrayList arrayList = this.f44470e;
-        ChatObject.VideoParticipant videoParticipant = (ChatObject.VideoParticipant) arrayList.get(i10);
-        TLRPC.GroupCallParticipant groupCallParticipant = ((ChatObject.VideoParticipant) arrayList.get(i10)).participant;
-        int size = arrayList.size();
-        int i11 = 6;
-        if (size > 1 && size != 2 && (size != 3 || i10 == 0 || i10 == 1)) {
-            i11 = 3;
-        }
-        lVar.f33789a = i11;
-        lVar.f33790b = this;
-        if (lVar.getMeasuredHeight() != F()) {
-            lVar.requestLayout();
-        }
-        AccountInstance.getInstance(this.d);
-        MessageObject.getPeerId(this.f44469c.selfPeer);
-        lVar.d = videoParticipant;
-        if (participant != null && !participant.equals(videoParticipant) && lVar.f33792e && lVar.getRenderer() != null) {
-            E(lVar, false);
-            E(lVar, true);
-        } else if (lVar.getRenderer() != null) {
-            lVar.getRenderer().j(true);
+            this.f39865g.invalidate();
         }
     }
 
     @Override
-    public final f2.n1 x(ViewGroup viewGroup, int i10) {
-        return new f2.n1(new v50(this, viewGroup.getContext()));
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

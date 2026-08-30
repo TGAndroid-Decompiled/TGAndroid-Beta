@@ -1,40 +1,18 @@
 package mb;
-public abstract class d {
-    public final int f16954a;
-    public final int f16955b;
+public final class d {
+    public boolean f13904a;
+    public boolean f13905b;
+    public boolean f13906c;
 
-    public d(int i10, int i11) {
-        this.f16954a = i10;
-        this.f16955b = i11;
+    public d() {
+        this.f13904a = false;
+        this.f13905b = false;
+        this.f13906c = false;
     }
 
-    public abstract byte[] a();
-
-    public abstract byte[] b(int i10, byte[] bArr);
-
-    public final String toString() {
-        char c3;
-        int i10 = this.f16954a;
-        byte[] bArr = new byte[i10];
-        int i11 = this.f16955b;
-        StringBuilder sb2 = new StringBuilder((i10 + 1) * i11);
-        for (int i12 = 0; i12 < i11; i12++) {
-            bArr = b(i12, bArr);
-            for (int i13 = 0; i13 < i10; i13++) {
-                int i14 = bArr[i13] & 255;
-                if (i14 < 64) {
-                    c3 = '#';
-                } else if (i14 < 128) {
-                    c3 = '+';
-                } else if (i14 < 192) {
-                    c3 = '.';
-                } else {
-                    c3 = ' ';
-                }
-                sb2.append(c3);
-            }
-            sb2.append('\n');
-        }
-        return sb2.toString();
+    public d(boolean z4, boolean z10, boolean z11) {
+        this.f13904a = z4;
+        this.f13905b = z10;
+        this.f13906c = z11;
     }
 }

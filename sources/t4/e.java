@@ -1,54 +1,40 @@
 package t4;
 
-import java.nio.ByteBuffer;
-import m3.m;
-public abstract class e extends m implements g {
-    public final String f48142a;
-
-    public e(String str) {
-        super(new j[2], new k[2]);
-        this.f48142a = str;
-        setInitialInputBufferSize(1024);
-    }
-
-    public abstract f c(int i10, boolean z10, byte[] bArr);
+import j7.p7;
+import java.util.Arrays;
+public final class e extends q4.e {
+    public byte[] f44480s;
+    public volatile boolean v;
+    public byte[] f44481w;
 
     @Override
-    public final m3.i createInputBuffer() {
-        return new j();
-    }
-
-    @Override
-    public final m3.k createOutputBuffer() {
-        return new d(this, 1);
-    }
-
-    @Override
-    public final m3.g createUnexpectedDecodeException(Throwable th2) {
-        return new Exception("Unexpected decode error", th2);
-    }
-
-    @Override
-    public final m3.g decode(m3.i iVar, m3.k kVar, boolean z10) {
-        j jVar = (j) iVar;
-        k kVar2 = (k) kVar;
+    public final void a() {
         try {
-            ByteBuffer byteBuffer = jVar.f16828b;
-            byteBuffer.getClass();
-            kVar2.a(jVar.d, c(byteBuffer.limit(), z10, byteBuffer.array()), jVar.f48144n);
-            kVar2.clearFlag(Integer.MIN_VALUE);
-            return null;
-        } catch (h e10) {
-            return e10;
+            this.f42734r.open(this.f42730b);
+            int i10 = 0;
+            int i11 = 0;
+            while (i10 != -1 && !this.v) {
+                byte[] bArr = this.f44480s;
+                if (bArr.length < i11 + 16384) {
+                    this.f44480s = Arrays.copyOf(bArr, bArr.length + 16384);
+                }
+                i10 = this.f42734r.read(this.f44480s, i11, 16384);
+                if (i10 != -1) {
+                    i11 += i10;
+                }
+            }
+            if (!this.v) {
+                this.f44481w = Arrays.copyOf(this.f44480s, i11);
+            }
+            p7.a(this.f42734r);
+        } catch (Throwable th2) {
+            p7.a(this.f42734r);
+            throw th2;
         }
     }
 
     @Override
-    public final String getName() {
-        return this.f48142a;
-    }
-
-    @Override
-    public final void a(long j10) {
+    public final void r() {
+        this.v = true;
     }
 }

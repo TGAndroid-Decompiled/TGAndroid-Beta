@@ -1,32 +1,35 @@
 package sd;
 
-import bd.l;
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-import kotlin.jvm.internal.k;
-public final class b extends k implements l {
-    public final int f47712b;
-    public final d f47713c;
+import k7.o8;
+public final class b {
+    public static final b f44260a;
+    public static final b f44261b;
+    public static final b f44262c;
+    public static final b d;
+    public static final b e;
+    public static final b[] f44263f;
 
-    public b(d dVar, c cVar, int i10) {
-        super(1);
-        this.f47712b = i10;
-        this.f47713c = dVar;
+    static {
+        ?? r02 = new Enum("CPU_ACQUIRED", 0);
+        f44260a = r02;
+        ?? r12 = new Enum("BLOCKING", 1);
+        f44261b = r12;
+        ?? r32 = new Enum("PARKING", 2);
+        f44262c = r32;
+        ?? r52 = new Enum("DORMANT", 3);
+        d = r52;
+        ?? r72 = new Enum("TERMINATED", 4);
+        e = r72;
+        b[] bVarArr = {r02, r12, r32, r52, r72};
+        f44263f = bVarArr;
+        o8.a(bVarArr);
     }
 
-    @Override
-    public final Object invoke(Object obj) {
-        switch (this.f47712b) {
-            case 0:
-                Throwable th2 = (Throwable) obj;
-                this.f47713c.e(null);
-                return qc.i.f46603a;
-            default:
-                Throwable th3 = (Throwable) obj;
-                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f47716g;
-                d dVar = this.f47713c;
-                atomicReferenceFieldUpdater.set(dVar, null);
-                dVar.e(null);
-                return qc.i.f46603a;
-        }
+    public static b valueOf(String str) {
+        return (b) Enum.valueOf(b.class, str);
+    }
+
+    public static b[] values() {
+        return (b[]) f44263f.clone();
     }
 }

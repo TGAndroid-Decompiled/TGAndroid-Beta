@@ -1,60 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Rect;
 import android.graphics.drawable.GradientDrawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class m9 implements Runnable {
-    public final int f30601a = 0;
-    public final s9 f30602b;
-    public final Runnable[] f30603c;
-    public final u50 d;
-    public final int f30604e;
-    public final i7.c6[] f30605f;
+public abstract class m9 {
+    public static final int[] f26991a;
 
-    public m9(s9 s9Var, u50 u50Var, Runnable[] runnableArr, int i10, i7.c6[] c6VarArr) {
-        this.f30602b = s9Var;
-        this.d = u50Var;
-        this.f30603c = runnableArr;
-        this.f30604e = i10;
-        this.f30605f = c6VarArr;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f30601a) {
-            case 0:
-                s9 s9Var = this.f30602b;
-                u50 u50Var = this.d;
-                Runnable[] runnableArr = this.f30603c;
-                int i10 = this.f30604e;
-                i7.c6[] c6VarArr = this.f30605f;
-                try {
-                    GradientDrawable.Orientation orientation = s9Var.getOrientation();
-                    int[] iArr = s9Var.f32587a;
-                    int i11 = u50Var.f33142a;
-                    int i12 = u50Var.f33143b;
-                    Rect e10 = s9.e(orientation, i11, i12);
-                    Bitmap createBitmap = Bitmap.createBitmap(i11, i12, Bitmap.Config.ARGB_8888);
-                    Utilities.drawDitheredGradient(createBitmap, iArr, e10.left, e10.top, e10.right, e10.bottom);
-                    AndroidUtilities.runOnUIThread(new jf.j0(s9Var, runnableArr, createBitmap, u50Var, i10, c6VarArr));
-                    return;
-                } catch (Throwable th2) {
-                    AndroidUtilities.runOnUIThread(new m9(s9Var, runnableArr, u50Var, i10, c6VarArr));
-                    throw th2;
-                }
-            default:
-                s9.a(this.f30602b, this.f30603c, null, this.d, this.f30604e, this.f30605f);
-                return;
+    static {
+        int[] iArr = new int[GradientDrawable.Orientation.values().length];
+        f26991a = iArr;
+        try {
+            iArr[GradientDrawable.Orientation.TOP_BOTTOM.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
         }
-    }
-
-    public m9(s9 s9Var, Runnable[] runnableArr, u50 u50Var, int i10, i7.c6[] c6VarArr) {
-        this.f30602b = s9Var;
-        this.f30603c = runnableArr;
-        this.d = u50Var;
-        this.f30604e = i10;
-        this.f30605f = c6VarArr;
+        try {
+            f26991a[GradientDrawable.Orientation.TR_BL.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            f26991a[GradientDrawable.Orientation.RIGHT_LEFT.ordinal()] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        try {
+            f26991a[GradientDrawable.Orientation.BR_TL.ordinal()] = 4;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            f26991a[GradientDrawable.Orientation.BOTTOM_TOP.ordinal()] = 5;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            f26991a[GradientDrawable.Orientation.BL_TR.ordinal()] = 6;
+        } catch (NoSuchFieldError unused6) {
+        }
+        try {
+            f26991a[GradientDrawable.Orientation.LEFT_RIGHT.ordinal()] = 7;
+        } catch (NoSuchFieldError unused7) {
+        }
     }
 }

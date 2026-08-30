@@ -1,33 +1,47 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class ea0 extends f2.v {
-    public final ka0 f27987c;
+import android.widget.FrameLayout;
+public final class ea0 extends jh.v {
+    public final int E = 0;
+    public final Object F;
 
-    public ea0(ka0 ka0Var) {
-        this.f27987c = ka0Var;
+    public ea0(org.telegram.ui.qh0 qh0Var, org.telegram.ui.qh0 qh0Var2, FrameLayout frameLayout, long j10) {
+        super(qh0Var2, frameLayout, j10, true);
+        this.F = qh0Var;
     }
 
     @Override
-    public final int i(int i10) {
-        ka0 ka0Var = this.f27987c;
-        rf.v0 v0Var = ka0Var.f29999f;
-        if (i10 != 0) {
-            int i11 = i10 - 1;
-            Object J = v0Var.J(i11);
-            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
-                return 100;
-            }
-            if (J instanceof TLRPC.Document) {
-                return 20;
-            }
-            if (v0Var.I() != null || v0Var.Q != null) {
-                i10 = i11;
-            }
-            da0 da0Var = ka0Var.d;
-            da0Var.B1();
-            return da0Var.R.get(i10);
+    public final void f(String str, boolean z4, boolean z10) {
+        switch (this.E) {
+            case 0:
+                jh.c cVar = (jh.c) this.F;
+                zw0 zw0Var = cVar.T;
+                if (this.e.isEmpty()) {
+                    if (zw0Var.getVisibility() != 4) {
+                        zw0Var.setVisibility(4);
+                        return;
+                    }
+                    return;
+                } else if (z10) {
+                    cVar.f28072w.G.setText("");
+                    return;
+                } else {
+                    super.f(str, z4, z10);
+                    return;
+                }
+            default:
+                if (z10) {
+                    org.telegram.ui.qh0.U((org.telegram.ui.qh0) this.F).setSearchFieldText("");
+                    return;
+                } else {
+                    super.f(str, z4, z10);
+                    return;
+                }
         }
-        return 100;
+    }
+
+    public ea0(jh.c cVar, org.telegram.ui.ActionBar.p2 p2Var, FrameLayout frameLayout, long j10) {
+        super(p2Var, frameLayout, j10, false);
+        this.F = cVar;
     }
 }

@@ -1,28 +1,71 @@
 package j7;
 
-import java.util.AbstractMap;
-public final class x extends s {
-    public final y f11247c;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
+public abstract class x {
+    public static Boolean f9163a;
+    public static Boolean f9164b;
+    public static Boolean f9165c;
+    public static Boolean d;
+    public static Boolean e;
+    public static Boolean f9166f;
+    public static Boolean f9167g;
 
-    public x(y yVar) {
-        this.f11247c = yVar;
+    public static boolean a(Context context) {
+        boolean z4;
+        PackageManager packageManager = context.getPackageManager();
+        if (f9166f == null) {
+            if (Build.VERSION.SDK_INT >= 26 && packageManager.hasSystemFeature("android.hardware.type.automotive")) {
+                z4 = true;
+            } else {
+                z4 = false;
+            }
+            f9166f = Boolean.valueOf(z4);
+        }
+        return f9166f.booleanValue();
     }
 
-    @Override
-    public final Object get(int i10) {
-        y yVar = this.f11247c;
-        h7.u8.a(i10, yVar.f11261e);
-        int i11 = i10 + i10;
-        Object[] objArr = yVar.d;
-        Object obj = objArr[i11];
-        obj.getClass();
-        Object obj2 = objArr[i11 + 1];
-        obj2.getClass();
-        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
+    public static boolean b(Resources resources) {
+        boolean z4 = false;
+        if (resources == null) {
+            return false;
+        }
+        if (d == null) {
+            Configuration configuration = resources.getConfiguration();
+            if ((configuration.screenLayout & 15) <= 3 && configuration.smallestScreenWidthDp >= 600) {
+                z4 = true;
+            }
+            d = Boolean.valueOf(z4);
+        }
+        return d.booleanValue();
     }
 
-    @Override
-    public final int size() {
-        return this.f11247c.f11261e;
+    public static boolean c(Context context) {
+        Resources resources = context.getResources();
+        boolean z4 = false;
+        if (resources == null) {
+            return false;
+        }
+        if (f9164b == null) {
+            f9164b = Boolean.valueOf(((resources.getConfiguration().screenLayout & 15) > 3 || b(resources)) ? true : true);
+        }
+        return f9164b.booleanValue();
+    }
+
+    public static boolean d(Context context) {
+        boolean z4;
+        PackageManager packageManager = context.getPackageManager();
+        if (f9167g == null) {
+            if (!packageManager.hasSystemFeature("com.google.android.tv") && !packageManager.hasSystemFeature("android.hardware.type.television") && !packageManager.hasSystemFeature("android.software.leanback")) {
+                z4 = false;
+            } else {
+                z4 = true;
+            }
+            f9167g = Boolean.valueOf(z4);
+        }
+        return f9167g.booleanValue();
     }
 }

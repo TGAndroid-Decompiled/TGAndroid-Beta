@@ -3,25 +3,25 @@ package i2;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Trace;
-import h7.m8;
+import j7.i8;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 public final class a {
     public static volatile a d;
-    public static final Object f8209e = new Object();
-    public final Context f8212c;
-    public final HashSet f8211b = new HashSet();
-    public final HashMap f8210a = new HashMap();
+    public static final Object e = new Object();
+    public final Context f7237c;
+    public final HashSet f7236b = new HashSet();
+    public final HashMap f7235a = new HashMap();
 
     public a(Context context) {
-        this.f8212c = context.getApplicationContext();
+        this.f7237c = context.getApplicationContext();
     }
 
     public static a c(Context context) {
         if (d == null) {
-            synchronized (f8209e) {
+            synchronized (e) {
                 try {
                     if (d == null) {
                         d = new a(context);
@@ -35,14 +35,14 @@ public final class a {
 
     public final void a(Bundle bundle) {
         HashSet hashSet;
-        String string = this.f8212c.getString(2131701265);
+        String string = this.f7237c.getString(2131701265);
         if (bundle != null) {
             try {
                 HashSet hashSet2 = new HashSet();
                 Iterator<String> it = bundle.keySet().iterator();
                 while (true) {
                     boolean hasNext = it.hasNext();
-                    hashSet = this.f8211b;
+                    hashSet = this.f7236b;
                     if (!hasNext) {
                         break;
                     }
@@ -58,18 +58,18 @@ public final class a {
                 while (it2.hasNext()) {
                     b((Class) it2.next(), hashSet2);
                 }
-            } catch (ClassNotFoundException e10) {
-                throw new RuntimeException(e10);
+            } catch (ClassNotFoundException e6) {
+                throw new RuntimeException(e6);
             }
         }
     }
 
     public final Object b(Class cls, HashSet hashSet) {
         Object obj;
-        HashMap hashMap = this.f8210a;
-        if (m8.b()) {
+        HashMap hashMap = this.f7235a;
+        if (i8.b()) {
             try {
-                m8.a(cls.getSimpleName());
+                i8.a(cls.getSimpleName());
             } catch (Throwable th2) {
                 Trace.endSection();
                 throw th2;
@@ -87,7 +87,7 @@ public final class a {
                         }
                     }
                 }
-                obj = bVar.b(this.f8212c);
+                obj = bVar.b(this.f7237c);
                 hashSet.remove(cls);
                 hashMap.put(cls, obj);
             } else {

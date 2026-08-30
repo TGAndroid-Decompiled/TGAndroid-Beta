@@ -1,8 +1,7 @@
 package k5;
 
-import b6.b;
+import a8.j;
 import com.google.android.gms.common.api.e;
-import com.google.android.gms.common.api.j;
-public abstract class a extends j {
-    public static final e f13449k = new e("SmsRetriever.API", new b(8), new Object());
+public abstract class a {
+    public static final e f9748a = new e("Auth.GOOGLE_SIGN_IN_API", new j(10), new Object());
 }

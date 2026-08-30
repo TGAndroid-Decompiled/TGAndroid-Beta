@@ -3,39 +3,37 @@ package org.telegram.ui.ActionBar;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
-import android.app.Dialog;
-import android.content.DialogInterface;
+import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.NotificationCenter;
 public final class x2 extends AnimatorListenerAdapter {
-    public final int f23960a;
-    public final int f23961b;
-    public final Dialog f23962c;
+    public final int f20727a;
+    public final g3 f20728b;
 
-    public x2(Dialog dialog, int i10, int i11) {
-        this.f23960a = i11;
-        this.f23962c = dialog;
-        this.f23961b = i10;
+    public x2(g3 g3Var, int i10) {
+        this.f20727a = i10;
+        this.f20728b = g3Var;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        switch (this.f23960a) {
+        switch (this.f20727a) {
             case 0:
-                f3 f3Var = (f3) this.f23962c;
-                AnimatorSet animatorSet = f3Var.currentSheetAnimation;
+                g3 g3Var = this.f20728b;
+                AnimatorSet animatorSet = g3Var.currentSheetAnimation;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    f3Var.currentSheetAnimation = null;
-                    f3Var.currentSheetAnimationType = 0;
+                    g3Var.currentSheetAnimation = null;
+                    g3Var.currentSheetAnimationType = 0;
                     return;
                 }
                 return;
             default:
-                AnimatorSet[] animatorSetArr = ((c2) this.f23962c).B;
-                int i10 = this.f23961b;
-                AnimatorSet animatorSet2 = animatorSetArr[i10];
+                g3 g3Var2 = this.f20728b;
+                AnimatorSet animatorSet2 = g3Var2.currentSheetAnimation;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    animatorSetArr[i10] = null;
+                    g3Var2.currentSheetAnimation = null;
+                    g3Var2.currentSheetAnimationType = 0;
                     return;
                 }
                 return;
@@ -44,34 +42,43 @@ public final class x2 extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        DialogInterface.OnClickListener onClickListener;
-        DialogInterface.OnClickListener onClickListener2;
-        int i10 = this.f23960a;
-        int i11 = this.f23961b;
-        Dialog dialog = this.f23962c;
+        AnimationNotificationsLocker animationNotificationsLocker;
+        int i10 = this.f20727a;
+        g3 g3Var = this.f20728b;
         switch (i10) {
             case 0:
-                f3 f3Var = (f3) dialog;
-                AnimatorSet animatorSet = f3Var.currentSheetAnimation;
+                AnimatorSet animatorSet = g3Var.currentSheetAnimation;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    f3Var.currentSheetAnimation = null;
-                    f3Var.currentSheetAnimationType = 0;
-                    onClickListener = f3Var.onClickListener;
-                    if (onClickListener != null) {
-                        onClickListener2 = f3Var.onClickListener;
-                        onClickListener2.onClick(f3Var, i11);
+                    g3Var.currentSheetAnimation = null;
+                    g3Var.currentSheetAnimationType = 0;
+                    g3Var.onOpenAnimationEnd();
+                    a3 a3Var = g3Var.delegate;
+                    if (a3Var != null) {
+                        a3Var.onOpenAnimationEnd();
                     }
-                    AndroidUtilities.runOnUIThread(new q(this, 8));
+                    if (g3Var.useHardwareLayer) {
+                        g3Var.container.setLayerType(0, null);
+                    }
+                    if (g3Var.isFullscreen) {
+                        WindowManager.LayoutParams attributes = g3Var.getWindow().getAttributes();
+                        attributes.flags &= -1025;
+                        g3Var.getWindow().setAttributes(attributes);
+                    }
                 }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                if (g3Var.pauseAllHeavyOperations) {
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                }
+                animationNotificationsLocker = g3Var.notificationsLocker;
+                animationNotificationsLocker.unlock();
                 return;
             default:
-                AnimatorSet[] animatorSetArr = ((c2) dialog).B;
-                AnimatorSet animatorSet2 = animatorSetArr[i11];
+                AnimatorSet animatorSet2 = g3Var.currentSheetAnimation;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    animatorSetArr[i11] = null;
-                    return;
+                    g3Var.currentSheetAnimation = null;
+                    g3Var.currentSheetAnimationType = 0;
+                    AndroidUtilities.runOnUIThread(new p(this, 9));
                 }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                 return;
         }
     }

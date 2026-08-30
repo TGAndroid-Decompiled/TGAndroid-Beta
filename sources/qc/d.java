@@ -1,48 +1,51 @@
 package qc;
 
-import java.io.Serializable;
-import kotlin.jvm.internal.j;
-public final class d implements Serializable {
-    public final Object f46595a;
-    public final Object f46596b;
+import ne.p;
+import ne.s;
+public final class d extends h {
+    public final int e;
 
-    public d(Object obj, Object obj2) {
-        this.f46595a = obj;
-        this.f46596b = obj2;
+    @Override
+    public final p b() {
+        switch (this.e) {
+            case 0:
+                int i10 = this.d + 1;
+                this.d = i10;
+                if (c() == '[') {
+                    this.d++;
+                    s f10 = f("![");
+                    i iVar = this.f42996a;
+                    ke.b bVar = iVar.f43009i;
+                    ke.b bVar2 = new ke.b(f10, i10, bVar, iVar.h, true);
+                    if (bVar != null) {
+                        bVar.d = true;
+                    }
+                    iVar.f43009i = bVar2;
+                    return f10;
+                }
+                return null;
+            default:
+                int i11 = this.d;
+                this.d = i11 + 1;
+                s f11 = f("[");
+                i iVar2 = this.f42996a;
+                ke.b bVar3 = iVar2.f43009i;
+                ke.b bVar4 = new ke.b(f11, i11, bVar3, iVar2.h, false);
+                if (bVar3 != null) {
+                    bVar3.d = true;
+                }
+                iVar2.f43009i = bVar4;
+                return f11;
+        }
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final char d() {
+        switch (this.e) {
+            case 0:
+                return '!';
+            default:
+                return '[';
         }
-        if (!(obj instanceof d)) {
-            return false;
-        }
-        d dVar = (d) obj;
-        if (j.a(this.f46595a, dVar.f46595a) && j.a(this.f46596b, dVar.f46596b)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        int hashCode;
-        int i10 = 0;
-        Object obj = this.f46595a;
-        if (obj == null) {
-            hashCode = 0;
-        } else {
-            hashCode = obj.hashCode();
-        }
-        int i11 = hashCode * 31;
-        Object obj2 = this.f46596b;
-        if (obj2 != null) {
-            i10 = obj2.hashCode();
-        }
-        return i11 + i10;
-    }
-
-    public final String toString() {
-        return "(" + this.f46595a + ", " + this.f46596b + ')';
     }
 }

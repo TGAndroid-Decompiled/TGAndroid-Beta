@@ -1,24 +1,29 @@
 package ph;
 
 import android.content.Context;
-import android.graphics.Point;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.c6;
-public final class l2 extends u {
-    public final p2 f45892s;
+import android.view.MotionEvent;
+import org.telegram.ui.Components.sl0;
+public final class l2 extends sl0 {
+    public final a3 U2;
 
-    public l2(p2 p2Var, Context context, c6 c6Var) {
-        super(context, c6Var);
-        this.f45892s = p2Var;
+    public l2(a3 a3Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        this.U2 = a3Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        if (!this.f45892s.Z && AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
-            Point point = AndroidUtilities.displaySize;
-            i10 = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.U2.H) {
+            return false;
         }
-        super.onMeasure(i10, i11);
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.U2.H) {
+            return false;
+        }
+        return super.onInterceptTouchEvent(motionEvent);
     }
 }

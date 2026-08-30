@@ -1,152 +1,121 @@
 package lh;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.SurfaceView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.bj0;
-public final class r8 extends AnimatorListenerAdapter {
-    public final int f16186a;
-    public final i9 f16187b;
+import android.app.Activity;
+import android.content.Context;
+import android.view.KeyEvent;
+import android.view.View;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.xn;
+public final class r8 implements View.OnClickListener {
+    public final int f13034a = 1;
+    public final int f13035b;
+    public final boolean f13036c;
+    public final org.telegram.ui.ActionBar.f6 d;
+    public final long e;
+    public final KeyEvent.Callback f13037f;
+    public final Object h;
+    public final Object f13038n;
+    public final Context f13039r;
+    public final Object f13040s;
 
-    public r8(i9 i9Var, int i10) {
-        this.f16186a = i10;
-        this.f16187b = i9Var;
+    public r8(eb ebVar, MessageObject messageObject, xn xnVar, int i10, boolean z4, Context context, org.telegram.ui.ActionBar.f6 f6Var, long j10, TLRPC.Chat chat) {
+        this.f13037f = ebVar;
+        this.h = messageObject;
+        this.f13038n = xnVar;
+        this.f13035b = i10;
+        this.f13036c = z4;
+        this.f13039r = context;
+        this.d = f6Var;
+        this.e = j10;
+        this.f13040s = chat;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        d4 t10;
-        bj0 bj0Var;
-        switch (this.f16186a) {
+    public final void onClick(View view) {
+        int i10;
+        String str;
+        switch (this.f13034a) {
             case 0:
-                super.onAnimationEnd(animator);
-                i9 i9Var = this.f16187b;
-                f9 f9Var = i9Var.f15774o0;
-                x8 x8Var = i9Var.v;
-                if (x8Var != null) {
-                    x8Var.a(true);
-                }
-                i9Var.o();
-                i9Var.F0.unlock();
-                w6 w6Var = i9Var.f15779q1;
-                if (w6Var != null) {
-                    w6Var.b();
-                    AndroidUtilities.removeFromParent(i9Var.f15779q1);
-                    i9Var.f15779q1 = null;
-                }
-                ImageReceiver imageReceiver = f9Var.f15602b;
-                if (imageReceiver != null) {
-                    imageReceiver.setVisible(true, true);
-                    f9Var.f15602b = null;
-                }
-                ImageReceiver imageReceiver2 = f9Var.f15603c;
-                if (imageReceiver2 != null) {
-                    imageReceiver2.setAlpha(1.0f);
-                    f9Var.f15603c.setVisible(true, true);
-                }
-                if (f9Var.d != null && (t10 = i9Var.t()) != null && (bj0Var = t10.f15496k1.d) != null) {
-                    bj0 bj0Var2 = f9Var.d;
-                    bj0Var2.getClass();
-                    bj0Var2.f27127c = bj0Var.f27127c;
-                    bj0Var2.f27129f = bj0Var.f27129f;
-                    bj0Var2.f27126b = bj0Var.f27126b;
-                    bj0Var2.f27125a = System.currentTimeMillis();
-                    bj0Var2.c();
-                }
-                c4 c4Var = i9Var.C0;
-                if (c4Var != null) {
-                    c4Var.a();
-                }
-                SurfaceView surfaceView = i9Var.f15794y0;
-                if (surfaceView != null) {
-                    surfaceView.setVisibility(4);
-                }
-                i9Var.I();
-                try {
-                    AndroidUtilities.runOnUIThread(new m5(this, 11));
-                } catch (Exception unused) {
-                }
-                i9Var.f15763i0 = false;
-                i9Var.d = false;
-                j3 j3Var = i9Var.f15768k1;
-                if (j3Var != null) {
-                    j3Var.run();
-                    i9Var.f15768k1 = null;
-                    return;
-                }
-                return;
-            case 1:
-                i9 i9Var2 = this.f16187b;
-                d4 d4Var = null;
-                i9Var2.D = null;
-                i9Var2.V = 0.0f;
-                i9Var2.Z = 0.0f;
-                y8 y8Var = i9Var2.f15765j0;
-                if (y8Var != null) {
-                    d4Var = y8Var.getCurrentPeerView();
-                }
-                if (d4Var != null) {
-                    d4Var.invalidate();
+                ph.d dVar = (ph.d) this.f13037f;
+                TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) this.h;
+                org.telegram.ui.ActionBar.g3[] g3VarArr = (org.telegram.ui.ActionBar.g3[]) this.f13038n;
+                Activity activity = (Activity) this.f13039r;
+                String str2 = (String) this.f13040s;
+                if (!dVar.K) {
+                    int i11 = this.f13035b;
+                    t7 y10 = t7.y(i11, false);
+                    long j10 = this.e;
+                    kh.x xVar = new kh.x(dVar, starsSubscription, i11, g3VarArr, j10, 2);
+                    if (y10.f13152f.amount < starsSubscription.pricing.amount) {
+                        long j11 = starsSubscription.pricing.amount;
+                        if (this.f13036c) {
+                            i10 = 8;
+                        } else if (j10 < 0) {
+                            i10 = 2;
+                        } else {
+                            i10 = 7;
+                        }
+                        new z9(activity, this.d, j11, i10, str2, xVar, j10).show();
+                        return;
+                    }
+                    xVar.run();
                     return;
                 }
                 return;
             default:
-                i9 i9Var3 = this.f16187b;
-                f9 f9Var2 = i9Var3.f15774o0;
-                i9Var3.Q = 1.0f;
-                i9Var3.o();
-                i9.f15735t1 = false;
-                x8 x8Var2 = i9Var3.v;
-                if (x8Var2 != null) {
-                    x8Var2.a(true);
-                }
-                w8 w8Var = i9Var3.f15783s;
-                if (w8Var != null) {
-                    w8Var.invalidate();
-                }
-                ImageReceiver imageReceiver3 = f9Var2.f15602b;
-                if (imageReceiver3 != null && !i9Var3.d) {
-                    imageReceiver3.setVisible(true, true);
-                    f9Var2.f15602b = null;
-                }
-                ImageReceiver imageReceiver4 = f9Var2.f15603c;
-                if (imageReceiver4 != null && !i9Var3.d) {
-                    imageReceiver4.setAlpha(1.0f);
-                    f9Var2.f15603c.setVisible(true, true);
-                    f9Var2.f15603c = null;
-                }
-                d4 t11 = i9Var3.t();
-                if (t11 != null) {
-                    t11.f1(false);
-                }
-                d1 d1Var = i9Var3.f15790w0;
-                if (d1Var != null) {
-                    d1Var.v((1.0f - i9Var3.R) * i9Var3.Q);
-                }
-                if (i9Var3.f15785s1) {
-                    i9Var3.f15785s1 = false;
-                    i9Var3.p();
-                    AndroidUtilities.runOnUIThread(new j3(i9Var3, 1), 30L);
-                } else if (!SharedConfig.storiesIntroShown) {
-                    if (i9Var3.f15779q1 == null && i9Var3.v != null) {
-                        w6 w6Var2 = new w6(i9Var3.v.getContext(), i9Var3.f15783s);
-                        i9Var3.f15779q1 = w6Var2;
-                        w6Var2.setAlpha(0.0f);
-                        i9Var3.v.addView(i9Var3.f15779q1);
+                eb ebVar = (eb) this.f13037f;
+                MessageObject messageObject = (MessageObject) this.h;
+                xn xnVar = (xn) this.f13038n;
+                TLRPC.Chat chat = (TLRPC.Chat) this.f13040s;
+                if (!ebVar.O) {
+                    long value = ebVar.f12384r.getValue();
+                    if ((ebVar.M != null || (messageObject != null && xnVar != null)) && ebVar.S == null) {
+                        int i12 = this.f13035b;
+                        if (MessagesController.getInstance(i12).isFrozen()) {
+                            org.telegram.ui.c.b(i12);
+                            return;
+                        }
+                        t7 y11 = t7.y(i12, false);
+                        kh.g1 g1Var = new kh.g1(ebVar, value, y11, messageObject, xnVar, 7);
+                        if (y11.e && y11.p().amount < value) {
+                            boolean z4 = this.f13036c;
+                            Context context = this.f13039r;
+                            org.telegram.ui.ActionBar.f6 f6Var = this.d;
+                            long j12 = this.e;
+                            if (z4) {
+                                new z9(context, f6Var, value, 17, DialogObject.getShortName(i12, j12), g1Var, j12).show();
+                                return;
+                            }
+                            if (chat == null) {
+                                str = "";
+                            } else {
+                                str = chat.title;
+                            }
+                            new z9(context, f6Var, value, 5, str, g1Var, j12).show();
+                            return;
+                        }
+                        g1Var.run();
+                        return;
                     }
-                    w6 w6Var3 = i9Var3.f15779q1;
-                    if (w6Var3 != null) {
-                        w6Var3.setOnClickListener(new ag.o(this, 29));
-                        i9Var3.f15779q1.animate().alpha(1.0f).setDuration(150L).setListener(new b9(this, 1)).start();
-                    }
-                    SharedConfig.setStoriesIntroShown(true);
+                    return;
                 }
-                i9Var3.P();
-                i9Var3.F0.unlock();
                 return;
         }
+    }
+
+    public r8(ph.d dVar, int i10, TL_stars.StarsSubscription starsSubscription, org.telegram.ui.ActionBar.g3[] g3VarArr, long j10, Activity activity, org.telegram.ui.ActionBar.f6 f6Var, boolean z4, String str) {
+        this.f13037f = dVar;
+        this.f13035b = i10;
+        this.h = starsSubscription;
+        this.f13038n = g3VarArr;
+        this.e = j10;
+        this.f13039r = activity;
+        this.d = f6Var;
+        this.f13036c = z4;
+        this.f13040s = str;
     }
 }

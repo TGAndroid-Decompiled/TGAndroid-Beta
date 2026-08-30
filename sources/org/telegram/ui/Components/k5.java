@@ -1,56 +1,63 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-public final class k5 implements Runnable {
-    public final int f29922a;
-    public final l5 f29923b;
-    public final ArrayList f29924c;
-    public final TLObject d;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+public class k5 extends Drawable {
+    public final Drawable f26158a;
+    public final int f26159b;
+    public final int f26160c;
+    public int d = 255;
 
-    public k5(l5 l5Var, ArrayList arrayList, TLObject tLObject, int i10) {
-        this.f29922a = i10;
-        this.f29923b = l5Var;
-        this.f29924c = arrayList;
-        this.d = tLObject;
+    public k5(int i10, int i11, Drawable drawable) {
+        this.f26158a = drawable;
+        this.f26159b = i10;
+        this.f26160c = i11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f29922a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new k5(this.f29923b, this.f29924c, this.d, 1));
-                return;
-            default:
-                l5 l5Var = this.f29923b;
-                int i10 = l5Var.f30232e;
-                HashSet hashSet = new HashSet(this.f29924c);
-                TLObject tLObject = this.d;
-                if (tLObject instanceof Vector) {
-                    ArrayList arrayList = ((Vector) tLObject).objects;
-                    MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new i5(l5Var, arrayList, 1));
-                    l5Var.d(arrayList);
-                    for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                        if (arrayList.get(i11) instanceof TLRPC.Document) {
-                            hashSet.remove(Long.valueOf(((TLRPC.Document) arrayList.get(i11)).f22398id));
-                        }
-                    }
-                    if (!hashSet.isEmpty()) {
-                        ArrayList<Long> arrayList2 = new ArrayList<>(hashSet);
-                        TLRPC.TL_messages_getCustomEmojiDocuments tL_messages_getCustomEmojiDocuments = new TLRPC.TL_messages_getCustomEmojiDocuments();
-                        tL_messages_getCustomEmojiDocuments.document_id = arrayList2;
-                        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getCustomEmojiDocuments, new org.telegram.ui.zg(6, l5Var, arrayList2));
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public void draw(Canvas canvas) {
+        Drawable drawable = this.f26158a;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            drawable.setAlpha(this.d);
+            drawable.draw(canvas);
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f26160c;
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f26159b;
+    }
+
+    @Override
+    public final int getOpacity() {
+        Drawable drawable = this.f26158a;
+        if (drawable != null) {
+            return drawable.getOpacity();
+        }
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.d = i10;
+        Drawable drawable = this.f26158a;
+        if (drawable != null) {
+            drawable.setAlpha(i10);
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        Drawable drawable = this.f26158a;
+        if (drawable != null) {
+            drawable.setColorFilter(colorFilter);
         }
     }
 }

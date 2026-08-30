@@ -1,99 +1,136 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
+import android.view.MotionEvent;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class vl0 extends Drawable {
-    public final RectF f33568a = new RectF();
-    public final Paint f33569b;
-    public final TextPaint f33570c;
+public final class vl0 implements f2.y0 {
+    public RecyclerView f29508a;
+    public boolean f29510c;
     public int d;
-    public String f33571e;
-    public final int f33572f;
-    public int f33573g;
-    public final int h;
+    public int e;
+    public int f29511f;
+    public boolean f29512g;
+    public boolean h;
+    public int f29513i;
+    public final ul0 f29515k;
+    public int f29509b = -1;
+    public final int f29514j = AndroidUtilities.dp(80.0f);
+    public final tl0 f29516l = new tl0(this, 0);
 
-    public vl0(int i10) {
-        Paint paint = new Paint(1);
-        this.f33569b = paint;
-        TextPaint textPaint = new TextPaint(1);
-        this.f33570c = textPaint;
-        this.f33573g = 255;
-        this.h = 255;
-        this.f33572f = i10;
-        textPaint.setTextSize(AndroidUtilities.dp(11));
-        textPaint.setTypeface(AndroidUtilities.bold());
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        if (i10 == 0) {
-            this.f33571e = LocaleController.getString(R.string.ScamMessage);
+    public vl0(ul0 ul0Var) {
+        this.f29515k = ul0Var;
+    }
+
+    @Override
+    public final void a(RecyclerView recyclerView, MotionEvent motionEvent) {
+        int i10;
+        int i11;
+        View E = recyclerView.E(motionEvent.getX(), motionEvent.getY());
+        if (E != null) {
+            i10 = RecyclerView.R(E);
         } else {
-            this.f33571e = LocaleController.getString(R.string.FakeMessage);
+            i10 = -1;
         }
-        this.d = (int) Math.ceil(textPaint.measureText(this.f33571e));
+        float y10 = motionEvent.getY();
+        int action = motionEvent.getAction();
+        ul0 ul0Var = this.f29515k;
+        tl0 tl0Var = this.f29516l;
+        if (action != 1) {
+            if (action == 2) {
+                if (this.f29514j > -1) {
+                    float f10 = 0;
+                    if (y10 >= f10 && y10 <= this.d) {
+                        this.h = false;
+                        if (!this.f29512g) {
+                            this.f29512g = true;
+                            AndroidUtilities.cancelRunOnUIThread(tl0Var);
+                            AndroidUtilities.runOnUIThread(tl0Var);
+                        }
+                        this.f29513i = ((int) (this.d - (y10 - f10))) / 2;
+                    } else if (y10 >= this.e && y10 <= this.f29511f) {
+                        this.f29512g = false;
+                        if (!this.h) {
+                            this.h = true;
+                            AndroidUtilities.cancelRunOnUIThread(tl0Var);
+                            AndroidUtilities.runOnUIThread(tl0Var);
+                        }
+                        this.f29513i = ((int) ((y10 + this.f29511f) - (this.e + i11))) / 2;
+                    } else if (this.f29512g || this.h) {
+                        AndroidUtilities.cancelRunOnUIThread(tl0Var);
+                        this.f29512g = false;
+                        this.h = false;
+                    }
+                }
+                if (i10 != -1 && this.f29509b != i10) {
+                    this.f29509b = i10;
+                    ul0Var.c(E, !ul0Var.d(i10));
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        this.f29510c = false;
+        this.f29512g = false;
+        this.h = false;
+        AndroidUtilities.cancelRunOnUIThread(tl0Var);
+        ul0Var.a(false);
     }
 
-    public final void a() {
-        String string;
-        if (this.f33572f == 0) {
-            string = LocaleController.getString(R.string.ScamMessage);
+    @Override
+    public final boolean b(RecyclerView recyclerView, MotionEvent motionEvent) {
+        boolean z4;
+        boolean z10;
+        if (recyclerView.getAdapter() != null && recyclerView.getAdapter().h() != 0) {
+            z4 = false;
         } else {
-            string = LocaleController.getString(R.string.FakeMessage);
+            z4 = true;
         }
-        if (!string.equals(this.f33571e)) {
-            this.f33571e = string;
-            this.d = (int) Math.ceil(this.f33570c.measureText(string));
+        if (this.f29510c && !z4) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-    }
-
-    public final void b(int i10) {
-        this.f33570c.setColor(i10);
-        this.f33569b.setColor(i10);
-        this.f33573g = Color.alpha(i10);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f33568a;
-        rectF.set(bounds);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), this.f33569b);
-        canvas.drawText(this.f33571e, rectF.left + AndroidUtilities.dp(5.0f), rectF.top + AndroidUtilities.dp(12.0f), this.f33570c);
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(16.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(10.0f) + this.d;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        if (this.h != i10) {
-            int i11 = (int) ((i10 / 255.0f) * this.f33573g);
-            this.f33569b.setAlpha(i11);
-            this.f33570c.setAlpha(i11);
+        if (z10) {
+            this.f29508a = recyclerView;
+            int i10 = this.f29514j;
+            if (i10 > -1) {
+                this.d = i10;
+                this.e = recyclerView.getMeasuredHeight() - i10;
+                this.f29511f = recyclerView.getMeasuredHeight();
+            }
         }
+        if (z10 && motionEvent.getAction() == 1) {
+            this.f29510c = false;
+            this.f29512g = false;
+            this.h = false;
+            AndroidUtilities.cancelRunOnUIThread(this.f29516l);
+            this.f29515k.a(false);
+        }
+        return z10;
+    }
+
+    public final void d(View view, int i10, boolean z4) {
+        if (this.f29510c) {
+            return;
+        }
+        this.f29509b = -1;
+        AndroidUtilities.cancelRunOnUIThread(this.f29516l);
+        this.f29512g = false;
+        this.h = false;
+        ul0 ul0Var = this.f29515k;
+        if (!ul0Var.b(i10)) {
+            this.f29510c = false;
+            return;
+        }
+        ul0Var.a(true);
+        ul0Var.c(view, z4);
+        this.f29510c = true;
+        this.f29509b = i10;
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void c(boolean z4) {
     }
 }

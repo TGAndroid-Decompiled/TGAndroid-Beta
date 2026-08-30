@@ -1,48 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class ds0 extends f2.v {
-    public final int f27869c;
-    public final Object d;
-    public final ViewGroup f27870e;
+import android.graphics.Point;
+import org.telegram.messenger.AndroidUtilities;
+public final class ds0 implements ll0 {
+    public final tr0 f24362a;
+    public final yu0 f24363b;
 
-    public ds0(ViewGroup viewGroup, Object obj, int i10) {
-        this.f27869c = i10;
-        this.f27870e = viewGroup;
-        this.d = obj;
+    public ds0(yu0 yu0Var, tr0 tr0Var) {
+        this.f24363b = yu0Var;
+        this.f24362a = tr0Var;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        switch (this.f27869c) {
-            case 0:
-                it0 it0Var = (it0) this.d;
-                f2.p0 adapter = it0Var.f29469r.getAdapter();
-                qu0 qu0Var = (qu0) this.f27870e;
-                ku0 ku0Var = qu0Var.E;
-                if (adapter == ku0Var) {
-                    if (ku0Var.j(i10) != 2) {
-                        return 1;
-                    }
-                    return it0Var.f29470s.J;
-                } else if (qu0.v(qu0Var, adapter) == -1) {
-                    return 1;
-                } else {
-                    ((nu0) adapter).getClass();
-                    return 1;
-                }
-            default:
-                mh.h hVar = (mh.h) this.d;
-                k51 k51Var = ((u51) this.f27870e).U2;
-                if (k51Var == null) {
-                    return hVar.J;
-                }
-                w41 G = k51Var.G(i10);
-                if (G == null || (i11 = G.f34309u) == -1) {
-                    return hVar.J;
-                }
-                return i11;
+    public final boolean mo18c(float r18, float r19, int r20, android.view.View r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ds0.mo18c(float, float, int, android.view.View):boolean");
+    }
+
+    @Override
+    public final void h() {
+        org.telegram.ui.ActionBar.p2 p2Var = this.f24363b.f31144s1;
+        if (p2Var != null) {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                p2Var.finishPreviewFragment();
+            }
+        }
+    }
+
+    @Override
+    public final void p(float f10) {
+        org.telegram.ui.ActionBar.p2 p2Var = this.f24363b.f31144s1;
+        if (p2Var != null) {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                p2Var.movePreviewFragment(f10);
+            }
         }
     }
 }

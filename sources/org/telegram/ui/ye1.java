@@ -1,117 +1,91 @@
 package org.telegram.ui;
 
+import android.app.Activity;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.TopicsController;
-import org.telegram.tgnet.TLRPC;
-public final class ye1 extends f2.b0 {
-    public boolean d;
-    public final ze1 f44856e;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class ye1 extends View {
+    public final HashMap f40508a;
+    public final ze1 f40509b;
 
-    public ye1(ze1 ze1Var) {
-        this.f44856e = ze1Var;
+    public ye1(ze1 ze1Var, Activity activity) {
+        super(activity);
+        this.f40509b = ze1Var;
+        this.f40508a = new HashMap();
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, f2.n1 n1Var) {
-        super.a(recyclerView, n1Var);
-        n1Var.f6432a.setPressed(false);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, f2.n1 n1Var) {
-        int l10 = f2.b0.l(0, 0);
-        int b10 = n1Var.b();
-        if (b10 >= 0) {
-            ze1 ze1Var = this.f44856e;
-            if (b10 < ze1Var.f45158b.size() && ((pe1) ze1Var.f45158b.get(b10)).f41396c != null && ChatObject.canManageTopics(ze1Var.g())) {
-                TLRPC.TL_forumTopic tL_forumTopic = ((pe1) ze1Var.f45158b.get(b10)).f41396c;
-                if (ze1Var.W.isEmpty()) {
-                    View view = n1Var.f6432a;
-                    if ((view instanceof we1) && tL_forumTopic.f22444id == 1) {
-                        this.d = true;
-                        ((we1) view).setSliding(true);
-                        return f2.b0.l(0, 4);
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        int i13;
+        float f10;
+        int i14;
+        int dp;
+        boolean z4;
+        int i15;
+        ze1 ze1Var = this.f40509b;
+        kf1 kf1Var = ze1Var.d;
+        int size = View.MeasureSpec.getSize(i10);
+        int dp2 = AndroidUtilities.dp(64.0f);
+        int i16 = 0;
+        int i17 = 0;
+        for (int i18 = 0; i18 < ze1Var.F().size(); i18++) {
+            if (ze1Var.F().get(i18) != null && ((bf1) ze1Var.F().get(i18)).f32951c != null) {
+                String str = ((bf1) ze1Var.F().get(i18)).f32951c.title;
+                HashMap hashMap = this.f40508a;
+                Boolean bool = (Boolean) hashMap.get(str);
+                if (bool == null) {
+                    int i19 = 50;
+                    if (!LocaleController.isRTL) {
+                        if (kf1Var.isInPreviewMode()) {
+                            i15 = 11;
+                        } else {
+                            i15 = 50;
+                        }
+                        f10 = i15 + 4;
+                    } else {
+                        f10 = 18.0f;
                     }
+                    int dp3 = AndroidUtilities.dp(f10);
+                    if (!LocaleController.isRTL) {
+                        i14 = size - dp3;
+                        dp = AndroidUtilities.dp(22.0f);
+                    } else {
+                        i14 = size - dp3;
+                        if (kf1Var.isInPreviewMode()) {
+                            i19 = 11;
+                        }
+                        dp = AndroidUtilities.dp(i19 + 13);
+                    }
+                    if (org.telegram.ui.ActionBar.j6.B0[0].measureText(str) <= (i14 - dp) - ((int) Math.ceil(org.telegram.ui.ActionBar.j6.I0.measureText("00:00")))) {
+                        z4 = true;
+                    } else {
+                        z4 = false;
+                    }
+                    bool = Boolean.valueOf(z4);
+                    hashMap.put(str, bool);
                 }
-                if (!tL_forumTopic.pinned) {
-                    return l10;
+                if (!bool.booleanValue()) {
+                    i13 = 20;
+                } else {
+                    i13 = 0;
                 }
-                return f2.b0.l(3, 0);
-            }
-        }
-        return l10;
-    }
-
-    @Override
-    public final boolean k() {
-        return !this.f44856e.W.isEmpty();
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, f2.n1 n1Var, f2.n1 n1Var2) {
-        int b10;
-        ze1 ze1Var = this.f44856e;
-        ArrayList arrayList = ze1Var.f45158b;
-        if (n1Var.f6436f == n1Var2.f6436f && (b10 = n1Var2.b()) >= 0 && b10 < arrayList.size() && ((pe1) arrayList.get(b10)).f41396c != null && ((pe1) arrayList.get(b10)).f41396c.pinned) {
-            ne1 ne1Var = ze1Var.f45186r;
-            int b11 = n1Var.b();
-            int b12 = n1Var2.b();
-            ze1 ze1Var2 = ne1Var.d;
-            ArrayList arrayList2 = ze1Var2.f45158b;
-            arrayList2.add(b12, (pe1) arrayList2.remove(b11));
-            f2.u0 itemAnimator = ze1Var2.J.getItemAnimator();
-            le1 le1Var = ze1Var2.E0;
-            if (itemAnimator != le1Var) {
-                ze1Var2.J.setItemAnimator(le1Var);
-            }
-            ne1Var.p(b11, b12);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void p(f2.n1 n1Var, int i10) {
-        ze1 ze1Var = this.f44856e;
-        if (i10 == 0) {
-            ArrayList arrayList = ze1Var.f45158b;
-            ArrayList<Integer> arrayList2 = new ArrayList<>();
-            for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                TLRPC.TL_forumTopic tL_forumTopic = ((pe1) arrayList.get(i11)).f41396c;
-                if (tL_forumTopic != null && tL_forumTopic.pinned) {
-                    arrayList2.add(Integer.valueOf(tL_forumTopic.f22444id));
+                int dp4 = AndroidUtilities.dp(i13 + 64);
+                if (((bf1) ze1Var.F().get(i18)).f32951c.f19236id == 1) {
+                    dp2 = dp4;
                 }
-            }
-            ze1Var.getMessagesController().getTopicsController().reorderPinnedTopics(ze1Var.f45155a, arrayList2);
-            return;
-        }
-        ze1Var.J.I0(false);
-        n1Var.f6432a.setPressed(true);
-    }
-
-    @Override
-    public final void q(f2.n1 n1Var) {
-        if (n1Var != null) {
-            we1 we1Var = (we1) n1Var.f6432a;
-            TLRPC.TL_forumTopic tL_forumTopic = we1Var.J;
-            ze1 ze1Var = this.f44856e;
-            if (tL_forumTopic != null) {
-                TopicsController topicsController = ze1Var.getMessagesController().getTopicsController();
-                long j10 = ze1Var.f45155a;
-                TLRPC.TL_forumTopic tL_forumTopic2 = we1Var.J;
-                topicsController.toggleShowTopic(j10, tL_forumTopic2.f22444id, tL_forumTopic2.hidden);
-            }
-            ze1Var.X0 = we1Var;
-            int i10 = xe1.f44578d3;
-            ze1Var.J.z1(!we1Var.J.hidden, we1Var);
-            ze1Var.U0(true, true);
-            TLRPC.TL_forumTopic tL_forumTopic3 = we1Var.U4;
-            if (tL_forumTopic3 != null) {
-                we1Var.setTopicIcon(tL_forumTopic3);
+                if (((bf1) ze1Var.F().get(i18)).f32951c.hidden) {
+                    i16++;
+                }
+                i17 += dp4;
             }
         }
+        if (i16 > 0) {
+            i12 = (((kf1Var.K.getMeasuredHeight() - kf1Var.K.getPaddingTop()) - kf1Var.K.getPaddingBottom()) - i17) + dp2;
+        } else {
+            i12 = 0;
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, i12), 1073741824));
     }
 }

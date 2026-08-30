@@ -1,12 +1,61 @@
 package qd;
 
-import jd.a0;
-public final class l extends a0 {
-    public static final l f46636c = new a0();
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+public class l {
+    public static final AtomicReferenceFieldUpdater f43032a = AtomicReferenceFieldUpdater.newUpdater(l.class, Object.class, "_cur$volatile");
+    private volatile Object _cur$volatile = new n(8, false);
 
-    @Override
-    public final void c(sc.h hVar, Runnable runnable) {
-        e eVar = e.d;
-        eVar.f46626c.b(runnable, k.h);
+    public final boolean a(Runnable runnable) {
+        while (true) {
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f43032a;
+            n nVar = (n) atomicReferenceFieldUpdater.get(this);
+            int a2 = nVar.a(runnable);
+            if (a2 == 0) {
+                return true;
+            }
+            if (a2 != 1) {
+                if (a2 == 2) {
+                    return false;
+                }
+            } else {
+                n c3 = nVar.c();
+                while (!atomicReferenceFieldUpdater.compareAndSet(this, nVar, c3) && atomicReferenceFieldUpdater.get(this) == nVar) {
+                }
+            }
+        }
+    }
+
+    public final void b() {
+        while (true) {
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f43032a;
+            n nVar = (n) atomicReferenceFieldUpdater.get(this);
+            if (nVar.b()) {
+                return;
+            }
+            n c3 = nVar.c();
+            while (!atomicReferenceFieldUpdater.compareAndSet(this, nVar, c3) && atomicReferenceFieldUpdater.get(this) == nVar) {
+            }
+        }
+    }
+
+    public final int c() {
+        n nVar = (n) f43032a.get(this);
+        nVar.getClass();
+        long j10 = n.f43034f.get(nVar);
+        return 1073741823 & (((int) ((j10 & 1152921503533105152L) >> 30)) - ((int) (1073741823 & j10)));
+    }
+
+    public final Object d() {
+        while (true) {
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f43032a;
+            n nVar = (n) atomicReferenceFieldUpdater.get(this);
+            Object d = nVar.d();
+            if (d != n.f43035g) {
+                return d;
+            }
+            n c3 = nVar.c();
+            while (!atomicReferenceFieldUpdater.compareAndSet(this, nVar, c3) && atomicReferenceFieldUpdater.get(this) == nVar) {
+            }
+        }
     }
 }

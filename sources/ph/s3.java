@@ -1,27 +1,24 @@
 package ph;
+public final class s3 implements Runnable {
+    public final int f42304a;
+    public final c5 f42305b;
+    public final dg.b3 f42306c;
 
-import android.app.Activity;
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.ui.LaunchActivity;
-public final class s3 extends org.telegram.ui.ActionBar.o2 {
-    @Override
-    public final Context getContext() {
-        return AndroidUtilities.findActivity(LaunchActivity.C1);
+    public s3(c5 c5Var, dg.b3 b3Var, int i10) {
+        this.f42304a = i10;
+        this.f42305b = c5Var;
+        this.f42306c = b3Var;
     }
 
     @Override
-    public final int getCurrentAccount() {
-        return this.currentAccount;
-    }
-
-    @Override
-    public final Activity getParentActivity() {
-        Activity findActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        if (findActivity == null) {
-            return LaunchActivity.C1;
+    public final void run() {
+        switch (this.f42304a) {
+            case 0:
+                this.f42305b.D0(this.f42306c, true);
+                return;
+            default:
+                this.f42305b.C0(this.f42306c);
+                return;
         }
-        return findActivity;
     }
 }

@@ -1,151 +1,68 @@
 package org.telegram.ui.Cells;
 
-import j$.util.Comparator$CC;
+import android.content.Context;
 import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.id;
-import org.telegram.messenger.tf;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class d6 {
-    public final int f24228a;
-    public boolean f24229b;
-    public boolean f24230c;
-    public int f24231e;
-    public long f24232f;
-    public int f24233g;
-    public final ArrayList d = new ArrayList();
-    public final ArrayList h = new ArrayList();
+import org.telegram.messenger.DialogObject;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.xz0;
+public final class d6 implements n2 {
+    public final org.telegram.ui.ActionBar.p2 f20942a;
+    public final Context f20943b;
+    public final xz0 f20944c;
 
-    public d6(int i10) {
-        this.f24228a = i10;
+    public d6(xz0 xz0Var, org.telegram.ui.ActionBar.p2 p2Var, Context context) {
+        this.f20944c = xz0Var;
+        this.f20942a = p2Var;
+        this.f20943b = context;
     }
 
-    public static void a(d6 d6Var, TLObject tLObject, MessagesStorage messagesStorage, long j10, int i10, ArrayList arrayList) {
-        ArrayList arrayList2 = d6Var.d;
-        int i11 = d6Var.f24228a;
-        if (tLObject instanceof TLRPC.messages_Messages) {
-            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-            MessagesController.getInstance(i11).putUsers(messages_messages.users, false);
-            MessagesController.getInstance(i11).putChats(messages_messages.chats, false);
-            messagesStorage.putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
-            messagesStorage.putMessages(messages_messages, -j10, 3, 0, false, 0, 0L);
-            if (i10 == d6Var.f24231e && !messages_messages.messages.isEmpty()) {
-                arrayList2.clear();
-                Collections.sort(arrayList, Comparator$CC.comparingInt(new jf.d(13)));
-                TLRPC.Message message = (TLRPC.Message) j7.l1.i(1, messages_messages.messages);
-                long j11 = message.grouped_id;
-                if (j11 != 0) {
-                    ArrayList<TLRPC.Message> arrayList3 = messages_messages.messages;
-                    int size = arrayList3.size();
-                    int i12 = 0;
-                    while (i12 < size) {
-                        TLRPC.Message message2 = arrayList3.get(i12);
-                        i12++;
-                        TLRPC.Message message3 = message2;
-                        if (message3.grouped_id == j11) {
-                            arrayList2.add(new MessageObject(i11, message3, false, true));
-                        }
-                    }
-                } else {
-                    arrayList2.add(new MessageObject(i11, message, false, true));
-                }
-                if (!arrayList2.isEmpty()) {
-                    d6Var.c();
-                }
-            }
-        } else if (i10 != d6Var.f24231e) {
-        } else {
-            d6Var.c();
-        }
+    @Override
+    public final boolean b() {
+        return true;
     }
 
-    public static void b(d6 d6Var, int i10, ArrayList arrayList, long j10, int i11, MessagesStorage messagesStorage) {
-        int i12 = d6Var.f24228a;
-        ArrayList arrayList2 = d6Var.d;
-        if (i10 != d6Var.f24231e) {
-            return;
-        }
-        if (!arrayList.isEmpty()) {
-            arrayList2.clear();
-            Collections.sort(arrayList, Comparator$CC.comparingInt(new jf.d(12)));
-            TLRPC.Message message = (TLRPC.Message) arrayList.get(arrayList.size() - 1);
-            long j11 = message.grouped_id;
-            if (j11 != 0) {
-                int size = arrayList.size();
-                int i13 = 0;
-                while (i13 < size) {
-                    Object obj = arrayList.get(i13);
-                    i13++;
-                    TLRPC.Message message2 = (TLRPC.Message) obj;
-                    if (message2.grouped_id == j11) {
-                        arrayList2.add(new MessageObject(i12, message2, false, true));
-                    }
-                }
-            } else {
-                arrayList2.add(new MessageObject(i12, message, false, true));
-            }
-            if (!arrayList2.isEmpty()) {
-                d6Var.c();
-                return;
-            }
-        }
-        TLRPC.TL_channels_getMessages tL_channels_getMessages = new TLRPC.TL_channels_getMessages();
-        tL_channels_getMessages.channel = MessagesController.getInstance(i12).getInputChannel(j10);
-        for (int i14 = 10; i14 >= 0; i14--) {
-            int i15 = i11 - i14;
-            if (i15 >= 0) {
-                tL_channels_getMessages.f22430id.add(Integer.valueOf(i15));
-            }
-        }
-        ConnectionsManager.getInstance(i12).sendRequest(tL_channels_getMessages, new id(d6Var, messagesStorage, j10, i10, arrayList));
-    }
-
+    @Override
     public final void c() {
-        int i10 = 0;
-        this.f24229b = false;
-        this.f24230c = true;
-        ArrayList arrayList = this.h;
-        int size = arrayList.size();
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((Runnable) obj).run();
-        }
-        arrayList.clear();
-    }
-
-    public final void d(TLRPC.UserFull userFull) {
-        ArrayList arrayList = this.d;
-        if (userFull != null && (userFull.flags2 & 64) != 0) {
-            long j10 = userFull.personal_channel_id;
-            int i10 = userFull.personal_channel_message;
-            if (this.f24230c || this.f24229b) {
-                if (this.f24232f == j10 && this.f24233g == i10) {
-                    return;
-                }
-                this.f24230c = false;
-                arrayList.clear();
-            }
-            int i11 = this.f24231e + 1;
-            this.f24231e = i11;
-            this.f24229b = true;
-            this.f24232f = j10;
-            this.f24233g = i10;
-            int i12 = this.f24228a;
-            long clientUserId = UserConfig.getInstance(i12).getClientUserId();
-            MessagesStorage messagesStorage = MessagesStorage.getInstance(i12);
-            messagesStorage.getStorageQueue().postRunnable(new tf(this, i10, messagesStorage, j10, clientUserId, i11));
+        boolean z4;
+        org.telegram.ui.ActionBar.p2 p2Var = this.f20942a;
+        nh.t6 storiesController = p2Var.getMessagesController().getStoriesController();
+        ArrayList arrayList = storiesController.h;
+        if (arrayList.isEmpty()) {
             return;
         }
-        this.f24231e++;
-        this.f24230c = true;
-        arrayList.clear();
-        c();
+        if (storiesController.D(0, DialogObject.getPeerDialogId(((TL_stories.PeerStories) arrayList.get(0)).peer)) != 0) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        ArrayList arrayList2 = new ArrayList();
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            long peerDialogId = DialogObject.getPeerDialogId(((TL_stories.PeerStories) arrayList.get(i10)).peer);
+            if (!z4 || storiesController.D(0, peerDialogId) != 0) {
+                arrayList2.add(Long.valueOf(peerDialogId));
+            }
+        }
+        p2Var.getOrCreateStoryViewer().F(this.f20943b, null, arrayList2, 0, null, null, new nh.c7(this.f20944c), false);
+    }
+
+    @Override
+    public final void e(r2 r2Var) {
+        org.telegram.ui.ActionBar.p2 p2Var = this.f20942a;
+        if (p2Var.getMessagesController().getStoriesController().I(r2Var.getDialogId())) {
+            p2Var.getOrCreateStoryViewer().getClass();
+            p2Var.getOrCreateStoryViewer().D(p2Var.getContext(), r2Var.getDialogId(), new nh.c7(this.f20944c));
+        }
+    }
+
+    @Override
+    public final void a(r2 r2Var) {
+    }
+
+    @Override
+    public final void d(r2 r2Var) {
+    }
+
+    @Override
+    public final void f(r2 r2Var) {
     }
 }

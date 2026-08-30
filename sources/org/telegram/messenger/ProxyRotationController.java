@@ -13,7 +13,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     public static final int DEFAULT_TIMEOUT_INDEX = 1;
     private static final ProxyRotationController INSTANCE = new ProxyRotationController();
     public static final List<Integer> ROTATION_TIMEOUTS = Arrays.asList(5, 10, 15, 30, 60);
-    private Runnable checkProxyAndSwitchRunnable = new ug(this, 4);
+    private Runnable checkProxyAndSwitchRunnable = new xg(this, 4);
     private boolean isCurrentlyChecking;
 
     public static void init() {
@@ -42,22 +42,22 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     }
 
     public static void lambda$new$1(SharedConfig.ProxyInfo proxyInfo, long j10) {
-        AndroidUtilities.runOnUIThread(new qh(proxyInfo, j10, 0));
+        AndroidUtilities.runOnUIThread(new th(proxyInfo, j10, 0));
     }
 
     public void lambda$new$2() {
         this.isCurrentlyChecking = true;
         int i10 = UserConfig.selectedAccount;
-        boolean z10 = false;
+        boolean z4 = false;
         for (int i11 = 0; i11 < SharedConfig.proxyList.size(); i11++) {
             SharedConfig.ProxyInfo proxyInfo = SharedConfig.proxyList.get(i11);
             if (proxyInfo.type != 2 && !proxyInfo.checking && SystemClock.elapsedRealtime() - proxyInfo.availableCheckTime >= 120000) {
                 proxyInfo.checking = true;
                 proxyInfo.proxyCheckPingId = ConnectionsManager.getInstance(i10).checkProxy(proxyInfo.address, proxyInfo.port, proxyInfo.username, proxyInfo.password, proxyInfo.secret, new d(proxyInfo, 11));
-                z10 = true;
+                z4 = true;
             }
         }
-        if (!z10) {
+        if (!z4) {
             this.isCurrentlyChecking = false;
             switchToAvailable();
         }
@@ -73,7 +73,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
             SharedConfig.ProxyInfo proxyInfo = SharedConfig.currentProxy;
             if (proxyInfo == null || proxyInfo.type != 2) {
                 ArrayList arrayList = new ArrayList(SharedConfig.proxyList);
-                Collections.sort(arrayList, new q(26));
+                Collections.sort(arrayList, new s(26));
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {

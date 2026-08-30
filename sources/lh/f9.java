@@ -1,23 +1,30 @@
 package lh;
 
-import android.graphics.Paint;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
 import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.bj0;
-public final class f9 {
-    public View f15601a;
-    public ImageReceiver f15602b;
-    public ImageReceiver f15603c;
-    public bj0 d;
-    public d9 f15604e;
-    public c9 f15605f;
-    public View f15606g;
-    public float h;
-    public float f15607i;
-    public Paint f15608j;
-    public float f15609k;
-    public ImageReceiver f15610l;
-    public h7 f15611m;
-    public boolean f15612n;
-    public int f15613o;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.xn;
+public final class f9 extends ClickableSpan {
+    public final org.telegram.ui.ActionBar.g3[] f12440a;
+    public final long f12441b;
+
+    public f9(org.telegram.ui.ActionBar.g3[] g3VarArr, long j10) {
+        this.f12440a = g3VarArr;
+        this.f12441b = j10;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        this.f12440a[0].dismiss();
+        org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
+        if (U != null) {
+            U.presentFragment(xn.R9(this.f12441b));
+        }
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(false);
+    }
 }

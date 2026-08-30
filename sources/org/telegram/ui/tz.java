@@ -1,27 +1,33 @@
 package org.telegram.ui;
 
+import android.view.KeyEvent;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class tz implements RequestDelegate {
-    public final int f43115a;
-    public final p00 f43116b;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class tz implements TextView.OnEditorActionListener {
+    public final int f38780a;
+    public final AlertDialog$Builder f38781b;
 
-    public tz(p00 p00Var, int i10) {
-        this.f43115a = i10;
-        this.f43116b = p00Var;
+    public tz(AlertDialog$Builder alertDialog$Builder, int i10) {
+        this.f38780a = i10;
+        this.f38781b = alertDialog$Builder;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f43115a) {
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        switch (this.f38780a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.voip.o(19, this.f43116b, tLObject));
-                return;
+                AndroidUtilities.hideKeyboard(textView);
+                this.f38781b.f19503a.d(-1).callOnClick();
+                return false;
+            case 1:
+                AndroidUtilities.hideKeyboard(textView);
+                this.f38781b.f19503a.d(-1).callOnClick();
+                return false;
             default:
-                AndroidUtilities.runOnUIThread(new lq(this.f43116b, tL_error, tLObject, 6));
-                return;
+                AndroidUtilities.hideKeyboard(textView);
+                this.f38781b.f19503a.d(-1).callOnClick();
+                return false;
         }
     }
 }

@@ -14,37 +14,37 @@ public abstract class AbstractSerializedData implements InputSerializedData, Out
     public abstract int length();
 
     @Override
-    public abstract boolean readBool(boolean z10);
+    public abstract boolean readBool(boolean z4);
 
     @Override
-    public abstract byte readByte(boolean z10);
+    public abstract byte readByte(boolean z4);
 
     @Override
-    public abstract byte[] readByteArray(boolean z10);
+    public abstract byte[] readByteArray(boolean z4);
 
     @Override
-    public abstract NativeByteBuffer readByteBuffer(boolean z10);
+    public abstract NativeByteBuffer readByteBuffer(boolean z4);
 
     @Override
-    public abstract void readBytes(byte[] bArr, boolean z10);
+    public abstract void readBytes(byte[] bArr, boolean z4);
 
     @Override
-    public abstract byte[] readData(int i10, boolean z10);
+    public abstract byte[] readData(int i10, boolean z4);
 
     @Override
-    public abstract double readDouble(boolean z10);
+    public abstract double readDouble(boolean z4);
 
     @Override
-    public abstract float readFloat(boolean z10);
+    public abstract float readFloat(boolean z4);
 
     @Override
-    public abstract int readInt32(boolean z10);
+    public abstract int readInt32(boolean z4);
 
     @Override
-    public abstract long readInt64(boolean z10);
+    public abstract long readInt64(boolean z4);
 
     @Override
-    public abstract String readString(boolean z10);
+    public abstract String readString(boolean z4);
 
     @Override
     public abstract int remaining();
@@ -57,7 +57,7 @@ public abstract class AbstractSerializedData implements InputSerializedData, Out
     public abstract void skip(int i10);
 
     @Override
-    public abstract void writeBool(boolean z10);
+    public abstract void writeBool(boolean z4);
 
     @Override
     public abstract void writeByte(byte b10);
@@ -84,7 +84,7 @@ public abstract class AbstractSerializedData implements InputSerializedData, Out
     public abstract void writeDouble(double d);
 
     @Override
-    public abstract void writeFloat(float f9);
+    public abstract void writeFloat(float f10);
 
     @Override
     public abstract void writeInt32(int i10);

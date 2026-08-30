@@ -1,34 +1,42 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-import org.telegram.tgnet.ConnectionsManager;
-public final class zy implements DialogInterface.OnCancelListener {
-    public final int f45351a;
-    public final int f45352b;
-    public final int[] f45353c;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
+public final class zy implements ImageReceiver.ImageReceiverDelegate {
+    public final az f40876a;
+    public final boolean f40877b;
+    public final MessageObject f40878c;
+    public final bz d;
 
-    public zy(int i10, int i11, int[] iArr) {
-        this.f45351a = i11;
-        this.f45352b = i10;
-        this.f45353c = iArr;
+    public zy(bz bzVar, az azVar, boolean z4, MessageObject messageObject) {
+        this.d = bzVar;
+        this.f40876a = azVar;
+        this.f40877b = z4;
+        this.f40878c = messageObject;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        int i10 = this.f45351a;
-        int[] iArr = this.f45353c;
-        int i11 = this.f45352b;
-        switch (i10) {
-            case 0:
-                ArrayList arrayList = ExternalActionActivity.f35532x;
-                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
-                return;
-            default:
-                Pattern pattern = LaunchActivity.f35560x1;
-                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
-                return;
+    public final void didSetImage(ImageReceiver imageReceiver, boolean z4, boolean z10, boolean z11) {
+        az azVar = this.f40876a;
+        if (azVar.f32741r.getLottieAnimation() != null) {
+            azVar.f32741r.getLottieAnimation().L(0, false, true);
+        }
+    }
+
+    @Override
+    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
+        org.telegram.messenger.j5.a(this, i10, str, drawable);
+    }
+
+    @Override
+    public final void onAnimationReady(ImageReceiver imageReceiver) {
+        MessageObject messageObject;
+        if (this.f40877b && (messageObject = this.f40878c) != null && messageObject.isAnimatedAnimatedEmoji() && imageReceiver.getLottieAnimation() != null && imageReceiver.getLottieAnimation().f25176x == null) {
+            try {
+                this.d.D.performHapticFeedback(3, 1);
+            } catch (Exception unused) {
+            }
         }
     }
 }

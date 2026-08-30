@@ -1,62 +1,72 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageSuggestionParams;
-import org.telegram.messenger.Utilities;
-public final class qe implements Utilities.Callback {
-    public final int f41698a;
-    public final tn f41699b;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
+public final class qe implements Runnable {
+    public final int f37730a;
+    public final xn f37731b;
+    public final String f37732c;
 
-    public qe(tn tnVar, int i10) {
-        this.f41698a = i10;
-        this.f41699b = tnVar;
+    public qe(xn xnVar, String str, int i10) {
+        this.f37730a = i10;
+        this.f37731b = xnVar;
+        this.f37732c = str;
     }
 
     @Override
-    public final void run(Object obj) {
-        int i10 = this.f41698a;
-        tn tnVar = this.f41699b;
-        switch (i10) {
+    public final void run() {
+        switch (this.f37730a) {
             case 0:
-                MessageSuggestionParams messageSuggestionParams = (MessageSuggestionParams) obj;
-                tn tnVar2 = this.f41699b;
-                tnVar2.f42768c5 = messageSuggestionParams;
-                tnVar2.f42880l5.messageOwner.suggested_post = messageSuggestionParams.toTl();
-                tnVar2.yb(true, null, tnVar2.f42880l5, null, null, null, false, true);
+                xn.W0(this.f37731b, this.f37732c);
                 return;
             case 1:
-                tnVar.vb(true, false);
-                if (((Boolean) obj).booleanValue()) {
-                    tnVar.finishFragment();
-                    return;
-                }
+                xn.h1(this.f37731b, this.f37732c);
                 return;
             case 2:
-                tnVar.da((String) obj, false);
+                l4.f(this.f37732c, r1.currentAccount, r1.U0, null, this.f37731b.f39968ba);
                 return;
             case 3:
-                tnVar.Db((MessageSuggestionParams) obj);
+                xn xnVar = this.f37731b;
+                String str = this.f37732c;
+                if (str != null) {
+                    xnVar.getClass();
+                    if (str.length() != 0) {
+                        xnVar.getMessagesController().sendBotStart(xnVar.f40009f, str);
+                        return;
+                    }
+                }
+                xnVar.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", xnVar.Q5, null, null, null, false, null, null, null, true, 0, 0, null, false));
                 return;
             case 4:
-                Long l10 = (Long) obj;
-                org.telegram.ui.Components.m21 m21Var = tnVar.N1;
-                if (m21Var != null) {
-                    m21Var.m(l10.longValue(), true);
-                    return;
-                }
+                this.f37731b.la(this.f37732c);
                 return;
             case 5:
-                vr vrVar = tnVar.Z;
-                vrVar.f43717c.add(((org.telegram.ui.ActionBar.w0) obj).getIconView());
+                this.f37731b.da(this.f37732c, false);
                 return;
             case 6:
-                int intValue = ((Integer) obj).intValue();
-                int i11 = tn.Dc;
-                tnVar.Ba(intValue);
+                Activity parentActivity = this.f37731b.getParentActivity();
+                af.g.s(parentActivity, "tel:" + this.f37732c);
+                return;
+            case 7:
+                AndroidUtilities.addToClipboard(this.f37732c);
+                b.m(R.string.PhoneCopied, org.telegram.ui.Components.qc.a0(this.f37731b));
+                return;
+            case 8:
+                xn.u1(this.f37731b, this.f37732c);
+                return;
+            case 9:
+                Activity parentActivity2 = this.f37731b.getParentActivity();
+                af.g.s(parentActivity2, "tel:" + this.f37732c);
+                return;
+            case 10:
+                AndroidUtilities.addToClipboard(this.f37732c);
+                b.m(R.string.PhoneCopied, org.telegram.ui.Components.qc.a0(this.f37731b));
                 return;
             default:
-                int intValue2 = ((Integer) obj).intValue();
-                int i12 = tn.Dc;
-                tnVar.Ba(intValue2);
+                Activity parentActivity3 = this.f37731b.getParentActivity();
+                af.g.s(parentActivity3, "https://fragment.com/username/" + this.f37732c);
                 return;
         }
     }

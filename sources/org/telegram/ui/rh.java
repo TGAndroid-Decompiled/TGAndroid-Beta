@@ -1,39 +1,38 @@
 package org.telegram.ui;
+public final class rh implements Runnable {
+    public final int f38049a = 1;
+    public final int f38050b;
+    public final xn f38051c;
+    public final boolean d;
 
-import android.view.View;
-import j$.util.Objects;
-import java.util.Locale;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-public final class rh implements Utilities.CallbackReturn {
-    public final int f42104a;
-
-    public rh(int i10) {
-        this.f42104a = i10;
+    public rh(int i10, xn xnVar, boolean z4) {
+        this.f38050b = i10;
+        this.f38051c = xnVar;
+        this.d = z4;
     }
 
     @Override
-    public final Object run(Object obj) {
-        boolean z10 = true;
-        switch (this.f42104a) {
+    public final void run() {
+        switch (this.f38049a) {
             case 0:
-                MessageObject messageObject = (MessageObject) obj;
-                return Boolean.valueOf((messageObject == null || messageObject.getFactCheck() == null) ? false : false);
-            case 1:
-                MessageObject messageObject2 = (MessageObject) obj;
-                return Boolean.valueOf((messageObject2 == null || messageObject2.getEffect() == null) ? false : false);
-            case 2:
-                return LocaleController.formatPluralString("Hours", ((Integer) obj).intValue(), new Object[0]);
-            case 3:
-                return LocaleController.formatPluralString("Minutes", ((Integer) obj).intValue(), new Object[0]);
-            case 4:
-                View view = (View) obj;
-                return Boolean.valueOf(((view instanceof org.telegram.ui.Cells.y8) || (view instanceof org.telegram.ui.Cells.x6) || (view instanceof k10) || (view instanceof org.telegram.ui.Cells.s3) || (view instanceof org.telegram.ui.Cells.z1) || Objects.equals(view.getTag(), -33024)) ? false : false);
-            case 5:
-                return Boolean.valueOf(org.telegram.ui.Components.k51.K(((Integer) obj).intValue()));
+                boolean z4 = this.d;
+                this.f38051c.yc(this.f38050b, z4);
+                return;
             default:
-                return String.format(Locale.US, "%.1f%%", Float.valueOf(((Integer) obj).intValue() / 10.0f));
+                int i10 = this.f38050b;
+                xn xnVar = this.f38051c;
+                if (i10 != 2) {
+                    xnVar.U9();
+                    xnVar.Yb();
+                }
+                sh.p0.f(org.telegram.ui.Components.qc.a0(xnVar), i10, this.d);
+                return;
         }
+    }
+
+    public rh(xn xnVar, boolean z4, int i10) {
+        this.f38051c = xnVar;
+        this.d = z4;
+        this.f38050b = i10;
     }
 }

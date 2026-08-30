@@ -1,11 +1,28 @@
 package t7;
 
-import z5.l;
-public final class a {
-    public final j6.a f48166a;
+import android.os.BadParcelableException;
+import android.os.Parcel;
+import android.os.Parcelable;
+import kh.a2;
+public abstract class a {
+    public static final int f44615a = 0;
 
-    public a(j6.a aVar) {
-        l.h(aVar);
-        this.f48166a = aVar;
+    static {
+        a.class.getClassLoader();
+    }
+
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
+        }
+        return (Parcelable) creator.createFromParcel(parcel);
+    }
+
+    public static void b(Parcel parcel) {
+        int dataAvail = parcel.dataAvail();
+        if (dataAvail <= 0) {
+            return;
+        }
+        throw new BadParcelableException(a2.j(dataAvail, "Parcel data not fully consumed, unread size: "));
     }
 }

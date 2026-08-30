@@ -1,9 +1,17 @@
 package h7;
-public abstract class o {
-    public static int a(long j10) {
-        if (j10 <= 2147483647L && j10 >= -2147483648L) {
-            return (int) j10;
+public final class o {
+    public final boolean equals(Object obj) {
+        if (obj == this || (obj instanceof o)) {
+            return true;
         }
-        throw new RuntimeException(com.google.android.recaptcha.internal.a.l(j10, "A cast to int has gone wrong. Please contact the mp4parser discussion group (", ")"));
+        return false;
+    }
+
+    public final int hashCode() {
+        return -228219804;
+    }
+
+    public final String toString() {
+        return "MLKitLoggingOptions{libraryName=common, enableFirelog=true, firelogEventType=1}";
     }
 }

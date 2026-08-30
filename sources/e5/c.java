@@ -1,138 +1,75 @@
 package e5;
 
-import android.content.Context;
-import android.graphics.Matrix;
-import android.view.TextureView;
-import android.view.View;
-import android.widget.FrameLayout;
-public class c extends FrameLayout {
-    public final b f5824a;
-    public float f5825b;
-    public int f5826c;
-    public boolean d;
-    public int f5827e;
-    public final Matrix f5828f;
+import h5.w;
+import java.util.regex.Pattern;
+public final class c {
+    public static final Pattern f5109c = Pattern.compile("\\[voice=\"([^\"]*)\"\\]");
+    public static final Pattern d = Pattern.compile("^((?:[0-9]*\\.)?[0-9]+)(px|em|%)$");
+    public final w f5110a = new w();
+    public final StringBuilder f5111b = new StringBuilder();
 
-    public c(Context context) {
-        super(context);
-        this.f5828f = new Matrix();
-        this.f5826c = 0;
-        this.f5824a = new b(this, 0);
-    }
-
-    public final void a(float f9, int i10) {
-        if (this.f5825b != f9) {
-            this.f5825b = f9;
-            this.f5827e = i10;
-            requestLayout();
-        }
-    }
-
-    public float getAspectRatio() {
-        return this.f5825b;
-    }
-
-    public int getResizeMode() {
-        return this.f5826c;
-    }
-
-    public int getVideoRotation() {
-        return this.f5827e;
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        float f9;
-        float f10;
-        super.onMeasure(i10, i11);
-        if (this.f5825b > 0.0f) {
-            int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
-            float f11 = measuredWidth;
-            float f12 = measuredHeight;
-            float f13 = (this.f5825b / (f11 / f12)) - 1.0f;
-            float abs = Math.abs(f13);
-            b bVar = this.f5824a;
-            if (abs <= 0.01f) {
-                if (!bVar.f5822b) {
-                    bVar.f5822b = true;
-                    ((c) bVar.f5823c).post(bVar);
-                    return;
-                }
-                return;
+    public static String a(w wVar, StringBuilder sb) {
+        boolean z4 = false;
+        sb.setLength(0);
+        int i10 = wVar.f7001b;
+        int i11 = wVar.f7002c;
+        while (i10 < i11 && !z4) {
+            char c3 = (char) wVar.f7000a[i10];
+            if ((c3 < 'A' || c3 > 'Z') && ((c3 < 'a' || c3 > 'z') && ((c3 < '0' || c3 > '9') && c3 != '#' && c3 != '-' && c3 != '.' && c3 != '_'))) {
+                z4 = true;
+            } else {
+                i10++;
+                sb.append(c3);
             }
-            int i12 = this.f5826c;
-            if (i12 != 0) {
-                if (i12 != 1) {
-                    if (i12 != 2) {
-                        if (i12 != 3) {
-                            if (i12 == 4) {
-                                if (f13 > 0.0f) {
-                                    f9 = this.f5825b;
+        }
+        wVar.G(i10 - wVar.f7001b);
+        return sb.toString();
+    }
+
+    public static String b(w wVar, StringBuilder sb) {
+        c(wVar);
+        if (wVar.a() == 0) {
+            return null;
+        }
+        String a2 = a(wVar, sb);
+        if (!"".equals(a2)) {
+            return a2;
+        }
+        return "" + ((char) wVar.u());
+    }
+
+    public static void c(w wVar) {
+        while (true) {
+            for (boolean z4 = true; wVar.a() > 0 && z4; z4 = false) {
+                int i10 = wVar.f7001b;
+                byte[] bArr = wVar.f7000a;
+                byte b10 = bArr[i10];
+                char c3 = (char) b10;
+                if (c3 != '\t' && c3 != '\n' && c3 != '\f' && c3 != '\r' && c3 != ' ') {
+                    int i11 = wVar.f7002c;
+                    int i12 = i10 + 2;
+                    if (i12 <= i11) {
+                        int i13 = i10 + 1;
+                        if (b10 == 47 && bArr[i13] == 42) {
+                            while (true) {
+                                int i14 = i12 + 1;
+                                if (i14 >= i11) {
+                                    break;
+                                } else if (((char) bArr[i12]) == '*' && ((char) bArr[i14]) == '/') {
+                                    i12 += 2;
+                                    i11 = i12;
                                 } else {
-                                    f10 = this.f5825b;
+                                    i12 = i14;
                                 }
                             }
-                        } else if (f13 <= 0.0f) {
-                            f10 = this.f5825b;
-                        } else {
-                            f9 = this.f5825b;
+                            wVar.G(i11 - wVar.f7001b);
                         }
-                    } else {
-                        f9 = this.f5825b;
                     }
-                    measuredWidth = (int) (f12 * f9);
                 } else {
-                    f10 = this.f5825b;
-                }
-                measuredHeight = (int) (f11 / f10);
-            } else if (f13 > 0.0f) {
-                f10 = this.f5825b;
-                measuredHeight = (int) (f11 / f10);
-            } else {
-                f9 = this.f5825b;
-                measuredWidth = (int) (f12 * f9);
-            }
-            if (!bVar.f5822b) {
-                bVar.f5822b = true;
-                ((c) bVar.f5823c).post(bVar);
-            }
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight, 1073741824));
-            int childCount = getChildCount();
-            for (int i13 = 0; i13 < childCount; i13++) {
-                View childAt = getChildAt(i13);
-                if (childAt instanceof TextureView) {
-                    Matrix matrix = this.f5828f;
-                    matrix.reset();
-                    float width = getWidth() / 2;
-                    float height = getHeight() / 2;
-                    matrix.postRotate(this.f5827e, width, height);
-                    int i14 = this.f5827e;
-                    if (i14 == 90 || i14 == 270) {
-                        float height2 = getHeight() / getWidth();
-                        matrix.postScale(1.0f / height2, height2, width, height);
-                    }
-                    ((TextureView) childAt).setTransform(matrix);
-                    return;
+                    wVar.G(1);
                 }
             }
-        }
-    }
-
-    public void setDrawingReady(boolean z10) {
-        if (this.d == z10) {
             return;
         }
-        this.d = z10;
-    }
-
-    public void setResizeMode(int i10) {
-        if (this.f5826c != i10) {
-            this.f5826c = i10;
-            requestLayout();
-        }
-    }
-
-    public void setAspectRatioListener(a aVar) {
     }
 }

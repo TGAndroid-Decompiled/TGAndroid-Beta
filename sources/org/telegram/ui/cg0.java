@@ -1,49 +1,54 @@
 package org.telegram.ui;
-
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.RadialProgressView;
 public final class cg0 implements Runnable {
-    public final int f37101a;
-    public final dg0 f37102b;
-    public final tf0 f37103c;
+    public final int f33368a;
+    public final mg0 f33369b;
 
-    public cg0(int i10, tf0 tf0Var, dg0 dg0Var) {
-        this.f37101a = i10;
-        this.f37102b = dg0Var;
-        this.f37103c = tf0Var;
+    public cg0(mg0 mg0Var, int i10) {
+        this.f33368a = i10;
+        this.f33369b = mg0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f37101a;
-        tf0 tf0Var = this.f37103c;
-        dg0 dg0Var = this.f37102b;
-        switch (i10) {
+        switch (this.f33368a) {
             case 0:
-                int i11 = tf0.A;
-                tf0Var.a();
-                AndroidUtilities.runOnUIThread(new cg0(1, tf0Var, dg0Var), 150L);
+                mg0 mg0Var = this.f33369b;
+                qj0 qj0Var = mg0Var.f36293a;
+                ng0 ng0Var = mg0Var.S;
+                jg0 jg0Var = mg0Var.f36294b;
+                if (jg0Var != null) {
+                    if (ng0Var.Z) {
+                        qj0Var.clearFocus();
+                        jg0Var.clearFocus();
+                    } else if (qj0Var.length() != 0) {
+                        jg0Var.requestFocus();
+                        if (!mg0Var.O) {
+                            jg0Var.setSelection(jg0Var.length());
+                        }
+                        ng0.T0(ng0Var, jg0Var);
+                    } else {
+                        qj0Var.requestFocus();
+                        ng0.T0(ng0Var, qj0Var);
+                    }
+                }
+                if (ng0Var.C == 0) {
+                    mg0Var.t(false);
+                    return;
+                }
+                return;
+            case 1:
+                mg0 mg0Var2 = this.f33369b;
+                mg0Var2.postDelayed(new cg0(mg0Var2, 2), 200L);
+                return;
+            case 2:
+                this.f33369b.h(null);
+                return;
+            case 3:
+                this.f33369b.t(true);
                 return;
             default:
-                eg0 eg0Var = dg0Var.f37540a;
-                eg0Var.h(null);
-                RadialProgressView radialProgressView = eg0Var.R.J.d;
-                RadialProgressView radialProgressView2 = tf0Var.h.d;
-                radialProgressView.getClass();
-                radialProgressView.f26502a = radialProgressView2.f26502a;
-                radialProgressView.f26503b = radialProgressView2.f26503b;
-                radialProgressView.D = radialProgressView2.D;
-                radialProgressView.E = radialProgressView2.E;
-                radialProgressView.F = radialProgressView2.F;
-                radialProgressView.f26504c = radialProgressView2.f26504c;
-                radialProgressView.f26507n = radialProgressView2.f26507n;
-                radialProgressView.f26505e = radialProgressView2.f26505e;
-                radialProgressView.f26512y = radialProgressView2.f26512y;
-                radialProgressView.B = radialProgressView2.B;
-                radialProgressView.C = radialProgressView2.C;
-                radialProgressView.d = radialProgressView2.d;
-                radialProgressView.A = radialProgressView2.A;
-                radialProgressView.b(85L);
+                mg0 mg0Var3 = this.f33369b;
+                ng0.T0(mg0Var3.S, mg0Var3.f36294b);
                 return;
         }
     }

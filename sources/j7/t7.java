@@ -1,62 +1,52 @@
 package j7;
-public enum t7 implements f0 {
-    NO_ERROR(0),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(1),
-    INCOMPATIBLE_OUTPUT(2),
-    INCOMPATIBLE_TFLITE_VERSION(3),
-    MISSING_OP(4),
-    DATA_TYPE_ERROR(6),
-    TFLITE_INTERNAL_ERROR(7),
-    TFLITE_UNKNOWN_ERROR(8),
-    REMOTE_MODEL_INVALID(9),
-    TIME_OUT_FETCHING_MODEL_METADATA(5),
-    MODEL_NOT_DOWNLOADED(100),
-    URI_EXPIRED(101),
-    NO_NETWORK_CONNECTION(102),
-    METERED_NETWORK(103),
-    DOWNLOAD_FAILED(104),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(105),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(106),
-    REMOTE_MODEL_INVALID(107),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(108),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(109),
-    REMOTE_MODEL_INVALID(110),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(111),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(112),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(113),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(114),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(115),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(116),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(201),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(202),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(203),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(204),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(205),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(206),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(207),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(301),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(302),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(303),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(304),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(305),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(400),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(401),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(402),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(403),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(404),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(405),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(406),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(407),
-    UNKNOWN_ERROR(9999);
-    
-    public final int f11203a;
-
-    t7(int i10) {
-        this.f11203a = i10;
+public abstract class t7 {
+    public static void a(int i10, int i11) {
+        String a2;
+        if (i10 >= 0 && i10 < i11) {
+            return;
+        }
+        if (i10 >= 0) {
+            if (i11 < 0) {
+                throw new IllegalArgumentException(kh.a2.j(i11, "negative size: "));
+            }
+            a2 = u7.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
+        } else {
+            a2 = u7.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
+        }
+        throw new IndexOutOfBoundsException(a2);
     }
 
-    @Override
-    public final int zza() {
-        return this.f11203a;
+    public static void b(int i10, int i11) {
+        if (i10 >= 0 && i10 <= i11) {
+            return;
+        }
+        throw new IndexOutOfBoundsException(d(i10, i11, "index"));
+    }
+
+    public static void c(int i10, int i11, int i12) {
+        String d;
+        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
+            return;
+        }
+        if (i10 >= 0 && i10 <= i12) {
+            if (i11 >= 0 && i11 <= i12) {
+                d = u7.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
+            } else {
+                d = d(i11, i12, "end index");
+            }
+        } else {
+            d = d(i10, i12, "start index");
+        }
+        throw new IndexOutOfBoundsException(d);
+    }
+
+    public static String d(int i10, int i11, String str) {
+        if (i10 < 0) {
+            return u7.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
+        }
+        if (i11 >= 0) {
+            return u7.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
+        }
+        throw new IllegalArgumentException(kh.a2.j(i11, "negative size: "));
     }
 }

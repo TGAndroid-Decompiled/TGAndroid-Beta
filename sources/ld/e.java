@@ -1,31 +1,13 @@
 package ld;
-public final class e extends f {
-    public final Throwable f15185a;
 
-    public e(Throwable th2) {
-        this.f15185a = th2;
-    }
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+public final class e {
+    public static final AtomicIntegerFieldUpdater f11871b = AtomicIntegerFieldUpdater.newUpdater(e.class, "notCompletedCount$volatile");
+    public final h0[] f11872a;
+    private volatile int notCompletedCount$volatile;
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof e) {
-            if (kotlin.jvm.internal.j.a(this.f15185a, ((e) obj).f15185a)) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        Throwable th2 = this.f15185a;
-        if (th2 != null) {
-            return th2.hashCode();
-        }
-        return 0;
-    }
-
-    @Override
-    public final String toString() {
-        return "Closed(" + this.f15185a + ')';
+    public e(h0[] h0VarArr) {
+        this.f11872a = h0VarArr;
+        this.notCompletedCount$volatile = h0VarArr.length;
     }
 }

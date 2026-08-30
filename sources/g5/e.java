@@ -1,8 +1,13 @@
 package g5;
+
+import android.os.Handler;
 public final class e {
-    public d f7039a;
-    public d f7040b;
-    public boolean f7041c;
-    public long d;
-    public int f7042e;
+    public final Handler f6369a;
+    public final k3.f f6370b;
+    public boolean f6371c;
+
+    public e(Handler handler, k3.f fVar) {
+        this.f6369a = handler;
+        this.f6370b = fVar;
+    }
 }

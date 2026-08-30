@@ -1,4 +1,29 @@
 package b7;
-public abstract class d {
-    public static final com.google.android.gms.common.api.e f1942a = new com.google.android.gms.common.api.e("AppDataSearch.LIGHTWEIGHT_API", new b6.b(1), new Object());
+public final class d extends f {
+    public static final d f1674a = new Object();
+
+    @Override
+    public final Object a() {
+        throw new IllegalStateException("Optional.get() cannot be called on an absent value");
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return 2040732332;
+    }
+
+    public final String toString() {
+        return "Optional.absent()";
+    }
 }

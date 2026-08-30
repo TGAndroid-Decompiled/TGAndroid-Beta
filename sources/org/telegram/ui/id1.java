@@ -1,29 +1,24 @@
 package org.telegram.ui;
+public final class id1 implements Runnable {
+    public final int f35097a;
+    public final rd1 f35098b;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class id1 extends AnimatorListenerAdapter {
-    public final int f39212a;
-    public final md1 f39213b;
-
-    public id1(md1 md1Var, int i10) {
-        this.f39212a = i10;
-        this.f39213b = md1Var;
+    public id1(rd1 rd1Var, int i10) {
+        this.f35097a = i10;
+        this.f35098b = rd1Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f39212a) {
+    public final void run() {
+        switch (this.f35097a) {
             case 0:
-                md1 md1Var = this.f39213b;
-                md1Var.v = 0;
-                md1Var.f40534n.setVisibility(8);
+                this.f35098b.c(false);
                 return;
             case 1:
-                this.f39213b.v = 0;
+                super/*android.app.Dialog*/.dismiss();
                 return;
             default:
-                this.f39213b.B.setVisibility(8);
+                this.f35098b.c(false);
                 return;
         }
     }

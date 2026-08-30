@@ -1,29 +1,50 @@
 package org.telegram.messenger.voip;
 
+import android.content.Context;
 import java.io.File;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.voip.VoIPDebugToSend;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class l implements Runnable {
-    public final int f21973a;
-    public final Object f21974b;
-    public final Object f21975c;
+    public final int f18799a;
+    public final Object f18800b;
+    public final Object f18801c;
     public final Object d;
+    public final Object e;
 
-    public l(Object obj, Object obj2, Object obj3, int i10) {
-        this.f21973a = i10;
-        this.f21974b = obj;
-        this.f21975c = obj2;
+    public l(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
+        this.f18799a = i10;
+        this.f18800b = obj;
+        this.f18801c = obj2;
         this.d = obj3;
+        this.e = obj4;
     }
 
     @Override
     public final void run() {
-        switch (this.f21973a) {
+        switch (this.f18799a) {
             case 0:
-                VoIPDebugToSend.c((VoIPDebugToSend) this.f21974b, (File) this.f21975c, (TL_phone.saveCallDebug) this.d);
+                VoIPDebugToSend.d((VoIPDebugToSend) this.f18800b, (VoIPDebugToSend.Data) this.f18801c, (File) this.d, (TL_phone.saveCallDebug) this.e);
+                return;
+            case 1:
+                ((NativeInstance) this.f18800b).lambda$onAudioLevelsUpdated$1((int[]) this.f18801c, (float[]) this.d, (boolean[]) this.e);
+                return;
+            case 2:
+                VoIPPreNotificationService.lambda$acknowledge$2((TLObject) this.f18800b, (TLRPC.TL_error) this.f18801c, (Context) this.d, (Runnable) this.e);
+                return;
+            case 3:
+                ((VoIPService) this.f18800b).lambda$startConferenceGroupCall$44((TLObject) this.f18801c, (TL_phone.PhoneCall) this.d, (TL_phone.exportGroupCallInvite) this.e);
+                return;
+            case 4:
+                ((VoIPService) this.f18800b).lambda$startOutgoingCall$9((TLRPC.TL_error) this.f18801c, (TLObject) this.d, (byte[]) this.e);
+                return;
+            case 5:
+                ((VoIPService) this.f18800b).lambda$startGroupCheckShortpoll$63((TLRPC.TL_error) this.f18801c, (TLObject) this.d, (TL_phone.checkGroupCall) this.e);
                 return;
             default:
-                ((VoIPService) this.f21974b).lambda$startConferenceGroupCall$53((TLRPC.TL_error) this.f21975c, (String) this.d);
+                ((VoIPService) this.f18800b).lambda$startConferenceGroupCall$31((TLObject) this.f18801c, (AccountInstance) this.d, (TLRPC.TL_error) this.e);
                 return;
         }
     }

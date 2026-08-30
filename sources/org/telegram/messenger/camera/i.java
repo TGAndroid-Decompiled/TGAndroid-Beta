@@ -1,46 +1,46 @@
 package org.telegram.messenger.camera;
 
 import java.io.File;
-import org.telegram.ui.Cells.a2;
-import org.telegram.ui.Cells.d2;
+import org.telegram.ui.Cells.b2;
+import org.telegram.ui.Cells.e2;
 public final class i implements Runnable {
-    public final int f19911a = 0;
-    public final boolean f19912b;
-    public final boolean f19913c;
+    public final int f16948a = 0;
+    public final boolean f16949b;
+    public final boolean f16950c;
     public final Object d;
-    public final Object f19914e;
+    public final Object e;
 
-    public i(CameraController cameraController, Object obj, boolean z10, boolean z11) {
+    public i(CameraController cameraController, Object obj, boolean z4, boolean z10) {
         this.d = cameraController;
-        this.f19914e = obj;
-        this.f19912b = z10;
-        this.f19913c = z11;
+        this.e = obj;
+        this.f16949b = z4;
+        this.f16950c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19911a) {
+        switch (this.f16948a) {
             case 0:
-                ((CameraController) this.d).lambda$stopVideoRecording$17(this.f19914e, this.f19912b, this.f19913c);
+                ((CameraController) this.d).lambda$stopVideoRecording$17(this.e, this.f16949b, this.f16950c);
                 return;
             default:
-                String str = (String) this.f19914e;
-                d2 d2Var = ((a2) this.d).f24068b;
-                d2Var.W = false;
-                d2Var.f24203a0 = str;
+                String str = (String) this.e;
+                e2 e2Var = ((b2) this.d).f20861b;
+                e2Var.f20984a0 = false;
+                e2Var.f20986b0 = str;
                 if (str == null) {
-                    d2Var.f24203a0 = "";
+                    e2Var.f20986b0 = "";
                 }
-                d2Var.f24205b0 = this.f19912b;
-                d2Var.f(this.f19913c, true);
+                e2Var.f20988c0 = this.f16949b;
+                e2Var.f(this.f16950c, true);
                 return;
         }
     }
 
-    public i(a2 a2Var, String str, File file, boolean z10, boolean z11) {
-        this.d = a2Var;
-        this.f19914e = str;
-        this.f19912b = z10;
-        this.f19913c = z11;
+    public i(b2 b2Var, String str, File file, boolean z4, boolean z10) {
+        this.d = b2Var;
+        this.e = str;
+        this.f16949b = z4;
+        this.f16950c = z10;
     }
 }

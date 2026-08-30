@@ -1,54 +1,101 @@
 package lh;
 
-import j$.util.DesugarArrays;
-import j$.util.stream.Collectors;
-import org.telegram.messenger.FileLog;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.pd;
-public abstract class s {
-    public static int[] a() {
-        return new int[]{10000, 3600, 400, 20, -10787210, -8681059, -14341066, 2000, 1800, 280, 10, -2013375, -1482439, -7666429, 500, 900, 200, 7, -1214690, -1214690, -6606592, 250, 600, 150, 4, -1926647, -1926647, -6668800, 100, 300, 110, 3, -12539616, -12539616, -15244800, 50, 120, 80, 2, -12147733, -12147733, -16756594, 10, 60, 60, 1, -6988581, -6988581, -11991141, 0, 30, 30, 0, -6988581, -6988581, -11991141};
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+public final class s implements RequestDelegate {
+    public final int f13047a;
+    public final b0 f13048b;
+
+    public s(b0 b0Var, int i10) {
+        this.f13047a = i10;
+        this.f13048b = b0Var;
     }
 
-    public static int b(int i10, int i11, int i12) {
-        int[] iArr = MessagesController.getInstance(i10).starsGroupcallMessageLimits;
-        for (int i13 = 0; i13 < iArr.length / 7; i13++) {
-            int i14 = i13 * 7;
-            if (i11 >= iArr[i14]) {
-                return iArr[i14 + 1 + i12];
-            }
+    @Override
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f13047a) {
+            case 0:
+                final b0 b0Var = this.f13048b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                b0 b0Var2 = b0Var;
+                                b0Var2.getClass();
+                                b0Var2.f12137j = new ArrayList();
+                                b0Var2.f12136i = false;
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof Vector) {
+                                    Vector vector = (Vector) tLObject2;
+                                    for (int i10 = 0; i10 < vector.objects.size(); i10++) {
+                                        b0Var2.f12137j.add((TLRPC.User) vector.objects.get(i10));
+                                    }
+                                    MessagesController.getInstance(b0Var2.f12131a).putUsers(b0Var2.f12137j, false);
+                                    return;
+                                }
+                                return;
+                            default:
+                                b0 b0Var3 = b0Var;
+                                int i11 = b0Var3.f12131a;
+                                b0Var3.f12139l = new ArrayList();
+                                b0Var3.f12138k = false;
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TLRPC.messages_Chats) {
+                                    TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) tLObject3;
+                                    MessagesController.getInstance(i11).putChats(messages_chats.chats, false);
+                                    b0Var3.f12139l.addAll(messages_chats.chats);
+                                }
+                                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.adminedChannelsLoaded, new Object[0]);
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final b0 b0Var2 = this.f13048b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                b0 b0Var22 = b0Var2;
+                                b0Var22.getClass();
+                                b0Var22.f12137j = new ArrayList();
+                                b0Var22.f12136i = false;
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof Vector) {
+                                    Vector vector = (Vector) tLObject2;
+                                    for (int i10 = 0; i10 < vector.objects.size(); i10++) {
+                                        b0Var22.f12137j.add((TLRPC.User) vector.objects.get(i10));
+                                    }
+                                    MessagesController.getInstance(b0Var22.f12131a).putUsers(b0Var22.f12137j, false);
+                                    return;
+                                }
+                                return;
+                            default:
+                                b0 b0Var3 = b0Var2;
+                                int i11 = b0Var3.f12131a;
+                                b0Var3.f12139l = new ArrayList();
+                                b0Var3.f12138k = false;
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TLRPC.messages_Chats) {
+                                    TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) tLObject3;
+                                    MessagesController.getInstance(i11).putChats(messages_chats.chats, false);
+                                    b0Var3.f12139l.addAll(messages_chats.chats);
+                                }
+                                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.adminedChannelsLoaded, new Object[0]);
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-        return 0;
-    }
-
-    public static int[] c(org.telegram.tgnet.TLRPC.TL_jsonArray r13) {
-        throw new UnsupportedOperationException("Method not decompiled: lh.s.c(org.telegram.tgnet.TLRPC$TL_jsonArray):int[]");
-    }
-
-    public static int[] d(String str) {
-        if (str != null && str.length() != 0) {
-            try {
-                return DesugarArrays.stream(str.split(",")).mapToInt(new org.telegram.messenger.d4(1)).toArray();
-            } catch (Exception e10) {
-                FileLog.e(e10);
-                return a();
-            }
-        }
-        return a();
-    }
-
-    public static boolean e(int[] iArr, int[] iArr2) {
-        if (iArr2 != null && iArr.length == iArr2.length) {
-            for (int i10 = 0; i10 < iArr.length; i10++) {
-                if (iArr[i10] == iArr2[i10]) {
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public static String f(int[] iArr) {
-        return (String) DesugarArrays.stream(iArr).mapToObj(new pd(0)).collect(Collectors.joining(","));
     }
 }

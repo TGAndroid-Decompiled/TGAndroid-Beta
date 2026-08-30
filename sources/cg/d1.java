@@ -1,341 +1,614 @@
 package cg;
 
 import android.animation.ValueAnimator;
-import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import bg.x2;
-import bg.z2;
-import i7.f6;
-import i7.h6;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.x3;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.aj0;
-import org.telegram.ui.Components.b90;
-import org.telegram.ui.Components.d6;
-import org.telegram.ui.Components.jr;
-import org.telegram.ui.Components.np;
-import org.telegram.ui.Components.o6;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.qq;
-public class d1 extends FrameLayout implements b90 {
-    public boolean A;
-    public boolean B;
-    public qq C;
-    public boolean D;
+import android.opengl.GLES20;
+import j7.n5;
+import j7.p5;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+import java.util.zip.Inflater;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.ba;
+import org.telegram.ui.Components.ha;
+import org.telegram.ui.Components.jv0;
+public final class d1 {
+    public final Bitmap A;
+    public final int B;
+    public Bitmap C;
+    public g2 D;
     public boolean E;
-    public final d6 F;
-    public final d6 G;
-    public np H;
+    public final ba F;
+    public boolean H;
     public float I;
-    public boolean J;
+    public float J;
     public ValueAnimator K;
-    public final Paint f3089a;
-    public float f3090b;
-    public boolean f3091c;
-    public final b1 d;
-    public final b1 f3092e;
-    public final int f3093f;
-    public boolean h;
-    public float f3094n;
-    public final x2 f3095r;
-    public ValueAnimator f3096s;
-    public final Path v;
-    public final org.telegram.ui.Components.voip.h f3097w;
-    public boolean f3098x;
-    public final aj0 f3099y;
+    public ValueAnimator L;
+    public Paint M;
+    public o5.i f2334a;
+    public e1 f2335b;
+    public s1 f2336c;
+    public s1 d;
+    public p1 f2337f;
+    public final jv0 f2338g;
+    public RectF h;
+    public m f2339i;
+    public g2 f2341k;
+    public g2 f2342l;
+    public final ByteBuffer f2343m;
+    public final ByteBuffer f2344n;
+    public int f2345o;
+    public int f2346p;
+    public int f2347q;
+    public Map f2348r;
+    public int f2349s;
+    public final ByteBuffer f2351u;
+    public boolean v;
+    public b4.e0 f2352w;
+    public final float[] f2353x;
+    public float[] f2354y;
+    public g2 f2355z;
+    public final HashMap f2340j = new HashMap();
+    public final int[] f2350t = new int[1];
+    public boolean G = false;
+    public final i1 e = new Object();
 
-    public d1(Context context, c6 c6Var, boolean z10) {
-        this(AndroidUtilities.dp(8.0f), context, c6Var, z10);
+    public d1(jv0 jv0Var, Bitmap bitmap, int i10, ba baVar) {
+        this.F = baVar;
+        this.f2338g = jv0Var;
+        this.A = bitmap;
+        this.B = i10;
+        this.f2351u = ByteBuffer.allocateDirect(((int) jv0Var.f26052a) * ((int) jv0Var.f26053b) * 4);
+        this.f2353x = n5.b(jv0Var.f26052a, jv0Var.f26053b);
+        if (this.f2343m == null) {
+            ByteBuffer allocateDirect = ByteBuffer.allocateDirect(32);
+            this.f2343m = allocateDirect;
+            allocateDirect.order(ByteOrder.nativeOrder());
+        }
+        this.f2343m.putFloat(0.0f);
+        this.f2343m.putFloat(0.0f);
+        this.f2343m.putFloat(jv0Var.f26052a);
+        this.f2343m.putFloat(0.0f);
+        this.f2343m.putFloat(0.0f);
+        this.f2343m.putFloat(jv0Var.f26053b);
+        this.f2343m.putFloat(jv0Var.f26052a);
+        this.f2343m.putFloat(jv0Var.f26053b);
+        this.f2343m.rewind();
+        if (this.f2344n == null) {
+            ByteBuffer allocateDirect2 = ByteBuffer.allocateDirect(32);
+            this.f2344n = allocateDirect2;
+            allocateDirect2.order(ByteOrder.nativeOrder());
+            allocateDirect2.putFloat(0.0f);
+            allocateDirect2.putFloat(0.0f);
+            allocateDirect2.putFloat(1.0f);
+            allocateDirect2.putFloat(0.0f);
+            allocateDirect2.putFloat(0.0f);
+            allocateDirect2.putFloat(1.0f);
+            allocateDirect2.putFloat(1.0f);
+            allocateDirect2.putFloat(1.0f);
+            allocateDirect2.rewind();
+        }
     }
 
-    public final void a(String str, View.OnClickListener onClickListener, boolean z10) {
-        if (!this.A && z10) {
-            z10 = true;
+    public final void a(boolean z4) {
+        int i10 = this.f2345o;
+        int[] iArr = this.f2350t;
+        if (i10 != 0) {
+            iArr[0] = i10;
+            GLES20.glDeleteFramebuffers(1, iArr, 0);
+            this.f2345o = 0;
         }
-        this.A = true;
-        b1 b1Var = this.d;
-        if (z10 && b1Var.f31265c.f()) {
-            b1Var.a();
+        g2 g2Var = this.f2341k;
+        if (g2Var != null) {
+            g2Var.a(z4);
         }
-        b1Var.c(str, z10, true);
-        x2 x2Var = this.f3095r;
-        x2Var.setContentDescription(str);
-        if (!this.E) {
-            x2Var.setOnClickListener(onClickListener);
+        g2 g2Var2 = this.D;
+        if (g2Var2 != null) {
+            g2Var2.a(z4);
         }
-    }
-
-    @Override
-    public final boolean b() {
-        return this.J;
-    }
-
-    public final void c(CharSequence charSequence, boolean z10, boolean z11) {
-        this.h = true;
-        this.f3098x = z10;
-        b1 b1Var = this.f3092e;
-        b1Var.c(charSequence, z11, true);
-        b1Var.setContentDescription(charSequence);
-        d(z11);
-    }
-
-    public final void d(boolean z10) {
-        ValueAnimator valueAnimator = this.f3096s;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.f3096s.cancel();
+        int i11 = this.f2346p;
+        if (i11 != 0) {
+            iArr[0] = i11;
+            GLES20.glDeleteTextures(1, iArr, 0);
+            this.f2346p = 0;
         }
-        float f9 = 0.0f;
-        if (!z10) {
-            if (this.h) {
-                f9 = 1.0f;
+        HashMap hashMap = this.f2340j;
+        for (g2 g2Var3 : hashMap.values()) {
+            if (g2Var3 != null) {
+                g2Var3.a(true);
             }
-            this.f3094n = f9;
-            e();
+        }
+        hashMap.clear();
+        int i12 = this.f2347q;
+        if (i12 != 0) {
+            iArr[0] = i12;
+            GLES20.glDeleteTextures(1, iArr, 0);
+            this.f2347q = 0;
+        }
+        g2 g2Var4 = this.f2355z;
+        if (g2Var4 != null) {
+            g2Var4.a(true);
+        }
+        g2 g2Var5 = this.f2342l;
+        if (g2Var5 != null) {
+            g2Var5.a(true);
+        }
+        Map map = this.f2348r;
+        if (map != null) {
+            for (q1 q1Var : map.values()) {
+                if (q1Var.f2507a != 0) {
+                    GLES20.glDeleteProgram(0);
+                    q1Var.f2507a = 0;
+                }
+            }
+            this.f2348r = null;
+        }
+    }
+
+    public final void b() {
+        GLES20.glBindFramebuffer(36160, i());
+        GLES20.glFramebufferTexture2D(36160, 36064, 3553, g(), 0);
+        p5.a();
+        if (GLES20.glCheckFramebufferStatus(36160) == 36053) {
+            jv0 jv0Var = this.f2338g;
+            GLES20.glViewport(0, 0, (int) jv0Var.f26052a, (int) jv0Var.f26053b);
+            GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+            GLES20.glClear(16384);
+        }
+        GLES20.glBindFramebuffer(36160, 0);
+        o5.i iVar = this.f2334a;
+        if (iVar != null) {
+            iVar.d();
+        }
+        i1 i1Var = this.e;
+        i1Var.h = 0;
+        i1Var.f2425g = 0.0d;
+        ByteBuffer byteBuffer = i1Var.f2427j;
+        if (byteBuffer != null) {
+            byteBuffer.position(0);
+        }
+        this.h = null;
+        this.f2335b = null;
+        this.J = 0.0f;
+    }
+
+    public final void c(e1 e1Var, int i10, boolean z4, g0 g0Var) {
+        if (this.f2348r != null && this.f2339i != null) {
+            this.f2337f.f(new b1(this, e1Var, i10, z4, g0Var));
+        }
+    }
+
+    public final b4.e0 d(cg.e1 r27, int r28, android.graphics.RectF r29) {
+        throw new UnsupportedOperationException("Method not decompiled: cg.d1.d(cg.e1, int, android.graphics.RectF):b4.e0");
+    }
+
+    public final b4.e0 e(s1 s1Var, int i10, RectF rectF) {
+        boolean z4;
+        m mVar = s1Var.f2516a;
+        if (mVar == null) {
+            mVar = this.f2339i;
+        }
+        if (this.F != null && (mVar instanceof b)) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        b4.e0 m9 = m(rectF, z4);
+        this.f2349s++;
+        GLES20.glBindFramebuffer(36160, i());
+        GLES20.glFramebufferTexture2D(36160, 36064, 3553, j(), 0);
+        jv0 jv0Var = this.f2338g;
+        GLES20.glViewport(0, 0, (int) jv0Var.f26052a, (int) jv0Var.f26053b);
+        q1 q1Var = (q1) this.f2348r.get(mVar.i(1));
+        if (q1Var == null) {
+            return null;
+        }
+        GLES20.glUseProgram(q1Var.f2507a);
+        GLES20.glUniformMatrix4fv(q1Var.d("mvpMatrix"), 1, false, FloatBuffer.wrap(this.f2353x));
+        GLES20.glUniform1i(q1Var.d("texture"), 0);
+        GLES20.glUniform1i(q1Var.d("mask"), 1);
+        q1.a(q1Var.d("color"), i10);
+        GLES20.glActiveTexture(33984);
+        GLES20.glBindTexture(3553, j());
+        GLES20.glTexParameteri(3553, 10241, 9729);
+        GLES20.glActiveTexture(33985);
+        GLES20.glBindTexture(3553, g());
+        if ((mVar instanceof b) && this.f2355z != null) {
+            GLES20.glUniform1i(q1Var.d("blured"), 2);
+            GLES20.glActiveTexture(33986);
+            GLES20.glBindTexture(3553, this.f2355z.c());
+        }
+        if (mVar instanceof l) {
+            GLES20.glUniform1i(q1Var.d("type"), s1Var.f2516a.o());
+            GLES20.glUniform2f(q1Var.d("resolution"), jv0Var.f26052a, jv0Var.f26053b);
+            GLES20.glUniform2f(q1Var.d("center"), s1Var.f2517b, s1Var.f2518c);
+            GLES20.glUniform2f(q1Var.d("radius"), s1Var.d, s1Var.e);
+            GLES20.glUniform1f(q1Var.d("thickness"), s1Var.f2519f);
+            GLES20.glUniform1f(q1Var.d("rounding"), s1Var.f2520g);
+            GLES20.glUniform2f(q1Var.d("middle"), s1Var.f2521i, s1Var.f2522j);
+            GLES20.glUniform1f(q1Var.d("rotation"), s1Var.h);
+            GLES20.glUniform1i(q1Var.d("fill"), s1Var.f2524l ? 1 : 0);
+            GLES20.glUniform1f(q1Var.d("arrowTriangleLength"), s1Var.f2523k);
+            GLES20.glUniform1i(q1Var.d("composite"), 1);
+            GLES20.glUniform1i(q1Var.d("clear"), 0);
+        }
+        GLES20.glBlendFunc(1, 0);
+        GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.f2343m);
+        GLES20.glEnableVertexAttribArray(0);
+        GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.f2344n);
+        GLES20.glEnableVertexAttribArray(1);
+        GLES20.glDrawArrays(5, 0, 4);
+        GLES20.glBindTexture(3553, j());
+        GLES20.glTexParameteri(3553, 10241, 9729);
+        GLES20.glBindFramebuffer(36160, 0);
+        o5.i iVar = this.f2334a;
+        if (iVar != null && this.f2349s <= 0) {
+            iVar.d();
+        }
+        this.f2349s--;
+        i1 i1Var = this.e;
+        i1Var.h = 0;
+        i1Var.f2425g = 0.0d;
+        ByteBuffer byteBuffer = i1Var.f2427j;
+        if (byteBuffer != null) {
+            byteBuffer.position(0);
+        }
+        this.J = 0.0f;
+        this.H = false;
+        this.I = 0.0f;
+        this.d = null;
+        this.f2335b = null;
+        this.f2336c = null;
+        return m9;
+    }
+
+    public final RectF f() {
+        jv0 jv0Var = this.f2338g;
+        return new RectF(0.0f, 0.0f, jv0Var.f26052a, jv0Var.f26053b);
+    }
+
+    public final int g() {
+        if (this.f2346p == 0) {
+            this.f2346p = g2.b(this.f2338g);
+        }
+        return this.f2346p;
+    }
+
+    public final bf.b h(RectF rectF, boolean z4, boolean z10, boolean z11) {
+        String str;
+        int j10;
+        g2 g2Var;
+        bf.b bVar;
+        q1 q1Var;
+        int i10;
+        int j11;
+        g2 g2Var2;
+        int i11 = (int) rectF.left;
+        int i12 = (int) rectF.top;
+        int width = (int) rectF.width();
+        int height = (int) rectF.height();
+        GLES20.glGenFramebuffers(1, this.f2350t, 0);
+        int i13 = this.f2350t[0];
+        GLES20.glBindFramebuffer(36160, i13);
+        GLES20.glGenTextures(1, this.f2350t, 0);
+        int i14 = this.f2350t[0];
+        GLES20.glBindTexture(3553, i14);
+        GLES20.glTexParameteri(3553, 10242, 33071);
+        GLES20.glTexParameteri(3553, 10243, 33071);
+        GLES20.glTexParameteri(3553, 10241, 9729);
+        GLES20.glTexParameteri(3553, 10240, 9728);
+        GLES20.glTexImage2D(3553, 0, 6408, width, height, 0, 6408, 5121, null);
+        GLES20.glFramebufferTexture2D(36160, 36064, 3553, i14, 0);
+        jv0 jv0Var = this.f2338g;
+        GLES20.glViewport(0, 0, (int) jv0Var.f26052a, (int) jv0Var.f26053b);
+        Map map = this.f2348r;
+        if (map != null) {
+            if (z4) {
+                str = "nonPremultipliedBlit";
+            } else if (this.G) {
+                str = "maskingBlit";
+            } else {
+                str = "blit";
+            }
+            q1 q1Var2 = (q1) map.get(str);
+            if (q1Var2 != null) {
+                GLES20.glUseProgram(q1Var2.f2507a);
+                Matrix matrix = new Matrix();
+                matrix.preTranslate(-i11, -i12);
+                float[] c3 = n5.c(this.f2353x, n5.a(matrix));
+                GLES20.glUniformMatrix4fv(q1Var2.d("mvpMatrix"), 1, false, FloatBuffer.wrap(c3));
+                if (!z4 && this.G) {
+                    GLES20.glUniform1i(q1Var2.d("texture"), 1);
+                    GLES20.glUniform1i(q1Var2.d("mask"), 0);
+                    GLES20.glUniform1f(q1Var2.d("preview"), 0.0f);
+                    GLES20.glActiveTexture(33984);
+                    if (z10 && (g2Var2 = this.D) != null) {
+                        j11 = g2Var2.c();
+                    } else {
+                        j11 = j();
+                    }
+                    GLES20.glBindTexture(3553, j11);
+                    GLES20.glActiveTexture(33985);
+                    GLES20.glBindTexture(3553, this.f2342l.c());
+                } else {
+                    GLES20.glUniform1i(q1Var2.d("texture"), 0);
+                    GLES20.glActiveTexture(33984);
+                    if (z10 && (g2Var = this.D) != null) {
+                        j10 = g2Var.c();
+                    } else {
+                        j10 = j();
+                    }
+                    GLES20.glBindTexture(3553, j10);
+                }
+                GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+                GLES20.glClear(16384);
+                GLES20.glBlendFunc(1, 0);
+                GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.f2343m);
+                GLES20.glEnableVertexAttribArray(0);
+                GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.f2344n);
+                GLES20.glEnableVertexAttribArray(1);
+                GLES20.glDrawArrays(5, 0, 4);
+                if (z11 && !z10 && (q1Var = (q1) this.f2348r.get("videoBlur")) != null && this.F != null) {
+                    GLES20.glUseProgram(q1Var.f2507a);
+                    GLES20.glUniformMatrix4fv(q1Var.d("mvpMatrix"), 1, false, FloatBuffer.wrap(c3));
+                    GLES20.glUniform1f(q1Var.d("flipy"), 0.0f);
+                    GLES20.glUniform1i(q1Var.d("texture"), 0);
+                    GLES20.glActiveTexture(33984);
+                    GLES20.glBindTexture(3553, this.D.c());
+                    GLES20.glTexParameteri(3553, 10241, 9729);
+                    GLES20.glUniform1i(q1Var.d("blured"), 1);
+                    GLES20.glActiveTexture(33985);
+                    ha haVar = this.F.f23616m;
+                    if (haVar != null) {
+                        i10 = haVar.f25382s[2];
+                    } else {
+                        i10 = -1;
+                    }
+                    GLES20.glBindTexture(3553, i10);
+                    GLES20.glUniform1f(q1Var.d("eraser"), 0.0f);
+                    GLES20.glUniform1i(q1Var.d("mask"), 2);
+                    GLES20.glActiveTexture(33986);
+                    GLES20.glBindTexture(3553, j());
+                    GLES20.glBlendFunc(1, 771);
+                    GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.f2343m);
+                    GLES20.glEnableVertexAttribArray(0);
+                    GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.f2344n);
+                    GLES20.glEnableVertexAttribArray(1);
+                    synchronized (this.F.h) {
+                        GLES20.glDrawArrays(5, 0, 4);
+                    }
+                }
+                this.f2351u.limit(width * height * 4);
+                GLES20.glReadPixels(0, 0, width, height, 6408, 5121, this.f2351u);
+                if (z4) {
+                    bVar = new bf.b(19, (Object) null, this.f2351u);
+                } else {
+                    Bitmap createBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+                    createBitmap.copyPixelsFromBuffer(this.f2351u);
+                    bVar = new bf.b(19, createBitmap, (Object) null);
+                }
+                this.f2351u.rewind();
+                int[] iArr = this.f2350t;
+                iArr[0] = i13;
+                GLES20.glDeleteFramebuffers(1, iArr, 0);
+                int[] iArr2 = this.f2350t;
+                iArr2[0] = i14;
+                GLES20.glDeleteTextures(1, iArr2, 0);
+                return bVar;
+            }
+        }
+        return null;
+    }
+
+    public final int i() {
+        if (this.f2345o == 0) {
+            int[] iArr = new int[1];
+            GLES20.glGenFramebuffers(1, iArr, 0);
+            this.f2345o = iArr[0];
+            p5.a();
+        }
+        return this.f2345o;
+    }
+
+    public final int j() {
+        g2 g2Var = this.f2341k;
+        if (g2Var != null) {
+            return g2Var.c();
+        }
+        return 0;
+    }
+
+    public final void k(s1 s1Var) {
+        if (s1Var == null) {
             return;
         }
-        float f10 = this.f3094n;
-        if (this.h) {
-            f9 = 1.0f;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f9);
-        this.f3096s = ofFloat;
-        ofFloat.addUpdateListener(new c1(this, 0));
-        this.f3096s.addListener(new ag.m0(this, 3));
-        this.f3096s.setDuration(250L);
-        this.f3096s.setInterpolator(jr.f29800f);
-        this.f3096s.start();
+        this.f2337f.f(new y0(this, s1Var, 0));
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int dp;
-        qq qqVar = this.C;
-        b1 b1Var = this.f3092e;
-        if (qqVar != null) {
-            pq pqVar = qqVar.f32029a;
-            if (pqVar.h == 0) {
-                dp = 0;
-            } else {
-                dp = AndroidUtilities.dp(pqVar.C - 0.5f) + pqVar.f31747s;
-            }
-            d6 d6Var = this.F;
-            d6Var.d(((dp * 0.85f) + AndroidUtilities.dp(3.0f)) / 2.0f, false);
-            float e10 = (b1Var.getDrawable().e() / 2.0f) + (getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(3.0f);
-            d6 d6Var2 = this.G;
-            d6Var2.d(e10, false);
-            b1Var.setTranslationX(-d6Var.f27666c);
-            this.C.setTranslationX(d6Var2.f27666c - d6Var.f27666c);
-        } else if (b1Var != null) {
-            b1Var.setTranslationX(0.0f);
+    public final void l(cg.e1 r37, boolean r38, boolean r39) {
+        throw new UnsupportedOperationException("Method not decompiled: cg.d1.l(cg.e1, boolean, boolean):void");
+    }
+
+    public final b4.e0 m(RectF rectF, boolean z4) {
+        if (rectF == null || !rectF.setIntersect(rectF, f())) {
+            return null;
         }
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        float f9 = this.f3094n;
-        Paint paint = this.f3089a;
-        int i10 = this.f3093f;
-        if (f9 != 1.0f || !this.f3098x) {
-            if (this.f3091c) {
-                float f10 = this.f3090b + 0.016f;
-                this.f3090b = f10;
-                if (f10 > 3.0f) {
-                    this.f3091c = false;
+        Object obj = this.f2334a.f16457b;
+        b4.e0 e0Var = new b4.e0((ByteBuffer) h(rectF, true, z4, false).f1783c, z4 ? 1 : 0, rectF);
+        ((p1) this.f2334a.f16457b).f2493b.b(UUID.randomUUID(), new a1(this, e0Var, 1));
+        return e0Var;
+    }
+
+    public final void n(int r19, cg.e1 r20, float r21) {
+        throw new UnsupportedOperationException("Method not decompiled: cg.d1.n(int, cg.e1, float):void");
+    }
+
+    public final void o(int i10, int i11, s1 s1Var, float f10) {
+        q1 q1Var;
+        int i12;
+        if (s1Var != null) {
+            m mVar = this.f2339i;
+            l lVar = s1Var.f2516a;
+            if (lVar != null && i10 == this.f2347q) {
+                mVar = lVar;
+            }
+            if (mVar != null && this.f2337f != null && (q1Var = (q1) this.f2348r.get(mVar.i(0))) != null) {
+                GLES20.glUseProgram(q1Var.f2507a);
+                GLES20.glUniformMatrix4fv(q1Var.d("mvpMatrix"), 1, false, FloatBuffer.wrap(this.f2354y));
+                GLES20.glUniform1i(q1Var.d("texture"), 0);
+                GLES20.glUniform1i(q1Var.d("mask"), 1);
+                int currentColor = this.f2337f.getCurrentColor();
+                q1.a(q1Var.d("color"), i0.a.k(currentColor, (int) (Color.alpha(currentColor) * f10)));
+                GLES20.glActiveTexture(33984);
+                GLES20.glBindTexture(3553, i10);
+                GLES20.glActiveTexture(33985);
+                GLES20.glBindTexture(3553, i11);
+                if (mVar instanceof l) {
+                    GLES20.glUniform1i(q1Var.d("type"), ((l) mVar).o());
+                    int d = q1Var.d("resolution");
+                    jv0 jv0Var = this.f2338g;
+                    GLES20.glUniform2f(d, jv0Var.f26052a, jv0Var.f26053b);
+                    GLES20.glUniform2f(q1Var.d("center"), s1Var.f2517b, s1Var.f2518c);
+                    GLES20.glUniform2f(q1Var.d("radius"), s1Var.d, s1Var.e);
+                    GLES20.glUniform1f(q1Var.d("thickness"), s1Var.f2519f);
+                    GLES20.glUniform1f(q1Var.d("rounding"), s1Var.f2520g);
+                    GLES20.glUniform2f(q1Var.d("middle"), s1Var.f2521i, s1Var.f2522j);
+                    GLES20.glUniform1f(q1Var.d("rotation"), s1Var.h);
+                    GLES20.glUniform1i(q1Var.d("fill"), s1Var.f2524l ? 1 : 0);
+                    GLES20.glUniform1f(q1Var.d("arrowTriangleLength"), s1Var.f2523k);
+                    GLES20.glUniform1i(q1Var.d("composite"), 0);
+                    int d10 = q1Var.d("clear");
+                    if (s1Var == this.d) {
+                        i12 = 1;
+                    } else {
+                        i12 = 0;
+                    }
+                    GLES20.glUniform1i(d10, i12);
                 }
-            } else {
-                float f11 = this.f3090b - 0.016f;
-                this.f3090b = f11;
-                if (f11 < 1.0f) {
-                    this.f3091c = true;
+                GLES20.glBlendFunc(1, 771);
+                GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.f2343m);
+                GLES20.glEnableVertexAttribArray(0);
+                GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.f2344n);
+                GLES20.glEnableVertexAttribArray(1);
+                GLES20.glDrawArrays(5, 0, 4);
+                p5.a();
+            }
+        }
+    }
+
+    public final void p(b4.e0 e0Var, boolean z4) {
+        ByteBuffer byteBuffer;
+        File file;
+        o5.i iVar;
+        g2 g2Var;
+        if (e0Var != null) {
+            try {
+                byte[] bArr = new byte[1024];
+                byte[] bArr2 = new byte[1024];
+                FileInputStream fileInputStream = new FileInputStream((File) e0Var.d);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                Inflater inflater = new Inflater(true);
+                while (true) {
+                    int read = fileInputStream.read(bArr);
+                    if (read != -1) {
+                        inflater.setInput(bArr, 0, read);
+                    }
+                    while (true) {
+                        int inflate = inflater.inflate(bArr2, 0, 1024);
+                        if (inflate == 0) {
+                            break;
+                        }
+                        byteArrayOutputStream.write(bArr2, 0, inflate);
+                    }
+                    if (inflater.finished()) {
+                        break;
+                    }
+                    inflater.needsInput();
                 }
+                inflater.end();
+                ByteBuffer wrap = ByteBuffer.wrap(byteArrayOutputStream.toByteArray(), 0, byteArrayOutputStream.size());
+                byteArrayOutputStream.close();
+                fileInputStream.close();
+                byteBuffer = wrap;
+            } catch (Exception e) {
+                FileLog.e(e);
+                byteBuffer = null;
             }
-            if (this.D) {
-                s1.d().f((-getMeasuredWidth()) * 0.1f * this.f3090b, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                float f12 = i10;
-                canvas.drawRoundRect(rectF, f12, f12, s1.d().e());
-            } else {
-                paint.setAlpha(255);
-                float f13 = i10;
-                canvas.drawRoundRect(rectF, f13, f13, paint);
+            int j10 = j();
+            if (e0Var.f1367b == 1 && (g2Var = this.D) != null) {
+                j10 = g2Var.c();
             }
-            invalidate();
-        }
-        if (!BuildVars.IS_BILLING_UNAVAILABLE && !this.B) {
-            int measuredWidth = getMeasuredWidth();
-            org.telegram.ui.Components.voip.h hVar = this.f3097w;
-            hVar.f33720f = measuredWidth;
-            hVar.a(i10, canvas, rectF, null);
-        }
-        float f14 = this.f3094n;
-        if (f14 != 0.0f && this.f3098x) {
-            paint.setAlpha((int) (f14 * 255.0f));
-            if (this.f3094n != 1.0f) {
-                Path path = this.v;
-                path.rewind();
-                path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, Math.max(getMeasuredWidth(), getMeasuredHeight()) * 1.4f * this.f3094n, Path.Direction.CW);
-                canvas.save();
-                canvas.clipPath(path);
-                float f15 = i10;
-                canvas.drawRoundRect(rectF, f15, f15, paint);
-                canvas.restore();
-            } else {
-                float f16 = i10;
-                canvas.drawRoundRect(rectF, f16, f16, paint);
+            GLES20.glBindTexture(3553, j10);
+            RectF rectF = (RectF) e0Var.f1368c;
+            GLES20.glTexSubImage2D(3553, 0, (int) rectF.left, (int) rectF.top, (int) rectF.width(), (int) ((RectF) e0Var.f1368c).height(), 6408, 5121, byteBuffer);
+            if (this.f2349s <= 0 && (iVar = this.f2334a) != null) {
+                iVar.d();
+            }
+            if (z4 && (file = (File) e0Var.d) != null) {
+                file.delete();
+                e0Var.d = null;
             }
         }
-        super.dispatchDraw(canvas);
     }
 
-    public final void e() {
-        int i10;
-        float f9 = this.f3094n;
-        b1 b1Var = this.f3092e;
-        b1Var.setAlpha(f9);
-        b1Var.setTranslationY((1.0f - this.f3094n) * AndroidUtilities.dp(12.0f));
-        x2 x2Var = this.f3095r;
-        x2Var.setAlpha(1.0f - this.f3094n);
-        x2Var.setTranslationY((-AndroidUtilities.dp(12.0f)) * this.f3094n);
-        int i11 = 0;
-        if (this.f3094n == 1.0f) {
-            i10 = 4;
-        } else {
-            i10 = 0;
-        }
-        x2Var.setVisibility(i10);
-        if (this.f3094n == 0.0f) {
-            i11 = 4;
-        }
-        b1Var.setVisibility(i11);
-        invalidate();
-    }
-
-    public aj0 getIconView() {
-        return this.f3099y;
-    }
-
-    public o6 getTextView() {
-        return this.d;
-    }
-
-    @Override
-    public final boolean isEnabled() {
-        return this.f3095r.isEnabled();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public void setEnabled(boolean z10) {
-        super.setEnabled(z10);
-        this.f3095r.setEnabled(z10);
-    }
-
-    public void setFlickerDisabled(boolean z10) {
-        this.B = z10;
-        invalidate();
-    }
-
-    public void setIcon(int i10) {
-        aj0 aj0Var = this.f3099y;
-        aj0Var.f(i10, 24, 24, null);
-        org.telegram.ui.Components.voip.h hVar = this.f3097w;
-        hVar.f33721g = 2.0f;
-        hVar.f33729p = new a4.g(this, 27);
-        invalidate();
-        aj0Var.setVisibility(0);
-    }
-
-    @Override
-    public void setLoading(boolean z10) {
-        float f9;
-        if (this.J != z10) {
-            ValueAnimator valueAnimator = this.K;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.K = null;
+    public final void q(m mVar) {
+        Bitmap bitmap;
+        Bitmap c3;
+        this.f2339i = mVar;
+        if ((mVar instanceof b) && (bitmap = this.A) != null && this.F == null) {
+            int width = bitmap.getWidth();
+            int height = bitmap.getHeight();
+            int i10 = this.B;
+            if (i10 == 90 || i10 == 270 || i10 == -90) {
+                height = width;
+                width = height;
             }
-            float f10 = this.I;
-            this.J = z10;
-            if (z10) {
-                f9 = 1.0f;
-            } else {
-                f9 = 0.0f;
+            if (this.C == null) {
+                this.C = Bitmap.createBitmap((int) (width / 8.0f), (int) (height / 8.0f), Bitmap.Config.ARGB_8888);
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f9);
-            this.K = ofFloat;
-            ofFloat.addUpdateListener(new bg.q1(this, 7));
-            this.K.addListener(new z2(2, this, z10));
-            this.K.setDuration(320L);
-            this.K.setInterpolator(jr.h);
-            this.K.start();
-        }
-    }
-
-    public d1(int i10, Context context, c6 c6Var, boolean z10) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f3089a = paint;
-        this.v = new Path();
-        this.D = true;
-        this.F = new d6(this);
-        this.G = new d6(this);
-        this.I = 0.0f;
-        this.f3093f = i10;
-        org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
-        this.f3097w = hVar;
-        hVar.f33727n = 1.2f;
-        hVar.f33724k = false;
-        hVar.f33726m = 4.0f;
-        LinearLayout g10 = x3.g(context, 0);
-        b1 b1Var = new b1(this, context, 0);
-        this.d = b1Var;
-        b1Var.b(0.35f, 350L, jr.h);
-        b1Var.setGravity(17);
-        b1Var.setTextColor(-1);
-        b1Var.setTextSize(AndroidUtilities.dp(14.0f));
-        b1Var.setTypeface(AndroidUtilities.bold());
-        ?? imageView = new ImageView(context);
-        this.f3099y = imageView;
-        imageView.setColorFilter(-1);
-        imageView.setVisibility(8);
-        x2 x2Var = new x2(this, context, 3);
-        this.f3095r = x2Var;
-        x2Var.addView(g10, f6.e(-2, -2, 17));
-        int k9 = i0.a.k(-1, 120);
-        x2Var.setBackground(g6.i0(i10, i10, i10, i10, 0, k9, k9));
-        g10.addView(b1Var, f6.q(-2, -2, 16));
-        g10.addView((View) imageView, f6.p(24, 24, 0.0f, 16, 4, 0, 0, 0));
-        addView(x2Var);
-        setOutlineProvider(jf.q0.f11669b);
-        setClipToOutline(true);
-        h6.b(this, 0.02f, 1.2f);
-        if (z10) {
-            b1 b1Var2 = new b1(this, context, 1);
-            this.f3092e = b1Var2;
-            b1Var2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-            b1Var2.setGravity(17);
-            b1Var2.setTextColor(g6.v0(g6.Sh, c6Var));
-            b1Var2.setTextSize(AndroidUtilities.dp(14.0f));
-            b1Var2.setTypeface(AndroidUtilities.bold());
-            b1Var2.getDrawable().D = true;
-            int dp = AndroidUtilities.dp(8.0f);
-            int k10 = i0.a.k(-1, 120);
-            b1Var2.setBackground(g6.i0(dp, dp, dp, dp, 0, k10, k10));
-            addView(b1Var2);
-            paint.setColor(g6.v0(g6.Oh, c6Var));
-            e();
+            Canvas canvas = new Canvas(this.C);
+            canvas.save();
+            canvas.scale(0.125f, 0.125f);
+            if (this.M != null) {
+                this.M = new Paint(1);
+            }
+            canvas.save();
+            canvas.rotate(i10);
+            if (i10 == 90) {
+                canvas.translate(0.0f, -width);
+            } else if (i10 == 180) {
+                canvas.translate(-width, -height);
+            } else if (i10 == 270) {
+                canvas.translate(-height, 0.0f);
+            }
+            canvas.drawBitmap(bitmap, 0.0f, 0.0f, this.M);
+            canvas.restore();
+            p1 p1Var = this.f2337f;
+            if (p1Var != null && (c3 = p1Var.c(false, false)) != null) {
+                canvas.scale(width / c3.getWidth(), height / c3.getHeight());
+                canvas.drawBitmap(c3, 0.0f, 0.0f, this.M);
+                c3.recycle();
+            }
+            Utilities.stackBlurBitmap(this.C, (int) 8.0f);
+            g2 g2Var = this.f2355z;
+            if (g2Var != null) {
+                g2Var.a(false);
+            }
+            this.f2355z = new g2(this.C);
         }
     }
 }

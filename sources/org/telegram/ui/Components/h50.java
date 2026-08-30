@@ -1,19 +1,42 @@
 package org.telegram.ui.Components;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public final class h50 {
-    public final ByteBuffer[] f29064a = new ByteBuffer[10];
-    public final long[] f29065b = new long[10];
-    public final int[] f29066c = new int[10];
-    public int d;
-    public int f29067e;
-    public boolean f29068f;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class h50 extends AnimatorListenerAdapter {
+    public final int f25330a;
+    public final x50 f25331b;
 
-    public h50() {
-        for (int i10 = 0; i10 < 10; i10++) {
-            this.f29064a[i10] = ByteBuffer.allocateDirect(2048);
-            this.f29064a[i10].order(ByteOrder.nativeOrder());
+    public h50(x50 x50Var, int i10) {
+        this.f25330a = i10;
+        this.f25331b = x50Var;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f25330a) {
+            case 0:
+                x50 x50Var = this.f25331b;
+                if (animator.equals(x50Var.D)) {
+                    x50Var.D = null;
+                    return;
+                }
+                return;
+            case 1:
+                x50 x50Var2 = this.f25331b;
+                if (x50Var2.Y0 != null) {
+                    x50Var2.Y0 = null;
+                    return;
+                }
+                return;
+            default:
+                x50 x50Var3 = this.f25331b;
+                if (animator.equals(x50Var3.T)) {
+                    x50Var3.h(true);
+                    x50Var3.T0 = false;
+                    x50Var3.setVisibility(4);
+                    return;
+                }
+                return;
         }
     }
 }

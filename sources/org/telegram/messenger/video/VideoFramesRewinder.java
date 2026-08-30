@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
-import g5.v;
+import i5.v;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,7 +29,7 @@ public class VideoFramesRewinder {
     private View parentView;
     private long prepareToMs;
     private float prepareWithSpeed;
-    int f21850w;
+    int f18687w;
     private final Paint paint = new Paint(2);
     private final int[] meta = new int[8];
     private final ArrayList<Frame> freeFrames = new ArrayList<>();
@@ -94,7 +94,7 @@ public class VideoFramesRewinder {
             }
         }
         while (!arrayList.isEmpty() && this.frames.size() < this.maxFramesCount) {
-            this.frames.add((Frame) com.google.android.recaptcha.internal.a.j(1, arrayList));
+            this.frames.add((Frame) e2.c.g(1, arrayList));
         }
         if (arrayList.size() > 0) {
             FileLog.d("[VideoFramesRewinder] prepared " + arrayList.size() + " more frames than I could fit :(");
@@ -114,7 +114,7 @@ public class VideoFramesRewinder {
         int[] iArr = this.meta;
         int i12 = iArr[4];
         int i13 = 0;
-        int min = Math.min(this.f21850w / 4, iArr[0]);
+        int min = Math.min(this.f18687w / 4, iArr[0]);
         int min2 = Math.min(this.h / 4, this.meta[1]);
         int i14 = this.maxFrameSide;
         if (min > i14 || min2 > i14) {
@@ -127,10 +127,10 @@ public class VideoFramesRewinder {
         int i15 = 0;
         int i16 = 0;
         for (char c3 = 3; this.meta[c3] <= this.until.get() && i15 < this.maxFramesCount && !this.stop.get(); c3 = 3) {
-            float f9 = 1000.0f / i12;
+            float f10 = 1000.0f / i12;
             long j11 = j10;
-            char c6 = 3;
-            long j12 = (this.prepareWithSpeed * f9) + ((float) j10);
+            char c10 = 3;
+            long j12 = (this.prepareWithSpeed * f10) + ((float) j10);
             if (!this.freeFrames.isEmpty()) {
                 frame = this.freeFrames.remove(i13);
             } else {
@@ -148,13 +148,13 @@ public class VideoFramesRewinder {
             while (true) {
                 i10 = i12;
                 i11 = i15;
-                if (this.meta[c6] + ((long) Math.ceil(f9)) >= j12) {
+                if (this.meta[c10] + ((long) Math.ceil(f10)) >= j12) {
                     break;
                 }
                 this.mDecoder.c(null, true, 0.0f, this.meta[4], false);
                 i12 = i10;
                 i15 = i11;
-                c6 = 3;
+                c10 = 3;
             }
             if (this.mDecoder.c(frame.bitmap, true, 0.0f, this.meta[4], false) == 0) {
                 i16++;
@@ -172,7 +172,7 @@ public class VideoFramesRewinder {
             i12 = i10;
             i13 = 0;
         }
-        AndroidUtilities.runOnUIThread(new v(this, arrayList, currentTimeMillis, 12));
+        AndroidUtilities.runOnUIThread(new v(this, arrayList, currentTimeMillis, 11));
     }
 
     private void prepare(long j10) {
@@ -194,7 +194,7 @@ public class VideoFramesRewinder {
     }
 
     public void draw(Canvas canvas, int i10, int i11) {
-        this.f21850w = i10;
+        this.f18687w = i10;
         this.h = i11;
         if (this.mDecoder != null && this.currentFrame != null) {
             canvas.save();
@@ -241,20 +241,20 @@ public class VideoFramesRewinder {
         this.freeFrames.clear();
     }
 
-    public void seek(long j10, float f9) {
+    public void seek(long j10, float f10) {
         if (this.mDecoder == null) {
             return;
         }
         this.lastSeek = j10;
-        this.lastSpeed = f9;
+        this.lastSpeed = f10;
         this.until.set(j10);
         Iterator<Frame> it = this.frames.iterator();
         ArrayList arrayList = new ArrayList();
         while (it.hasNext()) {
             Frame next = it.next();
             arrayList.add(Long.valueOf(next.position));
-            float f10 = 25.0f * f9;
-            if (((float) Math.abs(next.position - j10)) < f10) {
+            float f11 = 25.0f * f10;
+            if (((float) Math.abs(next.position - j10)) < f11) {
                 if (this.currentFrame != next) {
                     FileLog.d("[VideoFramesRewinder] found a frame " + next.position + "ms to fit to " + j10 + "ms from " + this.frames.size() + " frames");
                     this.currentFrame = next;
@@ -272,7 +272,7 @@ public class VideoFramesRewinder {
                 for (int size = arrayList.size() - 2; size >= 0; size--) {
                     long longValue = ((Long) arrayList.get(size + 1)).longValue();
                     long longValue2 = ((Long) arrayList.get(size)).longValue();
-                    if (((float) Math.abs(longValue - longValue2)) > f10) {
+                    if (((float) Math.abs(longValue - longValue2)) > f11) {
                         prepare(longValue2);
                         return;
                     }

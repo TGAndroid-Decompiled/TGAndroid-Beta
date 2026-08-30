@@ -1,23 +1,28 @@
 package org.telegram.ui;
-
-import java.util.ArrayList;
 public final class n4 implements Runnable {
-    public final q4 f40706a;
+    public final int f36444a;
+    public boolean f36445b;
+    public final Object f36446c;
 
-    public n4(q4 q4Var) {
-        this.f40706a = q4Var;
+    public n4(Object obj, int i10) {
+        this.f36444a = i10;
+        this.f36446c = obj;
     }
 
     @Override
     public final void run() {
-        ?? o2Var = new org.telegram.ui.ActionBar.o2(null);
-        o2Var.J = new a0.h();
-        o2Var.K = new ArrayList();
-        o2Var.f36359x = 1;
-        o2Var.C = false;
-        q4 q4Var = this.f40706a;
-        o2Var.N = q4Var.U();
-        o2Var.f36355n = new c1(this, 2);
-        q4Var.presentFragment((org.telegram.ui.ActionBar.o2) o2Var);
+        switch (this.f36444a) {
+            case 0:
+                this.f36445b = false;
+                ((o4) this.f36446c).getClass();
+                return;
+            default:
+                if (!this.f36445b) {
+                    this.f36445b = true;
+                    ((xn) this.f36446c).presentFragment(new NotificationsSettingsActivity());
+                    return;
+                }
+                return;
+        }
     }
 }

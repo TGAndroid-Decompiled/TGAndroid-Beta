@@ -1,331 +1,223 @@
 package dh;
 
-import ag.j2;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+import android.view.ActionMode;
+import android.view.MotionEvent;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.widget.FrameLayout;
 import java.util.ArrayList;
-import jf.r;
+import mg.g0;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.x3;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Cells.s1;
-import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.jr;
-import org.telegram.ui.Components.n6;
-import vd.h;
-public final class b extends Drawable implements DownloadController.FileDownloadProgressListener {
-    public final RadialProgress2 A;
-    public MessageObject B;
-    public final j2 C;
-    public String D;
-    public final int E;
-    public boolean F;
-    public int G;
-    public int H;
-    public final n6 f5632a;
-    public final j9 f5633b;
-    public final ImageReceiver f5634c;
-    public final s1 d;
-    public final int f5635e;
-    public boolean f5636f;
-    public boolean h;
-    public boolean f5637n;
-    public boolean f5638r;
-    public Drawable f5639s;
-    public boolean v;
-    public final Paint f5640w;
-    public final Paint f5641x;
-    public final vd.a f5642y;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Cells.c6;
+import org.telegram.ui.Components.vt;
+import org.telegram.ui.c61;
+import org.telegram.ui.g51;
+public final class b extends vt {
+    public final int f4884c;
+    public final Object d;
 
-    public b(int i10, s1 s1Var) {
-        Paint paint = new Paint(1);
-        this.f5640w = paint;
-        this.f5641x = new Paint(1);
-        this.C = new j2((char) 0, 17);
-        this.f5635e = i10;
-        this.d = s1Var;
-        this.f5642y = new vd.a(s1Var, jr.h, 380L);
-        n6 n6Var = new n6(false, false, false, false);
-        this.f5632a = n6Var;
-        n6Var.f30862b = 21;
-        n6Var.t(AndroidUtilities.dp(11.0f));
-        n6Var.setCallback(s1Var);
-        this.f5633b = new j9(i10, s1Var, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(8.33f), AndroidUtilities.dpf2(1.0f));
-        ImageReceiver imageReceiver = new ImageReceiver(s1Var);
-        this.f5634c = imageReceiver;
-        imageReceiver.setRoundRadius(AndroidUtilities.dp(5.0f));
-        paint.setColor(1073741824);
-        RadialProgress2 radialProgress2 = new RadialProgress2(s1Var, null);
-        this.A = radialProgress2;
-        radialProgress2.setCircleRadius(AndroidUtilities.dp(18.0f));
-        radialProgress2.d = -1;
-        this.E = DownloadController.getInstance(i10).generateObserverTag();
+    public b(FrameLayout frameLayout, Context context, f6 f6Var, int i10) {
+        super(context, f6Var);
+        this.f4884c = i10;
+        this.d = frameLayout;
     }
 
-    public final void a(TLRPC.Photo photo, Object obj) {
-        long j10;
-        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 40);
-        TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(36.0f), false, closestPhotoSizeWithSize, true);
-        ImageLocation forObject = ImageLocation.getForObject(closestPhotoSizeWithSize2, photo);
-        ImageLocation forObject2 = ImageLocation.getForObject(closestPhotoSizeWithSize, photo);
-        if (closestPhotoSizeWithSize2 != null) {
-            j10 = closestPhotoSizeWithSize2.size;
-        } else {
-            j10 = 0;
-        }
-        this.f5634c.setImage(forObject, "36_36", forObject2, "36_36_b", null, j10, null, obj, 1);
-    }
-
-    public final void b(boolean z10) {
-        int i10;
-        if (!this.B.isSending() && !this.B.isEditing()) {
-            if (!TextUtils.isEmpty(this.D) && FileLoader.getInstance(this.f5635e).isLoadingFile(this.D)) {
-                g(3, z10);
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f4884c) {
+            case 1:
+                super.dispatchDraw(canvas);
+                Drawable drawable = (Drawable) this.d;
+                drawable.setBounds(0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(28.0f));
+                drawable.draw(canvas);
                 return;
-            }
-            if (this.v) {
-                i10 = 0;
-            } else {
-                i10 = 4;
-            }
-            g(i10, z10);
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
     }
 
-    public final void c(Canvas canvas) {
-        float f9;
-        int i10;
-        int i11;
-        int w02;
-        Rect bounds = getBounds();
-        if (this.f5636f) {
-            f9 = 56.33f;
-        } else {
-            f9 = 19.0f;
+    @Override
+    public int emojiCacheType() {
+        switch (this.f4884c) {
+            case 0:
+                return 3;
+            case 1:
+            default:
+                return super.emojiCacheType();
+            case 2:
+                return 3;
         }
-        int dp = AndroidUtilities.dp(f9);
-        if (this.f5642y.f49505e > 0.0f) {
-            h hVar = this.f5633b.f29621c.d;
-            float f10 = hVar.f49521c.f49531a;
-            int i12 = (int) hVar.f49523f.f49531a;
-            int lerp = (bounds.right - dp) - AndroidUtilities.lerp(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f) + i12, f10);
-            if (f10 > 0.0f) {
-                j9 j9Var = this.f5633b;
-                j9Var.f29625i = (int) (this.f5642y.f49505e * 255.0f);
-                j9Var.setBounds((bounds.right - dp) - i12, bounds.bottom - AndroidUtilities.dp(31.33f), bounds.right - dp, bounds.bottom);
-                this.f5633b.c(canvas);
-            }
-            int dp2 = bounds.bottom - AndroidUtilities.dp(21.33f);
-            n6 n6Var = this.f5632a;
-            n6Var.f30880w = (int) (this.f5642y.f49505e * 255.0f);
-            n6Var.setBounds(bounds.left, AndroidUtilities.dp(15.0f) + dp2, lerp, dp2 - AndroidUtilities.dp(15.0f));
-            this.f5632a.draw(canvas);
+    }
+
+    @Override
+    public void invalidate() {
+        switch (this.f4884c) {
+            case 3:
+                if (!g0.f14004b) {
+                    super.invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.invalidate();
+                return;
         }
-        if (this.h) {
-            int dp3 = AndroidUtilities.dp(36.0f);
-            Rect rect = AndroidUtilities.rectTmp2;
-            rect.set(x3.B(9.0f, bounds.right, dp3), x3.B(4.0f, bounds.bottom, dp3), bounds.right - AndroidUtilities.dp(9.0f), bounds.bottom - AndroidUtilities.dp(4.0f));
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(rect);
-            RadialProgress2 radialProgress2 = this.A;
-            radialProgress2.f26479a.set(rectF.left, rectF.top, rectF.right, rectF.bottom);
-            this.f5634c.setImageCoords(rect);
-            if (!this.f5637n || this.f5638r) {
-                this.f5634c.draw(canvas);
-            }
-            if (this.v || this.f5637n) {
-                if (this.f5637n && !this.f5638r) {
-                    Paint paint = this.f5641x;
-                    if (this.B.isOutOwner()) {
-                        i10 = g6.f23104fc;
-                    } else {
-                        i10 = g6.f23086ec;
+    }
+
+    @Override
+    public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+        switch (this.f4884c) {
+            case 0:
+                InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+                editorInfo.imeOptions &= -1073741825;
+                return onCreateInputConnection;
+            case 1:
+            default:
+                return super.onCreateInputConnection(editorInfo);
+            case 2:
+                InputConnection onCreateInputConnection2 = super.onCreateInputConnection(editorInfo);
+                if (((c6) this.d).f20921s) {
+                    editorInfo.imeOptions &= -1073741825;
+                }
+                return onCreateInputConnection2;
+        }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f4884c) {
+            case 2:
+                super.onDraw(canvas);
+                ((c6) this.d).getClass();
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onFocusChanged(boolean z4, int i10, Rect rect) {
+        switch (this.f4884c) {
+            case 2:
+                super.onFocusChanged(z4, i10, rect);
+                ((c6) this.d).i(z4);
+                return;
+            case 3:
+                if (z4) {
+                    ((g51) this.d).f33911y.q();
+                    AndroidUtilities.runOnUIThread(new c61(this, 0), 200L);
+                }
+                super.onFocusChanged(z4, i10, rect);
+                return;
+            default:
+                super.onFocusChanged(z4, i10, rect);
+                return;
+        }
+    }
+
+    @Override
+    public void onSizeChanged(int i10, int i11, int i12, int i13) {
+        switch (this.f4884c) {
+            case 0:
+                super.onSizeChanged(i10, i11, i12, i13);
+                postOnAnimation(new ag.d(this, 26));
+                return;
+            default:
+                super.onSizeChanged(i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTextContextMenuItem(int i10) {
+        ClipData primaryClip;
+        switch (this.f4884c) {
+            case 2:
+                if (i10 == 16908322 && (primaryClip = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip()) != null && primaryClip.getItemCount() == 1 && AndroidUtilities.charSequenceIndexOf(primaryClip.getItemAt(0).getText(), "\n") > 0) {
+                    CharSequence text = primaryClip.getItemAt(0).getText();
+                    ArrayList arrayList = new ArrayList();
+                    StringBuilder sb = new StringBuilder();
+                    for (int i11 = 0; i11 < text.length(); i11++) {
+                        char charAt = text.charAt(i11);
+                        if (charAt == '\n') {
+                            arrayList.add(sb.toString());
+                            sb.setLength(0);
+                        } else {
+                            sb.append(charAt);
+                        }
                     }
-                    paint.setColor(i0.a.k(g6.w0(null, i10, false), 16));
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.f5641x);
-                } else {
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.f5640w);
-                }
-            }
-            if (this.f5637n) {
-                if (this.f5639s == null) {
-                    this.f5639s = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.media_link_24).mutate();
-                }
-                Drawable drawable = this.f5639s;
-                j2 j2Var = this.C;
-                if (this.f5638r) {
-                    w02 = -1;
-                } else {
-                    if (this.B.isOutOwner()) {
-                        i11 = g6.f23332sb;
-                    } else {
-                        i11 = g6.f23248nd;
+                    if (!TextUtils.isEmpty(sb)) {
+                        arrayList.add(sb);
                     }
-                    w02 = g6.w0(null, i11, false);
+                    if (((c6) this.d).l(arrayList)) {
+                        return true;
+                    }
                 }
-                PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-                j2Var.getClass();
-                if (((PorterDuffColorFilter) j2Var.f559c) == null || j2Var.f558b != w02 || ((PorterDuff.Mode) j2Var.d) != mode) {
-                    j2Var.f559c = new PorterDuffColorFilter(w02, mode);
-                    j2Var.f558b = w02;
-                    j2Var.d = mode;
+                return super.onTextContextMenuItem(i10);
+            default:
+                return super.onTextContextMenuItem(i10);
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f4884c) {
+            case 2:
+                if (!isEnabled()) {
+                    return false;
                 }
-                drawable.setColorFilter((PorterDuffColorFilter) j2Var.f559c);
-                r.e(this.f5639s, rectF.centerX(), rectF.centerY(), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), 17);
-                this.f5639s.draw(canvas);
-            }
-            b(true);
-            if (this.F) {
-                this.A.draw(canvas);
-            }
-        }
-    }
-
-    public final float d(float f9) {
-        j9 j9Var = this.f5633b;
-        float d = this.f5632a.d() + j9Var.f29621c.d.f49523f.f49531a;
-        float dp = j9Var.f29621c.d.f49521c.f49531a * AndroidUtilities.dp(4.0f);
-        float f10 = this.f5642y.f49505e;
-        return (f9 * f10) + (dp * f10) + d;
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        c(canvas);
-    }
-
-    public final float e() {
-        int i10;
-        float f9 = this.f5632a.d;
-        int i11 = this.G;
-        if (i11 > 0) {
-            i10 = AndroidUtilities.dp((i11 * 9.34f) + 8.66f);
-        } else {
-            i10 = 0;
-        }
-        return f9 + i10;
-    }
-
-    public final void f(boolean z10) {
-        this.f5636f = z10;
-    }
-
-    public final void g(int i10, boolean z10) {
-        if (this.H != i10) {
-            this.H = i10;
-            this.A.setIcon(i10, true, z10);
+                if (motionEvent.getAction() == 1) {
+                    ((c6) this.d).k(this);
+                }
+                return super.onTouchEvent(motionEvent);
+            case 3:
+                if (motionEvent.getAction() == 1 && ((g51) this.d).f33911y.u()) {
+                    AndroidUtilities.runOnUIThread(new c61(this, 1), 200L);
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
         }
     }
 
     @Override
-    public final int getObserverTag() {
-        return this.E;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    public final void h(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.MessageMedia r18, org.telegram.messenger.MessageObject r19, java.lang.String r20, boolean r21) {
-        throw new UnsupportedOperationException("Method not decompiled: dh.b.h(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$MessageMedia, org.telegram.messenger.MessageObject, java.lang.String, boolean):void");
-    }
-
-    public final void i(ArrayList arrayList, boolean z10) {
-        int i10;
-        if (arrayList != null) {
-            i10 = arrayList.size();
-        } else {
-            i10 = 0;
+    public ActionMode startActionMode(ActionMode.Callback callback, int i10) {
+        switch (this.f4884c) {
+            case 2:
+                ActionMode startActionMode = super.startActionMode(callback, i10);
+                ((c6) this.d).g(this, startActionMode);
+                return startActionMode;
+            default:
+                return super.startActionMode(callback, i10);
         }
-        this.G = i10;
-        this.f5633b.d(arrayList, z10);
     }
 
-    public final void j(int i10, boolean z10) {
-        String str = null;
-        if (i10 > 0) {
-            str = LocaleController.formatShortNumber(i10, null);
+    public b(Context context, f6 f6Var, Drawable drawable) {
+        super(context, f6Var);
+        this.f4884c = 1;
+        this.d = drawable;
+    }
+
+    @Override
+    public ActionMode startActionMode(ActionMode.Callback callback) {
+        switch (this.f4884c) {
+            case 2:
+                ActionMode startActionMode = super.startActionMode(callback);
+                ((c6) this.d).g(this, startActionMode);
+                return startActionMode;
+            default:
+                return super.startActionMode(callback);
         }
-        this.f5632a.q(str, z10, true);
-    }
-
-    public final void k(int i10) {
-        this.f5632a.r(i10);
-    }
-
-    @Override
-    public final void onProgressDownload(String str, long j10, long j11) {
-        float min;
-        int i10;
-        if (j11 == 0) {
-            min = 0.0f;
-        } else {
-            min = Math.min(1.0f, ((float) j10) / ((float) j11));
-        }
-        this.A.o(min, true);
-        if (min < 1.0f) {
-            i10 = 3;
-        } else if (this.v) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        g(i10, true);
-        this.d.invalidate();
-    }
-
-    @Override
-    public final void onProgressUpload(String str, long j10, long j11, boolean z10) {
-        float min;
-        int i10;
-        if (j11 == 0) {
-            min = 0.0f;
-        } else {
-            min = Math.min(1.0f, ((float) j10) / ((float) j11));
-        }
-        this.A.o(min, true);
-        if (min < 1.0f) {
-            i10 = 3;
-        } else if (this.v) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        g(i10, true);
-        this.d.invalidate();
-    }
-
-    @Override
-    public final void onSuccessDownload(String str) {
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    @Override
-    public final void onFailedDownload(String str, boolean z10) {
     }
 }

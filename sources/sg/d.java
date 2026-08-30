@@ -1,187 +1,164 @@
 package sg;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.RecordingCanvas;
 import android.graphics.RectF;
-import android.text.TextPaint;
-import android.util.LongSparseArray;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import i7.w;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.ur;
-import org.telegram.ui.lj;
-public final class d extends View implements ViewTreeObserver.OnPreDrawListener, ViewTreeObserver.OnScrollChangedListener, ViewTreeObserver.OnGlobalLayoutListener {
-    public static final RectF D = new RectF();
-    public ViewTreeObserver A;
-    public boolean B;
-    public TextPaint C;
-    public final boolean f48036a;
-    public final RectF f48037b;
-    public final RectF f48038c;
-    public long d;
-    public int f48039e;
-    public ViewGroup f48040f;
-    public ViewGroup h;
-    public long f48041n;
-    public b f48042r;
-    public long f48043s;
-    public final ArrayList v;
-    public final LongSparseArray f48044w;
-    public final LongSparseArray f48045x;
-    public final b f48046y;
+import android.graphics.RenderEffect;
+import android.graphics.RenderNode;
+import android.graphics.Shader;
+import android.os.Build;
+import android.support.v4.media.session.y;
+import java.util.Iterator;
+import java.util.List;
+import ng.g;
+import ng.h;
+public final class d implements a {
+    public final a f44310a;
+    public h f44312c;
+    public ng.e d;
+    public int e;
+    public a f44313f;
+    public boolean h;
+    public boolean f44314n;
+    public RecordingCanvas f44315r;
+    public Runnable v;
+    public final be.b f44316s = new be.b(true);
+    public final RenderNode f44311b = y.c();
 
-    public d(Context context) {
-        super(context);
-        this.f48037b = new RectF();
-        this.f48038c = new RectF();
-        this.v = new ArrayList();
-        this.f48044w = new LongSparseArray();
-        this.f48045x = new LongSparseArray();
-        this.f48046y = new b(this, 1);
-        this.f48036a = SharedConfig.debugViewMetrics;
-    }
-
-    public final void a() {
-        b bVar = this.f48042r;
-        if (bVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(bVar);
-            this.f48042r = null;
-        }
-        ArrayList arrayList = this.v;
-        if (!arrayList.isEmpty()) {
-            TLRPC.TL_messages_reportReadMetrics tL_messages_reportReadMetrics = new TLRPC.TL_messages_reportReadMetrics();
-            tL_messages_reportReadMetrics.peer = MessagesController.getInstance(this.f48039e).getInputPeer(this.d);
-            tL_messages_reportReadMetrics.metrics = new ArrayList<>(arrayList);
-            ConnectionsManager.getInstance(this.f48039e).sendRequestTyped(tL_messages_reportReadMetrics, null, new ur(2));
-            arrayList.clear();
-        }
-    }
-
-    public final void b(int i10, long j10, ViewGroup viewGroup, lj ljVar) {
-        this.d = j10;
-        this.f48039e = i10;
-        this.f48040f = viewGroup;
-        this.h = ljVar;
-    }
-
-    public final void c() {
-        throw new UnsupportedOperationException("Method not decompiled: sg.d.c():void");
+    public d(a aVar) {
+        this.f44310a = aVar;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f48043s = 0L;
-        ViewTreeObserver viewTreeObserver = getViewTreeObserver();
-        this.A = viewTreeObserver;
-        viewTreeObserver.addOnPreDrawListener(this);
-        this.A.addOnGlobalLayoutListener(this);
-        this.A.addOnScrollChangedListener(this);
-        AndroidUtilities.runOnUIThread(this.f48046y, 400L);
-        if (BuildVars.LOGS_ENABLED) {
-            f5.a.n("ViewMetrics", "attach");
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        ViewTreeObserver viewTreeObserver = this.A;
-        if (viewTreeObserver != null && viewTreeObserver.isAlive()) {
-            this.A.removeOnPreDrawListener(this);
-            this.A.removeOnGlobalLayoutListener(this);
-            this.A.removeOnScrollChangedListener(this);
-        }
-        this.A = null;
-        this.f48043s = 0L;
-        AndroidUtilities.cancelRunOnUIThread(this.f48046y);
-        if (BuildVars.LOGS_ENABLED) {
-            f5.a.n("ViewMetrics", "detach");
-        }
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int round;
-        if (this.f48036a) {
-            if (this.C == null) {
-                TextPaint textPaint = new TextPaint(1);
-                this.C = textPaint;
-                textPaint.setColor(-16776961);
-                this.C.setTextSize(AndroidUtilities.dp(10.0f));
+    public final void X(Canvas canvas, float f10, float f11, float f12, float f13) {
+        ng.e eVar;
+        if (!canvas.isHardwareAccelerated()) {
+            a aVar = this.f44310a;
+            if (aVar != null) {
+                aVar.X(canvas, f10, f11, f12, f13);
             }
-            super.onDraw(canvas);
-            Paint paint = g6.Ll;
-            RectF rectF = this.f48038c;
-            canvas.drawRect(rectF, paint);
-            LongSparseArray longSparseArray = this.f48044w;
-            int size = longSparseArray.size();
-            for (int i10 = 0; i10 < size; i10++) {
-                c cVar = (c) longSparseArray.valueAt(i10);
-                RectF rectF2 = cVar.f48027c;
-                canvas.drawRect(rectF2, g6.Ml);
-                canvas.save();
-                canvas.translate(rectF2.left, w.a(w.a(rectF2.centerY() - AndroidUtilities.dp(20.0f), rectF.top - AndroidUtilities.dp(40.0f), rectF.bottom), rectF2.top, rectF2.bottom - AndroidUtilities.dp(40.0f)));
-                canvas.drawRect(0.0f, 0.0f, rectF2.width(), AndroidUtilities.dp(40.0f), g6.Kl);
-                canvas.translate(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(16.0f));
-                canvas.save();
-                canvas.drawText("time_in_view_ms: " + cVar.f48030g, 0.0f, 0.0f, this.C);
-                canvas.translate(0.0f, (float) AndroidUtilities.dp(16.0f));
-                canvas.drawText("active_time_in_view_ms: " + cVar.h, 0.0f, 0.0f, this.C);
-                canvas.restore();
-                canvas.save();
-                canvas.translate(getWidth() / 2.0f, 0.0f);
-                StringBuilder sb2 = new StringBuilder("height_to_viewport_ratio_permille: ");
-                float f9 = cVar.f48033k;
-                if (f9 == 0.0f) {
-                    round = 1000;
+        } else if (!this.f44314n) {
+            a aVar2 = this.f44313f;
+            if (aVar2 != null) {
+                aVar2.X(canvas, f10, f11, f12, f13);
+            }
+            canvas.save();
+            if (!this.h) {
+                canvas.clipRect(f10, f11, f12, f13);
+            }
+            if (Build.VERSION.SDK_INT >= 31 && (eVar = this.d) != null) {
+                eVar.c(canvas, this.e);
+            } else {
+                canvas.drawRenderNode(this.f44311b);
+            }
+            canvas.restore();
+        } else {
+            throw new IllegalStateException();
+        }
+    }
+
+    public final RecordingCanvas a(int i10, int i11) {
+        if (!this.f44314n) {
+            this.f44314n = true;
+            this.f44311b.setPosition(0, 0, i10, i11);
+            RecordingCanvas beginRecording = this.f44311b.beginRecording(i10, i11);
+            this.f44315r = beginRecording;
+            return beginRecording;
+        }
+        throw new IllegalStateException();
+    }
+
+    public final void b() {
+        if (this.f44314n) {
+            this.f44311b.endRecording();
+            this.f44314n = false;
+            this.f44315r = null;
+            return;
+        }
+        throw new IllegalStateException();
+    }
+
+    public final int c(List list, int i10, int i11) {
+        RectF rectF;
+        Iterator it = this.f44316s.iterator();
+        int i12 = 0;
+        while (it.hasNext()) {
+            pg.c cVar = (pg.c) it.next();
+            boolean v = cVar.v();
+            pg.a aVar = cVar.h;
+            if (v && cVar.f41221j > 0 && !aVar.f41212m.isEmpty()) {
+                if (i10 < list.size()) {
+                    rectF = (RectF) list.get(i10);
                 } else {
-                    round = Math.round((cVar.f48032j / f9) * 1000.0f);
+                    rectF = new RectF();
+                    list.add(rectF);
                 }
-                sb2.append(round);
-                canvas.drawText(sb2.toString(), 0.0f, 0.0f, this.C);
-                canvas.translate(0.0f, AndroidUtilities.dp(16.0f));
-                canvas.drawText("seen_range_ratio_permille: " + cVar.b(), 0.0f, 0.0f, this.C);
-                canvas.restore();
-                canvas.restore();
+                rectF.set(aVar.f41212m);
+                rectF.offset(cVar.f41215a, cVar.f41216b);
+                float f10 = -i11;
+                rectF.inset(f10, f10);
+                i10++;
+                i12++;
             }
+        }
+        return i12;
+    }
+
+    public final void d() {
+        Iterator it = this.f44316s.iterator();
+        while (it.hasNext()) {
+            ((pg.c) it.next()).M = true;
         }
     }
 
-    @Override
-    public final void onGlobalLayout() {
-        this.B = true;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        RectF rectF = this.f48037b;
-        this.f48038c.set(rectF.left, rectF.top, getMeasuredWidth() - rectF.right, getMeasuredHeight() - rectF.bottom);
-    }
-
-    @Override
-    public final boolean onPreDraw() {
-        if (this.B) {
-            c();
-            this.B = false;
-            return true;
+    public final boolean e(int i10, int i11) {
+        if (this.f44311b.hasDisplayList() && this.f44311b.getWidth() == i10 && this.f44311b.getHeight() == i11) {
+            return false;
         }
         return true;
     }
 
     @Override
-    public final void onScrollChanged() {
-        this.B = true;
+    public final void f() {
+        Runnable runnable = this.v;
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public final void g(float f10) {
+        RenderEffect renderEffect;
+        RenderNode renderNode = this.f44311b;
+        if (f10 > 0.0f) {
+            renderEffect = RenderEffect.createBlurEffect(f10, f10, Shader.TileMode.CLAMP);
+        } else {
+            renderEffect = null;
+        }
+        renderNode.setRenderEffect(renderEffect);
+    }
+
+    public final void h(float f10, RenderEffect renderEffect) {
+        this.f44311b.setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(f10, f10, Shader.TileMode.CLAMP), renderEffect));
+    }
+
+    public final void i(int i10, int i11) {
+        this.f44311b.setPosition(0, 0, i10, i11);
+    }
+
+    public final void j(g gVar) {
+        if (this.f44312c == null) {
+            this.f44312c = new h(this.f44311b, gVar);
+        }
+    }
+
+    @Override
+    public final pg.b k() {
+        pg.c cVar = new pg.c(this);
+        this.f44316s.add(cVar);
+        return cVar;
+    }
+
+    public final void l() {
+        this.f44312c.a();
     }
 }

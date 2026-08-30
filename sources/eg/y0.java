@@ -1,40 +1,30 @@
 package eg;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.tn;
-public final class y0 implements Utilities.Callback {
-    public final c1 f6193a;
-    public final TL_stories.TL_prepaidStarsGiveaway f6194b;
-    public final long f6195c;
-    public final long d;
-    public final TL_stories.PrepaidGiveaway f6196e;
-
-    public y0(c1 c1Var, TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, long j10, long j11, TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.f6193a = c1Var;
-        this.f6194b = tL_prepaidStarsGiveaway;
-        this.f6195c = j10;
-        this.d = j11;
-        this.f6196e = prepaidGiveaway;
-    }
+public final class y0 extends org.telegram.ui.Cells.q {
+    public p2 e;
+    public Paint f5581f;
+    public float h;
 
     @Override
-    public final void run(Object obj) {
-        Void r6 = (Void) obj;
-        c1 c1Var = this.f6193a;
-        c1Var.dismiss();
-        if (this.f6194b != null) {
-            org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
-            if (U != null) {
-                tn R9 = tn.R9(this.f6195c);
-                R9.whenFullyVisible(new z0(R9, this.d, 0));
-                U.presentFragment(R9);
-                return;
-            }
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new ef.c(8, c1Var, this.f6196e), 220L);
+    public final void draw(Canvas canvas) {
+        int dp = AndroidUtilities.dp(10.0f);
+        p2 p2Var = this.e;
+        p2Var.f5429c.set(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), getMeasuredWidth() - AndroidUtilities.dp(5.0f), getMeasuredHeight() - AndroidUtilities.dp(5.0f));
+        float f10 = -dp;
+        p2Var.f5427a.set(f10, f10, getWidth() + dp, getHeight() + dp);
+        canvas.save();
+        float f11 = 1.0f - this.h;
+        canvas.scale(f11, f11, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+        p2Var.d(canvas);
+        canvas.restore();
+        invalidate();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f5581f);
+        super.draw(canvas);
     }
 }

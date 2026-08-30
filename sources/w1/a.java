@@ -4,16 +4,16 @@ import androidx.lifecycle.a0;
 import androidx.lifecycle.t;
 import androidx.lifecycle.z;
 import c2.u;
-import m5.d;
+import o5.d;
 public final class a extends z {
-    public final d f49616l;
-    public t f49617m;
-    public u f49618n;
+    public final d f46354l;
+    public t f46355m;
+    public u f46356n;
 
     public a(d dVar) {
-        this.f49616l = dVar;
-        if (dVar.f16866a == null) {
-            dVar.f16866a = this;
+        this.f46354l = dVar;
+        if (dVar.f16444a == null) {
+            dVar.f16444a = this;
             return;
         }
         throw new IllegalStateException("There is already a listener registered");
@@ -21,29 +21,29 @@ public final class a extends z {
 
     @Override
     public final void f() {
-        d dVar = this.f49616l;
-        dVar.f16867b = true;
+        d dVar = this.f46354l;
+        dVar.f16445b = true;
         dVar.d = false;
-        dVar.f16868c = false;
-        dVar.f16872i.drainPermits();
+        dVar.f16446c = false;
+        dVar.f16449i.drainPermits();
         dVar.c();
     }
 
     @Override
     public final void g() {
-        this.f49616l.f16867b = false;
+        this.f46354l.f16445b = false;
     }
 
     @Override
     public final void i(a0 a0Var) {
         super.i(a0Var);
-        this.f49617m = null;
-        this.f49618n = null;
+        this.f46355m = null;
+        this.f46356n = null;
     }
 
     public final void k() {
-        t tVar = this.f49617m;
-        u uVar = this.f49618n;
+        t tVar = this.f46355m;
+        u uVar = this.f46356n;
         if (tVar != null && uVar != null) {
             super.i(uVar);
             d(tVar, uVar);
@@ -51,15 +51,15 @@ public final class a extends z {
     }
 
     public final String toString() {
-        StringBuilder sb2 = new StringBuilder(64);
-        sb2.append("LoaderInfo{");
-        sb2.append(Integer.toHexString(System.identityHashCode(this)));
-        sb2.append(" #0 : ");
-        Class<?> cls = this.f49616l.getClass();
-        sb2.append(cls.getSimpleName());
-        sb2.append("{");
-        sb2.append(Integer.toHexString(System.identityHashCode(cls)));
-        sb2.append("}}");
-        return sb2.toString();
+        StringBuilder sb = new StringBuilder(64);
+        sb.append("LoaderInfo{");
+        sb.append(Integer.toHexString(System.identityHashCode(this)));
+        sb.append(" #0 : ");
+        Class<?> cls = this.f46354l.getClass();
+        sb.append(cls.getSimpleName());
+        sb.append("{");
+        sb.append(Integer.toHexString(System.identityHashCode(cls)));
+        sb.append("}}");
+        return sb.toString();
     }
 }

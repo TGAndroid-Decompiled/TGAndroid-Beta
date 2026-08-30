@@ -1,223 +1,364 @@
 package org.telegram.ui.Components;
 
-import android.app.Dialog;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.util.SparseArray;
-import android.widget.EditText;
-import java.io.File;
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.ChatActivityEnterView;
-public final class ig implements Runnable {
-    public final int f29386a;
-    public final Object f29387b;
+public final class ig extends FrameLayout {
+    public final Drawable B;
+    public final Drawable C;
+    public final hg D;
+    public int E;
+    public final RectF F;
+    public final RectF G;
+    public long H;
+    public final Path I;
+    public final float[] J;
+    public final float[] K;
+    public final z5 L;
+    public qg.b M;
+    public boolean N;
+    public pg.b O;
+    public pg.b P;
+    public boolean Q;
+    public boolean R;
+    public final ChatActivityEnterView S;
+    public ph.f3 f25704a;
+    public ph.f3 f25705b;
+    public ShapeDrawable f25706c;
+    public final Drawable d;
+    public final String e;
+    public StaticLayout f25707f;
+    public float h;
+    public final TextPaint f25708n;
+    public final Paint f25709r;
+    public final Paint f25710s;
+    public final Paint v;
+    public final Path f25711w;
+    public final Paint f25712x;
+    public final ph.j f25713y;
 
-    public ig(Object obj, int i10) {
-        this.f29386a = i10;
-        this.f29387b = obj;
+    public ig(ChatActivityEnterView chatActivityEnterView, Context context) {
+        super(context);
+        this.S = chatActivityEnterView;
+        TextPaint textPaint = new TextPaint(1);
+        this.f25708n = textPaint;
+        this.f25709r = new Paint(1);
+        this.f25710s = new Paint(1);
+        Paint paint = new Paint(1);
+        this.v = paint;
+        this.f25711w = new Path();
+        this.f25712x = new Paint(1);
+        this.F = new RectF();
+        this.G = new RectF();
+        this.I = new Path();
+        this.J = r4;
+        this.K = r3;
+        this.L = new z5(this, 0L, 350L, nr.h);
+        hg hgVar = new hg(this, this);
+        this.D = hgVar;
+        r0.j0.k(this, hgVar);
+        ph.j jVar = new ph.j(5);
+        this.f25713y = jVar;
+        jVar.setCallback(this);
+        jVar.d(1, chatActivityEnterView.L, false);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
+        Drawable drawable = getResources().getDrawable(R.drawable.lock_round_shadow);
+        chatActivityEnterView.R3 = drawable;
+        drawable.setColorFilter(new PorterDuffColorFilter(chatActivityEnterView.i0(org.telegram.ui.ActionBar.j6.f19878be), PorterDuff.Mode.MULTIPLY));
+        this.f25706c = org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(5.0f), chatActivityEnterView.i0(org.telegram.ui.ActionBar.j6.f20148qf));
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        this.d = context.getDrawable(R.drawable.tooltip_arrow);
+        this.e = LocaleController.getString("SlideUpToLock", R.string.SlideUpToLock);
+        float dp = AndroidUtilities.dp(3.0f);
+        float[] fArr = {dp, dp, 0.0f, 0.0f, 0.0f, 0.0f, dp, dp};
+        float[] fArr2 = {0.0f, 0.0f, r13, r13, r13, r13, 0.0f, 0.0f};
+        float dp2 = AndroidUtilities.dp(3.0f);
+        this.B = getResources().getDrawable(R.drawable.input_mic).mutate();
+        this.C = getResources().getDrawable(R.drawable.input_video).mutate();
+        setWillNotDraw(false);
+        c();
+    }
+
+    public final void a() {
+        ph.f3 f3Var = this.f25704a;
+        if (f3Var != null) {
+            f3Var.f41617i0 = new gg(this, f3Var, 1);
+            f3Var.e(true);
+            this.f25704a = null;
+        }
+        ph.f3 f3Var2 = this.f25705b;
+        if (f3Var2 != null) {
+            f3Var2.f41617i0 = new gg(this, f3Var2, 2);
+            f3Var2.e(true);
+            this.f25705b = null;
+        }
+    }
+
+    public final void b() {
+        int i10;
+        a();
+        ph.f3 f3Var = new ph.f3(getContext(), 2);
+        this.f25705b = f3Var;
+        f3Var.m(1.0f, 0.0f);
+        this.f25705b.q(true);
+        ChatActivityEnterView chatActivityEnterView = this.S;
+        if (chatActivityEnterView.Z0) {
+            if (chatActivityEnterView.L) {
+                i10 = R.string.VideoSetOnceHintEnabled;
+            } else {
+                i10 = R.string.VideoSetOnceHint;
+            }
+        } else if (chatActivityEnterView.L) {
+            i10 = R.string.VoiceSetOnceHintEnabled;
+        } else {
+            i10 = R.string.VoiceSetOnceHint;
+        }
+        this.f25705b.t(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
+        ph.f3 f3Var2 = this.f25705b;
+        f3Var2.h = ph.f3.a(f3Var2.getText(), this.f25705b.getTextPaint());
+        if (chatActivityEnterView.L) {
+            this.f25705b.j(R.raw.fire_on);
+        } else {
+            MessagesController.getGlobalMainSettings().edit().putInt("voiceoncehint", MessagesController.getGlobalMainSettings().getInt("voiceoncehint", 0) + 1).apply();
+        }
+        addView(this.f25705b, k7.b6.d(-1, -1.0f, 119, 0.0f, 0.0f, 54.0f, 58.0f));
+        ph.f3 f3Var3 = this.f25705b;
+        f3Var3.f41617i0 = new gg(this, f3Var3, 0);
+        f3Var3.v();
+    }
+
+    public final void c() {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        qg.b bVar = this.M;
+        if (bVar != null) {
+            bVar.b();
+        }
+        pg.b bVar2 = this.O;
+        if (bVar2 != null) {
+            bVar2.u();
+        }
+        pg.b bVar3 = this.P;
+        if (bVar3 != null) {
+            bVar3.u();
+        }
+        if (this.N) {
+            i10 = org.telegram.ui.ActionBar.j6.Wk;
+        } else {
+            i10 = org.telegram.ui.ActionBar.j6.Zd;
+        }
+        ChatActivityEnterView chatActivityEnterView = this.S;
+        this.f25713y.e(chatActivityEnterView.i0(i10), chatActivityEnterView.i0(org.telegram.ui.ActionBar.j6.f19897cf), -1);
+        this.f25708n.setColor(chatActivityEnterView.i0(org.telegram.ui.ActionBar.j6.f20130pf));
+        int dp = AndroidUtilities.dp(5.0f);
+        int i15 = org.telegram.ui.ActionBar.j6.f20148qf;
+        this.f25706c = org.telegram.ui.ActionBar.j6.b0(dp, chatActivityEnterView.i0(i15));
+        int i02 = chatActivityEnterView.i0(i15);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        this.d.setColorFilter(new PorterDuffColorFilter(i02, mode));
+        this.f25709r.setColor(chatActivityEnterView.i0(org.telegram.ui.ActionBar.j6.f19859ae));
+        if (this.N) {
+            i11 = org.telegram.ui.ActionBar.j6.Wk;
+        } else {
+            i11 = org.telegram.ui.ActionBar.j6.Zd;
+        }
+        this.f25710s.setColor(chatActivityEnterView.i0(i11));
+        if (this.N) {
+            i12 = org.telegram.ui.ActionBar.j6.Wk;
+        } else {
+            i12 = org.telegram.ui.ActionBar.j6.Zd;
+        }
+        this.v.setColor(chatActivityEnterView.i0(i12));
+        if (this.N) {
+            i13 = org.telegram.ui.ActionBar.j6.Wk;
+        } else {
+            i13 = org.telegram.ui.ActionBar.j6.Zd;
+        }
+        this.B.setColorFilter(new PorterDuffColorFilter(chatActivityEnterView.i0(i13), mode));
+        if (this.N) {
+            i14 = org.telegram.ui.ActionBar.j6.Wk;
+        } else {
+            i14 = org.telegram.ui.ActionBar.j6.Zd;
+        }
+        this.C.setColorFilter(new PorterDuffColorFilter(chatActivityEnterView.i0(i14), mode));
     }
 
     @Override
-    public final void run() {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout;
-        int i10 = this.f29386a;
-        Object obj = this.f29387b;
-        switch (i10) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = ((lg) obj).R;
-                if (!MediaController.getInstance().isRecordingPaused()) {
-                    MessagesController.getGlobalMainSettings().edit().putInt("voicepausehint", 3).apply();
-                }
-                if (chatActivityEnterView.f26165n4) {
-                    chatActivityEnterView.E3 = true;
-                }
-                MediaController.getInstance().toggleRecordingPause(chatActivityEnterView.K);
-                chatActivityEnterView.U2.a1(0);
-                ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f26120f1;
-                if (slideTextView != null) {
-                    slideTextView.setEnabled(false);
-                    return;
-                }
-                return;
-            case 1:
-                tc tcVar = (tc) obj;
-                new cg.p1(tcVar.W(), 42, tcVar.f32924c).show();
-                return;
-            case 2:
-                AndroidUtilities.removeFromParent((nh.t3) obj);
-                return;
-            case 3:
-                AndroidUtilities.showKeyboard((EditText) obj);
-                return;
-            case 4:
-                SparseArray sparseArray = p5.f31579q;
-                ((p5) obj).v();
-                return;
-            case 5:
-                l5 l5Var = (l5) obj;
-                ArrayList arrayList = new ArrayList(l5Var.f30231c);
-                l5Var.f30231c.clear();
-                MessagesStorage.getInstance(l5Var.f30232e).getStorageQueue().postRunnable(new i5(l5Var, arrayList, 0));
-                l5Var.d = null;
-                return;
-            case 6:
-                ((n5) obj).invalidate();
-                return;
-            case 7:
-                ((o1.k) obj).f();
-                return;
-            case 8:
-                o6 o6Var = (o6) obj;
-                CharSequence charSequence = o6Var.f31267f;
-                if (charSequence != null) {
-                    o6Var.c(charSequence, o6Var.h, true);
-                    o6Var.f31267f = null;
-                    o6Var.h = false;
-                    return;
-                }
-                return;
-            case 9:
-                ((f8) obj).f28348n.f28792n.setVisibility(8);
-                return;
-            case 10:
-                ((m8) obj).f30596c.e1();
-                return;
-            case 11:
-                ca caVar = (ca) obj;
-                caVar.f27415o = true;
-                caVar.d.invalidate();
-                return;
-            case 12:
-                ba baVar = (ba) obj;
-                if (!baVar.f27014a) {
-                    ca caVar2 = baVar.d;
-                    Bitmap[] bitmapArr = caVar2.f27408g;
-                    Canvas[] canvasArr = caVar2.h;
-                    caVar2.f27408g = caVar2.f27407f;
-                    caVar2.h = caVar2.f27409i;
-                    caVar2.f27407f = bitmapArr;
-                    caVar2.f27409i = canvasArr;
-                    caVar2.f27411k = false;
-                    cg.i0 i0Var = caVar2.d;
-                    if (i0Var != null) {
-                        i0Var.invalidate();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 13:
-                ga gaVar = ((ma) obj).f30626t;
-                if (gaVar != null) {
-                    gaVar.d();
-                    return;
-                }
-                return;
-            case 14:
-                ga gaVar2 = (ga) obj;
-                gaVar2.f28860o = gaVar2.f28859n.f30266b;
-                gaVar2.d();
-                return;
-            case 15:
-                mc mcVar = ((fb) obj).f28367b;
-                rb rbVar = mcVar.f30648e;
-                rbVar.transitionRunningEnter = false;
-                rbVar.onEnterTransitionEnd();
-                if (mcVar.f30663u) {
-                    mcVar.i(true);
-                    return;
-                }
-                return;
-            case 16:
-                cd cdVar = (cd) obj;
-                cdVar.getClass();
-                if (LiteMode.isEnabled(512)) {
-                    cdVar.invalidateSelf();
-                    return;
-                }
-                return;
-            case 17:
-                ed edVar = (ed) obj;
-                if (edVar.f28011k1) {
-                    edVar.f28011k1 = false;
-                    edVar.invalidate();
-                    return;
-                }
-                return;
-            case 18:
-                ((Dialog) obj).dismiss();
-                return;
-            case 19:
-                ChatActivityEnterView chatActivityEnterView2 = ((lf) obj).f30302f;
-                int i11 = ChatActivityEnterView.f26085i5;
-                chatActivityEnterView2.q1();
-                return;
-            case 20:
-                ((tg) obj).f32948s = null;
-                return;
-            case 21:
-                ((di) obj).f27773x0.f31059w1.l();
-                return;
-            case 22:
-                jk jkVar = (jk) ((af.c) obj).f370b;
-                try {
-                    File file = jkVar.K;
-                    if (file == null) {
-                        jkVar.O();
-                    } else {
-                        jkVar.M(file);
-                    }
-                    jkVar.V();
-                    return;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                    return;
-                }
-            case 23:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = ((sl) obj).f32686b;
-                boolean z10 = ChatAttachAlertPhotoLayout.f26252m1;
-                chatAttachAlertPhotoLayout2.p0(-1, true);
-                return;
-            case 24:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout3 = ((pl) obj).f31705c;
-                if (chatAttachAlertPhotoLayout3.L != null && !chatAttachAlertPhotoLayout3.f28403b.isDismissed()) {
-                    chatAttachAlertPhotoLayout3.L.setSystemUiVisibility(1028);
-                    return;
-                }
-                return;
-            case 25:
-                lm lmVar = (lm) obj;
-                ni niVar = lmVar.f28403b;
-                if (lmVar.M && (chatAttachAlertPhotoLayout = niVar.f31005f0) != null) {
-                    org.telegram.ui.ActionBar.g1 g1Var = chatAttachAlertPhotoLayout.Y0;
-                    g1Var.setIcon(R.drawable.ic_ab_back);
-                    g1Var.setText(LocaleController.getString(R.string.Back));
-                    g1Var.setRightIcon(0);
-                    return;
-                }
-                return;
-            case 26:
-                on onVar = (on) obj;
-                onVar.f31413g1 = -1;
-                onVar.f31411f1 = null;
-                return;
-            case 27:
-                ((io) obj).k();
-                return;
-            case 28:
-                ((ko) obj).setVisibility(8);
-                return;
-            default:
-                ((jp) obj).f29780b.a();
-                return;
+    public final boolean dispatchHoverEvent(MotionEvent motionEvent) {
+        if (!super.dispatchHoverEvent(motionEvent) && !this.D.f(motionEvent)) {
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final void onDraw(android.graphics.Canvas r46) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ig.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        int dp = AndroidUtilities.dp(250.0f);
+        if (this.E != size) {
+            this.E = size;
+            StaticLayout staticLayout = new StaticLayout(this.e, this.f25708n, AndroidUtilities.dp(220.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+            this.f25707f = staticLayout;
+            int lineCount = staticLayout.getLineCount();
+            this.h = 0.0f;
+            for (int i12 = 0; i12 < lineCount; i12++) {
+                float lineWidth = this.f25707f.getLineWidth(i12);
+                if (lineWidth > this.h) {
+                    this.h = lineWidth;
+                }
+            }
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(dp, 1073741824));
+    }
+
+    @Override
+    public final boolean onSetAlpha(int i10) {
+        return super.onSetAlpha(i10);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        long j10;
+        ChatActivityEnterView chatActivityEnterView = this.S;
+        RectF rectF = chatActivityEnterView.O3;
+        int x10 = (int) motionEvent.getX();
+        int y10 = (int) motionEvent.getY();
+        int action = motionEvent.getAction();
+        RectF rectF2 = this.G;
+        if (action == 0) {
+            if (chatActivityEnterView.f22814o4) {
+                this.R = rectF.contains(x10, y10);
+            }
+            if (chatActivityEnterView.M && chatActivityEnterView.J1 != null && chatActivityEnterView.f22790j4 > 0.1f) {
+                this.Q = rectF2.contains(x10, y10);
+            }
+        } else if (motionEvent.getAction() == 1) {
+            if (this.R && rectF.contains(x10, y10)) {
+                if (chatActivityEnterView.Z0) {
+                    ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f22769g1;
+                    if (slideTextView != null) {
+                        slideTextView.setEnabled(false);
+                    }
+                    chatActivityEnterView.V2.p1();
+                } else {
+                    fg fgVar = new fg(this, 0);
+                    ph.f3 f3Var = this.f25704a;
+                    if (f3Var != null && f3Var.S) {
+                        a();
+                    }
+                    rk0 rk0Var = chatActivityEnterView.f22756e1;
+                    if (rk0Var != null) {
+                        rk0Var.setPlaying(false);
+                    }
+                    if (MediaController.getInstance().isRecordingPaused() && (chatActivityEnterView.f22756e1.getAudioLeft() > 0.01f || chatActivityEnterView.f22756e1.getAudioRight() < 0.99f)) {
+                        org.telegram.ui.hp hpVar = new org.telegram.ui.hp(17, this, fgVar);
+                        if (MessagesController.getGlobalMainSettings().getBoolean("trimvoicehint", true)) {
+                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, chatActivityEnterView.S3);
+                            alertDialog$Builder.f19503a.O = LocaleController.getString(R.string.RecordingTrimTitle);
+                            alertDialog$Builder.f19503a.Q = LocaleController.getString(R.string.RecordingTrimText);
+                            alertDialog$Builder.k(LocaleController.getString(R.string.OK), new t(hpVar, 19));
+                            kh.a2.u(R.string.Cancel, alertDialog$Builder, null);
+                        } else {
+                            hpVar.run();
+                        }
+                    } else {
+                        fgVar.run();
+                    }
+                }
+                this.Q = false;
+                this.R = false;
+                return true;
+            } else if (this.Q && rectF2.contains(x10, y10)) {
+                boolean z4 = !chatActivityEnterView.L;
+                chatActivityEnterView.L = z4;
+                this.f25713y.d(1, z4, true);
+                MediaDataController mediaDataController = MediaDataController.getInstance(chatActivityEnterView.N);
+                long j11 = chatActivityEnterView.M2;
+                org.telegram.ui.xn xnVar = chatActivityEnterView.L2;
+                if (xnVar != null && xnVar.f40001e4) {
+                    j10 = xnVar.b();
+                } else {
+                    j10 = 0;
+                }
+                mediaDataController.toggleDraftVoiceOnce(j11, j10, chatActivityEnterView.L);
+                if (chatActivityEnterView.L) {
+                    b();
+                } else {
+                    a();
+                }
+                invalidate();
+                this.Q = false;
+                this.R = false;
+                return true;
+            } else {
+                this.Q = false;
+                this.R = false;
+            }
+        } else if (motionEvent.getAction() == 3) {
+            this.Q = false;
+            this.R = false;
+        }
+        if (!this.R && !this.Q) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void setAlpha(float f10) {
+        super.setAlpha(f10);
+    }
+
+    public void setBlurredBackgroundFactory(ng.a aVar) {
+        this.N = true;
+        if (this.M == null) {
+            this.M = new qg.b(org.telegram.ui.ActionBar.j6.f19859ae, this.S.S3);
+        }
+        pg.b c3 = aVar.c(this, this.M, false);
+        this.O = c3;
+        c3.p(AndroidUtilities.dp(18.0f));
+        this.O.o(AndroidUtilities.dp(3.0f));
+        pg.b c10 = aVar.c(this, this.M, false);
+        this.P = c10;
+        c10.p(AndroidUtilities.dp(18.0f));
+        this.P.o(AndroidUtilities.dp(3.0f));
+        c();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.f25713y && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

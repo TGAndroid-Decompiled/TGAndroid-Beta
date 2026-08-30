@@ -1,12 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-public final class d4 extends EditTextBoldCursor {
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class d4 extends wc0 {
+    public final int[] f24145t0;
+
+    public d4(Context context, org.telegram.ui.ActionBar.f6 f6Var, int[] iArr) {
+        super(context, f6Var);
+        this.f24145t0 = iArr;
+    }
+
     @Override
-    public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-        editorInfo.imeOptions &= -1073741825;
-        return onCreateInputConnection;
+    public final CharSequence d(int i10) {
+        int i11 = this.f24145t0[i10];
+        if (i11 == 0) {
+            return LocaleController.getString(R.string.AutoDeleteNever);
+        }
+        if (i11 < 10080) {
+            return LocaleController.formatPluralString("Days", i11 / 1440, new Object[0]);
+        }
+        if (i11 < 44640) {
+            return LocaleController.formatPluralString("Weeks", i11 / 1440, new Object[0]);
+        }
+        if (i11 < 525600) {
+            return LocaleController.formatPluralString("Months", i11 / 10080, new Object[0]);
+        }
+        return LocaleController.formatPluralString("Years", ((i11 * 5) / 31) * 1440, new Object[0]);
     }
 }

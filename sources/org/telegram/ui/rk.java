@@ -1,13 +1,20 @@
 package org.telegram.ui;
-public final class rk extends ko {
-    public boolean P0;
+public final class rk extends c2.y {
+    public final xn f38067l;
 
-    @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.P0) {
-            i0();
-            this.P0 = true;
+    public rk(xn xnVar, qj qjVar, tj tjVar) {
+        super(qjVar, tjVar);
+        this.f38067l = xnVar;
+    }
+
+    public final void d(int i10) {
+        if (this.f38067l.Ma) {
+            if (i10 == 0) {
+                i10 = 1;
+            } else if (i10 == 1) {
+                i10 = 0;
+            }
         }
+        this.f2031b = i10;
     }
 }

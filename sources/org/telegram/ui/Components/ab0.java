@@ -1,24 +1,27 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-public final class ab0 extends f2.v {
-    public final lb0 f26734c;
+import android.view.View;
+import android.view.ViewGroup;
+public final class ab0 implements h5.d {
+    public final int f23339a;
+    public final ViewGroup f23340b;
 
-    public ab0(lb0 lb0Var) {
-        this.f26734c = lb0Var;
+    public ab0(ViewGroup viewGroup, int i10) {
+        this.f23339a = i10;
+        this.f23340b = viewGroup;
     }
 
     @Override
-    public final int i(int i10) {
-        MessageObject messageObject;
-        MessageObject.GroupedMessages a2;
-        if (i10 >= 0) {
-            lb0 lb0Var = this.f26734c;
-            if (i10 < lb0Var.f30279r.previewMessages.size() && (a2 = lb0.a(lb0Var, (messageObject = lb0Var.f30279r.previewMessages.get(i10)))) != null) {
-                return a2.getPosition(messageObject).spanSize;
-            }
-            return 1000;
+    public final void accept(Object obj) {
+        switch (this.f23339a) {
+            case 0:
+                qb0 qb0Var = (qb0) this.f23340b;
+                qb0Var.f28106n.y(qb0Var.f28105f.T((View) obj));
+                return;
+            default:
+                g61 g61Var = (g61) this.f23340b;
+                g61Var.V2.Q(g61Var.T((View) obj), g61Var.Z2);
+                return;
         }
-        return 1000;
     }
 }

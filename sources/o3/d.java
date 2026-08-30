@@ -1,13 +1,23 @@
 package o3;
-public final class d {
-    public static final d d = new d(-3, -9223372036854775807L, -1);
-    public final int f19079a;
-    public final long f19080b;
-    public final long f19081c;
 
-    public d(int i10, long j10, long j11) {
-        this.f19079a = i10;
-        this.f19080b = j10;
-        this.f19081c = j11;
+import android.os.Handler;
+import h5.d0;
+import nh.n5;
+public final class d implements n {
+    public final l f16244a;
+    public i f16245b;
+    public boolean f16246c;
+    public final e d;
+
+    public d(e eVar, l lVar) {
+        this.d = eVar;
+        this.f16244a = lVar;
+    }
+
+    @Override
+    public final void release() {
+        Handler handler = this.d.G;
+        handler.getClass();
+        d0.K(handler, new n5(this, 14));
     }
 }

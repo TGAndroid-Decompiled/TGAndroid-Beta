@@ -1,6 +1,5 @@
 package org.telegram.messenger.video;
 
-import a4.w;
 import android.media.MediaCodec;
 import android.media.MediaCrypto;
 import android.media.MediaExtractor;
@@ -46,8 +45,8 @@ public class AudioDecoder {
         this.startTimeUs = 0L;
         try {
             this.endTimeUs = this.extractor.getTrackFormat(this.trackIndex).getLong("durationUs");
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             this.endTimeUs = -1L;
         }
     }
@@ -84,8 +83,8 @@ public class AudioDecoder {
         int limit;
         int dequeueInputBuffer;
         DecodedBufferData decodedBufferData = new DecodedBufferData();
-        boolean z10 = false;
-        while (!z10 && !this.decodingDone) {
+        boolean z4 = false;
+        while (!z4 && !this.decodingDone) {
             if (!this.allInputExtracted && (dequeueInputBuffer = this.decoder.dequeueInputBuffer(0L)) >= 0) {
                 int readSampleData = this.extractor.readSampleData(this.decoder.getInputBuffer(dequeueInputBuffer), 0);
                 if (readSampleData >= 0 && this.extractor.getSampleTime() <= this.endTimeUs) {
@@ -125,7 +124,7 @@ public class AudioDecoder {
                     this.decodingDone = true;
                 }
                 if (decodedBufferData.byteBuffer.remaining() > 0) {
-                    z10 = true;
+                    z4 = true;
                 }
             }
         }
@@ -147,12 +146,12 @@ public class AudioDecoder {
     public int getChannelCount() {
         try {
             return getOutputMediaFormat().getInteger("channel-count");
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             try {
                 return getInputMediaFormat().getInteger("channel-count");
-            } catch (Exception e11) {
-                FileLog.e(e11);
+            } catch (Exception e6) {
+                FileLog.e(e6);
                 return -1;
             }
         }
@@ -161,12 +160,12 @@ public class AudioDecoder {
     public long getDurationUs() {
         try {
             return getOutputMediaFormat().getLong("durationUs");
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             try {
                 return getInputMediaFormat().getLong("durationUs");
-            } catch (Exception e11) {
-                FileLog.e(e11);
+            } catch (Exception e6) {
+                FileLog.e(e6);
                 return -1L;
             }
         }
@@ -179,8 +178,8 @@ public class AudioDecoder {
     public MediaFormat getInputMediaFormat() {
         try {
             return this.extractor.getTrackFormat(this.trackIndex);
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             return null;
         }
     }
@@ -191,8 +190,8 @@ public class AudioDecoder {
                 return getOutputMediaFormat();
             }
             return getInputMediaFormat();
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             return null;
         }
     }
@@ -200,8 +199,8 @@ public class AudioDecoder {
     public MediaFormat getOutputMediaFormat() {
         try {
             return this.decoder.getOutputFormat();
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             return null;
         }
     }
@@ -209,12 +208,12 @@ public class AudioDecoder {
     public int getSampleRate() {
         try {
             return getOutputMediaFormat().getInteger("sample-rate");
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             try {
                 return getInputMediaFormat().getInteger("sample-rate");
-            } catch (Exception e11) {
-                FileLog.e(e11);
+            } catch (Exception e6) {
+                FileLog.e(e6);
                 return -1;
             }
         }
@@ -252,8 +251,8 @@ public class AudioDecoder {
         }
     }
 
-    public void setLoopingEnabled(boolean z10) {
-        this.loopingEnabled = z10;
+    public void setLoopingEnabled(boolean z4) {
+        this.loopingEnabled = z4;
     }
 
     public void setStartTimeUs(long j10) {
@@ -275,10 +274,10 @@ public class AudioDecoder {
             this.decodingDone = false;
             return;
         }
-        StringBuilder sb2 = new StringBuilder("StartTimeUs(");
-        sb2.append(this.startTimeUs);
-        sb2.append(") must be less than or equal to EndTimeUs(");
-        throw new RuntimeException(w.p(sb2, this.endTimeUs, ")"));
+        StringBuilder sb = new StringBuilder("StartTimeUs(");
+        sb.append(this.startTimeUs);
+        sb.append(") must be less than or equal to EndTimeUs(");
+        throw new RuntimeException(android.support.v4.media.a.q(sb, this.endTimeUs, ")"));
     }
 
     public void stop() {

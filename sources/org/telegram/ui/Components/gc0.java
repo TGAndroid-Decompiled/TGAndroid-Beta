@@ -1,99 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
+import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
+import android.graphics.Shader;
 import org.telegram.messenger.R;
-public final class gc0 extends Drawable {
-    public final Drawable f28867a;
-    public final Paint f28868b;
-    public final Paint f28869c;
-    public final d6 d;
-    public boolean f28870e;
+public final class gc0 {
+    public final Paint f25100a;
+    public final hc0 f25101b;
+    public final hc0 f25102c;
+    public final hc0 d;
+    public final fc0 e;
+    public final fc0 f25103f;
+    public final float[] f25104g;
+    public int h;
+    public float f25105i;
 
-    public gc0(Context context) {
-        Paint paint = new Paint(1);
-        this.f28868b = paint;
-        Paint paint2 = new Paint(1);
-        this.f28869c = paint2;
-        this.d = new d6(new xb0(this, 2), 200L, jr.f29801g, 0);
-        this.f28867a = context.getResources().getDrawable(R.drawable.filled_sound_on).mutate();
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.566f));
-        paint.setColor(-1);
-        Paint.Cap cap = Paint.Cap.ROUND;
-        paint.setStrokeCap(cap);
-        Paint.Join join = Paint.Join.ROUND;
-        paint.setStrokeJoin(join);
-        paint2.setStyle(style);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(4.5f));
-        paint2.setColor(-65536);
-        paint2.setStrokeCap(cap);
-        paint2.setStrokeJoin(join);
+    public gc0() {
+        Paint paint = new Paint();
+        this.f25100a = paint;
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        this.f25101b = new hc0(tileMode);
+        this.f25102c = new hc0(tileMode);
+        this.d = new hc0(Shader.TileMode.REPEAT);
+        this.e = new fc0(R.raw.wallpaper_pos_intensity);
+        this.f25103f = new fc0(R.raw.wallpaper_neg_intensity);
+        this.f25104g = new float[4];
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-        Drawable drawable = this.f28867a;
-        drawable.setBounds(bounds);
-        drawable.draw(canvas);
-        float e10 = this.d.e(this.f28870e);
-        if (e10 > 0.0f) {
-            float dpf2 = AndroidUtilities.dpf2(0.783f);
-            float centerX = (bounds.centerX() - AndroidUtilities.dp(9.0f)) + dpf2;
-            float centerY = (bounds.centerY() - AndroidUtilities.dp(9.0f)) + dpf2;
-            float dp = (AndroidUtilities.dp(9.0f) + bounds.centerX()) - dpf2;
-            float dp2 = (AndroidUtilities.dp(9.0f) + bounds.centerY()) - dpf2;
-            if (this.f28870e) {
-                centerX = AndroidUtilities.lerp(dp, centerX, e10);
-                centerY = AndroidUtilities.lerp(dp2, centerY, e10);
-            } else {
-                dp = AndroidUtilities.lerp(centerX, dp, e10);
-                dp2 = AndroidUtilities.lerp(centerY, dp2, e10);
+    public final Paint a(Bitmap bitmap, Bitmap bitmap2, Bitmap bitmap3, int i10, int i11) {
+        hc0 hc0Var = this.f25101b;
+        boolean b10 = hc0Var.b(bitmap);
+        hc0 hc0Var2 = this.d;
+        boolean b11 = b10 | hc0Var2.b(bitmap2);
+        Paint paint = this.f25100a;
+        if (i11 >= 0) {
+            hc0 hc0Var3 = this.f25102c;
+            if ((b11 | hc0Var3.b(bitmap3)) || this.h != 1) {
+                this.h = 1;
+                fc0 fc0Var = this.e;
+                fc0Var.f24848a.setInputBuffer("shaderPattern", hc0Var2.d);
+                fc0Var.f24848a.setInputBuffer("shaderGradient", hc0Var.d);
+                fc0Var.f24848a.setInputBuffer("shaderGradientSoftLight", hc0Var3.d);
+                fc0Var.f24848a.setFloatUniform("transformGradient", fc0Var.f24849b);
+                fc0Var.f24848a.setFloatUniform("transformPattern", fc0Var.f24850c);
+                paint.setShader(fc0Var.f24848a);
+                return paint;
             }
-            float f9 = dp2;
-            float f10 = centerX;
-            float f11 = centerY;
-            float f12 = dp;
-            canvas.drawLine(f10, f11, f12, f9, this.f28869c);
-            Paint paint = this.f28868b;
-            paint.setAlpha((int) (Math.min(1.0f, e10 * 10.0f) * 255.0f));
-            canvas.drawLine(f10, f11, f12, f9, paint);
+        } else {
+            float a2 = k7.n.a((i10 * (-i11)) / 25500.0f, 0.0f, 1.0f);
+            if (b11 || this.f25105i != a2 || this.h != 2) {
+                this.h = 2;
+                this.f25105i = a2;
+                fc0 fc0Var2 = this.f25103f;
+                fc0Var2.f24848a.setInputBuffer("shaderPattern", hc0Var2.d);
+                fc0Var2.f24848a.setInputBuffer("shaderGradient", hc0Var.d);
+                fc0Var2.f24848a.setFloatUniform("intensity", a2);
+                fc0Var2.f24848a.setFloatUniform("transformGradient", fc0Var2.f24849b);
+                fc0Var2.f24848a.setFloatUniform("transformPattern", fc0Var2.f24850c);
+                paint.setShader(fc0Var2.f24848a);
+                return paint;
+            }
         }
-        canvas.restore();
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f28867a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+        return paint;
     }
 }

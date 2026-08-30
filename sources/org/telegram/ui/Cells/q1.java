@@ -1,134 +1,253 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.drawable.Drawable;
-import android.text.StaticLayout;
-import org.telegram.messenger.ImageReceiver;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.os.Bundle;
+import android.text.Spannable;
+import android.text.style.ClickableSpan;
+import android.view.accessibility.AccessibilityNodeProvider;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotInlineKeyboard;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.RichMessageLayout;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.zz0;
-public final class q1 {
-    public StaticLayout A;
-    public org.telegram.ui.Components.u5 B;
-    public int C;
-    public int D;
-    public final s1 E;
-    public int f25028a;
-    public int f25029b;
-    public int f25030c;
-    public int d;
-    public float f25031e;
-    public int f25032f;
-    public float f25033g;
-    public float h;
-    public boolean f25034i;
-    public int f25035j;
-    public boolean f25036k;
-    public boolean f25037l;
-    public float f25038m;
-    public float f25039n;
-    public boolean f25040o;
-    public StaticLayout f25041p;
-    public zz0 f25042q;
-    public org.telegram.ui.Components.u5 f25043r;
-    public TLRPC.PollAnswer f25044s;
-    public TLRPC.TodoItem f25045t;
-    public boolean f25046u;
-    public int v;
-    public Drawable f25047w;
-    public dh.b f25048x;
-    public org.telegram.ui.Components.e9 f25049y;
-    public ImageReceiver f25050z;
+import org.telegram.tgnet.tl.TL_keyboard;
+public final class q1 extends AccessibilityNodeProvider {
+    public final Path f21564a = new Path();
+    public final RectF f21565b = new RectF();
+    public final Rect f21566c = new Rect();
+    public final t1 d;
 
-    public q1(s1 s1Var) {
-        this.E = s1Var;
+    public q1(t1 t1Var) {
+        this.d = t1Var;
     }
 
-    public static TLRPC.PollAnswer a(q1 q1Var) {
-        return q1Var.f25044s;
-    }
-
-    public static void b(q1 q1Var, TLRPC.PollAnswer pollAnswer) {
-        q1Var.f25044s = pollAnswer;
-    }
-
-    public static void c(q1 q1Var, int i10) {
-        q1Var.f25035j = i10;
-    }
-
-    public static TLRPC.TodoItem d(q1 q1Var) {
-        return q1Var.f25045t;
-    }
-
-    public static void e(q1 q1Var, TLRPC.TodoItem todoItem) {
-        q1Var.f25045t = todoItem;
-    }
-
-    public static boolean f(q1 q1Var) {
-        return q1Var.f25034i;
-    }
-
-    public static ImageReceiver g(q1 q1Var) {
-        return q1Var.f25050z;
-    }
-
-    public static int h(q1 q1Var) {
-        return q1Var.d;
-    }
-
-    public static void i(q1 q1Var, int i10) {
-        q1Var.f25032f = i10;
-    }
-
-    public static void j(q1 q1Var, float f9) {
-        q1Var.h = f9;
-    }
-
-    public static StaticLayout k(q1 q1Var) {
-        return q1Var.A;
-    }
-
-    public static void l(q1 q1Var, boolean z10) {
-        q1Var.f25037l = z10;
-    }
-
-    public static float m(q1 q1Var) {
-        return q1Var.f25031e;
-    }
-
-    public static void n(q1 q1Var, float f9) {
-        q1Var.f25031e -= f9;
-    }
-
-    public static boolean o(q1 q1Var) {
-        return q1Var.f25036k;
-    }
-
-    public static void p(q1 q1Var, boolean z10) {
-        q1Var.f25036k = z10;
-    }
-
-    public final void q() {
-        ImageReceiver imageReceiver = this.f25050z;
-        if (imageReceiver != null) {
-            imageReceiver.onAttachedToWindow();
+    public final ClickableSpan a(int i10, boolean z4) {
+        if (i10 == 5000) {
+            return null;
         }
-        dh.b bVar = this.f25048x;
-        if (bVar != null) {
-            bVar.f5633b.a();
-            bVar.f5634c.onAttachedToWindow();
-            bVar.A.e();
+        t1 t1Var = this.d;
+        if (z4) {
+            int i11 = i10 - 3000;
+            CharSequence charSequence = t1Var.f22273v7.caption;
+            if (!(charSequence instanceof Spannable) || i11 < 0) {
+                return null;
+            }
+            Spannable spannable = (Spannable) charSequence;
+            ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spannable.getSpans(0, spannable.length(), ClickableSpan.class);
+            if (clickableSpanArr.length <= i11) {
+                return null;
+            }
+            return clickableSpanArr[i11];
         }
+        int i12 = i10 - 2000;
+        CharSequence charSequence2 = t1Var.f22273v7.messageText;
+        if (!(charSequence2 instanceof Spannable) || i12 < 0) {
+            return null;
+        }
+        Spannable spannable2 = (Spannable) charSequence2;
+        ClickableSpan[] clickableSpanArr2 = (ClickableSpan[]) spannable2.getSpans(0, spannable2.length(), ClickableSpan.class);
+        if (clickableSpanArr2.length <= i12) {
+            return null;
+        }
+        return clickableSpanArr2[i12];
     }
 
-    public final void r() {
-        ImageReceiver imageReceiver = this.f25050z;
-        if (imageReceiver != null) {
-            imageReceiver.onDetachedFromWindow();
+    public final RichMessageLayout.RichBlock b(int i10, int[] iArr) {
+        RichMessageLayout richMessageLayout;
+        int i11;
+        MessageObject messageObject = this.d.f22273v7;
+        if (messageObject != null && (richMessageLayout = messageObject.richLayout) != null && i10 - 6000 >= 0) {
+            int i12 = 0;
+            for (int i13 = 0; i13 < richMessageLayout.blocks.size(); i13++) {
+                RichMessageLayout.RichBlock richBlock = richMessageLayout.blocks.get(i13);
+                if (richBlock.isVisible()) {
+                    int accessibilityElementCount = richBlock.getAccessibilityElementCount() + i12;
+                    if (i11 < accessibilityElementCount) {
+                        iArr[0] = i11 - i12;
+                        return richBlock;
+                    }
+                    i12 = accessibilityElementCount;
+                }
+            }
+            return null;
         }
-        dh.b bVar = this.f25048x;
-        if (bVar != null) {
-            bVar.f5633b.b();
-            bVar.f5634c.onDetachedFromWindow();
-            bVar.A.f();
+        return null;
+    }
+
+    @Override
+    public final android.view.accessibility.AccessibilityNodeInfo createAccessibilityNodeInfo(int r33) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.q1.createAccessibilityNodeInfo(int):android.view.accessibility.AccessibilityNodeInfo");
+    }
+
+    @Override
+    public final boolean performAction(int i10, int i11, Bundle bundle) {
+        k1 k1Var;
+        i1 i1Var;
+        TLRPC.Message message;
+        TLRPC.MessageReplyHeader messageReplyHeader;
+        t1 t1Var = this.d;
+        ArrayList arrayList = t1Var.V5;
+        ArrayList arrayList2 = t1Var.f22132l7;
+        if (i10 == -1) {
+            t1Var.performAccessibilityAction(i11, bundle);
+            return true;
+        } else if (i11 == 64) {
+            t1Var.I3(i10, 32768, null);
+            return true;
+        } else {
+            boolean z4 = false;
+            if (i11 == 16) {
+                if (i10 == 5000) {
+                    k1 k1Var2 = t1Var.Gc;
+                    if (k1Var2 != null) {
+                        k1Var2.y0(t1Var, t1Var.Vb, 0.0f, 0.0f);
+                        return true;
+                    }
+                } else if (i10 >= 6000) {
+                    int[] iArr = {0};
+                    RichMessageLayout.RichBlock b10 = b(i10, iArr);
+                    if (b10 != null && b10.onAccessibilityElementClick(iArr[0], t1Var)) {
+                        t1Var.I3(i10, 1, null);
+                        AndroidUtilities.makeAccessibilityAnnouncement(b10.getAccessibilityElementStateDescription(iArr[0]));
+                        return true;
+                    }
+                } else if (i10 >= 3000) {
+                    ClickableSpan a2 = a(i10, true);
+                    if (a2 != null) {
+                        t1Var.Gc.W0(t1Var, a2, false);
+                        t1Var.I3(i10, 1, null);
+                        return true;
+                    }
+                } else if (i10 >= 2000) {
+                    ClickableSpan a10 = a(i10, false);
+                    if (a10 != null) {
+                        t1Var.Gc.W0(t1Var, a10, false);
+                        t1Var.I3(i10, 1, null);
+                        return true;
+                    }
+                } else {
+                    if (i10 >= 1000) {
+                        int i12 = i10 - 1000;
+                        if (i12 < arrayList2.size()) {
+                            e0 e0Var = (e0) arrayList2.get(i12);
+                            k1 k1Var3 = t1Var.Gc;
+                            if (k1Var3 != null && !e0Var.f20971m) {
+                                BotInlineKeyboard.ButtonCustom buttonCustom = e0Var.f20968j;
+                                if (buttonCustom != null) {
+                                    k1Var3.E(t1Var, buttonCustom);
+                                } else {
+                                    TL_keyboard.KeyboardInlineButton keyboardInlineButton = e0Var.f20967i;
+                                    if (keyboardInlineButton != null) {
+                                        k1Var3.o1(t1Var, keyboardInlineButton);
+                                    }
+                                }
+                            }
+                            t1Var.I3(i10, 1, null);
+                            return true;
+                        }
+                    } else if (i10 >= 500) {
+                        int i13 = i10 - 500;
+                        if (i13 < arrayList.size()) {
+                            r1 r1Var = (r1) arrayList.get(i13);
+                            if (t1Var.Gc != null) {
+                                ArrayList arrayList3 = new ArrayList();
+                                arrayList3.add(r1Var.f21613s);
+                                t1Var.Gc.i(t1Var, arrayList3, -1, 0, 0);
+                            }
+                            t1Var.I3(i10, 1, null);
+                            return true;
+                        }
+                    } else if (i10 == 495) {
+                        t1Var.x1();
+                        return true;
+                    } else if (i10 == 499) {
+                        k1 k1Var4 = t1Var.Gc;
+                        if (k1Var4 != null) {
+                            k1Var4.R0(t1Var.Y2, t1Var);
+                            return true;
+                        }
+                    } else if (i10 == 492) {
+                        k1 k1Var5 = t1Var.Gc;
+                        if (k1Var5 != null) {
+                            k1Var5.R0(5, t1Var);
+                            return true;
+                        }
+                    } else if (i10 == 491) {
+                        k1 k1Var6 = t1Var.Gc;
+                        if (k1Var6 != null) {
+                            k1Var6.R0(5, t1Var);
+                            return true;
+                        }
+                    } else if (i10 == 490) {
+                        k1 k1Var7 = t1Var.Gc;
+                        if (k1Var7 != null) {
+                            k1Var7.R0(31, t1Var);
+                            return true;
+                        }
+                    } else if (i10 == 489) {
+                        k1 k1Var8 = t1Var.Gc;
+                        if (k1Var8 != null) {
+                            k1Var8.R0(30, t1Var);
+                            return true;
+                        }
+                    } else if (i10 == 498) {
+                        k1 k1Var9 = t1Var.Gc;
+                        if (k1Var9 != null) {
+                            k1Var9.q(t1Var);
+                            return true;
+                        }
+                    } else if (i10 == 497) {
+                        if (t1Var.Gc != null && ((!t1Var.T7 || t1Var.R7 || t1Var.f22273v7.getReplyTopMsgId() != 0) && (t1Var.f22273v7.hasValidReplyMessageObject() || t1Var.f22275v9 || ((message = t1Var.f22273v7.messageOwner) != null && (messageReplyHeader = message.reply_to) != null && messageReplyHeader.reply_from != null)))) {
+                            t1Var.Gc.e2(t1Var, t1Var.f22273v7.getReplyMsgId(), 0.0f, 0.0f, false);
+                            return true;
+                        }
+                    } else if (i10 == 494) {
+                        k1 k1Var10 = t1Var.Gc;
+                        if (k1Var10 != null) {
+                            TLRPC.Chat chat = t1Var.f22066gc;
+                            if (chat != null) {
+                                k1Var10.T(t1Var, chat, t1Var.f22273v7.messageOwner.fwd_from.channel_post, t1Var.f22011d1, t1Var.f22026e1, false);
+                                return true;
+                            }
+                            TLRPC.User user = t1Var.f22036ec;
+                            if (user != null) {
+                                k1Var10.y0(t1Var, user, t1Var.f22011d1, t1Var.f22026e1);
+                                return true;
+                            } else if (t1Var.f22080hc != null) {
+                                k1Var10.n(t1Var);
+                                return true;
+                            }
+                        }
+                    } else if (i10 == 496) {
+                        k1 k1Var11 = t1Var.Gc;
+                        if (k1Var11 != null) {
+                            if (t1Var.Z7) {
+                                k1Var11.q(t1Var);
+                                return true;
+                            }
+                            k1Var11.u(t1Var);
+                            return true;
+                        }
+                    } else if (i10 == 493 && (i1Var = t1Var.J5) != null) {
+                        i1Var.m();
+                        return true;
+                    }
+                    return false;
+                }
+            } else if (i11 == 32) {
+                if (i10 >= 3000) {
+                    z4 = true;
+                }
+                ClickableSpan a11 = a(i10, z4);
+                if (a11 != null && (k1Var = t1Var.Gc) != null) {
+                    k1Var.W0(t1Var, a11, true);
+                    t1Var.I3(i10, 2, null);
+                }
+            }
+            return true;
         }
     }
 }

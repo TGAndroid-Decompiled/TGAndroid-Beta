@@ -1,176 +1,286 @@
 package f5;
 
-import android.graphics.Color;
-import android.text.TextUtils;
-import i7.n6;
+import android.os.SystemClock;
+import h5.d0;
+import h5.y;
+import j3.n0;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public abstract class b {
-    public static final Pattern f6569a = Pattern.compile("^rgb\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
-    public static final Pattern f6570b = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
-    public static final Pattern f6571c = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d*\\.?\\d*?)\\)$");
-    public static final HashMap d;
+import java.util.List;
+import o4.s0;
+public final class b extends c {
+    public final g5.f f5898g;
+    public final long h;
+    public final long f5899i;
+    public final long f5900j;
+    public final int f5901k;
+    public final int f5902l;
+    public final float f5903m;
+    public final float f5904n;
+    public final s8.v f5905o;
+    public final y f5906p;
+    public float f5907q;
+    public int f5908r;
+    public int f5909s;
+    public long f5910t;
+    public q4.k f5911u;
 
-    static {
-        HashMap hashMap = new HashMap();
-        d = hashMap;
-        u3.c.i(-984833, hashMap, "aliceblue", -332841, "antiquewhite");
-        hashMap.put("aqua", -16711681);
-        hashMap.put("aquamarine", -8388652);
-        u3.c.i(-983041, hashMap, "azure", -657956, "beige");
-        u3.c.i(-6972, hashMap, "bisque", -16777216, "black");
-        u3.c.i(-5171, hashMap, "blanchedalmond", -16776961, "blue");
-        u3.c.i(-7722014, hashMap, "blueviolet", -5952982, "brown");
-        u3.c.i(-2180985, hashMap, "burlywood", -10510688, "cadetblue");
-        u3.c.i(-8388864, hashMap, "chartreuse", -2987746, "chocolate");
-        u3.c.i(-32944, hashMap, "coral", -10185235, "cornflowerblue");
-        u3.c.i(-1828, hashMap, "cornsilk", -2354116, "crimson");
-        hashMap.put("cyan", -16711681);
-        hashMap.put("darkblue", -16777077);
-        u3.c.i(-16741493, hashMap, "darkcyan", -4684277, "darkgoldenrod");
-        hashMap.put("darkgray", -5658199);
-        hashMap.put("darkgreen", -16751616);
-        hashMap.put("darkgrey", -5658199);
-        hashMap.put("darkkhaki", -4343957);
-        u3.c.i(-7667573, hashMap, "darkmagenta", -11179217, "darkolivegreen");
-        u3.c.i(-29696, hashMap, "darkorange", -6737204, "darkorchid");
-        u3.c.i(-7667712, hashMap, "darkred", -1468806, "darksalmon");
-        u3.c.i(-7357297, hashMap, "darkseagreen", -12042869, "darkslateblue");
-        hashMap.put("darkslategray", -13676721);
-        hashMap.put("darkslategrey", -13676721);
-        hashMap.put("darkturquoise", -16724271);
-        hashMap.put("darkviolet", -7077677);
-        u3.c.i(-60269, hashMap, "deeppink", -16728065, "deepskyblue");
-        hashMap.put("dimgray", -9868951);
-        hashMap.put("dimgrey", -9868951);
-        hashMap.put("dodgerblue", -14774017);
-        hashMap.put("firebrick", -5103070);
-        u3.c.i(-1296, hashMap, "floralwhite", -14513374, "forestgreen");
-        hashMap.put("fuchsia", -65281);
-        hashMap.put("gainsboro", -2302756);
-        u3.c.i(-460545, hashMap, "ghostwhite", -10496, "gold");
-        hashMap.put("goldenrod", -2448096);
-        hashMap.put("gray", -8355712);
-        u3.c.i(-16744448, hashMap, "green", -5374161, "greenyellow");
-        hashMap.put("grey", -8355712);
-        hashMap.put("honeydew", -983056);
-        u3.c.i(-38476, hashMap, "hotpink", -3318692, "indianred");
-        u3.c.i(-11861886, hashMap, "indigo", -16, "ivory");
-        u3.c.i(-989556, hashMap, "khaki", -1644806, "lavender");
-        u3.c.i(-3851, hashMap, "lavenderblush", -8586240, "lawngreen");
-        u3.c.i(-1331, hashMap, "lemonchiffon", -5383962, "lightblue");
-        u3.c.i(-1015680, hashMap, "lightcoral", -2031617, "lightcyan");
-        hashMap.put("lightgoldenrodyellow", -329006);
-        hashMap.put("lightgray", -2894893);
-        hashMap.put("lightgreen", -7278960);
-        hashMap.put("lightgrey", -2894893);
-        u3.c.i(-18751, hashMap, "lightpink", -24454, "lightsalmon");
-        u3.c.i(-14634326, hashMap, "lightseagreen", -7876870, "lightskyblue");
-        hashMap.put("lightslategray", -8943463);
-        hashMap.put("lightslategrey", -8943463);
-        hashMap.put("lightsteelblue", -5192482);
-        hashMap.put("lightyellow", -32);
-        u3.c.i(-16711936, hashMap, "lime", -13447886, "limegreen");
-        hashMap.put("linen", -331546);
-        hashMap.put("magenta", -65281);
-        u3.c.i(-8388608, hashMap, "maroon", -10039894, "mediumaquamarine");
-        u3.c.i(-16777011, hashMap, "mediumblue", -4565549, "mediumorchid");
-        u3.c.i(-7114533, hashMap, "mediumpurple", -12799119, "mediumseagreen");
-        u3.c.i(-8689426, hashMap, "mediumslateblue", -16713062, "mediumspringgreen");
-        u3.c.i(-12004916, hashMap, "mediumturquoise", -3730043, "mediumvioletred");
-        u3.c.i(-15132304, hashMap, "midnightblue", -655366, "mintcream");
-        u3.c.i(-6943, hashMap, "mistyrose", -6987, "moccasin");
-        u3.c.i(-8531, hashMap, "navajowhite", -16777088, "navy");
-        u3.c.i(-133658, hashMap, "oldlace", -8355840, "olive");
-        u3.c.i(-9728477, hashMap, "olivedrab", -23296, "orange");
-        u3.c.i(-47872, hashMap, "orangered", -2461482, "orchid");
-        u3.c.i(-1120086, hashMap, "palegoldenrod", -6751336, "palegreen");
-        u3.c.i(-5247250, hashMap, "paleturquoise", -2396013, "palevioletred");
-        u3.c.i(-4139, hashMap, "papayawhip", -9543, "peachpuff");
-        u3.c.i(-3308225, hashMap, "peru", -16181, "pink");
-        u3.c.i(-2252579, hashMap, "plum", -5185306, "powderblue");
-        u3.c.i(-8388480, hashMap, "purple", -10079335, "rebeccapurple");
-        u3.c.i(-65536, hashMap, "red", -4419697, "rosybrown");
-        u3.c.i(-12490271, hashMap, "royalblue", -7650029, "saddlebrown");
-        u3.c.i(-360334, hashMap, "salmon", -744352, "sandybrown");
-        u3.c.i(-13726889, hashMap, "seagreen", -2578, "seashell");
-        u3.c.i(-6270419, hashMap, "sienna", -4144960, "silver");
-        u3.c.i(-7876885, hashMap, "skyblue", -9807155, "slateblue");
-        hashMap.put("slategray", -9404272);
-        hashMap.put("slategrey", -9404272);
-        hashMap.put("snow", -1286);
-        hashMap.put("springgreen", -16711809);
-        u3.c.i(-12156236, hashMap, "steelblue", -2968436, "tan");
-        u3.c.i(-16744320, hashMap, "teal", -2572328, "thistle");
-        u3.c.i(-40121, hashMap, "tomato", 0, "transparent");
-        u3.c.i(-12525360, hashMap, "turquoise", -1146130, "violet");
-        u3.c.i(-663885, hashMap, "wheat", -1, "white");
-        u3.c.i(-657931, hashMap, "whitesmoke", -256, "yellow");
-        hashMap.put("yellowgreen", -6632142);
+    public b(s0 s0Var, int[] iArr, g5.f fVar, long j10, long j11, long j12, s8.v vVar) {
+        super(s0Var, iArr);
+        if (j12 < j10) {
+            h5.a.K("AdaptiveTrackSelection", "Adjusting minDurationToRetainAfterDiscardMs to be at least minDurationForQualityIncreaseMs");
+            j12 = j10;
+        }
+        this.f5898g = fVar;
+        this.h = j10 * 1000;
+        this.f5899i = j11 * 1000;
+        this.f5900j = j12 * 1000;
+        this.f5901k = 1279;
+        this.f5902l = 719;
+        this.f5903m = 0.7f;
+        this.f5904n = 0.75f;
+        this.f5905o = s8.v.t(vVar);
+        this.f5906p = y.f7006a;
+        this.f5907q = 1.0f;
+        this.f5909s = 0;
+        this.f5910t = -9223372036854775807L;
     }
 
-    public static int a(String str, boolean z10) {
-        Pattern pattern;
-        int parseInt;
-        a.f(!TextUtils.isEmpty(str));
-        String replace = str.replace(" ", "");
-        if (replace.charAt(0) == '#') {
-            int parseLong = (int) Long.parseLong(replace.substring(1), 16);
-            if (replace.length() == 7) {
-                return (-16777216) | parseLong;
-            }
-            if (replace.length() == 9) {
-                return ((parseLong & 255) << 24) | (parseLong >>> 8);
-            }
-            throw new IllegalArgumentException();
+    public static void w(ArrayList arrayList, long[] jArr) {
+        long j10 = 0;
+        for (long j11 : jArr) {
+            j10 += j11;
         }
-        if (replace.startsWith("rgba")) {
-            if (z10) {
-                pattern = f6571c;
-            } else {
-                pattern = f6570b;
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            s8.s sVar = (s8.s) arrayList.get(i10);
+            if (sVar != null) {
+                sVar.b(new a(j10, jArr[i10]));
             }
-            Matcher matcher = pattern.matcher(replace);
-            if (matcher.matches()) {
-                if (z10) {
-                    String group = matcher.group(4);
-                    group.getClass();
-                    parseInt = (int) (Float.parseFloat(group) * 255.0f);
-                } else {
-                    String group2 = matcher.group(4);
-                    group2.getClass();
-                    parseInt = Integer.parseInt(group2, 10);
+        }
+    }
+
+    public static long y(List list) {
+        if (!list.isEmpty()) {
+            q4.k kVar = (q4.k) s8.l.h(list);
+            long j10 = kVar.h;
+            if (j10 != -9223372036854775807L) {
+                long j11 = kVar.f42733n;
+                if (j11 != -9223372036854775807L) {
+                    return j11 - j10;
                 }
-                String group3 = matcher.group(1);
-                group3.getClass();
-                int parseInt2 = Integer.parseInt(group3, 10);
-                String group4 = matcher.group(2);
-                group4.getClass();
-                int parseInt3 = Integer.parseInt(group4, 10);
-                String group5 = matcher.group(3);
-                group5.getClass();
-                return Color.argb(parseInt, parseInt2, parseInt3, Integer.parseInt(group5, 10));
-            }
-        } else if (replace.startsWith("rgb")) {
-            Matcher matcher2 = f6569a.matcher(replace);
-            if (matcher2.matches()) {
-                String group6 = matcher2.group(1);
-                group6.getClass();
-                int parseInt4 = Integer.parseInt(group6, 10);
-                String group7 = matcher2.group(2);
-                group7.getClass();
-                int parseInt5 = Integer.parseInt(group7, 10);
-                String group8 = matcher2.group(3);
-                group8.getClass();
-                return Color.rgb(parseInt4, parseInt5, Integer.parseInt(group8, 10));
-            }
-        } else {
-            Integer num = (Integer) d.get(n6.b(replace));
-            if (num != null) {
-                return num.intValue();
             }
         }
-        throw new IllegalArgumentException();
+        return -9223372036854775807L;
+    }
+
+    @Override
+    public final void a() {
+        this.f5911u = null;
+    }
+
+    @Override
+    public final void b() {
+        this.f5910t = -9223372036854775807L;
+        this.f5911u = null;
+    }
+
+    @Override
+    public final int c(long j10, List list) {
+        q4.k kVar;
+        int i10;
+        int i11;
+        this.f5906p.getClass();
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j11 = this.f5910t;
+        if (j11 != -9223372036854775807L && elapsedRealtime - j11 < 1000 && (list.isEmpty() || ((q4.k) s8.l.h(list)).equals(this.f5911u))) {
+            return list.size();
+        }
+        this.f5910t = elapsedRealtime;
+        if (list.isEmpty()) {
+            kVar = null;
+        } else {
+            kVar = (q4.k) s8.l.h(list);
+        }
+        this.f5911u = kVar;
+        if (list.isEmpty()) {
+            return 0;
+        }
+        int size = list.size();
+        long y10 = d0.y(((q4.k) list.get(size - 1)).h - j10, this.f5907q);
+        long j12 = this.f5900j;
+        if (y10 >= j12) {
+            y(list);
+            n0 n0Var = this.d[x(-1, elapsedRealtime)];
+            for (int i12 = 0; i12 < size; i12++) {
+                q4.k kVar2 = (q4.k) list.get(i12);
+                n0 n0Var2 = kVar2.d;
+                if (d0.y(kVar2.h - j10, this.f5907q) >= j12 && n0Var2.f8739n < n0Var.f8739n && (i10 = n0Var2.I) != -1 && i10 <= this.f5902l && (i11 = n0Var2.H) != -1 && i11 <= this.f5901k && i10 < n0Var.I) {
+                    return i12;
+                }
+            }
+        }
+        return size;
+    }
+
+    @Override
+    public final int h() {
+        return this.f5908r;
+    }
+
+    @Override
+    public final Object j() {
+        return null;
+    }
+
+    @Override
+    public final int k() {
+        return this.f5909s;
+    }
+
+    @Override
+    public final void s(float f10) {
+        this.f5907q = f10;
+    }
+
+    @Override
+    public final void v(long j10, long j11, long j12, List list, q4.l[] lVarArr) {
+        long y10;
+        int n10;
+        long j13;
+        this.f5906p.getClass();
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        int i10 = this.f5908r;
+        if (i10 < lVarArr.length && lVarArr[i10].next()) {
+            q4.l lVar = lVarArr[this.f5908r];
+            y10 = lVar.B() - lVar.p();
+        } else {
+            int length = lVarArr.length;
+            int i11 = 0;
+            while (true) {
+                if (i11 < length) {
+                    q4.l lVar2 = lVarArr[i11];
+                    if (lVar2.next()) {
+                        y10 = lVar2.B() - lVar2.p();
+                        break;
+                    }
+                    i11++;
+                } else {
+                    y10 = y(list);
+                    break;
+                }
+            }
+        }
+        int i12 = this.f5909s;
+        if (i12 == 0) {
+            this.f5909s = 1;
+            this.f5908r = x(0, elapsedRealtime);
+            return;
+        }
+        int i13 = this.f5908r;
+        if (list.isEmpty()) {
+            n10 = -1;
+        } else {
+            n10 = n(((q4.k) s8.l.h(list)).d);
+        }
+        if (n10 != -1) {
+            i12 = ((q4.k) s8.l.h(list)).e;
+            i13 = n10;
+        }
+        int x10 = x(1, elapsedRealtime);
+        if (x10 != i13 && !o(i13, elapsedRealtime)) {
+            n0[] n0VarArr = this.d;
+            n0 n0Var = n0VarArr[i13];
+            n0 n0Var2 = n0VarArr[x10];
+            long j14 = this.h;
+            if (j12 != -9223372036854775807L) {
+                if (y10 != -9223372036854775807L) {
+                    j13 = j12 - y10;
+                } else {
+                    j13 = j12;
+                }
+                j14 = Math.min(((float) j13) * this.f5904n, j14);
+            }
+            int i14 = n0Var2.f8739n;
+            int i15 = n0Var.f8739n;
+            if ((i14 > i15 && j11 < j14) || (i14 < i15 && j11 >= this.f5899i)) {
+                x10 = i13;
+            }
+        }
+        if (x10 != i13) {
+            i12 = 3;
+        }
+        this.f5909s = i12;
+        this.f5908r = x10;
+    }
+
+    public final int x(int i10, long j10) {
+        long j11;
+        long j12;
+        g5.s sVar = (g5.s) this.f5898g;
+        synchronized (sVar) {
+            j11 = sVar.f6434l;
+        }
+        this.f5898g.getClass();
+        long j13 = (((float) j11) * this.f5903m) / this.f5907q;
+        if (!this.f5905o.isEmpty()) {
+            int i11 = 1;
+            while (i11 < this.f5905o.size() - 1 && ((a) this.f5905o.get(i11)).f5896a < j13) {
+                i11++;
+            }
+            a aVar = (a) this.f5905o.get(i11 - 1);
+            a aVar2 = (a) this.f5905o.get(i11);
+            long j14 = aVar.f5896a;
+            float f10 = ((float) (j13 - j14)) / ((float) (aVar2.f5896a - j14));
+            j13 = aVar.f5897b + (f10 * ((float) (aVar2.f5897b - j12)));
+        }
+        HashMap hashMap = new HashMap();
+        ArrayList arrayList = new ArrayList();
+        int i12 = 0;
+        for (int i13 = 0; i13 < this.f5913b; i13++) {
+            if (j10 == Long.MIN_VALUE || !o(i13, j10)) {
+                n0 n0Var = this.d[i13];
+                int max = Math.max(n0Var.H, n0Var.I);
+                if (!hashMap.containsKey(Integer.valueOf(max))) {
+                    hashMap.put(Integer.valueOf(max), Integer.valueOf(i13));
+                    arrayList.add(Integer.valueOf(i13));
+                } else {
+                    Integer num = (Integer) hashMap.get(Integer.valueOf(max));
+                    n0 n0Var2 = this.d[num.intValue()];
+                    boolean z4 = n0Var2.v;
+                    if ((!z4 || n0Var.v) && ((!z4 && n0Var.v) || n0Var.f8739n < n0Var2.f8739n)) {
+                        hashMap.put(Integer.valueOf(max), Integer.valueOf(i13));
+                        arrayList.remove(num);
+                        arrayList.add(Integer.valueOf(i13));
+                    }
+                }
+            }
+        }
+        if (i10 == 0) {
+            int size = arrayList.size();
+            int i14 = 0;
+            while (i14 < size) {
+                Object obj = arrayList.get(i14);
+                i14++;
+                int intValue = ((Integer) obj).intValue();
+                if (this.d[intValue].v) {
+                    return intValue;
+                }
+            }
+        }
+        int size2 = arrayList.size();
+        int i15 = 0;
+        while (i15 < size2) {
+            Object obj2 = arrayList.get(i15);
+            i15++;
+            i12 = ((Integer) obj2).intValue();
+            n0 n0Var3 = this.d[i12];
+            int i16 = n0Var3.f8739n;
+            if (n0Var3.v) {
+                break;
+            } else if (i16 <= j13) {
+                break;
+            }
+        }
+        return i12;
     }
 }

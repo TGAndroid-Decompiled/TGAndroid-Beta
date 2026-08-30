@@ -1,44 +1,45 @@
 package org.telegram.ui.Components;
-public final class f7 implements Runnable {
-    public final int f28338a;
-    public final g8 f28339b;
-    public final j70 f28340c;
 
-    public f7(g8 g8Var, j70 j70Var, int i10) {
-        this.f28338a = i10;
-        this.f28339b = g8Var;
-        this.f28340c = j70Var;
+import android.view.ViewGroup;
+public final class f7 implements o1.g {
+    public final int f24794a;
+    public final Object f24795b;
+
+    public f7(Object obj, int i10) {
+        this.f24794a = i10;
+        this.f24795b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28338a) {
+    public final void a(o1.h hVar, float f10, float f11) {
+        ViewGroup viewGroup;
+        switch (this.f24794a) {
             case 0:
-                g8 g8Var = this.f28339b;
-                g8Var.getClass();
-                this.f28340c.u();
-                g8Var.t0(1);
+                ((c8) this.f24795b).Q.setBufferedProgress(f10 / 1000.0f);
                 return;
             case 1:
-                g8 g8Var2 = this.f28339b;
-                g8Var2.getClass();
-                this.f28340c.u();
-                g8Var2.t0(2);
+                ic icVar = (ic) this.f24795b;
+                icVar.f25677o = (int) f10;
+                icVar.l();
                 return;
             case 2:
-                g8 g8Var3 = this.f28339b;
-                g8Var3.getClass();
-                this.f28340c.u();
-                g8Var3.t0(4);
+                if (Math.abs(f10) > ((nb) this.f24795b).getWidth()) {
+                    hVar.c();
+                    return;
+                }
                 return;
             case 3:
-                g8 g8Var4 = this.f28339b;
-                g8Var4.getClass();
-                this.f28340c.u();
-                g8Var4.t0(7);
+                li liVar = (li) ((lh.k3) this.f24795b).d;
+                di diVar = liVar.f26752w0;
+                if (diVar == liVar.f26711j0 || diVar == liVar.f26714k0 || (liVar.C && liVar.f26732q1 != null)) {
+                    liVar.a2(1);
+                }
+                liVar.f26752w0.k(liVar.f26710i2);
+                viewGroup = ((org.telegram.ui.ActionBar.g3) liVar).containerView;
+                viewGroup.invalidate();
                 return;
             default:
-                g8.q(this.f28339b, this.f28340c);
+                ((dc0) this.f24795b).z();
                 return;
         }
     }

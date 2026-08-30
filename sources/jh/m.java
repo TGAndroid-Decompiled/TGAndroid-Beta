@@ -1,69 +1,47 @@
 package jh;
 
 import android.content.Context;
-import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class m extends EditTextBoldCursor {
-    public final int f12441b;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.t00;
+public final class m extends t00 {
+    public final int R;
 
-    public m(Context context, int i10) {
-        super(context);
-        this.f12441b = i10;
+    public m(Context context, int i10, f6 f6Var) {
+        super(context, f6Var);
+        this.R = i10;
     }
 
     @Override
-    public void onDetachedFromWindow() {
-        switch (this.f12441b) {
-            case 0:
-                super.onDetachedFromWindow();
-                AndroidUtilities.hideKeyboard(this);
-                return;
+    public int getColumnsCount() {
+        switch (this.R) {
             case 1:
-                super.onDetachedFromWindow();
-                AndroidUtilities.hideKeyboard(this);
-                return;
+                return 3;
             default:
-                super.onDetachedFromWindow();
-                return;
+                return super.getColumnsCount();
+        }
+    }
+
+    @Override
+    public int getViewType() {
+        switch (this.R) {
+            case 1:
+                return 2;
+            default:
+                return super.getViewType();
         }
     }
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f12441b) {
-            case 2:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824));
+        switch (this.R) {
+            case 0:
+                setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(104.0f));
                 return;
             default:
                 super.onMeasure(i10, i11);
                 return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f12441b) {
-            case 3:
-                if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
-                    clearFocus();
-                    requestFocus();
-                }
-                return super.onTouchEvent(motionEvent);
-            case 4:
-                if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
-                    clearFocus();
-                    requestFocus();
-                }
-                return super.onTouchEvent(motionEvent);
-            case 5:
-                if (!isEnabled()) {
-                    return false;
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
         }
     }
 }

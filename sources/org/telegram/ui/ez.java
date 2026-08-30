@@ -1,16 +1,11 @@
 package org.telegram.ui;
-
-import android.view.View;
-import android.widget.FrameLayout;
-public final class ez extends FrameLayout {
-    public gh.s f37934a;
-
-    public gh.s getSubtitleTextView() {
-        return this.f37934a;
-    }
-
+public final class ez extends org.telegram.ui.Components.g61 {
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final Integer W0(int i10) {
+        org.telegram.ui.Components.i51 G = this.V2.G(i10);
+        if (G != null && G.d == 2) {
+            return 0;
+        }
+        return super.W0(i10);
     }
 }

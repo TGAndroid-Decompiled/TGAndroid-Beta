@@ -1,5 +1,3 @@
 package l8;
-
-import v0.m;
-public final class a extends m {
+public interface a {
 }

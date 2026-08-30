@@ -1,7 +1,7 @@
 package org.telegram.messenger.voip;
 
-import i7.n8;
 import java.util.ArrayList;
+import k7.w8;
 import org.telegram.tgnet.TLRPC;
 public class GroupCallMessage {
     private static final int FLAG_IS_OUT = 1;
@@ -15,26 +15,26 @@ public class GroupCallMessage {
     public final TLRPC.TL_textWithEntities message;
     public final long randomId;
     public final long reactionAnimatedEmojiId;
-    public final kg.q0 visibleReaction;
+    public final mg.q0 visibleReaction;
 
     public GroupCallMessage(int r3, long r4, long r6, org.telegram.tgnet.TLRPC.TL_textWithEntities r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.GroupCallMessage.<init>(int, long, long, org.telegram.tgnet.TLRPC$TL_textWithEntities):void");
     }
 
     public boolean isOut() {
-        return n8.a(this.flags, 1);
+        return w8.a(this.flags, 1);
     }
 
     public boolean isSendConfirmed() {
-        return n8.a(this.flags, 8);
+        return w8.a(this.flags, 8);
     }
 
     public boolean isSendDelayed() {
-        return n8.a(this.flags, 2);
+        return w8.a(this.flags, 2);
     }
 
     public boolean isSendError() {
-        return n8.a(this.flags, 4);
+        return w8.a(this.flags, 4);
     }
 
     public void notifyStateUpdate() {
@@ -48,20 +48,20 @@ public class GroupCallMessage {
         }
     }
 
-    public void setIsOut(boolean z10) {
-        this.flags = n8.b(this.flags, 1, z10);
+    public void setIsOut(boolean z4) {
+        this.flags = w8.b(this.flags, 1, z4);
     }
 
-    public void setIsSendConfirmed(boolean z10) {
-        this.flags = n8.b(this.flags, 8, z10);
+    public void setIsSendConfirmed(boolean z4) {
+        this.flags = w8.b(this.flags, 8, z4);
     }
 
-    public void setIsSendDelayed(boolean z10) {
-        this.flags = n8.b(this.flags, 2, z10);
+    public void setIsSendDelayed(boolean z4) {
+        this.flags = w8.b(this.flags, 2, z4);
     }
 
-    public void setIsSendError(boolean z10) {
-        this.flags = n8.b(this.flags, 4, z10);
+    public void setIsSendError(boolean z4) {
+        this.flags = w8.b(this.flags, 4, z4);
     }
 
     public void subscribeToStateUpdates(Runnable runnable) {

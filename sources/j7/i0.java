@@ -1,27 +1,30 @@
 package j7;
 
-import java.util.Map;
-public final class i0 implements s9.d {
-    public static final i0 f11031b = new i0(0);
-    public static final i0 f11032c = new i0(1);
-    public final int f11033a;
-
-    public i0(int i10) {
-        this.f11033a = i10;
+import android.os.Build;
+import android.util.Log;
+public abstract class i0 {
+    public static void a(Object obj, String str, String str2) {
+        String c3 = c(str);
+        if (Log.isLoggable(c3, 3)) {
+            Log.d(c3, String.format(str2, obj));
+        }
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        switch (this.f11033a) {
-            case 0:
-                Map.Entry entry = (Map.Entry) obj;
-                s9.e eVar = (s9.e) obj2;
-                eVar.e(j0.f11043g, entry.getKey());
-                eVar.e(j0.h, entry.getValue());
-                return;
-            default:
-                s9.e eVar2 = (s9.e) obj2;
-                throw new RuntimeException("Couldn't find encoder for type ".concat(String.valueOf(obj.getClass().getCanonicalName())));
+    public static void b(String str, String str2, Exception exc) {
+        String c3 = c(str);
+        if (Log.isLoggable(c3, 6)) {
+            Log.e(c3, str2, exc);
         }
+    }
+
+    public static String c(String str) {
+        if (Build.VERSION.SDK_INT < 26) {
+            String concat = "TRuntime.".concat(str);
+            if (concat.length() > 23) {
+                return concat.substring(0, 23);
+            }
+            return concat;
+        }
+        return "TRuntime.".concat(str);
     }
 }

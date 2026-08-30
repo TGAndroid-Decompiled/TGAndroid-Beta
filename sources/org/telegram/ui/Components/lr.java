@@ -1,41 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-public final class lr extends ImageView {
-    public final int f30417a = 1;
-    public Object f30418b;
-    public final ViewGroup f30419c;
+import android.graphics.drawable.Drawable;
+public final class lr implements Drawable.Callback {
+    public final int f26876a;
+    public final mr f26877b;
 
-    public lr(or orVar, Context context, o4.g gVar) {
-        super(context);
-        this.f30419c = orVar;
-        this.f30418b = gVar;
+    public lr(mr mrVar, int i10) {
+        this.f26876a = i10;
+        this.f26877b = mrVar;
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f30417a) {
+    public final void invalidateDrawable(Drawable drawable) {
+        switch (this.f26876a) {
             case 0:
-                or orVar = (or) this.f30419c;
-                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (orVar.f31462n || orVar.f31461f)) {
-                    orVar.f31462n = false;
-                    orVar.f31461f = false;
-                    removeCallbacks(orVar.f31463r);
-                    removeCallbacks(orVar.h);
+                mr mrVar = this.f26877b;
+                if (mrVar.f27111c < 1.0f) {
+                    mrVar.invalidateSelf();
+                    return;
                 }
-                super.onTouchEvent(motionEvent);
-                return ((GestureDetector) ((o4.g) this.f30418b).f19159b).onTouchEvent(motionEvent);
+                return;
             default:
-                return super.onTouchEvent(motionEvent);
+                mr mrVar2 = this.f26877b;
+                if (mrVar2.f27111c > 0.0f) {
+                    mrVar2.invalidateSelf();
+                    return;
+                }
+                return;
         }
     }
 
-    public lr(fk0 fk0Var, Context context) {
-        super(context);
-        this.f30419c = fk0Var;
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
+        switch (this.f26876a) {
+            case 0:
+                mr mrVar = this.f26877b;
+                if (mrVar.f27111c < 1.0f) {
+                    mrVar.scheduleSelf(runnable, j10);
+                    return;
+                }
+                return;
+            default:
+                mr mrVar2 = this.f26877b;
+                if (mrVar2.f27111c > 0.0f) {
+                    mrVar2.scheduleSelf(runnable, j10);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        switch (this.f26876a) {
+            case 0:
+                mr mrVar = this.f26877b;
+                if (mrVar.f27111c < 1.0f) {
+                    mrVar.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
+            default:
+                mr mrVar2 = this.f26877b;
+                if (mrVar2.f27111c > 0.0f) {
+                    mrVar2.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
+        }
     }
 }

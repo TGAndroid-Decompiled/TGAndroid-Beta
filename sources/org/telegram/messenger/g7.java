@@ -1,37 +1,34 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class g7 implements Runnable {
-    public final int f20311a;
-    public final MediaDataController f20312b;
-    public final TLObject f20313c;
+    public final int f17285a;
+    public final MediaDataController f17286b;
+    public final TLRPC.TL_messages_stickerSet f17287c;
 
-    public g7(MediaDataController mediaDataController, TLObject tLObject, int i10) {
-        this.f20311a = i10;
-        this.f20312b = mediaDataController;
-        this.f20313c = tLObject;
+    public g7(MediaDataController mediaDataController, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10) {
+        this.f17285a = i10;
+        this.f17286b = mediaDataController;
+        this.f17287c = tL_messages_stickerSet;
     }
 
     @Override
     public final void run() {
-        switch (this.f20311a) {
+        switch (this.f17285a) {
             case 0:
-                this.f20312b.lambda$checkPremiumGiftStickers$75(this.f20313c);
+                this.f17286b.lambda$saveStickerSetIntoCache$40(this.f17287c);
                 return;
             case 1:
-                this.f20312b.lambda$loadReactions$13(this.f20313c);
+                this.f17286b.lambda$loadGroupStickerSet$45(this.f17287c);
                 return;
             case 2:
-                this.f20312b.lambda$checkTonGiftStickers$77(this.f20313c);
+                this.f17286b.lambda$loadGroupStickerSet$43(this.f17287c);
                 return;
             case 3:
-                this.f20312b.lambda$checkDefaultTopicIcons$81(this.f20313c);
-                return;
-            case 4:
-                this.f20312b.lambda$clearRecentStickers$18(this.f20313c);
+                this.f17286b.lambda$putSetToCache$47(this.f17287c);
                 return;
             default:
-                this.f20312b.lambda$checkGenericAnimations$79(this.f20313c);
+                this.f17286b.lambda$replaceStickerSet$28(this.f17287c);
                 return;
         }
     }

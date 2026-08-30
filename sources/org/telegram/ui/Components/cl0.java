@@ -1,10 +1,23 @@
 package org.telegram.ui.Components;
+public abstract class cl0 extends rl0 {
+    public boolean E(sl0 sl0Var) {
+        return true;
+    }
 
-import android.view.View;
-public interface cl0 {
-    boolean mo17b(float f9, float f10, int i10, View view);
+    public abstract String F(int i10);
 
-    void h();
+    public abstract void G(sl0 sl0Var, float f10, int[] iArr);
 
-    void r(float f9);
+    public float H(sl0 sl0Var) {
+        return sl0Var.computeVerticalScrollOffset() / ((k() * sl0Var.getChildAt(0).getMeasuredHeight()) - sl0Var.getMeasuredHeight());
+    }
+
+    public void I() {
+    }
+
+    public void J(sl0 sl0Var) {
+    }
+
+    public void K() {
+    }
 }

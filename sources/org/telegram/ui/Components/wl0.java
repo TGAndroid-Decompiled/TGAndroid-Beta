@@ -1,32 +1,34 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class wl0 implements Runnable {
-    public final int f34438a;
-    public final yl0 f34439b;
+import android.app.Activity;
+import android.widget.ImageView;
+public final class wl0 extends ac {
+    public final xl0 f30386c;
 
-    public wl0(yl0 yl0Var, int i10) {
-        this.f34438a = i10;
-        this.f34439b = yl0Var;
+    public wl0(Activity activity, String str) {
+        super(activity, null);
+        this.f23342b.setText(str);
+        this.f23342b.setTranslationY(-1.0f);
+        ImageView imageView = this.f23341a;
+        xl0 xl0Var = new xl0();
+        this.f30386c = xl0Var;
+        imageView.setImageDrawable(xl0Var);
     }
 
     @Override
-    public final void run() {
-        switch (this.f34438a) {
-            case 0:
-                yl0 yl0Var = this.f34439b;
-                yl0Var.getClass();
-                AndroidUtilities.runOnUIThread(new wl0(yl0Var, 2));
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new wl0(this.f34439b, 3));
-                return;
-            case 2:
-                super/*android.app.Dialog*/.dismiss();
-                return;
-            default:
-                super/*android.app.Dialog*/.dismiss();
-                return;
-        }
+    public final void onEnterTransitionEnd() {
+        super.onEnterTransitionEnd();
+        xl0 xl0Var = this.f30386c;
+        xl0Var.getClass();
+        xl0Var.f30695g = System.currentTimeMillis();
+        xl0Var.invalidateSelf();
+    }
+
+    @Override
+    public final void onExitTransitionEnd() {
+        super.onExitTransitionEnd();
+        xl0 xl0Var = this.f30386c;
+        xl0Var.f30695g = -1L;
+        xl0Var.invalidateSelf();
     }
 }

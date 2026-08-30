@@ -1,7 +1,20 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class ix {
-    public TLRPC.TL_messages_stickerSet f29492a;
-    public long f29493b;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class ix extends ux {
+    public final kz f25793d3;
+
+    public ix(kz kzVar, Context context) {
+        super(kzVar, context);
+        this.f25793d3 = kzVar;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.f25793d3.f26426f) {
+            return false;
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
 }

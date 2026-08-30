@@ -1,31 +1,58 @@
 package org.telegram.ui.web;
 
-import android.os.Bundle;
-import org.json.JSONObject;
-import org.telegram.ui.fy;
-public final class e0 extends fy {
-    public final boolean[] x4;
-    public final z0 f44017y4;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public interface e0 {
+    void a();
 
-    public e0(z0 z0Var, Bundle bundle, boolean[] zArr) {
-        super(bundle);
-        this.f44017y4 = z0Var;
-        this.x4 = zArr;
-    }
+    void b();
 
-    @Override
-    public final void onFragmentDestroy() {
-        JSONObject jSONObject;
-        super.onFragmentDestroy();
-        boolean[] zArr = this.x4;
-        if (!zArr[0]) {
-            zArr[0] = true;
-            try {
-                jSONObject = new JSONObject();
-            } catch (Exception unused) {
-                jSONObject = null;
-            }
-            this.f44017y4.v("requested_chat_failed", jSONObject);
-        }
-    }
+    void c();
+
+    void d(TLRPC.Document document);
+
+    void e(String str);
+
+    void f(ArrayList arrayList);
+
+    String g(boolean z4, boolean z10);
+
+    boolean h();
+
+    void i(boolean z4);
+
+    void j();
+
+    void k(boolean z4);
+
+    void l(boolean z4, boolean z10, String str, long j10, int i10, int i11, boolean z11, boolean z12, String str2);
+
+    void m(int i10);
+
+    void n(TLRPC.InputInvoice inputInvoice, String str, TLObject tLObject);
+
+    void o(int i10, boolean z4);
+
+    void p(boolean z4);
+
+    void q(boolean z4, boolean z10, String str, long j10, int i10, int i11, boolean z11, boolean z12);
+
+    void r(int i10);
+
+    void s();
+
+    void t(boolean z4);
+
+    void u(int i10, int i11, boolean z4);
+
+    void v(TLRPC.User user, String str, ArrayList arrayList);
+
+    void w(boolean z4);
+
+    void x(boolean z4);
+
+    void y();
+
+    rh.v0 z();
 }

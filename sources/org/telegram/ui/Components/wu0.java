@@ -1,22 +1,35 @@
 package org.telegram.ui.Components;
-public final class wu0 {
-    public static final wu0 f34494a;
-    public static final wu0 f34495b;
-    public static final wu0[] f34496c;
 
-    static {
-        ?? r02 = new Enum("DEFAULT", 0);
-        f34494a = r02;
-        ?? r12 = new Enum("RECORDING", 1);
-        f34495b = r12;
-        f34496c = new wu0[]{r02, r12};
+import android.content.Context;
+public final class wu0 extends vu0 {
+    public final xu0 D;
+
+    public wu0(xu0 xu0Var, Context context, int i10) {
+        super(xu0Var.e, context, i10, false);
+        this.D = xu0Var;
     }
 
-    public static wu0 valueOf(String str) {
-        return (wu0) Enum.valueOf(wu0.class, str);
-    }
-
-    public static wu0[] values() {
-        return (wu0[]) f34496c.clone();
+    @Override
+    public final void l() {
+        boolean z4;
+        super.l();
+        xu0 xu0Var = this.D;
+        yu0 yu0Var = xu0Var.e;
+        int i10 = xu0Var.f30728a;
+        int[] iArr = yu0.a2;
+        qt0 W = yu0Var.W(i10);
+        if (W != null && W.f28242r.getVisibility() == 0) {
+            xu0Var.d.l();
+        }
+        if (W != null) {
+            hs0 hs0Var = W.f28244w;
+            nh.l6 l6Var = this.f30091s;
+            if (l6Var != null && (l6Var.k() || (yu0Var.i0() && this.f30091s.g() > 0))) {
+                z4 = true;
+            } else {
+                z4 = false;
+            }
+            hs0Var.e(z4, true);
+        }
     }
 }

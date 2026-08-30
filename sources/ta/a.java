@@ -1,65 +1,49 @@
 package ta;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import j$.util.DesugarTimeZone;
 import java.util.TimeZone;
-import na.g;
-import na.u;
-import na.v;
-public final class a extends u {
-    public static final C0000a f48181b = new C0000a();
-    public final SimpleDateFormat f48182a;
+public abstract class a {
+    public static final TimeZone f44620a = DesugarTimeZone.getTimeZone("UTC");
 
-    public class C0000a implements v {
-        @Override
-        public final u create(g gVar, ua.a aVar) {
-            if (aVar.f49163a == Date.class) {
-                return new a(0);
+    public static boolean a(String str, int i10, char c3) {
+        if (i10 < str.length() && str.charAt(i10) == c3) {
+            return true;
+        }
+        return false;
+    }
+
+    public static java.util.Date b(java.lang.String r17, java.text.ParsePosition r18) {
+        throw new UnsupportedOperationException("Method not decompiled: ta.a.b(java.lang.String, java.text.ParsePosition):java.util.Date");
+    }
+
+    public static int c(int i10, int i11, String str) {
+        int i12;
+        int i13;
+        if (i10 >= 0 && i11 <= str.length() && i10 <= i11) {
+            if (i10 < i11) {
+                i13 = i10 + 1;
+                int digit = Character.digit(str.charAt(i10), 10);
+                if (digit >= 0) {
+                    i12 = -digit;
+                } else {
+                    throw new NumberFormatException("Invalid number: " + str.substring(i10, i11));
+                }
+            } else {
+                i12 = 0;
+                i13 = i10;
             }
-            return null;
-        }
-    }
-
-    public a(int i10) {
-        this();
-    }
-
-    @Override
-    public final Object read(va.a aVar) {
-        Date date;
-        if (aVar.x() == 9) {
-            aVar.t();
-            return null;
-        }
-        String v = aVar.v();
-        synchronized (this) {
-            TimeZone timeZone = this.f48182a.getTimeZone();
-            try {
-                date = new Date(this.f48182a.parse(v).getTime());
-                this.f48182a.setTimeZone(timeZone);
-            } catch (ParseException e10) {
-                throw new RuntimeException("Failed parsing '" + v + "' as SQL Date; at path " + aVar.j(), e10);
+            while (i13 < i11) {
+                int i14 = i13 + 1;
+                int digit2 = Character.digit(str.charAt(i13), 10);
+                if (digit2 >= 0) {
+                    i12 = (i12 * 10) - digit2;
+                    i13 = i14;
+                } else {
+                    throw new NumberFormatException("Invalid number: " + str.substring(i10, i11));
+                }
             }
+            return -i12;
         }
-        return date;
-    }
-
-    @Override
-    public final void write(va.b bVar, Object obj) {
-        String format;
-        Date date = (Date) obj;
-        if (date == null) {
-            bVar.i();
-            return;
-        }
-        synchronized (this) {
-            format = this.f48182a.format((java.util.Date) date);
-        }
-        bVar.r(format);
-    }
-
-    private a() {
-        this.f48182a = new SimpleDateFormat("MMM d, yyyy");
+        throw new NumberFormatException(str);
     }
 }

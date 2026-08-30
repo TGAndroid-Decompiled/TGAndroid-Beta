@@ -1,37 +1,77 @@
 package eg;
 
-import jh.h5;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.t91;
-import org.telegram.ui.v5;
-public final class i implements Runnable {
-    public final int f6031a = 1;
-    public final TLRPC.Chat f6032b;
+import android.content.Context;
+public final class i extends fg.i {
+    public final int V;
 
-    public i(h5 h5Var, TLRPC.Chat chat) {
-        this.f6032b = chat;
+    public i(Context context, int i10, int i11, int i12) {
+        super(context, i10, i11);
+        this.V = i12;
     }
 
     @Override
-    public final void run() {
-        switch (this.f6031a) {
-            case 0:
-                TLRPC.Chat chat = this.f6032b;
-                if (chat != null) {
-                    ?? obj = new Object();
-                    obj.f23673a = true;
-                    LaunchActivity.R().showAsSheet(new v5(-chat.f22392id), obj);
-                    return;
-                }
+    public void k() {
+        switch (this.V) {
+            case 3:
                 return;
             default:
-                h5.d2(t91.d0(this.f6032b, true));
+                super.k();
                 return;
         }
     }
 
-    public i(TLRPC.Chat chat) {
-        this.f6032b = chat;
+    @Override
+    public void onAttachedToWindow() {
+        switch (this.V) {
+            case 0:
+                super.onAttachedToWindow();
+                setPaused(false);
+                return;
+            case 1:
+                super.onAttachedToWindow();
+                setPaused(false);
+                return;
+            case 2:
+                super.onAttachedToWindow();
+                setPaused(false);
+                return;
+            case 3:
+            default:
+                super.onAttachedToWindow();
+                return;
+            case 4:
+                super.onAttachedToWindow();
+                setPaused(false);
+                return;
+        }
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        switch (this.V) {
+            case 0:
+                super.onDetachedFromWindow();
+                setPaused(true);
+                return;
+            case 1:
+                super.onDetachedFromWindow();
+                setPaused(true);
+                return;
+            case 2:
+                super.onDetachedFromWindow();
+                setPaused(true);
+                return;
+            case 3:
+            default:
+                super.onDetachedFromWindow();
+                return;
+            case 4:
+                super.onDetachedFromWindow();
+                setPaused(true);
+                return;
+        }
+    }
+
+    private final void l() {
     }
 }

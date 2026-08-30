@@ -1,34 +1,35 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class at extends org.telegram.ui.ActionBar.o1 {
-    public final dt f36595o;
+import android.graphics.Bitmap;
+public final class at implements Runnable {
+    public final int f32697a;
+    public final pt f32698b;
 
-    public at(dt dtVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f36595o = dtVar;
+    public at(pt ptVar, int i10) {
+        this.f32697a = i10;
+        this.f32698b = ptVar;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        ht htVar = this.f36595o.f37629a;
-        htVar.f39031k = null;
-        htVar.K = false;
-        if (htVar.R) {
-            htVar.n();
-        }
-        View view = htVar.h;
-        if (view != null) {
-            if (view instanceof org.telegram.ui.Cells.b8) {
-                ((org.telegram.ui.Cells.b8) view).setScaled(false);
-            } else if (view instanceof org.telegram.ui.Cells.z7) {
-                ((org.telegram.ui.Cells.z7) view).setScaled(false);
-            } else if (view instanceof org.telegram.ui.Cells.d2) {
-                ((org.telegram.ui.Cells.d2) view).setScaled(false);
-            }
-            htVar.h = null;
+    public final void run() {
+        switch (this.f32697a) {
+            case 0:
+                this.f32698b.f37516c0 = null;
+                return;
+            case 1:
+                pt ptVar = this.f32698b;
+                ptVar.A.setImageBitmap((Bitmap) null);
+                org.telegram.ui.Components.hd0 hd0Var = ptVar.C;
+                if (hd0Var != null) {
+                    hd0Var.a();
+                    ptVar.f37537z.removeView(ptVar.C);
+                    ptVar.C = null;
+                    return;
+                }
+                return;
+            default:
+                this.f32698b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.nr.h).start();
+                return;
         }
     }
 }

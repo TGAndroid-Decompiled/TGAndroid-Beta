@@ -4,25 +4,25 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import org.telegram.messenger.RichMessageLayout;
 public final class o implements ValueAnimator.AnimatorUpdateListener {
-    public final int f21103a;
-    public final Object f21104b;
+    public final int f17972a;
+    public final Object f17973b;
 
     public o(Object obj, int i10) {
-        this.f21103a = i10;
-        this.f21104b = obj;
+        this.f17972a = i10;
+        this.f17973b = obj;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f21103a) {
+        switch (this.f17972a) {
             case 0:
-                AndroidUtilities.lambda$shakeView$13((View) this.f21104b, valueAnimator);
+                AndroidUtilities.lambda$shakeView$13((View) this.f17973b, valueAnimator);
                 return;
             case 1:
-                RichMessageLayout.RichButton.a((RichMessageLayout.RichButton) this.f21104b, valueAnimator);
+                ((RichMessageLayout.RichButton) this.f17973b).lambda$setPressed$0(valueAnimator);
                 return;
             default:
-                RichMessageLayout.RichSlideshowBlock.c((RichMessageLayout.RichSlideshowBlock) this.f21104b, valueAnimator);
+                ((RichMessageLayout.RichSlideshowBlock) this.f17973b).lambda$settle$0(valueAnimator);
                 return;
         }
     }

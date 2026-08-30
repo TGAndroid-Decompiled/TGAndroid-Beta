@@ -1,66 +1,96 @@
 package o3;
-public class g implements t {
-    public final long f19087a;
-    public final long f19088b;
-    public final int f19089c;
-    public final long d;
-    public final int f19090e;
-    public final long f19091f;
-    public final boolean f19092g;
 
-    public g(long j10, int i10, int i11, boolean z10, long j11) {
-        this.f19087a = j10;
-        this.f19088b = j11;
-        this.f19089c = i11 == -1 ? 1 : i11;
-        this.f19090e = i10;
-        this.f19092g = z10;
-        if (j10 == -1) {
-            this.d = -1L;
-            this.f19091f = -9223372036854775807L;
-            return;
+import android.os.Parcel;
+import android.os.Parcelable;
+import h5.d0;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.UUID;
+public final class g implements Comparator, Parcelable {
+    public static final Parcelable.Creator<g> CREATOR = new l4.j(14);
+    public final f[] f16260a;
+    public int f16261b;
+    public final String f16262c;
+    public final int d;
+
+    public g(String str, ArrayList arrayList) {
+        this(str, false, (f[]) arrayList.toArray(new f[0]));
+    }
+
+    public final g a(String str) {
+        if (d0.a(this.f16262c, str)) {
+            return this;
         }
-        long j12 = j10 - j11;
-        this.d = j12;
-        this.f19091f = (Math.max(0L, j12) * 8000000) / i10;
+        return new g(str, false, this.f16260a);
     }
 
     @Override
-    public final boolean c() {
-        if (this.d == -1 && !this.f19092g) {
-            return false;
+    public final int compare(Object obj, Object obj2) {
+        f fVar = (f) obj;
+        f fVar2 = (f) obj2;
+        UUID uuid = j3.h.f8593a;
+        if (uuid.equals(fVar.f16258b)) {
+            if (uuid.equals(fVar2.f16258b)) {
+                return 0;
+            }
+            return 1;
         }
-        return true;
+        return fVar.f16258b.compareTo(fVar2.f16258b);
     }
 
     @Override
-    public final s g(long j10) {
-        long j11 = this.f19088b;
-        long j12 = this.d;
-        int i10 = (j12 > (-1L) ? 1 : (j12 == (-1L) ? 0 : -1));
-        if (i10 == 0 && !this.f19092g) {
-            u uVar = new u(0L, j11);
-            return new s(uVar, uVar);
+    public final int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        int i11 = this.f19090e;
-        long j13 = this.f19089c;
-        long j14 = (((i11 * j10) / 8000000) / j13) * j13;
-        if (i10 != 0) {
-            j14 = Math.min(j14, j12 - j13);
-        }
-        long max = Math.max(j14, 0L) + j11;
-        long max2 = (Math.max(0L, max - j11) * 8000000) / i11;
-        u uVar2 = new u(max2, max);
-        if (i10 != 0 && max2 < j10) {
-            long j15 = max + j13;
-            if (j15 < this.f19087a) {
-                return new s(uVar2, new u((Math.max(0L, j15 - j11) * 8000000) / i11, j15));
+        if (obj != null && g.class == obj.getClass()) {
+            g gVar = (g) obj;
+            if (d0.a(this.f16262c, gVar.f16262c) && Arrays.equals(this.f16260a, gVar.f16260a)) {
+                return true;
             }
         }
-        return new s(uVar2, uVar2);
+        return false;
+    }
+
+    public final int hashCode() {
+        int hashCode;
+        if (this.f16261b == 0) {
+            String str = this.f16262c;
+            if (str == null) {
+                hashCode = 0;
+            } else {
+                hashCode = str.hashCode();
+            }
+            this.f16261b = (hashCode * 31) + Arrays.hashCode(this.f16260a);
+        }
+        return this.f16261b;
     }
 
     @Override
-    public final long h() {
-        return this.f19091f;
+    public final void writeToParcel(Parcel parcel, int i10) {
+        parcel.writeString(this.f16262c);
+        parcel.writeTypedArray(this.f16260a, 0);
+    }
+
+    public g(String str, boolean z4, f... fVarArr) {
+        this.f16262c = str;
+        fVarArr = z4 ? (f[]) fVarArr.clone() : fVarArr;
+        this.f16260a = fVarArr;
+        this.d = fVarArr.length;
+        Arrays.sort(fVarArr, this);
+    }
+
+    public g(Parcel parcel) {
+        this.f16262c = parcel.readString();
+        f[] fVarArr = (f[]) parcel.createTypedArray(f.CREATOR);
+        int i10 = d0.f6937a;
+        this.f16260a = fVarArr;
+        this.d = fVarArr.length;
     }
 }

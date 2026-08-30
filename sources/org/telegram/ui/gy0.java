@@ -1,21 +1,28 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class gy0 extends org.telegram.ui.Components.dq0 {
-    public final hy0 X0;
+import android.view.View;
+public final class gy0 implements View.OnClickListener {
+    public final int f34700a;
+    public final Runnable f34701b;
 
-    public gy0(hy0 hy0Var, Activity activity, String str) {
-        super(activity, null, str, false, null, false, null);
-        this.X0 = hy0Var;
+    public gy0(int i10, Runnable runnable) {
+        this.f34700a = i10;
+        this.f34701b = runnable;
     }
 
     @Override
-    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
+    public final void onClick(View view) {
+        switch (this.f34700a) {
+            case 0:
+                this.f34701b.run();
+                return;
+            default:
+                Runnable runnable = this.f34701b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
         }
-        AndroidUtilities.runOnUIThread(new av0(this, hVar, i10, 16), 250L);
     }
 }

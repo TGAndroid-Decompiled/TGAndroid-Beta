@@ -1,39 +1,46 @@
 package org.telegram.ui;
 
 import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class n40 extends org.telegram.ui.ActionBar.l {
-    public final org.telegram.ui.Components.lp f40707p1;
-    public final r50 f40708q1;
+public final class n40 extends vu0 {
+    public final c60 T;
 
-    public n40(r50 r50Var, LaunchActivity launchActivity, org.telegram.ui.Components.lp lpVar) {
-        super(launchActivity, null);
-        this.f40708q1 = r50Var;
-        this.f40707p1 = lpVar;
+    public n40(c60 c60Var, ViewGroup viewGroup, ViewGroup viewGroup2) {
+        super(viewGroup, viewGroup2);
+        this.T = c60Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
-            canvas.save();
-            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - AndroidUtilities.dp(1.0f));
-            org.telegram.ui.Components.lp lpVar = this.f40707p1;
-            lpVar.f30408f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
-            lpVar.draw(canvas);
+    public final void c(Canvas canvas, float f10, float f11, float f12, float f13, float f14) {
+        ViewGroup viewGroup;
+        ViewGroup viewGroup2;
+        c60 c60Var = this.T;
+        x30 x30Var = c60Var.f33101b;
+        y30 y30Var = c60Var.f33205z2;
+        if (f10 > 0.0f) {
+            float x10 = y30Var.getX();
+            viewGroup = ((org.telegram.ui.ActionBar.g3) c60Var).containerView;
+            float x11 = viewGroup.getX() + x10;
+            float y10 = y30Var.getY();
+            viewGroup2 = ((org.telegram.ui.ActionBar.g3) c60Var).containerView;
+            float y11 = viewGroup2.getY() + y10;
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(x11, y11, x30Var.getMeasuredWidth() + x11, x30Var.getMeasuredHeight() + y11);
+            canvas.saveLayerAlpha(rectF, (int) (f10 * 255.0f), 31);
+            canvas.translate(x11, y11);
+            y30Var.draw(canvas);
             canvas.restore();
-            invalidate();
         }
     }
 
     @Override
-    public final void setAlpha(float f9) {
-        ViewGroup viewGroup;
-        if (getAlpha() != f9) {
-            super.setAlpha(f9);
-            viewGroup = ((org.telegram.ui.ActionBar.f3) this.f40708q1).containerView;
-            viewGroup.invalidate();
+    public final void e() {
+        x30 x30Var = this.T.f33101b;
+        super.e();
+        for (int i10 = 0; i10 < x30Var.getChildCount(); i10++) {
+            x30Var.getChildAt(i10).invalidate();
         }
     }
 }

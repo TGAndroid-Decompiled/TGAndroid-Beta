@@ -1,96 +1,60 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.view.View;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
-import org.telegram.messenger.SharedConfig;
-public abstract class da extends FrameLayout {
-    public final hv0 f27723a;
-    public Paint f27724b;
-    public int f27725c;
-    public final boolean d;
-    public final boolean f27726e;
-    public final Rect f27727f;
+import java.util.ArrayList;
+public final class da implements View.OnAttachStateChangeListener {
+    public final int f24212a;
+    public final Object f24213b;
+    public final Object f24214c;
 
-    public da(Context context, hv0 hv0Var) {
-        super(context);
-        this.f27725c = 0;
-        this.d = true;
-        this.f27726e = true;
-        this.f27727f = new Rect();
-        this.f27723a = hv0Var;
+    public da(int i10, Object obj, Object obj2) {
+        this.f24212a = i10;
+        this.f24214c = obj;
+        this.f24213b = obj2;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        if (SharedConfig.chatBlurEnabled() && this.f27723a != null && this.f27726e && this.f27725c != 0) {
-            if (this.f27724b == null) {
-                this.f27724b = new Paint();
-            }
-            this.f27724b.setColor(this.f27725c);
-            this.f27727f.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            float f9 = 0.0f;
-            View view = this;
-            while (true) {
-                hv0 hv0Var = this.f27723a;
-                if (view != hv0Var) {
-                    f9 += view.getY();
-                    ViewParent parent = view.getParent();
-                    if (parent instanceof View) {
-                        view = (View) parent;
-                    } else {
-                        super.dispatchDraw(canvas);
-                        return;
-                    }
-                } else {
-                    canvas2 = canvas;
-                    hv0Var.J(canvas2, f9, this.f27727f, this.f27724b, this.d);
-                    break;
+    public final void onViewAttachedToWindow(View view) {
+        int i10 = this.f24212a;
+        Object obj = this.f24213b;
+        Object obj2 = this.f24214c;
+        switch (i10) {
+            case 0:
+                ba baVar = (ba) obj;
+                if (baVar != null) {
+                    baVar.d.add((fa) obj2);
+                    return;
                 }
-            }
-        } else {
-            canvas2 = canvas;
-        }
-        super.dispatchDraw(canvas2);
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        hv0 hv0Var;
-        if (SharedConfig.chatBlurEnabled() && (hv0Var = this.f27723a) != null) {
-            hv0Var.P.add(this);
-        }
-        super.onAttachedToWindow();
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        hv0 hv0Var = this.f27723a;
-        if (hv0Var != null) {
-            hv0Var.P.remove(this);
-        }
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public void setBackgroundColor(int i10) {
-        if (SharedConfig.chatBlurEnabled() && this.f27723a != null) {
-            this.f27725c = i10;
-        } else {
-            super.setBackgroundColor(i10);
+                return;
+            default:
+                k01 k01Var = (k01) obj2;
+                k01Var.f26089k = u5.update(k01Var.f26090l, (View) obj, k01Var.f26089k, k01Var.f26083b);
+                return;
         }
     }
 
     @Override
-    public void setTranslationY(float f9) {
-        if (SharedConfig.chatBlurEnabled() && f9 != getTranslationY()) {
-            invalidate();
+    public final void onViewDetachedFromWindow(View view) {
+        switch (this.f24212a) {
+            case 0:
+                fa faVar = (fa) this.f24214c;
+                ba baVar = (ba) this.f24213b;
+                if (baVar != null) {
+                    ArrayList arrayList = baVar.d;
+                    arrayList.remove(faVar);
+                    if (baVar.e.isEmpty() && arrayList.isEmpty()) {
+                        baVar.f23617n.a();
+                    }
+                }
+                faVar.f24837n = null;
+                Paint paint = faVar.h;
+                faVar.f24838o = null;
+                paint.setShader(null);
+                return;
+            default:
+                u5.release((View) this.f24213b, ((k01) this.f24214c).f26089k);
+                return;
         }
-        super.setTranslationY(f9);
     }
 }

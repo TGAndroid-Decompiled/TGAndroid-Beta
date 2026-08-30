@@ -1,48 +1,28 @@
 package th;
 
+import android.content.Context;
 import android.view.View;
-import android.view.ViewTreeObserver;
-public final class h implements ViewTreeObserver.OnGlobalFocusChangeListener {
-    public final int f48469a;
-    public final Object f48470b;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.w51;
+public final class h extends h51 {
+    public static final int f44957a = 0;
 
-    public h(Object obj, int i10) {
-        this.f48469a = i10;
-        this.f48470b = obj;
+    static {
+        h51.setup(new h51());
     }
 
     @Override
-    public final void onGlobalFocusChanged(View view, View view2) {
-        boolean z10;
-        switch (this.f48469a) {
-            case 0:
-                ((p) this.f48470b).Z();
-                return;
-            case 1:
-                ((x1) this.f48470b).w0();
-                return;
-            case 2:
-                p3 p3Var = (p3) this.f48470b;
-                if (view2 != null && p3Var.F(view2) != null) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                p3Var.W2 = z10;
-                if (view2 instanceof d1) {
-                    p3Var.H3 = (d1) view2;
-                    return;
-                }
-                return;
-            default:
-                g5 g5Var = (g5) this.f48470b;
-                g5Var.x();
-                i5 i5Var = g5Var.v;
-                if (i5Var != null) {
-                    i5Var.invalidate();
-                    return;
-                }
-                return;
-        }
+    public final void bindView(View view, i51 i51Var, boolean z4, w51 w51Var, g61 g61Var) {
+        long j10 = i51Var.B;
+        ((i) view).a((int) j10, (int) (j10 >>> 32), i51Var.f25564k, i51Var.f25565l, i51Var.f25567n, i51Var.f25570q);
+    }
+
+    @Override
+    public final View createView(Context context, sl0 sl0Var, int i10, int i11, f6 f6Var) {
+        return new i(context, f6Var, false);
     }
 }

@@ -1,61 +1,33 @@
 package org.telegram.ui;
 
-import android.text.TextWatcher;
-import java.util.regex.Pattern;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class rl0 implements TextWatcher {
-    public final int f42135a;
-    public final Object f42136b;
-    public String f42137c;
-    public final Object d;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class rl0 implements RequestDelegate {
+    public final int f38080a;
+    public final dn0 f38081b;
 
-    public rl0(vm0 vm0Var, EditTextBoldCursor editTextBoldCursor, String str, int i10) {
-        this.f42135a = i10;
-        this.d = vm0Var;
-        this.f42136b = editTextBoldCursor;
-        this.f42137c = str;
+    public rl0(dn0 dn0Var, int i10) {
+        this.f38080a = i10;
+        this.f38081b = dn0Var;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.rl0.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f42135a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f38080a) {
             case 0:
+                AndroidUtilities.runOnUIThread(new hf0(this.f38081b, tL_error, tLObject, 10));
+                return;
             case 1:
+                AndroidUtilities.runOnUIThread(new fe0(22, this.f38081b, tL_error));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new nl0(this.f38081b, 5));
                 return;
             default:
-                this.f42137c = charSequence.toString();
+                AndroidUtilities.runOnUIThread(new fe0(21, this.f38081b, tLObject));
                 return;
         }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f42135a;
-    }
-
-    public rl0(ag.e0 e0Var) {
-        this.f42135a = 2;
-        this.d = e0Var;
-        this.f42136b = Pattern.compile("^[0-9a-fA-F]*$");
-    }
-
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

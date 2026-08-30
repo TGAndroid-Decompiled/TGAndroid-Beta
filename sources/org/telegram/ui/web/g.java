@@ -1,70 +1,42 @@
 package org.telegram.ui.web;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.zz0;
-public final class g extends Drawable {
-    public final int f44037a;
-    public final zz0 f44038b;
-    public final i f44039c;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.sl0;
+public final class g extends h51 {
+    public static final int f39501a = 0;
 
-    public g(i iVar, String str, int i10) {
-        this.f44037a = i10;
-        switch (i10) {
-            case 1:
-                this.f44039c = iVar;
-                this.f44038b = new zz0(str, 14.0f, AndroidUtilities.bold());
-                return;
-            default:
-                this.f44039c = iVar;
-                this.f44038b = new zz0(str, 14.0f, AndroidUtilities.bold());
-                return;
+    static {
+        h51.setup(new h51());
+    }
+
+    @Override
+    public final void bindView(android.view.View r27, org.telegram.ui.Components.i51 r28, boolean r29, org.telegram.ui.Components.w51 r30, org.telegram.ui.Components.g61 r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.g.bindView(android.view.View, org.telegram.ui.Components.i51, boolean, org.telegram.ui.Components.w51, org.telegram.ui.Components.g61):void");
+    }
+
+    @Override
+    public final boolean contentsEquals(i51 i51Var, i51 i51Var2) {
+        if (i51Var.H == i51Var2.H && TextUtils.equals(i51Var.f25566m, i51Var2.f25566m)) {
+            return true;
         }
+        return false;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f44037a) {
-            case 0:
-                this.f44038b.c(getBounds().centerX() - (this.f44038b.f35462c / 2.0f), getBounds().centerY(), 1.0f, this.f44039c.f44061s, canvas);
-                return;
-            default:
-                this.f44038b.c(getBounds().centerX() - (this.f44038b.f35462c / 2.0f), getBounds().centerY(), 1.0f, this.f44039c.f44061s, canvas);
-                return;
+    public final View createView(Context context, sl0 sl0Var, int i10, int i11, f6 f6Var) {
+        return new h(context, f6Var);
+    }
+
+    @Override
+    public final boolean equals(i51 i51Var, i51 i51Var2) {
+        if (i51Var.H == i51Var2.H && TextUtils.isEmpty(i51Var.f25566m) == TextUtils.isEmpty(i51Var2.f25566m)) {
+            return true;
         }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f44037a) {
-            case 0:
-                return -2;
-            default:
-                return -2;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        int i11 = this.f44037a;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f44037a;
-    }
-
-    private final void a(int i10) {
-    }
-
-    private final void b(int i10) {
-    }
-
-    private final void c(ColorFilter colorFilter) {
-    }
-
-    private final void d(ColorFilter colorFilter) {
+        return false;
     }
 }

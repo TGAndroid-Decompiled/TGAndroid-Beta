@@ -1,12 +1,12 @@
 package s2;
 
-import org.telegram.ui.th;
+import org.telegram.ui.yh;
 public final class g extends com.googlecode.mp4parser.c {
-    public static final m5.i f47491e;
+    public static final a3.c e;
 
     static {
-        be.a aVar = new be.a(g.class, "DataEntryUrlBox.java");
-        f47491e = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.DataEntryUrlBox", "", "", "java.lang.String"));
+        de.a aVar = new de.a(g.class, "DataEntryUrlBox.java");
+        e = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.DataEntryUrlBox", "", "", "java.lang.String"));
     }
 
     @Override
@@ -15,7 +15,7 @@ public final class g extends com.googlecode.mp4parser.c {
     }
 
     public final String toString() {
-        th.u(be.a.b(f47491e, this, this));
+        yh.v(de.a.b(e, this, this));
         return "DataEntryUrlBox[]";
     }
 }

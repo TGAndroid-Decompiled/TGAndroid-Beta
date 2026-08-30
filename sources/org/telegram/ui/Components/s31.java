@@ -1,13 +1,11 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-public final class s31 extends gh.s {
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class s31 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        canvas.save();
-        canvas.translate(getPaddingLeft(), getPaddingTop());
-        tv0.a(canvas, getLayout());
-        canvas.restore();
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.33f), View.MeasureSpec.getSize(i11)), 1073741824));
     }
 }

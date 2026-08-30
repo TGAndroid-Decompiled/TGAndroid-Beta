@@ -1,70 +1,66 @@
 package d7;
 
-import android.content.Context;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Looper;
-import m.s3;
-public final class k extends z5.g {
-    public final a0.k Q;
-    public final a0.k R;
-    public final a0.k S;
+import android.os.Parcel;
+import android.os.Parcelable;
+import j7.f5;
+import java.util.Arrays;
+public final class k extends c6.a {
+    public static final Parcelable.Creator<k> CREATOR = new b9.e(12);
+    public final String f4242a;
+    public final String f4243b;
+    public final boolean f4244c;
+    public final int d;
+    public final boolean e;
+    public final String f4245f;
+    public final h[] h;
+    public final String f4246n;
+    public final l f4247r;
 
-    public k(Context context, Looper looper, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar, s3 s3Var) {
-        super(context, looper, 23, s3Var, kVar, lVar, 0);
-        this.Q = new a0.k(0);
-        this.R = new a0.k(0);
-        this.S = new a0.k(0);
+    public k(String str, String str2, boolean z4, int i10, boolean z10, String str3, h[] hVarArr, String str4, l lVar) {
+        this.f4242a = str;
+        this.f4243b = str2;
+        this.f4244c = z4;
+        this.d = i10;
+        this.e = z10;
+        this.f4245f = str3;
+        this.h = hVarArr;
+        this.f4246n = str4;
+        this.f4247r = lVar;
     }
 
-    @Override
-    public final void A(int i10) {
-        super.A(i10);
-        synchronized (this.Q) {
-            this.Q.clear();
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        synchronized (this.R) {
-            this.R.clear();
+        if (!(obj instanceof k)) {
+            return false;
         }
-        synchronized (this.S) {
-            this.S.clear();
+        k kVar = (k) obj;
+        if (this.f4244c == kVar.f4244c && this.d == kVar.d && this.e == kVar.e && b6.m.l(this.f4242a, kVar.f4242a) && b6.m.l(this.f4243b, kVar.f4243b) && b6.m.l(this.f4245f, kVar.f4245f) && b6.m.l(this.f4246n, kVar.f4246n) && b6.m.l(this.f4247r, kVar.f4247r) && Arrays.equals(this.h, kVar.h)) {
+            return true;
         }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f4242a, this.f4243b, Boolean.valueOf(this.f4244c), Integer.valueOf(this.d), Boolean.valueOf(this.e), this.f4245f, Integer.valueOf(Arrays.hashCode(this.h)), this.f4246n, this.f4247r});
     }
 
     @Override
-    public final boolean C() {
-        return true;
-    }
-
-    @Override
-    public final int k() {
-        return 11717000;
-    }
-
-    @Override
-    public final IInterface q(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
-        }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.location.internal.IGoogleLocationManagerService");
-        if (queryLocalInterface instanceof z) {
-            return (z) queryLocalInterface;
-        }
-        return new com.google.android.gms.internal.cast.a(iBinder, "com.google.android.gms.location.internal.IGoogleLocationManagerService", 3);
-    }
-
-    @Override
-    public final w5.c[] r() {
-        return s7.k.f47684a;
-    }
-
-    @Override
-    public final String v() {
-        return "com.google.android.gms.location.internal.IGoogleLocationManagerService";
-    }
-
-    @Override
-    public final String w() {
-        return "com.google.android.location.internal.GoogleLocationManagerService.START";
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q10 = f5.q(parcel, 20293);
+        f5.l(parcel, 1, this.f4242a);
+        f5.l(parcel, 2, this.f4243b);
+        f5.s(parcel, 3, 4);
+        parcel.writeInt(this.f4244c ? 1 : 0);
+        f5.s(parcel, 4, 4);
+        parcel.writeInt(this.d);
+        f5.s(parcel, 5, 4);
+        parcel.writeInt(this.e ? 1 : 0);
+        f5.l(parcel, 6, this.f4245f);
+        f5.o(parcel, 7, this.h, i10);
+        f5.l(parcel, 11, this.f4246n);
+        f5.k(parcel, 12, this.f4247r, i10);
+        f5.r(parcel, q10);
     }
 }

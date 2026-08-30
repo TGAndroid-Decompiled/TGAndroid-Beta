@@ -1,165 +1,118 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.GenericProvider;
-public class hp extends View {
-    public final CheckBoxBase f29211a;
-    public Drawable f29212b;
-    public int f29213c;
+import android.util.SparseArray;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class hp implements Runnable {
+    public final int f25461a;
+    public final Object f25462b;
+    public final Object f25463c;
+    public final Object d;
 
-    public hp(Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        this.f29211a = new CheckBoxBase(i10, this, c6Var);
+    public hp(Object obj, Object obj2, Object obj3, int i10) {
+        this.f25461a = i10;
+        this.f25462b = obj;
+        this.f25463c = obj2;
+        this.d = obj3;
     }
 
-    public final void a(boolean z10, boolean z11) {
-        this.f29211a.f(-1, z10, z11);
+    private final void a() {
+        xx0.w((xx0) this.f25462b, (ArrayList) this.f25463c, (Boolean) this.d);
     }
 
-    public final void b(int i10, int i11, int i12) {
-        this.f29211a.h(i10, i11, i12);
+    private final void b() {
+        xx0.D((xx0) this.f25462b, (TLRPC.TL_error) this.d, (TLObject) this.f25463c);
     }
 
-    public CheckBoxBase getCheckBoxBase() {
-        return this.f29211a;
+    private final void c() {
+        xx0.F((xx0) this.f25462b, (String) this.f25463c, (TextView) this.d);
     }
 
-    public boolean getDrawUnchecked() {
-        return this.f29211a.f26332z;
+    private final void e() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.hp.e():void");
     }
 
-    public float getProgress() {
-        return this.f29211a.getProgress();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f29211a.f26319l = true;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f29211a.f26319l = false;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f29212b != null) {
-            int measuredWidth = getMeasuredWidth() >> 1;
-            int measuredHeight = getMeasuredHeight() >> 1;
-            Drawable drawable = this.f29212b;
-            drawable.setBounds(org.telegram.ui.b.v(2, measuredWidth, drawable), org.telegram.ui.b.f(2, measuredHeight, this.f29212b), org.telegram.ui.b.A(2, measuredWidth, this.f29212b), org.telegram.ui.b.y(2, measuredHeight, this.f29212b));
-            this.f29212b.draw(canvas);
-            Paint paint = new Paint();
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(AndroidUtilities.dp(1.2f));
-            paint.setColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.U6, false));
-            canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth - AndroidUtilities.dp(1.5f), paint);
-            return;
-        }
-        this.f29211a.a(canvas);
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.Switch");
-        accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f29211a.f26324q);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.f29211a.e(0, 0, i12 - i10, i13 - i11);
-    }
-
-    public void setCirclePaintProvider(GenericProvider<Void, Paint> genericProvider) {
-        CheckBoxBase checkBoxBase = this.f29211a;
-        if (checkBoxBase.G == genericProvider) {
-            return;
-        }
-        checkBoxBase.G = genericProvider;
-        checkBoxBase.b();
-    }
-
-    public void setDrawBackgroundAsArc(int i10) {
-        this.f29211a.d(i10);
-    }
-
-    public void setDrawUnchecked(boolean z10) {
-        this.f29211a.k(z10);
-    }
-
-    public void setDuration(long j10) {
-        this.f29211a.H = j10;
-    }
-
-    @Override
-    public void setEnabled(boolean z10) {
-        CheckBoxBase checkBoxBase = this.f29211a;
-        if (checkBoxBase.f26318k != z10) {
-            checkBoxBase.f26318k = z10;
-            checkBoxBase.b();
-        }
-        super.setEnabled(z10);
-    }
-
-    public void setForbidden(boolean z10) {
-        CheckBoxBase checkBoxBase = this.f29211a;
-        if (checkBoxBase.f26321n == z10) {
-            return;
-        }
-        checkBoxBase.f26321n = z10;
-        checkBoxBase.b();
-    }
-
-    public void setIcon(int i10) {
-        if (i10 != this.f29213c) {
-            this.f29213c = i10;
-            if (i10 == 0) {
-                this.f29212b = null;
+    private final void f() {
+        int i10;
+        int i11;
+        d51 d51Var = (d51) this.f25462b;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
+        TLObject tLObject = (TLObject) this.f25463c;
+        SparseArray sparseArray = d51Var.f24167f;
+        ArrayList arrayList = d51Var.e;
+        ArrayList arrayList2 = d51Var.f24168n;
+        SparseArray sparseArray2 = d51Var.d;
+        d51Var.f24169r = false;
+        if (tL_error == null && (tLObject instanceof TLRPC.TL_messages_featuredStickers)) {
+            ArrayList<TLRPC.StickerSetCovered> arrayList3 = ((TLRPC.TL_messages_featuredStickers) tLObject).sets;
+            if (arrayList3.size() < 40) {
+                d51Var.f24170s = true;
+            }
+            if (!arrayList3.isEmpty()) {
+                if (arrayList2.isEmpty()) {
+                    int i12 = d51Var.f24171w;
+                    d51Var.f24171w = i12 + 1;
+                    sparseArray2.put(i12, -1);
+                }
+                arrayList2.addAll(arrayList3);
+                int size = arrayList.size();
+                for (int i13 = 0; i13 < arrayList3.size(); i13++) {
+                    TLRPC.StickerSetCovered stickerSetCovered = arrayList3.get(i13);
+                    if (!stickerSetCovered.covers.isEmpty() || stickerSetCovered.cover != null) {
+                        arrayList.add(stickerSetCovered);
+                        sparseArray.put(d51Var.f24171w, stickerSetCovered);
+                        int i14 = d51Var.f24171w;
+                        d51Var.f24171w = i14 + 1;
+                        int i15 = size + 1;
+                        sparseArray2.put(i14, Integer.valueOf(size));
+                        if (!stickerSetCovered.covers.isEmpty()) {
+                            i10 = (int) Math.ceil(stickerSetCovered.covers.size() / d51Var.v);
+                            for (int i16 = 0; i16 < stickerSetCovered.covers.size(); i16++) {
+                                sparseArray2.put(d51Var.f24171w + i16, stickerSetCovered.covers.get(i16));
+                            }
+                        } else {
+                            sparseArray2.put(d51Var.f24171w, stickerSetCovered.cover);
+                            i10 = 1;
+                        }
+                        int i17 = 0;
+                        while (true) {
+                            i11 = d51Var.v * i10;
+                            if (i17 >= i11) {
+                                break;
+                            }
+                            sparseArray.put(d51Var.f24171w + i17, stickerSetCovered);
+                            i17++;
+                        }
+                        d51Var.f24171w = i11 + d51Var.f24171w;
+                        size = i15;
+                    }
+                }
+                d51Var.l();
                 return;
             }
-            Drawable mutate = getContext().getDrawable(i10).mutate();
-            this.f29212b = mutate;
-            mutate.setColorFilter(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.U6, false), PorterDuff.Mode.MULTIPLY);
-        }
-    }
-
-    public void setNum(int i10) {
-        String str;
-        CheckBoxBase checkBoxBase = this.f29211a;
-        if (i10 >= 0) {
-            checkBoxBase.getClass();
-            str = "" + (i10 + 1);
-        } else if (checkBoxBase.f26323p != null) {
-            str = checkBoxBase.C;
-        } else {
-            str = null;
-        }
-        String str2 = checkBoxBase.C;
-        if (str2 == null) {
-            if (str == null) {
-                return;
-            }
-        } else if (str2.equals(str)) {
             return;
         }
-        checkBoxBase.C = str;
-        checkBoxBase.b();
+        d51Var.f24170s = true;
     }
 
-    public void setProgressDelegate(ip ipVar) {
-        this.f29211a.D = ipVar;
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.hp.run():void");
+    }
+
+    public hp(Object obj, Object obj2, TLObject tLObject, int i10) {
+        this.f25461a = i10;
+        this.f25462b = obj;
+        this.d = obj2;
+        this.f25463c = tLObject;
+    }
+
+    public hp(de0 de0Var, TLRPC.TL_error tL_error, TLObject tLObject, boolean z4) {
+        this.f25461a = 11;
+        this.f25462b = de0Var;
+        this.d = tL_error;
+        this.f25463c = tLObject;
     }
 }

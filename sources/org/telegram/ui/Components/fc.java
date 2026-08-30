@@ -1,119 +1,66 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
+import android.graphics.Typeface;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class fc extends View {
-    public final Paint f28370a;
-    public long f28371b;
-    public int f28372c;
-    public String d;
-    public int f28373e;
-    public StaticLayout f28374f;
-    public StaticLayout h;
-    public int f28375n;
-    public float f28376r;
-    public final TextPaint f28377s;
-    public long v;
-    public final RectF f28378w;
+public final class fc extends eb {
+    public final jj0 f24845a;
+    public final e90 f24846b;
+    public final e90 f24847c;
+    public final LinearLayout d;
+    public final int e;
 
-    public fc(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        this.f28376r = 1.0f;
-        this.f28378w = new RectF();
-        TextPaint textPaint = new TextPaint(1);
-        this.f28377s = textPaint;
-        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        Paint paint = new Paint(1);
-        this.f28370a = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        setColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.Hi, c6Var));
+    public fc(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        int i10 = org.telegram.ui.ActionBar.j6.Hi;
+        this.e = getThemedColor(i10);
+        setBackground(getThemedColor(org.telegram.ui.ActionBar.j6.Fi));
+        ?? imageView = new ImageView(context);
+        this.f24845a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView((View) imageView, k7.b6.h(56.0f, 48.0f, 8388627));
+        int themedColor = getThemedColor(i10);
+        int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.j6.Gi);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.d = linearLayout;
+        linearLayout.setOrientation(1);
+        addView(linearLayout, k7.b6.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
+        e90 e90Var = new e90(context, null);
+        this.f24846b = e90Var;
+        e90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        e90Var.setTextColor(themedColor);
+        e90Var.setTextSize(1, 14.0f);
+        e90Var.setTypeface(AndroidUtilities.bold());
+        linearLayout.addView(e90Var);
+        e90 e90Var2 = new e90(context, null);
+        this.f24847c = e90Var2;
+        e90Var2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        e90Var2.setTextColor(themedColor);
+        e90Var2.setLinkTextColor(themedColor2);
+        e90Var2.setTypeface(Typeface.SANS_SERIF);
+        e90Var2.setTextSize(1, 13.0f);
+        linearLayout.addView(e90Var2);
+    }
+
+    public final void c(int i10, int i11, int i12, String... strArr) {
+        jj0 jj0Var = this.f24845a;
+        jj0Var.f(i10, i11, i12, null);
+        for (String str : strArr) {
+            jj0Var.h(this.e, str);
+        }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        long j10;
-        int i10;
-        String valueOf;
-        super.onDraw(canvas);
-        if (this.f28371b > 0) {
-            i10 = (int) Math.ceil(((float) j10) / 1000.0f);
-        } else {
-            i10 = 0;
-        }
-        RectF rectF = this.f28378w;
-        rectF.set(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), getMeasuredWidth() - AndroidUtilities.dp(1.0f), getMeasuredHeight() - AndroidUtilities.dp(1.0f));
-        int i11 = this.f28372c;
-        TextPaint textPaint = this.f28377s;
-        if (i11 != i10) {
-            this.f28372c = i10;
-            this.d = String.valueOf(Math.max(0, i10));
-            StaticLayout staticLayout = this.f28374f;
-            if (staticLayout != null) {
-                this.h = staticLayout;
-                this.f28376r = 0.0f;
-                this.f28375n = this.f28373e;
-            }
-            this.f28373e = (int) Math.ceil(textPaint.measureText(valueOf));
-            this.f28374f = new StaticLayout(this.d, textPaint, Integer.MAX_VALUE, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        }
-        float f9 = this.f28376r;
-        if (f9 < 1.0f) {
-            float f10 = f9 + 0.10666667f;
-            this.f28376r = f10;
-            if (f10 > 1.0f) {
-                this.f28376r = 1.0f;
-            } else {
-                invalidate();
-            }
-        }
-        int alpha = textPaint.getAlpha();
-        if (this.h != null) {
-            float f11 = this.f28376r;
-            if (f11 < 1.0f) {
-                textPaint.setAlpha((int) ((1.0f - f11) * alpha));
-                canvas.save();
-                canvas.translate(rectF.centerX() - (this.f28375n / 2.0f), ((AndroidUtilities.dp(10.0f) * this.f28376r) + (rectF.centerY() - (this.h.getHeight() / 2.0f))) - AndroidUtilities.dp(0.5f));
-                this.h.draw(canvas);
-                textPaint.setAlpha(alpha);
-                canvas.restore();
-            }
-        }
-        if (this.f28374f != null) {
-            float f12 = this.f28376r;
-            if (f12 != 1.0f) {
-                textPaint.setAlpha((int) (alpha * f12));
-            }
-            canvas.save();
-            canvas.translate(rectF.centerX() - (this.f28373e / 2.0f), org.telegram.ui.th.b(1.0f, this.f28376r, AndroidUtilities.dp(10.0f), rectF.centerY() - (this.f28374f.getHeight() / 2.0f)) - AndroidUtilities.dp(0.5f));
-            this.f28374f.draw(canvas);
-            if (this.f28376r != 1.0f) {
-                textPaint.setAlpha(alpha);
-            }
-            canvas.restore();
-        }
-        canvas.drawArc(rectF, -90.0f, (((float) Math.max(0L, this.f28371b)) / 5000.0f) * (-360.0f), false, this.f28370a);
-        if (this.v != 0) {
-            long currentTimeMillis = System.currentTimeMillis();
-            this.f28371b -= currentTimeMillis - this.v;
-            this.v = currentTimeMillis;
-        } else {
-            this.v = System.currentTimeMillis();
-        }
-        invalidate();
+    public CharSequence getAccessibilityText() {
+        return ((Object) this.f24846b.getText()) + ".\n" + ((Object) this.f24847c.getText());
     }
 
-    public void setColor(int i10) {
-        this.f28377s.setColor(i10);
-        this.f28370a.setColor(i10);
+    @Override
+    public final void onShow() {
+        super.onShow();
+        this.f24845a.d();
     }
 }

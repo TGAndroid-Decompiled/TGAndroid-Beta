@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import java.io.FileNotFoundException;
 import org.telegram.messenger.ApplicationLoader;
+import vh.v2;
 public class CallNotificationSoundProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String str, String[] strArr) {
@@ -42,13 +43,13 @@ public class CallNotificationSoundProvider extends ContentProvider {
                     autoCloseOutputStream.write(new byte[]{82, 73, 70, 70, 41, 0, 0, 0, 87, 65, 86, 69, 102, 109, 116, 32, 16, 0, 0, 0, 1, 0, 1, 0, 68, -84, 0, 0, 16, -79, 2, 0, 2, 0, 16, 0, 100, 97, 116, 97, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
                     autoCloseOutputStream.close();
                     return createPipe[0];
-                } catch (Exception e10) {
-                    throw new FileNotFoundException(e10.getMessage());
+                } catch (Exception e) {
+                    throw new FileNotFoundException(e.getMessage());
                 }
             }
             throw new FileNotFoundException("Unexpected application state");
         }
-        throw new SecurityException(u3.c.e("Unexpected file mode ", str));
+        throw new SecurityException(v2.e("Unexpected file mode ", str));
     }
 
     @Override

@@ -1,36 +1,18 @@
 package eg;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class m implements Utilities.Callback {
-    public final int f6081a;
-    public final AtomicBoolean f6082b;
-    public final ye.c f6083c;
+import android.graphics.Bitmap;
+import java.util.ArrayList;
+public final class m extends b {
+    public final ArrayList d;
+    public final Bitmap e;
+    public final int f5353f;
 
-    public m(AtomicBoolean atomicBoolean, ye.c cVar, int i10) {
-        this.f6081a = i10;
-        this.f6082b = atomicBoolean;
-        this.f6083c = cVar;
+    public m(android.content.Context r22, int r23, org.telegram.ui.ActionBar.f6 r24) {
+        throw new UnsupportedOperationException("Method not decompiled: eg.m.<init>(android.content.Context, int, org.telegram.ui.ActionBar.f6):void");
     }
 
     @Override
-    public final void run(Object obj) {
-        ye.c cVar;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-        switch (this.f6081a) {
-            case 0:
-                if (!this.f6082b.get()) {
-                    this.f6083c.b();
-                    return;
-                }
-                return;
-            default:
-                if (!this.f6082b.get() && (cVar = this.f6083c) != null) {
-                    cVar.b();
-                    return;
-                }
-                return;
-        }
+    public final f2.o0 a() {
+        return new g(this, 0);
     }
 }

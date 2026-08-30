@@ -1,30 +1,63 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class e6 implements RequestDelegate {
-    public final int f20096a;
-    public final int f20097b;
-    public final int f20098c;
-    public final NotificationCenter.NotificationCenterDelegate d;
+import java.util.regex.Pattern;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.LaunchActivity;
+public final class e6 implements Runnable {
+    public final int f17103a;
+    public final int f17104b;
 
-    public e6(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10, int i11, int i12) {
-        this.f20096a = i12;
-        this.d = notificationCenterDelegate;
-        this.f20097b = i10;
-        this.f20098c = i11;
+    public e6(int i10, int i11) {
+        this.f17103a = i11;
+        this.f17104b = i10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f20096a) {
+    public final void run() {
+        switch (this.f17103a) {
             case 0:
-                ((MediaController) this.d).lambda$loadMoreMusic$12(this.f20097b, this.f20098c, tLObject, tL_error);
+                MediaController.lambda$loadGalleryPhotosAlbums$57(this.f17104b);
+                return;
+            case 1:
+                MediaController.lambda$checkGallery$1(this.f17104b);
+                return;
+            case 2:
+                NotificationRepeat.a(this.f17104b);
+                return;
+            case 3:
+                PushListenerController.lambda$processRemoteMessage$3(this.f17104b);
+                return;
+            case 4:
+                PushListenerController.lambda$processRemoteMessage$4(this.f17104b);
+                return;
+            case 5:
+                SharedConfig.lambda$checkLogsToDelete$3(this.f17104b);
+                return;
+            case 6:
+                ConnectionsManager.lambda$onUpdate$13(this.f17104b);
+                return;
+            case 7:
+                ConnectionsManager.lambda$onSessionCreated$14(this.f17104b);
+                return;
+            case 8:
+                ConnectionsManager.lambda$onLogout$16(this.f17104b);
+                return;
+            case 9:
+                MediaDataController.getInstance(this.f17104b).checkStickers(5);
+                return;
+            case 10:
+                int i10 = this.f17104b;
+                Pattern pattern = LaunchActivity.f31612y1;
+                ApplicationLoader.mainInterfacePausedStageQueue = true;
+                ApplicationLoader.mainInterfacePausedStageQueueTime = 0L;
+                if (VoIPService.getSharedInstance() == null) {
+                    MessagesController.getInstance(i10).ignoreSetOnline = false;
+                    return;
+                }
                 return;
             default:
-                ((MessagesController) this.d).lambda$getDifference$359(this.f20097b, this.f20098c, tLObject, tL_error);
+                MediaDataController.getInstance(this.f17104b).loadAttachMenuBots(false, true);
                 return;
         }
     }

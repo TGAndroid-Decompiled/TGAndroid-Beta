@@ -1,70 +1,141 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
+import android.content.Context;
+import android.view.ActionMode;
+import android.view.Menu;
 import android.view.View;
-import android.widget.LinearLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class cv0 implements View.OnClickListener {
-    public final oh0 f37227a;
-    public final tn f37228b;
-    public final org.telegram.ui.Components.jl0 f37229c;
-    public final LinearLayout d;
-    public final org.telegram.ui.Components.j70 f37230e;
-    public final org.telegram.ui.Components.j70 f37231f;
-    public final iv0 h;
+import java.util.Arrays;
+public final class cv0 extends org.telegram.ui.Cells.c6 {
+    public final dv0 C;
 
-    public cv0(iv0 iv0Var, oh0 oh0Var, tn tnVar, org.telegram.ui.Components.jl0 jl0Var, LinearLayout linearLayout, org.telegram.ui.Components.j70 j70Var, org.telegram.ui.Components.j70 j70Var2) {
-        this.h = iv0Var;
-        this.f37227a = oh0Var;
-        this.f37228b = tnVar;
-        this.f37229c = jl0Var;
-        this.d = linearLayout;
-        this.f37230e = j70Var;
-        this.f37231f = j70Var2;
+    public cv0(dv0 dv0Var, Context context, int i10, e60 e60Var) {
+        super(context, i10, e60Var, null);
+        this.C = dv0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        oh0 oh0Var = this.f37227a;
-        ArrayList arrayList = oh0Var.f41128b;
-        ArrayList arrayList2 = oh0Var.f41129c;
-        if (!arrayList2.isEmpty()) {
-            int size = arrayList2.size();
-            iv0 iv0Var = this.h;
-            tn tnVar = this.f37228b;
-            if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
-                TLObject tLObject = (TLObject) arrayList2.get(0);
-                if (tLObject == null) {
-                    return;
-                }
-                Bundle bundle = new Bundle();
-                if (tLObject instanceof TLRPC.User) {
-                    bundle.putLong("user_id", ((TLRPC.User) tLObject).f22539id);
-                } else if (tLObject instanceof TLRPC.Chat) {
-                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f22392id);
-                }
-                tnVar.presentFragment(new ProfileActivity(bundle, null));
-                iv0Var.c(false);
-                return;
-            }
-            if (SharedConfig.messageSeenHintCount > 0 && tnVar.T0.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
-                org.telegram.ui.Components.mc t10 = new org.telegram.ui.Components.tc(org.telegram.ui.Components.hb.a(iv0Var.getContext()), iv0Var.f39343b).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
-                tnVar.f42852j1 = t10;
-                t10.f30652j = 4000;
-                t10.j();
-                SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
-            }
-            org.telegram.ui.Components.jl0 jl0Var = this.f37229c;
-            jl0Var.requestLayout();
-            this.d.requestLayout();
-            jl0Var.getAdapter().l();
-            this.f37230e.K(this.f37231f);
+    public final boolean e() {
+        f2.l1 T;
+        fv0 fv0Var = this.C.d;
+        jb1 jb1Var = fv0Var.f34376c;
+        View F = jb1Var.F(this);
+        if (F == null) {
+            T = null;
+        } else {
+            T = jb1Var.T(F);
         }
+        if (T != null) {
+            int b10 = T.b();
+            int i10 = fv0Var.f34404y;
+            if (i10 == fv0Var.f34388n && b10 == (fv0Var.f34386k0 + i10) - 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean f(org.telegram.ui.Cells.c6 c6Var) {
+        f2.l1 T;
+        int b10;
+        fv0 fv0Var = this.C.d;
+        jb1 jb1Var = fv0Var.f34376c;
+        View F = jb1Var.F(c6Var);
+        if (F == null) {
+            T = null;
+        } else {
+            T = jb1Var.T(F);
+        }
+        if (T != null && (b10 = T.b()) != -1) {
+            return fv0Var.f34400w[b10 - fv0Var.f34386k0];
+        }
+        return false;
+    }
+
+    @Override
+    public final void g(dh.b bVar, ActionMode actionMode) {
+        if (bVar.isFocused() && bVar.hasSelection()) {
+            Menu menu = actionMode.getMenu();
+            if (menu.findItem(16908321) != null) {
+                xn.k8(menu, this.C.d.f34380f.h, false, true, true, true);
+            }
+        }
+    }
+
+    @Override
+    public final void h(org.telegram.ui.Cells.c6 c6Var, boolean z4) {
+        f2.l1 T;
+        int b10;
+        fv0 fv0Var = this.C.d;
+        if (z4 && fv0Var.I) {
+            Arrays.fill(fv0Var.f34400w, false);
+            fv0Var.f34376c.getChildCount();
+            for (int i10 = fv0Var.f34386k0; i10 < fv0Var.f34386k0 + fv0Var.f34404y; i10++) {
+                f2.l1 K = fv0Var.f34376c.K(i10);
+                if (K != null) {
+                    View view = K.f5785a;
+                    if (view instanceof org.telegram.ui.Cells.c6) {
+                        ((org.telegram.ui.Cells.c6) view).f20920r.a(false, true);
+                    }
+                }
+            }
+        }
+        super.h(c6Var, z4);
+        jb1 jb1Var = fv0Var.f34376c;
+        View F = jb1Var.F(c6Var);
+        if (F == null) {
+            T = null;
+        } else {
+            T = jb1Var.T(F);
+        }
+        if (T != null && (b10 = T.b()) != -1) {
+            fv0Var.f34400w[b10 - fv0Var.f34386k0] = z4;
+        }
+        fv0Var.i0();
+    }
+
+    @Override
+    public final void i(boolean z4) {
+        fv0.d0(this.C.d, this, z4);
+    }
+
+    @Override
+    public final void j(org.telegram.ui.Cells.c6 c6Var) {
+        fv0.e0(this.C.d, c6Var);
+    }
+
+    @Override
+    public final boolean l(ArrayList arrayList) {
+        fv0 fv0Var = this.C.d;
+        if (!arrayList.isEmpty()) {
+            fv0Var.f34376c.getClass();
+            int R = RecyclerView.R(this) - fv0Var.f34386k0;
+            if (R >= 0) {
+                dh.b bVar = this.d;
+                bVar.getText().replace(bVar.getSelectionStart(), bVar.getSelectionEnd(), (CharSequence) arrayList.remove(0));
+                int i10 = R + 1;
+                while (!arrayList.isEmpty() && i10 < fv0Var.f34388n) {
+                    for (int length = fv0Var.v.length - 1; length > i10; length--) {
+                        CharSequence[] charSequenceArr = fv0Var.v;
+                        charSequenceArr[length] = charSequenceArr[length - 1];
+                    }
+                    fv0Var.v[i10] = (CharSequence) arrayList.remove(0);
+                    fv0Var.f34404y++;
+                    i10++;
+                }
+                fv0Var.r0();
+                fv0Var.f34378d0 = (fv0Var.f34386k0 + i10) - 1;
+                fv0Var.f34374b.l();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean o() {
+        return this.C.d.I;
     }
 }

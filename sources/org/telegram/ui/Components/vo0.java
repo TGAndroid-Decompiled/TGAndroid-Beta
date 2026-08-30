@@ -1,51 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowInsets;
-public final class vo0 implements r0.o, org.telegram.ui.ActionBar.m1 {
-    public final int f33599a;
-    public final dq0 f33600b;
+import android.view.ViewPropertyAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+public final class vo0 extends f2.z0 {
+    public final ve f29545a;
 
-    public vo0(dq0 dq0Var, int i10) {
-        this.f33599a = i10;
-        this.f33600b = dq0Var;
+    public vo0(ve veVar) {
+        this.f29545a = veVar;
     }
 
     @Override
-    public r0.m1 I0(View view, r0.m1 m1Var) {
-        WindowInsets g10 = m1Var.g();
-        dq0 dq0Var = this.f33600b;
-        dq0Var.processLegacyContainerInsets(g10);
-        i0.b f9 = m1Var.f46843a.f(519);
-        if (!dq0Var.C0.equals(f9)) {
-            dq0Var.C0 = f9;
-            dq0Var.container.requestLayout();
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        boolean z4;
+        float f10;
+        ve veVar = this.f29545a;
+        View view = veVar.f31419u;
+        if (veVar.f31420w.I0() != 0) {
+            z4 = true;
+        } else {
+            z4 = false;
         }
-        return r0.m1.f46842b;
-    }
-
-    @Override
-    public void o(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.o1 o1Var;
-        org.telegram.ui.ActionBar.o1 o1Var2;
-        switch (this.f33599a) {
-            case 1:
-                dq0 dq0Var = this.f33600b;
-                dq0Var.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (o1Var = dq0Var.F0) != null && o1Var.isShowing()) {
-                    dq0Var.F0.d(true);
-                    return;
-                }
-                return;
-            default:
-                dq0 dq0Var2 = this.f33600b;
-                dq0Var2.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (o1Var2 = dq0Var2.F0) != null && o1Var2.isShowing()) {
-                    dq0Var2.F0.d(true);
-                    return;
-                }
-                return;
+        Boolean bool = veVar.f31421x;
+        if (bool != null && z4 == bool.booleanValue()) {
+            return;
         }
+        view.animate().cancel();
+        ViewPropertyAnimator animate = view.animate();
+        if (z4) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        animate.alpha(f10).setDuration(150L).start();
+        veVar.f31421x = Boolean.valueOf(z4);
     }
 }

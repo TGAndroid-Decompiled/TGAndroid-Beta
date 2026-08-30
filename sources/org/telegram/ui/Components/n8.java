@@ -1,38 +1,31 @@
 package org.telegram.ui.Components;
+public final class n8 extends org.telegram.ui.ActionBar.j {
+    public final int f27213a;
+    public final w8 f27214b;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class n8 implements Runnable {
-    public final int f30924a;
-    public final b9 f30925b;
-
-    public n8(b9 b9Var, int i10) {
-        this.f30924a = i10;
-        this.f30925b = b9Var;
+    public n8(w8 w8Var, int i10) {
+        this.f27213a = i10;
+        this.f27214b = w8Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f30924a) {
+    public final void b(int i10) {
+        switch (this.f27213a) {
             case 0:
-                b9 b9Var = this.f30925b;
-                if (!b9Var.Q) {
-                    if (b9Var.J > 0.0f) {
-                        if (b9Var.I != null) {
-                            b9Var.A = 1.0f;
-                            b9Var.B = true;
-                        }
-                        AndroidUtilities.hideKeyboard(b9Var.fragmentView);
-                        return;
-                    }
-                    b9Var.g0(!b9Var.f27003a.v, true, false);
+                if (i10 == -1) {
+                    w8.U(this.f27214b);
                     return;
                 }
                 return;
             default:
-                b9 b9Var2 = this.f30925b;
-                b9Var2.getClass();
-                b9Var2.presentFragment(new PremiumPreviewFragment(0, "avatar"));
+                w8 w8Var = this.f27214b;
+                if (i10 == -1) {
+                    w8.U(w8Var);
+                }
+                if (i10 == 1) {
+                    w8Var.f0();
+                    return;
+                }
                 return;
         }
     }

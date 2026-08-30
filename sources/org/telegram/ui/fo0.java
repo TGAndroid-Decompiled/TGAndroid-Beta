@@ -1,36 +1,81 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class fo0 extends org.telegram.ui.Components.q71 {
-    public final yo0 f38218a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class fo0 extends FrameLayout {
+    public final Paint f34295a;
+    public float f34296b;
+    public o1.j f34297c;
+    public final jo0 d;
 
-    public fo0(yo0 yo0Var) {
-        this.f38218a = yo0Var;
+    public fo0(jo0 jo0Var, Context context) {
+        super(context);
+        this.d = jo0Var;
+        this.f34295a = new Paint(1);
+        setWillNotDraw(false);
     }
 
-    @Override
-    public final View d(int i10) {
-        yo0 yo0Var = this.f38218a;
-        if (i10 == 1) {
-            return yo0Var.f44945f;
+    public final void a(boolean z4, boolean z10) {
+        float f10;
+        float f11;
+        o1.j jVar = this.f34297c;
+        if (jVar != null) {
+            jVar.c();
         }
-        if (i10 == 0) {
-            return yo0Var.h;
+        if (z4) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
         }
-        return null;
+        if (z10) {
+            float f12 = this.f34296b;
+            if (f12 == f10) {
+                return;
+            }
+            o1.j jVar2 = new o1.j(new kb.a(f12 * 100.0f));
+            o1.k kVar = new o1.k(f10 * 100.0f);
+            if (z4) {
+                f11 = 500.0f;
+            } else {
+                f11 = 650.0f;
+            }
+            kVar.b(f11);
+            kVar.a(1.0f);
+            jVar2.f16198u = kVar;
+            this.f34297c = jVar2;
+            jVar2.b(new ld0(this, 1));
+            this.f34297c.a(new o9(this, 1));
+            this.f34297c.f();
+            return;
+        }
+        this.f34296b = f10;
+        TextView textView = this.d.R;
+        if (textView != null) {
+            textView.setAlpha((f10 * 0.2f) + 0.8f);
+        }
+        invalidate();
     }
 
     @Override
-    public final int e() {
-        return 2;
-    }
-
-    @Override
-    public final int h(int i10) {
-        return i10;
-    }
-
-    @Override
-    public final void b(View view, int i10, int i11) {
+    public final void onDraw(Canvas canvas) {
+        int dp;
+        super.onDraw(canvas);
+        int i10 = org.telegram.ui.ActionBar.j6.O6;
+        jo0 jo0Var = this.d;
+        canvas.drawColor(jo0Var.getThemedColor(i10));
+        int themedColor = jo0Var.getThemedColor(org.telegram.ui.ActionBar.j6.ei);
+        Paint paint = this.f34295a;
+        paint.setColor(themedColor);
+        if (LocaleController.isRTL) {
+            dp = getWidth() - AndroidUtilities.dp(28.0f);
+        } else {
+            dp = AndroidUtilities.dp(28.0f);
+        }
+        canvas.drawCircle(dp, -AndroidUtilities.dp(28.0f), Math.max(getWidth(), getHeight()) * this.f34296b, paint);
     }
 }

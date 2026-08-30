@@ -1,70 +1,42 @@
 package org.telegram.ui;
 
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class m8 implements RequestDelegate {
-    public final int f40485a;
-    public final h9 f40486b;
-    public final org.telegram.ui.ActionBar.c2 f40487c;
-    public final HashSet d;
-    public final TLRPC.TL_inputGroupCallInviteMessage f40488e;
-    public final boolean f40489f;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class m8 implements r0.o, Utilities.Callback5, Utilities.Callback5Return, org.telegram.ui.Components.yk0 {
+    public final l9 f36229a;
 
-    public m8(h9 h9Var, org.telegram.ui.ActionBar.c2 c2Var, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, boolean z10, int i10) {
-        this.f40485a = i10;
-        this.f40486b = h9Var;
-        this.f40487c = c2Var;
-        this.d = hashSet;
-        this.f40488e = tL_inputGroupCallInviteMessage;
-        this.f40489f = z10;
+    @Override
+    public r0.m1 N0(View view, r0.m1 m1Var) {
+        return this.f36229a.onInsetsInternal(view, m1Var);
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f40485a) {
-            case 0:
-                final h9 h9Var = this.f40486b;
-                final org.telegram.ui.ActionBar.c2 c2Var = this.f40487c;
-                final HashSet hashSet = this.d;
-                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage = this.f40488e;
-                final boolean z10 = this.f40489f;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r8) {
-                            case 0:
-                                h9.V(h9Var, c2Var, tLObject, hashSet, tL_inputGroupCallInviteMessage, z10, tL_error);
-                                return;
-                            default:
-                                h9.Y(h9Var, c2Var, tLObject, hashSet, tL_inputGroupCallInviteMessage, z10, tL_error);
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final h9 h9Var2 = this.f40486b;
-                final org.telegram.ui.ActionBar.c2 c2Var2 = this.f40487c;
-                final HashSet hashSet2 = this.d;
-                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage2 = this.f40488e;
-                final boolean z11 = this.f40489f;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r8) {
-                            case 0:
-                                h9.V(h9Var2, c2Var2, tLObject, hashSet2, tL_inputGroupCallInviteMessage2, z11, tL_error);
-                                return;
-                            default:
-                                h9.Y(h9Var2, c2Var2, tLObject, hashSet2, tL_inputGroupCallInviteMessage2, z11, tL_error);
-                                return;
-                        }
-                    }
-                });
-                return;
+    public void d() {
+        this.f36229a.f0();
+    }
+
+    @Override
+    public void mo28run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        l9.X(this.f36229a, (org.telegram.ui.Components.i51) obj, (View) obj2);
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        boolean z4;
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        Object obj6 = ((org.telegram.ui.Components.i51) obj).G;
+        if (obj6 instanceof h9) {
+            this.f36229a.e0(((h9) obj6).f34794c, (g9) view);
+            z4 = true;
+        } else {
+            z4 = false;
         }
+        return Boolean.valueOf(z4);
     }
 }

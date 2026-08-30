@@ -1,14 +1,58 @@
 package org.telegram.ui.Cells;
-public interface l2 {
-    void a(p2 p2Var);
 
-    boolean b();
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class l2 extends AnimatorListenerAdapter {
+    public final int f21331a;
+    public final r2 f21332b;
 
-    void c();
+    public l2(r2 r2Var, int i10) {
+        this.f21331a = i10;
+        this.f21332b = r2Var;
+    }
 
-    void d(p2 p2Var);
-
-    void e(p2 p2Var);
-
-    void f(p2 p2Var);
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        int i11;
+        switch (this.f21331a) {
+            case 0:
+                r2 r2Var = this.f21332b;
+                r2Var.O3 = 1.0f;
+                r2Var.R3 = null;
+                r2Var.S3 = null;
+                r2Var.T3 = null;
+                r2Var.invalidate();
+                return;
+            case 1:
+                r2 r2Var2 = this.f21332b;
+                r2Var2.P3 = 1.0f;
+                r2Var2.invalidate();
+                return;
+            default:
+                r2 r2Var3 = this.f21332b;
+                boolean z4 = r2Var3.P2;
+                if (r2Var3.N2) {
+                    i10 = 2;
+                } else {
+                    i10 = 0;
+                }
+                int i12 = (z4 ? 1 : 0) + i10;
+                if (r2Var3.O2) {
+                    i11 = 4;
+                } else {
+                    i11 = 0;
+                }
+                int i13 = i12 + i11;
+                int i14 = r2Var3.f21692o4;
+                if (i14 != i13) {
+                    r2Var3.A(i14, i13);
+                } else {
+                    r2Var3.f21714s4 = false;
+                    r2Var3.f21702q4 = i14;
+                }
+                r2Var3.invalidate();
+                return;
+        }
+    }
 }

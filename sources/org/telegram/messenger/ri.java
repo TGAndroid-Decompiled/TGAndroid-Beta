@@ -1,30 +1,38 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class ri implements Runnable {
-    public final int f21468a;
-    public final SendMessagesHelper f21469b;
-    public final long f21470c;
-    public final ArrayList d;
+    public final int f18331a;
+    public final CharSequence f18332b;
+    public final AccountInstance f18333c;
+    public final long d;
+    public final long e;
+    public final boolean f18334f;
+    public final int h;
+    public final int f18335n;
+    public final long f18336r;
 
-    public ri(SendMessagesHelper sendMessagesHelper, long j10, ArrayList arrayList, int i10) {
-        this.f21468a = i10;
-        this.f21469b = sendMessagesHelper;
-        this.f21470c = j10;
-        this.d = arrayList;
+    public ri(CharSequence charSequence, AccountInstance accountInstance, long j10, long j11, boolean z4, int i10, int i11, long j12, int i12) {
+        this.f18331a = i12;
+        this.f18332b = charSequence;
+        this.f18333c = accountInstance;
+        this.d = j10;
+        this.e = j11;
+        this.f18334f = z4;
+        this.h = i10;
+        this.f18335n = i11;
+        this.f18336r = j12;
     }
 
     @Override
     public final void run() {
-        switch (this.f21468a) {
+        switch (this.f18331a) {
             case 0:
-                SendMessagesHelper.u(this.f21469b, this.f21470c, this.d);
+                SendMessagesHelper.lambda$prepareSendingText$126(this.f18332b, this.f18333c, this.d, this.e, this.f18334f, this.h, this.f18335n, this.f18336r);
                 return;
             case 1:
-                SendMessagesHelper.k1(this.f21469b, this.f21470c, this.d);
+                SendMessagesHelper.lambda$prepareSendingText$124(this.f18332b, this.f18333c, this.d, this.e, this.f18334f, this.h, this.f18335n, this.f18336r);
                 return;
             default:
-                SendMessagesHelper.R0(this.f21469b, this.f21470c, this.d);
+                SendMessagesHelper.lambda$prepareSendingText$125(this.f18332b, this.f18333c, this.d, this.e, this.f18334f, this.h, this.f18335n, this.f18336r);
                 return;
         }
     }

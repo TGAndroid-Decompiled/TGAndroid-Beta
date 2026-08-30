@@ -1,47 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class go implements View.OnClickListener {
-    public final int f28923a;
-    public final Context f28924b;
-    public final int f28925c;
-    public final Object d;
-    public final Object f28926e;
-    public final Object f28927f;
+import org.telegram.messenger.NotificationsController;
+import org.telegram.messenger.Utilities;
+public final class go implements Utilities.Callback {
+    public final o70 f25202a;
+    public final int f25203b;
+    public final long f25204c;
+    public final long d;
+    public final org.telegram.ui.ActionBar.p2 e;
+    public final org.telegram.ui.ActionBar.f6 f25205f;
 
-    public go(Object obj, Context context, Object obj2, int i10, Object obj3, int i11) {
-        this.f28923a = i11;
-        this.d = obj;
-        this.f28924b = context;
-        this.f28926e = obj2;
-        this.f28925c = i10;
-        this.f28927f = obj3;
+    public go(o70 o70Var, int i10, long j10, long j11, org.telegram.ui.xn xnVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f25202a = o70Var;
+        this.f25203b = i10;
+        this.f25204c = j10;
+        this.d = j11;
+        this.e = xnVar;
+        this.f25205f = f6Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f28923a) {
-            case 0:
-                ((jo) this.d).a();
-                eg.n2 n2Var = new eg.n2(this.f28925c, (io) this.f28927f, 5);
-                c5.G(this.f28924b, (org.telegram.ui.ActionBar.c6) this.f28926e, n2Var);
+    public final void run(Object obj) {
+        Integer num = (Integer) obj;
+        this.f25202a.u();
+        int intValue = num.intValue();
+        int i10 = this.f25203b;
+        long j10 = this.f25204c;
+        long j11 = this.d;
+        org.telegram.ui.ActionBar.p2 p2Var = this.e;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f25205f;
+        if (intValue == 0) {
+            if (MessagesController.getInstance(i10).isDialogMuted(j10, j11)) {
+                NotificationsController.getInstance(i10).muteDialog(j10, j11, false);
+            }
+            if (qc.a(p2Var)) {
+                qc.z(p2Var, 4, num.intValue(), f6Var).j();
                 return;
-            default:
-                hp hpVar = (hp) this.f28926e;
-                TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = (TLRPC.TL_inputGroupCallSlug) this.f28927f;
-                ((org.telegram.ui.ActionBar.f3) this.d).dismiss();
-                Activity findActivity = AndroidUtilities.findActivity(this.f28924b);
-                if (findActivity != null) {
-                    MessagesController.getGlobalMainSettings().edit().putBoolean("callmiconstart", hpVar.f29211a.f26324q).apply();
-                    org.telegram.ui.Components.voip.h2.h(findActivity, this.f28925c, tL_inputGroupCallSlug, false, null, null);
-                    return;
-                }
-                return;
+            }
+            return;
+        }
+        NotificationsController.getInstance(i10).muteUntil(j10, j11, num.intValue());
+        if (qc.a(p2Var)) {
+            qc.z(p2Var, 5, num.intValue(), f6Var).j();
         }
     }
 }

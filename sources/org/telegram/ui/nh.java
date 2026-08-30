@@ -1,64 +1,63 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-public final class nh implements r0.o, jf.d0, org.telegram.ui.ActionBar.b2 {
-    public final tn f40802a;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class nh implements Runnable {
+    public final int f36650a;
+    public final xn f36651b;
+    public final int f36652c;
+    public final TLObject d;
+    public final TLRPC.TL_error e;
+    public final int f36653f;
+    public final MessageObject h;
+    public final TLRPC.TL_messages_getDiscussionMessage f36654n;
+    public final TLRPC.Chat f36655r;
+    public final int f36656s;
+    public final MessageObject v;
 
-    public nh(tn tnVar) {
-        this.f40802a = tnVar;
+    public nh(xn xnVar, int i10, TLObject tLObject, TLRPC.TL_error tL_error, int i11, MessageObject messageObject, TLRPC.TL_messages_getDiscussionMessage tL_messages_getDiscussionMessage, TLRPC.Chat chat, int i12, MessageObject messageObject2, int i13) {
+        this.f36650a = i13;
+        this.f36651b = xnVar;
+        this.f36652c = i10;
+        this.d = tLObject;
+        this.e = tL_error;
+        this.f36653f = i11;
+        this.h = messageObject;
+        this.f36654n = tL_messages_getDiscussionMessage;
+        this.f36655r = chat;
+        this.f36656s = i12;
+        this.v = messageObject2;
     }
 
     @Override
-    public r0.m1 I0(View view, r0.m1 m1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
-        int i10 = defaultWindowInsets.f8186a;
-        int i11 = defaultWindowInsets.f8188c;
-        tn tnVar = this.f40802a;
-        if (tnVar.Qa != i10 || tnVar.Ra != i11) {
-            tnVar.Qa = i10;
-            tnVar.Ra = i11;
-            tnVar.T0.requestLayout();
-        }
-        tnVar.v.i(m1Var);
-        sg.e eVar = tnVar.G3;
-        if (eVar != null) {
-            eVar.setPadding(i10, 0, i11, 0);
-        }
-        tnVar.n7();
-        tnVar.r7();
-        tnVar.p9();
-        boolean p10 = m1Var.f46843a.p(8);
-        if (tnVar.Pa != p10) {
-            tnVar.Pa = p10;
-            tnVar.T0.S();
-        }
-        nh.g1 g1Var = tnVar.f42887m1;
-        if (g1Var != null) {
-            r0.j0.b(g1Var, m1Var);
-        }
-        return r0.m1.f46842b;
-    }
-
-    @Override
-    public void b(int i10) {
-        tn.S0(this.f40802a, i10);
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        tn tnVar = this.f40802a;
-        tnVar.getClass();
-        try {
-            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-            tnVar.getParentActivity().startActivity(intent);
-        } catch (Exception e10) {
-            FileLog.e(e10);
+    public final void run() {
+        switch (this.f36650a) {
+            case 0:
+                xn xnVar = this.f36651b;
+                xnVar.h8(new nh(xnVar, this.f36652c, this.d, this.e, this.f36653f, this.h, this.f36654n, this.f36655r, this.f36656s, this.v, 1));
+                return;
+            default:
+                xn xnVar2 = this.f36651b;
+                if (this.f36652c == xnVar2.f39983cc) {
+                    xnVar2.f40008ec = -1;
+                    TLObject tLObject = this.d;
+                    if (tLObject != null) {
+                        xnVar2.jc = (TLRPC.messages_Messages) tLObject;
+                    } else if ("CHANNEL_PRIVATE".equals(this.e.text)) {
+                        MessagesController.showCantOpenAlert(xnVar2, LocaleController.getString(R.string.ChannelCantOpenBannedByAdmin));
+                        xnVar2.f40021fc = 0;
+                        xnVar2.f40034gc = false;
+                        xnVar2.f40193u0.f1();
+                        return;
+                    }
+                    xnVar2.ya(xnVar2.ic, xnVar2.jc, this.f36653f, this.h, this.f36654n, this.f36655r, this.f36656s, this.v);
+                    return;
+                }
+                return;
         }
     }
 }

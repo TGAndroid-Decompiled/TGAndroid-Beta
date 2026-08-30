@@ -4,14 +4,14 @@ import android.content.pm.PackageInfo;
 import android.net.Uri;
 import java.util.WeakHashMap;
 public abstract class c {
-    public static final boolean f17094a;
-    public static final WeakHashMap f17095b;
+    public static final boolean f14219a;
+    public static final WeakHashMap f14220b;
 
     static {
         Uri.parse("*");
         Uri.parse("");
-        f17094a = true;
-        f17095b = new WeakHashMap();
+        f14219a = true;
+        f14220b = new WeakHashMap();
     }
 
     public static PackageInfo a() {

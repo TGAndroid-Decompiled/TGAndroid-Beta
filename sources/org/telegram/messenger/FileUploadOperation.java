@@ -76,19 +76,19 @@ public class FileUploadOperation {
         }
     }
 
-    public FileUploadOperation(int i10, String str, boolean z10, long j10, int i11) {
-        boolean z11;
+    public FileUploadOperation(int i10, String str, boolean z4, long j10, int i11) {
+        boolean z10;
         this.currentAccount = i10;
         this.uploadingFilePath = str;
-        this.isEncrypted = z10;
+        this.isEncrypted = z4;
         this.estimatedSize = j10;
         this.currentType = i11;
-        if (j10 != 0 && !z10) {
-            z11 = true;
+        if (j10 != 0 && !z4) {
+            z10 = true;
         } else {
-            z11 = false;
+            z10 = false;
         }
-        this.uploadFirstPartLater = z11;
+        this.uploadFirstPartLater = z10;
     }
 
     private void calcTotalPartsCount() {
@@ -126,8 +126,8 @@ public class FileUploadOperation {
                 randomAccessFile.close();
                 this.stream = null;
             }
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
         AutoDeleteMediaTask.unlockFile(this.uploadingFilePath);
     }
@@ -142,10 +142,10 @@ public class FileUploadOperation {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileUploadOperation.lambda$checkNewDataAvailable$4(java.lang.Float, long, long):void");
     }
 
-    public void lambda$onNetworkChanged$1(boolean z10) {
+    public void lambda$onNetworkChanged$1(boolean z4) {
         int i10;
-        if (this.slowNetwork != z10) {
-            this.slowNetwork = z10;
+        if (this.slowNetwork != z4) {
+            this.slowNetwork = z4;
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("network changed to slow = " + this.slowNetwork);
             }
@@ -217,10 +217,10 @@ public class FileUploadOperation {
         byte[] bArr2 = bArr;
         if (i10 == this.operationGuid) {
             if (BuildVars.LOGS_ENABLED) {
-                StringBuilder sb2 = new StringBuilder("debug_uploading:  response reqId ");
-                sb2.append(iArr[0]);
-                sb2.append(" time");
-                org.telegram.ui.th.v(this.uploadingFilePath, sb2);
+                StringBuilder sb = new StringBuilder("debug_uploading:  response reqId ");
+                sb.append(iArr[0]);
+                sb.append(" time");
+                org.telegram.ui.yh.w(this.uploadingFilePath, sb);
             }
             if (tLObject != null) {
                 currentNetworkType = tLObject.networkType;
@@ -246,7 +246,7 @@ public class FileUploadOperation {
                 this.freeRequestIvs.add(bArr2);
             }
             this.requestTokens.delete(i12);
-            AndroidUtilities.runOnUIThread(new s3(this, iArr, 0));
+            AndroidUtilities.runOnUIThread(new t3(this, iArr, 0));
             if (tLObject instanceof TLRPC.TL_boolTrue) {
                 if (this.state == 1) {
                     this.uploadedBytesCount += i13;
@@ -269,7 +269,7 @@ public class FileUploadOperation {
                                 tL_inputFile.md5_checksum = "";
                             }
                             tL_inputFile.parts = this.currentPartNum;
-                            tL_inputFile.f22406id = this.currentFileId;
+                            tL_inputFile.f19198id = this.currentFileId;
                             String str2 = this.uploadingFilePath;
                             tL_inputFile.name = str2.substring(str2.lastIndexOf("/") + 1);
                             this.delegate.didFinishUploadingFile(this, tL_inputFile, null, null, null);
@@ -282,7 +282,7 @@ public class FileUploadOperation {
                                 tL_inputEncryptedFileUploaded.md5_checksum = "";
                             }
                             tL_inputEncryptedFileUploaded.parts = this.currentPartNum;
-                            tL_inputEncryptedFileUploaded.f22405id = this.currentFileId;
+                            tL_inputEncryptedFileUploaded.f19197id = this.currentFileId;
                             tL_inputEncryptedFileUploaded.key_fingerprint = this.fingerprint;
                             this.delegate.didFinishUploadingFile(this, null, tL_inputEncryptedFileUploaded, this.key, this.iv);
                             cleanup();
@@ -328,12 +328,12 @@ public class FileUploadOperation {
                                     this.cachedResults.remove(this.lastSavedPartNum);
                                     this.lastSavedPartNum++;
                                 }
-                                boolean z10 = this.isBigFile;
-                                if ((z10 && j13 % 1048576 == 0) || (!z10 && this.saveInfoTimes == 0)) {
+                                boolean z4 = this.isBigFile;
+                                if ((z4 && j13 % 1048576 == 0) || (!z4 && this.saveInfoTimes == 0)) {
                                     SharedPreferences.Editor edit = this.preferences.edit();
-                                    edit.putLong(a4.w.q(new StringBuilder(), this.fileKey, "_uploaded"), j13);
+                                    edit.putLong(android.support.v4.media.a.r(new StringBuilder(), this.fileKey, "_uploaded"), j13);
                                     if (this.isEncrypted) {
-                                        edit.putString(a4.w.q(new StringBuilder(), this.fileKey, "_ivc"), Utilities.bytesToHex(bArr2));
+                                        edit.putString(android.support.v4.media.a.r(new StringBuilder(), this.fileKey, "_ivc"), Utilities.bytesToHex(bArr2));
                                     }
                                     edit.commit();
                                 }
@@ -369,7 +369,7 @@ public class FileUploadOperation {
     }
 
     public void lambda$startUploadRequest$8() {
-        Utilities.stageQueue.postRunnable(new r3(this, 2));
+        Utilities.stageQueue.postRunnable(new s3(this, 2));
     }
 
     public void lambda$startUploadRequest$9(int[] iArr) {
@@ -382,14 +382,14 @@ public class FileUploadOperation {
 
     private void storeFileUploadInfo() {
         SharedPreferences.Editor edit = this.preferences.edit();
-        edit.putInt(a4.w.q(new StringBuilder(), this.fileKey, "_time"), this.uploadStartTime);
-        edit.putLong(a4.w.q(new StringBuilder(), this.fileKey, "_size"), this.totalFileSize);
-        edit.putLong(a4.w.q(new StringBuilder(), this.fileKey, "_id"), this.currentFileId);
+        edit.putInt(android.support.v4.media.a.r(new StringBuilder(), this.fileKey, "_time"), this.uploadStartTime);
+        edit.putLong(android.support.v4.media.a.r(new StringBuilder(), this.fileKey, "_size"), this.totalFileSize);
+        edit.putLong(android.support.v4.media.a.r(new StringBuilder(), this.fileKey, "_id"), this.currentFileId);
         edit.remove(this.fileKey + "_uploaded");
         if (this.isEncrypted) {
-            edit.putString(a4.w.q(new StringBuilder(), this.fileKey, "_iv"), Utilities.bytesToHex(this.iv));
-            edit.putString(a4.w.q(new StringBuilder(), this.fileKey, "_ivc"), Utilities.bytesToHex(this.ivChange));
-            edit.putString(a4.w.q(new StringBuilder(), this.fileKey, "_key"), Utilities.bytesToHex(this.key));
+            edit.putString(android.support.v4.media.a.r(new StringBuilder(), this.fileKey, "_iv"), Utilities.bytesToHex(this.iv));
+            edit.putString(android.support.v4.media.a.r(new StringBuilder(), this.fileKey, "_ivc"), Utilities.bytesToHex(this.ivChange));
+            edit.putString(android.support.v4.media.a.r(new StringBuilder(), this.fileKey, "_key"), Utilities.bytesToHex(this.key));
         }
         edit.commit();
     }
@@ -399,26 +399,26 @@ public class FileUploadOperation {
             return;
         }
         this.state = 2;
-        Utilities.stageQueue.postRunnable(new r3(this, 1));
+        Utilities.stageQueue.postRunnable(new s3(this, 1));
         AutoDeleteMediaTask.unlockFile(this.uploadingFilePath);
         this.delegate.didFailedUploadingFile(this);
         cleanup();
     }
 
-    public void checkNewDataAvailable(long j10, long j11, Float f9) {
-        Utilities.stageQueue.postRunnable(new g5.x(this, f9, j11, j10, 4));
+    public void checkNewDataAvailable(long j10, long j11, Float f10) {
+        Utilities.stageQueue.postRunnable(new i5.x(this, f10, j11, j10, 4));
     }
 
     public long getTotalFileSize() {
         return this.totalFileSize;
     }
 
-    public void onNetworkChanged(boolean z10) {
+    public void onNetworkChanged(boolean z4) {
         if (this.state != 1) {
             return;
         }
-        Utilities.stageQueue.postRunnable(new hh.f(13, this, z10));
-        AndroidUtilities.runOnUIThread(new r3(this, 3));
+        Utilities.stageQueue.postRunnable(new jh.f(8, this, z4));
+        AndroidUtilities.runOnUIThread(new s3(this, 3));
     }
 
     public void setDelegate(FileUploadOperationDelegate fileUploadOperationDelegate) {
@@ -435,6 +435,6 @@ public class FileUploadOperation {
         }
         this.state = 1;
         AutoDeleteMediaTask.lockFile(this.uploadingFilePath);
-        Utilities.stageQueue.postRunnable(new r3(this, 0));
+        Utilities.stageQueue.postRunnable(new s3(this, 0));
     }
 }

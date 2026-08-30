@@ -1,23 +1,56 @@
 package tc;
 
-import i7.i8;
-public final class a {
-    public static final a f48210a;
-    public static final a[] f48211b;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+public final class a extends kotlin.jvm.internal.a implements ListIterator {
+    public final c d;
 
-    static {
-        ?? r02 = new Enum("COROUTINE_SUSPENDED", 0);
-        f48210a = r02;
-        a[] aVarArr = {r02, new Enum("UNDECIDED", 1), new Enum("RESUMED", 2)};
-        f48211b = aVarArr;
-        i8.a(aVarArr);
+    public a(c cVar, int i10) {
+        super(cVar);
+        this.d = cVar;
+        int i11 = cVar.i();
+        if (i10 >= 0 && i10 <= i11) {
+            this.f10978b = i10;
+            return;
+        }
+        throw new IndexOutOfBoundsException(android.support.v4.media.a.k(i10, i11, "index: ", ", size: "));
     }
 
-    public static a valueOf(String str) {
-        return (a) Enum.valueOf(a.class, str);
+    @Override
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
-    public static a[] values() {
-        return (a[]) f48211b.clone();
+    @Override
+    public final boolean hasPrevious() {
+        if (this.f10978b > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int nextIndex() {
+        return this.f10978b;
+    }
+
+    @Override
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i10 = this.f10978b - 1;
+            this.f10978b = i10;
+            return this.d.get(i10);
+        }
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final int previousIndex() {
+        return this.f10978b - 1;
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 }

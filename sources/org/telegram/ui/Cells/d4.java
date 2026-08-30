@@ -1,28 +1,67 @@
 package org.telegram.ui.Cells;
 
+import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class d4 extends FrameLayout {
-    public Drawable f24226a;
-    public TextView f24227b;
+import org.telegram.messenger.R;
+public final class d4 extends Drawable {
+    public final Drawable[] f20938a;
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Drawable drawable = this.f24226a;
-        drawable.setBounds(0, getMeasuredHeight() - AndroidUtilities.dp(3.0f), getMeasuredWidth(), getMeasuredHeight());
-        drawable.draw(canvas);
+    public d4(Context context) {
+        this.f20938a = r0;
+        Drawable mutate = context.getResources().getDrawable(R.drawable.verified_area).mutate();
+        mutate.setColorFilter(new PorterDuffColorFilter(-9063442, PorterDuff.Mode.MULTIPLY));
+        Drawable[] drawableArr = {mutate, context.getResources().getDrawable(R.drawable.verified_check).mutate()};
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
+    public final void draw(Canvas canvas) {
+        int i10 = 0;
+        while (true) {
+            Drawable[] drawableArr = this.f20938a;
+            if (i10 < drawableArr.length) {
+                drawableArr[i10].setBounds(getBounds());
+                drawableArr[i10].draw(canvas);
+                i10++;
+            } else {
+                return;
+            }
+        }
     }
 
-    public void setText(String str) {
-        this.f24227b.setText(str);
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f20938a[0].getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f20938a[0].getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        int i11 = 0;
+        while (true) {
+            Drawable[] drawableArr = this.f20938a;
+            if (i11 < drawableArr.length) {
+                drawableArr[i11].setAlpha(i10);
+                i11++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

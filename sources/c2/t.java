@@ -5,25 +5,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.RemoteException;
 import android.util.Log;
-import h7.k5;
 import j$.util.Objects;
+import j7.d7;
 public abstract class t {
-    public final Context f2897a;
-    public boolean f2898b;
-    public boolean f2899c;
+    public final Context f2000a;
+    public boolean f2001b;
+    public boolean f2002c;
     public final Object d;
-    public final Object f2900e;
-    public Object f2901f;
+    public final Object e;
+    public Object f2003f;
     public Object h;
-    public Object f2902n;
+    public Object f2004n;
 
     public t(Context context, String str, String str2) {
         this.d = new Object();
-        this.f2898b = false;
-        this.f2899c = false;
-        this.f2897a = context;
-        this.f2900e = str;
-        this.f2901f = str2.length() != 0 ? "com.google.android.gms.vision.dynamite.".concat(str2) : new String("com.google.android.gms.vision.dynamite.");
+        this.f2001b = false;
+        this.f2002c = false;
+        this.f2000a = context;
+        this.e = str;
+        this.f2003f = str2.length() != 0 ? "com.google.android.gms.vision.dynamite.".concat(str2) : new String("com.google.android.gms.vision.dynamite.");
         this.h = str2;
     }
 
@@ -49,28 +49,28 @@ public abstract class t {
     public abstract void f(o oVar);
 
     public void g(u uVar) {
-        d0.b();
-        if (((u) this.f2902n) != uVar) {
-            this.f2902n = uVar;
-            if (!this.f2899c) {
-                this.f2899c = true;
-                ((a4.d) this.f2900e).sendEmptyMessage(1);
+        c0.b();
+        if (((u) this.f2004n) != uVar) {
+            this.f2004n = uVar;
+            if (!this.f2002c) {
+                this.f2002c = true;
+                ((androidx.mediarouter.app.d) this.e).sendEmptyMessage(1);
             }
         }
     }
 
     public void h(o oVar) {
-        d0.b();
+        c0.b();
         if (!Objects.equals((o) this.h, oVar)) {
             this.h = oVar;
-            if (!this.f2898b) {
-                this.f2898b = true;
-                ((a4.d) this.f2900e).sendEmptyMessage(2);
+            if (!this.f2001b) {
+                this.f2001b = true;
+                ((androidx.mediarouter.app.d) this.e).sendEmptyMessage(2);
             }
         }
     }
 
-    public abstract Object i(k6.e eVar, Context context);
+    public abstract Object i(m6.e eVar, Context context);
 
     public abstract void j();
 
@@ -83,36 +83,36 @@ public abstract class t {
 
     public void l() {
         synchronized (this.d) {
-            if (this.f2902n == null) {
+            if (this.f2004n == null) {
                 return;
             }
             try {
                 j();
-            } catch (RemoteException e10) {
-                Log.e((String) this.f2900e, "Could not finalize native handle", e10);
+            } catch (RemoteException e) {
+                Log.e((String) this.e, "Could not finalize native handle", e);
             }
         }
     }
 
     public Object m() {
-        k6.e eVar;
+        m6.e eVar;
         synchronized (this.d) {
-            Object obj = this.f2902n;
+            Object obj = this.f2004n;
             if (obj != null) {
                 return obj;
             }
             try {
-                eVar = k6.e.c(this.f2897a, k6.e.f13451c, (String) this.f2901f);
-            } catch (k6.b unused) {
+                eVar = m6.e.c(this.f2000a, m6.e.f13756c, (String) this.f2003f);
+            } catch (m6.b unused) {
                 String str = "com.google.android.gms.vision." + ((String) this.h);
                 if (Log.isLoggable("Vision", 3)) {
                     Log.d("Vision", "Cannot load thick client module, fall back to load optional module " + str);
                 }
                 try {
-                    eVar = k6.e.c(this.f2897a, k6.e.f13450b, str);
-                } catch (k6.b e10) {
-                    k5.a(e10, "Error loading optional module %s", str);
-                    if (!this.f2898b) {
+                    eVar = m6.e.c(this.f2000a, m6.e.f13755b, str);
+                } catch (m6.b e) {
+                    d7.a(e, "Error loading optional module %s", str);
+                    if (!this.f2001b) {
                         String str2 = (String) this.h;
                         if (Log.isLoggable("Vision", 3)) {
                             Log.d("Vision", "Broadcasting download intent for dependency " + str2);
@@ -121,36 +121,36 @@ public abstract class t {
                         intent.setClassName("com.google.android.gms", "com.google.android.gms.vision.DependencyBroadcastReceiverProxy");
                         intent.putExtra("com.google.android.gms.vision.DEPENDENCIES", (String) this.h);
                         intent.setAction("com.google.android.gms.vision.DEPENDENCY");
-                        this.f2897a.sendBroadcast(intent);
-                        this.f2898b = true;
+                        this.f2000a.sendBroadcast(intent);
+                        this.f2001b = true;
                     }
                     eVar = null;
                 }
             }
             if (eVar != null) {
                 try {
-                    this.f2902n = i(eVar, this.f2897a);
-                } catch (RemoteException | k6.b e11) {
-                    Log.e((String) this.f2900e, "Error creating remote native handle", e11);
+                    this.f2004n = i(eVar, this.f2000a);
+                } catch (RemoteException | m6.b e6) {
+                    Log.e((String) this.e, "Error creating remote native handle", e6);
                 }
             }
-            boolean z10 = this.f2899c;
-            if (!z10 && this.f2902n == null) {
-                Log.w((String) this.f2900e, "Native handle not yet available. Reverting to no-op handle.");
-                this.f2899c = true;
-            } else if (z10 && this.f2902n != null) {
-                Log.w((String) this.f2900e, "Native handle is now available.");
+            boolean z4 = this.f2002c;
+            if (!z4 && this.f2004n == null) {
+                Log.w((String) this.e, "Native handle not yet available. Reverting to no-op handle.");
+                this.f2002c = true;
+            } else if (z4 && this.f2004n != null) {
+                Log.w((String) this.e, "Native handle is now available.");
             }
-            return this.f2902n;
+            return this.f2004n;
         }
     }
 
-    public t(Context context, m5.i iVar) {
-        this.f2900e = new a4.d(this, 5);
+    public t(Context context, o5.i iVar) {
+        this.e = new androidx.mediarouter.app.d(this, 4);
         if (context != null) {
-            this.f2897a = context;
+            this.f2000a = context;
             if (iVar == null) {
-                this.d = new m5.i(new ComponentName(context, getClass()), 7);
+                this.d = new o5.i(new ComponentName(context, getClass()), 7);
                 return;
             } else {
                 this.d = iVar;

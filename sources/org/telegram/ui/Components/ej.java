@@ -1,62 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public final class ej implements TextWatcher {
-    public final sj f28092a;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class ej extends pz {
+    public final int U;
+    public final di V;
 
-    public ej(sj sjVar) {
-        this.f28092a = sjVar;
+    public ej(di diVar, int i10, sl0 sl0Var, int i11) {
+        super(i10, 0, sl0Var);
+        this.U = i11;
+        this.V = diVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int currentTop;
-        String obj = editable.toString();
-        if (!obj.isEmpty()) {
-            hz hzVar = this.f28092a.C;
-            if (hzVar != null) {
-                hzVar.setText(LocaleController.getString(R.string.NoResult));
-            }
-        } else {
-            f2.p0 adapter = this.f28092a.f32656s.getAdapter();
-            sj sjVar = this.f28092a;
-            if (adapter != sjVar.A) {
-                currentTop = sjVar.getCurrentTop();
-                this.f28092a.C.setText(LocaleController.getString(R.string.NoContacts));
-                this.f28092a.C.c();
-                sj sjVar2 = this.f28092a;
-                sjVar2.f32656s.setAdapter(sjVar2.A);
-                this.f28092a.A.l();
-                if (currentTop > 0) {
-                    this.f28092a.v.h1(0, -currentTop);
+    public int[] t(View view, Rect rect) {
+        switch (this.U) {
+            case 3:
+                int C = this.f5857n - C();
+                int top = (view.getTop() + rect.top) - view.getScrollY();
+                int min = Math.min(0, top);
+                int max = Math.max(0, (rect.height() + top) - C);
+                if (min == 0) {
+                    min = Math.min(top, max);
                 }
-            }
-        }
-        oj ojVar = this.f28092a.B;
-        if (ojVar != null) {
-            if (ojVar.f31375f != null) {
-                Utilities.searchQueue.cancelRunnable(ojVar.f31375f);
-                ojVar.f31375f = null;
-            }
-            int i10 = ojVar.h + 1;
-            ojVar.h = i10;
-            DispatchQueue dispatchQueue = Utilities.searchQueue;
-            mj mjVar = new mj(ojVar, obj, i10, 0);
-            ojVar.f31375f = mjVar;
-            dispatchQueue.postRunnable(mjVar, 300L);
+                return new int[]{0, min};
+            default:
+                return super.t(view, rect);
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void v0(RecyclerView recyclerView, f2.i1 i1Var, int i10) {
+        switch (this.U) {
+            case 0:
+                dj djVar = new dj(this, recyclerView.getContext());
+                djVar.f5723a = i10;
+                w0(djVar);
+                return;
+            case 1:
+                wj wjVar = new wj(this, recyclerView.getContext());
+                wjVar.f5723a = i10;
+                w0(wjVar);
+                return;
+            case 2:
+                rk rkVar = new rk(this, recyclerView.getContext());
+                rkVar.f5723a = i10;
+                w0(rkVar);
+                return;
+            case 3:
+                fn fnVar = new fn(this, recyclerView.getContext());
+                fnVar.f5723a = i10;
+                w0(fnVar);
+                return;
+            default:
+                uf.y yVar = new uf.y(this, recyclerView.getContext());
+                yVar.f5723a = i10;
+                w0(yVar);
+                return;
+        }
     }
 
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public ej(al alVar, lh.e1 e1Var) {
+        super(0, 0, e1Var);
+        this.U = 2;
+        this.V = alVar;
     }
 }

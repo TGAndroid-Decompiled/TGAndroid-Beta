@@ -1,3 +1,3 @@
 package n3;
-public interface g {
+public abstract class g extends Exception {
 }

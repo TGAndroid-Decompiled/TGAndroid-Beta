@@ -1,57 +1,141 @@
 package eh;
 
-import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
 import android.view.View;
-import java.util.HashMap;
+import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.Components.b20;
-import org.telegram.ui.Components.j30;
-import org.telegram.ui.Components.tc;
-import org.telegram.ui.Components.zk0;
-public final class c implements zk0 {
-    public final c6 f6211a;
-    public final Context f6212b;
-    public final f f6213c;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.RadialProgress2;
+public final class c extends dh.h {
+    public final String f5600b;
+    public final Uri f5601c;
+    public final String d;
+    public final long e;
+    public final String f5602f;
+    public final Drawable h;
+    public final StaticLayout f5603n;
 
-    public c(Context context, f fVar, c6 c6Var) {
-        this.f6213c = fVar;
-        this.f6211a = c6Var;
-        this.f6212b = context;
+    public c(String str) {
+        long j10;
+        this.f5600b = str;
+        this.f5601c = null;
+        File file = new File(str);
+        try {
+            j10 = file.length();
+        } catch (Throwable unused) {
+            j10 = 0;
+        }
+        this.e = j10;
+        String name = file.getName();
+        this.d = name;
+        String[] split = name.split("\\.");
+        String str2 = split.length > 1 ? split[split.length - 1] : "?";
+        this.f5602f = str2;
+        int thumbForNameOrMime = AndroidUtilities.getThumbForNameOrMime(name, str2, false);
+        if (thumbForNameOrMime != 0) {
+            this.h = ApplicationLoader.applicationContext.getResources().getDrawable(thumbForNameOrMime);
+        } else {
+            this.h = null;
+        }
+        if (!TextUtils.isEmpty(str2)) {
+            TextPaint textPaint = new TextPaint(1);
+            textPaint.setTextSize(AndroidUtilities.dp(13.0f));
+            textPaint.setTypeface(AndroidUtilities.bold());
+            textPaint.setColor(j6.w0(null, j6.Bi, false));
+            this.f5603n = new StaticLayout(TextUtils.ellipsize(str2, textPaint, AndroidUtilities.dp(34.0f), TextUtils.TruncateAt.END), textPaint, AndroidUtilities.dp(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            return;
+        }
+        this.f5603n = null;
+    }
+
+    public static b d(View view, String str, String str2, TLRPC.Document document, MessageObject messageObject) {
+        b bVar = new b();
+        bVar.f5591a.setColor(j6.w0(null, j6.G6, false));
+        bVar.f5592b.setColor(j6.w0(null, j6.f20281y6, false));
+        RadialProgress2 radialProgress2 = new RadialProgress2(view, null);
+        bVar.f5593c = radialProgress2;
+        radialProgress2.setCircleRadius(AndroidUtilities.dp(21.0f));
+        bVar.f5593c.g(j6.f20003ie, j6.f20020je, j6.f20213uc, j6.f20231vc);
+        if (MessageObject.isMusicDocument(document)) {
+            if (MessageObject.isDocumentHasThumb(document)) {
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(22.0f), true, null, false);
+                bVar.f5593c.j(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(44.0f), true, closestPhotoSizeWithSize, true), closestPhotoSizeWithSize, document, messageObject);
+            } else {
+                String artworkUrl = MessageObject.getArtworkUrl(document, true);
+                if (!TextUtils.isEmpty(artworkUrl)) {
+                    bVar.f5593c.h(artworkUrl);
+                } else {
+                    bVar.f5593c.i(null, null, null);
+                }
+            }
+            bVar.f5593c.setIcon(0, false, false);
+        } else {
+            bVar.f5593c.setIcon(5, false, false);
+        }
+        if (str == null) {
+            str = "";
+        }
+        bVar.d = str;
+        if (str2 == null) {
+            str2 = "";
+        }
+        bVar.e = str2;
+        bVar.f5599l = -1;
+        bVar.f5594f = null;
+        bVar.f5595g = null;
+        bVar.invalidateSelf();
+        view.addOnAttachStateChangeListener(new a(bVar));
+        return bVar;
     }
 
     @Override
-    public final void c(int i10, View view) {
-        TLRPC.TL_help_country tL_help_country;
-        f fVar = this.f6213c;
-        b20 b20Var = fVar.f6222d0;
-        HashMap hashMap = fVar.f6224f0;
-        if (i10 == 0 || (tL_help_country = (TLRPC.TL_help_country) fVar.Z.G(i10 - 1).G) == null) {
+    public final void c(Canvas canvas, int i10, int i11) {
+        Drawable drawable = this.h;
+        if (drawable != null) {
+            drawable.setBounds(0, 0, i10, i11);
+            drawable.draw(canvas);
+            canvas.save();
+            canvas.translate((i10 - AndroidUtilities.dp(34.0f)) / 2.0f, AndroidUtilities.dp(15.0f));
+            this.f5603n.draw(canvas);
+            canvas.restore();
+        }
+    }
+
+    public c(Uri uri) {
+        this.f5600b = null;
+        this.f5601c = uri;
+        String fileName = MediaController.getFileName(uri);
+        fileName = fileName == null ? "?" : fileName;
+        this.d = fileName;
+        String[] split = fileName.split("\\.");
+        String str = split.length > 1 ? split[split.length - 1] : "?";
+        this.f5602f = str;
+        this.e = 0L;
+        int thumbForNameOrMime = AndroidUtilities.getThumbForNameOrMime(fileName, str, false);
+        if (thumbForNameOrMime != 0) {
+            this.h = ApplicationLoader.applicationContext.getResources().getDrawable(thumbForNameOrMime);
+        } else {
+            this.h = null;
+        }
+        if (!TextUtils.isEmpty(str)) {
+            TextPaint textPaint = new TextPaint(1);
+            textPaint.setTextSize(AndroidUtilities.dp(13.0f));
+            textPaint.setTypeface(AndroidUtilities.bold());
+            textPaint.setColor(j6.w0(null, j6.Bi, false));
+            this.f5603n = new StaticLayout(TextUtils.ellipsize(str, textPaint, AndroidUtilities.dp(34.0f), TextUtils.TruncateAt.END), textPaint, AndroidUtilities.dp(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
             return;
         }
-        boolean z10 = false;
-        if (hashMap.containsKey(tL_help_country.iso2)) {
-            b20Var.c((j30) hashMap.remove(tL_help_country.iso2));
-        } else {
-            int size = hashMap.size();
-            int i11 = fVar.f6227i0;
-            if (size >= i11) {
-                new tc(fVar.f6228j0, this.f6211a).Q(R.raw.info, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.PollV2YouCanAddXCountriesOnly, Integer.valueOf(i11)))).j();
-                return;
-            }
-            j30 j30Var = new j30(this.f6212b, tL_help_country);
-            j30Var.setOnClickListener(new a(fVar, 4));
-            b20Var.a(j30Var);
-            hashMap.put(tL_help_country.iso2, j30Var);
-            z10 = true;
-        }
-        if (view instanceof ig.c) {
-            ((ig.c) view).c(z10, true);
-        }
-        fVar.Z.N(true);
-        fVar.f6219a0.c(hashMap.size(), true);
+        this.f5603n = null;
     }
 }

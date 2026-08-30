@@ -1,23 +1,36 @@
 package lh;
 
-import java.util.List;
-import org.telegram.messenger.Utilities;
-public final class j6 implements Utilities.CallbackReturn {
-    public final k6 f15806a;
-    public final boolean f15807b;
-    public final int f15808c;
-    public final List d;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class j6 implements RequestDelegate {
+    public final int f12668a;
+    public final t7 f12669b;
 
-    public j6(k6 k6Var, boolean z10, int i10, List list) {
-        this.f15806a = k6Var;
-        this.f15807b = z10;
-        this.f15808c = i10;
-        this.d = list;
+    public j6(t7 t7Var, int i10) {
+        this.f12668a = i10;
+        this.f12669b = t7Var;
     }
 
     @Override
-    public final Object run(Object obj) {
-        Integer num = (Integer) obj;
-        return Boolean.valueOf(this.f15806a.q(this.f15808c, this.d, this.f15807b));
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f12668a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new r6(this.f12669b, tLObject, 0));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new r6(this.f12669b, tLObject, 1));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new r6(this.f12669b, tLObject, 2));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new r6(this.f12669b, tLObject, 3));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new r6(this.f12669b, tLObject, 4));
+                return;
+        }
     }
 }

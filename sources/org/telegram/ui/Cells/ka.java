@@ -1,11 +1,122 @@
 package org.telegram.ui.Cells;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class ka extends FrameLayout {
-    public TextView f24613a;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.RadioButton;
+import org.telegram.ui.Components.rl0;
+public final class ka extends rl0 {
+    public final Context f21319c;
+    public final la d;
 
-    public void setMessageText(String str) {
-        this.f24613a.setText(str);
+    public ka(la laVar, Context context) {
+        this.d = laVar;
+        this.f21319c = context;
+    }
+
+    @Override
+    public final boolean D(f2.l1 l1Var) {
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        la laVar = this.d;
+        int size = laVar.f21366a3.size() + laVar.f21367b3.size();
+        laVar.f21368d3 = size;
+        return size;
+    }
+
+    @Override
+    public final void v(f2.l1 l1Var, int i10) {
+        int i11;
+        boolean z4;
+        boolean z10;
+        float f10;
+        org.telegram.ui.ActionBar.i6 i6Var;
+        TLRPC.TL_theme tL_theme;
+        ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) l1Var.f5785a;
+        la laVar = this.d;
+        ArrayList arrayList = laVar.f21367b3;
+        if (i10 < arrayList.size()) {
+            i11 = i10;
+        } else {
+            ArrayList arrayList2 = laVar.f21366a3;
+            int size = i10 - arrayList.size();
+            arrayList = arrayList2;
+            i11 = size;
+        }
+        org.telegram.ui.ActionBar.i6 i6Var2 = (org.telegram.ui.ActionBar.i6) arrayList.get(i11);
+        if (i10 == h() - 1) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        if (i10 == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        HashMap hashMap = themesHorizontalListCell$InnerThemeView.U.W2;
+        themesHorizontalListCell$InnerThemeView.f20800b = i6Var2;
+        themesHorizontalListCell$InnerThemeView.f20805s = z10;
+        themesHorizontalListCell$InnerThemeView.f20804r = z4;
+        themesHorizontalListCell$InnerThemeView.C = i6Var2.V;
+        RadioButton radioButton = themesHorizontalListCell$InnerThemeView.f20799a;
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) radioButton.getLayoutParams();
+        if (themesHorizontalListCell$InnerThemeView.f20805s) {
+            f10 = 49.0f;
+        } else {
+            f10 = 27.0f;
+        }
+        layoutParams.leftMargin = AndroidUtilities.dp(f10);
+        radioButton.setLayoutParams(layoutParams);
+        themesHorizontalListCell$InnerThemeView.v = 0.0f;
+        org.telegram.ui.ActionBar.i6 i6Var3 = themesHorizontalListCell$InnerThemeView.f20800b;
+        if (i6Var3.f19807b != null && !i6Var3.Q) {
+            i6Var3.N = org.telegram.ui.ActionBar.j6.C0(org.telegram.ui.ActionBar.j6.f20162ra);
+            themesHorizontalListCell$InnerThemeView.f20800b.O = org.telegram.ui.ActionBar.j6.C0(org.telegram.ui.ActionBar.j6.Aa);
+            boolean exists = new File(themesHorizontalListCell$InnerThemeView.f20800b.f19807b).exists();
+            if ((!exists || !themesHorizontalListCell$InnerThemeView.c() || !exists) && (tL_theme = (i6Var = themesHorizontalListCell$InnerThemeView.f20800b).C) != null) {
+                if (tL_theme.document != null) {
+                    i6Var.R = false;
+                    themesHorizontalListCell$InnerThemeView.v = 1.0f;
+                    Drawable mutate = themesHorizontalListCell$InnerThemeView.getResources().getDrawable(R.drawable.msg_theme).mutate();
+                    themesHorizontalListCell$InnerThemeView.Q = mutate;
+                    int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.E6, false);
+                    themesHorizontalListCell$InnerThemeView.R = w02;
+                    org.telegram.ui.ActionBar.j6.w1(w02, mutate);
+                    if (!exists) {
+                        String attachFileName = FileLoader.getAttachFileName(themesHorizontalListCell$InnerThemeView.f20800b.C.document);
+                        if (!hashMap.containsKey(attachFileName)) {
+                            hashMap.put(attachFileName, themesHorizontalListCell$InnerThemeView.f20800b);
+                            FileLoader fileLoader = FileLoader.getInstance(themesHorizontalListCell$InnerThemeView.f20800b.B);
+                            TLRPC.TL_theme tL_theme2 = themesHorizontalListCell$InnerThemeView.f20800b.C;
+                            fileLoader.loadFile(tL_theme2.document, tL_theme2, 1, 1);
+                        }
+                    }
+                } else {
+                    Drawable mutate2 = themesHorizontalListCell$InnerThemeView.getResources().getDrawable(R.drawable.preview_custom).mutate();
+                    themesHorizontalListCell$InnerThemeView.Q = mutate2;
+                    int w03 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.E6, false);
+                    themesHorizontalListCell$InnerThemeView.R = w03;
+                    org.telegram.ui.ActionBar.j6.w1(w03, mutate2);
+                }
+            }
+        }
+        themesHorizontalListCell$InnerThemeView.a();
+    }
+
+    @Override
+    public final f2.l1 x(ViewGroup viewGroup, int i10) {
+        return new f2.l1(new ThemesHorizontalListCell$InnerThemeView(this.d, this.f21319c));
     }
 }

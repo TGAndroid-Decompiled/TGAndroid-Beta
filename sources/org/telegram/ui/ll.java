@@ -1,28 +1,31 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import java.util.ArrayList;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.VideoEditedInfo;
-public final class ll extends pt0 {
-    public final Bitmap f40241a;
-    public final ArrayList f40242b;
-    public final tn f40243c;
+import org.telegram.messenger.R;
+public final class ll extends ViewOutlineProvider {
+    public final xn f36099a;
 
-    public ll(tn tnVar, Bitmap bitmap, ArrayList arrayList) {
-        this.f40243c = tnVar;
-        this.f40241a = bitmap;
-        this.f40242b = arrayList;
+    public ll(xn xnVar) {
+        this.f36099a = xnVar;
     }
 
     @Override
-    public final ImageReceiver.BitmapHolder j(int i10) {
-        return new ImageReceiver.BitmapHolder(this.f40241a, (String) null, 0);
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        this.f40243c.r((MediaController.PhotoEntry) this.f40242b.get(0), videoEditedInfo, z10, i11, 0, z11, 0L);
+    public final void getOutline(View view, Outline outline) {
+        ImageReceiver imageReceiver = (ImageReceiver) view.getTag(R.id.parent_tag);
+        if (imageReceiver != null) {
+            int[] roundRadius = imageReceiver.getRoundRadius();
+            int i10 = 0;
+            for (int i11 = 0; i11 < 4; i11++) {
+                i10 = Math.max(i10, roundRadius[i11]);
+            }
+            outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), i10);
+            return;
+        }
+        xn xnVar = this.f36099a;
+        outline.setOval(0, 0, AndroidUtilities.roundPlayingMessageSize(xnVar.C9()), AndroidUtilities.roundPlayingMessageSize(xnVar.C9()));
     }
 }

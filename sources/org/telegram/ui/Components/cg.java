@@ -1,134 +1,115 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.os.Build;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.SendMessageChatArguments;
-import org.telegram.messenger.camera.CameraController;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class cg implements Runnable {
-    public final ChatActivityEnterView f27477a;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.VideoEditedInfo;
+public final class cg extends org.telegram.ui.yt0 {
+    public boolean f23992a;
+    public final MediaController.PhotoEntry f23993b;
+    public final File f23994c;
+    public final dg d;
 
-    public cg(ChatActivityEnterView chatActivityEnterView) {
-        this.f27477a = chatActivityEnterView;
+    public cg(dg dgVar, MediaController.PhotoEntry photoEntry, File file) {
+        this.d = dgVar;
+        this.f23993b = photoEntry;
+        this.f23994c = file;
     }
 
     @Override
-    public final void run() {
-        TL_stories.StoryItem storyItem;
+    public final void G() {
+        if (!this.f23992a) {
+            try {
+                this.f23994c.delete();
+            } catch (Throwable unused) {
+            }
+        }
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z4, int i11, int i12, boolean z10) {
+        String str;
         MessageObject threadMessage;
-        boolean z10;
-        boolean z11;
-        int i10;
-        ChatActivityEnterView chatActivityEnterView = this.f27477a;
-        ue ueVar = chatActivityEnterView.C3;
-        Activity activity = chatActivityEnterView.J2;
-        hg hgVar = chatActivityEnterView.U2;
-        if (hgVar != null && activity != null) {
-            hgVar.B();
-            chatActivityEnterView.E3 = true;
-            chatActivityEnterView.D3 = false;
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f26120f1;
-            if (slideTextView != null) {
-                slideTextView.setAlpha(1.0f);
-                chatActivityEnterView.f26120f1.setTranslationY(0.0f);
+        int i13;
+        SendMessageChatArguments sendMessageChatArguments;
+        String str2;
+        org.telegram.ui.xn xnVar;
+        ChatActivityEnterView chatActivityEnterView = this.d.d;
+        org.telegram.ui.nn nnVar = chatActivityEnterView.R2;
+        if (nnVar != null && (xnVar = chatActivityEnterView.L2) != null && nnVar.f36694f) {
+            xnVar.Rb();
+            return;
+        }
+        ArrayList arrayList = new ArrayList();
+        SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+        MediaController.PhotoEntry photoEntry = this.f23993b;
+        if (!photoEntry.isVideo && (str2 = photoEntry.imagePath) != null) {
+            sendingMediaInfo.path = str2;
+        } else {
+            String str3 = photoEntry.path;
+            if (str3 != null) {
+                sendingMediaInfo.path = str3;
             }
-            SendMessageChatArguments sendMessageChatArguments = null;
-            chatActivityEnterView.X2 = null;
-            chatActivityEnterView.W2 = null;
-            if (chatActivityEnterView.Y0) {
-                if (Build.VERSION.SDK_INT >= 23) {
-                    if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (activity.checkSelfPermission("android.permission.CAMERA") == 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    if (!z10 || !z11) {
-                        if (!z10 && !z11) {
-                            i10 = 2;
-                        } else {
-                            i10 = 1;
-                        }
-                        String[] strArr = new String[i10];
-                        if (!z10 && !z11) {
-                            strArr[0] = "android.permission.RECORD_AUDIO";
-                            strArr[1] = "android.permission.CAMERA";
-                        } else if (!z10) {
-                            strArr[0] = "android.permission.RECORD_AUDIO";
-                        } else {
-                            strArr[0] = "android.permission.CAMERA";
-                        }
-                        activity.requestPermissions(strArr, 150);
-                        return;
-                    }
-                }
-                if (!CameraController.getInstance().isCameraInitied()) {
-                    CameraController.getInstance().initCamera(ueVar);
-                } else {
-                    ueVar.run();
-                }
-                if (!chatActivityEnterView.A2) {
-                    chatActivityEnterView.A2 = true;
-                    chatActivityEnterView.L1(0, true);
-                    ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.I1;
-                    if (recordCircle != null) {
-                        recordCircle.D = 0.5f;
-                        recordCircle.E = false;
-                    }
-                    qg qgVar = chatActivityEnterView.U0;
-                    if (qgVar != null) {
-                        qgVar.f31930a = false;
-                        qgVar.d = 0L;
-                        qgVar.f31933e = 0L;
-                        qgVar.f31931b = false;
-                    }
-                }
-            } else if (Build.VERSION.SDK_INT >= 23 && activity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
-                activity.requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 3);
-            } else {
-                chatActivityEnterView.U2.a1(1);
-                chatActivityEnterView.f26222y2 = -1.0f;
-                hg hgVar2 = chatActivityEnterView.U2;
-                if (hgVar2 != null) {
-                    storyItem = hgVar2.d1();
-                } else {
-                    storyItem = null;
-                }
-                MediaController mediaController = MediaController.getInstance();
-                int i11 = chatActivityEnterView.M;
-                long j10 = chatActivityEnterView.L2;
-                MessageObject messageObject = chatActivityEnterView.O2;
-                threadMessage = chatActivityEnterView.getThreadMessage();
-                int i12 = chatActivityEnterView.B2;
-                org.telegram.ui.tn tnVar = chatActivityEnterView.K2;
-                if (tnVar != null) {
-                    sendMessageChatArguments = tnVar.C8();
-                }
-                mediaController.startRecording(i11, j10, messageObject, threadMessage, storyItem, i12, true, sendMessageChatArguments, chatActivityEnterView.getSendMonoForumPeerId(), chatActivityEnterView.getSendMessageSuggestionParams());
-                chatActivityEnterView.A2 = true;
-                chatActivityEnterView.L1(0, true);
-                qg qgVar2 = chatActivityEnterView.U0;
-                if (qgVar2 != null) {
-                    qgVar2.a(0L);
-                }
-                ng ngVar = chatActivityEnterView.f26126g1;
-                if (ngVar != null) {
-                    ngVar.h = false;
-                }
-                chatActivityEnterView.V0.getParent().requestDisallowInterceptTouchEvent(true);
-                ChatActivityEnterView.RecordCircle recordCircle2 = chatActivityEnterView.I1;
-                if (recordCircle2 != null) {
-                    recordCircle2.D = 1.0f;
-                    recordCircle2.E = true;
-                }
-            }
+        }
+        sendingMediaInfo.thumbPath = photoEntry.thumbPath;
+        sendingMediaInfo.isLivePhoto = photoEntry.isLivePhoto();
+        sendingMediaInfo.isVideo = photoEntry.isVideo;
+        sendingMediaInfo.discardLivePhoto = photoEntry.isUnalivePhoto();
+        sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
+        sendingMediaInfo.livePhotoTimestampUs = photoEntry.livePhotoTimestampUs;
+        CharSequence charSequence = photoEntry.caption;
+        if (charSequence != null) {
+            str = charSequence.toString();
+        } else {
+            str = null;
+        }
+        sendingMediaInfo.caption = str;
+        sendingMediaInfo.entities = photoEntry.entities;
+        sendingMediaInfo.masks = photoEntry.stickers;
+        sendingMediaInfo.ttl = photoEntry.ttl;
+        sendingMediaInfo.videoEditedInfo = videoEditedInfo;
+        sendingMediaInfo.canDeleteAfter = true;
+        arrayList.add(sendingMediaInfo);
+        photoEntry.reset();
+        this.f23992a = true;
+        boolean checkUpdateStickersOrder = SendMessagesHelper.checkUpdateStickersOrder(sendingMediaInfo.caption);
+        AccountInstance accountInstance = chatActivityEnterView.O;
+        MessageSuggestionParams messageSuggestionParams = null;
+        long j10 = chatActivityEnterView.M2;
+        MessageObject messageObject = chatActivityEnterView.P2;
+        threadMessage = chatActivityEnterView.getThreadMessage();
+        org.telegram.ui.nn nnVar2 = chatActivityEnterView.R2;
+        MessageObject messageObject2 = chatActivityEnterView.V1;
+        org.telegram.ui.xn xnVar2 = chatActivityEnterView.L2;
+        if (xnVar2 == null) {
+            i13 = 0;
+        } else {
+            i13 = xnVar2.O3;
+        }
+        if (xnVar2 != null) {
+            sendMessageChatArguments = xnVar2.C8();
+        } else {
+            sendMessageChatArguments = null;
+        }
+        long sendMonoForumPeerId = chatActivityEnterView.getSendMonoForumPeerId();
+        org.telegram.ui.xn xnVar3 = chatActivityEnterView.L2;
+        if (xnVar3 != null) {
+            messageSuggestionParams = xnVar3.f39989d5;
+        }
+        SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j10, messageObject, threadMessage, null, nnVar2, false, false, messageObject2, z4, i11, i12, i13, checkUpdateStickersOrder, null, sendMessageChatArguments, 0L, false, 0L, sendMonoForumPeerId, messageSuggestionParams);
+        eg egVar = chatActivityEnterView.V2;
+        if (egVar != null) {
+            egVar.D(null, true, i11, i12, 0L);
         }
     }
 }

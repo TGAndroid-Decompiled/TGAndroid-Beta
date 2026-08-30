@@ -1,72 +1,80 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class ei implements View.OnTouchListener {
-    public final int f37839a;
-    public final int[] f37840b;
-    public final Rect f37841c;
-    public final Object d;
+import android.util.SparseIntArray;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class ei implements m2.f {
+    public final AtomicBoolean f34025a;
+    public final LinearLayout f34026b;
+    public final int f34027c;
+    public final HorizontalScrollView d;
+    public final SparseIntArray e;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f34028f;
+    public final int[] f34029g;
 
-    public ei(r50 r50Var, Rect rect) {
-        this.f37839a = 1;
-        this.d = r50Var;
-        this.f37841c = rect;
-        this.f37840b = new int[2];
+    public ei(AtomicBoolean atomicBoolean, LinearLayout linearLayout, int i10, HorizontalScrollView horizontalScrollView, SparseIntArray sparseIntArray, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
+        this.f34025a = atomicBoolean;
+        this.f34026b = linearLayout;
+        this.f34027c = i10;
+        this.d = horizontalScrollView;
+        this.e = sparseIntArray;
+        this.f34028f = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f34029g = iArr;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        r40 r40Var;
-        switch (this.f37839a) {
-            case 0:
-                tn tnVar = (tn) this.d;
-                if (motionEvent.getActionMasked() == 0) {
-                    org.telegram.ui.ActionBar.o1 o1Var = tnVar.M8;
-                    if (o1Var != null && o1Var.isShowing()) {
-                        View contentView = tnVar.M8.getContentView();
-                        int[] iArr = this.f37840b;
-                        contentView.getLocationInWindow(iArr);
-                        int i10 = iArr[0];
-                        int measuredHeight = contentView.getMeasuredHeight() + iArr[1];
-                        Rect rect = this.f37841c;
-                        rect.set(i10, iArr[1], contentView.getMeasuredWidth() + i10, measuredHeight);
-                        if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            tnVar.A7(true);
-                        }
-                    }
-                } else if (motionEvent.getActionMasked() == 4) {
-                    tnVar.A7(true);
+    public final void a(int i10) {
+        this.f34028f.getSwipeBack().f(this.f34029g[0], this.e.get(i10), true);
+    }
+
+    @Override
+    public final void b(float f10, int i10, int i11) {
+        HorizontalScrollView horizontalScrollView;
+        float f11;
+        if (!this.f34025a.get()) {
+            int i12 = 0;
+            float f12 = -1.0f;
+            float f13 = -1.0f;
+            while (true) {
+                LinearLayout linearLayout = this.f34026b;
+                int childCount = linearLayout.getChildCount();
+                horizontalScrollView = this.d;
+                if (i12 >= childCount) {
+                    break;
                 }
-                return false;
-            default:
-                r50 r50Var = (r50) this.d;
-                if (motionEvent.getActionMasked() == 0) {
-                    r40 r40Var2 = r50Var.f41875b3;
-                    if (r40Var2 != null && r40Var2.isShowing()) {
-                        View contentView2 = r50Var.f41875b3.getContentView();
-                        int[] iArr2 = this.f37840b;
-                        contentView2.getLocationInWindow(iArr2);
-                        int i11 = iArr2[0];
-                        int measuredHeight2 = contentView2.getMeasuredHeight() + iArr2[1];
-                        Rect rect2 = this.f37841c;
-                        rect2.set(i11, iArr2[1], contentView2.getMeasuredWidth() + i11, measuredHeight2);
-                        if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            r50Var.f41875b3.dismiss();
-                        }
-                    }
-                } else if (motionEvent.getActionMasked() == 4 && (r40Var = r50Var.f41875b3) != null && r40Var.isShowing()) {
-                    r50Var.f41875b3.dismiss();
+                org.telegram.ui.Components.zj0 zj0Var = (org.telegram.ui.Components.zj0) linearLayout.getChildAt(i12);
+                if (i12 == i10) {
+                    f11 = 1.0f - f10;
+                } else if (i12 == (i10 + 1) % this.f34027c) {
+                    f11 = f10;
+                } else {
+                    f11 = 0.0f;
                 }
-                return false;
+                zj0Var.setOutlineProgress(f11);
+                if (i12 == i10) {
+                    f12 = zj0Var.getX() - ((horizontalScrollView.getWidth() - zj0Var.getWidth()) / 2.0f);
+                }
+                if (i12 == i10 + 1) {
+                    f13 = zj0Var.getX() - ((horizontalScrollView.getWidth() - zj0Var.getWidth()) / 2.0f);
+                }
+                i12++;
+            }
+            if (f12 != -1.0f && f13 != -1.0f) {
+                horizontalScrollView.setScrollX((int) e2.c.w(f13, f12, f10, f12));
+            }
+            SparseIntArray sparseIntArray = this.e;
+            int i13 = sparseIntArray.get(i10, 0);
+            float f14 = sparseIntArray.get(i10 + 1, 0) * f10;
+            this.f34028f.getSwipeBack().f(this.f34029g[0], (int) (f14 + ((1.0f - f10) * i13)), false);
         }
     }
 
-    public ei(tn tnVar, Rect rect) {
-        this.f37839a = 0;
-        this.d = tnVar;
-        this.f37841c = rect;
-        this.f37840b = new int[2];
+    @Override
+    public final void c(int i10) {
+        if (i10 == 0) {
+            this.f34025a.set(false);
+        }
     }
 }

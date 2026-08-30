@@ -1,38 +1,47 @@
 package x7;
 
 import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.internal.cast.o;
-import java.util.Arrays;
-import w5.k;
-import z5.l;
-public final class a extends a6.a {
-    public static final Parcelable.Creator<a> CREATOR = new k(3);
-    public String f50098a;
-    public String f50099b;
+import android.os.RemoteException;
+import b6.m;
+public final class a {
+    public final g7.h f46831a;
+
+    public a(g7.h hVar) {
+        m.h(hVar);
+        this.f46831a = hVar;
+    }
 
     public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+        boolean z4 = false;
+        if (!(obj instanceof a)) {
+            return false;
         }
-        if (obj instanceof a) {
-            a aVar = (a) obj;
-            if (l.l(this.f50098a, aVar.f50098a) && l.l(this.f50099b, aVar.f50099b)) {
-                return true;
+        try {
+            g7.h hVar = this.f46831a;
+            g7.h hVar2 = ((a) obj).f46831a;
+            g7.f fVar = (g7.f) hVar;
+            Parcel M0 = fVar.M0();
+            g7.b.c(M0, hVar2);
+            Parcel L0 = fVar.L0(M0, 17);
+            if (L0.readInt() != 0) {
+                z4 = true;
             }
+            L0.recycle();
+            return z4;
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
-        return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f50098a, this.f50099b});
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = o.q(parcel, 20293);
-        o.l(parcel, 1, this.f50098a);
-        o.l(parcel, 2, this.f50099b);
-        o.r(parcel, q6);
+        try {
+            g7.f fVar = (g7.f) this.f46831a;
+            Parcel L0 = fVar.L0(fVar.M0(), 18);
+            int readInt = L0.readInt();
+            L0.recycle();
+            return readInt;
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

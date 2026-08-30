@@ -1,50 +1,105 @@
 package org.telegram.messenger.voip;
+public final class u implements Runnable {
+    public final int f18842a;
+    public final VoIPService f18843b;
 
-import android.content.SharedPreferences;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class u implements RequestDelegate {
-    public final int f22018a;
-    public final Object f22019b;
-
-    public u(Object obj, int i10) {
-        this.f22018a = i10;
-        this.f22019b = obj;
+    public u(VoIPService voIPService, int i10) {
+        this.f18842a = i10;
+        this.f18843b = voIPService;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f22018a) {
+    public final void run() {
+        switch (this.f18842a) {
             case 0:
-                ((VoIPService) this.f22019b).lambda$hangUp$4(tLObject, tL_error);
+                this.f18843b.lambda$playConnectedSound$88();
                 return;
             case 1:
-                ((VoIPService) this.f22019b).lambda$hangUp$5(tLObject, tL_error);
+                this.f18843b.lambda$playStartRecordSound$119();
                 return;
             case 2:
-                ((VoIPService) this.f22019b).lambda$startOutgoingCall$7(tLObject, tL_error);
+                this.f18843b.lambda$playAllowTalkSound$120();
                 return;
             case 3:
-                ((VoIPService) this.f22019b).lambda$startGroupCheckShortpoll$62(tLObject, tL_error);
+                this.f18843b.lambda$getConnectionAndStartCall$106();
                 return;
             case 4:
-                ((VoIPService) this.f22019b).lambda$declineIncomingCall$105(tLObject, tL_error);
+                this.f18843b.lambda$callFailed$114();
                 return;
             case 5:
-                ((VoIPService) this.f22019b).lambda$processAcceptedCall$20(tLObject, tL_error);
+                this.f18843b.lambda$callFailed$115();
                 return;
             case 6:
-                ((VoIPService) this.f22019b).lambda$startGroupCall$23(tLObject, tL_error);
+                this.f18843b.lambda$callEnded$122();
                 return;
             case 7:
-                ((VoIPService) this.f22019b).lambda$stopScreenCapture$15(tLObject, tL_error);
+                this.f18843b.lambda$callEnded$123();
                 return;
             case 8:
-                ((VoIPService) this.f22019b).lambda$acceptIncomingCall$102(tLObject, tL_error);
+                this.f18843b.lambda$callEnded$124();
+                return;
+            case 9:
+                this.f18843b.lambda$callEnded$125();
+                return;
+            case 10:
+                this.f18843b.lambda$onCallUpdated$16();
+                return;
+            case 11:
+                this.f18843b.lambda$onCallUpdated$17();
+                return;
+            case 12:
+                this.f18843b.lambda$onCallUpdated$18();
+                return;
+            case 13:
+                this.f18843b.lambda$setMicMute$0();
+                return;
+            case 14:
+                this.f18843b.lambda$switchToSpeaker$92();
+                return;
+            case 15:
+                this.f18843b.lambda$endConnectionServiceCall$126();
+                return;
+            case 16:
+                this.f18843b.lambda$onConnectionStateChanged$116();
+                return;
+            case 17:
+                this.f18843b.lambda$onConnectionStateChanged$117();
+                return;
+            case 18:
+                this.f18843b.lambda$convertToConferenceCall$30();
+                return;
+            case 19:
+                this.f18843b.lambda$initiateActualEncryptedCall$84();
+                return;
+            case 20:
+                this.f18843b.lambda$loadResources$108();
+                return;
+            case 21:
+                this.f18843b.lambda$setupCaptureDevice$14();
+                return;
+            case 22:
+                this.f18843b.lambda$startOutgoingCall$8();
+                return;
+            case 23:
+                this.f18843b.lambda$onStartCommand$2();
+                return;
+            case 24:
+                this.f18843b.lambda$onStartCommand$3();
+                return;
+            case 25:
+                this.f18843b.lambda$declineIncomingCall$104();
+                return;
+            case 26:
+                this.f18843b.callFailed();
+                return;
+            case 27:
+                this.f18843b.lambda$startGroupCheckShortpoll$65();
+                return;
+            case 28:
+                this.f18843b.lambda$onDestroy$99();
                 return;
             default:
-                VoIPService.lambda$updateServerConfig$107((SharedPreferences) this.f22019b, tLObject, tL_error);
+                this.f18843b.lambda$startConnectingSound$89();
                 return;
         }
     }

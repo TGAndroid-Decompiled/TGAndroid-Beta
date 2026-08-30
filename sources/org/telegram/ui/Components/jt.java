@@ -1,35 +1,92 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import org.telegram.messenger.Utilities;
-public final class jt implements Utilities.Callback0Return {
-    public final int f29817a;
-    public final Object f29818b;
+import android.graphics.Canvas;
+import android.os.Build;
+import android.widget.EdgeEffect;
+import androidx.recyclerview.widget.RecyclerView;
+public final class jt extends EdgeEffect {
+    public final int f26034a;
+    public final ht f26035b;
+    public final RecyclerView f26036c;
+    public final vp d;
+    public boolean e;
 
-    public jt(Object obj, int i10) {
-        this.f29817a = i10;
-        this.f29818b = obj;
+    public jt(RecyclerView recyclerView, int i10, ht htVar) {
+        super(recyclerView.getContext());
+        this.d = new vp(this, 7);
+        this.f26036c = recyclerView;
+        this.f26034a = i10;
+        this.f26035b = htVar;
+    }
+
+    public final void a() {
+        boolean b10 = b();
+        if (this.e != b10) {
+            this.e = b10;
+            ht htVar = this.f26035b;
+            if (htVar != null) {
+                htVar.a(this.f26034a, b10);
+            }
+        }
+    }
+
+    public final boolean b() {
+        if (!isFinished()) {
+            if (Build.VERSION.SDK_INT < 31 || getDistance() != 0.0f) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
-    public final Object run() {
-        boolean z10;
-        Editable text;
-        pi0[] pi0VarArr;
-        int i10 = this.f29817a;
-        Object obj = this.f29818b;
-        switch (i10) {
-            case 0:
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;
-                int i11 = EditTextBoldCursor.f26384a;
-                if (editTextBoldCursor.hasSelection() && editTextBoldCursor.getSelectionStart() >= 0 && editTextBoldCursor.getSelectionEnd() >= 0 && editTextBoldCursor.getSelectionStart() != editTextBoldCursor.getSelectionEnd() && (text = editTextBoldCursor.getText()) != null && ((pi0VarArr = (pi0[]) text.getSpans(editTextBoldCursor.getSelectionStart(), editTextBoldCursor.getSelectionEnd(), pi0.class)) == null || pi0VarArr.length == 0)) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                return Boolean.valueOf(z10);
-            default:
-                return ((r40) obj).getCloseIntoObject();
-        }
+    public final boolean draw(Canvas canvas) {
+        boolean draw = super.draw(canvas);
+        this.f26036c.postOnAnimation(this.d);
+        return draw;
+    }
+
+    @Override
+    public final void finish() {
+        super.finish();
+        a();
+    }
+
+    @Override
+    public final void onAbsorb(int i10) {
+        super.onAbsorb(i10);
+        a();
+    }
+
+    @Override
+    public final void onPull(float f10) {
+        super.onPull(f10);
+        a();
+    }
+
+    @Override
+    public final float onPullDistance(float f10, float f11) {
+        float onPullDistance = super.onPullDistance(f10, f11);
+        a();
+        return onPullDistance;
+    }
+
+    @Override
+    public final void onRelease() {
+        super.onRelease();
+        a();
+    }
+
+    @Override
+    public final void setSize(int i10, int i11) {
+        super.setSize(i10, i11);
+        a();
+    }
+
+    @Override
+    public final void onPull(float f10, float f11) {
+        super.onPull(f10, f11);
+        a();
     }
 }

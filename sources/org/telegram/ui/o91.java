@@ -1,95 +1,64 @@
 package org.telegram.ui;
 
-import java.util.Locale;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.tl.TL_stats;
-public final class o91 {
-    public String A;
-    public boolean B;
-    public boolean C;
-    public String D;
-    public String E;
-    public String F;
-    public boolean G;
-    public boolean H;
-    public String f41013a;
-    public String f41014b;
-    public String f41015c;
-    public boolean d;
-    public String f41016e;
-    public String f41017f;
-    public String f41018g;
-    public boolean h;
-    public String f41019i;
-    public String f41020j;
-    public String f41021k;
-    public boolean f41022l;
-    public String f41023m;
-    public String f41024n;
-    public String f41025o;
-    public String f41026p;
-    public String f41027q;
-    public boolean f41028r;
-    public boolean f41029s;
-    public String f41030t;
-    public String f41031u;
-    public String v;
-    public boolean f41032w;
-    public boolean f41033x;
-    public String f41034y;
-    public String f41035z;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.Window;
+public final class o91 extends AnimatorListenerAdapter {
+    public final int f36854a;
+    public final q91 f36855b;
 
-    public static com.google.firebase.messaging.s a(TL_stats.TL_statsAbsValueAndPrev tL_statsAbsValueAndPrev) {
-        float abs;
-        boolean z10;
-        double d = tL_statsAbsValueAndPrev.current;
-        double d10 = tL_statsAbsValueAndPrev.previous;
-        int i10 = (int) (d - d10);
-        if (d10 == 0.0d) {
-            abs = 0.0f;
-        } else {
-            abs = Math.abs((i10 / ((float) d10)) * 100.0f);
-        }
-        String formatWholeNumber = AndroidUtilities.formatWholeNumber((int) tL_statsAbsValueAndPrev.current, 0);
-        boolean z11 = true;
-        String str = "";
-        if (i10 != 0 && abs != 0.0f) {
-            int i11 = (int) abs;
-            if (abs == i11) {
-                Locale locale = Locale.ENGLISH;
-                StringBuilder sb2 = new StringBuilder();
-                if (i10 > 0) {
-                    str = "+";
+    public o91(q91 q91Var, int i10) {
+        this.f36854a = i10;
+        this.f36855b = q91Var;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f36854a) {
+            case 0:
+                q91 q91Var = this.f36855b;
+                q91Var.f37680b.setVisibility(4);
+                vf.g gVar = q91Var.f37680b;
+                gVar.G = false;
+                vf.g gVar2 = q91Var.f37681c;
+                gVar2.G = true;
+                gVar.f45738v0 = 0;
+                gVar2.f45738v0 = 0;
+                Window window = q91Var.f37679a;
+                if (window != null) {
+                    window.clearFlags(16);
+                    return;
                 }
-                sb2.append(str);
-                sb2.append(AndroidUtilities.formatWholeNumber(i10, 0));
-                str = sb2.toString() + " (" + i11 + "%)";
-            } else {
-                Locale locale2 = Locale.ENGLISH;
-                StringBuilder sb3 = new StringBuilder();
-                if (i10 > 0) {
-                    str = "+";
+                return;
+            case 1:
+                q91 q91Var2 = this.f36855b;
+                vf.g gVar3 = q91Var2.f37681c;
+                gVar3.setVisibility(4);
+                vf.g gVar4 = q91Var2.f37680b;
+                gVar4.f45738v0 = 0;
+                gVar3.f45738v0 = 0;
+                gVar4.G = true;
+                gVar3.G = false;
+                if (!(gVar4 instanceof vf.q)) {
+                    gVar4.f45733r0 = true;
+                    gVar4.x((gVar4.D0 * gVar4.f45713d0.f45758k) - vf.g.f45686h1);
+                    gVar4.c(true);
+                    gVar4.invalidate();
+                } else {
+                    gVar4.f45733r0 = false;
+                    gVar4.d();
                 }
-                sb3.append(str);
-                sb3.append(AndroidUtilities.formatWholeNumber(i10, 0));
-                str = String.format(locale2, "%s (%.1f%s)", sb3.toString(), Float.valueOf(abs), "%");
-            }
+                Window window2 = q91Var2.f37679a;
+                if (window2 != null) {
+                    window2.clearFlags(16);
+                    return;
+                }
+                return;
+            default:
+                q91 q91Var3 = this.f36855b;
+                q91Var3.f37680b.f45738v0 = 0;
+                q91Var3.e.setVisibility(8);
+                return;
         }
-        if (i10 >= 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (i10 == 0 && tL_statsAbsValueAndPrev.current == 0.0d) {
-            z11 = false;
-        }
-        Boolean valueOf = Boolean.valueOf(z10);
-        Boolean valueOf2 = Boolean.valueOf(z11);
-        com.google.firebase.messaging.s sVar = new com.google.firebase.messaging.s(23, false);
-        sVar.f5185b = formatWholeNumber;
-        sVar.f5187e = str;
-        sVar.f5186c = valueOf;
-        sVar.d = valueOf2;
-        return sVar;
     }
 }

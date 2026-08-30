@@ -1,17 +1,17 @@
 package q1;
 
 import android.text.Editable;
-import androidx.emoji2.text.t;
+import androidx.emoji2.text.u;
 public final class a extends Editable.Factory {
-    public static final Object f46196a = new Object();
-    public static volatile a f46197b;
-    public static Class f46198c;
+    public static final Object f42678a = new Object();
+    public static volatile a f42679b;
+    public static Class f42680c;
 
     @Override
     public final Editable newEditable(CharSequence charSequence) {
-        Class cls = f46198c;
+        Class cls = f42680c;
         if (cls != null) {
-            return new t(charSequence, cls);
+            return new u(charSequence, cls);
         }
         return super.newEditable(charSequence);
     }

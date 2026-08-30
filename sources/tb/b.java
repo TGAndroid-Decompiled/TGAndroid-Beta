@@ -1,45 +1,21 @@
 package tb;
+public enum b {
+    L(1),
+    M(0),
+    Q(3),
+    H(2);
+    
+    public static final b[] d;
+    public final int f44624a;
 
-import java.lang.reflect.Array;
-public final class b {
-    public final byte[][] f48193a;
-    public final int f48194b;
-    public final int f48195c;
-
-    public b(int i10, int i11) {
-        this.f48193a = (byte[][]) Array.newInstance(Byte.TYPE, i11, i10);
-        this.f48194b = i10;
-        this.f48195c = i11;
+    static {
+        b bVar;
+        b bVar2;
+        b bVar3 = L;
+        d = new b[]{M, bVar3, bVar2, bVar};
     }
 
-    public final byte a(int i10, int i11) {
-        return this.f48193a[i11][i10];
-    }
-
-    public final void b(int i10, int i11, int i12) {
-        this.f48193a[i11][i10] = (byte) i12;
-    }
-
-    public final String toString() {
-        int i10 = this.f48194b;
-        int i11 = this.f48195c;
-        StringBuilder sb2 = new StringBuilder((i10 * 2 * i11) + 2);
-        for (int i12 = 0; i12 < i11; i12++) {
-            byte[] bArr = this.f48193a[i12];
-            for (int i13 = 0; i13 < i10; i13++) {
-                byte b10 = bArr[i13];
-                if (b10 != 0) {
-                    if (b10 != 1) {
-                        sb2.append("  ");
-                    } else {
-                        sb2.append(" 1");
-                    }
-                } else {
-                    sb2.append(" 0");
-                }
-            }
-            sb2.append('\n');
-        }
-        return sb2.toString();
+    b(int i10) {
+        this.f44624a = i10;
     }
 }

@@ -1,8 +1,4 @@
 package v6;
-public abstract class c {
-    public static final int f49435a = 0;
-
-    static {
-        c.class.getClassLoader();
-    }
+public abstract class c extends a7.c implements d {
+    public static final int f45618b = 0;
 }

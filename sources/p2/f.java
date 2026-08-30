@@ -1,17 +1,18 @@
 package p2;
 
 import android.content.Context;
+import n7.qa;
 public final class f {
-    public boolean f45452a;
-    public Object f45453b;
-    public Object f45454c;
+    public boolean f40986a;
+    public Object f40987b;
+    public Object f40988c;
     public Object d;
-    public Object f45455e = new a0(this, true);
-    public Object f45456f = new a0(this, false);
+    public Object e = new c0(this, true);
+    public Object f40989f = new c0(this, false);
 
-    public f(Context context, n nVar, oc.i iVar) {
-        this.f45453b = context;
-        this.f45454c = nVar;
-        this.d = iVar;
+    public f(Context context, p pVar, qa qaVar) {
+        this.f40987b = context;
+        this.f40988c = pVar;
+        this.d = qaVar;
     }
 }

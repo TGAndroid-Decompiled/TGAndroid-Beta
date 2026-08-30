@@ -1,37 +1,39 @@
 package lh;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class b9 extends AnimatorListenerAdapter {
-    public final int f15413a;
-    public final r8 f15414b;
+import java.util.regex.Pattern;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.xn;
+public final class b9 implements Runnable {
+    public final int f12174a;
+    public final xn f12175b;
+    public final long f12176c;
+    public final TLRPC.Chat d;
 
-    public b9(r8 r8Var, int i10) {
-        this.f15413a = i10;
-        this.f15414b = r8Var;
+    public b9(xn xnVar, long j10, TLRPC.Chat chat, int i10) {
+        this.f12174a = i10;
+        this.f12175b = xnVar;
+        this.f12176c = j10;
+        this.d = chat;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f15413a) {
+    public final void run() {
+        int i10 = this.f12174a;
+        TLRPC.Chat chat = this.d;
+        long j10 = this.f12176c;
+        xn xnVar = this.f12175b;
+        switch (i10) {
             case 0:
-                super.onAnimationEnd(animator);
-                i9 i9Var = this.f15414b.f16187b;
-                w6 w6Var = i9Var.f15779q1;
-                if (w6Var != null) {
-                    w6Var.b();
-                    i9Var.v.removeView(i9Var.f15779q1);
-                }
-                i9Var.f15779q1 = null;
-                i9Var.P();
+                qc.a0(xnVar).M(LocaleController.getString(R.string.StarsSubscriptionCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsSubscriptionCompletedText", (int) j10, chat.title)), R.raw.stars_send).k(true);
                 return;
             default:
-                super.onAnimationEnd(animator);
-                w6 w6Var2 = this.f15414b.f16187b.f15779q1;
-                if (w6Var2 != null) {
-                    w6Var2.a(true);
-                    return;
-                }
+                Pattern pattern = LaunchActivity.f31612y1;
+                qc.a0(xnVar).M(LocaleController.getString(R.string.StarsSubscriptionCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsSubscriptionCompletedText", (int) j10, chat.title)), R.raw.stars_send).k(true);
                 return;
         }
     }

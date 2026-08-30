@@ -1,9 +1,72 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LocaleController;
-public final class e4 extends qc0 {
+import android.content.Context;
+import android.graphics.Point;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class e4 extends LinearLayout {
+    public final int f24457a;
+    public boolean f24458b;
+    public final wc0 f24459c;
+
+    public e4(Context context, wc0 wc0Var, int i10) {
+        super(context);
+        this.f24457a = i10;
+        this.f24459c = wc0Var;
+        this.f24458b = false;
+    }
+
     @Override
-    public final CharSequence d(int i10) {
-        return LocaleController.formatPluralString("Hours", i10, new Object[0]);
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        int i13;
+        switch (this.f24457a) {
+            case 0:
+                d4 d4Var = (d4) this.f24459c;
+                this.f24458b = true;
+                Point point = AndroidUtilities.displaySize;
+                if (point.x > point.y) {
+                    i12 = 3;
+                } else {
+                    i12 = 5;
+                }
+                d4Var.setItemCount(i12);
+                d4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+                this.f24458b = false;
+                super.onMeasure(i10, i11);
+                return;
+            default:
+                i4 i4Var = (i4) this.f24459c;
+                this.f24458b = true;
+                Point point2 = AndroidUtilities.displaySize;
+                if (point2.x > point2.y) {
+                    i13 = 3;
+                } else {
+                    i13 = 5;
+                }
+                i4Var.setItemCount(i13);
+                i4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
+                this.f24458b = false;
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public final void requestLayout() {
+        switch (this.f24457a) {
+            case 0:
+                if (!this.f24458b) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                if (!this.f24458b) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+        }
     }
 }

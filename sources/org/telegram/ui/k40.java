@@ -1,24 +1,43 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class k40 implements ViewTreeObserver.OnPreDrawListener {
-    public final r50 f39749a;
+public final class k40 extends TextView {
+    public final RectF f35565a;
+    public final Paint f35566b;
 
-    public k40(r50 r50Var) {
-        this.f39749a = r50Var;
+    public k40(LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f35565a = new RectF();
+        Paint paint = new Paint(1);
+        this.f35566b = paint;
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(-16711936);
     }
 
     @Override
-    public final boolean onPreDraw() {
-        ViewGroup viewGroup;
-        r50 r50Var = this.f39749a;
-        r50Var.M.getViewTreeObserver().removeOnPreDrawListener(this);
-        r50Var.W1.j(null);
-        AndroidUtilities.updateVisibleRows(r50Var.f41904i2);
-        viewGroup = ((org.telegram.ui.ActionBar.f3) r50Var).containerView;
-        viewGroup.requestLayout();
-        return false;
+    public final void dispatchDraw(Canvas canvas) {
+        RectF rectF = this.f35565a;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f35566b);
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Paint paint = this.f35566b;
+        paint.setColor(-16711936);
+        RectF rectF = this.f35565a;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
     }
 }

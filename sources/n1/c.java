@@ -1,21 +1,21 @@
 package n1;
 
-import bd.p;
-import i7.c7;
+import dd.p;
 import j$.util.DesugarCollections;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import k7.p7;
 import kotlin.jvm.internal.j;
-import uc.i;
+import wc.i;
 public final class c extends i implements p {
-    public final int f17085a;
-    public int f17086b;
-    public Object f17087c;
+    public final int f14210a;
+    public int f14211b;
+    public Object f14212c;
     public final i d;
 
-    public c(p pVar, sc.c cVar, int i10) {
+    public c(p pVar, uc.c cVar, int i10) {
         super(2, cVar);
-        this.f17085a = i10;
+        this.f14210a = i10;
         switch (i10) {
             case 1:
                 this.d = (i) pVar;
@@ -28,15 +28,15 @@ public final class c extends i implements p {
     }
 
     @Override
-    public final sc.c create(Object obj, sc.c cVar) {
-        switch (this.f17085a) {
+    public final uc.c create(Object obj, uc.c cVar) {
+        switch (this.f14210a) {
             case 0:
                 c cVar2 = new c(this.d, cVar, 0);
-                cVar2.f17087c = obj;
+                cVar2.f14212c = obj;
                 return cVar2;
             default:
                 c cVar3 = new c(this.d, cVar, 1);
-                cVar3.f17087c = obj;
+                cVar3.f14212c = obj;
                 return cVar3;
         }
     }
@@ -44,55 +44,55 @@ public final class c extends i implements p {
     @Override
     public final Object invoke(Object obj, Object obj2) {
         b bVar = (b) obj;
-        sc.c cVar = (sc.c) obj2;
-        switch (this.f17085a) {
+        uc.c cVar = (uc.c) obj2;
+        switch (this.f14210a) {
             case 0:
-                return ((c) create(bVar, cVar)).invokeSuspend(qc.i.f46603a);
+                return ((c) create(bVar, cVar)).invokeSuspend(sc.i.f44253a);
             default:
-                return ((c) create(bVar, cVar)).invokeSuspend(qc.i.f46603a);
+                return ((c) create(bVar, cVar)).invokeSuspend(sc.i.f44253a);
         }
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        switch (this.f17085a) {
+        switch (this.f14210a) {
             case 0:
-                tc.a aVar = tc.a.f48210a;
-                int i10 = this.f17086b;
+                vc.a aVar = vc.a.f45663a;
+                int i10 = this.f14211b;
                 if (i10 != 0) {
                     if (i10 == 1) {
-                        c7.b(obj);
+                        p7.b(obj);
                     } else {
                         throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
                     }
                 } else {
-                    c7.b(obj);
-                    this.f17086b = 1;
-                    obj = this.d.invoke((b) this.f17087c, this);
+                    p7.b(obj);
+                    this.f14211b = 1;
+                    obj = this.d.invoke((b) this.f14212c, this);
                     if (obj == aVar) {
                         return aVar;
                     }
                 }
                 b bVar = (b) obj;
-                bVar.f17084b.set(true);
+                bVar.f14209b.set(true);
                 return bVar;
             default:
-                tc.a aVar2 = tc.a.f48210a;
-                int i11 = this.f17086b;
+                vc.a aVar2 = vc.a.f45663a;
+                int i11 = this.f14211b;
                 if (i11 != 0) {
                     if (i11 == 1) {
-                        b bVar2 = (b) this.f17087c;
-                        c7.b(obj);
+                        b bVar2 = (b) this.f14212c;
+                        p7.b(obj);
                         return bVar2;
                     }
                     throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
                 }
-                c7.b(obj);
-                Map unmodifiableMap = DesugarCollections.unmodifiableMap(((b) this.f17087c).f17083a);
+                p7.b(obj);
+                Map unmodifiableMap = DesugarCollections.unmodifiableMap(((b) this.f14212c).f14208a);
                 j.d(unmodifiableMap, "unmodifiableMap(preferencesMap)");
                 b bVar3 = new b(new LinkedHashMap(unmodifiableMap), false);
-                this.f17087c = bVar3;
-                this.f17086b = 1;
+                this.f14212c = bVar3;
+                this.f14211b = 1;
                 if (this.d.invoke(bVar3, this) != aVar2) {
                     return bVar3;
                 }

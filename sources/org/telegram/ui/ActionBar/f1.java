@@ -3,33 +3,33 @@ package org.telegram.ui.ActionBar;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class f1 extends AnimatorListenerAdapter {
-    public final boolean f22928a;
-    public final int f22929b;
-    public final int f22930c;
+    public final boolean f19675a;
+    public final int f19676b;
+    public final int f19677c;
     public final int d;
-    public final g1 f22931e;
+    public final g1 e;
 
-    public f1(g1 g1Var, boolean z10, int i10, int i11, int i12) {
-        this.f22931e = g1Var;
-        this.f22928a = z10;
-        this.f22929b = i10;
-        this.f22930c = i11;
+    public f1(g1 g1Var, boolean z4, int i10, int i11, int i12) {
+        this.e = g1Var;
+        this.f19675a = z4;
+        this.f19676b = i10;
+        this.f19677c = i11;
         this.d = i12;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        float f9;
-        if (this.f22928a) {
-            f9 = 1.0f;
+        float f10;
+        if (this.f19675a) {
+            f10 = 1.0f;
         } else {
-            f9 = 0.0f;
+            f10 = 0.0f;
         }
-        int i10 = this.f22929b;
-        int i11 = this.f22930c;
-        int d = i0.a.d(f9, i10, i11);
-        g1 g1Var = this.f22931e;
+        int i10 = this.f19676b;
+        int i11 = this.f19677c;
+        int d = i0.a.d(f10, i10, i11);
+        g1 g1Var = this.e;
         g1Var.setTextColor(d);
-        g1Var.setIconColor(i0.a.d(f9, this.d, i11));
+        g1Var.setIconColor(i0.a.d(f10, this.d, i11));
     }
 }

@@ -1,32 +1,16 @@
 package nd;
 
-import bd.p;
-public final class c implements sc.h {
-    public final Throwable f17307a;
-    public final sc.h f17308b;
-
-    public c(Throwable th2, sc.h hVar) {
-        this.f17307a = th2;
-        this.f17308b = hVar;
-    }
+import dd.p;
+public final class c extends kotlin.jvm.internal.i implements p {
+    public static final c f14920a = new kotlin.jvm.internal.i(2, d.class, "createSegment", "createSegment(JLkotlinx/coroutines/channels/ChannelSegment;)Lkotlinx/coroutines/channels/ChannelSegment;", 1);
 
     @Override
-    public final Object fold(Object obj, p pVar) {
-        return this.f17308b.fold(obj, pVar);
-    }
-
-    @Override
-    public final sc.f get(sc.g gVar) {
-        return this.f17308b.get(gVar);
-    }
-
-    @Override
-    public final sc.h minusKey(sc.g gVar) {
-        return this.f17308b.minusKey(gVar);
-    }
-
-    @Override
-    public final sc.h plus(sc.h hVar) {
-        return this.f17308b.plus(hVar);
+    public final Object invoke(Object obj, Object obj2) {
+        long longValue = ((Number) obj).longValue();
+        h hVar = (h) obj2;
+        h hVar2 = d.f14921a;
+        b bVar = hVar.e;
+        kotlin.jvm.internal.j.b(bVar);
+        return new h(longValue, hVar, bVar, 0);
     }
 }

@@ -1,10 +1,10 @@
 package org.telegram.ui.Components;
 
-import android.widget.Button;
 import android.widget.TextView;
-public final class n4 extends TextView {
+import org.telegram.messenger.Emoji;
+public final class n4 extends e90 {
     @Override
-    public final CharSequence getAccessibilityClassName() {
-        return Button.class.getName();
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
     }
 }

@@ -1,30 +1,25 @@
 package m8;
 
-import android.os.BadParcelableException;
-import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import j7.l1;
-public abstract class s {
-    public static final int f16925a = 0;
+import j7.f5;
+public final class s extends c6.a {
+    public static final Parcelable.Creator<s> CREATOR = new c(14);
+    public final int f13853a;
+    public final boolean f13854b;
 
-    static {
-        s.class.getClassLoader();
+    public s(int i10, boolean z4) {
+        this.f13853a = i10;
+        this.f13854b = z4;
     }
 
-    public static Parcelable a(Parcel parcel) {
-        Parcelable.Creator creator = Bundle.CREATOR;
-        if (parcel.readInt() == 0) {
-            return null;
-        }
-        return (Parcelable) creator.createFromParcel(parcel);
-    }
-
-    public static void b(Parcel parcel) {
-        int dataAvail = parcel.dataAvail();
-        if (dataAvail <= 0) {
-            return;
-        }
-        throw new BadParcelableException(l1.k(dataAvail, "Parcel data not fully consumed, unread size: "));
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q10 = f5.q(parcel, 20293);
+        f5.s(parcel, 2, 4);
+        parcel.writeInt(this.f13853a);
+        f5.s(parcel, 3, 4);
+        parcel.writeInt(this.f13854b ? 1 : 0);
+        f5.r(parcel, q10);
     }
 }

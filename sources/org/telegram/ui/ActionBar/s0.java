@@ -1,4 +1,4 @@
 package org.telegram.ui.ActionBar;
 public interface s0 {
-    void i(int i10);
+    void l(int i10);
 }

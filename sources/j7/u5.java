@@ -1,17 +1,23 @@
 package j7;
-public final class u5 implements s9.d {
-    public static final u5 f11215a = new Object();
-
-    static {
-        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.r(h0.class, l1.h(3, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(2, com.google.android.recaptcha.internal.a.r(h0.class, new e0(1)))))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            s9.e eVar = (s9.e) obj2;
-            throw null;
+public abstract class u5 {
+    public static String a(String str) {
+        int length = str.length();
+        int i10 = 0;
+        while (i10 < length) {
+            char charAt = str.charAt(i10);
+            if (charAt >= 'a' && charAt <= 'z') {
+                char[] charArray = str.toCharArray();
+                while (i10 < length) {
+                    char c3 = charArray[i10];
+                    if (c3 >= 'a' && c3 <= 'z') {
+                        charArray[i10] = (char) (c3 ^ ' ');
+                    }
+                    i10++;
+                }
+                return String.valueOf(charArray);
+            }
+            i10++;
         }
-        throw new ClassCastException();
+        return str;
     }
 }

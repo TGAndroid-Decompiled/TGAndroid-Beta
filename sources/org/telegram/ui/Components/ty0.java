@@ -1,36 +1,96 @@
 package org.telegram.ui.Components;
-public class ty0 {
-    public int f33060a;
-    public int f33061b;
-    public int f33062c;
 
-    public ty0() {
-        c();
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.R;
+public final class ty0 extends Drawable {
+    public boolean f29070a;
+    public final z5 f29071b;
+    public final Drawable f29072c;
+    public final Drawable d;
+    public int e = 255;
+
+    public ty0(org.telegram.ui.Cells.t1 t1Var) {
+        this.f29071b = new z5(t1Var, 420L, nr.h);
+        this.f29072c = t1Var.getContext().getResources().getDrawable(R.drawable.summary_arrow);
+        this.d = t1Var.getContext().getResources().getDrawable(R.drawable.summary_stars);
     }
 
-    public int a(cz0 cz0Var, vy0 vy0Var, oy0 oy0Var, int i10, boolean z10) {
-        return this.f33060a - oy0Var.a(vy0Var, i10);
-    }
-
-    public void b(int i10, int i11) {
-        this.f33060a = Math.max(this.f33060a, i10);
-        this.f33061b = Math.max(this.f33061b, i11);
-    }
-
-    public void c() {
-        this.f33060a = Integer.MIN_VALUE;
-        this.f33061b = Integer.MIN_VALUE;
-        this.f33062c = 2;
-    }
-
-    public int d(boolean z10) {
-        if (!z10) {
-            int i10 = this.f33062c;
-            oy0 oy0Var = cz0.N;
-            if ((i10 & 2) != 0) {
-                return 100000;
-            }
+    @Override
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        Drawable drawable = this.d;
+        drawable.setBounds(bounds);
+        drawable.setAlpha(this.e);
+        drawable.draw(canvas);
+        float e = this.f29071b.e(this.f29070a);
+        float centerX = getBounds().centerX();
+        float centerY = getBounds().centerY();
+        float width = getBounds().width();
+        canvas.save();
+        if (e < 0.5f) {
+            float abs = Math.abs(e - 0.5f) + 0.5f;
+            canvas.scale(abs, abs, centerX, centerY);
         }
-        return this.f33060a + this.f33061b;
+        canvas.save();
+        int i10 = (e > 0.5f ? 1 : (e == 0.5f ? 0 : -1));
+        if (i10 > 0) {
+            float abs2 = Math.abs(e - 0.5f) + 0.5f;
+            float f10 = -abs2;
+            float f11 = width * 0.32f;
+            canvas.scale(f10, f10, getBounds().left + f11, getBounds().bottom - f11);
+            float f12 = 1.0f - abs2;
+            canvas.translate((-width) * f12 * 0.4f, f12 * width * 0.4f);
+        }
+        Rect bounds2 = getBounds();
+        Drawable drawable2 = this.f29072c;
+        drawable2.setBounds(bounds2);
+        drawable2.setAlpha(this.e);
+        drawable2.draw(canvas);
+        canvas.restore();
+        canvas.save();
+        if (i10 > 0) {
+            float f13 = -(Math.abs(e - 0.5f) + 0.5f);
+            float f14 = 0.32f * width;
+            canvas.scale(f13, f13, getBounds().right - f14, getBounds().top + f14);
+        }
+        canvas.rotate(180.0f, centerX, centerY);
+        if (i10 > 0) {
+            float abs3 = 1.0f - (Math.abs(e - 0.5f) + 0.5f);
+            canvas.translate((-width) * abs3 * 0.4f, width * abs3 * 0.4f);
+        }
+        drawable2.setBounds(getBounds());
+        drawable2.setAlpha(this.e);
+        drawable2.draw(canvas);
+        canvas.restore();
+        canvas.restore();
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f29072c.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f29072c.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.e = i10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f29072c.setColorFilter(colorFilter);
+        this.d.setColorFilter(colorFilter);
     }
 }

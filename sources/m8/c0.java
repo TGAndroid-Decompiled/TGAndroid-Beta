@@ -1,17 +1,24 @@
 package m8;
 
-import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-public abstract class c0 extends p implements d0 {
+import j7.f5;
+public final class c0 extends c6.a {
+    public static final Parcelable.Creator<c0> CREATOR = new c(24);
+    public final int f13782a;
+    public final m0 f13783b;
+
+    public c0(int i10, m0 m0Var) {
+        this.f13782a = i10;
+        this.f13783b = m0Var;
+    }
+
     @Override
-    public final boolean a(int i10, Parcel parcel, Parcel parcel2, int i11) {
-        if (i10 == 2) {
-            Parcelable.Creator creator = Bundle.CREATOR;
-            s.b(parcel);
-            b((Bundle) s.a(parcel));
-            return true;
-        }
-        return false;
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q10 = f5.q(parcel, 20293);
+        f5.s(parcel, 2, 4);
+        parcel.writeInt(this.f13782a);
+        f5.k(parcel, 3, this.f13783b, i10);
+        f5.r(parcel, q10);
     }
 }

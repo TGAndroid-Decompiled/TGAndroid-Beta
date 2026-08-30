@@ -9,26 +9,26 @@ import android.os.Parcelable;
 import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import h7.l8;
-import i7.a8;
+import j7.h8;
 import java.lang.reflect.Field;
 import java.util.Iterator;
 import java.util.Map;
+import k7.u7;
 import kotlin.jvm.internal.j;
-import m.q;
+import m.p;
 public final class e {
-    public boolean f6979a;
-    public boolean f6980b;
-    public boolean f6981c;
+    public boolean f6348a;
+    public boolean f6349b;
+    public boolean f6350c;
     public final Object d;
-    public Parcelable f6982e;
-    public Object f6983f;
+    public Parcelable e;
+    public Object f6351f;
 
     public e(TextView textView) {
-        this.f6982e = null;
-        this.f6983f = null;
-        this.f6979a = false;
-        this.f6980b = false;
+        this.e = null;
+        this.f6351f = null;
+        this.f6348a = false;
+        this.f6349b = false;
         this.d = textView;
     }
 
@@ -38,35 +38,35 @@ public final class e {
         if (Build.VERSION.SDK_INT >= 23) {
             drawable = e0.b.d(compoundButton);
         } else {
-            if (!a8.f8264b) {
+            if (!u7.f10005b) {
                 try {
                     Field declaredField = CompoundButton.class.getDeclaredField("mButtonDrawable");
-                    a8.f8263a = declaredField;
+                    u7.f10004a = declaredField;
                     declaredField.setAccessible(true);
-                } catch (NoSuchFieldException e10) {
-                    Log.i("CompoundButtonCompat", "Failed to retrieve mButtonDrawable field", e10);
+                } catch (NoSuchFieldException e) {
+                    Log.i("CompoundButtonCompat", "Failed to retrieve mButtonDrawable field", e);
                 }
-                a8.f8264b = true;
+                u7.f10005b = true;
             }
-            Field field = a8.f8263a;
+            Field field = u7.f10004a;
             if (field != null) {
                 try {
                     drawable = (Drawable) field.get(compoundButton);
-                } catch (IllegalAccessException e11) {
-                    Log.i("CompoundButtonCompat", "Failed to get button drawable via reflection", e11);
-                    a8.f8263a = null;
+                } catch (IllegalAccessException e6) {
+                    Log.i("CompoundButtonCompat", "Failed to get button drawable via reflection", e6);
+                    u7.f10004a = null;
                 }
             }
             drawable = null;
         }
         if (drawable != null) {
-            if (this.f6979a || this.f6980b) {
-                Drawable mutate = l8.d(drawable).mutate();
-                if (this.f6979a) {
-                    mutate.setTintList((ColorStateList) this.f6982e);
+            if (this.f6348a || this.f6349b) {
+                Drawable mutate = h8.d(drawable).mutate();
+                if (this.f6348a) {
+                    mutate.setTintList((ColorStateList) this.e);
                 }
-                if (this.f6980b) {
-                    mutate.setTintMode((PorterDuff.Mode) this.f6983f);
+                if (this.f6349b) {
+                    mutate.setTintMode((PorterDuff.Mode) this.f6351f);
                 }
                 if (mutate.isStateful()) {
                     mutate.setState(compoundButton.getDrawableState());
@@ -77,41 +77,41 @@ public final class e {
     }
 
     public void b() {
-        q qVar = (q) this.d;
-        Drawable checkMarkDrawable = qVar.getCheckMarkDrawable();
+        p pVar = (p) this.d;
+        Drawable checkMarkDrawable = pVar.getCheckMarkDrawable();
         if (checkMarkDrawable != null) {
-            if (this.f6979a || this.f6980b) {
-                Drawable mutate = l8.d(checkMarkDrawable).mutate();
-                if (this.f6979a) {
-                    mutate.setTintList((ColorStateList) this.f6982e);
+            if (this.f6348a || this.f6349b) {
+                Drawable mutate = h8.d(checkMarkDrawable).mutate();
+                if (this.f6348a) {
+                    mutate.setTintList((ColorStateList) this.e);
                 }
-                if (this.f6980b) {
-                    mutate.setTintMode((PorterDuff.Mode) this.f6983f);
+                if (this.f6349b) {
+                    mutate.setTintMode((PorterDuff.Mode) this.f6351f);
                 }
                 if (mutate.isStateful()) {
-                    mutate.setState(qVar.getDrawableState());
+                    mutate.setState(pVar.getDrawableState());
                 }
-                qVar.setCheckMarkDrawable(mutate);
+                pVar.setCheckMarkDrawable(mutate);
             }
         }
     }
 
     public Bundle c(String str) {
-        if (this.f6980b) {
-            Bundle bundle = (Bundle) this.f6982e;
+        if (this.f6349b) {
+            Bundle bundle = (Bundle) this.e;
             if (bundle == null) {
                 return null;
             }
             Bundle bundle2 = bundle.getBundle(str);
-            Bundle bundle3 = (Bundle) this.f6982e;
+            Bundle bundle3 = (Bundle) this.e;
             if (bundle3 != null) {
                 bundle3.remove(str);
             }
-            Bundle bundle4 = (Bundle) this.f6982e;
+            Bundle bundle4 = (Bundle) this.e;
             if (bundle4 != null && !bundle4.isEmpty()) {
                 return bundle2;
             }
-            this.f6982e = null;
+            this.e = null;
             return bundle2;
         }
         throw new IllegalStateException("You can consumeRestoredStateForKey only after super.onCreate of corresponding component");
@@ -144,18 +144,18 @@ public final class e {
         o.f fVar = (o.f) this.d;
         o.c i10 = fVar.i(str);
         if (i10 != null) {
-            obj = i10.f18978b;
+            obj = i10.f16140b;
         } else {
             o.c cVar = new o.c(str, provider);
             fVar.d++;
-            o.c cVar2 = fVar.f18984b;
+            o.c cVar2 = fVar.f16146b;
             if (cVar2 == null) {
-                fVar.f18983a = cVar;
-                fVar.f18984b = cVar;
+                fVar.f16145a = cVar;
+                fVar.f16146b = cVar;
             } else {
-                cVar2.f18979c = cVar;
+                cVar2.f16141c = cVar;
                 cVar.d = cVar2;
-                fVar.f18984b = cVar;
+                fVar.f16146b = cVar;
             }
             obj = null;
         }
@@ -166,22 +166,22 @@ public final class e {
     }
 
     public void g() {
-        if (this.f6981c) {
-            a aVar = (a) this.f6983f;
+        if (this.f6350c) {
+            a aVar = (a) this.f6351f;
             if (aVar == null) {
                 aVar = new a(this);
             }
-            this.f6983f = aVar;
+            this.f6351f = aVar;
             try {
                 androidx.lifecycle.j.class.getDeclaredConstructor(null);
-                a aVar2 = (a) this.f6983f;
+                a aVar2 = (a) this.f6351f;
                 if (aVar2 != null) {
-                    aVar2.f6977a.add(androidx.lifecycle.j.class.getName());
+                    aVar2.f6346a.add(androidx.lifecycle.j.class.getName());
                     return;
                 }
                 return;
-            } catch (NoSuchMethodException e10) {
-                throw new IllegalArgumentException("Class " + androidx.lifecycle.j.class.getSimpleName() + " must have default constructor in order to be automatically recreated", e10);
+            } catch (NoSuchMethodException e) {
+                throw new IllegalArgumentException("Class " + androidx.lifecycle.j.class.getSimpleName() + " must have default constructor in order to be automatically recreated", e);
             }
         }
         throw new IllegalStateException("Can not perform this action after onSaveInstanceState");
@@ -189,6 +189,6 @@ public final class e {
 
     public e() {
         this.d = new o.f();
-        this.f6981c = true;
+        this.f6350c = true;
     }
 }

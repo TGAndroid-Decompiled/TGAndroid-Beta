@@ -1,59 +1,19 @@
 package org.telegram.ui;
 
-import android.text.style.CharacterStyle;
-import org.telegram.messenger.AndroidUtilities;
-public final class qi extends ye.c {
-    public final int d;
-    public final int f41734e;
-    public final org.telegram.ui.Cells.s1 f41735f;
-    public final tn f41736g;
-    public final Object h;
+import android.app.Activity;
+public final class qi extends org.telegram.ui.Cells.v0 {
+    public final xn f37761h2;
 
-    public qi(tn tnVar, int i10, Object obj, org.telegram.ui.Cells.s1 s1Var, int i11) {
-        this.d = i11;
-        this.f41736g = tnVar;
-        this.f41734e = i10;
-        this.h = obj;
-        this.f41735f = s1Var;
+    public qi(Activity activity, org.telegram.ui.ActionBar.f6 f6Var, xn xnVar) {
+        super(activity, f6Var, false);
+        this.f37761h2 = xnVar;
     }
 
     @Override
-    public final void c(boolean z10) {
-        switch (this.d) {
-            case 0:
-                if (!z10) {
-                    AndroidUtilities.runOnUIThread(new bg.f(this, this.f41734e, 21), 240L);
-                    return;
-                }
-                return;
-            default:
-                if (!z10) {
-                    AndroidUtilities.runOnUIThread(new bg.f(this, this.f41734e, 23), 240L);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void d() {
-        switch (this.d) {
-            case 0:
-                int i10 = this.f41734e;
-                tn tnVar = this.f41736g;
-                tnVar.f42971sb = i10;
-                tnVar.f42984tb = 1;
-                tnVar.f42997ub = (CharacterStyle) this.h;
-                this.f41735f.invalidate();
-                return;
-            default:
-                int i11 = this.f41734e;
-                tn tnVar2 = this.f41736g;
-                tnVar2.f42971sb = i11;
-                tnVar2.f42984tb = 3;
-                tnVar2.f43010vb = (String) this.h;
-                this.f41735f.invalidate();
-                return;
-        }
+    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        super.onLayout(z4, i10, i11, i12, i13);
+        float y10 = getY();
+        xn xnVar = this.f37761h2;
+        W(xnVar.O0.getY() + y10, xnVar.U0.getBackgroundSizeY());
     }
 }

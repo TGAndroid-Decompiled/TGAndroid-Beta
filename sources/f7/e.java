@@ -1,20 +1,40 @@
 package f7;
 
-import a4.w;
-import org.telegram.ui.th;
-public final class e {
-    public final Object f6657a;
-    public final Object f6658b;
-    public final Object f6659c;
-
-    public e(Object obj, Object obj2, Object obj3) {
-        this.f6657a = obj;
-        this.f6658b = obj2;
-        this.f6659c = obj3;
+import android.os.BadParcelableException;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.Parcelable;
+import kh.a2;
+public abstract class e {
+    static {
+        e.class.getClassLoader();
     }
 
-    public final IllegalArgumentException a() {
-        Object obj = this.f6657a;
-        return new IllegalArgumentException(w.o(String.valueOf(obj), "=", String.valueOf(this.f6659c), th.k("Multiple entries with same key: ", String.valueOf(obj), "=", String.valueOf(this.f6658b), " and ")));
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
+        }
+        return (Parcelable) creator.createFromParcel(parcel);
+    }
+
+    public static void b(Parcel parcel) {
+        int dataAvail = parcel.dataAvail();
+        if (dataAvail <= 0) {
+            return;
+        }
+        throw new BadParcelableException(a2.j(dataAvail, "Parcel data not fully consumed, unread size: "));
+    }
+
+    public static void c(Parcel parcel, Parcelable parcelable) {
+        if (parcelable == null) {
+            parcel.writeInt(0);
+            return;
+        }
+        parcel.writeInt(1);
+        parcelable.writeToParcel(parcel, 0);
+    }
+
+    public static void d(Parcel parcel, IInterface iInterface) {
+        parcel.writeStrongBinder(iInterface.asBinder());
     }
 }

@@ -1,62 +1,122 @@
 package org.telegram.ui;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.transition.Fade;
-import android.transition.TransitionValues;
+import android.util.Property;
 import android.view.View;
-import android.view.ViewGroup;
-public final class ys0 extends Fade {
-    public final int f44963a;
-    public final boolean f44964b;
-    public final boolean f44965c;
-    public final PhotoViewer d;
+import org.telegram.messenger.AndroidUtilities;
+public final class ys0 extends AnimatorListenerAdapter {
+    public final int f40568a;
+    public final boolean f40569b;
+    public final PhotoViewer f40570c;
 
-    public ys0(PhotoViewer photoViewer, boolean z10, boolean z11, int i10) {
-        super(1);
-        this.f44963a = i10;
-        switch (i10) {
+    public ys0(PhotoViewer photoViewer, boolean z4, int i10) {
+        this.f40568a = i10;
+        this.f40570c = photoViewer;
+        this.f40569b = z4;
+    }
+
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f40568a) {
             case 1:
-                this.d = photoViewer;
-                this.f44964b = z10;
-                this.f44965c = z11;
-                super(2);
+                PhotoViewer photoViewer = this.f40570c;
+                if (animator.equals(photoViewer.f31893w)) {
+                    photoViewer.f31893w = null;
+                    return;
+                }
+                return;
+            case 2:
+                PhotoViewer photoViewer2 = this.f40570c;
+                if (animator.equals(photoViewer2.I)) {
+                    photoViewer2.I = null;
+                    return;
+                }
+                return;
+            case 3:
+                this.f40570c.Q7 = null;
                 return;
             default:
-                this.d = photoViewer;
-                this.f44964b = z10;
-                this.f44965c = z11;
+                super.onAnimationCancel(animator);
                 return;
         }
     }
 
     @Override
-    public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f44963a) {
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        int i11 = this.f40568a;
+        boolean z4 = this.f40569b;
+        PhotoViewer photoViewer = this.f40570c;
+        switch (i11) {
             case 0:
-                Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
-                if (this.f44964b && !this.f44965c && view == this.d.M1) {
-                    onAppear.addListener(new e50(this, 13));
-                    ((ObjectAnimator) onAppear).addUpdateListener(new g3(this, 20));
+                if (!z4) {
+                    photoViewer.f31744f3.setVisibility(8);
+                    return;
                 }
-                return onAppear;
-            default:
-                return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
-        }
-    }
-
-    @Override
-    public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f44963a) {
+                return;
             case 1:
-                Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
-                if (!this.f44964b && this.f44965c && view == this.d.M1) {
-                    onDisappear.addListener(new e50(this, 14));
-                    ((ObjectAnimator) onDisappear).addUpdateListener(new g3(this, 21));
+                if (animator.equals(photoViewer.f31893w)) {
+                    if (!z4) {
+                        photoViewer.U0.setVisibility(4);
+                    }
+                    photoViewer.f31893w = null;
+                    return;
                 }
-                return onDisappear;
+                return;
+            case 2:
+                if (animator.equals(photoViewer.I)) {
+                    if (!z4) {
+                        photoViewer.C.setVisibility(4);
+                        if (photoViewer.f31741f0.getTag() != null) {
+                            photoViewer.f31741f0.setVisibility(4);
+                        }
+                        if (photoViewer.N1.getTag() != null) {
+                            photoViewer.N1.setVisibility(4);
+                        }
+                    }
+                    photoViewer.I = null;
+                    return;
+                }
+                return;
             default:
-                return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+                if (animator.equals(photoViewer.Q7)) {
+                    photoViewer.Q7 = new AnimatorSet();
+                    if (z4) {
+                        photoViewer.K7.setVisibility(0);
+                        photoViewer.L7.setVisibility(0);
+                        AnimatorSet animatorSet = photoViewer.Q7;
+                        lu0 lu0Var = photoViewer.K7;
+                        Property property = View.TRANSLATION_Y;
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(lu0Var, property, 0.0f), ObjectAnimator.ofFloat(photoViewer.L7, property, 0.0f));
+                    } else {
+                        if (photoViewer.P4) {
+                            photoViewer.f31750g0.setVisibility(8);
+                            photoViewer.f31750g0.setAlpha(0.0f);
+                            View view = photoViewer.f31750g0;
+                            if (photoViewer.Z1 == 11) {
+                                i10 = -16777216;
+                            } else {
+                                i10 = 2130706432;
+                            }
+                            view.setBackgroundColor(i10);
+                        }
+                        photoViewer.K7.setVisibility(4);
+                        photoViewer.L7.setVisibility(4);
+                        AnimatorSet animatorSet2 = photoViewer.Q7;
+                        dg.s1 s1Var = photoViewer.M0;
+                        Property property2 = View.TRANSLATION_Y;
+                        animatorSet2.playTogether(ObjectAnimator.ofFloat(s1Var, property2, 0.0f), ObjectAnimator.ofFloat(photoViewer.M0, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(photoViewer.P0, property2, 0.0f));
+                    }
+                    photoViewer.Q7.addListener(new ls0(this, 7));
+                    photoViewer.Q7.setDuration(200L);
+                    photoViewer.Q7.setInterpolator(AndroidUtilities.decelerateInterpolator);
+                    photoViewer.Q7.start();
+                    return;
+                }
+                return;
         }
     }
 }

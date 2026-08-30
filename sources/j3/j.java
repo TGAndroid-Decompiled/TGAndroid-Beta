@@ -1,85 +1,85 @@
 package j3;
 public final class j {
-    public final com.google.android.exoplayer2.upstream.r f10543a;
-    public final long f10544b;
-    public final long f10545c;
+    public final g5.q f8629a;
+    public final long f8630b;
+    public final long f8631c;
     public final long d;
-    public final long f10546e;
-    public final int f10547f;
-    public final long f10548g;
+    public final long e;
+    public final int f8632f;
+    public final long f8633g;
     public int h;
-    public boolean f10549i;
+    public boolean f8634i;
 
-    public j(com.google.android.exoplayer2.upstream.r rVar, int i10, int i11) {
+    public j(g5.q qVar, int i10, int i11) {
         a(i10, 0, "bufferForPlaybackMs", "0");
         a(i11, 0, "bufferForPlaybackAfterRebufferMs", "0");
         a(50000, i10, "minBufferMs", "bufferForPlaybackMs");
         a(50000, i11, "minBufferMs", "bufferForPlaybackAfterRebufferMs");
         a(50000, 50000, "maxBufferMs", "minBufferMs");
         a(0, 0, "backBufferDurationMs", "0");
-        this.f10543a = rVar;
+        this.f8629a = qVar;
         long j10 = 50000;
-        this.f10544b = f5.d0.H(j10);
-        this.f10545c = f5.d0.H(j10);
-        this.d = f5.d0.H(i10);
-        this.f10546e = f5.d0.H(i11);
-        this.f10547f = -1;
+        this.f8630b = h5.d0.G(j10);
+        this.f8631c = h5.d0.G(j10);
+        this.d = h5.d0.G(i10);
+        this.e = h5.d0.G(i11);
+        this.f8632f = -1;
         this.h = 13107200;
-        this.f10548g = f5.d0.H(0);
+        this.f8633g = h5.d0.G(0);
     }
 
     public static void a(int i10, int i11, String str, String str2) {
-        boolean z10;
+        boolean z4;
         if (i10 >= i11) {
-            z10 = true;
+            z4 = true;
         } else {
-            z10 = false;
+            z4 = false;
         }
-        f5.a.e(str + " cannot be less than " + str2, z10);
+        h5.a.e(str + " cannot be less than " + str2, z4);
     }
 
-    public final void b(boolean z10) {
-        int i10 = this.f10547f;
+    public final void b(boolean z4) {
+        int i10 = this.f8632f;
         if (i10 == -1) {
             i10 = 13107200;
         }
         this.h = i10;
-        this.f10549i = false;
-        if (z10) {
-            com.google.android.exoplayer2.upstream.r rVar = this.f10543a;
-            synchronized (rVar) {
-                if (rVar.f3610a) {
-                    rVar.a(0);
+        this.f8634i = false;
+        if (z4) {
+            g5.q qVar = this.f8629a;
+            synchronized (qVar) {
+                if (qVar.f6410a) {
+                    qVar.a(0);
                 }
             }
         }
     }
 
-    public final boolean c(long j10, float f9) {
+    public final boolean c(long j10, float f10) {
         int i10;
-        boolean z10;
-        long j11 = this.f10545c;
-        com.google.android.exoplayer2.upstream.r rVar = this.f10543a;
-        synchronized (rVar) {
-            i10 = rVar.d * rVar.f3611b;
+        boolean z4;
+        long j11 = this.f8631c;
+        g5.q qVar = this.f8629a;
+        synchronized (qVar) {
+            i10 = qVar.d * qVar.f6411b;
         }
         if (i10 >= this.h) {
-            z10 = true;
+            z4 = true;
         } else {
-            z10 = false;
+            z4 = false;
         }
-        long j12 = this.f10544b;
-        if (f9 > 1.0f) {
-            j12 = Math.min(f5.d0.s(j12, f9), j11);
+        long j12 = this.f8630b;
+        if (f10 > 1.0f) {
+            j12 = Math.min(h5.d0.t(j12, f10), j11);
         }
         if (j10 < Math.max(j12, 500000L)) {
-            this.f10549i = !z10;
-            if (z10 && j10 < 500000) {
-                f5.a.K("DefaultLoadControl", "Target buffer size reached with less than 500ms of buffered media data.");
+            this.f8634i = !z4;
+            if (z4 && j10 < 500000) {
+                h5.a.K("DefaultLoadControl", "Target buffer size reached with less than 500ms of buffered media data.");
             }
-        } else if (j10 >= j11 || z10) {
-            this.f10549i = false;
+        } else if (j10 >= j11 || z4) {
+            this.f8634i = false;
         }
-        return this.f10549i;
+        return this.f8634i;
     }
 }

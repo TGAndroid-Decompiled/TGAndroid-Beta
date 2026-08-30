@@ -1,19 +1,19 @@
 package od;
+public final class f extends wc.c {
+    public g f16553a;
+    public Object f16554b;
+    public final g f16555c;
+    public int d;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.ServiceConfigurationError;
-public abstract class f {
-    public static final Collection f19511a;
+    public f(g gVar, wc.c cVar) {
+        super(cVar);
+        this.f16555c = gVar;
+    }
 
-    static {
-        try {
-            Iterator it = Arrays.asList(new kd.b()).iterator();
-            kotlin.jvm.internal.j.e(it, "<this>");
-            f19511a = gd.d.a(new gd.a(new gd.e(it, 1)));
-        } catch (Throwable th2) {
-            throw new ServiceConfigurationError(th2.getMessage(), th2);
-        }
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        this.f16554b = obj;
+        this.d |= Integer.MIN_VALUE;
+        return this.f16555c.c(null, this);
     }
 }

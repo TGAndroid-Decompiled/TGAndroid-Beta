@@ -1,18 +1,31 @@
 package l7;
-public final class ma {
-    public final Long f14887a;
-    public final Long f14888b;
-    public final Long f14889c;
-    public final Long d;
-    public final Long f14890e;
-    public final Long f14891f;
 
-    public ma(j7.f7 f7Var) {
-        this.f14887a = f7Var.f11005a;
-        this.f14888b = f7Var.f11006b;
-        this.f14889c = f7Var.f11007c;
-        this.d = f7Var.d;
-        this.f14890e = f7Var.f11008e;
-        this.f14891f = f7Var.f11009f;
+import android.content.Context;
+public final class ma implements ka {
+    public final c9.p f11558a;
+    public final ha f11559b;
+
+    public ma(Context context, ha haVar) {
+        this.f11559b = haVar;
+        w2.a aVar = w2.a.e;
+        y2.q.b(context);
+        y2.o c3 = y2.q.a().c(aVar);
+        if (w2.a.d.contains(new v2.c("json"))) {
+            new c9.p(new j7.e9(c3, 4));
+        }
+        this.f11558a = new c9.p(new j7.e9(c3, 5));
+    }
+
+    @Override
+    public final void a(b4.e0 e0Var) {
+        v2.a aVar;
+        this.f11559b.getClass();
+        y2.p pVar = (y2.p) this.f11558a.get();
+        if (e0Var.f1367b != 0) {
+            aVar = new v2.a(null, e0Var.D(), v2.d.f45560a, null);
+        } else {
+            aVar = new v2.a(null, e0Var.D(), v2.d.f45561b, null);
+        }
+        pVar.a(aVar, new s0.b(28));
     }
 }

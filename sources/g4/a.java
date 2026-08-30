@@ -2,22 +2,89 @@ package g4;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import f5.d0;
-import j3.g1;
+import e4.b;
+import f8.o;
+import h5.d0;
+import j3.d1;
+import j3.m0;
+import j3.n0;
 import java.util.Arrays;
-public final class a extends j {
-    public static final Parcelable.Creator<a> CREATOR = new d6.d(19);
-    public final String f6984b;
-    public final String f6985c;
-    public final int d;
-    public final byte[] f6986e;
+public final class a implements b {
+    public static final Parcelable.Creator<a> CREATOR;
+    public static final n0 h;
+    public static final n0 f6352n;
+    public final String f6353a;
+    public final String f6354b;
+    public final long f6355c;
+    public final long d;
+    public final byte[] e;
+    public int f6356f;
 
-    public a(int i10, String str, String str2, byte[] bArr) {
-        super("APIC");
-        this.f6984b = str;
-        this.f6985c = str2;
-        this.d = i10;
-        this.f6986e = bArr;
+    static {
+        m0 m0Var = new m0();
+        m0Var.f8684o = "application/id3";
+        h = new n0(m0Var);
+        m0 m0Var2 = new m0();
+        m0Var2.f8684o = "application/x-scte35";
+        f6352n = new n0(m0Var2);
+        CREATOR = new o(3);
+    }
+
+    public a(String str, String str2, long j10, long j11, byte[] bArr) {
+        this.f6353a = str;
+        this.f6354b = str2;
+        this.f6355c = j10;
+        this.d = j11;
+        this.e = bArr;
+    }
+
+    @Override
+    public final n0 b() {
+        String str = this.f6353a;
+        str.getClass();
+        char c3 = 65535;
+        switch (str.hashCode()) {
+            case -1468477611:
+                if (str.equals("urn:scte:scte35:2014:bin")) {
+                    c3 = 0;
+                    break;
+                }
+                break;
+            case -795945609:
+                if (str.equals("https://aomedia.org/emsg/ID3")) {
+                    c3 = 1;
+                    break;
+                }
+                break;
+            case 1303648457:
+                if (str.equals("https://developer.apple.com/streaming/emsg-id3")) {
+                    c3 = 2;
+                    break;
+                }
+                break;
+        }
+        switch (c3) {
+            case 0:
+                return f6352n;
+            case 1:
+            case 2:
+                return h;
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public final byte[] d() {
+        if (b() != null) {
+            return this.e;
+        }
+        return null;
+    }
+
+    @Override
+    public final int describeContents() {
+        return 0;
     }
 
     public final boolean equals(Object obj) {
@@ -26,7 +93,7 @@ public final class a extends j {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.d == aVar.d && d0.a(this.f6984b, aVar.f6984b) && d0.a(this.f6985c, aVar.f6985c) && Arrays.equals(this.f6986e, aVar.f6986e)) {
+            if (this.f6355c == aVar.f6355c && this.d == aVar.d && d0.a(this.f6353a, aVar.f6353a) && d0.a(this.f6354b, aVar.f6354b) && Arrays.equals(this.e, aVar.e)) {
                 return true;
             }
         }
@@ -35,47 +102,50 @@ public final class a extends j {
 
     public final int hashCode() {
         int i10;
-        int i11 = (527 + this.d) * 31;
-        int i12 = 0;
-        String str = this.f6984b;
-        if (str != null) {
-            i10 = str.hashCode();
-        } else {
-            i10 = 0;
+        if (this.f6356f == 0) {
+            int i11 = 0;
+            String str = this.f6353a;
+            if (str != null) {
+                i10 = str.hashCode();
+            } else {
+                i10 = 0;
+            }
+            int i12 = (527 + i10) * 31;
+            String str2 = this.f6354b;
+            if (str2 != null) {
+                i11 = str2.hashCode();
+            }
+            long j10 = this.f6355c;
+            long j11 = this.d;
+            this.f6356f = Arrays.hashCode(this.e) + ((((((i12 + i11) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + ((int) (j11 ^ (j11 >>> 32)))) * 31);
         }
-        int i13 = (i11 + i10) * 31;
-        String str2 = this.f6985c;
-        if (str2 != null) {
-            i12 = str2.hashCode();
-        }
-        return Arrays.hashCode(this.f6986e) + ((i13 + i12) * 31);
+        return this.f6356f;
     }
 
-    @Override
-    public final void populateMediaMetadata(g1 g1Var) {
-        g1Var.a(this.d, this.f6986e);
-    }
-
-    @Override
     public final String toString() {
-        return this.f7006a + ": mimeType=" + this.f6984b + ", description=" + this.f6985c;
+        return "EMSG: scheme=" + this.f6353a + ", id=" + this.d + ", durationMs=" + this.f6355c + ", value=" + this.f6354b;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f6984b);
-        parcel.writeString(this.f6985c);
-        parcel.writeInt(this.d);
-        parcel.writeByteArray(this.f6986e);
+        parcel.writeString(this.f6353a);
+        parcel.writeString(this.f6354b);
+        parcel.writeLong(this.f6355c);
+        parcel.writeLong(this.d);
+        parcel.writeByteArray(this.e);
     }
 
     public a(Parcel parcel) {
-        super("APIC");
         String readString = parcel.readString();
-        int i10 = d0.f6579a;
-        this.f6984b = readString;
-        this.f6985c = parcel.readString();
-        this.d = parcel.readInt();
-        this.f6986e = parcel.createByteArray();
+        int i10 = d0.f6937a;
+        this.f6353a = readString;
+        this.f6354b = parcel.readString();
+        this.f6355c = parcel.readLong();
+        this.d = parcel.readLong();
+        this.e = parcel.createByteArray();
+    }
+
+    @Override
+    public final void c(d1 d1Var) {
     }
 }

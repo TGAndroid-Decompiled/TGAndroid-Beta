@@ -1,4 +1,16 @@
 package md;
-public interface b {
-    Object e(c cVar, uc.c cVar2);
+
+import ld.b0;
+import uc.f;
+public final class b extends uc.a implements f {
+    private volatile Object _preHandler;
+
+    public b() {
+        super(b0.f11860a);
+        this._preHandler = this;
+    }
+
+    public final void c(java.lang.Throwable r4) {
+        throw new UnsupportedOperationException("Method not decompiled: md.b.c(java.lang.Throwable):void");
+    }
 }

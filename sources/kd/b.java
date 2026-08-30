@@ -1,16 +1,11 @@
 package kd;
+public abstract class b {
+    public static final int f10326a = 0;
 
-import jd.b0;
-import sc.f;
-public final class b extends sc.a implements f {
-    private volatile Object _preHandler;
-
-    public b() {
-        super(b0.f11446a);
-        this._preHandler = this;
-    }
-
-    public final void c(java.lang.Throwable r4) {
-        throw new UnsupportedOperationException("Method not decompiled: kd.b.c(java.lang.Throwable):void");
+    static {
+        ThreadLocal[] threadLocalArr = new ThreadLocal[4];
+        for (int i10 = 0; i10 < 4; i10++) {
+            threadLocalArr[i10] = new ThreadLocal();
+        }
     }
 }

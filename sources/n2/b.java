@@ -2,23 +2,23 @@ package n2;
 
 import j$.util.Objects;
 public final class b {
-    public final String f17091a;
-    public final byte[] f17092b;
-    public final int f17093c;
+    public final String f14216a;
+    public final byte[] f14217b;
+    public final int f14218c;
 
     public b(String str) {
-        this.f17091a = str;
-        this.f17092b = null;
-        this.f17093c = 0;
+        this.f14216a = str;
+        this.f14217b = null;
+        this.f14218c = 0;
     }
 
     public final void a(int i10) {
         String str;
-        int i11 = this.f17093c;
+        int i11 = this.f14218c;
         if (i10 == i11) {
             return;
         }
-        StringBuilder sb2 = new StringBuilder("Wrong data accessor type detected. ");
+        StringBuilder sb = new StringBuilder("Wrong data accessor type detected. ");
         String str2 = "String";
         if (i11 == 0) {
             str = "String";
@@ -27,8 +27,8 @@ public final class b {
         } else {
             str = "Unknown";
         }
-        sb2.append(str);
-        sb2.append(" expected, but got ");
+        sb.append(str);
+        sb.append(" expected, but got ");
         if (i10 != 0) {
             if (i10 == 1) {
                 str2 = "ArrayBuffer";
@@ -36,14 +36,14 @@ public final class b {
                 str2 = "Unknown";
             }
         }
-        sb2.append(str2);
-        throw new IllegalStateException(sb2.toString());
+        sb.append(str2);
+        throw new IllegalStateException(sb.toString());
     }
 
     public b(byte[] bArr) {
         Objects.requireNonNull(bArr);
-        this.f17092b = bArr;
-        this.f17091a = null;
-        this.f17093c = 1;
+        this.f14217b = bArr;
+        this.f14216a = null;
+        this.f14218c = 1;
     }
 }

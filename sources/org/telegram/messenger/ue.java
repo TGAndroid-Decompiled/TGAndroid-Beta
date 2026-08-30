@@ -2,52 +2,32 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class ue implements Runnable {
-    public final int f21734a;
-    public final MessagesStorage f21735b;
-    public final ArrayList f21736c;
-    public final long d;
+    public final int f18594a = 0;
+    public final MessagesStorage f18595b;
+    public final boolean f18596c;
+    public final ArrayList d;
 
-    public ue(MessagesStorage messagesStorage, long j10, ArrayList arrayList, int i10) {
-        this.f21734a = i10;
-        this.f21735b = messagesStorage;
-        this.d = j10;
-        this.f21736c = arrayList;
+    public ue(MessagesStorage messagesStorage, ArrayList arrayList, boolean z4) {
+        this.f18595b = messagesStorage;
+        this.d = arrayList;
+        this.f18596c = z4;
     }
 
     @Override
     public final void run() {
-        switch (this.f21734a) {
+        switch (this.f18594a) {
             case 0:
-                this.f21735b.lambda$deleteUserChatHistory$86(this.f21736c, this.d);
-                return;
-            case 1:
-                this.f21735b.lambda$emptyMessagesMedia$99(this.f21736c, this.d);
-                return;
-            case 2:
-                this.f21735b.lambda$deleteSavedDialog$54(this.d, this.f21736c);
-                return;
-            case 3:
-                this.f21735b.lambda$updateChannelUsers$125(this.d, this.f21736c);
-                return;
-            case 4:
-                this.f21735b.lambda$markVoiceMessageContentAsRead$217(this.f21736c, this.d);
-                return;
-            case 5:
-                this.f21735b.lambda$markMessagesAsDeletedInternal$226(this.f21736c, this.d);
-                return;
-            case 6:
-                this.f21735b.lambda$removeTopics$58(this.f21736c, this.d);
+                this.f18595b.lambda$putEphemeralMessages$204(this.d, this.f18596c);
                 return;
             default:
-                this.f21735b.lambda$createTaskForSecretChat$117(this.d, this.f21736c);
+                this.f18595b.lambda$putContacts$146(this.f18596c, this.d);
                 return;
         }
     }
 
-    public ue(MessagesStorage messagesStorage, ArrayList arrayList, long j10, int i10) {
-        this.f21734a = i10;
-        this.f21735b = messagesStorage;
-        this.f21736c = arrayList;
-        this.d = j10;
+    public ue(MessagesStorage messagesStorage, boolean z4, ArrayList arrayList) {
+        this.f18595b = messagesStorage;
+        this.f18596c = z4;
+        this.d = arrayList;
     }
 }

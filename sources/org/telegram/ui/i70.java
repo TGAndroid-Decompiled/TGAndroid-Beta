@@ -1,22 +1,43 @@
 package org.telegram.ui;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class i70 implements NotificationCenter.NotificationCenterDelegate {
-    public final org.telegram.ui.ActionBar.c2 f39141a;
-    public final k70 f39142b;
+public final class i70 implements TextWatcher {
+    public final j70 f35036a;
 
-    public i70(k70 k70Var, org.telegram.ui.ActionBar.c2 c2Var) {
-        this.f39142b = k70Var;
-        this.f39141a = c2Var;
+    public i70(j70 j70Var) {
+        this.f35036a = j70Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.reloadInterface) {
-            this.f39141a.dismiss();
-            NotificationCenter.getGlobalInstance().removeObserver(this, i10);
-            AndroidUtilities.runOnUIThread(new q00(this, 12), 100L);
+    public final void afterTextChanged(Editable editable) {
+        String trim = editable.toString().trim();
+        j70 j70Var = this.f35036a;
+        m70 m70Var = j70Var.h;
+        if (j70Var.f35251c != 0) {
+            m70Var.getConnectionsManager().cancelRequest(j70Var.f35251c, true);
+            j70Var.f35251c = 0;
         }
+        g00 g00Var = j70Var.d;
+        if (g00Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(g00Var);
+        }
+        j70Var.e = null;
+        if (trim.isEmpty()) {
+            m70.a0(m70Var, null);
+            return;
+        }
+        g00 g00Var2 = new g00(8, this, trim);
+        j70Var.d = g00Var2;
+        AndroidUtilities.runOnUIThread(g00Var2, 300L);
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

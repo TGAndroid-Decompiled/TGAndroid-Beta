@@ -1,23 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class fj extends f2.k0 {
-    public final gj f28410r;
+import j$.util.Objects;
+import org.telegram.messenger.ContactsController;
+import org.telegram.tgnet.TLRPC;
+public final class fj {
+    public final int f24887a;
+    public final long f24888b;
 
-    public fj(gj gjVar, Context context) {
-        super(context);
-        this.f28410r = gjVar;
+    public fj(int i10, long j10) {
+        this.f24887a = i10;
+        this.f24888b = j10;
     }
 
-    @Override
-    public final int k(int i10, View view) {
-        return org.telegram.messenger.x3.z(8.0f, ((sj) this.f28410r.V).f32656s.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i10, view));
+    public static fj a(Object obj) {
+        if (obj instanceof ContactsController.Contact) {
+            return new fj(2, ((ContactsController.Contact) obj).contact_id);
+        }
+        if (obj instanceof TLRPC.User) {
+            return new fj(1, ((TLRPC.User) obj).f19331id);
+        }
+        return null;
     }
 
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 2;
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && fj.class == obj.getClass()) {
+                fj fjVar = (fj) obj;
+                if (this.f24888b == fjVar.f24888b && this.f24887a == fjVar.f24887a) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        Integer valueOf;
+        Long valueOf2 = Long.valueOf(this.f24888b);
+        int i10 = this.f24887a;
+        if (i10 == 0) {
+            valueOf = null;
+        } else {
+            valueOf = Integer.valueOf(i10 - 1);
+        }
+        return Objects.hash(valueOf, valueOf2);
     }
 }

@@ -2,64 +2,64 @@ package org.telegram.ui.ActionBar;
 
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ky0;
+import org.telegram.ui.vy0;
 public final class a implements ValueAnimator.AnimatorUpdateListener {
-    public final int f22716a;
-    public final l f22717b;
+    public final int f19505a;
+    public final k f19506b;
 
-    public a(l lVar, int i10) {
-        this.f22716a = i10;
-        this.f22717b = lVar;
+    public a(k kVar, int i10) {
+        this.f19505a = i10;
+        this.f19506b = kVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        a0 a0Var;
-        switch (this.f22716a) {
+        z zVar;
+        switch (this.f19505a) {
             case 0:
-                ky0 ky0Var = this.f22717b.Q0;
-                if (ky0Var != null) {
-                    ky0Var.run();
+                vy0 vy0Var = this.f19506b.R0;
+                if (vy0Var != null) {
+                    vy0Var.run();
                     return;
                 }
                 return;
             case 1:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l lVar = this.f22717b;
-                lVar.f23614k0 = floatValue;
-                if (lVar.f23589a != null && lVar.M0) {
+                k kVar = this.f19506b;
+                kVar.f20332l0 = floatValue;
+                if (kVar.f20306a != null && kVar.N0) {
                     float dp = AndroidUtilities.dp(23.0f);
-                    float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(18.33f), AndroidUtilities.dp(23.0f), lVar.f23614k0);
-                    lVar.f23589a.q(lerp, dp, dp, lerp);
-                    lVar.invalidate();
+                    float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(18.33f), AndroidUtilities.dp(23.0f), kVar.f20332l0);
+                    kVar.f20306a.q(lerp, dp, dp, lerp);
+                    kVar.invalidate();
                 }
-                if (lVar.K0 && (a0Var = lVar.A) != null) {
-                    a0Var.setTranslationX(-AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f), lVar.f23614k0));
+                if (kVar.L0 && (zVar = kVar.B) != null) {
+                    zVar.setTranslationX(-AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f), kVar.f20332l0));
                 }
-                ky0 ky0Var2 = lVar.Q0;
-                if (ky0Var2 != null) {
-                    ky0Var2.run();
+                vy0 vy0Var2 = kVar.R0;
+                if (vy0Var2 != null) {
+                    vy0Var2.run();
                     return;
                 }
                 return;
             case 2:
-                ky0 ky0Var3 = this.f22717b.Q0;
-                if (ky0Var3 != null) {
-                    ky0Var3.run();
+                vy0 vy0Var3 = this.f19506b.R0;
+                if (vy0Var3 != null) {
+                    vy0Var3.run();
                     return;
                 }
                 return;
             case 3:
-                l lVar2 = this.f22717b;
-                lVar2.getClass();
-                lVar2.f23620n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                lVar2.b();
+                k kVar2 = this.f19506b;
+                kVar2.getClass();
+                kVar2.f20338o1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kVar2.b();
                 return;
             default:
-                l lVar3 = this.f22717b;
-                lVar3.getClass();
-                lVar3.f23620n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                lVar3.b();
+                k kVar3 = this.f19506b;
+                kVar3.getClass();
+                kVar3.f20338o1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kVar3.b();
                 return;
         }
     }

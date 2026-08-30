@@ -1,28 +1,19 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.ConnectionsManager;
+import android.view.View;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.UndoView;
-public final class j71 extends UndoView {
-    public final SessionsActivity f39464b0;
+public final class j71 implements View.OnLongClickListener {
+    public final TLRPC.TL_authorization f35253a;
+    public final o71 f35254b;
 
-    public j71(SessionsActivity sessionsActivity, Context context) {
-        super(context);
-        this.f39464b0 = sessionsActivity;
+    public j71(o71 o71Var, TLRPC.TL_authorization tL_authorization) {
+        this.f35254b = o71Var;
+        this.f35253a = tL_authorization;
     }
 
     @Override
-    public final void e(int i10, boolean z10) {
-        int i11;
-        if (!z10 && getCurrentInfoObject() != null) {
-            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) getCurrentInfoObject();
-            TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
-            resetauthorization.hash = tL_authorization.hash;
-            i11 = ((org.telegram.ui.ActionBar.o2) this.f39464b0).currentAccount;
-            ConnectionsManager.getInstance(i11).sendRequest(resetauthorization, new u80(22, this, tL_authorization));
-        }
-        super.e(i10, z10);
+    public final boolean onLongClick(View view) {
+        o71.m(this.f35254b, this.f35253a.country);
+        return true;
     }
 }

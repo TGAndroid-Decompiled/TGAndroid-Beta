@@ -1,32 +1,39 @@
 package org.telegram.ui.Components;
-public final class s8 extends org.telegram.ui.ActionBar.k {
-    public final int f32537a;
-    public final b9 f32538b;
 
-    public s8(b9 b9Var, int i10) {
-        this.f32537a = i10;
-        this.f32538b = b9Var;
+import j$.util.Objects;
+public final class s8 {
+    public int f28665a;
+    public boolean f28666b;
+    public int f28667c;
+    public int d;
+    public int e;
+    public int f28668f;
+
+    public final s8 a() {
+        ?? obj = new Object();
+        obj.f28667c = this.f28667c;
+        obj.d = this.d;
+        obj.e = this.e;
+        obj.f28668f = this.f28668f;
+        obj.f28666b = this.f28666b;
+        return obj;
     }
 
-    @Override
-    public final void b(int i10) {
-        switch (this.f32537a) {
-            case 0:
-                if (i10 == -1) {
-                    b9.U(this.f32538b);
-                    return;
-                }
-                return;
-            default:
-                b9 b9Var = this.f32538b;
-                if (i10 == -1) {
-                    b9.U(b9Var);
-                }
-                if (i10 == 1) {
-                    b9Var.f0();
-                    return;
-                }
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof s8)) {
+            return false;
+        }
+        s8 s8Var = (s8) obj;
+        if (this.f28667c == s8Var.f28667c && this.d == s8Var.d && this.e == s8Var.e && this.f28668f == s8Var.f28668f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.f28665a), Integer.valueOf(this.f28667c), Integer.valueOf(this.d), Integer.valueOf(this.e), Integer.valueOf(this.f28668f));
     }
 }

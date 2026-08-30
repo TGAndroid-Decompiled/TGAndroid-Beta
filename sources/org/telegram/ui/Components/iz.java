@@ -1,188 +1,157 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseIntArray;
+import android.graphics.ColorFilter;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public class iz extends f2.w {
-    public final boolean Q;
-    public final SparseIntArray R;
-    public final SparseIntArray S;
-    public int T;
-    public int U;
-    public int V;
-    public int W;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SvgHelper;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class iz extends rl0 {
+    public final boolean f25804c;
+    public final kz d;
 
-    public iz(int i10, boolean z10) {
-        super(i10);
-        this.R = new SparseIntArray();
-        this.S = new SparseIntArray();
-        this.Q = z10;
+    public iz(kz kzVar, boolean z4) {
+        this.d = kzVar;
+        this.f25804c = z4;
     }
 
-    public static bv0 C1(bv0 bv0Var) {
-        if (bv0Var == null) {
-            return null;
-        }
-        if (bv0Var.f27238a == 0.0f) {
-            bv0Var.f27238a = 100.0f;
-        }
-        if (bv0Var.f27239b == 0.0f) {
-            bv0Var.f27239b = 100.0f;
-        }
-        float f9 = bv0Var.f27238a;
-        float f10 = bv0Var.f27239b;
-        float f11 = f9 / f10;
-        if (f11 <= 4.0f && f11 >= 0.2f) {
-            return bv0Var;
-        }
-        float max = Math.max(f9, f10);
-        bv0Var.f27238a = max;
-        bv0Var.f27239b = max;
-        return bv0Var;
+    @Override
+    public final boolean D(f2.l1 l1Var) {
+        return true;
     }
 
-    public final void B1() {
-        bv0 bv0Var;
-        int i10;
-        int min;
-        boolean z10;
-        boolean z11;
-        float f9;
-        SparseIntArray sparseIntArray = this.R;
-        if (sparseIntArray.size() != A() || this.W != this.f6506m || this.T != this.J) {
-            int i11 = this.f6506m;
-            this.W = i11;
-            float f10 = i11;
-            if (f10 == 0.0f) {
-                f10 = 100.0f;
+    @Override
+    public final int h() {
+        ArrayList arrayList;
+        boolean z4 = this.f25804c;
+        kz kzVar = this.d;
+        if (z4) {
+            arrayList = kzVar.f26443k1;
+        } else {
+            arrayList = kzVar.f26440j1;
+        }
+        return arrayList.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final void v(f2.l1 l1Var, int i10) {
+        ArrayList arrayList;
+        ArrayList<TLRPC.Document> arrayList2;
+        ImageLocation forSticker;
+        int i11;
+        String str;
+        p9 p9Var = (p9) l1Var.f5785a;
+        kz kzVar = this.d;
+        boolean z4 = this.f25804c;
+        if (z4) {
+            arrayList = kzVar.f26443k1;
+        } else {
+            arrayList = kzVar.f26440j1;
+        }
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i10);
+        p9Var.setTag(stickerSetCovered);
+        ColorFilter colorFilter = null;
+        if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
+            arrayList2 = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
+        } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
+            TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(kzVar.Z0).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), false);
+            if (stickerSet == null) {
+                arrayList2 = null;
+            } else {
+                arrayList2 = stickerSet.documents;
             }
-            sparseIntArray.clear();
-            SparseIntArray sparseIntArray2 = this.S;
-            sparseIntArray2.clear();
-            this.V = 0;
-            this.U = 0;
-            int A = A();
-            this.T = A;
-            if (A == 0) {
+        } else {
+            arrayList2 = stickerSetCovered.covers;
+        }
+        TLRPC.Document document = stickerSetCovered.cover;
+        if (document == null) {
+            if (arrayList2 != null && !arrayList2.isEmpty()) {
+                if (stickerSetCovered.set != null) {
+                    for (int i12 = 0; i12 < arrayList2.size(); i12++) {
+                        if (arrayList2.get(i12).f19190id == stickerSetCovered.set.thumb_document_id) {
+                            document = arrayList2.get(i12);
+                            break;
+                        }
+                    }
+                }
+                document = null;
+                if (document == null) {
+                    document = arrayList2.get(0);
+                }
+            } else {
+                document = null;
+            }
+        }
+        if (document != null) {
+            if (z4) {
+                if (MessageObject.isTextColorEmoji(document)) {
+                    colorFilter = org.telegram.ui.ActionBar.j6.n0(kzVar.W1);
+                }
+                p9Var.setColorFilter(colorFilter);
+            }
+            TLObject closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(stickerSetCovered.set.thumbs, 90);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.j6.f19889c7, 0.2f);
+            if (svgThumb != null) {
+                svgThumb.overrideWidthAndHeight(512, 512);
+            }
+            if (closestPhotoSizeWithSize == null || MessageObject.isVideoSticker(document)) {
+                closestPhotoSizeWithSize = document;
+            }
+            boolean z10 = closestPhotoSizeWithSize instanceof TLRPC.Document;
+            if (z10) {
+                forSticker = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document);
+            } else if (closestPhotoSizeWithSize instanceof TLRPC.PhotoSize) {
+                forSticker = ImageLocation.getForSticker((TLRPC.PhotoSize) closestPhotoSizeWithSize, document, stickerSetCovered.set.thumb_version);
+            } else {
                 return;
             }
-            int dp = AndroidUtilities.dp(100.0f);
-            int i12 = this.J;
-            boolean z12 = this.Q;
-            int i13 = A + (z12 ? 1 : 0);
-            int i14 = i12;
-            int i15 = 0;
-            int i16 = 0;
-            while (i15 < i13) {
-                if (i15 < A) {
-                    bv0Var = C1(D1(i15));
+            if (forSticker != null) {
+                if (z4) {
+                    i11 = 16388;
                 } else {
-                    bv0Var = null;
+                    i11 = 1;
                 }
-                if (bv0Var == null) {
-                    if (i16 != 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    i10 = dp;
-                    min = i12;
+                if (!LiteMode.isEnabled(i11)) {
+                    str = "30_30_firstframe";
                 } else {
-                    i10 = dp;
-                    min = Math.min(i12, (int) Math.floor((((bv0Var.f27238a / bv0Var.f27239b) * dp) / f10) * i12));
-                    if (i14 >= min && (min <= 33 || i14 >= min - 15)) {
-                        z10 = false;
-                    } else {
-                        z10 = true;
-                    }
-                    if (bv0Var.f27240c) {
-                        sparseIntArray.put(i15, i14);
-                        this.V++;
-                        f9 = f10;
-                        i14 = i12;
-                        i16 = 0;
-                        i15++;
-                        dp = i10;
-                        f10 = f9;
-                    } else {
-                        z11 = z10;
-                    }
+                    str = "30_30";
                 }
-                if (z11) {
-                    if (i14 != 0 && i16 != 0) {
-                        int i17 = i14 / i16;
-                        int i18 = i15 - i16;
-                        f9 = f10;
-                        int i19 = i18;
-                        while (true) {
-                            int i20 = i18 + i16;
-                            if (i19 >= i20) {
-                                break;
-                            }
-                            if (i19 == i20 - 1) {
-                                sparseIntArray.put(i19, sparseIntArray.get(i19) + i14);
-                            } else {
-                                sparseIntArray.put(i19, sparseIntArray.get(i19) + i17);
-                            }
-                            i14 -= i17;
-                            i19++;
-                        }
-                        sparseIntArray2.put(i15 - 1, this.V);
+                if (!z10 || (!MessageObject.isAnimatedStickerDocument(document, true) && !MessageObject.isVideoSticker(document))) {
+                    String str2 = str;
+                    ImageLocation imageLocation = forSticker;
+                    if (imageLocation.imageType == 1) {
+                        p9Var.i(imageLocation, str2, "tgs", svgThumb, stickerSetCovered);
                     } else {
-                        f9 = f10;
+                        p9Var.i(imageLocation, null, "webp", svgThumb, stickerSetCovered);
                     }
-                    if (i15 == A) {
-                        break;
-                    }
-                    this.V++;
-                    i14 = i12;
-                    i16 = 0;
+                } else if (svgThumb != null) {
+                    p9Var.n(ImageLocation.getForDocument(document), str, svgThumb, stickerSetCovered);
                 } else {
-                    f9 = f10;
-                    if (i14 < min) {
-                        min = i14;
-                    }
+                    p9Var.j(ImageLocation.getForDocument(document), str, forSticker, null, 0, stickerSetCovered);
                 }
-                if (this.V == 0) {
-                    this.U = Math.max(this.U, i15);
-                }
-                if (i15 == A - 1 && !z12) {
-                    sparseIntArray2.put(i15, this.V);
-                }
-                i16++;
-                i14 -= min;
-                sparseIntArray.put(i15, min);
-                i15++;
-                dp = i10;
-                f10 = f9;
             }
-            this.V++;
         }
     }
 
-    public bv0 D1(int i10) {
-        return new bv0(100.0f, 100.0f);
-    }
-
-    public final boolean E1(int i10) {
-        B1();
-        if (this.S.get(i10, Integer.MAX_VALUE) != Integer.MAX_VALUE) {
-            return true;
-        }
-        return false;
-    }
-
     @Override
-    public final int I(f2.d1 d1Var, f2.k1 k1Var) {
-        return k1Var.b();
-    }
-
-    @Override
-    public final int u(f2.d1 d1Var, f2.k1 k1Var) {
-        return 1;
-    }
-
-    @Override
-    public boolean y0() {
-        return false;
+    public final f2.l1 x(ViewGroup viewGroup, int i10) {
+        hz hzVar = new hz(this, this.d.getContext());
+        hzVar.s(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+        hzVar.setLayerNum(1);
+        hzVar.setAspectFit(true);
+        hzVar.setLayoutParams(new f2.w0(AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f)));
+        return new f2.l1(hzVar);
     }
 }

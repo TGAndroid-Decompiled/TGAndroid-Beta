@@ -1,16 +1,35 @@
 package q4;
 
-import f5.c0;
-import j3.t0;
-public final class b {
-    public static final o3.n d = new Object();
-    public final o3.k f46254a;
-    public final t0 f46255b;
-    public final c0 f46256c;
+import java.util.NoSuchElementException;
+public abstract class b implements l {
+    public final long f42715a;
+    public final long f42716b;
+    public long f42717c;
 
-    public b(o3.k kVar, t0 t0Var, c0 c0Var) {
-        this.f46254a = kVar;
-        this.f46255b = t0Var;
-        this.f46256c = c0Var;
+    public b(long j10, long j11) {
+        this.f42715a = j10;
+        this.f42716b = j11;
+        this.f42717c = j10 - 1;
+    }
+
+    public final void a() {
+        long j10 = this.f42717c;
+        if (j10 >= this.f42715a && j10 <= this.f42716b) {
+            return;
+        }
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final boolean next() {
+        boolean z4;
+        long j10 = this.f42717c + 1;
+        this.f42717c = j10;
+        if (j10 > this.f42716b) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        return !z4;
     }
 }

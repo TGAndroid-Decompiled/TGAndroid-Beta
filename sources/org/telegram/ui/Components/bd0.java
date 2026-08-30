@@ -1,319 +1,174 @@
 package org.telegram.ui.Components;
 
+import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
+import android.content.ContextWrapper;
 import android.os.Build;
-import android.text.SpannableString;
-import android.view.MotionEvent;
+import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.VideoEditedInfo;
-public final class bd0 extends FrameLayout {
-    public Bitmap f27054a;
-    public HashMap f27055b;
-    public boolean f27056c;
-    public BitmapDrawable d;
-    public boolean f27057e;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.LaunchActivity;
+public final class bd0 extends Dialog implements org.telegram.ui.ActionBar.b5 {
+    public final ActionBarLayout f23656a;
+    public final FrameLayout f23657b;
+    public final vd0 f23658c;
 
     public bd0(Context context) {
-        super(context);
-        this.f27057e = true;
+        super(context, R.style.TransparentDialog);
+        ActionBarLayout actionBarLayout = new ActionBarLayout(context, false);
+        this.f23656a = actionBarLayout;
+        actionBarLayout.setFragmentStack(new ArrayList());
+        org.telegram.ui.ActionBar.c5 c5Var = new org.telegram.ui.ActionBar.c5(new eg.y1(this, 9));
+        c5Var.f19551c = true;
+        actionBarLayout.R(c5Var);
+        actionBarLayout.setDelegate(this);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f23657b = frameLayout;
+        frameLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
+        frameLayout.addView(actionBarLayout.getView(), new FrameLayout.LayoutParams(-1, -1, 17));
+        if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
+            frameLayout.setBackgroundColor(-1728053248);
+            frameLayout.setOnClickListener(new z70(this, 4));
+            actionBarLayout.setRemoveActionBarExtraHeight(true);
+            n7.qa.N0(actionBarLayout.getView());
+        }
+        vd0 vd0Var = new vd0(context);
+        this.f23658c = vd0Var;
+        frameLayout.addView(vd0Var, k7.b6.c(-1.0f, -1));
+        setContentView(frameLayout);
     }
 
-    public final void a() {
-        this.f27054a = null;
-        this.d = null;
-        setBackground(null);
-        HashMap hashMap = this.f27055b;
-        if (hashMap != null) {
-            hashMap.clear();
+    public final void c(org.telegram.ui.ActionBar.p2 p2Var) {
+        boolean z4;
+        if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
+            z4 = true;
+        } else {
+            z4 = false;
         }
-        removeAllViews();
-    }
-
-    public final void b(ArrayList arrayList, boolean z10, boolean z11, boolean z12) {
-        t9 t9Var;
-        int i10;
-        int i11;
-        int i12;
-        setClipChildren(z12);
-        a();
-        this.f27055b = new HashMap();
-        if (arrayList != null && !arrayList.isEmpty()) {
-            int size = arrayList.size();
-            for (int i13 = 0; i13 < size; i13++) {
-                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) arrayList.get(i13);
-                byte b10 = mediaEntity.type;
-                if (b10 == 0) {
-                    t9 t9Var2 = new t9(getContext());
-                    t9Var2.setLayerNum(12);
-                    t9Var2.setAspectFit(true);
-                    ImageReceiver imageReceiver = t9Var2.getImageReceiver();
-                    if (z10) {
-                        imageReceiver.setAllowDecodeSingleFrame(true);
-                        imageReceiver.setAllowStartLottieAnimation(false);
-                        if (z11) {
-                            imageReceiver.setDelegate(new r2(19));
-                        }
-                    }
-                    imageReceiver.setImage(ImageLocation.getForDocument(mediaEntity.document), null, null, null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(mediaEntity.document.thumbs, 90), mediaEntity.document), null, null, 0L, "webp", mediaEntity.parentObject, 1);
-                    if ((2 & mediaEntity.subType) != 0) {
-                        t9Var2.setScaleX(-1.0f);
-                    }
-                    mediaEntity.view = t9Var2;
-                    t9Var = t9Var2;
-                } else if (b10 == 1) {
-                    bg.b bVar = new bg.b(getContext());
-                    bVar.setBackgroundColor(0);
-                    bVar.setPadding(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
-                    bVar.setTextSize(0, mediaEntity.fontSize);
-                    bVar.setTypeface(mediaEntity.textTypeface.d());
-                    SpannableString spannableString = new SpannableString(Emoji.replaceEmoji(mediaEntity.text, bVar.getPaint().getFontMetricsInt(), false));
-                    ArrayList<VideoEditedInfo.EmojiEntity> arrayList2 = mediaEntity.entities;
-                    int size2 = arrayList2.size();
-                    int i14 = 0;
-                    while (i14 < size2) {
-                        VideoEditedInfo.EmojiEntity emojiEntity = arrayList2.get(i14);
-                        i14++;
-                        VideoEditedInfo.EmojiEntity emojiEntity2 = emojiEntity;
-                        y5 y5Var = new y5(emojiEntity2.document_id, bVar.getPaint().getFontMetricsInt());
-                        int i15 = emojiEntity2.offset;
-                        spannableString.setSpan(y5Var, i15, emojiEntity2.length + i15, 33);
-                    }
-                    Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spannableString.getSpans(0, spannableString.length(), Emoji.EmojiSpan.class);
-                    if (emojiSpanArr != null) {
-                        for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
-                            emojiSpan.scale = 0.85f;
-                        }
-                    }
-                    bVar.setText(spannableString);
-                    int i16 = 17;
-                    bVar.setGravity(17);
-                    int i17 = mediaEntity.textAlign;
-                    if (i17 != 1) {
-                        i10 = 2;
-                        if (i17 != 2) {
-                            i16 = 19;
-                        } else {
-                            i16 = 21;
-                        }
-                    } else {
-                        i10 = 2;
-                    }
-                    bVar.setGravity(i16);
-                    int i18 = Build.VERSION.SDK_INT;
-                    int i19 = mediaEntity.textAlign;
-                    if (i19 != 1) {
-                        int i20 = 3;
-                        if (i19 == i10 ? LocaleController.isRTL : !LocaleController.isRTL) {
-                            i20 = 2;
-                        }
-                        i11 = i20;
-                    } else {
-                        i11 = 4;
-                    }
-                    bVar.setTextAlignment(i11);
-                    bVar.setHorizontallyScrolling(false);
-                    bVar.setImeOptions(268435456);
-                    bVar.setFocusableInTouchMode(true);
-                    bVar.setEnabled(false);
-                    bVar.setInputType(bVar.getInputType() | 16384);
-                    if (i18 >= 23) {
-                        bVar.setBreakStrategy(0);
-                    }
-                    bVar.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-                    int i21 = mediaEntity.color;
-                    byte b11 = mediaEntity.subType;
-                    int i22 = -1;
-                    if (b11 == 0) {
-                        bVar.setFrameColor(i21);
-                        i21 = AndroidUtilities.computePerceivedBrightness(mediaEntity.color) >= 0.721f ? -16777216 : -1;
-                    } else if (b11 == 1) {
-                        if (AndroidUtilities.computePerceivedBrightness(i21) >= 0.25f) {
-                            i12 = -1728053248;
-                        } else {
-                            i12 = -1711276033;
-                        }
-                        bVar.setFrameColor(i12);
-                    } else if (b11 == 2) {
-                        if (AndroidUtilities.computePerceivedBrightness(i21) >= 0.25f) {
-                            i22 = -16777216;
-                        }
-                        bVar.setFrameColor(i22);
-                    } else {
-                        bVar.setFrameColor(0);
-                    }
-                    bVar.setTextColor(i21);
-                    bVar.setCursorColor(i21);
-                    bVar.setHandlesColor(i21);
-                    bVar.setHighlightColor(org.telegram.ui.ActionBar.g6.l1(0.4f, i21));
-                    mediaEntity.view = bVar;
-                    t9Var = bVar;
-                } else {
-                    t9Var = null;
-                }
-                if (t9Var != null) {
-                    addView(t9Var);
-                    t9Var.setRotation((float) (((-mediaEntity.rotation) / 3.141592653589793d) * 180.0d));
-                    this.f27055b.put(t9Var, mediaEntity);
-                }
-            }
-        }
-    }
-
-    public final void c() {
-        int childCount = getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            getChildAt(i10).setVisibility(0);
-        }
-        setBackground(this.d);
+        this.f23656a.Q(p2Var, z4);
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+    public final void e(int[] iArr) {
+        if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
+            iArr[0] = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(530.0f), View.MeasureSpec.getSize(iArr[0])), 1073741824);
+            iArr[1] = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(528.0f), View.MeasureSpec.getSize(iArr[1])), 1073741824);
+        }
+    }
+
+    @Override
+    public final boolean h(org.telegram.ui.ActionBar.p2 p2Var, ActionBarLayout actionBarLayout) {
+        return true;
+    }
+
+    @Override
+    public final boolean j() {
         return false;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (!this.f27057e) {
-            return false;
+    public final boolean k(ActionBarLayout actionBarLayout) {
+        if (actionBarLayout.getFragmentStack().size() <= 1) {
+            dismiss();
         }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    public Bitmap getBitmap() {
-        return this.f27054a;
-    }
-
-    public Bitmap getThumb() {
-        float measuredWidth = getMeasuredWidth();
-        float measuredHeight = getMeasuredHeight();
-        float max = Math.max(measuredWidth / AndroidUtilities.dp(120.0f), measuredHeight / AndroidUtilities.dp(120.0f));
-        Bitmap createBitmap = Bitmap.createBitmap((int) (measuredWidth / max), (int) (measuredHeight / max), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
-        float f9 = 1.0f / max;
-        canvas.scale(f9, f9);
-        draw(canvas);
-        return createBitmap;
+        return true;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return false;
+    public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.c5 c5Var) {
+        org.telegram.ui.ActionBar.p2 p2Var = c5Var.f19549a;
+        return true;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14;
-        int i15;
-        int i16;
-        int measuredHeight;
-        if (this.f27055b != null) {
-            int measuredWidth = getMeasuredWidth();
-            int measuredHeight2 = getMeasuredHeight();
-            int childCount = getChildCount();
-            for (int i17 = 0; i17 < childCount; i17++) {
-                View childAt = getChildAt(i17);
-                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) this.f27055b.get(childAt);
-                if (mediaEntity != null) {
-                    int measuredWidth2 = childAt.getMeasuredWidth();
-                    int measuredHeight3 = childAt.getMeasuredHeight();
-                    if (childAt instanceof bg.b) {
-                        if (mediaEntity.customTextView) {
-                            i14 = ((int) (((mediaEntity.width / 2.0f) + mediaEntity.f19644x) * measuredWidth)) - (childAt.getMeasuredWidth() / 2);
-                            i16 = (int) (((mediaEntity.height / 2.0f) + mediaEntity.f19645y) * measuredHeight2);
-                            measuredHeight = childAt.getMeasuredHeight() / 2;
-                        } else {
-                            i14 = ((int) (measuredWidth * mediaEntity.textViewX)) - (childAt.getMeasuredWidth() / 2);
-                            i16 = (int) (measuredHeight2 * mediaEntity.textViewY);
-                            measuredHeight = childAt.getMeasuredHeight() / 2;
-                        }
-                        i15 = i16 - measuredHeight;
-                    } else {
-                        i14 = (int) (measuredWidth * mediaEntity.f19644x);
-                        i15 = (int) (measuredHeight2 * mediaEntity.f19645y);
-                    }
-                    childAt.layout(i14, i15, measuredWidth2 + i14, measuredHeight3 + i15);
-                }
+    public final void onBackPressed() {
+        if (this.f23658c.getVisibility() == 0) {
+            if (getOwnerActivity() != null) {
+                getOwnerActivity().finish();
+                return;
             }
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        float f9;
-        this.f27056c = true;
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        if (this.f27055b != null) {
-            int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
-            int childCount = getChildCount();
-            for (int i12 = 0; i12 < childCount; i12++) {
-                View childAt = getChildAt(i12);
-                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) this.f27055b.get(childAt);
-                if (mediaEntity != null) {
-                    if (childAt instanceof bg.b) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(mediaEntity.viewWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-                        if (mediaEntity.customTextView) {
-                            f9 = (mediaEntity.width * getMeasuredWidth()) / mediaEntity.viewWidth;
-                        } else {
-                            f9 = mediaEntity.scale * ((mediaEntity.textViewWidth * measuredWidth) / mediaEntity.viewWidth);
-                        }
-                        childAt.setScaleX(f9);
-                        childAt.setScaleY(f9);
-                    } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec((int) (measuredWidth * mediaEntity.width), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (measuredHeight * mediaEntity.height), 1073741824));
-                    }
-                }
-            }
-        }
-        this.f27056c = false;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f27056c) {
             return;
         }
-        super.requestLayout();
+        ActionBarLayout actionBarLayout = this.f23656a;
+        actionBarLayout.G();
+        if (actionBarLayout.getFragmentStack().size() <= 1) {
+            dismiss();
+        }
     }
 
     @Override
-    public void setAlpha(float f9) {
-        super.setAlpha(f9);
-        BitmapDrawable bitmapDrawable = this.d;
-        if (bitmapDrawable != null) {
-            bitmapDrawable.setAlpha((int) (255.0f * f9));
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        Window window = getWindow();
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 30) {
+            window.addFlags(-2147483392);
+        } else {
+            window.addFlags(-2147417856);
         }
-        int childCount = getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = getChildAt(i10);
-            if (childAt != null && childAt.getParent() == this) {
-                childAt.setAlpha(f9);
+        window.setWindowAnimations(R.style.DialogNoAnimation);
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        attributes.width = -1;
+        attributes.gravity = 51;
+        attributes.dimAmount = 0.0f;
+        attributes.flags &= -3;
+        attributes.softInputMode = 16;
+        attributes.height = -1;
+        boolean z4 = true;
+        if (i10 >= 28) {
+            attributes.layoutInDisplayCutoutMode = 1;
+        }
+        window.setAttributes(attributes);
+        if (i10 >= 23) {
+            window.setStatusBarColor(0);
+        }
+        FrameLayout frameLayout = this.f23657b;
+        frameLayout.setSystemUiVisibility(1280);
+        frameLayout.setOnApplyWindowInsetsListener(new org.telegram.ui.ActionBar.h3(2));
+        if (i10 >= 26) {
+            if (i0.a.f(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19906d6, true)) < 0.9d) {
+                z4 = false;
             }
+            AndroidUtilities.setLightNavigationBar(this, z4);
         }
     }
 
-    public void setBitmap(Bitmap bitmap) {
-        this.f27054a = bitmap;
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
-        this.d = bitmapDrawable;
-        setBackground(bitmapDrawable);
+    @Override
+    public final void onStart() {
+        super.onStart();
+        Context context = getContext();
+        if ((context instanceof ContextWrapper) && !(context instanceof LaunchActivity)) {
+            context = ((ContextWrapper) context).getBaseContext();
+        }
+        if (context instanceof LaunchActivity) {
+            ((LaunchActivity) context).f31660y0.add(this.f23658c);
+        }
+    }
+
+    @Override
+    public final void onStop() {
+        super.onStop();
+        Context context = getContext();
+        if ((context instanceof ContextWrapper) && !(context instanceof LaunchActivity)) {
+            context = ((ContextWrapper) context).getBaseContext();
+        }
+        if (context instanceof LaunchActivity) {
+            ((LaunchActivity) context).f31660y0.remove(this.f23658c);
+        }
+    }
+
+    @Override
+    public final void a(float f10) {
+    }
+
+    @Override
+    public final void b(ActionBarLayout actionBarLayout, boolean z4) {
     }
 }

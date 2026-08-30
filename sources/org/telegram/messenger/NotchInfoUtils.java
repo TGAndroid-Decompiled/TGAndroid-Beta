@@ -22,9 +22,9 @@ public class NotchInfoUtils {
     }
 
     public static NotchInfo getInfo(Context context) {
-        float f9;
+        float f10;
         int i10;
-        boolean z10;
+        boolean z4;
         if (Build.VERSION.SDK_INT < 28) {
             return null;
         }
@@ -38,38 +38,38 @@ public class NotchInfoUtils {
             String trim = string.trim();
             DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
             int i11 = displayMetrics.widthPixels;
-            float f10 = displayMetrics.density;
+            float f11 = displayMetrics.density;
             int i12 = 3;
             int i13 = 5;
-            boolean z11 = false;
+            boolean z10 = false;
             if (trim.endsWith("@right")) {
-                f9 = i11;
+                f10 = i11;
                 trim = trim.substring(0, trim.length() - 6).trim();
                 i10 = 5;
             } else if (trim.endsWith("@left")) {
                 trim = trim.substring(0, trim.length() - 5).trim();
-                f9 = 0.0f;
+                f10 = 0.0f;
                 i10 = 3;
             } else {
-                f9 = i11 / 2.0f;
+                f10 = i11 / 2.0f;
                 i10 = 17;
             }
             boolean endsWith = trim.endsWith("@dp");
             if (endsWith) {
-                trim = com.google.android.recaptcha.internal.a.m(trim, 3, 0);
+                trim = e2.c.j(trim, 3, 0);
             }
             if (trim.contains("@bottom")) {
                 trim = trim.split("@bottom", 2)[0].trim();
             }
             try {
-                i0.d[] c3 = h7.c8.c(trim);
+                i0.d[] c3 = j7.y7.c(trim);
                 Path path = new Path();
                 i0.d.b(c3, path);
                 Matrix matrix = new Matrix();
                 if (endsWith) {
-                    matrix.postScale(f10, f10);
+                    matrix.postScale(f11, f11);
                 }
-                matrix.postTranslate(f9, 0.0f);
+                matrix.postTranslate(f10, 0.0f);
                 path.transform(matrix);
                 notchInfo.path = path;
                 RectF rectF = new RectF();
@@ -88,11 +88,11 @@ public class NotchInfoUtils {
                 notchInfo.gravity = i13;
                 notchInfo.rawPath = trim;
                 if (!trim.contains("C") && !trim.contains("S") && !trim.contains("Q")) {
-                    z10 = false;
+                    z4 = false;
                 } else {
-                    z10 = true;
+                    z4 = true;
                 }
-                notchInfo.isAccurate = z10;
+                notchInfo.isAccurate = z4;
                 notchInfo.isLikelyCircle = (rectF.width() <= ((float) AndroidUtilities.dp(32.0f)) || rectF.width() <= rectF.height()) ? true : true;
                 return notchInfo;
             } catch (Throwable th2) {

@@ -1,35 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.AndroidUtilities;
-public final class g1 implements DialogInterface.OnShowListener {
-    public final int f28706a;
-    public final EditTextBoldCursor f28707b;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.ui.LanguageSelectActivity;
+import org.telegram.ui.LaunchActivity;
+public final class g1 implements org.telegram.ui.ActionBar.c2 {
+    public final int f25012a;
+    public final LaunchActivity f25013b;
 
-    public g1(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f28706a = i10;
-        this.f28707b = editTextBoldCursor;
+    public g1(LaunchActivity launchActivity, int i10) {
+        this.f25012a = i10;
+        this.f25013b = launchActivity;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f28706a) {
+    public final void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f25012a) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = this.f28707b;
-                editTextBoldCursor.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor);
+                this.f25013b.p0(new LanguageSelectActivity());
                 return;
             case 1:
-                EditTextBoldCursor editTextBoldCursor2 = this.f28707b;
-                editTextBoldCursor2.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor2);
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new s1(0, this.f28707b));
+                this.f25013b.p0(new org.telegram.ui.b7());
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new s1(6, this.f28707b));
-                return;
+                LaunchActivity launchActivity = this.f25013b;
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    launchActivity.startActivity(intent);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
         }
     }
 }

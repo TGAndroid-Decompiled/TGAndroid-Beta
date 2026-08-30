@@ -11,7 +11,7 @@ public abstract class i3 {
 
     public static OnBackInvokedCallback b(Runnable runnable) {
         Objects.requireNonNull(runnable);
-        return new androidx.activity.q(runnable, 3);
+        return new androidx.activity.r(runnable, 2);
     }
 
     public static void c(Object obj, Object obj2) {

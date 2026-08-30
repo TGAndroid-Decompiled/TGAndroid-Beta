@@ -1,117 +1,47 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
+import android.graphics.Point;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-public final class t61 {
-    public final boolean f32883a;
-    public final int f32884b;
-    public final int f32885c;
-    public final ArrayList d;
+public final class t61 implements View.OnLayoutChangeListener {
+    public Boolean f28912a;
+    public boolean f28913b;
+    public final n7.qa f28914c;
 
-    public t61(v61 v61Var) {
-        ArrayList arrayList = new ArrayList();
-        this.d = arrayList;
-        this.f32883a = v61Var.f33473b;
-        this.f32884b = v61Var.f33478i;
-        this.f32885c = v61Var.f33479j;
-        arrayList.add(v61Var);
+    public t61(n7.qa qaVar, View view) {
+        this.f28914c = qaVar;
+        o1.j jVar = new o1.j(view, o1.h.f16182n, 0.0f);
+        qaVar.f14703c = jVar;
+        jVar.f16198u.a(1.0f);
+        ((o1.j) qaVar.f14703c).f16198u.b(350.0f);
     }
 
-    public final v61 a() {
-        ArrayList arrayList = this.d;
-        v61 v61Var = null;
-        if (arrayList.isEmpty()) {
-            return null;
+    @Override
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        boolean z4;
+        Point point = AndroidUtilities.displaySize;
+        if (point.x > point.y) {
+            z4 = true;
+        } else {
+            z4 = false;
         }
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            v61 v61Var2 = (v61) obj;
-            if (v61Var2.b()) {
-                return v61Var2;
+        Boolean bool = this.f28912a;
+        if (bool == null || bool.booleanValue() != z4) {
+            this.f28912a = Boolean.valueOf(z4);
+            this.f28913b = true;
+        }
+        if (i15 != 0 && i15 != i11 && !this.f28913b) {
+            n7.qa qaVar = this.f28914c;
+            ((o1.j) qaVar.f14703c).c();
+            if (view.getVisibility() != 0) {
+                view.setTranslationY(0.0f);
+                return;
             }
+            ((o1.j) qaVar.f14703c).f16198u.f16204i = 0.0f;
+            view.setTranslationY((i15 - i11) + 0.0f);
+            ((o1.j) qaVar.f14703c).f();
+            return;
         }
-        long j10 = Long.MAX_VALUE;
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            v61 v61Var3 = (v61) arrayList.get(i11);
-            if (v61Var3.f33480k < j10 && x61.Y(v61Var3.f33482m)) {
-                j10 = v61Var3.f33480k;
-                v61Var = v61Var3;
-            }
-        }
-        if (v61Var != null) {
-            return v61Var;
-        }
-        return (v61) arrayList.get(0);
-    }
-
-    public final int b() {
-        int min = Math.min(this.f32884b, this.f32885c);
-        if (Math.abs(min - 2160) < 55) {
-            return 2160;
-        }
-        if (Math.abs(min - 1440) < 55) {
-            return 1440;
-        }
-        if (Math.abs(min - 1080) < 55) {
-            return 1080;
-        }
-        if (Math.abs(min - 720) < 55) {
-            return 720;
-        }
-        if (Math.abs(min - 480) < 55) {
-            return 480;
-        }
-        if (Math.abs(min - 360) < 55) {
-            return 360;
-        }
-        if (Math.abs(min - 240) < 55) {
-            return 240;
-        }
-        if (Math.abs(min - 144) < 55) {
-            return 144;
-        }
-        return min;
-    }
-
-    public final String toString() {
-        String str;
-        boolean z10 = SharedConfig.debugVideoQualities;
-        boolean z11 = this.f32883a;
-        String str2 = "";
-        if (z10) {
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f32884b);
-            sb2.append("x");
-            sb2.append(this.f32885c);
-            if (!z11) {
-                str = "";
-            } else {
-                str = " (" + LocaleController.getString(R.string.QualitySource) + ")";
-            }
-            sb2.append(str);
-            sb2.append("\n");
-            ArrayList arrayList = this.d;
-            sb2.append(AndroidUtilities.formatFileSize((long) ((v61) arrayList.get(0)).f33481l).replace(" ", ""));
-            sb2.append("/s");
-            if (((v61) arrayList.get(0)).f33482m != null) {
-                str2 = ", " + ((v61) arrayList.get(0)).f33482m;
-            }
-            sb2.append(str2);
-            return sb2.toString();
-        }
-        StringBuilder sb3 = new StringBuilder();
-        sb3.append(b());
-        sb3.append("p");
-        if (z11) {
-            str2 = " (" + LocaleController.getString(R.string.QualitySource) + ")";
-        }
-        sb3.append(str2);
-        return sb3.toString();
+        this.f28913b = false;
     }
 }

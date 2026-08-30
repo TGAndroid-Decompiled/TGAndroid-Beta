@@ -43,7 +43,7 @@ public interface a extends MenuItem {
     MenuItem setNumericShortcut(char c3, int i10);
 
     @Override
-    MenuItem setShortcut(char c3, char c6, int i10, int i11);
+    MenuItem setShortcut(char c3, char c10, int i10, int i11);
 
     @Override
     a setTooltipText(CharSequence charSequence);

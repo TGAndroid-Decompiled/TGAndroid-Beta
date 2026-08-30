@@ -1,25 +1,30 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.messenger.Utilities;
-public final class s implements Utilities.Callback2 {
-    public final int f22008a;
-    public final VoIPService f22009b;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+public final class s implements Runnable {
+    public final int f18833a;
+    public final TLObject f18834b;
+    public final ArrayList f18835c;
+    public final ArrayList d;
+    public final Runnable e;
 
-    public s(VoIPService voIPService, int i10) {
-        this.f22008a = i10;
-        this.f22009b = voIPService;
+    public s(TLObject tLObject, ArrayList arrayList, ArrayList arrayList2, Runnable runnable, int i10) {
+        this.f18833a = i10;
+        this.f18834b = tLObject;
+        this.f18835c = arrayList;
+        this.d = arrayList2;
+        this.e = runnable;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        Boolean bool = (Boolean) obj;
-        Boolean bool2 = (Boolean) obj2;
-        switch (this.f22008a) {
+    public final void run() {
+        switch (this.f18833a) {
             case 0:
-                this.f22009b.lambda$switchToSpeaker$91(bool, bool2);
+                VoIPService.lambda$startConferenceGroupCall$48(this.f18834b, this.f18835c, this.d, this.e);
                 return;
             default:
-                this.f22009b.lambda$toggleSpeakerphoneOrShowRouteSheet$95(bool, bool2);
+                VoIPService.lambda$startConferenceGroupCall$40(this.f18834b, this.f18835c, this.d, this.e);
                 return;
         }
     }

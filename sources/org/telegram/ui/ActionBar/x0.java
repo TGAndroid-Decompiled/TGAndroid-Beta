@@ -5,77 +5,77 @@ import android.view.View;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 public final class x0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f23958a;
-    public final Object f23959b;
+    public final int f20723a;
+    public final Object f20724b;
 
     public x0(Object obj, int i10) {
-        this.f23958a = i10;
-        this.f23959b = obj;
+        this.f20723a = i10;
+        this.f20724b = obj;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f23958a) {
+        switch (this.f20723a) {
             case 0:
-                d1 d1Var = (d1) this.f23959b;
+                d1 d1Var = (d1) this.f20724b;
                 d1Var.getClass();
-                d1Var.f22835a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d1Var.f19573a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 d1Var.invalidate();
                 return;
             case 1:
-                g1 g1Var = (g1) this.f23959b;
+                g1 g1Var = (g1) this.f20724b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 g1Var.setTextColor(i0.a.d(floatValue, -1, -9194260));
                 g1Var.setIconColor(i0.a.d(floatValue, -1, -9194260));
                 return;
             case 2:
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f23959b;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f20724b;
                 int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 for (int i10 = 0; i10 < itemsCount; i10++) {
-                    View childAt = actionBarPopupWindow$ActionBarPopupWindowLayout.H.getChildAt(i10);
-                    if (!(childAt instanceof l1)) {
+                    View childAt = actionBarPopupWindow$ActionBarPopupWindowLayout.I.getChildAt(i10);
+                    if (!(childAt instanceof m1)) {
                         float cascade = AndroidUtilities.cascade(floatValue2, actionBarPopupWindow$ActionBarPopupWindowLayout.v ? (itemsCount - 1) - i10 : i10, itemsCount, 4.0f);
-                        float f9 = 1.0f;
+                        float f10 = 1.0f;
                         childAt.setTranslationY((1.0f - cascade) * AndroidUtilities.dp(-6.0f));
                         if (!childAt.isEnabled()) {
-                            f9 = 0.5f;
+                            f10 = 0.5f;
                         }
-                        childAt.setAlpha(cascade * f9);
+                        childAt.setAlpha(cascade * f10);
                     }
                 }
                 return;
             case 3:
-                q1 q1Var = (q1) this.f23959b;
-                if (!q1Var.f23739e) {
+                r1 r1Var = (r1) this.f20724b;
+                if (!r1Var.e) {
                     float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                    if (q1Var.f23751r) {
+                    if (r1Var.f20558r) {
                         floatValue3 = 1.0f - floatValue3;
                     }
-                    float z10 = (int) com.google.android.recaptcha.internal.a.z(1.0f, floatValue3, q1Var.f23750q, q1Var.f23749p * floatValue3);
-                    if (!(q1Var instanceof kg.o)) {
-                        q1Var.f23736a.setTranslationY(z10);
+                    float w10 = (int) e2.c.w(1.0f, floatValue3, r1Var.f20557q, r1Var.f20556p * floatValue3);
+                    if (!(r1Var instanceof mg.o)) {
+                        r1Var.f20544a.setTranslationY(w10);
                     }
-                    q1Var.e(-z10, floatValue3, q1Var.f23752s);
+                    r1Var.e(-w10, floatValue3, r1Var.f20559s);
                     return;
                 }
                 return;
             case 4:
-                m3 m3Var = (m3) this.f23959b;
-                m3Var.getClass();
-                m3Var.C = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                Iterator it = m3Var.E.iterator();
+                n3 n3Var = (n3) this.f20724b;
+                n3Var.getClass();
+                n3Var.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                Iterator it = n3Var.F.iterator();
                 while (it.hasNext()) {
                     ((Runnable) it.next()).run();
                 }
-                m3Var.invalidate();
+                n3Var.invalidate();
                 return;
             default:
-                u3 u3Var = (u3) this.f23959b;
-                u3Var.f23840i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                v3 v3Var = u3Var.f23835b;
-                if (v3Var != null) {
-                    v3Var.invalidate();
+                v3 v3Var = (v3) this.f20724b;
+                v3Var.f20621i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                w3 w3Var = v3Var.f20617b;
+                if (w3Var != null) {
+                    w3Var.invalidate();
                     return;
                 }
                 return;

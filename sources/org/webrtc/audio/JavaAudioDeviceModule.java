@@ -173,8 +173,8 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
             return this;
         }
 
-        public Builder setEnableVolumeLogger(boolean z10) {
-            this.enableVolumeLogger = z10;
+        public Builder setEnableVolumeLogger(boolean z4) {
+            this.enableVolumeLogger = z4;
             return this;
         }
 
@@ -207,36 +207,36 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
             return this;
         }
 
-        public Builder setUseHardwareAcousticEchoCanceler(boolean z10) {
-            if (z10 && !JavaAudioDeviceModule.isBuiltInAcousticEchoCancelerSupported()) {
+        public Builder setUseHardwareAcousticEchoCanceler(boolean z4) {
+            if (z4 && !JavaAudioDeviceModule.isBuiltInAcousticEchoCancelerSupported()) {
                 Logging.e("JavaAudioDeviceModule", "HW AEC not supported");
-                z10 = false;
+                z4 = false;
             }
-            this.useHardwareAcousticEchoCanceler = z10;
+            this.useHardwareAcousticEchoCanceler = z4;
             return this;
         }
 
-        public Builder setUseHardwareNoiseSuppressor(boolean z10) {
-            if (z10 && !JavaAudioDeviceModule.isBuiltInNoiseSuppressorSupported()) {
+        public Builder setUseHardwareNoiseSuppressor(boolean z4) {
+            if (z4 && !JavaAudioDeviceModule.isBuiltInNoiseSuppressorSupported()) {
                 Logging.e("JavaAudioDeviceModule", "HW NS not supported");
-                z10 = false;
+                z4 = false;
             }
-            this.useHardwareNoiseSuppressor = z10;
+            this.useHardwareNoiseSuppressor = z4;
             return this;
         }
 
-        public Builder setUseLowLatency(boolean z10) {
-            this.useLowLatency = z10;
+        public Builder setUseLowLatency(boolean z4) {
+            this.useLowLatency = z4;
             return this;
         }
 
-        public Builder setUseStereoInput(boolean z10) {
-            this.useStereoInput = z10;
+        public Builder setUseStereoInput(boolean z4) {
+            this.useStereoInput = z4;
             return this;
         }
 
-        public Builder setUseStereoOutput(boolean z10) {
-            this.useStereoOutput = z10;
+        public Builder setUseStereoOutput(boolean z4) {
+            this.useStereoOutput = z4;
             return this;
         }
 
@@ -271,7 +271,7 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
         return WebRtcAudioEffects.isNoiseSuppressorSupported();
     }
 
-    private static native long nativeCreateAudioDeviceModule(Context context, AudioManager audioManager, WebRtcAudioRecord webRtcAudioRecord, WebRtcAudioTrack webRtcAudioTrack, int i10, int i11, boolean z10, boolean z11);
+    private static native long nativeCreateAudioDeviceModule(Context context, AudioManager audioManager, WebRtcAudioRecord webRtcAudioRecord, WebRtcAudioTrack webRtcAudioTrack, int i10, int i11, boolean z4, boolean z10);
 
     @Override
     public long getNativeAudioDeviceModulePointer() {
@@ -305,15 +305,15 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
     }
 
     @Override
-    public void setMicrophoneMute(boolean z10) {
-        Logging.d("JavaAudioDeviceModule", "setMicrophoneMute: " + z10);
-        this.audioInput.setMicrophoneMute(z10);
+    public void setMicrophoneMute(boolean z4) {
+        Logging.d("JavaAudioDeviceModule", "setMicrophoneMute: " + z4);
+        this.audioInput.setMicrophoneMute(z4);
     }
 
     @Override
-    public boolean setNoiseSuppressorEnabled(boolean z10) {
-        Logging.d("JavaAudioDeviceModule", "setNoiseSuppressorEnabled: " + z10);
-        return this.audioInput.setNoiseSuppressorEnabled(z10);
+    public boolean setNoiseSuppressorEnabled(boolean z4) {
+        Logging.d("JavaAudioDeviceModule", "setNoiseSuppressorEnabled: " + z4);
+        return this.audioInput.setNoiseSuppressorEnabled(z4);
     }
 
     public void setPreferredInputDevice(AudioDeviceInfo audioDeviceInfo) {
@@ -322,17 +322,17 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
     }
 
     @Override
-    public final boolean setPreferredMicrophoneFieldDimension(float f9) {
-        return a.b(this, f9);
+    public final boolean setPreferredMicrophoneFieldDimension(float f10) {
+        return a.b(this, f10);
     }
 
     @Override
-    public void setSpeakerMute(boolean z10) {
-        Logging.d("JavaAudioDeviceModule", "setSpeakerMute: " + z10);
-        this.audioOutput.setSpeakerMute(z10);
+    public void setSpeakerMute(boolean z4) {
+        Logging.d("JavaAudioDeviceModule", "setSpeakerMute: " + z4);
+        this.audioOutput.setSpeakerMute(z4);
     }
 
-    private JavaAudioDeviceModule(Context context, AudioManager audioManager, WebRtcAudioRecord webRtcAudioRecord, WebRtcAudioTrack webRtcAudioTrack, int i10, int i11, boolean z10, boolean z11) {
+    private JavaAudioDeviceModule(Context context, AudioManager audioManager, WebRtcAudioRecord webRtcAudioRecord, WebRtcAudioTrack webRtcAudioTrack, int i10, int i11, boolean z4, boolean z10) {
         this.nativeLock = new Object();
         this.context = context;
         this.audioManager = audioManager;
@@ -340,7 +340,7 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
         this.audioOutput = webRtcAudioTrack;
         this.inputSampleRate = i10;
         this.outputSampleRate = i11;
-        this.useStereoInput = z10;
-        this.useStereoOutput = z11;
+        this.useStereoInput = z4;
+        this.useStereoOutput = z10;
     }
 }

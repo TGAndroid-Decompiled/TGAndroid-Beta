@@ -1,34 +1,28 @@
 package org.telegram.ui;
-public final class ra implements Runnable {
-    public final int f42018a;
-    public final ob f42019b;
 
-    public ra(ob obVar, int i10) {
-        this.f42018a = i10;
-        this.f42019b = obVar;
+import android.view.View;
+import java.util.ArrayList;
+public final class ra implements Runnable {
+    public final sb f37955a;
+    public final ArrayList f37956b;
+    public final ArrayList f37957c;
+    public final ArrayList d;
+    public final View e;
+    public final float f37958f;
+    public final float h;
+
+    public ra(sb sbVar, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, View view, float f10, float f11) {
+        this.f37955a = sbVar;
+        this.f37956b = arrayList;
+        this.f37957c = arrayList2;
+        this.d = arrayList3;
+        this.e = view;
+        this.f37958f = f10;
+        this.h = f11;
     }
 
     @Override
     public final void run() {
-        switch (this.f42018a) {
-            case 0:
-                ob obVar = this.f42019b;
-                obVar.G0 = Integer.MAX_VALUE;
-                obVar.H0 = -1;
-                obVar.e1();
-                obVar.I0 = null;
-                return;
-            case 1:
-                ob obVar2 = this.f42019b;
-                obVar2.X0(false);
-                obVar2.E.l();
-                return;
-            case 2:
-                this.f42019b.W0();
-                return;
-            default:
-                this.f42019b.U0(2);
-                return;
-        }
+        sb.V(this.f37955a, this.f37956b, this.f37957c, this.d, this.e, this.f37958f, this.h);
     }
 }

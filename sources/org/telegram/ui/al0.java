@@ -1,341 +1,226 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Bitmaps;
-import org.telegram.messenger.FileLog;
-public final class al0 extends org.telegram.ui.ActionBar.k {
-    public final int f36567a;
-    public final Object f36568b;
+import android.graphics.drawable.Drawable;
+import android.media.AudioRecordingConfiguration;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.WindowInsets;
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import org.telegram.messenger.GenericProvider;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+public final class al0 implements org.telegram.ui.Components.sc0, org.telegram.ui.ActionBar.c2, Utilities.Callback2Return, org.telegram.ui.Components.tv0, j3.f, GenericProvider, androidx.car.app.utils.e, qg.c {
+    public final int f32666a;
 
-    public al0(Object obj, int i10) {
-        this.f36567a = i10;
-        this.f36568b = obj;
+    public al0(int i10) {
+        this.f32666a = i10;
+    }
+
+    public static AudioRecordingConfiguration b(Object obj) {
+        return (AudioRecordingConfiguration) obj;
+    }
+
+    public static WindowInsets d() {
+        return WindowInsets.CONSUMED;
+    }
+
+    public Constructor a() {
+        switch (this.f32666a) {
+            case 24:
+                if (!Boolean.TRUE.equals(Class.forName("com.google.android.exoplayer2.ext.flac.FlacLibrary").getMethod("isAvailable", null).invoke(null, null))) {
+                    return null;
+                }
+                return Class.forName("com.google.android.exoplayer2.ext.flac.FlacExtractor").asSubclass(r3.k.class).getConstructor(Integer.TYPE);
+            default:
+                return Class.forName("com.google.android.exoplayer2.decoder.midi.MidiExtractor").asSubclass(r3.k.class).getConstructor(null);
+        }
     }
 
     @Override
-    public final void b(int i10) {
-        Bitmap bitmap;
-        int i11 = this.f36567a;
-        Object obj = this.f36568b;
-        switch (i11) {
-            case 0:
-                if (i10 == -1) {
-                    ((PasskeysActivity) obj).finishFragment();
-                    return;
+    public j3.g c(Bundle bundle) {
+        p4.a[] aVarArr;
+        Uri[] uriArr;
+        switch (this.f32666a) {
+            case 13:
+                ArrayList parcelableArrayList = bundle.getParcelableArrayList(p4.b.f41044n);
+                if (parcelableArrayList == null) {
+                    aVarArr = new p4.a[0];
+                } else {
+                    p4.a[] aVarArr2 = new p4.a[parcelableArrayList.size()];
+                    for (int i10 = 0; i10 < parcelableArrayList.size(); i10++) {
+                        aVarArr2[i10] = (p4.a) p4.a.D.c((Bundle) parcelableArrayList.get(i10));
+                    }
+                    aVarArr = aVarArr2;
                 }
-                return;
+                return new p4.b(aVarArr, bundle.getLong(p4.b.f41045r, 0L), bundle.getLong(p4.b.f41046s, -9223372036854775807L), bundle.getInt(p4.b.v, 0));
+            default:
+                long j10 = bundle.getLong(p4.a.f41033r);
+                int i11 = bundle.getInt(p4.a.f41034s);
+                int i12 = bundle.getInt(p4.a.C);
+                ArrayList parcelableArrayList2 = bundle.getParcelableArrayList(p4.a.v);
+                int[] intArray = bundle.getIntArray(p4.a.f41035w);
+                long[] longArray = bundle.getLongArray(p4.a.f41036x);
+                long j11 = bundle.getLong(p4.a.f41037y);
+                boolean z4 = bundle.getBoolean(p4.a.B);
+                int[] iArr = intArray;
+                if (iArr == null) {
+                    iArr = new int[0];
+                }
+                if (parcelableArrayList2 == null) {
+                    uriArr = new Uri[0];
+                } else {
+                    uriArr = (Uri[]) parcelableArrayList2.toArray(new Uri[0]);
+                }
+                if (longArray == null) {
+                    longArray = new long[0];
+                }
+                long[] jArr = longArray;
+                return new p4.a(j10, i11, i12, iArr, uriArr, jArr, j11, z4);
+        }
+    }
+
+    @Override
+    public void call() {
+        throw null;
+    }
+
+    @Override
+    public String e(int i10) {
+        if (i10 == 0) {
+            return LocaleController.getString(R.string.AutoLockDisabled);
+        }
+        if (i10 == 1) {
+            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 1, new Object[0]));
+        }
+        if (i10 == 2) {
+            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 5, new Object[0]));
+        }
+        if (i10 == 3) {
+            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 1, new Object[0]));
+        }
+        if (i10 == 4) {
+            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 5, new Object[0]));
+        }
+        return "";
+    }
+
+    @Override
+    public int g(org.telegram.ui.ActionBar.f6 f6Var, boolean z4) {
+        float f10;
+        float f11;
+        float f12;
+        float f13;
+        switch (this.f32666a) {
+            case 26:
+                if (LiteMode.isEnabled(262144)) {
+                    f10 = 0.85f;
+                } else {
+                    f10 = 0.76f;
+                }
+                return rg.b.l(f10, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19906d6, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Sd, f6Var));
+            case 27:
+                if (!LiteMode.isEnabled(256)) {
+                    return org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G8, false);
+                }
+                int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G8, false);
+                if (z4) {
+                    f11 = 0.85f;
+                } else {
+                    f11 = 0.825f;
+                }
+                return org.telegram.ui.ActionBar.j6.l1(f11, w02);
+            case 28:
+                if (LiteMode.isEnabled(262144)) {
+                    f12 = 0.85f;
+                } else {
+                    f12 = 0.76f;
+                }
+                return rg.b.l(f12, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19906d6, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Zk, f6Var));
+            default:
+                if (LiteMode.isEnabled(262144)) {
+                    f13 = 0.85f;
+                } else {
+                    f13 = 0.76f;
+                }
+                return org.telegram.ui.ActionBar.j6.l1(f13, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Fi, f6Var));
+        }
+    }
+
+    @Override
+    public void h(int i10) {
+        SharedConfig.proxyRotationTimeout = i10;
+        SharedConfig.saveConfig();
+    }
+
+    @Override
+    public void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f32666a) {
             case 1:
-                kp0 kp0Var = (kp0) obj;
-                if (i10 == -1) {
-                    kp0Var.finishFragment();
-                    return;
-                } else if (i10 == 1) {
-                    if (kp0Var.f39990c != null && !kp0Var.f39992f) {
-                        ip0 ip0Var = kp0Var.d;
-                        float f9 = ip0Var.f39308f - ip0Var.f39313x;
-                        float f10 = ip0Var.v;
-                        float f11 = (ip0Var.h - ip0Var.f39314y) / ip0Var.f39312w;
-                        float f12 = ip0Var.d / f10;
-                        float f13 = ip0Var.f39307e / f10;
-                        kp0 kp0Var2 = ip0Var.D;
-                        int width = (int) ((f9 / f10) * kp0Var2.f39988a.getWidth());
-                        int height = (int) (f11 * kp0Var2.f39988a.getHeight());
-                        int width2 = (int) (f12 * kp0Var2.f39988a.getWidth());
-                        int width3 = (int) (f13 * kp0Var2.f39988a.getWidth());
-                        if (width < 0) {
-                            width = 0;
-                        }
-                        if (height < 0) {
-                            height = 0;
-                        }
-                        if (width + width2 > kp0Var2.f39988a.getWidth()) {
-                            width2 = kp0Var2.f39988a.getWidth() - width;
-                        }
-                        if (height + width3 > kp0Var2.f39988a.getHeight()) {
-                            width3 = kp0Var2.f39988a.getHeight() - height;
-                        }
-                        try {
-                            bitmap = Bitmaps.createBitmap(kp0Var2.f39988a, width, height, width2, width3);
-                        } catch (Throwable th2) {
-                            FileLog.e(th2);
-                            System.gc();
-                            try {
-                                bitmap = Bitmaps.createBitmap(kp0Var2.f39988a, width, height, width2, width3);
-                            } catch (Throwable th3) {
-                                FileLog.e(th3);
-                                bitmap = null;
-                            }
-                        }
-                        if (bitmap == kp0Var.f39988a) {
-                            kp0Var.f39991e = true;
-                        }
-                        ((org.telegram.ui.Components.s40) kp0Var.f39990c).s(false, bitmap, null);
-                        kp0Var.f39992f = true;
-                    }
-                    kp0Var.finishFragment();
-                    return;
-                } else {
-                    return;
-                }
+                Drawable[] drawableArr = PhotoViewer.Q8;
+                return;
             case 2:
-                zp0 zp0Var = (zp0) obj;
-                if (i10 == -1) {
-                    zp0Var.finishFragment();
-                    return;
-                } else if (i10 == 1) {
-                    boolean z10 = zp0Var.U;
-                    zp0Var.U = !z10;
-                    if (!z10) {
-                        zp0Var.G.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
-                    } else {
-                        zp0Var.G.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(50.0f));
-                    }
-                    zp0Var.G.B0();
-                    zp0Var.I.h1(0, 0);
-                    zp0Var.H.l();
-                    return;
-                } else if (i10 == 2) {
-                    yp0 yp0Var = zp0Var.f45290o0;
-                    if (yp0Var != null) {
-                        yp0Var.g();
-                    }
-                    zp0Var.finishFragment();
-                    return;
-                } else {
-                    return;
-                }
+                d2Var.dismiss();
+                return;
             case 3:
-                if (i10 == -1) {
-                    ((eq0) obj).finishFragment();
-                    return;
-                }
+                d2Var.dismiss();
                 return;
             case 4:
-                PopupNotificationActivity popupNotificationActivity = (PopupNotificationActivity) obj;
-                if (i10 == -1) {
-                    popupNotificationActivity.i();
-                    popupNotificationActivity.finish();
-                    return;
-                } else if (i10 == 1) {
-                    int i12 = PopupNotificationActivity.X;
-                    popupNotificationActivity.k();
-                    return;
-                } else if (i10 == 2) {
-                    int i13 = PopupNotificationActivity.X;
-                    popupNotificationActivity.p();
-                    return;
-                } else {
-                    return;
-                }
-            case 5:
-                pv0 pv0Var = (pv0) obj;
-                if (i10 == -1) {
-                    if (pv0Var.onBackPressed(true)) {
-                        pv0Var.finishFragment();
-                        return;
-                    }
-                    return;
-                } else if (i10 == 1) {
-                    pv0Var.Y();
-                    return;
-                } else {
-                    return;
-                }
-            case 6:
-                if (i10 == -1) {
-                    ((PremiumPreviewFragment) obj).finishFragment();
-                    return;
-                }
-                return;
             case 7:
-                PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) obj;
-                if (i10 == -1) {
-                    if (privacyControlActivity.v0(true)) {
-                        privacyControlActivity.finishFragment();
-                        return;
-                    }
-                    return;
-                } else if (i10 == 1) {
-                    privacyControlActivity.z0();
-                    return;
-                } else {
-                    return;
-                }
+            default:
+                d2Var.dismiss();
+                return;
+            case 5:
+                d2Var.dismiss();
+                return;
+            case 6:
+                d2Var.dismiss();
+                return;
             case 8:
-                if (i10 == -1) {
-                    ((PrivacySettingsActivity) obj).finishFragment();
-                    return;
-                }
+                d2Var.dismiss();
                 return;
             case 9:
-                if (i10 == -1) {
-                    ((bx0) obj).finishFragment();
-                    return;
-                }
+                d2Var.dismiss();
                 return;
             case 10:
-                if (i10 == -1) {
-                    ((ProxyListActivity) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 11:
-                if (i10 == -1) {
-                    ((c21) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 12:
-                if (i10 == -1) {
-                    ((i21) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 13:
-                if (i10 == -1) {
-                    ((b31) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 14:
-                if (i10 == -1) {
-                    ((SaveToGallerySettingsActivity) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 15:
-                if (i10 == -1) {
-                    ((SecretMediaViewer) obj).e(true, false);
-                    return;
-                }
-                return;
-            case 16:
-                if (i10 == -1) {
-                    ((SessionsActivity) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 17:
-                b81 b81Var = (b81) obj;
-                if (i10 == -1) {
-                    b81Var.finishFragment();
-                    return;
-                } else if (i10 == 2) {
-                    b81Var.l0(new org.telegram.ui.ActionBar.o2(null));
-                    return;
-                } else {
-                    return;
-                }
-            case 18:
-                if (i10 == -1) {
-                    ((t91) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 19:
-                StickersActivity stickersActivity = (StickersActivity) obj;
-                if (i10 == -1) {
-                    if (stickersActivity.onBackPressed(true)) {
-                        stickersActivity.finishFragment();
-                        return;
-                    }
-                    return;
-                }
-                StickersActivity.d0(stickersActivity, i10);
-                return;
-            case 20:
-                vc1 vc1Var = (vc1) obj;
-                if (i10 == -1) {
-                    vc1Var.finishFragment();
-                    return;
-                } else if (i10 == 1) {
-                    vc1.Y(vc1Var);
-                    return;
-                } else {
-                    return;
-                }
-            case 21:
-                if (i10 == -1) {
-                    ((md1) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 22:
-                if (i10 == -1) {
-                    ((ff1) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 23:
-                if (i10 == -1) {
-                    TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) obj;
-                    if (twoStepVerificationActivity.T >= 0) {
-                        twoStepVerificationActivity.x0();
-                        return;
-                    } else {
-                        twoStepVerificationActivity.finishFragment();
-                        return;
-                    }
-                }
-                return;
-            case 24:
-                UserInfoActivity userInfoActivity = (UserInfoActivity) obj;
-                if (i10 == -1) {
-                    if (userInfoActivity.onBackPressed(true)) {
-                        userInfoActivity.finishFragment();
-                        return;
-                    }
-                    return;
-                } else if (i10 == 1) {
-                    userInfoActivity.c0(true);
-                    return;
-                } else {
-                    return;
-                }
-            case 25:
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) obj;
-                if (i10 == -1) {
-                    usersSelectActivity.finishFragment();
-                    return;
-                } else if (i10 == 1) {
-                    usersSelectActivity.X();
-                    return;
-                } else {
-                    return;
-                }
-            case 26:
-                org.telegram.ui.web.d1 d1Var = (org.telegram.ui.web.d1) obj;
-                if (i10 == -1) {
-                    if (org.telegram.ui.web.d1.Y(d1Var).s()) {
-                        org.telegram.ui.web.d1.Z(d1Var).r();
-                        d1Var.f44003s.clear();
-                        AndroidUtilities.forEachViews((RecyclerView) d1Var.f31601a, (f5.d) new l4.x0(15));
-                        return;
-                    }
-                    d1Var.finishFragment();
-                    return;
-                }
-                return;
-            case 27:
-                if (i10 == -1) {
-                    ((ph.r) obj).finishFragment();
-                    return;
-                }
-                return;
-            case 28:
-                if (i10 == -1) {
-                    ((ph.p2) obj).q();
-                    return;
-                }
-                return;
-            default:
-                if (i10 == -1) {
-                    ((ph.x3) obj).finishFragment();
-                    return;
-                }
+                d2Var.dismiss();
                 return;
         }
+    }
+
+    @Override
+    public Object provide(Object obj) {
+        Integer num = (Integer) obj;
+        MediaController.AlbumEntry albumEntry = ph.a3.f41253g0;
+        return 0;
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2) {
+        Integer num = (Integer) obj;
+        Integer num2 = (Integer) obj2;
+        switch (this.f32666a) {
+            case 4:
+                if (num.intValue() == 0) {
+                    return lh.ja.X0(false, LocaleController.formatPluralStringComma("Stars", num2.intValue()), 0.66f, null);
+                }
+                return LocaleController.formatNumber(num2.intValue(), ',');
+            default:
+                if (num.intValue() == 0) {
+                    if (num2.intValue() == 0) {
+                        return LocaleController.getString(R.string.LiveStoryPricePerCommentFree);
+                    }
+                    return LocaleController.formatPluralStringComma("Stars", num2.intValue());
+                }
+                return "" + num2;
+        }
+    }
+
+    @Override
+    public void m() {
     }
 }

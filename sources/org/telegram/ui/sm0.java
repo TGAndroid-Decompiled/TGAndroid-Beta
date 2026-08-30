@@ -1,17 +1,26 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
 import android.view.View;
-public final class sm0 extends View {
-    public Paint f42429a;
-    public Paint f42430b;
-    public float f42431c;
+import org.telegram.messenger.AndroidUtilities;
+public final class sm0 extends ClickableSpan {
+    public final dn0 f38409a;
+
+    public sm0(dn0 dn0Var) {
+        this.f38409a = dn0Var;
+    }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float measuredWidth = (int) (getMeasuredWidth() * this.f42431c);
-        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f42430b);
-        canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f42429a);
+    public final void onClick(View view) {
+        dn0 dn0Var = this.f38409a;
+        af.g.s(dn0Var.getParentActivity(), dn0Var.f33737y.privacy_policy_url);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        textPaint.setUnderlineText(true);
+        textPaint.setTypeface(AndroidUtilities.bold());
     }
 }

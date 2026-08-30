@@ -1,10 +1,9 @@
 package org.telegram.ui.Components;
 public final class bo0 {
-    public float f27191a;
-    public float f27192b;
-    public float f27193c;
-    public float d;
-    public float f27194e;
-    public float f27195f;
-    public float f27196g;
+    public final int f23731a;
+    public int f23732b;
+
+    public bo0(int i10) {
+        this.f23731a = i10;
+    }
 }

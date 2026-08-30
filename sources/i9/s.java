@@ -1,22 +1,53 @@
 package i9;
-public final class s implements s9.d {
-    public static final s f8773a = new Object();
-    public static final s9.c f8774b = s9.c.c("batteryLevel");
-    public static final s9.c f8775c = s9.c.c("batteryVelocity");
-    public static final s9.c d = s9.c.c("proximityOn");
-    public static final s9.c f8776e = s9.c.c("orientation");
-    public static final s9.c f8777f = s9.c.c("ramUsed");
-    public static final s9.c f8778g = s9.c.c("diskUsed");
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        s9.e eVar = (s9.e) obj2;
-        u0 u0Var = (u0) ((v1) obj);
-        eVar.e(f8774b, u0Var.f8794a);
-        eVar.b(f8775c, u0Var.f8795b);
-        eVar.d(d, u0Var.f8796c);
-        eVar.b(f8776e, u0Var.d);
-        eVar.c(f8777f, u0Var.f8797e);
-        eVar.c(f8778g, u0Var.f8798f);
+import android.content.SharedPreferences;
+import android.util.Log;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import org.telegram.ui.yh;
+public final class s {
+    public final SharedPreferences f7436a;
+    public final w8.g f7437b;
+    public final Object f7438c;
+    public TaskCompletionSource d;
+    public boolean e;
+    public boolean f7439f;
+    public Boolean f7440g;
+    public final TaskCompletionSource h;
+
+    public s(w8.g r8) {
+        throw new UnsupportedOperationException("Method not decompiled: i9.s.<init>(w8.g):void");
+    }
+
+    public final synchronized boolean a() {
+        boolean z4;
+        String str;
+        String str2;
+        Boolean bool = this.f7440g;
+        if (bool != null) {
+            z4 = bool.booleanValue();
+        } else {
+            try {
+                z4 = this.f7437b.h();
+            } catch (IllegalStateException unused) {
+                z4 = false;
+            }
+        }
+        if (z4) {
+            str = "ENABLED";
+        } else {
+            str = "DISABLED";
+        }
+        if (this.f7440g == null) {
+            str2 = "global Firebase setting";
+        } else if (this.f7439f) {
+            str2 = "firebase_crashlytics_collection_enabled manifest flag";
+        } else {
+            str2 = "API";
+        }
+        String l10 = yh.l("Crashlytics automatic data collection ", str, " by ", str2, ".");
+        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+            Log.d("FirebaseCrashlytics", l10, null);
+        }
+        return z4;
     }
 }

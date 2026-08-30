@@ -1,19 +1,17 @@
 package od;
-public final class g extends RuntimeException {
-    public final transient sc.h f19512a;
 
-    public g(sc.h hVar) {
-        this.f19512a = hVar;
+import kotlin.jvm.internal.q;
+public final class g implements c {
+    public final c f16556a;
+    public final q f16557b;
+
+    public g(c cVar, q qVar) {
+        this.f16556a = cVar;
+        this.f16557b = qVar;
     }
 
     @Override
-    public final Throwable fillInStackTrace() {
-        setStackTrace(new StackTraceElement[0]);
-        return this;
-    }
-
-    @Override
-    public final String getLocalizedMessage() {
-        return this.f19512a.toString();
+    public final java.lang.Object c(java.lang.Object r5, wc.c r6) {
+        throw new UnsupportedOperationException("Method not decompiled: od.g.c(java.lang.Object, wc.c):java.lang.Object");
     }
 }

@@ -1,25 +1,44 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.function.ToIntFunction;
-public final class ve implements ToIntFunction {
-    public final int f43555a;
-    public final Object f43556b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class ve implements Runnable {
+    public final int f39151a;
+    public final xn f39152b;
+    public final org.telegram.ui.Components.im0 f39153c;
+    public final String d;
 
-    public ve(Object obj, int i10) {
-        this.f43555a = i10;
-        this.f43556b = obj;
+    public ve(xn xnVar, org.telegram.ui.Components.im0 im0Var, String str, int i10) {
+        this.f39151a = i10;
+        this.f39152b = xnVar;
+        this.f39153c = im0Var;
+        this.d = str;
     }
 
     @Override
-    public final int applyAsInt(Object obj) {
-        switch (this.f43555a) {
+    public final void run() {
+        org.telegram.ui.Components.qc a02;
+        int i10;
+        switch (this.f39151a) {
             case 0:
-                return ((Integer) ((HashMap) this.f43556b).get((View) obj)).intValue();
+                this.f39153c.dismiss();
+                AndroidUtilities.addToClipboard(this.d);
+                a02 = org.telegram.ui.Components.qc.a0(this.f39152b);
+                i10 = R.string.RelativeDateCopied;
+                break;
+            case 1:
+                this.f39153c.dismiss();
+                AndroidUtilities.addToClipboard("@" + this.d);
+                a02 = org.telegram.ui.Components.qc.a0(this.f39152b);
+                i10 = R.string.UsernameCopied;
+                break;
             default:
-                return ((Integer) ((ArrayList) this.f43556b).get(((Integer) obj).intValue())).intValue();
+                this.f39153c.dismiss();
+                AndroidUtilities.addToClipboard(this.d);
+                a02 = org.telegram.ui.Components.qc.a0(this.f39152b);
+                i10 = R.string.CardNumberCopied;
+                break;
         }
+        b.m(i10, a02);
     }
 }

@@ -1,20 +1,18 @@
 package f3;
-
-import a4.w;
 public final class a {
-    public static final a f6524f = new a(200, 10485760, 604800000, 10000, 81920);
-    public final long f6525a;
-    public final int f6526b;
-    public final int f6527c;
+    public static final a f5873f = new a(200, 10485760, 604800000, 10000, 81920);
+    public final long f5874a;
+    public final int f5875b;
+    public final int f5876c;
     public final long d;
-    public final int f6528e;
+    public final int e;
 
     public a(int i10, long j10, long j11, int i11, int i12) {
-        this.f6525a = j10;
-        this.f6526b = i10;
-        this.f6527c = i11;
+        this.f5874a = j10;
+        this.f5875b = i10;
+        this.f5876c = i11;
         this.d = j11;
-        this.f6528e = i12;
+        this.e = i12;
     }
 
     public final boolean equals(Object obj) {
@@ -23,7 +21,7 @@ public final class a {
         }
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (this.f6525a == aVar.f6525a && this.f6526b == aVar.f6526b && this.f6527c == aVar.f6527c && this.d == aVar.d && this.f6528e == aVar.f6528e) {
+            if (this.f5874a == aVar.f5874a && this.f5875b == aVar.f5875b && this.f5876c == aVar.f5876c && this.d == aVar.d && this.e == aVar.e) {
                 return true;
             }
         }
@@ -31,21 +29,21 @@ public final class a {
     }
 
     public final int hashCode() {
-        long j10 = this.f6525a;
+        long j10 = this.f5874a;
         long j11 = this.d;
-        return this.f6528e ^ ((((((((((int) (j10 ^ (j10 >>> 32))) ^ 1000003) * 1000003) ^ this.f6526b) * 1000003) ^ this.f6527c) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003);
+        return this.e ^ ((((((((((int) (j10 ^ (j10 >>> 32))) ^ 1000003) * 1000003) ^ this.f5875b) * 1000003) ^ this.f5876c) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003);
     }
 
     public final String toString() {
-        StringBuilder sb2 = new StringBuilder("EventStoreConfig{maxStorageSizeInBytes=");
-        sb2.append(this.f6525a);
-        sb2.append(", loadBatchSize=");
-        sb2.append(this.f6526b);
-        sb2.append(", criticalSectionEnterTimeoutMs=");
-        sb2.append(this.f6527c);
-        sb2.append(", eventCleanUpAge=");
-        sb2.append(this.d);
-        sb2.append(", maxBlobByteSizePerRow=");
-        return w.l(this.f6528e, "}", sb2);
+        StringBuilder sb = new StringBuilder("EventStoreConfig{maxStorageSizeInBytes=");
+        sb.append(this.f5874a);
+        sb.append(", loadBatchSize=");
+        sb.append(this.f5875b);
+        sb.append(", criticalSectionEnterTimeoutMs=");
+        sb.append(this.f5876c);
+        sb.append(", eventCleanUpAge=");
+        sb.append(this.d);
+        sb.append(", maxBlobByteSizePerRow=");
+        return android.support.v4.media.a.m(this.e, "}", sb);
     }
 }

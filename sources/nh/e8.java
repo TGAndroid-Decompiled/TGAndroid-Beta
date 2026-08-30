@@ -1,72 +1,73 @@
 package nh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.jr;
-public final class e8 extends FrameLayout {
-    public final Paint f17600a;
-    public final org.telegram.ui.Components.d6 f17601b;
-    public final org.telegram.ui.ActionBar.c6 f17602c;
-    public final h8 d;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class e8 extends TLObject {
+    public final TL_stories.StoryItem f15315a;
+    public int f15316b;
 
-    public e8(h8 h8Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        this.d = h8Var;
-        this.f17602c = c6Var;
-        this.f17600a = new Paint(1);
-        this.f17601b = new org.telegram.ui.Components.d6(this, 0L, 350L, jr.h);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        boolean z10;
+    public e8(TL_stories.StoryItem storyItem) {
         int i10;
         int i11;
-        int i12;
-        int i13;
-        int v02 = org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.f23133h5, this.f17602c);
-        Paint paint = this.f17600a;
-        paint.setColor(v02);
-        h8 h8Var = this.d;
-        float max = Math.max(0.0f, h8Var.s());
-        if (max < AndroidUtilities.statusBarHeight) {
-            z10 = true;
+        this.f15316b = 0;
+        this.f15315a = storyItem;
+        boolean z4 = storyItem.translated;
+        this.f15316b = z4 ? 1 : 0;
+        if (storyItem.detectedLng != null) {
+            i10 = 2;
         } else {
-            z10 = false;
+            i10 = 0;
         }
-        org.telegram.ui.Components.d6 d6Var = this.f17601b;
-        float lerp = AndroidUtilities.lerp(max, 0.0f, d6Var.e(z10));
-        RectF rectF = AndroidUtilities.rectTmp;
-        i10 = ((org.telegram.ui.ActionBar.f3) h8Var).backgroundPaddingLeft;
-        int width = getWidth();
-        i11 = ((org.telegram.ui.ActionBar.f3) h8Var).backgroundPaddingLeft;
-        rectF.set(i10, lerp, width - i11, AndroidUtilities.dp(14.0f) + getHeight());
-        float dp = (1.0f - d6Var.f27666c) * AndroidUtilities.dp(14.0f);
-        canvas.drawRoundRect(rectF, dp, dp, paint);
-        h8Var.f17855n.setTranslationY(Math.max(AndroidUtilities.dp(8.0f) + AndroidUtilities.statusBarHeight, AndroidUtilities.dp(14.0f) + lerp));
-        canvas.save();
-        i12 = ((org.telegram.ui.ActionBar.f3) h8Var).backgroundPaddingLeft;
-        int dp2 = AndroidUtilities.dp(14.0f) + AndroidUtilities.statusBarHeight;
-        int width2 = getWidth();
-        i13 = ((org.telegram.ui.ActionBar.f3) h8Var).backgroundPaddingLeft;
-        canvas.clipRect(i12, dp2, width2 - i13, getHeight());
-        super.dispatchDraw(canvas);
-        canvas.restore();
+        int i12 = (z4 ? 1 : 0) + i10;
+        this.f15316b = i12;
+        if (storyItem.translatedText != null) {
+            i11 = 4;
+        } else {
+            i11 = 0;
+        }
+        int i13 = i12 + i11;
+        this.f15316b = i13;
+        this.f15316b = i13 + (storyItem.translatedLng != null ? 8 : 0);
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        float y8 = motionEvent.getY();
-        h8 h8Var = this.d;
-        if (y8 < h8Var.s()) {
-            h8Var.dismiss();
-            return true;
+    public final void readParams(InputSerializedData inputSerializedData, boolean z4) {
+        boolean z10 = true;
+        int readInt32 = inputSerializedData.readInt32(true);
+        this.f15316b = readInt32;
+        if ((readInt32 & 1) == 0) {
+            z10 = false;
         }
-        return super.dispatchTouchEvent(motionEvent);
+        TL_stories.StoryItem storyItem = this.f15315a;
+        storyItem.translated = z10;
+        if ((readInt32 & 2) != 0) {
+            storyItem.detectedLng = inputSerializedData.readString(z4);
+        }
+        if ((this.f15316b & 4) != 0) {
+            storyItem.translatedText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z4), z4);
+        }
+        if ((this.f15316b & 8) != 0) {
+            storyItem.translatedLng = inputSerializedData.readString(z4);
+        }
+    }
+
+    @Override
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        outputSerializedData.writeInt32(1);
+        outputSerializedData.writeInt32(this.f15316b);
+        int i10 = this.f15316b & 2;
+        TL_stories.StoryItem storyItem = this.f15315a;
+        if (i10 != 0) {
+            outputSerializedData.writeString(storyItem.detectedLng);
+        }
+        if ((this.f15316b & 4) != 0) {
+            storyItem.translatedText.serializeToStream(outputSerializedData);
+        }
+        if ((this.f15316b & 8) != 0) {
+            outputSerializedData.writeString(storyItem.translatedLng);
+        }
     }
 }

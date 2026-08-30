@@ -1,73 +1,62 @@
 package lh;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.tl.TL_stories;
-public final class n9 extends ImageReceiver.Decorator {
-    public final ArrayList f15991a;
-    public float f15992b;
-    public float f15993c;
-    public float d;
-    public float f15994e;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RadialGradient;
+import android.graphics.RectF;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class n9 extends LinearLayout {
+    public final Path f12857a;
+    public final Matrix f12858b;
+    public final RadialGradient f12859c;
+    public final Paint d;
+    public final org.telegram.ui.Components.j5 e;
 
-    public n9(TL_stories.StoryItem storyItem) {
-        for (int i10 = 0; i10 < storyItem.media_areas.size(); i10++) {
-            if (storyItem.media_areas.get(i10) instanceof TL_stories.TL_mediaAreaSuggestedReaction) {
-                if (this.f15991a == null) {
-                    this.f15991a = new ArrayList();
-                }
-                this.f15991a.add(new k9(this, (TL_stories.TL_mediaAreaSuggestedReaction) storyItem.media_areas.get(i10)));
-            } else if (storyItem.media_areas.get(i10) instanceof TL_stories.TL_mediaAreaWeather) {
-                if (this.f15991a == null) {
-                    this.f15991a = new ArrayList();
-                }
-                this.f15991a.add(new m9(this, (TL_stories.TL_mediaAreaWeather) storyItem.media_areas.get(i10)));
-            }
-        }
+    public n9(Context context, Matrix matrix, RadialGradient radialGradient, Paint paint, org.telegram.ui.Components.j5 j5Var) {
+        super(context);
+        this.f12858b = matrix;
+        this.f12859c = radialGradient;
+        this.d = paint;
+        this.e = j5Var;
+        this.f12857a = new Path();
     }
 
     @Override
-    public final void onAttachedToWindow(ImageReceiver imageReceiver) {
-        ArrayList arrayList = this.f15991a;
-        if (arrayList != null) {
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                ((j9) arrayList.get(i10)).c(imageReceiver.getParentView());
-                ((j9) arrayList.get(i10)).b(true);
-            }
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWidnow() {
-        ArrayList arrayList = this.f15991a;
-        if (arrayList != null) {
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                ((j9) arrayList.get(i10)).b(false);
-            }
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas, ImageReceiver imageReceiver) {
-        ArrayList arrayList = this.f15991a;
-        if (arrayList == null) {
-            return;
-        }
-        float alpha = imageReceiver.getAlpha();
-        float centerX = imageReceiver.getCenterX();
-        float centerY = imageReceiver.getCenterY();
-        float imageWidth = imageReceiver.getImageWidth();
-        this.d = imageWidth;
-        float f9 = (16.0f * imageWidth) / 9.0f;
-        this.f15994e = f9;
-        this.f15992b = centerX - (imageWidth / 2.0f);
-        this.f15993c = centerY - (f9 / 2.0f);
+    public final void dispatchDraw(Canvas canvas) {
+        float dp = AndroidUtilities.dp(10.0f);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, AndroidUtilities.dp(2.0f) + 1, getWidth(), getHeight() + dp);
+        Path path = this.f12857a;
+        path.rewind();
+        path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
         canvas.save();
-        canvas.clipRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            ((j9) arrayList.get(i10)).a(canvas, alpha);
-        }
+        canvas.clipPath(path);
+        Matrix matrix = this.f12858b;
+        matrix.reset();
+        matrix.postTranslate(getWidth() / 2.0f, AndroidUtilities.dp(100.0f));
+        this.f12859c.setLocalMatrix(matrix);
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.d);
+        canvas.save();
+        canvas.translate(getWidth() / 2.0f, AndroidUtilities.dp(100.0f));
+        x0.a(canvas, 0, this.e, getWidth(), AndroidUtilities.dp(180.0f), 1.0f, 1.0f);
         canvas.restore();
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.e.a();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.e.b();
     }
 }

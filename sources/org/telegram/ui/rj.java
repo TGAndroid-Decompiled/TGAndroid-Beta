@@ -1,55 +1,44 @@
 package org.telegram.ui;
-public final class rj implements Runnable {
-    public final int f42123a;
-    public final tn f42124b;
 
-    public rj(tn tnVar, int i10) {
-        this.f42123a = i10;
-        this.f42124b = tnVar;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public final class rj implements Runnable {
+    public final int f38064a;
+    public final sj f38065b;
+
+    public rj(sj sjVar, int i10) {
+        this.f38064a = i10;
+        this.f38065b = sjVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f42123a;
-        tn tnVar = this.f42124b;
-        switch (i10) {
+        switch (this.f38064a) {
             case 0:
-                tn.i2(tnVar);
-                return;
-            case 1:
-                tn.i2(tnVar);
-                return;
-            case 2:
-                int i11 = tn.Dc;
-                tnVar.Ma();
-                return;
-            case 3:
-                int i12 = tn.Dc;
-                tnVar.Ma();
-                return;
-            case 4:
-                int i13 = tn.Dc;
-                tnVar.Ma();
-                return;
-            case 5:
-                int i14 = tn.Dc;
-                tnVar.Ma();
-                return;
-            case 6:
-                int i15 = tn.Dc;
-                tnVar.Ma();
-                return;
-            case 7:
-                int i16 = tn.Dc;
-                tnVar.Ma();
-                return;
-            case 8:
-                int i17 = tn.Dc;
-                tnVar.Ma();
+                sj sjVar = this.f38065b;
+                sjVar.W = null;
+                xn xnVar = sjVar.X;
+                if (xnVar.E9 != -1) {
+                    xnVar.getNotificationCenter().onAnimationFinish(xnVar.E9);
+                    xnVar.E9 = -1;
+                }
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("chatItemAnimator enable notifications");
+                    return;
+                }
                 return;
             default:
-                int i18 = tn.Dc;
-                tnVar.Ma();
+                sj sjVar2 = this.f38065b;
+                sjVar2.W = null;
+                xn xnVar2 = sjVar2.X;
+                if (xnVar2.E9 != -1) {
+                    xnVar2.getNotificationCenter().onAnimationFinish(xnVar2.E9);
+                    xnVar2.E9 = -1;
+                }
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("chatItemAnimator enable notifications");
+                    return;
+                }
                 return;
         }
     }

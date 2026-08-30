@@ -1,100 +1,226 @@
 package hh;
 
-import java.util.ArrayList;
+import android.graphics.Path;
+import android.graphics.PointF;
+import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.cg1;
-import org.telegram.ui.tn;
-import sf.l0;
-public final class g implements RequestDelegate {
-    public final int f8066a;
-    public final boolean f8067b;
-    public final Object f8068c;
-    public final Object d;
-    public final Object f8069e;
-    public final Object f8070f;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Cells.c9;
+import org.telegram.ui.Cells.r2;
+import org.telegram.ui.Cells.s8;
+import org.telegram.ui.Cells.t8;
+import org.telegram.ui.Components.ClippingImageView;
+import org.telegram.ui.Components.PollVotesAlert$UserCell;
+import org.telegram.ui.Components.c6;
+import org.telegram.ui.Components.m6;
+import org.telegram.ui.Components.nb;
+import org.telegram.ui.Components.q61;
+import org.telegram.ui.PhotoViewer;
+public final class g extends m6 {
+    public final int f7135b;
 
-    public g(v vVar, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z10, TLRPC.User user, TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest) {
-        this.f8066a = 0;
-        this.f8068c = vVar;
-        this.d = tL_chatInviteImporter;
-        this.f8067b = z10;
-        this.f8069e = user;
-        this.f8070f = tL_messages_hideChatJoinRequest;
+    public g(String str, int i10) {
+        super(str, 0);
+        this.f7135b = i10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f8066a) {
+    public final void b(Object obj, float f10) {
+        double sqrt;
+        boolean z4;
+        boolean z10;
+        float f11;
+        switch (this.f7135b) {
             case 0:
-                v vVar = (v) this.f8068c;
-                TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) this.d;
-                TLRPC.User user = (TLRPC.User) this.f8069e;
-                TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = (TLRPC.TL_messages_hideChatJoinRequest) this.f8070f;
-                if (tL_error == null) {
-                    MessagesController.getInstance(vVar.f8128k).processUpdates((TLRPC.TL_updates) tLObject, false);
+                j jVar = (j) obj;
+                jVar.D = f10;
+                RectF rectF = jVar.v;
+                RectF rectF2 = jVar.f7164s;
+                float interpolation = 1.0f - h.f7148p.getInterpolation(f10);
+                float interpolation2 = (h.h.getInterpolation(jVar.D) - h.f7141i.getInterpolation(jVar.D)) * AndroidUtilities.dp(13.0f);
+                RectF rectF3 = jVar.f7162n;
+                RectF rectF4 = jVar.h;
+                rectF3.set(rectF4);
+                rectF3.offset(0.0f, -interpolation2);
+                float g10 = j.g(rectF3.height(), (AndroidUtilities.dp(2.0f) * interpolation) + AndroidUtilities.dp(i.f7154b), h.f7144l.getInterpolation(jVar.D)) / 2.0f;
+                e eVar = h.f7145m;
+                float g11 = j.g(rectF3.width(), (AndroidUtilities.dp(10.0f) * interpolation) + jVar.h(), eVar.getInterpolation(jVar.D));
+                float f12 = g10 * 2.0f;
+                float max = Math.max(g11, f12);
+                float interpolation3 = (eVar.getInterpolation(jVar.D) * Math.min(AndroidUtilities.dp(-12.0f) + jVar.C, (max - Math.max(rectF3.width(), f12)) / 2.0f)) + rectF4.centerX() + g10;
+                float interpolation4 = ((rectF4.bottom - g10) - 1.0f) - (h.f7146n.getInterpolation(jVar.D) * ((AndroidUtilities.dp(6.0f) * interpolation) + AndroidUtilities.dp(38.0f)));
+                RectF rectF5 = jVar.f7163r;
+                rectF5.left = interpolation3 - max;
+                rectF5.top = interpolation4 - g10;
+                rectF5.right = interpolation3;
+                rectF5.bottom = interpolation4 + g10;
+                if (jVar.N && !jVar.J) {
+                    float g12 = j.g(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(3.0f), h.f7147o.getInterpolation(jVar.D));
+                    float f13 = rectF5.bottom + g12;
+                    double width = (rectF3.width() / 2.0f) + g12;
+                    double abs = Math.abs(f13 - rectF3.centerY());
+                    if (width <= abs) {
+                        sqrt = 0.0d;
+                    } else {
+                        sqrt = Math.sqrt((width * width) - (abs * abs));
+                    }
+                    float f14 = (float) sqrt;
+                    float centerX = rectF3.centerX() - f14;
+                    if (centerX < (rectF5.height() / 2.0f) + rectF5.left) {
+                        z4 = true;
+                    } else {
+                        z4 = false;
+                    }
+                    if (z4) {
+                        PointF f15 = j.f(rectF3.centerX(), rectF3.centerY(), (rectF3.height() / 2.0f) + g12, (rectF5.height() / 2.0f) + rectF5.left, rectF5.centerY(), (rectF5.height() / 2.0f) + g12, true);
+                        if (f15 != null) {
+                            centerX = f15.x;
+                            f13 = f15.y;
+                        } else {
+                            jVar.N = false;
+                        }
+                    }
+                    rectF2.set(centerX - g12, f13 - g12, centerX + g12, f13 + g12);
+                    float f16 = rectF5.bottom + g12;
+                    float centerX2 = rectF3.centerX() + f14;
+                    if (centerX2 > rectF5.right - (rectF5.height() / 2.0f)) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (z10) {
+                        PointF f17 = j.f(rectF3.centerX(), rectF3.centerY(), (rectF3.height() / 2.0f) + g12, rectF5.right - (rectF5.height() / 2.0f), rectF5.centerY(), (rectF5.height() / 2.0f) + g12, false);
+                        if (f17 != null) {
+                            centerX2 = f17.x;
+                            f16 = f17.y;
+                        } else {
+                            jVar.N = false;
+                        }
+                    }
+                    rectF.set(centerX2 - g12, f16 - g12, centerX2 + g12, f16 + g12);
+                    float abs2 = Math.abs(rectF2.centerX() - rectF.centerX());
+                    float abs3 = Math.abs(rectF2.centerY() - rectF.centerY());
+                    if (Math.sqrt((abs3 * abs3) + (abs2 * abs2)) <= (rectF.width() + rectF2.width()) / 2.0f && jVar.N) {
+                        jVar.N = false;
+                    }
+                    if (jVar.N) {
+                        Path path = jVar.e;
+                        path.reset();
+                        float b10 = j.b(rectF3.centerX(), rectF3.centerY(), rectF.centerX(), rectF.centerY());
+                        float b11 = j.b(rectF3.centerX(), rectF3.centerY(), rectF2.centerX(), rectF2.centerY());
+                        jVar.a(path, rectF3, b10, b11, false, false);
+                        float f18 = -90.0f;
+                        if (z4) {
+                            f11 = j.b(rectF2.centerX(), rectF2.centerY(), (rectF5.height() / 2.0f) + rectF5.left, rectF5.centerY());
+                        } else {
+                            f11 = -90.0f;
+                        }
+                        float j10 = j.j(b11);
+                        float f19 = f11;
+                        jVar.a(path, rectF2, j10, f19, true, true);
+                        if (!z4) {
+                            path.lineTo((rectF5.height() / 2.0f) + rectF5.left, rectF5.bottom);
+                        }
+                        RectF rectF6 = j.Y;
+                        float f20 = rectF5.left;
+                        rectF6.set(f20, rectF5.top, rectF5.height() + f20, rectF5.bottom);
+                        jVar.a(path, rectF6, j.j(f19), -90.0f, false, false);
+                        path.lineTo(rectF5.right - (rectF5.height() / 2.0f), rectF5.top);
+                        if (z10) {
+                            f18 = j.b(rectF.centerX(), rectF.centerY(), rectF5.right - (rectF5.height() / 2.0f), rectF5.centerY());
+                        }
+                        rectF6.set(rectF5.right - rectF5.height(), rectF5.top, rectF5.right, rectF5.bottom);
+                        jVar.a(path, rectF6, -90.0f, j.j(f18), false, false);
+                        if (!z10) {
+                            path.lineTo(rectF.centerX(), rectF5.bottom);
+                        }
+                        jVar.a(path, rectF, f18, j.j(b10), true, true);
+                        path.close();
+                    }
                 }
-                AndroidUtilities.runOnUIThread(new h(vVar, tL_error, tLObject, tL_chatInviteImporter, this.f8067b, user, tL_messages_hideChatJoinRequest));
+                jVar.invalidateSelf();
                 return;
             case 1:
-                ((ContactsController) this.f8068c).lambda$deleteContact$57((ArrayList) this.d, (ArrayList) this.f8069e, this.f8067b, (String) this.f8070f, tLObject, tL_error);
+                j jVar2 = (j) obj;
+                jVar2.E = f10;
+                jVar2.invalidateSelf();
                 return;
             case 2:
-                ((SendMessagesHelper) this.f8068c).lambda$requestUrlAuth$37((TLRPC.TL_messages_requestUrlAuth) this.d, (tn) this.f8069e, (String) this.f8070f, this.f8067b, tLObject, tL_error);
+                s8 s8Var = (s8) obj;
+                s8Var.setAnimationProgress(f10);
+                s8Var.invalidate();
                 return;
             case 3:
-                ((SendMessagesHelper) this.f8068c).lambda$sendEditRichMessageRequest$26(this.f8067b, (MessageObject) this.d, (TLRPC.TL_messages_editMessage) this.f8069e, (o2) this.f8070f, tLObject, tL_error);
+                t8 t8Var = (t8) obj;
+                t8.a(t8Var, f10);
+                t8Var.invalidate();
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new h((cg1) this.f8068c, tL_error, this.f8067b, tLObject, (byte[]) this.d, (String) this.f8069e, (TL_account.passwordInputSettings) this.f8070f));
+                c9 c9Var = (c9) obj;
+                c9.a(c9Var, f10);
+                c9Var.invalidate();
+                return;
+            case 5:
+                c6 c6Var = (c6) obj;
+                if (c6Var.e != f10) {
+                    c6Var.e = f10;
+                    c6Var.f23853g.invalidate();
+                    return;
+                }
+                return;
+            case 6:
+                ((ImageReceiver) obj).setCurrentAlpha(f10);
+                return;
+            case 7:
+                ((ClippingImageView) obj).setAnimationProgress(f10);
+                return;
+            case 8:
+                ((PhotoViewer) obj).setAnimationValue(f10);
+                return;
+            case 9:
+                ((r2) obj).setClipProgress(f10);
+                return;
+            case 10:
+                ((nb) obj).setInOutOffset(f10);
+                return;
+            case 11:
+                ((PollVotesAlert$UserCell) obj).setPlaceholderAlpha(f10);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new h((l0) this.f8068c, tL_error, tLObject, (int[]) this.d, (ArrayList) this.f8070f, this.f8067b, (TLRPC.User) this.f8069e));
+                ((q61) obj).G(f10);
                 return;
         }
     }
 
-    public g(Object obj, Object obj2, Object obj3, Object obj4, boolean z10, int i10) {
-        this.f8066a = i10;
-        this.f8068c = obj;
-        this.f8067b = z10;
-        this.d = obj2;
-        this.f8069e = obj3;
-        this.f8070f = obj4;
-    }
-
-    public g(ContactsController contactsController, ArrayList arrayList, ArrayList arrayList2, boolean z10, String str) {
-        this.f8066a = 1;
-        this.f8068c = contactsController;
-        this.d = arrayList;
-        this.f8069e = arrayList2;
-        this.f8067b = z10;
-        this.f8070f = str;
-    }
-
-    public g(SendMessagesHelper sendMessagesHelper, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, tn tnVar, String str, boolean z10) {
-        this.f8066a = 2;
-        this.f8068c = sendMessagesHelper;
-        this.d = tL_messages_requestUrlAuth;
-        this.f8069e = tnVar;
-        this.f8070f = str;
-        this.f8067b = z10;
-    }
-
-    public g(l0 l0Var, int[] iArr, ArrayList arrayList, boolean z10, TLRPC.User user) {
-        this.f8066a = 5;
-        this.f8068c = l0Var;
-        this.d = iArr;
-        this.f8070f = arrayList;
-        this.f8067b = z10;
-        this.f8069e = user;
+    @Override
+    public final Object get(Object obj) {
+        switch (this.f7135b) {
+            case 0:
+                return Float.valueOf(((j) obj).D);
+            case 1:
+                return Float.valueOf(((j) obj).E);
+            case 2:
+                return Float.valueOf(((s8) obj).f21958s);
+            case 3:
+                return Float.valueOf(((t8) obj).h);
+            case 4:
+                return Float.valueOf(((c9) obj).f20930f);
+            case 5:
+                return Float.valueOf(((c6) obj).e);
+            case 6:
+                return Float.valueOf(((ImageReceiver) obj).getCurrentAlpha());
+            case 7:
+                return Float.valueOf(((ClippingImageView) obj).getAnimationProgress());
+            case 8:
+                return Float.valueOf(((PhotoViewer) obj).getAnimationValue());
+            case 9:
+                return Float.valueOf(((r2) obj).getClipProgress());
+            case 10:
+                return Float.valueOf(((nb) obj).inOutOffset);
+            case 11:
+                return Float.valueOf(((PollVotesAlert$UserCell) obj).getPlaceholderAlpha());
+            default:
+                return Float.valueOf(((q61) obj).B);
+        }
     }
 }

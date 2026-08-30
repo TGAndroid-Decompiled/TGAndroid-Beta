@@ -1,36 +1,64 @@
 package nh;
-public final class q9 implements Runnable {
-    public final int f18407a;
-    public final gb f18408b;
-    public final boolean f18409c;
 
-    public q9(gb gbVar, boolean z10, int i10) {
-        this.f18407a = i10;
-        this.f18408b = gbVar;
-        this.f18409c = z10;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.support.LongSparseLongArray;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Cells.va;
+import org.telegram.ui.Components.aa;
+public final class q9 {
+    public static final q9[] f15812f = new q9[4];
+    public final int f15813a;
+    public final LongSparseLongArray f15814b = new LongSparseLongArray();
+    public final ArrayList f15815c = new ArrayList();
+    public final ArrayList d = new ArrayList();
+    public final p9 e;
+
+    public q9(int i10) {
+        new ArrayList();
+        this.e = new p9(this);
+        this.f15813a = i10;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f18407a) {
-            case 0:
-                this.f18408b.f(this.f18409c);
-                return;
-            case 1:
-                gb gbVar = this.f18408b;
-                if (!this.f18409c) {
-                    gbVar.F0.b(false, false);
-                    return;
-                } else {
-                    gbVar.getClass();
-                    return;
+    public final void a(aa aaVar) {
+        long j10;
+        TLRPC.UserStatus userStatus;
+        long currentTimeMillis = System.currentTimeMillis();
+        ArrayList arrayList = this.f15815c;
+        arrayList.clear();
+        for (int i10 = 0; i10 < aaVar.getChildCount(); i10++) {
+            View childAt = aaVar.getChildAt(i10);
+            if (childAt instanceof org.telegram.ui.Cells.r2) {
+                j10 = ((org.telegram.ui.Cells.r2) childAt).getDialogId();
+            } else if (childAt instanceof va) {
+                j10 = ((va) childAt).getDialogId();
+            } else {
+                j10 = 0;
+            }
+            int i11 = this.f15813a;
+            LongSparseLongArray longSparseLongArray = this.f15814b;
+            if (j10 > 0) {
+                TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(j10));
+                if (user != null && !user.bot && !user.self && !user.contact && (userStatus = user.status) != null && !(userStatus instanceof TLRPC.TL_userStatusEmpty) && currentTimeMillis - longSparseLongArray.get(j10, 0L) > 3600000) {
+                    longSparseLongArray.put(j10, currentTimeMillis);
+                    arrayList.add(Long.valueOf(j10));
                 }
-            default:
-                gb gbVar2 = this.f18408b;
-                gbVar2.N = null;
-                gbVar2.f17750e = false;
-                gbVar2.q(this.f18409c);
-                return;
+            } else {
+                TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j10));
+                if (ChatObject.isChannel(chat) && !ChatObject.isMonoForum(chat) && currentTimeMillis - longSparseLongArray.get(j10, 0L) > 3600000) {
+                    longSparseLongArray.put(j10, currentTimeMillis);
+                    arrayList.add(Long.valueOf(j10));
+                }
+            }
+        }
+        if (!arrayList.isEmpty()) {
+            this.d.addAll(arrayList);
+            p9 p9Var = this.e;
+            AndroidUtilities.cancelRunOnUIThread(p9Var);
+            AndroidUtilities.runOnUIThread(p9Var, 300L);
         }
     }
 }

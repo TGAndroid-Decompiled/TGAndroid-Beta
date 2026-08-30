@@ -2,35 +2,74 @@ package org.telegram.ui.ActionBar;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.widget.FrameLayout;
+import android.view.View;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-public final class l1 extends FrameLayout {
-    public final Drawable f23640a;
+public final class l1 extends LinearLayout {
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f20420a;
 
-    public l1(Context context, c6 c6Var) {
-        this(context, g6.H8, c6Var);
+    public l1(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, Context context) {
+        super(context);
+        this.f20420a = actionBarPopupWindow$ActionBarPopupWindowLayout;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        Drawable drawable = this.f23640a;
-        if (drawable != null) {
-            drawable.setBounds(0, 0, getWidth(), getHeight());
-            drawable.draw(canvas);
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        if ((view instanceof m1) && this.f20420a.K != null) {
+            return false;
         }
+        return super.drawChild(canvas, view, j10);
     }
 
-    public void setColor(int i10) {
-        setBackgroundColor(i10);
-    }
-
-    public l1(Context context, int i10, c6 c6Var) {
-        super(context);
-        int v02 = g6.v0(i10, c6Var);
-        int v03 = g6.v0(g6.f23028b7, c6Var);
-        this.f23640a = g6.U0(getContext(), R.drawable.greydivider, v03);
-        setBackgroundColor(v02);
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        l1 l1Var = this;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = l1Var.f20420a;
+        if (actionBarPopupWindow$ActionBarPopupWindowLayout.L) {
+            actionBarPopupWindow$ActionBarPopupWindowLayout.B = -1000000;
+            actionBarPopupWindow$ActionBarPopupWindowLayout.C = -1000000;
+            int childCount = l1Var.getChildCount();
+            ArrayList arrayList = null;
+            int i12 = 0;
+            int i13 = 0;
+            int i14 = 0;
+            while (i12 < childCount) {
+                View childAt = l1Var.getChildAt(i12);
+                if (childAt.getVisibility() != 8) {
+                    Object tag = childAt.getTag(R.id.width_tag);
+                    Object tag2 = childAt.getTag(R.id.object_tag);
+                    Object tag3 = childAt.getTag(R.id.fit_width_tag);
+                    if (tag != null) {
+                        childAt.getLayoutParams().width = -2;
+                    }
+                    l1Var.measureChildWithMargins(childAt, i10, 0, i11, 0);
+                    if (tag3 == null) {
+                        boolean z4 = tag instanceof Integer;
+                        if (!z4 && tag2 == null) {
+                            i13 = Math.max(i13, childAt.getMeasuredWidth());
+                        } else if (z4) {
+                            i14 = Math.max(((Integer) tag).intValue(), childAt.getMeasuredWidth());
+                            actionBarPopupWindow$ActionBarPopupWindowLayout.B = childAt.getMeasuredHeight();
+                            actionBarPopupWindow$ActionBarPopupWindowLayout.C = AndroidUtilities.dp(6.0f) + actionBarPopupWindow$ActionBarPopupWindowLayout.B;
+                        }
+                    }
+                    if (arrayList == null) {
+                        arrayList = new ArrayList();
+                    }
+                    arrayList.add(childAt);
+                }
+                i12++;
+                l1Var = this;
+            }
+            if (arrayList != null) {
+                int size = arrayList.size();
+                for (int i15 = 0; i15 < size; i15++) {
+                    ((View) arrayList.get(i15)).getLayoutParams().width = Math.max(i13, i14);
+                }
+            }
+        }
+        super.onMeasure(i10, i11);
     }
 }

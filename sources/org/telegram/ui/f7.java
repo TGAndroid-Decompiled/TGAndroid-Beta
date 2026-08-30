@@ -1,49 +1,28 @@
 package org.telegram.ui;
 
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class f7 extends pt0 {
-    public org.telegram.ui.Components.jl0 f38008a;
-    public final q7 f38009b;
+public final class f7 implements org.telegram.ui.Components.il0 {
+    public final org.telegram.ui.Components.sl0 f34177a;
+    public final g7 f34178b;
 
-    public f7(q7 q7Var) {
-        this.f38009b = q7Var;
+    public f7(g7 g7Var, org.telegram.ui.Components.sl0 sl0Var) {
+        this.f34178b = g7Var;
+        this.f34177a = sl0Var;
     }
 
     @Override
-    public final zt0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        org.telegram.ui.Cells.p7 p7Var;
-        org.telegram.ui.Components.jl0 listView = this.f38009b.getListView();
-        int i11 = 0;
-        while (true) {
-            if (i11 < listView.getChildCount()) {
-                View childAt = listView.getChildAt(i11);
-                if (RecyclerView.R(childAt) == i10 && (childAt instanceof org.telegram.ui.Cells.p7)) {
-                    p7Var = (org.telegram.ui.Cells.p7) childAt;
-                    break;
-                }
-                i11++;
-            } else {
-                p7Var = null;
-                break;
-            }
+    public final void f(int i10, View view) {
+        u7 u7Var = this.f34178b.d;
+        org.telegram.ui.Components.sl0 sl0Var = this.f34177a;
+        h7 h7Var = (h7) sl0Var.getAdapter();
+        o7 o7Var = (o7) h7Var.e.get(i10);
+        if (view instanceof org.telegram.ui.Cells.r7) {
+            u7.a(u7Var, o7Var, (q7) h7Var, sl0Var);
+            return;
         }
-        if (p7Var == null) {
-            return null;
+        k7 k7Var = u7Var.v;
+        if (k7Var != null) {
+            k7Var.r(o7Var.f36801c, o7Var.d, false);
         }
-        int[] iArr = new int[2];
-        p7Var.getLocationInWindow(iArr);
-        zt0 zt0Var = new zt0();
-        zt0Var.f45317b = iArr[0];
-        zt0Var.f45318c = iArr[1];
-        zt0Var.d = this.f38008a;
-        ImageReceiver imageReceiver = p7Var.f24978c;
-        zt0Var.f45316a = imageReceiver;
-        zt0Var.f45319e = imageReceiver.getBitmapSafe();
-        zt0Var.f45324k = p7Var.getScaleX();
-        return zt0Var;
     }
 }

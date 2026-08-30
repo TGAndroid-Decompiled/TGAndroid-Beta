@@ -1,46 +1,19 @@
 package jd;
 
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-public final class c extends k1 {
-    public static final AtomicReferenceFieldUpdater f11449n = AtomicReferenceFieldUpdater.newUpdater(c.class, Object.class, "_disposer$volatile");
-    private volatile Object _disposer$volatile;
-    public final m f11450e;
-    public o0 f11451f;
-    public final e h;
+import java.io.Serializable;
+import java.util.regex.Pattern;
+public final class c implements Serializable {
+    public final Pattern f9363a;
 
-    public c(e eVar, m mVar) {
-        this.h = eVar;
-        this.f11450e = mVar;
+    public c() {
+        Pattern compile = Pattern.compile("^[a-zA-Z0-9/_]{1,100}$");
+        kotlin.jvm.internal.j.d(compile, "compile(...)");
+        this.f9363a = compile;
     }
 
-    @Override
-    public final void a(Throwable th2) {
-        m mVar = this.f11450e;
-        if (th2 != null) {
-            mVar.getClass();
-            fc.a F = mVar.F(null, new v(th2, false));
-            if (F != null) {
-                mVar.e(F);
-                d dVar = (d) f11449n.get(this);
-                if (dVar != null) {
-                    dVar.b();
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = e.f11458b;
-        e eVar = this.h;
-        if (atomicIntegerFieldUpdater.decrementAndGet(eVar) == 0) {
-            h0[] h0VarArr = eVar.f11459a;
-            ArrayList arrayList = new ArrayList(h0VarArr.length);
-            for (h0 h0Var : h0VarArr) {
-                arrayList.add(h0Var.getCompleted());
-            }
-            mVar.resumeWith(arrayList);
-        }
+    public final String toString() {
+        String pattern = this.f9363a.toString();
+        kotlin.jvm.internal.j.d(pattern, "toString(...)");
+        return pattern;
     }
 }

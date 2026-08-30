@@ -1,206 +1,156 @@
 package u4;
 
-import f5.w;
-import java.util.ArrayList;
+import android.net.Uri;
+import android.os.Handler;
+import android.os.SystemClock;
+import b4.e0;
+import g5.h0;
+import g5.j0;
+import g5.m0;
+import g5.p0;
+import h5.d0;
+import j3.n0;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
-import t4.k;
-public final class c extends i {
-    public final int h;
-    public final int f49038i;
-    public final int f49039j;
-    public List f49043n;
-    public List f49044o;
-    public int f49045p;
-    public int f49046q;
-    public boolean f49047r;
-    public boolean f49048s;
-    public byte f49049t;
-    public byte f49050u;
-    public boolean f49051w;
-    public long f49052x;
-    public static final int[] f49035y = {11, 1, 3, 12, 14, 5, 7, 9};
-    public static final int[] f49036z = {0, 4, 8, 12, 16, 20, 24, 28};
-    public static final int[] A = {-1, -16711936, -16776961, -16711681, -65536, -256, -65281};
-    public static final int[] B = {32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 225, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 233, 93, 237, 243, 250, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 231, 247, 209, 241, 9632};
-    public static final int[] C = {174, 176, 189, 191, 8482, 162, 163, 9834, 224, 32, 232, 226, 234, 238, 244, 251};
-    public static final int[] D = {193, 201, 211, 218, 220, 252, 8216, 161, 42, 39, 8212, 169, 8480, 8226, 8220, 8221, 192, 194, 199, 200, 202, 203, 235, 206, 207, 239, 212, 217, 249, 219, 171, 187};
-    public static final int[] E = {195, 227, 205, 204, 236, 210, 242, 213, 245, 123, 125, 92, 94, 95, 124, 126, 196, 228, 214, 246, 223, 165, 164, 9474, 197, 229, 216, 248, 9484, 9488, 9492, 9496};
-    public static final boolean[] F = {false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, false, true, true, false, true, false, false, true, false, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false};
-    public final w f49037g = new w();
-    public final ArrayList f49041l = new ArrayList();
-    public b f49042m = new b(0, 4);
-    public int v = 0;
-    public final long f49040k = 16000000;
+import java.util.concurrent.CopyOnWriteArrayList;
+import org.telegram.ui.Components.qk0;
+public final class c implements h0 {
+    public static final s0.b B = new s0.b(11);
+    public final qk0 f45007a;
+    public final p f45008b;
+    public final ab.a f45009c;
+    public e0 f45010f;
+    public m0 h;
+    public Handler f45011n;
+    public t4.m f45012r;
+    public l f45013s;
+    public Uri v;
+    public i f45014w;
+    public boolean f45015x;
+    public final CopyOnWriteArrayList e = new CopyOnWriteArrayList();
+    public final HashMap d = new HashMap();
+    public long f45016y = -9223372036854775807L;
 
-    public c(String str, int i10) {
-        int i11;
-        if ("application/x-mp4-cea-608".equals(str)) {
-            i11 = 2;
+    public c(qk0 qk0Var, ab.a aVar, p pVar) {
+        this.f45007a = qk0Var;
+        this.f45008b = pVar;
+        this.f45009c = aVar;
+    }
+
+    @Override
+    public final void A(j0 j0Var, long j10, long j11) {
+        l lVar;
+        p0 p0Var = (p0) j0Var;
+        m mVar = (m) p0Var.f6409f;
+        boolean z4 = mVar instanceof i;
+        if (z4) {
+            String str = mVar.f45064a;
+            l lVar2 = l.f45056n;
+            Uri parse = Uri.parse(str);
+            j3.m0 m0Var = new j3.m0();
+            m0Var.f8673a = "0";
+            m0Var.f8683n = "application/x-mpegURL";
+            List singletonList = Collections.singletonList(new k(parse, new n0(m0Var), null, null, null, null));
+            List list = Collections.EMPTY_LIST;
+            lVar = new l("", list, singletonList, list, list, list, list, null, null, false, Collections.EMPTY_MAP, list);
         } else {
-            i11 = 3;
+            lVar = (l) mVar;
         }
-        this.h = i11;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    if (i10 != 4) {
-                        f5.a.K("Cea608Decoder", "Invalid channel. Defaulting to CC1.");
-                        this.f49039j = 0;
-                        this.f49038i = 0;
-                    } else {
-                        this.f49039j = 1;
-                        this.f49038i = 1;
+        this.f45013s = lVar;
+        this.v = ((k) lVar.e.get(0)).f45052a;
+        this.e.add(new a(this));
+        List list2 = lVar.d;
+        int size = list2.size();
+        for (int i10 = 0; i10 < size; i10++) {
+            Uri uri = (Uri) list2.get(i10);
+            this.d.put(uri, new b(this, uri));
+        }
+        Uri uri2 = p0Var.d.f6458c;
+        ?? obj = new Object();
+        b bVar = (b) this.d.get(this.v);
+        if (z4) {
+            bVar.d((i) mVar);
+        } else {
+            bVar.c(bVar.f45000a);
+        }
+        this.f45009c.getClass();
+        this.f45010f.n(obj, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+    }
+
+    public final i a(Uri uri, boolean z4) {
+        HashMap hashMap = this.d;
+        i iVar = ((b) hashMap.get(uri)).d;
+        if (iVar != null && z4 && !uri.equals(this.v)) {
+            List list = this.f45013s.e;
+            int i10 = 0;
+            while (true) {
+                if (i10 >= list.size()) {
+                    break;
+                } else if (uri.equals(((k) list.get(i10)).f45052a)) {
+                    i iVar2 = this.f45014w;
+                    if (iVar2 == null || !iVar2.f45042o) {
+                        this.v = uri;
+                        b bVar = (b) hashMap.get(uri);
+                        i iVar3 = bVar.d;
+                        if (iVar3 != null && iVar3.f45042o) {
+                            this.f45014w = iVar3;
+                            this.f45012r.t(iVar3);
+                            return iVar;
+                        }
+                        bVar.c(b(uri));
+                        return iVar;
                     }
                 } else {
-                    this.f49039j = 0;
-                    this.f49038i = 1;
+                    i10++;
                 }
-            } else {
-                this.f49039j = 1;
-                this.f49038i = 0;
             }
-        } else {
-            this.f49039j = 0;
-            this.f49038i = 0;
         }
-        h(0);
-        g();
-        this.f49051w = true;
-        this.f49052x = -9223372036854775807L;
+        return iVar;
     }
 
-    @Override
-    public final j b() {
-        List list = this.f49043n;
-        this.f49044o = list;
-        list.getClass();
-        return new j(0, list);
-    }
-
-    @Override
-    public final void c(u4.g r15) {
-        throw new UnsupportedOperationException("Method not decompiled: u4.c.c(u4.g):void");
-    }
-
-    @Override
-    public final k dequeueOutputBuffer() {
-        k kVar;
-        k dequeueOutputBuffer = super.dequeueOutputBuffer();
-        if (dequeueOutputBuffer != null) {
-            return dequeueOutputBuffer;
-        }
-        long j10 = this.f49040k;
-        if (j10 != -9223372036854775807L) {
-            long j11 = this.f49052x;
-            if (j11 != -9223372036854775807L && this.f49093e - j11 >= j10 && (kVar = (k) this.f49091b.pollFirst()) != null) {
-                this.f49043n = Collections.EMPTY_LIST;
-                this.f49052x = -9223372036854775807L;
-                kVar.a(this.f49093e, b(), Long.MAX_VALUE);
-                return kVar;
+    public final Uri b(Uri uri) {
+        e eVar;
+        i iVar = this.f45014w;
+        if (iVar != null && iVar.v.e && (eVar = (e) ((s8.n0) iVar.f45047t).get(uri)) != null) {
+            Uri.Builder buildUpon = uri.buildUpon();
+            buildUpon.appendQueryParameter("_HLS_msn", String.valueOf(eVar.f45020b));
+            int i10 = eVar.f45021c;
+            if (i10 != -1) {
+                buildUpon.appendQueryParameter("_HLS_part", String.valueOf(i10));
             }
-            return null;
+            return buildUpon.build();
         }
-        return null;
+        return uri;
     }
 
-    @Override
-    public final boolean e() {
-        if (this.f49043n != this.f49044o) {
-            return true;
+    public final boolean c(Uri uri) {
+        int i10;
+        b bVar = (b) this.d.get(uri);
+        if (bVar.d != null) {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            long max = Math.max(30000L, d0.S(bVar.d.f45048u));
+            i iVar = bVar.d;
+            if (iVar.f45042o || (i10 = iVar.d) == 2 || i10 == 1 || bVar.e + max > elapsedRealtime) {
+                return true;
+            }
+            return false;
         }
         return false;
     }
 
-    public final ArrayList f() {
-        ArrayList arrayList = this.f49041l;
-        int size = arrayList.size();
-        ArrayList arrayList2 = new ArrayList(size);
-        int i10 = 2;
-        for (int i11 = 0; i11 < size; i11++) {
-            t4.b c3 = ((b) arrayList.get(i11)).c(Integer.MIN_VALUE);
-            arrayList2.add(c3);
-            if (c3 != null) {
-                i10 = Math.min(i10, c3.f48134r);
-            }
-        }
-        ArrayList arrayList3 = new ArrayList(size);
-        for (int i12 = 0; i12 < size; i12++) {
-            t4.b bVar = (t4.b) arrayList2.get(i12);
-            if (bVar != null) {
-                if (bVar.f48134r != i10) {
-                    bVar = ((b) arrayList.get(i12)).c(i10);
-                    bVar.getClass();
-                }
-                arrayList3.add(bVar);
-            }
-        }
-        return arrayList3;
+    @Override
+    public final c4.e m(g5.j0 r8, java.io.IOException r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: u4.c.m(g5.j0, java.io.IOException, int):c4.e");
     }
 
     @Override
-    public final void flush() {
-        super.flush();
-        this.f49043n = null;
-        this.f49044o = null;
-        h(0);
-        this.f49046q = 4;
-        this.f49042m.h = 4;
-        g();
-        this.f49047r = false;
-        this.f49048s = false;
-        this.f49049t = (byte) 0;
-        this.f49050u = (byte) 0;
-        this.v = 0;
-        this.f49051w = true;
-        this.f49052x = -9223372036854775807L;
-    }
-
-    public final void g() {
-        b bVar = this.f49042m;
-        bVar.f49034g = this.f49045p;
-        bVar.f49029a.clear();
-        bVar.f49030b.clear();
-        bVar.f49031c.setLength(0);
-        bVar.d = 15;
-        bVar.f49032e = 0;
-        bVar.f49033f = 0;
-        ArrayList arrayList = this.f49041l;
-        arrayList.clear();
-        arrayList.add(this.f49042m);
-    }
-
-    @Override
-    public final String getName() {
-        return "Cea608Decoder";
-    }
-
-    public final void h(int i10) {
-        int i11 = this.f49045p;
-        if (i11 != i10) {
-            this.f49045p = i10;
-            if (i10 == 3) {
-                int i12 = 0;
-                while (true) {
-                    ArrayList arrayList = this.f49041l;
-                    if (i12 < arrayList.size()) {
-                        ((b) arrayList.get(i12)).f49034g = i10;
-                        i12++;
-                    } else {
-                        return;
-                    }
-                }
-            } else {
-                g();
-                if (i11 != 3 && i10 != 1 && i10 != 0) {
-                    return;
-                }
-                this.f49043n = Collections.EMPTY_LIST;
-            }
-        }
-    }
-
-    @Override
-    public final void release() {
+    public final void s(j0 j0Var, long j10, long j11, boolean z4) {
+        p0 p0Var = (p0) j0Var;
+        long j12 = p0Var.f6406a;
+        Uri uri = p0Var.d.f6458c;
+        ?? obj = new Object();
+        this.f45009c.getClass();
+        this.f45010f.l(obj, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
     }
 }

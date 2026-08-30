@@ -1,36 +1,19 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-public final class h71 implements org.telegram.ui.ActionBar.b2 {
-    public final int f38776a;
-    public final SessionsActivity f38777b;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class h71 implements View.OnLongClickListener {
+    public final TLRPC.TL_authorization f34777a;
+    public final o71 f34778b;
 
-    public h71(SessionsActivity sessionsActivity, int i10) {
-        this.f38776a = i10;
-        this.f38777b = sessionsActivity;
+    public h71(o71 o71Var, TLRPC.TL_authorization tL_authorization) {
+        this.f34778b = o71Var;
+        this.f34777a = tL_authorization;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f38776a) {
-            case 0:
-                SessionsActivity sessionsActivity = this.f38777b;
-                sessionsActivity.getClass();
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    sessionsActivity.getParentActivity().startActivity(intent);
-                    return;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                    return;
-                }
-            default:
-                SessionsActivity.W(this.f38777b);
-                return;
-        }
+    public final boolean onLongClick(View view) {
+        o71.m(this.f34778b, this.f34777a.country);
+        return true;
     }
 }

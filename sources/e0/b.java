@@ -61,8 +61,8 @@ public abstract class b {
             return null;
         }
         Mac mac = (Mac) eVar.d;
-        Signature signature = (Signature) eVar.f1030b;
-        Cipher cipher = (Cipher) eVar.f1031c;
+        Signature signature = (Signature) eVar.f478b;
+        Cipher cipher = (Cipher) eVar.f479c;
         if (cipher != null) {
             return new FingerprintManager.CryptoObject(cipher);
         }
@@ -120,13 +120,13 @@ public abstract class b {
 
     public static boolean j(Context context) {
         try {
-            FingerprintManager f9 = eg.c.f(context.getSystemService("fingerprint"));
-            if (f9 == null) {
+            FingerprintManager a2 = k3.e.a(context.getSystemService("fingerprint"));
+            if (a2 == null) {
                 return false;
             }
-            return f9.hasEnrolledFingerprints();
-        } catch (Exception e10) {
-            FileLog.e(e10);
+            return a2.hasEnrolledFingerprints();
+        } catch (Exception e) {
+            FileLog.e(e);
             return false;
         }
     }
@@ -141,13 +141,13 @@ public abstract class b {
 
     public static boolean m(Context context) {
         try {
-            FingerprintManager f9 = eg.c.f(context.getSystemService("fingerprint"));
-            if (f9 == null) {
+            FingerprintManager a2 = k3.e.a(context.getSystemService("fingerprint"));
+            if (a2 == null) {
                 return false;
             }
-            return f9.isHardwareDetected();
-        } catch (Exception e10) {
-            FileLog.e(e10);
+            return a2.isHardwareDetected();
+        } catch (Exception e) {
+            FileLog.e(e);
             return false;
         }
     }
@@ -192,8 +192,8 @@ public abstract class b {
         return drawable.setLayoutDirection(i10);
     }
 
-    public static void x(PopupWindow popupWindow, boolean z10) {
-        popupWindow.setOverlapAnchor(z10);
+    public static void x(PopupWindow popupWindow, boolean z4) {
+        popupWindow.setOverlapAnchor(z4);
     }
 
     public static void y(PopupWindow popupWindow, int i10) {
@@ -202,30 +202,30 @@ public abstract class b {
 
     public static Icon z(IconCompat iconCompat, Context context) {
         Icon createWithBitmap;
-        switch (iconCompat.f1169a) {
+        switch (iconCompat.f595a) {
             case -1:
-                return (Icon) iconCompat.f1170b;
+                return (Icon) iconCompat.f596b;
             case 0:
             default:
                 throw new IllegalArgumentException("Unknown type");
             case 1:
-                createWithBitmap = Icon.createWithBitmap((Bitmap) iconCompat.f1170b);
+                createWithBitmap = Icon.createWithBitmap((Bitmap) iconCompat.f596b);
                 break;
             case 2:
-                createWithBitmap = Icon.createWithResource(iconCompat.h(), iconCompat.f1172e);
+                createWithBitmap = Icon.createWithResource(iconCompat.h(), iconCompat.e);
                 break;
             case 3:
-                createWithBitmap = Icon.createWithData((byte[]) iconCompat.f1170b, iconCompat.f1172e, iconCompat.f1173f);
+                createWithBitmap = Icon.createWithData((byte[]) iconCompat.f596b, iconCompat.e, iconCompat.f598f);
                 break;
             case 4:
-                createWithBitmap = Icon.createWithContentUri((String) iconCompat.f1170b);
+                createWithBitmap = Icon.createWithContentUri((String) iconCompat.f596b);
                 break;
             case 5:
                 if (Build.VERSION.SDK_INT >= 26) {
-                    createWithBitmap = i6.a.b((Bitmap) iconCompat.f1170b);
+                    createWithBitmap = k6.a.b((Bitmap) iconCompat.f596b);
                     break;
                 } else {
-                    createWithBitmap = Icon.createWithBitmap(IconCompat.b((Bitmap) iconCompat.f1170b, false));
+                    createWithBitmap = Icon.createWithBitmap(IconCompat.b((Bitmap) iconCompat.f596b, false));
                     break;
                 }
             case 6:
@@ -234,13 +234,13 @@ public abstract class b {
                     createWithBitmap = g0.f.d(iconCompat.j());
                     break;
                 } else if (context != null) {
-                    InputStream k9 = iconCompat.k(context);
-                    if (k9 != null) {
+                    InputStream k10 = iconCompat.k(context);
+                    if (k10 != null) {
                         if (i10 >= 26) {
-                            createWithBitmap = i6.a.b(BitmapFactory.decodeStream(k9));
+                            createWithBitmap = k6.a.b(BitmapFactory.decodeStream(k10));
                             break;
                         } else {
-                            createWithBitmap = Icon.createWithBitmap(IconCompat.b(BitmapFactory.decodeStream(k9), false));
+                            createWithBitmap = Icon.createWithBitmap(IconCompat.b(BitmapFactory.decodeStream(k10), false));
                             break;
                         }
                     } else {
@@ -250,12 +250,12 @@ public abstract class b {
                     throw new IllegalArgumentException("Context is required to resolve the file uri of the icon: " + iconCompat.j());
                 }
         }
-        ColorStateList colorStateList = iconCompat.f1174g;
+        ColorStateList colorStateList = iconCompat.f599g;
         if (colorStateList != null) {
             createWithBitmap.setTintList(colorStateList);
         }
         PorterDuff.Mode mode = iconCompat.h;
-        if (mode != IconCompat.f1168k) {
+        if (mode != IconCompat.f594k) {
             createWithBitmap.setTintMode(mode);
         }
         return createWithBitmap;

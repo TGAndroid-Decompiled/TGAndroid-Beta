@@ -1,27 +1,27 @@
 package org.telegram.ui.Cells;
 
 import android.view.ViewGroup;
-import org.telegram.ui.Components.ao0;
-import org.telegram.ui.Components.co0;
-import org.telegram.ui.Components.q00;
-import org.telegram.ui.Components.wn0;
-import org.telegram.ui.Components.zn0;
-public final class e1 extends q00 {
-    public final int f24269e = 0;
-    public final ViewGroup f24270f;
+import org.telegram.ui.Components.go0;
+import org.telegram.ui.Components.jo0;
+import org.telegram.ui.Components.ko0;
+import org.telegram.ui.Components.mo0;
+import org.telegram.ui.Components.u00;
+public final class e1 extends u00 {
+    public final int e = 0;
+    public final ViewGroup f20982f;
 
-    public e1(ao0 ao0Var, boolean z10) {
-        super(z10);
-        this.f24270f = ao0Var;
+    public e1(ko0 ko0Var, boolean z4) {
+        super(z4);
+        this.f20982f = ko0Var;
     }
 
     @Override
     public CharSequence d() {
-        switch (this.f24269e) {
+        switch (this.e) {
             case 1:
-                zn0 zn0Var = ((ao0) this.f24270f).f26825w;
-                if (zn0Var != null) {
-                    return zn0Var.getContentDescription();
+                jo0 jo0Var = ((ko0) this.f20982f).f26332w;
+                if (jo0Var != null) {
+                    return jo0Var.getContentDescription();
                 }
                 return null;
             default:
@@ -31,11 +31,11 @@ public final class e1 extends q00 {
 
     @Override
     public float h() {
-        switch (this.f24269e) {
+        switch (this.e) {
             case 1:
-                int k02 = ((ao0) this.f24270f).f26825w.k0();
-                if (k02 > 0) {
-                    return 1.0f / k02;
+                int j02 = ((ko0) this.f20982f).f26332w.j0();
+                if (j02 > 0) {
+                    return 1.0f / j02;
                 }
                 return 0.05f;
             default:
@@ -45,78 +45,78 @@ public final class e1 extends q00 {
 
     @Override
     public final float k() {
-        float f9;
+        float f10;
         int i10;
         int i11;
-        switch (this.f24269e) {
+        switch (this.e) {
             case 0:
-                s1 s1Var = (s1) this.f24270f;
-                d1 d1Var = s1Var.C5;
-                if (s1Var.f25556u7.isMusic()) {
-                    f9 = d1Var.f34447b;
-                    i10 = d1Var.f34450f;
-                    i11 = wn0.E;
-                } else if (s1Var.f25556u7.isVoice()) {
-                    if (s1Var.B5) {
-                        co0 co0Var = s1Var.D5;
-                        return co0Var.f27523a / co0Var.f27528g;
+                t1 t1Var = (t1) this.f20982f;
+                d1 d1Var = t1Var.D5;
+                if (t1Var.f22273v7.isMusic()) {
+                    f10 = d1Var.f25207b;
+                    i10 = d1Var.f25209f;
+                    i11 = go0.E;
+                } else if (t1Var.f22273v7.isVoice()) {
+                    if (t1Var.C5) {
+                        mo0 mo0Var = t1Var.E5;
+                        return mo0Var.f27083a / mo0Var.f27087g;
                     }
-                    f9 = d1Var.f34447b;
-                    i10 = d1Var.f34450f;
-                    i11 = wn0.E;
-                } else if (s1Var.f25556u7.isRoundVideo()) {
-                    return s1Var.f25556u7.audioProgress;
+                    f10 = d1Var.f25207b;
+                    i10 = d1Var.f25209f;
+                    i11 = go0.E;
+                } else if (t1Var.f22273v7.isRoundVideo()) {
+                    return t1Var.f22273v7.audioProgress;
                 } else {
                     return 0.0f;
                 }
-                return f9 / (i10 - i11);
+                return f10 / (i10 - i11);
             default:
-                return ((ao0) this.f24270f).getProgress();
+                return ((ko0) this.f20982f).getProgress();
         }
     }
 
     @Override
-    public final void l(float f9) {
-        switch (this.f24269e) {
+    public final void l(float f10) {
+        switch (this.e) {
             case 0:
-                s1 s1Var = (s1) this.f24270f;
-                co0 co0Var = s1Var.D5;
-                d1 d1Var = s1Var.C5;
-                if (s1Var.f25556u7.isMusic()) {
-                    d1Var.i(f9);
-                } else if (s1Var.f25556u7.isVoice()) {
-                    if (s1Var.B5) {
-                        co0Var.g(f9, false);
+                t1 t1Var = (t1) this.f20982f;
+                mo0 mo0Var = t1Var.E5;
+                d1 d1Var = t1Var.D5;
+                if (t1Var.f22273v7.isMusic()) {
+                    d1Var.i(f10);
+                } else if (t1Var.f22273v7.isVoice()) {
+                    if (t1Var.C5) {
+                        mo0Var.g(f10, false);
                     } else {
-                        d1Var.i(f9);
+                        d1Var.i(f10);
                     }
-                } else if (s1Var.f25556u7.isRoundVideo()) {
-                    if (s1Var.B5) {
-                        if (co0Var != null) {
-                            co0Var.g(f9, false);
+                } else if (t1Var.f22273v7.isRoundVideo()) {
+                    if (t1Var.C5) {
+                        if (mo0Var != null) {
+                            mo0Var.g(f10, false);
                         }
                     } else if (d1Var != null) {
-                        d1Var.i(f9);
+                        d1Var.i(f10);
                     }
-                    s1Var.f25556u7.audioProgress = f9;
+                    t1Var.f22273v7.audioProgress = f10;
                 } else {
                     return;
                 }
-                s1Var.c(f9);
-                s1Var.invalidate();
+                t1Var.b(f10);
+                t1Var.invalidate();
                 return;
             default:
-                ao0 ao0Var = (ao0) this.f24270f;
-                ao0Var.v = true;
-                ao0Var.setProgress(f9);
-                ao0Var.f(f9, true);
-                ao0Var.v = false;
+                ko0 ko0Var = (ko0) this.f20982f;
+                ko0Var.v = true;
+                ko0Var.setProgress(f10);
+                ko0Var.f(f10, true);
+                ko0Var.v = false;
                 return;
         }
     }
 
-    public e1(s1 s1Var) {
+    public e1(t1 t1Var) {
         super(false);
-        this.f24270f = s1Var;
+        this.f20982f = t1Var;
     }
 }

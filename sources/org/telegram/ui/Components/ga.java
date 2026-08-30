@@ -1,148 +1,54 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
-import android.graphics.RecordingCanvas;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-import android.os.Build;
-import android.view.View;
-import java.util.ArrayList;
-import javax.microedition.khronos.egl.EGLContext;
-import org.telegram.messenger.AndroidUtilities;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.Utilities;
 public final class ga {
-    public int f28848a;
-    public final View f28849b;
-    public final ArrayList f28850c;
-    public final ArrayList d;
-    public final ArrayList f28851e;
-    public final Object f28852f;
-    public EGLContext f28853g;
-    public final Object h;
-    public int f28854i;
-    public nh.ta f28855j;
-    public Object f28856k;
-    public Object f28857l;
-    public ma f28858m;
-    public final la f28859n;
-    public Bitmap f28860o;
-    public int f28861p;
+    public String f25090a;
+    public Bitmap f25091b;
+    public final Paint f25092c;
+    public final int d;
+    public final Runnable e;
+    public org.telegram.messenger.b8 f25093f;
 
-    public ga(View view) {
-        ArrayList arrayList = new ArrayList();
-        this.f28850c = arrayList;
-        this.d = new ArrayList();
-        this.f28851e = new ArrayList();
-        this.f28852f = new Object();
-        this.h = new Object();
-        this.f28859n = new la(0, new ig(this, 14));
-        this.f28861p = 0;
-        this.f28849b = view;
-        if (view.isAttachedToWindow()) {
-            arrayList.clear();
-            for (View view2 = view; view2 != null; view2 = (View) view2.getParent()) {
-                arrayList.add(0, view2);
-                if (!(view2.getParent() instanceof View)) {
-                    break;
-                }
-            }
-        }
-        view.addOnAttachStateChangeListener(new df.b(this, 9));
+    public ga(int i10, Runnable runnable) {
+        Paint paint = new Paint(1);
+        this.f25092c = paint;
+        this.d = i10;
+        this.e = runnable;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
-    public final void a(EGLContext eGLContext) {
-        synchronized (this.f28852f) {
-            try {
-                if (this.f28853g == null) {
-                    this.f28853g = eGLContext;
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
+    public final void a() {
+        this.f25090a = null;
+        if (this.f25093f != null) {
+            Utilities.globalQueue.cancelRunnable(this.f25093f);
         }
+        Bitmap bitmap = this.f25091b;
+        if (bitmap != null && !bitmap.isRecycled()) {
+            this.f25091b.recycle();
+        }
+        this.f25091b = null;
     }
 
-    public final Bitmap b() {
-        Bitmap bitmap;
-        ma maVar = this.f28858m;
-        if (maVar == null) {
-            return this.f28860o;
-        }
-        synchronized (maVar.f30620n) {
-            try {
-                if (!maVar.f30623q) {
-                    bitmap = null;
-                } else {
-                    bitmap = maVar.f30622p;
-                }
-            } finally {
-            }
-        }
-        if (bitmap == null) {
-            return this.f28860o;
-        }
-        return bitmap;
+    public final android.graphics.Bitmap b(android.graphics.Bitmap r9, java.lang.String r10, int r11, int r12, boolean r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ga.b(android.graphics.Bitmap, java.lang.String, int, int, boolean):android.graphics.Bitmap");
     }
 
-    public final boolean c() {
-        if (this.f28857l != null) {
-            return true;
+    public final Bitmap c(ImageReceiver.BitmapHolder bitmapHolder) {
+        if (bitmapHolder == null) {
+            return null;
         }
-        return false;
+        return b(bitmapHolder.bitmap, bitmapHolder.getKey(), bitmapHolder.orientation, 0, false);
     }
 
-    public final void d() {
-        ArrayList arrayList = this.d;
-        int size = arrayList.size();
-        int i10 = 0;
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = arrayList.get(i11);
-            i11++;
-            ((ka) obj).f29977b.invalidate();
+    public final Bitmap d(ImageReceiver imageReceiver) {
+        if (imageReceiver == null) {
+            return null;
         }
-        ArrayList arrayList2 = this.f28851e;
-        int size2 = arrayList2.size();
-        while (i10 < size2) {
-            Object obj2 = arrayList2.get(i10);
-            i10++;
-            ((Runnable) obj2).run();
-        }
-    }
-
-    public final void e() {
-        ma maVar = this.f28858m;
-        if (maVar != null) {
-            synchronized (maVar.f30620n) {
-                maVar.f30623q = false;
-            }
-        }
-    }
-
-    public final void f(Bitmap bitmap, boolean z10) {
-        StringBuilder sb2 = new StringBuilder("");
-        int i10 = this.f28861p;
-        this.f28861p = i10 + 1;
-        sb2.append(i10);
-        this.f28860o = this.f28859n.b(bitmap, sb2.toString(), 0, 0, z10);
-    }
-
-    public final void g(nh.ta taVar, Object obj) {
-        this.f28855j = taVar;
-        this.f28856k = obj;
-        this.f28854i = -14737633;
-        if (obj != null && Build.VERSION.SDK_INT >= 31) {
-            RenderNode renderNode = (RenderNode) obj;
-            RenderNode renderNode2 = new RenderNode("blurRenderNode");
-            renderNode2.setRenderEffect(RenderEffect.createBlurEffect(AndroidUtilities.dp(35.0f), AndroidUtilities.dp(35.0f), Shader.TileMode.CLAMP));
-            renderNode2.setPosition(0, 0, renderNode.getWidth(), renderNode.getHeight());
-            RecordingCanvas beginRecording = renderNode2.beginRecording();
-            beginRecording.drawColor(-14737633);
-            beginRecording.drawRenderNode(renderNode);
-            renderNode2.endRecording();
-            this.f28857l = renderNode2;
-            return;
-        }
-        this.f28857l = null;
+        return b(imageReceiver.getBitmap(), imageReceiver.getImageKey(), imageReceiver.getOrientation(), imageReceiver.getInvert(), false);
     }
 }

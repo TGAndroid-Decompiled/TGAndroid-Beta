@@ -1,27 +1,28 @@
 package l7;
 
-import java.util.Map;
-public final class x implements s9.d {
-    public static final x f15033b = new x(0);
-    public static final x f15034c = new x(1);
-    public final int f15035a;
+import java.util.AbstractMap;
+public final class x extends s {
+    public final y f11684c;
 
-    public x(int i10) {
-        this.f15035a = i10;
+    public x(y yVar) {
+        this.f11684c = yVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        switch (this.f15035a) {
-            case 0:
-                Map.Entry entry = (Map.Entry) obj;
-                s9.e eVar = (s9.e) obj2;
-                eVar.e(y.f15051g, entry.getKey());
-                eVar.e(y.h, entry.getValue());
-                return;
-            default:
-                s9.e eVar2 = (s9.e) obj2;
-                throw new RuntimeException("Couldn't find encoder for type ".concat(String.valueOf(obj.getClass().getCanonicalName())));
-        }
+    public final Object get(int i10) {
+        y yVar = this.f11684c;
+        k7.j.a(i10, yVar.e);
+        int i11 = i10 + i10;
+        Object[] objArr = yVar.d;
+        Object obj = objArr[i11];
+        obj.getClass();
+        Object obj2 = objArr[i11 + 1];
+        obj2.getClass();
+        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
+    }
+
+    @Override
+    public final int size() {
+        return this.f11684c.e;
     }
 }

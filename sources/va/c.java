@@ -1,5 +1,17 @@
 package va;
 
-import java.io.IOException;
-public final class c extends IOException {
+import java.sql.Timestamp;
+import java.util.Date;
+import pa.g;
+import pa.u;
+import pa.v;
+public class c implements v {
+    @Override
+    public final u create(g gVar, wa.a aVar) {
+        if (aVar.f46505a == Timestamp.class) {
+            gVar.getClass();
+            return new d(gVar.b(new wa.a(Date.class)));
+        }
+        return null;
+    }
 }

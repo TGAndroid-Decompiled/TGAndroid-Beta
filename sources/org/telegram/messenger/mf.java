@@ -1,23 +1,25 @@
 package org.telegram.messenger;
-public final class mf implements Runnable {
-    public final int f20965a;
-    public final MessagesStorage f20966b;
-    public final boolean f20967c;
 
-    public mf(MessagesStorage messagesStorage, boolean z10, int i10) {
-        this.f20965a = i10;
-        this.f20966b = messagesStorage;
-        this.f20967c = z10;
+import org.telegram.tgnet.TLRPC;
+public final class mf implements Runnable {
+    public final int f17846a;
+    public final MessagesStorage f17847b;
+    public final TLRPC.TL_chatFull f17848c;
+
+    public mf(MessagesStorage messagesStorage, TLRPC.TL_chatFull tL_chatFull, int i10) {
+        this.f17846a = i10;
+        this.f17847b = messagesStorage;
+        this.f17848c = tL_chatFull;
     }
 
     @Override
     public final void run() {
-        switch (this.f20965a) {
+        switch (this.f17846a) {
             case 0:
-                this.f20966b.lambda$getCachedPhoneBook$150(this.f20967c);
+                this.f17847b.lambda$updateChatParticipants$121(this.f17848c);
                 return;
             default:
-                this.f20966b.lambda$cleanup$6(this.f20967c);
+                this.f17847b.lambda$updateChatInfo$139(this.f17848c);
                 return;
         }
     }

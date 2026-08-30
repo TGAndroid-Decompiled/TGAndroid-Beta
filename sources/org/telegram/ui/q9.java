@@ -1,14 +1,20 @@
 package org.telegram.ui;
+public final class q9 extends v9 {
+    public final r9 f37670c0;
 
-import org.telegram.messenger.MrzRecognizer;
-public interface q9 {
-    String E0();
+    public q9(r9 r9Var, int i10) {
+        super(i10);
+        this.f37670c0 = r9Var;
+    }
 
-    void J(String str);
+    @Override
+    public final void finishFragment() {
+        setFinishing(true);
+        this.f37670c0.dismiss();
+    }
 
-    void S0(MrzRecognizer.Result result);
-
-    boolean d1(String str, i9 i9Var);
-
-    void onDismiss();
+    @Override
+    public final void removeSelfFromStack() {
+        this.f37670c0.dismiss();
+    }
 }

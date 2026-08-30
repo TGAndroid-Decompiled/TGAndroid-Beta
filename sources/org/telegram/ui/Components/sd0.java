@@ -1,5 +1,7 @@
 package org.telegram.ui.Components;
+
+import android.animation.AnimatorSet;
 public final class sd0 {
-    public float f32627a;
-    public float f32628b;
+    public AnimatorSet f28688a;
+    public float f28689b;
 }

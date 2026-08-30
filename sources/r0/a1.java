@@ -5,7 +5,7 @@ public class a1 extends z0 {
 
     @Override
     public void c(int i10, i0.b bVar) {
-        this.f46880c.setInsets(k1.a(i10), bVar.d());
+        this.f43161c.setInsets(k1.a(i10), bVar.d());
     }
 
     public a1(m1 m1Var) {

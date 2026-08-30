@@ -1,18 +1,43 @@
 package i9;
-public final class v implements s9.d {
-    public static final v f8799a = new Object();
-    public static final s9.c f8800b = s9.c.c("rolloutVariant");
-    public static final s9.c f8801c = s9.c.c("parameterKey");
-    public static final s9.c d = s9.c.c("parameterValue");
-    public static final s9.c f8802e = s9.c.c("templateVersion");
+
+import android.util.Log;
+import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
+public final class v extends d {
+    public final String f7445a;
+    public final ExecutorService f7446b;
+
+    public v(String str, ExecutorService executorService) {
+        TimeUnit timeUnit = TimeUnit.SECONDS;
+        this.f7445a = str;
+        this.f7446b = executorService;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        s9.e eVar = (s9.e) obj2;
-        w0 w0Var = (w0) ((y1) obj);
-        eVar.e(f8800b, w0Var.f8807a);
-        eVar.e(f8801c, w0Var.f8808b);
-        eVar.e(d, w0Var.f8809c);
-        eVar.c(f8802e, w0Var.d);
+    public final void a() {
+        String str = this.f7445a;
+        ExecutorService executorService = this.f7446b;
+        try {
+            String concat = "Executing shutdown hook for ".concat(str);
+            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                Log.d("FirebaseCrashlytics", concat, null);
+            }
+            executorService.shutdown();
+            if (!executorService.awaitTermination(2L, TimeUnit.SECONDS)) {
+                String concat2 = str.concat(" did not shut down in the allocated time. Requesting immediate shutdown.");
+                if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                    Log.d("FirebaseCrashlytics", concat2, null);
+                }
+                executorService.shutdownNow();
+            }
+        } catch (InterruptedException unused) {
+            Locale locale = Locale.US;
+            String o10 = android.support.v4.media.a.o("Interrupted while waiting for ", str, " to shut down. Requesting immediate shutdown.");
+            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                Log.d("FirebaseCrashlytics", o10, null);
+            }
+            executorService.shutdownNow();
+        }
     }
 }

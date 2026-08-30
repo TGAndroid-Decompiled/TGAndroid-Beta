@@ -1,147 +1,319 @@
 package g5;
 
-import f5.d0;
-import j3.h0;
-import java.util.ArrayList;
-import java.util.HashSet;
+import android.net.Uri;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InterruptedIOException;
+import java.io.OutputStream;
+import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.NoRouteToHostException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
-import jh.d3;
-import jh.h5;
-import lh.u0;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.FileUploadOperation;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationsSettingsFacade;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.voip.GroupCallMessagesController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.jo;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.fy;
-import org.telegram.ui.tn;
-import org.telegram.ui.ze1;
-public final class x implements Runnable {
-    public final int f7101a;
-    public final long f7102b;
-    public final long f7103c;
-    public final Object d;
-    public final Object f7104e;
+import kh.a2;
+import vh.v2;
+public final class x extends g {
+    public final boolean f6461a;
+    public final int f6462b;
+    public final int f6463c;
+    public final String d;
+    public final f7.b e;
+    public final f7.b f6464f;
+    public HttpURLConnection h;
+    public InputStream f6465n;
+    public boolean f6466r;
+    public int f6467s;
+    public long v;
+    public long f6468w;
 
-    public x(Object obj, long j10, long j11, Object obj2, int i10) {
-        this.f7101a = i10;
-        this.d = obj;
-        this.f7102b = j10;
-        this.f7103c = j11;
-        this.f7104e = obj2;
+    public x(String str, int i10, int i11, boolean z4, f7.b bVar) {
+        super(true);
+        this.d = str;
+        this.f6462b = i10;
+        this.f6463c = i11;
+        this.f6461a = z4;
+        this.e = bVar;
+        this.f6464f = new f7.b(5, (byte) 0);
     }
 
-    @Override
-    public final void run() {
-        int i10 = this.f7101a;
-        long j10 = this.f7103c;
-        long j11 = this.f7102b;
-        Object obj = this.f7104e;
-        Object obj2 = this.d;
-        switch (i10) {
-            case 0:
-                int i11 = d0.f6579a;
-                k3.f fVar = ((h0) ((ze.b) obj2).f50825b).f10477a.f10594r;
-                k3.a k9 = fVar.k();
-                fVar.l(k9, 1016, new d3(k9, (String) obj, this.f7103c, this.f7102b, 18));
-                return;
-            case 1:
-                h5.e0((h5) obj2, this.f7102b, this.f7103c, (Utilities.Callback) obj);
-                return;
-            case 2:
-                l3.o oVar = ((l3.n) obj2).f14151b;
-                int i12 = d0.f6579a;
-                k3.f fVar2 = ((h0) oVar).f10477a.f10594r;
-                k3.a k10 = fVar2.k();
-                fVar2.l(k10, 1008, new d3(k10, (String) obj, this.f7103c, this.f7102b, 1));
-                return;
-            case 3:
-                long j12 = this.f7103c;
-                ((u0) obj2).n(this.f7102b, (TLRPC.TL_textWithEntities) obj, j12);
-                return;
-            case 4:
-                ((FileUploadOperation) obj2).lambda$checkNewDataAvailable$4((Float) obj, this.f7102b, this.f7103c);
-                return;
-            case 5:
-                ((MediaDataController) obj2).lambda$loadPinnedMessages$163(this.f7102b, this.f7103c, (ArrayList) obj);
-                return;
-            case 6:
-                ((MediaDataController) obj2).lambda$saveDraftReplyMessage$192(this.f7102b, this.f7103c, (TLRPC.Message) obj);
-                return;
-            case 7:
-                ((MessagesStorage) obj2).lambda$loadPendingTasks$29(this.f7102b, this.f7103c, (TLRPC.TL_messages_deleteScheduledMessages) obj);
-                return;
-            case 8:
-                long j13 = this.f7103c;
-                ((MessagesStorage) obj2).lambda$loadPendingTasks$21(this.f7102b, (TLRPC.InputPeer) obj, j13);
-                return;
-            case 9:
-                ((MessagesStorage) obj2).lambda$getUnreadMention$156(this.f7102b, this.f7103c, (MessagesStorage.IntCallback) obj);
-                return;
-            case 10:
-                NotificationsSettingsFacade.a((NotificationsSettingsFacade) obj2, this.f7102b, this.f7103c, (TLRPC.PeerNotifySettings) obj);
-                return;
-            case 11:
-                ((GroupCallMessagesController) obj2).lambda$processUpdate$3(this.f7102b, this.f7103c, (byte[]) obj);
-                return;
-            case 12:
-                ((jo) obj2).d(this.f7102b, this.f7103c, (HashSet) obj);
-                return;
-            case 13:
-                fy fyVar = (fy) obj2;
-                ze1 ze1Var = (ze1) obj;
-                if (fyVar.f38379y2 != null) {
-                    ArrayList arrayList = new ArrayList();
-                    arrayList.add(MessagesStorage.TopicKey.of(j11, j10));
-                    fyVar.f38379y2.v(fyVar, arrayList, null, false, fyVar.F2, fyVar.G2, fyVar.H2, ze1Var);
-                    if (fyVar.f38279e2) {
-                        fyVar.f38379y2 = null;
+    public static void j(HttpURLConnection httpURLConnection, long j10) {
+        int i10;
+        if (httpURLConnection != null && (i10 = h5.d0.f6937a) >= 19 && i10 <= 20) {
+            try {
+                InputStream inputStream = httpURLConnection.getInputStream();
+                if (j10 == -1) {
+                    if (inputStream.read() == -1) {
                         return;
                     }
+                } else if (j10 <= 2048) {
                     return;
                 }
-                fyVar.finishFragment();
-                return;
-            default:
-                LaunchActivity launchActivity = (LaunchActivity) obj2;
-                tn tnVar = (tn) obj;
-                Pattern pattern = LaunchActivity.f35560x1;
-                TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(launchActivity.K).getTopicsController().findTopic(j11, j10);
-                StringBuilder r6 = a4.w.r(j11, "LaunchActivity openForum after load ", " ");
-                r6.append(j10);
-                r6.append(" TL_forumTopic ");
-                r6.append(findTopic);
-                FileLog.d(r6.toString());
-                if (launchActivity.m0 != null) {
-                    yf.d.a(tnVar, MessagesStorage.TopicKey.of(-j11, j10));
-                    ((ActionBarLayout) launchActivity.O()).P(tnVar);
-                    return;
+                String name = inputStream.getClass().getName();
+                if ("com.android.okhttp.internal.http.HttpTransport$ChunkedInputStream".equals(name) || "com.android.okhttp.internal.http.HttpTransport$FixedLengthInputStream".equals(name)) {
+                    Class<? super Object> superclass = inputStream.getClass().getSuperclass();
+                    superclass.getClass();
+                    Method declaredMethod = superclass.getDeclaredMethod("unexpectedEndOfInput", null);
+                    declaredMethod.setAccessible(true);
+                    declaredMethod.invoke(inputStream, null);
                 }
-                return;
+            } catch (Exception unused) {
+            }
         }
     }
 
-    public x(Object obj, long j10, TLObject tLObject, long j11, int i10) {
-        this.f7101a = i10;
-        this.d = obj;
-        this.f7102b = j10;
-        this.f7104e = tLObject;
-        this.f7103c = j11;
+    public final void a() {
+        HttpURLConnection httpURLConnection = this.h;
+        if (httpURLConnection != null) {
+            try {
+                httpURLConnection.disconnect();
+            } catch (Exception e) {
+                h5.a.p("DefaultHttpDataSource", "Unexpected error while disconnecting", e);
+            }
+            this.h = null;
+        }
     }
 
-    public x(Object obj, Object obj2, long j10, long j11, int i10) {
-        this.f7101a = i10;
-        this.d = obj;
-        this.f7104e = obj2;
-        this.f7102b = j10;
-        this.f7103c = j11;
+    public final URL b(URL url, String str) {
+        if (str != null) {
+            try {
+                URL url2 = new URL(url, str);
+                String protocol = url2.getProtocol();
+                if (!"https".equals(protocol) && !"http".equals(protocol)) {
+                    throw new c0(v2.e("Unsupported protocol redirect: ", protocol), 2001);
+                }
+                if (!this.f6461a && !protocol.equals(url.getProtocol())) {
+                    throw new c0("Disallowed cross-protocol redirect (" + url.getProtocol() + " to " + protocol + ")", 2001);
+                }
+                return url2;
+            } catch (MalformedURLException e) {
+                throw new c0(e, 2001, 1);
+            }
+        }
+        throw new c0("Null location redirect", 2001);
+    }
+
+    @Override
+    public final void close() {
+        try {
+            InputStream inputStream = this.f6465n;
+            if (inputStream != null) {
+                long j10 = this.v;
+                long j11 = -1;
+                if (j10 != -1) {
+                    j11 = j10 - this.f6468w;
+                }
+                j(this.h, j11);
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    int i10 = h5.d0.f6937a;
+                    throw new c0(e, 2000, 3);
+                }
+            }
+        } finally {
+            this.f6465n = null;
+            a();
+            if (this.f6466r) {
+                this.f6466r = false;
+                transferEnded();
+            }
+        }
+    }
+
+    public final HttpURLConnection e(p pVar) {
+        boolean z4;
+        HttpURLConnection g10;
+        URL url = new URL(pVar.f6401a.toString());
+        int i10 = pVar.f6402b;
+        byte[] bArr = pVar.f6403c;
+        long j10 = pVar.e;
+        long j11 = pVar.f6404f;
+        int i11 = 1;
+        int i12 = 0;
+        if ((pVar.h & 1) == 1) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        if (!this.f6461a) {
+            return g(url, i10, bArr, j10, j11, z4, true, pVar.d);
+        }
+        while (true) {
+            int i13 = i12 + 1;
+            if (i12 <= 20) {
+                g10 = g(url, i10, bArr, j10, j11, z4, false, pVar.d);
+                int responseCode = g10.getResponseCode();
+                String headerField = g10.getHeaderField("Location");
+                if ((i10 != i11 && i10 != 3) || (responseCode != 300 && responseCode != 301 && responseCode != 302 && responseCode != 303 && responseCode != 307 && responseCode != 308)) {
+                    if (i10 != 2 || (responseCode != 300 && responseCode != 301 && responseCode != 302 && responseCode != 303)) {
+                        break;
+                    }
+                    g10.disconnect();
+                    url = b(url, headerField);
+                    bArr = null;
+                    i10 = 1;
+                } else {
+                    g10.disconnect();
+                    url = b(url, headerField);
+                }
+                i12 = i13;
+                i11 = 1;
+            } else {
+                throw new c0(new NoRouteToHostException(a2.j(i13, "Too many redirects: ")), 2001, 1);
+            }
+        }
+        return g10;
+    }
+
+    public final HttpURLConnection g(URL url, int i10, byte[] bArr, long j10, long j11, boolean z4, boolean z10, Map map) {
+        String sb;
+        String str;
+        boolean z11;
+        String str2;
+        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+        httpURLConnection.setConnectTimeout(this.f6462b);
+        httpURLConnection.setReadTimeout(this.f6463c);
+        HashMap hashMap = new HashMap();
+        f7.b bVar = this.e;
+        if (bVar != null) {
+            hashMap.putAll(bVar.t());
+        }
+        hashMap.putAll(this.f6464f.t());
+        hashMap.putAll(map);
+        for (Map.Entry entry : hashMap.entrySet()) {
+            httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
+        }
+        Pattern pattern = f0.f6372a;
+        if (j10 == 0 && j11 == -1) {
+            sb = null;
+        } else {
+            StringBuilder s6 = android.support.v4.media.a.s(j10, "bytes=", "-");
+            if (j11 != -1) {
+                s6.append((j10 + j11) - 1);
+            }
+            sb = s6.toString();
+        }
+        if (sb != null) {
+            httpURLConnection.setRequestProperty("Range", sb);
+        }
+        String str3 = this.d;
+        if (str3 != null) {
+            httpURLConnection.setRequestProperty("User-Agent", str3);
+        }
+        if (z4) {
+            str = "gzip";
+        } else {
+            str = "identity";
+        }
+        httpURLConnection.setRequestProperty("Accept-Encoding", str);
+        httpURLConnection.setInstanceFollowRedirects(z10);
+        if (bArr != null) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        httpURLConnection.setDoOutput(z11);
+        int i11 = p.f6400i;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                if (i10 == 3) {
+                    str2 = "HEAD";
+                } else {
+                    throw new IllegalStateException();
+                }
+            } else {
+                str2 = "POST";
+            }
+        } else {
+            str2 = "GET";
+        }
+        httpURLConnection.setRequestMethod(str2);
+        if (bArr != null) {
+            httpURLConnection.setFixedLengthStreamingMode(bArr.length);
+            httpURLConnection.connect();
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            outputStream.write(bArr);
+            outputStream.close();
+            return httpURLConnection;
+        }
+        httpURLConnection.connect();
+        return httpURLConnection;
+    }
+
+    @Override
+    public final Map getResponseHeaders() {
+        HttpURLConnection httpURLConnection = this.h;
+        if (httpURLConnection == null) {
+            return s8.n0.h;
+        }
+        return new w(httpURLConnection.getHeaderFields());
+    }
+
+    @Override
+    public final Uri getUri() {
+        HttpURLConnection httpURLConnection = this.h;
+        if (httpURLConnection == null) {
+            return null;
+        }
+        return Uri.parse(httpURLConnection.getURL().toString());
+    }
+
+    public final void k(long j10) {
+        if (j10 != 0) {
+            byte[] bArr = new byte[4096];
+            while (j10 > 0) {
+                int min = (int) Math.min(j10, 4096);
+                InputStream inputStream = this.f6465n;
+                int i10 = h5.d0.f6937a;
+                int read = inputStream.read(bArr, 0, min);
+                if (!Thread.currentThread().isInterrupted()) {
+                    if (read != -1) {
+                        j10 -= read;
+                        bytesTransferred(read);
+                    } else {
+                        throw new c0();
+                    }
+                } else {
+                    throw new c0(new InterruptedIOException(), 2000, 1);
+                }
+            }
+        }
+    }
+
+    @Override
+    public final long open(g5.p r27) {
+        throw new UnsupportedOperationException("Method not decompiled: g5.x.open(g5.p):long");
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        if (i11 == 0) {
+            return 0;
+        }
+        try {
+            long j10 = this.v;
+            if (j10 != -1) {
+                long j11 = j10 - this.f6468w;
+                if (j11 == 0) {
+                    return -1;
+                }
+                i11 = (int) Math.min(i11, j11);
+            }
+            InputStream inputStream = this.f6465n;
+            int i12 = h5.d0.f6937a;
+            int read = inputStream.read(bArr, i10, i11);
+            if (read != -1) {
+                this.f6468w += read;
+                bytesTransferred(read);
+                return read;
+            }
+            return -1;
+        } catch (IOException e) {
+            int i13 = h5.d0.f6937a;
+            throw c0.a(e, 2);
+        }
     }
 }

@@ -1,36 +1,33 @@
 package org.telegram.messenger.video;
-
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.messenger.voip.VoipAudioManager;
-import org.telegram.ui.Components.fz;
 public final class k implements Runnable {
-    public final int f21879a;
-    public final boolean f21880b;
-    public final boolean f21881c;
-    public final Object d;
+    public final int f18715a;
+    public final VideoPlayerHolderBase f18716b;
 
-    public k(Object obj, boolean z10, boolean z11, int i10) {
-        this.f21879a = i10;
-        this.d = obj;
-        this.f21880b = z10;
-        this.f21881c = z11;
+    public k(VideoPlayerHolderBase videoPlayerHolderBase, int i10) {
+        this.f18715a = i10;
+        this.f18716b = videoPlayerHolderBase;
     }
 
     @Override
     public final void run() {
-        switch (this.f21879a) {
+        switch (this.f18715a) {
             case 0:
-                ((VideoPlayerHolderBase) this.d).lambda$setAudioEnabled$8(this.f21880b, this.f21881c);
+                VideoPlayerHolderBase.i(this.f18716b);
                 return;
             case 1:
-                NativeInstance.d((NativeInstance) this.d, this.f21880b, this.f21881c);
+                VideoPlayerHolderBase.n(this.f18716b);
                 return;
             case 2:
-                VoipAudioManager.b((Utilities.Callback2) this.d, this.f21880b, this.f21881c);
+                VideoPlayerHolderBase.f(this.f18716b);
+                return;
+            case 3:
+                VideoPlayerHolderBase.a(this.f18716b);
+                return;
+            case 4:
+                VideoPlayerHolderBase.c(this.f18716b);
                 return;
             default:
-                ((fz) this.d).R(false, this.f21880b, this.f21881c);
+                VideoPlayerHolderBase.o(this.f18716b);
                 return;
         }
     }

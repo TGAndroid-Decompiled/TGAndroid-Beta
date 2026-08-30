@@ -1,10 +1,11 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-public final class ux0 {
-    public int f33333a;
-    public Paint f33334b;
-    public boolean f33335c;
-    public boolean d;
-    public long f33336e;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public interface ux0 {
+    boolean b();
+
+    boolean c();
+
+    void d(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z4, boolean z10, int i10, int i11);
 }

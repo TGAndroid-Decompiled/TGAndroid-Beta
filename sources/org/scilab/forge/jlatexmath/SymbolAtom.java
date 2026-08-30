@@ -41,8 +41,8 @@ public class SymbolAtom extends CharSymbol {
     public static void addSymbolAtom(String str) {
         try {
             addSymbolAtom(new FileInputStream(str), str);
-        } catch (FileNotFoundException e10) {
-            throw new ResourceParseException(str, e10);
+        } catch (FileNotFoundException e) {
+            throw new ResourceParseException(str, e);
         }
     }
 
@@ -113,12 +113,12 @@ public class SymbolAtom extends CharSymbol {
         symbols.put(symbolAtom.name, symbolAtom);
     }
 
-    public SymbolAtom(String str, int i10, boolean z10) {
+    public SymbolAtom(String str, int i10, boolean z4) {
         this.name = str;
         this.type = i10;
         if (i10 == 1) {
             this.type_limits = 0;
         }
-        this.delimiter = z10;
+        this.delimiter = z4;
     }
 }

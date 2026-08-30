@@ -1,69 +1,58 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-public final class ap implements Runnable {
-    public final int f36579a;
-    public final kp f36580b;
-    public final org.telegram.ui.ActionBar.c2[] f36581c;
-    public final int d;
+import android.view.View;
+import android.widget.ScrollView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ap implements org.telegram.ui.Components.il0 {
+    public final cp f32684a;
 
-    public ap(kp kpVar, org.telegram.ui.ActionBar.c2[] c2VarArr, int i10, int i11) {
-        this.f36579a = i11;
-        this.f36580b = kpVar;
-        this.f36581c = c2VarArr;
-        this.d = i10;
+    public ap(cp cpVar) {
+        this.f32684a = cpVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36579a) {
-            case 0:
-                org.telegram.ui.ActionBar.c2[] c2VarArr = this.f36581c;
-                org.telegram.ui.ActionBar.c2 c2Var = c2VarArr[0];
-                if (c2Var != null) {
-                    final kp kpVar = this.f36580b;
-                    final int i10 = this.d;
-                    c2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    ConnectionsManager.getInstance(kpVar.currentAccount).cancelRequest(i10, true);
-                                    return;
-                                default:
-                                    ConnectionsManager.getInstance(kpVar.currentAccount).cancelRequest(i10, true);
-                                    return;
-                            }
-                        }
-                    });
-                    kpVar.showDialog(c2VarArr[0]);
-                    return;
+    public final void f(int i10, View view) {
+        TLRPC.TL_username tL_username;
+        int i11;
+        int i12;
+        int i13;
+        cp cpVar = this.f32684a;
+        dp dpVar = cpVar.X2;
+        if ((view instanceof ma) && (tL_username = ((ma) view).v) != null) {
+            if (tL_username.editable) {
+                View view2 = dpVar.fragmentView;
+                if (view2 instanceof ScrollView) {
+                    ((ScrollView) view2).smoothScrollTo(0, dpVar.f33771y.getTop() - AndroidUtilities.dp(128.0f));
                 }
+                dpVar.f33746a.requestFocus();
+                AndroidUtilities.showKeyboard(dpVar.f33746a);
                 return;
-            default:
-                org.telegram.ui.ActionBar.c2[] c2VarArr2 = this.f36581c;
-                org.telegram.ui.ActionBar.c2 c2Var2 = c2VarArr2[0];
-                if (c2Var2 != null) {
-                    final kp kpVar2 = this.f36580b;
-                    final int i11 = this.d;
-                    c2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    ConnectionsManager.getInstance(kpVar2.currentAccount).cancelRequest(i11, true);
-                                    return;
-                                default:
-                                    ConnectionsManager.getInstance(kpVar2.currentAccount).cancelRequest(i11, true);
-                                    return;
-                            }
-                        }
-                    });
-                    kpVar2.showDialog(c2VarArr2[0]);
-                    return;
-                }
-                return;
+            }
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cpVar.getContext(), 0, dpVar.getResourceProvider());
+            if (tL_username.active) {
+                i11 = R.string.UsernameDeactivateLink;
+            } else {
+                i11 = R.string.UsernameActivateLink;
+            }
+            alertDialog$Builder.f19503a.O = LocaleController.getString(i11);
+            if (tL_username.active) {
+                i12 = R.string.UsernameDeactivateLinkChannelMessage;
+            } else {
+                i12 = R.string.UsernameActivateLinkChannelMessage;
+            }
+            alertDialog$Builder.f19503a.Q = LocaleController.getString(i12);
+            if (tL_username.active) {
+                i13 = R.string.Hide;
+            } else {
+                i13 = R.string.Show;
+            }
+            alertDialog$Builder.k(LocaleController.getString(i13), new d7(this, tL_username, view, 8));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new m.j0(23));
+            alertDialog$Builder.o();
         }
     }
 }

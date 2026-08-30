@@ -1,30 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class r7 implements Utilities.Callback2 {
-    public final int f21411a;
-    public final MediaDataController f21412b;
-    public final String f21413c;
-    public final Utilities.Callback d;
+public final class r7 implements RequestDelegate {
+    public final int f18276a;
+    public final MediaDataController f18277b;
+    public final int f18278c;
 
-    public r7(MediaDataController mediaDataController, String str, Utilities.Callback callback, int i10) {
-        this.f21411a = i10;
-        this.f21412b = mediaDataController;
-        this.f21413c = str;
-        this.d = callback;
+    public r7(MediaDataController mediaDataController, int i10, int i11) {
+        this.f18276a = i11;
+        this.f18277b = mediaDataController;
+        this.f18278c = i10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        Boolean bool = (Boolean) obj;
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj2;
-        switch (this.f21411a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18276a) {
             case 0:
-                this.f21412b.lambda$getStickerSet$32(this.f21413c, this.d, bool, tL_messages_stickerSet);
+                this.f18277b.lambda$loadArchivedStickersCount$72(this.f18278c, tLObject, tL_error);
+                return;
+            case 1:
+                this.f18277b.lambda$loadRecents$50(this.f18278c, tLObject, tL_error);
+                return;
+            case 2:
+                this.f18277b.lambda$loadRecents$51(this.f18278c, tLObject, tL_error);
                 return;
             default:
-                this.f21412b.lambda$getStickerSet$35(this.f21413c, this.d, bool, tL_messages_stickerSet);
+                this.f18277b.lambda$fetchEmojiStatuses$233(this.f18278c, tLObject, tL_error);
                 return;
         }
     }

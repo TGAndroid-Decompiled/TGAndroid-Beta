@@ -8,20 +8,20 @@ import android.widget.HeaderViewListAdapter;
 import android.widget.ListAdapter;
 import androidx.appcompat.view.menu.ListMenuItemView;
 public final class j2 extends s1 {
-    public f2 A;
-    public l.m B;
-    public final int f16578x;
-    public final int f16579y;
+    public f2 B;
+    public l.m C;
+    public final int f13539x;
+    public final int f13540y;
 
-    public j2(Context context, boolean z10) {
-        super(context, z10);
+    public j2(Context context, boolean z4) {
+        super(context, z4);
         if (1 == i2.a(context.getResources().getConfiguration())) {
-            this.f16578x = 21;
-            this.f16579y = 22;
+            this.f13539x = 21;
+            this.f13540y = 22;
             return;
         }
-        this.f16578x = 22;
-        this.f16579y = 21;
+        this.f13539x = 22;
+        this.f13540y = 21;
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class j2 extends s1 {
         l.m mVar;
         int pointToPosition;
         int i11;
-        if (this.A != null) {
+        if (this.B != null) {
             ListAdapter adapter = getAdapter();
             if (adapter instanceof HeaderViewListAdapter) {
                 HeaderViewListAdapter headerViewListAdapter = (HeaderViewListAdapter) adapter;
@@ -46,15 +46,15 @@ public final class j2 extends s1 {
             } else {
                 mVar = null;
             }
-            l.m mVar2 = this.B;
+            l.m mVar2 = this.C;
             if (mVar2 != mVar) {
-                l.k kVar = hVar.f13976a;
+                l.k kVar = hVar.f11035a;
                 if (mVar2 != null) {
-                    this.A.g(kVar, mVar2);
+                    this.B.e(kVar, mVar2);
                 }
-                this.B = mVar;
+                this.C = mVar;
                 if (mVar != null) {
-                    this.A.o(kVar, mVar);
+                    this.B.q(kVar, mVar);
                 }
             }
         }
@@ -65,12 +65,12 @@ public final class j2 extends s1 {
     public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
         l.h hVar;
         ListMenuItemView listMenuItemView = (ListMenuItemView) getSelectedView();
-        if (listMenuItemView != null && i10 == this.f16578x) {
+        if (listMenuItemView != null && i10 == this.f13539x) {
             if (listMenuItemView.isEnabled() && listMenuItemView.getItemData().hasSubMenu()) {
                 performItemClick(listMenuItemView, getSelectedItemPosition(), getSelectedItemId());
             }
             return true;
-        } else if (listMenuItemView != null && i10 == this.f16579y) {
+        } else if (listMenuItemView != null && i10 == this.f13540y) {
             setSelection(-1);
             ListAdapter adapter = getAdapter();
             if (adapter instanceof HeaderViewListAdapter) {
@@ -78,7 +78,7 @@ public final class j2 extends s1 {
             } else {
                 hVar = (l.h) adapter;
             }
-            hVar.f13976a.c(false);
+            hVar.f11035a.c(false);
             return true;
         } else {
             return super.onKeyDown(i10, keyEvent);
@@ -86,7 +86,7 @@ public final class j2 extends s1 {
     }
 
     public void setHoverListener(f2 f2Var) {
-        this.A = f2Var;
+        this.B = f2Var;
     }
 
     @Override

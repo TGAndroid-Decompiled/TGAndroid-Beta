@@ -1,27 +1,31 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-public final class c41 implements gv0 {
-    public int f27305a;
-    public boolean f27306b;
-    public final d41 f27307c;
+public final class c41 extends ih.s {
+    public final org.telegram.ui.g20 O;
+    public final f41 P;
 
-    public c41(d41 d41Var) {
-        this.f27307c = d41Var;
+    public c41(f41 f41Var, Context context) {
+        super(context);
+        this.P = f41Var;
+        this.O = new org.telegram.ui.g20();
     }
 
     @Override
-    public final void G(int i10, boolean z10) {
-        if (this.f27305a != i10 || this.f27306b != z10) {
-            this.f27305a = i10;
-            this.f27306b = z10;
-            if (i10 > AndroidUtilities.dp(20.0f)) {
-                d41 d41Var = this.f27307c;
-                if (!d41Var.f27652t0) {
-                    d41Var.A0.setAllowNestedScroll(false);
-                    d41Var.f27652t0 = true;
-                }
-            }
-        }
+    public final void onDraw(Canvas canvas) {
+        int dp = AndroidUtilities.dp(8.0f) + this.P.d.getWidth();
+        canvas.saveLayerAlpha(getScrollX(), 0.0f, (getWidth() + getScrollX()) - dp, getHeight(), 255, 31);
+        super.onDraw(canvas);
+        canvas.save();
+        canvas.translate(getPaddingLeft(), getPaddingTop());
+        cw0.a(canvas, getLayout());
+        canvas.restore();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set((getWidth() - dp) - AndroidUtilities.dp(24.0f), 0.0f, getWidth() - dp, getHeight());
+        this.O.b(canvas, rectF, 2, 1.0f);
+        canvas.restore();
     }
 }

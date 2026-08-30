@@ -1,19 +1,31 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class q51 extends f2.j0 {
-    public final u51 I;
+import android.view.View;
+public final class q51 implements View.OnClickListener {
+    public final int f28061a;
+    public final UndoView f28062b;
 
-    public q51(u51 u51Var, int i10) {
-        super(i10, false);
-        this.I = u51Var;
+    public q51(UndoView undoView, int i10) {
+        this.f28061a = i10;
+        this.f28062b = undoView;
     }
 
     @Override
-    public final int W0(f2.k1 k1Var) {
-        if (this.I.W2) {
-            return AndroidUtilities.displaySize.y;
+    public final void onClick(View view) {
+        int i10 = this.f28061a;
+        UndoView undoView = this.f28062b;
+        switch (i10) {
+            case 0:
+                int i11 = UndoView.f23212b0;
+                if (undoView.a()) {
+                    undoView.e(1, false);
+                    return;
+                }
+                return;
+            default:
+                int i12 = UndoView.f23212b0;
+                undoView.e(1, false);
+                return;
         }
-        return super.W0(k1Var);
     }
 }

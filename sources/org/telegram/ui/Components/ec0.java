@@ -1,14 +1,11 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-public final class ec0 extends Drawable.ConstantState {
-    @Override
-    public final int getChangingConfigurations() {
-        return 0;
+import android.graphics.RuntimeShader;
+public abstract class ec0 {
+    public static RuntimeShader a(String str) {
+        return new RuntimeShader(str);
     }
 
-    @Override
-    public final Drawable newDrawable() {
-        return new fc0();
+    public static void b() {
     }
 }

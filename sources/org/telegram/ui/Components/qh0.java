@@ -1,7 +1,10 @@
 package org.telegram.ui.Components;
+public interface qh0 {
+    void a();
 
-import android.view.View;
-import org.telegram.messenger.DispatchQueue;
-public abstract class qh0 extends View {
-    public static final DispatchQueue f31952a = new DispatchQueue("profileBlurQueue");
+    void b(boolean z4);
+
+    void c();
+
+    void d();
 }

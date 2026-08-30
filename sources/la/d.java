@@ -1,37 +1,24 @@
 package la;
 
-import java.util.regex.Pattern;
-import l3.g0;
-public final class d {
-    public final aa.d f15117a;
-    public final g0 f15118b;
-    public final k f15119c;
-    public final sd.d d = sd.e.a();
+import android.os.Build;
+public final class d implements u9.d {
+    public static final d f11747a = new Object();
+    public static final u9.c f11748b = u9.c.c("appId");
+    public static final u9.c f11749c = u9.c.c("deviceModel");
+    public static final u9.c d = u9.c.c("sessionSdkVersion");
+    public static final u9.c e = u9.c.c("osVersion");
+    public static final u9.c f11750f = u9.c.c("logEnvironment");
+    public static final u9.c f11751g = u9.c.c("androidAppInfo");
 
-    public d(sc.h hVar, aa.d dVar, ja.b bVar, g0 g0Var, k1.f fVar) {
-        this.f15117a = dVar;
-        this.f15118b = g0Var;
-        this.f15119c = new k(fVar);
-    }
-
-    public static String b(String str) {
-        Pattern compile = Pattern.compile("/");
-        kotlin.jvm.internal.j.d(compile, "compile(...)");
-        String replaceAll = compile.matcher(str).replaceAll("");
-        kotlin.jvm.internal.j.d(replaceAll, "replaceAll(...)");
-        return replaceAll;
-    }
-
-    public final Boolean a() {
-        e eVar = this.f15119c.f15142b;
-        if (eVar != null) {
-            return eVar.f15120a;
-        }
-        kotlin.jvm.internal.j.h("sessionConfigs");
-        throw null;
-    }
-
-    public final java.lang.Object c(sc.c r25) {
-        throw new UnsupportedOperationException("Method not decompiled: la.d.c(sc.c):java.lang.Object");
+    @Override
+    public final void a(Object obj, Object obj2) {
+        b bVar = (b) obj;
+        u9.e eVar = (u9.e) obj2;
+        eVar.e(f11748b, bVar.f11736a);
+        eVar.e(f11749c, Build.MODEL);
+        eVar.e(d, "1.2.0");
+        eVar.e(e, Build.VERSION.RELEASE);
+        eVar.e(f11750f, o.LOG_ENVIRONMENT_PROD);
+        eVar.e(f11751g, bVar.f11737b);
     }
 }

@@ -76,17 +76,17 @@ public class FlagSecureReason {
     }
 
     public void invalidate() {
-        boolean z10;
+        boolean z4;
         FlagSecureCondition flagSecureCondition;
         int i10 = 1;
         if (this.attached && (flagSecureCondition = this.condition) != null && flagSecureCondition.run()) {
-            z10 = true;
+            z4 = true;
         } else {
-            z10 = false;
+            z4 = false;
         }
-        if (z10 != this.value) {
-            this.value = z10;
-            if (!z10) {
+        if (z4 != this.value) {
+            this.value = z4;
+            if (!z4) {
                 i10 = -1;
             }
             update(i10);

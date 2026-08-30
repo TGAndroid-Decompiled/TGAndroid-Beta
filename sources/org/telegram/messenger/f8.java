@@ -1,29 +1,23 @@
 package org.telegram.messenger;
+public final class f8 implements Runnable {
+    public final int f17193a;
+    public final MediaDataController f17194b;
+    public final boolean f17195c;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class f8 implements RequestDelegate {
-    public final int f20215a;
-    public final boolean f20216b;
-    public final long f20217c;
-    public final BaseController d;
-
-    public f8(BaseController baseController, boolean z10, long j10, int i10) {
-        this.f20215a = i10;
-        this.d = baseController;
-        this.f20216b = z10;
-        this.f20217c = j10;
+    public f8(MediaDataController mediaDataController, boolean z4, int i10) {
+        this.f17193a = i10;
+        this.f17194b = mediaDataController;
+        this.f17195c = z4;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f20215a) {
+    public final void run() {
+        switch (this.f17193a) {
             case 0:
-                ((MediaDataController) this.d).lambda$loadFeaturedStickers$58(this.f20216b, this.f20217c, tLObject, tL_error);
+                this.f17194b.lambda$loadFeaturedStickers$55(this.f17195c);
                 return;
             default:
-                ((MessagesController) this.d).lambda$getChannelRecommendations$482(this.f20216b, this.f20217c, tLObject, tL_error);
+                this.f17194b.lambda$processLoadedFeaturedStickers$59(this.f17195c);
                 return;
         }
     }

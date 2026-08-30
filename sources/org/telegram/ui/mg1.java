@@ -1,50 +1,52 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class mg1 extends LinearLayout {
-    public final org.telegram.ui.ActionBar.c6 f40555a;
-    public final ImageView f40556b;
-    public final LinearLayout f40557c;
-    public final TextView d;
-    public final TextView f40558e;
-    public final ImageView f40559f;
-    public boolean h;
-    public boolean f40560n;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class mg1 extends org.telegram.ui.ActionBar.j {
+    public final og1 f36303a;
 
-    public mg1(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        setOrientation(0);
-        this.f40555a = c6Var;
-        ImageView imageView = new ImageView(context);
-        this.f40556b = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        addView(imageView, i7.f6.t(40, 40, 19, 12, 0, 12, 0));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.f40557c = linearLayout;
-        linearLayout.setOrientation(1);
-        linearLayout.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f));
-        addView(linearLayout, i7.f6.p(0, -2, 1.0f, 23, 0, 0, 32, 0));
-        TextView textView = new TextView(context);
-        this.d = textView;
-        textView.setTextSize(1, 16.0f);
-        TextView i10 = th.i(linearLayout, textView, i7.f6.t(-1, -2, 7, 0, 0, 0, 0), context);
-        this.f40558e = i10;
-        i10.setTextSize(1, 13.0f);
-        linearLayout.addView(i10, i7.f6.r(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.f40559f = imageView2;
-        imageView2.setScaleType(scaleType);
-        addView(imageView2, i7.f6.t(40, 40, 21, 12, 0, 12, 0));
+    public mg1(og1 og1Var) {
+        this.f36303a = og1Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void b(int i10) {
+        String string;
+        org.telegram.ui.ActionBar.e5 e5Var;
+        og1 og1Var = this.f36303a;
+        if (i10 == -1) {
+            if (og1Var.D >= 0) {
+                e5Var = ((org.telegram.ui.ActionBar.p2) og1Var).parentLayout;
+                if (e5Var.getFragmentStack().size() == 1) {
+                    og1Var.I0();
+                    return;
+                }
+            }
+            og1Var.finishFragment();
+        } else if (i10 == 1) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(og1Var.getParentActivity());
+            TL_account.Password password = og1Var.R;
+            if (password != null && password.has_password) {
+                string = LocaleController.getString(R.string.CancelEmailQuestion);
+            } else {
+                string = LocaleController.getString(R.string.CancelPasswordQuestion);
+            }
+            String string2 = LocaleController.getString(R.string.CancelEmailQuestionTitle);
+            String string3 = LocaleController.getString(R.string.Abort);
+            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f19503a;
+            d2Var.Q = string;
+            d2Var.O = string2;
+            alertDialog$Builder.k(string3, new il0(this, 24));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            org.telegram.ui.ActionBar.d2 d2Var2 = alertDialog$Builder.f19503a;
+            og1Var.showDialog(d2Var2);
+            TextView textView = (TextView) d2Var2.d(-1);
+            if (textView != null) {
+                textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20141q7, false));
+            }
+        }
     }
 }

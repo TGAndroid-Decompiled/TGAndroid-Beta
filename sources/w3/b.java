@@ -1,11 +1,14 @@
 package w3;
+public final class b {
+    public final String f46374a;
+    public final String f46375b;
+    public final long f46376c;
+    public final long d;
 
-import f5.w;
-public final class b extends nc.k {
-    public final w f49634c;
-
-    public b(int i10, w wVar) {
-        super(i10, 1);
-        this.f49634c = wVar;
+    public b(String str, long j10, long j11, String str2) {
+        this.f46374a = str;
+        this.f46375b = str2;
+        this.f46376c = j10;
+        this.d = j11;
     }
 }

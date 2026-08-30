@@ -1,8 +1,11 @@
 package m2;
-public interface e {
-    void a(int i10);
 
-    void b(float f9, int i10, int i11);
-
-    void c(int i10);
+import android.view.ViewGroup;
+public final class e extends ViewGroup.LayoutParams {
+    public boolean f13718a;
+    public int f13719b;
+    public float f13720c;
+    public boolean d;
+    public int e;
+    public int f13721f;
 }

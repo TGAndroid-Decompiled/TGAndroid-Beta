@@ -1,29 +1,20 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-public final class bv extends FrameLayout {
-    public org.telegram.ui.ActionBar.o2 f36923a;
-    public FrameLayout f36924b;
-    public org.telegram.ui.ActionBar.l f36925c;
-    public org.telegram.ui.Components.jl0 d;
-    public jh.e1 f36926e;
-    public int f36927f;
-    public final cv h;
+import android.view.View;
+public final class bv implements View.OnClickListener {
+    public final Context f33034a;
+    public final org.telegram.ui.ActionBar.p2 f33035b;
+    public final cv f33036c;
 
-    public bv(cv cvVar, Context context) {
-        super(context);
-        this.h = cvVar;
+    public bv(cv cvVar, Context context, org.telegram.ui.ActionBar.p2 p2Var) {
+        this.f33036c = cvVar;
+        this.f33034a = context;
+        this.f33035b = p2Var;
     }
 
     @Override
-    public final void setTranslationX(float f9) {
-        bv bvVar;
-        super.setTranslationX(f9);
-        cv cvVar = this.h;
-        bv[] bvVarArr = cvVar.f37222f;
-        if (cvVar.f37223n && (bvVar = bvVarArr[0]) == this) {
-            cvVar.f37221e.j(Math.abs(bvVar.getTranslationX()) / bvVarArr[0].getMeasuredWidth(), bvVarArr[1].f36927f);
-        }
+    public final void onClick(android.view.View r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bv.onClick(android.view.View):void");
     }
 }

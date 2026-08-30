@@ -2,7 +2,7 @@ package v0;
 
 import android.os.Bundle;
 import org.json.JSONObject;
-public class m extends ab.e {
+public class m extends cb.e {
     public m(String str, int i10, Bundle data) {
         super(str, data);
         switch (i10) {

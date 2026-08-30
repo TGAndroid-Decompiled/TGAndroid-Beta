@@ -3,27 +3,27 @@ package org.telegram.ui;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 public final class s implements ValueAnimator.AnimatorUpdateListener {
-    public final int f42238a;
-    public final m4 f42239b;
+    public final int f38153a;
+    public final l4 f38154b;
 
-    public s(m4 m4Var, int i10) {
-        this.f42238a = i10;
-        this.f42239b = m4Var;
+    public s(l4 l4Var, int i10) {
+        this.f38153a = i10;
+        this.f38154b = l4Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f42238a) {
+        switch (this.f38153a) {
             case 0:
-                m4 m4Var = this.f42239b;
-                m4Var.getClass();
-                m4Var.X(((Integer) valueAnimator.getAnimatedValue()).intValue());
+                l4 l4Var = this.f38154b;
+                l4Var.getClass();
+                l4Var.X(((Integer) valueAnimator.getAnimatedValue()).intValue());
                 return;
             default:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m4 m4Var2 = this.f42239b;
-                m4Var2.U0 = floatValue;
-                m4Var2.m0.setTranslationY(((1.0f - floatValue) * AndroidUtilities.dp(51.0f)) + m4Var2.f40400l0);
+                l4 l4Var2 = this.f38154b;
+                l4Var2.V0 = floatValue;
+                l4Var2.f35941n0.setTranslationY(((1.0f - floatValue) * AndroidUtilities.dp(51.0f)) + l4Var2.m0);
                 return;
         }
     }

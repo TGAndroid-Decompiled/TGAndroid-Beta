@@ -7,7 +7,7 @@ public abstract class a2 {
         popupWindow.setEpicenterBounds(rect);
     }
 
-    public static void b(PopupWindow popupWindow, boolean z10) {
-        popupWindow.setIsClippedToScreen(z10);
+    public static void b(PopupWindow popupWindow, boolean z4) {
+        popupWindow.setIsClippedToScreen(z4);
     }
 }

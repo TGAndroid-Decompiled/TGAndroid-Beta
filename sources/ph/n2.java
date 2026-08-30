@@ -1,15 +1,16 @@
 package ph;
+public final class n2 extends f2.v {
+    public final a3 f42004c;
 
-import android.graphics.Point;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class n2 extends j3 {
+    public n2(a3 a3Var) {
+        this.f42004c = a3Var;
+    }
+
     @Override
-    public final void onMeasure(int i10, int i11) {
-        if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
-            Point point = AndroidUtilities.displaySize;
-            i10 = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
+    public final int i(int i10) {
+        if (i10 != 0 && i10 != 1 && i10 != this.f42004c.f41262f.h() - 1) {
+            return 1;
         }
-        super.onMeasure(i10, i11);
+        return 3;
     }
 }

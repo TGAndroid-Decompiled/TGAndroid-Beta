@@ -1,44 +1,35 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-public final class nv implements MessagesStorage.IntCallback {
-    public final int f40907a;
-    public final fy f40908b;
+import android.content.DialogInterface;
+public final class nv implements DialogInterface.OnDismissListener {
+    public final int f36729a;
+    public final oy f36730b;
 
-    public nv(fy fyVar, int i10) {
-        this.f40907a = i10;
-        this.f40908b = fyVar;
+    public nv(oy oyVar, int i10) {
+        this.f36729a = i10;
+        this.f36730b = oyVar;
     }
 
     @Override
-    public final void run(int i10) {
-        boolean z10;
-        boolean z11;
-        switch (this.f40907a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f36729a) {
             case 0:
-                fy fyVar = this.f40908b;
-                fyVar.getClass();
-                if (i10 != 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+                oy.i0(this.f36730b);
+                return;
+            case 1:
+                oy oyVar = this.f36730b;
+                if (oyVar.P3 != null) {
+                    oyVar.getMessagesController().removeSuggestion(0L, oyVar.P3);
+                    oyVar.P3 = null;
+                    oyVar.L4();
+                    return;
                 }
-                fyVar.Q1 = z10;
-                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", fyVar.Q1).apply();
-                fyVar.k3(false);
+                return;
+            case 2:
+                this.f36730b.b4(true);
                 return;
             default:
-                fy fyVar2 = this.f40908b;
-                fyVar2.getClass();
-                if (i10 != 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                fyVar2.Q1 = z11;
-                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", fyVar2.Q1).commit();
-                fyVar2.k3(false);
+                this.f36730b.b4(true);
                 return;
         }
     }

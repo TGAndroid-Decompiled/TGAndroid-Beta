@@ -1,39 +1,39 @@
 package n;
 
 import android.os.Looper;
-import i7.b0;
-public final class a extends b0 {
-    public static volatile a f17067b;
-    public final c f17068a = new c();
+import k7.v;
+public final class a extends v {
+    public static volatile a f14192b;
+    public final c f14193a = new c();
 
     public static a a() {
-        if (f17067b != null) {
-            return f17067b;
+        if (f14192b != null) {
+            return f14192b;
         }
         synchronized (a.class) {
             try {
-                if (f17067b == null) {
-                    f17067b = new a();
+                if (f14192b == null) {
+                    f14192b = new a();
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return f17067b;
+        return f14192b;
     }
 
     public final void b(Runnable runnable) {
-        c cVar = this.f17068a;
-        if (cVar.f17072c == null) {
-            synchronized (cVar.f17070a) {
+        c cVar = this.f14193a;
+        if (cVar.f14197c == null) {
+            synchronized (cVar.f14195a) {
                 try {
-                    if (cVar.f17072c == null) {
-                        cVar.f17072c = c.a(Looper.getMainLooper());
+                    if (cVar.f14197c == null) {
+                        cVar.f14197c = c.a(Looper.getMainLooper());
                     }
                 } finally {
                 }
             }
         }
-        cVar.f17072c.post(runnable);
+        cVar.f14197c.post(runnable);
     }
 }

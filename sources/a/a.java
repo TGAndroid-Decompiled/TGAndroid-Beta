@@ -1,36 +1,58 @@
 package a;
 
-import a5.i;
-import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.telegram.ui.yh;
 public abstract class a {
-    public static i a(i iVar, String[] strArr, Map map) {
+    public static String a(Object... objArr) {
+        int length;
+        int length2;
+        int indexOf;
+        String l10;
         int i10 = 0;
-        if (iVar == null) {
-            if (strArr == null) {
-                return null;
+        int i11 = 0;
+        while (true) {
+            length = objArr.length;
+            if (i11 >= length) {
+                break;
             }
-            if (strArr.length == 1) {
-                return (i) map.get(strArr[0]);
-            }
-            if (strArr.length > 1) {
-                i iVar2 = new i();
-                int length = strArr.length;
-                while (i10 < length) {
-                    iVar2.a((i) map.get(strArr[i10]));
-                    i10++;
+            Object obj = objArr[i11];
+            if (obj == null) {
+                l10 = "null";
+            } else {
+                try {
+                    l10 = obj.toString();
+                } catch (Exception e) {
+                    String z4 = android.support.v4.media.a.z(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(z4), (Throwable) e);
+                    l10 = yh.l("<", z4, " threw ", e.getClass().getName(), ">");
                 }
-                return iVar2;
             }
-        } else if (strArr != null && strArr.length == 1) {
-            iVar.a((i) map.get(strArr[0]));
-            return iVar;
-        } else if (strArr != null && strArr.length > 1) {
-            int length2 = strArr.length;
-            while (i10 < length2) {
-                iVar.a((i) map.get(strArr[i10]));
-                i10++;
-            }
+            objArr[i11] = l10;
+            i11++;
         }
-        return iVar;
+        StringBuilder sb = new StringBuilder((length * 16) + 29);
+        int i12 = 0;
+        while (true) {
+            length2 = objArr.length;
+            if (i10 >= length2 || (indexOf = "expected a non-null reference".indexOf("%s", i12)) == -1) {
+                break;
+            }
+            sb.append((CharSequence) "expected a non-null reference", i12, indexOf);
+            sb.append(objArr[i10]);
+            i10++;
+            i12 = indexOf + 2;
+        }
+        sb.append((CharSequence) "expected a non-null reference", i12, 29);
+        if (i10 < length2) {
+            sb.append(" [");
+            sb.append(objArr[i10]);
+            for (int i13 = i10 + 1; i13 < objArr.length; i13++) {
+                sb.append(", ");
+                sb.append(objArr[i13]);
+            }
+            sb.append(']');
+        }
+        return sb.toString();
     }
 }

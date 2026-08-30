@@ -1,74 +1,122 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.SharedPreferences;
-import java.io.File;
-import java.util.ArrayList;
-import org.json.JSONObject;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.tgnet.TLRPC;
-public final class z5 {
-    public String f24018a = "";
-    public String f24019b = "";
-    public String f24020c = "";
-    public int d;
-    public int f24021e;
-    public int f24022f;
-    public int f24023g;
-    public int h;
-    public boolean f24024i;
-    public boolean f24025j;
-    public float f24026k;
-    public long f24027l;
-    public long f24028m;
-    public long f24029n;
-    public boolean f24030o;
-    public f6 f24031p;
-    public e6 f24032q;
-    public float f24033r;
-    public ArrayList f24034s;
-    public TLRPC.WallPaper f24035t;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.RippleDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+import android.graphics.drawable.shapes.RoundRectShape;
+import android.util.StateSet;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class z5 {
+    public static final int f20786a = j6.f19906d6;
+    public static float[] f20787b;
 
-    public static void a(z5 z5Var) {
-        ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit().remove(z5Var.b()).commit();
-        new File(ApplicationLoader.getFilesDirFixed(), z5Var.f24018a).delete();
-        new File(ApplicationLoader.getFilesDirFixed(), z5Var.f24019b).delete();
-    }
-
-    public final String b() {
-        if (this.f24032q != null) {
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f24031p.f22941a);
-            sb2.append("_");
-            return a4.w.l(this.f24032q.f22902a, "_owp", sb2);
+    public static float[] a(float... fArr) {
+        if (fArr.length == 0) {
+            return new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
         }
-        return a4.w.q(new StringBuilder(), this.f24031p.f22941a, "_owp");
+        return fArr.length == 1 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0])} : fArr.length == 2 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1])} : fArr.length == 3 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2])} : fArr.length < 8 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[3]), AndroidUtilities.dp(fArr[3])} : new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[3]), AndroidUtilities.dp(fArr[4]), AndroidUtilities.dp(fArr[5]), AndroidUtilities.dp(fArr[6]), AndroidUtilities.dp(fArr[7])};
     }
 
-    public final void c() {
-        try {
-            String b10 = b();
-            SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit();
-            JSONObject jSONObject = new JSONObject();
-            jSONObject.put("wall", this.f24018a);
-            jSONObject.put("owall", this.f24019b);
-            jSONObject.put("pColor", this.d);
-            jSONObject.put("pGrColor", this.f24021e);
-            jSONObject.put("pGrColor2", this.f24022f);
-            jSONObject.put("pGrColor3", this.f24023g);
-            jSONObject.put("pGrAngle", this.h);
-            String str = this.f24020c;
-            if (str == null) {
-                str = "";
+    public static int b(int i10) {
+        float f10;
+        float f11;
+        float f12;
+        if (f20787b == null) {
+            f20787b = new float[3];
+        }
+        Color.colorToHSV(i10, f20787b);
+        float[] fArr = f20787b;
+        float f13 = fArr[1];
+        if (f13 > 0.01f) {
+            if (j6.I.q()) {
+                f11 = 0.25f;
+            } else {
+                f11 = -0.25f;
             }
-            jSONObject.put("wallSlug", str);
-            jSONObject.put("wBlur", this.f24024i);
-            jSONObject.put("wMotion", this.f24025j);
-            jSONObject.put("pIntensity", this.f24026k);
-            edit.putString(b10, jSONObject.toString());
-            edit.commit();
-        } catch (Throwable th2) {
-            FileLog.e(th2);
+            fArr[1] = Math.min(1.0f, Math.max(0.0f, f13 + f11));
+            float[] fArr2 = f20787b;
+            float f14 = fArr2[2];
+            if (j6.I.q()) {
+                f12 = 0.05f;
+            } else {
+                f12 = -0.05f;
+            }
+            fArr2[2] = Math.min(1.0f, Math.max(0.0f, f14 + f12));
+        } else {
+            float f15 = fArr[2];
+            if (j6.I.q()) {
+                f10 = 0.1f;
+            } else {
+                f10 = -0.1f;
+            }
+            fArr[2] = Math.min(1.0f, Math.max(0.0f, f15 + f10));
         }
+        return Color.HSVToColor(127, f20787b);
+    }
+
+    public static org.telegram.ui.Cells.z c(y5 y5Var, int i10) {
+        ColorStateList colorStateList = new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i10});
+        ?? drawable = new Drawable();
+        drawable.f20771b = -1.0f;
+        if (y5.f20769c == null) {
+            Paint paint = new Paint(1);
+            y5.f20769c = paint;
+            paint.setColor(-1);
+        }
+        drawable.f20770a = y5.f20769c;
+        return new RippleDrawable(colorStateList, y5Var, drawable);
+    }
+
+    public static org.telegram.ui.Cells.z d(float[] fArr, int i10, int i11) {
+        ShapeDrawable shapeDrawable;
+        ShapeDrawable shapeDrawable2;
+        if (i10 != 0) {
+            int i12 = 0;
+            while (true) {
+                if (i12 < Math.min(8, fArr.length)) {
+                    if (fArr[i12] > 0.0f) {
+                        ShapeDrawable shapeDrawable3 = new ShapeDrawable(new RoundRectShape(a(fArr), null, null));
+                        shapeDrawable3.getPaint().setColor(i10);
+                        shapeDrawable = shapeDrawable3;
+                        break;
+                    }
+                    i12++;
+                } else {
+                    shapeDrawable = new ColorDrawable(i10);
+                    break;
+                }
+            }
+        } else {
+            shapeDrawable = null;
+        }
+        int i13 = 0;
+        while (true) {
+            if (i13 < Math.min(8, fArr.length)) {
+                if (fArr[i13] > 0.0f) {
+                    shapeDrawable2 = new ShapeDrawable(new RoundRectShape(a(fArr), null, null));
+                    shapeDrawable2.getPaint().setColor(-1);
+                    break;
+                }
+                i13++;
+            } else {
+                shapeDrawable2 = new ShapeDrawable(new RectShape());
+                shapeDrawable2.getPaint().setColor(-1);
+                break;
+            }
+        }
+        return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i11}), shapeDrawable, shapeDrawable2);
+    }
+
+    public static org.telegram.ui.Cells.z e(float[] fArr, int i10) {
+        return d(fArr, i10, b(i10));
+    }
+
+    public static org.telegram.ui.Cells.z f(float[] fArr, int i10) {
+        return e(fArr, j6.w0(null, i10, false));
     }
 }

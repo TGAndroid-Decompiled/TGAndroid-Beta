@@ -97,13 +97,13 @@ public abstract class FormatCache<F extends Format> {
                 locale = Locale.getDefault();
             }
             MultipartKey multipartKey = new MultipartKey(str, timeZone, locale);
-            F f9 = this.cInstanceCache.get(multipartKey);
-            if (f9 == null) {
+            F f10 = this.cInstanceCache.get(multipartKey);
+            if (f10 == null) {
                 F createInstance = createInstance(str, timeZone, locale);
                 F putIfAbsent = this.cInstanceCache.putIfAbsent(multipartKey, createInstance);
                 return putIfAbsent != null ? putIfAbsent : createInstance;
             }
-            return f9;
+            return f10;
         }
         throw new NullPointerException("pattern must not be null");
     }

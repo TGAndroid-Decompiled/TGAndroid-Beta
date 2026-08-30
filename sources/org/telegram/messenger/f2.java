@@ -1,99 +1,32 @@
 package org.telegram.messenger;
-public final class f2 implements Runnable {
-    public final int f20193a;
-    public final MessagesStorage f20194b;
 
-    public f2(MessagesStorage messagesStorage, int i10) {
-        this.f20193a = i10;
-        this.f20194b = messagesStorage;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+public final class f2 implements Runnable {
+    public final int f17178a;
+    public final Utilities.Callback f17179b;
+    public final ArrayList f17180c;
+
+    public f2(Utilities.Callback callback, ArrayList arrayList, int i10) {
+        this.f17178a = i10;
+        this.f17179b = callback;
+        this.f17180c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f20193a) {
+        switch (this.f17178a) {
             case 0:
-                FactCheckController.f(this.f20194b);
+                this.f17179b.run(this.f17180c);
                 return;
             case 1:
-                this.f20194b.lambda$saveDialogFilter$73();
+                this.f17179b.run(this.f17180c);
                 return;
             case 2:
-                this.f20194b.lambda$clearLocalDatabase$43();
-                return;
-            case 3:
-                this.f20194b.lambda$fixNotificationSettings$9();
-                return;
-            case 4:
-                this.f20194b.lambda$getWallpapers$81();
-                return;
-            case 5:
-                this.f20194b.lambda$loadUnreadMessages$77();
-                return;
-            case 6:
-                this.f20194b.lambda$updateMutedDialogsFiltersCounters$36();
-                return;
-            case 7:
-                this.f20194b.lambda$openDatabase$1();
-                return;
-            case 8:
-                this.f20194b.lambda$openDatabase$2();
-                return;
-            case 9:
-                this.f20194b.lambda$updateFiltersReadCounter$119();
-                return;
-            case 10:
-                this.f20194b.lambda$clearLocalDatabase$44();
-                return;
-            case 11:
-                this.f20194b.lambda$checkSQLException$8();
-                return;
-            case 12:
-                this.f20194b.lambda$fullReset$62();
-                return;
-            case 13:
-                this.f20194b.lambda$new$0();
-                return;
-            case 14:
-                this.f20194b.lambda$resetAllUnreadCounters$250();
-                return;
-            case 15:
-                this.f20194b.lambda$reset$61();
-                return;
-            case 16:
-                this.f20194b.lambda$updateDbToLastVersion$3();
-                return;
-            case 17:
-                this.f20194b.lambda$updateDbToLastVersion$4();
-                return;
-            case 18:
-                this.f20194b.lambda$deleteDialog$89();
-                return;
-            case 19:
-                this.f20194b.lambda$loadDialogFilters$67();
-                return;
-            case 20:
-                this.f20194b.lambda$clearSentMedia$163();
-                return;
-            case 21:
-                this.f20194b.lambda$fullReset$63();
-                return;
-            case 22:
-                this.f20194b.lambda$loadPendingTasks$33();
-                return;
-            case 23:
-                this.f20194b.lambda$deleteAllStoryPushMessages$40();
-                return;
-            case 24:
-                this.f20194b.lambda$cleanup$5();
-                return;
-            case 25:
-                this.f20194b.lambda$deleteAllStoryReactionPushMessages$41();
-                return;
-            case 26:
-                this.f20194b.lambda$getContacts$151();
+                MediaDataController.lambda$loadStickers$92(this.f17179b, this.f17180c);
                 return;
             default:
-                this.f20194b.lambda$broadcastQuickRepliesMessagesChange$223();
+                this.f17179b.run(this.f17180c);
                 return;
         }
     }

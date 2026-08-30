@@ -1,39 +1,32 @@
 package org.telegram.ui.Cells;
 
-import android.view.View;
-import android.widget.TextView;
-public final class c8 implements View.OnClickListener {
-    public final int f24183a;
-    public final i8 f24184b;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+public final class c8 extends ImageReceiver {
+    public final org.telegram.ui.ActionBar.f6 f20925a;
+    public final d8 f20926b;
 
-    public c8(i8 i8Var, int i10) {
-        this.f24183a = i10;
-        this.f24184b = i8Var;
+    public c8(d8 d8Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f20926b = d8Var;
+        this.f20925a = f6Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f24183a) {
-            case 0:
-                this.f24184b.getClass();
-                return;
-            default:
-                i8 i8Var = this.f24184b;
-                TextView textView = i8Var.A;
-                TextView textView2 = i8Var.f24512y;
-                cg.d1 d1Var = i8Var.B;
-                if (d1Var.getVisibility() == 0 && d1Var.f3095r.isEnabled()) {
-                    d1Var.performClick();
-                    return;
-                } else if (textView2.getVisibility() == 0 && textView2.isEnabled()) {
-                    textView2.performClick();
-                    return;
-                } else if (textView.getVisibility() == 0 && textView.isEnabled()) {
-                    textView.performClick();
-                    return;
-                } else {
-                    return;
+    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z4, int i11) {
+        if (drawable instanceof BitmapDrawable) {
+            d8 d8Var = this.f20926b;
+            if (d8Var.H == 0) {
+                d8Var.H = AndroidUtilities.getDominantColor(((BitmapDrawable) drawable).getBitmap());
+                int i12 = d8Var.H;
+                if (i12 == -1 || i12 == 0) {
+                    d8Var.H = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20139q5, this.f20925a);
                 }
+                d8Var.G.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(12.0f), d8Var.H));
+                invalidate();
+            }
         }
+        return super.setImageBitmapByKey(drawable, str, i10, z4, i11);
     }
 }

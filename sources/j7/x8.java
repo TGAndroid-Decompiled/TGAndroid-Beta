@@ -1,3 +1,9 @@
 package j7;
+
+import android.content.Context;
 public abstract class x8 {
+    public static w6.b a(Context context) {
+        b6.m.h(context);
+        return new w6.b(context, new Object());
+    }
 }

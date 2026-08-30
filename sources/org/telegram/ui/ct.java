@@ -1,22 +1,45 @@
 package org.telegram.ui;
+public final class ct implements Runnable {
+    public final int f33424a;
+    public final int f33425b;
+    public final Object f33426c;
+    public final Object d;
+    public final Object e;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class ct extends org.telegram.ui.ActionBar.o1 {
-    public final dt f37209o;
-
-    public ct(dt dtVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f37209o = dtVar;
+    public ct(int i10, Object obj, Object obj2, Object obj3, int i11) {
+        this.f33424a = i11;
+        this.f33425b = i10;
+        this.d = obj;
+        this.e = obj2;
+        this.f33426c = obj3;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        ht htVar = this.f37209o.f37629a;
-        htVar.f39031k = null;
-        htVar.K = false;
-        if (htVar.R) {
-            htVar.n();
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ct.run():void");
+    }
+
+    public ct(Object obj, int i10, Object obj2, Object obj3, int i11) {
+        this.f33424a = i11;
+        this.d = obj;
+        this.f33425b = i10;
+        this.e = obj2;
+        this.f33426c = obj3;
+    }
+
+    public ct(Object obj, Object obj2, int i10, Object obj3, int i11) {
+        this.f33424a = i11;
+        this.d = obj;
+        this.e = obj2;
+        this.f33425b = i10;
+        this.f33426c = obj3;
+    }
+
+    public ct(Object obj, Object obj2, Object obj3, int i10, int i11) {
+        this.f33424a = i11;
+        this.d = obj;
+        this.e = obj2;
+        this.f33426c = obj3;
+        this.f33425b = i10;
     }
 }

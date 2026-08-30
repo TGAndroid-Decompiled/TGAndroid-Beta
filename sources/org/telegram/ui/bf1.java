@@ -1,25 +1,25 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class bf1 implements s01 {
-    public final TLRPC.TL_forumTopic f36785a;
-    public final cf1 f36786b;
+public final class bf1 extends bg.b {
+    public final TLRPC.TL_forumTopic f32951c;
 
-    public bf1(cf1 cf1Var, TLRPC.TL_forumTopic tL_forumTopic) {
-        this.f36786b = cf1Var;
-        this.f36785a = tL_forumTopic;
+    public bf1(int i10, TLRPC.TL_forumTopic tL_forumTopic) {
+        super(i10, true);
+        this.f32951c = tL_forumTopic;
     }
 
-    @Override
-    public final void a0() {
-        ff1 ff1Var = this.f36786b.f37098a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.f36785a;
-        ff1.U(ff1Var, tL_forumTopic.f22444id);
-        AndroidUtilities.runOnUIThread(new t31(17, this, tL_forumTopic), 300L);
-    }
-
-    @Override
-    public final void m(bk0 bk0Var) {
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && bf1.class == obj.getClass()) {
+            bf1 bf1Var = (bf1) obj;
+            int i10 = this.f1808a;
+            if (i10 == bf1Var.f1808a && i10 == 0 && this.f32951c.f19236id == bf1Var.f32951c.f19236id) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -19,7 +19,7 @@ public final class f extends x {
     private static final f DEFAULT_INSTANCE;
     private static volatile x0 PARSER = null;
     public static final int PREFERENCES_FIELD_NUMBER = 1;
-    private o0 preferences_ = o0.f1283b;
+    private o0 preferences_ = o0.f700b;
 
     static {
         f fVar = new f();
@@ -29,7 +29,7 @@ public final class f extends x {
 
     public static o0 i(f fVar) {
         o0 o0Var = fVar.preferences_;
-        if (!o0Var.f1284a) {
+        if (!o0Var.f701a) {
             fVar.preferences_ = o0Var.b();
         }
         return fVar.preferences_;
@@ -46,18 +46,18 @@ public final class f extends x {
         n a2 = n.a();
         x xVar = (x) fVar.d(4);
         try {
-            z0 z0Var = z0.f1334c;
+            z0 z0Var = z0.f748c;
             z0Var.getClass();
             c1 a10 = z0Var.a(xVar.getClass());
-            androidx.datastore.preferences.protobuf.i iVar2 = hVar.f1242b;
+            androidx.datastore.preferences.protobuf.i iVar2 = hVar.f662b;
             if (iVar2 != null) {
                 iVar = iVar2;
             } else {
                 ?? obj = new Object();
-                obj.f1254c = 0;
-                Charset charset = a0.f1193a;
+                obj.f673c = 0;
+                Charset charset = a0.f617a;
                 obj.d = hVar;
-                hVar.f1242b = obj;
+                hVar.f662b = obj;
                 iVar = obj;
             }
             a10.i(xVar, iVar, a2);
@@ -65,17 +65,17 @@ public final class f extends x {
             if (xVar.g()) {
                 return (f) xVar;
             }
-            throw new IOException(new a6.b().getMessage());
-        } catch (IOException e10) {
-            if (e10.getCause() instanceof c0) {
-                throw ((c0) e10.getCause());
+            throw new IOException(new a7.b().getMessage());
+        } catch (IOException e) {
+            if (e.getCause() instanceof c0) {
+                throw ((c0) e.getCause());
             }
-            throw new IOException(e10.getMessage());
-        } catch (RuntimeException e11) {
-            if (e11.getCause() instanceof c0) {
-                throw ((c0) e11.getCause());
+            throw new IOException(e.getMessage());
+        } catch (RuntimeException e6) {
+            if (e6.getCause() instanceof c0) {
+                throw ((c0) e6.getCause());
             }
-            throw e11;
+            throw e6;
         }
     }
 
@@ -88,7 +88,7 @@ public final class f extends x {
             case 1:
                 return null;
             case 2:
-                return new b1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", e.f16764a});
+                return new b1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", e.f13709a});
             case 3:
                 return new f();
             case 4:

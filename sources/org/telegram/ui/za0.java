@@ -1,23 +1,32 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-public final class za0 extends bg.y3 {
-    public final eb0 f45119c;
+import android.window.OnBackInvokedCallback;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class za0 implements OnBackInvokedCallback {
+    public final LaunchActivity f40745a;
 
-    public za0(eb0 eb0Var, Context context) {
-        super(context);
-        this.f45119c = eb0Var;
+    public za0(LaunchActivity launchActivity) {
+        this.f40745a = launchActivity;
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.f45119c.getClass();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
+    public final void onBackInvoked() {
+        if (AndroidUtilities.isTablet()) {
+            this.f40745a.onBackPressed();
+        } else if (!this.f40745a.c0(true)) {
+        } else {
+            LaunchActivity launchActivity = this.f40745a;
+            ActionBarLayout actionBarLayout = launchActivity.f31638n0;
+            if (actionBarLayout != null) {
+                if (!actionBarLayout.Z0) {
+                    actionBarLayout.G();
+                    return;
+                }
+                actionBarLayout.Z0 = false;
+                actionBarLayout.e(false);
+                return;
+            }
+            launchActivity.onBackPressed();
+        }
     }
 }

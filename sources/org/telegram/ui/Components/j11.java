@@ -1,8 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.BitmapDrawable;
-public final class j11 extends BitmapDrawable {
-    public j11(java.io.File r34, org.telegram.messenger.DocumentObject.ThemeDocument r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.j11.<init>(java.io.File, org.telegram.messenger.DocumentObject$ThemeDocument):void");
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class j11 extends AnimatorListenerAdapter {
+    public final ThemeEditorView.EditorAlert f25853a;
+
+    public j11(ThemeEditorView.EditorAlert editorAlert) {
+        this.f25853a = editorAlert;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        ThemeEditorView.EditorAlert editorAlert = this.f25853a;
+        editorAlert.f23204c.setVisibility(4);
+        editorAlert.f23205f.setVisibility(4);
+        editorAlert.f23208s.setVisibility(4);
+        editorAlert.E = false;
     }
 }

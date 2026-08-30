@@ -1,261 +1,144 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.MediaDataController;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class cx0 implements org.telegram.ui.ft {
-    public final nx0 f27583a;
+public final class cx0 extends Drawable {
+    public final int f24071a;
+    public final int f24072b;
+    public final l5[] f24073c;
+    public final boolean e;
+    public int d = 255;
+    public final RectF f24074f = new RectF();
+    public boolean f24075g = false;
 
-    public cx0(nx0 nx0Var) {
-        this.f27583a = nx0Var;
-    }
-
-    @Override
-    public final boolean B() {
-        return true;
-    }
-
-    @Override
-    public final boolean C(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final void D(TLRPC.Document document) {
-        org.telegram.ui.ActionBar.c6 c6Var;
-        int i10;
-        nx0 nx0Var = this.f27583a;
-        nx0Var.O.documents.remove(document);
-        boolean isEmpty = nx0Var.O.documents.isEmpty();
-        if (isEmpty) {
-            nx0Var.dismiss();
+    public cx0(int i10, ArrayList arrayList, boolean z4) {
+        int i11;
+        this.e = z4;
+        int max = (int) Math.max(1.0d, Math.sqrt(arrayList.size()));
+        this.f24071a = max;
+        int min = Math.min(max * max, arrayList.size());
+        this.f24072b = min;
+        this.f24073c = new l5[min];
+        if (!arrayList.isEmpty()) {
+            MessageObject.isAnimatedEmoji((TLRPC.Document) arrayList.get(0));
         }
-        nx0Var.d.l();
-        Context context = nx0Var.getContext();
-        c6Var = ((org.telegram.ui.ActionBar.f3) nx0Var).resourcesProvider;
-        org.telegram.ui.ActionBar.c2 c2Var = new org.telegram.ui.ActionBar.c2(context, 3, c6Var);
-        c2Var.q(350L);
-        TLRPC.TL_stickers_removeStickerFromSet tL_stickers_removeStickerFromSet = new TLRPC.TL_stickers_removeStickerFromSet();
-        tL_stickers_removeStickerFromSet.sticker = MediaDataController.getInputStickerSetItem(document, "").document;
-        i10 = ((org.telegram.ui.ActionBar.f3) nx0Var).currentAccount;
-        ConnectionsManager.getInstance(i10).sendRequest(tL_stickers_removeStickerFromSet, new jh.j7(this, isEmpty, c2Var, 3));
-    }
-
-    @Override
-    public final String E(boolean z10) {
-        return null;
-    }
-
-    @Override
-    public final j70 G(bg.d1 d1Var) {
-        return null;
-    }
-
-    @Override
-    public final boolean I() {
-        return true;
-    }
-
-    @Override
-    public final boolean J() {
-        return false;
-    }
-
-    @Override
-    public final boolean N(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final Boolean P(TLRPC.Document document) {
-        return null;
-    }
-
-    @Override
-    public final boolean Q() {
-        return false;
-    }
-
-    @Override
-    public final long a() {
-        org.telegram.ui.ActionBar.o2 o2Var = this.f27583a.H;
-        if (o2Var instanceof org.telegram.ui.tn) {
-            return ((org.telegram.ui.tn) o2Var).a();
+        if (max < 2) {
+            i11 = 1;
+        } else {
+            i11 = 0;
         }
-        return 0L;
+        for (int i12 = 0; i12 < this.f24072b; i12++) {
+            this.f24073c[i12] = l5.m(i10, i11, (TLRPC.Document) arrayList.get(i12));
+        }
     }
 
-    @Override
+    public final void a(org.telegram.ui.Cells.t1 t1Var) {
+        for (int i10 = 0; i10 < this.f24072b; i10++) {
+            this.f24073c[i10].o(t1Var);
+        }
+    }
+
     public final boolean b() {
-        kx0 kx0Var = this.f27583a.X;
-        if (kx0Var != null && kx0Var.b()) {
+        return this.f24075g;
+    }
+
+    public final boolean c(ArrayList arrayList) {
+        long j10;
+        l5[] l5VarArr = this.f24073c;
+        if (l5VarArr.length == arrayList.size()) {
+            for (int i10 = 0; i10 < l5VarArr.length; i10++) {
+                TLRPC.Document document = l5VarArr[i10].e;
+                if (document == null) {
+                    j10 = 0;
+                } else {
+                    j10 = document.f19190id;
+                }
+                if (j10 == ((TLRPC.Document) arrayList.get(i10)).f19190id) {
+                }
+            }
             return true;
         }
         return false;
     }
 
-    @Override
-    public final boolean c() {
-        kx0 kx0Var = this.f27583a.X;
-        if (kx0Var != null && kx0Var.c()) {
-            return true;
-        }
-        return false;
+    public final void d() {
+        this.f24075g = false;
     }
 
     @Override
-    public final TLRPC.TL_messageMediaPoll d() {
-        return null;
-    }
-
-    @Override
-    public final boolean e(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final boolean f() {
-        if (this.f27583a.T != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final TLRPC.PollAnswer g() {
-        return null;
-    }
-
-    @Override
-    public final boolean h() {
-        TLRPC.StickerSet stickerSet;
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.f27583a.O;
-        if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null && stickerSet.emojis) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final void i(SendMessagesHelper.ImportingSticker importingSticker) {
-        this.f27583a.u0(importingSticker);
-    }
-
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final boolean k(int i10) {
-        if (this.f27583a.X != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        nx0 nx0Var = this.f27583a;
-        kx0 kx0Var = nx0Var.X;
-        if (kx0Var == null) {
+    public final void draw(Canvas canvas) {
+        l5 l5Var;
+        PorterDuffColorFilter porterDuffColorFilter;
+        if (this.d <= 0) {
             return;
         }
-        kx0Var.a(document, str, obj, null, nx0Var.f31175e0, z10, i10, 0);
-        nx0Var.dismiss();
+        Rect bounds = getBounds();
+        RectF rectF = this.f24074f;
+        rectF.set(bounds);
+        float centerX = rectF.centerX() - (AndroidUtilities.dp(48.0f) / 2.0f);
+        float centerY = rectF.centerY() - (AndroidUtilities.dp(48.0f) / 2.0f);
+        int dp = AndroidUtilities.dp(48.0f);
+        int i10 = this.f24071a;
+        float f10 = dp / i10;
+        float dp2 = AndroidUtilities.dp(48.0f) / i10;
+        canvas.save();
+        canvas.clipRect(centerX, centerY, AndroidUtilities.dp(48.0f) + centerX, AndroidUtilities.dp(48.0f) + centerY);
+        for (int i11 = 0; i11 < i10; i11++) {
+            for (int i12 = 0; i12 < i10; i12++) {
+                int i13 = (i11 * i10) + i12;
+                if (i13 >= 0) {
+                    l5[] l5VarArr = this.f24073c;
+                    if (i13 < l5VarArr.length && (l5Var = l5VarArr[i13]) != null) {
+                        l5Var.setBounds((int) ((i12 * f10) + centerX), (int) ((i11 * dp2) + centerY), (int) (((i12 + 1) * f10) + centerX), (int) (((i11 + 1) * dp2) + centerY));
+                        l5VarArr[i13].setAlpha(this.d);
+                        l5 l5Var2 = l5VarArr[i13];
+                        if (this.e) {
+                            porterDuffColorFilter = org.telegram.ui.ActionBar.j6.f20241w3;
+                        } else {
+                            porterDuffColorFilter = org.telegram.ui.ActionBar.j6.f20222v3;
+                        }
+                        l5Var2.setColorFilter(porterDuffColorFilter);
+                        l5VarArr[i13].draw(canvas);
+                    }
+                }
+            }
+        }
+        canvas.restore();
+    }
+
+    public final void e() {
+        this.f24075g = true;
     }
 
     @Override
-    public final void n(TLRPC.Document document) {
-        nx0 nx0Var = this.f27583a;
-        nx0.o0(nx0Var.H, nx0Var.O, document);
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(48.0f);
     }
 
     @Override
-    public final boolean o() {
-        return false;
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(48.0f);
     }
 
     @Override
-    public final boolean w() {
-        return true;
+    public final int getOpacity() {
+        return -2;
     }
 
     @Override
-    public final MessageObject y() {
-        return null;
+    public final void setAlpha(int i10) {
+        this.d = i10;
     }
 
     @Override
-    public final boolean z() {
-        return false;
-    }
-
-    @Override
-    public final void A(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void H(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void O(String str) {
-    }
-
-    @Override
-    public final void m(String str) {
-    }
-
-    @Override
-    public final void p(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void t(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void x(String str) {
-    }
-
-    @Override
-    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-    }
-
-    @Override
-    public final void u(TLRPC.StickerSet stickerSet, String str) {
-    }
-
-    @Override
-    public final void v(TLObject tLObject, Object obj) {
-    }
-
-    @Override
-    public final void F(CharSequence charSequence, String str, org.telegram.ui.tm tmVar) {
-    }
-
-    @Override
-    public final void r(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

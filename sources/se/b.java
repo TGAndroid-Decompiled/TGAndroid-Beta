@@ -1,13 +1,358 @@
 package se;
 
-import java.util.Arrays;
-import org.telegram.messenger.R;
-public abstract class b {
-    public static final long[] f47731a;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Locale;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import vh.v2;
+public final class b {
+    public static volatile b f44289j;
+    public final byte[] f44290a;
+    public final boolean f44291b;
+    public final ByteBuffer f44292c;
+    public final String d;
+    public final String e;
+    public final HashMap f44293f;
+    public final HashMap f44294g;
+    public final HashMap h;
+    public final HashMap f44295i;
 
-    static {
-        long[] jArr = {c.a(R.raw.addone_icon, 120), c.a(R.raw.android_30, 180), c.a(R.raw.auto_night_off, 180), c.a(R.raw.biz_clock, 180), c.a(R.raw.biz_links, 125), c.a(R.raw.biz_map, 180), c.a(R.raw.boosts, 49), c.a(R.raw.bot_webview_sheet_to_cross, 22), c.a(R.raw.bt_to_speaker, 60), c.a(R.raw.bubble, 180), c.a(R.raw.cake, 180), c.a(R.raw.call_accept, 180), c.a(R.raw.call_mute, 60), c.a(R.raw.calls_log, 120), c.a(R.raw.camera, 86), c.a(R.raw.camera_flip, 40), c.a(R.raw.camera_flip2, 60), c.a(R.raw.camera_outline, 86), c.a(R.raw.camera_wait, 300), c.a(R.raw.caption_down, 35), c.a(R.raw.caption_hide, 20), c.a(R.raw.caption_limit, 90), c.a(R.raw.caption_show, 20), c.a(R.raw.caption_up, 35), c.a(R.raw.channel_create, 180), c.a(R.raw.chat_audio_record_delete, 52), c.a(R.raw.chat_audio_record_delete_2, 52), c.a(R.raw.chat_audio_record_delete_3, 40), c.a(R.raw.chats_archive, 50), c.a(R.raw.chats_archiveavatar, 50), c.a(R.raw.chats_archived, 45), c.a(R.raw.chats_hide, 50), c.a(R.raw.chats_infotip, 45), c.a(R.raw.chats_swipearchive, 120), c.a(R.raw.chats_unarchive, 50), c.a(R.raw.chats_unhide, 50), c.a(R.raw.chrome_30, 180), c.a(R.raw.code_laptop, 64), c.a(R.raw.contact_check, 45), c.a(R.raw.contacts_sync_off, 120), c.a(R.raw.contacts_sync_on, 120), c.a(R.raw.convert_video, 38), c.a(R.raw.copy, 61), c.a(R.raw.custom_emoji_reaction, 89), c.a(R.raw.dartloop, 90), c.a(R.raw.db_migration_placeholder, 180), c.a(R.raw.diceloop, 60), c.a(R.raw.done, 120), c.a(R.raw.dots_loading, 60), c.a(R.raw.double_icon, 120), c.a(R.raw.download_arrow, 30), c.a(R.raw.download_finish, 41), c.a(R.raw.download_progress, 50), c.a(R.raw.e_hand_2, 180), c.a(R.raw.edge_30, 180), c.a(R.raw.email_check_inbox, 141), c.a(R.raw.email_setup_heart, 180), c.a(R.raw.emoji_stars, 180), c.a(R.raw.error, 120), c.a(R.raw.filter_new, 120), c.a(R.raw.filter_no_chats, 180), c.a(R.raw.filter_reorder, 61), c.a(R.raw.filters, 180), c.a(R.raw.fire_off, 120), c.a(R.raw.fire_on, 120), c.a(R.raw.fire_once, 120), c.a(R.raw.firefox_30, 180), c.a(R.raw.folder_in, 57), c.a(R.raw.folder_out, 54), c.a(R.raw.folder_share, 91), c.a(R.raw.forward, 47), c.a(R.raw.fragment, 59), c.a(R.raw.fragment_username, 180), c.a(R.raw.gif_to_keyboard, 12), c.a(R.raw.gif_to_smile, 12), c.a(R.raw.gift, 180), c.a(R.raw.gift_broken, 180), c.a(R.raw.gift_crafting, 47), c.a(R.raw.gift_upgrade, 42), c.a(R.raw.gigagroup_convert, 120), c.a(R.raw.giveaway_results, 180), c.a(R.raw.group_pip_delete_icon, 66), c.a(R.raw.hand_1, 720), c.a(R.raw.hand_2, 540), c.a(R.raw.hint_swipe_reply, 120), c.a(R.raw.ic_admin, 120), c.a(R.raw.ic_ban, 120), c.a(R.raw.ic_boosts_replace, 90), c.a(R.raw.ic_delete, 66), c.a(R.raw.ic_download, 120), c.a(R.raw.ic_mute, 66), c.a(R.raw.ic_pin, 120), c.a(R.raw.ic_save_to_gallery, 65), c.a(R.raw.ic_save_to_gifs, 90), c.a(R.raw.ic_save_to_music, 120), c.a(R.raw.ic_unban, 120), c.a(R.raw.ic_unmute, 65), c.a(R.raw.ic_unpin, 120), c.a(R.raw.import_check, 13), c.a(R.raw.import_finish, 120), c.a(R.raw.import_loop, 180), c.a(R.raw.import_progress, 57), c.a(R.raw.imported, 120), c.a(R.raw.incoming_calls, 90), c.a(R.raw.info, 45), c.a(R.raw.ipad_30, 180), c.a(R.raw.iphone_30, 180), c.a(R.raw.keyboard_to_gif, 12), c.a(R.raw.keyboard_to_smile, 12), c.a(R.raw.keyboard_to_sticker, 12), c.a(R.raw.large_lastseen, 180), c.a(R.raw.large_message_lock, 180), c.a(R.raw.large_readtime, 180), c.a(R.raw.linkbroken, 120), c.a(R.raw.linux_30, 180), c.a(R.raw.mac_30, 180), c.a(R.raw.media_enlarge, 20), c.a(R.raw.media_forbidden, 180), c.a(R.raw.media_mute_unmute, 44), c.a(R.raw.media_shrink, 20), c.a(R.raw.monetize, 45), c.a(R.raw.msg_antispam, 62), c.a(R.raw.msg_emoji_activities, 60), c.a(R.raw.msg_emoji_cat, 60), c.a(R.raw.msg_emoji_flags, 60), c.a(R.raw.msg_emoji_food, 60), c.a(R.raw.msg_emoji_objects, 60), c.a(R.raw.msg_emoji_other, 60), c.a(R.raw.msg_emoji_smiles, 60), c.a(R.raw.msg_emoji_travel, 60), c.a(R.raw.msg_stories_archive, 27), c.a(R.raw.msg_stories_saved, 40), c.a(R.raw.msg_story_keep, 46), c.a(R.raw.msg_translate, 180), c.a(R.raw.mute_for, 61), c.a(R.raw.name_hide, 20), c.a(R.raw.name_show, 20), c.a(R.raw.not_available, 180), c.a(R.raw.notify_toggle, 80), c.a(R.raw.options_to_search, 120), c.a(R.raw.passcode_lock, 71), c.a(R.raw.passcode_lock_close, 39), c.a(R.raw.passkey, 157), c.a(R.raw.payment_success, 63), c.a(R.raw.permission_request_apk, 180), c.a(R.raw.permission_request_camera, 60), c.a(R.raw.permission_request_contacts, 120), c.a(R.raw.permission_request_folder, 240), c.a(R.raw.permission_request_location, 60), c.a(R.raw.permission_request_microphone, 60), c.a(R.raw.phone_dots, 60), c.a(R.raw.phone_dots_to_stars, 10), c.a(R.raw.phone_flash_call, 64), c.a(R.raw.phone_stars_to_dots, 10), c.a(R.raw.photo_arrow, 30), c.a(R.raw.photo_blur, 30), c.a(R.raw.photo_eraser, 30), c.a(R.raw.photo_marker, 30), c.a(R.raw.photo_neon, 30), c.a(R.raw.photo_pen, 30), c.a(R.raw.photo_spoiler, 180), c.a(R.raw.photo_suggest_icon, 85), c.a(R.raw.photo_text_allign, 60), c.a(R.raw.plane_logo_plain, 54), c.a(R.raw.player_prev, 25), c.a(R.raw.position_above, 20), c.a(R.raw.position_below, 20), c.a(R.raw.premium_gift, 180), c.a(R.raw.profile_leave, 48), c.a(R.raw.profile_muting, 37), c.a(R.raw.profile_unmuting, 57), c.a(R.raw.profile_voicechat, 48), c.a(R.raw.qr_code_logo, 54), c.a(R.raw.qr_login, 360), c.a(R.raw.qr_matrix, 180), c.a(R.raw.raised_hand, 90), c.a(R.raw.rate, 90), c.a(R.raw.report_police, 180), c.a(R.raw.roundcamera_flash_off, 30), c.a(R.raw.roundcamera_flash_on, 30), c.a(R.raw.roundcamera_flip, 30), c.a(R.raw.safari_30, 180), c.a(R.raw.sandclock, 180), c.a(R.raw.saved_messages, 56), c.a(R.raw.seek_speed_hint, 42), c.a(R.raw.shared_link_enter, 43), c.a(R.raw.silent_mute, 58), c.a(R.raw.silent_unmute, 58), c.a(R.raw.smile_to_gif, 12), c.a(R.raw.smile_to_keyboard, 12), c.a(R.raw.smile_to_sticker, 12), c.a(R.raw.sms_incoming_info, 90), c.a(R.raw.sound_download, 66), c.a(R.raw.sound_off, 61), c.a(R.raw.sound_on, 61), c.a(R.raw.speaker, 34), c.a(R.raw.speaker_to_bt, 60), c.a(R.raw.speed_15to2, 75), c.a(R.raw.speed_1to15, 75), c.a(R.raw.speed_2to1, 72), c.a(R.raw.speed_fast, 75), c.a(R.raw.speed_limit, 51), c.a(R.raw.speed_slow, 72), c.a(R.raw.star_fill, 180), c.a(R.raw.star_premium_2, 50), c.a(R.raw.star_reaction, 163), c.a(R.raw.star_reaction_click, 125), c.a(R.raw.star_reaction_effect1, 90), c.a(R.raw.star_reaction_effect2, 83), c.a(R.raw.star_reaction_effect3, 85), c.a(R.raw.star_reaction_effect4, 90), c.a(R.raw.star_reaction_effect5, 90), c.a(R.raw.star_stroke, 180), c.a(R.raw.stars_send, 140), c.a(R.raw.stars_topup, 109), c.a(R.raw.statistic_preload, 180), c.a(R.raw.sticker_to_keyboard, 12), c.a(R.raw.sticker_to_smile, 12), c.a(R.raw.stories_intro_go_back, 40), c.a(R.raw.stories_intro_go_forward, 38), c.a(R.raw.stories_intro_go_to_next, 39), c.a(R.raw.stories_intro_pause, 46), c.a(R.raw.story_bomb1, 44), c.a(R.raw.story_bomb2, 51), c.a(R.raw.story_repost, 36), c.a(R.raw.sun, 36), c.a(R.raw.sun_outline, 36), c.a(R.raw.swipe_community_ungroup, 29), c.a(R.raw.swipe_delete, 38), c.a(R.raw.swipe_disabled, 30), c.a(R.raw.swipe_mute, 35), c.a(R.raw.swipe_pin, 31), c.a(R.raw.swipe_read, 35), c.a(R.raw.swipe_unmute, 35), c.a(R.raw.swipe_unpin, 48), c.a(R.raw.swipe_unread, 36), c.a(R.raw.tab_article, 16), c.a(R.raw.tab_article_reverse, 5), c.a(R.raw.tab_calls, 6), c.a(R.raw.tab_chats, 6), c.a(R.raw.tab_checklist, 17), c.a(R.raw.tab_checklist_reverse, 5), c.a(R.raw.tab_colors, 17), c.a(R.raw.tab_colors_reverse, 5), c.a(R.raw.tab_contacts, 6), c.a(R.raw.tab_emoji, 18), c.a(R.raw.tab_emoji_reverse, 5), c.a(R.raw.tab_files, 17), c.a(R.raw.tab_files_reverse, 5), c.a(R.raw.tab_gallery, 17), c.a(R.raw.tab_gallery_reverse, 5), c.a(R.raw.tab_gift, 17), c.a(R.raw.tab_gift_reverse, 5), c.a(R.raw.tab_location, 17), c.a(R.raw.tab_location_reverse, 5), c.a(R.raw.tab_models, 17), c.a(R.raw.tab_models_reverse, 5), c.a(R.raw.tab_music, 17), c.a(R.raw.tab_music_reverse, 5), c.a(R.raw.tab_poll, 17), c.a(R.raw.tab_poll_reverse, 5), c.a(R.raw.tab_reply, 17), c.a(R.raw.tab_reply_reverse, 5), c.a(R.raw.tab_settings, 6), c.a(R.raw.tab_sticker, 17), c.a(R.raw.tab_sticker_reverse, 5), c.a(R.raw.tab_symbols, 17), c.a(R.raw.tab_symbols_reverse, 5), c.a(R.raw.tab_wallet, 17), c.a(R.raw.tab_wallet_reverse, 5), c.a(R.raw.tag_icon_3, 57), c.a(R.raw.ticks_double, 54), c.a(R.raw.ticks_single, 25), c.a(R.raw.timer_3, 66), c.a(R.raw.timer_toast, 41), c.a(R.raw.topics, 180), c.a(R.raw.topics_list, 100), c.a(R.raw.topics_tabs, 100), c.a(R.raw.topics_top, 157), c.a(R.raw.transcribe, 180), c.a(R.raw.transcribe_in, 20), c.a(R.raw.transcribe_out, 20), c.a(R.raw.tsv_monkey_close, 98), c.a(R.raw.tsv_setup_email_sent, 180), c.a(R.raw.tsv_setup_hint, 180), c.a(R.raw.tsv_setup_intro, 180), c.a(R.raw.tsv_setup_mail, 160), c.a(R.raw.tsv_setup_monkey_close_and_peek, 33), c.a(R.raw.tsv_setup_monkey_close_and_peek_to_idle, 33), c.a(R.raw.tsv_setup_monkey_idle1, 30), c.a(R.raw.tsv_setup_monkey_idle2, 30), c.a(R.raw.tsv_setup_monkey_peek, 33), c.a(R.raw.tsv_setup_monkey_tracking, 180), c.a(R.raw.ubuntu_30, 180), c.a(R.raw.unlock_icon, 120), c.a(R.raw.utyan_cache, 180), c.a(R.raw.utyan_call, 180), c.a(R.raw.utyan_change_number, 180), c.a(R.raw.utyan_draw, 180), c.a(R.raw.utyan_empty, 180), c.a(R.raw.utyan_empty2, 180), c.a(R.raw.utyan_gallery, 180), c.a(R.raw.utyan_gigagroup, 150), c.a(R.raw.utyan_newborn, 180), c.a(R.raw.utyan_passcode, 180), c.a(R.raw.utyan_private, 180), c.a(R.raw.utyan_saved_messages, 180), c.a(R.raw.utyan_schedule, 180), c.a(R.raw.utyan_streaming, 180), c.a(R.raw.video_stop, 60), c.a(R.raw.voice_and_video, 60), c.a(R.raw.voice_mini, 172), c.a(R.raw.voice_muted, 29), c.a(R.raw.voice_outlined, 24), c.a(R.raw.voice_outlined2, 84), c.a(R.raw.voice_to_text, 120), c.a(R.raw.voip_allow_talk, 52), c.a(R.raw.voip_filled, 404), c.a(R.raw.voip_invite, 120), c.a(R.raw.voip_muted, 120), c.a(R.raw.voip_record_saved, 56), c.a(R.raw.voip_record_start, 64), c.a(R.raw.voip_unmuted, 120), c.a(R.raw.wallet_allset, 180), c.a(R.raw.wallet_congrats, 180), c.a(R.raw.wallet_perfect, 120), c.a(R.raw.wallet_science, 180), c.a(R.raw.windows_30, 180), c.a(R.raw.write_contacts_fab_icon, 49)};
-        Arrays.sort(jArr);
-        f47731a = jArr;
+    public b() {
+        InputStream inputStream;
+        ByteArrayOutputStream byteArrayOutputStream;
+        this.f44291b = false;
+        ByteArrayOutputStream byteArrayOutputStream2 = null;
+        try {
+            inputStream = ApplicationLoader.applicationContext.getAssets().open("PhoneFormats.dat");
+            try {
+                try {
+                    byteArrayOutputStream = new ByteArrayOutputStream();
+                } catch (Exception e) {
+                    e = e;
+                }
+            } catch (Throwable th2) {
+                th = th2;
+            }
+        } catch (Exception e6) {
+            e = e6;
+            inputStream = null;
+        } catch (Throwable th3) {
+            th = th3;
+            inputStream = null;
+        }
+        try {
+            byte[] bArr = new byte[1024];
+            while (true) {
+                int read = inputStream.read(bArr, 0, 1024);
+                if (read == -1) {
+                    break;
+                }
+                byteArrayOutputStream.write(bArr, 0, read);
+            }
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
+            this.f44290a = byteArray;
+            ByteBuffer wrap = ByteBuffer.wrap(byteArray);
+            this.f44292c = wrap;
+            wrap.order(ByteOrder.LITTLE_ENDIAN);
+            try {
+                byteArrayOutputStream.close();
+            } catch (Exception e10) {
+                FileLog.e(e10);
+            }
+            try {
+                inputStream.close();
+            } catch (Exception e11) {
+                FileLog.e(e11);
+            }
+            this.d = Locale.getDefault().getCountry().toLowerCase();
+            this.f44293f = new HashMap(255);
+            this.f44294g = new HashMap(255);
+            this.h = new HashMap(10);
+            this.f44295i = new HashMap(255);
+            int f10 = f(0);
+            int i10 = 4;
+            int i11 = (f10 * 12) + 4;
+            for (int i12 = 0; i12 < f10; i12++) {
+                String g10 = g(i10);
+                String g11 = g(i10 + 4);
+                int f11 = f(i10 + 8) + i11;
+                i10 += 12;
+                if (g11.equals(this.d)) {
+                    this.e = g10;
+                }
+                this.f44295i.put(g11, g10);
+                this.f44293f.put(g10, Integer.valueOf(f11));
+                ArrayList arrayList = (ArrayList) this.f44294g.get(g10);
+                if (arrayList == null) {
+                    arrayList = new ArrayList();
+                    this.f44294g.put(g10, arrayList);
+                }
+                arrayList.add(g11);
+            }
+            String str = this.e;
+            if (str != null) {
+                a(str);
+            }
+            this.f44291b = true;
+        } catch (Exception e12) {
+            e = e12;
+            byteArrayOutputStream2 = byteArrayOutputStream;
+            e.printStackTrace();
+            if (byteArrayOutputStream2 != null) {
+                try {
+                    byteArrayOutputStream2.close();
+                } catch (Exception e13) {
+                    FileLog.e(e13);
+                }
+            }
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (Exception e14) {
+                    FileLog.e(e14);
+                }
+            }
+        } catch (Throwable th4) {
+            th = th4;
+            byteArrayOutputStream2 = byteArrayOutputStream;
+            if (byteArrayOutputStream2 != null) {
+                try {
+                    byteArrayOutputStream2.close();
+                } catch (Exception e15) {
+                    FileLog.e(e15);
+                }
+            }
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (Exception e16) {
+                    FileLog.e(e16);
+                }
+            }
+            throw th;
+        }
+    }
+
+    public static b c() {
+        b bVar;
+        b bVar2 = f44289j;
+        if (bVar2 == null) {
+            synchronized (b.class) {
+                try {
+                    bVar = f44289j;
+                    if (bVar == null) {
+                        bVar = new b();
+                        f44289j = bVar;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            return bVar;
+        }
+        return bVar2;
+    }
+
+    public static String d(String str, boolean z4) {
+        String str2;
+        if (str == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder(str);
+        if (z4) {
+            str2 = "0123456789+";
+        } else {
+            str2 = "0123456789";
+        }
+        for (int length = sb.length() - 1; length >= 0; length--) {
+            if (!str2.contains(sb.substring(length, length + 1))) {
+                sb.deleteCharAt(length);
+            }
+        }
+        return sb.toString();
+    }
+
+    public final a a(String str) {
+        Integer num;
+        b bVar = this;
+        a aVar = (a) bVar.h.get(str);
+        if (aVar == null && (num = (Integer) bVar.f44293f.get(str)) != null) {
+            int intValue = num.intValue();
+            ?? obj = new Object();
+            new ArrayList();
+            obj.f44286a = "";
+            obj.f44287b = new ArrayList();
+            obj.f44288c = new ArrayList();
+            obj.d = new ArrayList();
+            obj.f44286a = str;
+            ArrayList arrayList = (ArrayList) bVar.f44294g.get(str);
+            bVar.h.put(str, obj);
+            short e = bVar.e(intValue);
+            short e6 = bVar.e(intValue + 4);
+            short e10 = bVar.e(intValue + 8);
+            int i10 = intValue + 12;
+            ArrayList arrayList2 = new ArrayList(5);
+            while (true) {
+                String g10 = bVar.g(i10);
+                if (g10.length() == 0) {
+                    break;
+                }
+                arrayList2.add(g10);
+                i10 += g10.length() + 1;
+            }
+            obj.f44287b = arrayList2;
+            int i11 = i10 + 1;
+            ArrayList arrayList3 = new ArrayList(5);
+            while (true) {
+                String g11 = bVar.g(i11);
+                if (g11.length() == 0) {
+                    break;
+                }
+                arrayList3.add(g11);
+                i11 += g11.length() + 1;
+            }
+            obj.f44288c = arrayList3;
+            ArrayList arrayList4 = new ArrayList(e10);
+            int i12 = intValue + e;
+            int i13 = i12;
+            int i14 = 0;
+            while (i14 < e10) {
+                ?? obj2 = new Object();
+                obj2.f44301b = new ArrayList();
+                obj2.f44300a = bVar.e(i13);
+                short e11 = bVar.e(i13 + 2);
+                i13 += 4;
+                ArrayList arrayList5 = new ArrayList(e11);
+                int i15 = 0;
+                while (i15 < e11) {
+                    ?? obj3 = new Object();
+                    obj3.f44296a = bVar.f(i13);
+                    obj3.f44297b = bVar.f(i13 + 4);
+                    byte[] bArr = bVar.f44290a;
+                    byte b10 = bArr[i13 + 8];
+                    obj3.f44298c = bArr[i13 + 9];
+                    byte b11 = bArr[i13 + 10];
+                    byte b12 = bArr[i13 + 11];
+                    obj3.d = bArr[i13 + 12];
+                    byte b13 = bArr[i13 + 13];
+                    short e12 = bVar.e(i13 + 14);
+                    i13 += 16;
+                    String g12 = bVar.g(i12 + e6 + e12);
+                    obj3.e = g12;
+                    int indexOf = g12.indexOf("[[");
+                    if (indexOf != -1) {
+                        obj3.e = v2.k(obj3.e.substring(0, indexOf), obj3.e.substring(obj3.e.indexOf("]]") + 2));
+                    }
+                    arrayList5.add(obj3);
+                    i15++;
+                    bVar = this;
+                }
+                obj2.f44301b = arrayList5;
+                arrayList4.add(obj2);
+                i14++;
+                bVar = this;
+            }
+            obj.d = arrayList4;
+            return obj;
+        }
+        return aVar;
+    }
+
+    public final String b(String str) {
+        String str2;
+        if (this.f44291b) {
+            try {
+                StringBuilder sb = new StringBuilder(str);
+                for (int length = sb.length() - 1; length >= 0; length--) {
+                    if (!"0123456789+*#".contains(sb.substring(length, length + 1))) {
+                        sb.deleteCharAt(length);
+                    }
+                }
+                String sb2 = sb.toString();
+                a aVar = null;
+                if (sb2.startsWith("+")) {
+                    String substring = sb2.substring(1);
+                    int i10 = 0;
+                    while (i10 < 3 && i10 < substring.length()) {
+                        i10++;
+                        aVar = a(substring.substring(0, i10));
+                        if (aVar != null) {
+                            break;
+                        }
+                    }
+                    if (aVar != null) {
+                        return "+" + aVar.a(substring);
+                    }
+                } else {
+                    a a2 = a(this.e);
+                    if (a2 != null) {
+                        ArrayList arrayList = a2.f44288c;
+                        int size = arrayList.size();
+                        int i11 = 0;
+                        while (true) {
+                            if (i11 < size) {
+                                Object obj = arrayList.get(i11);
+                                i11++;
+                                str2 = (String) obj;
+                                if (sb2.startsWith(str2)) {
+                                    break;
+                                }
+                            } else {
+                                str2 = null;
+                                break;
+                            }
+                        }
+                        if (str2 != null) {
+                            String substring2 = sb2.substring(str2.length());
+                            int i12 = 0;
+                            while (i12 < 3 && i12 < substring2.length()) {
+                                i12++;
+                                aVar = a(substring2.substring(0, i12));
+                                if (aVar != null) {
+                                    break;
+                                }
+                            }
+                            if (aVar != null) {
+                                substring2 = aVar.a(substring2);
+                            }
+                            if (substring2.length() == 0) {
+                                return str2;
+                            }
+                            return str2 + " " + substring2;
+                        }
+                        return a2.a(sb2);
+                    }
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+                return str;
+            }
+        }
+        return str;
+    }
+
+    public final short e(int i10) {
+        if (i10 + 2 <= this.f44290a.length) {
+            this.f44292c.position(i10);
+            return this.f44292c.getShort();
+        }
+        return (short) 0;
+    }
+
+    public final int f(int i10) {
+        if (i10 + 4 <= this.f44290a.length) {
+            this.f44292c.position(i10);
+            return this.f44292c.getInt();
+        }
+        return 0;
+    }
+
+    public final java.lang.String g(int r5) {
+        throw new UnsupportedOperationException("Method not decompiled: se.b.g(int):java.lang.String");
     }
 }

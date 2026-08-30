@@ -1,64 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.animation.DecelerateInterpolator;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public abstract class zp extends Drawable {
-    public final Paint f35383a;
-    public long f35384b;
-    public final RectF f35385c;
-    public float d;
-    public boolean f35386e;
-    public int f35387f;
-    public int f35388g;
+public final class zp extends FrameLayout {
+    public final View f31424a;
+    public final TextView f31425b;
 
-    public zp() {
-        this(2.0f);
-    }
-
-    public abstract int a();
-
-    @Override
-    public final void draw(android.graphics.Canvas r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.zp.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
+    public zp(Context context) {
+        super(context);
+        View view = new View(context);
+        this.f31424a = view;
+        int dp = AndroidUtilities.dp(4.0f);
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false);
+        int w03 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Qh, false);
+        view.setBackground(org.telegram.ui.ActionBar.j6.i0(dp, dp, dp, dp, w02, w03, w03));
+        addView(view, k7.b6.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
+        TextView textView = new TextView(context);
+        this.f31425b = textView;
+        textView.setLines(1);
+        textView.setSingleLine(true);
+        textView.setGravity(1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setGravity(17);
+        org.telegram.messenger.y3.t(textView, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Sh, false), 1, 14.0f);
+        addView(textView, k7.b6.e(-2, -2, 17));
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
     }
 
-    public zp(float f9) {
-        Paint paint = new Paint(1);
-        this.f35383a = paint;
-        new DecelerateInterpolator();
-        this.f35385c = new RectF();
-        this.f35388g = 255;
-        paint.setColor(-1);
-        paint.setStrokeWidth(AndroidUtilities.dp(f9));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStyle(Paint.Style.STROKE);
-        this.f35387f = AndroidUtilities.dp(8.0f);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setText(CharSequence charSequence) {
+        this.f31425b.setText(charSequence);
     }
 }

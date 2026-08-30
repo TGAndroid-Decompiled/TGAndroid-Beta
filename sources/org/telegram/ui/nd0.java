@@ -1,30 +1,46 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.NotificationCenter;
-public final class nd0 implements NotificationCenter.NotificationCenterDelegate {
-    public final pd0 f40782a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class nd0 extends AnimatorListenerAdapter {
+    public final int f36605a;
+    public final ng0 f36606b;
 
-    public nd0(pd0 pd0Var) {
-        this.f40782a = pd0Var;
+    public nd0(ng0 ng0Var, int i10) {
+        this.f36605a = i10;
+        this.f36606b = ng0Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        pd0 pd0Var = this.f40782a;
-        int intValue = ((Integer) objArr[0]).intValue();
-        ((Integer) objArr[1]).getClass();
-        Intent intent = (Intent) objArr[2];
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
-        if (intValue == 200) {
-            try {
-                pd0Var.B = (GoogleSignInAccount) i7.l.b(intent).getResult(com.google.android.gms.common.api.f.class);
-                pd0Var.h(null);
-            } catch (com.google.android.gms.common.api.f e10) {
-                FileLog.e(e10);
-            }
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f36605a) {
+            case 0:
+                ng0 ng0Var = this.f36606b;
+                if (ng0Var.d == animator) {
+                    ng0Var.d = null;
+                    return;
+                }
+                return;
+            default:
+                ng0 ng0Var2 = this.f36606b;
+                ng0Var2.f36626c.setVisibility(8);
+                if (ng0Var2.d == animator) {
+                    ng0Var2.d = null;
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f36605a) {
+            case 0:
+                this.f36606b.f36626c.setVisibility(0);
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
     }
 }

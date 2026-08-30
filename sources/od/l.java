@@ -1,70 +1,26 @@
 package od;
 
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-import jd.e0;
-public class l {
-    public static final AtomicReferenceFieldUpdater f19523a = AtomicReferenceFieldUpdater.newUpdater(l.class, Object.class, "_next$volatile");
-    public static final AtomicReferenceFieldUpdater f19524b = AtomicReferenceFieldUpdater.newUpdater(l.class, Object.class, "_prev$volatile");
-    public static final AtomicReferenceFieldUpdater f19525c = AtomicReferenceFieldUpdater.newUpdater(l.class, Object.class, "_removedRef$volatile");
-    private volatile Object _next$volatile = this;
-    private volatile Object _prev$volatile = this;
-    private volatile Object _removedRef$volatile;
+import ld.f1;
+public final class l extends wc.c {
+    public m f16567a;
+    public c f16568b;
+    public o f16569c;
+    public f1 d;
+    public Object e;
+    public Object f16570f;
+    public final m h;
+    public int f16571n;
 
-    public final od.l d() {
-        throw new UnsupportedOperationException("Method not decompiled: od.l.d():od.l");
+    public l(m mVar, wc.c cVar) {
+        super(cVar);
+        this.h = mVar;
     }
 
-    public final void e(l lVar) {
-        while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f19524b;
-            l lVar2 = (l) atomicReferenceFieldUpdater.get(lVar);
-            if (f() == lVar) {
-                while (!atomicReferenceFieldUpdater.compareAndSet(lVar, lVar2, this)) {
-                    if (atomicReferenceFieldUpdater.get(lVar) != lVar2) {
-                        break;
-                    }
-                }
-                if (h()) {
-                    lVar.d();
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-    }
-
-    public final Object f() {
-        while (true) {
-            Object obj = f19523a.get(this);
-            if (!(obj instanceof q)) {
-                return obj;
-            }
-            ((q) obj).a(this);
-        }
-    }
-
-    public final l g() {
-        r rVar;
-        l lVar;
-        Object f9 = f();
-        if (f9 instanceof r) {
-            rVar = (r) f9;
-        } else {
-            rVar = null;
-        }
-        if (rVar != null && (lVar = rVar.f19535a) != null) {
-            return lVar;
-        }
-        kotlin.jvm.internal.j.c(f9, "null cannot be cast to non-null type kotlinx.coroutines.internal.LockFreeLinkedListNode{ kotlinx.coroutines.internal.LockFreeLinkedListKt.Node }");
-        return (l) f9;
-    }
-
-    public boolean h() {
-        return f() instanceof r;
-    }
-
-    public String toString() {
-        return new kotlin.jvm.internal.n(this, e0.class, "classSimpleName", "getClassSimpleName(Ljava/lang/Object;)Ljava/lang/String;", 1) + '@' + e0.k(this);
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        this.f16570f = obj;
+        this.f16571n |= Integer.MIN_VALUE;
+        this.h.z(null, this);
+        return vc.a.f45663a;
     }
 }

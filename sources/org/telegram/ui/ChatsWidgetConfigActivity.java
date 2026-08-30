@@ -4,33 +4,33 @@ import android.content.Intent;
 import android.os.Bundle;
 import org.telegram.messenger.AndroidUtilities;
 public class ChatsWidgetConfigActivity extends ExternalActionActivity {
-    public static final int B = 0;
-    public int A = 0;
+    public static final int C = 0;
+    public int B = 0;
 
     @Override
-    public final void d(Intent intent, boolean z10, boolean z11, boolean z12, int i10, int i11) {
-        if (!c(intent, z10, z11, z12, i10, i11)) {
+    public final void d(Intent intent, boolean z4, boolean z10, boolean z11, int i10, int i11) {
+        if (!c(intent, z4, z10, z11, i10, i11)) {
             return;
         }
         Bundle extras = intent.getExtras();
         if (extras != null) {
-            this.A = extras.getInt("appWidgetId", 0);
+            this.B = extras.getInt("appWidgetId", 0);
         }
-        if (this.A != 0) {
-            org.telegram.messenger.x3.e(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
-            oy oyVar = new oy(0, this.A);
-            oyVar.f41247y = new c1(this, 25);
+        if (this.B != 0) {
+            org.telegram.messenger.y3.e(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
+            xy xyVar = new xy(0, this.B);
+            xyVar.f40335y = new a1(this, 25);
             if (AndroidUtilities.isTablet()) {
                 if (this.d.getFragmentStack().isEmpty()) {
-                    this.d.c(-1, oyVar);
+                    this.d.c(-1, xyVar);
                 }
-            } else if (this.f35536c.getFragmentStack().isEmpty()) {
-                this.f35536c.c(-1, oyVar);
+            } else if (this.f31591c.getFragmentStack().isEmpty()) {
+                this.f31591c.c(-1, xyVar);
             }
             if (!AndroidUtilities.isTablet()) {
-                this.f35537e.setVisibility(8);
+                this.e.setVisibility(8);
             }
-            this.f35536c.c0();
+            this.f31591c.c0();
             if (AndroidUtilities.isTablet()) {
                 this.d.c0();
             }

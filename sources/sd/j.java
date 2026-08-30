@@ -1,27 +1,34 @@
 package sd;
 
-import java.util.concurrent.atomic.AtomicReferenceArray;
-import od.u;
-public final class j extends u {
-    public final AtomicReferenceArray f47730e;
+import ld.e0;
+public final class j extends i {
+    public final Runnable f44276c;
 
-    public j(long j10, j jVar, int i10) {
-        super(j10, jVar, i10);
-        this.f47730e = new AtomicReferenceArray(i.f47729f);
+    public j(Runnable runnable, long j10, c5.c cVar) {
+        super(j10, cVar);
+        this.f44276c = runnable;
     }
 
     @Override
-    public final int g() {
-        return i.f47729f;
-    }
-
-    @Override
-    public final void h(int i10, sc.h hVar) {
-        this.f47730e.set(i10, i.f47728e);
-        i();
+    public final void run() {
+        try {
+            this.f44276c.run();
+        } finally {
+            this.f44275b.getClass();
+        }
     }
 
     public final String toString() {
-        return "SemaphoreSegment[id=" + this.f19536c + ", hashCode=" + hashCode() + ']';
+        StringBuilder sb = new StringBuilder("Task[");
+        Runnable runnable = this.f44276c;
+        sb.append(runnable.getClass().getSimpleName());
+        sb.append('@');
+        sb.append(e0.k(runnable));
+        sb.append(", ");
+        sb.append(this.f44274a);
+        sb.append(", ");
+        sb.append(this.f44275b);
+        sb.append(']');
+        return sb.toString();
     }
 }

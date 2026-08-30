@@ -1,24 +1,20 @@
 package eg;
+public final class k {
+    public final int f5329a;
+    public final int f5330b;
+    public final String f5331c;
+    public final String d;
+    public final int e;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-public final class k implements Runnable {
-    public final int f6053a;
-    public final AtomicBoolean f6054b;
-
-    public k(AtomicBoolean atomicBoolean, int i10) {
-        this.f6053a = i10;
-        this.f6054b = atomicBoolean;
+    public k(int i10) {
+        this.f5329a = i10;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f6053a) {
-            case 0:
-                this.f6054b.set(true);
-                return;
-            default:
-                this.f6054b.set(true);
-                return;
-        }
+    public k(int i10, int i11, String str, String str2) {
+        this.f5329a = 1;
+        this.f5330b = i10;
+        this.f5331c = str;
+        this.d = str2;
+        this.e = i11;
     }
 }

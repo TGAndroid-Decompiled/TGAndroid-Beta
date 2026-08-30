@@ -1,29 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-public final class y41 extends URLSpan {
-    public final h01 f34922a;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class y41 implements ux0 {
+    public final e51 f30848a;
 
-    public y41(String str, h01 h01Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f34922a = h01Var;
+    public y41(e51 e51Var) {
+        this.f30848a = e51Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        ye.d.p(view.getContext(), Uri.parse(getURL()), true, true);
+    public final boolean b() {
+        return this.f30848a.f24467b.a();
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        h01 h01Var = this.f34922a;
-        if (h01Var != null) {
-            h01Var.a(textPaint);
-        }
-        textPaint.setUnderlineText(true);
+    public final boolean c() {
+        return this.f30848a.f24467b.c();
+    }
+
+    @Override
+    public final void d(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z4, boolean z10, int i10, int i11) {
+        this.f30848a.f24467b.f(document, obj, z10, i10);
     }
 }

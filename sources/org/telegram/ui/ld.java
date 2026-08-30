@@ -1,61 +1,64 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-public final class ld implements View.OnClickListener {
-    public final int f40170a = 1;
-    public final int f40171b;
-    public final long f40172c;
-    public final FrameLayout d;
-    public final Object f40173e;
+import android.view.ContextThemeWrapper;
+import org.telegram.ui.Components.RadialProgressView;
+public final class ld extends RadialProgressView {
+    public final int H;
+    public final Object I;
 
-    public ld(int i10, nh.d dVar, org.telegram.ui.ActionBar.f3 f3Var, long j10) {
-        this.f40171b = i10;
-        this.d = dVar;
-        this.f40173e = f3Var;
-        this.f40172c = j10;
+    public ld(org.telegram.ui.Components.v40 v40Var, Context context, int i10) {
+        super(context, null);
+        this.H = i10;
+        this.I = v40Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f40170a) {
-            case 0:
-                de deVar = (de) this.d;
-                Context context = (Context) this.f40173e;
-                if (view.isEnabled()) {
-                    nh.d dVar = deVar.P0;
-                    if (!dVar.J) {
-                        dVar.setLoading(true);
-                        TLRPC.TL_payments_getStarsRevenueAdsAccountUrl tL_payments_getStarsRevenueAdsAccountUrl = new TLRPC.TL_payments_getStarsRevenueAdsAccountUrl();
-                        int i10 = this.f40171b;
-                        tL_payments_getStarsRevenueAdsAccountUrl.peer = MessagesController.getInstance(i10).getInputPeer(this.f40172c);
-                        ConnectionsManager.getInstance(i10).sendRequest(tL_payments_getStarsRevenueAdsAccountUrl, new bg.h3(27, deVar, context));
-                        return;
-                    }
+    public void invalidate() {
+        switch (this.H) {
+            case 3:
+                super.invalidate();
+                bu0 bu0Var = ((PhotoViewer) this.I).f31705b0;
+                if (bu0Var != null) {
+                    bu0Var.invalidate();
                     return;
                 }
                 return;
             default:
-                nh.d dVar2 = (nh.d) this.d;
-                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f40173e;
-                TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
-                createconferencecall.random_id = Utilities.random.nextInt();
-                int i11 = this.f40171b;
-                ConnectionsManager.getInstance(i11).sendRequest(createconferencecall, new jh.u(i11, dVar2, f3Var, this.f40172c));
+                super.invalidate();
                 return;
         }
     }
 
-    public ld(de deVar, int i10, long j10, Context context) {
-        this.d = deVar;
-        this.f40171b = i10;
-        this.f40172c = j10;
-        this.f40173e = context;
+    @Override
+    public final void setAlpha(float f10) {
+        switch (this.H) {
+            case 0:
+                super.setAlpha(f10);
+                ((nd) this.I).f36584f.invalidate();
+                return;
+            case 1:
+                super.setAlpha(f10);
+                ((e70) this.I).e.invalidate();
+                return;
+            case 2:
+                super.setAlpha(f10);
+                ((ze0) this.I).h.invalidate();
+                return;
+            default:
+                super.setAlpha(f10);
+                bu0 bu0Var = ((PhotoViewer) this.I).f31705b0;
+                if (bu0Var != null) {
+                    bu0Var.invalidate();
+                    return;
+                }
+                return;
+        }
+    }
+
+    public ld(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(contextThemeWrapper, f6Var);
+        this.H = 3;
+        this.I = photoViewer;
     }
 }

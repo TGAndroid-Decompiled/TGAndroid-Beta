@@ -2,75 +2,43 @@ package org.telegram.ui;
 
 import android.graphics.Canvas;
 import android.view.View;
-import android.view.ViewGroup;
-public final class r30 extends org.telegram.ui.Components.au {
-    public final r50 R;
+import androidx.recyclerview.widget.RecyclerView;
+public final class r30 extends org.telegram.ui.Components.sl0 {
+    public final c60 U2;
 
-    public r30(r50 r50Var, LaunchActivity launchActivity, v40 v40Var, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(launchActivity, v40Var, o2Var, 5, true, c6Var);
-        this.R = r50Var;
+    public r30(c60 c60Var, LaunchActivity launchActivity) {
+        super(launchActivity, null);
+        this.U2 = c60Var;
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == getEditText()) {
+        org.telegram.ui.Components.s20 s20Var = (org.telegram.ui.Components.s20) view;
+        c60 c60Var = this.U2;
+        j50 j50Var = c60Var.N;
+        v30 v30Var = c60Var.X1;
+        if (v30Var.f29732r == null && !c60Var.K2.k()) {
+            s20Var.setAlpha(1.0f);
+            s20Var.setTranslationX(0.0f);
+            s20Var.setTranslationY(0.0f);
+        }
+        r30 r30Var = c60Var.f33137j2;
+        s20Var.getClass();
+        r30Var.getClass();
+        if (RecyclerView.R(s20Var) == -1 && s20Var.getRenderer() != null) {
+            return true;
+        }
+        if (s20Var.getTranslationY() != 0.0f && s20Var.getRenderer() != null && s20Var.getRenderer().f29923c != null) {
+            float top = j50Var.getTop() - getTop();
+            float measuredHeight = j50Var.getMeasuredHeight() + top;
+            float f10 = v30Var.f29715c;
             canvas.save();
-            r50 r50Var = this.R;
-            r50Var.D.getEditText().setTranslationY(view.getMeasuredHeight() - r50Var.f41968x3.f49510e);
+            float f11 = 1.0f - f10;
+            canvas.clipRect(0.0f, top * f11, getMeasuredWidth(), (getMeasuredHeight() * f10) + (measuredHeight * f11));
             boolean drawChild = super.drawChild(canvas, view, j10);
             canvas.restore();
             return drawChild;
         }
         return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void f() {
-        ViewGroup viewGroup;
-        super.f();
-        org.telegram.ui.Components.fz emojiView = getEmojiView();
-        if (emojiView != null) {
-            emojiView.f28633s0 = false;
-            emojiView.f28638t2 = false;
-            emojiView.setShouldDrawBackground(false);
-            viewGroup = ((org.telegram.ui.ActionBar.f3) this.R).containerView;
-            emojiView.setBottomInset(viewGroup.getPaddingBottom());
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        vd.c cVar = this.R.f41968x3;
-        if (cVar.f49510e == 0.0f) {
-            cVar.c(getMeasuredHeight());
-        } else {
-            cVar.a(getMeasuredHeight());
-        }
-    }
-
-    @Override
-    public final void p() {
-        int i10;
-        ah.i iVar = this.R.f41971y1;
-        if (this.f26885e) {
-            i10 = Math.max(0, getEmojiPadding());
-        } else if (this.J) {
-            i10 = Math.max(0, getKeyboardHeight());
-        } else {
-            i10 = 0;
-        }
-        if (i10 > 0) {
-            iVar.f(i10);
-        } else {
-            iVar.h(false);
-        }
-    }
-
-    @Override
-    public final void y() {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) this.R).containerView;
-        viewGroup.requestApplyInsets();
     }
 }

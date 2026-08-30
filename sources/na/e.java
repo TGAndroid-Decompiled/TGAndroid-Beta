@@ -1,67 +1,75 @@
 package na;
+public final class e {
+    public final Boolean f14876a;
+    public final Double f14877b;
+    public final Integer f14878c;
+    public final Integer d;
+    public final Long e;
 
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.atomic.AtomicLongArray;
-public final class e extends u {
-    public final int f17181a;
-    public final u f17182b;
-
-    public e(u uVar, int i10) {
-        this.f17181a = i10;
-        this.f17182b = uVar;
+    public e(Boolean bool, Double d, Integer num, Integer num2, Long l10) {
+        this.f14876a = bool;
+        this.f14877b = d;
+        this.f14878c = num;
+        this.d = num2;
+        this.e = l10;
     }
 
-    @Override
-    public final Object read(va.a aVar) {
-        switch (this.f17181a) {
-            case 0:
-                return new AtomicLong(((Number) this.f17182b.read(aVar)).longValue());
-            case 1:
-                ArrayList arrayList = new ArrayList();
-                aVar.a();
-                while (aVar.k()) {
-                    arrayList.add(Long.valueOf(((Number) this.f17182b.read(aVar)).longValue()));
-                }
-                aVar.e();
-                int size = arrayList.size();
-                AtomicLongArray atomicLongArray = new AtomicLongArray(size);
-                for (int i10 = 0; i10 < size; i10++) {
-                    atomicLongArray.set(i10, ((Long) arrayList.get(i10)).longValue());
-                }
-                return atomicLongArray;
-            default:
-                if (aVar.x() == 9) {
-                    aVar.t();
-                    return null;
-                }
-                return this.f17182b.read(aVar);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof e)) {
+            return false;
+        }
+        e eVar = (e) obj;
+        if (kotlin.jvm.internal.j.a(this.f14876a, eVar.f14876a) && kotlin.jvm.internal.j.a(this.f14877b, eVar.f14877b) && kotlin.jvm.internal.j.a(this.f14878c, eVar.f14878c) && kotlin.jvm.internal.j.a(this.d, eVar.d) && kotlin.jvm.internal.j.a(this.e, eVar.e)) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void write(va.b bVar, Object obj) {
-        switch (this.f17181a) {
-            case 0:
-                this.f17182b.write(bVar, Long.valueOf(((AtomicLong) obj).get()));
-                return;
-            case 1:
-                AtomicLongArray atomicLongArray = (AtomicLongArray) obj;
-                bVar.b();
-                int length = atomicLongArray.length();
-                for (int i10 = 0; i10 < length; i10++) {
-                    this.f17182b.write(bVar, Long.valueOf(atomicLongArray.get(i10)));
-                }
-                bVar.e();
-                return;
-            default:
-                if (obj == null) {
-                    bVar.i();
-                    return;
-                } else {
-                    this.f17182b.write(bVar, obj);
-                    return;
-                }
+    public final int hashCode() {
+        int hashCode;
+        int hashCode2;
+        int hashCode3;
+        int hashCode4;
+        int i10 = 0;
+        Boolean bool = this.f14876a;
+        if (bool == null) {
+            hashCode = 0;
+        } else {
+            hashCode = bool.hashCode();
         }
+        int i11 = hashCode * 31;
+        Double d = this.f14877b;
+        if (d == null) {
+            hashCode2 = 0;
+        } else {
+            hashCode2 = d.hashCode();
+        }
+        int i12 = (i11 + hashCode2) * 31;
+        Integer num = this.f14878c;
+        if (num == null) {
+            hashCode3 = 0;
+        } else {
+            hashCode3 = num.hashCode();
+        }
+        int i13 = (i12 + hashCode3) * 31;
+        Integer num2 = this.d;
+        if (num2 == null) {
+            hashCode4 = 0;
+        } else {
+            hashCode4 = num2.hashCode();
+        }
+        int i14 = (i13 + hashCode4) * 31;
+        Long l10 = this.e;
+        if (l10 != null) {
+            i10 = l10.hashCode();
+        }
+        return i14 + i10;
+    }
+
+    public final String toString() {
+        return "SessionConfigs(sessionEnabled=" + this.f14876a + ", sessionSamplingRate=" + this.f14877b + ", sessionRestartTimeout=" + this.f14878c + ", cacheDuration=" + this.d + ", cacheUpdatedTime=" + this.e + ')';
     }
 }

@@ -1,79 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-public final class pg extends FrameLayout {
-    public final org.telegram.ui.ActionBar.h5 f31670a;
-    public final RectF f31671b;
-    public final Paint f31672c;
-    public final Drawable d;
-    public boolean f31673e;
+public final class pg {
+    public static final pg d;
+    public static final pg e;
+    public static final pg[] f27833f;
+    public final og f27834a;
+    public final og f27835b;
+    public final int f27836c;
 
-    public pg(Activity activity) {
-        super(activity);
-        this.f31671b = new RectF();
-        this.f31672c = new Paint(1);
-        this.f31673e = false;
-        org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(activity);
-        this.f31670a = h5Var;
-        addView(h5Var, i7.f6.c(-1.0f, -1));
-        setWillNotDraw(false);
-        Drawable drawable = activity.getDrawable(R.drawable.msg_mini_close_tooltip);
-        this.d = drawable;
-        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-        setClipToPadding(false);
-        setClipChildren(false);
-        i7.h6.a(this);
+    static {
+        int i10 = R.raw.voice_and_video;
+        og ogVar = og.f27561a;
+        og ogVar2 = og.f27562b;
+        pg pgVar = new pg("VOICE_TO_VIDEO", 0, ogVar, ogVar2, i10);
+        d = pgVar;
+        int i11 = R.raw.sticker_to_keyboard;
+        og ogVar3 = og.f27563c;
+        og ogVar4 = og.d;
+        pg pgVar2 = new pg("STICKER_TO_KEYBOARD", 1, ogVar3, ogVar4, i11);
+        int i12 = R.raw.smile_to_keyboard;
+        og ogVar5 = og.e;
+        pg pgVar3 = new pg("SMILE_TO_KEYBOARD", 2, ogVar5, ogVar4, i12);
+        pg pgVar4 = new pg("VIDEO_TO_VOICE", 3, ogVar2, ogVar, i10);
+        e = pgVar4;
+        pg pgVar5 = new pg("KEYBOARD_TO_STICKER", 4, ogVar4, ogVar3, R.raw.keyboard_to_sticker);
+        int i13 = R.raw.keyboard_to_gif;
+        og ogVar6 = og.f27564f;
+        f27833f = new pg[]{pgVar, pgVar2, pgVar3, pgVar4, pgVar5, new pg("KEYBOARD_TO_GIF", 5, ogVar4, ogVar6, i13), new pg("KEYBOARD_TO_SMILE", 6, ogVar4, ogVar5, R.raw.keyboard_to_smile), new pg("GIF_TO_KEYBOARD", 7, ogVar6, ogVar4, R.raw.gif_to_keyboard), new pg("GIF_TO_SMILE", 8, ogVar6, ogVar5, R.raw.gif_to_smile), new pg("SMILE_TO_GIF", 9, ogVar5, ogVar6, R.raw.smile_to_gif), new pg("SMILE_TO_STICKER", 10, ogVar5, ogVar3, R.raw.smile_to_sticker), new pg("STICKER_TO_SMILE", 11, ogVar3, ogVar5, R.raw.sticker_to_smile)};
     }
 
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if ((view instanceof org.telegram.ui.ActionBar.h5) && this.f31673e) {
-            org.telegram.ui.ActionBar.h5 h5Var = (org.telegram.ui.ActionBar.h5) view;
-            canvas.save();
-            canvas.scale(0.8f, 0.8f);
-            canvas.translate(-AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
-            int color = h5Var.getTextPaint().getColor();
-            h5Var.getTextPaint().setColor(-1);
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            h5Var.getTextPaint().setColor(color);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j10);
+    public pg(String str, int i10, og ogVar, og ogVar2, int i11) {
+        this.f27834a = ogVar;
+        this.f27835b = ogVar2;
+        this.f27836c = i11;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f31673e) {
-            canvas.save();
-            int dp = AndroidUtilities.dp(26.0f);
-            canvas.translate(AndroidUtilities.dp(5.0f), (getMeasuredHeight() - dp) / 2.0f);
-            float f9 = dp;
-            RectF rectF = this.f31671b;
-            rectF.set(-AndroidUtilities.dp(5.0f), 0.0f, getMeasuredWidth() - getPaddingEnd(), f9);
-            float f10 = f9 / 2.0f;
-            canvas.drawRoundRect(rectF, f10, f10, this.f31672c);
-            int measuredWidth = (getMeasuredWidth() - getPaddingEnd()) - AndroidUtilities.dp(6.0f);
-            Drawable drawable = this.d;
-            canvas.translate(measuredWidth - drawable.getIntrinsicWidth(), AndroidUtilities.dp(5.0f));
-            drawable.draw(canvas);
-            canvas.restore();
-        }
+    public static pg valueOf(String str) {
+        return (pg) Enum.valueOf(pg.class, str);
     }
 
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.f31672c.setShader(new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{-9071617, -5999873}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+    public static pg[] values() {
+        return (pg[]) f27833f.clone();
     }
 }

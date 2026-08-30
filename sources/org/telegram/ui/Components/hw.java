@@ -1,23 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-public final class hw extends ez {
-    public final fz d;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaDataController;
+public final class hw implements View.OnFocusChangeListener {
+    public final kz f25507a;
 
-    public hw(fz fzVar) {
-        super(fzVar, 2);
-        this.d = fzVar;
+    public hw(kz kzVar) {
+        this.f25507a = kzVar;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        fz fzVar;
-        lg.e eVar;
-        super.b(recyclerView, i10, i11);
-        if (Build.VERSION.SDK_INT >= 31 && (eVar = (fzVar = this.d).f28595f2) != null) {
-            eVar.f(i10, i11);
-            fzVar.C();
+    public final void onFocusChange(View view, boolean z4) {
+        if (z4) {
+            String[] currentKeyboardLanguage = AndroidUtilities.getCurrentKeyboardLanguage();
+            kz kzVar = this.f25507a;
+            kzVar.T0 = currentKeyboardLanguage;
+            MediaDataController.getInstance(kzVar.Z0).fetchNewEmojiKeywords(kzVar.T0);
         }
     }
 }

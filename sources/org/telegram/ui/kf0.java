@@ -1,42 +1,28 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.AndroidUtilities;
 public final class kf0 implements Runnable {
-    public final int f39854a;
-    public final of0 f39855b;
+    public final int f35664a;
+    public final rf0 f35665b;
+    public final int f35666c;
 
-    public kf0(of0 of0Var, int i10) {
-        this.f39854a = i10;
-        this.f39855b = of0Var;
+    public kf0(rf0 rf0Var, int i10, int i11) {
+        this.f35664a = i11;
+        this.f35665b = rf0Var;
+        this.f35666c = i10;
     }
 
     @Override
     public final void run() {
-        int i10;
-        switch (this.f39854a) {
+        switch (this.f35664a) {
             case 0:
-                fg0 fg0Var = this.f39855b.v;
-                fg0Var.u1(0, true, null, true);
-                fg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.CodeExpired));
+                AndroidUtilities.runOnUIThread(new kf0(this.f35665b, this.f35666c, 1));
                 return;
             case 1:
-                fg0 fg0Var2 = this.f39855b.v;
-                fg0Var2.u1(0, true, null, true);
-                fg0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.CodeExpired));
-                return;
-            case 2:
-                this.f39855b.p();
-                return;
-            case 3:
-                this.f39855b.f41111b.setLoading(false);
+                this.f35665b.A(this.f35666c);
                 return;
             default:
-                PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(0, "sms");
-                fg0 fg0Var3 = this.f39855b.v;
-                i10 = ((org.telegram.ui.ActionBar.o2) fg0Var3).currentAccount;
-                premiumPreviewFragment.setCurrentAccount(i10);
-                fg0Var3.presentFragment(premiumPreviewFragment);
+                this.f35665b.f38023f.f40565f[this.f35666c].l(1.0f);
                 return;
         }
     }

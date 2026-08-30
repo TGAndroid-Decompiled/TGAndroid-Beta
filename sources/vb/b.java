@@ -1,48 +1,45 @@
 package vb;
 
-import java.nio.ByteBuffer;
-import m5.i;
-import org.telegram.ui.th;
-public final class b extends a {
-    public static final i f49499n;
-    public static final i f49500r;
+import java.lang.reflect.Array;
+public final class b {
+    public final byte[][] f45648a;
+    public final int f45649b;
+    public final int f45650c;
 
-    static {
-        be.a aVar = new be.a(b.class, "ESDescriptorBox.java");
-        aVar.e(aVar.d("getEsDescriptor", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.ESDescriptor"));
-        aVar.e(aVar.d("setEsDescriptor", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.ESDescriptor", "esDescriptor", "void"));
-        f49499n = aVar.e(aVar.d("equals", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "java.lang.Object", "o", "boolean"));
-        f49500r = aVar.e(aVar.d("hashCode", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "int"));
+    public b(int i10, int i11) {
+        this.f45648a = (byte[][]) Array.newInstance(Byte.TYPE, i11, i10);
+        this.f45649b = i10;
+        this.f45650c = i11;
     }
 
-    public final boolean equals(Object obj) {
-        th.u(be.a.c(f49499n, this, this, obj));
-        if (this != obj) {
-            if (obj != null && b.class == obj.getClass()) {
-                ByteBuffer byteBuffer = this.f49498e;
-                ByteBuffer byteBuffer2 = ((b) obj).f49498e;
-                if (byteBuffer != null) {
-                    if (byteBuffer.equals(byteBuffer2)) {
-                        return true;
+    public final byte a(int i10, int i11) {
+        return this.f45648a[i11][i10];
+    }
+
+    public final void b(int i10, int i11, int i12) {
+        this.f45648a[i11][i10] = (byte) i12;
+    }
+
+    public final String toString() {
+        int i10 = this.f45649b;
+        int i11 = this.f45650c;
+        StringBuilder sb = new StringBuilder((i10 * 2 * i11) + 2);
+        for (int i12 = 0; i12 < i11; i12++) {
+            byte[] bArr = this.f45648a[i12];
+            for (int i13 = 0; i13 < i10; i13++) {
+                byte b10 = bArr[i13];
+                if (b10 != 0) {
+                    if (b10 != 1) {
+                        sb.append("  ");
+                    } else {
+                        sb.append(" 1");
                     }
-                    return false;
-                } else if (byteBuffer2 == null) {
-                    return true;
                 } else {
-                    return false;
+                    sb.append(" 0");
                 }
             }
-            return false;
+            sb.append('\n');
         }
-        return true;
-    }
-
-    public final int hashCode() {
-        th.u(be.a.b(f49500r, this, this));
-        ByteBuffer byteBuffer = this.f49498e;
-        if (byteBuffer != null) {
-            return byteBuffer.hashCode();
-        }
-        return 0;
+        return sb.toString();
     }
 }

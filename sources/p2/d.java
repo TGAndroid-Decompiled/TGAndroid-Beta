@@ -1,10 +1,12 @@
 package p2;
-public final class d {
-    public final l f45448a;
-    public final String f45449b;
 
-    public d(oc.i iVar) {
-        this.f45448a = (l) iVar.f19483b;
-        this.f45449b = (String) iVar.f19484c;
+import n7.qa;
+public final class d {
+    public final n f40979a;
+    public final String f40980b;
+
+    public d(qa qaVar) {
+        this.f40979a = (n) qaVar.f14702b;
+        this.f40980b = (String) qaVar.f14703c;
     }
 }

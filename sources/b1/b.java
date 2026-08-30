@@ -4,31 +4,31 @@ import com.google.android.gms.common.api.r;
 import java.util.concurrent.Executor;
 import v0.i;
 import v0.o;
-public final class b implements bd.a {
-    public final int f1878a;
-    public final Executor f1879b;
-    public final i f1880c;
+public final class b implements dd.a {
+    public final int f1269a;
+    public final Executor f1270b;
+    public final i f1271c;
     public final Object d;
 
     public b(e1.d dVar, Exception exc, Executor executor, i iVar) {
-        this.f1878a = 3;
+        this.f1269a = 3;
         this.d = exc;
-        this.f1879b = executor;
-        this.f1880c = iVar;
+        this.f1270b = executor;
+        this.f1271c = iVar;
     }
 
     @Override
     public final Object invoke() {
         Object cVar;
-        switch (this.f1878a) {
+        switch (this.f1269a) {
             case 0:
-                this.f1879b.execute(new a1.e(7, this.f1880c, this.d));
+                this.f1270b.execute(new a1.e(3, this.f1271c, this.d));
                 break;
             case 1:
-                this.f1879b.execute(new a1.e(8, this.f1880c, (o) this.d));
+                this.f1270b.execute(new a1.e(4, this.f1271c, (o) this.d));
                 break;
             case 2:
-                this.f1879b.execute(new h(this.f1880c, (w0.i) this.d, 0));
+                this.f1270b.execute(new h(this.f1271c, (w0.i) this.d, 0));
                 break;
             default:
                 Exception exc = (Exception) this.d;
@@ -40,7 +40,7 @@ public final class b implements bd.a {
                         cVar = new w0.c("API is not supported: " + exc.getMessage(), 3);
                     } else if (statusCode == 8) {
                         cVar = new w0.f(exc.getMessage());
-                    } else if (d.f1885b.contains(Integer.valueOf(statusCode))) {
+                    } else if (d.f1276b.contains(Integer.valueOf(statusCode))) {
                         cVar = new w0.e(exc.getMessage());
                     } else {
                         cVar = new w0.c("Conditional create failed, failure: " + exc.getMessage(), 2);
@@ -50,16 +50,16 @@ public final class b implements bd.a {
                 } else {
                     cVar = new w0.c("Conditional create failed, failure: " + exc, 2);
                 }
-                this.f1879b.execute(new a1.e(25, this.f1880c, cVar));
+                this.f1270b.execute(new a1.e(20, this.f1271c, cVar));
                 break;
         }
-        return qc.i.f46603a;
+        return sc.i.f44253a;
     }
 
     public b(Executor executor, i iVar, Object obj, int i10) {
-        this.f1878a = i10;
-        this.f1879b = executor;
-        this.f1880c = iVar;
+        this.f1269a = i10;
+        this.f1270b = executor;
+        this.f1271c = iVar;
         this.d = obj;
     }
 }

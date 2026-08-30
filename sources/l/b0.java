@@ -8,5 +8,5 @@ public interface b0 {
 
     s1 f();
 
-    void h();
+    void g();
 }

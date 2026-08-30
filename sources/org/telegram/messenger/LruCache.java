@@ -21,12 +21,12 @@ public class LruCache<T> {
         throw new IllegalArgumentException("maxSize <= 0");
     }
 
-    private int safeSizeOf(String str, T t10) {
-        int sizeOf = sizeOf(str, t10);
+    private int safeSizeOf(String str, T t6) {
+        int sizeOf = sizeOf(str, t6);
         if (sizeOf >= 0) {
             return sizeOf;
         }
-        throw new IllegalStateException("Negative size: " + str + "=" + t10);
+        throw new IllegalStateException("Negative size: " + str + "=" + t6);
     }
 
     private void trimToSize(int i10, String str) {
@@ -72,9 +72,9 @@ public class LruCache<T> {
         if (str != null) {
             synchronized (this) {
                 try {
-                    T t10 = this.map.get(str);
-                    if (t10 != null) {
-                        return t10;
+                    T t6 = this.map.get(str);
+                    if (t6 != null) {
+                        return t6;
                     }
                     return null;
                 } catch (Throwable th2) {
@@ -104,13 +104,13 @@ public class LruCache<T> {
         }
     }
 
-    public T put(String str, T t10) {
+    public T put(String str, T t6) {
         T put;
-        if (str != null && t10 != null) {
+        if (str != null && t6 != null) {
             synchronized (this) {
                 try {
-                    this.size += safeSizeOf(str, t10);
-                    put = this.map.put(str, t10);
+                    this.size += safeSizeOf(str, t6);
+                    put = this.map.put(str, t6);
                     if (put != null) {
                         this.size -= safeSizeOf(str, put);
                     }
@@ -130,7 +130,7 @@ public class LruCache<T> {
                 }
             }
             if (put != null) {
-                entryRemoved(false, str, put, t10);
+                entryRemoved(false, str, put, t6);
             }
             trimToSize(this.maxSize, str);
             return put;
@@ -171,10 +171,10 @@ public class LruCache<T> {
         return this.size;
     }
 
-    public int sizeOf(String str, T t10) {
+    public int sizeOf(String str, T t6) {
         return 1;
     }
 
-    public void entryRemoved(boolean z10, String str, T t10, T t11) {
+    public void entryRemoved(boolean z4, String str, T t6, T t9) {
     }
 }

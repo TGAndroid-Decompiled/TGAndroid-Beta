@@ -1,39 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class yz0 extends FrameLayout {
-    public static final int f35160e = 0;
-    public TextView f35161a;
-    public xz0 f35162b;
-    public TLRPC.TL_help_termsOfService f35163c;
-    public int d;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+public final class yz0 implements TextWatcher {
+    public final f01 f31182a;
 
-    public final void a() {
-        xz0 xz0Var = this.f35162b;
-        int i10 = this.d;
-        org.telegram.ui.fa0 fa0Var = (org.telegram.ui.fa0) xz0Var;
-        fa0Var.getClass();
-        UserConfig.getInstance(i10).unacceptedTermsOfService = null;
-        UserConfig.getInstance(i10).saveConfig(false);
-        LaunchActivity launchActivity = fa0Var.f38085a;
-        ArrayList arrayList = launchActivity.Z;
-        if (!arrayList.isEmpty()) {
-            ((org.telegram.ui.ActionBar.o2) j7.l1.i(1, arrayList)).onResume();
-        }
-        launchActivity.f35608y0.animate().alpha(0.0f).setDuration(150L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new org.telegram.ui.q00(fa0Var, 15)).start();
-        TLRPC.TL_help_acceptTermsOfService tL_help_acceptTermsOfService = new TLRPC.TL_help_acceptTermsOfService();
-        tL_help_acceptTermsOfService.f22447id = this.f35163c.f22449id;
-        ConnectionsManager.getInstance(this.d).sendRequest(tL_help_acceptTermsOfService, new lh.o5(13));
+    public yz0(f01 f01Var) {
+        this.f31182a = f01Var;
     }
 
-    public void setDelegate(xz0 xz0Var) {
-        this.f35162b = xz0Var;
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        f01 f01Var = this.f31182a;
+        k6 k6Var = f01Var.f24740n;
+        if (!f01Var.f24744x) {
+            String trim = editable.toString().trim();
+            if (trim.length() > 16) {
+                k6Var.setText("-" + (trim.length() - 16));
+                trim = trim.substring(0, 16);
+            } else {
+                k6Var.setText("");
+            }
+            Utilities.Callback callback = f01Var.f24743w;
+            if (callback != null) {
+                callback.run(trim);
+            }
+            MessageObject messageObject = f01Var.f24741r;
+            if (messageObject != null) {
+                messageObject.forceUpdate = true;
+                f01Var.d.X3(messageObject, null, false, false, false, false);
+            }
+        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

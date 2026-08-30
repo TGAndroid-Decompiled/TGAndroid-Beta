@@ -1,28 +1,16 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class mu0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f40636a;
-    public final vu0 f40637b;
+import java.util.ArrayList;
+public final class mu0 {
+    public final int f36386a;
+    public final ArrayList f36387b;
+    public final hu0 f36388c;
+    public final PhotoViewer d;
 
-    public mu0(vu0 vu0Var, int i10) {
-        this.f40636a = i10;
-        this.f40637b = vu0Var;
-    }
-
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f40636a) {
-            case 0:
-                vu0 vu0Var = this.f40637b;
-                vu0Var.getClass();
-                vu0Var.N.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            default:
-                vu0 vu0Var2 = this.f40637b;
-                vu0Var2.getClass();
-                vu0Var2.N.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-        }
+    public mu0(PhotoViewer photoViewer, int i10, ArrayList arrayList, hu0 hu0Var) {
+        this.d = photoViewer;
+        this.f36387b = arrayList;
+        this.f36386a = i10;
+        this.f36388c = hu0Var;
     }
 }

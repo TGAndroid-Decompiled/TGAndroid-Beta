@@ -2,19 +2,19 @@ package m;
 
 import android.widget.AbsListView;
 public final class c2 implements AbsListView.OnScrollListener {
-    public final e2 f16506a;
+    public final e2 f13468a;
 
     public c2(e2 e2Var) {
-        this.f16506a = e2Var;
+        this.f13468a = e2Var;
     }
 
     @Override
     public final void onScrollStateChanged(AbsListView absListView, int i10) {
-        e2 e2Var = this.f16506a;
-        b2 b2Var = e2Var.C;
-        y yVar = e2Var.K;
-        if (i10 == 1 && yVar.getInputMethodMode() != 2 && yVar.getContentView() != null) {
-            e2Var.G.removeCallbacks(b2Var);
+        e2 e2Var = this.f13468a;
+        b2 b2Var = e2Var.D;
+        x xVar = e2Var.L;
+        if (i10 == 1 && xVar.getInputMethodMode() != 2 && xVar.getContentView() != null) {
+            e2Var.H.removeCallbacks(b2Var);
             b2Var.run();
         }
     }

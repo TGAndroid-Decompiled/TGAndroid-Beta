@@ -1,18 +1,20 @@
 package la;
-public final class i extends uc.c {
-    public Object f15131a;
-    public final k f15132b;
-    public int f15133c;
+public enum i implements w9.f {
+    COLLECTION_UNKNOWN(0),
+    COLLECTION_SDK_NOT_INSTALLED(1),
+    COLLECTION_ENABLED(2),
+    COLLECTION_DISABLED(3),
+    COLLECTION_DISABLED_REMOTE(4),
+    COLLECTION_SAMPLED(5);
+    
+    public final int f11786a;
 
-    public i(k kVar, uc.c cVar) {
-        super(cVar);
-        this.f15132b = kVar;
+    i(int i10) {
+        this.f11786a = i10;
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f15131a = obj;
-        this.f15133c |= Integer.MIN_VALUE;
-        return this.f15132b.c(null, null, this);
+    public final int a() {
+        return this.f11786a;
     }
 }

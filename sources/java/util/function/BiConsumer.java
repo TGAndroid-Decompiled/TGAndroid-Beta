@@ -1,4 +1,4 @@
 package java.util.function;
 public interface BiConsumer<T, U> {
-    void accept(T t10, U u10);
+    void accept(T t6, U u10);
 }

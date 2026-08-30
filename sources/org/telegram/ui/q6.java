@@ -1,38 +1,40 @@
 package org.telegram.ui;
 
-import android.util.SparseArray;
-public final class q6 {
-    public long f41543a;
-    public int f41544b;
-    public long f41545c;
-    public final SparseArray d = new SparseArray();
+import org.telegram.messenger.AndroidUtilities;
+public final class q6 implements Runnable {
+    public final int f37590a;
+    public final boolean[] f37591b;
+    public final t6 f37592c;
+    public final long[] d;
+    public final r6 e;
 
-    public q6(long j10) {
-        this.f41543a = j10;
+    public q6(boolean[] zArr, t6 t6Var, long[] jArr, r6 r6Var, int i10) {
+        this.f37590a = i10;
+        this.f37591b = zArr;
+        this.f37592c = t6Var;
+        this.d = jArr;
+        this.e = r6Var;
     }
 
-    public final void a(kh.a aVar, int i10) {
-        SparseArray sparseArray = this.d;
-        r6 r6Var = (r6) sparseArray.get(i10, null);
-        if (r6Var == null) {
-            r6Var = new r6();
-            sparseArray.put(i10, r6Var);
-        }
-        long j10 = aVar.f13891c;
-        r6Var.f41978a += j10;
-        this.f41545c += j10;
-        this.f41544b++;
-        r6Var.f41979b.add(aVar);
-    }
-
-    public final void b(kh.a aVar) {
-        r6 r6Var = (r6) this.d.get(aVar.d, null);
-        if (r6Var != null && r6Var.f41979b.remove(aVar)) {
-            long j10 = r6Var.f41978a;
-            long j11 = aVar.f13891c;
-            r6Var.f41978a = j10 - j11;
-            this.f41545c -= j11;
-            this.f41544b--;
+    @Override
+    public final void run() {
+        switch (this.f37590a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new q6(this.f37591b, this.f37592c, this.d, this.e, 1));
+                return;
+            default:
+                this.f37591b[0] = true;
+                this.f37592c.a(1.0f);
+                long[] jArr = this.d;
+                long j10 = jArr[0];
+                r6 r6Var = this.e;
+                if (j10 > 0) {
+                    AndroidUtilities.runOnUIThread(new rt0(r6Var, 16), Math.max(0L, 1000 - (System.currentTimeMillis() - jArr[0])));
+                    return;
+                } else {
+                    r6Var.dismiss();
+                    return;
+                }
         }
     }
 }

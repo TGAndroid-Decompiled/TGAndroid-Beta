@@ -1,9 +1,7 @@
 package h7;
-public abstract class n {
-    public static void a(Object obj, String str) {
-        if (obj != null) {
-            return;
-        }
-        throw new NullPointerException(str);
-    }
+
+import java.io.Closeable;
+import java.util.HashMap;
+public abstract class n implements Closeable {
+    public static final HashMap f7027a = new HashMap();
 }

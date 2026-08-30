@@ -7,11 +7,12 @@ import java.io.File;
 import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC;
-public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstream.g implements FileLoadOperationStream {
+public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
     public static final ConcurrentHashMap<Long, FileStreamLoadOperation> allStreams = new ConcurrentHashMap<>();
     private static final ConcurrentHashMap<Long, Integer> priorityMap = new ConcurrentHashMap<>();
     private long bytesRemaining;
@@ -20,8 +21,12 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
     private int currentAccount;
     File currentFile;
     private long currentOffset;
+    private g5.p dataSpec;
     private TLRPC.Document document;
     private RandomAccessFile file;
+    protected boolean isNetwork;
+    private int listenerCount;
+    private final ArrayList<g5.v0> listeners;
     private FileLoadOperation loadOperation;
     private boolean opened;
     private Object parentObject;
@@ -29,11 +34,12 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
     private Uri uri;
 
     public FileStreamLoadOperation() {
-        super(true);
+        this.isNetwork = true;
+        this.listeners = new ArrayList<>(1);
     }
 
     private int getCurrentPriority() {
-        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(priorityMap, Long.valueOf(this.document.f22398id), null);
+        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(priorityMap, Long.valueOf(this.document.f19190id), null);
         if (num != null) {
             return num.intValue();
         }
@@ -42,7 +48,7 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
 
     public static int getStreamPrioriy(TLRPC.Document document) {
         Integer num;
-        if (document == null || (num = priorityMap.get(Long.valueOf(document.f22398id))) == null) {
+        if (document == null || (num = priorityMap.get(Long.valueOf(document.f19190id))) == null) {
             return 3;
         }
         return num.intValue();
@@ -55,45 +61,75 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
             return Uri.fromFile(pathToAttach);
         }
         try {
-            StringBuilder sb2 = new StringBuilder("?account=");
-            sb2.append(i10);
-            sb2.append("&id=");
-            sb2.append(document.f22398id);
-            sb2.append("&hash=");
-            sb2.append(document.access_hash);
-            sb2.append("&dc=");
-            sb2.append(document.dc_id);
-            sb2.append("&size=");
-            sb2.append(document.size);
-            sb2.append("&mime=");
-            sb2.append(URLEncoder.encode(document.mime_type, "UTF-8"));
-            sb2.append("&rid=");
-            sb2.append(FileLoader.getInstance(i10).getFileReference(obj));
-            sb2.append("&name=");
-            sb2.append(URLEncoder.encode(FileLoader.getDocumentFileName(document), "UTF-8"));
-            sb2.append("&reference=");
+            StringBuilder sb = new StringBuilder("?account=");
+            sb.append(i10);
+            sb.append("&id=");
+            sb.append(document.f19190id);
+            sb.append("&hash=");
+            sb.append(document.access_hash);
+            sb.append("&dc=");
+            sb.append(document.dc_id);
+            sb.append("&size=");
+            sb.append(document.size);
+            sb.append("&mime=");
+            sb.append(URLEncoder.encode(document.mime_type, "UTF-8"));
+            sb.append("&rid=");
+            sb.append(FileLoader.getInstance(i10).getFileReference(obj));
+            sb.append("&name=");
+            sb.append(URLEncoder.encode(FileLoader.getDocumentFileName(document), "UTF-8"));
+            sb.append("&reference=");
             byte[] bArr = document.file_reference;
             if (bArr == null) {
                 bArr = new byte[0];
             }
-            sb2.append(Utilities.bytesToHex(bArr));
-            String sb3 = sb2.toString();
-            return Uri.parse("tg://" + attachFileName + sb3);
-        } catch (UnsupportedEncodingException e10) {
-            FileLog.e(e10);
+            sb.append(Utilities.bytesToHex(bArr));
+            String sb2 = sb.toString();
+            return Uri.parse("tg://" + attachFileName + sb2);
+        } catch (UnsupportedEncodingException e) {
+            FileLog.e(e);
             return null;
         }
     }
 
     public static void setPriorityForDocument(TLRPC.Document document, int i10) {
         if (document != null) {
-            priorityMap.put(Long.valueOf(document.f22398id), Integer.valueOf(i10));
+            priorityMap.put(Long.valueOf(document.f19190id), Integer.valueOf(i10));
+        }
+    }
+
+    @Override
+    public final void addTransferListener(g5.v0 v0Var) {
+        v0Var.getClass();
+        if (!this.listeners.contains(v0Var)) {
+            this.listeners.add(v0Var);
+            this.listenerCount++;
+        }
+    }
+
+    public final void bytesTransferred(int i10) {
+        g5.p pVar = this.dataSpec;
+        int i11 = h5.d0.f6937a;
+        for (int i12 = 0; i12 < this.listenerCount; i12++) {
+            boolean z4 = this.isNetwork;
+            g5.s sVar = (g5.s) this.listeners.get(i12);
+            synchronized (sVar) {
+                if (z4) {
+                    if (pVar != null) {
+                        try {
+                            if ((pVar.h & 8) == 8) {
+                            }
+                        } finally {
+                        }
+                    }
+                    sVar.h += i10;
+                }
+            }
         }
     }
 
     @Override
     public void close() {
-        FileLog.e("FileStreamLoadOperation " + this.document.f22398id + " close me=" + this);
+        FileLog.e("FileStreamLoadOperation " + this.document.f19190id + " close me=" + this);
         FileLoadOperation fileLoadOperation = this.loadOperation;
         if (fileLoadOperation != null) {
             fileLoadOperation.removeStreamListener(this);
@@ -102,13 +138,13 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
         if (randomAccessFile != null) {
             try {
                 randomAccessFile.close();
-            } catch (Exception e10) {
-                FileLog.e(e10);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
             this.file = null;
         }
         this.uri = null;
-        allStreams.remove(Long.valueOf(this.document.f22398id));
+        allStreams.remove(Long.valueOf(this.document.f19190id));
         if (this.opened) {
             this.opened = false;
             transferEnded();
@@ -140,18 +176,18 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
     }
 
     @Override
-    public long open(com.google.android.exoplayer2.upstream.q qVar) {
-        Uri uri = qVar.f3599a;
-        long j10 = qVar.f3602e;
+    public long open(g5.p pVar) {
+        Uri uri = pVar.f6401a;
+        long j10 = pVar.e;
         this.uri = uri;
-        transferInitializing(qVar);
+        transferInitializing(pVar);
         int intValue = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("account")).intValue();
         this.currentAccount = intValue;
         this.parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt((CharSequence) this.uri.getQueryParameter("rid")).intValue());
         TLRPC.TL_document tL_document = new TLRPC.TL_document();
         this.document = tL_document;
         tL_document.access_hash = Utilities.parseLong(this.uri.getQueryParameter("hash")).longValue();
-        this.document.f22398id = Utilities.parseLong(this.uri.getQueryParameter("id")).longValue();
+        this.document.f19190id = Utilities.parseLong(this.uri.getQueryParameter("id")).longValue();
         this.document.size = Utilities.parseLong(this.uri.getQueryParameter("size")).longValue();
         this.document.dc_id = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("dc")).intValue();
         this.document.mime_type = this.uri.getQueryParameter("mime");
@@ -164,9 +200,9 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
         } else if (this.document.mime_type.startsWith("audio")) {
             this.document.attributes.add(new TLRPC.TL_documentAttributeAudio());
         }
-        allStreams.put(Long.valueOf(this.document.f22398id), this);
+        allStreams.put(Long.valueOf(this.document.f19190id), this);
         this.currentOffset = j10;
-        this.requestedLength = qVar.f3603f;
+        this.requestedLength = pVar.f6404f;
         this.loadOperation = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, null, this.parentObject, this.currentOffset, false, getCurrentPriority());
         this.bytesTransferred = 0L;
         long j11 = this.document.size - j10;
@@ -176,7 +212,7 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
             this.bytesRemaining = Math.min(j11, j12);
         }
         this.opened = true;
-        transferStarted(qVar);
+        transferStarted(pVar);
         FileLoadOperation fileLoadOperation = this.loadOperation;
         if (fileLoadOperation != null) {
             File currentFile = fileLoadOperation.getCurrentFile();
@@ -199,8 +235,8 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
                 }
             }
         }
-        FileLog.e("FileStreamLoadOperation " + this.document.f22398id + " open operation=" + this.loadOperation + " currentFile=" + this.currentFile + " file=" + this.file + " bytesRemaining=" + this.bytesRemaining + " me=" + this);
-        FileLog.e("FileStreamLoadOperation " + this.document.f22398id + " " + MessageObject.getVideoWidth(this.document) + "x" + MessageObject.getVideoWidth(this.document) + " mime_type=" + this.document.mime_type + " codec=" + MessageObject.getVideoCodec(this.document) + " size=" + this.document.size);
+        FileLog.e("FileStreamLoadOperation " + this.document.f19190id + " open operation=" + this.loadOperation + " currentFile=" + this.currentFile + " file=" + this.file + " bytesRemaining=" + this.bytesRemaining + " me=" + this);
+        FileLog.e("FileStreamLoadOperation " + this.document.f19190id + " " + MessageObject.getVideoWidth(this.document) + "x" + MessageObject.getVideoWidth(this.document) + " mime_type=" + this.document.mime_type + " codec=" + MessageObject.getVideoCodec(this.document) + " size=" + this.document.size);
         return this.bytesRemaining;
     }
 
@@ -209,11 +245,33 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileStreamLoadOperation.read(byte[], int, int):int");
     }
 
+    public final void transferEnded() {
+        g5.p pVar = this.dataSpec;
+        int i10 = h5.d0.f6937a;
+        for (int i11 = 0; i11 < this.listenerCount; i11++) {
+            ((g5.s) this.listeners.get(i11)).e(pVar, this.isNetwork);
+        }
+        this.dataSpec = null;
+    }
+
+    public final void transferInitializing(g5.p pVar) {
+        for (int i10 = 0; i10 < this.listenerCount; i10++) {
+            this.listeners.get(i10).getClass();
+        }
+    }
+
+    public final void transferStarted(g5.p pVar) {
+        this.dataSpec = pVar;
+        for (int i10 = 0; i10 < this.listenerCount; i10++) {
+            ((g5.s) this.listeners.get(i10)).f(pVar, this.isNetwork);
+        }
+    }
+
     @Deprecated
-    public FileStreamLoadOperation(com.google.android.exoplayer2.upstream.y0 y0Var) {
+    public FileStreamLoadOperation(g5.v0 v0Var) {
         this();
-        if (y0Var != null) {
-            addTransferListener(y0Var);
+        if (v0Var != null) {
+            addTransferListener(v0Var);
         }
     }
 }

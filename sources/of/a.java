@@ -1,15 +1,15 @@
 package of;
 
-import android.graphics.Bitmap;
-import java.util.List;
-public final class a {
-    public final int f19546a;
-    public final Bitmap f19547b;
-    public final List f19548c;
+import cb.b;
+import java.nio.ShortBuffer;
+import z9.d;
+public interface a {
+    public static final d f16575l = new d(14);
+    public static final db.a f16576m = new db.a(15);
+    public static final ab.a f16577o = new ab.a(15);
+    public static final b f16578p = new b(15);
 
-    public a(Bitmap bitmap, int i10, List list) {
-        this.f19548c = list;
-        this.f19547b = bitmap;
-        this.f19546a = i10;
-    }
+    int N1(int i10, int i11, int i12);
+
+    void U0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11);
 }

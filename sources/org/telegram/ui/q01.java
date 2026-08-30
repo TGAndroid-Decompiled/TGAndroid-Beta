@@ -1,83 +1,58 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.tgnet.TLRPC;
-public final class q01 extends org.telegram.ui.ActionBar.k {
-    public final String f41501a;
-    public final t01 f41502b;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.SerializedData;
+public final class q01 {
+    public final String f37565a;
+    public final Runnable f37566b;
+    public final String f37567c;
+    public final String[] d;
+    public final int e;
+    public final int f37568f;
+    public int f37569g;
+    public String h;
 
-    public q01(t01 t01Var, String str) {
-        this.f41502b = t01Var;
-        this.f41501a = str;
+    public q01(String str, int i10, int i11, Runnable runnable) {
+        this(i10, str, null, null, null, i11, runnable);
     }
 
-    @Override
-    public final void b(int i10) {
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        int i17;
-        t01 t01Var = this.f41502b;
-        long j10 = t01Var.f42515f;
-        long j11 = t01Var.f42514e;
-        String str = this.f41501a;
-        if (i10 == -1) {
-            if (!t01Var.h && t01Var.f42516n) {
-                i17 = ((org.telegram.ui.ActionBar.o2) t01Var).currentAccount;
-                SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(i17).edit();
-                edit.putInt("notify2_" + str, 0).apply();
-            }
-        } else if (i10 == 1) {
-            i11 = ((org.telegram.ui.ActionBar.o2) t01Var).currentAccount;
-            SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i11);
-            SharedPreferences.Editor edit2 = notificationsSettings.edit();
-            edit2.putBoolean("custom_" + str, true);
-            i12 = ((org.telegram.ui.ActionBar.o2) t01Var).currentAccount;
-            TLRPC.Dialog dialog = (TLRPC.Dialog) MessagesController.getInstance(i12).dialogs_dict.f(j11);
-            if (t01Var.f42516n) {
-                edit2.putInt("notify2_" + str, 0);
-                if (j10 == 0) {
-                    i16 = ((org.telegram.ui.ActionBar.o2) t01Var).currentAccount;
-                    MessagesStorage.getInstance(i16).setDialogFlags(j11, 0L);
-                    if (dialog != null) {
-                        dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
-                    }
-                }
-            } else {
-                edit2.putInt("notify2_" + str, 2);
-                if (j10 == 0) {
-                    i13 = ((org.telegram.ui.ActionBar.o2) t01Var).currentAccount;
-                    NotificationsController.getInstance(i13).removeNotificationsForDialog(j11);
-                    i14 = ((org.telegram.ui.ActionBar.o2) t01Var).currentAccount;
-                    MessagesStorage.getInstance(i14).setDialogFlags(j11, 1L);
-                    if (dialog != null) {
-                        TLRPC.TL_peerNotifySettings tL_peerNotifySettings = new TLRPC.TL_peerNotifySettings();
-                        dialog.notify_settings = tL_peerNotifySettings;
-                        tL_peerNotifySettings.mute_until = Integer.MAX_VALUE;
-                    }
-                }
-            }
-            edit2.apply();
-            i15 = ((org.telegram.ui.ActionBar.o2) t01Var).currentAccount;
-            NotificationsController.getInstance(i15).updateServerNotificationsSettings(j11, j10);
-            if (t01Var.f42517r != null) {
-                ?? obj = new Object();
-                obj.d = j11;
-                obj.f36820b = true;
-                int c3 = org.telegram.messenger.x3.c("notify2_", str, notificationsSettings, 0);
-                obj.f36821c = c3;
-                if (c3 != 0) {
-                    obj.f36819a = org.telegram.messenger.x3.c("notifyuntil_", str, notificationsSettings, 0);
-                }
-                t01Var.f42517r.m(obj);
-            }
+    public final void a(String str) {
+        this.h = str;
+    }
+
+    public final boolean equals(Object obj) {
+        if ((obj instanceof q01) && this.f37568f == ((q01) obj).f37568f) {
+            return true;
         }
-        t01Var.finishFragment();
+        return false;
+    }
+
+    public final String toString() {
+        SerializedData serializedData = new SerializedData();
+        serializedData.writeInt32(this.f37569g);
+        serializedData.writeInt32(1);
+        serializedData.writeInt32(this.f37568f);
+        return Utilities.bytesToHex(serializedData.toByteArray());
+    }
+
+    public q01(int i10, String str, String str2, int i11, Runnable runnable) {
+        this(i10, str, null, str2, null, i11, runnable);
+    }
+
+    public q01(int i10, String str, String str2, String str3, int i11, Runnable runnable) {
+        this(i10, str, str2, str3, null, i11, runnable);
+    }
+
+    public q01(int i10, String str, String str2, String str3, String str4, int i11, Runnable runnable) {
+        this.f37568f = i10;
+        this.f37565a = str;
+        this.f37567c = str2;
+        this.f37566b = runnable;
+        this.e = i11;
+        if (str3 != null && str4 != null) {
+            this.d = new String[]{str3, str4};
+        } else if (str3 != null) {
+            this.d = new String[]{str3};
+        }
     }
 }

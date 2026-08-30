@@ -1,34 +1,130 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import org.telegram.ui.Components.wb0;
-public final class k6 extends org.telegram.ui.Components.t9 {
-    public final int C;
-    public final l6 D;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.RadioButton;
+public final class k6 extends FrameLayout {
+    public final TextView f21303a;
+    public final TextView f21304b;
+    public final RadioButton f21305c;
+    public int d;
 
-    public k6(l6 l6Var, Context context, int i10) {
+    public k6(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.D = l6Var;
-        this.C = i10;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        l6 l6Var = this.D;
-        j6 j6Var = l6Var.f24648y;
-        wb0 wb0Var = l6.C;
-        if (this.C == 1) {
-            j6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            lh.l7.h(l6Var.f24647x, canvas, getImageReceiver(), j6Var);
-            return;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        this.d = 50;
+        RadioButton radioButton = new RadioButton(context);
+        this.f21305c = radioButton;
+        radioButton.setSize(AndroidUtilities.dp(20.0f));
+        radioButton.b(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.D5, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.E5, f6Var));
+        boolean z4 = LocaleController.isRTL;
+        if (z4) {
+            i10 = 5;
+        } else {
+            i10 = 3;
         }
-        super.onDraw(canvas);
+        int i18 = i10 | 48;
+        if (z4) {
+            i11 = 0;
+        } else {
+            i11 = 18;
+        }
+        addView(radioButton, k7.b6.d(22, 22.0f, i18, i11, 14.0f, z4 ? 18 : 0, 0.0f));
+        TextView textView = new TextView(context);
+        this.f21303a = textView;
+        org.telegram.ui.b.l(org.telegram.ui.ActionBar.j6.f20012j5, f6Var, textView, 1, 16.0f);
+        textView.setLines(1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        if (LocaleController.isRTL) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        textView.setGravity(i12 | 16);
+        boolean z10 = LocaleController.isRTL;
+        if (z10) {
+            i13 = 5;
+        } else {
+            i13 = 3;
+        }
+        int i19 = i13 | 48;
+        if (z10) {
+            i14 = 21;
+        } else {
+            i14 = 51;
+        }
+        float f10 = i14;
+        if (z10) {
+            i15 = 51;
+        } else {
+            i15 = 21;
+        }
+        addView(textView, k7.b6.d(-2, -2.0f, i19, f10, 13.0f, i15, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.f21304b = textView2;
+        org.telegram.ui.b.l(org.telegram.ui.ActionBar.j6.f20281y6, f6Var, textView2, 1, 14.0f);
+        if (LocaleController.isRTL) {
+            i16 = 5;
+        } else {
+            i16 = 3;
+        }
+        textView2.setGravity(i16 | 16);
+        textView2.setVisibility(8);
+        boolean z11 = LocaleController.isRTL;
+        int i20 = (z11 ? 5 : 3) | 48;
+        if (z11) {
+            i17 = 21;
+        } else {
+            i17 = 51;
+        }
+        addView(textView2, k7.b6.d(-2, -2.0f, i20, i17, 37.0f, z11 ? 51 : 21, 0.0f));
+    }
+
+    public final void a(int i10, int i11) {
+        this.f21305c.b(i10, i11);
+    }
+
+    public final void b(CharSequence charSequence, boolean z4) {
+        this.f21303a.setText(charSequence);
+        this.f21304b.setVisibility(8);
+        this.f21305c.a(z4, false);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.D.f24648y.a(motionEvent, this);
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.RadioButton");
+        accessibilityNodeInfo.setCheckable(true);
+        accessibilityNodeInfo.setChecked(this.f21305c.f23149f);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        TextView textView = this.f21304b;
+        if (textView.getVisibility() == 0) {
+            textView.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(72.0f), 1073741824), i11);
+        }
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
+        int dp = AndroidUtilities.dp(this.d);
+        if (textView.getVisibility() == 0) {
+            i12 = textView.getMeasuredHeight() + AndroidUtilities.dp(4.0f);
+        } else {
+            i12 = 0;
+        }
+        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(dp + i12, 1073741824));
     }
 }

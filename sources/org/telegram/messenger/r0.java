@@ -1,24 +1,29 @@
 package org.telegram.messenger;
 
-import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.recaptcha.RecaptchaTasksClient;
 import org.telegram.messenger.CaptchaController;
-public final class r0 implements OnFailureListener {
-    public final int f21390a;
-    public final CaptchaController.Request f21391b;
+public final class r0 implements OnSuccessListener {
+    public final int f18256a;
+    public final String f18257b;
+    public final String f18258c;
+    public final CaptchaController.Request d;
 
-    public r0(CaptchaController.Request request, int i10) {
-        this.f21390a = i10;
-        this.f21391b = request;
+    public r0(String str, String str2, CaptchaController.Request request, int i10) {
+        this.f18256a = i10;
+        this.f18257b = str;
+        this.f18258c = str2;
+        this.d = request;
     }
 
     @Override
-    public final void onFailure(Exception exc) {
-        switch (this.f21390a) {
+    public final void onSuccess(Object obj) {
+        switch (this.f18256a) {
             case 0:
-                CaptchaController.d(this.f21391b, exc);
+                CaptchaController.lambda$request$2(this.f18257b, this.f18258c, this.d, (RecaptchaTasksClient) obj);
                 return;
             default:
-                CaptchaController.b(this.f21391b, exc);
+                CaptchaController.lambda$request$0(this.f18257b, this.f18258c, this.d, (String) obj);
                 return;
         }
     }

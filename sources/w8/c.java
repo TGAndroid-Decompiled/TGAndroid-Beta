@@ -1,3 +1,3 @@
 package w8;
-public @interface c {
+public class c extends b7.a {
 }

@@ -1,67 +1,55 @@
 package org.telegram.messenger;
 
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesStorage;
+import android.text.style.CharacterStyle;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.xn;
 public final class p6 implements Runnable {
-    public final int f21232a;
-    public final boolean f21233b;
-    public final Object f21234c;
+    public final int f18081a;
+    public final int f18082b;
+    public final int f18083c;
     public final Object d;
+    public final Object e;
+    public final Object f18084f;
 
-    public p6(Object obj, Object obj2, boolean z10, int i10) {
-        this.f21232a = i10;
-        this.f21234c = obj;
-        this.d = obj2;
-        this.f21233b = z10;
+    public p6(int i10, int i11, MediaController mediaController, TLObject tLObject, TLRPC.TL_error tL_error) {
+        this.f18081a = 0;
+        this.d = mediaController;
+        this.f18082b = i10;
+        this.e = tL_error;
+        this.f18084f = tLObject;
+        this.f18083c = i11;
     }
 
     @Override
     public final void run() {
-        switch (this.f21232a) {
-            case 0:
-                ((MediaController.AnonymousClass2) this.f21234c).lambda$run$1((ByteBuffer) this.d, this.f21233b);
-                return;
-            case 1:
-                ((FileLoader) this.f21234c).lambda$cancelFileUpload$2(this.f21233b, (String) this.d);
-                return;
-            case 2:
-                ((ImageLoader) this.f21234c).lambda$cancelLoadingForImageReceiver$4(this.f21233b, (ImageReceiver) this.d);
-                return;
-            case 3:
-                ((MediaDataController) this.f21234c).lambda$loadBotKeyboard$196((MessagesStorage.TopicKey) this.d, this.f21233b);
-                return;
-            case 4:
-                ((MediaDataController) this.f21234c).lambda$buildShortcuts$143(this.f21233b, (ArrayList) this.d);
-                return;
-            case 5:
-                ((MessagesController) this.f21234c).lambda$processDialogsUpdate$229((TLRPC.messages_Dialogs) this.d, this.f21233b);
-                return;
-            case 6:
-                ((MessagesStorage) this.f21234c).lambda$updateUserInfo$130((TLRPC.UserFull) this.d, this.f21233b);
-                return;
-            case 7:
-                ((MessagesStorage) this.f21234c).lambda$putCachedPhoneBook$149((HashMap) this.d, this.f21233b);
-                return;
-            case 8:
-                ((MessagesStorage) this.f21234c).lambda$updateEncryptedChatSeq$171((TLRPC.EncryptedChat) this.d, this.f21233b);
-                return;
-            case 9:
-                ((MessagesStorage) this.f21234c).lambda$updateChatInfo$134((TLRPC.ChatFull) this.d, this.f21233b);
-                return;
-            default:
-                ((MessagesStorage) this.f21234c).lambda$deleteEphemeralMessages$206((a0.h) this.d, this.f21233b);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.p6.run():void");
     }
 
-    public p6(Object obj, boolean z10, Object obj2, int i10) {
-        this.f21232a = i10;
-        this.f21234c = obj;
-        this.f21233b = z10;
-        this.d = obj2;
+    public p6(int i10, TLRPC.User user, TLRPC.Document document, int i11, org.telegram.ui.web.s sVar) {
+        this.f18081a = 2;
+        this.f18082b = i10;
+        this.d = user;
+        this.e = document;
+        this.f18083c = i11;
+        this.f18084f = sVar;
+    }
+
+    public p6(Object obj, Object obj2, int i10, Object obj3, int i11, int i12) {
+        this.f18081a = i12;
+        this.d = obj;
+        this.e = obj2;
+        this.f18082b = i10;
+        this.f18084f = obj3;
+        this.f18083c = i11;
+    }
+
+    public p6(xn xnVar, int i10, int i11, CharacterStyle characterStyle, org.telegram.ui.Cells.t1 t1Var) {
+        this.f18081a = 1;
+        this.d = xnVar;
+        this.f18082b = i10;
+        this.f18083c = i11;
+        this.e = characterStyle;
+        this.f18084f = t1Var;
     }
 }

@@ -1,59 +1,31 @@
 package nh;
 
-import java.util.List;
-public final class p4 implements Runnable {
-    public final int f18350a;
-    public final t5 f18351b;
+import android.text.TextUtils;
+import j$.util.Objects;
+public final class p4 {
+    public boolean f15746a = true;
+    public boolean f15747b;
+    public String f15748c;
 
-    public p4(t5 t5Var, int i10) {
-        this.f18350a = i10;
-        this.f18351b = t5Var;
+    public final boolean equals(Object obj) {
+        boolean z4;
+        if (this != obj) {
+            if (obj != null && p4.class == obj.getClass()) {
+                p4 p4Var = (p4) obj;
+                if ((TextUtils.isEmpty(this.f15748c) && TextUtils.isEmpty(p4Var.f15748c)) || Objects.equals(this.f15748c, p4Var.f15748c)) {
+                    z4 = true;
+                } else {
+                    z4 = false;
+                }
+                if (this.f15746a != p4Var.f15746a || this.f15747b != p4Var.f15747b || !z4) {
+                }
+            }
+            return false;
+        }
+        return true;
     }
 
-    @Override
-    public final void run() {
-        int e10;
-        switch (this.f18350a) {
-            case 0:
-                bg.w2 w2Var = this.f18351b.Z0;
-                if (w2Var != null) {
-                    w2Var.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                new cg.p1((org.telegram.ui.ActionBar.o2) new cg.z1(this.f18351b, 7), 14, true).show();
-                return;
-            case 2:
-                this.f18351b.z0(false);
-                return;
-            default:
-                t5 t5Var = this.f18351b;
-                boolean z10 = ag.h1.e(t5Var.B1).f523k;
-                int i10 = 0;
-                while (true) {
-                    List list = ag.l.f574b;
-                    if (i10 < list.size()) {
-                        ag.l lVar = (ag.l) list.get(i10);
-                        if (z10) {
-                            e10 = lVar.m();
-                        } else {
-                            e10 = lVar.e();
-                        }
-                        String n10 = lVar.n();
-                        ag.v0 v0Var = new ag.v0(t5Var, lVar, e10, 15);
-                        r5 r5Var = new r5(t5Var, t5Var.getContext());
-                        r5Var.setIcon(e10);
-                        r5Var.setText(n10);
-                        r5Var.setSelected(false);
-                        r5Var.setOnClickListener(new mh.n(v0Var, 4));
-                        r5Var.setOnLongClickListener(new bg.g0(t5Var, 1));
-                        t5Var.E1.a(r5Var, i7.f6.n(-1, 48));
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-        }
+    public final int hashCode() {
+        return Objects.hash(Boolean.valueOf(this.f15746a), Boolean.valueOf(this.f15747b), this.f15748c);
     }
 }

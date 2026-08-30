@@ -1,78 +1,44 @@
 package org.telegram.ui;
-public final class ks0 extends org.telegram.ui.Components.x61 {
-    public final PhotoViewer f40004i0;
 
-    public ks0(PhotoViewer photoViewer) {
-        this.f40004i0 = photoViewer;
+import android.content.Context;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.TLRPC;
+public final class ks0 extends org.telegram.ui.Components.lq0 {
+    public final FrameLayout Y0;
+    public final boolean Z0;
+    public final PhotoViewer f35806a1;
+
+    public ks0(PhotoViewer photoViewer, Context context, xn xnVar, ArrayList arrayList, String str, Integer num, FrameLayout frameLayout, boolean z4) {
+        super(context, xnVar, arrayList, null, null, false, str, null, false, true, false, num, null);
+        this.f35806a1 = photoViewer;
+        this.Y0 = frameLayout;
+        this.Z0 = z4;
     }
 
     @Override
-    public final void C() {
-        super.C();
-        PhotoViewer photoViewer = this.f40004i0;
-        if (photoViewer.f35795q4 == 0) {
-            PhotoViewer.Y(photoViewer, false);
+    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z4) {
+        if (!z4) {
+            return;
         }
-        if (!photoViewer.J8) {
-            d1.f.D(o());
-            d1.f.x(false);
-        }
+        AndroidUtilities.runOnUIThread(new ct(this, this.Y0, hVar, i10, 8), 250L);
     }
 
     @Override
-    public final void D() {
-        super.D();
-        PhotoViewer photoViewer = this.f40004i0;
-        PhotoViewer.Y(photoViewer, true);
-        if (!photoViewer.J8) {
-            d1.f.D(o());
-            d1.f.x(true);
+    public final void dismissInternal() {
+        super.dismissInternal();
+        if (this.Z0) {
+            AndroidUtilities.runOnUIThread(new el0(this, 17), 50L);
         }
-    }
-
-    @Override
-    public final void L(long j10) {
-        M(j10, false);
-        PhotoViewer photoViewer = this.f40004i0;
-        if (photoViewer.f35765n1) {
-            PhotoViewer.Z(photoViewer, j10);
-        }
-        if (!photoViewer.J8) {
-            d1.f.D(j10);
-        }
-    }
-
-    @Override
-    public final void R(float f9) {
-        super.R(f9);
-        if (!this.f40004i0.J8) {
-            d1.f.z(f9);
-        }
-    }
-
-    @Override
-    public final void onRenderedFirstFrame() {
-        j3.x1 playbackParameters;
-        super.onRenderedFirstFrame();
-        PhotoViewer photoViewer = this.f40004i0;
-        boolean z10 = true;
-        photoViewer.N = true;
-        if (photoViewer.f35875z2) {
-            photoViewer.f35647a0.invalidate();
-        }
-        photoViewer.z3();
-        if (!d1.f.u() && !photoViewer.f35799r) {
-            z10 = false;
-        }
-        P(z10);
-        if (!photoViewer.J8) {
-            d1.f.D(o());
-            j3.k0 k0Var = this.d;
-            float f9 = 1.0f;
-            if (k0Var != null && (playbackParameters = k0Var.getPlaybackParameters()) != null) {
-                f9 = playbackParameters.f10848a;
-            }
-            d1.f.z(f9);
+        PhotoViewer photoViewer = this.f35806a1;
+        photoViewer.f31696a0.softInputMode = 272;
+        try {
+            ((WindowManager) photoViewer.f31913y.getSystemService("window")).updateViewLayout(photoViewer.f31723d0, photoViewer.f31696a0);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 }

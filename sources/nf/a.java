@@ -1,11 +1,14 @@
 package nf;
+public abstract class a {
+    public float f14960a = 1.0f;
 
-import ab.b;
-import f7.v;
-import java.nio.ShortBuffer;
-public interface a {
-    public static final b f17319q = new b(15);
-    public static final v f17320t = new v(15);
+    public abstract short a();
 
-    void r0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12);
+    public abstract int b();
+
+    public abstract boolean c();
+
+    public abstract void d();
+
+    public abstract void e(int i10, int i11);
 }

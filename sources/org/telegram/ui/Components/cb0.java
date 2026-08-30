@@ -1,40 +1,28 @@
 package org.telegram.ui.Components;
+public final class cb0 implements Runnable {
+    public final int f23957a;
+    public final qb0 f23958b;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class cb0 extends org.telegram.ui.ActionBar.g1 {
-    public final int H;
-
-    public cb0(int i10, int i11, Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10, boolean z11) {
-        super(i10, context, c6Var, z10, z11);
-        this.H = i11;
+    public cb0(qb0 qb0Var, int i10) {
+        this.f23957a = i10;
+        this.f23958b = qb0Var;
     }
 
     @Override
-    public final void i() {
-        switch (this.H) {
+    public final void run() {
+        switch (this.f23957a) {
             case 0:
-                setBackground(null);
+                qb0 qb0Var = this.f23958b;
+                ib0 ib0Var = qb0Var.f28105f;
+                if (qb0Var.W.d.webpageTop) {
+                    ib0Var.w0(-ib0Var.computeVerticalScrollOffset(), 250, wh.n.V);
+                    return;
+                }
+                ib0Var.w0(ib0Var.computeVerticalScrollRange() - (ib0Var.computeVerticalScrollExtent() + ib0Var.computeVerticalScrollOffset()), 250, wh.n.V);
                 return;
             default:
-                setBackground(null);
+                this.f23958b.g(true, false);
                 return;
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.H) {
-            case 0:
-                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
-                    return super.onTouchEvent(motionEvent);
-                }
-                return false;
-            default:
-                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
-                    return super.onTouchEvent(motionEvent);
-                }
-                return false;
         }
     }
 }

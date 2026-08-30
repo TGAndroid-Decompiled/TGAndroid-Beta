@@ -1,33 +1,34 @@
 package kotlin.jvm.internal;
 
-import bd.u;
-import bd.v;
-import bd.w;
+import dd.u;
+import dd.v;
+import dd.w;
+import j7.m5;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-public final class e implements fd.c, d {
-    public static final Map f13918b;
-    public static final LinkedHashMap f13919c;
-    public final Class f13920a;
+public final class e implements hd.c, d {
+    public static final Map f10981b;
+    public static final LinkedHashMap f10982c;
+    public final Class f10983a;
 
     static {
         int i10 = 0;
-        List c3 = rc.h.c(bd.a.class, bd.l.class, bd.p.class, bd.q.class, bd.r.class, bd.s.class, bd.t.class, u.class, v.class, w.class, bd.b.class, bd.c.class, bd.d.class, bd.e.class, bd.f.class, bd.g.class, bd.h.class, bd.i.class, bd.j.class, bd.k.class, bd.m.class, bd.n.class, bd.o.class);
-        ArrayList arrayList = new ArrayList(rc.i.d(c3));
+        List c3 = tc.h.c(dd.a.class, dd.l.class, dd.p.class, dd.q.class, dd.r.class, dd.s.class, dd.t.class, u.class, v.class, w.class, dd.b.class, dd.c.class, dd.d.class, dd.e.class, dd.f.class, dd.g.class, dd.h.class, dd.i.class, dd.j.class, dd.k.class, dd.m.class, dd.n.class, dd.o.class);
+        ArrayList arrayList = new ArrayList(tc.i.d(c3));
         for (Object obj : c3) {
             int i11 = i10 + 1;
             if (i10 >= 0) {
-                arrayList.add(new qc.d((Class) obj, Integer.valueOf(i10)));
+                arrayList.add(new sc.d((Class) obj, Integer.valueOf(i10)));
                 i10 = i11;
             } else {
                 throw new ArithmeticException("Index overflow has happened.");
             }
         }
-        f13918b = rc.r.d(arrayList);
+        f10981b = tc.r.d(arrayList);
         HashMap hashMap = new HashMap();
         hashMap.put("boolean", "kotlin.Boolean");
         hashMap.put("char", "kotlin.Char");
@@ -71,49 +72,49 @@ public final class e implements fd.c, d {
         Collection<String> values = hashMap.values();
         j.d(values, "<get-values>(...)");
         for (String str : values) {
-            StringBuilder sb2 = new StringBuilder("kotlin.jvm.internal.");
+            StringBuilder sb = new StringBuilder("kotlin.jvm.internal.");
             j.b(str);
-            sb2.append(hd.j.j(str, str));
-            sb2.append("CompanionObject");
-            hashMap3.put(sb2.toString(), str.concat(".Companion"));
+            sb.append(jd.j.j(str, str));
+            sb.append("CompanionObject");
+            hashMap3.put(sb.toString(), str.concat(".Companion"));
         }
-        for (Map.Entry entry : f13918b.entrySet()) {
+        for (Map.Entry entry : f10981b.entrySet()) {
             int intValue = ((Number) entry.getValue()).intValue();
             String name = ((Class) entry.getKey()).getName();
             hashMap3.put(name, "kotlin.Function" + intValue);
         }
-        LinkedHashMap linkedHashMap = new LinkedHashMap(rc.r.a(hashMap3.size()));
+        LinkedHashMap linkedHashMap = new LinkedHashMap(tc.r.a(hashMap3.size()));
         for (Map.Entry entry2 : hashMap3.entrySet()) {
             Object key = entry2.getKey();
             String str2 = (String) entry2.getValue();
             j.b(str2);
-            linkedHashMap.put(key, hd.j.j(str2, str2));
+            linkedHashMap.put(key, jd.j.j(str2, str2));
         }
-        f13919c = linkedHashMap;
+        f10982c = linkedHashMap;
     }
 
     public e(Class jClass) {
         j.e(jClass, "jClass");
-        this.f13920a = jClass;
+        this.f10983a = jClass;
     }
 
     @Override
     public final Class a() {
-        return this.f13920a;
+        return this.f10983a;
     }
 
     public final boolean equals(Object obj) {
-        if ((obj instanceof e) && h7.q.a(this).equals(h7.q.a((fd.c) obj))) {
+        if ((obj instanceof e) && m5.a(this).equals(m5.a((hd.c) obj))) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return h7.q.a(this).hashCode();
+        return m5.a(this).hashCode();
     }
 
     public final String toString() {
-        return this.f13920a + " (Kotlin reflection is not available)";
+        return this.f10983a + " (Kotlin reflection is not available)";
     }
 }

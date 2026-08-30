@@ -7,56 +7,56 @@ import android.graphics.RectF;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ct;
+import org.telegram.ui.Components.gt;
 public final class s extends LinearLayout {
-    public static final int f25258f = 0;
-    public Paint f25259a;
-    public Paint f25260b;
-    public q f25261c;
+    public static final int f21810f = 0;
+    public Paint f21811a;
+    public Paint f21812b;
+    public q f21813c;
     public TextView d;
-    public float f25262e;
+    public float e;
 
-    public final void a(float f9) {
-        this.f25262e = f9;
+    public final void a(float f10) {
+        this.e = f10;
         TextView textView = this.d;
-        int w02 = org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.G6, false);
-        int i10 = org.telegram.ui.ActionBar.g6.I6;
-        textView.setTextColor(i0.a.d(f9, w02, org.telegram.ui.ActionBar.g6.w0(null, i10, false)));
-        Paint paint = this.f25259a;
-        paint.setColor(i0.a.d(f9, i0.a.k(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.M6, false), 63), org.telegram.ui.ActionBar.g6.w0(null, i10, false)));
-        paint.setStrokeWidth(Math.max(2, AndroidUtilities.dp(AndroidUtilities.lerp(0.5f, 2.0f, f9))));
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false);
+        int i10 = org.telegram.ui.ActionBar.j6.I6;
+        textView.setTextColor(i0.a.d(f10, w02, org.telegram.ui.ActionBar.j6.w0(null, i10, false)));
+        Paint paint = this.f21811a;
+        paint.setColor(i0.a.d(f10, i0.a.k(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.M6, false), 63), org.telegram.ui.ActionBar.j6.w0(null, i10, false)));
+        paint.setStrokeWidth(Math.max(2, AndroidUtilities.dp(AndroidUtilities.lerp(0.5f, 2.0f, f10))));
         invalidate();
     }
 
-    public final void b(boolean z10, boolean z11) {
-        float f9;
-        if (z10) {
-            f9 = 1.0f;
+    public final void b(boolean z4, boolean z10) {
+        float f10;
+        if (z4) {
+            f10 = 1.0f;
         } else {
-            f9 = 0.0f;
+            f10 = 0.0f;
         }
-        float f10 = this.f25262e;
-        if (f9 == f10 && z11) {
+        float f11 = this.e;
+        if (f10 == f11 && z10) {
             return;
         }
-        if (z11) {
-            ValueAnimator duration = ValueAnimator.ofFloat(f10, f9).setDuration(250L);
-            duration.setInterpolator(ct.f27567e);
+        if (z10) {
+            ValueAnimator duration = ValueAnimator.ofFloat(f11, f10).setDuration(250L);
+            duration.setInterpolator(gt.e);
             duration.addUpdateListener(new r(this, 0));
             duration.start();
             return;
         }
-        a(f9);
+        a(f10);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Paint paint = this.f25259a;
+        Paint paint = this.f21811a;
         float strokeWidth = paint.getStrokeWidth();
         RectF rectF = AndroidUtilities.rectTmp;
-        q qVar = this.f25261c;
+        q qVar = this.f21813c;
         rectF.set(qVar.getLeft() + strokeWidth, qVar.getTop() + strokeWidth, qVar.getRight() - strokeWidth, qVar.getBottom() - strokeWidth);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f25260b);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f21812b);
         super.draw(canvas);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), paint);
     }

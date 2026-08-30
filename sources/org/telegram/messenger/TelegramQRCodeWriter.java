@@ -15,66 +15,66 @@ public final class TelegramQRCodeWriter {
     private int imageBlockX;
     private int imageBloks;
     private int imageSize;
-    private tb.b input;
+    private vb.b input;
     private int sideQuadSize;
     private float[] radii = new float[8];
     public boolean includeSideQuads = true;
 
-    public static void drawSideQuads(Canvas canvas, float f9, float f10, Paint paint, float f11, float f12, int i10, float f13, float f14, float[] fArr, boolean z10) {
-        float f15;
+    public static void drawSideQuads(Canvas canvas, float f10, float f11, Paint paint, float f12, float f13, int i10, float f14, float f15, float[] fArr, boolean z4) {
         float f16;
+        float f17;
         Path path = new Path();
         for (int i11 = 0; i11 < 3; i11++) {
             if (i11 == 0) {
-                f15 = i10;
-                f16 = f15;
-            } else if (i11 == 1) {
                 f16 = i10;
-                f15 = (f13 - (f11 * f12)) - f16;
+                f17 = f16;
+            } else if (i11 == 1) {
+                f17 = i10;
+                f16 = (f14 - (f12 * f13)) - f17;
             } else {
-                f15 = i10;
-                f16 = (f13 - (f11 * f12)) - f15;
+                f16 = i10;
+                f17 = (f14 - (f12 * f13)) - f16;
             }
-            float f17 = f15 + f9;
             float f18 = f16 + f10;
-            if (z10) {
+            float f19 = f17 + f11;
+            if (z4) {
                 RectF rectF = AndroidUtilities.rectTmp;
-                float f19 = (f11 - 1.0f) * f12;
-                rectF.set(f17 + f12, f18 + f12, f17 + f19, f19 + f18);
-                float f20 = ((f11 * f12) / 4.0f) * f14;
+                float f20 = (f12 - 1.0f) * f13;
+                rectF.set(f18 + f13, f19 + f13, f18 + f20, f20 + f19);
+                float f21 = ((f12 * f13) / 4.0f) * f15;
                 path.reset();
-                path.addRoundRect(rectF, f20, f20, Path.Direction.CW);
+                path.addRoundRect(rectF, f21, f21, Path.Direction.CW);
                 path.close();
                 canvas.save();
                 canvas.clipPath(path, Region.Op.DIFFERENCE);
             }
-            float f21 = f11 * f12;
-            float f22 = (f21 / 3.0f) * f14;
+            float f22 = f12 * f13;
+            float f23 = (f22 / 3.0f) * f15;
             RectF rectF2 = AndroidUtilities.rectTmp;
-            rectF2.set(f17, f18, f17 + f21, f21 + f18);
-            canvas.drawRoundRect(rectF2, f22, f22, paint);
-            if (z10) {
+            rectF2.set(f18, f19, f18 + f22, f22 + f19);
+            canvas.drawRoundRect(rectF2, f23, f23, paint);
+            if (z4) {
                 canvas.restore();
             }
-            float f23 = (f11 - 2.0f) * f12;
-            float f24 = (f23 / 4.0f) * f14;
-            float f25 = 2.0f * f12;
-            rectF2.set(f17 + f25, f25 + f18, f17 + f23, f18 + f23);
-            canvas.drawRoundRect(rectF2, f24, f24, paint);
+            float f24 = (f12 - 2.0f) * f13;
+            float f25 = (f24 / 4.0f) * f15;
+            float f26 = 2.0f * f13;
+            rectF2.set(f18 + f26, f26 + f19, f18 + f24, f19 + f24);
+            canvas.drawRoundRect(rectF2, f25, f25, paint);
         }
     }
 
-    public static void drawSideQuadsGradient(Canvas canvas, Paint paint, GradientDrawable gradientDrawable, float f9, float f10, int i10, float f11, float f12, float[] fArr, int i11, int i12) {
-        boolean z10;
-        float f13;
+    public static void drawSideQuadsGradient(Canvas canvas, Paint paint, GradientDrawable gradientDrawable, float f10, float f11, int i10, float f12, float f13, float[] fArr, int i11, int i12) {
+        boolean z4;
         float f14;
         float f15;
         float f16;
         float f17;
+        float f18;
         if (Color.alpha(i11) == 0) {
-            z10 = true;
+            z4 = true;
         } else {
-            z10 = false;
+            z4 = false;
         }
         gradientDrawable.setShape(0);
         gradientDrawable.setCornerRadii(fArr);
@@ -82,58 +82,58 @@ public final class TelegramQRCodeWriter {
         RectF rectF = new RectF();
         for (int i13 = 0; i13 < 3; i13++) {
             if (i13 == 0) {
-                f16 = i10;
-                f15 = f16;
+                f17 = i10;
+                f16 = f17;
             } else {
                 if (i13 == 1) {
-                    f14 = i10;
-                    f13 = (f11 - (f9 * f10)) - f14;
+                    f15 = i10;
+                    f14 = (f12 - (f10 * f11)) - f15;
                 } else {
-                    f13 = i10;
-                    f14 = (f11 - (f9 * f10)) - f13;
+                    f14 = i10;
+                    f15 = (f12 - (f10 * f11)) - f14;
                 }
-                f15 = f13;
                 f16 = f14;
+                f17 = f15;
             }
-            if (z10) {
-                float f18 = (f9 - 1.0f) * f10;
-                f17 = 1.0f;
-                rectF.set(f15 + f10, f16 + f10, f15 + f18, f18 + f16);
-                float f19 = ((f9 * f10) / 4.0f) * f12;
+            if (z4) {
+                float f19 = (f10 - 1.0f) * f11;
+                f18 = 1.0f;
+                rectF.set(f16 + f11, f17 + f11, f16 + f19, f19 + f17);
+                float f20 = ((f10 * f11) / 4.0f) * f13;
                 path.reset();
-                path.addRoundRect(rectF, f19, f19, Path.Direction.CW);
+                path.addRoundRect(rectF, f20, f20, Path.Direction.CW);
                 path.close();
                 canvas.save();
                 canvas.clipPath(path, Region.Op.DIFFERENCE);
             } else {
-                f17 = 1.0f;
+                f18 = 1.0f;
             }
-            float f20 = f9 * f10;
-            Arrays.fill(fArr, (f20 / 3.0f) * f12);
+            float f21 = f10 * f11;
+            Arrays.fill(fArr, (f21 / 3.0f) * f13);
             gradientDrawable.setColor(i12);
-            gradientDrawable.setBounds((int) f15, (int) f16, (int) (f15 + f20), (int) (f16 + f20));
+            gradientDrawable.setBounds((int) f16, (int) f17, (int) (f16 + f21), (int) (f17 + f21));
             gradientDrawable.draw(canvas);
-            float f21 = f16;
-            float f22 = f15 + f10;
-            float f23 = f21 + f10;
-            float f24 = (f9 - f17) * f10;
-            float f25 = f15 + f24;
-            float f26 = f24 + f21;
-            canvas.drawRect(f22, f23, f25, f26, paint);
-            if (z10) {
+            float f22 = f17;
+            float f23 = f16 + f11;
+            float f24 = f22 + f11;
+            float f25 = (f10 - f18) * f11;
+            float f26 = f16 + f25;
+            float f27 = f25 + f22;
+            canvas.drawRect(f23, f24, f26, f27, paint);
+            if (z4) {
                 canvas.restore();
             }
-            if (!z10) {
-                Arrays.fill(fArr, (f20 / 4.0f) * f12);
+            if (!z4) {
+                Arrays.fill(fArr, (f21 / 4.0f) * f13);
                 gradientDrawable.setColor(i11);
-                gradientDrawable.setBounds((int) f22, (int) f23, (int) f25, (int) f26);
+                gradientDrawable.setBounds((int) f23, (int) f24, (int) f26, (int) f27);
                 gradientDrawable.draw(canvas);
             }
-            float f27 = (f9 - 2.0f) * f10;
-            Arrays.fill(fArr, (f27 / 4.0f) * f12);
+            float f28 = (f10 - 2.0f) * f11;
+            Arrays.fill(fArr, (f28 / 4.0f) * f13);
             gradientDrawable.setColor(i12);
-            float f28 = 2.0f * f10;
-            gradientDrawable.setBounds((int) (f15 + f28), (int) (f21 + f28), (int) (f15 + f27), (int) (f21 + f27));
+            float f29 = 2.0f * f11;
+            gradientDrawable.setBounds((int) (f16 + f29), (int) (f22 + f29), (int) (f16 + f28), (int) (f22 + f28));
             gradientDrawable.draw(canvas);
         }
     }
@@ -147,19 +147,19 @@ public final class TelegramQRCodeWriter {
             }
         }
         int i14 = this.sideQuadSize;
-        if ((i10 < i14 || i10 >= this.input.f48194b - i14) && i11 < i14) {
+        if ((i10 < i14 || i10 >= this.input.f45649b - i14) && i11 < i14) {
             return false;
         }
-        if ((i10 >= i14 || i11 < this.input.f48195c - i14) && i10 >= 0 && i11 >= 0) {
-            tb.b bVar = this.input;
-            if (i10 < bVar.f48194b && i11 < bVar.f48195c && bVar.a(i10, i11) == 1) {
+        if ((i10 >= i14 || i11 < this.input.f45650c - i14) && i10 >= 0 && i11 >= 0) {
+            vb.b bVar = this.input;
+            if (i10 < bVar.f45649b && i11 < bVar.f45650c && bVar.a(i10, i11) == 1) {
                 return true;
             }
         }
         return false;
     }
 
-    public Bitmap encode(String str, int i10, int i11, Map<mb.b, ?> map, Bitmap bitmap) {
+    public Bitmap encode(String str, int i10, int i11, Map<ob.b, ?> map, Bitmap bitmap) {
         return encode(str, i10, i11, map, bitmap, 1.0f, -1, -16777216);
     }
 
@@ -171,7 +171,7 @@ public final class TelegramQRCodeWriter {
         return this.sideQuadSize;
     }
 
-    public android.graphics.Bitmap encode(java.lang.String r37, int r38, int r39, java.util.Map<mb.b, ?> r40, android.graphics.Bitmap r41, float r42, int r43, int r44) {
+    public android.graphics.Bitmap encode(java.lang.String r37, int r38, int r39, java.util.Map<ob.b, ?> r40, android.graphics.Bitmap r41, float r42, int r43, int r44) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TelegramQRCodeWriter.encode(java.lang.String, int, int, java.util.Map, android.graphics.Bitmap, float, int, int):android.graphics.Bitmap");
     }
 }

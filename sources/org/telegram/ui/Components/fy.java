@@ -1,61 +1,36 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public interface fy {
-    boolean A();
+public final class fy implements View.OnClickListener {
+    public final boolean[] f24979a;
+    public final org.telegram.ui.ActionBar.b3 f24980b;
+    public final gy f24981c;
 
-    long a();
+    public fy(gy gyVar, boolean[] zArr, org.telegram.ui.ActionBar.b3 b3Var) {
+        this.f24981c = gyVar;
+        this.f24979a = zArr;
+        this.f24980b = b3Var;
+    }
 
-    boolean b();
-
-    boolean c();
-
-    void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10);
-
-    void e(Object obj, Object obj2);
-
-    int f();
-
-    boolean g();
-
-    void h(TLRPC.StickerSetCovered stickerSetCovered);
-
-    void i(int i10);
-
-    boolean j();
-
-    boolean k();
-
-    void l(String str);
-
-    void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10);
-
-    void n();
-
-    void o(s41 s41Var);
-
-    float p();
-
-    void q();
-
-    void r(TLRPC.StickerSetCovered stickerSetCovered);
-
-    void s(int i10);
-
-    void t(ArrayList arrayList);
-
-    void u();
-
-    void v(View view, Object obj, String str, Object obj2, boolean z10, int i10, int i11);
-
-    void w();
-
-    void x(long j10, TLRPC.Document document, String str, boolean z10);
-
-    void y(long j10);
-
-    boolean z();
+    @Override
+    public final void onClick(View view) {
+        jy jyVar = this.f24981c.f25256a;
+        boolean[] zArr = this.f24979a;
+        if (zArr[0]) {
+            return;
+        }
+        zArr[0] = true;
+        org.telegram.ui.ActionBar.d2[] d2VarArr = {new org.telegram.ui.ActionBar.d2(jyVar.C.getContext(), 3, null)};
+        TLRPC.TL_messages_getEmojiURL tL_messages_getEmojiURL = new TLRPC.TL_messages_getEmojiURL();
+        kz kzVar = jyVar.C;
+        String str = jyVar.f26064w;
+        if (str == null) {
+            str = kzVar.T0[0];
+        }
+        tL_messages_getEmojiURL.lang_code = str;
+        AndroidUtilities.runOnUIThread(new ey(this, d2VarArr, ConnectionsManager.getInstance(kzVar.Z0).sendRequest(tL_messages_getEmojiURL, new gg.y(this, d2VarArr, this.f24980b, 13)), 0), 1000L);
+    }
 }

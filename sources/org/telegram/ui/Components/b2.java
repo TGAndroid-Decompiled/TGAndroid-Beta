@@ -1,53 +1,85 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import java.util.regex.Pattern;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.LaunchActivity;
-public final class b2 implements DialogInterface.OnCancelListener {
-    public final int f26944a = 1;
-    public final int f26945b;
-    public final int[] f26946c;
-    public final Runnable d;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.tl.TL_account;
+public final class b2 implements TextView.OnEditorActionListener {
+    public final int f23539a;
+    public final int f23540b;
+    public final org.telegram.ui.ActionBar.d2[] f23541c;
+    public final View d;
+    public final EditTextBoldCursor e;
+    public final Object f23542f;
 
-    public b2(int i10, int[] iArr, org.telegram.ui.x60 x60Var) {
-        this.f26945b = i10;
-        this.f26946c = iArr;
-        this.d = x60Var;
+    public b2(EditTextBoldCursor editTextBoldCursor, int i10, Object obj, org.telegram.ui.ActionBar.d2[] d2VarArr, View view, int i11) {
+        this.f23539a = i11;
+        this.e = editTextBoldCursor;
+        this.f23540b = i10;
+        this.f23542f = obj;
+        this.f23541c = d2VarArr;
+        this.d = view;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        int i10 = this.f26944a;
-        Runnable runnable = this.d;
-        int[] iArr = this.f26946c;
-        int i11 = this.f26945b;
-        switch (i10) {
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        switch (this.f23539a) {
             case 0:
-                for (int i12 : iArr) {
-                    if (i12 != 0) {
-                        ConnectionsManager.getInstance(i11).cancelRequest(i12, true);
+                MessagesStorage.StringCallback stringCallback = (MessagesStorage.StringCallback) this.f23542f;
+                if (i10 != 6) {
+                    return false;
+                }
+                EditTextBoldCursor editTextBoldCursor = this.e;
+                String obj = editTextBoldCursor.getText().toString();
+                if (obj.length() > this.f23540b) {
+                    AndroidUtilities.shakeView(editTextBoldCursor);
+                } else {
+                    stringCallback.run(obj);
+                    org.telegram.ui.ActionBar.d2 d2Var = this.f23541c[0];
+                    if (d2Var != null) {
+                        d2Var.dismiss();
+                    }
+                    View view = this.d;
+                    if (view != null) {
+                        view.requestFocus();
                     }
                 }
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
+                return true;
             default:
-                Pattern pattern = LaunchActivity.f35560x1;
-                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
-                if (runnable != null) {
-                    runnable.run();
-                    return;
+                uf.n nVar = (uf.n) this.e;
+                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.f23542f;
+                if (i10 != 6) {
+                    return false;
                 }
-                return;
+                String obj2 = nVar.getText().toString();
+                if (obj2.length() > 32) {
+                    AndroidUtilities.shakeView(nVar);
+                } else {
+                    uf.t d = uf.t.d(this.f23540b);
+                    TL_account.TL_businessChatLink c3 = d.c(tL_businessChatLink.link);
+                    if (c3 != null) {
+                        TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
+                        tL_inputBusinessChatLink.message = c3.message;
+                        tL_inputBusinessChatLink.entities = c3.entities;
+                        tL_inputBusinessChatLink.title = obj2;
+                        d.b(c3, tL_inputBusinessChatLink, null);
+                    }
+                    org.telegram.ui.ActionBar.d2[] d2VarArr = this.f23541c;
+                    org.telegram.ui.ActionBar.d2 d2Var2 = d2VarArr[0];
+                    if (d2Var2 != null) {
+                        d2Var2.dismiss();
+                    }
+                    if (d2VarArr[0] == uf.q.d) {
+                        uf.q.d = null;
+                    }
+                    View view2 = this.d;
+                    if (view2 != null) {
+                        view2.requestFocus();
+                    }
+                }
+                return true;
         }
-    }
-
-    public b2(int[] iArr, Runnable runnable, int i10) {
-        this.f26946c = iArr;
-        this.f26945b = i10;
-        this.d = runnable;
     }
 }

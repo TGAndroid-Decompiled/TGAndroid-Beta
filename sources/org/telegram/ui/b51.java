@@ -1,12 +1,16 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class b51 extends f2.l {
+import android.content.Context;
+public final class b51 extends r51 {
+    public final q61 c3;
+
+    public b51(q61 q61Var, Context context) {
+        super(q61Var, context);
+        this.c3 = q61Var;
+    }
+
     @Override
-    public final float A(View view) {
-        if (view instanceof h51) {
-            return 0.6f;
-        }
-        return 0.0f;
+    public final void k0(int i10, int i11) {
+        this.c3.h();
     }
 }

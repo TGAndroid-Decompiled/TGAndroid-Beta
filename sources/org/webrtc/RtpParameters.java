@@ -66,13 +66,13 @@ public class RtpParameters {
 
     public static class HeaderExtension {
         private final boolean encrypted;
-        private final int f45361id;
+        private final int f40888id;
         private final String uri;
 
-        public HeaderExtension(String str, int i10, boolean z10) {
+        public HeaderExtension(String str, int i10, boolean z4) {
             this.uri = str;
-            this.f45361id = i10;
-            this.encrypted = z10;
+            this.f40888id = i10;
+            this.encrypted = z4;
         }
 
         public boolean getEncrypted() {
@@ -80,7 +80,7 @@ public class RtpParameters {
         }
 
         public int getId() {
-            return this.f45361id;
+            return this.f40888id;
         }
 
         public String getUri() {
@@ -92,9 +92,9 @@ public class RtpParameters {
         private final String cname;
         private final boolean reducedSize;
 
-        public Rtcp(String str, boolean z10) {
+        public Rtcp(String str, boolean z4) {
             this.cname = str;
-            this.reducedSize = z10;
+            this.reducedSize = z4;
         }
 
         public String getCname() {
@@ -152,11 +152,11 @@ public class RtpParameters {
         public Double scaleResolutionDownBy;
         public Long ssrc;
 
-        public Encoding(String str, boolean z10, Double d) {
+        public Encoding(String str, boolean z4, Double d) {
             this.bitratePriority = 1.0d;
             this.networkPriority = 0;
             this.rid = str;
-            this.active = z10;
+            this.active = z4;
             this.scaleResolutionDownBy = d;
         }
 
@@ -204,9 +204,9 @@ public class RtpParameters {
             return this.ssrc;
         }
 
-        public Encoding(String str, boolean z10, double d, int i10, Integer num, Integer num2, Integer num3, Integer num4, Double d10, Long l10, boolean z11) {
+        public Encoding(String str, boolean z4, double d, int i10, Integer num, Integer num2, Integer num3, Integer num4, Double d10, Long l10, boolean z10) {
             this.rid = str;
-            this.active = z10;
+            this.active = z4;
             this.bitratePriority = d;
             this.networkPriority = i10;
             this.maxBitrateBps = num;
@@ -215,7 +215,7 @@ public class RtpParameters {
             this.numTemporalLayers = num4;
             this.scaleResolutionDownBy = d10;
             this.ssrc = l10;
-            this.adaptiveAudioPacketTime = z11;
+            this.adaptiveAudioPacketTime = z10;
         }
     }
 }

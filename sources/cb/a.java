@@ -1,21 +1,10 @@
 package cb;
 
-import java.util.Arrays;
-import z5.l;
+import j$.util.DesugarCollections;
+import java.lang.ref.ReferenceQueue;
+import java.util.HashSet;
+import java.util.Set;
 public final class a {
-    public static final a f3028a = new Object();
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if ((obj instanceof a) && l.l(null, null) && l.l(null, null)) {
-                return true;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{null, null});
-    }
+    public final ReferenceQueue f2209a = new ReferenceQueue();
+    public final Set f2210b = DesugarCollections.synchronizedSet(new HashSet());
 }

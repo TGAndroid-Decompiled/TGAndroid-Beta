@@ -1,33 +1,35 @@
 package o3;
 
-import java.util.Arrays;
-public final class v {
-    public final int f19120a;
-    public final byte[] f19121b;
-    public final int f19122c;
-    public final int d;
+import androidx.biometric.f0;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+public interface v {
+    void B(f0 f0Var);
 
-    public v(int i10, int i11, int i12, byte[] bArr) {
-        this.f19120a = i10;
-        this.f19121b = bArr;
-        this.f19122c = i11;
-        this.d = i12;
-    }
+    n3.b D0(byte[] bArr);
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && v.class == obj.getClass()) {
-            v vVar = (v) obj;
-            if (this.f19120a == vVar.f19120a && this.f19122c == vVar.f19122c && this.d == vVar.d && Arrays.equals(this.f19121b, vVar.f19121b)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    byte[] F1(byte[] bArr, byte[] bArr2);
 
-    public final int hashCode() {
-        return ((((Arrays.hashCode(this.f19121b) + (this.f19120a * 31)) * 31) + this.f19122c) * 31) + this.d;
-    }
+    u K();
+
+    byte[] M0();
+
+    void Q1(byte[] bArr);
+
+    t U1(byte[] bArr, List list, int i10, HashMap hashMap);
+
+    void V(byte[] bArr, k3.k kVar);
+
+    int b2();
+
+    void h1(byte[] bArr, byte[] bArr2);
+
+    void m1(byte[] bArr);
+
+    void release();
+
+    Map v(byte[] bArr);
+
+    boolean w2(String str, byte[] bArr);
 }

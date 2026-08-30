@@ -1,3 +1,4 @@
 package x9;
-public interface f {
+public abstract class f implements v9.a {
+    public static final w9.a f46865a = new w9.a(2);
 }

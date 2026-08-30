@@ -1,46 +1,61 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class gg1 implements Utilities.Callback {
-    public final int f38584a;
-    public final UserInfoActivity f38585b;
+public final class gg1 implements RequestDelegate {
+    public final int f34616a;
+    public final og1 f34617b;
 
-    public gg1(UserInfoActivity userInfoActivity, int i10) {
-        this.f38584a = i10;
-        this.f38585b = userInfoActivity;
+    public gg1(og1 og1Var, int i10) {
+        this.f34616a = i10;
+        this.f34617b = og1Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f38584a) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f34616a) {
             case 0:
-                UserInfoActivity userInfoActivity = this.f38585b;
-                userInfoActivity.F = (TL_account.TL_birthday) obj;
-                org.telegram.ui.Components.o51 o51Var = userInfoActivity.f36348x;
-                if (o51Var != null) {
-                    o51Var.U2.N(true);
-                }
-                userInfoActivity.b0(true);
+                final og1 og1Var = this.f34617b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                og1.b0(og1Var, tL_error, tLObject);
+                                return;
+                            default:
+                                og1.h0(og1Var, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new jg1(this.f34617b, tL_error, 0));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new jg1(this.f34617b, tL_error, 1));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new jg1(this.f34617b, tL_error, 2));
                 return;
             default:
-                TLRPC.Chat chat = (TLRPC.Chat) obj;
-                UserInfoActivity userInfoActivity2 = this.f38585b;
-                if (userInfoActivity2.G != chat) {
-                    userInfoActivity2.G = chat;
-                    if (chat != null) {
-                        j7.l1.v(R.string.EditProfileChannelSet, org.telegram.ui.Components.tc.a0(userInfoActivity2), R.raw.contact_check, 36);
+                final og1 og1Var2 = this.f34617b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                og1.b0(og1Var2, tL_error, tLObject);
+                                return;
+                            default:
+                                og1.h0(og1Var2, tL_error, tLObject);
+                                return;
+                        }
                     }
-                    userInfoActivity2.b0(true);
-                    org.telegram.ui.Components.o51 o51Var2 = userInfoActivity2.f36348x;
-                    if (o51Var2 != null) {
-                        o51Var2.U2.N(true);
-                        return;
-                    }
-                    return;
-                }
+                });
                 return;
         }
     }

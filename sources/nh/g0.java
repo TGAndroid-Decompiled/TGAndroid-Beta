@@ -1,34 +1,25 @@
 package nh;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-public final class g0 extends wf.n {
-    public final int L;
-    public final FrameLayout M;
+import android.view.View;
+public final class g0 extends f2.l {
+    public final g2 F;
 
-    public g0(FrameLayout frameLayout, Context context, int i10) {
-        super(context);
-        this.L = i10;
-        this.M = frameLayout;
+    public g0(g2 g2Var) {
+        this.F = g2Var;
     }
 
     @Override
-    public final int getCurrentHeight() {
-        switch (this.L) {
-            case 0:
-                return j0.b((j0) this.M);
-            default:
-                return m0.b((m0) this.M);
-        }
+    public final float A(View view) {
+        return 0.5f;
     }
 
     @Override
-    public final int getCurrentWidth() {
-        switch (this.L) {
-            case 0:
-                return j0.a((j0) this.M);
-            default:
-                return m0.a((m0) this.M);
-        }
+    public final void M() {
+        this.F.f15973c.invalidate();
+    }
+
+    @Override
+    public final void P(f2.l1 l1Var) {
+        this.F.f15973c.invalidate();
     }
 }

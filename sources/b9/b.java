@@ -1,136 +1,87 @@
 package b9;
 
-import android.media.MediaCodec;
-import android.os.Build;
-import com.google.android.gms.internal.cast.m4;
-import com.google.android.gms.internal.cast.q4;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.TimeUnit;
-public abstract class b {
-    public static MediaCodec.CryptoInfo.Pattern a() {
-        return new MediaCodec.CryptoInfo.Pattern(0, 0);
-    }
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import j7.f5;
+public final class b extends c6.a {
+    public static final Parcelable.Creator<b> CREATOR = new w.a(29);
+    public final String f1752a;
+    public final String f1753b;
+    public final String f1754c;
+    public final String d;
+    public final a e;
+    public final String f1755f;
+    public final Bundle h;
 
-    public static void b() {
-        if (Build.VERSION.SDK_INT > 23 && ForkJoinPool.commonPool() == null) {
+    public b(String str, String str2, String str3, String str4, a aVar, String str5, Bundle bundle) {
+        this.f1752a = str;
+        this.f1753b = str2;
+        this.f1754c = str3;
+        this.d = str4;
+        this.e = aVar;
+        this.f1755f = str5;
+        if (bundle != null) {
+            this.h = bundle;
+        } else {
+            this.h = Bundle.EMPTY;
+        }
+        ClassLoader classLoader = b.class.getClassLoader();
+        if (classLoader != null) {
+            this.h.setClassLoader(classLoader);
             return;
         }
-        throw null;
+        StringBuilder sb = new StringBuilder(29);
+        sb.append((CharSequence) "expected a non-null reference", 0, 29);
+        throw new RuntimeException(sb.toString());
     }
 
-    public static void c(h hVar) {
-        if ((Build.VERSION.SDK_INT > 23 && hVar == ForkJoinPool.commonPool()) || hVar.f2012a.isTerminated()) {
-            return;
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("ActionImpl { { actionType: '");
+        sb.append(this.f1752a);
+        sb.append("' } { objectName: '");
+        sb.append(this.f1753b);
+        sb.append("' } { objectUrl: '");
+        sb.append(this.f1754c);
+        sb.append("' } ");
+        String str = this.d;
+        if (str != null) {
+            sb.append("{ objectSameAs: '");
+            sb.append(str);
+            sb.append("' } ");
         }
-        hVar.shutdown();
-        throw null;
+        a aVar = this.e;
+        if (aVar != null) {
+            sb.append("{ metadata: '");
+            sb.append(aVar.toString());
+            sb.append("' } ");
+        }
+        String str2 = this.f1755f;
+        if (str2 != null) {
+            sb.append("{ actionStatus: '");
+            sb.append(str2);
+            sb.append("' } ");
+        }
+        Bundle bundle = this.h;
+        if (!bundle.isEmpty()) {
+            sb.append("{ ");
+            sb.append(bundle);
+            sb.append(" } ");
+        }
+        sb.append("}");
+        return sb.toString();
     }
 
-    public static void d(m4 m4Var) {
-        boolean isTerminated;
-        ExecutorService executorService = m4Var.f4198a;
-        if ((Build.VERSION.SDK_INT <= 23 || m4Var != ForkJoinPool.commonPool()) && !(isTerminated = executorService.isTerminated())) {
-            m4Var.shutdown();
-            boolean z10 = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = executorService.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z10) {
-                        m4Var.shutdownNow();
-                        z10 = true;
-                    }
-                }
-            }
-            if (z10) {
-                Thread.currentThread().interrupt();
-            }
-        }
-    }
-
-    public static void e(q4 q4Var) {
-        boolean isTerminated;
-        ExecutorService executorService = q4Var.f4198a;
-        if ((Build.VERSION.SDK_INT <= 23 || q4Var != ForkJoinPool.commonPool()) && !(isTerminated = executorService.isTerminated())) {
-            q4Var.shutdown();
-            boolean z10 = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = executorService.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z10) {
-                        q4Var.shutdownNow();
-                        z10 = true;
-                    }
-                }
-            }
-            if (z10) {
-                Thread.currentThread().interrupt();
-            }
-        }
-    }
-
-    public static void f(f7.m mVar) {
-        boolean isTerminated;
-        if ((Build.VERSION.SDK_INT <= 23 || mVar != ForkJoinPool.commonPool()) && !(isTerminated = mVar.isTerminated())) {
-            mVar.shutdown();
-            boolean z10 = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = mVar.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z10) {
-                        mVar.shutdownNow();
-                        z10 = true;
-                    }
-                }
-            }
-            if (z10) {
-                Thread.currentThread().interrupt();
-            }
-        }
-    }
-
-    public static void g(ExecutorService executorService) {
-        boolean isTerminated;
-        if ((Build.VERSION.SDK_INT <= 23 || executorService != ForkJoinPool.commonPool()) && !(isTerminated = executorService.isTerminated())) {
-            executorService.shutdown();
-            boolean z10 = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = executorService.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z10) {
-                        executorService.shutdownNow();
-                        z10 = true;
-                    }
-                }
-            }
-            if (z10) {
-                Thread.currentThread().interrupt();
-            }
-        }
-    }
-
-    public static void h(pe.a aVar) {
-        boolean isTerminated;
-        if ((Build.VERSION.SDK_INT <= 23 || aVar != ForkJoinPool.commonPool()) && !(isTerminated = aVar.isTerminated())) {
-            aVar.shutdown();
-            boolean z10 = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = aVar.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z10) {
-                        aVar.shutdownNow();
-                        z10 = true;
-                    }
-                }
-            }
-            if (z10) {
-                Thread.currentThread().interrupt();
-            }
-        }
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q10 = f5.q(parcel, 20293);
+        f5.l(parcel, 1, this.f1752a);
+        f5.l(parcel, 2, this.f1753b);
+        f5.l(parcel, 3, this.f1754c);
+        f5.l(parcel, 4, this.d);
+        f5.k(parcel, 5, this.e, i10);
+        f5.l(parcel, 6, this.f1755f);
+        f5.b(parcel, 7, this.h);
+        f5.r(parcel, q10);
     }
 }

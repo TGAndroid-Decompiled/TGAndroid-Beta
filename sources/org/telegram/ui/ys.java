@@ -1,22 +1,47 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-public final class ys extends org.telegram.ui.ActionBar.o1 {
-    public final dt f44962o;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ys implements TextWatcher {
+    public final EditTextBoldCursor f40567a;
 
-    public ys(dt dtVar, ViewGroup viewGroup) {
-        super(viewGroup, -2, -2);
-        this.f44962o = dtVar;
+    public ys(EditTextBoldCursor editTextBoldCursor) {
+        this.f40567a = editTextBoldCursor;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        ht htVar = this.f44962o.f37629a;
-        htVar.f39031k = null;
-        htVar.K = false;
-        if (htVar.R) {
-            htVar.n();
+    public final void afterTextChanged(Editable editable) {
+        try {
+            String obj = editable.toString();
+            if (!obj.isEmpty()) {
+                int intValue = Utilities.parseInt((CharSequence) obj).intValue();
+                EditTextBoldCursor editTextBoldCursor = this.f40567a;
+                if (intValue < 0) {
+                    editTextBoldCursor.setText("0");
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                } else if (intValue > 300) {
+                    editTextBoldCursor.setText("300");
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                } else {
+                    if (!obj.equals("" + intValue)) {
+                        editTextBoldCursor.setText("" + intValue);
+                        editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

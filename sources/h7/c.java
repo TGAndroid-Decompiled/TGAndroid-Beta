@@ -1,24 +1,47 @@
 package h7;
-public final class c extends j9 {
-    public final transient Object[] f7569c;
-    public final transient int d;
-    public final transient int f7570e = 1;
 
-    public c(int i10, Object[] objArr) {
-        this.f7569c = objArr;
-        this.d = i10;
+import j7.t7;
+public final class c extends d {
+    public final transient int f7014c;
+    public final transient int d;
+    public final d e;
+
+    public c(d dVar, int i10, int i11) {
+        this.e = dVar;
+        this.f7014c = i10;
+        this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
-        t7.a(i10, this.f7570e);
-        Object obj = this.f7569c[i10 + i10 + this.d];
-        obj.getClass();
-        return obj;
+        t7.a(i10, this.d);
+        return this.e.get(i10 + this.f7014c);
+    }
+
+    @Override
+    public final int n() {
+        return this.e.o() + this.f7014c + this.d;
+    }
+
+    @Override
+    public final int o() {
+        return this.e.o() + this.f7014c;
+    }
+
+    @Override
+    public final Object[] p() {
+        return this.e.p();
+    }
+
+    @Override
+    public final d subList(int i10, int i11) {
+        t7.c(i10, i11, this.d);
+        int i12 = this.f7014c;
+        return this.e.subList(i10 + i12, i11 + i12);
     }
 
     @Override
     public final int size() {
-        return this.f7570e;
+        return this.d;
     }
 }

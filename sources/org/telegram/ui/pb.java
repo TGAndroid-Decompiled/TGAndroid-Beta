@@ -1,106 +1,78 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.KeyEvent;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.os.SystemClock;
 import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class pb implements org.telegram.ui.Components.zk0 {
-    public final int f41347a = 1;
-    public final long f41348b;
-    public final Context f41349c;
-    public final KeyEvent.Callback d;
-    public final Object f41350e;
-    public final Object f41351f;
+public abstract class pb extends org.telegram.ui.Components.qv0 {
+    public final sb f37268t0;
 
-    public pb(wb wbVar, Context context, long j10, org.telegram.ui.ActionBar.c6 c6Var, t91 t91Var) {
-        this.d = wbVar;
-        this.f41349c = context;
-        this.f41348b = j10;
-        this.f41350e = c6Var;
-        this.f41351f = t91Var;
+    public pb(sb sbVar, Context context) {
+        super(context, null);
+        this.f37268t0 = sbVar;
+    }
+
+    public final void Z(Canvas canvas, RectF rectF) {
+        boolean z4;
+        long uptimeMillis = SystemClock.uptimeMillis();
+        sb sbVar = this.f37268t0;
+        if (sbVar.B.Z0()) {
+            canvas.save();
+            canvas.clipRect(rectF);
+            drawChild(canvas, sbVar.B, uptimeMillis);
+            canvas.restore();
+            return;
+        }
+        canvas.save();
+        canvas.clipRect(rectF);
+        canvas.translate(0.0f, sbVar.B.getY());
+        sbVar.B.getClass();
+        for (int i10 = 0; i10 < sbVar.B.getChildCount(); i10++) {
+            View childAt = sbVar.B.getChildAt(i10);
+            RectF rectF2 = sbVar.T0;
+            if (rectF != null && sbVar.B != null && childAt != null) {
+                rectF2.set(childAt.getX(), sbVar.B.getY() + childAt.getY(), childAt.getX() + childAt.getWidth(), sbVar.B.getY() + childAt.getY() + childAt.getHeight());
+                z4 = !rectF2.intersect(rectF);
+            } else {
+                z4 = false;
+            }
+            if (!z4) {
+                if (childAt instanceof org.telegram.ui.Cells.t1) {
+                    canvas.save();
+                    canvas.translate(childAt.getX(), childAt.getY());
+                    org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) childAt;
+                    if (t1Var.C1()) {
+                        canvas.save();
+                        canvas.translate(0.0f, t1Var.S);
+                        t1Var.D1(canvas, true, false);
+                        canvas.restore();
+                    }
+                    canvas.restore();
+                    sbVar.B.drawChild(canvas, childAt, uptimeMillis);
+                    if (t1Var.U2()) {
+                        canvas.save();
+                        canvas.translate(t1Var.getX(), t1Var.getY());
+                        t1Var.X1(canvas);
+                        canvas.restore();
+                    }
+                } else if (childAt instanceof org.telegram.ui.Cells.v0) {
+                    sbVar.B.drawChild(canvas, childAt, uptimeMillis);
+                    canvas.save();
+                    canvas.translate(childAt.getX(), childAt.getY());
+                    ((org.telegram.ui.Cells.v0) childAt).A(canvas);
+                    canvas.restore();
+                } else {
+                    sbVar.B.drawChild(canvas, childAt, uptimeMillis);
+                }
+            }
+        }
+        sbVar.B.getClass();
+        canvas.restore();
     }
 
     @Override
-    public final void c(int i10, View view) {
-        switch (this.f41347a) {
-            case 0:
-                wb wbVar = (wb) this.d;
-                org.telegram.ui.ActionBar.c6 c6Var = (org.telegram.ui.ActionBar.c6) this.f41350e;
-                t91 t91Var = (t91) this.f41351f;
-                boolean z10 = view instanceof jg.b;
-                long j10 = this.f41348b;
-                boolean z11 = false;
-                if (z10) {
-                    jg.b bVar = (jg.b) view;
-                    TL_stories.Boost boost = bVar.getBoost();
-                    boolean z12 = boost.giveaway;
-                    if (z12 && boost.stars > 0) {
-                        jh.ia.e1(this.f41349c, wbVar.f43917b, j10, boost, c6Var);
-                    } else {
-                        boolean z13 = boost.gift;
-                        if (((!z13 && !z12) || boost.user_id < 0) && !boost.unclaimed) {
-                            if (z12 && boost.user_id == -1) {
-                                org.telegram.ui.Components.ub ubVar = new org.telegram.ui.Components.ub(t91Var.getParentActivity(), t91Var.getResourceProvider());
-                                ubVar.c(R.raw.chats_infotip, 36, 36, new String[0]);
-                                ubVar.f33185b.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
-                                ubVar.f33185b.setSingleLine(false);
-                                ubVar.f33185b.setMaxLines(2);
-                                org.telegram.ui.Components.mc.g(t91Var, ubVar, 2750).j();
-                            } else if (!z13 && !z12) {
-                                t91Var.presentFragment(ProfileActivity.m4(bVar.getDialogId()));
-                            }
-                        } else {
-                            TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = new TLRPC.TL_payments_checkedGiftCode();
-                            tL_payments_checkedGiftCode.giveaway_msg_id = boost.giveaway_msg_id;
-                            tL_payments_checkedGiftCode.to_id = boost.user_id;
-                            tL_payments_checkedGiftCode.from_id = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(-wbVar.F.f22392id);
-                            int i11 = boost.date;
-                            tL_payments_checkedGiftCode.date = i11;
-                            tL_payments_checkedGiftCode.via_giveaway = boost.giveaway;
-                            int i12 = boost.expires - i11;
-                            tL_payments_checkedGiftCode.days = i12 / 86400;
-                            tL_payments_checkedGiftCode.months = (i12 / 30) / 86400;
-                            if (boost.unclaimed) {
-                                tL_payments_checkedGiftCode.to_id = -1L;
-                                tL_payments_checkedGiftCode.flags = -1;
-                            } else {
-                                tL_payments_checkedGiftCode.boost = boost;
-                            }
-                            new eg.f1(t91Var, tL_payments_checkedGiftCode, boost.used_gift_slug).show();
-                        }
-                    }
-                }
-                if (view instanceof org.telegram.ui.Cells.m8) {
-                    eg.y.m(t91Var, c6Var, j10, null);
-                }
-                if (view instanceof jg.c) {
-                    eg.y.m(t91Var, c6Var, j10, ((jg.c) view).getPrepaidGiveaway());
-                }
-                if (((vb) wbVar.f43925x.get(i10)).f50845a == 9) {
-                    if (wbVar.f43926y == 1) {
-                        z11 = true;
-                    }
-                    wbVar.c(Boolean.valueOf(z11));
-                    return;
-                }
-                return;
-            default:
-                Context context = this.f41349c;
-                org.telegram.ui.Components.x60.L((org.telegram.ui.Components.x60) this.d, this.f41348b, (org.telegram.ui.ActionBar.o2) this.f41350e, (a0.h) this.f41351f, context, i10);
-                return;
-        }
-    }
-
-    public pb(org.telegram.ui.Components.x60 x60Var, long j10, org.telegram.ui.ActionBar.o2 o2Var, a0.h hVar, Context context) {
-        this.d = x60Var;
-        this.f41348b = j10;
-        this.f41350e = o2Var;
-        this.f41351f = hVar;
-        this.f41349c = context;
+    public int[] getColorKeys() {
+        return null;
     }
 }

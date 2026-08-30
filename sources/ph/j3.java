@@ -1,73 +1,47 @@
 package ph;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
+import android.graphics.drawable.GradientDrawable;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.av0;
-import org.telegram.ui.xx0;
-public class j3 extends View {
-    public final av0 f45851a;
-    public final Paint f45852b;
-    public float f45853c;
-    public o1.k d;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.gj0;
+public final class j3 extends FrameLayout {
+    public static final int d = 0;
+    public final org.telegram.ui.Components.p9 f41777a;
+    public final d f41778b;
+    public boolean f41779c;
 
-    public j3(Context context, c6 c6Var) {
+    public j3(Context context) {
         super(context);
-        av0 av0Var = new av0(new xx0(24), new xx0(25));
-        av0Var.f26899c = 100.0f;
-        this.f45851a = av0Var;
-        Paint paint = new Paint(1);
-        this.f45852b = paint;
-        paint.setColor(g6.v0(g6.Oh, c6Var));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
+        LinearLayout f10 = org.telegram.messenger.y3.f(context, 1);
+        addView(f10, k7.b6.e(-2, -2, 17));
+        org.telegram.ui.Components.p9 p9Var = new org.telegram.ui.Components.p9(context);
+        this.f41777a = p9Var;
+        f10.addView(p9Var, k7.b6.q(130, 130, 1));
+        TextView textView = new TextView(context);
+        textView.setTextColor(-1);
+        textView.setText(LocaleController.getString(R.string.LiveStoryDisconnected));
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        f10.addView(textView, k7.b6.t(-2, -2, 1, 0, 8, 0, 0));
+        d dVar = new d(context, null, true);
+        this.f41778b = dVar;
+        dVar.g(LocaleController.getString(R.string.LiveStoryDisconnectedContinue), false, true);
+        f10.addView(dVar, k7.b6.t((int) ((dVar.d.e() + AndroidUtilities.dp(24.0f)) / AndroidUtilities.density), 38, 1, 0, 18, 0, 0));
+        dVar.setOnClickListener(new dg.m(24));
+        setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{-16777216, -11184811}));
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        super.draw(canvas);
-        if (this.f45853c > 0.0f) {
-            Paint paint = this.f45852b;
-            float height = getHeight() - (paint.getStrokeWidth() / 2.0f);
-            canvas.drawLine(0.0f, height, getWidth() * this.f45853c, height, paint);
+    public final void setVisibility(int i10) {
+        super.setVisibility(i10);
+        if (i10 == 0 && !this.f41779c) {
+            this.f41777a.setImageDrawable(new gj0(R.raw.utyan_empty2, AndroidUtilities.dp(130.0f), "utyan_empty2", AndroidUtilities.dp(130.0f)));
+            this.f41779c = true;
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        o1.k kVar = new o1.k(this, this.f45851a);
-        o1.l lVar = new o1.l();
-        lVar.b(400.0f);
-        lVar.a(1.0f);
-        kVar.f19045u = lVar;
-        this.d = kVar;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.d.c();
-        this.d = null;
-    }
-
-    public void setLoadProgress(float f9) {
-        this.f45853c = f9;
-        invalidate();
-    }
-
-    public void setLoadProgressAnimated(float f9) {
-        o1.k kVar = this.d;
-        if (kVar == null) {
-            setLoadProgress(f9);
-            return;
-        }
-        kVar.f19045u.f19052i = f9 * 100.0f;
-        kVar.f();
     }
 }

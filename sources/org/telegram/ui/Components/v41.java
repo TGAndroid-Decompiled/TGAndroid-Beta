@@ -1,83 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.util.LongSparseArray;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-public abstract class v41 {
-    private ArrayList<View> cache;
-    public final int viewType;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class v41 extends oz {
+    public final e51 Y;
 
-    public v41() {
-        int i10 = w41.J;
-        w41.J = i10 + 1;
-        this.viewType = i10;
+    public v41(e51 e51Var, int i10, u41 u41Var) {
+        super(5, i10, u41Var);
+        this.Y = e51Var;
     }
 
-    public static void setup(v41 v41Var) {
-        if (w41.L == null) {
-            w41.L = new HashMap();
+    @Override
+    public final boolean D1() {
+        e51 e51Var = this.Y;
+        if (e51Var.f24470n.getAdapter() == e51Var.v) {
+            return true;
         }
-        if (w41.K == null) {
-            w41.K = new LongSparseArray();
-        }
-        Class<?> cls = v41Var.getClass();
-        if (!w41.L.containsKey(cls)) {
-            w41.L.put(cls, v41Var);
-            w41.K.put(v41Var.viewType, v41Var);
-        }
-    }
-
-    public boolean contentsEquals(w41 w41Var, w41 w41Var2) {
-        return w41Var.H(w41Var2);
-    }
-
-    public abstract View createView(Context context, jl0 jl0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var);
-
-    public boolean equals(w41 w41Var, w41 w41Var2) {
-        return w41Var.I(w41Var2);
-    }
-
-    public View getCached() {
-        ArrayList<View> arrayList = this.cache;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            return this.cache.remove(0);
-        }
-        return null;
-    }
-
-    public boolean isClickable() {
-        return !(this instanceof wi);
-    }
-
-    public boolean isShadow() {
         return false;
     }
 
-    public void precache(org.telegram.ui.ActionBar.o2 o2Var, int i10) {
-        precache(o2Var.getContext(), o2Var.getCurrentAccount(), o2Var.getClassGuid(), o2Var.getResourceProvider(), i10);
+    @Override
+    public final boolean Y0() {
+        return LocaleController.isRTL;
     }
 
-    public void precache(Context context, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var, int i12) {
-        if (context == null) {
-            return;
+    @Override
+    public final int o0(int i10, bf.f fVar, f2.i1 i1Var) {
+        int i11;
+        View m9;
+        e51 e51Var = this.Y;
+        if (e51Var.K) {
+            return super.o0(i10, fVar, i1Var);
         }
-        if (this.cache == null) {
-            this.cache = new ArrayList<>();
+        int i12 = 0;
+        if (e51Var.I != null) {
+            return 0;
         }
-        int i13 = 0;
-        while (i13 < this.cache.size() - i12) {
-            Context context2 = context;
-            this.cache.add(createView(context2, null, i10, i11, c6Var));
-            i13++;
-            context = context2;
+        if (e51Var.J) {
+            while (true) {
+                i11 = 1;
+                if (i12 >= r()) {
+                    break;
+                }
+                u41 u41Var = e51Var.f24470n;
+                View q10 = q(i12);
+                u41Var.getClass();
+                int R = RecyclerView.R(q10);
+                if (R < 1) {
+                    i11 = R;
+                    break;
+                }
+                i12++;
+            }
+            if (i11 == 0 && (m9 = e51Var.f24471r.m(i11)) != null && m9.getTop() - i10 > AndroidUtilities.dp(58.0f)) {
+                i10 = m9.getTop() - AndroidUtilities.dp(58.0f);
+            }
         }
+        return super.o0(i10, fVar, i1Var);
     }
 
-    public void attachedView(jl0 jl0Var, View view, w41 w41Var) {
-    }
-
-    public void bindView(View view, w41 w41Var, boolean z10, k51 k51Var, u51 u51Var) {
+    @Override
+    public final boolean y0() {
+        return false;
     }
 }

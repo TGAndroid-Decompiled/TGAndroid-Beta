@@ -1,38 +1,43 @@
 package lh;
 
-import android.content.Context;
-import android.view.View;
-public final class n7 extends d4 {
-    public final o7 f15980a4;
+import j$.util.Objects;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class n7 {
+    public final long f12852a;
+    public final int f12853b;
 
-    public n7(o7 o7Var, Context context, i9 i9Var, a4 a4Var, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, i9Var, a4Var, c6Var);
-        this.f15980a4 = o7Var;
+    public n7(long j10, int i10) {
+        this.f12852a = j10;
+        this.f12853b = i10;
     }
 
-    @Override
-    public final boolean K0() {
-        if (getParent() != null && ((Integer) ((View) getParent()).getTag()).intValue() == this.f15980a4.f16026g.getCurrentItem()) {
-            return true;
+    public static n7 a(int i10, long j10) {
+        return new n7(j10, i10);
+    }
+
+    public static n7 b(MessageObject messageObject) {
+        if (messageObject == null) {
+            return null;
+        }
+        TLRPC.Message message = messageObject.messageOwner;
+        if (message != null && ((message.isThreadMessage || messageObject.isForwardedChannelPost()) && messageObject.messageOwner.fwd_from != null)) {
+            return new n7(messageObject.getFromChatId(), messageObject.messageOwner.fwd_from.saved_from_msg_id);
+        }
+        return new n7(messageObject.getDialogId(), messageObject.getId());
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof n7) {
+            n7 n7Var = (n7) obj;
+            if (n7Var.f12852a == this.f12852a && n7Var.f12853b == this.f12853b) {
+                return true;
+            }
         }
         return false;
     }
 
-    @Override
-    public final void invalidate() {
-        if (t.f16248c) {
-            t.f16247b.add(this);
-        } else {
-            super.invalidate();
-        }
-    }
-
-    @Override
-    public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (t.f16248c) {
-            t.f16247b.add(this);
-        } else {
-            super.invalidate(i10, i11, i12, i13);
-        }
+    public final int hashCode() {
+        return Objects.hash(Long.valueOf(this.f12852a), Integer.valueOf(this.f12853b));
     }
 }

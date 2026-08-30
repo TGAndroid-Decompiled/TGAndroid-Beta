@@ -1,68 +1,107 @@
 package b4;
+public final class d implements r3.k {
+    public final int f1336a;
+    public final h5.w d;
+    public final h5.v e;
+    public r3.m f1339f;
+    public long f1340g;
+    public boolean f1342j;
+    public boolean f1343k;
+    public boolean f1344l;
+    public final e f1337b = new e(null, true);
+    public final h5.w f1338c = new h5.w(2048);
+    public int f1341i = -1;
+    public long h = -1;
 
-import g4.i;
-import h7.h5;
-import j3.t0;
-public final class d {
-    public static final d f1921a = new Object();
-
-    public final h5 a(t0 t0Var) {
-        String str = t0Var.B;
-        if (str != null) {
-            char c3 = 65535;
-            switch (str.hashCode()) {
-                case -1354451219:
-                    if (str.equals("application/vnd.dvb.ait")) {
-                        c3 = 0;
-                        break;
-                    }
-                    break;
-                case -1348231605:
-                    if (str.equals("application/x-icy")) {
-                        c3 = 1;
-                        break;
-                    }
-                    break;
-                case -1248341703:
-                    if (str.equals("application/id3")) {
-                        c3 = 2;
-                        break;
-                    }
-                    break;
-                case 1154383568:
-                    if (str.equals("application/x-emsg")) {
-                        c3 = 3;
-                        break;
-                    }
-                    break;
-                case 1652648887:
-                    if (str.equals("application/x-scte35")) {
-                        c3 = 4;
-                        break;
-                    }
-                    break;
-            }
-            switch (c3) {
-                case 0:
-                    return new c4.b(0);
-                case 1:
-                    return new f4.a();
-                case 2:
-                    return new i(null);
-                case 3:
-                    return new c4.b(1);
-                case 4:
-                    return new i4.c();
-            }
-        }
-        throw new IllegalArgumentException(u3.c.e("Attempted to create decoder for unsupported MIME type: ", str));
+    public d(int i10) {
+        this.f1336a = i10;
+        h5.w wVar = new h5.w(10);
+        this.d = wVar;
+        byte[] bArr = wVar.f7000a;
+        this.e = new h5.v(bArr, bArr.length);
     }
 
-    public final boolean b(t0 t0Var) {
-        String str = t0Var.B;
-        if (!"application/id3".equals(str) && !"application/x-emsg".equals(str) && !"application/x-scte35".equals(str) && !"application/x-icy".equals(str) && !"application/vnd.dvb.ait".equals(str)) {
-            return false;
+    public final int a(r3.l lVar) {
+        int i10 = 0;
+        while (true) {
+            h5.w wVar = this.d;
+            lVar.c(0, 10, wVar.f7000a);
+            wVar.F(0);
+            if (wVar.w() != 4801587) {
+                break;
+            }
+            wVar.G(3);
+            int t6 = wVar.t();
+            i10 += t6 + 10;
+            lVar.n(t6);
         }
-        return true;
+        lVar.t();
+        lVar.n(i10);
+        if (this.h == -1) {
+            this.h = i10;
+        }
+        return i10;
+    }
+
+    @Override
+    public final void d(long j10, long j11) {
+        this.f1343k = false;
+        this.f1337b.b();
+        this.f1340g = j11;
+    }
+
+    @Override
+    public final void e(r3.m mVar) {
+        this.f1339f = mVar;
+        this.f1337b.c(mVar, new h0(0, 1));
+        mVar.f1();
+    }
+
+    @Override
+    public final int h(r3.l r20, org.telegram.ui.Components.jb r21) {
+        throw new UnsupportedOperationException("Method not decompiled: b4.d.h(r3.l, org.telegram.ui.Components.jb):int");
+    }
+
+    @Override
+    public final boolean i(r3.l lVar) {
+        int a2 = a(lVar);
+        int i10 = a2;
+        int i11 = 0;
+        int i12 = 0;
+        do {
+            h5.w wVar = this.d;
+            r3.h hVar = (r3.h) lVar;
+            hVar.h(wVar.f7000a, 0, 2, false);
+            wVar.F(0);
+            if ((wVar.z() & 65526) == 65520) {
+                i11++;
+                if (i11 >= 4 && i12 > 188) {
+                    return true;
+                }
+                hVar.h(wVar.f7000a, 0, 4, false);
+                h5.v vVar = this.e;
+                vVar.p(14);
+                int i13 = vVar.i(13);
+                if (i13 <= 6) {
+                    i10++;
+                    hVar.f43223f = 0;
+                    hVar.a(i10, false);
+                } else {
+                    hVar.a(i13 - 6, false);
+                    i12 += i13;
+                }
+            } else {
+                i10++;
+                hVar.f43223f = 0;
+                hVar.a(i10, false);
+            }
+            i11 = 0;
+            i12 = 0;
+        } while (i10 - a2 < 8192);
+        return false;
+    }
+
+    @Override
+    public final void release() {
     }
 }

@@ -1,17 +1,17 @@
 package j7;
-public final class z5 implements s9.d {
-    public static final z5 f11277a = new Object();
-
-    static {
-        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.r(h0.class, new e0(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            s9.e eVar = (s9.e) obj2;
-            throw null;
+public abstract class z5 {
+    public static int a(int i10, int i11) {
+        if (i11 >= 0) {
+            int i12 = i10 + (i10 >> 1) + 1;
+            if (i12 < i11) {
+                int highestOneBit = Integer.highestOneBit(i11 - 1);
+                i12 = highestOneBit + highestOneBit;
+            }
+            if (i12 < 0) {
+                return Integer.MAX_VALUE;
+            }
+            return i12;
         }
-        throw new ClassCastException();
+        throw new AssertionError("cannot store more than MAX_VALUE elements");
     }
 }

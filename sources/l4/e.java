@@ -1,95 +1,94 @@
 package l4;
 
-import j3.p2;
-import j3.q2;
-import j3.r2;
-public final class e extends n {
-    public final long f14297c;
-    public final long d;
-    public final long f14298e;
-    public final boolean f14299f;
+import android.os.Parcel;
+import android.os.Parcelable;
+import j$.util.DesugarCollections;
+import j8.t;
+import java.util.ArrayList;
+import java.util.List;
+public final class e extends b {
+    public static final Parcelable.Creator<e> CREATOR = new t(27);
+    public final long f11312a;
+    public final boolean f11313b;
+    public final boolean f11314c;
+    public final boolean d;
+    public final boolean e;
+    public final long f11315f;
+    public final long h;
+    public final List f11316n;
+    public final boolean f11317r;
+    public final long f11318s;
+    public final int v;
+    public final int f11319w;
+    public final int f11320x;
 
-    public e(r2 r2Var, long j10, long j11) {
-        super(r2Var);
-        long max;
-        long j12;
-        boolean z10 = false;
-        if (r2Var.h() == 1) {
-            q2 m10 = r2Var.m(0, new q2(), 0L);
-            long max2 = Math.max(0L, j10);
-            if (!m10.f10703w && max2 != 0 && !m10.f10700n) {
-                throw new f(1);
-            }
-            if (j11 == Long.MIN_VALUE) {
-                max = m10.f10705y;
-            } else {
-                max = Math.max(0L, j11);
-            }
-            long j13 = m10.f10705y;
-            if (j13 != -9223372036854775807L) {
-                max = max > j13 ? j13 : max;
-                if (max2 > max) {
-                    throw new f(2);
-                }
-            }
-            this.f14297c = max2;
-            this.d = max;
-            int i10 = (max > (-9223372036854775807L) ? 1 : (max == (-9223372036854775807L) ? 0 : -1));
-            if (i10 == 0) {
-                j12 = -9223372036854775807L;
-            } else {
-                j12 = max - max2;
-            }
-            this.f14298e = j12;
-            if (m10.f10701r && (i10 == 0 || (j13 != -9223372036854775807L && max == j13))) {
-                z10 = true;
-            }
-            this.f14299f = z10;
-            return;
-        }
-        throw new f(0);
+    public e(long j10, boolean z4, boolean z10, boolean z11, boolean z12, long j11, long j12, List list, boolean z13, long j13, int i10, int i11, int i12) {
+        this.f11312a = j10;
+        this.f11313b = z4;
+        this.f11314c = z10;
+        this.d = z11;
+        this.e = z12;
+        this.f11315f = j11;
+        this.h = j12;
+        this.f11316n = DesugarCollections.unmodifiableList(list);
+        this.f11317r = z13;
+        this.f11318s = j13;
+        this.v = i10;
+        this.f11319w = i11;
+        this.f11320x = i12;
     }
 
     @Override
-    public final p2 f(int i10, p2 p2Var, boolean z10) {
-        this.f14382b.f(0, p2Var, z10);
-        long j10 = p2Var.f10677e - this.f14297c;
-        long j11 = this.f14298e;
-        long j12 = -9223372036854775807L;
-        if (j11 != -9223372036854775807L) {
-            j12 = j11 - j10;
-        }
-        p2Var.h(p2Var.f10674a, p2Var.f10675b, 0, j12, j10, m4.c.f16848f, false);
-        return p2Var;
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("SCTE-35 SpliceInsertCommand { programSplicePts=");
+        sb.append(this.f11315f);
+        sb.append(", programSplicePlaybackPositionUs= ");
+        return android.support.v4.media.a.q(sb, this.h, " }");
     }
 
     @Override
-    public final q2 m(int i10, q2 q2Var, long j10) {
-        this.f14382b.m(0, q2Var, 0L);
-        long j11 = q2Var.C;
-        long j12 = this.f14297c;
-        q2Var.C = j11 + j12;
-        q2Var.f10705y = this.f14298e;
-        q2Var.f10701r = this.f14299f;
-        long j13 = q2Var.f10704x;
-        if (j13 != -9223372036854775807L) {
-            long max = Math.max(j13, j12);
-            q2Var.f10704x = max;
-            long j14 = this.d;
-            if (j14 != -9223372036854775807L) {
-                max = Math.min(max, j14);
-            }
-            q2Var.f10704x = max - j12;
+    public final void writeToParcel(Parcel parcel, int i10) {
+        parcel.writeLong(this.f11312a);
+        parcel.writeByte(this.f11313b ? (byte) 1 : (byte) 0);
+        parcel.writeByte(this.f11314c ? (byte) 1 : (byte) 0);
+        parcel.writeByte(this.d ? (byte) 1 : (byte) 0);
+        parcel.writeByte(this.e ? (byte) 1 : (byte) 0);
+        parcel.writeLong(this.f11315f);
+        parcel.writeLong(this.h);
+        List list = this.f11316n;
+        int size = list.size();
+        parcel.writeInt(size);
+        for (int i11 = 0; i11 < size; i11++) {
+            d dVar = (d) list.get(i11);
+            parcel.writeInt(dVar.f11309a);
+            parcel.writeLong(dVar.f11310b);
+            parcel.writeLong(dVar.f11311c);
         }
-        long S = f5.d0.S(j12);
-        long j15 = q2Var.f10698e;
-        if (j15 != -9223372036854775807L) {
-            q2Var.f10698e = j15 + S;
+        parcel.writeByte(this.f11317r ? (byte) 1 : (byte) 0);
+        parcel.writeLong(this.f11318s);
+        parcel.writeInt(this.v);
+        parcel.writeInt(this.f11319w);
+        parcel.writeInt(this.f11320x);
+    }
+
+    public e(Parcel parcel) {
+        this.f11312a = parcel.readLong();
+        this.f11313b = parcel.readByte() == 1;
+        this.f11314c = parcel.readByte() == 1;
+        this.d = parcel.readByte() == 1;
+        this.e = parcel.readByte() == 1;
+        this.f11315f = parcel.readLong();
+        this.h = parcel.readLong();
+        int readInt = parcel.readInt();
+        ArrayList arrayList = new ArrayList(readInt);
+        for (int i10 = 0; i10 < readInt; i10++) {
+            arrayList.add(new d(parcel.readInt(), parcel.readLong(), parcel.readLong()));
         }
-        long j16 = q2Var.f10699f;
-        if (j16 != -9223372036854775807L) {
-            q2Var.f10699f = j16 + S;
-        }
-        return q2Var;
+        this.f11316n = DesugarCollections.unmodifiableList(arrayList);
+        this.f11317r = parcel.readByte() == 1;
+        this.f11318s = parcel.readLong();
+        this.v = parcel.readInt();
+        this.f11319w = parcel.readInt();
+        this.f11320x = parcel.readInt();
     }
 }

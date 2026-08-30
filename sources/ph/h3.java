@@ -1,36 +1,36 @@
 package ph;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.GenericProvider;
-public final class h3 implements org.telegram.ui.ActionBar.b2, l3, GenericProvider {
-    public final n3 f45830a;
+import android.view.View;
+import android.view.ViewTreeObserver;
+public final class h3 implements View.OnAttachStateChangeListener {
+    public final boolean f41705a;
+    public final View f41706b;
+    public final i3 f41707c;
 
-    public h3(n3 n3Var) {
-        this.f45830a = n3Var;
+    public h3(i3 i3Var, boolean z4, View view) {
+        this.f41707c = i3Var;
+        this.f41705a = z4;
+        this.f41706b = view;
     }
 
     @Override
-    public void f(boolean z10) {
-        n3 n3Var = this.f45830a;
-        if (!n3Var.J()) {
-            n3Var.F.e(0.0f);
+    public final void onViewAttachedToWindow(View view) {
+        boolean z4 = this.f41705a;
+        i3 i3Var = this.f41707c;
+        if (z4) {
+            i3Var.f41741b = view.getRootView();
         }
+        View view2 = this.f41706b;
+        view2.getViewTreeObserver().addOnGlobalLayoutListener(i3Var.f41746j);
+        view2.addOnLayoutChangeListener(i3Var.f41745i);
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        this.f45830a.f28403b.dismiss();
-    }
-
-    @Override
-    public Object provide(Object obj) {
-        boolean z10;
-        Void r22 = (Void) obj;
-        if (this.f45830a.f28403b.f31029n1.getKeyboardHeight() >= AndroidUtilities.dp(20.0f)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        return Boolean.valueOf(z10);
+    public final void onViewDetachedFromWindow(View view) {
+        View view2 = this.f41706b;
+        ViewTreeObserver viewTreeObserver = view2.getViewTreeObserver();
+        i3 i3Var = this.f41707c;
+        viewTreeObserver.removeOnGlobalLayoutListener(i3Var.f41746j);
+        view2.removeOnLayoutChangeListener(i3Var.f41745i);
     }
 }

@@ -1,152 +1,77 @@
 package u4;
 
-import f5.d0;
-import java.util.ArrayDeque;
-import java.util.PriorityQueue;
-import sf.f1;
-import t4.k;
-public abstract class i implements t4.g {
-    public final ArrayDeque f49090a = new ArrayDeque();
-    public final ArrayDeque f49091b;
-    public final PriorityQueue f49092c;
-    public g d;
-    public long f49093e;
-    public long f49094f;
+import java.util.List;
+import java.util.Map;
+import s8.v;
+import s8.x;
+public final class i extends m {
+    public final int d;
+    public final long e;
+    public final boolean f45034f;
+    public final boolean f45035g;
+    public final long h;
+    public final boolean f45036i;
+    public final int f45037j;
+    public final long f45038k;
+    public final int f45039l;
+    public final long f45040m;
+    public final long f45041n;
+    public final boolean f45042o;
+    public final boolean f45043p;
+    public final o3.g f45044q;
+    public final v f45045r;
+    public final v f45046s;
+    public final x f45047t;
+    public final long f45048u;
+    public final h v;
 
-    public i() {
-        for (int i10 = 0; i10 < 10; i10++) {
-            this.f49090a.add(new t4.j());
+    public i(int i10, String str, List list, long j10, boolean z4, long j11, boolean z10, int i11, long j12, int i12, long j13, long j14, boolean z11, boolean z12, boolean z13, o3.g gVar, List list2, List list3, h hVar, Map map) {
+        super(str, list, z11);
+        boolean z14;
+        this.d = i10;
+        this.h = j11;
+        this.f45035g = z4;
+        this.f45036i = z10;
+        this.f45037j = i11;
+        this.f45038k = j12;
+        this.f45039l = i12;
+        this.f45040m = j13;
+        this.f45041n = j14;
+        this.f45042o = z12;
+        this.f45043p = z13;
+        this.f45044q = gVar;
+        this.f45045r = v.t(list2);
+        this.f45046s = v.t(list3);
+        this.f45047t = x.a(map);
+        if (!list3.isEmpty()) {
+            d dVar = (d) s8.l.h(list3);
+            this.f45048u = dVar.e + dVar.f45026c;
+        } else if (!list2.isEmpty()) {
+            f fVar = (f) s8.l.h(list2);
+            this.f45048u = fVar.e + fVar.f45026c;
+        } else {
+            this.f45048u = 0L;
         }
-        this.f49091b = new ArrayDeque();
-        for (int i11 = 0; i11 < 2; i11++) {
-            ArrayDeque arrayDeque = this.f49091b;
-            f1 f1Var = new f1(this, 12);
-            ?? obj = new Object();
-            obj.f49089c = f1Var;
-            arrayDeque.add(obj);
-        }
-        this.f49092c = new PriorityQueue();
-    }
-
-    @Override
-    public final void a(long j10) {
-        this.f49093e = j10;
-    }
-
-    public abstract j b();
-
-    public abstract void c(g gVar);
-
-    @Override
-    public k dequeueOutputBuffer() {
-        ArrayDeque arrayDeque = this.f49091b;
-        if (arrayDeque.isEmpty()) {
-            return null;
-        }
-        while (true) {
-            PriorityQueue priorityQueue = this.f49092c;
-            if (!priorityQueue.isEmpty()) {
-                int i10 = d0.f6579a;
-                if (((g) priorityQueue.peek()).d <= this.f49093e) {
-                    g gVar = (g) priorityQueue.poll();
-                    boolean isEndOfStream = gVar.isEndOfStream();
-                    ArrayDeque arrayDeque2 = this.f49090a;
-                    if (isEndOfStream) {
-                        k kVar = (k) arrayDeque.pollFirst();
-                        kVar.addFlag(4);
-                        gVar.clear();
-                        arrayDeque2.add(gVar);
-                        return kVar;
-                    }
-                    c(gVar);
-                    if (e()) {
-                        j b10 = b();
-                        k kVar2 = (k) arrayDeque.pollFirst();
-                        kVar2.a(gVar.d, b10, Long.MAX_VALUE);
-                        gVar.clear();
-                        arrayDeque2.add(gVar);
-                        return kVar2;
-                    }
-                    gVar.clear();
-                    arrayDeque2.add(gVar);
-                } else {
-                    return null;
-                }
+        long j15 = -9223372036854775807L;
+        if (j10 != -9223372036854775807L) {
+            if (j10 >= 0) {
+                j15 = Math.min(this.f45048u, j10);
             } else {
-                return null;
+                j15 = Math.max(0L, this.f45048u + j10);
             }
         }
-    }
-
-    @Override
-    public final Object dequeueInputBuffer() {
-        boolean z10;
-        if (this.d == null) {
-            z10 = true;
+        this.e = j15;
+        if (j10 >= 0) {
+            z14 = true;
         } else {
-            z10 = false;
+            z14 = false;
         }
-        f5.a.i(z10);
-        ArrayDeque arrayDeque = this.f49090a;
-        if (arrayDeque.isEmpty()) {
-            return null;
-        }
-        g gVar = (g) arrayDeque.pollFirst();
-        this.d = gVar;
-        return gVar;
-    }
-
-    public abstract boolean e();
-
-    @Override
-    public void flush() {
-        ArrayDeque arrayDeque;
-        this.f49094f = 0L;
-        this.f49093e = 0L;
-        while (true) {
-            PriorityQueue priorityQueue = this.f49092c;
-            boolean isEmpty = priorityQueue.isEmpty();
-            arrayDeque = this.f49090a;
-            if (isEmpty) {
-                break;
-            }
-            g gVar = (g) priorityQueue.poll();
-            int i10 = d0.f6579a;
-            gVar.clear();
-            arrayDeque.add(gVar);
-        }
-        g gVar2 = this.d;
-        if (gVar2 != null) {
-            gVar2.clear();
-            arrayDeque.add(gVar2);
-            this.d = null;
-        }
+        this.f45034f = z14;
+        this.v = hVar;
     }
 
     @Override
-    public final void queueInputBuffer(Object obj) {
-        boolean z10;
-        t4.j jVar = (t4.j) obj;
-        if (jVar == this.d) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        f5.a.f(z10);
-        g gVar = (g) jVar;
-        if (gVar.isDecodeOnly()) {
-            gVar.clear();
-            this.f49090a.add(gVar);
-        } else {
-            long j10 = this.f49094f;
-            this.f49094f = 1 + j10;
-            gVar.f49088r = j10;
-            this.f49092c.add(gVar);
-        }
-        this.d = null;
-    }
-
-    @Override
-    public void release() {
+    public final Object a(List list) {
+        return this;
     }
 }

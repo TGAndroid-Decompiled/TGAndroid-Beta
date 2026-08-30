@@ -1,35 +1,40 @@
 package eg;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.Components.jl0;
-public final class r2 extends ig.k {
-    public boolean F;
-    public final w2 G;
+import org.telegram.ui.o4;
+public final class r2 extends o4 {
+    public final Path h;
+    public final u2 f5488n;
 
-    public r2(w2 w2Var, Context context, c6 c6Var) {
-        super(context, c6Var);
-        this.G = w2Var;
+    public r2(u2 u2Var, Context context) {
+        super(context);
+        this.f5488n = u2Var;
+        this.h = new Path();
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        int dp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
-        w2 w2Var = this.G;
-        w2Var.m0 = dp;
-        w2Var.f6173l0.G();
-        if (this.F != w2Var.isKeyboardVisible()) {
-            boolean isKeyboardVisible = w2Var.isKeyboardVisible();
-            this.F = isKeyboardVisible;
-            if (isKeyboardVisible) {
-                jl0 jl0Var = w2Var.d;
-                uh.n nVar = new uh.n(w2Var.getContext(), 2, 0.6f);
-                nVar.f6373a = 1;
-                nVar.f49306p = AndroidUtilities.dp(36.0f);
-                jl0Var.getLayoutManager().w0(nVar);
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipPath(this.h);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        Path path = this.h;
+        path.reset();
+        u2 u2Var = this.f5488n;
+        if (u2Var.d) {
+            AndroidUtilities.rectTmp.set(0.0f, -u2Var.J, getMeasuredWidth(), getMeasuredHeight());
+        } else {
+            AndroidUtilities.rectTmp.set(0.0f, 0.0f, getMeasuredWidth(), (int) (getMeasuredHeight() + u2Var.J));
         }
+        float dp = u2Var.J - AndroidUtilities.dp(3.0f);
+        path.addRoundRect(AndroidUtilities.rectTmp, dp, dp, Path.Direction.CW);
     }
 }

@@ -1,23 +1,65 @@
 package w6;
 
 import android.content.Context;
-import android.content.IntentFilter;
-import android.os.Build;
-import com.google.android.gms.common.api.internal.u0;
-import f0.e;
-public abstract class c extends e {
-    public static void g(Context context, u0 u0Var, IntentFilter intentFilter) {
-        int i10;
-        int i11 = Build.VERSION.SDK_INT;
-        if (i11 >= 33) {
-            if (i11 >= 33) {
-                i10 = 2;
-            } else {
-                i10 = 0;
-            }
-            context.registerReceiver(u0Var, intentFilter, i10);
-            return;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Looper;
+import com.google.android.gms.common.api.k;
+import com.google.android.gms.common.api.l;
+import m.s3;
+public final class c extends b6.g {
+    public final Bundle R;
+
+    public c(Context context, Looper looper, k kVar, l lVar, s3 s3Var) {
+        super(context, looper, 212, s3Var, kVar, lVar, 0);
+        this.R = new Bundle();
+    }
+
+    @Override
+    public final boolean C() {
+        return true;
+    }
+
+    @Override
+    public final int k() {
+        return 17895000;
+    }
+
+    @Override
+    public final IInterface q(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
         }
-        context.registerReceiver(u0Var, intentFilter);
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.auth.api.identity.internal.ISignInService");
+        if (queryLocalInterface instanceof i) {
+            return (i) queryLocalInterface;
+        }
+        return new a7.a(iBinder, "com.google.android.gms.auth.api.identity.internal.ISignInService", 10);
+    }
+
+    @Override
+    public final y5.c[] r() {
+        return d.f46466b;
+    }
+
+    @Override
+    public final Bundle t() {
+        return this.R;
+    }
+
+    @Override
+    public final String v() {
+        return "com.google.android.gms.auth.api.identity.internal.ISignInService";
+    }
+
+    @Override
+    public final String w() {
+        return "com.google.android.gms.auth.api.identity.service.signin.START";
+    }
+
+    @Override
+    public final boolean y() {
+        return true;
     }
 }

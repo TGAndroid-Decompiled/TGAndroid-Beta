@@ -35,8 +35,8 @@ public class NetworkMonitor {
         return Build.VERSION.SDK_INT;
     }
 
-    private static void assertIsTrue(boolean z10) {
-        if (z10) {
+    private static void assertIsTrue(boolean z4) {
+        if (z4) {
             return;
         }
         throw new AssertionError("Expected to be true");
@@ -107,19 +107,19 @@ public class NetworkMonitor {
     private native void nativeNotifyOfNetworkPreference(long j10, NetworkChangeDetector.ConnectionType connectionType, int i10);
 
     private boolean networkBindingSupported() {
-        boolean z10;
+        boolean z4;
         synchronized (this.networkChangeDetectorLock) {
             try {
                 NetworkChangeDetector networkChangeDetector = this.networkChangeDetector;
                 if (networkChangeDetector != null && networkChangeDetector.supportNetworkCallback()) {
-                    z10 = true;
+                    z4 = true;
                 } else {
-                    z10 = false;
+                    z4 = false;
                 }
             } finally {
             }
         }
-        return z10;
+        return z4;
     }
 
     private void notifyObserversOfConnectionTypeChange(NetworkChangeDetector.ConnectionType connectionType) {
@@ -215,13 +215,13 @@ public class NetworkMonitor {
     }
 
     public void setNetworkChangeDetectorFactory(NetworkChangeDetectorFactory networkChangeDetectorFactory) {
-        boolean z10;
+        boolean z4;
         if (this.numObservers == 0) {
-            z10 = true;
+            z4 = true;
         } else {
-            z10 = false;
+            z4 = false;
         }
-        assertIsTrue(z10);
+        assertIsTrue(z4);
         this.networkChangeDetectorFactory = networkChangeDetectorFactory;
     }
 

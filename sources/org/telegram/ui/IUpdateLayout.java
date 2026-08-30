@@ -12,6 +12,6 @@ public abstract class IUpdateLayout {
     public void updateFileProgress(Object[] objArr) {
     }
 
-    public void updateAppUpdateViews(int i10, boolean z10) {
+    public void updateAppUpdateViews(int i10, boolean z4) {
     }
 }

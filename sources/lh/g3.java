@@ -1,47 +1,35 @@
 package lh;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.ui.Components.ek0;
-public final class g3 implements ek0 {
-    public final d4 f15619a;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.ic;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.LaunchActivity;
+public final class g3 implements Runnable {
+    public final int f12460a;
+    public final org.telegram.ui.ActionBar.d2 f12461b;
 
-    public g3(d4 d4Var) {
-        this.f15619a = d4Var;
+    public g3(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        this.f12460a = i10;
+        this.f12461b = d2Var;
     }
 
     @Override
-    public final boolean O() {
-        return false;
-    }
-
-    @Override
-    public final void Q(View view, kg.q0 q0Var, boolean z10, boolean z11) {
-        l3.m mVar = new l3.m(this, q0Var, view, 2);
-        if (!z10) {
-            this.f15619a.n0(mVar);
-        } else {
-            mVar.run();
+    public final void run() {
+        switch (this.f12460a) {
+            case 0:
+                this.f12461b.dismiss();
+                org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
+                if (U != null) {
+                    ic Q = qc.a0(U).Q(R.raw.error, 36, LocaleController.getString(R.string.MessageNotFound));
+                    Q.f25682t = true;
+                    Q.j();
+                    return;
+                }
+                return;
+            default:
+                this.f12461b.dismiss();
+                return;
         }
-    }
-
-    @Override
-    public final boolean j() {
-        return true;
-    }
-
-    @Override
-    public final boolean w() {
-        ((z8) this.f15619a.M1).b(false);
-        return false;
-    }
-
-    @Override
-    public final void H() {
-    }
-
-    @Override
-    public final void G(Canvas canvas, RectF rectF, float f9, float f10, float f11, int i10, boolean z10) {
     }
 }

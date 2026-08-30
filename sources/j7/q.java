@@ -1,81 +1,33 @@
 package j7;
 
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
-public final class q extends com.google.android.gms.internal.cast.v0 implements ListIterator {
-    public final int f11151b;
-    public int f11152c;
-    public final s d;
-
-    public q(s sVar, int i10) {
-        super(7);
-        int size = sVar.size();
-        if (i10 >= 0 && i10 <= size) {
-            this.f11151b = size;
-            this.f11152c = i10;
-            this.d = sVar;
-            return;
-        }
-        throw new IndexOutOfBoundsException(h7.u8.c(i10, size, "index"));
-    }
-
-    public final Object a(int i10) {
-        return this.d.get(i10);
-    }
-
-    @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean hasNext() {
-        if (this.f11152c < this.f11151b) {
+import j$.util.Objects;
+public abstract class q {
+    public static boolean a(e0.o0 o0Var, e0.o0 o0Var2) {
+        if (o0Var == null && o0Var2 == null) {
             return true;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean hasPrevious() {
-        if (this.f11152c > 0) {
-            return true;
+        if (o0Var == null || o0Var2 == null) {
+            return false;
         }
-        return false;
-    }
-
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i10 = this.f11152c;
-            this.f11152c = i10 + 1;
-            return a(i10);
+        String str = o0Var.d;
+        String str2 = o0Var2.d;
+        if (str == null && str2 == null) {
+            if (Objects.equals(Objects.toString(o0Var.f5006a), Objects.toString(o0Var2.f5006a)) && Objects.equals(o0Var.f5008c, o0Var2.f5008c) && Boolean.valueOf(o0Var.e).equals(Boolean.valueOf(o0Var2.e)) && Boolean.valueOf(o0Var.f5009f).equals(Boolean.valueOf(o0Var2.f5009f))) {
+                return true;
+            }
+            return false;
         }
-        throw new NoSuchElementException();
+        return Objects.equals(str, str2);
     }
 
-    @Override
-    public final int nextIndex() {
-        return this.f11152c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i10 = this.f11152c - 1;
-            this.f11152c = i10;
-            return a(i10);
+    public static int b(e0.o0 o0Var) {
+        if (o0Var == null) {
+            return 0;
         }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.f11152c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+        String str = o0Var.d;
+        if (str != null) {
+            return str.hashCode();
+        }
+        return Objects.hash(o0Var.f5006a, o0Var.f5008c, Boolean.valueOf(o0Var.e), Boolean.valueOf(o0Var.f5009f));
     }
 }

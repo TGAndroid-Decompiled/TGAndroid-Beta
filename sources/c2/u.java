@@ -1,23 +1,22 @@
 package c2;
 
-import ag.o1;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.util.SparseBooleanArray;
 import com.google.android.gms.auth.api.signin.internal.SignInHubActivity;
-import com.google.android.gms.internal.play_billing.w3;
+import com.google.android.gms.internal.play_billing.x3;
 import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-public final class u implements h9.j, f2.l0, androidx.lifecycle.a0 {
-    public final int f2910a;
-    public boolean f2911b;
-    public Object f2912c;
+public final class u implements j9.j, f2.k0, androidx.lifecycle.a0 {
+    public final int f2005a;
+    public boolean f2006b;
+    public Object f2007c;
 
     public u(int i10) {
-        this.f2910a = i10;
+        this.f2005a = i10;
     }
 
     public static u f(Bundle bundle) {
@@ -42,52 +41,47 @@ public final class u implements h9.j, f2.l0, androidx.lifecycle.a0 {
     }
 
     @Override
-    public void H0(int i10, int i11) {
-        this.f2911b = true;
-        ((f2.p0) this.f2912c).t(i10, i11);
+    public void D(int i10, int i11) {
+        this.f2006b = true;
+        ((f2.o0) this.f2007c).p(i10, i11);
     }
 
     @Override
-    public void S(Object obj) {
-        this.f2911b = true;
-        o1 o1Var = (o1) this.f2912c;
-        o1Var.getClass();
-        Void r32 = (Void) obj;
-        SignInHubActivity signInHubActivity = (SignInHubActivity) o1Var.f624b;
-        signInHubActivity.setResult(signInHubActivity.N, signInHubActivity.O);
-        signInHubActivity.finish();
+    public void M0(int i10, int i11) {
+        this.f2006b = true;
+        ((f2.o0) this.f2007c).t(i10, i11);
     }
 
     @Override
-    public void a(h9.i iVar, int i10) {
-        StringBuilder sb2 = (StringBuilder) this.f2912c;
-        if (this.f2911b) {
-            this.f2911b = false;
+    public void a(j9.i iVar, int i10) {
+        StringBuilder sb = (StringBuilder) this.f2007c;
+        if (this.f2006b) {
+            this.f2006b = false;
         } else {
-            sb2.append(", ");
+            sb.append(", ");
         }
-        sb2.append(i10);
+        sb.append(i10);
     }
 
     public void b(int i10) {
-        f5.a.i(!this.f2911b);
-        ((SparseBooleanArray) this.f2912c).append(i10, true);
+        h5.a.i(!this.f2006b);
+        ((SparseBooleanArray) this.f2007c).append(i10, true);
     }
 
-    public f5.g c() {
-        f5.a.i(!this.f2911b);
-        this.f2911b = true;
-        return new f5.g((SparseBooleanArray) this.f2912c);
+    public h5.g c() {
+        h5.a.i(!this.f2006b);
+        this.f2006b = true;
+        return new h5.g((SparseBooleanArray) this.f2007c);
     }
 
     public void d() {
         synchronized (this) {
             try {
-                if (this.f2911b) {
+                if (this.f2006b) {
                     return;
                 }
-                this.f2911b = true;
-                CancellationSignal cancellationSignal = (CancellationSignal) this.f2912c;
+                this.f2006b = true;
+                CancellationSignal cancellationSignal = (CancellationSignal) this.f2007c;
                 if (cancellationSignal != null) {
                     try {
                         cancellationSignal.cancel();
@@ -108,17 +102,18 @@ public final class u implements h9.j, f2.l0, androidx.lifecycle.a0 {
     }
 
     public boolean e() {
-        return this.f2911b;
+        return this.f2006b;
     }
 
     @Override
-    public void f1(int i10, int i11) {
-        ((f2.p0) this.f2912c).r(i10, i11, null);
+    public void e0(int i10, int i11) {
+        this.f2006b = true;
+        ((f2.o0) this.f2007c).s(i10, i11);
     }
 
     public boolean g(int i10, CharSequence charSequence) {
         if (charSequence != null && i10 >= 0 && charSequence.length() - i10 >= 0) {
-            p0.e eVar = (p0.e) this.f2912c;
+            p0.e eVar = (p0.e) this.f2007c;
             if (eVar == null) {
                 return e();
             }
@@ -126,7 +121,7 @@ public final class u implements h9.j, f2.l0, androidx.lifecycle.a0 {
             char c3 = 2;
             for (int i11 = 0; i11 < i10 && c3 == 2; i11++) {
                 byte directionality = Character.getDirectionality(charSequence.charAt(i11));
-                u uVar = p0.f.f45412a;
+                u uVar = p0.f.f40934a;
                 if (directionality != 0) {
                     if (directionality != 1 && directionality != 2) {
                         switch (directionality) {
@@ -156,33 +151,43 @@ public final class u implements h9.j, f2.l0, androidx.lifecycle.a0 {
         throw new IllegalArgumentException();
     }
 
-    public void h(w3 w3Var) {
-        if (this.f2911b) {
+    public void h(x3 x3Var) {
+        if (this.f2006b) {
             com.google.android.gms.internal.play_billing.u.h("BillingLogger", "Skipping logging since initialization failed.");
             return;
         }
         try {
-            ((y2.p) this.f2912c).a(new v2.a(null, w3Var, v2.d.f49328a, null), new sg.j(17));
+            ((y2.p) this.f2007c).a(new v2.a(null, x3Var, v2.d.f45560a, null), new s0.b(28));
         } catch (Throwable unused) {
             com.google.android.gms.internal.play_billing.u.h("BillingLogger", "logging failed.");
         }
     }
 
     @Override
-    public void i0(int i10, int i11) {
-        this.f2911b = true;
-        ((f2.p0) this.f2912c).s(i10, i11);
+    public void k1(int i10, int i11) {
+        ((f2.o0) this.f2007c).r(i10, i11, null);
+    }
+
+    @Override
+    public void m0(Object obj) {
+        this.f2006b = true;
+        o2.o oVar = (o2.o) this.f2007c;
+        oVar.getClass();
+        Void r32 = (Void) obj;
+        SignInHubActivity signInHubActivity = (SignInHubActivity) oVar.f16220b;
+        signInHubActivity.setResult(signInHubActivity.O, signInHubActivity.P);
+        signInHubActivity.finish();
     }
 
     public String toString() {
-        switch (this.f2910a) {
+        switch (this.f2005a) {
             case 0:
-                StringBuilder sb2 = new StringBuilder("MediaRouteProviderDescriptor{ routes=");
-                List list = (List) this.f2912c;
-                sb2.append(Arrays.toString(list.toArray()));
-                sb2.append(", isValid=");
+                StringBuilder sb = new StringBuilder("MediaRouteProviderDescriptor{ routes=");
+                List list = (List) this.f2007c;
+                sb.append(Arrays.toString(list.toArray()));
+                sb.append(", isValid=");
                 int size = list.size();
-                boolean z10 = false;
+                boolean z4 = false;
                 int i10 = 0;
                 while (true) {
                     if (i10 < size) {
@@ -191,60 +196,54 @@ public final class u implements h9.j, f2.l0, androidx.lifecycle.a0 {
                             i10++;
                         }
                     } else {
-                        z10 = true;
+                        z4 = true;
                     }
                 }
-                sb2.append(z10);
-                sb2.append(" }");
-                return sb2.toString();
+                sb.append(z4);
+                sb.append(" }");
+                return sb.toString();
             case 8:
-                return ((o1) this.f2912c).toString();
+                return ((o2.o) this.f2007c).toString();
             default:
                 return super.toString();
         }
     }
 
-    @Override
-    public void z(int i10, int i11) {
-        this.f2911b = true;
-        ((f2.p0) this.f2912c).p(i10, i11);
+    public u(Object obj, int i10) {
+        this.f2005a = i10;
+        this.f2007c = obj;
     }
 
-    public u(Object obj, int i10) {
-        this.f2910a = i10;
-        this.f2912c = obj;
+    public u(ArrayList arrayList, boolean z4) {
+        this.f2005a = 0;
+        if (arrayList.isEmpty()) {
+            this.f2007c = Collections.EMPTY_LIST;
+        } else {
+            this.f2007c = DesugarCollections.unmodifiableList(new ArrayList(arrayList));
+        }
+        this.f2006b = z4;
     }
 
     public u() {
-        this.f2910a = 1;
-        this.f2912c = new SparseBooleanArray();
+        this.f2005a = 1;
+        this.f2007c = new SparseBooleanArray();
     }
 
-    public u(ArrayList arrayList, boolean z10) {
-        this.f2910a = 0;
-        if (arrayList.isEmpty()) {
-            this.f2912c = Collections.EMPTY_LIST;
-        } else {
-            this.f2912c = DesugarCollections.unmodifiableList(new ArrayList(arrayList));
-        }
-        this.f2911b = z10;
+    public u(p0.e eVar, boolean z4) {
+        this(eVar, 4);
+        this.f2005a = 4;
+        this.f2006b = z4;
     }
 
-    public u(p0.e eVar, boolean z10) {
-        this(eVar, 5);
-        this.f2910a = 5;
-        this.f2911b = z10;
+    public u(o5.d dVar, o2.o oVar) {
+        this.f2005a = 8;
+        this.f2006b = false;
+        this.f2007c = oVar;
     }
 
-    public u(m5.d dVar, o1 o1Var) {
-        this.f2910a = 8;
-        this.f2911b = false;
-        this.f2912c = o1Var;
-    }
-
-    public u(StringBuilder sb2) {
-        this.f2910a = 2;
-        this.f2912c = sb2;
-        this.f2911b = true;
+    public u(StringBuilder sb) {
+        this.f2005a = 2;
+        this.f2007c = sb;
+        this.f2006b = true;
     }
 }

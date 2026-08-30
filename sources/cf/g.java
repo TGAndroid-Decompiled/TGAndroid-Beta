@@ -1,66 +1,77 @@
 package cf;
 
 import android.graphics.Canvas;
-import android.graphics.Picture;
-import android.graphics.RenderNode;
-import android.os.Build;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class g {
-    public final Picture f3060a;
-    public final RenderNode f3061b;
+import android.view.ViewGroup;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.LaunchActivity;
+public final class g extends ViewGroup {
+    public final ef.f f2305a;
 
-    public g(int i10, int i11, Utilities.Callback callback) {
-        Picture picture = new Picture();
-        this.f3060a = picture;
-        callback.run(picture.beginRecording(i10, i11));
-        picture.endRecording();
-        if (Build.VERSION.SDK_INT >= 29) {
-            RenderNode renderNode = new RenderNode("pip-node-" + View.generateViewId());
-            this.f3061b = renderNode;
-            renderNode.setPosition(0, 0, i10, i11);
-            renderNode.beginRecording().drawPicture(picture);
-            renderNode.endRecording();
-            return;
-        }
-        this.f3061b = null;
+    public g(LaunchActivity launchActivity, ef.f fVar) {
+        super(launchActivity);
+        this.f2305a = fVar;
     }
 
-    public final void a(Canvas canvas, float f9) {
-        boolean z10;
-        Canvas canvas2;
-        if (Build.VERSION.SDK_INT >= 29) {
-            RenderNode renderNode = this.f3061b;
-            if (renderNode != null) {
-                renderNode.setAlpha(f9);
-                canvas.drawRenderNode(this.f3061b);
-                return;
-            }
-            return;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        boolean z4;
+        ef.f fVar = this.f2305a;
+        Path path = fVar.f5205m;
+        float f10 = (1.0f - fVar.f5207o) * fVar.f5202j.e;
+        if (f10 > 1.0f) {
+            z4 = true;
+        } else {
+            z4 = false;
         }
-        Picture picture = this.f3060a;
-        if (picture != null && f9 > 0.001f) {
-            if (f9 < 0.999f) {
-                z10 = true;
-            } else {
-                z10 = false;
+        canvas.drawColor(i0.a.k(j6.w0(null, j6.f19906d6, false), (int) Math.min(fVar.f5207o * 420.0f, 255.0f)));
+        fVar.d.a(canvas, 1.0f);
+        if (z4) {
+            RectF rectF = fVar.f5204l;
+            if (fVar.f5203k != f10) {
+                fVar.f5203k = f10;
+                rectF.set(fVar.f5198c);
+                path.reset();
+                path.addRoundRect(rectF, f10, f10, Path.Direction.CW);
+                path.close();
             }
-            if (z10) {
-                canvas2 = canvas;
-                canvas2.saveLayerAlpha(0.0f, 0.0f, picture.getWidth(), picture.getHeight(), (int) (f9 * 255.0f), 31);
-            } else {
-                canvas2 = canvas;
-            }
-            canvas2.drawPicture(picture);
-            if (z10) {
-                canvas2.restore();
-            }
+            canvas.save();
+            canvas.clipPath(path);
+        }
+        super.dispatchDraw(canvas);
+        fVar.e.a(canvas, 1.0f - fVar.f5207o);
+        if (z4) {
+            canvas.restore();
         }
     }
 
-    public final void b() {
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.f3061b.discardDisplayList();
+    @Override
+    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        for (int i14 = 0; i14 < getChildCount(); i14++) {
+            View childAt = getChildAt(i14);
+            Rect rect = this.f2305a.f5198c;
+            childAt.layout(rect.left, rect.top, rect.right, rect.bottom);
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        setMeasuredDimension(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        boolean z4 = ((a) getParent()).d;
+        ef.f fVar = this.f2305a;
+        Rect rect = fVar.f5198c;
+        if (z4) {
+            rect.set(0, 0, size, size2);
+        } else {
+            rect.set(fVar.f5197b);
+        }
+        for (int i12 = 0; i12 < getChildCount(); i12++) {
+            getChildAt(i12).measure(View.MeasureSpec.makeMeasureSpec(fVar.f5198c.width(), 1073741824), View.MeasureSpec.makeMeasureSpec(fVar.f5198c.height(), 1073741824));
         }
     }
 }

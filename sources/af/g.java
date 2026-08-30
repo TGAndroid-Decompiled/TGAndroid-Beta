@@ -1,113 +1,483 @@
 package af;
 
-import android.app.PictureInPictureParams;
-import android.graphics.Rect;
-import android.os.Build;
-import android.view.View;
-import com.google.firebase.messaging.s;
-import j3.k0;
-import java.util.HashMap;
-import m.s3;
-public final class g {
-    public static int f395n;
-    public static final Rect f396o = new Rect();
-    public final s3 f397a;
-    public final cf.e f398b;
-    public final String f399c;
-    public final int d;
-    public final int f400e;
-    public final boolean f401f;
-    public final cf.a f402g;
-    public final df.c h;
-    public final s f403i;
-    public View f404j;
-    public View f405k;
-    public k0 f406l;
-    public boolean f407m;
+import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
+import android.os.RemoteException;
+import android.text.TextUtils;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import kh.a2;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.m3;
+import org.telegram.ui.ActionBar.n3;
+import org.telegram.ui.ActionBar.p2;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.b3;
+import org.telegram.ui.cz;
+import org.telegram.ui.l4;
+import org.telegram.ui.p3;
+import org.telegram.ui.web.w0;
+public abstract class g {
+    public static f7.b f167a;
+    public static f7.b f168b;
+    public static jf.a f169c;
+    public static String d;
+    public static WeakReference e;
+    public static Pattern f170f;
 
-    public g(s3 s3Var, f fVar) {
-        int i10 = f395n;
-        f395n = i10 + 1;
-        df.c cVar = new df.c();
-        this.h = cVar;
-        s sVar = new s(new e(this, 0));
-        this.f403i = sVar;
-        StringBuilder sb2 = new StringBuilder();
-        String str = fVar.f388c;
-        sb2.append(str == null ? "pip-source" : str);
-        sb2.append("-");
-        sb2.append(i10);
-        String sb3 = sb2.toString();
-        this.f399c = sb3;
-        this.f402g = fVar.f387b;
-        this.d = fVar.f389e;
-        this.f400e = fVar.d;
-        this.f401f = fVar.f390f;
-        this.f397a = s3Var;
-        cVar.c(fVar.h, fVar.f392i);
-        this.f406l = fVar.f391g;
-        this.f405k = fVar.f394k;
-        this.f398b = new cf.e(this);
-        View view = fVar.f393j;
-        sVar.O(view);
-        this.f404j = view;
-        if (view != null) {
-            e(view);
-        }
-        b(false);
-        ((HashMap) s3Var.f16688a).put(sb3, this);
-        s3Var.g();
+    public static java.lang.String a(java.lang.String r3) {
+        throw new UnsupportedOperationException("Method not decompiled: af.g.a(java.lang.String):java.lang.String");
     }
 
-    public final PictureInPictureParams a() {
-        boolean z10;
-        PictureInPictureParams.Builder a2 = this.h.a();
-        a2.setActions(null);
-        int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 31) {
-            if (i10 >= 31) {
-                z10 = true;
-            } else {
-                z10 = false;
+    public static String b(String str) {
+        if (str != null && !TextUtils.isEmpty(str)) {
+            if (str.startsWith("@")) {
+                return str.substring(1);
             }
-            a2.setAutoEnterEnabled(z10);
+            if (str.startsWith("t.me/")) {
+                return str.substring(5);
+            }
+            if (str.startsWith("http://t.me/")) {
+                return str.substring(12);
+            }
+            if (str.startsWith("https://t.me/")) {
+                return str.substring(13);
+            }
+            Matcher matcher = LaunchActivity.f31612y1.matcher(str);
+            if (matcher.find()) {
+                return matcher.group(1);
+            }
         }
-        return a2.build();
+        return null;
     }
 
-    public final void b(boolean z10) {
-        boolean z11;
-        if (this.h.b() && this.f402g.g()) {
-            z11 = true;
+    public static f7.b c() {
+        f7.b bVar = f168b;
+        f7.b bVar2 = null;
+        if (bVar == null) {
+            f167a = null;
+        } else if (f167a == null) {
+            cb.b bVar3 = new cb.b(1);
+            hf.e eVar = (hf.e) bVar.f6012b;
+            hf.b bVar4 = new hf.b(bVar3);
+            try {
+                if (((hf.c) eVar).E0(bVar4)) {
+                    bVar2 = new f7.b(9, bVar4, (ComponentName) bVar.f6013c);
+                }
+            } catch (RemoteException unused) {
+            }
+            f167a = bVar2;
+            new WeakReference(bVar2);
+        }
+        return f167a;
+    }
+
+    public static boolean d(android.content.Context r8, java.lang.String r9) {
+        throw new UnsupportedOperationException("Method not decompiled: af.g.d(android.content.Context, java.lang.String):boolean");
+    }
+
+    public static boolean e() {
+        cz sheetFragment;
+        p2 U = LaunchActivity.U();
+        if (U != null && (U.getParentLayout() instanceof ActionBarLayout) && (sheetFragment = ((ActionBarLayout) U.getParentLayout()).getSheetFragment()) != null && sheetFragment.getArticleViewer() != null) {
+            return true;
+        }
+        if (U != null && U.getArticleViewer() != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean f(Uri uri, boolean z4, boolean[] zArr) {
+        String str;
+        String str2;
+        String str3;
+        String hostAuthority = AndroidUtilities.getHostAuthority(uri);
+        String str4 = "";
+        if (hostAuthority == null) {
+            str = "";
         } else {
-            z11 = false;
+            str = hostAuthority.toLowerCase();
         }
-        if (this.f407m != z11) {
-            this.f407m = z11;
-            if (z10) {
-                s3 s3Var = this.f397a;
-                s3Var.g();
-                ((a) s3Var.f16690c).invalidate();
+        if (MessagesController.getInstance(UserConfig.selectedAccount).authDomains.contains(str)) {
+            if (zArr != null) {
+                zArr[0] = true;
+                return false;
+            }
+        } else {
+            Matcher matcher = LaunchActivity.f31612y1.matcher(str);
+            if (matcher.find()) {
+                StringBuilder sb = new StringBuilder("https://t.me/");
+                sb.append(matcher.group(1));
+                if (TextUtils.isEmpty(uri.getPath())) {
+                    str2 = "";
+                } else {
+                    str2 = "/" + uri.getPath();
+                }
+                sb.append(str2);
+                if (TextUtils.isEmpty(uri.getQuery())) {
+                    str3 = "";
+                } else {
+                    str3 = "?" + uri.getQuery();
+                }
+                sb.append(str3);
+                uri = Uri.parse(sb.toString());
+                String host = uri.getHost();
+                if (host != null) {
+                    str4 = host.toLowerCase();
+                }
+                str = str4;
+            }
+            if ("ton".equals(uri.getScheme())) {
+                try {
+                    List<ResolveInfo> queryIntentActivities = ApplicationLoader.applicationContext.getPackageManager().queryIntentActivities(new Intent("android.intent.action.VIEW", uri), 0);
+                    if (queryIntentActivities != null) {
+                        if (queryIntentActivities.size() >= 1) {
+                        }
+                    }
+                } catch (Exception unused) {
+                }
+                return true;
+            }
+            if (!"tg".equals(uri.getScheme())) {
+                if ("telegram.dog".equals(str)) {
+                    String path = uri.getPath();
+                    if (path != null && path.length() > 1) {
+                        if (!z4) {
+                            String lowerCase = path.substring(1).toLowerCase();
+                            if (lowerCase.startsWith("blog") || lowerCase.equals("iv") || lowerCase.startsWith("faq") || lowerCase.equals("apps") || lowerCase.startsWith("s/")) {
+                                if (zArr != null) {
+                                    zArr[0] = true;
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                } else if (!"telegram.me".equals(str) && !"t.me".equals(str)) {
+                    if ((!"telegram.org".equals(str) || uri.getPath() == null || !uri.getPath().startsWith("/blog/")) && (!z4 || (!str.endsWith("telegram.org") && !str.endsWith("telegra.ph") && !str.endsWith("telesco.pe")))) {
+                    }
+                } else {
+                    String path2 = uri.getPath();
+                    if (path2 != null && path2.length() > 1) {
+                        if (!z4) {
+                            String lowerCase2 = path2.substring(1).toLowerCase();
+                            if (lowerCase2.equals("iv") || lowerCase2.startsWith("s/")) {
+                                if (zArr != null) {
+                                    zArr[0] = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean g(String str) {
+        try {
+            return TextUtils.equals(AndroidUtilities.getHostAuthority(str), MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix);
+        } catch (Exception e6) {
+            FileLog.e(e6);
+            return false;
+        }
+    }
+
+    public static boolean h(String str, boolean z4, boolean z10) {
+        String str2;
+        if (z4) {
+            if (!str.equals("telegra.ph") && !str.equals("te.legra.ph") && !str.equals("graph.org")) {
+                return false;
+            }
+            return true;
+        }
+        StringBuilder sb = new StringBuilder("^(https");
+        if (z10) {
+            str2 = "";
+        } else {
+            str2 = "?";
+        }
+        sb.append(str2);
+        sb.append("://)?(te\\.?legra\\.ph|graph\\.org)(/.*|$)");
+        return str.matches(sb.toString());
+    }
+
+    public static boolean i(String str) {
+        String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
+        if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
+            return true;
+        }
+        Uri parse = Uri.parse(str);
+        if (parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite")) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean j(String str) {
+        boolean matches;
+        if (f170f == null) {
+            f170f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
+        }
+        String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
+        if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
+            matches = f170f.matcher(hostAuthority).matches();
+        } else {
+            Uri parse = Uri.parse(str);
+            if (parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite")) {
+                matches = f170f.matcher(parse.getScheme()).matches();
+            } else {
+                return false;
             }
         }
+        return !matches;
     }
 
-    public final void c() {
-        this.f403i.O(null);
-        s3 s3Var = this.f397a;
-        if (((HashMap) s3Var.f16688a).remove(this.f399c) != null) {
-            s3Var.g();
+    public static boolean k(Context context, String str, boolean z4, boolean z10, f fVar) {
+        LaunchActivity launchActivity;
+        if (str == null) {
+            return false;
+        }
+        if (AndroidUtilities.findActivity(context) instanceof LaunchActivity) {
+            launchActivity = (LaunchActivity) AndroidUtilities.findActivity(context);
+        } else {
+            launchActivity = LaunchActivity.D1;
+            if (launchActivity == null) {
+                return false;
+            }
+        }
+        if (launchActivity == null) {
+            return false;
+        }
+        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(str));
+        intent.setComponent(new ComponentName(context.getPackageName(), LaunchActivity.class.getName()));
+        intent.putExtra("create_new_tab", true);
+        intent.putExtra("com.android.browser.application_id", context.getPackageName());
+        intent.putExtra("force_not_internal_apps", z4);
+        intent.putExtra("force_request", z10);
+        launchActivity.e0(intent, fVar);
+        return true;
+    }
+
+    public static boolean l(android.content.Context r5, java.lang.String r6, boolean r7) {
+        throw new UnsupportedOperationException("Method not decompiled: af.g.l(android.content.Context, java.lang.String, boolean):boolean");
+    }
+
+    public static boolean m(Context context, String str, boolean z4, String str2) {
+        boolean z10;
+        Intent intent;
+        if (str != null) {
+            try {
+                Uri parse = Uri.parse(str);
+                if (parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("intent")) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (!z10 || z4) {
+                    if (z10) {
+                        intent = Intent.parseUri(parse.toString(), 1);
+                    } else {
+                        intent = new Intent("android.intent.action.VIEW", parse);
+                    }
+                    if (!TextUtils.isEmpty(str2)) {
+                        intent.setPackage(str2);
+                    }
+                    intent.putExtra("create_new_tab", true);
+                    intent.putExtra("com.android.browser.application_id", context.getPackageName());
+                    context.startActivity(intent);
+                    return true;
+                }
+            } catch (Exception e6) {
+                FileLog.e(e6);
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public static void n(String str) {
+        n3 P;
+        m3 m3Var;
+        String openURL;
+        p3[] p3VarArr;
+        p3 p3Var;
+        LaunchActivity launchActivity = LaunchActivity.D1;
+        if (launchActivity != null && (P = launchActivity.P()) != null) {
+            if (!TextUtils.isEmpty(str)) {
+                ArrayList<m3> tabs = P.getTabs();
+                for (int i10 = 0; i10 < tabs.size(); i10++) {
+                    m3Var = tabs.get(i10);
+                    l4 l4Var = m3Var.H;
+                    if (l4Var != null && !l4Var.f35929a0.isEmpty()) {
+                        Object i11 = a2.i(1, m3Var.H.f35929a0);
+                        if (i11 instanceof b3) {
+                            w0 w0Var = ((b3) i11).f20449b;
+                            if (w0Var == null && (p3VarArr = m3Var.H.f35945r0) != null && (p3Var = p3VarArr[0]) != null) {
+                                w0Var = p3Var.getWebView();
+                            }
+                            if (w0Var != null) {
+                                if (w0Var.canGoBack()) {
+                                    openURL = w0Var.getUrl();
+                                } else {
+                                    openURL = w0Var.getOpenURL();
+                                }
+                                if (TextUtils.equals(n3.p(openURL), n3.p(str))) {
+                                    P.e(m3Var);
+                                    break;
+                                }
+                            } else {
+                                continue;
+                            }
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+            }
+            m3Var = null;
+            if (m3Var != null) {
+                return;
+            }
+        }
+        p2 U = LaunchActivity.U();
+        if (U != null && U.getArticleViewer() != null) {
+            U.getArticleViewer().N(null, null, null, str);
+            return;
+        }
+        if (U != null && (U.getParentLayout() instanceof ActionBarLayout)) {
+            U = ((ActionBarLayout) U.getParentLayout()).getSheetFragment();
+        }
+        if (U == null) {
+            return;
+        }
+        U.createArticleViewer(false).N(null, null, null, str);
+    }
+
+    public static void o(Activity activity, String str, boolean z4) {
+        if (activity != null && str != null) {
+            p(activity, Uri.parse(str), z4, true);
         }
     }
 
-    public final void d(int i10, int i11) {
-        if (this.h.c(i10, i11)) {
-            b(true);
-            this.f397a.a(this);
-        }
+    public static void p(Context context, Uri uri, boolean z4, boolean z10) {
+        r(context, uri, z4, z10, false, null, null, false, true, false);
     }
 
-    public final void e(android.view.View r12) {
-        throw new UnsupportedOperationException("Method not decompiled: af.g.e(android.view.View):void");
+    public static void q(Context context, Uri uri, boolean z4, boolean z10, f fVar) {
+        r(context, uri, z4, z10, false, fVar, null, false, true, false);
+    }
+
+    public static void r(android.content.Context r18, android.net.Uri r19, boolean r20, boolean r21, boolean r22, af.f r23, java.lang.String r24, boolean r25, boolean r26, boolean r27) {
+        throw new UnsupportedOperationException("Method not decompiled: af.g.r(android.content.Context, android.net.Uri, boolean, boolean, boolean, af.f, java.lang.String, boolean, boolean, boolean):void");
+    }
+
+    public static void s(Context context, String str) {
+        if (str == null) {
+            return;
+        }
+        p(context, Uri.parse(str), true, true);
+    }
+
+    public static void t(LaunchActivity launchActivity, Uri uri) {
+        p(launchActivity, uri, true, true);
+    }
+
+    public static void u(Context context, String str) {
+        if (str == null) {
+            return;
+        }
+        r(context, Uri.parse(str), false, true, false, null, null, false, false, false);
+    }
+
+    public static String v(Uri uri, String str, String str2, String str3, String str4) {
+        StringBuilder sb = new StringBuilder();
+        if (str == null) {
+            str = uri.getScheme();
+        }
+        if (str != null) {
+            sb.append(str);
+            sb.append("://");
+        }
+        if (str2 == null) {
+            if (uri.getUserInfo() != null) {
+                sb.append(uri.getUserInfo());
+                sb.append("@");
+            }
+        } else if (!TextUtils.isEmpty(str2)) {
+            sb.append(str2);
+            sb.append("@");
+        }
+        if (str3 == null) {
+            if (uri.getHost() != null) {
+                sb.append(uri.getHost());
+            }
+        } else {
+            sb.append(str3);
+        }
+        if (uri.getPort() != -1) {
+            sb.append(":");
+            sb.append(uri.getPort());
+        }
+        if (str4 != null) {
+            sb.append(str4);
+        } else if (uri.getPath() != null) {
+            sb.append(uri.getPath());
+        }
+        if (uri.getQuery() != null) {
+            sb.append("?");
+            sb.append(uri.getQuery());
+        }
+        if (uri.getFragment() != null) {
+            sb.append("#");
+            sb.append(uri.getFragment());
+        }
+        return sb.toString();
+    }
+
+    public static String w(Uri uri, String str) {
+        return v(uri, null, null, str, null);
+    }
+
+    public static void x(Activity activity) {
+        Activity activity2;
+        if (f169c == null) {
+            return;
+        }
+        WeakReference weakReference = e;
+        if (weakReference == null) {
+            activity2 = null;
+        } else {
+            activity2 = (Activity) weakReference.get();
+        }
+        if (activity2 == activity) {
+            e.clear();
+        }
+        try {
+            activity.unbindService(f169c);
+        } catch (Exception unused) {
+        }
+        f168b = null;
+        f167a = null;
+    }
+
+    public static boolean y(String str) {
+        if (!h(str, false, true) && !str.matches("^(https://)?t\\.me/iv\\??(/.*|$)") && !str.matches("^(https://)?telegram\\.org/(blog|tour)(/.*|$)") && !str.matches("^(https://)?fragment\\.com(/.*|$)")) {
+            return false;
+        }
+        return true;
     }
 }

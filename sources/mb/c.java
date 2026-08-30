@@ -1,17 +1,12 @@
 package mb;
-public final class c extends h {
-    public static final c f16953c;
 
-    static {
-        ?? exc = new Exception();
-        f16953c = exc;
-        exc.setStackTrace(h.f16963b);
-    }
-
-    public static c a() {
-        if (h.f16962a) {
-            return new Exception();
-        }
-        return f16953c;
-    }
+import androidx.lifecycle.b0;
+import androidx.lifecycle.m;
+import androidx.lifecycle.s;
+import com.google.android.gms.common.api.n;
+import java.io.Closeable;
+public interface c extends Closeable, s, n {
+    @Override
+    @b0(m.ON_DESTROY)
+    void close();
 }

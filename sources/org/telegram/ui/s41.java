@@ -1,23 +1,26 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
-public final class s41 extends z51 {
-    public final View M;
-    public final TL_stars.TL_starGiftUnique N;
-    public final t41 O;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
+public final class s41 implements org.telegram.ui.ActionBar.c2, org.telegram.ui.Components.yk0 {
+    public final q61 f38194a;
 
-    public s41(t41 t41Var, Context context, Runnable runnable, View view, m51 m51Var, org.telegram.ui.ActionBar.c6 c6Var, View view2, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        super(t41Var.f42550e, context, runnable, view, m51Var, c6Var);
-        this.O = t41Var;
-        this.M = view2;
-        this.N = tL_starGiftUnique;
+    public s41(q61 q61Var) {
+        this.f38194a = q61Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.O.f42550e.T0 = null;
+    public void d() {
+        this.f38194a.m();
+    }
+
+    @Override
+    public void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        q61 q61Var = this.f38194a;
+        int i11 = q61Var.S;
+        ConnectionsManager.getInstance(i11).sendRequest(new TL_account.clearRecentEmojiStatuses(), null);
+        MediaDataController.getInstance(i11).clearRecentEmojiStatuses();
+        q61Var.B(false, true, true);
     }
 }

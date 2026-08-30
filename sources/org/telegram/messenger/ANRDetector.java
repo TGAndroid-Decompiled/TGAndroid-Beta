@@ -3,9 +3,9 @@ package org.telegram.messenger;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.c10;
-public class ANRDetector implements b10 {
+import org.telegram.ui.Components.f10;
+import org.telegram.ui.Components.g10;
+public class ANRDetector implements f10 {
     private static final int MSG_UI_PING = 1;
     private static final long TIMEOUT_MS = 5000;
     private final Runnable anrDetected;
@@ -34,10 +34,10 @@ public class ANRDetector implements b10 {
 
     public ANRDetector(Runnable runnable) {
         this.anrDetected = runnable;
-        c10 c10Var = c10.getInstance();
-        this.foreground = c10Var.isForeground();
-        c10Var.addListener(this);
-        Thread thread = new Thread(new d1(this, 11), "ANRDetector");
+        g10 g10Var = g10.getInstance();
+        this.foreground = g10Var.isForeground();
+        g10Var.addListener(this);
+        Thread thread = new Thread(new e1(this, 11), "ANRDetector");
         this.detectorThread = thread;
         thread.start();
     }
@@ -92,7 +92,7 @@ public class ANRDetector implements b10 {
                 this.foreground = false;
                 this.generation++;
                 this.lock.notifyAll();
-                c10.getInstance().removeListener(this);
+                g10.getInstance().removeListener(this);
                 this.mainHandler.removeMessages(1);
                 this.detectorThread.interrupt();
             } catch (Throwable th2) {

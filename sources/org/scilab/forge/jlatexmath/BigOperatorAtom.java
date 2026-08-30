@@ -15,9 +15,9 @@ public class BigOperatorAtom extends Atom {
         this.type = 1;
     }
 
-    private static Box changeWidth(Box box, float f9) {
-        if (box != null && Math.abs(f9 - box.getWidth()) > 1.0E-7f) {
-            return new HorizontalBox(box, f9, 2);
+    private static Box changeWidth(Box box, float f10) {
+        if (box != null && Math.abs(f10 - box.getWidth()) > 1.0E-7f) {
+            return new HorizontalBox(box, f10, 2);
         }
         return box;
     }
@@ -27,9 +27,9 @@ public class BigOperatorAtom extends Atom {
         throw new UnsupportedOperationException("Method not decompiled: org.scilab.forge.jlatexmath.BigOperatorAtom.createBox(org.scilab.forge.jlatexmath.TeXEnvironment):org.scilab.forge.jlatexmath.Box");
     }
 
-    public BigOperatorAtom(Atom atom, Atom atom2, Atom atom3, boolean z10) {
+    public BigOperatorAtom(Atom atom, Atom atom2, Atom atom3, boolean z4) {
         this(atom, atom2, atom3);
-        this.limits = z10;
+        this.limits = z4;
         this.limitsSet = true;
     }
 }

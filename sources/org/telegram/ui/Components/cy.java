@@ -1,0 +1,52 @@
+package org.telegram.ui.Components;
+
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class cy extends m2.a implements dd0 {
+    public final kz f24076c;
+
+    public cy(kz kzVar) {
+        this.f24076c = kzVar;
+    }
+
+    @Override
+    public final void a(m2.h hVar, Object obj) {
+        hVar.removeView((View) obj);
+    }
+
+    @Override
+    public final int b() {
+        return this.f24076c.e.size();
+    }
+
+    @Override
+    public final CharSequence d(int i10) {
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    return null;
+                }
+                return LocaleController.getString(R.string.AccDescrStickers);
+            }
+            return LocaleController.getString(R.string.AccDescrGIFs);
+        }
+        return LocaleController.getString(R.string.Emoji);
+    }
+
+    @Override
+    public final Object e(m2.h hVar, int i10) {
+        FrameLayout frameLayout = ((gz) this.f24076c.e.get(i10)).f25260b;
+        hVar.addView(frameLayout);
+        return frameLayout;
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        if (view == obj) {
+            return true;
+        }
+        return false;
+    }
+}

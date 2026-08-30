@@ -1,32 +1,110 @@
 package c5;
 
-import java.util.Set;
-public final class c {
-    public String f2955a;
-    public String f2956b;
-    public Set f2957c;
-    public String d;
-    public String f2958e;
-    public int f2959f;
-    public boolean f2960g;
-    public int h;
-    public boolean f2961i;
-    public int f2962j;
-    public int f2963k;
-    public int f2964l;
-    public int f2965m;
-    public int f2966n;
-    public float f2967o;
-    public int f2968p;
-    public boolean f2969q;
+import android.content.Context;
+import b6.m;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.telegram.messenger.MediaController;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.PhotoViewer;
+public final class c implements m6.c, r5.h {
+    public int f2081a;
 
-    public static int a(int i10, int i11, String str, String str2) {
-        if (!str.isEmpty() && i10 != -1) {
-            if (!str.equals(str2)) {
-                return -1;
+    public c() {
+        this.f2081a = 3;
+    }
+
+    @Override
+    public int C(Context context, String str) {
+        return this.f2081a;
+    }
+
+    @Override
+    public void e(r5.f fVar, int i10) {
+        r5.c cVar = (r5.c) fVar;
+    }
+
+    @Override
+    public void f(r5.f fVar, String str) {
+        r5.c cVar = (r5.c) fVar;
+        if (cVar != null) {
+            m.e("Must be called from the main thread.");
+            s5.h hVar = cVar.f43359j;
+            if (hVar == 0) {
+                return;
             }
-            return i10 + i11;
+            AtomicInteger atomicInteger = d1.f.f4099b;
+            if (atomicInteger != null) {
+                atomicInteger.set(0);
+            }
+            hVar.p(new Object());
+            m.e("Must be called from the main thread.");
+            if (!hVar.w()) {
+                s5.h.t();
+            } else {
+                s5.h.x(new s5.i(hVar, 3));
+            }
+            int i10 = this.f2081a;
+            long j10 = -1;
+            if (i10 == 0) {
+                i71 i71Var = PhotoViewer.t1().C2;
+                if (i71Var != null) {
+                    j10 = i71Var.n();
+                }
+            } else if (i10 == 1) {
+                j10 = MediaController.getInstance().getCurrentPosition();
+            }
+            if (j10 >= 0) {
+                d1.f.v(j10);
+            }
+            d1.f.d(true);
         }
-        return i10;
+    }
+
+    @Override
+    public void h(r5.f fVar, boolean z4) {
+        r5.c cVar = (r5.c) fVar;
+    }
+
+    @Override
+    public void i(r5.f fVar, int i10) {
+        r5.c cVar = (r5.c) fVar;
+    }
+
+    @Override
+    public void j(r5.f fVar, int i10) {
+        r5.c cVar = (r5.c) fVar;
+    }
+
+    @Override
+    public void k(r5.f fVar) {
+        r5.c cVar = (r5.c) fVar;
+    }
+
+    @Override
+    public void l(r5.f fVar, String str) {
+        r5.c cVar = (r5.c) fVar;
+    }
+
+    @Override
+    public void n(r5.f fVar) {
+        r5.c cVar = (r5.c) fVar;
+        d1.f.d(false);
+        d1.f.C();
+    }
+
+    @Override
+    public int p(Context context, String str, boolean z4) {
+        return 0;
+    }
+
+    @Override
+    public void q(r5.f fVar, int i10) {
+        r5.c cVar = (r5.c) fVar;
+        d1.f.d(false);
+        d1.f.C();
+    }
+
+    public c(int i10) {
+        this.f2081a = i10;
     }
 }

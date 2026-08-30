@@ -2,52 +2,41 @@ package org.telegram.ui.Components.voip;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.gr;
-import org.telegram.ui.j30;
-public final class f0 extends View {
-    public final org.telegram.ui.Cells.z f33689a;
-    public final j30 f33690b;
+import android.graphics.drawable.ShapeDrawable;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.ui.Components.d9;
+import org.telegram.ui.Components.nr;
+import org.telegram.ui.v30;
+public final class f0 extends FrameLayout {
+    public final ShapeDrawable f29625a;
+    public final v30 f29626b;
 
-    public f0(j30 j30Var, Context context, org.telegram.ui.Cells.z zVar) {
+    public f0(v30 v30Var, Context context, ShapeDrawable shapeDrawable) {
         super(context);
-        this.f33690b = j30Var;
-        this.f33689a = zVar;
+        this.f29626b = v30Var;
+        this.f29625a = shapeDrawable;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        j30 j30Var = this.f33690b;
-        gr grVar = j30Var.V;
-        float measuredWidth = (1.0f - grVar.f28970g) * j30Var.W.getMeasuredWidth();
-        canvas.save();
-        int dp = AndroidUtilities.dp(50.0f) + ((int) ((j30Var.f33795a0.getMeasuredWidth() * grVar.f28970g) + measuredWidth));
-        int measuredHeight = getMeasuredHeight();
-        org.telegram.ui.Cells.z zVar = this.f33689a;
-        zVar.setBounds(0, 0, dp, measuredHeight);
-        zVar.draw(canvas);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void drawableStateChanged() {
-        super.drawableStateChanged();
-        this.f33689a.setState(getDrawableState());
-    }
-
-    @Override
-    public final void jumpDrawablesToCurrentState() {
-        super.jumpDrawablesToCurrentState();
-        this.f33689a.jumpToCurrentState();
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f33689a != drawable && !super.verifyDrawable(drawable)) {
-            return false;
+        v30 v30Var = this.f29626b;
+        d9 d9Var = v30Var.G;
+        TextView textView = v30Var.H;
+        float f10 = v30Var.L;
+        ShapeDrawable shapeDrawable = this.f29625a;
+        if (f10 == 1.0f) {
+            shapeDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            d9Var.setTranslationX(0.0f);
+            textView.setTranslationX(0.0f);
+        } else {
+            float interpolation = 1.0f - nr.f27346f.getInterpolation(f10);
+            float left = (v30Var.M - getLeft()) * interpolation;
+            shapeDrawable.setBounds((int) left, 0, getMeasuredWidth() + ((int) ((v30Var.O - getRight()) * interpolation)), getMeasuredHeight());
+            d9Var.setTranslationX(left);
+            textView.setTranslationX(-((v30Var.N - textView.getLeft()) * interpolation));
         }
-        return true;
+        shapeDrawable.draw(canvas);
+        super.dispatchDraw(canvas);
     }
 }

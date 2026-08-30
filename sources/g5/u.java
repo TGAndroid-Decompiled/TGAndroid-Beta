@@ -1,46 +1,19 @@
 package g5;
-
-import f5.d0;
-import j3.h0;
-import jh.d3;
-import l4.c0;
-public final class u implements Runnable {
-    public final int f7092a = 0;
-    public final ze.b f7093b;
-    public final long f7094c;
-    public final int d;
-
-    public u(ze.b bVar, int i10, long j10) {
-        this.f7093b = bVar;
-        this.d = i10;
-        this.f7094c = j10;
-    }
+public final class u implements l {
+    public v0 f6453b;
+    public String f6454c;
+    public boolean f6455f;
+    public final f7.b f6452a = new f7.b(5, (byte) 0);
+    public final int d = 8000;
+    public final int e = 8000;
 
     @Override
-    public final void run() {
-        int i10 = this.f7092a;
-        int i11 = this.d;
-        long j10 = this.f7094c;
-        ze.b bVar = this.f7093b;
-        switch (i10) {
-            case 0:
-                int i12 = d0.f6579a;
-                k3.f fVar = ((h0) bVar.f50825b).f10477a.f10594r;
-                k3.a i13 = fVar.i((c0) fVar.d.f2121e);
-                fVar.l(i13, 1018, new d3(i11, j10, i13));
-                return;
-            default:
-                int i14 = d0.f6579a;
-                k3.f fVar2 = ((h0) bVar.f50825b).f10477a.f10594r;
-                k3.a i15 = fVar2.i((c0) fVar2.d.f2121e);
-                fVar2.l(i15, 1021, new k3.d(i11, j10, i15));
-                return;
+    public final m createDataSource() {
+        x xVar = new x(this.f6454c, this.d, this.e, this.f6455f, this.f6452a);
+        v0 v0Var = this.f6453b;
+        if (v0Var != null) {
+            xVar.addTransferListener(v0Var);
         }
-    }
-
-    public u(ze.b bVar, long j10, int i10) {
-        this.f7093b = bVar;
-        this.f7094c = j10;
-        this.d = i10;
+        return xVar;
     }
 }

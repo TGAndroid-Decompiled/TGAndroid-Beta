@@ -1,10 +1,17 @@
 package l7;
-
-import java.util.logging.Logger;
-public abstract class l4 {
-    public static final int f14871a = 0;
+public final class l4 implements u9.d {
+    public static final l4 f11532a = new Object();
 
     static {
-        Logger.getLogger(l4.class.getName());
+        e2.c.r(kh.a2.o(h0.class, new e0(1)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            u9.e eVar = (u9.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

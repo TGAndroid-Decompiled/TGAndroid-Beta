@@ -1,57 +1,19 @@
 package j6;
 
-import android.os.IBinder;
-import android.os.IInterface;
-import j7.l1;
-import java.lang.reflect.Field;
-import z5.l;
-public final class b extends c7.a implements a {
-    public final Object f10894b;
+import d9.j;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicInteger;
+public final class b implements ThreadFactory {
+    public final AtomicInteger f8939b = new AtomicInteger();
+    public final ThreadFactory f8940c = Executors.defaultThreadFactory();
+    public final String f8938a = "GAC_Executor";
 
-    public b(Object obj) {
-        super("com.google.android.gms.dynamic.IObjectWrapper", 11);
-        this.f10894b = obj;
-    }
-
-    public static a J0(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
-        }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.dynamic.IObjectWrapper");
-        if (queryLocalInterface instanceof a) {
-            return (a) queryLocalInterface;
-        }
-        return new com.google.android.gms.internal.cast.a(iBinder, "com.google.android.gms.dynamic.IObjectWrapper", 11);
-    }
-
-    public static Object K0(a aVar) {
-        if (aVar instanceof b) {
-            return ((b) aVar).f10894b;
-        }
-        IBinder asBinder = aVar.asBinder();
-        Field[] declaredFields = asBinder.getClass().getDeclaredFields();
-        Field field = null;
-        int i10 = 0;
-        for (Field field2 : declaredFields) {
-            if (!field2.isSynthetic()) {
-                i10++;
-                field = field2;
-            }
-        }
-        if (i10 == 1) {
-            l.h(field);
-            if (!field.isAccessible()) {
-                field.setAccessible(true);
-                try {
-                    return field.get(asBinder);
-                } catch (IllegalAccessException e10) {
-                    throw new IllegalArgumentException("Could not access the field in remoteBinder.", e10);
-                } catch (NullPointerException e11) {
-                    throw new IllegalArgumentException("Binder object is null.", e11);
-                }
-            }
-            throw new IllegalArgumentException("IObjectWrapper declared field not private!");
-        }
-        throw new IllegalArgumentException(l1.k(declaredFields.length, "Unexpected number of IObjectWrapper declared fields: "));
+    @Override
+    public final Thread newThread(Runnable runnable) {
+        Thread newThread = this.f8940c.newThread(new j(1, runnable));
+        int andIncrement = this.f8939b.getAndIncrement();
+        newThread.setName(this.f8938a + "[" + andIncrement + "]");
+        return newThread;
     }
 }

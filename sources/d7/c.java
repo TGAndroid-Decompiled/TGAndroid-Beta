@@ -1,4 +1,18 @@
 package d7;
-public final class c extends com.google.android.gms.common.api.j implements s7.a, s7.i {
-    public static final com.google.android.gms.common.api.e f5431k = new com.google.android.gms.common.api.e("LocationServices.API", new b6.b(2), new Object());
+
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class c {
+    public static final int f4224a = 0;
+
+    static {
+        c.class.getClassLoader();
+    }
+
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
+        }
+        return (Parcelable) creator.createFromParcel(parcel);
+    }
 }

@@ -1,83 +1,39 @@
 package org.telegram.ui.Components;
+public final class sp implements m2.f {
+    public int f28791a;
+    public final vh0 f28792b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import androidx.core.widget.NestedScrollView;
-import org.telegram.messenger.AndroidUtilities;
-public final class sp extends NestedScrollView {
-    public boolean S;
-    public final wp T;
-
-    public sp(wp wpVar, Context context) {
-        super(context);
-        this.T = wpVar;
+    public sp(vh0 vh0Var) {
+        this.f28792b = vh0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int i10;
-        int i11;
-        wp wpVar = this.T;
-        int i12 = wpVar.f34476f;
-        i10 = ((org.telegram.ui.ActionBar.f3) wpVar).backgroundPaddingTop;
-        int scrollY = (int) ((getScrollY() + (i12 - i10)) - getTranslationY());
-        Drawable drawable = wpVar.f34473b;
-        int measuredWidth = getMeasuredWidth();
-        i11 = ((org.telegram.ui.ActionBar.f3) wpVar).backgroundPaddingTop;
-        drawable.setBounds(0, scrollY, measuredWidth, AndroidUtilities.dp(19.0f) + i11 + wpVar.f34474c.getMeasuredHeight() + scrollY);
-        drawable.draw(canvas);
+    public final void b(float f10, int i10, int i11) {
+        if (i10 == this.f28792b.getCurrentItem() && f10 == 0.0f && this.f28791a == 1) {
+            d();
+        }
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            wp wpVar = this.T;
-            if (wpVar.f34476f != 0 && motionEvent.getY() < wpVar.f34476f) {
-                wpVar.dismiss();
-                return true;
+    public final void c(int i10) {
+        if (i10 == 0) {
+            d();
+        }
+        this.f28791a = i10;
+    }
+
+    public final void d() {
+        vh0 vh0Var = this.f28792b;
+        if (vh0Var.f29268t0 != null) {
+            int currentItem = vh0Var.getCurrentItem();
+            int k10 = vh0Var.f29268t0.k(currentItem) + vh0Var.f29268t0.j();
+            if (currentItem != k10) {
+                vh0Var.x(k10, false);
             }
         }
-        return super.onInterceptTouchEvent(motionEvent);
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        wp.m(this.T);
-    }
-
-    @Override
-    public final void onMeasure(int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.sp.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
-        super.onScrollChanged(i10, i11, i12, i13);
-        wp.m(this.T);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.T.isDismissed() && super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.S) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    @Override
-    public final void setTranslationY(float f9) {
-        super.setTranslationY(f9);
-        wp.m(this.T);
+    public final void a(int i10) {
     }
 }

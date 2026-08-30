@@ -1,8 +1,15 @@
 package j3;
-public final class l0 {
-    public final q0 f10618a;
 
-    public l0(q0 q0Var) {
-        this.f10618a = q0Var;
+import java.util.HashSet;
+public abstract class l0 {
+    public static final HashSet f8665a = new HashSet();
+    public static String f8666b = "goog.exo.core";
+
+    public static synchronized void a(String str) {
+        synchronized (l0.class) {
+            if (f8665a.add(str)) {
+                f8666b += ", " + str;
+            }
+        }
     }
 }

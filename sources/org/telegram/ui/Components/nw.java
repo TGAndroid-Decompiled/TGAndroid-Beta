@@ -1,31 +1,61 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class nw extends f2.v {
-    public final fz f31157c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class nw extends FrameLayout {
+    public final boolean f27387a;
+    public final kz f27388b;
 
-    public nw(fz fzVar) {
-        this.f31157c = fzVar;
+    public nw(kz kzVar, Context context, boolean z4) {
+        super(context);
+        this.f27388b = kzVar;
+        this.f27387a = z4;
     }
 
     @Override
-    public final int i(int i10) {
-        fz fzVar = this.f31157c;
-        az azVar = fzVar.f28642v0;
-        f2.p0 adapter = fzVar.f28657z0.getAdapter();
-        wy wyVar = fzVar.f28639u0;
-        if (adapter == wyVar) {
-            if (i10 == 0) {
-                return wyVar.d;
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        kz kzVar = this.f27388b;
+        tw twVar = kzVar.f26488y0;
+        pw pwVar = kzVar.A0;
+        sw swVar = kzVar.D0;
+        if (!this.f27387a && (view == pwVar || view == swVar)) {
+            canvas.save();
+            float y10 = twVar.getY() + twVar.getMeasuredHeight() + 1.0f;
+            if (view == pwVar) {
+                y10 = Math.max(y10, swVar.getY() + swVar.getMeasuredHeight() + 1.0f);
             }
-            if (i10 == wyVar.f34514s || (wyVar.h.get(i10) != null && !(wyVar.h.get(i10) instanceof TLRPC.Document))) {
-                return wyVar.d;
-            }
-            return 1;
-        } else if (i10 != azVar.f26920x && (azVar.f26917r.get(i10) == null || (azVar.f26917r.get(i10) instanceof TLRPC.Document))) {
-            return 1;
-        } else {
-            return wyVar.d;
+            canvas.clipRect(0.0f, y10 - (AndroidUtilities.dp(16.0f) * kzVar.f26409a.e), getMeasuredWidth(), getMeasuredHeight());
+            boolean drawChild = super.drawChild(canvas, view, j10);
+            canvas.restore();
+            return drawChild;
+        }
+        return super.drawChild(canvas, view, j10);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        kz kzVar = this.f27388b;
+        kzVar.H0 = true;
+        kzVar.a0();
+        zw zwVar = kzVar.Q0;
+        if (zwVar != null) {
+            zwVar.a();
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        kz kzVar = this.f27388b;
+        kzVar.H0 = false;
+        kzVar.a0();
+        zw zwVar = kzVar.Q0;
+        if (zwVar != null) {
+            zwVar.a();
         }
     }
 }

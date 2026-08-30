@@ -1,15 +1,15 @@
 package j7;
-public final class g0 {
-    public static final g0 f11012a;
-    public static final g0[] f11013b;
 
-    static {
-        ?? r02 = new Enum("DEFAULT", 0);
-        f11012a = r02;
-        f11013b = new g0[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
-    }
-
-    public static g0[] values() {
-        return (g0[]) f11013b.clone();
+import java.lang.ref.Reference;
+import java.util.ArrayList;
+public abstract class g0 {
+    public static void a(ArrayList arrayList, Object obj) {
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            Object obj2 = ((Reference) arrayList.get(size)).get();
+            if (obj2 == null || obj2 == obj) {
+                arrayList.remove(size);
+                return;
+            }
+        }
     }
 }

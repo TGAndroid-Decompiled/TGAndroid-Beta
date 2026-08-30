@@ -1,159 +1,119 @@
 package kg;
 
-import android.graphics.Rect;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.View;
-import java.util.ArrayList;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import k7.b6;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.p5;
-import org.telegram.ui.Components.xi0;
-import org.telegram.ui.ry;
-public final class d {
-    public static int f13670m;
-    public p5 f13671a;
-    public Rect f13672b;
-    public ArrayList f13673c;
-    public View d;
-    public long f13674e;
-    public boolean f13675f;
-    public boolean f13676g;
-    public int h;
-    public boolean f13677i;
-    public ImageReceiver f13678j;
-    public int f13679k;
-    public long f13680l;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.i2;
+import org.telegram.ui.ActionBar.j6;
+public class d extends FrameLayout {
+    public final f6 f10415a;
+    public final ImageView f10416b;
+    public final TextView f10417c;
+    public Runnable d;
+    public final i2 e;
+    public final Paint f10418f;
 
-    public static d a(p5 p5Var, boolean z10, boolean z11) {
-        int i10 = UserConfig.selectedAccount;
-        ?? obj = new Object();
-        obj.f13672b = new Rect();
-        obj.f13673c = new ArrayList();
-        obj.f13676g = true;
-        obj.f13679k = -1;
-        obj.f13671a = p5Var;
-        obj.f13675f = z10;
-        obj.h = i10;
-        obj.f13677i = z11;
-        obj.f13674e = System.currentTimeMillis();
-        if (z11 && LiteMode.isEnabled(4112)) {
-            ImageReceiver imageReceiver = new ImageReceiver();
-            obj.f13678j = imageReceiver;
-            if (z10) {
-                imageReceiver.setAllowDrawWhileCacheGenerating(true);
-            }
+    public d(Context context, f6 f6Var) {
+        super(context);
+        int i10;
+        float f10;
+        float f11;
+        this.f10418f = new Paint(1);
+        this.f10415a = f6Var;
+        TextView textView = new TextView(context);
+        this.f10417c = textView;
+        org.telegram.ui.b.g(20.0f, 1, textView);
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
         }
-        return obj;
+        textView.setGravity(i10);
+        int i11 = j6.f20012j5;
+        textView.setTextColor(j6.v0(i11, f6Var));
+        boolean z4 = LocaleController.isRTL;
+        if (z4) {
+            f10 = 16.0f;
+        } else {
+            f10 = 53.0f;
+        }
+        if (z4) {
+            f11 = 53.0f;
+        } else {
+            f11 = 16.0f;
+        }
+        addView(textView, b6.d(-1, -2.0f, 23, f10, 0.0f, f11, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.f10416b = imageView;
+        i2 i2Var = new i2(false);
+        this.e = i2Var;
+        imageView.setImageDrawable(i2Var);
+        i2Var.a(j6.v0(i11, f6Var));
+        i2Var.b(j6.v0(i11, f6Var));
+        i2Var.f19795k = 220.0f;
+        addView(imageView, b6.d(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        imageView.setOnClickListener(new androidx.mediarouter.app.c(this, 10));
     }
 
-    public final void b(android.graphics.Canvas r18) {
-        throw new UnsupportedOperationException("Method not decompiled: kg.d.b(android.graphics.Canvas):void");
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        int v02 = j6.v0(j6.f19907d7, this.f10415a);
+        Paint paint = this.f10418f;
+        paint.setColor(v02);
+        canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
     }
 
-    public final boolean c() {
-        if (System.currentTimeMillis() - this.f13674e > 2500) {
-            return true;
-        }
-        return false;
+    public int getHeaderHeight() {
+        return AndroidUtilities.dp(56.0f);
     }
 
-    public final void d(View view) {
-        this.f13671a.o(view);
-        ImageReceiver imageReceiver = this.f13678j;
-        if (imageReceiver != null) {
-            imageReceiver.onDetachedFromWindow();
-            imageReceiver.clearImage();
-        }
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(getHeaderHeight(), 1073741824));
     }
 
-    public final void e(int i10, int i11, int i12, int i13) {
-        Rect rect = this.f13672b;
-        rect.set(i10, i11, i12, i13);
-        ImageReceiver imageReceiver = this.f13678j;
-        if (imageReceiver != null) {
-            imageReceiver.setImageCoords(rect);
-        }
+    public void setBackImage(int i10) {
+        this.f10416b.setImageResource(i10);
     }
 
-    public final void f(View view) {
-        boolean z10;
-        boolean z11;
-        TLRPC.TL_availableReaction tL_availableReaction;
-        TLRPC.Document document;
-        boolean z12 = this.f13675f;
-        int i10 = this.h;
-        p5 p5Var = this.f13671a;
-        p5Var.a(view);
-        this.d = view;
-        ImageReceiver imageReceiver = this.f13678j;
-        if (imageReceiver != null && this.f13677i) {
-            imageReceiver.onAttachedToWindow();
-            TLRPC.Document document2 = p5Var.f31588e;
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
-            String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document2, null);
-            if (findAnimatedEmojiEmoticon != null && (tL_availableReaction = MediaDataController.getInstance(i10).getReactionsMap().get(findAnimatedEmojiEmoticon)) != null && (document = tL_availableReaction.around_animation) != null) {
-                if (z12) {
-                    StringBuilder sb2 = new StringBuilder();
-                    int i11 = f13670m;
-                    f13670m = i11 + 1;
-                    sb2.append(i11);
-                    sb2.append(" ");
-                    imageReceiver.setUniqKeyPrefix(sb2.toString());
-                    int f9 = ry.f();
-                    TLRPC.Document document3 = tL_availableReaction.around_animation;
-                    z10 = true;
-                    imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), f9 + "_" + f9 + "_pcache_compress", null, null, document3, 0);
-                } else {
-                    ImageLocation forDocument = ImageLocation.getForDocument(document);
-                    String a2 = m0.a();
-                    TLRPC.Document document4 = tL_availableReaction.around_animation;
-                    z10 = true;
-                    imageReceiver.setImage(forDocument, a2, null, null, document4, 0);
-                }
-                z11 = true;
-            } else {
-                z10 = true;
-                z11 = false;
-            }
-            if (!z11) {
-                String str = UserConfig.getInstance(i10).genericAnimationsStickerPack;
-                if (str != null && (tL_messages_stickerSet = MediaDataController.getInstance(i10).getStickerSetByName(str)) == null) {
-                    tL_messages_stickerSet = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName(str);
-                }
-                if (tL_messages_stickerSet != null) {
-                    if (this.f13679k < 0) {
-                        this.f13679k = Math.abs(Utilities.fastRandom.nextInt() % tL_messages_stickerSet.documents.size());
-                    }
-                    if (z12) {
-                        StringBuilder sb3 = new StringBuilder();
-                        int i12 = f13670m;
-                        f13670m = i12 + 1;
-                        sb3.append(i12);
-                        sb3.append(" ");
-                        imageReceiver.setUniqKeyPrefix(sb3.toString());
-                        int f10 = ry.f();
-                        imageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.f13679k)), f10 + "_" + f10 + "_pcache_compress", null, null, tL_messages_stickerSet.documents.get(this.f13679k), 0);
-                    } else {
-                        imageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.f13679k)), "60_60", null, null, tL_messages_stickerSet.documents.get(this.f13679k), 0);
-                    }
-                    z11 = true;
-                }
-            }
-            if (z11) {
-                if (imageReceiver.getLottieAnimation() != null) {
-                    imageReceiver.getLottieAnimation().L(0, false, z10);
-                }
-                imageReceiver.setAutoRepeat(0);
-                return;
-            }
-            imageReceiver.setImageBitmap(new xi0(R.raw.custom_emoji_reaction, "" + R.raw.custom_emoji_reaction, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
+    public void setCloseImageVisible(boolean z4) {
+        int i10;
+        float f10;
+        float f11;
+        if (z4) {
+            i10 = 0;
+        } else {
+            i10 = 8;
         }
+        this.f10416b.setVisibility(i10);
+        boolean z10 = LocaleController.isRTL;
+        if (!z10 && z4) {
+            f10 = 53.0f;
+        } else {
+            f10 = 22.0f;
+        }
+        if (z10 && z4) {
+            f11 = 53.0f;
+        } else {
+            f11 = 22.0f;
+        }
+        this.f10417c.setLayoutParams(b6.d(-1, -2.0f, 23, f10, 0.0f, f11, 0.0f));
+    }
+
+    public void setOnCloseClickListener(Runnable runnable) {
+        this.d = runnable;
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f10417c.setText(charSequence);
     }
 }

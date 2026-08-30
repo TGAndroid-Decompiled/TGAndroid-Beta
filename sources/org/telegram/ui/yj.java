@@ -1,53 +1,34 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.FragmentContextView;
-public final class yj extends FragmentContextView {
-    public final int J0;
-    public final tn K0;
+import android.view.MotionEvent;
+public final class yj extends org.telegram.ui.Components.c21 {
+    public final xn e;
 
-    public yj(tn tnVar, Context context, tn tnVar2, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
-        super(context, tnVar2, null, true, c6Var);
-        this.J0 = i10;
-        switch (i10) {
-            case 1:
-                this.K0 = tnVar;
-                super(context, tnVar2, null, false, c6Var);
-                return;
-            default:
-                this.K0 = tnVar;
-                return;
-        }
+    public yj(xn xnVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, i10, f6Var);
+        this.e = xnVar;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        boolean z11;
-        switch (this.J0) {
-            case 0:
-                tn tnVar = this.K0;
-                org.telegram.ui.Components.vg vgVar = tnVar.I0;
-                FrameLayout frameLayout = tnVar.W1;
-                if (i10 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                vgVar.i(frameLayout, z10, true);
-                return;
-            default:
-                tn tnVar2 = this.K0;
-                org.telegram.ui.Components.vg vgVar2 = tnVar2.I0;
-                FrameLayout frameLayout2 = tnVar2.U1;
-                if (i10 == 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                vgVar2.i(frameLayout2, z11, true);
-                return;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.k kVar;
+        if (getAlpha() != 0.0f) {
+            xn xnVar = this.e;
+            kVar = ((org.telegram.ui.ActionBar.p2) xnVar).actionBar;
+            if (!kVar.s() && !xnVar.A9()) {
+                return super.onTouchEvent(motionEvent);
+            }
+            return false;
         }
+        return false;
+    }
+
+    @Override
+    public final void setTranslationY(float f10) {
+        if (getTranslationY() != f10) {
+            invalidate();
+        }
+        super.setTranslationY(f10);
     }
 }

@@ -1,63 +1,45 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-public final class ua0 implements org.telegram.ui.Components.b5, org.telegram.ui.ActionBar.b2, org.telegram.ui.Components.kv0 {
-    public final int f43208a;
-    public final eb0 f43209b;
+import java.util.regex.Pattern;
+public final class ua0 implements df.c {
+    public final lf.s0 f38893a;
+    public final LaunchActivity f38894b;
 
-    public ua0(eb0 eb0Var, int i10) {
-        this.f43208a = i10;
-        this.f43209b = eb0Var;
+    public ua0(LaunchActivity launchActivity) {
+        this.f38894b = launchActivity;
+        Pattern pattern = LaunchActivity.f31612y1;
+        this.f38893a = new lf.s0(launchActivity, false);
     }
 
     @Override
-    public void I(int i10, int i11, boolean z10) {
-        this.f43209b.V(i10);
+    public final void b() {
+        Pattern pattern = LaunchActivity.f31612y1;
+        this.f38894b.getWindow();
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        eb0 eb0Var = this.f43209b;
-        eb0Var.P.a(eb0Var.f37777e);
-        eb0Var.finishFragment();
+    public final void d() {
+        this.f38893a.a(false);
     }
 
     @Override
-    public void h(int i10) {
-        switch (this.f43208a) {
-            case 2:
-                eb0 eb0Var = this.f43209b;
-                ArrayList arrayList = eb0Var.L;
-                if (i10 < arrayList.size()) {
-                    eb0Var.f37782w.setText(LocaleController.formatDateAudio(eb0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
-                    return;
-                }
-                eb0Var.f37782w.setText("");
-                return;
-            default:
-                eb0 eb0Var2 = this.f43209b;
-                eb0Var2.B.clearFocus();
-                eb0Var2.K = true;
-                ArrayList arrayList2 = eb0Var2.N;
-                if (i10 < arrayList2.size()) {
-                    eb0Var2.B.setText(((Integer) arrayList2.get(i10)).toString());
-                } else {
-                    eb0Var2.B.setText("");
-                }
-                eb0Var2.K = false;
-                return;
-        }
+    public final void f() {
+        Pattern pattern = LaunchActivity.f31612y1;
+        LaunchActivity launchActivity = this.f38894b;
+        launchActivity.getClass();
+        this.f38893a.a(true);
+        launchActivity.getWindow();
     }
 
     @Override
-    public void m() {
-        int i10 = this.f43208a;
+    public final void a() {
     }
 
-    private final void a() {
+    @Override
+    public final void c() {
     }
 
-    private final void b() {
+    @Override
+    public final void e() {
     }
 }

@@ -1,226 +1,141 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.os.Build;
-import android.provider.Settings;
-import android.view.MotionEvent;
+import android.content.Context;
+import android.graphics.Paint;
+import android.text.TextUtils;
 import android.view.View;
-import android.webkit.WebView;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.PhotoViewer;
-public abstract class mf0 extends FrameLayout {
-    public float A;
-    public boolean B;
-    public boolean C;
-    public int D;
-    public int E;
-    public float F;
-    public boolean G;
-    public xb0 H;
-    public int f30671a;
-    public PhotoViewer f30672b;
-    public LinearLayout f30673c;
-    public TextView d;
-    public TextView f30674e;
-    public gu f30675f;
-    public cg.h0 h;
-    public RadialProgressView f30676n;
-    public View f30677r;
-    public String f30678s;
-    public ArrayList v;
-    public String f30679w;
-    public boolean f30680x;
-    public TLRPC.WebPage f30681y;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class mf0 extends rl0 {
+    public final Context f27009c;
+    public final nf0 d;
 
-    public static void a(org.telegram.ui.et0 et0Var, String str) {
-        String str2;
-        double ceil;
-        int videoDuration = et0Var.getVideoDuration() / 1000;
-        ArrayList arrayList = et0Var.v;
-        arrayList.clear();
-        if (videoDuration > 15) {
-            String[] split = str.split("\\|");
-            String q6 = a4.w.q(new StringBuilder(), split[0].split("\\$")[0], "2/");
-            String str3 = split[0].split("\\$N")[1];
-            if (split.length == 3) {
-                str2 = split[2].split("M#")[1];
-            } else if (split.length == 2) {
-                str2 = split[1].split("t#")[1];
-            } else {
-                str2 = split[3].split("M#")[1];
-            }
-            if (videoDuration <= 100) {
-                ceil = Math.ceil(videoDuration / 25.0f);
-            } else if (videoDuration <= 250) {
-                ceil = Math.ceil((videoDuration / 2.0f) / 25.0f);
-            } else if (videoDuration <= 500) {
-                ceil = Math.ceil((videoDuration / 4.0f) / 25.0f);
-            } else if (videoDuration <= 1000) {
-                ceil = Math.ceil((videoDuration / 5.0f) / 25.0f);
-            } else {
-                ceil = Math.ceil((videoDuration / 10.0f) / 25.0f);
-            }
-            int i10 = (int) ceil;
-            for (int i11 = 0; i11 < i10; i11++) {
-                Locale locale = Locale.ROOT;
-                arrayList.add(q6 + "M" + i11 + str3 + "&sigh=" + str2);
-            }
-        }
-    }
-
-    public final void b(boolean z10) {
-        xb0 xb0Var = this.H;
-        if (!z10 && this.C) {
-            AndroidUtilities.runOnUIThread(xb0Var, 500L);
-        } else if (z10 && !this.C) {
-            AndroidUtilities.cancelRunOnUIThread(xb0Var);
-        }
-    }
-
-    public final java.lang.String c(int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mf0.c(int):java.lang.String");
-    }
-
-    public final boolean d() {
-        return this.f30680x;
+    public mf0(nf0 nf0Var, Context context) {
+        this.d = nf0Var;
+        this.f27009c = context;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.G) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    public final boolean e() {
-        boolean z10;
-        if (this.f30680x && "inapp".equals(MessagesController.getInstance(this.f30671a).youtubePipType)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (!z10 && Build.VERSION.SDK_INT >= 23 && !Settings.canDrawOverlays(getContext())) {
-            c5.B((Activity) getContext(), null, false);
-            return false;
-        } else if (this.f30676n.getVisibility() == 0) {
-            return false;
-        } else {
-            if (bg0.f27076l0.L) {
-                bg0.j(false);
-                AndroidUtilities.runOnUIThread(new hf0(this, 0), 300L);
-                return true;
-            }
-            this.h.setVisibility(0);
-            Activity activity = (Activity) getContext();
-            gu guVar = this.f30675f;
-            TLRPC.WebPage webPage = this.f30681y;
-            if (bg0.x(z10, activity, this, guVar, webPage.embed_width, webPage.embed_height, false)) {
-                bg0.w(PhotoViewer.t1());
-            }
-            return true;
-        }
-    }
-
-    public final void f() {
-        if (this.C && this.f30680x) {
-            h("pauseVideo();");
-            this.C = false;
-            b(true);
-        }
-    }
-
-    public final void g() {
-        if (!this.C && this.f30680x) {
-            h("playVideo();");
-            this.C = true;
-            b(false);
-        }
-    }
-
-    public float getBufferedPosition() {
-        return this.F;
-    }
-
-    public int getCurrentPosition() {
-        return this.E;
-    }
-
-    public int getVideoDuration() {
-        return this.D;
-    }
-
-    public WebView getWebView() {
-        return this.f30675f;
-    }
-
-    public final void h(String str) {
-        this.f30675f.evaluateJavascript(str, null);
-    }
-
-    public final void i(long j10) {
-        boolean z10 = this.C;
-        this.E = (int) j10;
-        if (z10) {
-            f();
-        }
-        if (z10) {
-            AndroidUtilities.runOnUIThread(new eg.z1(this, j10, 21), 100L);
-            return;
-        }
-        h("seekTo(" + Math.round(((float) j10) / 1000.0f) + ", true);");
+    public final boolean D(f2.l1 l1Var) {
+        return false;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        gu guVar = this.f30675f;
-        if (guVar.getParent() == this) {
-            TLRPC.WebPage webPage = this.f30681y;
-            int i12 = webPage.embed_width;
-            int i13 = 100;
-            if (i12 == 0) {
-                i12 = 100;
-            }
-            int i14 = webPage.embed_height;
-            if (i14 != 0) {
-                i13 = i14;
-            }
-            int size = View.MeasureSpec.getSize(i10);
-            int size2 = View.MeasureSpec.getSize(i11);
-            float f9 = i12;
-            float f10 = i13;
-            float min = Math.min(size / f9, size2 / f10);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) guVar.getLayoutParams();
-            int i15 = (int) (f9 * min);
-            layoutParams.width = i15;
-            int i16 = (int) (f10 * min);
-            layoutParams.height = i16;
-            layoutParams.topMargin = (size2 - i16) / 2;
-            layoutParams.leftMargin = (size - i15) / 2;
-        }
-        super.onMeasure(i10, i11);
+    public final int h() {
+        return this.d.C;
     }
 
-    public void setPlaybackSpeed(float f9) {
-        this.A = f9;
-        if (this.f30676n.getVisibility() != 0) {
-            if (this.f30680x) {
-                h("setPlaybackSpeed(" + f9 + ");");
-                return;
+    @Override
+    public final long i(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final int j(int i10) {
+        nf0 nf0Var = this.d;
+        if (i10 != nf0Var.f27268y && i10 != nf0Var.B) {
+            return 0;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(f2.l1 l1Var, int i10) {
+        int i11 = l1Var.f5788f;
+        View view = l1Var.f5785a;
+        nf0 nf0Var = this.d;
+        if (i11 != 0) {
+            if (i11 == 1) {
+                org.telegram.ui.Cells.u5 u5Var = (org.telegram.ui.Cells.u5) view;
+                u5Var.setTag(Integer.valueOf(i10));
+                if (i10 == nf0Var.f27268y) {
+                    u5Var.a(nf0Var.K, LocaleController.getString(R.string.TintShadows));
+                    return;
+                } else if (i10 == nf0Var.B) {
+                    u5Var.a(nf0Var.L, LocaleController.getString(R.string.TintHighlights));
+                    return;
+                } else {
+                    return;
+                }
             }
             return;
         }
-        this.B = true;
+        org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) view;
+        v5Var.setTag(Integer.valueOf(i10));
+        if (i10 == nf0Var.f27238b) {
+            v5Var.a(LocaleController.getString(R.string.Enhance), 0, nf0Var.D);
+        } else if (i10 == nf0Var.f27257r) {
+            v5Var.a(LocaleController.getString(R.string.Highlights), -100, nf0Var.M);
+        } else if (i10 == nf0Var.d) {
+            v5Var.a(LocaleController.getString(R.string.Contrast), -100, nf0Var.F);
+        } else if (i10 == nf0Var.f27240c) {
+            v5Var.a(LocaleController.getString(R.string.Exposure), -100, nf0Var.E);
+        } else if (i10 == nf0Var.f27244f) {
+            v5Var.a(LocaleController.getString(R.string.Warmth), -100, nf0Var.G);
+        } else if (i10 == nf0Var.e) {
+            v5Var.a(LocaleController.getString(R.string.Saturation), -100, nf0Var.H);
+        } else if (i10 == nf0Var.v) {
+            v5Var.a(LocaleController.getString(R.string.Vignette), 0, nf0Var.O);
+        } else if (i10 == nf0Var.f27259s) {
+            v5Var.a(LocaleController.getString(R.string.Shadows), -100, nf0Var.N);
+        } else if (i10 == nf0Var.f27264w) {
+            v5Var.a(LocaleController.getString(R.string.Grain), 0, nf0Var.P);
+        } else if (i10 == nf0Var.f27266x) {
+            v5Var.a(LocaleController.getString(R.string.Sharpen), 0, nf0Var.R);
+        } else if (i10 == nf0Var.h) {
+            v5Var.a(LocaleController.getString(R.string.Fade), 0, nf0Var.I);
+        } else if (i10 == nf0Var.f27252n) {
+            v5Var.a(LocaleController.getString(R.string.SoftenSkin), 0, nf0Var.J);
+        }
     }
 
-    public void setTouchDisabled(boolean z10) {
-        this.G = z10;
+    @Override
+    public final f2.l1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.u5 u5Var;
+        Context context = this.f27009c;
+        if (i10 == 0) {
+            org.telegram.ui.ActionBar.f6 f6Var = this.d.F0;
+            ?? frameLayout = new FrameLayout(context);
+            frameLayout.e = new m2.b((Object) frameLayout, 7);
+            TextView textView = new TextView(context);
+            frameLayout.f22500a = textView;
+            textView.setGravity(5);
+            textView.setTextColor(-1);
+            textView.setTextSize(1, 12.0f);
+            textView.setMaxLines(1);
+            textView.setSingleLine(true);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            frameLayout.addView(textView, k7.b6.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
+            TextView textView2 = new TextView(context);
+            frameLayout.f22501b = textView2;
+            org.telegram.ui.b.l(org.telegram.ui.ActionBar.j6.f20304zf, f6Var, textView2, 1, 12.0f);
+            textView2.setGravity(5);
+            textView2.setSingleLine(true);
+            frameLayout.addView(textView2, k7.b6.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
+            ?? view = new View(context);
+            Paint paint = new Paint();
+            view.f23373a = paint;
+            Paint paint2 = new Paint(1);
+            view.f23374b = paint2;
+            view.f23375c = AndroidUtilities.dp(16.0f);
+            view.d = 0;
+            view.e = 0.0f;
+            view.f23376f = false;
+            paint.setColor(-11711155);
+            paint2.setColor(-1);
+            frameLayout.f22502c = view;
+            frameLayout.addView(view, k7.b6.d(-1, 40.0f, 19, 96.0f, 0.0f, 24.0f, 0.0f));
+            frameLayout.setSeekBarDelegate(new fv(this, 10));
+            u5Var = frameLayout;
+        } else {
+            org.telegram.ui.Cells.u5 u5Var2 = new org.telegram.ui.Cells.u5(context);
+            u5Var2.setOnClickListener(new z70(this, 6));
+            u5Var = u5Var2;
+        }
+        return new f2.l1(u5Var);
     }
 }

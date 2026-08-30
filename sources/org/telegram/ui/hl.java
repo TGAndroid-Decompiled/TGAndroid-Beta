@@ -1,16 +1,81 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class hl extends pt0 {
-    public final tn f38955a;
+import android.animation.AnimatorSet;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class hl extends FrameLayout {
+    public float f34909a;
+    public float f34910b;
+    public final xn f34911c;
 
-    public hl(tn tnVar) {
-        this.f38955a = tnVar;
+    public hl(xn xnVar, Activity activity) {
+        super(activity);
+        this.f34911c = xnVar;
+        setOnLongClickListener(new w(this, 2));
     }
 
     @Override
-    public final zt0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return tn.A1(this.f38955a, messageObject, fileLocation, i10, z10, false);
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        xn xnVar = this.f34911c;
+        if (view == xnVar.f40222w2) {
+            canvas.save();
+            canvas.clipRect(0, 0, getMeasuredWidth(), AndroidUtilities.dp(48.0f));
+        }
+        org.telegram.ui.ActionBar.k5[] k5VarArr = xnVar.A2;
+        if (view != k5VarArr[0] && view != k5VarArr[1]) {
+            boolean drawChild = super.drawChild(canvas, view, j10);
+            if (view == xnVar.f40222w2) {
+                canvas.restore();
+            }
+            return drawChild;
+        }
+        canvas.save();
+        canvas.clipRect(0, 0, getMeasuredWidth() - AndroidUtilities.dp(38.0f), getMeasuredHeight());
+        boolean drawChild2 = super.drawChild(canvas, view, j10);
+        canvas.restore();
+        return drawChild2;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        xn xnVar = this.f34911c;
+        if (xnVar.f40236x2) {
+            int i12 = 0;
+            while (true) {
+                AnimatorSet[] animatorSetArr = xnVar.E2;
+                if (i12 < animatorSetArr.length) {
+                    AnimatorSet animatorSet = animatorSetArr[i12];
+                    if (animatorSet != null) {
+                        animatorSet.start();
+                    }
+                    i12++;
+                } else {
+                    xnVar.f40236x2 = false;
+                    return;
+                }
+            }
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        this.f34909a = motionEvent.getY();
+        int action = motionEvent.getAction();
+        xn xnVar = this.f34911c;
+        if (action == 1) {
+            xnVar.finishPreviewFragment();
+        } else if (motionEvent.getAction() == 2) {
+            float f10 = this.f34910b - this.f34909a;
+            xnVar.movePreviewFragment(f10);
+            if (f10 < 0.0f) {
+                this.f34910b = this.f34909a;
+            }
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

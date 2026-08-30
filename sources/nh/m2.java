@@ -1,46 +1,59 @@
 package nh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class m2 extends View {
-    public final int f18122a;
-    public final p2 f18123b;
+import android.util.SparseIntArray;
+import n7.qa;
+public final class m2 extends qa {
+    public final int d;
 
-    public m2(p2 p2Var, Context context, int i10) {
-        super(context);
-        this.f18122a = i10;
-        this.f18123b = p2Var;
+    public m2(int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(f6Var);
+        this.d = i10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        switch (this.f18122a) {
+    public final void M0() {
+        switch (this.d) {
             case 0:
-                p2 p2Var = this.f18123b;
-                p2Var.f18344q.reset();
-                p2Var.b(canvas, true);
+                SparseIntArray sparseIntArray = (SparseIntArray) this.f14702b;
+                sparseIntArray.append(org.telegram.ui.ActionBar.j6.f19977h5, -14737633);
+                sparseIntArray.append(org.telegram.ui.ActionBar.j6.f19852a7, -13421773);
+                return;
+            case 1:
+                ((SparseIntArray) this.f14702b).put(org.telegram.ui.ActionBar.j6.He, -1071635414);
+                return;
+            case 2:
+                SparseIntArray sparseIntArray2 = (SparseIntArray) this.f14702b;
+                sparseIntArray2.put(org.telegram.ui.ActionBar.j6.He, i0.a.d(0.2f, -16777216, -1));
+                sparseIntArray2.put(org.telegram.ui.ActionBar.j6.Xd, i0.a.d(0.5f, -16777216, -1));
+                return;
+            case 3:
+                ((SparseIntArray) this.f14702b).put(org.telegram.ui.ActionBar.j6.He, i0.a.k(-1, 30));
+                return;
+            case 4:
+                ((SparseIntArray) this.f14702b).put(org.telegram.ui.ActionBar.j6.He, i0.a.k(-1, 30));
+                return;
+            case 5:
+                SparseIntArray sparseIntArray3 = (SparseIntArray) this.f14702b;
+                sparseIntArray3.append(org.telegram.ui.ActionBar.j6.f19977h5, -14803426);
+                sparseIntArray3.append(org.telegram.ui.ActionBar.j6.f19852a7, -16777216);
+                return;
+            case 6:
+                SparseIntArray sparseIntArray4 = (SparseIntArray) this.f14702b;
+                sparseIntArray4.append(org.telegram.ui.ActionBar.j6.f19977h5, -14803426);
+                sparseIntArray4.append(org.telegram.ui.ActionBar.j6.f19852a7, -16777216);
+                return;
+            case 7:
+                ((SparseIntArray) this.f14702b).put(org.telegram.ui.ActionBar.j6.He, i0.a.k(-1, 30));
+                return;
+            case 8:
+                SparseIntArray sparseIntArray5 = (SparseIntArray) this.f14702b;
+                sparseIntArray5.append(org.telegram.ui.ActionBar.j6.f19977h5, -14737633);
+                sparseIntArray5.append(org.telegram.ui.ActionBar.j6.f19852a7, -13421773);
                 return;
             default:
-                p2 p2Var2 = this.f18123b;
-                p2Var2.f18344q.reset();
-                p2Var2.f18344q.postTranslate(-getX(), (-getY()) + AndroidUtilities.statusBarHeight);
-                p2Var2.f18344q.postScale(1.0f / getScaleX(), 1.0f / getScaleY(), getPivotX(), getPivotY());
-                p2Var2.b(canvas, false);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f18122a) {
-            case 0:
-                super.onMeasure(i10, i11);
-                this.f18123b.g();
-                return;
-            default:
-                super.onMeasure(i10, i11);
+                SparseIntArray sparseIntArray6 = (SparseIntArray) this.f14702b;
+                sparseIntArray6.append(org.telegram.ui.ActionBar.j6.f19977h5, -14803426);
+                sparseIntArray6.append(org.telegram.ui.ActionBar.j6.f19852a7, -16777216);
                 return;
         }
     }

@@ -1,47 +1,66 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
+import android.text.SpannableStringBuilder;
+import java.util.Collections;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class cw implements MessagesStorage.BooleanCallback, MessagesStorage.LongCallback {
-    public final int f37232a;
-    public final long f37233b;
-    public final boolean f37234c;
-    public final NotificationCenter.NotificationCenterDelegate d;
-    public final Object f37235e;
+public final class cw implements Runnable {
+    public final int f33439a;
+    public final oy f33440b;
+    public final long f33441c;
+    public final boolean d;
 
-    public cw(org.telegram.ui.ActionBar.c2 c2Var, org.telegram.ui.ActionBar.o2 o2Var, int i10, long j10, boolean z10) {
-        this.d = c2Var;
-        this.f37235e = o2Var;
-        this.f37232a = i10;
-        this.f37233b = j10;
-        this.f37234c = z10;
+    public cw(oy oyVar, long j10, boolean z4, int i10) {
+        this.f33439a = i10;
+        this.f33440b = oyVar;
+        this.f33441c = j10;
+        this.d = z4;
     }
 
     @Override
-    public void run(boolean z10) {
-        fy fyVar = (fy) this.d;
-        long j10 = this.f37233b;
-        boolean z11 = this.f37234c;
-        fy.t0(this.f37232a, j10, (TLRPC.Chat) this.f37235e, fyVar, z11, z10);
-    }
-
-    public cw(fy fyVar, int i10, TLRPC.Chat chat, long j10, boolean z10) {
-        this.d = fyVar;
-        this.f37232a = i10;
-        this.f37235e = chat;
-        this.f37233b = j10;
-        this.f37234c = z10;
-    }
-
-    @Override
-    public void run(long j10) {
-        org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) this.f37235e;
-        ((org.telegram.ui.ActionBar.c2) this.d).dismiss();
-        if (j10 == 0) {
-            return;
+    public final void run() {
+        String str;
+        TLRPC.Chat chat;
+        SpannableStringBuilder replaceTags;
+        int i10 = this.f33439a;
+        boolean z4 = this.d;
+        long j10 = this.f33441c;
+        oy oyVar = this.f33440b;
+        switch (i10) {
+            case 0:
+                oy oyVar2 = this.f33440b;
+                nh.t6 storiesController = oyVar2.getMessagesController().getStoriesController();
+                long j11 = this.f33441c;
+                boolean z10 = this.d;
+                storiesController.i0(j11, z10, false);
+                n7.qa qaVar = new n7.qa(11);
+                qaVar.f14702b = new cw(oyVar2, j11, z10, 1);
+                qaVar.f14703c = new cw(oyVar2, j11, z10, 2);
+                if (j11 >= 0) {
+                    TLRPC.User user = oyVar2.getMessagesController().getUser(Long.valueOf(j11));
+                    str = ContactsController.formatName(user.first_name, null, 15);
+                    chat = user;
+                } else {
+                    TLRPC.Chat chat2 = oyVar2.getMessagesController().getChat(Long.valueOf(-j11));
+                    str = chat2.title;
+                    chat = chat2;
+                }
+                if (oyVar2.e4()) {
+                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToDialogs", R.string.StoriesMovedToDialogs, str));
+                } else {
+                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToContacts", R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 15)));
+                }
+                oyVar2.P = org.telegram.ui.Components.qc.X().V(Collections.singletonList(chat), replaceTags, null, qaVar).j();
+                return;
+            case 1:
+                oyVar.getMessagesController().getStoriesController().i0(j10, !z4, false);
+                return;
+            default:
+                oyVar.getMessagesController().getStoriesController().i0(j10, z4, true);
+                return;
         }
-        MessagesController.getInstance(this.f37232a).linkCommunity(-j10, this.f37233b, this.f37234c, new ih.m(o2Var, j10, 3));
     }
 }

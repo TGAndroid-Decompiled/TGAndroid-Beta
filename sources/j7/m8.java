@@ -1,10 +1,11 @@
 package j7;
-public final class m8 {
-    public final n8 f11107a;
-    public final w f11108b;
 
-    public m8(g9.l lVar) {
-        this.f11107a = (n8) lVar.f7168b;
-        this.f11108b = (w) lVar.f7169c;
+import java.util.Locale;
+public abstract class m8 {
+    public static int a(int i10) {
+        if (i10 < 100 && i10 >= 0) {
+            return Integer.parseInt(String.format(Locale.US, "%s%02d", e2.c.j(String.valueOf(h7.u.F2().get(1)), 2, 0), Integer.valueOf(i10)));
+        }
+        return i10;
     }
 }

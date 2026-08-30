@@ -1,32 +1,50 @@
 package cg;
 
-import android.animation.ValueAnimator;
-public final class t implements ValueAnimator.AnimatorUpdateListener {
-    public final int f3372a;
-    public final w f3373b;
-    public final v f3374c;
+import android.view.View;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.c81;
+public final class t extends c81 {
+    public final u f2525a;
 
-    public t(w wVar, v vVar, int i10) {
-        this.f3372a = i10;
-        this.f3373b = wVar;
-        this.f3374c = vVar;
+    public t(u uVar) {
+        this.f2525a = uVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f3372a) {
-            case 0:
-                w wVar = this.f3373b;
-                wVar.getClass();
-                this.f3374c.f3398c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                wVar.invalidate();
-                return;
-            default:
-                w wVar2 = this.f3373b;
-                wVar2.getClass();
-                this.f3374c.f3398c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                wVar2.invalidate();
-                return;
+    public final View d(int i10) {
+        u uVar = this.f2525a;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                return (x) uVar.f2535b;
+            }
+            return (d0) uVar.d;
         }
+        return (w) uVar.f2536c;
+    }
+
+    @Override
+    public final int e() {
+        return 3;
+    }
+
+    @Override
+    public final CharSequence g(int i10) {
+        if (i10 != 1) {
+            if (i10 != 2) {
+                return LocaleController.getString(R.string.PaintPaletteGrid).toUpperCase();
+            }
+            return LocaleController.getString(R.string.PaintPaletteSliders).toUpperCase();
+        }
+        return LocaleController.getString(R.string.PaintPaletteSpectrum).toUpperCase();
+    }
+
+    @Override
+    public final int h(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final void b(View view, int i10, int i11) {
     }
 }

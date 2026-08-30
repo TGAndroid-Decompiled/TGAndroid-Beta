@@ -1,38 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.text.Selection;
-import android.text.Spannable;
-import android.text.method.LinkMovementMethod;
-import android.text.style.CharacterStyle;
-import android.view.MotionEvent;
-import android.widget.TextView;
-import org.telegram.messenger.FileLog;
-public final class f51 extends LinkMovementMethod {
-    public final UndoView f28318a;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class f51 extends MetricAffectingSpan {
+    public Typeface f24789a;
+    public int f24790b;
+    public int f24791c;
 
-    public f51(UndoView undoView) {
-        this.f28318a = undoView;
+    public f51(Typeface typeface) {
+        this.f24791c = -1;
+        this.f24789a = typeface;
     }
 
     @Override
-    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
-        CharacterStyle[] characterStyleArr;
-        try {
-            if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
-                if (motionEvent.getAction() == 1) {
-                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
-                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
-                        this.f28318a.b(characterStyleArr2[0]);
-                    }
-                    Selection.removeSelection(spannable);
-                    return true;
-                }
-                return super.onTouchEvent(textView, spannable, motionEvent);
-            }
-            return false;
-        } catch (Exception e10) {
-            FileLog.e(e10);
-            return false;
+    public final void updateDrawState(TextPaint textPaint) {
+        int i10 = this.f24791c;
+        if (i10 >= 0) {
+            this.f24790b = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
         }
+        Typeface typeface = this.f24789a;
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
+        }
+        int i11 = this.f24790b;
+        if (i11 != 0) {
+            textPaint.setColor(i11);
+        }
+        textPaint.setFlags(textPaint.getFlags() | 128);
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        Typeface typeface = this.f24789a;
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
+        }
+        textPaint.setFlags(textPaint.getFlags() | 128);
+    }
+
+    public f51() {
+        Typeface typeface = Typeface.DEFAULT;
+        this.f24791c = -1;
+        this.f24789a = typeface;
+    }
+
+    public f51(Typeface typeface, int i10) {
+        this.f24791c = -1;
+        this.f24789a = typeface;
+        this.f24790b = i10;
     }
 }

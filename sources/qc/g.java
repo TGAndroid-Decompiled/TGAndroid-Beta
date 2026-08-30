@@ -1,43 +1,23 @@
 package qc;
 
-import java.io.Serializable;
-import kotlin.jvm.internal.j;
-public final class g implements c, Serializable {
-    public bd.a f46599a;
-    public volatile Object f46600b;
-    public final Object f46601c;
+import java.util.regex.Pattern;
+import ne.p;
+public final class g extends h {
+    public static final Pattern e = Pattern.compile("^(?:<[A-Za-z][A-Za-z0-9-]*(?:\\s+[a-zA-Z_:][a-zA-Z0-9:._-]*(?:\\s*=\\s*(?:[^\"'=<>`\\x00-\\x20]+|'[^']*'|\"[^\"]*\"))?)*\\s*/?>|</[A-Za-z][A-Za-z0-9-]*\\s*[>]|<!---->|<!--(?:-?[^>-])(?:-?[^-])*-->|[<][?].*?[?][>]|<![A-Z]+\\s+[^>]*>|<!\\[CDATA\\[[\\s\\S]*?\\]\\]>)", 2);
 
-    public g(bd.a initializer) {
-        j.e(initializer, "initializer");
-        this.f46599a = initializer;
-        this.f46600b = h.f46602a;
-        this.f46601c = this;
+    @Override
+    public final p b() {
+        String a2 = a(e);
+        if (a2 != null) {
+            ne.d dVar = new ne.d(1);
+            dVar.h = a2;
+            return dVar;
+        }
+        return null;
     }
 
-    public final Object a() {
-        Object obj;
-        Object obj2 = this.f46600b;
-        h hVar = h.f46602a;
-        if (obj2 != hVar) {
-            return obj2;
-        }
-        synchronized (this.f46601c) {
-            obj = this.f46600b;
-            if (obj == hVar) {
-                bd.a aVar = this.f46599a;
-                j.b(aVar);
-                obj = aVar.invoke();
-                this.f46600b = obj;
-                this.f46599a = null;
-            }
-        }
-        return obj;
-    }
-
-    public final String toString() {
-        if (this.f46600b != h.f46602a) {
-            return String.valueOf(a());
-        }
-        return "Lazy value not initialized yet.";
+    @Override
+    public final char d() {
+        return '<';
     }
 }

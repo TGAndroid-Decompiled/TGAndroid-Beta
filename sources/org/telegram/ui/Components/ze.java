@@ -1,18 +1,22 @@
 package org.telegram.ui.Components;
+public final class ze implements o1.g {
+    public boolean f31334a = false;
+    public final float f31335b;
+    public final fv0 f31336c;
 
-import android.view.ViewTreeObserver;
-public final class ze implements ViewTreeObserver.OnDrawListener {
-    public final xu0 f35328a;
-    public final oo0 f35329b;
-
-    public ze(xu0 xu0Var, oo0 oo0Var) {
-        this.f35328a = xu0Var;
-        this.f35329b = oo0Var;
+    public ze(float f10, fv0 fv0Var) {
+        this.f31335b = f10;
+        this.f31336c = fv0Var;
     }
 
     @Override
-    public final void onDraw() {
-        xu0 xu0Var = this.f35328a;
-        xu0Var.post(new g(this, xu0Var, this.f35329b, 2));
+    public final void a(o1.h hVar, float f10, float f11) {
+        if (!this.f31334a && f10 >= this.f31335b) {
+            this.f31334a = true;
+            try {
+                this.f31336c.performHapticFeedback(3, 2);
+            } catch (Exception unused) {
+            }
+        }
     }
 }

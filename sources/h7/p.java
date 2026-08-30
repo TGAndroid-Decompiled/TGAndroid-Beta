@@ -1,12 +1,28 @@
 package h7;
 
-import java.util.Date;
-public abstract class p {
-    public static long a(Date date) {
-        return (date.getTime() / 1000) + 2082844800;
+import java.util.concurrent.Callable;
+public final class p implements Callable {
+    public final int f7028a;
+    public final cb.l f7029b;
+
+    public p(cb.l lVar, int i10) {
+        this.f7028a = i10;
+        this.f7029b = lVar;
     }
 
-    public static Date b(long j10) {
-        return new Date((j10 - 2082844800) * 1000);
+    @Override
+    public final Object call() {
+        switch (this.f7028a) {
+            case 0:
+                return this.f7029b.a();
+            case 1:
+                return this.f7029b.a();
+            case 2:
+                return this.f7029b.a();
+            case 3:
+                return this.f7029b.a();
+            default:
+                return this.f7029b.a();
+        }
     }
 }

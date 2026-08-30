@@ -1,3 +1,4 @@
 package b6;
-public final class a extends com.google.android.gms.internal.cast.a {
+public abstract class a extends a7.c implements i {
+    public static final int f1558b = 0;
 }

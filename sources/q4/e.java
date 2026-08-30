@@ -1,40 +1,28 @@
 package q4;
 
-import h7.m5;
-import java.util.Arrays;
-public final class e extends n4.e {
-    public byte[] f46258s;
-    public volatile boolean v;
-    public byte[] f46259w;
+import g5.j0;
+import g5.p;
+import g5.u0;
+import j3.n0;
+public abstract class e implements j0 {
+    public final long f42729a = o4.j.f16355a.getAndIncrement();
+    public final p f42730b;
+    public final int f42731c;
+    public final n0 d;
+    public final int e;
+    public final Object f42732f;
+    public final long h;
+    public final long f42733n;
+    public final u0 f42734r;
 
-    @Override
-    public final void a() {
-        try {
-            this.f17133r.open(this.f17128b);
-            int i10 = 0;
-            int i11 = 0;
-            while (i10 != -1 && !this.v) {
-                byte[] bArr = this.f46258s;
-                if (bArr.length < i11 + 16384) {
-                    this.f46258s = Arrays.copyOf(bArr, bArr.length + 16384);
-                }
-                i10 = this.f17133r.read(this.f46258s, i11, 16384);
-                if (i10 != -1) {
-                    i11 += i10;
-                }
-            }
-            if (!this.v) {
-                this.f46259w = Arrays.copyOf(this.f46258s, i11);
-            }
-            m5.a(this.f17133r);
-        } catch (Throwable th2) {
-            m5.a(this.f17133r);
-            throw th2;
-        }
-    }
-
-    @Override
-    public final void q() {
-        this.v = true;
+    public e(g5.m mVar, p pVar, int i10, n0 n0Var, int i11, Object obj, long j10, long j11) {
+        this.f42734r = new u0(mVar);
+        this.f42730b = pVar;
+        this.f42731c = i10;
+        this.d = n0Var;
+        this.e = i11;
+        this.f42732f = obj;
+        this.h = j10;
+        this.f42733n = j11;
     }
 }

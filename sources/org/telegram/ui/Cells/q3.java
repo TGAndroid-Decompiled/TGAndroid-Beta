@@ -1,36 +1,21 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class q3 extends View {
-    public final int f25058a;
-    public final int f25059b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class q3 extends AnimatorListenerAdapter {
+    public final r3 f21572a;
 
-    public q3(Context context, int i10, int i11) {
-        super(context);
-        this.f25058a = i11;
-        this.f25059b = i10;
+    public q3(r3 r3Var) {
+        this.f21572a = r3Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f25058a) {
-            case 0:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f25059b), 1073741824));
-                return;
-            case 1:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f25059b), 1073741824));
-                return;
-            default:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f25059b, 1073741824));
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        r3 r3Var = this.f21572a;
+        if (r3Var.f21757r) {
+            r3Var.d.setVisibility(4);
+        } else {
+            r3Var.e.setVisibility(4);
         }
-    }
-
-    public q3(Context context, int i10) {
-        super(context);
-        this.f25058a = 0;
-        this.f25059b = i10;
     }
 }

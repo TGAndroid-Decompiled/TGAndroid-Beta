@@ -1,54 +1,47 @@
 package gg;
 
-import android.content.Context;
-import org.telegram.messenger.Emoji;
-import org.telegram.ui.ActionBar.h5;
-public final class c extends h5 {
-    public final int I0;
+import java.util.Calendar;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.sc0;
+public final class c implements sc0 {
+    public final int f6586a;
+    public final long f6587b;
+    public final Calendar f6588c;
+    public final int d;
 
-    public c(Context context, int i10) {
-        super(context);
-        this.I0 = i10;
+    public c(long j10, Calendar calendar, int i10, int i11) {
+        this.f6586a = i11;
+        this.f6587b = j10;
+        this.f6588c = calendar;
+        this.d = i10;
     }
 
     @Override
-    public boolean k(CharSequence charSequence) {
-        switch (this.I0) {
+    public final String e(int i10) {
+        switch (this.f6586a) {
             case 0:
-                return l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
-            case 1:
-            case 2:
+                if (i10 == 0) {
+                    return LocaleController.getString("MessageScheduleToday", R.string.MessageScheduleToday);
+                }
+                long j10 = (i10 * 86400000) + this.f6587b;
+                Calendar calendar = this.f6588c;
+                calendar.setTimeInMillis(j10);
+                if (calendar.get(1) == this.d) {
+                    return LocaleController.getInstance().getFormatterScheduleDay().format(j10);
+                }
+                return LocaleController.getInstance().getFormatterScheduleYear().format(j10);
             default:
-                return super.k(charSequence);
-            case 3:
-                return l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
-            case 4:
-                return l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
-        }
-    }
-
-    @Override
-    public boolean l(CharSequence charSequence, boolean z10) {
-        switch (this.I0) {
-            case 2:
-                return super.l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), z10);
-            case 5:
-                return super.l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
-            default:
-                return super.l(charSequence, z10);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.I0) {
-            case 1:
-                super.onMeasure(i10, i11);
-                setPivotY(getMeasuredHeight() / 2.0f);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+                if (i10 == 0) {
+                    return LocaleController.getString(R.string.MessageScheduleToday);
+                }
+                long j11 = (i10 * 86400000) + this.f6587b;
+                Calendar calendar2 = this.f6588c;
+                calendar2.setTimeInMillis(j11);
+                if (calendar2.get(1) == this.d) {
+                    return LocaleController.getInstance().getFormatterWeek().format(j11) + " " + LocaleController.getInstance().getFormatterScheduleDay().format(j11);
+                }
+                return LocaleController.getInstance().getFormatterScheduleYear().format(j11);
         }
     }
 }

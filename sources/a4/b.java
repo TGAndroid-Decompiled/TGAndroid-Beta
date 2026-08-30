@@ -1,22 +1,61 @@
 package a4;
 
-import android.os.HandlerThread;
-public final class b implements p8.i {
-    public final int f52a;
-    public final int f53b;
+import h5.d0;
+import r3.s;
+public final class b implements h {
+    public final g f48a;
+    public final long f49b;
+    public final long f50c;
+    public final j d;
+    public int e;
+    public long f51f;
+    public long h;
+    public long f52n;
+    public long f53r;
+    public long f54s;
+    public long v;
+    public long f55w;
 
-    public b(int i10, int i11) {
-        this.f52a = i11;
-        this.f53b = i10;
+    public b(j jVar, long j10, long j11, long j12, long j13, boolean z4) {
+        boolean z10;
+        if (j10 >= 0 && j11 > j10) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        h5.a.f(z10);
+        this.d = jVar;
+        this.f49b = j10;
+        this.f50c = j11;
+        if (j12 != j11 - j10 && !z4) {
+            this.e = 0;
+        } else {
+            this.f51f = j13;
+            this.e = 4;
+        }
+        this.f48a = new g();
     }
 
     @Override
-    public final Object get() {
-        switch (this.f52a) {
-            case 0:
-                return new HandlerThread(c.j(this.f53b, "ExoPlayer:MediaCodecAsyncAdapter:"));
-            default:
-                return new HandlerThread(c.j(this.f53b, "ExoPlayer:MediaCodecQueueingThread:"));
+    public final long c(r3.l r28) {
+        throw new UnsupportedOperationException("Method not decompiled: a4.b.c(r3.l):long");
+    }
+
+    @Override
+    public final s k() {
+        if (this.f51f != 0) {
+            return new a(this);
         }
+        return null;
+    }
+
+    @Override
+    public final void v(long j10) {
+        this.f52n = d0.i(j10, 0L, this.f51f - 1);
+        this.e = 2;
+        this.f53r = this.f49b;
+        this.f54s = this.f50c;
+        this.v = 0L;
+        this.f55w = this.f51f;
     }
 }

@@ -1,62 +1,50 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.util.SparseArray;
-import android.view.View;
-import org.telegram.messenger.SharedConfig;
-public final class kg0 implements lg.g {
-    public final ng0 f39862a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.RadialProgressView;
+public final class kg0 implements Runnable {
+    public final int f35716a;
+    public final lg0 f35717b;
+    public final bg0 f35718c;
 
-    public kg0(ng0 ng0Var) {
-        this.f39862a = ng0Var;
+    public kg0(int i10, bg0 bg0Var, lg0 lg0Var) {
+        this.f35716a = i10;
+        this.f35717b = lg0Var;
+        this.f35718c = bg0Var;
     }
 
     @Override
-    public void d(Canvas canvas) {
-        qg.d y8;
-        Canvas canvas2;
-        ng0 ng0Var = this.f39862a;
-        RectF rectF = ng0Var.Q;
-        int measuredWidth = ng0Var.fragmentView.getMeasuredWidth();
-        int measuredHeight = ng0Var.fragmentView.getMeasuredHeight();
-        canvas.drawColor(ng0Var.getThemedColor(org.telegram.ui.ActionBar.g6.f23062d6));
-        SparseArray sparseArray = ng0Var.f43592a;
-        int size = sparseArray.size();
-        int i10 = 0;
-        while (i10 < size) {
-            org.telegram.ui.ActionBar.o2 o2Var = ((tg1) sparseArray.valueAt(i10)).f42707a;
-            View view = o2Var.fragmentView;
-            if (view == null || !sg.i.c(view, ng0Var.f43593b, rectF) || rectF.right <= 0.0f || rectF.left >= ng0Var.fragmentView.getMeasuredWidth() || !(o2Var instanceof mg0) || (y8 = ((mg0) o2Var).y()) == null) {
-                canvas2 = canvas;
-            } else {
-                canvas.save();
-                canvas.translate(rectF.left, rectF.top);
-                canvas2 = canvas;
-                y8.E0(canvas2, 0.0f, 0.0f, measuredWidth, measuredHeight);
-                canvas2.restore();
-            }
-            i10++;
-            canvas = canvas2;
-        }
-    }
-
-    @Override
-    public void q(g.x xVar) {
-        ng0 ng0Var = this.f39862a;
-        RectF rectF = ng0Var.Q;
-        xVar.a(ng0Var.getThemedColor(org.telegram.ui.ActionBar.g6.f23062d6));
-        xVar.b(SharedConfig.chatBlurEnabled());
-        SparseArray sparseArray = ng0Var.f43592a;
-        int size = sparseArray.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            org.telegram.ui.ActionBar.o2 o2Var = ((tg1) sparseArray.valueAt(i10)).f42707a;
-            View view = o2Var.fragmentView;
-            if (view != null && sg.i.c(view, ng0Var.f43593b, rectF) && rectF.right > 0.0f && rectF.left < ng0Var.fragmentView.getMeasuredWidth() && (o2Var instanceof mg0) && ((mg0) o2Var).y() != null) {
-                xVar.c(rectF.left);
-                xVar.c(rectF.top);
-                xVar.a(o2Var.getClassGuid());
-            }
+    public final void run() {
+        int i10 = this.f35716a;
+        bg0 bg0Var = this.f35718c;
+        lg0 lg0Var = this.f35717b;
+        switch (i10) {
+            case 0:
+                int i11 = bg0.B;
+                bg0Var.a();
+                AndroidUtilities.runOnUIThread(new kg0(1, bg0Var, lg0Var), 150L);
+                return;
+            default:
+                mg0 mg0Var = lg0Var.f36081a;
+                mg0Var.h(null);
+                RadialProgressView radialProgressView = mg0Var.S.K.d;
+                RadialProgressView radialProgressView2 = bg0Var.h.d;
+                radialProgressView.getClass();
+                radialProgressView.f23134a = radialProgressView2.f23134a;
+                radialProgressView.f23135b = radialProgressView2.f23135b;
+                radialProgressView.E = radialProgressView2.E;
+                radialProgressView.F = radialProgressView2.F;
+                radialProgressView.G = radialProgressView2.G;
+                radialProgressView.f23136c = radialProgressView2.f23136c;
+                radialProgressView.f23138n = radialProgressView2.f23138n;
+                radialProgressView.e = radialProgressView2.e;
+                radialProgressView.f23143y = radialProgressView2.f23143y;
+                radialProgressView.C = radialProgressView2.C;
+                radialProgressView.D = radialProgressView2.D;
+                radialProgressView.d = radialProgressView2.d;
+                radialProgressView.B = radialProgressView2.B;
+                radialProgressView.b(85L);
+                return;
         }
     }
 }

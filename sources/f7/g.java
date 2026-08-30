@@ -1,50 +1,49 @@
 package f7;
 
-import h7.i7;
-import j$.util.Objects;
-public final class g extends d {
-    public static final g f6661e = new g(0, new Object[0]);
-    public final transient Object[] f6662c;
-    public final transient int d;
+import android.location.Location;
+import android.os.Parcel;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import j7.r5;
+public final class g extends a7.c {
+    public final int f6018b;
+    public final TaskCompletionSource f6019c;
 
-    public g(int i10, Object[] objArr) {
-        this.f6662c = objArr;
-        this.d = i10;
+    public g(int i10, TaskCompletionSource taskCompletionSource) {
+        super("com.google.android.gms.location.internal.ILocationStatusCallback", 5);
+        this.f6018b = i10;
+        switch (i10) {
+            case 1:
+                this.f6019c = taskCompletionSource;
+                super("com.google.android.gms.location.internal.ISettingsCallbacks", 5);
+                return;
+            default:
+                this.f6019c = taskCompletionSource;
+                return;
+        }
     }
 
     @Override
-    public final Object get(int i10) {
-        i7.a(i10, this.d);
-        Object obj = this.f6662c[i10];
-        Objects.requireNonNull(obj);
-        return obj;
-    }
-
-    @Override
-    public final int i(Object[] objArr) {
-        Object[] objArr2 = this.f6662c;
-        int i10 = this.d;
-        System.arraycopy(objArr2, 0, objArr, 0, i10);
-        return i10;
-    }
-
-    @Override
-    public final int n() {
-        return this.d;
-    }
-
-    @Override
-    public final int o() {
-        return 0;
-    }
-
-    @Override
-    public final Object[] p() {
-        return this.f6662c;
-    }
-
-    @Override
-    public final int size() {
-        return this.d;
+    public final boolean I0(Parcel parcel, int i10) {
+        switch (this.f6018b) {
+            case 0:
+                if (i10 == 1) {
+                    e.b(parcel);
+                    r5.a((Status) e.a(parcel, Status.CREATOR), (Location) e.a(parcel, Location.CREATOR), this.f6019c);
+                    return true;
+                }
+                return false;
+            default:
+                if (i10 == 1) {
+                    u7.g gVar = (u7.g) e.a(parcel, u7.g.CREATOR);
+                    e.b(parcel);
+                    Status status = gVar.f45185a;
+                    ?? obj = new Object();
+                    obj.f2215a = gVar;
+                    r5.a(status, obj, this.f6019c);
+                    return true;
+                }
+                return false;
+        }
     }
 }

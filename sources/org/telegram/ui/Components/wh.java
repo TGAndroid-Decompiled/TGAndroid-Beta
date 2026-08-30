@@ -1,70 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-public final class wh extends au {
-    public final ni R;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLRPC;
+public final class wh implements gj {
+    public final li f30350a;
 
-    public wh(ni niVar, Context context, di diVar, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, diVar, null, 1, true, c6Var);
-        this.R = niVar;
+    public wh(li liVar) {
+        this.f30350a = liVar;
     }
 
     @Override
-    public final void f() {
-        super.f();
-        fz emojiView = getEmojiView();
-        if (emojiView != null) {
-            emojiView.f28633s0 = false;
-            emojiView.f28638t2 = false;
-            emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
+    public final void a(TLRPC.User user, boolean z4, int i10, long j10) {
+        org.telegram.ui.xn xnVar = (org.telegram.ui.xn) this.f30350a.f26689c0;
+        if (xnVar.f7()) {
+            SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(user, xnVar.Q5, xnVar.f40076k5, xnVar.U3, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z4, i10, 0);
+            of2.sendMessageChatArguments = xnVar.C8();
+            of2.effect_id = 0L;
+            of2.invert_media = false;
+            of2.payStars = j10;
+            of2.monoForumPeer = xnVar.N8();
+            of2.suggestionParams = xnVar.f39989d5;
+            xnVar.getSendMessagesHelper().sendMessage(of2);
+            xnVar.y6();
         }
     }
 
     @Override
-    public final void i(Menu menu) {
-        org.telegram.ui.ActionBar.o2 o2Var = this.R.f30990b0;
-        if (o2Var instanceof org.telegram.ui.tn) {
-            org.telegram.ui.tn.k8(menu, ((org.telegram.ui.tn) o2Var).h, true, true, true, true);
-        }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        ni niVar = this.R;
-        wh whVar = niVar.L0;
-        if (!niVar.f31038q1) {
-            if (motionEvent.getX() > whVar.getEditText().getLeft() && motionEvent.getX() < whVar.getEditText().getRight() && motionEvent.getY() > whVar.getEditText().getTop() && motionEvent.getY() < whVar.getEditText().getBottom()) {
-                niVar.t1(whVar.getEditText(), true);
-            } else {
-                niVar.t1(whVar.getEditText(), false);
-            }
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.R.b2();
-    }
-
-    @Override
-    public final void q(int i10, int i11) {
-        boolean z10;
-        ni niVar = this.R;
-        niVar.b2();
-        if (niVar.Y) {
-            if (i11 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            niVar.M1(z10);
-        }
+    public final void b(ArrayList arrayList, String str, boolean z4, int i10, long j10, boolean z10) {
+        ((org.telegram.ui.xn) this.f30350a.f26689c0).db(arrayList, str, z4, i10, j10, z10);
     }
 }

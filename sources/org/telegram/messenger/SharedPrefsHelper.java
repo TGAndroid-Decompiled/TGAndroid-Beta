@@ -31,7 +31,7 @@ public class SharedPrefsHelper {
         return webViewBotsPrefs.getBoolean(String.format(WEB_VIEW_SHOWN_DIALOG_FORMAT, Integer.valueOf(i10), Long.valueOf(j10)), false);
     }
 
-    public static void setWebViewConfirmShown(int i10, long j10, boolean z10) {
-        webViewBotsPrefs.edit().putBoolean(String.format(WEB_VIEW_SHOWN_DIALOG_FORMAT, Integer.valueOf(i10), Long.valueOf(j10)), z10).apply();
+    public static void setWebViewConfirmShown(int i10, long j10, boolean z4) {
+        webViewBotsPrefs.edit().putBoolean(String.format(WEB_VIEW_SHOWN_DIALOG_FORMAT, Integer.valueOf(i10), Long.valueOf(j10)), z4).apply();
     }
 }

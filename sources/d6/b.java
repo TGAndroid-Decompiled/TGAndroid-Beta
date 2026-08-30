@@ -1,21 +1,20 @@
 package d6;
 
-import android.app.PendingIntent;
-import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.internal.cast.o;
-public final class b extends a6.a {
-    public static final Parcelable.Creator<b> CREATOR = new w.a(29);
-    public final PendingIntent f5423a;
+import b6.p;
+import com.google.android.gms.common.api.e;
+import com.google.android.gms.common.api.internal.v;
+import com.google.android.gms.common.api.internal.w;
+import com.google.android.gms.common.api.j;
+import com.google.android.gms.tasks.Task;
+import o5.i;
+public final class b extends j {
+    public static final e f4222k = new e("ClientTelemetry.API", new a8.j(4), new Object());
 
-    public b(PendingIntent pendingIntent) {
-        this.f5423a = pendingIntent;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = o.q(parcel, 20293);
-        o.k(parcel, 1, this.f5423a, i10);
-        o.r(parcel, q6);
+    public final Task f(p pVar) {
+        v e = w.e();
+        e.d = new y5.c[]{y6.b.f47101a};
+        e.f2884b = false;
+        e.f2885c = new i(pVar, 11);
+        return e(2, e.e());
     }
 }

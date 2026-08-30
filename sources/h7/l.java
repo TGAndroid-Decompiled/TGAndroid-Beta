@@ -1,95 +1,30 @@
 package h7;
-public final class l implements s9.g {
-    public final int f7685a;
-    public boolean f7686b = false;
-    public boolean f7687c = false;
-    public s9.c d;
-    public final s9.e f7688e;
 
-    public l(s9.e eVar, int i10) {
-        this.f7685a = i10;
-        this.f7688e = eVar;
+import com.google.android.gms.internal.cast.i0;
+public final class l extends i0 {
+    public static final l f7025n = new l(null, new Object[0], 0);
+    public final transient Object e;
+    public final transient Object[] f7026f;
+    public final transient int h;
+
+    public l(Object obj, Object[] objArr, int i10) {
+        super(2);
+        this.e = obj;
+        this.f7026f = objArr;
+        this.h = i10;
+    }
+
+    public static h7.l b(int r19, java.lang.Object[] r20, b4.e0 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: h7.l.b(int, java.lang.Object[], b4.e0):h7.l");
     }
 
     @Override
-    public final s9.g f(String str) {
-        switch (this.f7685a) {
-            case 0:
-                if (!this.f7686b) {
-                    this.f7686b = true;
-                    ((k) this.f7688e).g(this.d, str, this.f7687c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-            case 1:
-                if (!this.f7686b) {
-                    this.f7686b = true;
-                    ((i7.f) this.f7688e).g(this.d, str, this.f7687c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-            case 2:
-                if (!this.f7686b) {
-                    this.f7686b = true;
-                    ((j7.j0) this.f7688e).g(this.d, str, this.f7687c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-            case 3:
-                if (!this.f7686b) {
-                    this.f7686b = true;
-                    ((l7.y) this.f7688e).g(this.d, str, this.f7687c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-            default:
-                if (!this.f7686b) {
-                    this.f7686b = true;
-                    ((v9.e) this.f7688e).h(this.d, str, this.f7687c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-        }
+    public final java.lang.Object get(java.lang.Object r10) {
+        throw new UnsupportedOperationException("Method not decompiled: h7.l.get(java.lang.Object):java.lang.Object");
     }
 
     @Override
-    public final s9.g g(boolean z10) {
-        switch (this.f7685a) {
-            case 0:
-                if (!this.f7686b) {
-                    this.f7686b = true;
-                    ((k) this.f7688e).h(this.d, z10 ? 1 : 0, this.f7687c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-            case 1:
-                if (!this.f7686b) {
-                    this.f7686b = true;
-                    ((i7.f) this.f7688e).h(this.d, z10 ? 1 : 0, this.f7687c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-            case 2:
-                if (!this.f7686b) {
-                    this.f7686b = true;
-                    ((j7.j0) this.f7688e).h(this.d, z10 ? 1 : 0, this.f7687c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-            case 3:
-                if (!this.f7686b) {
-                    this.f7686b = true;
-                    ((l7.y) this.f7688e).h(this.d, z10 ? 1 : 0, this.f7687c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-            default:
-                if (!this.f7686b) {
-                    this.f7686b = true;
-                    ((v9.e) this.f7688e).g(this.d, z10 ? 1 : 0, this.f7687c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-        }
+    public final int size() {
+        return this.h;
     }
 }

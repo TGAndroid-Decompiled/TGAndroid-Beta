@@ -1,25 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class p80 extends h9 {
-    public final bg.z3 f31615e;
+import android.view.KeyEvent;
+public final class p80 implements org.telegram.ui.ActionBar.c2, org.telegram.ui.ActionBar.n1 {
+    public final int f27782a;
+    public final x80 f27783b;
 
-    public p80(bg.z3 z3Var, Context context) {
-        super(context, false);
-        this.f31615e = z3Var;
+    public p80(x80 x80Var, int i10) {
+        this.f27782a = i10;
+        this.f27783b = x80Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int f9;
-        int min = Math.min(3, ((r80) this.f31615e.f2639b).f32239w);
-        if (min == 0) {
-            f9 = 0;
-        } else {
-            f9 = com.google.android.recaptcha.internal.a.f(min, 1, 20, 32);
+    public void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f27782a) {
+            case 0:
+                w80 w80Var = this.f27783b.f30608r;
+                if (w80Var != null) {
+                    w80Var.j();
+                    return;
+                }
+                return;
+            default:
+                w80 w80Var2 = this.f27783b.f30608r;
+                if (w80Var2 != null) {
+                    w80Var2.c();
+                    return;
+                }
+                return;
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f9), 1073741824), i11);
+    }
+
+    @Override
+    public void n(KeyEvent keyEvent) {
+        x80 x80Var = this.f27783b;
+        x80Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && x80Var.f30609s.isShowing()) {
+            x80Var.f30609s.d(true);
+        }
     }
 }

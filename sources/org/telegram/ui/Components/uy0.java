@@ -1,19 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.view.View;
-public interface uy0 extends org.telegram.ui.Cells.v9 {
-    void attach(View view);
+import org.telegram.messenger.SharedConfig;
+public final class uy0 implements sc0, uc0 {
+    public final wy0 f29304a;
 
-    void detach(View view);
+    @Override
+    public String e(int i10) {
+        return this.f29304a.h[i10];
+    }
 
-    void draw(Canvas canvas, View view);
-
-    int getEmojiOnlyCount();
-
-    void setRow(int i10);
-
-    void setX(int i10);
-
-    void setY(int i10);
+    @Override
+    public void q(wc0 wc0Var, int i10) {
+        wy0 wy0Var = this.f29304a;
+        wy0Var.b();
+        SharedConfig.updateChatListSwipeSetting(i10);
+        wy0Var.invalidate();
+        try {
+            wc0Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
+        }
+    }
 }

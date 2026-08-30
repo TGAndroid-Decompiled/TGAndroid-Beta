@@ -1,21 +1,49 @@
 package u9;
 
-import j$.util.DesugarTimeZone;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import s9.g;
-public final class c implements s9.f {
-    public static final SimpleDateFormat f49151a;
+import java.lang.annotation.Annotation;
+import java.util.Collections;
+import java.util.Map;
+import q5.g0;
+public final class c {
+    public final String f45199a;
+    public final Map f45200b;
 
-    static {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
-        f49151a = simpleDateFormat;
-        simpleDateFormat.setTimeZone(DesugarTimeZone.getTimeZone("UTC"));
+    public c(String str, Map map) {
+        this.f45199a = str;
+        this.f45200b = map;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        ((g) obj2).f(f49151a.format((Date) obj));
+    public static g0 a(String str) {
+        return new g0(str, 10);
+    }
+
+    public static c c(String str) {
+        return new c(str, Collections.EMPTY_MAP);
+    }
+
+    public final Annotation b(Class cls) {
+        return (Annotation) this.f45200b.get(cls);
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof c)) {
+            return false;
+        }
+        c cVar = (c) obj;
+        if (this.f45199a.equals(cVar.f45199a) && this.f45200b.equals(cVar.f45200b)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f45200b.hashCode() + (this.f45199a.hashCode() * 31);
+    }
+
+    public final String toString() {
+        return "FieldDescriptor{name=" + this.f45199a + ", properties=" + this.f45200b.values() + "}";
     }
 }

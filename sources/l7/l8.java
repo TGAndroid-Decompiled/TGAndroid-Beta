@@ -1,17 +1,12 @@
 package l7;
-public final class l8 implements s9.d {
-    public static final l8 f14875a = new Object();
+public final class l8 {
+    public final m7 f11534a;
+    public final n8 f11535b;
+    public final k7 f11536c;
 
-    static {
-        com.google.android.recaptcha.internal.a.t(j7.l1.q(w.class, j7.l1.r(12, j7.l1.q(w.class, j7.l1.r(11, j7.l1.q(w.class, j7.l1.r(10, j7.l1.q(w.class, j7.l1.r(9, j7.l1.q(w.class, j7.l1.r(8, j7.l1.q(w.class, j7.l1.r(7, j7.l1.q(w.class, j7.l1.r(6, j7.l1.q(w.class, j7.l1.r(5, j7.l1.q(w.class, j7.l1.r(4, j7.l1.q(w.class, j7.l1.r(3, j7.l1.q(w.class, j7.l1.r(2, j7.l1.q(w.class, new s(1)))))))))))))))))))))))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            s9.e eVar = (s9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public l8(w0 w0Var) {
+        this.f11534a = (m7) w0Var.f11676b;
+        this.f11535b = (n8) w0Var.f11677c;
+        this.f11536c = (k7) w0Var.d;
     }
 }

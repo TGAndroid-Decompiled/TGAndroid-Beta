@@ -6,47 +6,47 @@ import android.view.View;
 import androidx.appcompat.widget.ActionBarContextView;
 import java.lang.ref.WeakReference;
 public final class z extends k.a implements l.i {
-    public final Context f6959c;
+    public final Context f6330c;
     public final l.k d;
-    public ze.b f6960e;
-    public WeakReference f6961f;
+    public f7.b e;
+    public WeakReference f6331f;
     public final a0 h;
 
-    public z(a0 a0Var, Context context, ze.b bVar) {
+    public z(a0 a0Var, Context context, f7.b bVar) {
         this.h = a0Var;
-        this.f6959c = context;
-        this.f6960e = bVar;
+        this.f6330c = context;
+        this.e = bVar;
         l.k kVar = new l.k(context);
-        kVar.f13991l = 1;
+        kVar.f11048l = 1;
         this.d = kVar;
-        kVar.f13985e = this;
+        kVar.e = this;
     }
 
     @Override
     public final void a() {
         a0 a0Var = this.h;
-        if (a0Var.f6840i != this) {
+        if (a0Var.f6218i != this) {
             return;
         }
-        if (a0Var.f6847p) {
-            a0Var.f6841j = this;
-            a0Var.f6842k = this.f6960e;
+        if (a0Var.f6225p) {
+            a0Var.f6219j = this;
+            a0Var.f6220k = this.e;
         } else {
-            this.f6960e.O(this);
+            this.e.u(this);
         }
-        this.f6960e = null;
+        this.e = null;
         a0Var.a(false);
-        ActionBarContextView actionBarContextView = a0Var.f6838f;
+        ActionBarContextView actionBarContextView = a0Var.f6216f;
         if (actionBarContextView.v == null) {
             actionBarContextView.e();
         }
-        a0Var.f6836c.setHideOnContentScrollEnabled(a0Var.f6851t);
-        a0Var.f6840i = null;
+        a0Var.f6215c.setHideOnContentScrollEnabled(a0Var.f6229t);
+        a0Var.f6218i = null;
     }
 
     @Override
     public final View b() {
-        WeakReference weakReference = this.f6961f;
+        WeakReference weakReference = this.f6331f;
         if (weakReference != null) {
             return (View) weakReference.get();
         }
@@ -60,28 +60,28 @@ public final class z extends k.a implements l.i {
 
     @Override
     public final k.h d() {
-        return new k.h(this.f6959c);
+        return new k.h(this.f6330c);
     }
 
     @Override
     public final CharSequence e() {
-        return this.h.f6838f.getSubtitle();
+        return this.h.f6216f.getSubtitle();
     }
 
     @Override
     public final CharSequence f() {
-        return this.h.f6838f.getTitle();
+        return this.h.f6216f.getTitle();
     }
 
     @Override
     public final void g() {
-        if (this.h.f6840i != this) {
+        if (this.h.f6218i != this) {
             return;
         }
         l.k kVar = this.d;
         kVar.w();
         try {
-            this.f6960e.P(this, kVar);
+            this.e.v(this, kVar);
         } finally {
             kVar.v();
         }
@@ -89,57 +89,57 @@ public final class z extends k.a implements l.i {
 
     @Override
     public final boolean h() {
-        return this.h.f6838f.E;
+        return this.h.f6216f.F;
     }
 
     @Override
     public final void i(l.k kVar) {
-        if (this.f6960e != null) {
+        if (this.e != null) {
             g();
-            m.i iVar = this.h.f6838f.d;
-            if (iVar != null) {
-                iVar.l();
+            m.h hVar = this.h.f6216f.d;
+            if (hVar != null) {
+                hVar.l();
             }
         }
     }
 
     @Override
     public final void j(View view) {
-        this.h.f6838f.setCustomView(view);
-        this.f6961f = new WeakReference(view);
+        this.h.f6216f.setCustomView(view);
+        this.f6331f = new WeakReference(view);
     }
 
     @Override
     public final void k(int i10) {
-        l(this.h.f6834a.getResources().getString(i10));
+        l(this.h.f6213a.getResources().getString(i10));
     }
 
     @Override
     public final void l(CharSequence charSequence) {
-        this.h.f6838f.setSubtitle(charSequence);
+        this.h.f6216f.setSubtitle(charSequence);
     }
 
     @Override
     public final void m(int i10) {
-        n(this.h.f6834a.getResources().getString(i10));
+        n(this.h.f6213a.getResources().getString(i10));
     }
 
     @Override
     public final void n(CharSequence charSequence) {
-        this.h.f6838f.setTitle(charSequence);
+        this.h.f6216f.setTitle(charSequence);
     }
 
     @Override
-    public final void o(boolean z10) {
-        this.f13195b = z10;
-        this.h.f6838f.setTitleOptional(z10);
+    public final void o(boolean z4) {
+        this.f9502b = z4;
+        this.h.f6216f.setTitleOptional(z4);
     }
 
     @Override
-    public final boolean q(l.k kVar, MenuItem menuItem) {
-        ze.b bVar = this.f6960e;
+    public final boolean p(l.k kVar, MenuItem menuItem) {
+        f7.b bVar = this.e;
         if (bVar != null) {
-            return ((com.google.firebase.messaging.s) bVar.f50824a).F(this, menuItem);
+            return ((com.google.firebase.messaging.r) bVar.f6012b).K(this, menuItem);
         }
         return false;
     }

@@ -1,48 +1,38 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Rect;
+import android.view.GestureDetector;
 import android.widget.FrameLayout;
-public final class za implements Runnable {
-    public final int f35298a;
-    public final mc f35299b;
+public final class za extends FrameLayout {
+    public final nb f31293a;
+    public final Rect f31294b;
+    public final GestureDetector f31295c;
+    public boolean d;
+    public boolean e;
+    public float f31296f;
+    public float h;
+    public float f31297n;
+    public boolean f31298r;
+    public boolean f31299s;
+    public boolean v;
+    public boolean f31300w;
+    public final FrameLayout f31301x;
+    public final ic f31302y;
 
-    public za(mc mcVar, int i10) {
-        this.f35298a = i10;
-        this.f35299b = mcVar;
+    public za(ic icVar, nb nbVar, FrameLayout frameLayout) {
+        super(nbVar.getContext());
+        this.f31302y = icVar;
+        this.f31301x = frameLayout;
+        this.f31294b = new Rect();
+        this.f31293a = nbVar;
+        GestureDetector gestureDetector = new GestureDetector(nbVar.getContext(), new xb(this, nbVar));
+        this.f31295c = gestureDetector;
+        gestureDetector.setIsLongpressEnabled(false);
+        addView(nbVar);
     }
 
     @Override
-    public final void run() {
-        switch (this.f35298a) {
-            case 0:
-                this.f35299b.b();
-                return;
-            case 1:
-                mc mcVar = this.f35299b;
-                FrameLayout frameLayout = mcVar.h;
-                rb rbVar = mcVar.f30648e;
-                kb kbVar = mcVar.f30658p;
-                if (kbVar != null && !rbVar.top) {
-                    kbVar.c(0.0f);
-                    mcVar.f30658p.d(mcVar);
-                }
-                rbVar.transitionRunningExit = false;
-                rbVar.onExitTransitionEnd();
-                rbVar.onHide();
-                frameLayout.removeView(mcVar.f30649f);
-                frameLayout.removeOnLayoutChangeListener(mcVar.f30647c);
-                rbVar.onDetach();
-                Runnable runnable = mcVar.v;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                mc mcVar2 = this.f35299b;
-                FrameLayout frameLayout2 = mcVar2.h;
-                frameLayout2.removeView(mcVar2.f30649f);
-                frameLayout2.removeOnLayoutChangeListener(mcVar2.f30647c);
-                return;
-        }
+    public final boolean onTouchEvent(android.view.MotionEvent r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.za.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

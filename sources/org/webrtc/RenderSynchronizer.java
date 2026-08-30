@@ -27,10 +27,10 @@ public final class RenderSynchronizer {
         void onRenderWindowOpen();
     }
 
-    public RenderSynchronizer(float f9) {
+    public RenderSynchronizer(float f10) {
         this.lock = new Object();
         this.listeners = new CopyOnWriteArrayList();
-        this.targetFrameIntervalNanos = Math.round(((float) TimeUnit.SECONDS.toNanos(1L)) / f9);
+        this.targetFrameIntervalNanos = Math.round(((float) TimeUnit.SECONDS.toNanos(1L)) / f10);
         Handler handler = new Handler(Looper.getMainLooper());
         this.mainThreadHandler = handler;
         handler.post(new n(this, 1));

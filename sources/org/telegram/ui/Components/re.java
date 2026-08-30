@@ -1,74 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class re extends og {
-    public final int f32271h0;
-    public final ChatActivityEnterView f32272i0;
+import android.animation.AnimatorSet;
+import org.telegram.messenger.AndroidUtilities;
+public final class re implements Runnable {
+    public final int f28457a;
+    public final ChatActivityEnterView f28458b;
 
-    public re(ChatActivityEnterView chatActivityEnterView, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11) {
-        super(i10, context, c6Var, true);
-        this.f32271h0 = i11;
-        this.f32272i0 = chatActivityEnterView;
+    public re(ChatActivityEnterView chatActivityEnterView, int i10) {
+        this.f28457a = i10;
+        this.f28458b = chatActivityEnterView;
     }
 
     @Override
-    public boolean d() {
-        switch (this.f32271h0) {
+    public final void run() {
+        switch (this.f28457a) {
             case 0:
-                return this.f32272i0.c();
-            default:
-                return super.d();
-        }
-    }
-
-    @Override
-    public final boolean e() {
-        switch (this.f32271h0) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f32272i0;
-                if (!chatActivityEnterView.c() && chatActivityEnterView.C0 == Integer.MAX_VALUE) {
-                    return true;
+                ChatActivityEnterView chatActivityEnterView = this.f28458b;
+                re reVar = chatActivityEnterView.f22808n3;
+                if ((!chatActivityEnterView.j0() || !chatActivityEnterView.v()) && !org.telegram.ui.ActionBar.p2.hasSheets(chatActivityEnterView.L2) && !chatActivityEnterView.U1 && chatActivityEnterView.B0 != null && chatActivityEnterView.f22771g3 && !chatActivityEnterView.f22849v2 && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow) {
+                    eg egVar = chatActivityEnterView.V2;
+                    if (egVar != null) {
+                        egVar.t1();
+                    }
+                    chatActivityEnterView.B0.requestFocus();
+                    AndroidUtilities.showKeyboard(chatActivityEnterView.B0);
+                    AndroidUtilities.cancelRunOnUIThread(reVar);
+                    AndroidUtilities.runOnUIThread(reVar, 100L);
+                    return;
                 }
-                return false;
-            default:
-                return !this.f32272i0.f26154l3;
-        }
-    }
-
-    @Override
-    public final boolean f() {
-        switch (this.f32271h0) {
-            case 0:
-                ff ffVar = this.f32272i0.H0;
-                if ((ffVar != null && !ffVar.m0) || this.f31358r > 0) {
-                    return true;
+                return;
+            case 1:
+                eg egVar2 = this.f28458b.V2;
+                if (egVar2 != null) {
+                    egVar2.o2(0, 0, 0, 0L, 0L, true);
+                    return;
                 }
-                return false;
-            default:
-                return true;
-        }
-    }
-
-    @Override
-    public boolean j() {
-        switch (this.f32271h0) {
-            case 0:
-                return this.f32272i0.f26197t4;
-            default:
-                return super.j();
-        }
-    }
-
-    @Override
-    public void setAlpha(float f9) {
-        switch (this.f32271h0) {
-            case 0:
-                super.setAlpha(f9);
-                int i10 = ChatActivityEnterView.f26085i5;
-                this.f32272i0.z1();
                 return;
             default:
-                super.setAlpha(f9);
+                ChatActivityEnterView chatActivityEnterView2 = this.f28458b;
+                AnimatorSet animatorSet = chatActivityEnterView2.S0;
+                if (animatorSet != null && !animatorSet.isRunning()) {
+                    chatActivityEnterView2.S0.start();
+                    return;
+                }
                 return;
         }
     }

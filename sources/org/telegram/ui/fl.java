@@ -1,31 +1,95 @@
 package org.telegram.ui;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.R;
-public final class fl extends ViewOutlineProvider {
-    public final tn f38207a;
+import android.content.Context;
+import android.os.Bundle;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagePreviewParams;
+import org.telegram.tgnet.TLRPC;
+public final class fl extends org.telegram.ui.Components.wb0 {
+    public final xn E;
 
-    public fl(tn tnVar) {
-        this.f38207a = tnVar;
+    public fl(xn xnVar, Context context, xn xnVar2, ng.a aVar, MessagePreviewParams messagePreviewParams, TLRPC.User user, TLRPC.Chat chat, int i10, org.telegram.ui.Components.sb0 sb0Var, int i11, boolean z4) {
+        super(context, xnVar2, aVar, messagePreviewParams, user, chat, i10, sb0Var, i11, z4);
+        this.E = xnVar;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        ImageReceiver imageReceiver = (ImageReceiver) view.getTag(R.id.parent_tag);
-        if (imageReceiver != null) {
-            int[] roundRadius = imageReceiver.getRoundRadius();
-            int i10 = 0;
-            for (int i11 = 0; i11 < 4; i11++) {
-                i10 = Math.max(i10, roundRadius[i11]);
-            }
-            outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), i10);
+    public final void b() {
+        MessageObject messageObject;
+        nn nnVar;
+        xn xnVar = this.E;
+        nn nnVar2 = xnVar.f40052i5;
+        if (nnVar2 != null && (messageObject = nnVar2.f36691a) != null && ((nnVar = xnVar.f39976c5.quote) == null || nnVar.f36691a == null || messageObject.getId() == xnVar.f39976c5.quote.f36691a.getId())) {
             return;
         }
-        tn tnVar = this.f38207a;
-        outline.setOval(0, 0, AndroidUtilities.roundPlayingMessageSize(tnVar.C9()), AndroidUtilities.roundPlayingMessageSize(tnVar.C9()));
+        xnVar.f40052i5 = xnVar.f39976c5.quote;
+    }
+
+    @Override
+    public final void c(boolean z4) {
+        int i10;
+        boolean z10;
+        boolean z11;
+        long peerDialogId;
+        int i11;
+        MessagePreviewParams.Messages messages;
+        int i12 = 0;
+        a(false);
+        xn xnVar = this.E;
+        MessagePreviewParams messagePreviewParams = xnVar.f39976c5;
+        if (messagePreviewParams != null) {
+            if (!z4) {
+                xnVar.f40064j5 = true;
+            }
+            MessagePreviewParams.Messages messages2 = messagePreviewParams.forwardMessages;
+            if (messages2 != null) {
+                int size = messages2.messages.size();
+                i10 = 0;
+                z10 = false;
+                for (int i13 = 0; i13 < size; i13++) {
+                    MessageObject messageObject = xnVar.f39976c5.forwardMessages.messages.get(i13);
+                    if (messageObject.isTodo()) {
+                        i10 = 3;
+                    } else if (messageObject.isPoll()) {
+                        if (i10 != 2) {
+                            if (messageObject.isPublicPoll()) {
+                                i10 = 2;
+                            } else {
+                                i10 = 1;
+                            }
+                        }
+                    } else if (messageObject.isInvoice()) {
+                        z10 = true;
+                    }
+                    xnVar.T5[0].put(messageObject.getId(), messageObject);
+                }
+            } else {
+                i10 = 0;
+                z10 = false;
+            }
+            Bundle e = org.telegram.messenger.y3.e(3, "onlySelect", "dialogsType", true);
+            e.putBoolean("quote", !z4);
+            if (!z4 && (messages = xnVar.f39976c5.replyMessage) != null && !messages.messages.isEmpty() && xnVar.f39976c5.quote == null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            e.putBoolean("reply_to", z11);
+            if (z11 && (DialogObject.getPeerDialogId(xnVar.f39976c5.replyMessage.messages.get(0).getFromPeer())) != 0 && peerDialogId != xnVar.a() && peerDialogId != xnVar.getUserConfig().getClientUserId() && i11 > 0) {
+                e.putLong("reply_to_author", peerDialogId);
+            }
+            e.putInt("hasPoll", i10);
+            e.putBoolean("hasInvoice", z10);
+            MessagePreviewParams.Messages messages3 = xnVar.f39976c5.forwardMessages;
+            if (messages3 != null) {
+                i12 = messages3.messages.size();
+            }
+            e.putInt("messagesCount", i12);
+            e.putBoolean("canSelectTopics", true);
+            oy oyVar = new oy(e);
+            oyVar.f37131z2 = xnVar;
+            xnVar.presentFragment(oyVar);
+        }
     }
 }

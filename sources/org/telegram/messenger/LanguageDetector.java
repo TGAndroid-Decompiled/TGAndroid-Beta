@@ -32,28 +32,28 @@ public class LanguageDetector {
         }
     }
 
-    public static void detectLanguage(String str, StringCallback stringCallback, ExceptionCallback exceptionCallback, boolean z10) {
-        if (z10) {
+    public static void detectLanguage(String str, StringCallback stringCallback, ExceptionCallback exceptionCallback, boolean z4) {
+        if (z4) {
             try {
                 Context context = ApplicationLoader.applicationContext;
-                synchronized (ab.h.f310b) {
-                    ab.h.d(context, TaskExecutors.MAIN_THREAD);
+                synchronized (cb.h.f2219b) {
+                    cb.h.d(context, TaskExecutors.MAIN_THREAD);
                 }
-            } catch (IllegalStateException e10) {
-                if (!z10) {
+            } catch (IllegalStateException e) {
+                if (!z4) {
                     detectLanguage(str, stringCallback, exceptionCallback, true);
                     return;
                 }
                 if (exceptionCallback != null) {
-                    exceptionCallback.run(e10);
+                    exceptionCallback.run(e);
                 }
-                FileLog.e((Throwable) e10, false);
+                FileLog.e((Throwable) e, false);
                 return;
-            } catch (Exception e11) {
+            } catch (Exception e6) {
                 if (exceptionCallback != null) {
-                    exceptionCallback.run(e11);
+                    exceptionCallback.run(e6);
                 }
-                FileLog.e(e11);
+                FileLog.e(e6);
                 return;
             } catch (Throwable th2) {
                 if (exceptionCallback != null) {
@@ -63,6 +63,6 @@ public class LanguageDetector {
                 return;
             }
         }
-        h7.l5.a().g(str).addOnSuccessListener(new d(stringCallback, 6)).addOnFailureListener(new d(exceptionCallback, 7));
+        j7.e7.a().g(str).addOnSuccessListener(new d(stringCallback, 6)).addOnFailureListener(new d(exceptionCallback, 7));
     }
 }

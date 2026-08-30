@@ -1,121 +1,179 @@
 package m;
 
-import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
-import android.widget.ListAdapter;
-import androidx.appcompat.app.AlertController$RecycleListView;
-public final class j0 implements p0, DialogInterface.OnClickListener {
-    public g.f f16575a;
-    public k0 f16576b;
-    public CharSequence f16577c;
-    public final q0 d;
+import android.graphics.RectF;
+import android.os.Bundle;
+import android.view.ActionMode;
+import android.view.View;
+import android.view.WindowManager;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.voip.NativeInstance;
+import org.telegram.ui.Components.gv0;
+import org.telegram.ui.Components.hl0;
+import org.telegram.ui.Components.hv0;
+import org.telegram.ui.Components.tv0;
+import org.telegram.ui.bs;
+public final class j0 implements NativeInstance.AudioLevelsCallback, gv0, hv0, org.telegram.ui.ActionBar.c2, o3.n, j3.f, v2.e, tv0, Utilities.Callback2Return, ug.g, hl0 {
+    public final int f13538a;
 
-    public j0(q0 q0Var) {
-        this.d = q0Var;
+    public j0(int i10) {
+        this.f13538a = i10;
+    }
+
+    public static ActionMode.Callback2 f(Object obj) {
+        return (ActionMode.Callback2) obj;
     }
 
     @Override
-    public final boolean a() {
-        g.f fVar = this.f16575a;
-        if (fVar != null) {
-            return fVar.isShowing();
+    public Object apply(Object obj) {
+        o9.a.f16502b.getClass();
+        return l9.a.f11729a.e((k9.e2) obj).getBytes(Charset.forName("UTF-8"));
+    }
+
+    @Override
+    public void b(Object obj, float f10) {
+        switch (this.f13538a) {
+            case 4:
+                nh.j1 j1Var = (nh.j1) obj;
+                WindowManager.LayoutParams layoutParams = j1Var.f15504c;
+                j1Var.K = f10;
+                layoutParams.x = (int) f10;
+                AndroidUtilities.updateViewLayout(j1Var.f15503b, j1Var.d, layoutParams);
+                return;
+            case 6:
+                nh.j1 j1Var2 = (nh.j1) obj;
+                WindowManager.LayoutParams layoutParams2 = j1Var2.f15504c;
+                j1Var2.L = f10;
+                layoutParams2.y = (int) f10;
+                AndroidUtilities.updateViewLayout(j1Var2.f15503b, j1Var2.d, layoutParams2);
+                return;
+            case 26:
+                bs bsVar = (bs) obj;
+                bsVar.f33018b = f10;
+                if (bsVar.getParent() != null) {
+                    ((View) bsVar.getParent()).invalidate();
+                    return;
+                }
+                return;
+            default:
+                bs bsVar2 = (bs) obj;
+                bsVar2.f33019c = f10;
+                if (bsVar2.getParent() != null) {
+                    ((View) bsVar2.getParent()).invalidate();
+                    return;
+                }
+                return;
         }
-        return false;
     }
 
     @Override
-    public final int b() {
-        return 0;
-    }
-
-    @Override
-    public final void c(int i10) {
-        Log.e("AppCompatSpinner", "Cannot set horizontal offset for MODE_DIALOG, ignoring");
-    }
-
-    @Override
-    public final CharSequence d() {
-        return this.f16577c;
-    }
-
-    @Override
-    public final void dismiss() {
-        g.f fVar = this.f16575a;
-        if (fVar != null) {
-            fVar.dismiss();
-            this.f16575a = null;
+    public j3.g c(Bundle bundle) {
+        s8.i0 s6;
+        switch (this.f13538a) {
+            case 11:
+                ArrayList parcelableArrayList = bundle.getParcelableArrayList(o4.s0.f16416f);
+                if (parcelableArrayList == null) {
+                    s8.t tVar = s8.v.f44157b;
+                    s6 = s8.i0.e;
+                } else {
+                    s6 = h5.a.s(j3.n0.G0, parcelableArrayList);
+                }
+                return new o4.s0(bundle.getString(o4.s0.h, ""), (j3.n0[]) s6.toArray(new j3.n0[0]));
+            default:
+                ArrayList parcelableArrayList2 = bundle.getParcelableArrayList(o4.t0.e);
+                if (parcelableArrayList2 == null) {
+                    return new o4.t0(new o4.s0[0]);
+                }
+                return new o4.t0((o4.s0[]) h5.a.s(o4.s0.f16417n, parcelableArrayList2).toArray(new o4.s0[0]));
         }
     }
 
     @Override
-    public final Drawable e() {
-        return null;
+    public void d(RectF rectF, View view) {
+        view.invalidate();
     }
 
     @Override
-    public final void i(CharSequence charSequence) {
-        this.f16577c = charSequence;
-    }
-
-    @Override
-    public final void j(Drawable drawable) {
-        Log.e("AppCompatSpinner", "Cannot set popup background for MODE_DIALOG, ignoring");
-    }
-
-    @Override
-    public final void k(int i10) {
-        Log.e("AppCompatSpinner", "Cannot set vertical offset for MODE_DIALOG, ignoring");
-    }
-
-    @Override
-    public final void l(int i10) {
-        Log.e("AppCompatSpinner", "Cannot set horizontal (original) offset for MODE_DIALOG, ignoring");
-    }
-
-    @Override
-    public final void m(int i10, int i11) {
-        if (this.f16576b == null) {
-            return;
+    public float get(Object obj) {
+        switch (this.f13538a) {
+            case 3:
+                return ((nh.j1) obj).K;
+            case 5:
+                return ((nh.j1) obj).L;
+            case 25:
+                return ((bs) obj).f33018b;
+            case 27:
+                return ((bs) obj).f33019c;
+            default:
+                return ((bs) obj).d;
         }
-        q0 q0Var = this.d;
-        p2.u uVar = new p2.u(q0Var.getPopupContext());
-        g.c cVar = (g.c) uVar.f45495c;
-        CharSequence charSequence = this.f16577c;
-        if (charSequence != null) {
-            cVar.d = charSequence;
+    }
+
+    @Override
+    public void h(int i10) {
+        if (i10 == 0) {
+            SharedConfig.setKeepMedia(3);
+        } else if (i10 == 1) {
+            SharedConfig.setKeepMedia(0);
+        } else if (i10 == 2) {
+            SharedConfig.setKeepMedia(1);
+        } else if (i10 == 3) {
+            SharedConfig.setKeepMedia(2);
         }
-        k0 k0Var = this.f16576b;
-        int selectedItemPosition = q0Var.getSelectedItemPosition();
-        cVar.f6862i = k0Var;
-        cVar.f6863j = this;
-        cVar.f6866m = selectedItemPosition;
-        cVar.f6865l = true;
-        g.f d = uVar.d();
-        this.f16575a = d;
-        AlertController$RecycleListView alertController$RecycleListView = d.f6890f.f6870e;
-        h0.d(alertController$RecycleListView, i10);
-        h0.c(alertController$RecycleListView, i11);
-        this.f16575a.show();
     }
 
     @Override
-    public final int n() {
-        return 0;
-    }
-
-    @Override
-    public final void onClick(DialogInterface dialogInterface, int i10) {
-        q0 q0Var = this.d;
-        q0Var.setSelection(i10);
-        if (q0Var.getOnItemClickListener() != null) {
-            q0Var.performItemClick(null, i10, this.f16576b.getItemId(i10));
+    public void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f13538a) {
+            case 7:
+                d2Var.dismiss();
+                return;
+            case 8:
+                d2Var.dismiss();
+                return;
+            case 15:
+                d2Var.dismiss();
+                return;
+            case 20:
+                d2Var.dismiss();
+                return;
+            default:
+                d2Var.dismiss();
+                return;
         }
-        dismiss();
     }
 
     @Override
-    public final void p(ListAdapter listAdapter) {
-        this.f16576b = (k0) listAdapter;
+    public void run(int[] iArr, float[] fArr, boolean[] zArr) {
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2) {
+        Integer num = (Integer) obj;
+        Integer num2 = (Integer) obj2;
+        switch (this.f13538a) {
+            case 18:
+                if (num.intValue() == 0) {
+                    return LocaleController.formatPluralString("MaximumReactionsValue", num2.intValue(), new Object[0]);
+                }
+                return "" + num2;
+            default:
+                if (num.intValue() == 0) {
+                    return LocaleController.formatPluralStringComma("Stars", num2.intValue());
+                }
+                return "" + num2;
+        }
+    }
+
+    @Override
+    public void m() {
+    }
+
+    @Override
+    public void release() {
     }
 }

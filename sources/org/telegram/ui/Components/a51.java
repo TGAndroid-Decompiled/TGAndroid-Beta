@@ -1,56 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.tgnet.TLObject;
-public class a51 extends URLSpan {
-    public final boolean f26673a;
-    public final h01 f26674b;
-    public TLObject f26675c;
-    public String d;
+import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+public final class a51 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f23296a;
+    public int f23297b;
+    public final int f23298c;
+    public final Object d;
 
-    public a51(String str) {
-        this(str, (h01) null);
+    public a51(org.telegram.ui.bv bvVar, int i10, int i11) {
+        this.f23296a = 1;
+        this.d = bvVar;
+        this.f23297b = i10;
+        this.f23298c = i11;
     }
 
     @Override
-    public void onClick(View view) {
-        String url = getURL();
-        if (url.startsWith("@")) {
-            ye.d.p(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)), true, true);
-            return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f23296a) {
+            case 0:
+                int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f23298c);
+                e51 e51Var = (e51) this.d;
+                e51Var.K = true;
+                e51Var.f24470n.scrollBy(0, floatValue - this.f23297b);
+                e51Var.K = false;
+                this.f23297b = floatValue;
+                return;
+            default:
+                ((org.telegram.ui.bv) this.d).f33036c.d.setColorFilter(new PorterDuffColorFilter(i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f23297b, this.f23298c), PorterDuff.Mode.SRC_IN));
+                return;
         }
-        ye.d.s(view.getContext(), url);
     }
 
-    @Override
-    public void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int i10 = textPaint.linkColor;
-        int color = textPaint.getColor();
-        super.updateDrawState(textPaint);
-        h01 h01Var = this.f26674b;
-        if (h01Var != null) {
-            h01Var.a(textPaint);
-        }
-        if (i10 == color && !this.f26673a) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        textPaint.setUnderlineText(z10);
-    }
-
-    public a51(String str, int i10) {
-        this(str, (h01) null);
-        this.f26673a = true;
-    }
-
-    public a51(String str, h01 h01Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f26673a = false;
-        this.f26674b = h01Var;
+    public a51(e51 e51Var, int i10) {
+        this.f23296a = 0;
+        this.d = e51Var;
+        this.f23298c = i10;
+        this.f23297b = 0;
     }
 }

@@ -1,62 +1,57 @@
 package org.telegram.ui;
 
-import android.telephony.PhoneNumberUtils;
-import j$.util.function.Predicate$CC;
-import java.util.function.Predicate;
-import org.telegram.tgnet.TLRPC;
-public final class z70 implements Predicate {
-    public final int f45099a;
-    public final Object f45100b;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class z70 implements TextWatcher {
+    public final a80 f40699a;
 
-    public z70(Object obj, int i10) {
-        this.f45099a = i10;
-        this.f45100b = obj;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i10 = this.f45099a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f45099a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            case 1:
-                return Predicate$CC.$default$negate(this);
-            case 2:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i10 = this.f45099a;
-        return Predicate$CC.$default$or(this, predicate);
+    public z70(a80 a80Var) {
+        this.f40699a = a80Var;
     }
 
     @Override
-    public final boolean test(Object obj) {
-        switch (this.f45099a) {
-            case 0:
-                String str = (String) this.f45100b;
-                String str2 = (String) obj;
-                if (str2 != null && str2.equals(str)) {
-                    return true;
-                }
-                return false;
-            case 1:
-                return PhoneNumberUtils.compare((String) this.f45100b, (String) obj);
-            case 2:
-                String str3 = (String) this.f45100b;
-                String str4 = (String) obj;
-                if (str4 != null && str4.equals(str3)) {
-                    return true;
-                }
-                return false;
-            default:
-                return tn.v1((tn) this.f45100b, (TLRPC.MessageEntity) obj);
+    public final void afterTextChanged(Editable editable) {
+        c80 c80Var = this.f40699a.f32488f;
+        if (c80Var.d.d.length() != 0) {
+            c80Var.B = true;
+            c80Var.f33225y = true;
+            y70 y70Var = c80Var.f33222s;
+            if (!y70Var.h) {
+                y70Var.h = true;
+                y70Var.l();
+            }
+            c80Var.f33222s.E(c80Var.d.d.toString());
+            c80Var.h.setFastScrollVisible(false);
+            c80Var.h.setVerticalScrollBarEnabled(true);
+            c80Var.f33221r.e(true, true);
+            c80Var.f33221r.setStickerType(1);
+            c80Var.f33221r.d.setText(LocaleController.getString(R.string.NoResult));
+            c80Var.f33221r.e.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
+            return;
         }
+        c80Var.B = false;
+        c80Var.f33225y = false;
+        y70 y70Var2 = c80Var.f33222s;
+        if (y70Var2.h) {
+            y70Var2.h = false;
+            y70Var2.l();
+        }
+        c80Var.f33222s.E(null);
+        c80Var.h.setFastScrollVisible(true);
+        c80Var.h.setVerticalScrollBarEnabled(false);
+        c80Var.f33221r.e(false, true);
+        c80Var.f33221r.setStickerType(0);
+        c80Var.f33221r.d.setText(LocaleController.getString(R.string.NoContacts));
+        c80Var.f33221r.e.setText("");
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

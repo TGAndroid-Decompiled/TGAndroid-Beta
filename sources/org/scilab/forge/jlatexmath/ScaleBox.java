@@ -18,21 +18,21 @@ public class ScaleBox extends Box {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f9, float f10) {
-        float f11;
-        drawDebug(graphics2D, f9, f10);
+    public void draw(Graphics2D graphics2D, float f10, float f11) {
+        float f12;
+        drawDebug(graphics2D, f10, f11);
         double d = this.xscl;
         if (d != 0.0d && this.yscl != 0.0d) {
             if (d < 0.0d) {
-                f11 = this.width;
+                f12 = this.width;
             } else {
-                f11 = 0.0f;
+                f12 = 0.0f;
             }
-            graphics2D.translate(f9 + f11, f10);
+            graphics2D.translate(f10 + f12, f11);
             graphics2D.scale(this.xscl, this.yscl);
             this.box.draw(graphics2D, 0.0f, 0.0f);
             graphics2D.scale(1.0d / this.xscl, 1.0d / this.yscl);
-            graphics2D.translate((-f9) - f11, -f10);
+            graphics2D.translate((-f10) - f12, -f11);
         }
     }
 

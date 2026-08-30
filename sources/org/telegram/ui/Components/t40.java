@@ -1,30 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class t40 extends FrameLayout {
-    public View f32863a;
-    public TextView f32864b;
-    public aj0 f32865c;
-    public LinearLayout d;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public final class t40 extends org.telegram.ui.yt0 {
+    public final ArrayList f28897a;
+    public final w40 f28898b;
+
+    public t40(w40 w40Var, ArrayList arrayList) {
+        this.f28898b = w40Var;
+        this.f28897a = arrayList;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    public final org.telegram.ui.ju0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z4, boolean z10) {
+        v40 v40Var = this.f28898b.f30191b;
+        if (v40Var == null) {
+            return null;
+        }
+        return v40Var.getCloseIntoObject();
     }
 
-    public void setGravity(int i10) {
-        this.f32864b.setGravity(i10);
+    @Override
+    public final boolean S() {
+        return false;
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f32864b.setText(charSequence);
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z4, int i11, int i12, boolean z10) {
+        this.f28898b.t((MediaController.PhotoEntry) this.f28897a.get(0));
     }
 
-    public void setTextColor(int i10) {
-        this.f32864b.setTextColor(i10);
+    @Override
+    public final boolean z() {
+        return false;
     }
 }

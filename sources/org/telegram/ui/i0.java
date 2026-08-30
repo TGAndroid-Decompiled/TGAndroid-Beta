@@ -1,37 +1,39 @@
 package org.telegram.ui;
 
-import android.net.Uri;
-import org.telegram.messenger.Utilities;
-public final class i0 implements Utilities.Callback0Return {
-    public final m4 f39088a;
-    public final String f39089b;
-    public final boolean[] f39090c;
-    public final ye.c d;
+import org.telegram.messenger.NotificationCenter;
+public final class i0 extends org.telegram.ui.ActionBar.h5 {
+    public final int f34989f;
+    public final NotificationCenter.NotificationCenterDelegate h;
 
-    public i0(m4 m4Var, String str, boolean[] zArr, ye.c cVar) {
-        this.f39088a = m4Var;
-        this.f39089b = str;
-        this.f39090c = zArr;
-        this.d = cVar;
+    public i0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
+        this.f34989f = i10;
+        this.h = notificationCenterDelegate;
     }
 
     @Override
-    public final Object run() {
-        String str = this.f39089b;
-        if (!ye.d.f(Uri.parse(str), false, this.f39090c)) {
-            return Boolean.FALSE;
+    public boolean g() {
+        switch (this.f34989f) {
+            case 0:
+                l4 l4Var = (l4) this.h;
+                org.telegram.ui.Cells.m9 m9Var = l4Var.M0;
+                if (m9Var != null && m9Var.y()) {
+                    l4Var.M0.f(false);
+                    return false;
+                }
+                return true;
+            default:
+                return super.g();
         }
-        m4 m4Var = this.f39088a;
-        ye.c cVar = this.d;
-        if (cVar != null) {
-            cVar.f50516c = new org.telegram.ui.ActionBar.c(7, m4Var, cVar);
-        } else {
-            z3 z3Var = m4Var.G;
-            if (z3Var != null) {
-                z3Var.dismiss(true);
-            }
+    }
+
+    @Override
+    public void onOpenAnimationEnd() {
+        switch (this.f34989f) {
+            case 1:
+                ((org.telegram.ui.Components.lq0) this.h).V = true;
+                return;
+            default:
+                return;
         }
-        ye.d.r(m4Var.H, Uri.parse(str), true, true, false, cVar, null, true, true, false);
-        return Boolean.TRUE;
     }
 }

@@ -1,21 +1,28 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-public final class qr0 implements Runnable {
-    public final PhotoViewer f41767a;
+import android.net.Uri;
+import org.telegram.messenger.Utilities;
+public final class qr0 implements Utilities.Callback {
+    public final int f37831a;
+    public final wr0 f37832b;
+    public final boolean f37833c;
 
-    public qr0(PhotoViewer photoViewer) {
-        this.f41767a = photoViewer;
+    public qr0(wr0 wr0Var, boolean z4, int i10) {
+        this.f37831a = i10;
+        this.f37832b = wr0Var;
+        this.f37833c = z4;
     }
 
     @Override
-    public final void run() {
-        PhotoViewer photoViewer = this.f41767a;
-        MessageObject messageObject = photoViewer.P4;
-        if (messageObject == null) {
-            return;
+    public final void run(Object obj) {
+        Uri uri = (Uri) obj;
+        switch (this.f37831a) {
+            case 0:
+                org.telegram.ui.Components.qc.F(this.f37832b.f39788b.f31705b0, this.f37833c).j();
+                return;
+            default:
+                org.telegram.ui.Components.qc.F(this.f37832b.f39788b.f31705b0, this.f37833c).j();
+                return;
         }
-        FileLoader.getInstance(messageObject.currentAccount).setLoadingVideo(photoViewer.P4.getDocument(), true, false);
     }
 }

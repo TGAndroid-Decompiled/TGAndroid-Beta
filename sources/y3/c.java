@@ -1,47 +1,63 @@
 package y3;
-public final class c implements o3.k {
-    public final b f50243a = new b(null, 1);
-    public final f5.w f50244b = new f5.w(16384);
-    public boolean f50245c;
 
-    @Override
-    public final int d(o3.l lVar, o3.n nVar) {
-        f5.w wVar = this.f50244b;
-        int read = ((o3.h) lVar).read(wVar.f6640a, 0, 16384);
-        if (read == -1) {
-            return -1;
+import android.util.Pair;
+import h5.d0;
+import r3.r;
+import r3.t;
+public final class c implements f {
+    public final long[] f47034a;
+    public final long[] f47035b;
+    public final long f47036c;
+
+    public c(long j10, long[] jArr, long[] jArr2) {
+        this.f47034a = jArr;
+        this.f47035b = jArr2;
+        this.f47036c = j10 == -9223372036854775807L ? d0.G(jArr2[jArr2.length - 1]) : j10;
+    }
+
+    public static Pair d(long j10, long[] jArr, long[] jArr2) {
+        double d;
+        int e = d0.e(jArr, j10, true);
+        long j11 = jArr[e];
+        long j12 = jArr2[e];
+        int i10 = e + 1;
+        if (i10 == jArr.length) {
+            return Pair.create(Long.valueOf(j11), Long.valueOf(j12));
         }
-        wVar.C(0);
-        wVar.B(read);
-        boolean z10 = this.f50245c;
-        b bVar = this.f50243a;
-        if (!z10) {
-            bVar.f(4, 0L);
-            this.f50245c = true;
+        long j13 = jArr[i10];
+        long j14 = jArr2[i10];
+        if (j13 == j11) {
+            d = 0.0d;
+        } else {
+            d = (j10 - j11) / (j13 - j11);
         }
-        bVar.c(wVar);
-        return 0;
+        return Pair.create(Long.valueOf(j10), Long.valueOf(((long) (d * (j14 - j12))) + j12));
     }
 
     @Override
-    public final boolean e(o3.l r15) {
-        throw new UnsupportedOperationException("Method not decompiled: y3.c.e(o3.l):boolean");
+    public final long a(long j10) {
+        return d0.G(((Long) d(j10, this.f47034a, this.f47035b).second).longValue());
     }
 
     @Override
-    public final void f(long j10, long j11) {
-        this.f50245c = false;
-        this.f50243a.a();
+    public final long b() {
+        return -1L;
     }
 
     @Override
-    public final void i(o3.m mVar) {
-        this.f50243a.e(mVar, new d0(0, 1));
-        mVar.e1();
-        mVar.D1(new o3.o(-9223372036854775807L));
+    public final boolean c() {
+        return true;
     }
 
     @Override
-    public final void release() {
+    public final r f(long j10) {
+        Pair d = d(d0.S(d0.i(j10, 0L, this.f47036c)), this.f47035b, this.f47034a);
+        t tVar = new t(d0.G(((Long) d.first).longValue()), ((Long) d.second).longValue());
+        return new r(tVar, tVar);
+    }
+
+    @Override
+    public final long g() {
+        return this.f47036c;
     }
 }

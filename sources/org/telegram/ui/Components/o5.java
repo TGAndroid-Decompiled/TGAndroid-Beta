@@ -1,63 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-public class o5 extends Drawable {
-    public final Drawable f31257a;
-    public final int f31258b;
-    public final int f31259c;
-    public int d = 255;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class o5 extends AnimatorListenerAdapter {
+    public final int f27448a;
+    public final u5 f27449b;
 
-    public o5(int i10, int i11, Drawable drawable) {
-        this.f31257a = drawable;
-        this.f31258b = i10;
-        this.f31259c = i11;
+    public o5(u5 u5Var, int i10) {
+        this.f27448a = i10;
+        this.f27449b = u5Var;
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        Drawable drawable = this.f31257a;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-            drawable.setAlpha(this.d);
-            drawable.draw(canvas);
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f31259c;
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f31258b;
-    }
-
-    @Override
-    public final int getOpacity() {
-        Drawable drawable = this.f31257a;
-        if (drawable != null) {
-            return drawable.getOpacity();
-        }
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.d = i10;
-        Drawable drawable = this.f31257a;
-        if (drawable != null) {
-            drawable.setAlpha(i10);
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = this.f31257a;
-        if (drawable != null) {
-            drawable.setColorFilter(colorFilter);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f27448a) {
+            case 0:
+                u5.access$002(this.f27449b, null);
+                u5.access$102(false);
+                return;
+            case 1:
+                u5 u5Var = this.f27449b;
+                u5.access$002(u5Var, null);
+                if (u5.access$200(u5Var) != null) {
+                    u5.access$200(u5Var).run();
+                    u5.access$202(u5Var, null);
+                    return;
+                }
+                return;
+            default:
+                u5.access$302(this.f27449b, null);
+                return;
         }
     }
 }

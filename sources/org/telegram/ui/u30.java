@@ -1,17 +1,18 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class u30 extends FrameLayout {
-    public u30(LaunchActivity launchActivity) {
-        super(launchActivity);
-    }
-
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class u30 extends f2.u0 {
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() <= 0.95f) {
-            return false;
+    public final void a(Rect rect, View view, RecyclerView recyclerView, f2.i1 i1Var) {
+        recyclerView.getClass();
+        RecyclerView.R(view);
+        if (!c60.C3) {
+            rect.set(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        } else {
+            rect.set(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
         }
-        return super.dispatchTouchEvent(motionEvent);
     }
 }

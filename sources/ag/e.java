@@ -1,58 +1,48 @@
 package ag;
 
-import org.telegram.messenger.R;
-public final class e extends m {
-    @Override
-    public final float a() {
-        return 0.7f;
-    }
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class e extends Drawable {
+    public Drawable f187a;
+    public float f188b;
+    public int f189c;
 
-    @Override
-    public final int c() {
-        return -13318311;
-    }
-
-    @Override
-    public final float d() {
-        return 0.5f;
-    }
-
-    @Override
-    public final int e() {
-        return R.raw.photo_neon;
-    }
-
-    @Override
-    public final float g() {
-        return 0.2f;
-    }
-
-    @Override
-    public final float h() {
-        return 1.45f;
-    }
-
-    @Override
-    public final String i(int i10) {
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    return null;
-                }
-                return "brushLight";
-            }
-            return "compositeWithMaskLight";
+    public final void a(int i10) {
+        if (this.f189c != i10) {
+            this.f189c = i10;
+            setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
         }
-        return "blitWithMaskLight";
     }
 
     @Override
-    public final float k() {
-        return 0.07f;
+    public final void draw(Canvas canvas) {
+        Drawable drawable = this.f187a;
+        Rect bounds = getBounds();
+        float f10 = this.f188b;
+        if (f10 == 1.0f) {
+            drawable.setBounds(bounds);
+        } else {
+            drawable.setBounds((int) (bounds.centerX() - ((bounds.width() / 2.0f) * f10)), (int) (bounds.centerY() - ((bounds.height() / 2.0f) * f10)), (int) (((bounds.width() / 2.0f) * f10) + bounds.centerX()), (int) (((bounds.height() / 2.0f) * f10) + bounds.centerY()));
+        }
+        drawable.draw(canvas);
     }
 
     @Override
-    public final int l() {
-        return R.drawable.paint_neon_brush;
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f187a.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f187a.setColorFilter(colorFilter);
     }
 }

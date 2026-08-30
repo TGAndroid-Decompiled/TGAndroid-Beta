@@ -13,9 +13,9 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
-import j7.l1;
 import java.util.ArrayList;
 import java.util.HashMap;
+import kh.a2;
 public abstract class JobIntentService extends Service {
     static final boolean DEBUG = false;
     static final String TAG = "JobIntentService";
@@ -282,13 +282,13 @@ public abstract class JobIntentService extends Service {
         enqueueWork(context, new ComponentName(context, cls), i10, intent);
     }
 
-    public static WorkEnqueuer getWorkEnqueuer(Context context, ComponentName componentName, boolean z10, int i10) {
+    public static WorkEnqueuer getWorkEnqueuer(Context context, ComponentName componentName, boolean z4, int i10) {
         WorkEnqueuer compatWorkEnqueuer;
         HashMap<ComponentName, WorkEnqueuer> hashMap = sClassWorkEnqueuer;
         WorkEnqueuer workEnqueuer = hashMap.get(componentName);
         if (workEnqueuer == null) {
             if (Build.VERSION.SDK_INT >= 26) {
-                if (z10) {
+                if (z4) {
                     compatWorkEnqueuer = new JobWorkEnqueuer(context, componentName, i10);
                 } else {
                     throw new IllegalArgumentException("Can't be here without a job id");
@@ -328,11 +328,11 @@ public abstract class JobIntentService extends Service {
         return onStopCurrentWork();
     }
 
-    public void ensureProcessorRunningLocked(boolean z10) {
+    public void ensureProcessorRunningLocked(boolean z4) {
         if (this.mCurProcessor == null) {
             this.mCurProcessor = new CommandProcessor();
             WorkEnqueuer workEnqueuer = this.mCompatWorkEnqueuer;
-            if (workEnqueuer != null && z10) {
+            if (workEnqueuer != null && z4) {
                 workEnqueuer.serviceProcessingStarted();
             }
             this.mCurProcessor.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Void[0]);
@@ -418,8 +418,8 @@ public abstract class JobIntentService extends Service {
         }
     }
 
-    public void setInterruptIfStopped(boolean z10) {
-        this.mInterruptIfStopped = z10;
+    public void setInterruptIfStopped(boolean z4) {
+        this.mInterruptIfStopped = z4;
     }
 
     public static void enqueueWork(Context context, ComponentName componentName, int i10, Intent intent) {
@@ -451,9 +451,9 @@ public abstract class JobIntentService extends Service {
                 this.mJobId = i10;
             } else if (this.mJobId == i10) {
             } else {
-                StringBuilder o10 = l1.o(i10, "Given job ID ", " is different than previous ");
-                o10.append(this.mJobId);
-                throw new IllegalArgumentException(o10.toString());
+                StringBuilder m9 = a2.m(i10, "Given job ID ", " is different than previous ");
+                m9.append(this.mJobId);
+                throw new IllegalArgumentException(m9.toString());
             }
         }
 

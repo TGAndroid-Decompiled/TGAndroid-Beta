@@ -1,273 +1,144 @@
 package gg;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.text.TextUtils;
+import android.os.Bundle;
+import android.text.style.CharacterStyle;
 import android.widget.FrameLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
-import eg.k1;
-import i7.f6;
+import com.android.billingclient.api.Purchase;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.regex.Pattern;
+import lh.t7;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.t9;
-import org.telegram.ui.Components.y80;
-public final class e0 extends FrameLayout {
-    public final TextView f7298a;
-    public final TextView f7299b;
-    public final TextView f7300c;
-    public final TextView d;
-    public final TextView f7301e;
-    public final t9 f7302f;
-    public final t9 h;
-    public final c6 f7303n;
-    public final Paint f7304r;
-    public final Path f7305s;
-    public final RectF v;
-    public final FrameLayout f7306w;
-    public final FrameLayout f7307x;
-    public final TableRow f7308y;
+import org.telegram.messenger.BillingController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_update;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g3;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.e90;
+import org.telegram.ui.Components.ll;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.xx0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.a30;
+import org.telegram.ui.b71;
+import org.telegram.ui.c10;
+import org.telegram.ui.fg;
+import org.telegram.ui.fm0;
+import org.telegram.ui.gm0;
+import org.telegram.ui.hf0;
+import org.telegram.ui.jn;
+import org.telegram.ui.mg0;
+import org.telegram.ui.rm0;
+import org.telegram.ui.tf0;
+import org.telegram.ui.wf0;
+import org.telegram.ui.xn;
+import ph.xa;
+public final class e0 implements RequestDelegate {
+    public final int f6611a;
+    public final Object f6612b;
+    public final Object f6613c;
+    public final Object d;
+    public final Object e;
+    public final Object f6614f;
 
-    public e0(Context context, c6 c6Var) {
-        super(context);
-        int i10;
-        float f9;
-        float f10;
-        int i11;
-        float f11;
-        float f12;
-        float f13;
-        int i12;
-        float f14;
-        float f15;
-        float f16;
-        float f17;
-        float f18;
-        boolean z10;
-        Paint paint = new Paint();
-        this.f7304r = paint;
-        this.f7305s = new Path();
-        this.v = new RectF();
-        paint.setStyle(Paint.Style.STROKE);
-        this.f7303n = c6Var;
-        TextView a2 = a(LocaleController.getString(R.string.BoostingFrom), false);
-        TextView a10 = a(LocaleController.getString(R.string.BoostingTo), false);
-        TextView a11 = a(LocaleController.getString(R.string.BoostingGift), false);
-        TextView a12 = a(LocaleController.getString(R.string.BoostingReason), false);
-        TextView a13 = a(LocaleController.getString(R.string.BoostingDate), false);
-        TextView a14 = a(null, true);
-        this.f7298a = a14;
-        TextView a15 = a(null, true);
-        this.f7299b = a15;
-        TextView a16 = a(null, false);
-        this.f7300c = a16;
-        TextView a17 = a(null, true);
-        this.d = a17;
-        TextView a18 = a(null, false);
-        this.f7301e = a18;
-        t9 t9Var = new t9(context);
-        this.f7302f = t9Var;
-        t9Var.setRoundRadius(AndroidUtilities.dp(12.0f));
-        t9 t9Var2 = new t9(context);
-        this.h = t9Var2;
-        t9Var2.setRoundRadius(AndroidUtilities.dp(12.0f));
-        TableRow tableRow = new TableRow(context);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f7306w = frameLayout;
-        boolean z11 = LocaleController.isRTL;
-        if (z11) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        if (z11) {
-            f9 = 0.0f;
-        } else {
-            f9 = 12.0f;
-        }
-        if (z11) {
-            f10 = 12.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        frameLayout.addView(t9Var, f6.d(24, 24.0f, i10, f9, 0.0f, f10, 0.0f));
-        boolean z12 = LocaleController.isRTL;
-        if (z12) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        int i13 = i11 | 16;
-        if (z12) {
-            f11 = 0.0f;
-        } else {
-            f11 = 29.0f;
-        }
-        if (z12) {
-            f12 = 29.0f;
-        } else {
-            f12 = 0.0f;
-        }
-        frameLayout.addView(a14, f6.d(-2, -2.0f, i13, f11, 0.0f, f12, 0.0f));
-        if (LocaleController.isRTL) {
-            f13 = 1.0f;
-        } else {
-            f13 = 0.0f;
-        }
-        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(-2, -2, f13);
-        layoutParams.gravity = 16;
-        if (LocaleController.isRTL) {
-            tableRow.addView(frameLayout, layoutParams);
-            tableRow.addView(a2, new TableRow.LayoutParams(-2, -2));
-        } else {
-            tableRow.addView(a2, new TableRow.LayoutParams(-2, -2));
-            tableRow.addView(frameLayout, layoutParams);
-        }
-        frameLayout.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
-        TableRow tableRow2 = new TableRow(context);
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f7307x = frameLayout2;
-        boolean z13 = LocaleController.isRTL;
-        if (z13) {
-            i12 = 5;
-        } else {
-            i12 = 3;
-        }
-        if (z13) {
-            f14 = 0.0f;
-        } else {
-            f14 = 12.0f;
-        }
-        if (z13) {
-            f15 = 12.0f;
-        } else {
-            f15 = 0.0f;
-        }
-        frameLayout2.addView(t9Var2, f6.d(24, 24.0f, i12, f14, 0.0f, f15, 0.0f));
-        boolean z14 = LocaleController.isRTL;
-        int i14 = (z14 ? 5 : 3) | 16;
-        if (z14) {
-            f16 = 0.0f;
-        } else {
-            f16 = 29.0f;
-        }
-        if (z14) {
-            f17 = 29.0f;
-        } else {
-            f17 = 0.0f;
-        }
-        frameLayout2.addView(a15, f6.d(-2, -2.0f, i14, f16, 0.0f, f17, 0.0f));
-        if (LocaleController.isRTL) {
-            f18 = 1.0f;
-        } else {
-            f18 = 0.0f;
-        }
-        TableRow.LayoutParams layoutParams2 = new TableRow.LayoutParams(-2, -2, f18);
-        layoutParams2.gravity = 16;
-        if (LocaleController.isRTL) {
-            tableRow2.addView(frameLayout2, layoutParams2);
-            tableRow2.addView(a10, new TableRow.LayoutParams(-2, -2));
-        } else {
-            tableRow2.addView(a10, new TableRow.LayoutParams(-2, -2));
-            tableRow2.addView(frameLayout2, layoutParams2);
-        }
-        frameLayout2.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
-        TableRow tableRow3 = new TableRow(context);
-        if (LocaleController.isRTL) {
-            tableRow3.addView(a16, new TableRow.LayoutParams(-2, -2, 1.0f));
-            tableRow3.addView(a11, new TableRow.LayoutParams(-2, -2));
-        } else {
-            tableRow3.addView(a11, new TableRow.LayoutParams(-2, -2));
-            tableRow3.addView(a16, new TableRow.LayoutParams(-2, -2));
-        }
-        TableRow tableRow4 = new TableRow(context);
-        this.f7308y = tableRow4;
-        if (LocaleController.isRTL) {
-            tableRow4.addView(a17, new TableRow.LayoutParams(-2, -2, 1.0f));
-            tableRow4.addView(a12, new TableRow.LayoutParams(-2, -2));
-        } else {
-            tableRow4.addView(a12, new TableRow.LayoutParams(-2, -2));
-            tableRow4.addView(a17, new TableRow.LayoutParams(-2, -2));
-        }
-        TableRow tableRow5 = new TableRow(context);
-        if (LocaleController.isRTL) {
-            tableRow5.addView(a18, new TableRow.LayoutParams(-2, -2, 1.0f));
-            tableRow5.addView(a13, new TableRow.LayoutParams(-2, -2));
-        } else {
-            tableRow5.addView(a13, new TableRow.LayoutParams(-2, -2));
-            tableRow5.addView(a18, new TableRow.LayoutParams(-2, -2));
-        }
-        d0 d0Var = new d0(this, context, c6Var);
-        d0Var.addView(tableRow);
-        d0Var.addView(tableRow2);
-        d0Var.addView(tableRow3);
-        d0Var.addView(tableRow4);
-        d0Var.addView(tableRow5);
-        if (LocaleController.isRTL) {
-            z10 = true;
-            d0Var.setColumnShrinkable(0, true);
-        } else {
-            z10 = true;
-            d0Var.setColumnShrinkable(1, true);
-        }
-        addView(d0Var, f6.c(-2.0f, -1));
-        d0Var.setOutlineProvider(new k1(1));
-        d0Var.setClipToOutline(z10);
-        setPaddingRelative(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(14.0f), 0);
+    public e0(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
+        this.f6611a = i10;
+        this.e = obj;
+        this.f6612b = obj2;
+        this.f6613c = obj3;
+        this.d = obj4;
+        this.f6614f = obj5;
     }
 
-    public final TextView a(String str, boolean z10) {
-        TextView textView;
-        int i10;
-        float f9;
-        int i11;
-        c6 c6Var = this.f7303n;
-        if (z10) {
-            textView = new y80(getContext(), c6Var);
-            textView.setLinkTextColor(g6.v0(g6.J6, c6Var));
-        } else {
-            textView = new TextView(getContext());
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i10 = this.f6611a;
+        Object obj = this.f6614f;
+        Object obj2 = this.d;
+        Object obj3 = this.f6613c;
+        Object obj4 = this.f6612b;
+        Object obj5 = this.e;
+        switch (i10) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new g0(tL_error, (t0) obj5, tLObject, (MessagesController) obj4, (TLRPC.TL_inputInvoicePremiumGiftCode) obj3, (org.telegram.ui.ActionBar.p2) obj2, (t0) obj, 0));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new g0(tL_error, (Utilities.Callback) obj5, tLObject, (MessagesController) obj4, (TLRPC.TL_inputInvoicePremiumGiftCode) obj3, (org.telegram.ui.ActionBar.p2) obj2, (Utilities.Callback) obj, 1));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new g0((t7) obj5, tLObject, (MessageObject) obj4, (TLRPC.InputInvoice) obj3, (Utilities.Callback) obj2, (qc) obj, tL_error));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new kh.e1(tLObject, (Object) ((String[]) obj5), (Object) ((FrameLayout) obj4), (Object) ((e90) obj3), (Object) ((g3) obj2), (Object) ((f6) obj), 9));
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new kh.e1((xn) obj5, (af.f) obj4, (org.telegram.ui.Cells.t1) obj3, (String) obj2, tLObject, (CharacterStyle) obj));
+                return;
+            case 5:
+                AndroidUtilities.runOnUIThread(new g0((NotificationCenter.NotificationCenterDelegate) ((xn) obj5), tL_error, (TLObject) obj4, (Object) tLObject, (Object) ((fg) obj3), (Object) ((String) obj2), (Object) ((af.f) obj), 7));
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new g0((jn) obj5, (org.telegram.ui.ActionBar.d2) obj4, tLObject, (HashSet) obj3, (TLRPC.TL_inputGroupCallInviteMessage) obj2, (MessageObject) obj, tL_error));
+                return;
+            case 7:
+                AndroidUtilities.runOnUIThread(new kh.e1(tL_error, (Context) obj5, (f6) obj4, (ph.d) obj3, (g3) obj2, (Runnable) obj));
+                return;
+            case 8:
+                AndroidUtilities.runOnUIThread(new kh.e1((xx0) obj5, tLObject, (EditTextBoldCursor) obj4, (TextView) obj3, (TextView) obj2, (int[]) obj, 13, false));
+                return;
+            case 9:
+                Pattern pattern = LaunchActivity.f31612y1;
+                AndroidUtilities.runOnUIThread(new g0((LaunchActivity) obj5, (org.telegram.ui.ActionBar.d2) obj4, tL_error, (String) obj3, (Bundle) obj2, tLObject, (TL_account.sendConfirmPhoneCode) obj));
+                return;
+            case 10:
+                wf0 wf0Var = (wf0) obj5;
+                TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = (TLRPC.TL_inputStorePaymentAuthCode) obj4;
+                Purchase purchase = (Purchase) obj3;
+                TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj2;
+                a30 a30Var = (a30) obj;
+                if (tLObject instanceof TLRPC.Updates) {
+                    TLRPC.Updates updates = (TLRPC.Updates) tLObject;
+                    ArrayList findUpdatesAndRemove = MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateSentPhoneCode.class);
+                    int size = findUpdatesAndRemove.size();
+                    int i11 = 0;
+                    while (i11 < size) {
+                        Object obj6 = findUpdatesAndRemove.get(i11);
+                        i11++;
+                        AndroidUtilities.runOnUIThread(new hf0((Object) wf0Var, (Object) tL_inputStorePaymentAuthCode, (Object) ((TL_update.TL_updateSentPhoneCode) obj6), 3));
+                    }
+                    wf0Var.v.getMessagesController().processUpdates(updates, false);
+                    BillingController.getInstance().consumeGiftPurchase(purchase, tL_payments_canPurchaseStore.purpose, null);
+                    AndroidUtilities.runOnUIThread(new tf0(wf0Var, 3));
+                    return;
+                } else if (tL_error != null) {
+                    AndroidUtilities.runOnUIThread(new c10(a30Var, 25));
+                    return;
+                } else {
+                    return;
+                }
+            case 11:
+                AndroidUtilities.runOnUIThread(new g0((NotificationCenter.NotificationCenterDelegate) ((mg0) obj5), tL_error, tLObject, (Object) ((Bundle) obj4), (Object) ((String) obj3), (Object) ((l7.w0) obj2), (Object) ((TLObject) obj), 11));
+                return;
+            case 12:
+                AndroidUtilities.runOnUIThread(new g0((fm0) obj5, tLObject, (String) obj4, (TLRPC.TL_secureRequiredType) obj3, (gm0) obj2, tL_error, (rm0) obj));
+                return;
+            case 13:
+                AndroidUtilities.runOnUIThread(new kh.e1((b71) obj5, tL_error, (TLRPC.InputCheckPasswordSRP) obj4, (TLRPC.User) obj3, (TwoStepVerificationActivity) obj2, (TLRPC.TL_channels_editCreator) obj));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new kh.e1((int[]) obj5, tLObject, (MessagesController) obj4, (TLRPC.User[]) obj3, (xa) obj2, (ll) obj, 20, false));
+                return;
         }
-        if (z10) {
-            i10 = g6.f23222m5;
-        } else {
-            i10 = g6.f23169j5;
-        }
-        org.telegram.ui.b.m(i10, c6Var, textView, 1, 14.0f);
-        if (!z10) {
-            if (LocaleController.isRTL) {
-                i11 = 5;
-            } else {
-                i11 = 3;
-            }
-            textView.setGravity(i11);
-        }
-        if (str != null) {
-            textView.setTypeface(AndroidUtilities.bold());
-            textView.setText(str);
-            textView.setBackgroundColor(g6.v0(g6.f23081e7, c6Var));
-            float f10 = 12.0f;
-            if (LocaleController.isRTL) {
-                f9 = 32.0f;
-            } else {
-                f9 = 12.0f;
-            }
-            int dp = AndroidUtilities.dp(f9);
-            int dp2 = AndroidUtilities.dp(11.0f);
-            if (!LocaleController.isRTL) {
-                f10 = 32.0f;
-            }
-            textView.setPadding(dp, dp2, AndroidUtilities.dp(f10), AndroidUtilities.dp(11.0f));
-            return textView;
-        }
-        textView.setSingleLine(true);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
-        return textView;
     }
 }

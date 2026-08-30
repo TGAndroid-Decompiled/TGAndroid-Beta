@@ -1,148 +1,77 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class xo extends org.telegram.ui.Components.jl0 {
-    public static final int X2 = 0;
-    public final wo T2;
-    public boolean U2;
-    public final Paint V2;
-    public final yo W2;
+public final class xo extends org.telegram.ui.Cells.a9 {
+    public ValueAnimator v;
+    public int f40272w;
+    public final dp f40273x;
 
-    public xo(yo yoVar, Context context) {
-        super(context, null);
-        this.W2 = yoVar;
-        this.U2 = false;
-        this.V2 = new Paint(1);
-        wo woVar = new wo(this);
-        this.T2 = woVar;
-        setAdapter(woVar);
-        setLayoutManager(new f2.j0());
-        setOnItemClickListener(new vo(this));
-        new f2.e0(new mh.f(this, 1)).d(this);
+    public xo(dp dpVar, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, 12, f6Var);
+        this.f40273x = dpVar;
+        this.f40272w = -1;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        int R;
-        int size = this.W2.J.size();
-        int i10 = Integer.MAX_VALUE;
-        int i11 = Integer.MIN_VALUE;
-        for (int i12 = 0; i12 < getChildCount(); i12++) {
-            View childAt = getChildAt(i12);
-            if (childAt != null && (R = RecyclerView.R(childAt)) >= 1 && R <= size) {
-                i10 = Math.min(childAt.getTop(), i10);
-                i11 = Math.max(childAt.getBottom(), i11);
-            }
-        }
-        if (i10 < i11) {
-            int v02 = org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.f23062d6, this.f29709l2);
-            Paint paint = this.V2;
-            paint.setColor(v02);
-            canvas2 = canvas;
-            canvas2.drawRect(0.0f, i10, getWidth(), i11, paint);
-        } else {
-            canvas2 = canvas;
-        }
-        super.dispatchDraw(canvas2);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
-    }
-
-    public final void w1(TLRPC.TL_username tL_username, boolean z10, boolean z11) {
-        TLRPC.TL_username tL_username2;
-        int min;
-        yo yoVar = this.W2;
-        ArrayList arrayList = yoVar.J;
-        int i10 = 0;
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            if (arrayList.get(i11) == tL_username) {
-                int i12 = i11 + 1;
-                if (i11 >= 0 && i11 < arrayList.size() && (tL_username2 = (TLRPC.TL_username) arrayList.get(i11)) != null) {
-                    int i13 = -1;
-                    if (tL_username2.active != z10) {
-                        tL_username2.active = z10;
-                        if (z10) {
-                            int i14 = 0;
-                            while (true) {
-                                if (i14 < arrayList.size()) {
-                                    if (!((TLRPC.TL_username) arrayList.get(i14)).active) {
-                                        break;
-                                    }
-                                    i14++;
-                                } else {
-                                    i14 = -1;
-                                    break;
-                                }
-                            }
-                            if (i14 >= 0) {
-                                min = Math.max(0, i14 - 1);
-                                i13 = min + 1;
-                            }
-                        } else {
-                            int i15 = -1;
-                            for (int i16 = 0; i16 < arrayList.size(); i16++) {
-                                if (((TLRPC.TL_username) arrayList.get(i16)).active) {
-                                    i15 = i16;
-                                }
-                            }
-                            if (i15 >= 0) {
-                                min = Math.min(arrayList.size() - 1, i15 + 1);
-                                i13 = min + 1;
-                            }
-                        }
+    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        super.onLayout(z4, i10, i11, i12, i13);
+        if (this.f40272w != -1) {
+            dp dpVar = this.f40273x;
+            if (dpVar.h != null) {
+                ArrayList arrayList = new ArrayList();
+                boolean z10 = false;
+                for (int i14 = 0; i14 < dpVar.h.getChildCount(); i14++) {
+                    View childAt = dpVar.h.getChildAt(i14);
+                    if (z10) {
+                        arrayList.add(childAt);
+                    } else if (childAt == this) {
+                        z10 = true;
                     }
-                    int i17 = 0;
-                    while (true) {
-                        if (i17 >= getChildCount()) {
-                            break;
-                        }
-                        View childAt = getChildAt(i17);
-                        if (RecyclerView.R(childAt) == i12) {
-                            if (z11) {
-                                AndroidUtilities.shakeView(childAt);
-                            }
-                            if (childAt instanceof ia) {
-                                ia iaVar = (ia) childAt;
-                                iaVar.setLoading(yoVar.L.contains(tL_username2.username));
-                                TLRPC.TL_username tL_username3 = iaVar.v;
-                                if (tL_username3 != null) {
-                                    iaVar.a(tL_username3, iaVar.f39179w, true, iaVar.f39180x);
-                                }
-                            }
-                        } else {
-                            i17++;
-                        }
-                    }
-                    if (i13 >= 0 && i12 != i13) {
-                        int i18 = i13 - 1;
-                        wo woVar = this.T2;
-                        ArrayList arrayList2 = woVar.f44340c.W2.J;
-                        if (i11 < arrayList2.size() && i18 < arrayList2.size()) {
-                            arrayList2.add(i18, (TLRPC.TL_username) arrayList2.remove(i11));
-                            woVar.p(i12, i13);
-                            while (i10 < arrayList2.size()) {
-                                i10++;
-                                woVar.m(i10);
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
                 }
-                return;
+                float height = this.f40272w - getHeight();
+                ValueAnimator valueAnimator = this.v;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                }
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.v = ofFloat;
+                ofFloat.addUpdateListener(new gg(arrayList, height, 1));
+                this.v.setInterpolator(org.telegram.ui.Components.nr.h);
+                this.v.setDuration(350L);
+                this.v.start();
             }
         }
+        this.f40272w = getHeight();
+    }
+
+    @Override
+    public final void setText(CharSequence charSequence) {
+        String str;
+        if (charSequence != 0) {
+            charSequence = AndroidUtilities.replaceTags(charSequence.toString());
+            int indexOf = charSequence.toString().indexOf(10);
+            dp dpVar = this.f40273x;
+            if (indexOf >= 0) {
+                charSequence.replace(indexOf, indexOf + 1, " ");
+                charSequence.setSpan(new ForegroundColorSpan(dpVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20122p7)), 0, indexOf, 33);
+            }
+            org.telegram.ui.Components.f51[] f51VarArr = (org.telegram.ui.Components.f51[]) charSequence.getSpans(0, charSequence.length(), org.telegram.ui.Components.f51.class);
+            kg.f fVar = dpVar.f33746a;
+            if (fVar != null && fVar.getText() != null) {
+                str = dpVar.f33746a.getText().toString();
+            } else {
+                str = "";
+            }
+            for (int i10 = 0; i10 < f51VarArr.length; i10++) {
+                charSequence.setSpan(new org.telegram.ui.Cells.i(5, (Object) this, str), charSequence.getSpanStart(f51VarArr[i10]), charSequence.getSpanEnd(f51VarArr[i10]), 33);
+                charSequence.removeSpan(f51VarArr[i10]);
+            }
+        }
+        super.setText(charSequence);
     }
 }

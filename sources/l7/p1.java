@@ -1,17 +1,29 @@
 package l7;
-public final class p1 implements s9.d {
-    public static final p1 f14910a = new Object();
 
-    static {
-        com.google.android.recaptcha.internal.a.t(j7.l1.q(w.class, j7.l1.r(7, j7.l1.q(w.class, j7.l1.r(6, j7.l1.q(w.class, j7.l1.r(5, j7.l1.q(w.class, j7.l1.r(4, j7.l1.q(w.class, j7.l1.r(3, j7.l1.q(w.class, j7.l1.r(2, j7.l1.q(w.class, new s(1)))))))))))))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            s9.e eVar = (s9.e) obj2;
-            throw null;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+public final class p1 extends a7.a implements r3 {
+    public final r0 U0(l6.b bVar, t6 t6Var) {
+        r0 aVar;
+        Parcel M0 = M0();
+        int i10 = c0.f11434a;
+        M0.writeStrongBinder(bVar);
+        M0.writeInt(1);
+        t6Var.writeToParcel(M0, 0);
+        Parcel O0 = O0(M0, 1);
+        IBinder readStrongBinder = O0.readStrongBinder();
+        if (readStrongBinder == null) {
+            aVar = 0;
+        } else {
+            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.android.gms.vision.label.internal.client.INativeImageLabeler");
+            if (queryLocalInterface instanceof r0) {
+                aVar = (r0) queryLocalInterface;
+            } else {
+                aVar = new a7.a(readStrongBinder, "com.google.android.gms.vision.label.internal.client.INativeImageLabeler", 6);
+            }
         }
-        throw new ClassCastException();
+        O0.recycle();
+        return aVar;
     }
 }

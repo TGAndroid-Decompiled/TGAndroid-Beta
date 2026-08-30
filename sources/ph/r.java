@@ -1,98 +1,81 @@
 package ph;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.FrameLayout;
-import i7.f6;
+import android.text.TextUtils;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.WeakHashMap;
-import nh.t4;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.k51;
-import org.telegram.ui.Components.u51;
-import org.telegram.ui.Components.w41;
-import org.telegram.ui.al0;
-import org.telegram.ui.g5;
-import org.telegram.ui.th;
-public final class r extends org.telegram.ui.ActionBar.o2 {
-    public u51 f46012a;
-    public final ArrayList f46013b;
-    public final HashMap f46014c;
+import org.telegram.messenger.BuildVars;
+public final class r {
+    public static ArrayList f42229f;
+    public final String f42230a;
+    public final int f42231b;
+    public final int f42232c;
+    public final int[] d;
+    public final ArrayList e = new ArrayList();
 
-    public r() {
-        super(null);
-        this.f46013b = new ArrayList();
-        this.f46014c = new HashMap();
-    }
-
-    public static void U(r rVar, ArrayList arrayList) {
-        HashMap hashMap = rVar.f46014c;
-        ArrayList arrayList2 = rVar.f46013b;
-        for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-            o oVar = (o) arrayList2.get(i10);
-            SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) hashMap.get(oVar);
-            if (spannableStringBuilder == null) {
-                spannableStringBuilder = new SpannableStringBuilder();
-                spannableStringBuilder.append((CharSequence) "a   ");
-                g5 g5Var = new g5(null, 24.0f, rVar.currentAccount);
-                g5Var.e(oVar.f45923a);
-                spannableStringBuilder.setSpan(g5Var, 0, 1, 33);
-                spannableStringBuilder.append((CharSequence) UserObject.getUserName(oVar.f45923a));
-                hashMap.put(oVar, spannableStringBuilder);
-            }
-            w41 i11 = w41.i(i10, spannableStringBuilder);
-            i11.K(!oVar.f45924b);
-            arrayList.add(i11);
+    public r(String str) {
+        str = str == null ? "." : str;
+        this.f42230a = str;
+        String[] split = str.split("/");
+        int length = split.length;
+        this.f42232c = length;
+        this.d = new int[length];
+        int i10 = 0;
+        for (int i11 = 0; i11 < split.length; i11++) {
+            this.d[i11] = split[i11].length();
+            i10 = Math.max(i10, split[i11].length());
         }
-        th.A(R.string.PrivacyBiometryBotsInfo, arrayList);
-    }
-
-    public static void V(r rVar, w41 w41Var) {
-        int i10;
-        k51 k51Var;
-        ArrayList arrayList = rVar.f46013b;
-        if (w41Var.f50845a == 4 && (i10 = w41Var.d) >= 0 && i10 < arrayList.size()) {
-            o oVar = (o) arrayList.get(w41Var.d);
-            oVar.f45924b = !oVar.f45924b;
-            Activity parentActivity = rVar.getParentActivity();
-            int i11 = rVar.currentAccount;
-            long j10 = oVar.f45923a.f22539id;
-            boolean z10 = oVar.f45924b;
-            WeakHashMap weakHashMap = p.f45939k;
-            SharedPreferences sharedPreferences = parentActivity.getSharedPreferences("2botbiometry_" + i11, 0);
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putBoolean(j10 + "_disabled", z10);
-            if (!z10 && sharedPreferences.getString(String.valueOf(j10), null) == null) {
-                edit.putString(String.valueOf(j10), "");
-            }
-            edit.apply();
-            u51 u51Var = rVar.f46012a;
-            if (u51Var != null && (k51Var = u51Var.U2) != null) {
-                k51Var.N(true);
+        this.f42231b = i10;
+        for (int i12 = 0; i12 < split.length; i12++) {
+            for (int i13 = 0; i13 < split[i12].length(); i13++) {
+                this.e.add(new q(this, i13, i12));
             }
         }
     }
 
-    @Override
-    public final View createView(Context context) {
-        th.y(false, this.actionBar);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.PrivacyBiometryBots));
-        this.actionBar.setActionBarMenuOnItemClick(new al0(this, 27));
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(g6.v0(g6.f23009a7, this.resourceProvider));
-        u51 u51Var = new u51(this, new t4(this, 8), new q(this), new q(this));
-        this.f46012a = u51Var;
-        frameLayout.addView(u51Var, f6.e(-1, -1, 119));
-        p.d(getParentActivity(), this.currentAccount, new nh.b0(this, 13));
-        this.fragmentView = frameLayout;
-        return frameLayout;
+    public static ArrayList a() {
+        if (f42229f == null) {
+            ArrayList arrayList = new ArrayList();
+            f42229f = arrayList;
+            arrayList.add(new r("./."));
+            f42229f.add(new r(".."));
+            f42229f.add(new r("../."));
+            f42229f.add(new r("./.."));
+            f42229f.add(new r("././."));
+            f42229f.add(new r("..."));
+            f42229f.add(new r("../.."));
+            f42229f.add(new r("./../.."));
+            f42229f.add(new r("../../."));
+            f42229f.add(new r("../../.."));
+            if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                f42229f.add(new r("../../../.."));
+                f42229f.add(new r(".../.../..."));
+                f42229f.add(new r("..../..../...."));
+                f42229f.add(new r(".../.../.../..."));
+            }
+        }
+        return f42229f;
+    }
+
+    public static int b() {
+        ArrayList a2 = a();
+        int size = a2.size();
+        int i10 = 0;
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = a2.get(i11);
+            i11++;
+            i10 = Math.max(i10, ((r) obj).e.size());
+        }
+        return i10;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof r) {
+            return TextUtils.equals(this.f42230a, ((r) obj).f42230a);
+        }
+        return false;
+    }
+
+    public final String toString() {
+        return this.f42230a;
     }
 }

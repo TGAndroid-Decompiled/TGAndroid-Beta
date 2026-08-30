@@ -1,41 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-public final class u0 implements DialogInterface.OnDismissListener {
-    public final int f33068a;
-    public final Runnable f33069b;
+import android.os.Bundle;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ProfileActivity;
+public final class u0 implements View.OnClickListener {
+    public final int f29082a;
+    public final TLRPC.User f29083b;
+    public final org.telegram.ui.ActionBar.p2 f29084c;
+    public final AlertDialog$Builder d;
 
-    public u0(int i10, Runnable runnable) {
-        this.f33068a = i10;
-        this.f33069b = runnable;
+    public u0(TLRPC.User user, org.telegram.ui.ActionBar.p2 p2Var, AlertDialog$Builder alertDialog$Builder, int i10) {
+        this.f29082a = i10;
+        this.f29083b = user;
+        this.f29084c = p2Var;
+        this.d = alertDialog$Builder;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f33068a) {
+    public final void onClick(View view) {
+        switch (this.f29082a) {
             case 0:
-                this.f33069b.run();
-                return;
-            case 1:
-                Runnable runnable = this.f33069b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
+                Bundle bundle = new Bundle();
+                bundle.putLong("user_id", this.f29083b.f19331id);
+                org.telegram.ui.ActionBar.p2 p2Var = this.f29084c;
+                if (p2Var.getMessagesController().checkCanOpenChat(bundle, p2Var)) {
+                    p2Var.presentFragment(new ProfileActivity(bundle, null));
                 }
-                return;
-            case 2:
-                Runnable runnable2 = this.f33069b;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    return;
-                }
+                this.d.f19503a.I0.run();
                 return;
             default:
-                Runnable runnable3 = this.f33069b;
-                if (runnable3 != null) {
-                    runnable3.run();
-                    return;
+                Bundle bundle2 = new Bundle();
+                bundle2.putLong("user_id", this.f29083b.f19331id);
+                org.telegram.ui.ActionBar.p2 p2Var2 = this.f29084c;
+                if (p2Var2.getMessagesController().checkCanOpenChat(bundle2, p2Var2)) {
+                    p2Var2.presentFragment(new ProfileActivity(bundle2, null));
                 }
+                this.d.f19503a.I0.run();
                 return;
         }
     }

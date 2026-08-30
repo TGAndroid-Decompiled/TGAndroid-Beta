@@ -1,54 +1,87 @@
 package o3;
 
-import f5.d0;
+import android.os.Parcel;
+import android.os.Parcelable;
+import h5.d0;
 import java.util.Arrays;
-public final class f implements t {
-    public final int f19082a;
-    public final int[] f19083b;
-    public final long[] f19084c;
-    public final long[] d;
-    public final long[] f19085e;
-    public final long f19086f;
+import java.util.UUID;
+import kh.a2;
+public final class f implements Parcelable {
+    public static final Parcelable.Creator<f> CREATOR = new l4.j(15);
+    public int f16257a;
+    public final UUID f16258b;
+    public final String f16259c;
+    public final String d;
+    public final byte[] e;
 
-    public f(int[] iArr, long[] jArr, long[] jArr2, long[] jArr3) {
-        this.f19083b = iArr;
-        this.f19084c = jArr;
-        this.d = jArr2;
-        this.f19085e = jArr3;
-        int length = iArr.length;
-        this.f19082a = length;
-        if (length > 0) {
-            this.f19086f = jArr2[length - 1] + jArr3[length - 1];
-        } else {
-            this.f19086f = 0L;
-        }
+    public f(UUID uuid, String str, String str2, byte[] bArr) {
+        uuid.getClass();
+        this.f16258b = uuid;
+        this.f16259c = str;
+        str2.getClass();
+        this.d = str2;
+        this.e = bArr;
     }
 
-    @Override
-    public final boolean c() {
+    public final boolean a(UUID uuid) {
+        UUID uuid2 = j3.h.f8593a;
+        UUID uuid3 = this.f16258b;
+        if (!uuid2.equals(uuid3) && !uuid.equals(uuid3)) {
+            return false;
+        }
         return true;
     }
 
     @Override
-    public final s g(long j10) {
-        long[] jArr = this.f19085e;
-        int e10 = d0.e(jArr, j10, true);
-        long j11 = jArr[e10];
-        long[] jArr2 = this.f19084c;
-        u uVar = new u(j11, jArr2[e10]);
-        if (j11 < j10 && e10 != this.f19082a - 1) {
-            int i10 = e10 + 1;
-            return new s(uVar, new u(jArr[i10], jArr2[i10]));
+    public final int describeContents() {
+        return 0;
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof f)) {
+            return false;
         }
-        return new s(uVar, uVar);
+        if (obj == this) {
+            return true;
+        }
+        f fVar = (f) obj;
+        if (!d0.a(this.f16259c, fVar.f16259c) || !d0.a(this.d, fVar.d) || !d0.a(this.f16258b, fVar.f16258b) || !Arrays.equals(this.e, fVar.e)) {
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        int hashCode;
+        if (this.f16257a == 0) {
+            int hashCode2 = this.f16258b.hashCode() * 31;
+            String str = this.f16259c;
+            if (str == null) {
+                hashCode = 0;
+            } else {
+                hashCode = str.hashCode();
+            }
+            this.f16257a = Arrays.hashCode(this.e) + a2.e((hashCode2 + hashCode) * 31, 31, this.d);
+        }
+        return this.f16257a;
     }
 
     @Override
-    public final long h() {
-        return this.f19086f;
+    public final void writeToParcel(Parcel parcel, int i10) {
+        UUID uuid = this.f16258b;
+        parcel.writeLong(uuid.getMostSignificantBits());
+        parcel.writeLong(uuid.getLeastSignificantBits());
+        parcel.writeString(this.f16259c);
+        parcel.writeString(this.d);
+        parcel.writeByteArray(this.e);
     }
 
-    public final String toString() {
-        return "ChunkIndex(length=" + this.f19082a + ", sizes=" + Arrays.toString(this.f19083b) + ", offsets=" + Arrays.toString(this.f19084c) + ", timeUs=" + Arrays.toString(this.f19085e) + ", durationsUs=" + Arrays.toString(this.d) + ")";
+    public f(Parcel parcel) {
+        this.f16258b = new UUID(parcel.readLong(), parcel.readLong());
+        this.f16259c = parcel.readString();
+        String readString = parcel.readString();
+        int i10 = d0.f6937a;
+        this.d = readString;
+        this.e = parcel.createByteArray();
     }
 }

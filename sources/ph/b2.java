@@ -1,23 +1,11 @@
 package ph;
 
-import org.telegram.messenger.R;
-public final class b2 extends org.telegram.ui.ActionBar.k {
-    public final p2 f45744a;
-
-    public b2(p2 p2Var) {
-        this.f45744a = p2Var;
-    }
-
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.ImageView;
+public final class b2 extends ImageView implements c2 {
     @Override
-    public final void b(int i10) {
-        p2 p2Var = this.f45744a;
-        if (i10 == -1) {
-            if (!p2Var.f45987x.z()) {
-                p2Var.q();
-            }
-        } else if (i10 == R.id.menu_collapse_bot) {
-            p2Var.f45982t0 = true;
-            p2Var.k(true);
-        }
+    public void setInvert(float f10) {
+        setColorFilter(new PorterDuffColorFilter(i0.a.d(f10, -1, -16777216), PorterDuff.Mode.MULTIPLY));
     }
 }

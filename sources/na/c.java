@@ -1,24 +1,30 @@
 package na;
-public final class c {
-    public static final c d = new c("", "", false);
-    public final String f17177a;
-    public final String f17178b;
-    public final boolean f17179c;
 
-    static {
-        new c("\n", "  ", true);
+import android.util.Log;
+import dd.p;
+import k7.p7;
+public final class c extends wc.i implements p {
+    public Object f14872a;
+
+    @Override
+    public final uc.c create(Object obj, uc.c cVar) {
+        ?? iVar = new wc.i(2, cVar);
+        iVar.f14872a = obj;
+        return iVar;
     }
 
-    public c(String str, String str2, boolean z10) {
-        if (str.matches("[\r\n]*")) {
-            if (str2.matches("[ \t]*")) {
-                this.f17177a = str;
-                this.f17178b = str2;
-                this.f17179c = z10;
-                return;
-            }
-            throw new IllegalArgumentException("Only combinations of spaces and tabs are allowed in indent.");
-        }
-        throw new IllegalArgumentException("Only combinations of \\n and \\r are allowed in newline.");
+    @Override
+    public final Object invoke(Object obj, Object obj2) {
+        sc.i iVar = sc.i.f44253a;
+        ((c) create((String) obj, (uc.c) obj2)).invokeSuspend(iVar);
+        return iVar;
+    }
+
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        vc.a aVar = vc.a.f45663a;
+        p7.b(obj);
+        Log.e("SessionConfigFetcher", "Error failing to fetch the remote configs: " + ((String) this.f14872a));
+        return sc.i.f44253a;
     }
 }

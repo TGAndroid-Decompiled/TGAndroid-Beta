@@ -1,163 +1,147 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
+import android.util.StateSet;
+import android.view.MotionEvent;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class sc1 implements Runnable {
-    public final int f42357a;
-    public final Object f42358b;
-    public final Object f42359c;
-    public final Object d;
+public final class sc1 extends View {
+    public org.telegram.ui.Components.k01 f38295a;
+    public org.telegram.ui.Components.k01 f38296b;
+    public boolean f38297c;
+    public final org.telegram.ui.Components.z5 d;
+    public final org.telegram.ui.Cells.z e;
+    public final ColorMatrixColorFilter f38298f;
+    public final Paint h;
+    public final Paint f38299n;
+    public final cd1 f38300r;
 
-    public sc1(Object obj, Object obj2, Object obj3, int i10) {
-        this.f42357a = i10;
-        this.f42358b = obj;
-        this.d = obj2;
-        this.f42359c = obj3;
+    public sc1(Context context, cd1 cd1Var) {
+        super(context);
+        this.f38300r = cd1Var;
+        this.d = new org.telegram.ui.Components.z5(this, 0L, 350L, org.telegram.ui.Components.nr.h);
+        org.telegram.ui.Cells.z Y = org.telegram.ui.ActionBar.j6.Y(285212671, 8, 8);
+        this.e = Y;
+        this.h = new Paint(1);
+        this.f38299n = new Paint(1);
+        Y.setCallback(this);
+        ColorMatrix colorMatrix = new ColorMatrix();
+        AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.35f);
+        AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.9f);
+        this.f38298f = new ColorMatrixColorFilter(colorMatrix);
+    }
+
+    public final CharSequence b() {
+        org.telegram.ui.Components.k01 k01Var = this.f38295a;
+        if (k01Var != null) {
+            return k01Var.k();
+        }
+        return null;
+    }
+
+    public final void c(SpannableStringBuilder spannableStringBuilder, boolean z4) {
+        boolean z10;
+        if (spannableStringBuilder != null) {
+            this.f38296b = new org.telegram.ui.Components.k01(spannableStringBuilder, 12.0f, null);
+        }
+        if (spannableStringBuilder != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f38297c = z10;
+        if (!z4) {
+            this.d.f(z10, true);
+        }
+        invalidate();
+    }
+
+    public final void d(CharSequence charSequence) {
+        this.f38295a = new org.telegram.ui.Components.k01(charSequence, 14.0f, AndroidUtilities.bold());
     }
 
     @Override
-    public final void run() {
-        TLRPC.Message message;
-        int i10;
-        int i11 = this.f42357a;
-        jn jnVar = null;
-        jnVar = null;
-        jnVar = null;
-        boolean z10 = false;
-        Object obj = this.f42359c;
-        Object obj2 = this.d;
-        Object obj3 = this.f42358b;
-        switch (i11) {
-            case 0:
-                vc1 vc1Var = (vc1) obj3;
-                String str = (String) obj2;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                vc1Var.f43546y = 0;
-                String str2 = vc1Var.A;
-                if (str2 != null && str2.equals(str)) {
-                    if (tL_error != null && ("THEME_SLUG_INVALID".equals(tL_error.text) || "THEME_SLUG_OCCUPIED".equals(tL_error.text))) {
-                        vc1Var.a0(org.telegram.ui.ActionBar.g6.f23279p7, LocaleController.getString(R.string.SetUrlInUse));
-                        return;
-                    } else {
-                        vc1Var.a0(org.telegram.ui.ActionBar.g6.f23401w6, LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str));
-                        return;
-                    }
-                }
-                return;
-            case 1:
-                vc1.W((vc1) obj3, (TLRPC.TL_error) obj, (TL_account.updateTheme) obj2);
-                return;
-            case 2:
-                fd1 fd1Var = (fd1) obj3;
-                tn tnVar = (tn) obj2;
-                MessageObject messageObject = fd1Var.C;
-                int i12 = ((TLRPC.TodoItem) obj).f22537id;
-                if (messageObject != null && (message = messageObject.messageOwner) != null && (message.media instanceof TLRPC.TL_messageMediaToDo)) {
-                    messageObject.getDialogId();
-                    ?? obj4 = new Object();
-                    obj4.f39590a = messageObject;
-                    obj4.f39591b = -1;
-                    obj4.f39592c = -1;
-                    obj4.f39595g = true;
-                    obj4.d = i12;
-                    obj4.e();
-                    jnVar = obj4;
-                }
-                tnVar.Cb(messageObject, jnVar);
-                fd1Var.c(false);
-                return;
-            case 3:
-                md1 md1Var = (md1) obj3;
-                ArrayList arrayList = md1Var.h;
-                arrayList.clear();
-                ArrayList arrayList2 = md1Var.f40533f;
-                arrayList2.clear();
-                arrayList.addAll((ArrayList) obj2);
-                arrayList2.addAll(((TLRPC.TL_messages_inactiveChats) obj).chats);
-                md1Var.d.l();
-                if (md1Var.f40529a.getMeasuredHeight() > 0) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    md1Var.f40539y = ofFloat;
-                    ofFloat.addUpdateListener(new w01(md1Var, 15));
-                    md1Var.f40539y.setDuration(100L);
-                    md1Var.f40539y.start();
-                } else {
-                    md1Var.A = 1.0f;
-                }
-                AndroidUtilities.cancelRunOnUIThread(md1Var.E);
-                if (md1Var.B.getVisibility() == 0) {
-                    md1Var.B.animate().alpha(0.0f).setListener(new id1(md1Var, 2)).start();
-                    return;
-                }
-                return;
-            case 4:
-                ze1 ze1Var = (ze1) obj3;
-                ze1Var.f45188s.deleteTopics(ze1Var.f45155a, (ArrayList) obj2);
-                ((Runnable) obj).run();
-                return;
-            case 5:
-                ve1 ve1Var = (ve1) obj3;
-                String str3 = (String) obj2;
-                TLObject tLObject = (TLObject) obj;
-                ArrayList arrayList3 = ve1Var.W;
-                if (str3.equals(ve1Var.U)) {
-                    int i13 = ve1Var.f43566g0;
-                    ve1Var.f43571l0 = false;
-                    ve1Var.f43567h0 = false;
-                    if (tLObject instanceof TLRPC.messages_Messages) {
-                        TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                        for (int i14 = 0; i14 < messages_messages.messages.size(); i14++) {
-                            i10 = ((org.telegram.ui.ActionBar.o2) ve1Var.f43574p0).currentAccount;
-                            MessageObject messageObject2 = new MessageObject(i10, messages_messages.messages.get(i14), false, false);
-                            messageObject2.setQuery(str3);
-                            arrayList3.add(messageObject2);
-                        }
-                        ve1Var.L();
-                        if (arrayList3.size() < messages_messages.count && !messages_messages.messages.isEmpty()) {
-                            z10 = true;
-                        }
-                        ve1Var.f43568i0 = z10;
-                    } else {
-                        ve1Var.f43568i0 = false;
-                    }
-                    if (ve1Var.f43566g0 == 0) {
-                        ve1Var.f43569j0.e(ve1Var.f43567h0, true);
-                    }
-                    ve1Var.f43570k0.b(i13);
-                    return;
-                }
-                return;
-            default:
-                rg1 rg1Var = (rg1) obj3;
-                ArrayList arrayList4 = (ArrayList) obj2;
-                ArrayList arrayList5 = (ArrayList) obj;
-                rf.k1 k1Var = rg1Var.f42100f;
-                if (rg1Var.f42101n) {
-                    rg1Var.h = null;
-                    rg1Var.d = arrayList4;
-                    rg1Var.f42099e = arrayList5;
-                    k1Var.f(arrayList4, null);
-                    if (rg1Var.f42101n && !k1Var.e()) {
-                        rg1Var.v.f36354f.e(false, true);
-                    }
-                    rg1Var.l();
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        float height = getHeight() / 2.0f;
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        cd1 cd1Var = this.f38300r;
+        rc1 rc1Var = cd1Var.f33338u0;
+        cc1 cc1Var = cd1Var.f33287a;
+        org.telegram.ui.ActionBar.j6.s(this, rc1Var, cc1Var);
+        Paint G = cc1Var.G("paintChatActionBackground");
+        ColorFilter colorFilter = G.getColorFilter();
+        G.setColorFilter(this.f38298f);
+        canvas.drawRoundRect(rectF, height, height, G);
+        G.setColorFilter(colorFilter);
+        if (cd1Var.J1) {
+            float f10 = cd1Var.f33318k1;
+            if (f10 > 0.0f) {
+                int k10 = i0.a.k(-16777216, (int) (f10 * 255.0f * cd1Var.l1));
+                Paint paint = this.f38299n;
+                paint.setColor(k10);
+                canvas.drawRoundRect(rectF, height, height, paint);
+            }
         }
+        Paint paint2 = this.h;
+        paint2.setColor(520093695);
+        canvas.drawRoundRect(rectF, height, height, paint2);
+        float e = this.d.e(this.f38297c);
+        org.telegram.ui.Components.k01 k01Var = this.f38295a;
+        if (k01Var != null) {
+            k01Var.f26094p = getWidth() - AndroidUtilities.dp(14.0f);
+            k01Var.c((getWidth() - this.f38295a.l()) / 2.0f, ((AndroidUtilities.dp(24.0f) * 0.0f) + (getHeight() / 2.0f)) - (AndroidUtilities.dp(7.0f) * e), 1.0f, -1, canvas);
+        }
+        if (this.f38296b != null) {
+            canvas.save();
+            canvas.scale(e, e, getWidth() / 2.0f, (getHeight() / 2.0f) + AndroidUtilities.dp(11.0f));
+            org.telegram.ui.Components.k01 k01Var2 = this.f38296b;
+            k01Var2.f26094p = getWidth() - AndroidUtilities.dp(14.0f);
+            float dp = 0.0f * AndroidUtilities.dp(24.0f);
+            k01Var2.c((getWidth() - this.f38296b.l()) / 2.0f, AndroidUtilities.dp(11.0f) + dp + (getHeight() / 2.0f), 1.0f, org.telegram.ui.ActionBar.j6.l1(0.75f, -1), canvas);
+            canvas.restore();
+        }
+        int width = getWidth();
+        int height2 = getHeight();
+        org.telegram.ui.Cells.z zVar = this.e;
+        zVar.setBounds(0, 0, width, height2);
+        zVar.draw(canvas);
     }
 
-    public sc1(vc1 vc1Var, TLRPC.TL_error tL_error, TL_account.updateTheme updatetheme) {
-        this.f42357a = 1;
-        this.f42358b = vc1Var;
-        this.f42359c = tL_error;
-        this.d = updatetheme;
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z4;
+        int action = motionEvent.getAction();
+        org.telegram.ui.Cells.z zVar = this.e;
+        if (action == 0) {
+            zVar.setHotspot(motionEvent.getX(), motionEvent.getY());
+            zVar.setState(new int[]{16842910, 16842919});
+            z4 = true;
+        } else {
+            if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                zVar.setState(StateSet.NOTHING);
+            }
+            z4 = false;
+        }
+        if (super.onTouchEvent(motionEvent) || z4) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.e && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

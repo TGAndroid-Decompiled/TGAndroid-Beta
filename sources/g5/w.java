@@ -1,44 +1,117 @@
 package g5;
 
-import f5.d0;
-import j3.h0;
-import j3.k0;
-import jh.d3;
-import l4.c0;
-public final class w implements Runnable {
-    public final int f7098a;
-    public final ze.b f7099b;
-    public final m3.f f7100c;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+public final class w implements Map {
+    public final Map f6460a;
 
-    public w(ze.b bVar, m3.f fVar, int i10) {
-        this.f7098a = i10;
-        this.f7099b = bVar;
-        this.f7100c = fVar;
+    public w(Map map) {
+        this.f6460a = map;
     }
 
     @Override
-    public final void run() {
-        switch (this.f7098a) {
-            case 0:
-                ze.b bVar = this.f7099b;
-                m3.f fVar = this.f7100c;
-                synchronized (fVar) {
-                }
-                int i10 = d0.f6579a;
-                k0 k0Var = ((h0) bVar.f50825b).f10477a;
-                k3.f fVar2 = k0Var.f10594r;
-                k3.a i11 = fVar2.i((c0) fVar2.d.f2121e);
-                fVar2.l(i11, 1020, new eg.n(i11, fVar, 29));
-                k0Var.P = null;
-                return;
-            default:
-                ze.b bVar2 = this.f7099b;
-                m3.f fVar3 = this.f7100c;
-                int i12 = d0.f6579a;
-                k3.f fVar4 = ((h0) bVar2.f50825b).f10477a.f10594r;
-                k3.a k9 = fVar4.k();
-                fVar4.l(k9, 1015, new d3(k9, fVar3, 16));
-                return;
+    public final void clear() {
+        this.f6460a.clear();
+    }
+
+    @Override
+    public final boolean containsKey(Object obj) {
+        if (obj != null && this.f6460a.containsKey(obj)) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final boolean containsValue(Object obj) {
+        Iterator it = ((s8.r0) entrySet()).iterator();
+        it.getClass();
+        if (obj == null) {
+            while (it.hasNext()) {
+                if (((Map.Entry) it.next()).getValue() == null) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        while (it.hasNext()) {
+            if (obj.equals(((Map.Entry) it.next()).getValue())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final Set entrySet() {
+        return s8.l.f(this.f6460a.entrySet(), new v(1));
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj != null && s8.l.d(this, obj)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        if (obj == null) {
+            return null;
+        }
+        return (List) this.f6460a.get(obj);
+    }
+
+    @Override
+    public final int hashCode() {
+        return s8.l.i(entrySet());
+    }
+
+    @Override
+    public final boolean isEmpty() {
+        Map map = this.f6460a;
+        if (map.isEmpty() || (map.size() == 1 && map.containsKey(null))) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final Set keySet() {
+        return s8.l.f(this.f6460a.keySet(), new v(0));
+    }
+
+    @Override
+    public final Object put(Object obj, Object obj2) {
+        return this.f6460a.put(obj, obj2);
+    }
+
+    @Override
+    public final void putAll(Map map) {
+        this.f6460a.putAll(map);
+    }
+
+    @Override
+    public final Object remove(Object obj) {
+        return this.f6460a.remove(obj);
+    }
+
+    @Override
+    public final int size() {
+        Map map = this.f6460a;
+        return map.size() - (map.containsKey(null) ? 1 : 0);
+    }
+
+    public final String toString() {
+        return this.f6460a.toString();
+    }
+
+    @Override
+    public final Collection values() {
+        return this.f6460a.values();
     }
 }

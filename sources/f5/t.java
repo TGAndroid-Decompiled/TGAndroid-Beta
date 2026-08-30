@@ -1,17 +1,12 @@
 package f5;
 
-import android.content.Context;
-import android.telephony.TelephonyManager;
+import j3.k0;
 public abstract class t {
-    public static void a(Context context, u uVar) {
-        try {
-            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService("phone");
-            telephonyManager.getClass();
-            s sVar = new s(uVar);
-            telephonyManager.registerTelephonyCallback(context.getMainExecutor(), sVar);
-            telephonyManager.unregisterTelephonyCallback(sVar);
-        } catch (RuntimeException unused) {
-            u.c(uVar, 5);
-        }
-    }
+    public k0 f5962a;
+    public g5.f f5963b;
+    public s f5964c;
+
+    public abstract void a();
+
+    public abstract void b(l3.d dVar);
 }

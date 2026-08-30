@@ -1,68 +1,69 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.os.Bundle;
-import android.text.TextPaint;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
+import android.app.Activity;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class oa1 extends FrameLayout {
-    public final org.telegram.ui.Components.ao0 f41039a;
-    public final int f41040b;
-    public final TextPaint f41041c;
-    public final ThemeActivity d;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class oa1 extends org.telegram.ui.ActionBar.g3 {
+    public static oa1 f36861b;
 
-    public oa1(ThemeActivity themeActivity, Context context) {
-        super(context);
-        this.d = themeActivity;
-        this.f41040b = 17;
-        setWillNotDraw(false);
-        TextPaint textPaint = new TextPaint(1);
-        this.f41041c = textPaint;
-        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-        org.telegram.ui.Components.ao0 ao0Var = new org.telegram.ui.Components.ao0(context);
-        this.f41039a = ao0Var;
-        ao0Var.setReportChanges(true);
-        ao0Var.setSeparatorsCount(18);
-        ao0Var.setDelegate(new fv0(this, 3));
-        ao0Var.setImportantForAccessibility(2);
-        addView(ao0Var, i7.f6.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f41039a.invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int w02 = org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.I6, false);
-        TextPaint textPaint = this.f41041c;
-        textPaint.setColor(w02);
-        canvas.drawText("" + SharedConfig.bubbleRadius, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f41039a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-        this.f41039a.setProgress(SharedConfig.bubbleRadius / this.f41040b);
-    }
-
-    @Override
-    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f41039a.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
-            return false;
+    public static void m(oa1 oa1Var, oy oyVar) {
+        if (oyVar.getParentActivity() == null) {
+            return;
         }
-        return true;
+        MessagesController.getInstance(oa1Var.currentAccount).clearQueryTime();
+        oyVar.getMessagesStorage().clearLocalDatabase();
+    }
+
+    public static void n(oy oyVar) {
+        if (f36861b == null) {
+            ?? g3Var = new org.telegram.ui.ActionBar.g3(oyVar.getParentActivity(), false);
+            Activity parentActivity = oyVar.getParentActivity();
+            LinearLayout h = kh.a2.h(parentActivity, 1);
+            org.telegram.ui.Components.ax0 ax0Var = new org.telegram.ui.Components.ax0(parentActivity, g3Var.currentAccount);
+            ax0Var.setStickerNum(7);
+            ax0Var.getImageReceiver().setAutoRepeat(1);
+            h.addView(ax0Var, k7.b6.t(144, 144, 1, 0, 16, 0, 0));
+            TextView textView = new TextView(parentActivity);
+            textView.setGravity(8388611);
+            int i10 = org.telegram.ui.ActionBar.j6.f20012j5;
+            org.telegram.messenger.y3.t(textView, org.telegram.ui.ActionBar.j6.w0(null, i10, false), 1, 20.0f);
+            textView.setText(LocaleController.getString(R.string.SuggestClearDatabaseTitle));
+            h.addView(textView, k7.b6.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
+            TextView textView2 = new TextView(parentActivity);
+            textView2.setGravity(8388611);
+            textView2.setTextSize(1, 15.0f);
+            textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+            textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString("SuggestClearDatabaseMessage", R.string.SuggestClearDatabaseMessage, AndroidUtilities.formatFileSize(oyVar.getMessagesStorage().getDatabaseSize()))));
+            h.addView(textView2, k7.b6.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
+            TextView textView3 = new TextView(parentActivity);
+            textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+            textView3.setGravity(17);
+            textView3.setTextSize(1, 14.0f);
+            textView3.setTypeface(AndroidUtilities.bold());
+            textView3.setText(LocaleController.getString(R.string.ClearLocalDatabase));
+            textView3.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Sh, false));
+            int dp = AndroidUtilities.dp(6.0f);
+            int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false);
+            int k10 = i0.a.k(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19906d6, false), 120);
+            textView3.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.i0(dp, dp, dp, dp, w02, k10, k10));
+            h.addView(textView3, k7.b6.d(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
+            textView3.setOnClickListener(new gb0(23, g3Var, oyVar));
+            ScrollView scrollView = new ScrollView(parentActivity);
+            scrollView.addView(h);
+            g3Var.setCustomView(scrollView);
+            f36861b = g3Var;
+            g3Var.show();
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        super.dismiss();
+        f36861b = null;
     }
 }

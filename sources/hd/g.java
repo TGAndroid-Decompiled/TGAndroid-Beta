@@ -1,3 +1,3 @@
 package hd;
-public abstract class g extends f {
+public interface g extends b {
 }

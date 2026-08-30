@@ -1,24 +1,21 @@
 package j7;
-public final class a0 extends s {
-    public final transient Object[] f10901c;
-    public final transient int d;
-    public final transient int f10902e = 1;
 
-    public a0(int i10, Object[] objArr) {
-        this.f10901c = objArr;
-        this.d = i10;
-    }
-
-    @Override
-    public final Object get(int i10) {
-        h7.u8.a(i10, this.f10902e);
-        Object obj = this.f10901c[i10 + i10 + this.d];
-        obj.getClass();
-        return obj;
-    }
-
-    @Override
-    public final int size() {
-        return this.f10902e;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.ResolveInfo;
+public abstract class a0 {
+    public static boolean a(Context context) {
+        ApplicationInfo applicationInfo;
+        Intent putExtra = new Intent().addFlags(268435456).setAction("com.android.settings.panel.action.MEDIA_OUTPUT").putExtra("com.android.settings.panel.extra.PACKAGE_NAME", context.getPackageName());
+        for (ResolveInfo resolveInfo : context.getPackageManager().queryIntentActivities(putExtra, 0)) {
+            ActivityInfo activityInfo = resolveInfo.activityInfo;
+            if (activityInfo != null && (applicationInfo = activityInfo.applicationInfo) != null && (applicationInfo.flags & 129) != 0) {
+                context.startActivity(putExtra);
+                return true;
+            }
+        }
+        return false;
     }
 }

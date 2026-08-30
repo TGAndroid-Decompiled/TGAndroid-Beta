@@ -1,122 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.os.Build;
-import android.text.TextUtils;
-import j$.util.stream.IntStream;
-import java.util.Arrays;
-import java.util.stream.IntStream;
-public final class m6 implements CharSequence {
-    public final CharSequence[] f30579a;
-    public final int f30580b;
+import android.util.Property;
+public abstract class m6 extends Property {
+    public final int f26950a;
 
-    public m6(CharSequence charSequence) {
-        int i10;
-        if (charSequence == null) {
-            this.f30579a = new CharSequence[0];
-            this.f30580b = 0;
-            return;
-        }
-        this.f30580b = charSequence.length();
-        int i11 = 0;
-        for (int i12 = 0; i12 < this.f30580b; i12++) {
-            if (charSequence.charAt(i12) == ' ') {
-                i11++;
-            }
-        }
-        this.f30579a = new CharSequence[i11 + 1];
-        int i13 = 0;
-        int i14 = 0;
-        int i15 = 0;
-        while (true) {
-            int i16 = this.f30580b;
-            if (i13 <= i16) {
-                if (i13 == i16 || charSequence.charAt(i13) == ' ') {
-                    CharSequence[] charSequenceArr = this.f30579a;
-                    int i17 = i14 + 1;
-                    if (i13 < this.f30580b) {
-                        i10 = 1;
-                    } else {
-                        i10 = 0;
-                    }
-                    charSequenceArr[i14] = charSequence.subSequence(i15, i10 + i13);
-                    i15 = i13 + 1;
-                    i14 = i17;
-                }
-                i13++;
-            } else {
+    public m6(String str, int i10) {
+        super(Float.class, str);
+        this.f26950a = i10;
+        switch (i10) {
+            case 1:
+                super(Integer.class, str);
                 return;
-            }
+            default:
+                return;
         }
     }
 
+    public abstract void a(int i10, Object obj);
+
+    public abstract void b(Object obj, float f10);
+
     @Override
-    public final char charAt(int i10) {
-        int i11 = 0;
-        while (true) {
-            CharSequence[] charSequenceArr = this.f30579a;
-            if (i11 >= charSequenceArr.length) {
-                return (char) 0;
-            }
-            if (i10 < charSequenceArr[i11].length()) {
-                return charSequenceArr[i11].charAt(i10);
-            }
-            i10 -= charSequenceArr[i11].length();
-            i11++;
+    public final void set(Object obj, Object obj2) {
+        switch (this.f26950a) {
+            case 0:
+                b(obj, ((Float) obj2).floatValue());
+                return;
+            default:
+                a(((Integer) obj2).intValue(), obj);
+                return;
         }
-    }
-
-    @Override
-    public IntStream chars() {
-        return IntStream.Wrapper.convert(chars());
-    }
-
-    @Override
-    public java.util.stream.IntStream codePoints() {
-        return IntStream.Wrapper.convert(codePoints());
-    }
-
-    @Override
-    public final int length() {
-        return this.f30579a.length;
-    }
-
-    @Override
-    public final CharSequence subSequence(int i10, int i11) {
-        return TextUtils.concat((CharSequence[]) Arrays.copyOfRange(this.f30579a, i10, i11));
-    }
-
-    @Override
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder();
-        int i10 = 0;
-        while (true) {
-            CharSequence[] charSequenceArr = this.f30579a;
-            if (i10 < charSequenceArr.length) {
-                sb2.append(charSequenceArr[i10]);
-                i10++;
-            } else {
-                return sb2.toString();
-            }
-        }
-    }
-
-    @Override
-    public final j$.util.stream.IntStream chars() {
-        j$.util.stream.IntStream convert;
-        if (Build.VERSION.SDK_INT >= 24) {
-            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f30579a).chars());
-            return convert;
-        }
-        return null;
-    }
-
-    @Override
-    public final j$.util.stream.IntStream codePoints() {
-        j$.util.stream.IntStream convert;
-        if (Build.VERSION.SDK_INT >= 24) {
-            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f30579a).codePoints());
-            return convert;
-        }
-        return null;
     }
 }

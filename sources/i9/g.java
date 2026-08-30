@@ -1,24 +1,38 @@
 package i9;
-public final class g implements s9.d {
-    public static final g f8652a = new Object();
-    public static final s9.c f8653b = s9.c.c("identifier");
-    public static final s9.c f8654c = s9.c.c("version");
-    public static final s9.c d = s9.c.c("displayVersion");
-    public static final s9.c f8655e = s9.c.c("organization");
-    public static final s9.c f8656f = s9.c.c("installationUuid");
-    public static final s9.c f8657g = s9.c.c("developmentPlatform");
-    public static final s9.c h = s9.c.c("developmentPlatformVersion");
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        s9.e eVar = (s9.e) obj2;
-        i0 i0Var = (i0) ((l1) obj);
-        eVar.e(f8653b, i0Var.f8687a);
-        eVar.e(f8654c, i0Var.f8688b);
-        eVar.e(d, i0Var.f8689c);
-        eVar.e(f8655e, null);
-        eVar.e(f8656f, i0Var.d);
-        eVar.e(f8657g, i0Var.f8690e);
-        eVar.e(h, i0Var.f8691f);
+import java.util.HashMap;
+public final class g {
+    public static final g f7384a;
+    public static final HashMap f7385b;
+    public static final g[] f7386c;
+    g EF0;
+
+    static {
+        Enum r02 = new Enum("X86_32", 0);
+        Enum r12 = new Enum("X86_64", 1);
+        Enum r32 = new Enum("ARM_UNKNOWN", 2);
+        Enum r52 = new Enum("PPC", 3);
+        Enum r72 = new Enum("PPC64", 4);
+        Enum r92 = new Enum("ARMV6", 5);
+        Enum r11 = new Enum("ARMV7", 6);
+        ?? r13 = new Enum("UNKNOWN", 7);
+        f7384a = r13;
+        Enum r15 = new Enum("ARMV7S", 8);
+        Enum r22 = new Enum("ARM64", 9);
+        f7386c = new g[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r22};
+        HashMap hashMap = new HashMap(4);
+        f7385b = hashMap;
+        hashMap.put("armeabi-v7a", r11);
+        hashMap.put("armeabi", r92);
+        hashMap.put("arm64-v8a", r22);
+        hashMap.put("x86", r02);
+    }
+
+    public static g valueOf(String str) {
+        return (g) Enum.valueOf(g.class, str);
+    }
+
+    public static g[] values() {
+        return (g[]) f7386c.clone();
     }
 }

@@ -1,47 +1,17 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class w implements TextWatcher {
-    public final int f34247a;
-    public final a0 f34248b;
+import android.view.ViewGroup;
+public final class w extends f2.l {
+    public final z F;
 
-    public w(a0 a0Var, int i10) {
-        this.f34247a = i10;
-        this.f34248b = a0Var;
+    public w(z zVar) {
+        this.F = zVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f34247a) {
-            case 0:
-                this.f34248b.W();
-                return;
-            default:
-                this.f34248b.W();
-                return;
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f34247a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f34247a;
-    }
-
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    public final void P(f2.l1 l1Var) {
+        ViewGroup viewGroup;
+        viewGroup = ((org.telegram.ui.ActionBar.g3) this.F).containerView;
+        viewGroup.invalidate();
     }
 }

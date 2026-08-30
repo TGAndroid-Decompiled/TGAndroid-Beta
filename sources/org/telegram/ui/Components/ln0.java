@@ -1,24 +1,18 @@
 package org.telegram.ui.Components;
+public final class ln0 {
+    public mg.q0 f26817a;
+    public int f26818b;
+    public String f26819c;
+    public int d;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class ln0 extends f2.a1 {
-    public final int f30400a;
-    public final org.telegram.ui.ox f30401b;
-
-    public ln0(org.telegram.ui.ox oxVar, int i10) {
-        this.f30400a = i10;
-        this.f30401b = oxVar;
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        switch (this.f30400a) {
-            case 0:
-                this.f30401b.S(i10, i11);
-                return;
-            default:
-                this.f30401b.S(i10, i11);
-                return;
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof ln0)) {
+            return false;
         }
+        ln0 ln0Var = (ln0) obj;
+        if (this.f26818b != ln0Var.f26818b || this.f26817a.h != ln0Var.f26817a.h || this.d != ln0Var.d) {
+            return false;
+        }
+        return true;
     }
 }

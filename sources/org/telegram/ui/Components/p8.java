@@ -1,30 +1,17 @@
 package org.telegram.ui.Components;
 
 import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-public final class p8 extends org.telegram.ui.ActionBar.f3 {
-    public final b9 f31614b;
+public final class p8 extends v8 {
+    public final o8 D;
 
-    public p8(b9 b9Var, Activity activity) {
-        super(activity, true);
-        this.f31614b = b9Var;
+    public p8(w8 w8Var, Activity activity, o8 o8Var) {
+        super(w8Var, activity);
+        this.D = o8Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        b9 b9Var = this.f31614b;
-        b9Var.F.w1(b9Var.U);
-        b9Var.f27007f = true;
-        b9Var.fragmentView.invalidate();
-        b9Var.f27006e.animate().setListener(new org.telegram.ui.bm(this, 8)).alpha(0.0f).setDuration(200L).start();
-    }
-
-    @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        b9 b9Var = this.f31614b;
-        AndroidUtilities.requestAdjustResize(b9Var.getParentActivity(), b9Var.getClassGuid());
-        b9Var.O = null;
+    public final void invalidate() {
+        super.invalidate();
+        this.D.invalidate();
     }
 }

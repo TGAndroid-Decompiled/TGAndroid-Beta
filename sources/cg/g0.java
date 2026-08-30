@@ -1,20 +1,28 @@
 package cg;
+public final class g0 implements Runnable {
+    public final int f2404a;
+    public final m0 f2405b;
 
-import android.content.Context;
-import org.telegram.ui.ActionBar.c6;
-public final class g0 extends d1 {
-    public final v0 L;
-
-    public g0(v0 v0Var, Context context, c6 c6Var) {
-        super(context, c6Var, true);
-        this.L = v0Var;
+    public g0(m0 m0Var, int i10) {
+        this.f2404a = i10;
+        this.f2405b = m0Var;
     }
 
     @Override
-    public final void invalidate() {
-        if (this.L.f3402b0) {
-            return;
+    public final void run() {
+        switch (this.f2404a) {
+            case 0:
+                m0 m0Var = this.f2405b;
+                m mVar = m0Var.A;
+                if (mVar != null) {
+                    m0Var.f2448a.g(mVar);
+                    m0Var.A = null;
+                    return;
+                }
+                return;
+            default:
+                this.f2405b.a(null, true, null);
+                return;
         }
-        super.invalidate();
     }
 }

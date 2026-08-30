@@ -1,30 +1,33 @@
 package org.telegram.messenger;
-public final class yh implements Runnable {
-    public final int f22279a;
-    public final SavedMessagesController f22280b;
 
-    public yh(SavedMessagesController savedMessagesController, int i10) {
-        this.f22279a = i10;
-        this.f22280b = savedMessagesController;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.Window;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.RichMessageLayout;
+import org.telegram.ui.Components.i71;
+public final class yh implements ValueAnimator.AnimatorUpdateListener {
+    public final int f19057a;
+    public final Object f19058b;
+    public final Object f19059c;
+
+    public yh(int i10, Object obj, Object obj2) {
+        this.f19057a = i10;
+        this.f19058b = obj;
+        this.f19059c = obj2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f22279a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f19057a) {
             case 0:
-                this.f22280b.update();
+                ((RichMessageLayout.SpoilerReveal) this.f19058b).lambda$start$0((View) this.f19059c, valueAnimator);
                 return;
             case 1:
-                SavedMessagesController.k(this.f22280b);
-                return;
-            case 2:
-                SavedMessagesController.h(this.f22280b);
-                return;
-            case 3:
-                SavedMessagesController.j(this.f22280b);
+                AndroidUtilities.lambda$setNavigationBarColor$23((AndroidUtilities.IntColorCallback) this.f19058b, (Window) this.f19059c, valueAnimator);
                 return;
             default:
-                SavedMessagesController.b(this.f22280b);
+                ((MediaController) this.f19058b).lambda$cleanupPlayer$10((i71) this.f19059c, valueAnimator);
                 return;
         }
     }

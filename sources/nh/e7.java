@@ -1,73 +1,50 @@
 package nh;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class e7 implements TextWatcher {
-    public final g7 f17599a;
+import java.util.Locale;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.messenger.MessagesStorage;
+public final class e7 implements Runnable {
+    public final int f15312a;
+    public final g7 f15313b;
+    public final long f15314c;
+    public final int d;
 
-    public e7(g7 g7Var) {
-        this.f17599a = g7Var;
+    public e7(g7 g7Var, long j10, int i10, int i11) {
+        this.f15312a = i11;
+        this.f15313b = g7Var;
+        this.f15314c = j10;
+        this.d = i10;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        boolean z10;
-        String obj = editable.toString();
-        g7 g7Var = this.f17599a;
-        g7Var.f17720o0 = obj;
-        if (!g7Var.V) {
-            String str = g7Var.f17725t0;
-            String str2 = "";
-            if (obj == null) {
-                obj = "";
-            }
-            boolean equals = TextUtils.equals(str, obj);
-            boolean z11 = false;
-            if (!equals) {
-                g7Var.Z();
-                String str3 = g7Var.f17720o0;
-                if (str3 != null && str3.length() > 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+    public final void run() {
+        switch (this.f15312a) {
+            case 0:
+                long j10 = this.f15314c;
+                int i10 = this.d;
+                MessagesStorage messagesStorage = this.f15313b.f15366b;
+                SQLiteDatabase database = messagesStorage.getDatabase();
+                try {
+                    Locale locale = Locale.US;
+                    database.executeFast("DELETE FROM stories WHERE dialog_id = " + j10 + " AND story_id = " + i10).stepThis().dispose();
+                    return;
+                } catch (Throwable th2) {
+                    messagesStorage.checkSQLException(th2);
+                    return;
                 }
-                g7Var.f17724s0 = z10;
-            }
-            String str4 = g7Var.E0;
-            String str5 = g7Var.f17720o0;
-            if (str5 != null) {
-                str2 = str5;
-            }
-            if (!TextUtils.equals(str4, str2)) {
-                g7Var.Y();
-                String str6 = g7Var.f17720o0;
-                if (str6 != null && str6.length() > 3) {
-                    i10 = ((org.telegram.ui.ActionBar.f3) g7Var).currentAccount;
-                    if (!TextUtils.isEmpty(MessagesController.getInstance(i10).config.musicSearchUsername.get())) {
-                        z11 = true;
-                    }
+            default:
+                long j11 = this.f15314c;
+                int i11 = this.d;
+                MessagesStorage messagesStorage2 = this.f15313b.f15366b;
+                SQLiteDatabase database2 = messagesStorage2.getDatabase();
+                try {
+                    Locale locale2 = Locale.US;
+                    database2.executeFast("REPLACE INTO stories_counter VALUES(" + j11 + ", 0, " + i11 + ")").stepThis().dispose();
+                    return;
+                } catch (Throwable th3) {
+                    messagesStorage2.checkSQLException(th3);
+                    return;
                 }
-                g7Var.f17731z0 = z11;
-            }
-            a7 a7Var = g7Var.f17727v0;
-            AndroidUtilities.cancelRunOnUIThread(a7Var);
-            AndroidUtilities.runOnUIThread(a7Var, 400L);
-            a7 a7Var2 = g7Var.G0;
-            AndroidUtilities.cancelRunOnUIThread(a7Var2);
-            AndroidUtilities.runOnUIThread(a7Var2, 400L);
         }
-        g7Var.m0.N(true);
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

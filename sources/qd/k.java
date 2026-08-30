@@ -1,39 +1,70 @@
 package qd;
 
-import java.util.concurrent.TimeUnit;
-import od.w;
-public abstract class k {
-    public static final String f46630a;
-    public static final long f46631b;
-    public static final int f46632c;
-    public static final int d;
-    public static final long f46633e;
-    public static final g f46634f;
-    public static final a5.c f46635g;
-    public static final a5.c h;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+import ld.e0;
+public class k {
+    public static final AtomicReferenceFieldUpdater f43029a = AtomicReferenceFieldUpdater.newUpdater(k.class, Object.class, "_next$volatile");
+    public static final AtomicReferenceFieldUpdater f43030b = AtomicReferenceFieldUpdater.newUpdater(k.class, Object.class, "_prev$volatile");
+    public static final AtomicReferenceFieldUpdater f43031c = AtomicReferenceFieldUpdater.newUpdater(k.class, Object.class, "_removedRef$volatile");
+    private volatile Object _next$volatile = this;
+    private volatile Object _prev$volatile = this;
+    private volatile Object _removedRef$volatile;
 
-    static {
-        String str;
-        int i10 = w.f19538a;
-        try {
-            str = System.getProperty("kotlinx.coroutines.scheduler.default.name");
-        } catch (SecurityException unused) {
-            str = null;
+    public final qd.k d() {
+        throw new UnsupportedOperationException("Method not decompiled: qd.k.d():qd.k");
+    }
+
+    public final void e(k kVar) {
+        while (true) {
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f43030b;
+            k kVar2 = (k) atomicReferenceFieldUpdater.get(kVar);
+            if (f() == kVar) {
+                while (!atomicReferenceFieldUpdater.compareAndSet(kVar, kVar2, this)) {
+                    if (atomicReferenceFieldUpdater.get(kVar) != kVar2) {
+                        break;
+                    }
+                }
+                if (h()) {
+                    kVar.d();
+                    return;
+                }
+                return;
+            }
+            return;
         }
-        if (str == null) {
-            str = "DefaultDispatcher";
+    }
+
+    public final Object f() {
+        while (true) {
+            Object obj = f43029a.get(this);
+            if (!(obj instanceof p)) {
+                return obj;
+            }
+            ((p) obj).a(this);
         }
-        f46630a = str;
-        f46631b = od.a.i("kotlinx.coroutines.scheduler.resolution.ns", 100000L, 1L, Long.MAX_VALUE);
-        int i11 = w.f19538a;
-        if (i11 < 2) {
-            i11 = 2;
+    }
+
+    public final k g() {
+        q qVar;
+        k kVar;
+        Object f10 = f();
+        if (f10 instanceof q) {
+            qVar = (q) f10;
+        } else {
+            qVar = null;
         }
-        f46632c = od.a.j(i11, 8, "kotlinx.coroutines.scheduler.core.pool.size");
-        d = od.a.j(2097150, 4, "kotlinx.coroutines.scheduler.max.pool.size");
-        f46633e = TimeUnit.SECONDS.toNanos(od.a.i("kotlinx.coroutines.scheduler.keep.alive.sec", 60L, 1L, Long.MAX_VALUE));
-        f46634f = g.f46625a;
-        f46635g = new a5.c(0);
-        h = new a5.c(1);
+        if (qVar != null && (kVar = qVar.f43040a) != null) {
+            return kVar;
+        }
+        kotlin.jvm.internal.j.c(f10, "null cannot be cast to non-null type kotlinx.coroutines.internal.LockFreeLinkedListNode{ kotlinx.coroutines.internal.LockFreeLinkedListKt.Node }");
+        return (k) f10;
+    }
+
+    public boolean h() {
+        return f() instanceof q;
+    }
+
+    public String toString() {
+        return new kotlin.jvm.internal.n(this, e0.class, "classSimpleName", "getClassSimpleName(Ljava/lang/Object;)Ljava/lang/String;", 1) + '@' + e0.k(this);
     }
 }

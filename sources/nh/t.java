@@ -1,81 +1,54 @@
 package nh;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.BuildVars;
-public final class t {
-    public static ArrayList f18563f;
-    public final String f18564a;
-    public final int f18565b;
-    public final int f18566c;
-    public final int[] d;
-    public final ArrayList f18567e = new ArrayList();
+import j$.util.DesugarArrays;
+import j$.util.stream.Collectors;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.qd;
+public abstract class t {
+    public static int[] a() {
+        return new int[]{10000, 3600, 400, 20, -10787210, -8681059, -14341066, 2000, 1800, 280, 10, -2013375, -1482439, -7666429, 500, 900, 200, 7, -1214690, -1214690, -6606592, 250, 600, 150, 4, -1926647, -1926647, -6668800, 100, 300, 110, 3, -12539616, -12539616, -15244800, 50, 120, 80, 2, -12147733, -12147733, -16756594, 10, 60, 60, 1, -6988581, -6988581, -11991141, 0, 30, 30, 0, -6988581, -6988581, -11991141};
+    }
 
-    public t(String str) {
-        str = str == null ? "." : str;
-        this.f18564a = str;
-        String[] split = str.split("/");
-        int length = split.length;
-        this.f18566c = length;
-        this.d = new int[length];
-        int i10 = 0;
-        for (int i11 = 0; i11 < split.length; i11++) {
-            this.d[i11] = split[i11].length();
-            i10 = Math.max(i10, split[i11].length());
-        }
-        this.f18565b = i10;
-        for (int i12 = 0; i12 < split.length; i12++) {
-            for (int i13 = 0; i13 < split[i12].length(); i13++) {
-                this.f18567e.add(new s(this, i13, i12));
+    public static int b(int i10, int i11, int i12) {
+        int[] iArr = MessagesController.getInstance(i10).starsGroupcallMessageLimits;
+        for (int i13 = 0; i13 < iArr.length / 7; i13++) {
+            int i14 = i13 * 7;
+            if (i11 >= iArr[i14]) {
+                return iArr[i14 + 1 + i12];
             }
         }
+        return 0;
     }
 
-    public static ArrayList a() {
-        if (f18563f == null) {
-            ArrayList arrayList = new ArrayList();
-            f18563f = arrayList;
-            arrayList.add(new t("./."));
-            f18563f.add(new t(".."));
-            f18563f.add(new t("../."));
-            f18563f.add(new t("./.."));
-            f18563f.add(new t("././."));
-            f18563f.add(new t("..."));
-            f18563f.add(new t("../.."));
-            f18563f.add(new t("./../.."));
-            f18563f.add(new t("../../."));
-            f18563f.add(new t("../../.."));
-            if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                f18563f.add(new t("../../../.."));
-                f18563f.add(new t(".../.../..."));
-                f18563f.add(new t("..../..../...."));
-                f18563f.add(new t(".../.../.../..."));
+    public static int[] c(org.telegram.tgnet.TLRPC.TL_jsonArray r13) {
+        throw new UnsupportedOperationException("Method not decompiled: nh.t.c(org.telegram.tgnet.TLRPC$TL_jsonArray):int[]");
+    }
+
+    public static int[] d(String str) {
+        if (str != null && str.length() != 0) {
+            try {
+                return DesugarArrays.stream(str.split(",")).mapToInt(new org.telegram.messenger.e4(1)).toArray();
+            } catch (Exception e) {
+                FileLog.e(e);
+                return a();
             }
         }
-        return f18563f;
+        return a();
     }
 
-    public static int b() {
-        ArrayList a2 = a();
-        int size = a2.size();
-        int i10 = 0;
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = a2.get(i11);
-            i11++;
-            i10 = Math.max(i10, ((t) obj).f18567e.size());
-        }
-        return i10;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof t) {
-            return TextUtils.equals(this.f18564a, ((t) obj).f18564a);
+    public static boolean e(int[] iArr, int[] iArr2) {
+        if (iArr2 != null && iArr.length == iArr2.length) {
+            for (int i10 = 0; i10 < iArr.length; i10++) {
+                if (iArr[i10] == iArr2[i10]) {
+                }
+            }
+            return true;
         }
         return false;
     }
 
-    public final String toString() {
-        return this.f18564a;
+    public static String f(int[] iArr) {
+        return (String) DesugarArrays.stream(iArr).mapToObj(new qd(0)).collect(Collectors.joining(","));
     }
 }

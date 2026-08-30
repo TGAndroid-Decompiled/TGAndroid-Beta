@@ -1,28 +1,29 @@
 package org.telegram.ui;
-public final class n30 implements m2.e {
-    public final r50 f40704a;
 
-    public n30(r50 r50Var) {
-        this.f40704a = r50Var;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class n30 extends org.telegram.ui.Components.w7 {
+    public final c60 B;
+    public final Activity f36436y;
+
+    public n30(c60 c60Var, LaunchActivity launchActivity, Activity activity) {
+        super(launchActivity);
+        this.B = c60Var;
+        this.f36436y = activity;
     }
 
     @Override
-    public final void a(int i10) {
-        r50 r50Var = this.f40704a;
-        r50Var.f41871b.f30065z0.k(i10);
-        k30 k30Var = r50Var.f41976z2;
-        k30Var.F = k30Var.H;
-        k30Var.G = k30Var.I;
-        k30Var.J = 0.0f;
-        k30Var.K = 1;
-        k30Var.invalidate();
-    }
-
-    @Override
-    public final void c(int i10) {
-    }
-
-    @Override
-    public final void b(float f9, int i10, int i11) {
+    public final TextView a() {
+        TextView textView = new TextView(this.f36436y);
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19987hg, false));
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(51);
+        textView.setSingleLine(true);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setOnClickListener(new org.telegram.ui.Components.rx0(24, this, textView));
+        return textView;
     }
 }

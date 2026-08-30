@@ -2,19 +2,18 @@ package k8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-public final class g extends a6.a {
-    public static final Parcelable.Creator<g> CREATOR = new c(3);
-    public final int f13508a;
-
-    public g(int i10) {
-        this.f13508a = i10;
-    }
+import j7.f5;
+import j8.t;
+public final class g extends c6.a {
+    public static final Parcelable.Creator<g> CREATOR = new t(23);
+    public String f10060a;
+    public String f10061b;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = com.google.android.gms.internal.cast.o.q(parcel, 20293);
-        com.google.android.gms.internal.cast.o.s(parcel, 2, 4);
-        parcel.writeInt(this.f13508a);
-        com.google.android.gms.internal.cast.o.r(parcel, q6);
+        int q10 = f5.q(parcel, 20293);
+        f5.l(parcel, 2, this.f10060a);
+        f5.l(parcel, 3, this.f10061b);
+        f5.r(parcel, q10);
     }
 }

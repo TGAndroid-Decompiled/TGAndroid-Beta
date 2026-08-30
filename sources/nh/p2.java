@@ -1,189 +1,424 @@
 package nh;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorSpace;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RadialGradient;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.os.Build;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.jr;
-import org.telegram.ui.LaunchActivity;
-public final class p2 {
-    public final Context f18330a;
-    public final m2 f18331b;
-    public final m2 f18332c;
-    public final WindowManager f18333e;
-    public final View f18334f;
-    public final WindowManager.LayoutParams f18335g;
-    public ValueAnimator f18336i;
-    public int f18337j;
-    public int f18338k;
-    public int f18339l;
-    public float f18340m;
-    public int f18341n;
-    public RadialGradient f18345r;
-    public final Paint f18346s;
-    public final ArrayList d = new ArrayList();
-    public float h = 0.0f;
-    public float f18342o = 0.75f;
-    public float f18343p = 1.0f;
-    public final Matrix f18344q = new Matrix();
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.camera.CameraView;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.eg;
+import org.telegram.ui.Components.k40;
+import org.telegram.ui.Components.x50;
+import org.telegram.ui.nn;
+public final class p2 implements eg {
+    public final d4 f15742a;
 
-    public p2(Context context, WindowManager windowManager, View view, WindowManager.LayoutParams layoutParams) {
-        Paint paint = new Paint(1);
-        this.f18346s = paint;
-        this.f18330a = context;
-        this.f18333e = windowManager;
-        this.f18334f = view;
-        this.f18335g = layoutParams;
-        this.f18331b = new m2(this, context, 0);
-        this.f18332c = new m2(this, context, 1);
-        paint.setAlpha(0);
+    public p2(d4 d4Var) {
+        this.f15742a = d4Var;
     }
 
-    public static int f(float f9) {
-        if (f9 < 0.5f) {
-            return i0.a.d(Utilities.clamp(f9 / 0.5f, 1.0f, 0.0f), -7544833, -1);
-        }
-        return i0.a.d(Utilities.clamp((f9 - 0.5f) / 0.5f, 1.0f, 0.0f), -1, -70004);
-    }
-
-    public final void a(o2 o2Var) {
-        o2Var.setInvert(this.h);
-        this.d.add(o2Var);
-    }
-
-    public final void b(Canvas canvas, boolean z10) {
-        if (this.f18345r != null) {
-            g();
-            this.f18345r.setLocalMatrix(this.f18344q);
-            Paint paint = this.f18346s;
-            if (z10) {
-                canvas.drawRect(0.0f, 0.0f, this.f18337j, this.f18338k, paint);
-                return;
-            }
-            RectF rectF = AndroidUtilities.rectTmp;
-            m2 m2Var = this.f18332c;
-            rectF.set(0.0f, 0.0f, m2Var.getMeasuredWidth(), m2Var.getMeasuredHeight());
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) - 2, AndroidUtilities.dp(12.0f) - 2, paint);
-        }
-    }
-
-    public final void c(ba baVar) {
-        h(this.f18343p);
-        e(1.0f, 320L, baVar);
-    }
-
-    public final void d() {
-        h(-1.0f);
-        e(0.0f, 240L, null);
-    }
-
-    public final void e(float f9, long j10, Runnable runnable) {
-        ValueAnimator valueAnimator = this.f18336i;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f18336i = null;
+    @Override
+    public final void D(CharSequence charSequence, boolean z4, int i10, int i11, long j10) {
+        boolean z10;
+        d4 d4Var = this.f15742a;
+        if (d4Var.D2) {
+            AndroidUtilities.runOnUIThread(new gg.y1(this, j10, 5), 200L);
+            return;
         }
         if (j10 <= 0) {
-            this.h = f9;
-            i();
-            if (runnable != null) {
-                runnable.run();
-                return;
-            }
-            return;
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.h, f9);
-        this.f18336i = ofFloat;
-        ofFloat.addUpdateListener(new lh.d5(this, 6));
-        this.f18336i.addListener(new jh.l5(this, f9, runnable, 2));
-        this.f18336i.setDuration(j10);
-        this.f18336i.setInterpolator(jr.f29802i);
-        this.f18336i.start();
+        d4Var.k0(z10);
     }
 
-    public final void g() {
-        int i10 = this.f18339l;
-        int i11 = this.f18341n;
-        m2 m2Var = this.f18331b;
-        if (i10 != i11 || this.f18337j != m2Var.getMeasuredWidth() || this.f18338k != m2Var.getMeasuredHeight() || Math.abs(this.f18340m - this.h) > 0.005f) {
-            this.f18339l = this.f18341n;
-            this.f18337j = m2Var.getMeasuredWidth();
-            int measuredHeight = m2Var.getMeasuredHeight();
-            this.f18338k = measuredHeight;
-            this.f18340m = this.h;
-            if (this.f18337j > 0 && measuredHeight > 0) {
-                if (Build.VERSION.SDK_INT >= 29) {
-                    int i12 = this.f18337j;
-                    int i13 = this.f18338k;
-                    float min = (2.0f - this.h) * (Math.min(i12, i13) / 2.0f) * 1.35f;
-                    ColorSpace.Named named = ColorSpace.Named.EXTENDED_SRGB;
-                    float[] fArr = {AndroidUtilities.lerp(0.9f, 0.22f, this.h), 1.0f};
-                    Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                    this.f18345r = android.support.v4.media.session.z.b(i12 * 0.5f, i13 * 0.4f, min, new long[]{Color.valueOf(Color.red(this.f18341n) / 255.0f, Color.green(this.f18341n) / 255.0f, Color.blue(this.f18341n) / 255.0f, 0.0f, ColorSpace.get(named)).pack(), Color.valueOf(Color.red(this.f18341n) / 255.0f, Color.green(this.f18341n) / 255.0f, Color.blue(this.f18341n) / 255.0f, 1.0f, ColorSpace.get(named)).pack()}, fArr);
+    @Override
+    public final void E2() {
+        this.f15742a.P0();
+    }
+
+    @Override
+    public final TLRPC.TL_channels_sendAsPeers G() {
+        e1 e1Var;
+        boolean z4;
+        d4 d4Var = this.f15742a;
+        if (d4Var.L1.f15114f) {
+            i9 i9Var = d4Var.G0;
+            if (i9Var != null && (e1Var = i9Var.f15498x0) != null) {
+                TLRPC.GroupCall groupCall = e1Var.v;
+                if (groupCall == null) {
+                    z4 = false;
                 } else {
-                    int i14 = this.f18337j;
-                    int i15 = this.f18338k;
-                    this.f18345r = new RadialGradient(i14 * 0.5f, i15 * 0.4f, (2.0f - this.h) * (Math.min(i14, i15) / 2.0f) * 1.35f, new int[]{i0.a.k(this.f18341n, 0), this.f18341n}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.h), 1.0f}, Shader.TileMode.CLAMP);
+                    z4 = !groupCall.messages_enabled;
                 }
-                this.f18346s.setShader(this.f18345r);
-                m2Var.invalidate();
-                this.f18332c.invalidate();
+                if (z4) {
+                    return null;
+                }
             }
+            return d4Var.L3;
+        }
+        return null;
+    }
+
+    @Override
+    public final boolean G0() {
+        return true;
+    }
+
+    @Override
+    public final void H(float f10, int i10) {
+        x50 x50Var = this.f15742a.G2;
+        if (x50Var != null) {
+            x50Var.e(f10, i10);
         }
     }
 
-    public final void h(float f9) {
-        Window window;
-        WindowManager.LayoutParams layoutParams;
-        View view = this.f18334f;
-        if (view != null && (layoutParams = this.f18335g) != null) {
-            layoutParams.screenBrightness = f9;
-            WindowManager windowManager = this.f18333e;
-            if (windowManager != null) {
-                windowManager.updateViewLayout(view, layoutParams);
-                return;
+    @Override
+    public final int c1() {
+        return this.f15742a.getHeight();
+    }
+
+    @Override
+    public final TL_stories.StoryItem e1() {
+        return this.f15742a.L1.f15111a;
+    }
+
+    @Override
+    public final boolean g1(long j10) {
+        boolean z4;
+        d4 d4Var = this.f15742a;
+        b4 b4Var = d4Var.L1;
+        TL_stories.StoryItem storyItem = b4Var.f15111a;
+        if (storyItem != null && (storyItem.media instanceof TLRPC.TL_messageMediaVideoStream)) {
+            TL_phone.saveDefaultSendAs savedefaultsendas = new TL_phone.saveDefaultSendAs();
+            savedefaultsendas.call = ((TLRPC.TL_messageMediaVideoStream) b4Var.f15111a.media).call;
+            savedefaultsendas.send_as = MessagesController.getInstance(d4Var.f15263z2).getInputPeer(j10);
+            ConnectionsManager.getInstance(d4Var.f15263z2).sendRequest(savedefaultsendas, null);
+            e1 e1Var = d4Var.G0.f15498x0;
+            if (e1Var != null) {
+                TLRPC.Peer peer = MessagesController.getInstance(d4Var.f15263z2).getPeer(j10);
+                TLRPC.GroupCall groupCall = e1Var.v;
+                if (groupCall != null) {
+                    int i10 = groupCall.flags;
+                    if (peer != null) {
+                        z4 = true;
+                    } else {
+                        z4 = false;
+                    }
+                    groupCall.flags = TLObject.setFlag(i10, 2097152, z4);
+                    e1Var.v.default_send_as = peer;
+                }
             }
+            d4Var.r0(true);
+            d4Var.Y1.P1(true);
+            d4Var.Y1.J(true);
+            d4Var.f1(false);
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final boolean k1() {
+        x50 x50Var = this.f15742a.G2;
+        if (x50Var != null && !x50Var.f30549b0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int l() {
+        return 0;
+    }
+
+    @Override
+    public final void m2() {
+        String str;
+        int i10;
+        d4 d4Var = this.f15742a;
+        if (d4Var.B1) {
+            d4.h0(d4Var);
             return;
         }
-        Activity findActivity = AndroidUtilities.findActivity(this.f18330a);
-        if (findActivity == null) {
-            findActivity = LaunchActivity.C1;
+        if (d4Var.T2 == null) {
+            k40 k40Var = new k40(9, d4Var.getContext(), d4Var.f15257y0, false);
+            d4Var.T2 = k40Var;
+            k40Var.setVisibility(8);
+            d4Var.addView(d4Var.T2, k7.b6.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
         }
-        if (findActivity != null && !findActivity.isFinishing() && (window = findActivity.getWindow()) != null) {
-            WindowManager.LayoutParams attributes = window.getAttributes();
-            attributes.screenBrightness = f9;
-            window.setAttributes(attributes);
+        if (d4Var.f15258y1 >= 0) {
+            str = UserObject.getFirstName(MessagesController.getInstance(d4Var.f15263z2).getUser(Long.valueOf(d4Var.f15258y1)));
+        } else {
+            TLRPC.Chat chat = MessagesController.getInstance(d4Var.f15263z2).getChat(Long.valueOf(-d4Var.f15258y1));
+            if (chat != null) {
+                str = chat.title;
+            } else {
+                str = "";
+            }
+        }
+        k40 k40Var2 = d4Var.T2;
+        if (d4Var.Y1.Z0) {
+            i10 = R.string.VideoMessagesRestrictedByPrivacy;
+        } else {
+            i10 = R.string.VoiceMessagesRestrictedByPrivacy;
+        }
+        k40Var2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i10, str)));
+        d4Var.T2.f(d4Var.Y1.getAudioVideoButtonContainer(), true);
+    }
+
+    @Override
+    public final void n1(CharSequence charSequence, boolean z4, boolean z10) {
+        d4 d4Var = this.f15742a;
+        if (d4Var.f15183a3 == null) {
+            q2 q2Var = new q2(d4Var, d4Var.getContext(), d4Var.f15258y1, d4Var.G0.f15461f, d4Var.f15257y0);
+            d4Var.f15183a3 = q2Var;
+            q2Var.p(new s2(d4Var));
+            d4Var.addView(d4Var.f15183a3, k7.b6.e(-1, -1, 83));
+        }
+        if (d4Var.f15183a3.getAdapter() != null) {
+            d4Var.f15183a3.setDialogId(d4Var.f15258y1);
+            if (d4Var.L1.f15114f) {
+                tf.u0 adapter = d4Var.f15183a3.getAdapter();
+                if (adapter.f44845g0 == 0 && adapter.f44857r0 == 0 && adapter.f44855q0 == 0 && adapter.B0 == 0) {
+                    adapter.f44860t0 = null;
+                    adapter.C = null;
+                    ArrayList arrayList = adapter.f44866x0;
+                    if (arrayList != null) {
+                        arrayList.clear();
+                    }
+                    ArrayList arrayList2 = adapter.O;
+                    if (arrayList2 != null) {
+                        arrayList2.clear();
+                    }
+                    adapter.Q = null;
+                    adapter.R = null;
+                    ArrayList arrayList3 = adapter.f44865x;
+                    if (arrayList3 != null) {
+                        arrayList3.clear();
+                    }
+                    ArrayList arrayList4 = adapter.F;
+                    if (arrayList4 != null) {
+                        arrayList4.clear();
+                    }
+                    ArrayList arrayList5 = adapter.G;
+                    if (arrayList5 != null) {
+                        arrayList5.clear();
+                    }
+                    ArrayList arrayList6 = adapter.J;
+                    if (arrayList6 != null) {
+                        arrayList6.clear();
+                    }
+                    ArrayList arrayList7 = adapter.K;
+                    if (arrayList7 != null) {
+                        arrayList7.clear();
+                    }
+                    adapter.l();
+                }
+            } else {
+                tf.u0 adapter2 = d4Var.f15183a3.getAdapter();
+                MessagesController.getInstance(d4Var.f15263z2).getUser(Long.valueOf(d4Var.f15258y1));
+                TLRPC.Chat chat = MessagesController.getInstance(d4Var.f15263z2).getChat(Long.valueOf(-d4Var.f15258y1));
+                adapter2.getClass();
+                adapter2.f44847i0 = chat;
+                d4Var.f15183a3.getAdapter().U(charSequence, d4Var.Y1.getCursorPosition(), null, false, false);
+            }
+        }
+        d4Var.invalidate();
+    }
+
+    @Override
+    public final void o2(int i10, int i11, int i12, long j10, long j11, boolean z4) {
+        d4 d4Var = this.f15742a;
+        boolean z10 = false;
+        if (d4Var.G2 == null && CameraView.isCameraAllowed()) {
+            d4Var.G2 = new x50(d4Var.getContext(), new c3(d4Var), d4Var.f15257y0, false);
+            d4Var.addView(d4Var.G2, Math.min(d4Var.indexOfChild(d4Var.Y1.getRecordCircle()), d4Var.indexOfChild(d4Var.Y1.K1)), k7.b6.e(-1, -1, 51));
+        }
+        x50 x50Var = d4Var.G2;
+        if (x50Var != null) {
+            if (i10 == 0) {
+                x50Var.l(false);
+            } else if (i10 != 1 && i10 != 3 && i10 != 4) {
+                if (i10 == 2 || i10 == 5) {
+                    if (i10 == 2) {
+                        z10 = true;
+                    }
+                    x50Var.d(z10);
+                }
+            } else {
+                x50Var.k(i10, i11, i12, j10, j11, z4);
+            }
         }
     }
 
-    public final void i() {
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.d;
-            if (i10 < arrayList.size()) {
-                ((o2) arrayList.get(i10)).setInvert(this.h);
-                ((o2) arrayList.get(i10)).invalidate();
-                i10++;
+    @Override
+    public final TLRPC.Peer p() {
+        e1 e1Var;
+        boolean z4;
+        i9 i9Var = this.f15742a.G0;
+        if (i9Var != null && (e1Var = i9Var.f15498x0) != null) {
+            TLRPC.GroupCall groupCall = e1Var.v;
+            if (groupCall == null) {
+                z4 = false;
             } else {
-                this.f18346s.setAlpha((int) (this.f18343p * 255.0f * this.h));
-                this.f18331b.invalidate();
-                this.f18332c.invalidate();
-                return;
+                z4 = !groupCall.messages_enabled;
             }
+            if (!z4) {
+                return e1Var.i();
+            }
+            return null;
         }
+        return null;
+    }
+
+    @Override
+    public final void p1() {
+        x50 x50Var = this.f15742a.G2;
+        if (x50Var != null) {
+            x50Var.q();
+        }
+    }
+
+    @Override
+    public final boolean q1() {
+        TLRPC.User user;
+        d4 d4Var = this.f15742a;
+        if (d4Var.f15258y1 < 0 || (user = MessagesController.getInstance(d4Var.f15263z2).getUser(Long.valueOf(d4Var.f15258y1))) == null || UserObject.isUserSelf(user) || user.bot) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final nn r0() {
+        return null;
+    }
+
+    @Override
+    public final void s1() {
+        this.f15742a.O0();
+    }
+
+    @Override
+    public final void u1() {
+        this.f15742a.requestLayout();
+    }
+
+    @Override
+    public final boolean z1() {
+        return false;
+    }
+
+    @Override
+    public final void C() {
+    }
+
+    @Override
+    public final void C1() {
+    }
+
+    @Override
+    public final void H1() {
+    }
+
+    @Override
+    public final void K0() {
+    }
+
+    @Override
+    public final void N0() {
+    }
+
+    @Override
+    public final void V0() {
+    }
+
+    @Override
+    public final void Y() {
+    }
+
+    @Override
+    public final void f() {
+    }
+
+    @Override
+    public final void h() {
+    }
+
+    @Override
+    public final void h2() {
+    }
+
+    @Override
+    public final void o0() {
+    }
+
+    @Override
+    public final void r() {
+    }
+
+    @Override
+    public final void r2() {
+    }
+
+    @Override
+    public final void t1() {
+    }
+
+    @Override
+    public final void w0() {
+    }
+
+    @Override
+    public final void z2() {
+    }
+
+    @Override
+    public final void b0(boolean z4) {
+    }
+
+    @Override
+    public final void b1(int i10) {
+    }
+
+    @Override
+    public final void j2(int i10) {
+    }
+
+    @Override
+    public final void n2(boolean z4) {
+    }
+
+    @Override
+    public final void x(float f10) {
+    }
+
+    @Override
+    public final void y1(CharSequence charSequence) {
+    }
+
+    @Override
+    public final void z(boolean z4) {
+    }
+
+    @Override
+    public final void I0(int i10, int i11) {
+    }
+
+    @Override
+    public final void v1(View view, CharSequence charSequence, boolean z4) {
     }
 }

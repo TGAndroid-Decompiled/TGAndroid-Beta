@@ -1,62 +1,75 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class gy extends v41 {
-    public static final int f29010a = 0;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class gy implements View.OnClickListener {
+    public final jy f25256a;
 
-    static {
-        v41.setup(new v41());
-    }
-
-    public static w41 a(TLRPC.StickerSetCovered stickerSetCovered, wx wxVar, boolean z10) {
-        w41 J = w41.J(gy.class);
-        long j10 = stickerSetCovered.set.f22419id;
-        long j11 = 1 + j10;
-        J.d = (int) (j11 ^ (j11 >>> 32));
-        J.B = j10;
-        J.G = stickerSetCovered;
-        J.H = wxVar;
-        J.f34294e = z10;
-        return J;
+    public gy(jy jyVar) {
+        this.f25256a = jyVar;
     }
 
     @Override
-    public final void bindView(View view, w41 w41Var, boolean z10, k51 k51Var, u51 u51Var) {
-        yg.c cVar = (yg.c) view;
-        Object obj = w41Var.G;
-        if (obj instanceof TLRPC.TL_messages_stickerSet) {
-            cVar.setPack((TLRPC.TL_messages_stickerSet) obj);
-        } else if (obj instanceof TLRPC.StickerSetCovered) {
-            TLRPC.Document document = ((wx) w41Var.H).f34506e;
-            cVar.d.setText(((TLRPC.StickerSetCovered) obj).set.short_name);
-            cVar.f50543c.d(document, null, null, null, false, false);
+    public final void onClick(View view) {
+        int i10;
+        int i11;
+        boolean[] zArr = new boolean[1];
+        jy jyVar = this.f25256a;
+        kz kzVar = jyVar.C;
+        org.telegram.ui.ActionBar.b3 b3Var = new org.telegram.ui.ActionBar.b3(kzVar.getContext(), null);
+        LinearLayout linearLayout = new LinearLayout(kzVar.getContext());
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+        ImageView imageView = new ImageView(kzVar.getContext());
+        imageView.setImageResource(R.drawable.smiles_info);
+        linearLayout.addView(imageView, k7.b6.t(-2, -2, 49, 0, 15, 0, 0));
+        TextView textView = new TextView(kzVar.getContext());
+        textView.setText(LocaleController.getString(R.string.EmojiSuggestions));
+        textView.setTextSize(1, 15.0f);
+        int i12 = org.telegram.ui.ActionBar.j6.f20084n5;
+        int i13 = kz.L2;
+        textView.setTextColor(kzVar.A(i12));
+        int i14 = 3;
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
         }
-        cVar.a(w41Var.f34294e, false);
-    }
-
-    @Override
-    public final boolean contentsEquals(w41 w41Var, w41 w41Var2) {
-        if (w41Var.B == w41Var2.B && w41Var.f34294e == w41Var2.f34294e) {
-            return true;
+        textView.setGravity(i10);
+        textView.setTypeface(AndroidUtilities.bold());
+        linearLayout.addView(textView, k7.b6.t(-2, -2, 51, 0, 24, 0, 0));
+        TextView textView2 = new TextView(kzVar.getContext());
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EmojiSuggestionsInfo)));
+        textView2.setTextSize(1, 15.0f);
+        textView2.setTextColor(kzVar.A(org.telegram.ui.ActionBar.j6.f20012j5));
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
         }
-        return false;
-    }
-
-    @Override
-    public final View createView(Context context, jl0 jl0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        yg.c cVar = new yg.c(context, c6Var);
-        cVar.setLayoutParams(new f2.x0(AndroidUtilities.dp(64.0f), -1));
-        return cVar;
-    }
-
-    @Override
-    public final boolean equals(w41 w41Var, w41 w41Var2) {
-        if (w41Var.B == w41Var2.B) {
-            return true;
+        textView2.setGravity(i11);
+        linearLayout.addView(textView2, k7.b6.t(-2, -2, 51, 0, 11, 0, 0));
+        TextView textView3 = new TextView(kzVar.getContext());
+        int i15 = R.string.EmojiSuggestionsUrl;
+        Object obj = jyVar.f26064w;
+        if (obj == null) {
+            obj = kzVar.T0;
         }
-        return false;
+        textView3.setText(LocaleController.formatString("EmojiSuggestionsUrl", i15, obj));
+        textView3.setTextSize(1, 15.0f);
+        textView3.setTextColor(kzVar.A(org.telegram.ui.ActionBar.j6.f20030k5));
+        if (LocaleController.isRTL) {
+            i14 = 5;
+        }
+        textView3.setGravity(i14);
+        linearLayout.addView(textView3, k7.b6.t(-2, -2, 51, 0, 18, 0, 16));
+        textView3.setOnClickListener(new fy(this, zArr, b3Var));
+        b3Var.b(linearLayout);
+        b3Var.f19525a.show();
     }
 }

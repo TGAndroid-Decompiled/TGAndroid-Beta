@@ -1,23 +1,13 @@
 package t4;
 
-import f5.d0;
-import java.util.List;
-import q8.l0;
-import q8.x;
-import q8.z;
-public final class c implements j3.g {
-    public static final int f48139b = 0;
-    public final z f48140a;
+import java.util.ArrayList;
+import k7.y7;
+public final class c implements j {
+    public static final int[] f44479b = {8, 13, 11, 2, 0, 1, 7};
 
-    static {
-        x xVar = z.f46511b;
-        new c(0L, l0.f46462e);
-        int i10 = d0.f6579a;
-        Integer.toString(0, 36);
-        Integer.toString(1, 36);
-    }
-
-    public c(long j10, List list) {
-        this.f48140a = z.u(list);
+    public static void a(int i10, ArrayList arrayList) {
+        if (y7.b(i10, 0, 7, f44479b) != -1 && !arrayList.contains(Integer.valueOf(i10))) {
+            arrayList.add(Integer.valueOf(i10));
+        }
     }
 }

@@ -2,15 +2,15 @@ package l;
 
 import android.content.Context;
 public interface x {
-    void b(k kVar, boolean z10);
+    boolean b(m mVar);
 
-    boolean c(m mVar);
+    void c(k kVar, boolean z4);
 
     boolean d();
 
     void e();
 
-    void g(w wVar);
+    void h(w wVar);
 
     void i(Context context, k kVar);
 

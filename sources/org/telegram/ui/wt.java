@@ -1,67 +1,64 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.app.Activity;
-import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-public final class wt extends org.telegram.ui.Cells.b5 {
-    public final int f44370e;
-    public final org.telegram.ui.Cells.y8 f44371f;
-    public final org.telegram.ui.Cells.q8[] h;
-    public final AnimatorSet[] f44372n;
-    public final DataAutoDownloadActivity f44373r;
+import android.content.Context;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Timer;
+import org.telegram.messenger.Emoji;
+public final class wt extends org.telegram.ui.Components.rl0 {
+    public final Context f39790c;
+    public Timer d;
+    public ArrayList e;
+    public final ArrayList f39791f = new ArrayList();
+    public final yt h;
 
-    public wt(DataAutoDownloadActivity dataAutoDownloadActivity, Activity activity, int i10, org.telegram.ui.Cells.y8 y8Var, org.telegram.ui.Cells.q8[] q8VarArr, AnimatorSet[] animatorSetArr) {
-        super(activity);
-        int i11;
-        int i12;
-        int i13;
-        this.f44373r = dataAutoDownloadActivity;
-        this.f44370e = i10;
-        this.f44371f = y8Var;
-        this.h = q8VarArr;
-        this.f44372n = animatorSetArr;
-        setWillNotDraw(false);
-        TextView textView = new TextView(activity);
-        this.f24115a = textView;
-        b.r(textView, org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23169j5, false), 1, 16.0f, 1);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
+    public wt(yt ytVar, Context context, HashMap hashMap) {
+        this.h = ytVar;
+        this.f39790c = context;
+        for (List<st> list : hashMap.values()) {
+            for (st stVar : list) {
+                this.f39791f.add(stVar);
+            }
         }
-        textView.setGravity(i11 | 48);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setImportantForAccessibility(2);
-        if (LocaleController.isRTL) {
-            i12 = 5;
-        } else {
-            i12 = 3;
+    }
+
+    @Override
+    public final boolean D(f2.l1 l1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        ArrayList arrayList = this.e;
+        if (arrayList == null) {
+            return 0;
         }
-        addView(textView, i7.f6.d(-1, -1.0f, i12 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
-        TextView textView2 = new TextView(activity);
-        this.f24116b = textView2;
-        b.r(textView2, org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23240n5, false), 1, 16.0f, 1);
-        textView2.setMaxLines(1);
-        textView2.setSingleLine(true);
-        if (LocaleController.isRTL) {
-            i13 = 3;
+        return arrayList.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final void v(f2.l1 l1Var, int i10) {
+        String str;
+        st stVar = (st) this.e.get(i10);
+        org.telegram.ui.Cells.aa aaVar = (org.telegram.ui.Cells.aa) l1Var.f5785a;
+        CharSequence replaceEmoji = Emoji.replaceEmoji(yt.V(stVar), aaVar.getTextView().getPaint().getFontMetricsInt(), false);
+        if (this.h.h) {
+            str = "+" + stVar.f38437c;
         } else {
-            i13 = 5;
+            str = null;
         }
-        textView2.setGravity(i13 | 48);
-        textView2.setImportantForAccessibility(2);
-        addView(textView2, i7.f6.d(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
-        org.telegram.ui.Cells.j0 j0Var = new org.telegram.ui.Cells.j0(activity);
-        this.f24117c = j0Var;
-        j0Var.setReportChanges(true);
-        j0Var.setDelegate(new org.telegram.ui.Cells.a5(this));
-        j0Var.setImportantForAccessibility(2);
-        addView(j0Var, i7.f6.d(-1, 38.0f, 51, 6.0f, 36.0f, 6.0f, 0.0f));
-        setImportantForAccessibility(1);
-        setAccessibilityDelegate(j0Var.getSeekBarAccessibilityDelegate());
+        aaVar.c(replaceEmoji, str, false, false);
+    }
+
+    @Override
+    public final f2.l1 x(ViewGroup viewGroup, int i10) {
+        return new f2.l1(yt.U(this.f39790c));
     }
 }

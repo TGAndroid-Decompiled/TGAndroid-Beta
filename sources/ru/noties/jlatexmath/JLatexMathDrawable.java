@@ -62,8 +62,8 @@ public class JLatexMathDrawable extends Drawable {
             return this;
         }
 
-        public Builder textSize(float f9) {
-            this.textSize = f9;
+        public Builder textSize(float f10) {
+            this.textSize = f10;
             return this;
         }
 
@@ -78,7 +78,7 @@ public class JLatexMathDrawable extends Drawable {
         }
 
         @Deprecated
-        public Builder fitCanvas(boolean z10) {
+        public Builder fitCanvas(boolean z4) {
             return this;
         }
     }

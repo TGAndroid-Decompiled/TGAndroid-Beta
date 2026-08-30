@@ -1,23 +1,34 @@
 package org.telegram.ui;
-public final class wy0 extends pt0 {
-    public final ProfileActivity f44405a;
 
-    public wy0(ProfileActivity profileActivity) {
-        this.f44405a = profileActivity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class wy0 extends tz0 {
+    public wy0(Context context) {
+        super(context);
     }
 
     @Override
-    public final org.telegram.ui.zt0 E(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.FileLocation r18, int r19, boolean r20, boolean r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wy0.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.zt0");
+    public final void dispatchDraw(Canvas canvas) {
+        nh.y2 y2Var;
+        super.dispatchDraw(canvas);
+        org.telegram.ui.Components.l5 l5Var = this.e;
+        if (l5Var != null && (y2Var = l5Var.f26569k) != null) {
+            y2Var.startAnimation();
+        }
     }
 
     @Override
-    public final void G() {
-        this.f44405a.f35985a0.getImageReceiver().setVisible(true, true);
-    }
-
-    @Override
-    public final void f(String str, String str2, boolean z10) {
-        this.f44405a.m0.q(str, str2, z10);
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (getImageReceiver().hasNotThumb()) {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenInPhotoViewer)));
+            return;
+        }
+        accessibilityNodeInfo.setVisibleToUser(false);
     }
 }

@@ -1,29 +1,67 @@
 package lh;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stories;
-public final class p9 implements Runnable {
-    public final q9 f16098a;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.ImageView;
+import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.w51;
+public final class p9 extends h51 {
+    public static final int f12941a = 0;
 
-    public p9(q9 q9Var) {
-        this.f16098a = q9Var;
+    static {
+        h51.setup(new h51());
     }
 
     @Override
-    public final void run() {
-        q9 q9Var = this.f16098a;
-        int i10 = q9Var.f16139a;
-        ArrayList arrayList = q9Var.d;
-        if (!arrayList.isEmpty()) {
-            ArrayList arrayList2 = new ArrayList(arrayList);
-            arrayList.clear();
-            TL_stories.TL_stories_getPeerMaxIDs tL_stories_getPeerMaxIDs = new TL_stories.TL_stories_getPeerMaxIDs();
-            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                tL_stories_getPeerMaxIDs.f22635id.add(MessagesController.getInstance(i10).getInputPeer(((Long) arrayList2.get(i11)).longValue()));
-            }
-            ConnectionsManager.getInstance(i10).sendRequestTyped(tL_stories_getPeerMaxIDs, new Object(), new bh.v(8, this, arrayList2));
+    public final void bindView(View view, i51 i51Var, boolean z4, w51 w51Var, g61 g61Var) {
+        boolean z10;
+        int i10;
+        q9 q9Var = (q9) view;
+        org.telegram.ui.Components.k6 k6Var = q9Var.f12991a;
+        ImageView imageView = q9Var.f12992b;
+        int i11 = q9Var.f12993c;
+        int i12 = i51Var.d;
+        if (i11 == i12) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        q9Var.f12993c = i12;
+        k6Var.c(i51Var.f25565l, z10, true);
+        if (i51Var.f25570q) {
+            i10 = org.telegram.ui.ActionBar.j6.f20103o6;
+        } else {
+            i10 = org.telegram.ui.ActionBar.j6.G6;
+        }
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
+        k6Var.setTextColor(w02);
+        imageView.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
+        float f10 = 180.0f;
+        if (z10) {
+            ViewPropertyAnimator animate = imageView.animate();
+            if (i51Var.f25560f) {
+                f10 = 0.0f;
+            }
+            animate.rotation(f10).setDuration(340L).setInterpolator(nr.h);
+        } else {
+            if (i51Var.f25560f) {
+                f10 = 0.0f;
+            }
+            imageView.setRotation(f10);
+        }
+        q9Var.d = z4;
+        q9Var.setWillNotDraw(!z4);
+    }
+
+    @Override
+    public final View createView(Context context, sl0 sl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        return new q9(context);
     }
 }

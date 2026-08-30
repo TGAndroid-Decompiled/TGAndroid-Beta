@@ -1,15 +1,14 @@
 package c2;
 
-import ag.o1;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 public abstract class r extends s {
-    public final Object f2891a = new Object();
-    public Executor f2892b;
-    public o1 f2893c;
+    public final Object f1989a = new Object();
+    public Executor f1990b;
+    public androidx.biometric.f0 f1991c;
     public n d;
-    public ArrayList f2894e;
+    public ArrayList e;
 
     public String j() {
         return null;
@@ -21,15 +20,15 @@ public abstract class r extends s {
 
     public final void l(n nVar, ArrayList arrayList) {
         if (nVar != null) {
-            synchronized (this.f2891a) {
+            synchronized (this.f1989a) {
                 try {
                     try {
-                        Executor executor = this.f2892b;
+                        Executor executor = this.f1990b;
                         if (executor != null) {
-                            executor.execute(new p(this, this.f2893c, nVar, arrayList, 1));
+                            executor.execute(new p(this, this.f1991c, nVar, arrayList, 1));
                         } else {
                             this.d = nVar;
-                            this.f2894e = new ArrayList(arrayList);
+                            this.e = new ArrayList(arrayList);
                         }
                         return;
                     } catch (Throwable th2) {

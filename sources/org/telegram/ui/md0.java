@@ -1,36 +1,45 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class md0 extends sr {
-    public final int h;
-    public final Object f40528n;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class md0 implements Runnable {
+    public final int f36270a;
+    public final ze0 f36271b;
 
-    public md0(Object obj, Context context, int i10) {
-        super(context);
-        this.h = i10;
-        this.f40528n = obj;
+    public md0(ze0 ze0Var, int i10) {
+        this.f36270a = i10;
+        this.f36271b = ze0Var;
     }
 
     @Override
-    public final void a() {
-        switch (this.h) {
+    public final void run() {
+        switch (this.f36270a) {
             case 0:
-                ((pd0) this.f40528n).h(null);
+                this.f36271b.I.n();
                 return;
             case 1:
-                ((ie0) this.f40528n).h(null);
+                ze0 ze0Var = this.f36271b;
+                ze0Var.J = null;
+                ze0Var.K = null;
+                ze0Var.p(true);
+                ze0Var.e.h(null, null, ze0Var.f40781f, null);
+                kd kdVar = ze0Var.f40782n;
+                org.telegram.ui.Components.gj0 gj0Var = ze0Var.F;
+                kdVar.setAnimation(gj0Var);
+                gj0Var.K(0);
+                ze0Var.H = true;
                 return;
             case 2:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f40528n;
-                if (passcodeActivity.A == 0) {
-                    postDelayed(new vk0(this, 0), 260L);
-                    return;
-                } else {
-                    passcodeActivity.g0();
+                this.f36271b.H = true;
+                return;
+            default:
+                EditTextBoldCursor editTextBoldCursor = this.f36271b.f40780c;
+                if (editTextBoldCursor != null) {
+                    editTextBoldCursor.requestFocus();
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                    AndroidUtilities.showKeyboard(editTextBoldCursor);
                     return;
                 }
-            default:
-                ((cg1) this.f40528n).C0();
                 return;
         }
     }

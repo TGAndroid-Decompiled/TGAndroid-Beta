@@ -8,8 +8,8 @@ public abstract class x extends w {
     public final ArrayList Q;
     public boolean R;
 
-    public x(boolean z10) {
-        super(1000, z10);
+    public x(boolean z4) {
+        super(1000, z4);
         this.Q = new ArrayList(4);
         this.R = true;
     }
@@ -19,8 +19,8 @@ public abstract class x extends w {
     public abstract boolean C1(View view);
 
     @Override
-    public final void Z0(f2.d1 r22, f2.k1 r23, f2.h0 r24, f2.g0 r25) {
-        throw new UnsupportedOperationException("Method not decompiled: f2.x.Z0(f2.d1, f2.k1, f2.h0, f2.g0):void");
+    public final void Z0(bf.f r22, f2.i1 r23, f2.g0 r24, f2.f0 r25) {
+        throw new UnsupportedOperationException("Method not decompiled: f2.x.Z0(bf.f, f2.i1, f2.g0, f2.f0):void");
     }
 
     @Override
@@ -29,29 +29,29 @@ public abstract class x extends w {
     }
 
     @Override
-    public final void e1(d1 d1Var, int i10, int i11) {
+    public final void e1(bf.f fVar, int i10, int i11) {
         if (i10 >= 0) {
-            int r6 = r();
+            int r10 = r();
             if (this.v) {
-                int i12 = r6 - 1;
+                int i12 = r10 - 1;
                 for (int i13 = i12; i13 >= 0; i13--) {
-                    View q6 = q(i13);
-                    if (q6.getBottom() + ((ViewGroup.MarginLayoutParams) ((x0) q6.getLayoutParams())).bottomMargin <= i10) {
-                        if (q6.getHeight() + q6.getTop() <= i10) {
+                    View q10 = q(i13);
+                    if (q10.getBottom() + ((ViewGroup.MarginLayoutParams) ((w0) q10.getLayoutParams())).bottomMargin <= i10) {
+                        if (q10.getHeight() + q10.getTop() <= i10) {
                         }
                     }
-                    d1(d1Var, i12, i13);
+                    d1(fVar, i12, i13);
                     return;
                 }
                 return;
             }
-            for (int i14 = 0; i14 < r6; i14++) {
-                View q9 = q(i14);
-                if (q9.getBottom() + ((ViewGroup.MarginLayoutParams) ((x0) q9.getLayoutParams())).bottomMargin <= i10) {
-                    if (q9.getHeight() + q9.getTop() <= i10) {
+            for (int i14 = 0; i14 < r10; i14++) {
+                View q11 = q(i14);
+                if (q11.getBottom() + ((ViewGroup.MarginLayoutParams) ((w0) q11.getLayoutParams())).bottomMargin <= i10) {
+                    if (q11.getHeight() + q11.getTop() <= i10) {
                     }
                 }
-                d1(d1Var, 0, i14);
+                d1(fVar, 0, i14);
                 return;
             }
         }
@@ -70,10 +70,10 @@ public abstract class x extends w {
     }
 
     @Override
-    public final void w1(View view, int i10, boolean z10) {
+    public final void w1(View view, int i10, boolean z4) {
         u uVar = (u) view.getLayoutParams();
-        Rect rect = uVar.f6509b;
+        Rect rect = uVar.f5859b;
         int i11 = rect.top + rect.bottom + ((ViewGroup.MarginLayoutParams) uVar).topMargin + ((ViewGroup.MarginLayoutParams) uVar).bottomMargin;
-        x1(w0.s(false, this.K[uVar.f6483f], i10, rect.left + rect.right + ((ViewGroup.MarginLayoutParams) uVar).leftMargin + ((ViewGroup.MarginLayoutParams) uVar).rightMargin, ((ViewGroup.MarginLayoutParams) uVar).width), w0.s(true, this.f6364q.k(), this.f6505l, i11, ((ViewGroup.MarginLayoutParams) uVar).height), view, z10);
+        x1(v0.s(false, this.K[uVar.f5844f], i10, rect.left + rect.right + ((ViewGroup.MarginLayoutParams) uVar).leftMargin + ((ViewGroup.MarginLayoutParams) uVar).rightMargin, ((ViewGroup.MarginLayoutParams) uVar).width), v0.s(true, this.f5733q.k(), this.f5855l, i11, ((ViewGroup.MarginLayoutParams) uVar).height), view, z4);
     }
 }

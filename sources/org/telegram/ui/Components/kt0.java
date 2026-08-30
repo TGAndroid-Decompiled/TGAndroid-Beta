@@ -1,63 +1,53 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class kt0 extends org.telegram.ui.Cells.f7 {
-    public final int f30147h0;
-    public final il0 f30148i0;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+public final class kt0 extends LinearLayout {
+    public final TextView f26382a;
+    public final ImageView f26383b;
+    public boolean f26384c;
 
-    public kt0(il0 il0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
-        super(context, 0, c6Var);
-        this.f30147h0 = i10;
-        this.f30148i0 = il0Var;
+    public kt0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        TextView textView = new TextView(context);
+        this.f26382a = textView;
+        ImageView imageView = new ImageView(context);
+        this.f26383b = imageView;
+        setOrientation(1);
+        setGravity(17);
+        addView(imageView, k7.b6.n(-2, -2));
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20298z6, f6Var));
+        textView.setGravity(17);
+        textView.setTextSize(1, 17.0f);
+        textView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
+        addView(textView, k7.b6.t(-2, -2, 17, 0, 24, 0, 0));
     }
 
     @Override
-    public final boolean d(MessageObject messageObject) {
-        ArrayList<MessageObject> arrayList;
-        ArrayList<MessageObject> arrayList2;
-        switch (this.f30147h0) {
-            case 0:
-                lt0 lt0Var = (lt0) this.f30148i0;
-                if (!messageObject.isVoice() && !messageObject.isRoundVideo()) {
-                    if (!messageObject.isMusic()) {
-                        return false;
-                    }
-                    return MediaController.getInstance().setPlaylist(lt0Var.d, messageObject, lt0Var.v.Y0);
-                }
-                boolean playMessage = MediaController.getInstance().playMessage(messageObject);
-                MediaController mediaController = MediaController.getInstance();
-                if (playMessage) {
-                    arrayList = lt0Var.d;
-                } else {
-                    arrayList = null;
-                }
-                mediaController.setVoiceMessagesPlaylist(arrayList, false);
-                if (messageObject.isRoundVideo()) {
-                    MediaController.getInstance().setCurrentVideoVisible(false);
-                }
-                return playMessage;
-            default:
-                du0 du0Var = (du0) this.f30148i0;
-                int i10 = du0Var.d;
-                qu0 qu0Var = du0Var.f27878f;
-                if (!messageObject.isVoice() && !messageObject.isRoundVideo()) {
-                    if (!messageObject.isMusic()) {
-                        return false;
-                    }
-                    return MediaController.getInstance().setPlaylist(qu0Var.f32088p1[i10].f28534a, messageObject, qu0Var.Y0);
-                }
-                boolean playMessage2 = MediaController.getInstance().playMessage(messageObject);
-                MediaController mediaController2 = MediaController.getInstance();
-                if (playMessage2) {
-                    arrayList2 = qu0Var.f32088p1[i10].f28534a;
-                } else {
-                    arrayList2 = null;
-                }
-                mediaController2.setVoiceMessagesPlaylist(arrayList2, false);
-                return playMessage2;
+    public final void onMeasure(int i10, int i11) {
+        int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
+        this.f26384c = true;
+        if (AndroidUtilities.isTablet()) {
+            this.f26382a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
+        } else if (rotation != 3 && rotation != 1) {
+            this.f26382a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
+        } else {
+            this.f26382a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
         }
+        this.f26384c = false;
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f26384c) {
+            return;
+        }
+        super.requestLayout();
     }
 }

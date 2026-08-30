@@ -1,40 +1,23 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class oe1 extends FrameLayout {
-    public TextView f41104a;
-    public float f41105b;
-    public boolean f41106c;
+import android.view.View;
+import org.telegram.messenger.NotificationCenter;
+public final class oe1 implements View.OnClickListener {
+    public final kf1 f36886a;
+
+    public oe1(kf1 kf1Var) {
+        this.f36886a = kf1Var;
+    }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        int i10 = 1;
-        if (this.f41106c) {
-            float f9 = this.f41105b + 0.013333334f;
-            this.f41105b = f9;
-            if (f9 > 1.0f) {
-                this.f41106c = false;
-                this.f41105b = 1.0f;
-            }
-        } else {
-            float f10 = this.f41105b - 0.013333334f;
-            this.f41105b = f10;
-            if (f10 < 0.0f) {
-                this.f41106c = true;
-                this.f41105b = 0.0f;
-            }
+    public final void onClick(View view) {
+        kf1 kf1Var = this.f36886a;
+        if (kf1Var.J == 1) {
+            org.telegram.ui.Components.z4.j0(kf1Var, -kf1Var.f35668a, null, kf1Var.g(), null, false, kf1Var.G, new ta(this, 5), kf1Var.getResourceProvider());
+            return;
         }
-        TextView textView = this.f41104a;
-        float interpolation = org.telegram.ui.Components.jr.f29800f.getInterpolation(this.f41105b) * AndroidUtilities.dp(8.0f);
-        if (LocaleController.isRTL) {
-            i10 = -1;
-        }
-        textView.setTranslationX(interpolation * i10);
-        invalidate();
+        kf1Var.getMessagesController().addUserToChat(kf1Var.f35668a, kf1Var.getUserConfig().getCurrentUser(), 0, null, kf1Var, false, new he1(kf1Var, 2), new ie1(kf1Var));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeSearchByActiveAction, new Object[0]);
+        kf1Var.O0(false);
     }
 }

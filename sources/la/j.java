@@ -1,55 +1,36 @@
 package la;
+public final class j {
+    public final i f11788a;
+    public final i f11789b;
+    public final double f11790c;
 
-import bd.p;
-import i7.c7;
-public final class j extends uc.i implements p {
-    public Object f15134a;
-    public final Object f15135b;
-    public final n1.d f15136c;
-    public final k d;
-
-    public j(Object obj, n1.d dVar, k kVar, sc.c cVar) {
-        super(2, cVar);
-        this.f15135b = obj;
-        this.f15136c = dVar;
-        this.d = kVar;
+    public j(i iVar, i iVar2, double d) {
+        this.f11788a = iVar;
+        this.f11789b = iVar2;
+        this.f11790c = d;
     }
 
-    @Override
-    public final sc.c create(Object obj, sc.c cVar) {
-        j jVar = new j(this.f15135b, this.f15136c, this.d, cVar);
-        jVar.f15134a = obj;
-        return jVar;
-    }
-
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
-        qc.i iVar = qc.i.f46603a;
-        ((j) create((n1.b) obj, (sc.c) obj2)).invokeSuspend(iVar);
-        return iVar;
-    }
-
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        tc.a aVar = tc.a.f48210a;
-        c7.b(obj);
-        n1.b bVar = (n1.b) this.f15134a;
-        n1.d key = this.f15136c;
-        Object obj2 = this.f15135b;
-        if (obj2 != null) {
-            bVar.getClass();
-            kotlin.jvm.internal.j.e(key, "key");
-            bVar.b(key, obj2);
-        } else {
-            bVar.getClass();
-            kotlin.jvm.internal.j.e(key, "key");
-            if (!bVar.f17084b.get()) {
-                bVar.f17083a.remove(key);
-            } else {
-                throw new IllegalStateException("Do mutate preferences once returned to DataStore.");
-            }
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        k.a(this.d, bVar);
-        return qc.i.f46603a;
+        if (!(obj instanceof j)) {
+            return false;
+        }
+        j jVar = (j) obj;
+        if (this.f11788a == jVar.f11788a && this.f11789b == jVar.f11789b && Double.valueOf(this.f11790c).equals(Double.valueOf(jVar.f11790c))) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int hashCode = this.f11789b.hashCode();
+        long doubleToLongBits = Double.doubleToLongBits(this.f11790c);
+        return ((hashCode + (this.f11788a.hashCode() * 31)) * 31) + ((int) (doubleToLongBits ^ (doubleToLongBits >>> 32)));
+    }
+
+    public final String toString() {
+        return "DataCollectionStatus(performance=" + this.f11788a + ", crashlytics=" + this.f11789b + ", sessionSamplingRate=" + this.f11790c + ')';
     }
 }

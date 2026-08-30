@@ -1,108 +1,162 @@
 package ng;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import i7.w;
-import java.util.Arrays;
-import jf.l0;
+import android.graphics.RecordingCanvas;
+import android.graphics.RenderEffect;
+import android.graphics.RenderNode;
+import android.graphics.Shader;
+import android.support.v4.media.session.y;
+import org.telegram.messenger.MediaDataController;
 public final class c {
-    public int d;
-    public boolean f17329e;
-    public int f17330f;
-    public float f17332i;
-    public float f17333j;
-    public final Rect f17326a = new Rect();
-    public final float[] f17327b = new float[8];
-    public final float[] f17328c = new float[8];
-    public float f17331g = 0.75f;
-    public final float h = 1.5f;
-    public final Path f17334k = new Path();
-    public boolean f17335l = true;
-    public final Rect f17336m = new Rect();
-    public final Path f17337n = new Path();
-    public final Path f17338o = new Path();
+    public final RenderNode f14987a = y.c();
+    public final RenderNode[] f14988b;
+    public final RenderNode[] f14989c;
+    public final boolean d;
+    public int e;
+    public int f14990f;
+    public float f14991g;
+    public float h;
+    public long f14992i;
+    public final e f14993j;
 
-    public final void a() {
-        float[] fArr = this.f17327b;
-        this.f17335l = l0.c(fArr);
-        Rect rect = this.f17326a;
-        Rect rect2 = this.f17336m;
-        rect2.set(rect);
-        int i10 = this.d;
-        rect2.inset(i10, i10);
-        Path path = this.f17334k;
-        path.rewind();
-        Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rect2.left, rect2.top, rect2.right, rect2.bottom, this.f17327b, direction);
-        path.close();
-        float min = Math.min(rect2.width(), rect2.height()) / 2.0f;
-        float[] fArr2 = d.C;
-        Arrays.fill(fArr2, 0.0f);
-        fArr2[0] = fArr[0];
-        fArr2[1] = fArr[1];
-        fArr2[2] = fArr[2];
-        fArr2[3] = fArr[3];
-        if (this.f17335l && fArr[0] > min) {
-            fArr2[3] = min;
-            fArr2[2] = min;
-            fArr2[1] = min;
-            fArr2[0] = min;
+    public c(e eVar, String str, int i10, boolean z4) {
+        this.f14993j = eVar;
+        int i11 = i10 + 1;
+        this.f14988b = new RenderNode[i11];
+        for (int i12 = 0; i12 < i11; i12++) {
+            RenderNode[] renderNodeArr = this.f14988b;
+            y.i();
+            renderNodeArr[i12] = y.d(str + "_down_" + i10);
         }
-        Path path2 = this.f17337n;
-        path2.rewind();
-        float f9 = rect2.left;
-        int i11 = rect2.top;
-        path2.addRoundRect(f9, i11, rect2.right, Math.min(i11 + fArr[0], rect2.bottom), fArr2, direction);
-        int i12 = rect2.top;
-        float min2 = Math.min(i12 + fArr[0], rect2.bottom);
-        Path.Direction direction2 = Path.Direction.CCW;
-        path2.addRoundRect(rect2.left, i12 + this.f17332i, rect2.right, min2, fArr2, direction2);
-        path2.close();
-        Arrays.fill(fArr2, 0.0f);
-        fArr2[4] = fArr[4];
-        fArr2[5] = fArr[5];
-        fArr2[6] = fArr[6];
-        fArr2[7] = fArr[7];
-        if (this.f17335l && fArr[0] > min) {
-            fArr2[7] = min;
-            fArr2[6] = min;
-            fArr2[5] = min;
-            fArr2[4] = min;
+        if (i10 <= 0 && !z4) {
+            this.f14989c = this.f14988b;
+        } else {
+            this.f14989c = new RenderNode[i11];
+            for (int i13 = 0; i13 < i11; i13++) {
+                this.f14989c[i13] = y.c();
+            }
         }
-        Path path3 = this.f17338o;
-        path3.rewind();
-        path3.addRoundRect(rect2.left, Math.max(rect2.bottom - fArr[4], rect2.top), rect2.right, rect2.bottom, fArr2, direction);
-        path3.addRoundRect(rect2.left, Math.max(rect2.bottom - fArr[4], rect2.top), rect2.right, rect2.bottom - this.f17333j, fArr2, direction2);
-        path3.close();
+        this.d = this.f14989c == this.f14988b;
+        this.f14990f = 1;
+        this.e = 1;
     }
 
-    public final void b(Canvas canvas, Paint paint) {
-        Rect rect;
-        if (this.f17335l) {
-            float f9 = this.f17336m.bottom;
-            float f10 = this.f17327b[0];
-            canvas.drawRoundRect(rect.left, rect.top, rect.right, f9, f10, f10, paint);
-            return;
+    public final void a(RenderNode renderNode) {
+        boolean z4;
+        RenderNode[] renderNodeArr;
+        boolean z10;
+        int width = renderNode.getWidth();
+        int height = renderNode.getHeight();
+        float f10 = width;
+        e eVar = this.f14993j;
+        int round = Math.round((eVar.d * f10) / this.e);
+        float f11 = height;
+        int round2 = Math.round((eVar.d * f11) / this.f14990f);
+        float f12 = round;
+        float f13 = f12 / f10;
+        float f14 = round2;
+        float f15 = f14 / f11;
+        int i10 = eVar.d;
+        float f16 = (f10 * i10) / f12;
+        float f17 = (f11 * i10) / f14;
+        long calcHash = MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(0L, renderNode.getUniqueId()), round), round2), width), height);
+        if (this.f14987a.hasDisplayList() && this.f14988b[0].hasDisplayList()) {
+            z4 = false;
+        } else {
+            z4 = true;
         }
-        canvas.drawPath(this.f17334k, paint);
+        int i11 = 0;
+        while (true) {
+            int length = this.f14988b.length;
+            z10 = this.d;
+            if (i11 >= length) {
+                break;
+            }
+            z4 |= !renderNodeArr[i11].hasDisplayList();
+            if (!z10) {
+                z4 |= !this.f14989c[i11].hasDisplayList();
+            }
+            i11++;
+        }
+        if (this.f14992i != calcHash || z4) {
+            this.f14992i = calcHash;
+            int i12 = 0;
+            this.f14987a.setPosition(0, 0, width, height);
+            this.f14987a.beginRecording(width, height).drawRenderNode(renderNode);
+            this.f14987a.endRecording();
+            this.f14988b[0].setPosition(0, 0, round, round2);
+            RecordingCanvas beginRecording = this.f14988b[0].beginRecording(round, round2);
+            beginRecording.scale(f13, f15);
+            beginRecording.drawRenderNode(this.f14987a);
+            this.f14988b[0].endRecording();
+            int i13 = 0;
+            while (true) {
+                RenderNode[] renderNodeArr2 = this.f14988b;
+                if (i13 < renderNodeArr2.length) {
+                    renderNodeArr2[i13].setPosition(i12, i12, round, round2);
+                    RecordingCanvas beginRecording2 = this.f14988b[i13].beginRecording(round, round2);
+                    if (i13 > 0) {
+                        beginRecording2.drawRenderNode(this.f14988b[i12]);
+                    } else {
+                        beginRecording2.scale(f13, f15);
+                        beginRecording2.drawRenderNode(this.f14987a);
+                    }
+                    this.f14988b[i13].endRecording();
+                    if (z10) {
+                        this.f14988b[i13].setScaleX(f16);
+                        this.f14988b[i13].setScaleY(f17);
+                        this.f14988b[i13].setPivotX(0.0f);
+                        this.f14988b[i13].setPivotY(0.0f);
+                    } else {
+                        this.f14989c[i13].setPosition(0, 0, width, height);
+                        RecordingCanvas beginRecording3 = this.f14989c[i13].beginRecording(width, height);
+                        beginRecording3.scale(f16, f17);
+                        beginRecording3.drawRenderNode(this.f14988b[i13]);
+                        this.f14989c[i13].endRecording();
+                    }
+                    i13++;
+                    i12 = 0;
+                } else {
+                    return;
+                }
+            }
+        }
     }
 
-    public final void c(Canvas canvas, Paint paint, boolean z10) {
-        Rect rect;
-        if (z10) {
-            float f9 = this.f17336m.top;
-            float[] fArr = this.f17327b;
-            float a2 = w.a((fArr[0] * 2.0f) + f9, f9, rect.bottom);
-            canvas.save();
-            Rect rect2 = this.f17326a;
-            canvas.clipRect(rect2.left, rect2.top, rect2.right, a2);
-            float f10 = fArr[0];
-            canvas.drawRoundRect(rect.left, rect.top, rect.right, a2, f10, f10, paint);
-            canvas.restore();
-            return;
+    public final void b(float f10, float f11) {
+        float f12;
+        RenderNode[] renderNodeArr;
+        int i10 = this.e;
+        float f13 = 0.0f;
+        if (i10 >= 2) {
+            f12 = (this.f14991g + f10) % i10;
+        } else {
+            f12 = 0.0f;
         }
-        b(canvas, paint);
+        this.f14991g = f12;
+        int i11 = this.f14990f;
+        if (i11 >= 2) {
+            f13 = (this.h + f11) % i11;
+        }
+        this.h = f13;
+        if (this.f14993j.f14998b) {
+            this.f14987a.setTranslationX(f12);
+            this.f14987a.setTranslationY(this.h);
+            for (RenderNode renderNode : this.f14989c) {
+                renderNode.setTranslationX(-this.f14991g);
+                renderNode.setTranslationY(-this.h);
+            }
+        }
+    }
+
+    public final void c(float f10) {
+        this.f14988b[0].setRenderEffect(RenderEffect.createBlurEffect(e.a(f10, this.e), e.a(f10, this.f14990f), Shader.TileMode.CLAMP));
+    }
+
+    public final void d(float f10, RenderEffect renderEffect) {
+        this.f14988b[0].setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(e.a(f10, this.e), e.a(f10, this.f14990f), Shader.TileMode.CLAMP), renderEffect));
+    }
+
+    public final void e(RenderEffect renderEffect) {
+        this.f14988b[1].setRenderEffect(renderEffect);
     }
 }

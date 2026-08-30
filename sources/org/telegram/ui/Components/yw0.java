@@ -1,28 +1,28 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public final class yw0 implements Runnable {
-    public final int f35138a;
-    public final Object f35139b;
-    public final Object f35140c;
-    public final Object d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class yw0 extends AnimatorListenerAdapter {
+    public final int f31175a;
+    public final zw0 f31176b;
 
-    public yw0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f35138a = i10;
-        this.f35139b = obj;
-        this.f35140c = obj2;
-        this.d = obj3;
+    public yw0(zw0 zw0Var, int i10) {
+        this.f31175a = i10;
+        this.f31176b = zw0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yw0.run():void");
-    }
-
-    public yw0(org.telegram.ui.web.c1 c1Var, ArrayList arrayList, String str) {
-        this.f35138a = 14;
-        this.f35139b = c1Var;
-        this.d = arrayList;
-        this.f35140c = str;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f31175a) {
+            case 0:
+                this.f31176b.f31460s.setVisibility(8);
+                return;
+            case 1:
+                this.f31176b.f31460s.setVisibility(8);
+                return;
+            default:
+                this.f31176b.f31460s.setVisibility(8);
+                return;
+        }
     }
 }

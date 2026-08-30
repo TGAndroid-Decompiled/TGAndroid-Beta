@@ -1,42 +1,19 @@
 package org.telegram.ui;
 
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class a40 extends LinearLayout {
-    public boolean f36420a;
-    public final org.telegram.ui.Components.qc0 f36421b;
-    public final w30 f36422c;
-    public final x30 d;
+import android.view.View;
+public final class a40 extends View {
+    public final c60 f32456a;
 
-    public a40(LaunchActivity launchActivity, org.telegram.ui.Components.qc0 qc0Var, w30 w30Var, x30 x30Var) {
+    public a40(c60 c60Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f36421b = qc0Var;
-        this.f36422c = w30Var;
-        this.d = x30Var;
-        this.f36420a = false;
+        this.f32456a = c60Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        this.f36420a = true;
-        org.telegram.ui.Components.qc0 qc0Var = this.f36421b;
-        qc0Var.setItemCount(5);
-        w30 w30Var = this.f36422c;
-        w30Var.setItemCount(5);
-        x30 x30Var = this.d;
-        x30Var.setItemCount(5);
-        qc0Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
-        w30Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
-        x30Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
-        this.f36420a = false;
-        super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f36420a) {
-            return;
+    public final void setAlpha(float f10) {
+        if (getAlpha() != f10) {
+            super.setAlpha(f10);
+            this.f32456a.S0();
         }
-        super.requestLayout();
     }
 }

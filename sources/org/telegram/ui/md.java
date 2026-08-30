@@ -1,24 +1,40 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class md implements View.OnClickListener {
-    public final int f40526a;
-    public final org.telegram.ui.ActionBar.f3 f40527b;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class md implements TextWatcher {
+    public final int f36269a;
 
-    public md(org.telegram.ui.ActionBar.f3 f3Var, int i10) {
-        this.f40526a = i10;
-        this.f40527b = f3Var;
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        int i10 = this.f36269a;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f40526a) {
-            case 0:
-                this.f40527b.dismiss();
-                return;
-            default:
-                this.f40527b.dismiss();
-                return;
-        }
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f36269a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f36269a;
+    }
+
+    private final void a(Editable editable) {
+    }
+
+    private final void b(Editable editable) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void f(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

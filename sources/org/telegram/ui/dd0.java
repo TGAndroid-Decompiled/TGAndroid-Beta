@@ -1,46 +1,42 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class dd0 implements Runnable {
-    public final int f37500a;
-    public final pe0 f37501b;
+import android.os.Bundle;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.play.core.integrity.IntegrityTokenResponse;
+import org.telegram.tgnet.TLRPC;
+public final class dd0 implements OnSuccessListener {
+    public final int f33594a = 0;
+    public final ng0 f33595b;
+    public final String f33596c;
+    public final TLRPC.auth_SentCode d;
+    public final Bundle e;
+    public final boolean f33597f;
 
-    public dd0(pe0 pe0Var, int i10) {
-        this.f37500a = i10;
-        this.f37501b = pe0Var;
+    public dd0(ng0 ng0Var, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, String str, boolean z4) {
+        this.f33595b = ng0Var;
+        this.e = bundle;
+        this.d = auth_sentcode;
+        this.f33596c = str;
+        this.f33597f = z4;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37500a) {
+    public final void onSuccess(Object obj) {
+        switch (this.f33594a) {
             case 0:
-                this.f37501b.H.n();
-                return;
-            case 1:
-                pe0 pe0Var = this.f37501b;
-                pe0Var.I = null;
-                pe0Var.J = null;
-                pe0Var.p(true);
-                pe0Var.f41388e.h(null, null, pe0Var.f41389f, null);
-                ed edVar = pe0Var.f41390n;
-                org.telegram.ui.Components.xi0 xi0Var = pe0Var.E;
-                edVar.setAnimation(xi0Var);
-                xi0Var.K(0);
-                pe0Var.G = true;
-                return;
-            case 2:
-                this.f37501b.G = true;
+                ng0.X(this.f33595b, this.e, this.d, this.f33596c, this.f33597f, (IntegrityTokenResponse) obj);
                 return;
             default:
-                EditTextBoldCursor editTextBoldCursor = this.f37501b.f41387c;
-                if (editTextBoldCursor != null) {
-                    editTextBoldCursor.requestFocus();
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                    AndroidUtilities.showKeyboard(editTextBoldCursor);
-                    return;
-                }
+                ng0.V(this.f33595b, this.f33596c, this.d, this.e, this.f33597f, (a8.d) obj);
                 return;
         }
+    }
+
+    public dd0(ng0 ng0Var, String str, TLRPC.auth_SentCode auth_sentcode, Bundle bundle, boolean z4) {
+        this.f33595b = ng0Var;
+        this.f33596c = str;
+        this.d = auth_sentcode;
+        this.e = bundle;
+        this.f33597f = z4;
     }
 }

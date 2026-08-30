@@ -1,85 +1,192 @@
 package q8;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Map;
-public class c extends j7.d0 {
-    public final Map f46437b;
-    public final h0 f46438c;
+import android.app.IntentService;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
+import e0.t;
+import k7.m6;
+public abstract class c extends IntentService {
+    private static final int CONNECTION_TIMEOUT_IN_MS = 1000;
+    public static final String EXTRA_INTENT = "SearchActionVerificationClientExtraIntent";
+    private static final long MS_TO_NS = 1000000;
+    private static final String NOTIFICATION_CHANNEL_ID = "Assistant_verifier";
+    private static final int NOTIFICATION_ID = 10000;
+    private static final String REMOTE_ASSISTANT_GO_SERVICE_ACTION = "com.google.android.apps.assistant.go.verification.VERIFICATION_SERVICE";
+    private static final String REMOTE_GSA_SERVICE_ACTION = "com.google.android.googlequicksearchbox.SEARCH_ACTION_VERIFICATION_SERVICE";
+    private static final String SEND_MESSAGE_ERROR_MESSAGE = "com.google.android.voicesearch.extra.ERROR_MESSAGE";
+    private static final String SEND_MESSAGE_RESULT_RECEIVER = "com.google.android.voicesearch.extra.SEND_MESSAGE_RESULT_RECEIVER";
+    private static final String TAG = "SAVerificationClientS";
+    private static final int TIME_TO_SLEEP_IN_MS = 50;
+    private final Intent assistantGoServiceIntent;
+    private b assistantGoVerificationServiceConnection;
+    private final long connectionTimeout;
+    private final boolean dbg;
+    private final Intent gsaServiceIntent;
+    private b searchActionVerificationServiceConnection;
 
-    public c(h0 h0Var, Map map) {
-        super(2);
-        this.f46438c = h0Var;
-        map.getClass();
-        this.f46437b = map;
+    public c() {
+        super("SearchActionVerificationClientService");
+        Intent intent = new Intent("com.google.android.googlequicksearchbox.SEARCH_ACTION_VERIFICATION_SERVICE").setPackage("com.google.android.googlequicksearchbox");
+        this.gsaServiceIntent = intent;
+        Intent intent2 = new Intent("com.google.android.apps.assistant.go.verification.VERIFICATION_SERVICE").setPackage("com.google.android.apps.assistant");
+        this.assistantGoServiceIntent = intent2;
+        this.dbg = a();
+        if (isTestingMode()) {
+            intent.setPackage("com.google.verificationdemo.fakeverification");
+            intent2.setPackage("com.google.verificationdemo.fakeverification");
+        }
+        this.connectionTimeout = getConnectionTimeout();
+    }
+
+    public final boolean a() {
+        if (!isTestingMode() && "user".equals(Build.TYPE)) {
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean b(String str) {
+        ApplicationInfo applicationInfo;
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(str, 0);
+            if (packageInfo != null && (applicationInfo = packageInfo.applicationInfo) != null) {
+                if (applicationInfo.enabled) {
+                    return true;
+                }
+            }
+            return false;
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.w("SAVerificationClientS", "Couldn't find package name ".concat(str), e);
+            return false;
+        }
+    }
+
+    public final boolean c(java.lang.String r12, android.content.Intent r13, q8.b r14) {
+        throw new UnsupportedOperationException("Method not decompiled: q8.c.c(java.lang.String, android.content.Intent, q8.b):boolean");
+    }
+
+    public long getConnectionTimeout() {
+        return 1000L;
+    }
+
+    public boolean isTestingMode() {
+        return false;
     }
 
     @Override
-    public final void clear() {
-        Iterator it = iterator();
-        while (true) {
-            j7.c cVar = (j7.c) it;
-            if (cVar.hasNext()) {
-                cVar.next();
-                cVar.remove();
-            } else {
+    public final void onCreate() {
+        if (this.dbg) {
+            Log.d("SAVerificationClientS", "onCreate");
+        }
+        super.onCreate();
+        this.searchActionVerificationServiceConnection = new b(this);
+        if (b("com.google.android.googlequicksearchbox") && (a() || m6.a(this, "com.google.android.googlequicksearchbox"))) {
+            bindService(this.gsaServiceIntent, this.searchActionVerificationServiceConnection, 1);
+        }
+        this.assistantGoVerificationServiceConnection = new b(this);
+        if (b("com.google.android.apps.assistant") && (a() || m6.a(this, "com.google.android.apps.assistant"))) {
+            bindService(this.assistantGoServiceIntent, this.assistantGoVerificationServiceConnection, 1);
+        }
+        if (Build.VERSION.SDK_INT >= 26) {
+            postForegroundNotification();
+        }
+    }
+
+    @Override
+    public final void onDestroy() {
+        if (this.dbg) {
+            Log.d("SAVerificationClientS", "onDestroy");
+        }
+        super.onDestroy();
+        if (b.a(this.searchActionVerificationServiceConnection)) {
+            unbindService(this.searchActionVerificationServiceConnection);
+        }
+        if (b.a(this.assistantGoVerificationServiceConnection)) {
+            unbindService(this.assistantGoVerificationServiceConnection);
+        }
+        if (Build.VERSION.SDK_INT >= 26) {
+            stopForeground(true);
+        }
+    }
+
+    @Override
+    public final void onHandleIntent(Intent intent) {
+        boolean z4;
+        if (intent == null) {
+            if (this.dbg) {
+                Log.d("SAVerificationClientS", "Unable to verify null intent");
                 return;
             }
+            return;
         }
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        return this.f46437b.containsKey(obj);
-    }
-
-    @Override
-    public final boolean containsAll(Collection collection) {
-        return this.f46437b.keySet().containsAll(collection);
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (this != obj && !this.f46437b.keySet().equals(obj)) {
-            return false;
+        long nanoTime = System.nanoTime();
+        while (true) {
+            boolean b10 = b("com.google.android.googlequicksearchbox");
+            boolean z10 = true;
+            if (b10 && !b.a(this.searchActionVerificationServiceConnection)) {
+                z4 = false;
+            } else {
+                z4 = true;
+            }
+            if (this.dbg) {
+                boolean a2 = b.a(this.searchActionVerificationServiceConnection);
+                Log.d("SAVerificationClientS", "GSA app com.google.android.googlequicksearchbox installed: " + b10 + " connected " + a2);
+            }
+            boolean b11 = b("com.google.android.apps.assistant");
+            if (b11 && !b.a(this.assistantGoVerificationServiceConnection)) {
+                z10 = false;
+            }
+            if (this.dbg) {
+                boolean a10 = b.a(this.assistantGoVerificationServiceConnection);
+                Log.d("SAVerificationClientS", "AssistantGo app com.google.android.apps.assistant installed: " + b11 + " connected " + a10);
+            }
+            if ((!z4 || !z10) && System.nanoTime() - nanoTime < this.connectionTimeout * 1000000) {
+                try {
+                    Thread.sleep(50L);
+                } catch (InterruptedException e) {
+                    if (this.dbg) {
+                        String valueOf = String.valueOf(e);
+                        StringBuilder sb = new StringBuilder(valueOf.length() + 33);
+                        sb.append("Unexpected InterruptedException: ");
+                        sb.append(valueOf);
+                        Log.d("SAVerificationClientS", sb.toString());
+                    }
+                }
+            }
         }
-        return true;
-    }
-
-    @Override
-    public final int hashCode() {
-        return this.f46437b.keySet().hashCode();
-    }
-
-    @Override
-    public final boolean isEmpty() {
-        return this.f46437b.isEmpty();
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return new j7.c(this, this.f46437b.entrySet().iterator(), 7);
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        int i10;
-        Collection collection = (Collection) this.f46437b.remove(obj);
-        if (collection != null) {
-            i10 = collection.size();
-            collection.clear();
-            this.f46438c.f46453e -= i10;
+        if (c("com.google.android.googlequicksearchbox", intent, this.searchActionVerificationServiceConnection)) {
+            Log.i("SAVerificationClientS", "Verified the intent with GSA.");
+            return;
+        }
+        Log.i("SAVerificationClientS", "Unable to verify the intent with GSA.");
+        if (c("com.google.android.apps.assistant", intent, this.assistantGoVerificationServiceConnection)) {
+            Log.i("SAVerificationClientS", "Verified the intent with Assistant Go.");
         } else {
-            i10 = 0;
+            Log.i("SAVerificationClientS", "Unable to verify the intent with Assistant Go.");
         }
-        if (i10 <= 0) {
-            return false;
-        }
-        return true;
     }
 
-    @Override
-    public final int size() {
-        return this.f46437b.size();
+    public abstract void performAction(Intent intent, boolean z4, Bundle bundle);
+
+    public void postForegroundNotification() {
+        NotificationChannel notificationChannel = new NotificationChannel("Assistant_verifier", getApplicationContext().getResources().getString(2131230720), 2);
+        notificationChannel.enableVibration(false);
+        notificationChannel.enableLights(false);
+        notificationChannel.setShowBadge(false);
+        ((NotificationManager) getApplicationContext().getSystemService(NotificationManager.class)).createNotificationChannel(notificationChannel);
+        t tVar = new t(getApplicationContext(), "Assistant_verifier");
+        tVar.f5030q = "Assistant_verifier";
+        tVar.e = t.d(getApplicationContext().getResources().getString(2131230721));
+        tVar.E.icon = 17301545;
+        tVar.f5023j = -2;
+        tVar.f5036x = 1;
+        startForeground(10000, tVar.b());
     }
 }

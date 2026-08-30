@@ -1,21 +1,20 @@
 package o2;
 
-import i7.f0;
 import java.lang.reflect.InvocationTargetException;
-import nh.d6;
+import k7.h0;
 import org.chromium.support_lib_boundary.WebViewProviderFactoryBoundaryInterface;
 public abstract class l {
-    public static final n f19066a;
+    public static final n f16217a;
 
     static {
-        d6 d6Var;
+        o oVar;
         try {
-            d6Var = new d6((WebViewProviderFactoryBoundaryInterface) ce.b.a(WebViewProviderFactoryBoundaryInterface.class, f0.a()), 2);
+            oVar = new o((WebViewProviderFactoryBoundaryInterface) ee.b.a(WebViewProviderFactoryBoundaryInterface.class, h0.a()), 0);
         } catch (ClassNotFoundException unused) {
-            d6Var = new Object();
-        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e10) {
-            throw new RuntimeException(e10);
+            oVar = new Object();
+        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            throw new RuntimeException(e);
         }
-        f19066a = d6Var;
+        f16217a = oVar;
     }
 }

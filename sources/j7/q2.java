@@ -1,4 +1,17 @@
 package j7;
-public abstract class q2 extends c7.a implements r3 {
-    public static final int f11154b = 0;
+public final class q2 implements u9.d {
+    public static final q2 f9116a = new Object();
+
+    static {
+        e2.c.r(e2.c.n(i.class, e2.c.f(3, e2.c.n(i.class, e2.c.f(2, e2.c.n(i.class, new e(1)))))));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            u9.e eVar = (u9.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

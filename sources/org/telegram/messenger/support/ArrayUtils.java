@@ -9,7 +9,7 @@ public class ArrayUtils {
     private ArrayUtils() {
     }
 
-    public static <T> T[] appendElement(Class<T> cls, T[] tArr, T t10) {
+    public static <T> T[] appendElement(Class<T> cls, T[] tArr, T t6) {
         T[] tArr2;
         int i10 = 0;
         if (tArr != null) {
@@ -20,7 +20,7 @@ public class ArrayUtils {
         } else {
             tArr2 = (T[]) ((Object[]) Array.newInstance((Class<?>) cls, 1));
         }
-        tArr2[i10] = t10;
+        tArr2[i10] = t6;
         return tArr2;
     }
 
@@ -40,13 +40,13 @@ public class ArrayUtils {
         return iArr2;
     }
 
-    public static <T> boolean contains(T[] tArr, T t10) {
-        for (T t11 : tArr) {
-            if (t11 == null) {
-                if (t10 == null) {
+    public static <T> boolean contains(T[] tArr, T t6) {
+        for (T t9 : tArr) {
+            if (t9 == null) {
+                if (t6 == null) {
                     return true;
                 }
-            } else if (t10 != null && t11.equals(t10)) {
+            } else if (t6 != null && t9.equals(t6)) {
                 return true;
             }
         }
@@ -131,11 +131,11 @@ public class ArrayUtils {
         return -1;
     }
 
-    public static <T> T[] removeElement(Class<T> cls, T[] tArr, T t10) {
+    public static <T> T[] removeElement(Class<T> cls, T[] tArr, T t6) {
         if (tArr != null) {
             int length = tArr.length;
             for (int i10 = 0; i10 < length; i10++) {
-                if (tArr[i10] == t10) {
+                if (tArr[i10] == t6) {
                     if (length == 1) {
                         return null;
                     }

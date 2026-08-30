@@ -1,97 +1,68 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.style.ReplacementSpan;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public class n00 extends ReplacementSpan {
-    public final TextPaint f40661a;
-    public final Paint f40662b;
-    public StaticLayout f40663c;
-    public float d;
-    public float f40664e;
-    public int f40665f;
-    public final int h;
-    public CharSequence f40666n;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class n00 extends FrameLayout {
+    public final o00 f36422a;
 
-    public n00(int i10) {
-        TextPaint textPaint = new TextPaint(1);
-        this.f40661a = textPaint;
-        Paint paint = new Paint(1);
-        this.f40662b = paint;
-        this.f40666n = "NEW";
-        this.h = i10;
-        textPaint.setTypeface(AndroidUtilities.bold());
-        paint.setStyle(Paint.Style.FILL);
-        textPaint.setTextSize(AndroidUtilities.dp(i10 < 0 ? 12.0f : i10));
-    }
-
-    public final void a() {
-        if (this.f40663c == null) {
-            StaticLayout staticLayout = new StaticLayout(this.f40666n, this.f40661a, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.f40663c = staticLayout;
-            this.d = staticLayout.getLineWidth(0);
-            this.f40664e = this.f40663c.getHeight();
+    public n00(o00 o00Var, Context context) {
+        super(context);
+        int i10;
+        String string;
+        this.f36422a = o00Var;
+        ImageView imageView = new ImageView(context);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setImageResource(R.drawable.msg_limit_links);
+        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        imageView.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false)));
+        addView(imageView, k7.b6.d(54, 44.0f, 49, 0.0f, 22.0f, 0.0f, 0.0f));
+        ih.s sVar = new ih.s(context);
+        sVar.setTypeface(AndroidUtilities.bold());
+        sVar.setTextSize(1, 20.0f);
+        int i11 = org.telegram.ui.ActionBar.j6.f20012j5;
+        sVar.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
+        sVar.setGravity(1);
+        sVar.setText(o00Var.R(sVar));
+        MessagesController.DialogFilter dialogFilter = o00Var.U;
+        if (dialogFilter != null && dialogFilter.title_noanimate) {
+            i10 = 26;
+        } else {
+            i10 = 0;
         }
+        sVar.h = i10;
+        addView(sVar, k7.b6.d(-2, -2.0f, 49, 20.0f, 84.0f, 20.0f, 0.0f));
+        TextView textView = new TextView(context);
+        if (o00Var.V.isEmpty()) {
+            string = LocaleController.getString(R.string.FolderLinkShareSubtitleEmpty);
+        } else {
+            string = LocaleController.getString(R.string.FolderLinkShareSubtitle);
+        }
+        textView.setText(string);
+        textView.setLines(2);
+        textView.setGravity(1);
+        textView.setTextSize(1, 14.0f);
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
+        addView(textView, k7.b6.d(-2, -2.0f, 49, 30.0f, 117.0f, 30.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        imageView2.setScaleType(scaleType);
+        imageView2.setImageResource(R.drawable.msg_close);
+        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.C6, false), PorterDuff.Mode.MULTIPLY));
+        imageView2.setOnClickListener(new a(this, 23));
+        addView(imageView2, k7.b6.d(48, 48.0f, 53, 0.0f, -4.0f, 2.0f, 0.0f));
     }
 
     @Override
-    public void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f9, int i12, int i13, int i14, Paint paint) {
-        int i15;
-        float f10;
-        a();
-        int i16 = this.f40665f;
-        if (i16 == 0) {
-            i16 = paint.getColor();
-        }
-        Paint paint2 = this.f40662b;
-        paint2.setColor(i16);
-        if (AndroidUtilities.computePerceivedBrightness(i16) > 0.721f) {
-            i15 = -16777216;
-        } else {
-            i15 = -1;
-        }
-        TextPaint textPaint = this.f40661a;
-        textPaint.setColor(i15);
-        paint2.setAlpha((int) (paint2.getAlpha() * 1.0f));
-        textPaint.setAlpha((int) (textPaint.getAlpha() * 1.0f));
-        float dp = f9 + AndroidUtilities.dp(2.0f);
-        float dp2 = (i13 - this.f40664e) + AndroidUtilities.dp(1.0f);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(dp, dp2, this.d + dp, this.f40664e + dp2);
-        float dp3 = AndroidUtilities.dp(4.4f);
-        float dp4 = AndroidUtilities.dp(-4.0f);
-        if (this.h == 8) {
-            f10 = -3.66f;
-        } else {
-            f10 = -2.33f;
-        }
-        rectF.inset(dp4, AndroidUtilities.dp(f10));
-        canvas.drawRoundRect(rectF, dp3, dp3, paint2);
-        canvas.save();
-        canvas.translate(dp, dp2);
-        this.f40663c.draw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        a();
-        return (int) (AndroidUtilities.dp(10.0f) + this.d);
-    }
-
-    public n00() {
-        TextPaint textPaint = new TextPaint(1);
-        this.f40661a = textPaint;
-        Paint paint = new Paint(1);
-        this.f40662b = paint;
-        this.f40666n = "NEW";
-        textPaint.setTypeface(AndroidUtilities.bold());
-        paint.setStyle(Paint.Style.FILL);
-        textPaint.setTextSize(AndroidUtilities.dp(10.0f));
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(171.0f), 1073741824));
     }
 }

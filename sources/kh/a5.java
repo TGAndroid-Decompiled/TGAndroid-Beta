@@ -1,0 +1,14 @@
+package kh;
+
+import org.telegram.messenger.R;
+public enum a5 {
+    BY_PRICE(R.string.ResellGiftFilterSortPrice),
+    BY_DATE(R.string.ResellGiftFilterSortDate),
+    BY_NUMBER(R.string.ResellGiftFilterSortNumber);
+    
+    public final int f10467a;
+
+    a5(int i10) {
+        this.f10467a = i10;
+    }
+}

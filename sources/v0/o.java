@@ -1,8 +1,8 @@
 package v0;
 public final class o {
-    public final ab.e f49317a;
+    public final cb.e f45549a;
 
-    public o(ab.e eVar) {
-        this.f49317a = eVar;
+    public o(cb.e eVar) {
+        this.f45549a = eVar;
     }
 }

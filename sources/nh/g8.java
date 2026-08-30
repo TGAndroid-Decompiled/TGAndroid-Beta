@@ -1,66 +1,88 @@
 package nh;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.il0;
-public final class g8 extends il0 {
-    public final h8 f17732c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class g8 extends FrameLayout {
+    public final Paint f15367a;
+    public final Paint f15368b;
+    public final TextView f15369c;
+    public final TextView d;
+    public final TextView e;
 
-    public g8(h8 h8Var) {
-        this.f17732c = h8Var;
+    public g8(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f15367a = paint;
+        Paint paint2 = new Paint(1);
+        this.f15368b = paint2;
+        paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20141q7, f6Var));
+        paint2.setColor(-1);
+        setWillNotDraw(false);
+        TextView textView = new TextView(context);
+        this.f15369c = textView;
+        textView.setTextSize(1, 14.0f);
+        textView.setText(LocaleController.getString(R.string.StoryError));
+        textView.setTextColor(-1);
+        addView(textView, k7.b6.d(-2, -2.0f, 19, 44.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setTextSize(1, 8.0f);
+        textView2.setTextColor(org.telegram.ui.ActionBar.j6.l1(0.5f, -1));
+        textView2.setVisibility(8);
+        textView2.setTranslationY(AndroidUtilities.dp(9.0f));
+        addView(textView2, k7.b6.d(-2, -2.0f, 19, 44.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView3 = new TextView(context);
+        this.e = textView3;
+        textView3.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), 0);
+        int dp = AndroidUtilities.dp(16.0f);
+        textView3.setBackground(org.telegram.ui.ActionBar.j6.i0(dp, dp, dp, dp, 536870911, 956301311, 956301311));
+        textView3.setTypeface(AndroidUtilities.bold());
+        textView3.setText(LocaleController.getString(R.string.TryAgain));
+        textView3.setTextSize(1, 14.0f);
+        textView3.setTextColor(-1);
+        textView3.setGravity(17);
+        addView(textView3, k7.b6.d(-2, 32.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
     }
 
     @Override
-    public final boolean D(f2.n1 n1Var) {
-        if (n1Var.f6436f == 2) {
-            return true;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float dp = AndroidUtilities.dp(23.0f);
+        float height = getHeight() / 2.0f;
+        canvas.drawCircle(dp, height, AndroidUtilities.dp(10.0f), this.f15367a);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(dp - AndroidUtilities.dp(1.0f), height - AndroidUtilities.dpf2(4.6f), AndroidUtilities.dp(1.0f) + dp, AndroidUtilities.dpf2(1.6f) + height);
+        Paint paint = this.f15368b;
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint);
+        rectF.set(dp - AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(2.6f) + height, dp + AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(4.6f) + height);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint);
+    }
+
+    public void set(TLRPC.TL_error tL_error) {
+        TextView textView = this.f15369c;
+        TextView textView2 = this.d;
+        if (tL_error != null && !TextUtils.isEmpty(tL_error.text)) {
+            textView.setTranslationY(-AndroidUtilities.dpf2(5.33f));
+            textView2.setText(tL_error.text);
+            textView2.setVisibility(0);
+            return;
         }
-        return false;
+        textView.setTranslationY(0.0f);
+        textView2.setVisibility(8);
     }
 
     @Override
-    public final int h() {
-        return this.f17732c.f17852c.size() + 2;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 0;
-        }
-        if (i10 == 1) {
-            return 1;
-        }
-        return 2;
-    }
-
-    @Override
-    public final void v(f2.n1 r10, int r11) {
-        throw new UnsupportedOperationException("Method not decompiled: nh.g8.v(f2.n1, int):void");
-    }
-
-    @Override
-    public final f2.n1 x(ViewGroup viewGroup, int i10) {
-        int dp;
-        View view;
-        org.telegram.ui.ActionBar.c6 c6Var;
-        h8 h8Var = this.f17732c;
-        if (i10 != 0 && i10 != 1) {
-            Context context = h8Var.getContext();
-            c6Var = ((org.telegram.ui.ActionBar.f3) h8Var).resourcesProvider;
-            view = new d9(context, c6Var);
-        } else {
-            View view2 = new View(h8Var.getContext());
-            if (i10 == 0) {
-                dp = (AndroidUtilities.displaySize.y + AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(306.0f);
-            } else {
-                dp = AndroidUtilities.dp(54.0f);
-            }
-            view2.setLayoutParams(new f2.x0(-1, dp));
-            view = view2;
-        }
-        return new f2.n1(view);
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.e.setOnClickListener(onClickListener);
     }
 }

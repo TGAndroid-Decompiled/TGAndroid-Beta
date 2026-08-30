@@ -1,82 +1,155 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
+import android.text.TextUtils;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.SecureDocument;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
-public final class gm0 implements Runnable {
-    public final int f38622a;
-    public final hm0 f38623b;
-    public final TLRPC.TL_error f38624c;
-    public final TLObject d;
+public final class gm0 implements tm0 {
+    public final TLRPC.SecureValueType f34642a;
+    public final boolean f34643b;
+    public final int f34644c;
+    public final dn0 d;
 
-    public gm0(hm0 hm0Var, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.f38622a = 0;
-        this.f38623b = hm0Var;
-        this.d = tLObject;
-        this.f38624c = tL_error;
+    public gm0(dn0 dn0Var, TLRPC.SecureValueType secureValueType, boolean z4, int i10) {
+        this.d = dn0Var;
+        this.f34642a = secureValueType;
+        this.f34643b = z4;
+        this.f34644c = i10;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f38622a) {
-            case 0:
-                hm0 hm0Var = this.f38623b;
-                TLObject tLObject = this.d;
-                TLRPC.TL_error tL_error = this.f38624c;
-                vm0 vm0Var = hm0Var.f38964e;
-                if (tLObject instanceof Vector) {
-                    vm0Var.f43678y = new TL_account.authorizationForm();
-                    Vector vector = (Vector) tLObject;
-                    int size = vector.objects.size();
-                    for (int i10 = 0; i10 < size; i10++) {
-                        vm0Var.f43678y.values.add((TLRPC.TL_secureValue) vector.objects.get(i10));
-                    }
-                    hm0Var.a();
-                    return;
-                }
-                if ("APP_VERSION_OUTDATED".equals(tL_error.text)) {
-                    org.telegram.ui.Components.c5.x0(vm0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
-                } else {
-                    vm0Var.M1(LocaleController.getString(R.string.AppName), tL_error.text);
-                }
-                vm0Var.N1(true, false);
-                return;
-            case 1:
-                hm0 hm0Var2 = this.f38623b;
-                TLRPC.TL_error tL_error2 = this.f38624c;
-                TLObject tLObject2 = this.d;
-                if (tL_error2 == null) {
-                    TL_account.Password password = (TL_account.Password) tLObject2;
-                    hm0Var2.f38964e.F = password;
-                    TwoStepVerificationActivity.m0(password);
-                    hm0Var2.b();
-                    return;
-                }
-                hm0Var2.getClass();
-                return;
-            default:
-                hm0 hm0Var3 = this.f38623b;
-                TLRPC.TL_error tL_error3 = this.f38624c;
-                TLObject tLObject3 = this.d;
-                if (tL_error3 == null) {
-                    TL_account.Password password2 = (TL_account.Password) tLObject3;
-                    hm0Var3.f38964e.F = password2;
-                    TwoStepVerificationActivity.m0(password2);
-                    Utilities.globalQueue.postRunnable(new xe0(hm0Var3, hm0Var3.f38962b, hm0Var3.d, 12));
-                    return;
-                }
-                return;
+    public static void a(gm0 gm0Var, SecureDocument secureDocument, TLRPC.TL_secureFile tL_secureFile) {
+        gm0Var.getClass();
+        File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(secureDocument);
+        File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tL_secureFile);
+        pathToAttach.renameTo(pathToAttach2);
+        ImageLoader.getInstance().replaceImageInCache(secureDocument.secureFile.dc_id + "_" + secureDocument.secureFile.f19319id, tL_secureFile.dc_id + "_" + tL_secureFile.f19319id, null, false);
+    }
+
+    public static TLRPC.InputSecureFile b(SecureDocument secureDocument) {
+        if (secureDocument.inputFile != null) {
+            TLRPC.TL_inputSecureFileUploaded tL_inputSecureFileUploaded = new TLRPC.TL_inputSecureFileUploaded();
+            TLRPC.TL_inputFile tL_inputFile = secureDocument.inputFile;
+            tL_inputSecureFileUploaded.f19252id = tL_inputFile.f19198id;
+            tL_inputSecureFileUploaded.parts = tL_inputFile.parts;
+            tL_inputSecureFileUploaded.md5_checksum = tL_inputFile.md5_checksum;
+            tL_inputSecureFileUploaded.file_hash = secureDocument.fileHash;
+            tL_inputSecureFileUploaded.secret = secureDocument.fileSecret;
+            return tL_inputSecureFileUploaded;
         }
+        TLRPC.TL_inputSecureFile tL_inputSecureFile = new TLRPC.TL_inputSecureFile();
+        TLRPC.TL_secureFile tL_secureFile = secureDocument.secureFile;
+        tL_inputSecureFile.f19251id = tL_secureFile.f19319id;
+        tL_inputSecureFile.access_hash = tL_secureFile.access_hash;
+        return tL_inputSecureFile;
     }
 
-    public gm0(hm0 hm0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
-        this.f38622a = i10;
-        this.f38623b = hm0Var;
-        this.f38624c = tL_error;
-        this.d = tLObject;
+    public final void c(TLRPC.TL_secureRequiredType tL_secureRequiredType, String str, String str2, TLRPC.TL_secureRequiredType tL_secureRequiredType2, String str3, ArrayList arrayList, SecureDocument secureDocument, ArrayList arrayList2, SecureDocument secureDocument2, SecureDocument secureDocument3, Runnable runnable, n7.qa qaVar) {
+        TLRPC.TL_inputSecureValue tL_inputSecureValue;
+        TLRPC.TL_securePlainPhone tL_securePlainPhone;
+        TLRPC.TL_inputSecureValue tL_inputSecureValue2;
+        int i10;
+        boolean isEmpty = TextUtils.isEmpty(str2);
+        dn0 dn0Var = this.d;
+        if (!isEmpty) {
+            tL_inputSecureValue = new TLRPC.TL_inputSecureValue();
+            tL_inputSecureValue.type = tL_secureRequiredType.type;
+            tL_inputSecureValue.flags |= 1;
+            c5.j k12 = dn0Var.k1(AndroidUtilities.getStringBytes(str2));
+            TLRPC.TL_secureData tL_secureData = new TLRPC.TL_secureData();
+            tL_inputSecureValue.data = tL_secureData;
+            tL_secureData.data = (byte[]) k12.f2131c;
+            tL_secureData.data_hash = (byte[]) k12.d;
+            tL_secureData.secret = (byte[]) k12.f2129a;
+        } else if (!TextUtils.isEmpty(str)) {
+            TLRPC.SecureValueType secureValueType = this.f34642a;
+            if (secureValueType instanceof TLRPC.TL_secureValueTypeEmail) {
+                TLRPC.TL_securePlainEmail tL_securePlainEmail = new TLRPC.TL_securePlainEmail();
+                tL_securePlainEmail.email = str;
+                tL_securePlainPhone = tL_securePlainEmail;
+            } else if (secureValueType instanceof TLRPC.TL_secureValueTypePhone) {
+                TLRPC.TL_securePlainPhone tL_securePlainPhone2 = new TLRPC.TL_securePlainPhone();
+                tL_securePlainPhone2.phone = str;
+                tL_securePlainPhone = tL_securePlainPhone2;
+            } else {
+                return;
+            }
+            TLRPC.TL_inputSecureValue tL_inputSecureValue3 = new TLRPC.TL_inputSecureValue();
+            tL_inputSecureValue3.type = tL_secureRequiredType.type;
+            tL_inputSecureValue3.flags |= 32;
+            tL_inputSecureValue3.plain_data = tL_securePlainPhone;
+            tL_inputSecureValue = tL_inputSecureValue3;
+        } else {
+            tL_inputSecureValue = null;
+        }
+        boolean z4 = this.f34643b;
+        if (!z4 && tL_inputSecureValue == null) {
+            if (qaVar != null) {
+                qaVar.D(null, null);
+                return;
+            }
+            return;
+        }
+        if (tL_secureRequiredType2 != null) {
+            TLRPC.TL_inputSecureValue tL_inputSecureValue4 = new TLRPC.TL_inputSecureValue();
+            tL_inputSecureValue4.type = tL_secureRequiredType2.type;
+            if (!TextUtils.isEmpty(str3)) {
+                tL_inputSecureValue4.flags |= 1;
+                c5.j k13 = dn0Var.k1(AndroidUtilities.getStringBytes(str3));
+                TLRPC.TL_secureData tL_secureData2 = new TLRPC.TL_secureData();
+                tL_inputSecureValue4.data = tL_secureData2;
+                tL_secureData2.data = (byte[]) k13.f2131c;
+                tL_secureData2.data_hash = (byte[]) k13.d;
+                tL_secureData2.secret = (byte[]) k13.f2129a;
+            }
+            if (secureDocument2 != null) {
+                tL_inputSecureValue4.front_side = b(secureDocument2);
+                tL_inputSecureValue4.flags |= 2;
+            }
+            if (secureDocument3 != null) {
+                tL_inputSecureValue4.reverse_side = b(secureDocument3);
+                tL_inputSecureValue4.flags |= 4;
+            }
+            if (secureDocument != null) {
+                tL_inputSecureValue4.selfie = b(secureDocument);
+                tL_inputSecureValue4.flags |= 8;
+            }
+            if (arrayList2 != null && !arrayList2.isEmpty()) {
+                tL_inputSecureValue4.flags |= 64;
+                int size = arrayList2.size();
+                for (int i11 = 0; i11 < size; i11++) {
+                    tL_inputSecureValue4.translation.add(b((SecureDocument) arrayList2.get(i11)));
+                }
+            }
+            if (arrayList != null && !arrayList.isEmpty()) {
+                tL_inputSecureValue4.flags |= 16;
+                int size2 = arrayList.size();
+                for (int i12 = 0; i12 < size2; i12++) {
+                    tL_inputSecureValue4.files.add(b((SecureDocument) arrayList.get(i12)));
+                }
+            }
+            if (z4) {
+                tL_inputSecureValue = tL_inputSecureValue4;
+            } else {
+                tL_inputSecureValue2 = tL_inputSecureValue4;
+                TL_account.saveSecureValue savesecurevalue = new TL_account.saveSecureValue();
+                savesecurevalue.value = tL_inputSecureValue;
+                savesecurevalue.secure_secret_id = dn0Var.Y0;
+                i10 = ((org.telegram.ui.ActionBar.p2) dn0Var).currentAccount;
+                ConnectionsManager.getInstance(i10).sendRequest(savesecurevalue, new fm0(this, qaVar, str, savesecurevalue, tL_secureRequiredType2, tL_secureRequiredType, arrayList, secureDocument, secureDocument2, secureDocument3, arrayList2, str2, str3, runnable, this, tL_inputSecureValue2));
+            }
+        }
+        tL_inputSecureValue2 = null;
+        TL_account.saveSecureValue savesecurevalue2 = new TL_account.saveSecureValue();
+        savesecurevalue2.value = tL_inputSecureValue;
+        savesecurevalue2.secure_secret_id = dn0Var.Y0;
+        i10 = ((org.telegram.ui.ActionBar.p2) dn0Var).currentAccount;
+        ConnectionsManager.getInstance(i10).sendRequest(savesecurevalue2, new fm0(this, qaVar, str, savesecurevalue2, tL_secureRequiredType2, tL_secureRequiredType, arrayList, secureDocument, secureDocument2, secureDocument3, arrayList2, str2, str3, runnable, this, tL_inputSecureValue2));
     }
 }

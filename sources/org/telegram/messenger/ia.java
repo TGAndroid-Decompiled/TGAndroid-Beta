@@ -1,33 +1,43 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ia implements RequestDelegate {
-    public final int f20546a;
-    public final BaseController f20547b;
-    public final int f20548c;
+import java.util.ArrayList;
+public final class ia implements Runnable {
+    public final int f17471a;
+    public final MessagesController f17472b;
+    public final ArrayList f17473c;
 
-    public ia(BaseController baseController, int i10, int i11) {
-        this.f20546a = i11;
-        this.f20547b = baseController;
-        this.f20548c = i10;
+    public ia(MessagesController messagesController, ArrayList arrayList, int i10) {
+        this.f17471a = i10;
+        this.f17472b = messagesController;
+        this.f17473c = arrayList;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f20546a) {
+    public final void run() {
+        switch (this.f17471a) {
             case 0:
-                ((MessagesController) this.f20547b).lambda$migrateDialogs$216(this.f20548c, tLObject, tL_error);
+                this.f17472b.lambda$processUpdateArray$397(this.f17473c);
                 return;
             case 1:
-                ((MessagesController) this.f20547b).lambda$loadPinnedDialogs$367(this.f20548c, tLObject, tL_error);
+                this.f17472b.lambda$processUpdates$379(this.f17473c);
                 return;
             case 2:
-                ((MessagesController) this.f20547b).lambda$loadGlobalNotificationsSettings$201(this.f20548c, tLObject, tL_error);
+                this.f17472b.lambda$processUpdates$378(this.f17473c);
+                return;
+            case 3:
+                this.f17472b.lambda$getChannelDifference$341(this.f17473c);
+                return;
+            case 4:
+                this.f17472b.lambda$processUpdateArray$398(this.f17473c);
+                return;
+            case 5:
+                this.f17472b.lambda$checkChatInviter$372(this.f17473c);
+                return;
+            case 6:
+                this.f17472b.lambda$reloadMentionsCountForChannels$222(this.f17473c);
                 return;
             default:
-                ((ContactsController) this.f20547b).lambda$loadPrivacySettings$65(this.f20548c, tLObject, tL_error);
+                this.f17472b.lambda$checkChatInviter$373(this.f17473c);
                 return;
         }
     }

@@ -33,7 +33,7 @@ public class ChatsWidgetProvider extends AppWidgetProvider {
             int i13 = sharedPreferences.getInt("account" + i10, -1);
             if (i13 == -1) {
                 SharedPreferences.Editor edit = sharedPreferences.edit();
-                edit.putInt(j7.l1.k(i10, "account"), UserConfig.selectedAccount);
+                edit.putInt(kh.a2.j(i10, "account"), UserConfig.selectedAccount);
                 edit.putInt("type" + i10, 0).commit();
             }
             ArrayList<Long> arrayList = new ArrayList<>();

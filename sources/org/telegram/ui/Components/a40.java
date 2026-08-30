@@ -1,58 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.HashtagSearchController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class a40 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final b40 f26657a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.util.SparseArray;
+public final class a40 extends yu0 {
+    public final d40 f23293c2;
 
-    public a40(b40 b40Var) {
-        this.f26657a = b40Var;
+    public a40(d40 d40Var, Context context, qu0 qu0Var, d40 d40Var2, z30 z30Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, 0L, qu0Var, 0, null, null, null, 8, 0, d40Var2, z30Var, 0, f6Var, null);
+        this.f23293c2 = d40Var;
     }
 
     @Override
-    public void mo19run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = ((w41) obj).d;
-        b40 b40Var = this.f26657a;
-        if (i10 == 0) {
-            HashtagSearchController.getInstance(b40Var.f26972a).clearHistory();
-            b40Var.f26976f.N(true);
-            return;
-        }
-        Utilities.Callback callback = b40Var.h;
-        if (callback != null) {
-            callback.run((String) b40Var.f26974c.get(i10 - 1));
-        }
+    public final int getInitialTab() {
+        return 8;
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = ((w41) obj).d;
-        boolean z10 = false;
-        if (i10 != 0) {
-            b40 b40Var = this.f26657a;
-            String str = (String) b40Var.f26974c.get(i10 - 1);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(b40Var.getContext(), 0, b40Var.f26973b);
-            String string = LocaleController.getString(R.string.ClearSearchSingleAlertTitle);
-            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f22714a;
-            c2Var.N = string;
-            c2Var.P = LocaleController.formatString(R.string.ClearSearchSingleHashtagAlertText, str);
-            alertDialog$Builder.k(LocaleController.getString(R.string.ClearSearchRemove), new j1(21, b40Var, str));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            c2Var.show();
-            z10 = true;
-        }
-        return Boolean.valueOf(z10);
+    public final String getStoriesHashtag() {
+        return this.f23293c2.f24147b;
+    }
+
+    @Override
+    public final String getStoriesHashtagUsername() {
+        return this.f23293c2.f24148c;
+    }
+
+    @Override
+    public final boolean t0() {
+        return true;
+    }
+
+    @Override
+    public final void D0(SparseArray sparseArray) {
+    }
+
+    @Override
+    public final void K0(boolean z4) {
+    }
+
+    @Override
+    public final void M0(float f10) {
+    }
+
+    @Override
+    public final void N0(boolean z4) {
+    }
+
+    @Override
+    public final void b1(boolean z4) {
+    }
+
+    @Override
+    public final void o0() {
+    }
+
+    @Override
+    public final void P(Canvas canvas, float f10, Rect rect, Paint paint) {
     }
 }

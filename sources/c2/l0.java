@@ -1,7 +1,8 @@
 package c2;
-
-import android.content.BroadcastReceiver;
-public abstract class l0 extends BroadcastReceiver {
-    public static final int f2864a = 0;
-    public static final int f2865b = 0;
+public final class l0 extends p0 {
+    @Override
+    public void u(n0 n0Var, m mVar) {
+        super.u(n0Var, mVar);
+        mVar.f1966a.putInt("deviceType", n0Var.f1971a.getDeviceType());
+    }
 }

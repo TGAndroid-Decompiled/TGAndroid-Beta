@@ -1,45 +1,31 @@
 package org.telegram.ui;
-public final class vs implements Runnable {
-    public final int f43721a;
-    public final int f43722b;
-    public final Object f43723c;
-    public final Object d;
-    public final Object f43724e;
 
-    public vs(int i10, Object obj, Object obj2, Object obj3, int i11) {
-        this.f43721a = i11;
-        this.f43722b = i10;
-        this.d = obj;
-        this.f43724e = obj2;
-        this.f43723c = obj3;
+import android.content.Context;
+import java.util.ArrayList;
+public final class vs extends tf.c1 {
+    public final ContactsActivity H;
+
+    public vs(ContactsActivity contactsActivity, Context context, a0.h hVar, boolean z4, boolean z10, boolean z11) {
+        this.H = contactsActivity;
+        this.d = new ArrayList();
+        this.e = new ArrayList();
+        this.E = new ArrayList();
+        this.f44679c = context;
+        this.h = hVar;
+        this.f44682r = z4;
+        this.f44683s = z10;
+        this.f44685x = 0;
+        this.v = z11;
+        this.f44684w = true;
+        tf.k1 k1Var = new tf.k1(true);
+        this.f44680f = k1Var;
+        k1Var.f44769a = new tf.a1(this);
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.vs.run():void");
-    }
-
-    public vs(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f43721a = i11;
-        this.d = obj;
-        this.f43722b = i10;
-        this.f43724e = obj2;
-        this.f43723c = obj3;
-    }
-
-    public vs(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f43721a = i11;
-        this.d = obj;
-        this.f43724e = obj2;
-        this.f43722b = i10;
-        this.f43723c = obj3;
-    }
-
-    public vs(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f43721a = i11;
-        this.d = obj;
-        this.f43724e = obj2;
-        this.f43723c = obj3;
-        this.f43722b = i10;
+    public final void F() {
+        if (!this.f44686y && !this.f44680f.e() && h() == 0) {
+            this.H.e.e(false, true);
+        }
     }
 }

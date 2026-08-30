@@ -1,43 +1,76 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.SharedPreferences;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MrzRecognizer;
-public final class r11 implements q9 {
-    public final int f41841a;
-    public final org.telegram.ui.ActionBar.o2 f41842b;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.WebProxyTransport;
+import org.telegram.tgnet.ConnectionsManager;
+public final class r11 extends org.telegram.ui.ActionBar.j {
+    public final w11 f37903a;
 
-    public r11(int i10, org.telegram.ui.ActionBar.o2 o2Var) {
-        this.f41841a = i10;
-        this.f41842b = o2Var;
+    public r11(w11 w11Var) {
+        this.f37903a = w11Var;
     }
 
     @Override
-    public final String E0() {
-        return null;
-    }
-
-    @Override
-    public final void J(String str) {
-        String b10 = ye.d.b(str);
-        if (!TextUtils.isEmpty(b10)) {
-            MessagesController.getInstance(this.f41841a).getUserNameResolver().resolve(b10, new rb(this.f41842b, 4));
-        } else {
-            AndroidUtilities.runOnUIThread(new ef0(4));
+    public final void b(int i10) {
+        String obj;
+        int intValue;
+        boolean z4;
+        w11 w11Var = this.f37903a;
+        SharedConfig.ProxyInfo proxyInfo = w11Var.H;
+        if (i10 == -1) {
+            w11Var.finishFragment();
+        } else if (i10 == 1 && w11Var.getParentActivity() != null) {
+            if (w11Var.v == 2) {
+                obj = WebProxyTransport.normalizeHost(w11Var.f39299a[0].getText().toString());
+            } else {
+                obj = w11Var.f39299a[0].getText().toString();
+            }
+            proxyInfo.address = obj;
+            if (w11Var.v == 2) {
+                intValue = 443;
+            } else {
+                intValue = Utilities.parseInt((CharSequence) w11Var.f39299a[1].getText().toString()).intValue();
+            }
+            proxyInfo.port = intValue;
+            int i11 = w11Var.v;
+            proxyInfo.type = i11;
+            if (i11 == 0) {
+                proxyInfo.secret = "";
+                proxyInfo.username = w11Var.f39299a[2].getText().toString();
+                proxyInfo.password = w11Var.f39299a[3].getText().toString();
+            } else {
+                proxyInfo.secret = w11Var.f39299a[4].getText().toString();
+                proxyInfo.username = "";
+                proxyInfo.password = "";
+            }
+            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+            SharedPreferences.Editor edit = globalMainSettings.edit();
+            if (w11Var.G) {
+                SharedConfig.addProxy(proxyInfo);
+                SharedConfig.currentProxy = proxyInfo;
+                edit.putBoolean("proxy_enabled", true);
+                z4 = true;
+            } else {
+                boolean z10 = globalMainSettings.getBoolean("proxy_enabled", false);
+                SharedConfig.saveProxyList();
+                z4 = z10;
+            }
+            if (w11Var.G || SharedConfig.currentProxy == proxyInfo) {
+                edit.putString("proxy_ip", proxyInfo.address);
+                edit.putString("proxy_pass", proxyInfo.password);
+                edit.putString("proxy_user", proxyInfo.username);
+                edit.putInt("proxy_port", proxyInfo.port);
+                edit.putString("proxy_secret", proxyInfo.secret);
+                edit.putInt("proxy_type", proxyInfo.type);
+                ConnectionsManager.setProxySettings(z4, proxyInfo.address, proxyInfo.port, proxyInfo.username, proxyInfo.password, proxyInfo.secret, proxyInfo.type);
+            }
+            edit.commit();
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
+            w11Var.finishFragment();
         }
-    }
-
-    @Override
-    public final boolean d1(String str, i9 i9Var) {
-        return false;
-    }
-
-    @Override
-    public final void S0(MrzRecognizer.Result result) {
-    }
-
-    @Override
-    public final void onDismiss() {
     }
 }

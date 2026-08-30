@@ -1,16 +1,14 @@
 package l3;
 
-import j3.x1;
+import j3.v1;
 public final class h0 {
-    public final x1 f14102a;
-    public final boolean f14103b;
-    public final long f14104c;
-    public final long d;
+    public final v1 f11149a;
+    public final long f11150b;
+    public final long f11151c;
 
-    public h0(x1 x1Var, boolean z10, long j10, long j11) {
-        this.f14102a = x1Var;
-        this.f14103b = z10;
-        this.f14104c = j10;
-        this.d = j11;
+    public h0(v1 v1Var, long j10, long j11) {
+        this.f11149a = v1Var;
+        this.f11150b = j10;
+        this.f11151c = j11;
     }
 }

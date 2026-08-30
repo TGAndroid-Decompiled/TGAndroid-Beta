@@ -1,41 +1,38 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class u6 extends q7 {
-    public final int f43187w;
-    public final Object f43188x;
+import android.util.SparseArray;
+public final class u6 {
+    public long f38849a;
+    public int f38850b;
+    public long f38851c;
+    public final SparseArray d = new SparseArray();
 
-    public u6(Object obj, Context context, org.telegram.ui.ActionBar.o2 o2Var, int i10) {
-        super(context, o2Var);
-        this.f43187w = i10;
-        this.f43188x = obj;
+    public u6(long j10) {
+        this.f38849a = j10;
     }
 
-    public void e(boolean z10) {
-        org.telegram.ui.ActionBar.l lVar;
-        org.telegram.ui.ActionBar.l lVar2;
-        x6 x6Var = ((v6) this.f43188x).f43438e;
-        if (!z10) {
-            lVar = ((org.telegram.ui.ActionBar.o2) x6Var).actionBar;
-            lVar.r();
-            return;
+    public final void a(mh.a aVar, int i10) {
+        SparseArray sparseArray = this.d;
+        v6 v6Var = (v6) sparseArray.get(i10, null);
+        if (v6Var == null) {
+            v6Var = new v6();
+            sparseArray.put(i10, v6Var);
         }
-        x6.b0(x6Var, true);
-        lVar2 = ((org.telegram.ui.ActionBar.o2) x6Var).actionBar;
-        lVar2.O(null, null);
+        long j10 = aVar.f14171c;
+        v6Var.f39085a += j10;
+        this.f38851c += j10;
+        this.f38850b++;
+        v6Var.f39086b.add(aVar);
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f43187w) {
-            case 0:
-                super.onMeasure(i10, b.d(12.0f, View.MeasureSpec.getSize(i11) - (org.telegram.ui.ActionBar.l.getCurrentActionBarHeight() / 2), 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((((yu) this.f43188x).h - org.telegram.ui.ActionBar.l.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight, 1073741824));
-                return;
+    public final void b(mh.a aVar) {
+        v6 v6Var = (v6) this.d.get(aVar.d, null);
+        if (v6Var != null && v6Var.f39086b.remove(aVar)) {
+            long j10 = v6Var.f39085a;
+            long j11 = aVar.f14171c;
+            v6Var.f39085a = j10 - j11;
+            this.f38851c -= j11;
+            this.f38850b--;
         }
     }
 }

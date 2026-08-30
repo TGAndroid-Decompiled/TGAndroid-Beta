@@ -1,31 +1,39 @@
 package nh;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.ImageView;
-import org.telegram.ui.Components.uc;
-public final class j extends ImageView {
-    public final float f17914a;
-    public final uc f17915b;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.gx;
+public final class j extends org.telegram.ui.ActionBar.m {
+    public final int d = 1;
+    public final FrameLayout e;
 
-    public j(Context context) {
-        super(context);
-        this.f17915b = new uc(this);
-        this.f17914a = 0.2f;
+    public j(gx gxVar, Context context, cb.m mVar) {
+        super(context, null, mVar);
+        this.e = gxVar;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        canvas.save();
-        float a2 = this.f17915b.a(this.f17914a);
-        canvas.scale(a2, a2, getWidth() / 2.0f, getHeight() / 2.0f);
-        super.draw(canvas);
-        canvas.restore();
+    public final void e(xd.j jVar) {
+        switch (this.d) {
+            case 0:
+                super.e(jVar);
+                ((gx) this.e).invalidate();
+                return;
+            default:
+                super.e(jVar);
+                float totalVisibility = getTotalVisibility();
+                dh.d dVar = ((org.telegram.ui.ActionBar.k) this.e).C0;
+                if (dVar != null) {
+                    dVar.setTranslationY(totalVisibility * AndroidUtilities.dp(-11.0f));
+                    return;
+                }
+                return;
+        }
     }
 
-    @Override
-    public void setPressed(boolean z10) {
-        super.setPressed(z10);
-        this.f17915b.c(z10);
+    public j(org.telegram.ui.ActionBar.k kVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, cb.m mVar) {
+        super(context, f6Var, mVar);
+        this.e = kVar;
     }
 }

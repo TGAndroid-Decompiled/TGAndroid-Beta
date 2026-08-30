@@ -1,3 +1,4 @@
 package w8;
-public @interface d {
+public final class d {
+    public final g f46472a;
 }

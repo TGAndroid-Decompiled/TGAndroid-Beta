@@ -1,364 +1,233 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.text.TextUtils;
-import android.util.Property;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import j$.util.Objects;
+import android.view.ScaleGestureDetector;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import java.util.ArrayList;
-import java.util.Arrays;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class hg0 extends fl0 {
-    public final Context f29176r;
-    public final lg0 f29177s;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.Crop.CropAreaView;
+public final class hg0 implements ScaleGestureDetector.OnScaleGestureListener {
+    public final int f25411a;
+    public final Object f25412b;
 
-    public hg0(lg0 lg0Var, Context context) {
-        this.f29177s = lg0Var;
-        this.f29176r = context;
+    public hg0(Object obj, int i10) {
+        this.f25411a = i10;
+        this.f25412b = obj;
     }
 
-    @Override
-    public final String F(int i10) {
-        return null;
-    }
-
-    @Override
-    public final void G(jl0 jl0Var, float f9, int[] iArr) {
-        iArr[0] = 0;
-        iArr[1] = 0;
-    }
-
-    @Override
-    public final int M(int i10) {
-        int i11 = 1;
-        if (i10 == 0) {
-            return 1;
-        }
-        kg0 kg0Var = (kg0) this.f29177s.f30323x.get(i10 - 1);
-        int b10 = kg0Var.b() + 1;
-        if (TextUtils.isEmpty(kg0Var.f30039c) && !kg0Var.f30040e) {
-            i11 = 0;
-        }
-        return b10 + i11;
-    }
-
-    @Override
-    public final Object O(int i10, int i11) {
-        int i12;
-        if (i10 == 0) {
-            return 293145;
-        }
-        int i13 = i10 - 1;
-        if (i11 == 0) {
-            return -928312;
-        }
-        if (i13 >= 0) {
-            lg0 lg0Var = this.f29177s;
-            if (i13 < lg0Var.f30323x.size() && (i12 = i11 - 1) < ((kg0) lg0Var.f30323x.get(i13)).b()) {
-                return Integer.valueOf(Objects.hash(Long.valueOf(DialogObject.getPeerDialogId(((TLRPC.MessagePeerVote) ((kg0) lg0Var.f30323x.get(i13)).f30038b.get(i12)).peer))));
-            }
-        }
-        return -182734;
-    }
-
-    @Override
-    public final int P(int i10, int i11) {
-        if (i10 == 0) {
-            return 1;
-        }
-        if (i11 == 0) {
-            return 2;
-        }
-        if (i11 - 1 < ((kg0) this.f29177s.f30323x.get(i10 - 1)).b()) {
-            return 0;
-        }
-        return 3;
-    }
-
-    @Override
-    public final int R() {
-        return this.f29177s.f30323x.size() + 1;
-    }
-
-    @Override
-    public final View T(int i10, View view) {
-        String str;
-        ArrayList<TLRPC.MessageEntity> arrayList;
-        TLRPC.Message message;
-        lg0 lg0Var = this.f29177s;
-        TLRPC.Poll poll = lg0Var.f30320r;
-        MessageObject messageObject = lg0Var.f30319n;
-        if (view == null) {
-            view = new gg0(this, this.f29176r);
-        }
-        jg0 jg0Var = (jg0) view;
-        if (i10 == 0) {
-            jg0Var.setAlpha(0.0f);
-            return view;
-        }
-        view.setAlpha(1.0f);
-        kg0 kg0Var = (kg0) lg0Var.f30323x.get(i10 - 1);
-        int size = poll.answers.size();
-        int i11 = 0;
-        for (int i12 = 0; i12 < size; i12++) {
-            TLRPC.PollAnswer pollAnswer = poll.answers.get(i12);
-            if (Arrays.equals(pollAnswer.option, kg0Var.d) && ((ig0) lg0Var.f30322w.get(kg0Var)) != null) {
-                TLRPC.TL_textWithEntities tL_textWithEntities = pollAnswer.text;
-                if (messageObject != null && messageObject.translated && (message = messageObject.messageOwner) != null && message.translatedPoll != null) {
-                    while (true) {
-                        if (i11 >= messageObject.messageOwner.translatedPoll.answers.size()) {
-                            break;
-                        }
-                        TLRPC.PollAnswer pollAnswer2 = messageObject.messageOwner.translatedPoll.answers.get(i11);
-                        if (Arrays.equals(pollAnswer2.option, pollAnswer.option)) {
-                            tL_textWithEntities = pollAnswer2.text;
-                            break;
-                        }
-                        i11++;
-                    }
+    public void b() {
+        switch (this.f25411a) {
+            case 0:
+                lg0 lg0Var = (lg0) this.f25412b;
+                WindowManager.LayoutParams layoutParams = lg0Var.f26662c;
+                int t6 = (int) (lg0Var.t() * lg0Var.G);
+                layoutParams.width = t6;
+                lg0Var.E = t6;
+                WindowManager.LayoutParams layoutParams2 = lg0Var.f26662c;
+                int r10 = (int) (lg0Var.r() * lg0Var.G);
+                layoutParams2.height = r10;
+                lg0Var.F = r10;
+                try {
+                    AndroidUtilities.updateViewLayout(lg0Var.f26660b, lg0Var.d, lg0Var.f26662c);
+                    return;
+                } catch (IllegalArgumentException unused) {
+                    return;
                 }
-                if (tL_textWithEntities == null) {
-                    str = "";
+            default:
+                org.telegram.ui.Components.voip.g1 g1Var = (org.telegram.ui.Components.voip.g1) this.f25412b;
+                WindowManager.LayoutParams layoutParams3 = g1Var.f29639c;
+                int m9 = (int) (g1Var.m() * g1Var.M);
+                layoutParams3.width = m9;
+                g1Var.J = m9;
+                WindowManager.LayoutParams layoutParams4 = g1Var.f29639c;
+                int l10 = (int) (g1Var.l() * g1Var.M);
+                layoutParams4.height = l10;
+                g1Var.K = l10;
+                AndroidUtilities.updateViewLayout(g1Var.f29638b, g1Var.d, g1Var.f29639c);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean onScale(ScaleGestureDetector scaleGestureDetector) {
+        float dp;
+        float dp2;
+        int i10;
+        switch (this.f25411a) {
+            case 0:
+                lg0 lg0Var = (lg0) this.f25412b;
+                lg0Var.G = k7.n.a(scaleGestureDetector.getScaleFactor() * lg0Var.G, 0.75f, lg0Var.f26658a);
+                lg0Var.E = (int) (lg0Var.t() * lg0Var.G);
+                lg0Var.F = (int) (lg0Var.r() * lg0Var.G);
+                AndroidUtilities.runOnUIThread(new cc0(this, 12));
+                float focusX = scaleGestureDetector.getFocusX();
+                int i11 = AndroidUtilities.displaySize.x;
+                if (focusX >= i11 / 2.0f) {
+                    dp = (i11 - lg0Var.E) - AndroidUtilities.dp(16.0f);
                 } else {
-                    str = tL_textWithEntities.text;
+                    dp = AndroidUtilities.dp(16.0f);
                 }
-                String str2 = str;
-                if (tL_textWithEntities == null) {
-                    arrayList = null;
+                o1.j jVar = lg0Var.J;
+                if (!jVar.f16192f) {
+                    jVar.f16190b = lg0Var.H;
+                    jVar.f16191c = true;
+                    jVar.f16198u.f16204i = dp;
                 } else {
-                    arrayList = tL_textWithEntities.entities;
+                    jVar.f16198u.f16204i = dp;
                 }
-                jg0Var.a(str2, arrayList, lg0Var.P(kg0Var.d), kg0Var.f30037a, kg0Var.a(), false);
-                jg0Var.setTag(R.id.object_tag, kg0Var);
-                return view;
-            }
-        }
-        return view;
-    }
-
-    @Override
-    public final boolean V(int i10, int i11, f2.n1 n1Var) {
-        if (i10 != 0 && i11 != 0) {
-            ArrayList arrayList = this.f29177s.B;
-            if (arrayList == null || arrayList.isEmpty()) {
+                jVar.f();
+                float a2 = k7.n.a(scaleGestureDetector.getFocusY() - (lg0Var.F / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - lg0Var.F) - AndroidUtilities.dp(16.0f));
+                o1.j jVar2 = lg0Var.K;
+                if (!jVar2.f16192f) {
+                    jVar2.f16190b = lg0Var.I;
+                    jVar2.f16191c = true;
+                    jVar2.f16198u.f16204i = a2;
+                } else {
+                    jVar2.f16198u.f16204i = a2;
+                }
+                jVar2.f();
                 return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void W(int i10, int i11, f2.n1 n1Var) {
-        String str;
-        ArrayList<TLRPC.MessageEntity> arrayList;
-        TLRPC.Message message;
-        lg0 lg0Var = this.f29177s;
-        TLRPC.Poll poll = lg0Var.f30320r;
-        ArrayList arrayList2 = lg0Var.f30323x;
-        MessageObject messageObject = lg0Var.f30319n;
-        int i12 = n1Var.f6436f;
-        View view = n1Var.f6432a;
-        int i13 = 0;
-        if (i12 != 2) {
-            if (i12 == 3) {
-                kg0 kg0Var = (kg0) arrayList2.get(i10 - 1);
-                ((org.telegram.ui.Cells.m8) view).m(R.drawable.arrow_more, LocaleController.formatPluralString("ShowVotes", kg0Var.f30037a - kg0Var.b(), new Object[0]), false);
-                return;
-            }
-            return;
-        }
-        jg0 jg0Var = (jg0) view;
-        kg0 kg0Var2 = (kg0) arrayList2.get(i10 - 1);
-        ArrayList arrayList3 = kg0Var2.f30038b;
-        byte[] bArr = kg0Var2.d;
-        TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) arrayList3.get(0);
-        int size = poll.answers.size();
-        for (int i14 = 0; i14 < size; i14++) {
-            TLRPC.PollAnswer pollAnswer = poll.answers.get(i14);
-            if (Arrays.equals(pollAnswer.option, bArr) && ((ig0) lg0Var.f30322w.get(kg0Var2)) != null) {
-                TLRPC.TL_textWithEntities tL_textWithEntities = pollAnswer.text;
-                if (messageObject != null && messageObject.translated && (message = messageObject.messageOwner) != null && message.translatedPoll != null) {
-                    while (true) {
-                        if (i13 >= messageObject.messageOwner.translatedPoll.answers.size()) {
-                            break;
-                        }
-                        TLRPC.PollAnswer pollAnswer2 = messageObject.messageOwner.translatedPoll.answers.get(i13);
-                        if (Arrays.equals(pollAnswer2.option, pollAnswer.option)) {
-                            tL_textWithEntities = pollAnswer2.text;
-                            break;
-                        }
-                        i13++;
+            case 1:
+                org.telegram.ui.Components.voip.g1 g1Var = (org.telegram.ui.Components.voip.g1) this.f25412b;
+                g1Var.M = k7.n.a(scaleGestureDetector.getScaleFactor() * g1Var.M, 0.6f, g1Var.f29637a);
+                g1Var.J = (int) (g1Var.m() * g1Var.M);
+                g1Var.K = (int) (g1Var.l() * g1Var.M);
+                AndroidUtilities.runOnUIThread(new nh.n5(this, 21));
+                o1.j jVar3 = g1Var.P;
+                jVar3.f16190b = g1Var.N;
+                jVar3.f16191c = true;
+                o1.k kVar = jVar3.f16198u;
+                float focusX2 = scaleGestureDetector.getFocusX();
+                int i12 = AndroidUtilities.displaySize.x;
+                if (focusX2 >= i12 / 2.0f) {
+                    dp2 = (i12 - g1Var.J) - AndroidUtilities.dp(16.0f);
+                } else {
+                    dp2 = AndroidUtilities.dp(16.0f);
+                }
+                kVar.f16204i = dp2;
+                o1.j jVar4 = g1Var.P;
+                if (!jVar4.f16192f) {
+                    jVar4.f();
+                }
+                o1.j jVar5 = g1Var.Q;
+                jVar5.f16190b = g1Var.O;
+                jVar5.f16191c = true;
+                jVar5.f16198u.f16204i = k7.n.a(scaleGestureDetector.getFocusY() - (g1Var.K / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - g1Var.K) - AndroidUtilities.dp(16.0f));
+                o1.j jVar6 = g1Var.Q;
+                if (!jVar6.f16192f) {
+                    jVar6.f();
+                }
+                return true;
+            default:
+                float scaleFactor = scaleGestureDetector.getScaleFactor();
+                if (Float.isNaN(scaleFactor) || Float.isInfinite(scaleFactor)) {
+                    return false;
+                }
+                yf.n nVar = ((yf.b) this.f25412b).f47192b;
+                float focusX3 = scaleGestureDetector.getFocusX();
+                float focusY = scaleGestureDetector.getFocusY();
+                CropAreaView cropAreaView = nVar.f47246a;
+                ImageView imageView = nVar.f47247b;
+                if (!nVar.C) {
+                    float f10 = nVar.I.e;
+                    if (f10 * scaleFactor > 30.0f) {
+                        scaleFactor = 30.0f / f10;
                     }
-                }
-                if (tL_textWithEntities == null) {
-                    str = "";
-                } else {
-                    str = tL_textWithEntities.text;
-                }
-                String str2 = str;
-                if (tL_textWithEntities == null) {
-                    arrayList = null;
-                } else {
-                    arrayList = tL_textWithEntities.entities;
-                }
-                jg0Var.a(str2, arrayList, lg0Var.P(bArr), kg0Var2.f30037a, kg0Var2.a(), false);
-                jg0Var.setTag(R.id.object_tag, kg0Var2);
-                return;
-            }
-        }
-    }
-
-    @Override
-    public final f2.n1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.m8 m8Var;
-        lg0 lg0Var = this.f29177s;
-        View view = lg0Var.f30324y;
-        Context context = this.f29176r;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    org.telegram.ui.Cells.m8 m8Var2 = new org.telegram.ui.Cells.m8(23, context, true);
-                    m8Var2.setOffsetFromImage(65);
-                    m8Var2.setBackgroundColor(lg0Var.getThemedColor(org.telegram.ui.ActionBar.g6.f23133h5));
-                    m8Var2.e(org.telegram.ui.ActionBar.g6.N6, org.telegram.ui.ActionBar.g6.q6);
-                    m8Var = m8Var2;
-                } else {
-                    View gg0Var = new gg0(this, context);
-                    gg0Var.setTag(-33024);
-                    m8Var = gg0Var;
-                }
-            } else {
-                ViewParent parent = view.getParent();
-                m8Var = view;
-                if (parent != null) {
-                    ((ViewGroup) view.getParent()).removeView(view);
-                    m8Var = view;
-                }
-            }
-        } else {
-            m8Var = new PollVotesAlert$UserCell(lg0Var, context);
-        }
-        return new f2.n1(m8Var);
-    }
-
-    @Override
-    public final void y(f2.n1 n1Var) {
-        boolean z10;
-        TLRPC.Chat chat;
-        boolean z11;
-        org.telegram.ui.ActionBar.c6 c6Var;
-        if (n1Var.f6436f == 0) {
-            int b10 = n1Var.b();
-            int S = S(b10);
-            int Q = Q(b10) - 1;
-            PollVotesAlert$UserCell pollVotesAlert$UserCell = (PollVotesAlert$UserCell) n1Var.f6432a;
-            lg0 lg0Var = this.f29177s;
-            kg0 kg0Var = (kg0) lg0Var.f30323x.get(S - 1);
-            TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) kg0Var.f30038b.get(Q);
-            TLObject userOrChat = lg0Var.Q().getUserOrChat(DialogObject.getPeerDialogId(messagePeerVote.peer));
-            int i10 = messagePeerVote.date;
-            boolean z12 = true;
-            if (Q == kg0Var.b() - 1 && TextUtils.isEmpty(kg0Var.f30039c) && !kg0Var.f30040e) {
-                z10 = false;
-            } else {
-                z10 = true;
-            }
-            t9 t9Var = pollVotesAlert$UserCell.f26446a;
-            org.telegram.ui.ActionBar.h5 h5Var = pollVotesAlert$UserCell.f26447b;
-            if (userOrChat instanceof TLRPC.User) {
-                pollVotesAlert$UserCell.h = (TLRPC.User) userOrChat;
-                pollVotesAlert$UserCell.f26451n = null;
-            } else if (userOrChat instanceof TLRPC.Chat) {
-                pollVotesAlert$UserCell.f26451n = (TLRPC.Chat) userOrChat;
-                pollVotesAlert$UserCell.h = null;
-            } else {
-                pollVotesAlert$UserCell.h = null;
-                pollVotesAlert$UserCell.f26451n = null;
-            }
-            long j10 = i10;
-            pollVotesAlert$UserCell.d.setText(LocaleController.getInstance().getFormatterDay().format(j10 * 1000));
-            pollVotesAlert$UserCell.f26448c.setText(LocaleController.formatDate(j10, true));
-            pollVotesAlert$UserCell.v = z10;
-            if (userOrChat != null) {
-                z12 = false;
-            }
-            pollVotesAlert$UserCell.f26455x = z12;
-            pollVotesAlert$UserCell.f26454w = Q;
-            if (userOrChat == null) {
-                h5Var.l("", false);
-                t9Var.setImageDrawable(null);
-            } else {
-                int i11 = pollVotesAlert$UserCell.f26453s;
-                e9 e9Var = pollVotesAlert$UserCell.f26449e;
-                TLRPC.User user = pollVotesAlert$UserCell.h;
-                if ((user == null || user.photo == null) && (chat = pollVotesAlert$UserCell.f26451n) != null) {
-                    TLRPC.ChatPhoto chatPhoto = chat.photo;
-                }
-                if (user != null) {
-                    e9Var.m(i11, user);
-                    TLRPC.UserStatus userStatus = pollVotesAlert$UserCell.h.status;
-                } else {
-                    TLRPC.Chat chat2 = pollVotesAlert$UserCell.f26451n;
-                    if (chat2 != null) {
-                        e9Var.k(i11, chat2);
-                    }
-                }
-                TLRPC.User user2 = pollVotesAlert$UserCell.h;
-                if (user2 != null) {
-                    String userName = UserObject.getUserName(user2);
-                    pollVotesAlert$UserCell.f26452r = userName;
-                    z11 = false;
-                    pollVotesAlert$UserCell.f26452r = Emoji.replaceEmoji(userName, h5Var.getPaint().getFontMetricsInt(), false);
-                } else {
-                    z11 = false;
-                    TLRPC.Chat chat3 = pollVotesAlert$UserCell.f26451n;
-                    if (chat3 != null) {
-                        String str = chat3.title;
-                        pollVotesAlert$UserCell.f26452r = str;
-                        pollVotesAlert$UserCell.f26452r = Emoji.replaceEmoji(str, h5Var.getPaint().getFontMetricsInt(), false);
+                    if (!nVar.f47251r) {
+                        i10 = AndroidUtilities.statusBarHeight;
                     } else {
-                        pollVotesAlert$UserCell.f26452r = "";
+                        i10 = 0;
                     }
+                    yf.l.g(nVar.I, scaleFactor, yf.l.a(nVar.I) * ((focusX3 - (imageView.getWidth() / 2)) / cropAreaView.getCropWidth()), yf.l.b(nVar.I) * (org.telegram.messenger.y3.a((imageView.getHeight() - nVar.f47255y) - i10, nVar.B, 2.0f, focusY) / cropAreaView.getCropHeight()));
+                    nVar.r(false);
                 }
-                h5Var.l(pollVotesAlert$UserCell.f26452r, z11);
-                cw0 cw0Var = pollVotesAlert$UserCell.f26450f;
-                TLRPC.User user3 = pollVotesAlert$UserCell.h;
-                TLRPC.Chat chat4 = pollVotesAlert$UserCell.f26451n;
-                int i12 = org.telegram.ui.ActionBar.g6.f23453z9;
-                c6Var = ((org.telegram.ui.ActionBar.f3) pollVotesAlert$UserCell.B).resourcesProvider;
-                h5Var.i(cw0Var.a(user3, chat4, org.telegram.ui.ActionBar.g6.v0(i12, c6Var), z11));
-                TLRPC.Chat chat5 = pollVotesAlert$UserCell.f26451n;
-                if (chat5 != null) {
-                    t9Var.e(chat5, e9Var);
-                } else {
-                    TLRPC.User user4 = pollVotesAlert$UserCell.h;
-                    if (user4 != null) {
-                        t9Var.e(user4, e9Var);
-                    } else {
-                        t9Var.setImageDrawable(e9Var);
-                    }
-                }
-            }
-            ArrayList arrayList = pollVotesAlert$UserCell.A;
-            if (arrayList != null) {
-                Property property = View.ALPHA;
-                arrayList.add(ObjectAnimator.ofFloat(t9Var, property, 0.0f, 1.0f));
-                pollVotesAlert$UserCell.A.add(ObjectAnimator.ofFloat(h5Var, property, 0.0f, 1.0f));
-                pollVotesAlert$UserCell.A.add(ObjectAnimator.ofFloat(pollVotesAlert$UserCell, lg0.K, 1.0f, 0.0f));
-            } else if (!pollVotesAlert$UserCell.f26455x) {
-                pollVotesAlert$UserCell.f26456y = 0.0f;
-            }
+                return true;
         }
+    }
+
+    @Override
+    public final boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
+        switch (this.f25411a) {
+            case 0:
+                lg0 lg0Var = (lg0) this.f25412b;
+                if (lg0Var.f26675w) {
+                    lg0Var.f26675w = false;
+                    lg0Var.f26663c0 = false;
+                    lg0Var.i();
+                    AndroidUtilities.cancelRunOnUIThread(lg0Var.f26665e0);
+                }
+                lg0Var.f26676x = true;
+                lg0Var.f26662c.width = (int) (lg0Var.t() * lg0Var.f26658a);
+                lg0Var.f26662c.height = (int) (lg0Var.r() * lg0Var.f26658a);
+                AndroidUtilities.updateViewLayout(lg0Var.f26660b, lg0Var.d, lg0Var.f26662c);
+                return true;
+            case 1:
+                org.telegram.ui.Components.voip.g1 g1Var = (org.telegram.ui.Components.voip.g1) this.f25412b;
+                if (g1Var.E) {
+                    g1Var.E = false;
+                }
+                g1Var.F = true;
+                g1Var.f29639c.width = (int) (g1Var.m() * g1Var.f29637a);
+                g1Var.f29639c.height = (int) (g1Var.l() * g1Var.f29637a);
+                AndroidUtilities.updateViewLayout(g1Var.f29638b, g1Var.d, g1Var.f29639c);
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
+        switch (this.f25411a) {
+            case 0:
+                lg0 lg0Var = (lg0) this.f25412b;
+                if (!lg0Var.J.f16192f && !lg0Var.K.f16192f) {
+                    b();
+                    return;
+                }
+                ArrayList arrayList = new ArrayList();
+                nh.f1 f1Var = new nh.f1(this, arrayList, 1);
+                o1.j jVar = lg0Var.J;
+                if (!jVar.f16192f) {
+                    arrayList.add(jVar);
+                } else {
+                    jVar.a(f1Var);
+                }
+                o1.j jVar2 = lg0Var.K;
+                if (!jVar2.f16192f) {
+                    arrayList.add(jVar2);
+                    return;
+                } else {
+                    jVar2.a(f1Var);
+                    return;
+                }
+            case 1:
+                org.telegram.ui.Components.voip.g1 g1Var = (org.telegram.ui.Components.voip.g1) this.f25412b;
+                if (!g1Var.P.f16192f && !g1Var.Q.f16192f) {
+                    b();
+                    return;
+                }
+                ArrayList arrayList2 = new ArrayList();
+                nh.f1 f1Var2 = new nh.f1(this, arrayList2, 2);
+                o1.j jVar3 = g1Var.P;
+                if (!jVar3.f16192f) {
+                    arrayList2.add(jVar3);
+                } else {
+                    jVar3.a(f1Var2);
+                }
+                o1.j jVar4 = g1Var.Q;
+                if (!jVar4.f16192f) {
+                    arrayList2.add(jVar4);
+                    return;
+                } else {
+                    jVar4.a(f1Var2);
+                    return;
+                }
+            default:
+                return;
+        }
+    }
+
+    private final void a(ScaleGestureDetector scaleGestureDetector) {
     }
 }

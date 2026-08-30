@@ -14,132 +14,132 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.f3;
-import org.telegram.ui.q3;
-import org.telegram.ui.th;
+import org.telegram.ui.ActionBar.g3;
+import org.telegram.ui.p3;
+import org.telegram.ui.yh;
 public final class w0 extends WebView {
-    public static final int P = 0;
-    public boolean A;
-    public f3 B;
-    public int C;
+    public static final int Q = 0;
+    public boolean B;
+    public g3 C;
     public int D;
-    public Runnable E;
-    public boolean F;
-    public String G;
+    public int E;
+    public Runnable F;
+    public boolean G;
     public String H;
-    public boolean I;
+    public String I;
     public boolean J;
-    public Bitmap K;
-    public final HashMap L;
-    public z0 M;
-    public y0 N;
-    public Runnable O;
-    public final int f44225a;
-    public boolean f44226b;
-    public final boolean f44227c;
+    public boolean K;
+    public Bitmap L;
+    public final HashMap M;
+    public a1 N;
+    public z0 O;
+    public Runnable P;
+    public final int f39682a;
+    public boolean f39683b;
+    public final boolean f39684c;
     public String d;
-    public a1 f44228e;
-    public w0 f44229f;
+    public b1 e;
+    public w0 f39685f;
     public boolean h;
-    public String f44230n;
-    public String f44231r;
-    public boolean f44232s;
+    public String f39686n;
+    public String f39687r;
+    public boolean f39688s;
     public boolean v;
-    public int f44233w;
-    public int f44234x;
-    public String f44235y;
+    public int f39689w;
+    public int f39690x;
+    public String f39691y;
 
-    public w0(Context context, boolean z10, long j10) {
+    public w0(Context context, boolean z4, long j10) {
         super(context);
-        int i10 = z0.J0;
-        z0.J0 = i10 + 1;
-        this.f44225a = i10;
-        this.f44235y = "about:blank";
-        this.L = new HashMap();
-        this.f44227c = z10;
+        int i10 = a1.K0;
+        a1.K0 = i10 + 1;
+        this.f39682a = i10;
+        this.f39691y = "about:blank";
+        this.M = new HashMap();
+        this.f39684c = z4;
         c("created new webview " + this);
-        setOnLongClickListener(new j0(this));
-        setWebViewClient(new l0(this, z10, context));
-        setWebChromeClient(new t0(this, context, z10, j10));
+        setOnLongClickListener(new i0(this));
+        setWebViewClient(new k0(this, z4, context));
+        setWebChromeClient(new t0(this, context, z4, j10));
         setFindListener(new u0(this));
-        if (!z10) {
+        if (!z4) {
             setDownloadListener(new v0(this));
         }
     }
 
     public static void a(w0 w0Var) {
-        if (!w0Var.f44227c) {
-            j2 a2 = j2.a(w0Var);
-            k2 b10 = k2.b();
+        if (!w0Var.f39684c) {
+            k2 a2 = k2.a(w0Var);
+            l2 b10 = l2.b();
             if (a2 == null) {
                 b10.getClass();
             } else {
-                if (b10.f44092a == null) {
-                    b10.f44092a = new HashMap();
+                if (b10.f39573a == null) {
+                    b10.f39573a = new HashMap();
                 }
-                if (!TextUtils.isEmpty(a2.f44077b)) {
-                    b10.f44092a.put(a2.f44077b, a2);
+                if (!TextUtils.isEmpty(a2.f39560b)) {
+                    b10.f39573a.put(a2.f39560b, a2);
                     b10.c();
                     b10.d();
                 }
             }
-            a1 a1Var = w0Var.f44228e;
-            if (a1Var != null && a2 != null) {
-                a1Var.d = a2;
-                b1.c(a1Var);
+            b1 b1Var = w0Var.e;
+            if (b1Var != null && a2 != null) {
+                b1Var.d = a2;
+                c1.c(b1Var);
             }
         }
     }
 
-    public final void b(j2 j2Var) {
-        f0 f0Var;
-        if (j2Var != null) {
-            z0 z0Var = this.M;
-            boolean z10 = false;
-            if (z0Var != null && (f0Var = z0Var.f44264c) != null) {
-                int i10 = j2Var.f44079e;
+    public final void b(k2 k2Var) {
+        e0 e0Var;
+        if (k2Var != null) {
+            a1 a1Var = this.N;
+            boolean z4 = false;
+            if (a1Var != null && (e0Var = a1Var.f39424c) != null) {
+                int i10 = k2Var.e;
                 if (i10 != 0) {
-                    f0Var.o(i10, true);
-                    this.f44232s = true;
+                    e0Var.o(i10, true);
+                    this.f39688s = true;
                 }
-                int i11 = j2Var.f44080f;
+                int i11 = k2Var.f39562f;
                 if (i11 != 0) {
-                    this.M.f44264c.o(i11, false);
+                    this.N.f39424c.o(i11, false);
                     this.v = true;
                 } else {
                     i11 = -1;
                 }
-                Bitmap bitmap = j2Var.f44081i;
+                Bitmap bitmap = k2Var.f39563i;
                 if (bitmap != null) {
-                    z0 z0Var2 = this.M;
-                    this.K = bitmap;
-                    z0Var2.getClass();
-                    this.I = true;
+                    a1 a1Var2 = this.N;
+                    this.L = bitmap;
+                    a1Var2.getClass();
+                    this.J = true;
                 }
-                if (!TextUtils.isEmpty(j2Var.d)) {
-                    String str = j2Var.d;
-                    this.f44231r = str;
-                    z0 z0Var3 = this.M;
-                    this.G = str;
-                    z0Var3.E();
-                    z10 = true;
+                if (!TextUtils.isEmpty(k2Var.d)) {
+                    String str = k2Var.d;
+                    this.f39687r = str;
+                    a1 a1Var3 = this.N;
+                    this.H = str;
+                    a1Var3.E();
+                    z4 = true;
                 }
                 if (SharedConfig.adaptableColorInBrowser) {
                     setBackgroundColor(i11);
                 }
             }
-            if (!z10) {
+            if (!z4) {
                 setTitle(null);
-                z0 z0Var4 = this.M;
-                if (z0Var4 != null) {
-                    z0Var4.E();
+                a1 a1Var4 = this.N;
+                if (a1Var4 != null) {
+                    a1Var4.E();
                 }
             }
         }
     }
 
     public final void c(String str) {
-        FileLog.d("[webview] #" + this.f44225a + " " + str);
+        FileLog.d("[webview] #" + this.f39682a + " " + str);
     }
 
     @Override
@@ -149,7 +149,7 @@ public final class w0 extends WebView {
     }
 
     public final void d(String str) {
-        evaluateJavascript(str, new g0(0));
+        evaluateJavascript(str, new f0(0));
     }
 
     @Override
@@ -168,34 +168,34 @@ public final class w0 extends WebView {
         return super.drawChild(canvas, view, j10);
     }
 
-    public final void e(String str, j2 j2Var) {
-        f3 f3Var = this.B;
-        if (f3Var != null) {
-            f3Var.dismiss();
-            this.B = null;
+    public final void e(String str, k2 k2Var) {
+        g3 g3Var = this.C;
+        if (g3Var != null) {
+            g3Var.dismiss();
+            this.C = null;
         }
-        b(j2Var);
+        b(k2Var);
         this.d = str;
-        String b10 = z0.b(str);
+        String b10 = a1.b(str);
         c("loadUrl " + b10 + " with cached meta");
         super.loadUrl(b10);
-        z0 z0Var = this.M;
-        if (z0Var != null) {
-            z0Var.F(!super.canGoBack(), !canGoForward());
+        a1 a1Var = this.N;
+        if (a1Var != null) {
+            a1Var.F(!super.canGoBack(), !canGoForward());
         }
     }
 
-    public final void f(z0 z0Var, y0 y0Var) {
-        boolean z10;
-        c("setContainers(" + z0Var + ", " + y0Var + ")");
-        if (this.M == null) {
-            z10 = true;
+    public final void f(a1 a1Var, z0 z0Var) {
+        boolean z4;
+        c("setContainers(" + a1Var + ", " + z0Var + ")");
+        if (this.N == null) {
+            z4 = true;
         } else {
-            z10 = false;
+            z4 = false;
         }
-        this.M = z0Var;
-        this.N = y0Var;
-        if (z10) {
+        this.N = a1Var;
+        this.O = z0Var;
+        if (z4) {
             d("window.__tg__postBackgroundChange()");
         }
     }
@@ -205,7 +205,7 @@ public final class w0 extends WebView {
         if (this.h) {
             return null;
         }
-        return this.K;
+        return this.L;
     }
 
     public String getOpenURL() {
@@ -221,22 +221,22 @@ public final class w0 extends WebView {
     }
 
     public int getSearchCount() {
-        return this.D;
+        return this.E;
     }
 
     public int getSearchIndex() {
-        return this.C;
+        return this.D;
     }
 
     @Override
     public String getTitle() {
-        return this.G;
+        return this.H;
     }
 
     @Override
     public String getUrl() {
-        if (this.A) {
-            return this.f44235y;
+        if (this.B) {
+            return this.f39691y;
         }
         return super.getUrl();
     }
@@ -256,39 +256,39 @@ public final class w0 extends WebView {
     @Override
     public final void loadData(String str, String str2, String str3) {
         this.d = null;
-        StringBuilder k9 = th.k("loadData ", str, " ", str2, " ");
-        k9.append(str3);
-        c(k9.toString());
+        StringBuilder m9 = yh.m("loadData ", str, " ", str2, " ");
+        m9.append(str3);
+        c(m9.toString());
         super.loadData(str, str2, str3);
     }
 
     @Override
     public final void loadDataWithBaseURL(String str, String str2, String str3, String str4, String str5) {
         this.d = null;
-        StringBuilder k9 = th.k("loadDataWithBaseURL ", str, " ", str2, " ");
-        th.w(k9, str3, " ", str4, " ");
-        k9.append(str5);
-        c(k9.toString());
+        StringBuilder m9 = yh.m("loadDataWithBaseURL ", str, " ", str2, " ");
+        yh.x(m9, str3, " ", str4, " ");
+        m9.append(str5);
+        c(m9.toString());
         super.loadDataWithBaseURL(str, str2, str3, str4, str5);
     }
 
     @Override
     public final void loadUrl(String str) {
-        f3 f3Var = this.B;
-        if (f3Var != null) {
-            f3Var.dismiss();
-            this.B = null;
+        g3 g3Var = this.C;
+        if (g3Var != null) {
+            g3Var.dismiss();
+            this.C = null;
         }
-        if (!this.f44227c) {
-            b(k2.b().a(AndroidUtilities.getHostAuthority(str, true)));
+        if (!this.f39684c) {
+            b(l2.b().a(AndroidUtilities.getHostAuthority(str, true)));
         }
         this.d = str;
-        String b10 = z0.b(str);
+        String b10 = a1.b(str);
         c("loadUrl " + b10);
         super.loadUrl(b10);
-        z0 z0Var = this.M;
-        if (z0Var != null) {
-            z0Var.F(!super.canGoBack(), true ^ canGoForward());
+        a1 a1Var = this.N;
+        if (a1Var != null) {
+            a1Var.F(!super.canGoBack(), true ^ canGoForward());
         }
     }
 
@@ -301,12 +301,12 @@ public final class w0 extends WebView {
 
     @Override
     public final boolean onCheckIsTextEditor() {
-        z0 z0Var = this.M;
-        if (z0Var == null) {
+        a1 a1Var = this.N;
+        if (a1Var == null) {
             c("onCheckIsTextEditor: no container");
             return false;
         }
-        boolean isFocusable = z0Var.isFocusable();
+        boolean isFocusable = a1Var.isFocusable();
         c("onCheckIsTextEditor: " + isFocusable);
         return isFocusable;
     }
@@ -343,11 +343,11 @@ public final class w0 extends WebView {
     @Override
     public final void onScrollChanged(int i10, int i11, int i12, int i13) {
         super.onScrollChanged(i10, i11, i12, i13);
-        y0 y0Var = this.N;
-        if (y0Var != null) {
+        z0 z0Var = this.O;
+        if (z0Var != null) {
             getScrollX();
             getScrollY();
-            ((q3) ((org.telegram.ui.h) y0Var).f38706b).G.f0();
+            ((p3) ((org.telegram.ui.h) z0Var).f34709b).H.f0();
         }
         getScrollX();
         getScrollY();
@@ -356,8 +356,8 @@ public final class w0 extends WebView {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            this.M.L = System.currentTimeMillis();
-            if (!this.M.p()) {
+            this.N.M = System.currentTimeMillis();
+            if (!this.N.p()) {
                 getSettings().setMediaPlaybackRequiresUserGesture(false);
             }
         }
@@ -390,7 +390,7 @@ public final class w0 extends WebView {
     }
 
     public void setCloseListener(Runnable runnable) {
-        this.O = runnable;
+        this.P = runnable;
     }
 
     @Override
@@ -400,19 +400,19 @@ public final class w0 extends WebView {
     }
 
     @Override
-    public void setFocusableInTouchMode(boolean z10) {
-        c("setFocusableInTouchMode " + z10);
-        super.setFocusableInTouchMode(z10);
+    public void setFocusableInTouchMode(boolean z4) {
+        c("setFocusableInTouchMode " + z4);
+        super.setFocusableInTouchMode(z4);
     }
 
     @Override
-    public void setFocusedByDefault(boolean z10) {
-        c("setFocusedByDefault " + z10);
-        super.setFocusedByDefault(z10);
+    public void setFocusedByDefault(boolean z4) {
+        c("setFocusedByDefault " + z4);
+        super.setFocusedByDefault(z4);
     }
 
-    public void setScrollProgress(float f9) {
-        setScrollY((int) (f9 * Math.max(1, computeVerticalScrollRange() - computeVerticalScrollExtent())));
+    public void setScrollProgress(float f10) {
+        setScrollY((int) (f10 * Math.max(1, computeVerticalScrollRange() - computeVerticalScrollExtent())));
     }
 
     @Override
@@ -426,7 +426,7 @@ public final class w0 extends WebView {
     }
 
     public void setTitle(String str) {
-        this.G = str;
+        this.H = str;
     }
 
     @Override
@@ -442,28 +442,28 @@ public final class w0 extends WebView {
     }
 
     @Override
-    public void setFocusable(boolean z10) {
-        c("setFocusable " + z10);
-        super.setFocusable(z10);
+    public void setFocusable(boolean z4) {
+        c("setFocusable " + z4);
+        super.setFocusable(z4);
     }
 
     @Override
     public final void loadUrl(String str, Map map) {
-        f3 f3Var = this.B;
-        if (f3Var != null) {
-            f3Var.dismiss();
-            this.B = null;
+        g3 g3Var = this.C;
+        if (g3Var != null) {
+            g3Var.dismiss();
+            this.C = null;
         }
-        if (!this.f44227c) {
-            b(k2.b().a(AndroidUtilities.getHostAuthority(str, true)));
+        if (!this.f39684c) {
+            b(l2.b().a(AndroidUtilities.getHostAuthority(str, true)));
         }
         this.d = str;
-        String b10 = z0.b(str);
+        String b10 = a1.b(str);
         c("loadUrl " + b10 + " " + map);
         super.loadUrl(b10, map);
-        z0 z0Var = this.M;
-        if (z0Var != null) {
-            z0Var.F(!super.canGoBack(), !canGoForward());
+        a1 a1Var = this.N;
+        if (a1Var != null) {
+            a1Var.F(!super.canGoBack(), !canGoForward());
         }
     }
 }

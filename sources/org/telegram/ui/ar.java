@@ -1,27 +1,30 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class ar implements h60 {
-    public final m60 f36586a;
-    public final jr f36587b;
+public final class ar implements gq {
+    public final TLObject f32691a;
+    public final pr f32692b;
 
-    public ar(jr jrVar, m60 m60Var) {
-        this.f36587b = jrVar;
-        this.f36586a = m60Var;
+    public ar(pr prVar, TLObject tLObject) {
+        this.f32692b = prVar;
+        this.f32691a = tLObject;
     }
 
     @Override
-    public final void i(TLRPC.User user) {
-        this.f36587b.t0(user.f22539id, null, null, null, "", true, 0, false);
+    public final void a(TLRPC.User user) {
+        pr.c0(this.f32692b, user);
     }
 
     @Override
-    public final void j(int i10, ArrayList arrayList) {
-        if (this.f36586a.getParentActivity() == null) {
-            return;
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLObject tLObject = this.f32691a;
+        if (tLObject instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
+            channelParticipant.admin_rights = tL_chatAdminRights;
+            channelParticipant.banned_rights = tL_chatBannedRights;
+            channelParticipant.rank = str;
+            pr.W(this.f32692b, channelParticipant, tL_chatAdminRights, tL_chatBannedRights);
         }
-        jr jrVar = this.f36587b;
-        jrVar.getMessagesController().addUsersToChat(jrVar.f39656r, jrVar, arrayList, i10, new l3(this, 2), new zq(0), null);
     }
 }

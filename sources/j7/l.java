@@ -1,79 +1,95 @@
 package j7;
+public final class l implements u9.g {
+    public final int f9068a;
+    public boolean f9069b = false;
+    public boolean f9070c = false;
+    public u9.c d;
+    public final u9.e e;
 
-import java.util.Map;
-public final class l extends f {
-    public final Object f11072b;
-    public int f11073c;
-    public final n d;
-
-    public l(n nVar, int i10) {
-        super(0, false);
-        this.d = nVar;
-        Object[] objArr = nVar.f11114c;
-        objArr.getClass();
-        this.f11072b = objArr[i10];
-        this.f11073c = i10;
-    }
-
-    public final void a() {
-        int i10 = this.f11073c;
-        Object obj = this.f11072b;
-        n nVar = this.d;
-        if (i10 != -1 && i10 < nVar.size()) {
-            int i11 = this.f11073c;
-            Object[] objArr = nVar.f11114c;
-            objArr.getClass();
-            if (h7.t8.a(obj, objArr[i11])) {
-                return;
-            }
-        }
-        Object obj2 = n.f11111s;
-        this.f11073c = nVar.e(obj);
+    public l(u9.e eVar, int i10) {
+        this.f9068a = i10;
+        this.e = eVar;
     }
 
     @Override
-    public final Object getKey() {
-        return this.f11072b;
+    public final u9.g f(String str) {
+        switch (this.f9068a) {
+            case 0:
+                if (!this.f9069b) {
+                    this.f9069b = true;
+                    ((k) this.e).g(this.d, str, this.f9070c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 1:
+                if (!this.f9069b) {
+                    this.f9069b = true;
+                    ((k7.f) this.e).g(this.d, str, this.f9070c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 2:
+                if (!this.f9069b) {
+                    this.f9069b = true;
+                    ((l7.j0) this.e).g(this.d, str, this.f9070c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 3:
+                if (!this.f9069b) {
+                    this.f9069b = true;
+                    ((n7.y) this.e).g(this.d, str, this.f9070c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            default:
+                if (!this.f9069b) {
+                    this.f9069b = true;
+                    ((x9.e) this.e).h(this.d, str, this.f9070c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+        }
     }
 
     @Override
-    public final Object getValue() {
-        n nVar = this.d;
-        Map a2 = nVar.a();
-        if (a2 != null) {
-            return a2.get(this.f11072b);
+    public final u9.g g(boolean z4) {
+        switch (this.f9068a) {
+            case 0:
+                if (!this.f9069b) {
+                    this.f9069b = true;
+                    ((k) this.e).h(this.d, z4 ? 1 : 0, this.f9070c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 1:
+                if (!this.f9069b) {
+                    this.f9069b = true;
+                    ((k7.f) this.e).h(this.d, z4 ? 1 : 0, this.f9070c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 2:
+                if (!this.f9069b) {
+                    this.f9069b = true;
+                    ((l7.j0) this.e).h(this.d, z4 ? 1 : 0, this.f9070c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 3:
+                if (!this.f9069b) {
+                    this.f9069b = true;
+                    ((n7.y) this.e).h(this.d, z4 ? 1 : 0, this.f9070c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            default:
+                if (!this.f9069b) {
+                    this.f9069b = true;
+                    ((x9.e) this.e).g(this.d, z4 ? 1 : 0, this.f9070c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
         }
-        a();
-        int i10 = this.f11073c;
-        if (i10 == -1) {
-            return null;
-        }
-        Object[] objArr = nVar.d;
-        objArr.getClass();
-        return objArr[i10];
-    }
-
-    @Override
-    public final Object setValue(Object obj) {
-        n nVar = this.d;
-        Map a2 = nVar.a();
-        Object obj2 = this.f11072b;
-        if (a2 != null) {
-            return a2.put(obj2, obj);
-        }
-        a();
-        int i10 = this.f11073c;
-        if (i10 == -1) {
-            nVar.put(obj2, obj);
-            return null;
-        }
-        Object[] objArr = nVar.d;
-        objArr.getClass();
-        Object obj3 = objArr[i10];
-        int i11 = this.f11073c;
-        Object[] objArr2 = nVar.d;
-        objArr2.getClass();
-        objArr2[i11] = obj;
-        return obj3;
     }
 }

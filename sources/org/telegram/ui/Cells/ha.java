@@ -1,127 +1,160 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Canvas;
-import android.view.VelocityTracker;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.FlagSecureReason;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.Components.tc;
-public final class ha implements Runnable {
-    public final int f24466a;
-    public final Object f24467b;
-    public final Object f24468c;
+import org.telegram.ui.Components.CheckBoxBase;
+import org.telegram.ui.Components.gj0;
+import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.mp;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.wh;
+public final class ha implements kl0, lf.o, ImageReceiver.ImageReceiverDelegate, FlagSecureReason.FlagSecureCondition, mp, Utilities.Callback2Return {
+    public final int f21190a;
+    public final Object f21191b;
 
-    public ha(int i10, Object obj, Object obj2) {
-        this.f24466a = i10;
-        this.f24467b = obj;
-        this.f24468c = obj2;
+    public ha(Object obj, int i10) {
+        this.f21190a = i10;
+        this.f21191b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f24466a) {
-            case 0:
-                ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) this.f24467b;
-                TLObject tLObject = (TLObject) this.f24468c;
-                ja jaVar = themesHorizontalListCell$InnerThemeView.T;
-                if (tLObject instanceof TLRPC.TL_wallPaper) {
-                    TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) tLObject;
-                    String attachFileName = FileLoader.getAttachFileName(wallPaper.document);
-                    if (!jaVar.V2.containsKey(attachFileName)) {
-                        jaVar.V2.put(attachFileName, themesHorizontalListCell$InnerThemeView.f24049b);
-                        FileLoader.getInstance(themesHorizontalListCell$InnerThemeView.f24049b.A).loadFile(wallPaper.document, wallPaper, 1, 1);
-                        return;
-                    }
-                    return;
-                }
-                themesHorizontalListCell$InnerThemeView.f24049b.f22950f = true;
-                return;
-            case 1:
-                o0 o0Var = (o0) this.f24467b;
-                n0 n0Var = (n0) this.f24468c;
-                s1 s1Var = o0Var.f24767a;
-                n0 n0Var2 = o0Var.F;
-                if (n0Var == n0Var2) {
-                    n0Var2.f24740n.c(false);
-                    n0 n0Var3 = o0Var.F;
-                    if (n0Var3.f24734g) {
-                        if (s1Var.getDelegate() != null) {
-                            s1Var.getDelegate().w2();
-                        }
-                    } else {
-                        TLObject tLObject2 = n0Var3.f24741o;
-                        s1 s1Var2 = o0Var.f24767a;
-                        if (s1Var2.getDelegate() != null) {
-                            s1Var2.getDelegate().A0(s1Var2, tLObject2, true);
-                        }
-                    }
-                }
-                o0Var.F = null;
-                o0Var.G = null;
-                o0Var.B = false;
-                o0Var.A = false;
-                o0Var.f24788y.c(false);
-                VelocityTracker velocityTracker = o0Var.D;
-                if (velocityTracker != null) {
-                    velocityTracker.recycle();
-                    o0Var.D = null;
-                    return;
-                }
-                return;
-            case 2:
-                final v0 v0Var = (v0) this.f24467b;
-                final org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) this.f24468c;
-                TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
-                tL_resolveStarGiftOffer.offer_msg_id = v0Var.getMessageObject().getId();
-                tL_resolveStarGiftOffer.decline = true;
-                ConnectionsManager.getInstance(v0Var.D).sendRequestTyped(tL_resolveStarGiftOffer, new Utilities.Callback2() {
-                    @Override
-                    public final void run(Object obj, Object obj2) {
-                        TLRPC.Updates updates = (TLRPC.Updates) obj;
-                        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                        if (updates != null) {
-                            MessagesController.getInstance(v0.this.D).processUpdates(updates, false);
-                        }
-                        if (tL_error != null) {
-                            AndroidUtilities.runOnUIThread(new ha(3, o2Var, tL_error));
-                        }
-                    }
-                });
-                return;
-            case 3:
-                tc.a0((org.telegram.ui.ActionBar.o2) this.f24467b).d0((TLRPC.TL_error) this.f24468c, false);
-                return;
+    public void a() {
+        switch (this.f21190a) {
             case 4:
-                v0 v0Var2 = (v0) this.f24467b;
-                v0Var2.T0.h2(v0Var2, ((TLRPC.TL_messageActionGiftCode) this.f24468c).slug);
+                n4 n4Var = (n4) this.f21191b;
+                float progress = 1.0f - (n4Var.v.getProgress() * 0.143f);
+                org.telegram.ui.Components.p9 p9Var = n4Var.f21430a;
+                p9Var.setScaleX(progress);
+                p9Var.setScaleY(progress);
+                n4Var.invalidate();
                 return;
-            case 5:
-                ((s1) this.f24467b).K0.draw((Canvas) this.f24468c);
+            default:
+                e7 e7Var = (e7) this.f21191b;
+                float progress2 = 1.0f - (e7Var.d.getProgress() * 0.143f);
+                org.telegram.ui.Components.p9 p9Var2 = e7Var.f21020a;
+                p9Var2.setScaleX(progress2);
+                p9Var2.setScaleY(progress2);
+                e7Var.invalidate();
                 return;
-            case 6:
-                ((s1) this.f24467b).post(new a1(8, (s1) this.f24468c));
-                return;
-            case 7:
-                i8 i8Var = (i8) this.f24467b;
-                TLRPC.Document document = (TLRPC.Document) this.f24468c;
-                if (i8Var.f24508r.documents.isEmpty()) {
-                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = i8Var.f24508r;
-                    if (tL_messages_stickerSet.set.thumb_document_id == document.f22398id) {
-                        tL_messages_stickerSet.documents.add(document);
-                        i8Var.d(i8Var.f24508r, i8Var.f24506f, i8Var.f24509s);
+        }
+    }
+
+    @Override
+    public void d(long j10) {
+        ((l) this.f21191b).b(j10);
+    }
+
+    @Override
+    public void didSetImage(ImageReceiver imageReceiver, boolean z4, boolean z10, boolean z11) {
+        gj0 lottieAnimation;
+        t0 t0Var;
+        int v;
+        MessageObject messageObject;
+        switch (this.f21190a) {
+            case 2:
+                v0 v0Var = (v0) this.f21191b;
+                if (z4 && (lottieAnimation = v0Var.F.getLottieAnimation()) != null) {
+                    MessageObject messageObject2 = v0Var.E0;
+                    if (messageObject2 != null && !messageObject2.playedGiftAnimation) {
+                        messageObject2.playedGiftAnimation = true;
+                        lottieAnimation.L(0, false, false);
+                        AndroidUtilities.runOnUIThread(new q0(lottieAnimation, 0));
+                        if (messageObject2.wasUnread || v0Var.A1) {
+                            messageObject2.wasUnread = false;
+                            v0Var.A1 = false;
+                            try {
+                                v0Var.performHapticFeedback(3, 2);
+                            } catch (Exception unused) {
+                            }
+                            if (v0Var.getContext() instanceof LaunchActivity) {
+                                ((LaunchActivity) v0Var.getContext()).f31652u0.c(false);
+                            }
+                            TLRPC.VideoSize videoSize = v0Var.f22482x1;
+                            if (videoSize != null && (t0Var = v0Var.U0) != null) {
+                                t0Var.i1(v0Var, v0Var.f22479w1, videoSize);
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    } else if (lottieAnimation.Y < 1) {
+                        lottieAnimation.stop();
+                        lottieAnimation.L(lottieAnimation.e[0] - 1, false, false);
+                        return;
+                    } else {
                         return;
                     }
-                    return;
                 }
                 return;
             default:
-                ((ja) this.f24467b).w1((org.telegram.ui.ActionBar.f6) this.f24468c);
+                r7 r7Var = (r7) this.f21191b;
+                ImageReceiver imageReceiver2 = r7Var.d;
+                ImageReceiver imageReceiver3 = r7Var.f21769c;
+                if (z4 && !z10 && (messageObject = r7Var.f21781n) != null && messageObject.hasMediaSpoilers() && imageReceiver3.getBitmap() != null) {
+                    if (imageReceiver2.getBitmap() != null) {
+                        imageReceiver2.getBitmap().recycle();
+                    }
+                    imageReceiver2.setImageBitmap(Utilities.stackBlurBitmapMax(imageReceiver3.getBitmap()));
+                }
+                if (z4 && !z10 && r7Var.f21790t0 && imageReceiver3.getBitmap() != null) {
+                    int dominantColor = AndroidUtilities.getDominantColor(imageReceiver3.getBitmap());
+                    r7Var.f21765a = dominantColor;
+                    CheckBoxBase checkBoxBase = r7Var.M;
+                    if (checkBoxBase != null && checkBoxBase.f22971x != (v = org.telegram.ui.ActionBar.j6.v(dominantColor, org.telegram.ui.ActionBar.j6.l1(0.25f, -1)))) {
+                        checkBoxBase.f22971x = v;
+                        checkBoxBase.b();
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
+    }
+
+    @Override
+    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
+        int i11 = this.f21190a;
+        org.telegram.messenger.j5.a(this, i10, str, drawable);
+    }
+
+    @Override
+    public boolean f(int i10, View view) {
+        la laVar = (la) this.f21191b;
+        laVar.getClass();
+        laVar.z1(((ThemesHorizontalListCell$InnerThemeView) view).f20800b);
+        return true;
+    }
+
+    @Override
+    public void onAnimationReady(ImageReceiver imageReceiver) {
+        int i10 = this.f21190a;
+        org.telegram.messenger.j5.b(this, imageReceiver);
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2) {
+        Integer num = (Integer) obj;
+        return (CharSequence) ((wh) this.f21191b).run((Integer) obj2);
+    }
+
+    @Override
+    public boolean run() {
+        TLRPC.Message message;
+        k4 k4Var;
+        t1 t1Var = (t1) this.f21191b;
+        MessageObject messageObject = t1Var.f22273v7;
+        if (messageObject == null || (message = messageObject.messageOwner) == null) {
+            return false;
+        }
+        if (messageObject.type != 29 || ((k4Var = t1Var.C7) != null && k4Var.f21286i)) {
+            return (message.noforwards && !messageObject.isEphemeral()) || t1Var.f22273v7.isVoiceOnce() || t1Var.f22273v7.hasRevealedExtendedMedia();
+        }
+        return true;
     }
 }

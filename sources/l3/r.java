@@ -1,16 +1,14 @@
 package l3;
-public interface r {
-    void A();
+public final class r extends Exception {
+    public final j3.n0 f11228a;
 
-    void a(long j10);
+    public r(m mVar, j3.n0 n0Var) {
+        super(mVar);
+        this.f11228a = n0Var;
+    }
 
-    void f();
-
-    void o(int i10, long j10, long j11);
-
-    void onSkipSilenceEnabledChanged(boolean z10);
-
-    void v(Exception exc);
-
-    void w();
+    public r(String str, j3.n0 n0Var) {
+        super(str);
+        this.f11228a = n0Var;
+    }
 }

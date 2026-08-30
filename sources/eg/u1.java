@@ -1,24 +1,35 @@
 package eg;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class u1 extends View {
-    public Paint f6141a;
-    public Drawable f6142b;
+import android.content.Context;
+import org.telegram.messenger.MessagesController;
+public final class u1 implements Runnable {
+    public final int f5518a;
+    public final e2 f5519b;
+
+    public u1(e2 e2Var, int i10) {
+        this.f5518a = i10;
+        this.f5519b = e2Var;
+    }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float measuredWidth = getMeasuredWidth() / 2.0f;
-        float measuredHeight = getMeasuredHeight() / 2.0f;
-        canvas.drawCircle(measuredWidth, measuredHeight, getMeasuredWidth() / 2.0f, this.f6141a);
-        cg.s1.d().f(-AndroidUtilities.dp(10.0f), 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawCircle(measuredWidth, measuredHeight, (getMeasuredWidth() / 2.0f) - AndroidUtilities.dp(2.0f), cg.s1.d().e());
-        float dp = AndroidUtilities.dp(18.0f) / 2.0f;
-        Drawable drawable = this.f6142b;
-        drawable.setBounds((int) (measuredWidth - dp), (int) (measuredHeight - dp), (int) (measuredWidth + dp), (int) (measuredHeight + dp));
-        drawable.draw(canvas);
+    public final void run() {
+        switch (this.f5518a) {
+            case 0:
+                e2 e2Var = this.f5519b;
+                Context context = e2Var.getContext();
+                af.g.s(context, "https://" + MessagesController.getInstance(e2Var.V).linkPrefix + "/nft/" + e2Var.A0.slug);
+                return;
+            case 1:
+                e2 e2Var2 = this.f5519b;
+                try {
+                    e2Var2.container.performHapticFeedback(3, 2);
+                } catch (Exception unused) {
+                }
+                e2Var2.f5269l0.c(e2Var2.H0);
+                return;
+            default:
+                this.f5519b.L0[0].setVisibility(8);
+                return;
+        }
     }
 }

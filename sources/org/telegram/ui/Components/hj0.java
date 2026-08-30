@@ -1,23 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class hj0 extends jl0 {
-    public final pj0 T2;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ImageReceiver;
+public final class hj0 extends ImageReceiver {
+    public final jj0 f25428a;
 
-    public hj0(pj0 pj0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, c6Var);
-        this.T2 = pj0Var;
+    public hj0(jj0 jj0Var) {
+        this.f25428a = jj0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        pj0 pj0Var = this.T2;
-        qa0 qa0Var = pj0Var.F;
-        if (qa0Var != null) {
-            qa0Var.measure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 0));
+    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z4, int i11) {
+        if (drawable != null) {
+            this.f25428a.c();
         }
-        super.onMeasure(i10, i11);
-        pj0Var.j();
+        return super.setImageBitmapByKey(drawable, str, i10, z4, i11);
     }
 }

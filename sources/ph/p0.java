@@ -1,116 +1,88 @@
 package ph;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.aj0;
-import org.telegram.ui.Components.e9;
-import org.telegram.ui.Components.w6;
-public final class p0 extends Drawable implements w6 {
-    public final Paint f45949a;
-    public final Paint f45950b;
-    public final Paint f45951c;
-    public final ImageReceiver d;
-    public final ImageReceiver f45952e;
-    public final Drawable f45953f;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.tl.TL_account;
+public final class p0 implements Runnable {
+    public final int f42153a;
+    public final MessagesStorage f42154b;
+    public final ArrayList f42155c;
 
-    public p0(Context context, TLRPC.User user, TLRPC.User user2) {
-        Paint paint = new Paint(1);
-        this.f45949a = paint;
-        this.f45950b = new Paint(1);
-        Paint paint2 = new Paint(1);
-        this.f45951c = paint2;
-        ImageReceiver imageReceiver = new ImageReceiver();
-        this.d = imageReceiver;
-        ImageReceiver imageReceiver2 = new ImageReceiver();
-        this.f45952e = imageReceiver2;
-        new RectF();
-        paint.setColor(-1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setColor(-1);
-        Drawable mutate = context.getResources().getDrawable(R.drawable.filled_location).mutate();
-        this.f45953f = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(g6.w0(null, g6.L5, false), PorterDuff.Mode.SRC_IN));
-        e9 e9Var = new e9((c6) null);
-        e9Var.r(user);
-        imageReceiver.setForUserOrChat(user, e9Var);
-        imageReceiver.setRoundRadius(AndroidUtilities.dp(25.0f));
-        e9 e9Var2 = new e9((c6) null);
-        e9Var2.r(user2);
-        imageReceiver2.setForUserOrChat(user2, e9Var2);
-        imageReceiver2.setRoundRadius(AndroidUtilities.dp(25.0f));
+    public p0(int i10, ArrayList arrayList, MessagesStorage messagesStorage) {
+        this.f42153a = i10;
+        this.f42154b = messagesStorage;
+        this.f42155c = arrayList;
     }
 
     @Override
-    public final void a(aj0 aj0Var) {
-        this.f45952e.setParentView(aj0Var);
-        this.d.setParentView(aj0Var);
-    }
-
-    @Override
-    public final void b(ImageReceiver imageReceiver) {
-        this.d.onDetachedFromWindow();
-        this.f45952e.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void c(ImageReceiver imageReceiver) {
-        this.d.onAttachedToWindow();
-        this.f45952e.onAttachedToWindow();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        int w02 = g6.w0(null, g6.L5, false);
-        Paint paint = this.f45950b;
-        paint.setColor(w02);
-        float dp = AndroidUtilities.dp(136.0f) / 2.0f;
-        ImageReceiver imageReceiver = this.d;
-        imageReceiver.setImageCoords(bounds.centerX() - dp, bounds.centerY() - AndroidUtilities.dp(25.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
-        imageReceiver.draw(canvas);
-        float centerX = (bounds.centerX() - dp) + AndroidUtilities.dp(41.0f);
-        float dp2 = AndroidUtilities.dp(16.0f) + bounds.centerY();
-        canvas.drawCircle(centerX, dp2, AndroidUtilities.dp(14.0f), paint);
-        canvas.drawCircle(centerX, dp2, AndroidUtilities.dp(12.0f), this.f45951c);
-        int dp3 = (int) (dp2 + AndroidUtilities.dp(9.0f));
-        Drawable drawable = this.f45953f;
-        drawable.setBounds((int) (centerX - AndroidUtilities.dp(9.0f)), (int) (dp2 - AndroidUtilities.dp(9.0f)), (int) (centerX + AndroidUtilities.dp(9.0f)), dp3);
-        drawable.draw(canvas);
-        int centerX2 = bounds.centerX();
-        Paint paint2 = this.f45949a;
-        canvas.drawLine(bounds.centerX() - AndroidUtilities.dp(3.33f), bounds.centerY() - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(3.33f) + centerX2, bounds.centerY(), paint2);
-        canvas.drawLine(bounds.centerX() - AndroidUtilities.dp(3.33f), AndroidUtilities.dp(7.0f) + bounds.centerY(), AndroidUtilities.dp(3.33f) + bounds.centerX(), bounds.centerY(), paint2);
-        ImageReceiver imageReceiver2 = this.f45952e;
-        imageReceiver2.setImageCoords((bounds.centerX() + dp) - AndroidUtilities.dp(50.0f), bounds.centerY() - AndroidUtilities.dp(25.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
-        imageReceiver2.draw(canvas);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void run() {
+        switch (this.f42153a) {
+            case 0:
+                MessagesStorage messagesStorage = this.f42154b;
+                ArrayList arrayList = this.f42155c;
+                try {
+                    SQLiteDatabase database = messagesStorage.getDatabase();
+                    if (database != null) {
+                        database.executeFast("DELETE FROM story_drafts WHERE id IN (" + TextUtils.join(", ", arrayList) + ")").stepThis().dispose();
+                        return;
+                    }
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            case 1:
+                MessagesStorage messagesStorage2 = this.f42154b;
+                ArrayList arrayList2 = this.f42155c;
+                SQLitePreparedStatement sQLitePreparedStatement = null;
+                try {
+                    try {
+                        SQLiteDatabase database2 = messagesStorage2.getDatabase();
+                        database2.executeFast("DELETE FROM business_links").stepThis().dispose();
+                        sQLitePreparedStatement = database2.executeFast("REPLACE INTO business_links VALUES(?, ?)");
+                        for (int i10 = 0; i10 < arrayList2.size(); i10++) {
+                            TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) arrayList2.get(i10);
+                            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_businessChatLink.getObjectSize());
+                            tL_businessChatLink.serializeToStream(nativeByteBuffer);
+                            sQLitePreparedStatement.requery();
+                            sQLitePreparedStatement.bindByteBuffer(1, nativeByteBuffer);
+                            sQLitePreparedStatement.bindInteger(2, i10);
+                            sQLitePreparedStatement.step();
+                        }
+                        if (sQLitePreparedStatement == null) {
+                            return;
+                        }
+                    } catch (Exception e6) {
+                        FileLog.e(e6);
+                        if (sQLitePreparedStatement == null) {
+                            return;
+                        }
+                    }
+                    sQLitePreparedStatement.dispose();
+                    return;
+                } catch (Throwable th2) {
+                    if (sQLitePreparedStatement != null) {
+                        sQLitePreparedStatement.dispose();
+                    }
+                    throw th2;
+                }
+            default:
+                MessagesStorage messagesStorage3 = this.f42154b;
+                ArrayList arrayList3 = this.f42155c;
+                try {
+                    SQLiteDatabase database3 = messagesStorage3.getDatabase();
+                    String join = TextUtils.join(", ", arrayList3);
+                    database3.executeFast("DELETE FROM quick_replies_messages WHERE topic_id IN (" + join + ")").stepThis().dispose();
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return;
+                }
+        }
     }
 }

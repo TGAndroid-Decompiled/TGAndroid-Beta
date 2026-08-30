@@ -1,69 +1,62 @@
 package org.telegram.ui;
 
-import android.graphics.SurfaceTexture;
-import org.telegram.messenger.AndroidUtilities;
-public final class e41 implements org.telegram.ui.Components.u61, org.telegram.ui.Components.q61 {
-    public final f41 f37699a;
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.transition.Fade;
+import android.transition.TransitionValues;
+import android.view.View;
+import android.view.ViewGroup;
+public final class e41 extends Fade {
+    public final int f33885a;
+    public final boolean f33886b;
+    public final boolean f33887c;
+    public final SecretMediaViewer d;
 
-    public e41(f41 f41Var) {
-        this.f37699a = f41Var;
-    }
-
-    @Override
-    public boolean needUpdate() {
-        if (this.f37699a.R.f29115i != null) {
-            return true;
+    public e41(SecretMediaViewer secretMediaViewer, boolean z4, boolean z10, int i10) {
+        super(1);
+        this.f33885a = i10;
+        switch (i10) {
+            case 1:
+                this.d = secretMediaViewer;
+                this.f33886b = z4;
+                this.f33887c = z10;
+                super(2);
+                return;
+            default:
+                this.d = secretMediaViewer;
+                this.f33886b = z4;
+                this.f33887c = z10;
+                return;
         }
-        return false;
     }
 
     @Override
-    public void onRenderedFirstFrame(k3.a aVar) {
-    }
-
-    @Override
-    public void onStateChanged(boolean z10, int i10) {
-        f41 f41Var = this.f37699a;
-        if (i10 == 4) {
-            f41Var.dismiss();
-            return;
+    public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.f33885a) {
+            case 0:
+                Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+                if (this.f33886b && !this.f33887c && view == this.d.W) {
+                    onAppear.addListener(new ls0(this, 16));
+                    ((ObjectAnimator) onAppear).addUpdateListener(new h11(this, 4));
+                }
+                return onAppear;
+            default:
+                return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
         }
-        AndroidUtilities.cancelRunOnUIThread(f41Var.V);
-        AndroidUtilities.runOnUIThread(f41Var.V, 16L);
     }
 
     @Override
-    public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        return false;
-    }
-
-    @Override
-    public void onVisualizerUpdate(boolean z10, boolean z11, float[] fArr) {
-        this.f37699a.R.e(z10, true, fArr);
-    }
-
-    @Override
-    public void onRenderedFirstFrame() {
-        AndroidUtilities.runOnUIThread(new ky0(this, 14));
-    }
-
-    @Override
-    public void onSeekFinished(k3.a aVar) {
-    }
-
-    @Override
-    public void onSeekStarted(k3.a aVar) {
-    }
-
-    @Override
-    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-    }
-
-    @Override
-    public void onError(org.telegram.ui.Components.x61 x61Var, Exception exc) {
-    }
-
-    @Override
-    public void onVideoSizeChanged(int i10, int i11, int i12, float f9) {
+    public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.f33885a) {
+            case 1:
+                Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+                if (!this.f33886b && this.f33887c && view == this.d.W) {
+                    onDisappear.addListener(new ls0(this, 17));
+                    ((ObjectAnimator) onDisappear).addUpdateListener(new h11(this, 5));
+                }
+                return onDisappear;
+            default:
+                return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+        }
     }
 }

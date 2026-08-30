@@ -1,148 +1,78 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class fc1 extends org.telegram.ui.Components.t9 {
-    public Drawable C;
-    public final boolean D;
-    public float E;
-    public float F;
-    public final qc1 G;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class fc1 implements org.telegram.ui.Components.jq {
+    public final cd1 f34217a;
 
-    public fc1(qc1 qc1Var, Activity activity) {
-        super(activity);
-        this.G = qc1Var;
-        this.D = true;
+    public fc1(cd1 cd1Var) {
+        this.f34217a = cd1Var;
     }
 
     @Override
-    public Drawable getBackground() {
-        return this.C;
+    public final int I0(int i10) {
+        org.telegram.ui.ActionBar.h6 h6Var;
+        cd1 cd1Var = this.f34217a;
+        if (cd1Var.f33321n == 3) {
+            org.telegram.ui.ActionBar.i6 i6Var = cd1Var.f33291b0;
+            if (i6Var.P && i10 == 0 && (h6Var = (org.telegram.ui.ActionBar.h6) i6Var.X.get(org.telegram.ui.ActionBar.j6.f20078n)) != null) {
+                return h6Var.e;
+            }
+            return 0;
+        }
+        return 0;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        this.E = 0.0f;
-        this.F = 0.0f;
-        boolean z10 = this.D;
-        qc1 qc1Var = this.G;
-        if (z10) {
-            Drawable drawable = this.C;
-            if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof org.telegram.ui.Components.yb0)) {
-                if (drawable instanceof BitmapDrawable) {
-                    if (((BitmapDrawable) drawable).getTileModeX() == Shader.TileMode.REPEAT) {
-                        canvas.save();
-                        float f9 = 2.0f / AndroidUtilities.density;
-                        canvas.scale(f9, f9);
-                        this.C.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f9), (int) Math.ceil(getMeasuredHeight() / f9));
-                        this.C.draw(canvas);
-                        canvas.restore();
-                    } else {
-                        int measuredHeight = getMeasuredHeight();
-                        float max = Math.max(getMeasuredWidth() / this.C.getIntrinsicWidth(), measuredHeight / this.C.getIntrinsicHeight());
-                        int ceil = (int) Math.ceil(this.C.getIntrinsicWidth() * max * qc1Var.f41675u1);
-                        int ceil2 = (int) Math.ceil(this.C.getIntrinsicHeight() * max * qc1Var.f41675u1);
-                        int measuredWidth = (getMeasuredWidth() - ceil) / 2;
-                        int i10 = (measuredHeight - ceil2) / 2;
-                        this.F = i10;
-                        this.C.setBounds(measuredWidth, i10, ceil + measuredWidth, ceil2 + i10);
-                        this.C.draw(canvas);
-                    }
-                }
-            } else {
-                drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                this.C.draw(canvas);
+    public final void k(boolean z4) {
+        int i10;
+        int i11;
+        cd1 cd1Var = this.f34217a;
+        org.telegram.ui.ActionBar.h6 h6Var = cd1Var.f33333s;
+        if (z4) {
+            if (h6Var.f19775r == null) {
+                cd1Var.finishFragment();
+                i11 = ((org.telegram.ui.ActionBar.p2) cd1Var).currentAccount;
+                MessagesController.getInstance(i11).saveThemeToServer(h6Var.f19762b, h6Var);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, h6Var.f19762b, h6Var);
+                return;
             }
+            StringBuilder sb = new StringBuilder("https://");
+            i10 = ((org.telegram.ui.ActionBar.p2) cd1Var).currentAccount;
+            sb.append(MessagesController.getInstance(i10).linkPrefix);
+            sb.append("/addtheme/");
+            sb.append(h6Var.f19775r.slug);
+            String sb2 = sb.toString();
+            cd1Var.showDialog(new org.telegram.ui.Components.lq0(cd1Var.getParentActivity(), null, sb2, false, sb2, false, null));
+            return;
         }
-        if (qc1Var.W1) {
-            if (!qc1Var.f41630c.isFinished() && qc1Var.f41630c.computeScrollOffset()) {
-                if (qc1Var.f41630c.getStartX() < qc1Var.S1 && qc1Var.f41630c.getStartX() > 0) {
-                    qc1Var.T1 = qc1Var.f41630c.getCurrX();
-                }
-                qc1Var.V0();
-                invalidate();
-            }
-            canvas.save();
-            float f10 = -qc1Var.T1;
-            this.E = f10;
-            canvas.translate(f10, 0.0f);
-            super.onDraw(canvas);
-            canvas.restore();
-        } else {
-            super.onDraw(canvas);
-        }
-        if (qc1Var.I1) {
-            float f11 = qc1Var.f41652j1;
-            if (f11 > 0.0f) {
-                canvas.drawColor(i0.a.k(-16777216, (int) (f11 * 255.0f * qc1Var.f41654k1)));
-            }
-        }
+        org.telegram.ui.Components.z4.W(cd1Var, 1, null, null);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        qc1 qc1Var = this.G;
-        org.telegram.ui.Components.c81 c81Var = qc1Var.f41668r1;
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        c81Var.getClass();
-        float a2 = org.telegram.ui.Components.c81.a(measuredWidth, measuredHeight);
-        qc1Var.f41675u1 = a2;
-        if (qc1Var.A1) {
-            setScaleX(a2);
-            setScaleY(qc1Var.f41675u1);
-        }
-        if (qc1Var.f41626b == 2) {
-            getMeasuredWidth();
-            getMeasuredHeight();
-        }
-        int measuredWidth2 = getMeasuredWidth() + (getMeasuredHeight() << 16);
-        if (qc1Var.X1 != measuredWidth2) {
-            qc1Var.W1 = false;
-            Bitmap bitmap = qc1Var.f41686y1;
-            if (bitmap != null) {
-                int measuredHeight2 = (int) ((getMeasuredHeight() / qc1Var.f41686y1.getHeight()) * bitmap.getWidth());
-                if (measuredHeight2 - getMeasuredWidth() > 100) {
-                    qc1Var.W1 = true;
-                    qc1Var.V1 = (int) ((qc1Var.f41686y1.getHeight() / getMeasuredHeight()) * getMeasuredWidth());
-                    float measuredWidth3 = (measuredHeight2 - getMeasuredWidth()) / 2.0f;
-                    qc1Var.T1 = measuredWidth3;
-                    qc1Var.U1 = measuredWidth3;
-                    qc1Var.S1 = measuredWidth3 * 2.0f;
-                    s(measuredHeight2, getMeasuredHeight());
-                    this.v = true;
-                    qc1Var.V0();
-                }
-            }
-            if (!qc1Var.W1) {
-                s(-1, -1);
-                this.v = false;
-            }
-        }
-        qc1Var.X1 = measuredWidth2;
+    public final void u0(int r15, int r16, boolean r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fc1.u0(int, int, boolean):void");
     }
 
     @Override
-    public void setBackground(Drawable drawable) {
-        this.C = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
+    public final void z() {
+        cd1 cd1Var = this.f34217a;
+        if (cd1Var.getParentActivity() != null) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cd1Var.getParentActivity());
+            alertDialog$Builder.f19503a.O = LocaleController.getString(R.string.DeleteThemeTitle);
+            alertDialog$Builder.f19503a.Q = LocaleController.getString(R.string.DeleteThemeAlert);
+            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new il0(this, 21));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f19503a;
+            cd1Var.showDialog(d2Var);
+            TextView textView = (TextView) d2Var.d(-1);
+            if (textView != null) {
+                textView.setTextColor(cd1Var.getThemedColor(org.telegram.ui.ActionBar.j6.f20141q7));
+            }
         }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.C != drawable && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
     }
 }

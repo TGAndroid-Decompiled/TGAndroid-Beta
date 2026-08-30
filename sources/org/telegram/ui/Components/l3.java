@@ -1,21 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.widget.FrameLayout;
-public final class l3 extends FrameLayout {
-    public final org.telegram.ui.Cells.y1[] f30219a;
+import android.view.View;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class l3 extends m51 {
+    public final AlertDialog$Builder e;
 
-    public l3(Activity activity, org.telegram.ui.Cells.y1[] y1VarArr) {
-        super(activity);
-        this.f30219a = y1VarArr;
+    public l3(String str, AlertDialog$Builder alertDialog$Builder) {
+        super(str, (s01) null);
+        this.e = alertDialog$Builder;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        org.telegram.ui.Cells.y1[] y1VarArr = this.f30219a;
-        if (y1VarArr[0] != null) {
-            setMeasuredDimension(getMeasuredWidth(), y1VarArr[0].getMeasuredHeight() + getMeasuredHeight());
-        }
+    public final void onClick(View view) {
+        this.e.f19503a.I0.run();
+        super.onClick(view);
     }
 }

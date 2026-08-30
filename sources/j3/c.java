@@ -3,16 +3,16 @@ package j3;
 import android.media.AudioManager;
 import android.os.Handler;
 public final class c implements AudioManager.OnAudioFocusChangeListener {
-    public final Handler f10397a;
-    public final d f10398b;
+    public final Handler f8439a;
+    public final d f8440b;
 
     public c(d dVar, Handler handler) {
-        this.f10398b = dVar;
-        this.f10397a = handler;
+        this.f8440b = dVar;
+        this.f8439a = handler;
     }
 
     @Override
     public final void onAudioFocusChange(int i10) {
-        this.f10397a.post(new bg.f(this, i10, 4));
+        this.f8439a.post(new af.b(this, i10, 6));
     }
 }

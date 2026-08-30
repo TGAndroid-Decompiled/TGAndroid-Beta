@@ -1,53 +1,41 @@
 package org.telegram.messenger.voip;
 
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.d6;
+import java.util.ArrayList;
+import org.telegram.messenger.voip.VoIPDebugToSend;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.k5;
-import org.telegram.ui.LaunchActivity;
+import org.telegram.tgnet.tl.TL_phone;
 public final class n implements RequestDelegate {
-    public final int f21985a;
-    public final int f21986b;
+    public final int f18811a;
+    public final Object f18812b;
+    public final Object f18813c;
+    public final Object d;
 
-    public n(int i10, int i11) {
-        this.f21985a = i11;
-        this.f21986b = i10;
+    public n(Object obj, Object obj2, Object obj3, int i10) {
+        this.f18811a = i10;
+        this.f18812b = obj;
+        this.f18813c = obj2;
+        this.d = obj3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f21985a;
-        int i11 = this.f21986b;
-        switch (i10) {
+        switch (this.f18811a) {
             case 0:
-                VoIPGroupNotification.a(i11, tLObject, tL_error);
+                ((VoIPDebugToSend) this.f18812b).lambda$done$3((VoIPDebugToSend.Data) this.f18813c, (TL_phone.saveCallDebug) this.d, tLObject, tL_error);
                 return;
             case 1:
-                VoIPPreNotificationService.lambda$decline$4(i11, tLObject, tL_error);
+                ((GroupCallMessagesController) this.f18812b).lambda$sendCallMessage$5((f) this.f18813c, (GroupCallMessage) this.d, tLObject, tL_error);
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new k5(i11, tLObject));
+                VoIPService.lambda$startConferenceGroupCall$49((ArrayList) this.f18812b, (ArrayList) this.f18813c, (y) this.d, tLObject, tL_error);
                 return;
             case 3:
-                if (tLObject instanceof TLRPC.TL_updates) {
-                    MessagesController.getInstance(i11).processUpdates((TLRPC.TL_updates) tLObject, false);
-                    return;
-                }
-                return;
-            case 4:
-                Pattern pattern = LaunchActivity.f35560x1;
-                AndroidUtilities.runOnUIThread(new k5(i11, tLObject, 2));
-                return;
-            case 5:
-                Pattern pattern2 = LaunchActivity.f35560x1;
-                AndroidUtilities.runOnUIThread(new k5(i11, tLObject, 1));
+                ((VoIPService) this.f18812b).lambda$startConferenceGroupCall$45((TL_phone.PhoneCall) this.f18813c, (TL_phone.exportGroupCallInvite) this.d, tLObject, tL_error);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new d6(i11, 11));
+                VoIPService.lambda$startConferenceGroupCall$41((ArrayList) this.f18812b, (ArrayList) this.f18813c, (y) this.d, tLObject, tL_error);
                 return;
         }
     }

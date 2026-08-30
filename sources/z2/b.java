@@ -1,20 +1,19 @@
 package z2;
 
-import a4.w;
 import android.content.Context;
 public final class b extends c {
-    public final Context f50552a;
-    public final h3.a f50553b;
-    public final h3.a f50554c;
+    public final Context f47272a;
+    public final h3.a f47273b;
+    public final h3.a f47274c;
     public final String d;
 
     public b(Context context, h3.a aVar, h3.a aVar2, String str) {
         if (context != null) {
-            this.f50552a = context;
+            this.f47272a = context;
             if (aVar != null) {
-                this.f50553b = aVar;
+                this.f47273b = aVar;
                 if (aVar2 != null) {
-                    this.f50554c = aVar2;
+                    this.f47274c = aVar2;
                     if (str != null) {
                         this.d = str;
                         return;
@@ -34,7 +33,7 @@ public final class b extends c {
         }
         if (obj instanceof c) {
             b bVar = (b) ((c) obj);
-            if (this.f50552a.equals(bVar.f50552a) && this.f50553b.equals(bVar.f50553b) && this.f50554c.equals(bVar.f50554c) && this.d.equals(bVar.d)) {
+            if (this.f47272a.equals(bVar.f47272a) && this.f47273b.equals(bVar.f47273b) && this.f47274c.equals(bVar.f47274c) && this.d.equals(bVar.d)) {
                 return true;
             }
         }
@@ -42,17 +41,17 @@ public final class b extends c {
     }
 
     public final int hashCode() {
-        return ((((((this.f50552a.hashCode() ^ 1000003) * 1000003) ^ this.f50553b.hashCode()) * 1000003) ^ this.f50554c.hashCode()) * 1000003) ^ this.d.hashCode();
+        return ((((((this.f47272a.hashCode() ^ 1000003) * 1000003) ^ this.f47273b.hashCode()) * 1000003) ^ this.f47274c.hashCode()) * 1000003) ^ this.d.hashCode();
     }
 
     public final String toString() {
-        StringBuilder sb2 = new StringBuilder("CreationContext{applicationContext=");
-        sb2.append(this.f50552a);
-        sb2.append(", wallClock=");
-        sb2.append(this.f50553b);
-        sb2.append(", monotonicClock=");
-        sb2.append(this.f50554c);
-        sb2.append(", backendName=");
-        return w.q(sb2, this.d, "}");
+        StringBuilder sb = new StringBuilder("CreationContext{applicationContext=");
+        sb.append(this.f47272a);
+        sb.append(", wallClock=");
+        sb.append(this.f47273b);
+        sb.append(", monotonicClock=");
+        sb.append(this.f47274c);
+        sb.append(", backendName=");
+        return android.support.v4.media.a.r(sb, this.d, "}");
     }
 }

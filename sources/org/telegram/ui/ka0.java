@@ -1,38 +1,60 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.NotificationCenter;
-public final class ka0 extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Components.aj0 f39820a;
-    public final org.telegram.ui.Components.xi0 f39821b;
-    public final boolean f39822c;
-    public final LaunchActivity d;
+import android.os.Bundle;
+import java.util.regex.Pattern;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.tl.TL_stories;
+public final class ka0 implements h5.d {
+    public final LaunchActivity f35605a;
+    public final g00 f35606b;
+    public final Long f35607c;
+    public final int d;
 
-    public ka0(LaunchActivity launchActivity, org.telegram.ui.Components.aj0 aj0Var, org.telegram.ui.Components.xi0 xi0Var, boolean z10) {
-        this.d = launchActivity;
-        this.f39820a = aj0Var;
-        this.f39821b = xi0Var;
-        this.f39822c = z10;
+    public ka0(LaunchActivity launchActivity, g00 g00Var, Long l10, int i10) {
+        this.f35605a = launchActivity;
+        this.f35606b = g00Var;
+        this.f35607c = l10;
+        this.d = i10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        LaunchActivity launchActivity = this.d;
-        launchActivity.C0 = null;
-        launchActivity.f35603v0.invalidate();
-        launchActivity.f35583k0.invalidate();
-        launchActivity.f35583k0.setImageDrawable(null);
-        launchActivity.f35583k0.setVisibility(8);
-        launchActivity.f35585l0.setVisibility(8);
-        org.telegram.ui.Components.aj0 aj0Var = this.f39820a;
-        if (aj0Var != null) {
-            aj0Var.setImageDrawable(this.f39821b);
+    public final void accept(Object obj) {
+        boolean z4;
+        g00 g00Var = this.f35606b;
+        TL_stories.TL_storyAlbum tL_storyAlbum = (TL_stories.TL_storyAlbum) obj;
+        Pattern pattern = LaunchActivity.f31612y1;
+        try {
+            g00Var.run();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeAccentListUpdated, new Object[0]);
-        if (!this.f39822c && aj0Var != null) {
-            aj0Var.setVisibility(0);
+        LaunchActivity.R();
+        if (tL_storyAlbum == null) {
+            org.telegram.ui.Components.qc X = org.telegram.ui.Components.qc.X();
+            if (X != null) {
+                kh.a2.v(R.string.StoryAlbumNotFound, X, R.raw.story_bomb2, 36);
+                return;
+            }
+            return;
         }
-        fy.f38251t4 = false;
+        Bundle bundle = new Bundle();
+        Long l10 = this.f35607c;
+        long longValue = l10.longValue();
+        LaunchActivity launchActivity = this.f35605a;
+        if (longValue > 0) {
+            bundle.putLong("user_id", l10.longValue());
+            if (l10.longValue() == UserConfig.getInstance(launchActivity.L).getClientUserId()) {
+                z4 = true;
+            } else {
+                z4 = false;
+            }
+            bundle.putBoolean("my_profile", z4);
+        } else {
+            bundle.putLong("chat_id", -l10.longValue());
+        }
+        bundle.putInt("open_story_album_id", this.d);
+        launchActivity.p0(new ProfileActivity(bundle, null));
     }
 }

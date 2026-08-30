@@ -1,24 +1,29 @@
 package org.telegram.messenger;
-public final class ua implements Runnable {
-    public final int f21717a;
-    public final Runnable f21718b;
 
-    public ua(int i10, Runnable runnable) {
-        this.f21717a = i10;
-        this.f21718b = runnable;
+import org.telegram.tgnet.TLObject;
+public final class ua implements Runnable {
+    public final int f18576a;
+    public final MessagesController f18577b;
+    public final TLObject f18578c;
+    public final org.telegram.ui.ActionBar.i6 d;
+    public final org.telegram.ui.ActionBar.h6 e;
+
+    public ua(MessagesController messagesController, TLObject tLObject, org.telegram.ui.ActionBar.i6 i6Var, org.telegram.ui.ActionBar.h6 h6Var, int i10) {
+        this.f18576a = i10;
+        this.f18577b = messagesController;
+        this.f18578c = tLObject;
+        this.d = i6Var;
+        this.e = h6Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f21717a) {
+        switch (this.f18576a) {
             case 0:
-                MessagesController.lambda$unblockPeer$110(this.f21718b);
-                return;
-            case 1:
-                this.f21718b.run();
+                this.f18577b.lambda$didReceivedNotification$46(this.f18578c, this.d, this.e);
                 return;
             default:
-                SendMessagesHelper.lambda$prepareSendingPoll$134(this.f21718b);
+                this.f18577b.lambda$didReceivedNotification$48(this.f18578c, this.d, this.e);
                 return;
         }
     }

@@ -7,7 +7,7 @@ public abstract class w {
         return new Notification.MessagingStyle(person);
     }
 
-    public static Notification.MessagingStyle b(Notification.MessagingStyle messagingStyle, boolean z10) {
-        return messagingStyle.setGroupConversation(z10);
+    public static Notification.MessagingStyle b(Notification.MessagingStyle messagingStyle, boolean z4) {
+        return messagingStyle.setGroupConversation(z4);
     }
 }

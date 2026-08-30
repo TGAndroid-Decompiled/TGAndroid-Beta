@@ -1,85 +1,79 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class am0 implements org.telegram.ui.Components.li {
-    public final vm0 f36570a;
+import android.text.TextUtils;
+import java.util.Locale;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MrzRecognizer;
+import org.telegram.messenger.R;
+public final class am0 implements u9 {
+    public final dn0 f32670a;
 
-    public am0(vm0 vm0Var) {
-        this.f36570a = vm0Var;
+    public am0(dn0 dn0Var) {
+        this.f32670a = dn0Var;
     }
 
     @Override
-    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        org.telegram.ui.Components.ni niVar;
-        vm0 vm0Var = this.f36570a;
-        if (vm0Var.getParentActivity() != null && (niVar = vm0Var.N0) != null) {
-            if (i10 != 8 && i10 != 7) {
-                niVar.dismissWithButtonClick(i10);
-                vm0Var.F1(i10);
-                return;
-            }
-            if (i10 != 8) {
-                niVar.dismiss(true);
-            }
-            HashMap<Object, Object> selectedPhotos = vm0Var.N0.f31005f0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = vm0Var.N0.f31005f0.getSelectedPhotosOrder();
-            if (!selectedPhotos.isEmpty()) {
-                ArrayList arrayList = new ArrayList();
-                for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
-                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i13));
-                    SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                    String str = photoEntry.imagePath;
-                    if (str != null) {
-                        sendingMediaInfo.path = str;
-                    } else {
-                        sendingMediaInfo.path = photoEntry.path;
-                    }
-                    arrayList.add(sendingMediaInfo);
-                    photoEntry.reset();
+    public final String G0() {
+        return null;
+    }
+
+    @Override
+    public final void S0(MrzRecognizer.Result result) {
+        boolean isEmpty = TextUtils.isEmpty(result.firstName);
+        dn0 dn0Var = this.f32670a;
+        if (!isEmpty) {
+            dn0Var.V[0].setText(result.firstName);
+        }
+        if (!TextUtils.isEmpty(result.middleName)) {
+            dn0Var.V[1].setText(result.middleName);
+        }
+        if (!TextUtils.isEmpty(result.lastName)) {
+            dn0Var.V[2].setText(result.lastName);
+        }
+        int i10 = result.gender;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 == 2) {
+                    dn0Var.f33731w = "female";
+                    dn0Var.V[4].setText(LocaleController.getString(R.string.PassportFemale));
                 }
-                vm0Var.G1(arrayList);
+            } else {
+                dn0Var.f33731w = "male";
+                dn0Var.V[4].setText(LocaleController.getString(R.string.PassportMale));
             }
+        }
+        if (!TextUtils.isEmpty(result.nationality)) {
+            String str = result.nationality;
+            dn0Var.f33722s = str;
+            String str2 = (String) dn0Var.V0.get(str);
+            if (str2 != null) {
+                dn0Var.V[5].setText(str2);
+            }
+        }
+        if (!TextUtils.isEmpty(result.issuingCountry)) {
+            String str3 = result.issuingCountry;
+            dn0Var.v = str3;
+            String str4 = (String) dn0Var.V0.get(str3);
+            if (str4 != null) {
+                dn0Var.V[6].setText(str4);
+            }
+        }
+        int i11 = result.birthDay;
+        if (i11 > 0 && result.birthMonth > 0 && result.birthYear > 0) {
+            dn0Var.V[3].setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(i11), Integer.valueOf(result.birthMonth), Integer.valueOf(result.birthYear)));
         }
     }
 
     @Override
-    public final void L0() {
-        AndroidUtilities.hideKeyboard(this.f36570a.fragmentView.findFocus());
-    }
-
-    @Override
-    public final boolean T1() {
+    public final boolean f1(String str, m9 m9Var) {
         return false;
     }
 
     @Override
-    public final boolean a0() {
-        return false;
+    public final void K(String str) {
     }
 
     @Override
-    public final void x0(org.telegram.ui.Components.zg zgVar) {
-        zgVar.run();
-    }
-
-    @Override
-    public final void U0(Object obj) {
-    }
-
-    @Override
-    public final void j1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void u0() {
-    }
-
-    @Override
-    public final void X1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
+    public final void onDismiss() {
     }
 }

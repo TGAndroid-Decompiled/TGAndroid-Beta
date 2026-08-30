@@ -1,59 +1,36 @@
 package w3;
 
-import f5.w;
-import i7.h0;
-public final class c {
-    public final int f49635a;
-    public int f49636b;
-    public int f49637c;
-    public long d;
-    public final boolean f49638e;
-    public final w f49639f;
-    public final w f49640g;
-    public int h;
-    public int f49641i;
+import r3.r;
+import r3.s;
+import r3.t;
+public final class c implements s {
+    public final s f46377a;
+    public final f2.c f46378b;
 
-    public c(w wVar, w wVar2, boolean z10) {
-        this.f49640g = wVar;
-        this.f49639f = wVar2;
-        this.f49638e = z10;
-        wVar2.C(12);
-        this.f49635a = wVar2.u();
-        wVar.C(12);
-        this.f49641i = wVar.u();
-        h0.a("first_chunk must be 1", wVar.e() == 1);
-        this.f49636b = -1;
+    public c(f2.c cVar, s sVar) {
+        this.f46378b = cVar;
+        this.f46377a = sVar;
     }
 
-    public final boolean a() {
-        long s10;
-        int i10;
-        int i11 = this.f49636b + 1;
-        this.f49636b = i11;
-        if (i11 == this.f49635a) {
-            return false;
-        }
-        boolean z10 = this.f49638e;
-        w wVar = this.f49639f;
-        if (z10) {
-            s10 = wVar.v();
-        } else {
-            s10 = wVar.s();
-        }
-        this.d = s10;
-        if (this.f49636b == this.h) {
-            w wVar2 = this.f49640g;
-            this.f49637c = wVar2.u();
-            wVar2.D(4);
-            int i12 = this.f49641i - 1;
-            this.f49641i = i12;
-            if (i12 > 0) {
-                i10 = wVar2.u() - 1;
-            } else {
-                i10 = -1;
-            }
-            this.h = i10;
-        }
-        return true;
+    @Override
+    public final boolean c() {
+        return this.f46377a.c();
+    }
+
+    @Override
+    public final r f(long j10) {
+        r f10 = this.f46377a.f(j10);
+        t tVar = f10.f43246a;
+        long j11 = tVar.f43249a;
+        long j12 = tVar.f43250b;
+        long j13 = this.f46378b.f5670b;
+        t tVar2 = new t(j11, j12 + j13);
+        t tVar3 = f10.f43247b;
+        return new r(tVar2, new t(tVar3.f43249a, tVar3.f43250b + j13));
+    }
+
+    @Override
+    public final long g() {
+        return this.f46377a.g();
     }
 }

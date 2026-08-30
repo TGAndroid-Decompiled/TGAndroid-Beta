@@ -84,8 +84,8 @@ public class TeXFormulaSettingsParser {
             newInstance.setIgnoringElementContentWhitespace(true);
             newInstance.setIgnoringComments(true);
             this.root = newInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
-        } catch (Exception e10) {
-            throw new XMLResourceParseException(str, e10);
+        } catch (Exception e) {
+            throw new XMLResourceParseException(str, e);
         }
     }
 }

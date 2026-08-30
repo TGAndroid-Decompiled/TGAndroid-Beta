@@ -1,58 +1,58 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.messenger.Emoji;
-public final class z71 extends org.telegram.ui.Components.v41 {
-    static {
-        org.telegram.ui.Components.v41.setup(new org.telegram.ui.Components.v41());
-    }
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MrzRecognizer;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class z71 implements u9 {
+    public TLObject f40700a = null;
+    public TLRPC.TL_error f40701b = null;
+    public final SessionsActivity f40702c;
 
-    public static org.telegram.ui.Components.w41 a(String str, CharSequence charSequence, String str2, View.OnClickListener onClickListener, CharSequence charSequence2, View.OnClickListener onClickListener2) {
-        org.telegram.ui.Components.w41 J = org.telegram.ui.Components.w41.J(z71.class);
-        J.f34300l = str;
-        J.f34301m = charSequence;
-        J.f34302n = str2;
-        J.D = onClickListener;
-        J.f34303o = charSequence2;
-        J.E = onClickListener2;
-        return J;
+    public z71(SessionsActivity sessionsActivity) {
+        this.f40702c = sessionsActivity;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.w41 w41Var, boolean z10, org.telegram.ui.Components.k51 k51Var, org.telegram.ui.Components.u51 u51Var) {
-        a81 a81Var = (a81) view;
-        CharSequence charSequence = w41Var.f34300l;
-        CharSequence charSequence2 = w41Var.f34301m;
-        CharSequence charSequence3 = w41Var.f34302n;
-        View.OnClickListener onClickListener = w41Var.D;
-        CharSequence charSequence4 = w41Var.f34303o;
-        View.OnClickListener onClickListener2 = w41Var.E;
-        nh.d dVar = a81Var.f36456e;
-        org.telegram.ui.Components.y80 y80Var = a81Var.f36454b;
-        int i10 = 0;
-        y80Var.setText(Emoji.replaceEmoji(charSequence, y80Var.getPaint().getFontMetricsInt(), false));
-        org.telegram.ui.Components.y80 y80Var2 = a81Var.f36455c;
-        y80Var2.setText(Emoji.replaceEmoji(charSequence2, y80Var2.getPaint().getFontMetricsInt(), false));
-        nh.d dVar2 = a81Var.d;
-        if (TextUtils.isEmpty(charSequence3)) {
-            i10 = 8;
+    public final String G0() {
+        return null;
+    }
+
+    @Override
+    public final void K(String str) {
+        TLObject tLObject = this.f40700a;
+        if (tLObject instanceof TLRPC.TL_authorization) {
+            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
+            boolean z4 = tL_authorization.password_pending;
+            SessionsActivity sessionsActivity = this.f40702c;
+            if (z4) {
+                sessionsActivity.f32284f.add(0, tL_authorization);
+                sessionsActivity.S = 4;
+                sessionsActivity.k0(false);
+            } else {
+                sessionsActivity.e.add(0, tL_authorization);
+            }
+            sessionsActivity.m0();
+            sessionsActivity.f32281a.l();
+            sessionsActivity.f32287s.m(0L, this.f40700a, 11);
+        } else if (this.f40701b != null) {
+            AndroidUtilities.runOnUIThread(new y71(this, 0));
         }
-        dVar2.setVisibility(i10);
-        dVar2.setText(charSequence3);
-        dVar2.setOnClickListener(onClickListener);
-        dVar.setText(charSequence4);
-        dVar.setOnClickListener(onClickListener2);
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.jl0 jl0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        return new a81(context, c6Var);
+    public final boolean f1(String str, m9 m9Var) {
+        this.f40700a = null;
+        this.f40701b = null;
+        AndroidUtilities.runOnUIThread(new hf0(this, str, m9Var, 29), 750L);
+        return true;
     }
 
     @Override
-    public final boolean isClickable() {
-        return false;
+    public final void S0(MrzRecognizer.Result result) {
+    }
+
+    @Override
+    public final void onDismiss() {
     }
 }

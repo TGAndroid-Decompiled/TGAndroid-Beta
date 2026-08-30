@@ -1,255 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.view.ActionMode;
-import android.view.View;
-import android.view.WindowManager;
-import java.util.regex.Pattern;
+import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
-public final class r2 implements mc0, org.telegram.ui.ActionBar.b2, b5, ImageReceiver.ImageReceiverDelegate, GenericProvider, p.a, rg.b, yu0, zu0, r0.o {
-    public final int f32163a;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
+public final class r2 implements Runnable {
+    public final int f28362a;
+    public final int f28363b;
+    public final long f28364c;
+    public final long d;
+    public final Utilities.Callback e;
+    public final long f28365f;
 
-    public r2(int i10) {
-        this.f32163a = i10;
-    }
-
-    public static boolean d(Object obj) {
-        return obj instanceof ActionMode.Callback2;
-    }
-
-    @Override
-    public void I(int i10, int i11, boolean z10) {
-        switch (this.f32163a) {
-            case 4:
-                MediaController.getInstance().stopRecording(1, z10, i10, false, 0L);
-                return;
-            default:
-                MediaController.getInstance().stopRecording(1, z10, i10, false, 0L);
-                return;
-        }
+    public r2(int i10, long j10, long j11, Utilities.Callback callback, long j12, int i11) {
+        this.f28362a = i11;
+        this.f28363b = i10;
+        this.f28364c = j10;
+        this.d = j11;
+        this.e = callback;
+        this.f28365f = j12;
     }
 
     @Override
-    public r0.m1 I0(View view, r0.m1 m1Var) {
-        return r0.m1.f46842b;
-    }
-
-    @Override
-    public Object a(Bitmap bitmap) {
-        if (bitmap.getConfig() == Bitmap.Config.ALPHA_8) {
-            return bitmap;
-        }
-        return bitmap.extractAlpha();
-    }
-
-    @Override
-    public void b(Object obj, float f9) {
-        switch (this.f32163a) {
-            case 14:
-                uc0 uc0Var = (uc0) obj;
-                uc0Var.f33198f = f9;
-                if (!uc0Var.f33204y || uc0Var.B) {
-                    uc0Var.f33196c.setStrokeWidth(AndroidUtilities.lerp(uc0Var.v, uc0Var.f33202w, f9));
-                    uc0Var.f();
-                }
-                uc0Var.invalidate();
-                return;
-            case 16:
-                uc0 uc0Var2 = (uc0) obj;
-                uc0Var2.f33199n = f9;
-                if (!uc0Var2.f33204y || uc0Var2.B) {
-                    uc0Var2.f();
-                }
-                uc0Var2.invalidate();
-                return;
-            case 18:
-                uc0 uc0Var3 = (uc0) obj;
-                uc0Var3.f33201s = f9;
-                uc0Var3.f();
-                return;
-            case 22:
-                bg0 bg0Var = (bg0) obj;
-                WindowManager.LayoutParams layoutParams = bg0Var.f27081c;
-                bg0Var.G = f9;
-                layoutParams.x = (int) f9;
-                try {
-                    AndroidUtilities.updateViewLayout(bg0Var.f27079b, bg0Var.d, layoutParams);
-                    return;
-                } catch (IllegalArgumentException unused) {
-                    bg0Var.I.c();
-                    return;
-                }
-            case 24:
-                bg0 bg0Var2 = (bg0) obj;
-                WindowManager.LayoutParams layoutParams2 = bg0Var2.f27081c;
-                bg0Var2.H = f9;
-                layoutParams2.y = (int) f9;
-                try {
-                    AndroidUtilities.updateViewLayout(bg0Var2.f27079b, bg0Var2.d, layoutParams2);
-                    return;
-                } catch (IllegalArgumentException unused2) {
-                    bg0Var2.J.c();
-                    return;
-                }
-            default:
-                qo0 qo0Var = (qo0) obj;
-                qo0Var.f32022n = f9;
-                qo0Var.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public mc c(tc tcVar) {
-        return tcVar.k(false);
-    }
-
-    @Override
-    public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        xi0 lottieAnimation;
-        switch (this.f32163a) {
-            case 6:
-                Drawable drawable = imageReceiver.getDrawable();
-                if (drawable instanceof xi0) {
-                    xi0 xi0Var = (xi0) drawable;
-                    xi0Var.N(0);
-                    xi0Var.stop();
-                    xi0Var.Q(0.0f, false);
-                    return;
-                }
-                return;
-            default:
-                if (z10 && !z11 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
-                    lottieAnimation.start();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        int i11 = this.f32163a;
-        org.telegram.messenger.i5.a(this, i10, str, drawable);
-    }
-
-    @Override
-    public String e(int i10) {
-        switch (this.f32163a) {
+    public final void run() {
+        org.telegram.ui.ActionBar.f6 bVar;
+        switch (this.f28362a) {
             case 0:
-                if (i10 == 0) {
-                    return LocaleController.getString(R.string.ShortMessageLifetimeForever);
+                int i10 = this.f28363b;
+                r2 r2Var = new r2(i10, this.f28364c, this.d, this.e, this.f28365f, 1);
+                if (!lh.t7.y(i10, false).e) {
+                    lh.t7 y10 = lh.t7.y(i10, false);
+                    y10.e = false;
+                    y10.q(false, true, r2Var);
+                    y10.e = true;
+                    return;
                 }
-                if (i10 >= 1 && i10 < 16) {
-                    return LocaleController.formatTTLString(i10);
-                }
-                if (i10 == 16) {
-                    return LocaleController.formatTTLString(30);
-                }
-                if (i10 == 17) {
-                    return LocaleController.formatTTLString(60);
-                }
-                if (i10 == 18) {
-                    return LocaleController.formatTTLString(3600);
-                }
-                if (i10 == 19) {
-                    return LocaleController.formatTTLString(86400);
-                }
-                if (i10 == 20) {
-                    return LocaleController.formatTTLString(604800);
-                }
-                return "";
-            case 1:
-            default:
-                switch (i10) {
-                    case 0:
-                        return LocaleController.getString(R.string.January);
-                    case 1:
-                        return LocaleController.getString(R.string.February);
-                    case 2:
-                        return LocaleController.getString(R.string.March);
-                    case 3:
-                        return LocaleController.getString(R.string.April);
-                    case 4:
-                        return LocaleController.getString(R.string.May);
-                    case 5:
-                        return LocaleController.getString(R.string.June);
-                    case 6:
-                        return LocaleController.getString(R.string.July);
-                    case 7:
-                        return LocaleController.getString(R.string.August);
-                    case 8:
-                        return LocaleController.getString(R.string.September);
-                    case 9:
-                        return LocaleController.getString(R.string.October);
-                    case 10:
-                        return LocaleController.getString(R.string.November);
-                    default:
-                        return LocaleController.getString(R.string.December);
-                }
-            case 2:
-                return j7.l1.k(i10, "");
-        }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f32163a) {
-            case 1:
-                Pattern pattern = c5.f27308a;
-                return;
-            case 11:
-                c2Var.dismiss();
-                return;
-            case 26:
-                c2Var.dismiss();
+                r2Var.run();
                 return;
             default:
-                c2Var.dismiss();
+                int i11 = this.f28363b;
+                long j10 = lh.t7.y(i11, false).p().amount;
+                long j11 = this.f28364c;
+                Utilities.Callback callback = this.e;
+                long j12 = this.f28365f;
+                if (j10 < j11) {
+                    Activity activity = AndroidUtilities.getActivity();
+                    org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
+                    if (!PhotoViewer.t1().Q1() && (U == null || !U.hasShownSheet())) {
+                        if (U != null) {
+                            bVar = U.getResourceProvider();
+                        } else {
+                            bVar = null;
+                        }
+                    } else {
+                        bVar = new nh.b();
+                    }
+                    org.telegram.ui.ActionBar.f6 f6Var = bVar;
+                    if (activity != null) {
+                        long j13 = this.d;
+                        new lh.z9(activity, f6Var, j11, 13, DialogObject.getShortName(i11, j13), new org.telegram.ui.i6(j12, 1, callback), j13).show();
+                        return;
+                    }
+                    return;
+                }
+                callback.run(Long.valueOf(j12));
                 return;
-        }
-    }
-
-    @Override
-    public float get(Object obj) {
-        switch (this.f32163a) {
-            case 13:
-                return ((uc0) obj).f33198f;
-            case 15:
-                return ((uc0) obj).f33199n;
-            case 17:
-                return ((uc0) obj).f33201s;
-            case 21:
-                return ((bg0) obj).G;
-            case 23:
-                return ((bg0) obj).H;
-            default:
-                return ((qo0) obj).f32022n;
-        }
-    }
-
-    @Override
-    public void onAnimationReady(ImageReceiver imageReceiver) {
-        int i10 = this.f32163a;
-        org.telegram.messenger.i5.b(this, imageReceiver);
-    }
-
-    @Override
-    public Object provide(Object obj) {
-        switch (this.f32163a) {
-            case 7:
-                Void r22 = (Void) obj;
-                return CheckBoxBase.I;
-            default:
-                Integer num = (Integer) obj;
-                int i10 = fz.K2;
-                return 0;
         }
     }
 }

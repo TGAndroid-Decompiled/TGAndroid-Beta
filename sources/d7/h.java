@@ -1,23 +1,47 @@
 package d7;
 
-import com.google.android.gms.tasks.TaskCompletionSource;
-import h7.o5;
-public final class h extends x {
-    public final TaskCompletionSource f5437b;
-    public final i f5438c;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import j7.f5;
+import java.util.ArrayList;
+import java.util.Arrays;
+public final class h extends c6.a {
+    public static final Parcelable.Creator<h> CREATOR = new b9.e(10);
+    public final int f4235a;
+    public final Bundle f4236b;
 
-    public h(TaskCompletionSource taskCompletionSource, i iVar) {
-        this.f5437b = taskCompletionSource;
-        this.f5438c = iVar;
+    public h(int i10, Bundle bundle) {
+        this.f4235a = i10;
+        this.f4236b = bundle;
+    }
+
+    public final boolean equals(java.lang.Object r7) {
+        throw new UnsupportedOperationException("Method not decompiled: d7.h.equals(java.lang.Object):boolean");
+    }
+
+    public final int hashCode() {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(Integer.valueOf(this.f4235a));
+        Bundle bundle = this.f4236b;
+        if (bundle != null) {
+            for (String str : bundle.keySet()) {
+                arrayList.add(str);
+                String string = bundle.getString(str);
+                if (string != null) {
+                    arrayList.add(string);
+                }
+            }
+        }
+        return Arrays.hashCode(arrayList.toArray(new Object[0]));
     }
 
     @Override
-    public final void g0(v vVar) {
-        o5.a(vVar.f5468a, null, this.f5437b);
-    }
-
-    @Override
-    public final void zze() {
-        this.f5438c.J0();
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q10 = f5.q(parcel, 20293);
+        f5.s(parcel, 1, 4);
+        parcel.writeInt(this.f4235a);
+        f5.b(parcel, 2, this.f4236b);
+        f5.r(parcel, q10);
     }
 }

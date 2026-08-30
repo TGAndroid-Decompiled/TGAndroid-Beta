@@ -1,37 +1,66 @@
 package lh;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
 public final class c2 implements Runnable {
-    public final int f15420a;
-    public final Runnable f15421b;
+    public final int f12204a;
+    public final Object f12205b;
+    public final long f12206c;
+    public final Object d;
+    public final Object e;
 
-    public c2(int i10, Runnable runnable) {
-        this.f15420a = i10;
-        this.f15421b = runnable;
+    public c2(Object obj, long j10, Object obj2, Object obj3, int i10) {
+        this.f12204a = i10;
+        this.f12205b = obj;
+        this.f12206c = j10;
+        this.d = obj2;
+        this.e = obj3;
     }
 
     @Override
     public final void run() {
-        switch (this.f15420a) {
-            case 0:
-                Runnable runnable = this.f15421b;
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-                AndroidUtilities.runOnUIThread(runnable);
-                return;
-            case 1:
-                Runnable runnable2 = this.f15421b;
-                AndroidUtilities.cancelRunOnUIThread(runnable2);
-                AndroidUtilities.runOnUIThread(runnable2);
-                return;
-            case 2:
-                Runnable runnable3 = this.f15421b;
-                AndroidUtilities.cancelRunOnUIThread(runnable3);
-                AndroidUtilities.runOnUIThread(runnable3);
-                return;
-            default:
-                ConnectionsManager.lambda$cancelRequest$9(this.f15421b);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: lh.c2.run():void");
+    }
+
+    public c2(Object obj, Object obj2, long j10, Object obj3, int i10) {
+        this.f12204a = i10;
+        this.f12205b = obj;
+        this.d = obj2;
+        this.f12206c = j10;
+        this.e = obj3;
+    }
+
+    public c2(Object obj, Object obj2, Object obj3, long j10, int i10) {
+        this.f12204a = i10;
+        this.f12205b = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f12206c = j10;
+    }
+
+    public c2(t7 t7Var, Object obj, long j10, Object obj2, int i10) {
+        this.f12204a = i10;
+        this.d = t7Var;
+        this.f12205b = obj;
+        this.f12206c = j10;
+        this.e = obj2;
+    }
+
+    public c2(t7 t7Var, Utilities.Callback callback, TL_stars.StarGift starGift, long j10) {
+        this.f12204a = 5;
+        this.d = t7Var;
+        this.e = callback;
+        this.f12205b = starGift;
+        this.f12206c = j10;
+    }
+
+    public c2(MessagesController messagesController, Utilities.Callback callback, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, long j10) {
+        this.f12204a = 19;
+        this.f12205b = messagesController;
+        this.e = callback;
+        this.d = tL_messages_invitedUsers;
+        this.f12206c = j10;
     }
 }

@@ -1,63 +1,30 @@
 package s5;
 
-import android.os.Build;
-import android.text.TextUtils;
-import android.util.Log;
-import java.util.Locale;
-public final class b {
-    public final String f47580a;
-    public final boolean f47581b;
-    public final String f47582c;
+import android.os.Parcel;
+import android.os.Parcelable;
+import j7.f5;
+import r5.c0;
+public final class b extends c6.a {
+    public static final Parcelable.Creator<b> CREATOR = new c0(3);
+    public final int f44045a;
+    public final int f44046b;
+    public final int f44047c;
 
-    public b(String str, String str2) {
-        boolean z10;
-        String n10;
-        z5.l.g(str, "The log tag cannot be null or empty.");
-        this.f47580a = str;
-        if (str.length() <= 23) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f47581b = z10;
-        if (TextUtils.isEmpty(str2)) {
-            n10 = null;
-        } else {
-            n10 = a4.w.n("[", str2, "] ");
-        }
-        this.f47582c = n10;
+    public b(int i10, int i11, int i12) {
+        this.f44045a = i10;
+        this.f44046b = i11;
+        this.f44047c = i12;
     }
 
-    public final void a(Exception exc, String str, Object... objArr) {
-        if (!Build.TYPE.equals("user") && this.f47581b) {
-            String str2 = this.f47580a;
-            if (Log.isLoggable(str2, 3)) {
-                Log.d(str2, d(str, objArr), exc);
-            }
-        }
-    }
-
-    public final void b(String str, Object... objArr) {
-        if (!Build.TYPE.equals("user") && this.f47581b) {
-            String str2 = this.f47580a;
-            if (Log.isLoggable(str2, 3)) {
-                Log.d(str2, d(str, objArr));
-            }
-        }
-    }
-
-    public final void c(Object... objArr) {
-        Log.e(this.f47580a, d("Bundle is null", objArr));
-    }
-
-    public final String d(String str, Object... objArr) {
-        if (objArr.length != 0) {
-            str = String.format(Locale.ROOT, str, objArr);
-        }
-        String str2 = this.f47582c;
-        if (!TextUtils.isEmpty(str2)) {
-            return String.valueOf(str2).concat(String.valueOf(str));
-        }
-        return str;
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q10 = f5.q(parcel, 20293);
+        f5.s(parcel, 2, 4);
+        parcel.writeInt(this.f44045a);
+        f5.s(parcel, 3, 4);
+        parcel.writeInt(this.f44046b);
+        f5.s(parcel, 4, 4);
+        parcel.writeInt(this.f44047c);
+        f5.r(parcel, q10);
     }
 }

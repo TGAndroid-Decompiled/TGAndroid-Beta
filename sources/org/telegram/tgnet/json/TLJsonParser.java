@@ -20,13 +20,13 @@ public class TLJsonParser {
     private static <T extends Deserializable> T parse(TLJsonParser tLJsonParser, Utilities.CallbackReturn<TLJsonParser, T> callbackReturn) {
         try {
             return callbackReturn.run(tLJsonParser);
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             return null;
         }
     }
 
-    private boolean parseBoolean(Object obj, boolean z10) {
+    private boolean parseBoolean(Object obj, boolean z4) {
         try {
             if (obj instanceof Boolean) {
                 return ((Boolean) obj).booleanValue();
@@ -34,10 +34,10 @@ public class TLJsonParser {
             if (obj instanceof String) {
                 return Boolean.parseBoolean((String) obj);
             }
-            return z10;
-        } catch (Exception e10) {
-            FileLog.e(e10);
-            return z10;
+            return z4;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return z4;
         }
     }
 
@@ -50,8 +50,8 @@ public class TLJsonParser {
                 return Integer.parseInt((String) obj, 10);
             }
             return i10;
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             return i10;
         }
     }
@@ -65,8 +65,8 @@ public class TLJsonParser {
                 return Long.parseLong((String) obj, 10);
             }
             return j10;
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
             return j10;
         }
     }
@@ -78,8 +78,8 @@ public class TLJsonParser {
         return str;
     }
 
-    public boolean readBoolean(String str, boolean z10) {
-        return parseBoolean(this.jsonObject.opt(str), z10);
+    public boolean readBoolean(String str, boolean z4) {
+        return parseBoolean(this.jsonObject.opt(str), z4);
     }
 
     public int readInt32(String str, int i10) {
@@ -113,8 +113,8 @@ public class TLJsonParser {
                     if (parse != null) {
                         arrayList.add(parse);
                     }
-                } catch (JSONException e10) {
-                    FileLog.e(e10);
+                } catch (JSONException e) {
+                    FileLog.e(e);
                 }
             }
         }

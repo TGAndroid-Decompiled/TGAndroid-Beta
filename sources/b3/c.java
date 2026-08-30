@@ -1,5 +1,5 @@
 package b3;
-public enum c implements v9.b {
+public enum c implements x9.b {
     REASON_UNKNOWN(0),
     MESSAGE_TOO_OLD(1),
     CACHE_FULL(2),
@@ -8,14 +8,14 @@ public enum c implements v9.b {
     INVALID_PAYLOD(5),
     SERVER_ERROR(6);
     
-    public final int f1909a;
+    public final int f1298a;
 
     c(int i10) {
-        this.f1909a = i10;
+        this.f1298a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f1909a;
+        return this.f1298a;
     }
 }

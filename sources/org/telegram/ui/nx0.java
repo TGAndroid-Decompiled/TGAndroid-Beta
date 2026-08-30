@@ -1,69 +1,92 @@
 package org.telegram.ui;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Intent;
+import android.net.Uri;
 import org.telegram.messenger.AndroidUtilities;
-public final class nx0 implements f5.d {
-    public final int f40920a;
-    public final ProfileActivity f40921b;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class nx0 implements Runnable {
+    public final int f36738a;
+    public final ProfileActivity f36739b;
+    public final TLRPC.User f36740c;
 
-    public nx0(ProfileActivity profileActivity, int i10) {
-        this.f40920a = i10;
-        this.f40921b = profileActivity;
+    public nx0(ProfileActivity profileActivity, TLRPC.User user, int i10) {
+        this.f36738a = i10;
+        this.f36739b = profileActivity;
+        this.f36740c = user;
     }
 
     @Override
-    public final void accept(Object obj) {
-        View view = (View) obj;
-        switch (this.f40920a) {
+    public final void run() {
+        boolean z4;
+        boolean z10;
+        switch (this.f36738a) {
             case 0:
-                if (view instanceof org.telegram.ui.Cells.w8) {
-                    org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
-                    gh.s sVar = w8Var.f25875a;
-                    ProfileActivity profileActivity = this.f40921b;
-                    sVar.setLoading(profileActivity.f36018e5);
-                    w8Var.f25876b.setLoading(profileActivity.f36018e5);
+                ProfileActivity profileActivity = this.f36739b;
+                TLRPC.User user = this.f36740c;
+                profileActivity.getClass();
+                profileActivity.presentFragment(xn.R9(user.f19331id));
+                return;
+            case 1:
+                ProfileActivity profileActivity2 = this.f36739b;
+                TLRPC.User user2 = this.f36740c;
+                if (profileActivity2.getParentActivity() != null) {
+                    TLRPC.UserFull userFull = profileActivity2.f32158s2;
+                    if (userFull != null && userFull.video_calls_available) {
+                        z4 = true;
+                    } else {
+                        z4 = false;
+                    }
+                    org.telegram.ui.Components.voip.f2.n(user2, false, z4, profileActivity2.getParentActivity(), profileActivity2.f32158s2, profileActivity2.getAccountInstance());
                     return;
                 }
                 return;
-            default:
-                boolean z10 = view instanceof org.telegram.ui.Cells.k4;
-                ProfileActivity profileActivity2 = this.f40921b;
-                if (z10) {
-                    ((org.telegram.ui.Cells.k4) view).setTextColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.L6, profileActivity2.f36129v0));
-                } else if (view instanceof org.telegram.ui.Cells.w8) {
-                    ((org.telegram.ui.Cells.w8) view).e();
-                } else if (view instanceof org.telegram.ui.Cells.m8) {
-                    ((org.telegram.ui.Cells.m8) view).v();
-                } else if (view instanceof org.telegram.ui.Cells.j) {
-                    org.telegram.ui.ActionBar.g6.P1.linkColor = org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.gc, ((org.telegram.ui.Cells.j) view).E);
-                } else if (view instanceof org.telegram.ui.Cells.h5) {
-                    ((org.telegram.ui.Cells.h5) view).getCheckBox().invalidate();
-                } else if (view instanceof sf.a1) {
-                    sf.a1 a1Var = (sf.a1) view;
-                    org.telegram.ui.Components.xp xpVar = a1Var.f47744r;
-                    int dp = AndroidUtilities.dp(8.0f);
-                    int i10 = org.telegram.ui.ActionBar.g6.f23260o6;
-                    org.telegram.ui.ActionBar.c6 c6Var = a1Var.f47738a;
-                    int v02 = org.telegram.ui.ActionBar.g6.v0(i10, c6Var);
-                    a1Var.a(v02);
-                    int l1 = org.telegram.ui.ActionBar.g6.l1(0.1f, v02);
-                    int v03 = org.telegram.ui.ActionBar.g6.v0(i10, c6Var);
-                    a1Var.a(v03);
-                    int l12 = org.telegram.ui.ActionBar.g6.l1(0.22f, v03);
-                    xpVar.setBackground(org.telegram.ui.ActionBar.g6.i0(dp, dp, dp, dp, l1, l12, l12));
-                    int v04 = org.telegram.ui.ActionBar.g6.v0(i10, c6Var);
-                    a1Var.a(v04);
-                    xpVar.setTextColor(v04);
-                } else if (view instanceof org.telegram.ui.Cells.e6) {
-                    ((org.telegram.ui.Cells.e6) view).e();
+            case 2:
+                ProfileActivity profileActivity3 = this.f36739b;
+                TLRPC.User user3 = this.f36740c;
+                if (profileActivity3.getParentActivity() != null) {
+                    TLRPC.UserFull userFull2 = profileActivity3.f32158s2;
+                    if (userFull2 != null && userFull2.video_calls_available) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    org.telegram.ui.Components.voip.f2.n(user3, true, z10, profileActivity3.getParentActivity(), profileActivity3.f32158s2, profileActivity3.getAccountInstance());
+                    return;
                 }
-                vz0 vz0Var = profileActivity2.d;
-                profileActivity2.f35984a.getClass();
-                RecyclerView.R(view);
-                vz0Var.getClass();
-                profileActivity2.d.getClass();
                 return;
+            case 3:
+                ProfileActivity profileActivity4 = this.f36739b;
+                TLRPC.User user4 = this.f36740c;
+                profileActivity4.getClass();
+                try {
+                    Intent intent = new Intent("android.intent.action.DIAL", Uri.parse("tel:+" + user4.phone));
+                    intent.addFlags(268435456);
+                    profileActivity4.getParentActivity().startActivityForResult(intent, 500);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            default:
+                ProfileActivity profileActivity5 = this.f36739b;
+                TLRPC.User user5 = this.f36740c;
+                try {
+                    ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", "+" + user5.phone));
+                    if (AndroidUtilities.shouldShowClipboardToast()) {
+                        org.telegram.ui.Components.qc.a0(profileActivity5).i(LocaleController.getString(R.string.PhoneCopied)).j();
+                        return;
+                    }
+                    return;
+                } catch (Exception e6) {
+                    FileLog.e(e6);
+                    return;
+                }
         }
     }
 }

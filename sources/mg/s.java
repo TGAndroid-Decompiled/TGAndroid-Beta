@@ -1,0 +1,509 @@
+package mg;
+
+import android.os.Build;
+import android.text.Editable;
+import android.text.Layout;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import dg.u2;
+import dg.u3;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import k7.b6;
+import lh.n2;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.ActionBar.d2;
+import org.telegram.ui.ActionBar.e5;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.p2;
+import org.telegram.ui.Cells.s8;
+import org.telegram.ui.Cells.x7;
+import org.telegram.ui.Components.eo0;
+import org.telegram.ui.Components.l5;
+import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.u5;
+import org.telegram.ui.o51;
+public final class s extends p2 implements NotificationCenter.NotificationCenterDelegate {
+    public final LinkedHashMap B;
+    public final ArrayList C;
+    public final LinkedHashMap D;
+    public final ArrayList E;
+    public boolean F;
+    public final int G;
+    public boolean H;
+    public final TLRPC.ChatFull I;
+    public final long J;
+    public int K;
+    public int L;
+    public TLRPC.Chat M;
+    public TL_stories.TL_premium_boostsStatus N;
+    public int O;
+    public int P;
+    public boolean Q;
+    public final h R;
+    public boolean f14135a;
+    public q f14136b;
+    public u2 f14137c;
+    public f d;
+    public s8 e;
+    public LinearLayout f14138f;
+    public u3 h;
+    public p f14139n;
+    public x7 f14140r;
+    public s8 f14141s;
+    public t0 v;
+    public FrameLayout f14142w;
+    public ImageView f14143x;
+    public eo0 f14144y;
+
+    public s(long j10, TLRPC.ChatFull chatFull) {
+        super(null);
+        this.B = new LinkedHashMap();
+        this.C = new ArrayList();
+        this.D = new LinkedHashMap();
+        this.E = new ArrayList();
+        this.G = getMessagesController().boostsChannelLevelMax;
+        this.H = false;
+        this.P = -1;
+        this.R = new h(this, 5);
+        this.J = j10;
+        this.I = chatFull;
+    }
+
+    public static boolean U(s sVar) {
+        return sVar.inPreviewMode;
+    }
+
+    public static boolean V(s sVar) {
+        return sVar.inBubbleMode;
+    }
+
+    public final void W(u5 u5Var) {
+        Editable text = this.f14139n.getText();
+        Layout layout = this.f14139n.getLayout();
+        int lineForOffset = layout.getLineForOffset(text.getSpanStart(u5Var)) + 1;
+        if (lineForOffset < layout.getLineCount()) {
+            u5[] u5VarArr = (u5[]) text.getSpans(layout.getLineStart(lineForOffset), text.length(), u5.class);
+            for (u5 u5Var2 : u5VarArr) {
+                u5Var2.setAnimateChanges();
+            }
+        }
+    }
+
+    public final boolean X(boolean z4) {
+        boolean z10 = true;
+        boolean z11 = !this.B.keySet().equals(this.D.keySet());
+        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.N;
+        if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < this.O) {
+            z11 = false;
+        }
+        if (this.F == this.f14135a) {
+            z10 = z11;
+        }
+        if (z4 && z10) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity(), 0, getResourceProvider());
+            alertDialog$Builder.f19503a.O = LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges);
+            alertDialog$Builder.f19503a.Q = LocaleController.getString("ReactionApplyChangesDialog", R.string.ReactionApplyChangesDialog);
+            alertDialog$Builder.k(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new c2(this) {
+                public final s f14002b;
+
+                {
+                    this.f14002b = this;
+                }
+
+                @Override
+                public final void i(d2 d2Var, int i10) {
+                    switch (r2) {
+                        case 0:
+                            this.f14002b.v.performClick();
+                            return;
+                        default:
+                            this.f14002b.finishFragment();
+                            return;
+                    }
+                }
+            });
+            alertDialog$Builder.h(LocaleController.getString(R.string.Discard), new c2(this) {
+                public final s f14002b;
+
+                {
+                    this.f14002b = this;
+                }
+
+                @Override
+                public final void i(d2 d2Var, int i10) {
+                    switch (r2) {
+                        case 0:
+                            this.f14002b.v.performClick();
+                            return;
+                        default:
+                            this.f14002b.finishFragment();
+                            return;
+                    }
+                }
+            });
+            alertDialog$Builder.o();
+        }
+        return z10;
+    }
+
+    public final void Y(boolean z4) {
+        if (this.N == null) {
+            return;
+        }
+        if (this.P == 0) {
+            this.P = 1;
+        }
+        int size = b0(true).size();
+        this.O = size;
+        if (this.N.level < size) {
+            if (z4) {
+                qc.a0(this).Q(R.raw.chats_infotip, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("ReactionReachLvlForReactionShort", size, Integer.valueOf(size)))).j();
+            }
+            this.v.setLvlRequiredState(this.O);
+            return;
+        }
+        this.v.f(null, true);
+    }
+
+    public final void Z() {
+        if (this.H) {
+            this.H = false;
+            if (Build.MODEL.toLowerCase().startsWith("zte") && Build.VERSION.SDK_INT <= 28) {
+                this.f14138f.setFocusableInTouchMode(true);
+                this.f14138f.requestFocus();
+            } else {
+                this.f14139n.clearFocus();
+            }
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.f14144y.getLayoutParams();
+            marginLayoutParams.bottomMargin = 0;
+            this.f14144y.setLayoutParams(marginLayoutParams);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+            this.f14137c.animate().setListener(null).cancel();
+            this.f14137c.animate().translationY(this.f14137c.getMeasuredHeight()).setDuration(350L).withLayer().setInterpolator(nr.f27346f).setUpdateListener(new j(this, 1)).setListener(new m(this, 0)).start();
+        }
+    }
+
+    public final boolean a0() {
+        int editTextSelectionEnd = this.f14139n.getEditTextSelectionEnd();
+        int editTextSelectionStart = this.f14139n.getEditTextSelectionStart();
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f14139n.getText());
+        if (!this.f14139n.hasSelection()) {
+            return false;
+        }
+        u5[] u5VarArr = (u5[]) spannableStringBuilder.getSpans(editTextSelectionStart, editTextSelectionEnd, u5.class);
+        for (u5 u5Var : u5VarArr) {
+            this.B.remove(Long.valueOf(u5Var.documentId));
+            this.C.remove(Long.valueOf(u5Var.documentId));
+            this.f14136b.A(Long.valueOf(u5Var.documentId));
+        }
+        this.f14139n.dispatchKeyEvent(new KeyEvent(0, 67));
+        Y(false);
+        return true;
+    }
+
+    public final ArrayList b0(boolean z4) {
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
+        ArrayList arrayList3 = this.C;
+        int size = arrayList3.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList3.get(i10);
+            i10++;
+            Long l10 = (Long) obj;
+            if (l10.longValue() != -1) {
+                ArrayList arrayList4 = this.E;
+                int size2 = arrayList4.size();
+                int i11 = 0;
+                while (true) {
+                    if (i11 < size2) {
+                        Object obj2 = arrayList4.get(i11);
+                        i11++;
+                        TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) obj2;
+                        if (l10.longValue() == tL_availableReaction.activate_animation.f19190id) {
+                            TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
+                            tL_reactionEmoji.emoticon = tL_availableReaction.reaction;
+                            arrayList.add(tL_reactionEmoji);
+                            break;
+                        }
+                    } else {
+                        TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji = new TLRPC.TL_reactionCustomEmoji();
+                        tL_reactionCustomEmoji.document_id = l10.longValue();
+                        arrayList.add(tL_reactionCustomEmoji);
+                        arrayList2.add(tL_reactionCustomEmoji);
+                        break;
+                    }
+                }
+            }
+        }
+        if (z4) {
+            return arrayList2;
+        }
+        return arrayList;
+    }
+
+    public final void c0(int i10, boolean z4, boolean z10) {
+        boolean z11;
+        int i11;
+        if (this.P != i10 || this.f14135a != z4) {
+            this.f14135a = z4;
+            if (i10 != 1 && i10 != 0 && !z4) {
+                z11 = false;
+            } else {
+                z11 = true;
+            }
+            this.e.setChecked(z11);
+            if (z11) {
+                i11 = j6.f19942f6;
+            } else {
+                i11 = j6.e6;
+            }
+            int w02 = j6.w0(null, i11, false);
+            if (z10) {
+                if (z11) {
+                    this.e.b(w02, true);
+                } else {
+                    this.e.setBackgroundColorAnimatedReverse(w02);
+                }
+            } else {
+                this.e.setBackgroundColor(w02);
+            }
+            this.P = i10;
+            if (i10 != 1 && i10 != 0 && !z4) {
+                if (z10) {
+                    Z();
+                    this.f14142w.animate().setListener(null).cancel();
+                    this.f14138f.animate().setListener(null).cancel();
+                    ViewPropertyAnimator duration = this.f14142w.animate().alpha(0.0f).setDuration(350L);
+                    nr nrVar = nr.f27346f;
+                    duration.setInterpolator(nrVar).setListener(new m(this, 2)).start();
+                    this.f14138f.animate().alpha(0.0f).setDuration(350L).setInterpolator(nrVar).setListener(new m(this, 3)).start();
+                    return;
+                }
+                this.f14138f.setVisibility(4);
+                this.f14142w.setVisibility(4);
+                return;
+            }
+            this.f14138f.setVisibility(0);
+            this.f14142w.setVisibility(0);
+            if (z10) {
+                this.f14142w.animate().setListener(null).cancel();
+                this.f14138f.animate().setListener(null).cancel();
+                ViewPropertyAnimator duration2 = this.f14138f.animate().alpha(1.0f).setDuration(350L);
+                nr nrVar2 = nr.f27346f;
+                duration2.setInterpolator(nrVar2).setListener(new m(this, 1)).start();
+                this.f14142w.animate().alpha(1.0f).setDuration(350L).setInterpolator(nrVar2).start();
+                LinkedHashMap linkedHashMap = this.B;
+                if (linkedHashMap.isEmpty()) {
+                    this.f14136b.H.clear();
+                    this.f14139n.setText("");
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                    ArrayList arrayList = this.E;
+                    int size = arrayList.size();
+                    int i12 = 0;
+                    int i13 = 0;
+                    while (i13 < size) {
+                        int i14 = i13 + 1;
+                        s0.a((TLRPC.TL_availableReaction) arrayList.get(i13), linkedHashMap, this.C, spannableStringBuilder, this.f14136b, this.f14139n.getFontMetricsInt());
+                        i12++;
+                        if (i12 >= this.G) {
+                            break;
+                        }
+                        i13 = i14;
+                    }
+                    this.f14139n.append(spannableStringBuilder);
+                    this.f14139n.m();
+                    o51 o51Var = this.f14136b.m0;
+                    if (o51Var != null) {
+                        o51Var.l();
+                    }
+                    Y(false);
+                }
+            }
+        }
+    }
+
+    @Override
+    public final boolean canBeginSlide() {
+        if (X(true)) {
+            return false;
+        }
+        return super.canBeginSlide();
+    }
+
+    @Override
+    public final android.view.View createView(android.content.Context r26) {
+        throw new UnsupportedOperationException("Method not decompiled: mg.s.createView(android.content.Context):android.view.View");
+    }
+
+    public final void d0() {
+        s8 s8Var = this.f14141s;
+        boolean z4 = s8Var.e.h;
+        int i10 = this.G;
+        LinkedHashMap linkedHashMap = this.B;
+        ArrayList arrayList = this.C;
+        if (z4) {
+            s8Var.setChecked(false);
+            arrayList.remove((Object) (-1L));
+            u5 u5Var = (u5) linkedHashMap.remove(-1L);
+            if (u5Var != null) {
+                u5Var.setRemoved(new n2(16, this, u5Var));
+            }
+            W(u5Var);
+            this.f14136b.x(-1L, true);
+            Y(false);
+            this.f14139n.setMaxLength(i10);
+            c0(this.P, this.f14135a, true);
+        } else {
+            s8Var.setChecked(true);
+            try {
+                this.f14139n.setMaxLength(i10 + 1);
+                SpannableString spannableString = new SpannableString("b");
+                n nVar = new n(this);
+                nVar.cacheType = l5.g();
+                nVar.setAdded();
+                arrayList.add(0, -1L);
+                linkedHashMap.put(-1L, nVar);
+                spannableString.setSpan(nVar, 0, spannableString.length(), 33);
+                this.f14139n.getText().insert(0, spannableString);
+                this.f14136b.x(-1L, true);
+                Y(true);
+                W(nVar);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+            c0(this.P, true, true);
+        }
+        this.f14139n.updateAnimatedEmoji(true);
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.dialogDeleted && ((Long) objArr[0]).longValue() == (-this.J)) {
+            e5 e5Var = this.parentLayout;
+            if (e5Var != null && e5Var.getLastFragment() == this) {
+                finishFragment();
+            } else {
+                removeSelfFromStack();
+            }
+        }
+    }
+
+    @Override
+    public final boolean onBackPressed(boolean z4) {
+        if (this.H) {
+            if (z4) {
+                Z();
+                return false;
+            }
+        } else if (!X(z4)) {
+            return super.onBackPressed(z4);
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        MessagesController messagesController = getMessagesController();
+        long j10 = this.J;
+        TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j10));
+        this.M = chat;
+        if (chat == null) {
+            TLRPC.Chat chatSync = MessagesStorage.getInstance(this.currentAccount).getChatSync(j10);
+            this.M = chatSync;
+            if (chatSync != null) {
+                getMessagesController().putChat(this.M, true);
+            }
+            return false;
+        }
+        if (this.I != null) {
+            getMessagesController().getBoostsController().getBoostsStats(-j10, new i(this, 0));
+            getNotificationCenter().addObserver(this, NotificationCenter.reactionsDidLoad);
+            this.E.addAll(getMediaDataController().getEnabledReactionsList());
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+            getNotificationCenter().addObserver(this, NotificationCenter.dialogDeleted);
+            return super.onFragmentCreate();
+        }
+        return false;
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        AndroidUtilities.cancelRunOnUIThread(this.R);
+        if (this.P == 2 && this.L != this.K) {
+            getMessagesController().setCustomChatReactions(this.J, this.P, b0(false), this.L, null, null, null);
+        }
+        getNotificationCenter().removeObserver(this, NotificationCenter.dialogDeleted);
+    }
+
+    @Override
+    public final void onPause() {
+        this.Q = true;
+        this.f14139n.setFocusable(false);
+        super.onPause();
+    }
+
+    @Override
+    public final void onResume() {
+        super.onResume();
+        if (this.Q) {
+            this.Q = false;
+            this.f14139n.setFocusable(true);
+            this.f14139n.setFocusableInTouchMode(true);
+            if (this.H) {
+                this.f14139n.n(false);
+                AndroidUtilities.runOnUIThread(new h(this, 0), 250L);
+            }
+        }
+    }
+
+    @Override
+    public final void onTransitionAnimationEnd(boolean z4, boolean z10) {
+        super.onTransitionAnimationEnd(z4, z10);
+        if (z4 && this.P != 2) {
+            this.f14139n.setFocusableInTouchMode(true);
+        }
+        if (z4 && !z10) {
+            if (this.f14136b == null) {
+                q qVar = new q(this, this, getParentActivity(), getResourceProvider(), j6.v0(j6.G6, getResourceProvider()));
+                this.f14136b = qVar;
+                qVar.setAnimationsEnabled(false);
+                this.f14136b.setClipChildren(false);
+                this.f14136b.setBackgroundColor(j6.w0(null, j6.f19906d6, false));
+                this.f14137c.addView(this.f14136b, b6.e(-1, -2, 80));
+                f fVar = new f(getParentActivity(), getResourceProvider());
+                this.d = fVar;
+                fVar.setOnBackspace(new k(this, 0));
+                this.f14137c.addView(this.d, b6.d(-1, -2.0f, 85, 0.0f, 0.0f, 8.0f, 8.0f));
+                ArrayList arrayList = this.C;
+                int size = arrayList.size();
+                int i10 = 0;
+                while (i10 < size) {
+                    Object obj = arrayList.get(i10);
+                    i10++;
+                    this.f14136b.x((Long) obj, false);
+                }
+            }
+            AndroidUtilities.runOnUIThread(new cg.n0(12), 200L);
+        }
+    }
+}

@@ -1,34 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-public final class jp extends AnimatorListenerAdapter {
-    public final int f29779a;
-    public final kp f29780b;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+public final class jp {
+    public final org.telegram.ui.ActionBar.e4 f26015a;
+    public Drawable f26016b;
+    public int f26017c;
+    public boolean d;
+    public Bitmap e;
 
-    public jp(kp kpVar, int i10) {
-        this.f29779a = i10;
-        this.f29780b = kpVar;
+    public jp(org.telegram.ui.ActionBar.e4 e4Var) {
+        this.f26015a = e4Var;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f29779a) {
-            case 0:
-                kp kpVar = this.f29780b;
-                kpVar.d = null;
-                ig igVar = new ig(this, 29);
-                kpVar.f30124e = igVar;
-                AndroidUtilities.runOnUIThread(igVar, 3000L);
-                return;
-            default:
-                kp kpVar2 = this.f29780b;
-                kpVar2.setVisibility(4);
-                kpVar2.getClass();
-                kpVar2.getClass();
-                kpVar2.d = null;
-                return;
+    public final String a() {
+        org.telegram.ui.ActionBar.e4 e4Var = this.f26015a;
+        if (e4Var != null && !e4Var.f19663a) {
+            return e4Var.e;
         }
+        return null;
     }
 }

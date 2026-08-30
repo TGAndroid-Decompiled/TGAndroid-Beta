@@ -1,7 +1,11 @@
 package pa;
-public final class q extends r {
+public enum q extends t {
+    public q() {
+        super("LAZILY_PARSED_NUMBER", 1);
+    }
+
     @Override
-    public final Object a(Class cls) {
-        throw new UnsupportedOperationException("Cannot allocate " + cls + ". Usage of JDK sun.misc.Unsafe is enabled, but it could not be used. Make sure your runtime is configured correctly.");
+    public final Number a(xa.a aVar) {
+        return new ra.h(aVar.v());
     }
 }

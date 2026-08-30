@@ -1,62 +1,62 @@
 package ph;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
+import android.content.Context;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.d6;
-import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.jr;
-import org.telegram.ui.Components.n6;
-import org.telegram.ui.Components.np;
-import org.telegram.ui.Components.uc;
-public final class s {
-    public final RectF f46032a = new RectF();
-    public final d6 f46033b;
-    public final d6 f46034c;
-    public final d6 d;
-    public final d6 f46035e;
-    public final f5 f46036f;
-    public final f5 f46037g;
-    public final d6 h;
-    public final d6 f46038i;
-    public final uc f46039j;
-    public final Paint f46040k;
-    public final n6 f46041l;
-    public int f46042m;
-    public final org.telegram.ui.Cells.z f46043n;
-    public final np f46044o;
-    public final org.telegram.ui.Components.voip.h f46045p;
+import org.telegram.ui.Components.jc0;
+public final class s extends f2.o0 {
+    public final Context f42262c;
+    public final d2 d;
+    public final u e;
 
-    public s(u uVar) {
-        jr jrVar = jr.h;
-        this.f46033b = new d6(uVar, 0L, 320L, jrVar);
-        this.f46034c = new d6(uVar, 0L, 320L, jrVar);
-        this.d = new d6(uVar, 0L, 320L, jrVar);
-        this.f46035e = new d6(uVar, 0L, 320L, jrVar);
-        this.f46036f = new f5(uVar, 320L, jrVar, 0);
-        this.f46037g = new f5(uVar, 320L, jrVar, 0);
-        this.h = new d6(uVar, 0L, 320L, jrVar);
-        this.f46038i = new d6(uVar, 0L, 320L, jrVar);
-        this.f46039j = new uc(uVar);
-        this.f46040k = new Paint(1);
-        n6 n6Var = new n6(true, false, true, false);
-        this.f46041l = n6Var;
-        org.telegram.ui.Cells.z Y = g6.Y(0, 9, 9);
-        this.f46043n = Y;
-        np npVar = new np(-1);
-        this.f46044o = npVar;
-        org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
-        this.f46045p = hVar;
-        n6Var.f30862b = 17;
-        n6Var.t(AndroidUtilities.dp(14.0f));
-        n6Var.u(AndroidUtilities.bold());
-        n6Var.G = AndroidUtilities.displaySize.x * 4;
-        n6Var.n(true);
-        n6Var.setCallback(uVar);
-        npVar.setCallback(uVar);
-        Y.setCallback(uVar);
-        hVar.f33725l = true;
-        hVar.f33726m = 2.0f;
+    public s(u uVar, Context context, d2 d2Var) {
+        this.e = uVar;
+        this.f42262c = context;
+        this.d = d2Var;
+    }
+
+    @Override
+    public final int h() {
+        return r.a().size();
+    }
+
+    @Override
+    public final void v(f2.l1 l1Var, int i10) {
+        boolean z4;
+        t tVar = (t) l1Var.f5785a;
+        r rVar = (r) r.a().get(i10);
+        if (i10 == tVar.f42317s) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        tVar.setDrawable(new jc0(rVar, false));
+        tVar.b(rVar.equals(this.e.f42376b), z4);
+        tVar.f42317s = i10;
+    }
+
+    @Override
+    public final f2.l1 x(ViewGroup viewGroup, int i10) {
+        pa paVar = new pa(this.f42262c);
+        paVar.setLayoutParams(new f2.w0(AndroidUtilities.dp(46.0f), AndroidUtilities.dp(56.0f)));
+        paVar.setBackground(org.telegram.ui.ActionBar.j6.f0(553648127, 1, -1));
+        return new f2.l1(paVar);
+    }
+
+    @Override
+    public final void y(f2.l1 l1Var) {
+        t tVar = (t) l1Var.f5785a;
+        this.d.a(tVar);
+        int i10 = tVar.f42317s;
+        if (i10 >= 0 && i10 < r.a().size()) {
+            r rVar = (r) r.a().get(tVar.f42317s);
+            tVar.setDrawable(new jc0(rVar, false));
+            tVar.b(rVar.equals(this.e.f42376b), false);
+        }
+    }
+
+    @Override
+    public final void z(f2.l1 l1Var) {
+        this.d.d.remove((t) l1Var.f5785a);
     }
 }

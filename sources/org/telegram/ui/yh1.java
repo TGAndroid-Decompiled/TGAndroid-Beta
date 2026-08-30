@@ -1,30 +1,46 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class yh1 extends View {
-    public int f44893a;
-    public final WallpapersListActivity f44894b;
+import android.content.Intent;
+import android.os.Build;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.voip.VoIPService;
+public final class yh1 implements org.telegram.ui.Components.voip.d {
+    public final ai1 f40528a;
 
-    public yh1(WallpapersListActivity wallpapersListActivity, Context context) {
-        super(context);
-        this.f44894b = wallpapersListActivity;
+    public yh1(ai1 ai1Var) {
+        this.f40528a = ai1Var;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        WallpapersListActivity wallpapersListActivity = this.f44894b;
-        wallpapersListActivity.f36380w.setColor(this.f44893a);
-        canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f36380w);
-        if (this.f44893a == org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23062d6, false)) {
-            canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f36381x);
+    public final void a() {
+        ai1 ai1Var = this.f40528a;
+        if (ai1Var.m0 == 17) {
+            Intent intent = new Intent(ai1Var.f32601b, VoIPService.class);
+            intent.putExtra("user_id", ai1Var.d.f19331id);
+            intent.putExtra("is_outgoing", true);
+            intent.putExtra("start_incall_activity", false);
+            intent.putExtra("video_call", ai1Var.R0);
+            intent.putExtra("can_video_call", ai1Var.R0);
+            intent.putExtra("account", ai1Var.f32598a);
+            try {
+                ai1Var.f32601b.startService(intent);
+            } catch (Throwable th2) {
+                FileLog.e(th2);
+            }
+        } else if (Build.VERSION.SDK_INT >= 23 && ai1Var.f32601b.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
+            ai1Var.f32601b.requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 101);
+        } else if (VoIPService.getSharedState() != null) {
+            ai1Var.r(new vy0(this, 26));
         }
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(62.0f));
+    public final void b() {
+        ai1 ai1Var = this.f40528a;
+        if (ai1Var.m0 == 17) {
+            ai1Var.f32630r0.b();
+        } else if (VoIPService.getSharedState() != null) {
+            VoIPService.getSharedState().declineIncomingCall();
+        } else {
+            ai1Var.f32630r0.b();
+        }
     }
 }

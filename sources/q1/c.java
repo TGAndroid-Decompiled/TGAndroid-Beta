@@ -7,20 +7,20 @@ import android.widget.TextView;
 import androidx.emoji2.text.l;
 import java.lang.ref.WeakReference;
 public final class c extends androidx.emoji2.text.i {
-    public final WeakReference f46201a;
-    public final WeakReference f46202b;
+    public final WeakReference f42683a;
+    public final WeakReference f42684b;
 
     public c(TextView textView, d dVar) {
-        this.f46201a = new WeakReference(textView);
-        this.f46202b = new WeakReference(dVar);
+        this.f42683a = new WeakReference(textView);
+        this.f42684b = new WeakReference(dVar);
     }
 
     @Override
     public final void a() {
         InputFilter[] filters;
         int length;
-        TextView textView = (TextView) this.f46201a.get();
-        InputFilter inputFilter = (InputFilter) this.f46202b.get();
+        TextView textView = (TextView) this.f42683a.get();
+        InputFilter inputFilter = (InputFilter) this.f42684b.get();
         if (inputFilter != null && textView != null && (filters = textView.getFilters()) != null) {
             for (InputFilter inputFilter2 : filters) {
                 if (inputFilter2 == inputFilter) {
@@ -33,13 +33,13 @@ public final class c extends androidx.emoji2.text.i {
                             a2.getClass();
                             length = text.length();
                         }
-                        CharSequence e10 = a2.e(0, length, text);
-                        if (text != e10) {
-                            int selectionStart = Selection.getSelectionStart(e10);
-                            int selectionEnd = Selection.getSelectionEnd(e10);
-                            textView.setText(e10);
-                            if (e10 instanceof Spannable) {
-                                Spannable spannable = (Spannable) e10;
+                        CharSequence e = a2.e(0, length, text);
+                        if (text != e) {
+                            int selectionStart = Selection.getSelectionStart(e);
+                            int selectionEnd = Selection.getSelectionEnd(e);
+                            textView.setText(e);
+                            if (e instanceof Spannable) {
+                                Spannable spannable = (Spannable) e;
                                 if (selectionStart >= 0 && selectionEnd >= 0) {
                                     Selection.setSelection(spannable, selectionStart, selectionEnd);
                                     return;

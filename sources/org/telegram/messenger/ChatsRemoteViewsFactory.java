@@ -22,17 +22,17 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
     public ChatsRemoteViewsFactory(Context context, Intent intent) {
         this.mContext = context;
-        org.telegram.ui.ActionBar.g6.R(context);
-        boolean z10 = false;
+        org.telegram.ui.ActionBar.j6.R(context);
+        boolean z4 = false;
         this.appWidgetId = intent.getIntExtra("appWidgetId", 0);
         SharedPreferences sharedPreferences = context.getSharedPreferences("shortcut_widget", 0);
         int i10 = sharedPreferences.getInt("account" + this.appWidgetId, -1);
         if (i10 >= 0) {
             this.accountInstance = AccountInstance.getInstance(i10);
         }
-        StringBuilder sb2 = new StringBuilder("deleted");
-        sb2.append(this.appWidgetId);
-        this.deleted = (sharedPreferences.getBoolean(sb2.toString(), false) || this.accountInstance == null) ? true : true;
+        StringBuilder sb = new StringBuilder("deleted");
+        sb.append(this.appWidgetId);
+        this.deleted = (sharedPreferences.getBoolean(sb.toString(), false) || this.accountInstance == null) ? true : true;
     }
 
     @Override
@@ -86,8 +86,8 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
             this.accountInstance.getMessagesController().putUsers(arrayList, true);
             this.accountInstance.getMessagesController().putChats(arrayList2, true);
             this.messageObjects.b();
-            int m10 = hVar.m();
-            for (int i10 = 0; i10 < m10; i10++) {
+            int m9 = hVar.m();
+            for (int i10 = 0; i10 < m9; i10++) {
                 this.messageObjects.k(new MessageObject(this.accountInstance.getCurrentAccount(), (TLRPC.Message) hVar.n(i10), (a0.h) null, (a0.h) null, false, true), hVar.j(i10));
             }
         }

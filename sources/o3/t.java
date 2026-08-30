@@ -1,8 +1,10 @@
 package o3;
-public interface t {
-    boolean c();
+public final class t {
+    public final byte[] f16275a;
+    public final String f16276b;
 
-    s g(long j10);
-
-    long h();
+    public t(String str, byte[] bArr) {
+        this.f16275a = bArr;
+        this.f16276b = str;
+    }
 }

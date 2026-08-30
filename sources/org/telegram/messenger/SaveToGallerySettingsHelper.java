@@ -18,26 +18,26 @@ public class SaveToGallerySettingsHelper {
 
         @Override
         public CharSequence createDescription(int i10) {
-            StringBuilder sb2 = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             if (enabled()) {
                 if (this.savePhoto) {
-                    sb2.append(LocaleController.getString(R.string.SaveToGalleryPhotos));
+                    sb.append(LocaleController.getString(R.string.SaveToGalleryPhotos));
                 }
                 if (this.saveVideo) {
-                    if (sb2.length() != 0) {
-                        sb2.append(", ");
+                    if (sb.length() != 0) {
+                        sb.append(", ");
                     }
                     long j10 = this.limitVideo;
                     if (j10 > 0 && j10 < 4194304000L) {
-                        sb2.append(LocaleController.formatString("SaveToGalleryVideosUpTo", R.string.SaveToGalleryVideosUpTo, AndroidUtilities.formatFileSize(j10, true, false)));
-                        return sb2;
+                        sb.append(LocaleController.formatString("SaveToGalleryVideosUpTo", R.string.SaveToGalleryVideosUpTo, AndroidUtilities.formatFileSize(j10, true, false)));
+                        return sb;
                     }
-                    sb2.append(LocaleController.formatString("SaveToGalleryVideos", R.string.SaveToGalleryVideos, new Object[0]));
+                    sb.append(LocaleController.formatString("SaveToGalleryVideos", R.string.SaveToGalleryVideos, new Object[0]));
                 }
-                return sb2;
+                return sb;
             }
-            sb2.append(LocaleController.getString(R.string.SaveToGalleryOff));
-            return sb2;
+            sb.append(LocaleController.getString(R.string.SaveToGalleryOff));
+            return sb;
         }
     }
 
@@ -70,35 +70,35 @@ public class SaveToGallerySettingsHelper {
         private int type;
 
         public boolean needSave(FilePathDatabase.FileMeta fileMeta, MessageObject messageObject, int i10) {
-            boolean z10;
+            boolean z4;
             long j10;
             DialogException dialogException = UserConfig.getInstance(i10).getSaveGalleryExceptions(this.type).get(fileMeta.dialogId);
             if (messageObject != null && (messageObject.isOutOwner() || messageObject.isSecretMedia())) {
                 return false;
             }
             if ((messageObject != null && messageObject.isVideo()) || fileMeta.messageType == 3) {
-                z10 = true;
+                z4 = true;
             } else {
-                z10 = false;
+                z4 = false;
             }
             if (messageObject != null) {
                 j10 = messageObject.getSize();
             } else {
                 j10 = fileMeta.messageSize;
             }
-            boolean z11 = this.saveVideo;
-            boolean z12 = this.savePhoto;
+            boolean z10 = this.saveVideo;
+            boolean z11 = this.savePhoto;
             long j11 = this.limitVideo;
             if (dialogException != null) {
-                z11 = dialogException.saveVideo;
-                z12 = dialogException.savePhoto;
+                z10 = dialogException.saveVideo;
+                z11 = dialogException.savePhoto;
                 j11 = dialogException.limitVideo;
             }
-            if (z10) {
-                if (z11 && (j11 == -1 || j10 < j11)) {
+            if (z4) {
+                if (z10 && (j11 == -1 || j10 < j11)) {
                     return true;
                 }
-            } else if (z12) {
+            } else if (z11) {
                 return true;
             }
             return false;
@@ -113,39 +113,39 @@ public class SaveToGallerySettingsHelper {
         }
 
         public void save(String str, SharedPreferences sharedPreferences) {
-            sharedPreferences.edit().putBoolean(u3.c.k(str, "_save_gallery_photo"), this.savePhoto).putBoolean(u3.c.k(str, "_save_gallery_video"), this.saveVideo).putLong(u3.c.k(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
+            sharedPreferences.edit().putBoolean(vh.v2.k(str, "_save_gallery_photo"), this.savePhoto).putBoolean(vh.v2.k(str, "_save_gallery_video"), this.saveVideo).putLong(vh.v2.k(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
         }
 
         @Override
         public CharSequence createDescription(int i10) {
-            StringBuilder sb2 = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             if (enabled()) {
                 if (this.savePhoto) {
-                    sb2.append(LocaleController.getString(R.string.SaveToGalleryPhotos));
+                    sb.append(LocaleController.getString(R.string.SaveToGalleryPhotos));
                 }
                 if (this.saveVideo) {
-                    if (sb2.length() != 0) {
-                        sb2.append(", ");
+                    if (sb.length() != 0) {
+                        sb.append(", ");
                     }
-                    sb2.append(LocaleController.getString(R.string.SaveToGalleryVideos));
+                    sb.append(LocaleController.getString(R.string.SaveToGalleryVideos));
                     long j10 = this.limitVideo;
                     if (j10 > 0 && j10 < 4194304000L) {
-                        sb2.append(" (");
-                        sb2.append(AndroidUtilities.formatFileSize(this.limitVideo, true, false));
-                        sb2.append(")");
+                        sb.append(" (");
+                        sb.append(AndroidUtilities.formatFileSize(this.limitVideo, true, false));
+                        sb.append(")");
                     }
                 }
             } else {
-                sb2.append(LocaleController.getString(R.string.SaveToGalleryOff));
+                sb.append(LocaleController.getString(R.string.SaveToGalleryOff));
             }
             LongSparseArray<DialogException> saveGalleryExceptions = UserConfig.getInstance(i10).getSaveGalleryExceptions(this.type);
             if (saveGalleryExceptions.size() != 0) {
-                if (sb2.length() != 0) {
-                    sb2.append(", ");
+                if (sb.length() != 0) {
+                    sb.append(", ");
                 }
-                sb2.append(LocaleController.formatPluralString("Exception", saveGalleryExceptions.size(), Integer.valueOf(saveGalleryExceptions.size())));
+                sb.append(LocaleController.formatPluralString("Exception", saveGalleryExceptions.size(), Integer.valueOf(saveGalleryExceptions.size())));
             }
-            return sb2;
+            return sb;
         }
 
         @Override
@@ -170,9 +170,9 @@ public class SaveToGallerySettingsHelper {
 
     public static void load(SharedPreferences sharedPreferences) {
         int i10;
+        boolean z4;
         boolean z10;
-        boolean z11;
-        boolean z12 = false;
+        boolean z11 = false;
         if (sharedPreferences.getBoolean("save_gallery", false) && BuildVars.NO_SCOPED_STORAGE) {
             i10 = 7;
         } else {
@@ -183,33 +183,33 @@ public class SaveToGallerySettingsHelper {
             SharedSettings sharedSettings = new SharedSettings();
             user = sharedSettings;
             if ((i10 & 1) != 0) {
-                z10 = true;
+                z4 = true;
             } else {
-                z10 = false;
+                z4 = false;
             }
-            sharedSettings.saveVideo = z10;
-            sharedSettings.savePhoto = z10;
+            sharedSettings.saveVideo = z4;
+            sharedSettings.savePhoto = z4;
             sharedSettings.limitVideo = 104857600L;
             sharedSettings.save("user", sharedPreferences);
             SharedSettings sharedSettings2 = new SharedSettings();
             groups = sharedSettings2;
             SharedSettings sharedSettings3 = user;
             if ((i10 & 2) != 0) {
-                z11 = true;
+                z10 = true;
             } else {
-                z11 = false;
+                z10 = false;
             }
-            sharedSettings3.saveVideo = z11;
-            sharedSettings2.savePhoto = z11;
+            sharedSettings3.saveVideo = z10;
+            sharedSettings2.savePhoto = z10;
             sharedSettings2.limitVideo = 104857600L;
             sharedSettings2.save("groups", sharedPreferences);
             SharedSettings sharedSettings4 = new SharedSettings();
             channels = sharedSettings4;
             if ((i10 & 4) != 0) {
-                z12 = true;
+                z11 = true;
             }
-            sharedSettings4.saveVideo = z12;
-            sharedSettings4.savePhoto = z12;
+            sharedSettings4.saveVideo = z11;
+            sharedSettings4.savePhoto = z11;
             sharedSettings4.limitVideo = 104857600L;
             sharedSettings4.save("channels", sharedPreferences);
         } else {
@@ -259,7 +259,7 @@ public class SaveToGallerySettingsHelper {
         edit.putInt("count", longSparseArray.size());
         for (int i10 = 0; i10 < longSparseArray.size(); i10++) {
             DialogException valueAt = longSparseArray.valueAt(i10);
-            edit.putLong(u3.c.d(i10, "_dialog_id"), valueAt.dialogId);
+            edit.putLong(android.support.v4.media.a.l(i10, "_dialog_id"), valueAt.dialogId);
             edit.putBoolean(i10 + "_photo", valueAt.savePhoto);
             edit.putBoolean(i10 + "_video", valueAt.saveVideo);
             edit.putLong(i10 + "_limitVideo", valueAt.limitVideo);

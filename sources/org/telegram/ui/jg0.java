@@ -1,73 +1,62 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class jg0 implements Runnable {
-    public final int f39544a;
-    public final ng0 f39545b;
+import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
+public final class jg0 extends AnimatedPhoneNumberEditText {
+    public final mg0 D;
 
-    public jg0(ng0 ng0Var, int i10) {
-        this.f39544a = i10;
-        this.f39545b = ng0Var;
+    public jg0(mg0 mg0Var, Context context) {
+        super(context);
+        this.D = mg0Var;
     }
 
     @Override
-    public final void run() {
-        zg.b[] bVarArr;
-        switch (this.f39544a) {
-            case 0:
-                ng0.b0(this.f39545b);
-                return;
-            case 1:
-                ng0 ng0Var = this.f39545b;
-                ng0Var.getClass();
-                h9.m0(ng0Var);
-                return;
-            case 2:
-                ng0.c0(this.f39545b);
-                return;
-            case 3:
-                ng0.a0(this.f39545b);
-                return;
-            case 4:
-                AndroidUtilities.removeFromParent(this.f39545b.M);
-                return;
-            case 5:
-                ng0 ng0Var2 = this.f39545b;
-                ng0Var2.getClass();
-                new kj0(ng0Var2.getParentActivity(), ng0Var2).show();
-                return;
-            case 6:
-                ng0 ng0Var3 = this.f39545b;
-                ng0Var3.getClass();
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("needFinishFragment", false);
-                ng0Var3.presentFragment(new h9(bundle));
-                return;
-            default:
-                ng0 ng0Var4 = this.f39545b;
-                if (ng0Var4.getParentActivity() != null && (bVarArr = ng0Var4.G) != null) {
-                    zg.b bVar = bVarArr[4];
-                    float width = ((bVar.getWidth() / 2.0f) + (ng0Var4.f43593b.getWidth() - ((bVar.getX() + ng0Var4.B.getX()) + bVar.getWidth()))) / AndroidUtilities.density;
-                    nh.t3 t3Var = new nh.t3(ng0Var4.getParentActivity(), 3);
-                    ng0Var4.M = t3Var;
-                    t3Var.setTranslationY(AndroidUtilities.dp(4.0f) + (-ng0Var4.H));
-                    ng0Var4.M.setPadding(AndroidUtilities.dp(7.33f), 0, AndroidUtilities.dp(7.33f), 0);
-                    ng0Var4.M.q(false);
-                    ng0Var4.M.i();
-                    ng0Var4.M.t(LocaleController.getString(R.string.SwitchAccountHint));
-                    ng0Var4.M.m(1.0f, (-width) + 7.33f);
-                    ng0Var4.f43593b.addView(ng0Var4.M, i7.f6.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, 72.0f));
-                    nh.t3 t3Var2 = ng0Var4.M;
-                    t3Var2.f18597h0 = new jg0(ng0Var4, 4);
-                    t3Var2.d = 8000L;
-                    t3Var2.v();
-                    org.telegram.ui.Components.h40.f29056r.b();
-                    return;
-                }
-                return;
+    public final void onFocusChanged(boolean z4, int i10, Rect rect) {
+        float f10;
+        super.onFocusChanged(z4, i10, rect);
+        mg0 mg0Var = this.D;
+        ng0 ng0Var = mg0Var.S;
+        org.telegram.ui.Components.ad0 ad0Var = mg0Var.f36296f;
+        if (!z4 && !mg0Var.f36293a.isFocused()) {
+            f10 = 0.0f;
+        } else {
+            f10 = 1.0f;
         }
+        ad0Var.b(f10, f10, true);
+        if (z4) {
+            ng0Var.f36626c.setEditText(this);
+            ng0Var.f36626c.setDispatchBackWhenEmpty(true);
+            if (mg0Var.f36301x == 2) {
+                mg0Var.setCountryButtonText(LocaleController.getString(R.string.WrongCountry));
+            }
+        } else if (mg0Var.f36301x == 2) {
+            mg0Var.setCountryButtonText(null);
+        }
+    }
+
+    @Override
+    public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
+        mg0 mg0Var = this.D;
+        qj0 qj0Var = mg0Var.f36293a;
+        if (i10 == 67 && mg0Var.f36294b.length() == 0) {
+            qj0Var.requestFocus();
+            qj0Var.setSelection(qj0Var.length());
+            qj0Var.dispatchKeyEvent(keyEvent);
+        }
+        return super.onKeyDown(i10, keyEvent);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && !ng0.T0(this.D.S, this)) {
+            clearFocus();
+            requestFocus();
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

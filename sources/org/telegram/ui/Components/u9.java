@@ -1,124 +1,204 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class u9 extends Drawable implements Drawable.Callback {
-    public static int[] f33171s;
-    public final Context f33172a;
-    public final n6 f33173b;
-    public Drawable f33174c;
-    public Drawable d;
-    public int f33175e;
-    public int f33176f;
-    public int h;
-    public int f33177n;
-    public int f33178r;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import java.util.Random;
+import org.telegram.messenger.LiteMode;
+public class u9 {
+    public float f29131a;
+    public float f29132b;
+    public final Path f29133c;
+    public final Paint d;
+    public final float[] e;
+    public final float[] f29134f;
+    public final float[] f29135g;
+    public final float[] h;
+    public final float[] f29136i;
+    public final float[] f29137j;
+    public final float[] f29138k;
+    public final float[] f29139l;
+    public final Random f29140m;
+    public final float f29141n;
+    public final float f29142o;
+    public final float f29143p;
+    public final Matrix f29144q;
+    public final int f29145r;
+    public float f29146s;
+    public float f29147t;
+    public float f29148u;
 
-    public u9(Context context) {
-        this.f33172a = context;
-        n6 n6Var = new n6(false, false, false, false);
-        this.f33173b = n6Var;
-        n6Var.u(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
-        n6Var.k(0.2f, 160L, jr.h);
-        n6Var.t(AndroidUtilities.dp(10.0f));
-        n6Var.f30862b = 17;
-        n6Var.setCallback(this);
-        n6Var.N = true;
-        if (f33171s != null) {
+    public u9(int i10) {
+        this(i10, 512);
+    }
+
+    public final void a(float f10, float f11, Canvas canvas, Paint paint) {
+        int i10;
+        if (!LiteMode.isEnabled(this.f29145r)) {
             return;
         }
-        f33171s = new int[]{R.drawable.profile_level1_inner, R.drawable.profile_level1_outer, R.drawable.profile_level2_inner, R.drawable.profile_level2_outer, R.drawable.profile_level3_inner, R.drawable.profile_level3_outer, R.drawable.profile_level4_inner, R.drawable.profile_level4_outer, R.drawable.profile_level5_inner, R.drawable.profile_level5_outer, R.drawable.profile_level6_inner, R.drawable.profile_level6_outer, R.drawable.profile_level7_inner, R.drawable.profile_level7_outer, R.drawable.profile_level8_inner, R.drawable.profile_level8_outer, R.drawable.profile_level9_inner, R.drawable.profile_level9_outer, R.drawable.profile_level10_inner, R.drawable.profile_level10_outer, R.drawable.profile_level20_inner, R.drawable.profile_level20_outer, R.drawable.profile_level30_inner, R.drawable.profile_level30_outer, R.drawable.profile_level40_inner, R.drawable.profile_level40_outer, R.drawable.profile_level50_inner, R.drawable.profile_level50_outer, R.drawable.profile_level60_inner, R.drawable.profile_level60_outer, R.drawable.profile_level70_inner, R.drawable.profile_level70_outer, R.drawable.profile_level80_inner, R.drawable.profile_level80_outer, R.drawable.profile_level90_inner, R.drawable.profile_level90_outer, R.drawable.profile_level_minus_inner, R.drawable.profile_level_minus_outer};
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Drawable drawable = this.d;
-        if (drawable != null && this.f33174c != null) {
-            drawable.draw(canvas);
-            this.f33174c.draw(canvas);
-            canvas.save();
-            canvas.translate(getBounds().exactCenterX(), getBounds().exactCenterY());
-            this.f33173b.draw(canvas);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        invalidateSelf();
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        Drawable drawable = this.f33174c;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-        }
-        Drawable drawable2 = this.d;
-        if (drawable2 != null) {
-            drawable2.setBounds(getBounds());
-        }
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
-        scheduleSelf(runnable, j10);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        int k9 = i0.a.k(this.f33175e, i10);
-        if (this.f33175e != k9) {
-            this.f33175e = k9;
-            Drawable drawable = this.f33174c;
-            if (drawable != null) {
-                drawable.setColorFilter(k9, PorterDuff.Mode.MULTIPLY);
-                invalidateSelf();
+        Path path = this.f29133c;
+        path.reset();
+        int i11 = 0;
+        while (true) {
+            float f12 = this.f29141n;
+            if (i11 < f12) {
+                float[] fArr = this.f29136i;
+                float f13 = fArr[i11];
+                int i12 = i11 + 1;
+                if (i12 < f12) {
+                    i10 = i12;
+                } else {
+                    i10 = 0;
+                }
+                float f14 = fArr[i10];
+                float[] fArr2 = this.e;
+                float f15 = 1.0f - f13;
+                float[] fArr3 = this.f29135g;
+                float f16 = (fArr3[i11] * f13) + (fArr2[i11] * f15);
+                float f17 = 1.0f - f14;
+                float f18 = (fArr3[i10] * f14) + (fArr2[i10] * f17);
+                float[] fArr4 = this.f29134f;
+                float f19 = fArr4[i11] * f15;
+                float[] fArr5 = this.h;
+                float f20 = (fArr5[i10] * f14) + (fArr4[i10] * f17);
+                float max = (((Math.max(f16, f18) - Math.min(f16, f18)) / 2.0f) + Math.min(f16, f18)) * this.f29142o * this.f29143p;
+                Matrix matrix = this.f29144q;
+                matrix.reset();
+                matrix.setRotate((fArr5[i11] * f13) + f19, f10, f11);
+                float[] fArr6 = this.f29138k;
+                fArr6[0] = f10;
+                float f21 = f11 - f16;
+                fArr6[1] = f21;
+                fArr6[2] = f10 + max;
+                fArr6[3] = f21;
+                matrix.mapPoints(fArr6);
+                float[] fArr7 = this.f29139l;
+                fArr7[0] = f10;
+                float f22 = f11 - f18;
+                fArr7[1] = f22;
+                fArr7[2] = f10 - max;
+                fArr7[3] = f22;
+                matrix.reset();
+                matrix.setRotate(f20, f10, f11);
+                matrix.mapPoints(fArr7);
+                if (i11 == 0) {
+                    path.moveTo(fArr6[0], fArr6[1]);
+                }
+                path.cubicTo(fArr6[2], fArr6[3], fArr7[2], fArr7[3], fArr7[0], fArr7[1]);
+                i11 = i12;
+            } else {
+                canvas.save();
+                canvas.drawPath(path, paint);
+                canvas.restore();
+                return;
             }
         }
-        int k10 = i0.a.k(this.f33176f, i10);
-        if (this.f33176f != k10) {
-            this.f33176f = k10;
-            if (this.f33174c != null) {
-                this.d.setColorFilter(k10, PorterDuff.Mode.MULTIPLY);
-                invalidateSelf();
+    }
+
+    public final void b() {
+        for (int i10 = 0; i10 < this.f29141n; i10++) {
+            c(this.e, this.f29134f, i10);
+            c(this.f29135g, this.h, i10);
+            this.f29136i[i10] = 0.0f;
+        }
+    }
+
+    public final void c(float[] fArr, float[] fArr2, int i10) {
+        float f10 = this.f29141n;
+        float f11 = this.f29132b;
+        float f12 = this.f29131a;
+        Random random = this.f29140m;
+        fArr[i10] = (Math.abs((random.nextInt() % 100.0f) / 100.0f) * (f11 - f12)) + f12;
+        fArr2[i10] = (((random.nextInt() % 100.0f) / 100.0f) * (360.0f / f10) * 0.05f) + ((360.0f / f10) * i10);
+        this.f29137j[i10] = (float) (((Math.abs(random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
+    }
+
+    public final void d(float f10, boolean z4) {
+        this.f29146s = f10;
+        if (!LiteMode.isEnabled(this.f29145r)) {
+            return;
+        }
+        if (z4) {
+            float f11 = this.f29146s;
+            float f12 = this.f29147t;
+            if (f11 > f12) {
+                this.f29148u = (f11 - f12) / 205.0f;
+                return;
+            } else {
+                this.f29148u = (f11 - f12) / 275.0f;
+                return;
             }
         }
-        int k11 = i0.a.k(this.h, i10);
-        if (this.h != k11) {
-            this.h = k11;
-            this.f33173b.s(k11, false);
-            invalidateSelf();
+        float f13 = this.f29146s;
+        float f14 = this.f29147t;
+        if (f13 > f14) {
+            this.f29148u = (f13 - f14) / 320.0f;
+        } else {
+            this.f29148u = (f13 - f14) / 375.0f;
         }
     }
 
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        unscheduleSelf(runnable);
+    public final void e(float f10, float f11) {
+        if (LiteMode.isEnabled(this.f29145r)) {
+            for (int i10 = 0; i10 < this.f29141n; i10++) {
+                float[] fArr = this.f29136i;
+                float f12 = fArr[i10];
+                float f13 = this.f29137j[i10];
+                float f14 = (f13 * f10 * 8.2f * f11) + (0.8f * f13) + f12;
+                fArr[i10] = f14;
+                if (f14 >= 1.0f) {
+                    fArr[i10] = 0.0f;
+                    float[] fArr2 = this.f29135g;
+                    this.e[i10] = fArr2[i10];
+                    float[] fArr3 = this.h;
+                    this.f29134f[i10] = fArr3[i10];
+                    c(fArr2, fArr3, i10);
+                }
+            }
+        }
     }
 
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void f(long j10) {
+        float f10 = this.f29146s;
+        float f11 = this.f29147t;
+        if (f10 != f11) {
+            float f12 = this.f29148u;
+            float f13 = (((float) j10) * f12) + f11;
+            this.f29147t = f13;
+            if (f12 > 0.0f) {
+                if (f13 > f10) {
+                    this.f29147t = f10;
+                }
+            } else if (f13 < f10) {
+                this.f29147t = f10;
+            }
+        }
+    }
+
+    public u9(int i10, int i11) {
+        float f10;
+        this.f29133c = new Path();
+        this.d = new Paint(1);
+        this.f29138k = new float[4];
+        this.f29139l = new float[4];
+        this.f29140m = new Random();
+        this.f29143p = 1.0f;
+        this.f29144q = new Matrix();
+        this.f29141n = i10;
+        this.f29142o = (float) (Math.tan(3.141592653589793d / (f10 * 2.0f)) * 1.3333333333333333d);
+        this.e = new float[i10];
+        this.f29134f = new float[i10];
+        this.f29135g = new float[i10];
+        this.h = new float[i10];
+        this.f29136i = new float[i10];
+        this.f29137j = new float[i10];
+        for (int i12 = 0; i12 < this.f29141n; i12++) {
+            c(this.e, this.f29134f, i12);
+            c(this.f29135g, this.h, i12);
+            this.f29136i[i12] = 0.0f;
+        }
+        this.f29145r = i11;
     }
 }

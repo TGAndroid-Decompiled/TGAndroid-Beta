@@ -1,18 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class ix0 extends org.telegram.ui.Cells.b8 {
-    public final jx0 K;
+import org.telegram.messenger.MessagesController;
+public final class ix0 implements Runnable {
+    public final int f25794a;
+    public final xx0 f25795b;
 
-    public ix0(jx0 jx0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, c6Var, false);
-        this.K = jx0Var;
+    public ix0(xx0 xx0Var, int i10) {
+        this.f25794a = i10;
+        this.f25795b = xx0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        jx0 jx0Var = this.K;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(jx0Var.f29844r.K, 1073741824), View.MeasureSpec.makeMeasureSpec(jx0Var.f29844r.K, 1073741824));
+    public final void run() {
+        switch (this.f25794a) {
+            case 0:
+                this.f25795b.d.l();
+                return;
+            case 1:
+                this.f25795b.d.l();
+                return;
+            case 2:
+                xx0.t(this.f25795b);
+                return;
+            case 3:
+                MessagesController.getInstance(r0.currentAccount).openByUserName("stickers", this.f25795b.I, 1);
+                return;
+            default:
+                xx0.s(this.f25795b);
+                return;
+        }
     }
 }

@@ -1,28 +1,20 @@
 package f5;
 
-import android.telephony.TelephonyCallback;
-import android.telephony.TelephonyDisplayInfo;
-public final class s extends TelephonyCallback implements TelephonyCallback.DisplayInfoListener {
-    public final u f6629a;
+import o4.t0;
+public final class s {
+    public final int f5958a;
+    public final int[] f5959b;
+    public final t0[] f5960c;
+    public final int[] d;
+    public final int[][][] e;
+    public final t0 f5961f;
 
-    public s(u uVar) {
-        this.f6629a = uVar;
-    }
-
-    @Override
-    public final void onDisplayInfoChanged(TelephonyDisplayInfo telephonyDisplayInfo) {
-        boolean z10;
-        int overrideNetworkType = telephonyDisplayInfo.getOverrideNetworkType();
-        int i10 = 5;
-        if (overrideNetworkType != 3 && overrideNetworkType != 4 && overrideNetworkType != 5) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        u uVar = this.f6629a;
-        if (z10) {
-            i10 = 10;
-        }
-        u.c(uVar, i10);
+    public s(int[] iArr, t0[] t0VarArr, int[] iArr2, int[][][] iArr3, t0 t0Var) {
+        this.f5959b = iArr;
+        this.f5960c = t0VarArr;
+        this.e = iArr3;
+        this.d = iArr2;
+        this.f5961f = t0Var;
+        this.f5958a = iArr.length;
     }
 }

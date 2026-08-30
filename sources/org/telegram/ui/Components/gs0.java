@@ -1,20 +1,12 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Outline;
 import android.view.View;
-public final class gs0 implements View.OnLayoutChangeListener {
-    public final qu0 f28976a;
-
-    public gs0(qu0 qu0Var) {
-        this.f28976a = qu0Var;
-    }
-
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+public final class gs0 extends ViewOutlineProvider {
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        qu0 qu0Var = this.f28976a;
-        org.telegram.ui.ActionBar.w0 w0Var = qu0Var.f32076j0;
-        if (w0Var == null) {
-            return;
-        }
-        qu0Var.f32076j0.setTranslationX(((View) w0Var.getParent()).getMeasuredWidth() - qu0Var.f32076j0.getRight());
+    public final void getOutline(View view, Outline outline) {
+        outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(16.0f));
     }
 }

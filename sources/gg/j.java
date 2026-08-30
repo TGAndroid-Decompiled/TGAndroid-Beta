@@ -1,56 +1,637 @@
 package gg;
 
+import android.content.ClipboardManager;
 import android.content.Context;
-import i7.f6;
+import android.graphics.Bitmap;
+import android.text.TextUtils;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import lh.k7;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.FactCheckController;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.h5;
-public final class j extends d {
-    public final h5 f7314r;
-    public Object f7315s;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UnconfirmedAuthController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.messenger.camera.CameraController;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g3;
+import org.telegram.ui.Components.RLottieNative;
+import org.telegram.ui.Components.db;
+import org.telegram.ui.Components.ga;
+import org.telegram.ui.Components.ic;
+import org.telegram.ui.Components.k6;
+import org.telegram.ui.Components.kz;
+import org.telegram.ui.Components.m71;
+import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.oy;
+import org.telegram.ui.Components.ry;
+import org.telegram.ui.Components.vt;
+import org.telegram.ui.Components.zb;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.cy;
+import org.telegram.ui.fg;
+import org.telegram.ui.jo0;
+import org.telegram.ui.ke;
+import org.telegram.ui.og1;
+import org.telegram.ui.pt;
+import org.telegram.ui.xn;
+import ph.da;
+import ph.u6;
+import vh.d4;
+import vh.o3;
+public final class j implements Runnable {
+    public final int f6673a;
+    public final boolean f6674b;
+    public final Object f6675c;
+    public final Object d;
+    public final Object e;
+    public final Object f6676f;
 
-    public j(Context context, c6 c6Var) {
-        super(context, c6Var);
-        int i10;
-        float f9;
-        float f10;
-        this.f7290c.setVisibility(8);
-        h5 h5Var = this.f7291e;
-        int i11 = g6.B6;
-        h5Var.setTextColor(g6.v0(i11, c6Var));
-        h5 h5Var2 = new h5(context);
-        this.f7314r = h5Var2;
-        h5Var2.setTextSize(16);
-        h5Var2.setTextColor(g6.v0(i11, c6Var));
-        if (LocaleController.isRTL) {
-            i10 = 3;
-        } else {
-            i10 = 5;
-        }
-        h5Var2.setGravity(i10);
-        addView(h5Var2);
-        boolean z10 = LocaleController.isRTL;
-        int i12 = (z10 ? 3 : 5) | 16;
-        if (z10) {
-            f9 = 20.0f;
-        } else {
-            f9 = 0.0f;
-        }
-        if (z10) {
-            f10 = 0.0f;
-        } else {
-            f10 = 20.0f;
-        }
-        h5Var2.setLayoutParams(f6.d(-1, -2.0f, i12, f9, 0.0f, f10, 0.0f));
+    public j(Object obj, Object obj2, Object obj3, Object obj4, boolean z4, int i10) {
+        this.f6673a = i10;
+        this.f6675c = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f6676f = obj4;
+        this.f6674b = z4;
     }
 
     @Override
-    public final boolean b() {
-        return true;
+    public final void run() {
+        Object obj;
+        float f10;
+        float f11;
+        float f12;
+        int i10;
+        byte b10;
+        TLRPC.Document document;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
+        double d;
+        boolean z4;
+        int i11;
+        int i12;
+        TLRPC.VideoSize closestVideoSizeWithSize;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18;
+        int i19;
+        int i20;
+        int i21 = this.f6673a;
+        boolean z10 = true;
+        int i22 = 0;
+        boolean z11 = this.f6674b;
+        Object obj2 = this.e;
+        Object obj3 = this.d;
+        Object obj4 = this.f6675c;
+        Object obj5 = this.f6676f;
+        switch (i21) {
+            case 0:
+                TLRPC.payments_GiveawayInfo payments_giveawayinfo = (TLRPC.payments_GiveawayInfo) obj4;
+                String str = (String) obj3;
+                TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway = (TLRPC.TL_messageMediaGiveaway) obj2;
+                org.telegram.ui.ActionBar.p2 p2Var = (org.telegram.ui.ActionBar.p2) obj5;
+                boolean z12 = payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfo;
+                boolean z13 = this.f6674b;
+                if (z12) {
+                    r.d(z13, str, (TLRPC.TL_payments_giveawayInfo) payments_giveawayinfo, tL_messageMediaGiveaway, p2Var.getParentActivity(), p2Var.getResourceProvider());
+                    return;
+                } else if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfoResults) {
+                    r.e(z13, str, (TLRPC.TL_payments_giveawayInfoResults) payments_giveawayinfo, tL_messageMediaGiveaway, p2Var.getParentActivity(), p2Var.getResourceProvider());
+                    return;
+                } else {
+                    return;
+                }
+            case 1:
+                ((FactCheckController) obj4).lambda$applyFactCheck$15((TLObject) obj3, (TLRPC.TL_textWithEntities) obj2, z11, (org.telegram.ui.ActionBar.d2) obj5);
+                return;
+            case 2:
+                ((MediaDataController) obj4).lambda$loadStickersByEmojiOrName$84((TLRPC.TL_error) obj2, (TLObject) obj5, (String) obj3, z11);
+                return;
+            case 3:
+                ((MessagesController) obj4).lambda$setParticipantBannedRole$91((TLRPC.TL_error) obj3, (org.telegram.ui.ActionBar.p2) obj5, (TLRPC.TL_channels_editBanned) obj2, z11);
+                return;
+            case 4:
+                ((MessagesStorage) obj4).lambda$putChannelViews$191((a0.h) obj3, (a0.h) obj2, (a0.h) obj5, z11);
+                return;
+            case 5:
+                ((MessagesStorage) obj4).lambda$replaceMessageIfExists$234((TLRPC.Message) obj3, z11, (ArrayList) obj2, (ArrayList) obj5);
+                return;
+            case 6:
+                ((SendMessagesHelper) obj4).lambda$sendEditRichMessageRequest$23((TLRPC.TL_messages_editMessage) obj3, (MessageObject) obj2, (org.telegram.ui.ActionBar.p2) obj5, z11);
+                return;
+            case 7:
+                ((SendMessagesHelper) obj4).lambda$performSendMessageRequest$80((TLRPC.Message) obj3, z11, (TLObject) obj2, (SendMessagesHelper.DelayedMessage) obj5);
+                return;
+            case 8:
+                ((UnconfirmedAuthController) obj4).lambda$updateList$7((boolean[]) obj3, (ArrayList) obj2, z11, (Utilities.Callback) obj5);
+                return;
+            case 9:
+                ((CameraController) obj4).lambda$recordVideo$12((CameraController.ICameraView) obj3, (File) obj2, z11, (Runnable) obj5);
+                return;
+            case 10:
+                ke keVar = (ke) obj4;
+                TLObject tLObject = (TLObject) obj2;
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) obj5;
+                if (((TLRPC.TL_error) obj3) == null) {
+                    TL_account.Password password = (TL_account.Password) tLObject;
+                    twoStepVerificationActivity.F = password;
+                    TwoStepVerificationActivity.m0(password);
+                    keVar.b0(z11, twoStepVerificationActivity.l0(), twoStepVerificationActivity);
+                    return;
+                }
+                return;
+            case 11:
+                xn xnVar = (xn) obj4;
+                TLObject tLObject2 = (TLObject) obj2;
+                fg fgVar = (fg) obj5;
+                ((af.f) obj3).b();
+                if (tLObject2 instanceof TLRPC.TL_contacts_resolvedPeer) {
+                    TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject2;
+                    xnVar.getMessagesController().putUsers(tL_contacts_resolvedPeer.users, false);
+                    xnVar.getMessagesController().putChats(tL_contacts_resolvedPeer.chats, false);
+                    long peerDialogId = DialogObject.getPeerDialogId(tL_contacts_resolvedPeer.peer);
+                    int i23 = (peerDialogId > 0L ? 1 : (peerDialogId == 0L ? 0 : -1));
+                    if (i23 >= 0) {
+                        obj = xnVar.getMessagesController().getUser(Long.valueOf(peerDialogId));
+                    } else if (i23 < 0) {
+                        obj = xnVar.getMessagesController().getChat(Long.valueOf(-peerDialogId));
+                    }
+                    fgVar.run(obj, Boolean.valueOf(z11));
+                    return;
+                }
+                obj = null;
+                fgVar.run(obj, Boolean.valueOf(z11));
+                return;
+            case 12:
+                ga gaVar = (ga) obj4;
+                Bitmap bitmap = (Bitmap) obj2;
+                Bitmap bitmap2 = (Bitmap) obj5;
+                if (TextUtils.equals(gaVar.f25090a, (String) obj3)) {
+                    gaVar.f25093f = null;
+                    Bitmap bitmap3 = gaVar.f25091b;
+                    if (bitmap3 != null) {
+                        bitmap3.recycle();
+                    }
+                    gaVar.f25091b = bitmap;
+                    Runnable runnable = gaVar.e;
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                } else {
+                    bitmap.recycle();
+                }
+                if (z11) {
+                    bitmap2.recycle();
+                    return;
+                }
+                return;
+            case 13:
+                lh.n nVar = (lh.n) obj2;
+                String str2 = (String) obj3;
+                TextView textView = (TextView) obj5;
+                ClipboardManager clipboardManager = (ClipboardManager) ((vt) obj4).getContext().getSystemService("clipboard");
+                z10 = (z11 && (TextUtils.isEmpty(nVar.getText()) || TextUtils.equals(nVar.getText().toString(), str2)) && clipboardManager != null && clipboardManager.hasPrimaryClip()) ? false : false;
+                ViewPropertyAnimator animate = textView.animate();
+                if (z10) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                ViewPropertyAnimator alpha = animate.alpha(f10);
+                if (z10) {
+                    f11 = 1.0f;
+                } else {
+                    f11 = 0.7f;
+                }
+                ViewPropertyAnimator scaleX = alpha.scaleX(f11);
+                if (z10) {
+                    f12 = 1.0f;
+                } else {
+                    f12 = 0.7f;
+                }
+                org.telegram.ui.b.p(scaleX.scaleY(f12), nr.h, 300L);
+                return;
+            case 14:
+                ry ryVar = (ry) obj4;
+                String str3 = (String) obj3;
+                String str4 = (String) obj2;
+                TLObject tLObject3 = (TLObject) obj5;
+                ryVar.f28559a.remove(str4);
+                kz kzVar = ryVar.f28560b;
+                oy oyVar = kzVar.f26430g0;
+                HashMap hashMap = kzVar.f26436i0;
+                boolean z14 = oyVar.v;
+                boolean z15 = this.f6674b;
+                if (z14 && oyVar.f27691w.equals(str3)) {
+                    kzVar.f26430g0.E(str3, "", false, true, z15, str4, tLObject3);
+                    return;
+                } else if (z15 && (!(tLObject3 instanceof TLRPC.messages_BotResults) || ((TLRPC.messages_BotResults) tLObject3).results.isEmpty())) {
+                    ryVar.a(str3, false);
+                    return;
+                } else if ((tLObject3 instanceof TLRPC.messages_BotResults) && !hashMap.containsKey(str4)) {
+                    hashMap.put(str4, (TLRPC.messages_BotResults) tLObject3);
+                    return;
+                } else {
+                    return;
+                }
+            case 15:
+                org.telegram.ui.ActionBar.p2 p2Var2 = (org.telegram.ui.ActionBar.p2) obj5;
+                TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) obj4;
+                TLRPC.Document document2 = (TLRPC.Document) obj3;
+                xn xnVar2 = (xn) obj2;
+                File w10 = u6.w(p2Var2.getCurrentAccount(), "webp");
+                int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+                if (devicePerformanceClass != 0) {
+                    if (devicePerformanceClass != 2) {
+                        i10 = 2560;
+                    } else {
+                        i10 = 3840;
+                    }
+                } else {
+                    i10 = 1280;
+                }
+                float f13 = 512;
+                float f14 = i10;
+                double d10 = (f14 * f13) / f13;
+                if (((float) Math.floor(d10)) > f14) {
+                    f14 = (float) Math.floor(d10);
+                }
+                float f15 = f14;
+                Bitmap createBitmap = Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888);
+                try {
+                    createBitmap.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(w10));
+                } catch (Throwable th2) {
+                    FileLog.e(th2);
+                }
+                createBitmap.recycle();
+                ArrayList arrayList = new ArrayList();
+                MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, w10.getAbsolutePath(), 0, false, 0, 0, 0L);
+                arrayList.add(photoEntry);
+                VideoEditedInfo.MediaEntity mediaEntity = new VideoEditedInfo.MediaEntity();
+                mediaEntity.type = (byte) 0;
+                mediaEntity.parentObject = tL_messages_stickerSet2;
+                mediaEntity.text = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document2, true).getAbsolutePath();
+                mediaEntity.f16693x = 0.5f - ((Math.min(512, 512) / f13) / 2.0f);
+                mediaEntity.f16694y = 0.5f - ((Math.min(512, 512) / f13) / 2.0f);
+                mediaEntity.width = Math.min(512, 512) / f13;
+                mediaEntity.height = Math.min(512, 512) / f13;
+                int floor = (int) Math.floor(f15 * 0.5d);
+                mediaEntity.viewWidth = floor;
+                mediaEntity.viewHeight = floor;
+                mediaEntity.scale = 2.0f;
+                mediaEntity.document = document2;
+                if (MessageObject.isAnimatedStickerDocument(document2, true) || MessageObject.isVideoStickerDocument(document2)) {
+                    boolean isAnimatedStickerDocument = MessageObject.isAnimatedStickerDocument(document2, true);
+                    byte b11 = mediaEntity.subType;
+                    if (isAnimatedStickerDocument) {
+                        b10 = 1;
+                    } else {
+                        b10 = 4;
+                    }
+                    mediaEntity.subType = (byte) (b10 | b11);
+                }
+                ArrayList<VideoEditedInfo.MediaEntity> arrayList2 = new ArrayList<>();
+                photoEntry.mediaEntities = arrayList2;
+                arrayList2.add(mediaEntity);
+                photoEntry.averageDuration = 3000L;
+                if (MessageObject.isAnimatedStickerDocument(document2, true)) {
+                    File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document2, true);
+                    if (pathToAttach != null) {
+                        try {
+                            RLottieNative a2 = RLottieNative.a(pathToAttach.getAbsolutePath(), null, 0, 0, null, false, null, false, 0, null);
+                            if (a2 != null) {
+                                int[] iArr = a2.f23109a;
+                                int i24 = iArr[0];
+                                int i25 = iArr[1];
+                                a2.d();
+                                d = i24 / i25;
+                            } else {
+                                d = 0.0d;
+                            }
+                            photoEntry.averageDuration = (long) (d * 1000.0d);
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                        }
+                    }
+                } else if (MessageObject.isVideoStickerDocument(document2)) {
+                    photoEntry.averageDuration = (long) (MessageObject.getDocumentDuration(document2) * 1000.0d);
+                }
+                PhotoViewer.t1().K2(p2Var2.getParentActivity(), null, p2Var2.getResourceProvider());
+                PhotoViewer.t1().f2(arrayList, 0, 11, false, new Object(), xnVar2);
+                PhotoViewer t12 = PhotoViewer.t1();
+                if (z11) {
+                    document = document2;
+                } else {
+                    document = null;
+                }
+                t12.X0(document2, document, true, null);
+                pt q10 = pt.q();
+                if (z11) {
+                    tL_messages_stickerSet = tL_messages_stickerSet2;
+                } else {
+                    tL_messages_stickerSet = null;
+                }
+                q10.T = tL_messages_stickerSet;
+                return;
+            case 16:
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                TLObject tLObject4 = (TLObject) obj5;
+                String str5 = (String) obj3;
+                org.telegram.ui.oy oyVar2 = ((cy) obj4).f33449a;
+                if (tL_error == null) {
+                    TLRPC.User user = oyVar2.getMessagesController().getUser(Long.valueOf(oyVar2.getUserConfig().getClientUserId()));
+                    if (user == null) {
+                        user = oyVar2.getUserConfig().getCurrentUser();
+                        if (user != null) {
+                            oyVar2.getMessagesController().putUser(user, false);
+                        } else {
+                            return;
+                        }
+                    } else {
+                        oyVar2.getUserConfig().setCurrentUser(user);
+                    }
+                    TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject4;
+                    ArrayList<TLRPC.PhotoSize> arrayList3 = tL_photos_photo.photo.sizes;
+                    TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList3, 150);
+                    TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList3, 800);
+                    if (tL_photos_photo.photo.video_sizes.isEmpty()) {
+                        closestVideoSizeWithSize = null;
+                    } else {
+                        closestVideoSizeWithSize = FileLoader.getClosestVideoSizeWithSize(tL_photos_photo.photo.video_sizes, 1000);
+                    }
+                    TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
+                    user.photo = tL_userProfilePhoto;
+                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f19208id;
+                    if (closestPhotoSizeWithSize != null) {
+                        tL_userProfilePhoto.photo_small = closestPhotoSizeWithSize.location;
+                    }
+                    if (closestPhotoSizeWithSize2 != null) {
+                        tL_userProfilePhoto.photo_big = closestPhotoSizeWithSize2.location;
+                    }
+                    if (closestPhotoSizeWithSize != null && oyVar2.Z3 != null) {
+                        i16 = ((org.telegram.ui.ActionBar.p2) oyVar2).currentAccount;
+                        File pathToAttach2 = FileLoader.getInstance(i16).getPathToAttach(closestPhotoSizeWithSize, true);
+                        i17 = ((org.telegram.ui.ActionBar.p2) oyVar2).currentAccount;
+                        FileLoader.getInstance(i17).getPathToAttach(oyVar2.Z3, true).renameTo(pathToAttach2);
+                        StringBuilder sb = new StringBuilder();
+                        sb.append(oyVar2.Z3.volume_id);
+                        sb.append("_");
+                        String m9 = android.support.v4.media.a.m(oyVar2.Z3.local_id, "@50_50", sb);
+                        StringBuilder sb2 = new StringBuilder();
+                        z4 = z11;
+                        sb2.append(closestPhotoSizeWithSize.location.volume_id);
+                        sb2.append("_");
+                        String m10 = android.support.v4.media.a.m(closestPhotoSizeWithSize.location.local_id, "@50_50", sb2);
+                        ImageLoader imageLoader = ImageLoader.getInstance();
+                        i18 = ((org.telegram.ui.ActionBar.p2) oyVar2).currentAccount;
+                        imageLoader.replaceImageInCache(m9, m10, ImageLocation.getForUserOrChat(i18, user, 1), false);
+                    } else {
+                        z4 = z11;
+                    }
+                    if (closestVideoSizeWithSize != null && str5 != null) {
+                        i15 = ((org.telegram.ui.ActionBar.p2) oyVar2).currentAccount;
+                        new File(str5).renameTo(FileLoader.getInstance(i15).getPathToAttach(closestVideoSizeWithSize, "mp4", true));
+                    } else if (closestPhotoSizeWithSize2 != null && oyVar2.f37007a4 != null) {
+                        i13 = ((org.telegram.ui.ActionBar.p2) oyVar2).currentAccount;
+                        File pathToAttach3 = FileLoader.getInstance(i13).getPathToAttach(closestPhotoSizeWithSize2, true);
+                        i14 = ((org.telegram.ui.ActionBar.p2) oyVar2).currentAccount;
+                        FileLoader.getInstance(i14).getPathToAttach(oyVar2.f37007a4, true).renameTo(pathToAttach3);
+                    }
+                    oyVar2.getMessagesController().getDialogPhotos(user.f19331id).addPhotoAtStart(tL_photos_photo.photo);
+                    ArrayList arrayList4 = new ArrayList();
+                    arrayList4.add(user);
+                    i22 = 0;
+                    oyVar2.getMessagesStorage().putUsersAndChats(arrayList4, null, false, true);
+                    TLRPC.UserFull userFull = oyVar2.getMessagesController().getUserFull(oyVar2.getUserConfig().getClientUserId());
+                    if (userFull != null) {
+                        userFull.profile_photo = tL_photos_photo.photo;
+                        oyVar2.getMessagesStorage().updateUserInfo(userFull, false);
+                    }
+                } else {
+                    z4 = z11;
+                }
+                oyVar2.Z3 = null;
+                oyVar2.f37007a4 = null;
+                NotificationCenter notificationCenter = oyVar2.getNotificationCenter();
+                int i26 = NotificationCenter.updateInterfaces;
+                Object[] objArr = new Object[1];
+                objArr[i22] = Integer.valueOf(MessagesController.UPDATE_MASK_ALL);
+                notificationCenter.lambda$postNotificationNameOnUIThread$1(i26, objArr);
+                oyVar2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[i22]);
+                oyVar2.getUserConfig().saveConfig(true);
+                i11 = ((org.telegram.ui.ActionBar.p2) oyVar2).currentAccount;
+                MessagesController.getInstance(i11).removeSuggestion(0L, "USERPIC_SETUP");
+                oyVar2.U4();
+                ic icVar = oyVar2.f37013b4;
+                if (icVar != null) {
+                    zb zbVar = (zb) icVar.e;
+                    k6 k6Var = zbVar.d;
+                    if (z4) {
+                        i12 = R.string.YourProfileVideoDone;
+                    } else {
+                        i12 = R.string.YourProfilePhotoDone;
+                    }
+                    k6Var.c(LocaleController.getString(i12), true, true);
+                    zbVar.setProgress(1.0f);
+                    db button = zbVar.getButton();
+                    button.setScaleX(0.6f);
+                    button.setScaleY(0.6f);
+                    button.setAlpha(0.0f);
+                    button.setVisibility(0);
+                    org.telegram.ui.b.p(button.animate().scaleX(1.0f).scaleY(1.0f).alpha(1.0f), nr.h, 360L);
+                    ic icVar2 = oyVar2.f37013b4;
+                    icVar2.f25672j = 5000;
+                    icVar2.i(false);
+                    oyVar2.f37013b4.i(true);
+                    return;
+                }
+                return;
+            case 17:
+                jo0.a0((jo0) obj4, z11, (String) obj3, (String) obj2, (TL_account.updatePasswordSettings) obj5);
+                return;
+            case 18:
+                jo0.i0((jo0) obj4, (TLRPC.TL_error) obj2, z11, (TLObject) obj5, (String) obj3);
+                return;
+            case 19:
+                og1.U((og1) obj4, (TLObject) obj2, z11, (String) obj3, (TL_account.passwordInputSettings) obj5);
+                return;
+            case 20:
+                ph.g1 g1Var = (ph.g1) obj4;
+                TLObject tLObject5 = (TLObject) obj2;
+                TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = (TLRPC.TL_messages_getInlineBotResults) obj5;
+                String str6 = (String) obj3;
+                ph.i1 i1Var = g1Var.f41677s;
+                ArrayList arrayList5 = i1Var.f41736n;
+                if (g1Var.f41676r) {
+                    if (!(tLObject5 instanceof TLRPC.messages_BotResults)) {
+                        i19 = ((g3) i1Var.f41737r).currentAccount;
+                        g1Var.d = ConnectionsManager.getInstance(i19).sendRequest(tL_messages_getInlineBotResults, new k7(g1Var, str6, z11, 7));
+                        return;
+                    }
+                    TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) tLObject5;
+                    g1Var.h = messages_botresults.next_offset;
+                    if (z11) {
+                        arrayList5.clear();
+                    }
+                    arrayList5.size();
+                    arrayList5.addAll(messages_botresults.results);
+                    g1Var.l();
+                    i1Var.d.c(false);
+                    g1Var.f41676r = false;
+                    return;
+                }
+                return;
+            case 21:
+                da daVar = (da) obj4;
+                Bitmap bitmap4 = (Bitmap) obj3;
+                File file = (File) obj2;
+                u6 u6Var = (u6) obj5;
+                try {
+                    Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.JPEG;
+                    if (z11) {
+                        i20 = 95;
+                    } else {
+                        i20 = 99;
+                    }
+                    bitmap4.compress(compressFormat, i20, new FileOutputStream(file));
+                } catch (Exception e6) {
+                    FileLog.e(e6);
+                }
+                AndroidUtilities.runOnUIThread(new m71(daVar, u6Var, file, 19));
+                return;
+            case 22:
+                uf.t tVar = (uf.t) obj4;
+                ArrayList arrayList6 = tVar.f45441b;
+                arrayList6.clear();
+                arrayList6.addAll((ArrayList) obj3);
+                int i27 = tVar.f45440a;
+                MessagesController.getInstance(i27).putUsers((ArrayList) obj2, true);
+                MessagesController.getInstance(i27).putChats((ArrayList) obj5, true);
+                NotificationCenter.getInstance(i27).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
+                tVar.f45442c = false;
+                tVar.e(false, z11);
+                return;
+            default:
+                d4.f((org.telegram.ui.ActionBar.p2) obj5, (Context) obj4, (f6) obj3, (o3) obj2, z11);
+                return;
+        }
     }
 
-    public Object getGifCode() {
-        return this.f7315s;
+    public j(Object obj, Object obj2, Object obj3, boolean z4, Object obj4, int i10) {
+        this.f6673a = i10;
+        this.f6675c = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f6674b = z4;
+        this.f6676f = obj4;
+    }
+
+    public j(Object obj, Object obj2, boolean z4, Object obj3, Object obj4, int i10) {
+        this.f6673a = i10;
+        this.f6675c = obj;
+        this.d = obj2;
+        this.f6674b = z4;
+        this.e = obj3;
+        this.f6676f = obj4;
+    }
+
+    public j(Object obj, TLObject tLObject, boolean z4, TLObject tLObject2, String str, int i10) {
+        this.f6673a = i10;
+        this.f6675c = obj;
+        this.e = tLObject;
+        this.f6674b = z4;
+        this.f6676f = tLObject2;
+        this.d = str;
+    }
+
+    public j(Object obj, TLRPC.TL_error tL_error, TLObject tLObject, String str, boolean z4, int i10) {
+        this.f6673a = i10;
+        this.f6675c = obj;
+        this.e = tL_error;
+        this.f6676f = tLObject;
+        this.d = str;
+        this.f6674b = z4;
+    }
+
+    public j(MessagesController messagesController, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.p2 p2Var, TLRPC.TL_channels_editBanned tL_channels_editBanned, boolean z4) {
+        this.f6673a = 3;
+        this.f6675c = messagesController;
+        this.d = tL_error;
+        this.f6676f = p2Var;
+        this.e = tL_channels_editBanned;
+        this.f6674b = z4;
+    }
+
+    public j(TLRPC.payments_GiveawayInfo payments_giveawayinfo, boolean z4, String str, long j10, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, org.telegram.ui.ActionBar.p2 p2Var) {
+        this.f6673a = 0;
+        this.f6675c = payments_giveawayinfo;
+        this.f6674b = z4;
+        this.d = str;
+        this.e = tL_messageMediaGiveaway;
+        this.f6676f = p2Var;
+    }
+
+    public j(org.telegram.ui.ActionBar.p2 p2Var, Object obj, Object obj2, Object obj3, boolean z4, int i10) {
+        this.f6673a = i10;
+        this.f6676f = p2Var;
+        this.f6675c = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f6674b = z4;
+    }
+
+    public j(vt vtVar, boolean z4, lh.n nVar, String str, TextView textView) {
+        this.f6673a = 13;
+        this.f6675c = vtVar;
+        this.f6674b = z4;
+        this.e = nVar;
+        this.d = str;
+        this.f6676f = textView;
+    }
+
+    public j(jo0 jo0Var, boolean z4, String str, String str2, TL_account.updatePasswordSettings updatepasswordsettings) {
+        this.f6673a = 17;
+        this.f6675c = jo0Var;
+        this.f6674b = z4;
+        this.d = str;
+        this.e = str2;
+        this.f6676f = updatepasswordsettings;
+    }
+
+    public j(og1 og1Var, TLObject tLObject, boolean z4, String str, TL_account.passwordInputSettings passwordinputsettings) {
+        this.f6673a = 19;
+        this.f6675c = og1Var;
+        this.e = tLObject;
+        this.f6674b = z4;
+        this.d = str;
+        this.f6676f = passwordinputsettings;
     }
 }

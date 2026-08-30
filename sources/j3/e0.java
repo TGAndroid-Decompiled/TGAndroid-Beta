@@ -1,23 +1,20 @@
 package j3;
-public final class e0 implements f5.j {
-    public final int f10418a = 0;
-    public final g5.y f10419b;
+public final class e0 implements i1 {
+    public final Object f8498a;
+    public o2 f8499b;
 
-    @Override
-    public final void invoke(Object obj) {
-        switch (this.f10418a) {
-            case 0:
-                ((a2) obj).onVideoSizeChanged(this.f10419b);
-                return;
-            default:
-                g5.y yVar = this.f10419b;
-                ((k3.b) obj).d(yVar);
-                int i10 = yVar.f7106a;
-                return;
-        }
+    public e0(Object obj, o2 o2Var) {
+        this.f8498a = obj;
+        this.f8499b = o2Var;
     }
 
-    public e0(k3.a aVar, g5.y yVar) {
-        this.f10419b = yVar;
+    @Override
+    public final Object a() {
+        return this.f8498a;
+    }
+
+    @Override
+    public final o2 b() {
+        return this.f8499b;
     }
 }

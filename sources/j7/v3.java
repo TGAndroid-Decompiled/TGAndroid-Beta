@@ -1,17 +1,10 @@
 package j7;
-public final class v3 implements s9.d {
-    public static final v3 f11225a = new Object();
-
-    static {
-        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.r(h0.class, l1.h(7, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(6, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(5, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(4, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(3, com.google.android.recaptcha.internal.a.r(h0.class, l1.h(2, com.google.android.recaptcha.internal.a.r(h0.class, new e0(1)))))))))))))));
-    }
+public final class v3 implements u9.d {
+    public static final v3 f9153a = new Object();
+    public static final u9.c f9154b = new u9.c("identifiedLanguage", vh.v2.h(e2.c.n(i.class, new e(1))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            s9.e eVar = (s9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+        ((u9.e) obj2).e(f9154b, ((h7) obj).f9026a);
     }
 }

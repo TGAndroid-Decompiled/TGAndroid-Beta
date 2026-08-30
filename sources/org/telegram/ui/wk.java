@@ -1,15 +1,11 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesStorage;
-public final class wk implements MessagesStorage.IntCallback {
-    public final tn f44313a;
+import android.app.Activity;
+public final class wk extends org.telegram.ui.Components.m41 {
+    public final xn f39757s;
 
-    public wk(tn tnVar) {
-        this.f44313a = tnVar;
-    }
-
-    @Override
-    public final void run(int i10) {
-        this.f44313a.G9(i10);
+    public wk(xn xnVar, Activity activity, xn xnVar2, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(activity, f6Var, xnVar2);
+        this.f39757s = xnVar;
     }
 }

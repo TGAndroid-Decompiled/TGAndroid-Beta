@@ -1,41 +1,8 @@
 package j3;
-
-import java.util.List;
 public final class s0 {
-    public g5.b A;
-    public int E;
-    public int F;
-    public String f10730a;
-    public String f10731b;
-    public String f10732c;
-    public int d;
-    public int f10733e;
-    public String h;
-    public b4.c f10736i;
-    public long f10738k;
-    public String f10739l;
-    public int f10740m;
-    public String f10741n;
-    public String f10742o;
-    public List f10744q;
-    public n3.c f10745r;
-    public int f10749w;
-    public byte[] f10751y;
-    public int f10734f = -1;
-    public int f10735g = -1;
-    public int f10743p = -1;
-    public long f10746s = Long.MAX_VALUE;
-    public int f10747t = -1;
-    public int f10748u = -1;
-    public float v = -1.0f;
-    public float f10750x = 1.0f;
-    public int f10752z = -1;
-    public int B = -1;
-    public int C = -1;
-    public int D = -1;
-    public int G = -1;
-    public int H = -1;
-    public int I = -1;
-    public int J = 0;
-    public boolean f10737j = false;
+    public long f8814a;
+    public long f8815b = Long.MIN_VALUE;
+    public boolean f8816c;
+    public boolean d;
+    public boolean e;
 }

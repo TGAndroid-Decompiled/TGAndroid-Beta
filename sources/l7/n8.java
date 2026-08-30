@@ -1,17 +1,24 @@
 package l7;
-public final class n8 implements s9.d {
-    public static final n8 f14899a = new Object();
 
-    static {
-        com.google.android.recaptcha.internal.a.t(j7.l1.q(w.class, j7.l1.r(2, j7.l1.q(w.class, new s(1)))));
+import java.util.Arrays;
+public final class n8 {
+    public final Float f11572a;
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof n8)) {
+            return false;
+        }
+        n8 n8Var = (n8) obj;
+        if (b6.m.l(null, null) && b6.m.l(this.f11572a, n8Var.f11572a) && b6.m.l(null, null)) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            s9.e eVar = (s9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{null, this.f11572a, null});
     }
 }

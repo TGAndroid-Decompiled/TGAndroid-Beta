@@ -1,42 +1,21 @@
 package org.telegram.ui.Components;
+public final class qf0 implements Runnable {
+    public final int f28127a;
+    public final vf0 f28128b;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class qf0 extends AnimatorListenerAdapter {
-    public final int f31928a;
-    public final rf0 f31929b;
-
-    public qf0(rf0 rf0Var, int i10) {
-        this.f31928a = i10;
-        this.f31929b = rf0Var;
+    public qf0(vf0 vf0Var, int i10) {
+        this.f28127a = i10;
+        this.f28128b = vf0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f31928a) {
+    public final void run() {
+        switch (this.f28127a) {
             case 0:
-                rf0 rf0Var = this.f31929b;
-                rf0Var.h = false;
-                rf0Var.f32282a = rf0Var.f32284c;
-                rf0Var.invalidate();
-                int i10 = rf0Var.F;
-                if (i10 >= 0) {
-                    rf0Var.b(i10);
-                    rf0Var.F = -1;
-                    return;
-                }
+                this.f28128b.e();
                 return;
             default:
-                rf0 rf0Var2 = this.f31929b;
-                rf0Var2.f32287n = false;
-                rf0Var2.h = false;
-                rf0Var2.invalidate();
-                int i11 = rf0Var2.F;
-                if (i11 >= 0) {
-                    rf0Var2.b(i11);
-                    rf0Var2.F = -1;
-                }
-                rf0Var2.a();
+                this.f28128b.g();
                 return;
         }
     }

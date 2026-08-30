@@ -30,13 +30,13 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.hv0;
-import org.telegram.ui.Components.jr;
-import org.telegram.ui.Components.st;
-import org.telegram.ui.Components.t41;
+import org.telegram.ui.Components.f51;
+import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.qv0;
+import org.telegram.ui.Components.vt;
 import org.telegram.ui.LaunchActivity;
 public class FactCheckController {
-    private static org.telegram.ui.ActionBar.c2 currentDialog;
+    private static org.telegram.ui.ActionBar.d2 currentDialog;
     private boolean clearedExpiredInDatabase;
     public final int currentAccount;
     private static volatile FactCheckController[] Instance = new FactCheckController[4];
@@ -44,7 +44,7 @@ public class FactCheckController {
     private final LongSparseArray<TLRPC.TL_factCheck> localCache = new LongSparseArray<>();
     private final LongSparseArray<HashMap<Key, Utilities.Callback<TLRPC.TL_factCheck>>> toload = new LongSparseArray<>();
     private final ArrayList<Key> loading = new ArrayList<>();
-    private final Runnable loadMissingRunnable = new d1(this, 19);
+    private final Runnable loadMissingRunnable = new e1(this, 19);
 
     public static class Key {
         public final long dialogId;
@@ -87,7 +87,7 @@ public class FactCheckController {
         }
         this.clearedExpiredInDatabase = true;
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-        messagesStorage.getStorageQueue().postRunnable(new f2(messagesStorage, 0));
+        messagesStorage.getStorageQueue().postRunnable(new g2(messagesStorage, 0));
     }
 
     private void getFromDatabase(ArrayList<Key> arrayList, Utilities.Callback<ArrayList<TLRPC.TL_factCheck>> callback) {
@@ -96,7 +96,7 @@ public class FactCheckController {
         }
         if (arrayList != null && !arrayList.isEmpty()) {
             MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-            messagesStorage.getStorageQueue().postRunnable(new f0((BaseController) messagesStorage, (ArrayList) arrayList, (Object) callback, 18));
+            messagesStorage.getStorageQueue().postRunnable(new g0((BaseController) messagesStorage, (ArrayList) arrayList, (Object) callback, 18));
             return;
         }
         callback.run(new ArrayList<>());
@@ -128,48 +128,48 @@ public class FactCheckController {
         MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
     }
 
-    public void lambda$applyFactCheck$15(TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z10, org.telegram.ui.ActionBar.c2 c2Var) {
-        boolean z11;
+    public void lambda$applyFactCheck$15(TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z4, org.telegram.ui.ActionBar.d2 d2Var) {
+        boolean z10;
         int i10;
         int i11;
         if (tLObject instanceof TLRPC.Updates) {
-            Utilities.stageQueue.postRunnable(new c2(2, this, (TLRPC.Updates) tLObject));
-            org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
+            Utilities.stageQueue.postRunnable(new d2(2, this, (TLRPC.Updates) tLObject));
+            org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
             if (U != null) {
                 if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
-                    z11 = false;
+                    z10 = false;
                 } else {
-                    z11 = true;
+                    z10 = true;
                 }
-                if (z11 || !z10) {
-                    org.telegram.ui.Components.tc a02 = org.telegram.ui.Components.tc.a0(U);
-                    if (z11) {
+                if (z10 || !z4) {
+                    org.telegram.ui.Components.qc a02 = org.telegram.ui.Components.qc.a0(U);
+                    if (z10) {
                         i10 = R.raw.ic_delete;
                     } else {
                         i10 = R.raw.contact_check;
                     }
-                    if (z11) {
+                    if (z10) {
                         i11 = R.string.FactCheckDeleted;
                     } else {
                         i11 = R.string.FactCheckEdited;
                     }
-                    j7.l1.v(i11, a02, i10, 36);
+                    kh.a2.v(i11, a02, i10, 36);
                 }
             }
         }
-        c2Var.dismiss();
+        d2Var.dismiss();
     }
 
-    public void lambda$applyFactCheck$16(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z10, org.telegram.ui.ActionBar.c2 c2Var, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new eg.j(this, tLObject, tL_textWithEntities, z10, c2Var, 3));
+    public void lambda$applyFactCheck$16(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z4, org.telegram.ui.ActionBar.d2 d2Var, TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new gg.j(this, tLObject, tL_textWithEntities, z4, d2Var, 1));
     }
 
     public static void lambda$clearExpiredInDatabase$7(MessagesStorage messagesStorage) {
         try {
             SQLiteDatabase database = messagesStorage.getDatabase();
             database.executeFast("DELETE FROM fact_checks WHERE expires > " + System.currentTimeMillis()).stepThis().dispose();
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
@@ -213,13 +213,13 @@ public class FactCheckController {
                     }
                 }
                 sQLiteCursor.dispose();
-            } catch (Exception e10) {
-                FileLog.e(e10);
+            } catch (Exception e) {
+                FileLog.e(e);
                 if (sQLiteCursor != null) {
                     sQLiteCursor.dispose();
                 }
             }
-            AndroidUtilities.runOnUIThread(new e2(callback, arrayList2, 0));
+            AndroidUtilities.runOnUIThread(new f2(callback, arrayList2, 0));
         } catch (Throwable th2) {
             if (sQLiteCursor != null) {
                 sQLiteCursor.dispose();
@@ -263,7 +263,7 @@ public class FactCheckController {
     }
 
     public void lambda$loadMissing$2(TLRPC.TL_getFactCheck tL_getFactCheck, ArrayList arrayList, HashMap hashMap, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new c5(this, tLObject, tL_getFactCheck, arrayList, hashMap));
+        AndroidUtilities.runOnUIThread(new d5(this, tLObject, tL_getFactCheck, arrayList, hashMap));
     }
 
     public void lambda$loadMissing$3(long j10, ArrayList arrayList, HashMap hashMap, ArrayList arrayList2) {
@@ -290,7 +290,7 @@ public class FactCheckController {
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.factCheckLoaded, new Object[0]);
         }
         if (!tL_getFactCheck.msg_id.isEmpty()) {
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getFactCheck, new h2(this, tL_getFactCheck, arrayList3, hashMap, 0));
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getFactCheck, new i2(this, tL_getFactCheck, arrayList3, hashMap, 0));
         }
     }
 
@@ -299,24 +299,24 @@ public class FactCheckController {
         view.requestFocus();
     }
 
-    public static void lambda$openFactCheckEditor$11(st stVar, DialogInterface dialogInterface) {
-        stVar.requestFocus();
-        AndroidUtilities.showKeyboard(stVar);
+    public static void lambda$openFactCheckEditor$11(vt vtVar, DialogInterface dialogInterface) {
+        vtVar.requestFocus();
+        AndroidUtilities.showKeyboard(vtVar);
     }
 
-    public static void lambda$openFactCheckEditor$13(st stVar, DialogInterface dialogInterface) {
-        stVar.requestFocus();
-        AndroidUtilities.showKeyboard(stVar);
+    public static void lambda$openFactCheckEditor$13(vt vtVar, DialogInterface dialogInterface) {
+        vtVar.requestFocus();
+        AndroidUtilities.showKeyboard(vtVar);
     }
 
-    public void lambda$openFactCheckEditor$8(st stVar, int i10, MessageObject messageObject, boolean z10, org.telegram.ui.ActionBar.c2 c2Var, int i11) {
+    public void lambda$openFactCheckEditor$8(vt vtVar, int i10, MessageObject messageObject, boolean z4, org.telegram.ui.ActionBar.d2 d2Var, int i11) {
         String charSequence;
-        if (stVar.getText().toString().length() > i10) {
-            AndroidUtilities.shakeView(stVar);
+        if (vtVar.getText().toString().length() > i10) {
+            AndroidUtilities.shakeView(vtVar);
             return;
         }
         TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
-        CharSequence[] charSequenceArr = {stVar.getText()};
+        CharSequence[] charSequenceArr = {vtVar.getText()};
         tL_textWithEntities.entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true);
         CharSequence charSequence2 = charSequenceArr[0];
         if (charSequence2 == null) {
@@ -325,8 +325,8 @@ public class FactCheckController {
             charSequence = charSequence2.toString();
         }
         tL_textWithEntities.text = charSequence;
-        applyFactCheck(messageObject, tL_textWithEntities, z10);
-        c2Var.dismiss();
+        applyFactCheck(messageObject, tL_textWithEntities, z4);
+        d2Var.dismiss();
     }
 
     public static void lambda$saveToDatabase$6(MessagesStorage messagesStorage, TLRPC.TL_factCheck tL_factCheck) {
@@ -342,8 +342,8 @@ public class FactCheckController {
                 sQLitePreparedStatement.bindLong(3, System.currentTimeMillis() + 889032704);
                 sQLitePreparedStatement.step();
                 sQLitePreparedStatement.dispose();
-            } catch (Exception e10) {
-                FileLog.e(e10);
+            } catch (Exception e) {
+                FileLog.e(e);
                 if (sQLitePreparedStatement != null) {
                     sQLitePreparedStatement.dispose();
                 }
@@ -363,7 +363,7 @@ public class FactCheckController {
             this.toload.removeAt(0);
             ArrayList<Key> arrayList = new ArrayList<>(valueAt.keySet());
             this.loading.addAll(arrayList);
-            getFromDatabase(arrayList, new ih.z0(this, keyAt, arrayList, valueAt, 1));
+            getFromDatabase(arrayList, new kh.y0(this, keyAt, arrayList, valueAt, 1));
         }
         this.toload.clear();
     }
@@ -373,7 +373,7 @@ public class FactCheckController {
             return;
         }
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-        messagesStorage.getStorageQueue().postRunnable(new c2(3, messagesStorage, tL_factCheck));
+        messagesStorage.getStorageQueue().postRunnable(new d2(3, messagesStorage, tL_factCheck));
         clearExpiredInDatabase();
     }
 
@@ -382,7 +382,7 @@ public class FactCheckController {
         AndroidUtilities.runOnUIThread(this.loadMissingRunnable, 80L);
     }
 
-    public void applyFactCheck(MessageObject messageObject, final TLRPC.TL_textWithEntities tL_textWithEntities, final boolean z10) {
+    public void applyFactCheck(MessageObject messageObject, final TLRPC.TL_textWithEntities tL_textWithEntities, final boolean z4) {
         TLRPC.TL_deleteFactCheck tL_deleteFactCheck;
         if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
             TLRPC.TL_editFactCheck tL_editFactCheck = new TLRPC.TL_editFactCheck();
@@ -390,7 +390,7 @@ public class FactCheckController {
             tL_editFactCheck.msg_id = messageObject.getId();
             tL_editFactCheck.text = tL_textWithEntities;
             tL_deleteFactCheck = tL_editFactCheck;
-        } else if (z10) {
+        } else if (z4) {
             return;
         } else {
             TLRPC.TL_deleteFactCheck tL_deleteFactCheck2 = new TLRPC.TL_deleteFactCheck();
@@ -398,16 +398,16 @@ public class FactCheckController {
             tL_deleteFactCheck2.msg_id = messageObject.getId();
             tL_deleteFactCheck = tL_deleteFactCheck2;
         }
-        Context context = LaunchActivity.C1;
+        Context context = LaunchActivity.D1;
         if (context == null) {
             context = ApplicationLoader.applicationContext;
         }
-        final org.telegram.ui.ActionBar.c2 c2Var = new org.telegram.ui.ActionBar.c2(context, 3, null);
-        c2Var.q(320L);
+        final org.telegram.ui.ActionBar.d2 d2Var = new org.telegram.ui.ActionBar.d2(context, 3, null);
+        d2Var.q(320L);
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_deleteFactCheck, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                FactCheckController.this.lambda$applyFactCheck$16(tL_textWithEntities, z10, c2Var, tLObject, tL_error);
+                FactCheckController.this.lambda$applyFactCheck$16(tL_textWithEntities, z4, d2Var, tLObject, tL_error);
             }
         });
     }
@@ -443,7 +443,7 @@ public class FactCheckController {
                         hashMap = hashMap2;
                     }
                     if (!hashMap.containsKey(of2)) {
-                        hashMap.put(of2, new g2(this, of2, messageObject, 0));
+                        hashMap.put(of2, new h2(this, of2, messageObject, 0));
                         scheduleLoadMissing();
                     }
                     return messageObject.messageOwner.factcheck;
@@ -454,69 +454,69 @@ public class FactCheckController {
         return null;
     }
 
-    public void openFactCheckEditor(Context context, final org.telegram.ui.ActionBar.c6 c6Var, final MessageObject messageObject, boolean z10) {
+    public void openFactCheckEditor(Context context, final org.telegram.ui.ActionBar.f6 f6Var, final MessageObject messageObject, boolean z4) {
         final View view;
-        boolean z11;
+        boolean z10;
         AlertDialog$Builder alertDialog$Builder;
-        boolean z12;
+        boolean z11;
         TLRPC.TL_textWithEntities tL_textWithEntities;
         TLRPC.Message message;
-        org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
+        org.telegram.ui.ActionBar.p2 R = LaunchActivity.R();
         Activity findActivity = AndroidUtilities.findActivity(context);
         if (findActivity != null) {
             view = findActivity.getCurrentFocus();
         } else {
             view = null;
         }
-        if (R != null && (R.getFragmentView() instanceof hv0) && ((hv0) R.getFragmentView()).R() > AndroidUtilities.dp(20.0f) && !z10) {
-            z11 = true;
+        if (R != null && (R.getFragmentView() instanceof qv0) && ((qv0) R.getFragmentView()).R() > AndroidUtilities.dp(20.0f) && !z4) {
+            z10 = true;
         } else {
-            z11 = false;
+            z10 = false;
         }
-        final org.telegram.ui.ActionBar.c2[] c2VarArr = new org.telegram.ui.ActionBar.c2[1];
-        if (z11) {
-            alertDialog$Builder = new AlertDialog$Builder(context, 0, c6Var);
+        final org.telegram.ui.ActionBar.d2[] d2VarArr = new org.telegram.ui.ActionBar.d2[1];
+        if (z10) {
+            alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
         } else {
-            alertDialog$Builder = new AlertDialog$Builder(context, 0, c6Var);
+            alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
         }
         AlertDialog$Builder alertDialog$Builder2 = alertDialog$Builder;
         final TextView[] textViewArr = new TextView[1];
         if (messageObject != null && (message = messageObject.messageOwner) != null && message.factcheck != null) {
-            z12 = false;
+            z11 = false;
         } else {
-            z12 = true;
+            z11 = true;
         }
         String string = LocaleController.getString(R.string.FactCheckDialog);
-        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder2.f22714a;
-        c2Var.N = string;
+        org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder2.f19503a;
+        d2Var.O = string;
         final int i10 = MessagesController.getInstance(this.currentAccount).factcheckLengthLimit;
-        final st stVar = new st(context, c6Var) {
-            org.telegram.ui.Components.n6 limit;
-            org.telegram.ui.Components.f5 limitColor = new org.telegram.ui.Components.f5(this);
+        final vt vtVar = new vt(context, f6Var) {
+            org.telegram.ui.Components.j6 limit;
+            org.telegram.ui.Components.c5 limitColor = new org.telegram.ui.Components.c5(this);
             private int limitCount;
 
             {
                 FactCheckController.this = this;
-                org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, true, true, false);
-                this.limit = n6Var;
-                n6Var.k(0.2f, 160L, jr.h);
+                org.telegram.ui.Components.j6 j6Var = new org.telegram.ui.Components.j6(false, true, true, false);
+                this.limit = j6Var;
+                j6Var.k(0.2f, 160L, nr.h);
                 this.limit.t(AndroidUtilities.dp(15.33f));
                 this.limit.setCallback(this);
-                this.limit.f30862b = 5;
+                this.limit.f25884b = 5;
             }
 
             @Override
             public void dispatchDraw(Canvas canvas) {
                 int i11;
                 super.dispatchDraw(canvas);
-                org.telegram.ui.Components.n6 n6Var = this.limit;
-                org.telegram.ui.Components.f5 f5Var = this.limitColor;
+                org.telegram.ui.Components.j6 j6Var = this.limit;
+                org.telegram.ui.Components.c5 c5Var = this.limitColor;
                 if (this.limitCount < 0) {
-                    i11 = org.telegram.ui.ActionBar.g6.f23279p7;
+                    i11 = org.telegram.ui.ActionBar.j6.f20122p7;
                 } else {
-                    i11 = org.telegram.ui.ActionBar.g6.P5;
+                    i11 = org.telegram.ui.ActionBar.j6.P5;
                 }
-                n6Var.r(f5Var.a(org.telegram.ui.ActionBar.g6.v0(i11, c6Var), false));
+                j6Var.r(c5Var.a(org.telegram.ui.ActionBar.j6.v0(i11, f6Var), false));
                 this.limit.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
                 this.limit.draw(canvas);
             }
@@ -530,10 +530,10 @@ public class FactCheckController {
                     menu.removeItem(16908341);
                 }
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.Bold));
-                spannableStringBuilder.setSpan(new t41(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.setSpan(new f51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
                 menu.add(R.id.menu_groupbolditalic, R.id.menu_bold, 6, spannableStringBuilder);
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.Italic));
-                spannableStringBuilder2.setSpan(new t41(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+                spannableStringBuilder2.setSpan(new f51(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
                 menu.add(R.id.menu_groupbolditalic, R.id.menu_italic, 7, spannableStringBuilder2);
                 menu.add(R.id.menu_groupbolditalic, R.id.menu_link, 8, LocaleController.getString(R.string.CreateLink));
                 menu.add(R.id.menu_groupbolditalic, R.id.menu_regular, 9, LocaleController.getString(R.string.Regular));
@@ -545,12 +545,12 @@ public class FactCheckController {
                 if (this.limit != null) {
                     this.limitCount = i10 - charSequence.length();
                     this.limit.b();
-                    org.telegram.ui.Components.n6 n6Var = this.limit;
+                    org.telegram.ui.Components.j6 j6Var = this.limit;
                     String str = "";
                     if (this.limitCount <= 4) {
                         str = "" + this.limitCount;
                     }
-                    n6Var.q(str, true, true);
+                    j6Var.q(str, true, true);
                 }
             }
 
@@ -562,9 +562,9 @@ public class FactCheckController {
                 return true;
             }
         };
-        stVar.lineYFix = true;
-        final boolean z13 = z12;
-        stVar.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        vtVar.lineYFix = true;
+        final boolean z12 = z11;
+        vtVar.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             {
                 FactCheckController.this = this;
             }
@@ -575,12 +575,12 @@ public class FactCheckController {
                 if (i11 != 6) {
                     return false;
                 }
-                if (stVar.getText().toString().length() > i10) {
-                    AndroidUtilities.shakeView(stVar);
+                if (vtVar.getText().toString().length() > i10) {
+                    AndroidUtilities.shakeView(vtVar);
                     return true;
                 }
                 TLRPC.TL_textWithEntities tL_textWithEntities2 = new TLRPC.TL_textWithEntities();
-                CharSequence[] charSequenceArr = {stVar.getText()};
+                CharSequence[] charSequenceArr = {vtVar.getText()};
                 tL_textWithEntities2.entities = MediaDataController.getInstance(FactCheckController.this.currentAccount).getEntities(charSequenceArr, true);
                 CharSequence charSequence2 = charSequenceArr[0];
                 if (charSequence2 == null) {
@@ -589,13 +589,13 @@ public class FactCheckController {
                     charSequence = charSequence2.toString();
                 }
                 tL_textWithEntities2.text = charSequence;
-                FactCheckController.this.applyFactCheck(messageObject, tL_textWithEntities2, z13);
-                org.telegram.ui.ActionBar.c2 c2Var2 = c2VarArr[0];
-                if (c2Var2 != null) {
-                    c2Var2.dismiss();
+                FactCheckController.this.applyFactCheck(messageObject, tL_textWithEntities2, z12);
+                org.telegram.ui.ActionBar.d2 d2Var2 = d2VarArr[0];
+                if (d2Var2 != null) {
+                    d2Var2.dismiss();
                 }
-                if (c2VarArr[0] == FactCheckController.currentDialog) {
-                    org.telegram.ui.ActionBar.c2 unused = FactCheckController.currentDialog = null;
+                if (d2VarArr[0] == FactCheckController.currentDialog) {
+                    org.telegram.ui.ActionBar.d2 unused = FactCheckController.currentDialog = null;
                 }
                 View view2 = view;
                 if (view2 != null) {
@@ -605,23 +605,23 @@ public class FactCheckController {
             }
         });
         MediaDataController.getInstance(this.currentAccount).fetchNewEmojiKeywords(AndroidUtilities.getCurrentKeyboardLanguage(), true);
-        stVar.setTextSize(1, 18.0f);
-        stVar.setTextColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.f23169j5, c6Var));
-        stVar.setHintColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.Xh, c6Var));
-        stVar.setHintText(LocaleController.getString(R.string.FactCheckPlaceholder));
-        stVar.setFocusable(true);
-        stVar.setInputType(147457);
-        stVar.setLineColors(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.f23189k6, c6Var), org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.f23206l6, c6Var), org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.f23279p7, c6Var));
-        stVar.setImeOptions(6);
-        stVar.setBackgroundDrawable(null);
-        stVar.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
+        vtVar.setTextSize(1, 18.0f);
+        vtVar.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20012j5, f6Var));
+        vtVar.setHintColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Xh, f6Var));
+        vtVar.setHintText(LocaleController.getString(R.string.FactCheckPlaceholder));
+        vtVar.setFocusable(true);
+        vtVar.setInputType(147457);
+        vtVar.setLineColors(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20031k6, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20049l6, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20122p7, f6Var));
+        vtVar.setImeOptions(6);
+        vtVar.setBackgroundDrawable(null);
+        vtVar.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
         final TLRPC.TL_factCheck factCheck = messageObject.getFactCheck();
         if (factCheck != null && (tL_textWithEntities = factCheck.text) != null) {
             SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(tL_textWithEntities.text);
             MessageObject.addEntitiesToText(valueOf, factCheck.text.entities, false, true, false, false);
-            stVar.setText(valueOf);
+            vtVar.setText(valueOf);
         }
-        stVar.addTextChangedListener(new TextWatcher() {
+        vtVar.addTextChangedListener(new TextWatcher() {
             boolean ignoreTextChange;
 
             {
@@ -635,35 +635,35 @@ public class FactCheckController {
                 if (!this.ignoreTextChange) {
                     int length = editable.length();
                     int i13 = i10;
-                    boolean z14 = true;
+                    boolean z13 = true;
                     if (length > i13) {
                         this.ignoreTextChange = true;
                         editable.delete(i13, editable.length());
-                        AndroidUtilities.shakeView(stVar);
+                        AndroidUtilities.shakeView(vtVar);
                         try {
-                            stVar.performHapticFeedback(3, 2);
+                            vtVar.performHapticFeedback(3, 2);
                         } catch (Exception unused) {
                         }
                         this.ignoreTextChange = false;
                     }
                     if (textViewArr[0] != null) {
                         if (editable.length() <= 0 && factCheck != null) {
-                            z14 = false;
+                            z13 = false;
                         }
                         TextView textView = textViewArr[0];
-                        if (z14) {
+                        if (z13) {
                             i11 = R.string.Done;
                         } else {
                             i11 = R.string.Remove;
                         }
                         textView.setText(LocaleController.getString(i11));
                         TextView textView2 = textViewArr[0];
-                        if (z14) {
-                            i12 = org.telegram.ui.ActionBar.g6.H5;
+                        if (z13) {
+                            i12 = org.telegram.ui.ActionBar.j6.H5;
                         } else {
-                            i12 = org.telegram.ui.ActionBar.g6.f23295q7;
+                            i12 = org.telegram.ui.ActionBar.j6.f20141q7;
                         }
-                        textView2.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, i12, false));
+                        textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i12, false));
                     }
                 }
             }
@@ -678,16 +678,16 @@ public class FactCheckController {
         });
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        linearLayout.addView(stVar, i7.f6.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
+        linearLayout.addView(vtVar, k7.b6.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
         alertDialog$Builder2.c();
         alertDialog$Builder2.n(linearLayout);
-        c2Var.f22778a = AndroidUtilities.dp(292.0f);
-        alertDialog$Builder2.k(LocaleController.getString(R.string.Done), new j2(this, stVar, i10, messageObject, z13));
+        d2Var.f19584a = AndroidUtilities.dp(292.0f);
+        alertDialog$Builder2.k(LocaleController.getString(R.string.Done), new k2(this, vtVar, i10, messageObject, z12));
         alertDialog$Builder2.h(LocaleController.getString("Cancel", R.string.Cancel), new b(9));
-        if (z11) {
-            currentDialog = c2Var;
-            c2VarArr[0] = c2Var;
-            c2Var.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        if (z10) {
+            currentDialog = d2Var;
+            d2VarArr[0] = d2Var;
+            d2Var.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     switch (r1) {
@@ -695,7 +695,7 @@ public class FactCheckController {
                             FactCheckController.lambda$openFactCheckEditor$10(view, dialogInterface);
                             return;
                         default:
-                            AndroidUtilities.hideKeyboard((st) view);
+                            AndroidUtilities.hideKeyboard((vt) view);
                             return;
                     }
                 }
@@ -705,51 +705,51 @@ public class FactCheckController {
                 public final void onShow(DialogInterface dialogInterface) {
                     switch (r2) {
                         case 0:
-                            FactCheckController.lambda$openFactCheckEditor$11(stVar, dialogInterface);
+                            FactCheckController.lambda$openFactCheckEditor$11(vtVar, dialogInterface);
                             return;
                         default:
-                            FactCheckController.lambda$openFactCheckEditor$13(stVar, dialogInterface);
+                            FactCheckController.lambda$openFactCheckEditor$13(vtVar, dialogInterface);
                             return;
                     }
                 }
             });
             currentDialog.q(250L);
         } else {
-            c2VarArr[0] = c2Var;
-            c2Var.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            d2VarArr[0] = d2Var;
+            d2Var.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     switch (r1) {
                         case 0:
-                            FactCheckController.lambda$openFactCheckEditor$10(stVar, dialogInterface);
+                            FactCheckController.lambda$openFactCheckEditor$10(vtVar, dialogInterface);
                             return;
                         default:
-                            AndroidUtilities.hideKeyboard((st) stVar);
+                            AndroidUtilities.hideKeyboard((vt) vtVar);
                             return;
                     }
                 }
             });
-            c2VarArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
+            d2VarArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
                     switch (r2) {
                         case 0:
-                            FactCheckController.lambda$openFactCheckEditor$11(stVar, dialogInterface);
+                            FactCheckController.lambda$openFactCheckEditor$11(vtVar, dialogInterface);
                             return;
                         default:
-                            FactCheckController.lambda$openFactCheckEditor$13(stVar, dialogInterface);
+                            FactCheckController.lambda$openFactCheckEditor$13(vtVar, dialogInterface);
                             return;
                     }
                 }
             });
-            c2VarArr[0].show();
+            d2VarArr[0].show();
         }
-        org.telegram.ui.ActionBar.c2 c2Var2 = c2VarArr[0];
-        c2Var2.f22784d0 = false;
-        View d = c2Var2.d(-1);
+        org.telegram.ui.ActionBar.d2 d2Var2 = d2VarArr[0];
+        d2Var2.f19591e0 = false;
+        View d = d2Var2.d(-1);
         if (d instanceof TextView) {
             textViewArr[0] = (TextView) d;
         }
-        stVar.setSelection(stVar.getText().length());
+        vtVar.setSelection(vtVar.getText().length());
     }
 }

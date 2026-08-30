@@ -1,25 +1,26 @@
 package x9;
+public final class a implements d {
+    public final int f46856a;
 
-import java.util.ArrayList;
-public final class a {
-    public final String f50104a;
-    public final ArrayList f50105b;
-
-    public a(String str, ArrayList arrayList) {
-        if (str != null) {
-            this.f50104a = str;
-            this.f50105b = arrayList;
-            return;
-        }
-        throw new NullPointerException("Null userAgent");
+    public a(int i10) {
+        this.f46856a = i10;
     }
 
+    @Override
+    public final Class annotationType() {
+        return d.class;
+    }
+
+    @Override
     public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof a) {
-                a aVar = (a) obj;
-                if (this.f50104a.equals(aVar.f50104a) && this.f50105b.equals(aVar.f50105b)) {
-                    return true;
+        if (this != obj) {
+            if (obj instanceof d) {
+                if (this.f46856a == ((a) ((d) obj)).f46856a) {
+                    Object obj2 = c.f46857a;
+                    if (obj2.equals(obj2)) {
+                        return true;
+                    }
+                    return false;
                 }
                 return false;
             }
@@ -28,11 +29,13 @@ public final class a {
         return true;
     }
 
+    @Override
     public final int hashCode() {
-        return ((this.f50104a.hashCode() ^ 1000003) * 1000003) ^ this.f50105b.hashCode();
+        return (14552422 ^ this.f46856a) + (c.f46857a.hashCode() ^ 2041407134);
     }
 
+    @Override
     public final String toString() {
-        return "HeartBeatResult{userAgent=" + this.f50104a + ", usedDates=" + this.f50105b + "}";
+        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f46856a + "intEncoding=" + c.f46857a + ')';
     }
 }

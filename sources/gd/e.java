@@ -1,28 +1,36 @@
 package gd;
+public final class e extends d {
+    public static final e d = new d(1, 0, 1);
 
-import i7.v7;
-import java.util.Iterator;
-import jd.q1;
-public final class e implements b {
-    public final int f7268a;
-    public final Object f7269b;
-
-    public e(Object obj, int i10) {
-        this.f7268a = i10;
-        this.f7269b = obj;
+    public final boolean equals(Object obj) {
+        if (obj instanceof e) {
+            if (!isEmpty() || !((e) obj).isEmpty()) {
+                e eVar = (e) obj;
+                if (this.f6525a == eVar.f6525a && this.f6526b == eVar.f6526b) {
+                    return true;
+                }
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final Iterator iterator() {
-        switch (this.f7268a) {
-            case 0:
-                ?? obj = new Object();
-                obj.f7267c = v7.a((q1) this.f7269b, obj, obj);
-                return obj;
-            case 1:
-                return (Iterator) this.f7269b;
-            default:
-                return new hd.b((String) this.f7269b);
+    public final int hashCode() {
+        if (isEmpty()) {
+            return -1;
         }
+        return (this.f6525a * 31) + this.f6526b;
+    }
+
+    public final boolean isEmpty() {
+        if (this.f6525a > this.f6526b) {
+            return true;
+        }
+        return false;
+    }
+
+    public final String toString() {
+        return this.f6525a + ".." + this.f6526b;
     }
 }

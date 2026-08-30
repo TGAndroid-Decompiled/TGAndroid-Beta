@@ -1,58 +1,69 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class j2 extends AnimatorListenerAdapter {
-    public final int f24529a;
-    public final p2 f24530b;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.oy;
+public final class j2 extends nh.i7 {
+    public final r2 S;
 
-    public j2(p2 p2Var, int i10) {
-        this.f24529a = i10;
-        this.f24530b = p2Var;
+    public j2(r2 r2Var) {
+        super(null, false);
+        this.S = r2Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        int i11;
-        switch (this.f24529a) {
-            case 0:
-                p2 p2Var = this.f24530b;
-                p2Var.N3 = 1.0f;
-                p2Var.Q3 = null;
-                p2Var.R3 = null;
-                p2Var.S3 = null;
-                p2Var.invalidate();
-                return;
-            case 1:
-                p2 p2Var2 = this.f24530b;
-                p2Var2.O3 = 1.0f;
-                p2Var2.invalidate();
-                return;
-            default:
-                p2 p2Var3 = this.f24530b;
-                boolean z10 = p2Var3.O2;
-                if (p2Var3.M2) {
-                    i10 = 2;
-                } else {
-                    i10 = 0;
+    public final boolean c(TLRPC.Chat chat, TLRPC.User user) {
+        if (((chat != null && chat.linked_community_id != 0) || (user != null && user.linked_community_id != 0)) && !this.S.L0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean d(long j10) {
+        r2 r2Var = this.S;
+        int i10 = r2Var.C0;
+        oy oyVar = r2Var.f21735w4;
+        if (oyVar != null && !r2Var.L0) {
+            if (j10 > 0) {
+                TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j10));
+                if (user != null && user.linked_community_id != 0) {
+                    oyVar.showDialog(new sh.i0(oyVar, user.linked_community_id));
+                    return true;
                 }
-                int i12 = (z10 ? 1 : 0) + i10;
-                if (p2Var3.N2) {
-                    i11 = 4;
-                } else {
-                    i11 = 0;
-                }
-                int i13 = i12 + i11;
-                int i14 = p2Var3.f24895n4;
-                if (i14 != i13) {
-                    p2Var3.A(i14, i13);
-                } else {
-                    p2Var3.f24916r4 = false;
-                    p2Var3.f24905p4 = i14;
-                }
-                p2Var3.invalidate();
-                return;
+                return false;
+            }
+            TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j10));
+            if (chat != null && chat.linked_community_id != 0) {
+                oyVar.showDialog(new sh.i0(oyVar, chat.linked_community_id));
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void e() {
+        r2 r2Var = this.S;
+        n2 n2Var = r2Var.f21620a0;
+        if (n2Var == null) {
+            return;
+        }
+        n2Var.f(r2Var);
+    }
+
+    @Override
+    public final void f(long j10) {
+        r2 r2Var = this.S;
+        n2 n2Var = r2Var.f21620a0;
+        if (n2Var == null) {
+            return;
+        }
+        if (r2Var.G0 != 0) {
+            n2Var.c();
+        } else {
+            n2Var.e(r2Var);
         }
     }
 }

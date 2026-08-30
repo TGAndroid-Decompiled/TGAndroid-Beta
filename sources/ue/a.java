@@ -1,58 +1,205 @@
 package ue;
 
-import android.graphics.Bitmap;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.RandomAccessFile;
-import we.l;
+import java.util.Locale;
+import org.telegram.messenger.R;
 public abstract class a {
-    public String f49173a;
-    public long f49174b;
-    public String f49175c;
-    public String d;
-    public String f49176e;
-    public String f49177f;
-    public short f49178g;
-    public String h;
-    public String f49179i;
-    public short f49180j;
-    public short f49181k;
-    public String f49182l;
-    public String f49183m;
-    public String f49184n;
-    public Bitmap f49185o;
-    public Bitmap f49186p;
-    public File f49187q;
-
-    public static a a(File file) {
-        byte b10;
-        try {
-            byte[] bArr = new byte[12];
-            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
-            randomAccessFile.readFully(bArr, 0, 8);
-            randomAccessFile.close();
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
-            if (bArr[4] == 102 && bArr[5] == 116 && bArr[6] == 121 && bArr[7] == 112) {
-                return new ve.a(bufferedInputStream);
-            }
-            if (bArr[0] == 102 && bArr[1] == 76 && bArr[2] == 97 && bArr[3] == 99) {
-                b bVar = new b(file);
-                if (!bVar.f49189s) {
-                    return bVar;
+    public static int a(Locale locale) {
+        char c3;
+        char c10;
+        if (locale == null) {
+            return 0;
+        }
+        String languageTag = locale.toLanguageTag();
+        languageTag.getClass();
+        switch (languageTag.hashCode()) {
+            case 3121:
+                if (languageTag.equals("ar")) {
+                    c3 = 0;
+                    break;
                 }
-                return null;
-            }
-            if (!file.getAbsolutePath().endsWith("mp3") && (((b10 = bArr[0]) != 73 || bArr[1] != 68 || bArr[2] != 51) && (b10 != 84 || bArr[1] != 65 || bArr[2] != 71))) {
-                b bVar2 = new b(file);
-                if (!bVar2.f49189s) {
-                    return bVar2;
+                c3 = 65535;
+                break;
+            case 3201:
+                if (languageTag.equals("de")) {
+                    c3 = 1;
+                    break;
                 }
-                return null;
-            }
-            return new l(bufferedInputStream, file.length());
-        } catch (Exception unused) {
-            return null;
+                c3 = 65535;
+                break;
+            case 3241:
+                if (languageTag.equals("en")) {
+                    c3 = 2;
+                    break;
+                }
+                c3 = 65535;
+                break;
+            case 3246:
+                if (languageTag.equals("es")) {
+                    c3 = 3;
+                    break;
+                }
+                c3 = 65535;
+                break;
+            case 3371:
+                if (languageTag.equals("it")) {
+                    c3 = 4;
+                    break;
+                }
+                c3 = 65535;
+                break;
+            case 3428:
+                if (languageTag.equals("ko")) {
+                    c3 = 5;
+                    break;
+                }
+                c3 = 65535;
+                break;
+            case 3518:
+                if (languageTag.equals("nl")) {
+                    c3 = 6;
+                    break;
+                }
+                c3 = 65535;
+                break;
+            case 3651:
+                if (languageTag.equals("ru")) {
+                    c3 = 7;
+                    break;
+                }
+                c3 = 65535;
+                break;
+            case 3734:
+                if (languageTag.equals("uk")) {
+                    c3 = '\b';
+                    break;
+                }
+                c3 = 65535;
+                break;
+            case 106935481:
+                if (languageTag.equals("pt-BR")) {
+                    c3 = '\t';
+                    break;
+                }
+                c3 = 65535;
+                break;
+            default:
+                c3 = 65535;
+                break;
+        }
+        switch (c3) {
+            case 0:
+                return R.raw.localization_ar;
+            case 1:
+                return R.raw.localization_de;
+            case 2:
+                return R.raw.localization_en;
+            case 3:
+                return R.raw.localization_es;
+            case 4:
+                return R.raw.localization_it;
+            case 5:
+                return R.raw.localization_ko;
+            case 6:
+                return R.raw.localization_nl;
+            case 7:
+                return R.raw.localization_ru;
+            case '\b':
+                return R.raw.localization_uk;
+            case '\t':
+                return R.raw.localization_pt_br;
+            default:
+                String language = locale.getLanguage();
+                language.getClass();
+                switch (language.hashCode()) {
+                    case 3121:
+                        if (language.equals("ar")) {
+                            c10 = 0;
+                            break;
+                        }
+                        c10 = 65535;
+                        break;
+                    case 3201:
+                        if (language.equals("de")) {
+                            c10 = 1;
+                            break;
+                        }
+                        c10 = 65535;
+                        break;
+                    case 3241:
+                        if (language.equals("en")) {
+                            c10 = 2;
+                            break;
+                        }
+                        c10 = 65535;
+                        break;
+                    case 3246:
+                        if (language.equals("es")) {
+                            c10 = 3;
+                            break;
+                        }
+                        c10 = 65535;
+                        break;
+                    case 3371:
+                        if (language.equals("it")) {
+                            c10 = 4;
+                            break;
+                        }
+                        c10 = 65535;
+                        break;
+                    case 3428:
+                        if (language.equals("ko")) {
+                            c10 = 5;
+                            break;
+                        }
+                        c10 = 65535;
+                        break;
+                    case 3518:
+                        if (language.equals("nl")) {
+                            c10 = 6;
+                            break;
+                        }
+                        c10 = 65535;
+                        break;
+                    case 3651:
+                        if (language.equals("ru")) {
+                            c10 = 7;
+                            break;
+                        }
+                        c10 = 65535;
+                        break;
+                    case 3734:
+                        if (language.equals("uk")) {
+                            c10 = '\b';
+                            break;
+                        }
+                        c10 = 65535;
+                        break;
+                    default:
+                        c10 = 65535;
+                        break;
+                }
+                switch (c10) {
+                    case 0:
+                        return R.raw.localization_ar;
+                    case 1:
+                        return R.raw.localization_de;
+                    case 2:
+                        return R.raw.localization_en;
+                    case 3:
+                        return R.raw.localization_es;
+                    case 4:
+                        return R.raw.localization_it;
+                    case 5:
+                        return R.raw.localization_ko;
+                    case 6:
+                        return R.raw.localization_nl;
+                    case 7:
+                        return R.raw.localization_ru;
+                    case '\b':
+                        return R.raw.localization_uk;
+                    default:
+                        return 0;
+                }
         }
     }
 }

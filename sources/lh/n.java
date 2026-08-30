@@ -1,32 +1,69 @@
 package lh;
 
-import android.animation.ValueAnimator;
-import org.telegram.ui.xw;
-public final class n implements Runnable {
-    public final int f15947a;
-    public final o f15948b;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class n extends EditTextBoldCursor {
+    public final int f12809b;
 
-    public n(o oVar, int i10) {
-        this.f15947a = i10;
-        this.f15948b = oVar;
+    public n(Context context, int i10) {
+        super(context);
+        this.f12809b = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f15947a) {
+    public void onDetachedFromWindow() {
+        switch (this.f12809b) {
             case 0:
-                xw xwVar = this.f15948b.U;
-                ValueAnimator valueAnimator = xwVar.f16052f0;
-                if (valueAnimator != null) {
-                    valueAnimator.start();
-                }
-                xwVar.f16053g0 = null;
+                super.onDetachedFromWindow();
+                AndroidUtilities.hideKeyboard(this);
+                return;
+            case 1:
+                super.onDetachedFromWindow();
+                AndroidUtilities.hideKeyboard(this);
                 return;
             default:
-                o oVar = this.f15948b;
-                oVar.f16003w = false;
-                oVar.invalidate();
+                super.onDetachedFromWindow();
                 return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f12809b) {
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f12809b) {
+            case 3:
+                if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
+                    clearFocus();
+                    requestFocus();
+                }
+                return super.onTouchEvent(motionEvent);
+            case 4:
+                if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
+                    clearFocus();
+                    requestFocus();
+                }
+                return super.onTouchEvent(motionEvent);
+            case 5:
+                if (!isEnabled()) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
         }
     }
 }

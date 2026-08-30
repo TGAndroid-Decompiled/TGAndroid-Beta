@@ -1,17 +1,22 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.NotificationCenter;
-public final class kt implements View.OnAttachStateChangeListener {
-    public jt f40005a;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class kt extends org.telegram.ui.ActionBar.p1 {
+    public final lt f35807o;
 
-    @Override
-    public final void onViewAttachedToWindow(View view) {
-        NotificationCenter.getGlobalInstance().addObserver(this.f40005a, NotificationCenter.emojiLoaded);
+    public kt(lt ltVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f35807o = ltVar;
     }
 
     @Override
-    public final void onViewDetachedFromWindow(View view) {
-        NotificationCenter.getGlobalInstance().removeObserver(this.f40005a, NotificationCenter.emojiLoaded);
+    public final void dismiss() {
+        d(true);
+        pt ptVar = this.f35807o.f36133a;
+        ptVar.f37523k = null;
+        ptVar.K = false;
+        if (ptVar.R) {
+            ptVar.n();
+        }
     }
 }

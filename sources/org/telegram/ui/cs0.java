@@ -1,44 +1,45 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.tgnet.TLRPC;
-public final class cs0 extends org.telegram.ui.Components.dq0 {
-    public final FrameLayout X0;
-    public final boolean Y0;
-    public final PhotoViewer Z0;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import org.telegram.messenger.SharedConfig;
+public final class cs0 extends org.telegram.ui.Components.t71 {
+    public final org.telegram.ui.Components.fa f33422d0;
+    public final PhotoViewer f33423e0;
 
-    public cs0(PhotoViewer photoViewer, Context context, tn tnVar, ArrayList arrayList, String str, Integer num, FrameLayout frameLayout, boolean z10) {
-        super(context, tnVar, arrayList, null, null, false, str, null, false, true, false, num, null);
-        this.Z0 = photoViewer;
-        this.X0 = frameLayout;
-        this.Y0 = z10;
+    public cs0(Context context, PhotoViewer photoViewer) {
+        super(context);
+        this.f33423e0 = photoViewer;
+        new Path();
+        this.f33422d0 = new org.telegram.ui.Components.fa(photoViewer.Y, this, 0, false);
     }
 
     @Override
-    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
+    public final void b(Canvas canvas, RectF rectF) {
+        canvas.save();
+        canvas.clipRect(rectF);
+        PhotoViewer photoViewer = this.f33423e0;
+        canvas.translate((-getX()) - photoViewer.N7.getX(), (-getY()) - photoViewer.N7.getY());
+        photoViewer.T0(canvas, this.f33422d0, -14803426, 855638016, false, true, false);
+        canvas.restore();
+    }
+
+    @Override
+    public final void invalidate() {
+        int i10;
+        if (SharedConfig.photoViewerBlur && ((i10 = this.f33423e0.f31790k4) == 1 || i10 == 2 || i10 == 3)) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new vs(this, this.X0, hVar, i10, 8), 250L);
+        super.invalidate();
     }
 
     @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        if (this.Y0) {
-            AndroidUtilities.runOnUIThread(new vk0(this, 17), 50L);
-        }
-        PhotoViewer photoViewer = this.Z0;
-        photoViewer.Z.softInputMode = 272;
-        try {
-            ((WindowManager) photoViewer.f35864y.getSystemService("window")).updateViewLayout(photoViewer.f35666c0, photoViewer.Z);
-        } catch (Exception e10) {
-            FileLog.e(e10);
+    public final void setTranslationY(float f10) {
+        if (getTranslationY() != f10) {
+            super.setTranslationY(f10);
+            this.f33423e0.f31705b0.invalidate();
         }
     }
 }

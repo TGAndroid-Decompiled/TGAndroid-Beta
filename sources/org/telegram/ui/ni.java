@@ -1,43 +1,46 @@
 package org.telegram.ui;
+public final class ni extends org.telegram.ui.ActionBar.p1 {
+    public final org.telegram.ui.Components.pk0 f36670o;
+    public final xn f36671p;
 
-import org.telegram.messenger.MessageObject;
-public final class ni implements Runnable {
-    public final boolean f40813a;
-    public final boolean f40814b;
-    public final int f40815c;
-    public final boolean d;
-    public final org.telegram.ui.Components.fk0 f40816e;
-    public final float f40817f;
-    public final float h;
-    public final kg.q0 f40818n;
-    public final MessageObject f40819r;
-    public final tn f40820s;
-
-    public ni(tn tnVar, boolean z10, boolean z11, int i10, boolean z12, org.telegram.ui.Components.fk0 fk0Var, float f9, float f10, kg.q0 q0Var, MessageObject messageObject) {
-        this.f40820s = tnVar;
-        this.f40813a = z10;
-        this.f40814b = z11;
-        this.f40815c = i10;
-        this.d = z12;
-        this.f40816e = fk0Var;
-        this.f40817f = f9;
-        this.h = f10;
-        this.f40818n = q0Var;
-        this.f40819r = messageObject;
+    public ni(xn xnVar, ab abVar, org.telegram.ui.Components.pk0 pk0Var) {
+        super(abVar, -2, -2);
+        this.f36671p = xnVar;
+        this.f36670o = pk0Var;
     }
 
     @Override
-    public final void run() {
-        if (!this.f40813a) {
-            tn tnVar = this.f40820s;
-            if (tnVar.Yb != null) {
-                tnVar.Yb = null;
-                if (this.f40814b) {
-                    tnVar.h8(new mi(this, this.f40815c, this.d, this.f40816e, this.f40817f, this.h, this.f40818n, 0));
-                } else {
-                    tnVar.h8(new vf(13, this, this.f40819r));
-                }
-                tnVar.A7(true);
+    public final void d(boolean z4) {
+        super.d(true);
+        org.telegram.ui.Components.pk0 pk0Var = this.f36670o;
+        if (pk0Var != null) {
+            pk0Var.d();
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        d(true);
+        xn xnVar = this.f36671p;
+        if (xnVar.N8 == this) {
+            org.telegram.ui.Components.ic icVar = org.telegram.ui.Components.ic.f25665w;
+            org.telegram.ui.Components.ic icVar2 = xnVar.f40072k1;
+            if (icVar == icVar2 && icVar2 != null) {
+                icVar2.b();
+                xnVar.f40072k1 = null;
+            }
+            xnVar.N8 = null;
+            xnVar.Q8 = null;
+            xnVar.P8 = null;
+            xnVar.f40220w0.R = true;
+            if (xnVar.O8) {
+                xnVar.g8(false, true, 0.0f);
+            } else {
+                xnVar.O8 = true;
+            }
+            jk jkVar = xnVar.V;
+            if (jkVar != null && jkVar.getEditField() != null) {
+                xnVar.V.getEditField().setAllowDrawCursor(true);
             }
         }
     }

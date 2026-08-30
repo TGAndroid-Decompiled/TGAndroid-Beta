@@ -1,55 +1,54 @@
 package org.telegram.ui;
 
-import java.util.Comparator;
-import org.telegram.tgnet.TLRPC;
-public final class bm0 implements Comparator {
-    public final vm0 f36830a;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class bm0 implements TextWatcher {
+    public final EditTextBoldCursor f32985a;
+    public final String f32986b;
+    public final dn0 f32987c;
 
-    public bm0(vm0 vm0Var) {
-        this.f36830a = vm0Var;
-    }
-
-    public final int a(TLRPC.SecureValueError secureValueError) {
-        if (secureValueError instanceof TLRPC.TL_secureValueError) {
-            return 0;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorFrontSide) {
-            return 1;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorReverseSide) {
-            return 2;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorSelfie) {
-            return 3;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFile) {
-            return 4;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFiles) {
-            return 5;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorFile) {
-            return 6;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorFiles) {
-            return 7;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorData) {
-            return vm0.C0(this.f36830a, ((TLRPC.TL_secureValueErrorData) secureValueError).field);
-        }
-        return 100;
+    public bm0(dn0 dn0Var, EditTextBoldCursor editTextBoldCursor, String str) {
+        this.f32987c = dn0Var;
+        this.f32985a = editTextBoldCursor;
+        this.f32986b = str;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int a2 = a((TLRPC.SecureValueError) obj);
-        int a10 = a((TLRPC.SecureValueError) obj2);
-        if (a2 < a10) {
-            return -1;
+    public final void afterTextChanged(Editable editable) {
+        boolean z4;
+        EditTextBoldCursor editTextBoldCursor = this.f32985a;
+        int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
+        int i10 = 0;
+        while (true) {
+            if (i10 < editable.length()) {
+                char charAt = editable.charAt(i10);
+                if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != ' ' && charAt != '\'' && charAt != ',' && charAt != '.' && charAt != '&' && charAt != '-' && charAt != '/'))) {
+                    z4 = true;
+                    break;
+                }
+                i10++;
+            } else {
+                z4 = false;
+                break;
+            }
         }
-        if (a2 > a10) {
-            return 1;
+        dn0 dn0Var = this.f32987c;
+        if (z4 && !dn0Var.f33720r0) {
+            editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
+            return;
         }
-        return 0;
+        dn0Var.f33717q0[intValue] = z4;
+        dn0.J0(dn0Var, editTextBoldCursor, this.f32986b, editable, false);
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

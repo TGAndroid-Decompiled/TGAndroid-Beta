@@ -2,171 +2,95 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.widget.FrameLayout;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.text.SpannableStringBuilder;
+import android.view.ActionMode;
+import android.view.Menu;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.jr;
-public class g3 extends FrameLayout {
-    public boolean f24386a;
-    public final e3 f24387b;
-    public final int f24388c;
-    public boolean d;
-    public int f24389e;
-    public boolean f24390f;
-    public boolean h;
-    public boolean f24391n;
-    public final org.telegram.ui.Components.f5 f24392r;
-    public int f24393s;
-    public final org.telegram.ui.Components.n6 v;
-    public boolean f24394w;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.f51;
+import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.vt;
+public final class g3 extends vt {
+    public final int f21086c;
+    public final org.telegram.ui.ActionBar.f6 d;
+    public final boolean e;
+    public final i3 f21087f;
 
-    public g3(Context context, String str, boolean z10, boolean z11, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        int i11;
-        int i12;
-        this.f24389e = -1;
-        this.f24392r = new org.telegram.ui.Components.f5(this);
-        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, true, true, false);
-        this.v = n6Var;
-        n6Var.k(0.2f, 160L, jr.h);
-        n6Var.t(AndroidUtilities.dp(15.33f));
-        n6Var.f30862b = 5;
-        this.f24388c = i10;
-        e3 e3Var = new e3(this, context, c6Var, i10, c6Var, z11);
-        this.f24387b = e3Var;
-        n6Var.setCallback(e3Var);
-        e3Var.setTextSize(1, 17.0f);
-        e3Var.setHintTextColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.H6, c6Var));
-        int i13 = org.telegram.ui.ActionBar.g6.G6;
-        e3Var.setTextColor(org.telegram.ui.ActionBar.g6.v0(i13, c6Var));
-        e3Var.setBackground(null);
-        if (z10) {
-            e3Var.setMaxLines(5);
-            e3Var.setSingleLine(false);
-        } else {
-            e3Var.setMaxLines(1);
-            e3Var.setSingleLine(true);
-        }
-        int dp = AndroidUtilities.dp(21.0f);
-        int dp2 = AndroidUtilities.dp(15.0f);
-        if (i10 > 0) {
-            i11 = 42;
-        } else {
-            i11 = 0;
-        }
-        e3Var.setPadding(dp, dp2, AndroidUtilities.dp(i11 + 21), AndroidUtilities.dp(15.0f));
-        e3Var.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        if (z10) {
-            i12 = 131072;
-        } else {
-            i12 = 0;
-        }
-        e3Var.setInputType(i12 | 573441);
-        e3Var.setRawInputType((z10 ? 131072 : 0) | 573441);
-        e3Var.setHint(str);
-        e3Var.setCursorColor(org.telegram.ui.ActionBar.g6.v0(i13, c6Var));
-        e3Var.setCursorSize(AndroidUtilities.dp(19.0f));
-        e3Var.setCursorWidth(1.5f);
-        e3Var.addTextChangedListener(new f3(this, i10, z10));
-        e3Var.setOnFocusChangeListener(new m.s2(this, 2));
-        addView(e3Var, i7.f6.e(-1, -1, 48));
-        c();
+    public g3(i3 i3Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10, org.telegram.ui.ActionBar.f6 f6Var2, boolean z4) {
+        super(context, f6Var);
+        this.f21087f = i3Var;
+        this.f21086c = i10;
+        this.d = f6Var2;
+        this.e = z4;
     }
 
-    public final void c() {
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
         int i10;
-        if (this.f24387b == null) {
+        super.dispatchDraw(canvas);
+        i3 i3Var = this.f21087f;
+        org.telegram.ui.Components.j6 j6Var = i3Var.v;
+        org.telegram.ui.Components.c5 c5Var = i3Var.f21203r;
+        if (i3Var.f21204s <= 0) {
+            i10 = org.telegram.ui.ActionBar.j6.f20122p7;
+        } else {
+            i10 = org.telegram.ui.ActionBar.j6.P5;
+        }
+        j6Var.r(c5Var.a(org.telegram.ui.ActionBar.j6.v0(i10, this.d), false));
+        int min = Math.min(AndroidUtilities.dp(52.0f), getHeight());
+        i3Var.v.setBounds(getScrollX(), getHeight() - min, AndroidUtilities.dp(42.0f) + ((getWidth() + getScrollX()) - getPaddingRight()), getHeight());
+        i3Var.v.draw(canvas);
+    }
+
+    @Override
+    public final void extendActionMode(ActionMode actionMode, Menu menu) {
+        if (!this.e || menu.findItem(R.id.menu_bold) != null) {
             return;
         }
-        this.f24393s = this.f24388c - getText().length();
-        String str = "";
-        if ((!TextUtils.isEmpty(getText()) || this.d) && ((!this.f24390f || (this.f24391n && !this.h)) && ((i10 = this.f24389e) == -1 || this.f24393s <= i10))) {
-            str = "" + this.f24393s;
+        if (Build.VERSION.SDK_INT >= 23) {
+            menu.removeItem(16908341);
         }
-        this.v.q(str, true, true);
-    }
-
-    public CharSequence getText() {
-        return this.f24387b.getText();
-    }
-
-    public TLRPC.TL_textWithEntities getTextWithEntities() {
-        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
-        CharSequence[] charSequenceArr = {getText()};
-        tL_textWithEntities.entities = MediaDataController.getInstance(UserConfig.selectedAccount).getEntities(charSequenceArr, true);
-        tL_textWithEntities.text = charSequenceArr[0].toString();
-        return tL_textWithEntities;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.Bold));
+        spannableStringBuilder.setSpan(new f51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        menu.add(R.id.menu_groupbolditalic, R.id.menu_bold, 6, spannableStringBuilder);
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.Italic));
+        spannableStringBuilder2.setSpan(new f51(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+        menu.add(R.id.menu_groupbolditalic, R.id.menu_italic, 7, spannableStringBuilder2);
+        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(LocaleController.getString(R.string.Strike));
+        ?? obj = new Object();
+        obj.f28583a |= 8;
+        spannableStringBuilder3.setSpan(new t01(obj, 0), 0, spannableStringBuilder3.length(), 33);
+        menu.add(R.id.menu_groupbolditalic, R.id.menu_strike, 8, spannableStringBuilder3);
+        menu.add(R.id.menu_groupbolditalic, R.id.menu_regular, 9, LocaleController.getString(R.string.Regular));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float dp;
-        int i10;
+        canvas.save();
+        canvas.clipRect(getPaddingLeft() + getScrollX(), getScrollY(), (getWidth() + getScrollX()) - getPaddingRight(), getHeight() + getScrollY());
         super.onDraw(canvas);
-        if (this.f24394w) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(22.0f);
-            }
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(22.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.g6.f23183k0);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        super.onTextChanged(charSequence, i10, i11, i12);
+        i3 i3Var = this.f21087f;
+        org.telegram.ui.Components.j6 j6Var = i3Var.v;
+        if (j6Var != null && this.f21086c > 0) {
+            j6Var.b();
+            i3Var.c();
         }
     }
 
-    public void setDivider(boolean z10) {
-        this.f24394w = z10;
-        setWillNotDraw(!z10);
-    }
-
-    public void setShowLimitOnFocus(boolean z10) {
-        this.f24390f = z10;
-    }
-
-    public void setShowLimitWhenEmpty(boolean z10) {
-        this.d = z10;
-        if (z10) {
-            c();
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.f21087f.v && !super.verifyDrawable(drawable)) {
+            return false;
         }
-    }
-
-    public void setShowLimitWhenNear(int i10) {
-        this.f24389e = i10;
-        c();
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.f24386a = true;
-        e3 e3Var = this.f24387b;
-        e3Var.setText(charSequence);
-        e3Var.setSelection(e3Var.getText().length());
-        this.f24386a = false;
-    }
-
-    public void setText(TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f24386a = true;
-        CharSequence formatTextWithEntities = MessageObject.formatTextWithEntities(tL_textWithEntities, false);
-        e3 e3Var = this.f24387b;
-        e3Var.setText(formatTextWithEntities);
-        e3Var.setSelection(e3Var.getText().length());
-        this.f24386a = false;
-    }
-
-    public void a(boolean z10) {
-    }
-
-    public void b(Editable editable) {
+        return true;
     }
 }

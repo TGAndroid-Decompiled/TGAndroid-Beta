@@ -1,86 +1,286 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.LaunchActivity;
-public final class vf implements Runnable {
-    public final MessageObject f33547a;
-    public final long f33548b;
-    public final TL_keyboard.KeyboardButtonProto f33549c;
-    public final MessageObject d;
-    public final TLRPC.User f33550e;
-    public final ChatActivityEnterView f33551f;
+import org.telegram.ui.PhotoViewer;
+public final class vf implements org.telegram.ui.hu0 {
+    public boolean f29445a;
+    public final Object f29446b;
+    public final Object f29447c;
+    public final MediaController.PhotoEntry d;
+    public final xf e;
 
-    public vf(ChatActivityEnterView chatActivityEnterView, MessageObject messageObject, long j10, TL_keyboard.KeyboardButtonProto keyboardButtonProto, MessageObject messageObject2, TLRPC.User user) {
-        this.f33551f = chatActivityEnterView;
-        this.f33547a = messageObject;
-        this.f33548b = j10;
-        this.f33549c = keyboardButtonProto;
-        this.d = messageObject2;
-        this.f33550e = user;
+    public vf(xf xfVar, Object obj, Object obj2, MediaController.PhotoEntry photoEntry) {
+        this.e = xfVar;
+        this.f29446b = obj;
+        this.f29447c = obj2;
+        this.d = photoEntry;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        long N8;
-        String restrictionReason;
-        ChatActivityEnterView chatActivityEnterView = this.f33551f;
-        org.telegram.ui.tn tnVar = chatActivityEnterView.K2;
-        if (chatActivityEnterView.f26132h1.R() <= AndroidUtilities.dp(20.0f) && !chatActivityEnterView.t0()) {
-            if (tnVar != null) {
-                int i11 = chatActivityEnterView.M;
-                long j10 = this.f33547a.messageOwner.dialog_id;
-                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f33549c;
-                String text = keyboardButtonProto.getText();
-                String url = keyboardButtonProto.getUrl();
-                boolean c3 = kf.c.c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class);
-                MessageObject messageObject = this.d;
-                if (messageObject != null) {
-                    i10 = messageObject.messageOwner.f22413id;
-                } else {
-                    i10 = 0;
-                }
-                if (tnVar == null) {
-                    N8 = 0;
-                } else {
-                    N8 = tnVar.N8();
-                }
-                ph.y3 b10 = ph.y3.b(i11, j10, this.f33548b, text, url, c3 ? 1 : 0, i10, N8, null, false, null, null, 0, false, false);
-                LaunchActivity launchActivity = LaunchActivity.C1;
-                if (launchActivity != null && launchActivity.P() != null && LaunchActivity.C1.P().m(b10) != null) {
-                    ph.z zVar = chatActivityEnterView.f26131h0;
-                    if (zVar != null) {
-                        zVar.setOpened(false);
-                        return;
-                    }
-                    return;
-                }
-                TLRPC.User user = this.f33550e;
-                if (user == null) {
-                    restrictionReason = null;
-                } else {
-                    restrictionReason = MessagesController.getInstance(chatActivityEnterView.M).getRestrictionReason(user.restriction_reason);
-                }
-                if (!TextUtils.isEmpty(restrictionReason)) {
-                    MessagesController.getInstance(chatActivityEnterView.M);
-                    MessagesController.showCantOpenAlert(tnVar, restrictionReason);
-                    return;
-                }
-                ph.p2 p2Var = new ph.p2(chatActivityEnterView.getContext(), chatActivityEnterView.R3);
-                p2Var.f45967g0 = chatActivityEnterView.J2;
-                p2Var.s(tnVar, b10);
-                p2Var.show();
-                return;
-            }
-            return;
+    public final boolean A() {
+        return this.f29445a;
+    }
+
+    @Override
+    public final CharSequence C(int i10) {
+        return null;
+    }
+
+    @Override
+    public final org.telegram.ui.ju0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z4, boolean z10) {
+        return null;
+    }
+
+    @Override
+    public final void F(boolean z4) {
+        this.f29445a = z4;
+    }
+
+    @Override
+    public final int H() {
+        return 0;
+    }
+
+    @Override
+    public final boolean J() {
+        return false;
+    }
+
+    @Override
+    public final boolean K() {
+        return false;
+    }
+
+    @Override
+    public final boolean M() {
+        return true;
+    }
+
+    @Override
+    public final boolean N() {
+        return false;
+    }
+
+    @Override
+    public final boolean O() {
+        return false;
+    }
+
+    @Override
+    public final boolean P() {
+        return false;
+    }
+
+    @Override
+    public final int Q(Object obj) {
+        return 0;
+    }
+
+    @Override
+    public final int R(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final boolean S() {
+        return false;
+    }
+
+    @Override
+    public final boolean T() {
+        return true;
+    }
+
+    @Override
+    public final MessageObject U() {
+        return null;
+    }
+
+    @Override
+    public final boolean Y() {
+        return false;
+    }
+
+    @Override
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final String a0() {
+        return "";
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final CharSequence b0(int i10) {
+        return null;
+    }
+
+    @Override
+    public final ArrayList c() {
+        return null;
+    }
+
+    @Override
+    public final void d() {
+        ph.f fVar;
+        bd f12 = PhotoViewer.t1().f1();
+        if (f12 != null && (fVar = f12.f41809f) != null) {
+            yt ytVar = fVar.f24367a;
+            ytVar.requestFocus();
+            AndroidUtilities.showKeyboard(ytVar);
         }
-        chatActivityEnterView.m0(false);
-        AndroidUtilities.hideKeyboard(chatActivityEnterView);
-        AndroidUtilities.runOnUIThread(this, 150L);
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final boolean h() {
+        return false;
+    }
+
+    @Override
+    public final ImageReceiver.BitmapHolder j(int i10) {
+        return null;
+    }
+
+    @Override
+    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
+        return 0;
+    }
+
+    @Override
+    public final boolean l() {
+        return true;
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z4, int i11, int i12, boolean z10) {
+        this.e.B(null, this.f29446b, null, this.f29447c, z4, i11, i12, this.d, this.f29445a);
+    }
+
+    @Override
+    public final boolean p() {
+        return false;
+    }
+
+    @Override
+    public final boolean q() {
+        return false;
+    }
+
+    @Override
+    public final boolean r() {
+        return false;
+    }
+
+    @Override
+    public final boolean t() {
+        return true;
+    }
+
+    @Override
+    public final boolean u() {
+        return false;
+    }
+
+    @Override
+    public final HashMap v() {
+        return null;
+    }
+
+    @Override
+    public final boolean w() {
+        return false;
+    }
+
+    @Override
+    public final boolean x(int i10) {
+        return false;
+    }
+
+    @Override
+    public final int y() {
+        return 0;
+    }
+
+    @Override
+    public final boolean z() {
+        return true;
+    }
+
+    @Override
+    public final void B(int i10) {
+    }
+
+    @Override
+    public final void D() {
+    }
+
+    @Override
+    public final void G() {
+    }
+
+    @Override
+    public final void I() {
+    }
+
+    @Override
+    public final void L(VideoEditedInfo videoEditedInfo) {
+    }
+
+    @Override
+    public final void V() {
+    }
+
+    @Override
+    public final void W(int i10) {
+    }
+
+    @Override
+    public final void X(int i10) {
+    }
+
+    @Override
+    public final void Z(int i10) {
+    }
+
+    @Override
+    public final void e(CharSequence charSequence) {
+    }
+
+    @Override
+    public final void i() {
+    }
+
+    @Override
+    public final void m() {
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void s() {
+    }
+
+    @Override
+    public final void f(String str, String str2, boolean z4) {
     }
 }

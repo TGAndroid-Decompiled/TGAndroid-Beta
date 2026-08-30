@@ -1,33 +1,42 @@
 package gg;
 
-import android.content.Context;
-import i7.f6;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Cells.k4;
-import org.telegram.ui.Components.jr;
-import org.telegram.ui.Components.o6;
-public final class z extends k4 {
-    public final o6 f7357r;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class z implements Runnable {
+    public final int f6820a;
+    public final TLRPC.Chat f6821b;
+    public final int f6822c;
+    public final ArrayList d;
+    public final Utilities.Callback e;
 
-    public z(Context context, c6 c6Var) {
-        super(context, c6Var);
-        int i10;
-        o6 o6Var = new o6(context, true, true, true);
-        this.f7357r = o6Var;
-        o6Var.b(0.45f, 240L, jr.h);
-        if (LocaleController.isRTL) {
-            i10 = 3;
-        } else {
-            i10 = 5;
+    public z(TLRPC.Chat chat, int i10, ArrayList arrayList, Utilities.Callback callback, int i11) {
+        this.f6820a = i11;
+        this.f6821b = chat;
+        this.f6822c = i10;
+        this.d = arrayList;
+        this.e = callback;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f6820a) {
+            case 0:
+                TLRPC.Chat chat = this.f6821b;
+                ArrayList arrayList = this.d;
+                if (chat == null) {
+                    p0.m(this.f6822c, arrayList);
+                }
+                this.e.run(arrayList);
+                return;
+            default:
+                TLRPC.Chat chat2 = this.f6821b;
+                ArrayList arrayList2 = this.d;
+                if (chat2 == null) {
+                    p0.m(this.f6822c, arrayList2);
+                }
+                this.e.run(arrayList2);
+                return;
         }
-        o6Var.setGravity(i10);
-        o6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        o6Var.setTypeface(AndroidUtilities.bold());
-        o6Var.setTextColor(g6.v0(g6.L6, c6Var));
-        addView(o6Var, f6.d(-2, 24.0f, (LocaleController.isRTL ? 3 : 5) | 80, 24.0f, 0.0f, 24.0f, 0.0f));
-        setBackgroundColor(g6.v0(g6.f23133h5, c6Var));
     }
 }

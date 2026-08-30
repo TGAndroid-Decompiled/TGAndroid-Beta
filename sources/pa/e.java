@@ -1,47 +1,67 @@
 package pa;
 
-import na.u;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicLongArray;
 public final class e extends u {
-    public volatile u f45674a;
-    public final boolean f45675b;
-    public final boolean f45676c;
-    public final na.g d;
-    public final ua.a f45677e;
-    public final f f45678f;
+    public final int f41076a;
+    public final u f41077b;
 
-    public e(f fVar, boolean z10, boolean z11, na.g gVar, ua.a aVar) {
-        this.f45678f = fVar;
-        this.f45675b = z10;
-        this.f45676c = z11;
-        this.d = gVar;
-        this.f45677e = aVar;
+    public e(u uVar, int i10) {
+        this.f41076a = i10;
+        this.f41077b = uVar;
     }
 
     @Override
-    public final Object read(va.a aVar) {
-        if (this.f45675b) {
-            aVar.C();
-            return null;
+    public final Object read(xa.a aVar) {
+        switch (this.f41076a) {
+            case 0:
+                return new AtomicLong(((Number) this.f41077b.read(aVar)).longValue());
+            case 1:
+                ArrayList arrayList = new ArrayList();
+                aVar.a();
+                while (aVar.k()) {
+                    arrayList.add(Long.valueOf(((Number) this.f41077b.read(aVar)).longValue()));
+                }
+                aVar.e();
+                int size = arrayList.size();
+                AtomicLongArray atomicLongArray = new AtomicLongArray(size);
+                for (int i10 = 0; i10 < size; i10++) {
+                    atomicLongArray.set(i10, ((Long) arrayList.get(i10)).longValue());
+                }
+                return atomicLongArray;
+            default:
+                if (aVar.x() == 9) {
+                    aVar.t();
+                    return null;
+                }
+                return this.f41077b.read(aVar);
         }
-        u uVar = this.f45674a;
-        if (uVar == null) {
-            uVar = this.d.c(this.f45678f, this.f45677e);
-            this.f45674a = uVar;
-        }
-        return uVar.read(aVar);
     }
 
     @Override
-    public final void write(va.b bVar, Object obj) {
-        if (this.f45676c) {
-            bVar.i();
-            return;
+    public final void write(xa.b bVar, Object obj) {
+        switch (this.f41076a) {
+            case 0:
+                this.f41077b.write(bVar, Long.valueOf(((AtomicLong) obj).get()));
+                return;
+            case 1:
+                AtomicLongArray atomicLongArray = (AtomicLongArray) obj;
+                bVar.b();
+                int length = atomicLongArray.length();
+                for (int i10 = 0; i10 < length; i10++) {
+                    this.f41077b.write(bVar, Long.valueOf(atomicLongArray.get(i10)));
+                }
+                bVar.e();
+                return;
+            default:
+                if (obj == null) {
+                    bVar.i();
+                    return;
+                } else {
+                    this.f41077b.write(bVar, obj);
+                    return;
+                }
         }
-        u uVar = this.f45674a;
-        if (uVar == null) {
-            uVar = this.d.c(this.f45678f, this.f45677e);
-            this.f45674a = uVar;
-        }
-        uVar.write(bVar, obj);
     }
 }

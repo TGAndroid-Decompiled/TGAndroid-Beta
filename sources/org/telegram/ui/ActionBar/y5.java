@@ -1,24 +1,41 @@
 package org.telegram.ui.ActionBar;
-public enum y5 {
-    DEFAULT(g6.Af, g6.Bf, g6.Cf, g6.Pf, g6.Qf, g6.Rf),
-    PRIMARY(g6.Df, g6.Ef, g6.Ff, g6.Sf, g6.Tf, g6.Uf),
-    DANGER(g6.Gf, g6.Hf, g6.If, g6.Vf, g6.Wf, g6.Xf),
-    SUCCESS(g6.Jf, g6.Kf, g6.Lf, g6.Yf, g6.Zf, g6.f23018ag),
-    DEFAULT_IN_TEXT(g6.Mf, g6.Nf, g6.Of, g6.f23037bg, g6.f23054cg, g6.f23071dg);
-    
-    public final int f23989a;
-    public final int f23990b;
-    public final int f23991c;
-    public final int d;
-    public final int f23992e;
-    public final int f23993f;
 
-    y5(int i10, int i11, int i12, int i13, int i14, int i15) {
-        this.f23989a = i10;
-        this.f23990b = i11;
-        this.f23991c = i12;
-        this.d = i13;
-        this.f23992e = i14;
-        this.f23993f = i15;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class y5 extends Drawable {
+    public static Paint f20769c;
+    public Paint f20770a;
+    public float f20771b;
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int dp;
+        Rect bounds = getBounds();
+        float f10 = this.f20771b;
+        if (Math.abs(f10 - (-1.0f)) < 0.01f) {
+            dp = Math.max(bounds.width(), bounds.height()) / 2;
+        } else if (Math.abs(f10 - (-2.0f)) < 0.01f) {
+            dp = (int) Math.ceil(Math.sqrt(((bounds.top - bounds.centerY()) * (bounds.top - bounds.centerY())) + ((bounds.left - bounds.centerX()) * (bounds.left - bounds.centerX()))));
+        } else {
+            dp = AndroidUtilities.dp(f10);
+        }
+        canvas.drawCircle(bounds.centerX(), bounds.centerY(), dp, this.f20770a);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

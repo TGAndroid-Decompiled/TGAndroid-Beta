@@ -1,59 +1,108 @@
 package nh;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class s7 implements TextWatcher {
-    public final b6 f18550a;
-    public final y7 f18551b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.media.AudioManager;
+import android.os.Build;
+import android.view.KeyEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class s7 extends View {
+    public Paint f15891a;
+    public boolean f15892b;
+    public m2.b f15893c;
+    public org.telegram.ui.Components.z5 d;
+    public org.telegram.ui.Components.z5 e;
+    public float f15894f;
 
-    public s7(y7 y7Var, b6 b6Var) {
-        this.f18551b = y7Var;
-        this.f18550a = b6Var;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        String obj;
-        this.f18550a.run();
-        y7 y7Var = this.f18551b;
-        org.telegram.ui.Cells.g3 g3Var = y7Var.U;
-        if (y7Var.Y) {
-            return;
-        }
-        if (y7Var.Z && editable != null) {
-            String substring = editable.toString().substring(8);
-            y7Var.Y = true;
-            g3Var.f24387b.setText(substring);
-            org.telegram.ui.Cells.e3 e3Var = g3Var.f24387b;
-            e3Var.setSelection(0, e3Var.getText().length());
-            y7Var.Y = false;
-            y7Var.Z = false;
-            y7.S(y7Var, substring);
-            return;
-        }
-        if (editable == null) {
-            obj = null;
+    public final void a(boolean z4) {
+        m2.b bVar = this.f15893c;
+        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
+        int streamMaxVolume = audioManager.getStreamMaxVolume(3);
+        int streamVolume = audioManager.getStreamVolume(3);
+        float f10 = streamMaxVolume;
+        int max = (int) Math.max(1.0f, f10 / 15.0f);
+        if (z4) {
+            int i10 = streamVolume + max;
+            if (i10 <= streamMaxVolume) {
+                streamMaxVolume = i10;
+            }
         } else {
-            obj = editable.toString();
+            streamMaxVolume = streamVolume - max;
+            if (streamMaxVolume < 0) {
+                streamMaxVolume = 0;
+            }
         }
-        y7.S(y7Var, obj);
+        audioManager.setStreamVolume(3, streamMaxVolume, 0);
+        float f11 = streamMaxVolume / f10;
+        this.f15894f = f11;
+        if (!this.f15892b) {
+            this.e.d(f11, true);
+        }
+        invalidate();
+        this.f15892b = true;
+        AndroidUtilities.cancelRunOnUIThread(bVar);
+        AndroidUtilities.runOnUIThread(bVar, 2000L);
+    }
+
+    public final void b() {
+        int i10;
+        m2.b bVar = this.f15893c;
+        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
+        int streamMaxVolume = audioManager.getStreamMaxVolume(3);
+        if (Build.VERSION.SDK_INT >= 28) {
+            i10 = audioManager.getStreamMinVolume(3);
+        } else {
+            i10 = 0;
+        }
+        int streamVolume = audioManager.getStreamVolume(3);
+        if (streamVolume <= i10) {
+            a(true);
+        } else if (!this.f15892b) {
+            float f10 = streamVolume / streamMaxVolume;
+            this.f15894f = f10;
+            this.e.d(f10, true);
+            this.f15892b = true;
+            invalidate();
+            AndroidUtilities.cancelRunOnUIThread(bVar);
+            AndroidUtilities.runOnUIThread(bVar, 2000L);
+        }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13;
-        y7 y7Var = this.f18551b;
-        if (y7Var.Y) {
-            return;
+    public final void onDraw(Canvas canvas) {
+        float f10;
+        Paint paint = this.f15891a;
+        super.onDraw(canvas);
+        org.telegram.ui.Components.z5 z5Var = this.e;
+        z5Var.d(this.f15894f, false);
+        org.telegram.ui.Components.z5 z5Var2 = this.d;
+        if (this.f15892b) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
         }
-        boolean z10 = false;
-        if (charSequence != null && i10 == 8 && charSequence.subSequence(0, i10).toString().equals("https://") && charSequence.length() >= (i13 = i12 + i10) && charSequence.subSequence(i10, i13).toString().startsWith("https://")) {
-            z10 = true;
+        z5Var2.d(f10, false);
+        if (z5Var2.f31241c != 0.0f) {
+            float measuredHeight = getMeasuredHeight() / 2.0f;
+            paint.setAlpha((int) (z5Var2.f31241c * 255.0f));
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, getMeasuredWidth() * z5Var.f31241c, getMeasuredHeight());
+            canvas.drawRoundRect(rectF, measuredHeight, measuredHeight, paint);
         }
-        y7Var.Z = z10;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
+        if (keyEvent.getAction() == 0 && i10 == 24) {
+            a(true);
+            return true;
+        } else if (keyEvent.getAction() == 0 && i10 == 25) {
+            a(false);
+            return true;
+        } else {
+            return super.onKeyDown(i10, keyEvent);
+        }
     }
 }

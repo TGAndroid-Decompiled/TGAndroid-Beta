@@ -1,161 +1,134 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.animation.DecelerateInterpolator;
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.TypedArray;
+import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
+import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-public final class h2 extends Drawable {
-    public final Paint f23468a;
-    public boolean f23469b;
-    public long f23470c;
-    public float d;
-    public float f23471e;
-    public int f23472f;
-    public final boolean f23473g;
-    public final DecelerateInterpolator h;
-    public int f23474i;
-    public int f23475j;
-    public float f23476k;
-    public int f23477l;
+public final class h2 extends d2 {
+    public static final int[] f19744k1 = {16842932, 16842933};
+    public int f19745a1;
+    public int f19746b1;
+    public FrameLayout f19747c1;
+    public ViewGroup f19748d1;
+    public View f19749e1;
+    public DialogInterface.OnShowListener f19750f1;
+    public DialogInterface.OnDismissListener f19751g1;
+    public boolean f19752h1;
+    public long f19753i1;
+    public final p f19754j1;
 
-    public h2(boolean z10) {
-        Paint paint = new Paint(1);
-        this.f23468a = paint;
-        Paint paint2 = new Paint(1);
-        this.h = new DecelerateInterpolator();
-        this.f23474i = -1;
-        this.f23475j = -9079435;
-        this.f23476k = 300.0f;
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint2.setColor(-65536);
-        this.f23473g = z10;
+    public h2(Context context, int i10, f6 f6Var) {
+        super(context, i10, f6Var);
+        this.f19752h1 = false;
+        this.f19753i1 = 0L;
+        this.f19754j1 = new p(this, 7);
     }
 
-    public final void a(int i10) {
-        this.f23474i = i10;
-        invalidateSelf();
-    }
-
-    public final void b(int i10) {
-        this.f23475j = i10;
-        invalidateSelf();
-    }
-
-    public final void c(float f9, boolean z10) {
-        this.f23470c = 0L;
-        float f10 = this.f23471e;
-        if (f10 == 1.0f) {
-            this.f23469b = true;
-        } else if (f10 == 0.0f) {
-            this.f23469b = false;
+    public static Activity r(Context context) {
+        if (context instanceof Activity) {
+            return (Activity) context;
         }
-        this.f23470c = 0L;
-        if (z10) {
-            if (f10 < f9) {
-                this.f23472f = (int) (f10 * this.f23476k);
-            } else {
-                this.f23472f = (int) ((1.0f - f10) * this.f23476k);
-            }
-            this.f23470c = System.currentTimeMillis();
-            this.d = f9;
+        if (context instanceof ContextThemeWrapper) {
+            return r(((ContextThemeWrapper) context).getBaseContext());
+        }
+        return null;
+    }
+
+    @Override
+    public final void dismiss() {
+        if (!isShowing() || this.f19752h1) {
+            return;
+        }
+        this.f19752h1 = true;
+        AndroidUtilities.cancelRunOnUIThread(this.f19754j1);
+        if (this.f19747c1.getVisibility() != 0) {
+            s().removeView(this.f19747c1);
+            return;
+        }
+        Animation loadAnimation = AnimationUtils.loadAnimation(getContext(), this.f19746b1);
+        loadAnimation.setAnimationListener(new f2(this, 0));
+        this.f19748d1.clearAnimation();
+        this.f19748d1.startAnimation(loadAnimation);
+        this.f19749e1.animate().setListener(null).cancel();
+        this.f19749e1.animate().setDuration(300L).alpha(0.0f).setListener(new e2(this, 1)).start();
+    }
+
+    @Override
+    public final boolean isShowing() {
+        if (s().indexOfChild(this.f19747c1) != -1 && !this.f19752h1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void q(long j10) {
+        if (isShowing()) {
+            return;
+        }
+        this.f19753i1 = j10;
+        show();
+    }
+
+    public final ViewGroup s() {
+        return (ViewGroup) r(getContext()).getWindow().getDecorView();
+    }
+
+    @Override
+    public final void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
+        this.f19751g1 = onDismissListener;
+    }
+
+    @Override
+    public final void setOnShowListener(DialogInterface.OnShowListener onShowListener) {
+        this.f19750f1 = onShowListener;
+    }
+
+    @Override
+    public final void show() {
+        TypedValue typedValue = new TypedValue();
+        getContext().getTheme().resolveAttribute(16842926, typedValue, true);
+        TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(typedValue.resourceId, f19744k1);
+        this.f19745a1 = obtainStyledAttributes.getResourceId(0, -1);
+        this.f19746b1 = obtainStyledAttributes.getResourceId(1, -1);
+        obtainStyledAttributes.recycle();
+        this.f19591e0 = true;
+        ViewGroup f10 = f(false);
+        this.f19748d1 = f10;
+        f10.setClickable(true);
+        WindowManager.LayoutParams attributes = getWindow().getAttributes();
+        FrameLayout frameLayout = new FrameLayout(getContext());
+        frameLayout.setOnClickListener(new x(this, 1));
+        View view = new View(getContext());
+        this.f19749e1 = view;
+        view.setBackgroundColor(j6.l1(attributes.dimAmount, -16777216));
+        frameLayout.addView(this.f19749e1, new FrameLayout.LayoutParams(-1, -1));
+        FrameLayout frameLayout2 = new FrameLayout(getContext());
+        frameLayout2.addView(this.f19748d1, new FrameLayout.LayoutParams(-1, -2, 17));
+        frameLayout.addView(frameLayout2, new FrameLayout.LayoutParams(attributes.width, -2, 17));
+        this.f19747c1 = frameLayout;
+        s().addView(this.f19747c1);
+        FrameLayout frameLayout3 = this.f19747c1;
+        WeakHashMap weakHashMap = r0.j0.f43118a;
+        r0.z.c(frameLayout3);
+        r0.b0.j(this.f19747c1, new n(frameLayout2, 4));
+        this.f19747c1.setVisibility(4);
+        long j10 = this.f19753i1;
+        p pVar = this.f19754j1;
+        if (j10 == 0) {
+            pVar.run();
         } else {
-            this.f23471e = f9;
-            this.d = f9;
+            AndroidUtilities.runOnUIThread(pVar, j10);
         }
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        int i10;
-        int i11;
-        if (this.f23471e != this.d) {
-            if (this.f23470c != 0) {
-                int currentTimeMillis = this.f23472f + ((int) (System.currentTimeMillis() - this.f23470c));
-                this.f23472f = currentTimeMillis;
-                float f9 = currentTimeMillis;
-                float f10 = this.f23476k;
-                if (f9 >= f10) {
-                    this.f23471e = this.d;
-                } else {
-                    float f11 = this.f23471e;
-                    float f12 = this.d;
-                    DecelerateInterpolator decelerateInterpolator = this.h;
-                    if (f11 < f12) {
-                        this.f23471e = decelerateInterpolator.getInterpolation(f9 / f10) * this.d;
-                    } else {
-                        this.f23471e = 1.0f - decelerateInterpolator.getInterpolation(f9 / f10);
-                    }
-                }
-            }
-            this.f23470c = System.currentTimeMillis();
-            invalidateSelf();
-        }
-        int d = i0.a.d(this.f23471e, this.f23474i, this.f23475j);
-        Paint paint = this.f23468a;
-        paint.setColor(d);
-        canvas.save();
-        canvas.translate(AndroidUtilities.dp(24.0f) / 2.0f, AndroidUtilities.dp(24.0f) / 2.0f);
-        int i12 = this.f23477l;
-        if (i12 != 0) {
-            canvas.rotate(i12);
-        }
-        float f13 = this.f23471e;
-        canvas.translate(-AndroidUtilities.dp(0.66f), 0.0f);
-        if (!this.f23473g) {
-            float f14 = this.f23471e;
-            if (this.f23469b) {
-                i11 = -225;
-            } else {
-                i11 = 135;
-            }
-            canvas.rotate(f14 * i11);
-        } else {
-            float f15 = this.f23471e;
-            if (this.f23469b) {
-                i10 = -180;
-            } else {
-                i10 = 180;
-            }
-            canvas.rotate((f15 * i10) + 135.0f);
-            f13 = 1.0f;
-        }
-        float f16 = 1.0f - f13;
-        canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.lerp(-6.75f, -8.0f, f13)), 0.0f, AndroidUtilities.dp(8.0f) - ((paint.getStrokeWidth() / 2.0f) * f16), 0.0f, paint);
-        float dp = AndroidUtilities.dp(-0.25f);
-        float dp2 = AndroidUtilities.dp(AndroidUtilities.lerp(7.0f, 8.0f, f13)) - ((paint.getStrokeWidth() / 4.0f) * f16);
-        float dp3 = AndroidUtilities.dp(AndroidUtilities.lerp(-7.25f, 0.0f, f13));
-        canvas.drawLine(dp3, -dp, 0.0f, -dp2, paint);
-        canvas.drawLine(dp3, dp, 0.0f, dp2, paint);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f23468a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f23468a.setColorFilter(colorFilter);
     }
 }

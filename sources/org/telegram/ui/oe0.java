@@ -1,25 +1,19 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class oe0 implements View.OnAttachStateChangeListener {
-    public boolean f41102b;
-    public final pe0 d;
-    public long f41101a = System.currentTimeMillis();
-    public final ne0 f41103c = new ne0(this, 0);
+import java.util.TimerTask;
+import org.telegram.messenger.AndroidUtilities;
+public final class oe0 extends TimerTask {
+    public final pe0 f36885a;
 
     public oe0(pe0 pe0Var) {
-        this.d = pe0Var;
+        this.f36885a = pe0Var;
     }
 
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        this.f41102b = true;
-        view.post(this.f41103c);
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        this.f41102b = false;
-        view.removeCallbacks(this.f41103c);
+    public final void run() {
+        if (this.f36885a.K == null) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new c10(this, 22));
     }
 }

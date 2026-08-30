@@ -1,44 +1,25 @@
 package org.telegram.ui;
 
-import java.util.TimerTask;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
-public final class ot extends TimerTask {
-    public final int f41217a;
-    public final String f41218b;
-    public final org.telegram.ui.Components.il0 f41219c;
+import android.content.Context;
+import android.widget.LinearLayout;
+import org.telegram.tgnet.TLRPC;
+public final class ot extends LinearLayout {
+    public final org.telegram.ui.Components.p9 f36975a;
+    public final org.telegram.ui.ActionBar.k5 f36976b;
+    public final org.telegram.ui.ActionBar.f6 f36977c;
+    public TLRPC.StickerSetCovered d;
 
-    public ot(org.telegram.ui.Components.il0 il0Var, String str, int i10) {
-        this.f41217a = i10;
-        this.f41219c = il0Var;
-        this.f41218b = str;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f41217a) {
-            case 0:
-                try {
-                    ((pt) this.f41219c).d.cancel();
-                    ((pt) this.f41219c).d = null;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                }
-                Utilities.searchQueue.postRunnable(new org.telegram.ui.Components.voip.o(3, (pt) this.f41219c, this.f41218b));
-                return;
-            default:
-                rf.d1 d1Var = (rf.d1) this.f41219c;
-                try {
-                    d1Var.f47196n.cancel();
-                    d1Var.f47196n = null;
-                } catch (Exception e11) {
-                    FileLog.e(e11);
-                }
-                String str = this.f41218b;
-                d1Var.getClass();
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.y(24, d1Var, str));
-                return;
-        }
+    public ot(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        this.f36977c = f6Var;
+        org.telegram.ui.Components.p9 p9Var = new org.telegram.ui.Components.p9(context);
+        this.f36975a = p9Var;
+        org.telegram.ui.ActionBar.k5 k5Var = new org.telegram.ui.ActionBar.k5(context);
+        this.f36976b = k5Var;
+        k5Var.setTextSize(16);
+        k5Var.setTextColor(-1);
+        setOrientation(0);
+        addView(p9Var, k7.b6.t(24, 24, 17, 17, 0, 17, 0));
+        addView(k5Var, k7.b6.t(-2, -2, 17, 0, 0, 12, 0));
     }
 }

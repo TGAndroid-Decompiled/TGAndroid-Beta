@@ -1,97 +1,71 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import org.telegram.ui.hh1;
-public final class z51 extends FrameLayout {
-    public final int f35224a;
-    public KeyEvent.Callback f35225b;
+public final class z51 extends qv0 {
+    public final int f31249t0;
 
-    public z51(Context context) {
-        super(context);
-        this.f35224a = 2;
+    public z51(Context context, org.telegram.ui.ActionBar.e5 e5Var, int i10) {
+        super(context, e5Var);
+        this.f31249t0 = i10;
     }
 
     @Override
-    public void addView(View view, int i10, int i11) {
-        switch (this.f35224a) {
-            case 3:
-                super.addView(view, i10, i11);
-                ((sg.f) this.f35225b).e();
-                return;
-            default:
-                super.addView(view, i10, i11);
-                return;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f35224a) {
-            case 0:
-                b61 b61Var = (b61) this.f35225b;
-                Drawable drawable = b61Var.f26986b;
-                drawable.setBounds(0, (int) ((b61Var.h - b61.n(b61Var)) - getTranslationY()), getMeasuredWidth(), getMeasuredHeight());
-                drawable.draw(canvas);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f35224a) {
-            case 0:
-                b61 b61Var = (b61) this.f35225b;
-                if (motionEvent.getAction() == 0 && b61Var.h != 0 && motionEvent.getY() < b61Var.h) {
-                    b61Var.dismiss();
-                    return true;
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f35224a) {
-            case 0:
-                if (!((b61) this.f35225b).isDismissed() && super.onTouchEvent(motionEvent)) {
-                    return true;
-                }
-                return false;
+    public boolean P() {
+        switch (this.f31249t0) {
             case 1:
-                ((hh1) this.f35225b).P.onTouchEvent(motionEvent);
-                return super.onTouchEvent(motionEvent);
+                return false;
+            case 2:
+                return false;
+            case 3:
             default:
-                return super.onTouchEvent(motionEvent);
+                return super.P();
+            case 4:
+                return false;
         }
     }
 
     @Override
-    public void setTranslationY(float f9) {
-        switch (this.f35224a) {
-            case 0:
-                super.setTranslationY(f9);
-                b61.m((b61) this.f35225b);
+    public void addView(View view) {
+        switch (this.f31249t0) {
+            case 3:
+                if (view instanceof kz) {
+                    ViewGroup.LayoutParams layoutParams = ((kz) view).getLayoutParams();
+                    if (layoutParams == null) {
+                        layoutParams = new FrameLayout.LayoutParams(-1, -2);
+                    }
+                    if (layoutParams instanceof FrameLayout.LayoutParams) {
+                        ((FrameLayout.LayoutParams) layoutParams).gravity = 87;
+                    }
+                    view.setLayoutParams(layoutParams);
+                }
+                super.addView(view);
                 return;
             default:
-                super.setTranslationY(f9);
+                super.addView(view);
                 return;
         }
     }
 
-    public z51(KeyEvent.Callback callback, Context context, int i10) {
-        super(context);
-        this.f35224a = i10;
-        this.f35225b = callback;
+    @Override
+    public void onLayout(boolean r17, int r18, int r19, int r20, int r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.z51.onLayout(boolean, int, int, int, int):void");
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f31249t0) {
+            case 0:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
+                return;
+            case 5:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
     }
 }

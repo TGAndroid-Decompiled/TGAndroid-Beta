@@ -1,68 +1,48 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class l20 extends f2.q {
-    public final ArrayList f30206b;
-    public final ArrayList f30207c;
-    public final o20 d;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.ViewConfiguration;
+public final class l20 {
+    public static final int f26521w = ViewConfiguration.getTapTimeout();
+    public final int f26522a;
+    public final int f26523b;
+    public final int f26524c;
+    public final int d;
+    public final m20 f26525f;
+    public final m20 f26526g;
+    public boolean h;
+    public boolean f26527i;
+    public boolean f26528j;
+    public boolean f26529k;
+    public boolean f26530l;
+    public MotionEvent f26531m;
+    public MotionEvent f26532n;
+    public boolean f26533o;
+    public float f26534p;
+    public float f26535q;
+    public float f26536r;
+    public float f26537s;
+    public boolean f26538t;
+    public VelocityTracker v;
+    public long f26539u = ViewConfiguration.getLongPressTimeout();
+    public final androidx.mediarouter.app.d e = new androidx.mediarouter.app.d(this, 10);
 
-    public l20(o20 o20Var, ArrayList arrayList, ArrayList arrayList2) {
-        this.d = o20Var;
-        this.f30206b = arrayList;
-        this.f30207c = arrayList2;
-    }
-
-    @Override
-    public final boolean a(int i10, int i11) {
-        return true;
-    }
-
-    @Override
-    public final boolean b(int i10, int i11) {
-        TLRPC.GroupCallParticipant groupCallParticipant;
-        TLRPC.GroupCallParticipant groupCallParticipant2;
-        ArrayList arrayList = this.f30206b;
-        int size = arrayList.size();
-        o20 o20Var = this.d;
-        if (i10 < size && i11 < o20Var.f31236e.size()) {
-            return ((ChatObject.VideoParticipant) arrayList.get(i10)).equals(o20Var.f31236e.get(i11));
+    public l20(Context context, m20 m20Var) {
+        this.f26525f = m20Var;
+        this.f26526g = m20Var;
+        if (context != null) {
+            this.f26538t = true;
+            ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
+            int scaledTouchSlop = viewConfiguration.getScaledTouchSlop();
+            int scaledDoubleTapSlop = viewConfiguration.getScaledDoubleTapSlop();
+            this.f26524c = viewConfiguration.getScaledMinimumFlingVelocity();
+            this.d = viewConfiguration.getScaledMaximumFlingVelocity();
+            this.f26522a = scaledTouchSlop * scaledTouchSlop;
+            this.f26523b = scaledDoubleTapSlop * scaledDoubleTapSlop;
+            return;
         }
-        int size2 = i10 - arrayList.size();
-        int size3 = i11 - o20Var.f31236e.size();
-        ArrayList arrayList2 = this.f30207c;
-        if (size3 >= 0 && size3 < o20Var.f31237f.size() && size2 >= 0 && size2 < arrayList2.size()) {
-            if (MessageObject.getPeerId(((TLRPC.GroupCallParticipant) arrayList2.get(size2)).peer) != MessageObject.getPeerId(((TLRPC.GroupCallParticipant) o20Var.f31237f.get(size3)).peer)) {
-                return false;
-            }
-            return true;
-        }
-        if (i10 < arrayList.size()) {
-            groupCallParticipant = ((ChatObject.VideoParticipant) arrayList.get(i10)).participant;
-        } else {
-            groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(size2);
-        }
-        if (i11 < o20Var.f31236e.size()) {
-            groupCallParticipant2 = ((ChatObject.VideoParticipant) o20Var.f31236e.get(i11)).participant;
-        } else {
-            groupCallParticipant2 = (TLRPC.GroupCallParticipant) o20Var.f31237f.get(size3);
-        }
-        if (MessageObject.getPeerId(groupCallParticipant.peer) != MessageObject.getPeerId(groupCallParticipant2.peer)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int d() {
-        o20 o20Var = this.d;
-        return o20Var.f31237f.size() + o20Var.f31236e.size();
-    }
-
-    @Override
-    public final int e() {
-        return this.f30207c.size() + this.f30206b.size();
+        throw new IllegalArgumentException("Context must not be null");
     }
 }

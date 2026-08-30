@@ -1,3 +1,10 @@
 package u7;
-public final class c extends com.google.android.gms.internal.cast.a {
+
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.location.LocationResult;
+public abstract class c {
+    public abstract void onLocationResult(LocationResult locationResult);
+
+    public void onLocationAvailability(LocationAvailability locationAvailability) {
+    }
 }

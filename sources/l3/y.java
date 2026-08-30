@@ -1,106 +1,119 @@
 package l3;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public abstract class y implements j {
-    public h f14249b;
-    public h f14250c;
-    public h d;
-    public h f14251e;
-    public ByteBuffer f14252f;
-    public ByteBuffer f14253g;
+import android.media.AudioTrack;
+import android.os.SystemClock;
+import java.lang.reflect.Method;
+public final class y {
+    public long A;
+    public long B;
+    public long C;
+    public long D;
+    public boolean E;
+    public long F;
+    public long G;
+    public final androidx.biometric.f0 f11281a;
+    public final long[] f11282b;
+    public AudioTrack f11283c;
+    public int d;
+    public int e;
+    public x f11284f;
+    public int f11285g;
     public boolean h;
+    public long f11286i;
+    public float f11287j;
+    public boolean f11288k;
+    public long f11289l;
+    public long f11290m;
+    public Method f11291n;
+    public long f11292o;
+    public boolean f11293p;
+    public boolean f11294q;
+    public long f11295r;
+    public long f11296s;
+    public long f11297t;
+    public long f11298u;
+    public long v;
+    public int f11299w;
+    public int f11300x;
+    public long f11301y;
+    public long f11302z;
 
-    public y() {
-        ByteBuffer byteBuffer = j.f14106a;
-        this.f14252f = byteBuffer;
-        this.f14253g = byteBuffer;
-        h hVar = h.f14098e;
-        this.d = hVar;
-        this.f14251e = hVar;
-        this.f14249b = hVar;
-        this.f14250c = hVar;
-    }
-
-    @Override
-    public ByteBuffer a() {
-        ByteBuffer byteBuffer = this.f14253g;
-        this.f14253g = j.f14106a;
-        return byteBuffer;
-    }
-
-    @Override
-    public final void c() {
-        this.h = true;
-        h();
-    }
-
-    @Override
-    public boolean d() {
-        if (this.h && this.f14253g == j.f14106a) {
-            return true;
+    public y(androidx.biometric.f0 f0Var) {
+        this.f11281a = f0Var;
+        if (h5.d0.f6937a >= 18) {
+            try {
+                this.f11291n = AudioTrack.class.getMethod("getLatency", null);
+            } catch (NoSuchMethodException unused) {
+            }
         }
-        return false;
+        this.f11282b = new long[10];
     }
 
-    @Override
-    public final h e(h hVar) {
-        this.d = hVar;
-        this.f14251e = f(hVar);
-        if (isActive()) {
-            return this.f14251e;
+    public final long a(boolean r28) {
+        throw new UnsupportedOperationException("Method not decompiled: l3.y.a(boolean):long");
+    }
+
+    public final long b() {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j10 = this.f11301y;
+        if (j10 != -9223372036854775807L) {
+            return Math.min(this.B, this.A + (((h5.d0.t((elapsedRealtime * 1000) - j10, this.f11287j) * this.f11285g) + 999999) / 1000000));
         }
-        return h.f14098e;
-    }
-
-    public abstract h f(h hVar);
-
-    @Override
-    public final void flush() {
-        this.f14253g = j.f14106a;
-        this.h = false;
-        this.f14249b = this.d;
-        this.f14250c = this.f14251e;
-        g();
-    }
-
-    @Override
-    public boolean isActive() {
-        if (this.f14251e != h.f14098e) {
-            return true;
+        if (elapsedRealtime - this.f11296s >= 5) {
+            AudioTrack audioTrack = this.f11283c;
+            audioTrack.getClass();
+            int playState = audioTrack.getPlayState();
+            if (playState != 1) {
+                long playbackHeadPosition = audioTrack.getPlaybackHeadPosition() & 4294967295L;
+                if (this.h) {
+                    if (playState == 2 && playbackHeadPosition == 0) {
+                        this.v = this.f11297t;
+                    }
+                    playbackHeadPosition += this.v;
+                }
+                if (h5.d0.f6937a <= 29) {
+                    if (playbackHeadPosition == 0 && this.f11297t > 0 && playState == 3) {
+                        if (this.f11302z == -9223372036854775807L) {
+                            this.f11302z = elapsedRealtime;
+                        }
+                    } else {
+                        this.f11302z = -9223372036854775807L;
+                    }
+                }
+                if (this.f11297t > playbackHeadPosition) {
+                    this.f11298u++;
+                }
+                this.f11297t = playbackHeadPosition;
+            }
+            this.f11296s = elapsedRealtime;
         }
-        return false;
+        return this.f11297t + (this.f11298u << 32);
     }
 
-    public final ByteBuffer j(int i10) {
-        if (this.f14252f.capacity() < i10) {
-            this.f14252f = ByteBuffer.allocateDirect(i10).order(ByteOrder.nativeOrder());
-        } else {
-            this.f14252f.clear();
+    public final boolean c(long j10) {
+        long a2 = a(false);
+        int i10 = this.f11285g;
+        int i11 = h5.d0.f6937a;
+        if (j10 <= ((a2 * i10) + 999999) / 1000000) {
+            if (this.h) {
+                AudioTrack audioTrack = this.f11283c;
+                audioTrack.getClass();
+                if (audioTrack.getPlayState() == 2 && b() == 0) {
+                    return true;
+                }
+            }
+            return false;
         }
-        ByteBuffer byteBuffer = this.f14252f;
-        this.f14253g = byteBuffer;
-        return byteBuffer;
+        return true;
     }
 
-    @Override
-    public final void reset() {
-        flush();
-        this.f14252f = j.f14106a;
-        h hVar = h.f14098e;
-        this.d = hVar;
-        this.f14251e = hVar;
-        this.f14249b = hVar;
-        this.f14250c = hVar;
-        i();
-    }
-
-    public void g() {
-    }
-
-    public void h() {
-    }
-
-    public void i() {
+    public final void d() {
+        this.f11289l = 0L;
+        this.f11300x = 0;
+        this.f11299w = 0;
+        this.f11290m = 0L;
+        this.D = 0L;
+        this.G = 0L;
+        this.f11288k = false;
     }
 }

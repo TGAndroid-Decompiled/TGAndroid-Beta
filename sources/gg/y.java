@@ -1,112 +1,169 @@
 package gg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableString;
-import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
-import i7.f6;
+import java.util.ArrayList;
+import kh.e6;
+import kh.i5;
+import lh.g5;
+import lh.t7;
+import nh.w3;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.RadioButton;
-import org.telegram.ui.Components.d6;
-import org.telegram.ui.Components.d90;
-import org.telegram.ui.Components.jr;
-import org.telegram.ui.Components.o6;
-public final class y extends FrameLayout {
-    public final RadioButton f7349a;
-    public final Drawable f7350b;
-    public final Drawable f7351c;
-    public final o6 d;
-    public final o6 f7352e;
-    public final TextView f7353f;
-    public final SpannableString h;
-    public final SpannableString f7354n;
-    public TL_stars.TL_starsGiveawayOption f7355r;
-    public int f7356s;
-    public final d6 v;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.b3;
+import org.telegram.ui.ActionBar.g3;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.c10;
+import org.telegram.ui.Components.dz;
+import org.telegram.ui.Components.fy;
+import org.telegram.ui.Components.hp;
+import org.telegram.ui.Components.jy0;
+import org.telegram.ui.Components.ky0;
+import org.telegram.ui.Components.xx0;
+import org.telegram.ui.ih;
+import org.telegram.ui.s61;
+import org.telegram.ui.wx0;
+import ph.z7;
+public final class y implements RequestDelegate {
+    public final int f6811a;
+    public final Object f6812b;
+    public final Object f6813c;
+    public final Object d;
 
-    public y(Context context, c6 c6Var) {
-        super(context);
-        this.v = new d6(this, 0L, 500L, jr.h);
-        Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_outline).mutate();
-        this.f7350b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(g6.v0(g6.f23133h5, c6Var), PorterDuff.Mode.SRC_IN));
-        this.f7351c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
-        setWillNotDraw(false);
-        o6 o6Var = new o6(context, false, false, false);
-        this.d = o6Var;
-        o6Var.setTextColor(g6.v0(g6.G6, c6Var));
-        o6Var.setTypeface(AndroidUtilities.bold());
-        o6Var.setTextSize(AndroidUtilities.dp(16.0f));
-        addView(o6Var, f6.d(-1, 20.0f, 51, 64.0f, 8.0f, 80.0f, 0.0f));
-        SpannableString spannableString = new SpannableString("x");
-        this.h = spannableString;
-        spannableString.setSpan(new d90(AndroidUtilities.dp(90.0f), o6Var), 0, 1, 33);
-        o6 o6Var2 = new o6(context, false, true, true);
-        this.f7352e = o6Var2;
-        int i10 = g6.f23450z6;
-        o6Var2.setTextColor(g6.v0(i10, c6Var));
-        o6Var2.setTextSize(AndroidUtilities.dp(13.0f));
-        addView(o6Var2, f6.d(-1, 14.0f, 51, 64.0f, 31.0f, 80.0f, 0.0f));
-        SpannableString spannableString2 = new SpannableString("x");
-        this.f7354n = spannableString2;
-        spannableString2.setSpan(new d90(AndroidUtilities.dp(70.0f), o6Var2), 0, 1, 33);
-        TextView textView = new TextView(context);
-        this.f7353f = textView;
-        org.telegram.ui.b.m(i10, c6Var, textView, 1, 16.0f);
-        textView.setGravity(5);
-        addView(textView, f6.d(-2, -2.0f, 21, 0.0f, 0.0f, 19.0f, 0.0f));
-        RadioButton radioButton = new RadioButton(context);
-        this.f7349a = radioButton;
-        radioButton.setSize(AndroidUtilities.dp(20.0f));
-        radioButton.b(g6.v0(g6.f23171j7, c6Var), g6.v0(g6.E5, c6Var));
-        addView(radioButton, f6.d(20, 20.0f, 19, 22.0f, 0.0f, 0.0f, 0.0f));
-    }
-
-    public TL_stars.TL_starsGiveawayOption getOption() {
-        return this.f7355r;
+    public y(Object obj, Object obj2, Object obj3, int i10) {
+        this.f6811a = i10;
+        this.f6813c = obj;
+        this.d = obj2;
+        this.f6812b = obj3;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float d = this.v.d(this.f7356s, false);
-        float dp = AndroidUtilities.dp(24.0f);
-        float dp2 = AndroidUtilities.dp(24.0f);
-        float dp3 = AndroidUtilities.dp(2.5f);
-        float dp4 = AndroidUtilities.dp(64.0f);
-        float dp5 = AndroidUtilities.dp(8.0f);
-        for (int ceil = ((int) Math.ceil(d)) - 1; ceil >= 0; ceil--) {
-            float clamp = Utilities.clamp(d - ceil, 1.0f, 0.0f);
-            float f9 = (((ceil - 1) - (1.0f - clamp)) * dp3 * 1.0f) + dp4;
-            int i10 = (int) f9;
-            int i11 = (int) dp5;
-            int i12 = (int) (f9 + dp);
-            int i13 = (int) (dp5 + dp2);
-            Drawable drawable = this.f7350b;
-            drawable.setBounds(i10, i11, i12, i13);
-            int i14 = (int) (clamp * 255.0f);
-            drawable.setAlpha(i14);
-            drawable.draw(canvas);
-            Drawable drawable2 = this.f7351c;
-            drawable2.setBounds(i10, i11, i12, i13);
-            drawable2.setAlpha(i14);
-            drawable2.draw(canvas);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f6811a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new j0(tL_error, (Utilities.Callback) this.f6813c, tLObject, (MessagesController) this.f6812b, (Utilities.Callback) this.d, 0));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new j0(tL_error, (Utilities.Callback) ((org.telegram.messenger.x) this.f6813c), tLObject, (MessagesController) this.f6812b, (Utilities.Callback) ((org.telegram.messenger.h2) this.d), 1));
+                return;
+            case 2:
+                t0 t0Var = (t0) this.f6813c;
+                MessagesController messagesController = (MessagesController) this.f6812b;
+                x0 x0Var = (x0) this.d;
+                if (tL_error != null) {
+                    AndroidUtilities.runOnUIThread(new gf.c(4, t0Var, tL_error));
+                    return;
+                } else if (tLObject != null) {
+                    messagesController.processUpdates((TLRPC.Updates) tLObject, false);
+                    AndroidUtilities.runOnUIThread(new ef.e(x0Var, 10));
+                    return;
+                } else {
+                    return;
+                }
+            case 3:
+                AndroidUtilities.runOnUIThread(new j0(tLObject, (MessagesController) this.f6812b, (c1) this.f6813c, (m) this.d, tL_error));
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new j0((v2) this.f6813c, tLObject, (TLRPC.UserFull) this.d, (TL_account.TL_birthday) this.f6812b, tL_error));
+                return;
+            case 5:
+                AndroidUtilities.runOnUIThread(new j0((e6) this.f6813c, tLObject, (TLRPC.TL_inputStorePaymentGiftPremium) this.d, tL_error, (TLRPC.TL_payments_canPurchaseStore) this.f6812b));
+                return;
+            case 6:
+                g5.q0((g5) this.f6813c, (af.f) this.d, (TL_stars.TL_starGiftUnique) this.f6812b, tLObject, tL_error);
+                return;
+            case 7:
+                g5.e1((g5) this.f6813c, (TLRPC.TL_messageActionStarGift) this.d, (org.telegram.ui.ActionBar.d2) this.f6812b, tLObject);
+                return;
+            case 8:
+                AndroidUtilities.runOnUIThread(new j0((Object) ((t7) this.f6813c), tL_error, (Object) ((i5) this.d), (Object) tLObject, (TLObject) ((TLRPC.TL_inputInvoiceStars) this.f6812b), 7));
+                return;
+            case 9:
+                AndroidUtilities.runOnUIThread(new j0((Object) ((t7) this.f6813c), tL_error, (Object) ((Utilities.Callback2) this.d), (Object) tLObject, (TLObject) ((TLRPC.TL_inputInvoiceStars) this.f6812b), 11));
+                return;
+            case 10:
+                AndroidUtilities.runOnUIThread(new j0((Object) ((t7) this.f6813c), tL_error, (Object) ((dh.v) this.d), (Object) tLObject, (TLObject) ((TLRPC.TL_inputInvoiceStars) this.f6812b), 6));
+                return;
+            case 11:
+                AndroidUtilities.runOnUIThread(new androidx.car.app.utils.c((w3) this.d, tLObject, (TL_stories.StoryItem) this.f6812b, (Utilities.Callback) this.f6813c, 12));
+                return;
+            case 12:
+                AndroidUtilities.runOnUIThread(new androidx.car.app.utils.c(tLObject, (h6) this.f6813c, (i6) this.d, (TLRPC.TL_theme) this.f6812b, 21));
+                return;
+            case 13:
+                AndroidUtilities.runOnUIThread(new ih((Object) ((fy) this.f6813c), (Object) ((org.telegram.ui.ActionBar.d2[]) this.d), tLObject, (Object) ((b3) this.f6812b), 11));
+                return;
+            case 14:
+                AndroidUtilities.runOnUIThread(new ih((Object) ((dz) this.f6813c), (Object) ((TLRPC.TL_messages_getStickers) this.d), tLObject, (Object) ((Runnable) this.f6812b), 12));
+                return;
+            case 15:
+                AndroidUtilities.runOnUIThread(new hp((c10) this.f6813c, (org.telegram.ui.ActionBar.p2) this.d, (ArrayList) this.f6812b, 3));
+                return;
+            case 16:
+                AndroidUtilities.runOnUIThread(new ih(tL_error, (ph.d) this.f6813c, (g3) this.d, (Runnable) this.f6812b));
+                return;
+            case 17:
+                AndroidUtilities.runOnUIThread(new j0((Object) ((xx0) this.f6813c), (Object) ((String) this.d), tL_error, tLObject, (Object) ((TextView) this.f6812b), 29));
+                return;
+            case 18:
+                AndroidUtilities.runOnUIThread(new jy0((Object) ((ky0) this.f6813c), (Object) tLObject, (Object) ((TLRPC.UserFull) this.d), (Object) ((TL_account.TL_birthday) this.f6812b), (Object) tL_error, 0));
+                return;
+            case 19:
+                AndroidUtilities.runOnUIThread(new wx0((Object) ((org.telegram.ui.web.a1) this.f6813c), tLObject, (Object) ((String) this.d), (Object) ((String) this.f6812b), 12));
+                return;
+            case 20:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.z((org.telegram.ui.web.a1) this.f6813c, tL_error, (String) this.d, (TLRPC.TL_inputInvoiceSlug) this.f6812b, tLObject));
+                return;
+            case 21:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.z((org.telegram.ui.web.a1) this.f6813c, tLObject, (String[]) this.d, tL_error, (org.telegram.ui.ActionBar.d2) this.f6812b));
+                return;
+            case 22:
+                AndroidUtilities.runOnUIThread(new s61((z7) this.f6813c, (org.telegram.ui.ActionBar.d2) this.d, tLObject, (TL_phone.getGroupCallStreamRtmpUrl) this.f6812b, tL_error));
+                return;
+            case 23:
+                AndroidUtilities.runOnUIThread(new wx0((ph.d) this.f6813c, tLObject, (g3) this.d, (rh.k1) this.f6812b, false, 15));
+                return;
+            case 24:
+                AndroidUtilities.runOnUIThread(new wx0(tLObject, (boolean[]) this.f6813c, (org.telegram.ui.web.s) this.d, (TLRPC.UserFull) this.f6812b));
+                return;
+            case 25:
+                AndroidUtilities.runOnUIThread(new wx0((uf.t) this.f6813c, tLObject, (TL_account.TL_businessChatLink) this.d, (Runnable) this.f6812b, false, 23));
+                return;
+            case 26:
+                AndroidUtilities.runOnUIThread(new tf.h1((uf.e0) this.f6813c, (TL_account.TL_connectedBot) this.d, (TL_account.TL_businessBotRecipients) this.f6812b, 6));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new s61((uf.p1) this.f6813c, tLObject, (ArrayList) this.d, (TLRPC.TL_messages_sendQuickReplyMessages) this.f6812b, tL_error));
+                return;
         }
-        this.d.setTranslationX((dp3 * d) + AndroidUtilities.dp(22.0f));
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+    public y(w3 w3Var, TL_stories.StoryItem storyItem, Utilities.Callback callback) {
+        this.f6811a = 11;
+        this.d = w3Var;
+        this.f6812b = storyItem;
+        this.f6813c = callback;
+    }
+
+    public y(MessagesController messagesController, c1 c1Var, m mVar) {
+        this.f6811a = 3;
+        this.f6812b = messagesController;
+        this.f6813c = c1Var;
+        this.d = mVar;
+    }
+
+    public y(Utilities.Callback callback, MessagesController messagesController, Utilities.Callback callback2, int i10) {
+        this.f6811a = i10;
+        this.f6813c = callback;
+        this.f6812b = messagesController;
+        this.d = callback2;
     }
 }

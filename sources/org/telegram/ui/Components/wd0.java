@@ -1,32 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import org.telegram.messenger.Utilities;
-public final class wd0 implements Utilities.Callback {
-    public final int f34388a;
-    public final String[] f34389b;
-    public final Activity f34390c;
-    public final Utilities.Callback d;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.LaunchActivity;
+public final class wd0 extends vd0 {
+    public final xd0 V;
 
-    public wd0(String[] strArr, Activity activity, Utilities.Callback callback, int i10) {
-        this.f34388a = i10;
-        this.f34389b = strArr;
-        this.f34390c = activity;
-        this.d = callback;
+    public wd0(xd0 xd0Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.V = xd0Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        int i10 = this.f34388a;
-        int[] iArr = (int[]) obj;
-        String[] strArr = this.f34389b;
-        switch (i10) {
-            case 0:
-                yd0.a(strArr, this.f34390c, this.d);
-                return;
-            default:
-                yd0.b(strArr, this.f34390c, this.d);
-                return;
+    public final void f(float f10) {
+        LaunchActivity launchActivity = LaunchActivity.D1;
+        if (launchActivity == null) {
+            return;
         }
+        org.telegram.ui.ActionBar.y3 y3Var = launchActivity.f31656w0;
+        y3Var.setScaleX(AndroidUtilities.lerp(1.0f, 1.25f, f10));
+        y3Var.setScaleY(AndroidUtilities.lerp(1.0f, 1.25f, f10));
+    }
+
+    @Override
+    public final void h() {
+        xd0.a(this.V);
+        LaunchActivity launchActivity = LaunchActivity.D1;
+        if (launchActivity == null) {
+            return;
+        }
+        org.telegram.ui.ActionBar.y3 y3Var = launchActivity.f31656w0;
+        y3Var.setScaleX(1.0f);
+        y3Var.setScaleY(1.0f);
     }
 }

@@ -1,200 +1,105 @@
 package pb;
-public final class b {
-    public final a f45716a;
-    public final int[] f45717b;
 
-    public b(a aVar, int[] iArr) {
-        if (iArr.length != 0) {
-            this.f45716a = aVar;
-            int length = iArr.length;
-            int i10 = 1;
-            if (length > 1 && iArr[0] == 0) {
-                while (i10 < length && iArr[i10] == 0) {
-                    i10++;
-                }
-                if (i10 == length) {
-                    this.f45717b = new int[]{0};
-                    return;
-                }
-                int i11 = length - i10;
-                int[] iArr2 = new int[i11];
-                this.f45717b = iArr2;
-                System.arraycopy(iArr, i10, iArr2, 0, i11);
-                return;
-            }
-            this.f45717b = iArr;
+import java.util.Arrays;
+public final class b implements Cloneable {
+    public int f41096a;
+    public int f41097b;
+    public int f41098c;
+    public int[] d;
+
+    public b(int i10, int i11) {
+        if (i10 >= 1 && i11 >= 1) {
+            this.f41096a = i10;
+            this.f41097b = i11;
+            int i12 = (i10 + 31) / 32;
+            this.f41098c = i12;
+            this.d = new int[i12 * i11];
             return;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("Both dimensions must be greater than 0");
     }
 
-    public final b a(b bVar) {
-        a aVar = bVar.f45716a;
-        a aVar2 = this.f45716a;
-        if (aVar2.equals(aVar)) {
-            if (e()) {
-                return bVar;
-            }
-            if (bVar.e()) {
-                return this;
-            }
-            int[] iArr = bVar.f45717b;
-            int[] iArr2 = this.f45717b;
-            if (iArr2.length > iArr.length) {
-                iArr2 = iArr;
-                iArr = iArr2;
-            }
-            int[] iArr3 = new int[iArr.length];
-            int length = iArr.length - iArr2.length;
-            System.arraycopy(iArr, 0, iArr3, 0, length);
-            for (int i10 = length; i10 < iArr.length; i10++) {
-                iArr3[i10] = iArr2[i10 - length] ^ iArr[i10];
-            }
-            return new b(aVar2, iArr3);
+    public final void a(int i10, int i11) {
+        int i12 = (i10 / 32) + (i11 * this.f41098c);
+        int[] iArr = this.d;
+        iArr[i12] = (1 << (i10 & 31)) ^ iArr[i12];
+    }
+
+    public final boolean b(int i10, int i11) {
+        if (((this.d[(i10 / 32) + (i11 * this.f41098c)] >>> (i10 & 31)) & 1) != 0) {
+            return true;
         }
-        throw new IllegalArgumentException("GenericGFPolys do not have same GenericGF field");
+        return false;
     }
 
-    public final int b(int i10) {
-        if (i10 == 0) {
-            return c(0);
-        }
-        int[] iArr = this.f45717b;
-        if (i10 == 1) {
-            int i11 = 0;
-            for (int i12 : iArr) {
-                a aVar = a.h;
-                i11 ^= i12;
+    public final void c(int i10, int i11, int i12, int i13) {
+        if (i11 >= 0 && i10 >= 0) {
+            if (i13 >= 1 && i12 >= 1) {
+                int i14 = i12 + i10;
+                int i15 = i13 + i11;
+                if (i15 <= this.f41097b && i14 <= this.f41096a) {
+                    while (i11 < i15) {
+                        int i16 = this.f41098c * i11;
+                        for (int i17 = i10; i17 < i14; i17++) {
+                            int[] iArr = this.d;
+                            int i18 = (i17 / 32) + i16;
+                            iArr[i18] = iArr[i18] | (1 << (i17 & 31));
+                        }
+                        i11++;
+                    }
+                    return;
+                }
+                throw new IllegalArgumentException("The region must fit inside the matrix");
             }
-            return i11;
+            throw new IllegalArgumentException("Height and width must be at least 1");
         }
-        int i13 = iArr[0];
-        int length = iArr.length;
-        for (int i14 = 1; i14 < length; i14++) {
-            i13 = this.f45716a.c(i10, i13) ^ iArr[i14];
+        throw new IllegalArgumentException("Left and top must be nonnegative");
+    }
+
+    public final Object clone() {
+        int i10 = this.f41096a;
+        int i11 = this.f41097b;
+        int i12 = this.f41098c;
+        ?? obj = new Object();
+        obj.f41096a = i10;
+        obj.f41097b = i11;
+        obj.f41098c = i12;
+        obj.d = (int[]) this.d.clone();
+        return obj;
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof b)) {
+            return false;
         }
-        return i13;
-    }
-
-    public final int c(int i10) {
-        int[] iArr = this.f45717b;
-        return iArr[(iArr.length - 1) - i10];
-    }
-
-    public final int d() {
-        return this.f45717b.length - 1;
-    }
-
-    public final boolean e() {
-        if (this.f45717b[0] != 0) {
+        b bVar = (b) obj;
+        if (this.f41096a != bVar.f41096a || this.f41097b != bVar.f41097b || this.f41098c != bVar.f41098c || !Arrays.equals(this.d, bVar.d)) {
             return false;
         }
         return true;
     }
 
-    public final b f(int i10) {
-        a aVar = this.f45716a;
-        if (i10 == 0) {
-            return aVar.f45712c;
-        }
-        if (i10 == 1) {
-            return this;
-        }
-        int[] iArr = this.f45717b;
-        int length = iArr.length;
-        int[] iArr2 = new int[length];
-        for (int i11 = 0; i11 < length; i11++) {
-            iArr2[i11] = aVar.c(iArr[i11], i10);
-        }
-        return new b(aVar, iArr2);
-    }
-
-    public final b g(b bVar) {
-        a aVar = bVar.f45716a;
-        a aVar2 = this.f45716a;
-        if (aVar2.equals(aVar)) {
-            if (!e() && !bVar.e()) {
-                int[] iArr = this.f45717b;
-                int length = iArr.length;
-                int[] iArr2 = bVar.f45717b;
-                int length2 = iArr2.length;
-                int[] iArr3 = new int[(length + length2) - 1];
-                for (int i10 = 0; i10 < length; i10++) {
-                    int i11 = iArr[i10];
-                    for (int i12 = 0; i12 < length2; i12++) {
-                        int i13 = i10 + i12;
-                        iArr3[i13] = iArr3[i13] ^ aVar2.c(i11, iArr2[i12]);
-                    }
-                }
-                return new b(aVar2, iArr3);
-            }
-            return aVar2.f45712c;
-        }
-        throw new IllegalArgumentException("GenericGFPolys do not have same GenericGF field");
-    }
-
-    public final b h(int i10, int i11) {
-        if (i10 >= 0) {
-            a aVar = this.f45716a;
-            if (i11 == 0) {
-                return aVar.f45712c;
-            }
-            int[] iArr = this.f45717b;
-            int length = iArr.length;
-            int[] iArr2 = new int[i10 + length];
-            for (int i12 = 0; i12 < length; i12++) {
-                iArr2[i12] = aVar.c(iArr[i12], i11);
-            }
-            return new b(aVar, iArr2);
-        }
-        throw new IllegalArgumentException();
+    public final int hashCode() {
+        int i10 = this.f41096a;
+        return Arrays.hashCode(this.d) + (((((((i10 * 31) + i10) * 31) + this.f41097b) * 31) + this.f41098c) * 31);
     }
 
     public final String toString() {
-        if (e()) {
-            return "0";
-        }
-        StringBuilder sb2 = new StringBuilder(d() * 8);
-        for (int d = d(); d >= 0; d--) {
-            int c3 = c(d);
-            if (c3 != 0) {
-                if (c3 < 0) {
-                    if (d == d()) {
-                        sb2.append("-");
-                    } else {
-                        sb2.append(" - ");
-                    }
-                    c3 = -c3;
-                } else if (sb2.length() > 0) {
-                    sb2.append(" + ");
+        String str;
+        int i10 = this.f41097b;
+        int i11 = this.f41096a;
+        StringBuilder sb = new StringBuilder((i11 + 1) * i10);
+        for (int i12 = 0; i12 < i10; i12++) {
+            for (int i13 = 0; i13 < i11; i13++) {
+                if (b(i13, i12)) {
+                    str = "X ";
+                } else {
+                    str = "  ";
                 }
-                if (d == 0 || c3 != 1) {
-                    a aVar = this.f45716a;
-                    if (c3 != 0) {
-                        int i10 = aVar.f45711b[c3];
-                        if (i10 == 0) {
-                            sb2.append('1');
-                        } else if (i10 == 1) {
-                            sb2.append('a');
-                        } else {
-                            sb2.append("a^");
-                            sb2.append(i10);
-                        }
-                    } else {
-                        aVar.getClass();
-                        throw new IllegalArgumentException();
-                    }
-                }
-                if (d != 0) {
-                    if (d == 1) {
-                        sb2.append('x');
-                    } else {
-                        sb2.append("x^");
-                        sb2.append(d);
-                    }
-                }
+                sb.append(str);
             }
+            sb.append("\n");
         }
-        return sb2.toString();
+        return sb.toString();
     }
 }

@@ -5,11 +5,11 @@ import org.telegram.ui.Components.ChatActivityEnterView;
 public final class nf extends Property {
     @Override
     public final Object get(Object obj) {
-        return Float.valueOf(((ChatActivityEnterView.RecordCircle) obj).getScale());
+        return Float.valueOf(((ChatActivityEnterView.RecordCircle) obj).getControlsScale());
     }
 
     @Override
     public final void set(Object obj, Object obj2) {
-        ((ChatActivityEnterView.RecordCircle) obj).setScale(((Float) obj2).floatValue());
+        ((ChatActivityEnterView.RecordCircle) obj).setControlsScale(((Float) obj2).floatValue());
     }
 }

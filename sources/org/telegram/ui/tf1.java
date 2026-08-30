@@ -1,34 +1,42 @@
 package org.telegram.ui;
-public final class tf1 implements org.telegram.ui.ActionBar.b2 {
-    public final int f42701a;
-    public final cg1 f42702b;
 
-    public tf1(cg1 cg1Var, int i10) {
-        this.f42701a = i10;
-        this.f42702b = cg1Var;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class tf1 implements Runnable {
+    public final int f38654a;
+    public final TwoStepVerificationActivity f38655b;
+
+    public tf1(TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
+        this.f38654a = i10;
+        this.f38655b = twoStepVerificationActivity;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f42701a) {
+    public final void run() {
+        EditTextBoldCursor editTextBoldCursor;
+        switch (this.f38654a) {
             case 0:
-                this.f42702b.finishFragment();
+                TwoStepVerificationActivity twoStepVerificationActivity = this.f38655b;
+                if (!twoStepVerificationActivity.isFinishing() && !twoStepVerificationActivity.E && (editTextBoldCursor = twoStepVerificationActivity.f32376s) != null) {
+                    editTextBoldCursor.requestFocus();
+                    AndroidUtilities.showKeyboard(twoStepVerificationActivity.f32376s);
+                    return;
+                }
                 return;
             case 1:
-                cg1 cg1Var = this.f42702b;
-                cg1Var.B0();
-                cg1Var.finishFragment();
+                TwoStepVerificationActivity twoStepVerificationActivity2 = this.f38655b;
+                twoStepVerificationActivity2.R = false;
+                twoStepVerificationActivity2.v.a(0.0f);
                 return;
             case 2:
-                cg1 cg1Var2 = this.f42702b;
-                cg1Var2.N = "";
-                cg1Var2.E0(false);
-                return;
-            case 3:
-                cg1.a0(this.f42702b);
+                this.f38655b.y0();
                 return;
             default:
-                cg1.X(this.f42702b);
+                TwoStepVerificationActivity twoStepVerificationActivity3 = this.f38655b;
+                tf1 tf1Var = twoStepVerificationActivity3.S;
+                AndroidUtilities.cancelRunOnUIThread(tf1Var);
+                AndroidUtilities.runOnUIThread(tf1Var, 1500L);
+                twoStepVerificationActivity3.R = true;
                 return;
         }
     }

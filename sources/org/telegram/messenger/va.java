@@ -1,40 +1,24 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLObject;
 public final class va implements Runnable {
-    public final int f21806a;
-    public final MessagesController f21807b;
-    public final TLObject f21808c;
+    public final int f18652a;
+    public final Runnable f18653b;
 
-    public va(MessagesController messagesController, TLObject tLObject, int i10) {
-        this.f21806a = i10;
-        this.f21807b = messagesController;
-        this.f21808c = tLObject;
+    public va(int i10, Runnable runnable) {
+        this.f18652a = i10;
+        this.f18653b = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f21806a) {
+        switch (this.f18652a) {
             case 0:
-                this.f21807b.lambda$loadHintDialogs$195(this.f21808c);
+                MessagesController.lambda$unblockPeer$110(this.f18653b);
                 return;
             case 1:
-                this.f21807b.lambda$getContentSettings$501(this.f21808c);
-                return;
-            case 2:
-                this.f21807b.lambda$reloadReactionsNotifySettings$204(this.f21808c);
-                return;
-            case 3:
-                this.f21807b.lambda$loadGlobalNotificationsSettings$202(this.f21808c);
-                return;
-            case 4:
-                this.f21807b.lambda$loadUnreadDialogs$361(this.f21808c);
-                return;
-            case 5:
-                this.f21807b.lambda$loadSuggestedFilters$24(this.f21808c);
+                this.f18653b.run();
                 return;
             default:
-                this.f21807b.lambda$loadSignUpNotificationsSettings$206(this.f21808c);
+                SendMessagesHelper.h0(this.f18653b);
                 return;
         }
     }

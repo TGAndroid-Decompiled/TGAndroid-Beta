@@ -1,78 +1,85 @@
 package org.telegram.ui.Components;
 
-import android.webkit.JavascriptInterface;
+import android.graphics.Canvas;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class lf0 {
-    public final org.telegram.ui.et0 f30303a;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class lf0 extends View {
+    public long B;
+    public float C;
+    public float D;
+    public float E;
+    public cc0 F;
+    public TextPaint f26628a;
+    public TextPaint f26629b;
+    public StaticLayout f26630c;
+    public float d;
+    public float e;
+    public StaticLayout f26631f;
+    public float h;
+    public float f26632n;
+    public boolean f26633r;
+    public z5 f26634s;
+    public boolean v;
+    public nf0 f26635w;
+    public ph.h8 f26636x;
+    public boolean f26637y;
 
-    public lf0(org.telegram.ui.et0 et0Var) {
-        this.f30303a = et0Var;
-    }
-
-    @JavascriptInterface
-    public void onPlayerError(String str) {
-        AndroidUtilities.runOnUIThread(new i8(this, Integer.parseInt(str), 6));
-    }
-
-    @JavascriptInterface
-    public void onPlayerLoaded() {
-        AndroidUtilities.runOnUIThread(new jf0(this, 0));
-    }
-
-    @JavascriptInterface
-    public void onPlayerNotifyBufferedPosition(float f9) {
-        this.f30303a.F = f9;
-    }
-
-    @JavascriptInterface
-    public void onPlayerNotifyCurrentPosition(int i10) {
-        this.f30303a.E = i10 * 1000;
-    }
-
-    @JavascriptInterface
-    public void onPlayerNotifyDuration(int i10) {
-        org.telegram.ui.et0 et0Var = this.f30303a;
-        et0Var.D = i10 * 1000;
-        String str = et0Var.f30678s;
-        if (str != null) {
-            mf0.a(et0Var, str);
-            et0Var.f30678s = null;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float e = this.f26634s.e(this.f26633r);
+        if (e > 0.0f && this.f26630c != null && this.f26631f != null) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (e * 255.0f), 31);
+            canvas.save();
+            canvas.translate(((getWidth() - this.d) / 2.0f) - this.e, getHeight() * 0.22f);
+            this.f26630c.draw(canvas);
+            canvas.restore();
+            canvas.save();
+            canvas.translate(((getWidth() - this.h) / 2.0f) - this.f26632n, (getHeight() * 0.22f) + AndroidUtilities.dp(60.0f));
+            this.f26631f.draw(canvas);
+            canvas.restore();
+            canvas.restore();
         }
     }
 
-    @JavascriptInterface
-    public void onPlayerStateChange(String str) {
-        boolean z10;
-        int parseInt = Integer.parseInt(str);
-        org.telegram.ui.et0 et0Var = this.f30303a;
-        boolean z11 = et0Var.C;
-        boolean z12 = false;
-        int i10 = 1;
-        if (parseInt != 1 && parseInt != 3) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        et0Var.C = z10;
-        et0Var.b(z11);
-        if (parseInt != 0) {
-            if (parseInt != 1) {
-                if (parseInt != 2) {
-                    if (parseInt == 3) {
-                        z12 = true;
-                        i10 = 2;
-                    }
-                }
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f10;
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
+        TextPaint textPaint = this.f26628a;
+        textPaint.setColor(-1);
+        float f11 = 0.0f;
+        textPaint.setShadowLayer(AndroidUtilities.dp(8.0f), 0.0f, 0.0f, 805306368);
+        textPaint.setTextSize(AndroidUtilities.dp(34.0f));
+        TextPaint textPaint2 = this.f26629b;
+        textPaint2.setColor(-1);
+        textPaint2.setShadowLayer(AndroidUtilities.dp(12.0f), 0.0f, 0.0f, 805306368);
+        textPaint2.setTextSize(AndroidUtilities.dp(58.0f));
+        if (this.f26630c == null) {
+            StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.Enhance), textPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f26630c = staticLayout;
+            if (staticLayout.getLineCount() > 0) {
+                f10 = this.f26630c.getLineWidth(0);
             } else {
-                z12 = true;
+                f10 = 0.0f;
             }
-            i10 = 3;
-        } else {
-            i10 = 4;
+            this.d = f10;
+            if (this.f26630c.getLineCount() > 0) {
+                f11 = this.f26630c.getLineLeft(0);
+            }
+            this.e = f11;
         }
-        if (i10 == 3 && et0Var.h.getVisibility() != 4) {
-            AndroidUtilities.runOnUIThread(new jf0(this, 1), 300L);
-        }
-        AndroidUtilities.runOnUIThread(new jh.n6(this, z12, i10, 1));
+    }
+
+    public void setAllowTouch(boolean z4) {
+        this.v = z4;
+    }
+
+    public void setFilterView(nf0 nf0Var) {
+        this.f26635w = nf0Var;
     }
 }

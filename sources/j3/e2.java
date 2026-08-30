@@ -1,70 +1,93 @@
 package j3;
 
-import android.os.Looper;
-import android.os.SystemClock;
-import java.util.concurrent.TimeoutException;
-public final class e2 {
-    public final d2 f10420a;
-    public final q0 f10421b;
-    public final f5.y f10422c;
-    public int d;
-    public Object f10423e;
-    public final Looper f10424f;
-    public boolean f10425g;
-    public boolean h;
-    public boolean f10426i;
+import java.util.HashMap;
+public final class e2 extends a {
+    public final int e;
+    public final int f8535f;
+    public final int[] h;
+    public final int[] f8536n;
+    public final o2[] f8537r;
+    public final Object[] f8538s;
+    public final HashMap v;
 
-    public e2(q0 q0Var, d2 d2Var, r2 r2Var, int i10, f5.y yVar, Looper looper) {
-        this.f10421b = q0Var;
-        this.f10420a = d2Var;
-        this.f10424f = looper;
-        this.f10422c = yVar;
+    public e2(o2[] o2VarArr, Object[] objArr, o4.q0 q0Var) {
+        super(q0Var);
+        int length = o2VarArr.length;
+        this.f8537r = o2VarArr;
+        this.h = new int[length];
+        this.f8536n = new int[length];
+        this.f8538s = objArr;
+        this.v = new HashMap();
+        int length2 = o2VarArr.length;
+        int i10 = 0;
+        int i11 = 0;
+        int i12 = 0;
+        int i13 = 0;
+        while (i10 < length2) {
+            o2 o2Var = o2VarArr[i10];
+            this.f8537r[i13] = o2Var;
+            this.f8536n[i13] = i11;
+            this.h[i13] = i12;
+            i11 += o2Var.o();
+            i12 += this.f8537r[i13].h();
+            this.v.put(objArr[i13], Integer.valueOf(i13));
+            i10++;
+            i13++;
+        }
+        this.e = i11;
+        this.f8535f = i12;
     }
 
-    public final synchronized void a(long j10) {
-        boolean z10;
-        boolean z11;
-        f5.a.i(this.f10425g);
-        if (this.f10424f.getThread() != Thread.currentThread()) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        f5.a.i(z10);
-        this.f10422c.getClass();
-        long elapsedRealtime = SystemClock.elapsedRealtime() + j10;
-        while (true) {
-            z11 = this.f10426i;
-            if (z11 || j10 <= 0) {
-                break;
-            }
-            this.f10422c.getClass();
-            wait(j10);
-            this.f10422c.getClass();
-            j10 = elapsedRealtime - SystemClock.elapsedRealtime();
-        }
-        if (!z11) {
-            throw new TimeoutException("Message delivery timed out.");
-        }
+    @Override
+    public final int h() {
+        return this.f8535f;
     }
 
-    public final synchronized void b(boolean z10) {
-        this.h = z10 | this.h;
-        this.f10426i = true;
-        notifyAll();
+    @Override
+    public final int o() {
+        return this.e;
     }
 
-    public final void c() {
-        f5.a.i(!this.f10425g);
-        this.f10425g = true;
-        q0 q0Var = this.f10421b;
-        synchronized (q0Var) {
-            if (!q0Var.K && q0Var.f10688s.getThread().isAlive()) {
-                q0Var.f10686n.a(14, this).b();
-                return;
-            }
-            f5.a.K("ExoPlayerImplInternal", "Ignoring messages sent after release.");
-            b(false);
+    @Override
+    public final int q(Object obj) {
+        Integer num = (Integer) this.v.get(obj);
+        if (num == null) {
+            return -1;
         }
+        return num.intValue();
+    }
+
+    @Override
+    public final int r(int i10) {
+        return h5.d0.d(this.h, i10 + 1, false, false);
+    }
+
+    @Override
+    public final int s(int i10) {
+        return h5.d0.d(this.f8536n, i10 + 1, false, false);
+    }
+
+    @Override
+    public final Object t(int i10) {
+        return this.f8538s[i10];
+    }
+
+    @Override
+    public final int u(int i10) {
+        return this.h[i10];
+    }
+
+    @Override
+    public final int v(int i10) {
+        return this.f8536n[i10];
+    }
+
+    @Override
+    public final o2 x(int i10) {
+        return this.f8537r[i10];
+    }
+
+    public e2(java.util.ArrayList r8, o4.q0 r9) {
+        throw new UnsupportedOperationException("Method not decompiled: j3.e2.<init>(java.util.ArrayList, o4.q0):void");
     }
 }

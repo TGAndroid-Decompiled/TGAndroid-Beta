@@ -1,25 +1,41 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.TextView;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class d30 extends TextView {
-    public final RectF f37284a;
-    public final r50 f37285b;
+public final class d30 extends f2.u0 {
+    public final c60 f33503a;
 
-    public d30(r50 r50Var, Context context) {
-        super(context);
-        this.f37285b = r50Var;
-        this.f37284a = new RectF();
+    public d30(c60 c60Var) {
+        this.f33503a = c60Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        RectF rectF = this.f37284a;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f37285b.f41878c1);
-        super.onDraw(canvas);
+    public final void a(Rect rect, View view, RecyclerView recyclerView, f2.i1 i1Var) {
+        int i10;
+        recyclerView.getClass();
+        int R = RecyclerView.R(view);
+        if (R >= 0) {
+            rect.setEmpty();
+            w50 w50Var = this.f33503a.M;
+            int i11 = w50Var.D;
+            if (R >= i11 && R < w50Var.E) {
+                int i12 = R - i11;
+                if (c60.C3) {
+                    i10 = 6;
+                } else {
+                    i10 = 2;
+                }
+                int i13 = i12 % i10;
+                if (i13 == 0) {
+                    rect.right = AndroidUtilities.dp(2.0f);
+                } else if (i13 == i10 - 1) {
+                    rect.left = AndroidUtilities.dp(2.0f);
+                } else {
+                    rect.left = AndroidUtilities.dp(1.0f);
+                }
+            }
+        }
     }
 }

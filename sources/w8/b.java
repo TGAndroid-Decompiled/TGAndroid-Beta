@@ -1,3 +1,3 @@
 package w8;
-public @interface b {
+public abstract class b {
 }

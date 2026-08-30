@@ -1,32 +1,28 @@
 package org.telegram.messenger;
 
-import java.util.concurrent.CountDownLatch;
+import org.telegram.tgnet.TLRPC;
 public final class wf implements Runnable {
-    public final int f22096a;
-    public final MessagesStorage f22097b;
-    public final long f22098c;
-    public final boolean[] d;
-    public final CountDownLatch f22099e;
+    public final int f18906a;
+    public final MessagesStorage f18907b;
+    public final TLRPC.EncryptedChat f18908c;
 
-    public wf(int i10, long j10, CountDownLatch countDownLatch, MessagesStorage messagesStorage, boolean[] zArr) {
-        this.f22096a = i10;
-        this.f22097b = messagesStorage;
-        this.f22098c = j10;
-        this.d = zArr;
-        this.f22099e = countDownLatch;
+    public wf(MessagesStorage messagesStorage, TLRPC.EncryptedChat encryptedChat, int i10) {
+        this.f18906a = i10;
+        this.f18907b = messagesStorage;
+        this.f18908c = encryptedChat;
     }
 
     @Override
     public final void run() {
-        switch (this.f22096a) {
+        switch (this.f18906a) {
             case 0:
-                this.f22097b.lambda$checkMessageByRandomId$153(this.f22098c, this.d, this.f22099e);
+                this.f18907b.lambda$updateEncryptedChat$174(this.f18908c);
                 return;
             case 1:
-                this.f22097b.lambda$isMigratedChat$141(this.f22098c, this.d, this.f22099e);
+                this.f18907b.lambda$updateEncryptedChatLayer$173(this.f18908c);
                 return;
             default:
-                this.f22097b.lambda$hasInviteMeMessage$143(this.f22098c, this.d, this.f22099e);
+                this.f18907b.lambda$updateEncryptedChatTTL$172(this.f18908c);
                 return;
         }
     }

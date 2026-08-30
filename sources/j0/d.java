@@ -14,24 +14,24 @@ import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.util.Log;
-import h7.l8;
+import j7.h8;
 import java.lang.reflect.Method;
 public final class d extends Drawable implements Drawable.Callback, c, b {
     public static final PorterDuff.Mode h = PorterDuff.Mode.SRC_IN;
-    public static Method f10350n;
-    public int f10351a;
-    public PorterDuff.Mode f10352b;
-    public boolean f10353c;
+    public static Method f8402n;
+    public int f8403a;
+    public PorterDuff.Mode f8404b;
+    public boolean f8405c;
     public e d;
-    public boolean f10354e;
-    public Drawable f10355f;
+    public boolean e;
+    public Drawable f8406f;
 
     public static void a() {
-        if (f10350n == null) {
+        if (f8402n == null) {
             try {
-                f10350n = Drawable.class.getDeclaredMethod("isProjected", null);
-            } catch (Exception e10) {
-                Log.w("WrappedDrawableApi21", "Failed to retrieve Drawable#isProjected() method", e10);
+                f8402n = Drawable.class.getDeclaredMethod("isProjected", null);
+            } catch (Exception e) {
+                Log.w("WrappedDrawableApi21", "Failed to retrieve Drawable#isProjected() method", e);
             }
         }
     }
@@ -40,7 +40,7 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
         if (Build.VERSION.SDK_INT != 21) {
             return false;
         }
-        Drawable drawable = this.f10355f;
+        Drawable drawable = this.f8406f;
         if (!(drawable instanceof GradientDrawable) && !(drawable instanceof DrawableContainer) && !(drawable instanceof InsetDrawable) && !(drawable instanceof RippleDrawable)) {
             return false;
         }
@@ -50,19 +50,19 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
     public final e c() {
         e eVar = this.d;
         ?? constantState = new Drawable.ConstantState();
-        constantState.f10358c = null;
+        constantState.f8409c = null;
         constantState.d = h;
         if (eVar != null) {
-            constantState.f10356a = eVar.f10356a;
-            constantState.f10357b = eVar.f10357b;
-            constantState.f10358c = eVar.f10358c;
+            constantState.f8407a = eVar.f8407a;
+            constantState.f8408b = eVar.f8408b;
+            constantState.f8409c = eVar.f8409c;
             constantState.d = eVar.d;
         }
         return constantState;
     }
 
     public final boolean d(int[] iArr) {
-        boolean state = this.f10355f.setState(iArr);
+        boolean state = this.f8406f.setState(iArr);
         if (!i(iArr) && !state) {
             return false;
         }
@@ -71,7 +71,7 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
 
     @Override
     public final void draw(Canvas canvas) {
-        this.f10355f.draw(canvas);
+        this.f8406f.draw(canvas);
     }
 
     public final void e(int i10) {
@@ -79,13 +79,13 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
     }
 
     public final void f(ColorStateList colorStateList) {
-        this.d.f10358c = colorStateList;
-        i(this.f10355f.getState());
+        this.d.f8409c = colorStateList;
+        i(this.f8406f.getState());
     }
 
     public final void g(PorterDuff.Mode mode) {
         this.d.d = mode;
-        i(this.f10355f.getState());
+        i(this.f8406f.getState());
     }
 
     @Override
@@ -98,14 +98,14 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
         } else {
             i10 = 0;
         }
-        return changingConfigurations | i10 | this.f10355f.getChangingConfigurations();
+        return changingConfigurations | i10 | this.f8406f.getChangingConfigurations();
     }
 
     @Override
     public final Drawable.ConstantState getConstantState() {
         e eVar = this.d;
-        if (eVar != null && eVar.f10357b != null) {
-            eVar.f10356a = getChangingConfigurations();
+        if (eVar != null && eVar.f8408b != null) {
+            eVar.f8407a = getChangingConfigurations();
             return this.d;
         }
         return null;
@@ -113,70 +113,70 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
 
     @Override
     public final Drawable getCurrent() {
-        return this.f10355f.getCurrent();
+        return this.f8406f.getCurrent();
     }
 
     @Override
     public final Rect getDirtyBounds() {
-        return this.f10355f.getDirtyBounds();
+        return this.f8406f.getDirtyBounds();
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f10355f.getIntrinsicHeight();
+        return this.f8406f.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f10355f.getIntrinsicWidth();
+        return this.f8406f.getIntrinsicWidth();
     }
 
     @Override
     public final int getLayoutDirection() {
-        return l8.a(this.f10355f);
+        return h8.a(this.f8406f);
     }
 
     @Override
     public final int getMinimumHeight() {
-        return this.f10355f.getMinimumHeight();
+        return this.f8406f.getMinimumHeight();
     }
 
     @Override
     public final int getMinimumWidth() {
-        return this.f10355f.getMinimumWidth();
+        return this.f8406f.getMinimumWidth();
     }
 
     @Override
     public final int getOpacity() {
-        return this.f10355f.getOpacity();
+        return this.f8406f.getOpacity();
     }
 
     @Override
     public final void getOutline(Outline outline) {
-        this.f10355f.getOutline(outline);
+        this.f8406f.getOutline(outline);
     }
 
     @Override
     public final boolean getPadding(Rect rect) {
-        return this.f10355f.getPadding(rect);
+        return this.f8406f.getPadding(rect);
     }
 
     @Override
     public final int[] getState() {
-        return this.f10355f.getState();
+        return this.f8406f.getState();
     }
 
     @Override
     public final Region getTransparentRegion() {
-        return this.f10355f.getTransparentRegion();
+        return this.f8406f.getTransparentRegion();
     }
 
     public final void h(Drawable drawable) {
-        Drawable drawable2 = this.f10355f;
+        Drawable drawable2 = this.f8406f;
         if (drawable2 != null) {
             drawable2.setCallback(null);
         }
-        this.f10355f = drawable;
+        this.f8406f = drawable;
         if (drawable != null) {
             drawable.setCallback(this);
             setVisible(drawable.isVisible(), true);
@@ -185,7 +185,7 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
             setBounds(drawable.getBounds());
             e eVar = this.d;
             if (eVar != null) {
-                eVar.f10357b = drawable.getConstantState();
+                eVar.f8408b = drawable.getConstantState();
             }
         }
         invalidateSelf();
@@ -194,19 +194,19 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
     public final boolean i(int[] iArr) {
         if (b()) {
             e eVar = this.d;
-            ColorStateList colorStateList = eVar.f10358c;
+            ColorStateList colorStateList = eVar.f8409c;
             PorterDuff.Mode mode = eVar.d;
             if (colorStateList != null && mode != null) {
                 int colorForState = colorStateList.getColorForState(iArr, colorStateList.getDefaultColor());
-                if (!this.f10353c || colorForState != this.f10351a || mode != this.f10352b) {
+                if (!this.f8405c || colorForState != this.f8403a || mode != this.f8404b) {
                     setColorFilter(colorForState, mode);
-                    this.f10351a = colorForState;
-                    this.f10352b = mode;
-                    this.f10353c = true;
+                    this.f8403a = colorForState;
+                    this.f8404b = mode;
+                    this.f8405c = true;
                     return true;
                 }
             } else {
-                this.f10353c = false;
+                this.f8405c = false;
                 clearColorFilter();
                 return false;
             }
@@ -221,18 +221,18 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
 
     @Override
     public final boolean isAutoMirrored() {
-        return this.f10355f.isAutoMirrored();
+        return this.f8406f.isAutoMirrored();
     }
 
     @Override
     public final boolean isProjected() {
         Method method;
-        Drawable drawable = this.f10355f;
-        if (drawable != null && (method = f10350n) != null) {
+        Drawable drawable = this.f8406f;
+        if (drawable != null && (method = f8402n) != null) {
             try {
                 return ((Boolean) method.invoke(drawable, null)).booleanValue();
-            } catch (Exception e10) {
-                Log.w("WrappedDrawableApi21", "Error calling Drawable#isProjected() method", e10);
+            } catch (Exception e) {
+                Log.w("WrappedDrawableApi21", "Error calling Drawable#isProjected() method", e);
                 return false;
             }
         }
@@ -244,11 +244,11 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
         ColorStateList colorStateList;
         e eVar;
         if (b() && (eVar = this.d) != null) {
-            colorStateList = eVar.f10358c;
+            colorStateList = eVar.f8409c;
         } else {
             colorStateList = null;
         }
-        if ((colorStateList != null && colorStateList.isStateful()) || this.f10355f.isStateful()) {
+        if ((colorStateList != null && colorStateList.isStateful()) || this.f8406f.isStateful()) {
             return true;
         }
         return false;
@@ -256,36 +256,36 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
 
     @Override
     public final void jumpToCurrentState() {
-        this.f10355f.jumpToCurrentState();
+        this.f8406f.jumpToCurrentState();
     }
 
     @Override
     public final Drawable mutate() {
         Drawable.ConstantState constantState;
-        if (!this.f10354e && super.mutate() == this) {
+        if (!this.e && super.mutate() == this) {
             this.d = c();
-            Drawable drawable = this.f10355f;
+            Drawable drawable = this.f8406f;
             if (drawable != null) {
                 drawable.mutate();
             }
             e eVar = this.d;
             if (eVar != null) {
-                Drawable drawable2 = this.f10355f;
+                Drawable drawable2 = this.f8406f;
                 if (drawable2 != null) {
                     constantState = drawable2.getConstantState();
                 } else {
                     constantState = null;
                 }
-                eVar.f10357b = constantState;
+                eVar.f8408b = constantState;
             }
-            this.f10354e = true;
+            this.e = true;
         }
         return this;
     }
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        Drawable drawable = this.f10355f;
+        Drawable drawable = this.f8406f;
         if (drawable != null) {
             drawable.setBounds(rect);
         }
@@ -293,12 +293,12 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
 
     @Override
     public final boolean onLayoutDirectionChanged(int i10) {
-        return l8.b(i10, this.f10355f);
+        return h8.b(i10, this.f8406f);
     }
 
     @Override
     public final boolean onLevelChange(int i10) {
-        return this.f10355f.setLevel(i10);
+        return this.f8406f.setLevel(i10);
     }
 
     @Override
@@ -308,42 +308,42 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f10355f.setAlpha(i10);
+        this.f8406f.setAlpha(i10);
     }
 
     @Override
-    public final void setAutoMirrored(boolean z10) {
-        this.f10355f.setAutoMirrored(z10);
+    public final void setAutoMirrored(boolean z4) {
+        this.f8406f.setAutoMirrored(z4);
     }
 
     @Override
     public final void setChangingConfigurations(int i10) {
-        this.f10355f.setChangingConfigurations(i10);
+        this.f8406f.setChangingConfigurations(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f10355f.setColorFilter(colorFilter);
+        this.f8406f.setColorFilter(colorFilter);
     }
 
     @Override
-    public final void setDither(boolean z10) {
-        this.f10355f.setDither(z10);
+    public final void setDither(boolean z4) {
+        this.f8406f.setDither(z4);
     }
 
     @Override
-    public final void setFilterBitmap(boolean z10) {
-        this.f10355f.setFilterBitmap(z10);
+    public final void setFilterBitmap(boolean z4) {
+        this.f8406f.setFilterBitmap(z4);
     }
 
     @Override
-    public final void setHotspot(float f9, float f10) {
-        this.f10355f.setHotspot(f9, f10);
+    public final void setHotspot(float f10, float f11) {
+        this.f8406f.setHotspot(f10, f11);
     }
 
     @Override
     public final void setHotspotBounds(int i10, int i11, int i12, int i13) {
-        this.f10355f.setHotspotBounds(i10, i11, i12, i13);
+        this.f8406f.setHotspotBounds(i10, i11, i12, i13);
     }
 
     @Override
@@ -360,7 +360,7 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
         if (b()) {
             e(i10);
         } else {
-            this.f10355f.setTint(i10);
+            this.f8406f.setTint(i10);
         }
     }
 
@@ -369,7 +369,7 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
         if (b()) {
             f(colorStateList);
         } else {
-            this.f10355f.setTintList(colorStateList);
+            this.f8406f.setTintList(colorStateList);
         }
     }
 
@@ -378,13 +378,13 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
         if (b()) {
             g(mode);
         } else {
-            this.f10355f.setTintMode(mode);
+            this.f8406f.setTintMode(mode);
         }
     }
 
     @Override
-    public final boolean setVisible(boolean z10, boolean z11) {
-        if (!super.setVisible(z10, z11) && !this.f10355f.setVisible(z10, z11)) {
+    public final boolean setVisible(boolean z4, boolean z10) {
+        if (!super.setVisible(z4, z10) && !this.f8406f.setVisible(z4, z10)) {
             return false;
         }
         return true;

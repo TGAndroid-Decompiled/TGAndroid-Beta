@@ -1,17 +1,12 @@
 package j7;
-public final class l5 implements s9.d {
-    public static final l5 f11082a = new Object();
 
-    static {
-        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.r(h0.class, new e0(1)));
+import java.util.Date;
+public abstract class l5 {
+    public static long a(Date date) {
+        return (date.getTime() / 1000) + 2082844800;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            s9.e eVar = (s9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public static Date b(long j10) {
+        return new Date((j10 - 2082844800) * 1000);
     }
 }

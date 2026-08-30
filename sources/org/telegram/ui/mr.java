@@ -1,56 +1,69 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-public final class mr implements Drawable.Callback {
-    public final int f40627a;
-    public final Drawable f40628b;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.tgnet.TLRPC;
+public final class mr implements Runnable {
+    public final int f36373a;
+    public final or f36374b;
+    public final String f36375c;
 
-    public mr(int i10, Drawable drawable) {
-        this.f40627a = i10;
-        this.f40628b = drawable;
+    public mr(or orVar, String str, int i10) {
+        this.f36373a = i10;
+        this.f36374b = orVar;
+        this.f36375c = str;
     }
 
     @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        switch (this.f40627a) {
+    public final void run() {
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        ih ihVar;
+        boolean z4;
+        long j10;
+        switch (this.f36373a) {
             case 0:
-                ((nr) this.f40628b).invalidateSelf();
+                or orVar = this.f36374b;
+                orVar.getClass();
+                AndroidUtilities.runOnUIThread(new mr(orVar, this.f36375c, 1));
                 return;
             default:
-                org.telegram.ui.Cells.v0 v0Var = ((h01) this.f40628b).h;
-                if (v0Var != null) {
-                    v0Var.invalidate();
-                    return;
+                or orVar2 = this.f36374b;
+                orVar2.f36962n = null;
+                pr prVar = orVar2.f36967y;
+                TLRPC.Chat chat = prVar.f37481r;
+                int i10 = prVar.f37449b1;
+                if (!ChatObject.isChannel(chat) && prVar.f37484s != null) {
+                    arrayList = new ArrayList(prVar.f37484s.participants.participants);
+                } else {
+                    arrayList = null;
                 }
+                if (i10 == 1) {
+                    arrayList2 = new ArrayList(prVar.getContactsController().contacts);
+                } else {
+                    arrayList2 = null;
+                }
+                String str = this.f36375c;
+                if (arrayList == null && arrayList2 == null) {
+                    orVar2.f36964s = false;
+                    ihVar = null;
+                } else {
+                    ihVar = new ih(orVar2, str, arrayList, arrayList2, 5);
+                }
+                tf.k1 k1Var = orVar2.h;
+                if (i10 != 0) {
+                    z4 = true;
+                } else {
+                    z4 = false;
+                }
+                if (ChatObject.isChannel(prVar.f37481r)) {
+                    j10 = prVar.K;
+                } else {
+                    j10 = 0;
+                }
+                k1Var.h(str, z4, false, true, false, false, j10, false, prVar.L, 1, 0L, ihVar);
                 return;
         }
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
-        switch (this.f40627a) {
-            case 0:
-                ((nr) this.f40628b).scheduleSelf(runnable, j10);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.f40627a) {
-            case 0:
-                ((nr) this.f40628b).unscheduleSelf(runnable);
-                return;
-            default:
-                return;
-        }
-    }
-
-    private final void b(Drawable drawable, Runnable runnable) {
-    }
-
-    private final void a(Drawable drawable, Runnable runnable, long j10) {
     }
 }

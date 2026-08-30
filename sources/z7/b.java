@@ -1,17 +1,33 @@
 package z7;
 
-import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.common.api.e;
-public abstract class b {
-    public static final b6.b f50782a;
-    public static final e f50783b;
+import android.os.Parcel;
+import android.os.Parcelable;
+import b6.m;
+import j7.f5;
+import java.util.Arrays;
+import u6.p;
+public final class b extends c6.a {
+    public static final Parcelable.Creator<b> CREATOR = new p(25);
+    public String f47388a;
 
-    static {
-        ?? obj = new Object();
-        b6.b bVar = new b6.b(18);
-        f50782a = bVar;
-        new Scope(1, "profile");
-        new Scope(1, "email");
-        f50783b = new e("SignIn.API", bVar, obj);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof b) {
+            return m.l(this.f47388a, ((b) obj).f47388a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f47388a});
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q10 = f5.q(parcel, 20293);
+        f5.l(parcel, 1, this.f47388a);
+        f5.r(parcel, q10);
     }
 }

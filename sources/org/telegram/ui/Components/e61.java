@@ -1,32 +1,25 @@
 package org.telegram.ui.Components;
+public final class e61 extends f2.v {
+    public final d61 f24482c;
+    public final g61 d;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class e61 extends x10 {
-    public final ig.f F;
-    public final f61 G;
-
-    public e61(f61 f61Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, c6Var);
-        this.G = f61Var;
-        ig.f fVar = this.f34546r;
-        this.F = fVar;
-        fVar.setImeOptions(268435459);
-        fVar.setHint(LocaleController.getString(R.string.VoipGroupSearchMembers));
-        fVar.addTextChangedListener(new bh.c(this, 15));
-        fVar.setOnEditorActionListener(new f1(this, 10));
+    public e61(g61 g61Var, d61 d61Var) {
+        this.d = g61Var;
+        this.f24482c = d61Var;
     }
 
     @Override
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.G.D(motionEvent, this.F);
-        return super.onInterceptTouchEvent(motionEvent);
+    public final int i(int i10) {
+        int i11;
+        w51 w51Var = this.d.V2;
+        d61 d61Var = this.f24482c;
+        if (w51Var == null) {
+            return d61Var.J;
+        }
+        i51 G = w51Var.G(i10);
+        if (G != null && (i11 = G.f25574u) != -1) {
+            return i11;
+        }
+        return d61Var.J;
     }
 }

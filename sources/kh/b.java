@@ -1,217 +1,63 @@
 package kh;
 
-import android.util.LongSparseArray;
-import android.util.SparseArray;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import org.telegram.ui.q6;
-import org.telegram.ui.r6;
-public final class b {
-    public final boolean f13895a;
-    public long f13903k;
-    public boolean f13905m;
-    public boolean f13906n;
-    public boolean f13907o;
-    public boolean f13908p;
-    public boolean f13909q;
-    public long f13910r;
-    public long f13911s;
-    public long f13912t;
-    public long f13913u;
-    public long v;
-    public ArrayList f13896b = new ArrayList();
-    public final LongSparseArray f13897c = new LongSparseArray();
-    public final ArrayList d = new ArrayList();
-    public final ArrayList f13898e = new ArrayList();
-    public final ArrayList f13899f = new ArrayList();
-    public final ArrayList f13900g = new ArrayList();
-    public final ArrayList h = new ArrayList();
-    public final HashSet f13901i = new HashSet();
-    public final HashSet f13902j = new HashSet();
-    public final HashSet f13904l = new HashSet();
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.view.View;
+import lh.ja;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.GiftAuctionController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.f51;
+import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.sz0;
+import org.telegram.ui.Components.w51;
+public final class b extends h51 {
+    public static final int f10468a = 0;
 
-    public b(boolean z10) {
-        this.f13895a = z10;
+    static {
+        h51.setup(new h51());
     }
 
-    public final void a(int i10, boolean z10) {
-        if (this.f13895a) {
-            if (!z10) {
-                if (i10 == 0) {
-                    this.f13905m = false;
-                    return;
-                } else if (i10 == 1) {
-                    this.f13906n = false;
-                    return;
-                } else if (i10 == 2) {
-                    this.f13907o = false;
-                    return;
-                } else if (i10 == 3) {
-                    this.f13908p = false;
-                    return;
-                } else if (i10 == 4) {
-                    this.f13909q = false;
-                    return;
-                } else {
-                    return;
-                }
-            }
-            ArrayList arrayList = this.d;
-            if (i10 == 0) {
-                this.f13905m = b(i10, arrayList);
-            } else if (i10 == 1) {
-                this.f13906n = b(i10, arrayList);
-            } else if (i10 == 2) {
-                this.f13907o = b(i10, this.f13898e);
-            } else if (i10 == 3) {
-                this.f13908p = b(i10, this.f13899f);
-            } else if (i10 == 4) {
-                this.f13909q = b(i10, this.f13900g);
-            } else if (i10 == 7) {
-                b(i10, this.h);
-            }
-        }
+    @Override
+    public final void bindView(View view, i51 i51Var, boolean z4, w51 w51Var, g61 g61Var) {
+        c cVar = (c) view;
+        GiftAuctionController.Auction auction = (GiftAuctionController.Auction) i51Var.H;
+        TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift = (TL_stars.TL_StarGiftAuctionAcquiredGift) i51Var.G;
+        View.OnClickListener onClickListener = i51Var.D;
+        int i10 = c.f10502c;
+        cVar.removeAllViews();
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
+        spannableStringBuilder.setSpan(new org.telegram.ui.Components.u5(auction.giftDocumentId, j6.f20171s2.getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.append(' ');
+        spannableStringBuilder.append((CharSequence) LocaleController.formatString(R.string.Gift2AuctionsAcquiredRound2, auction.gift.title, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.gift_num), Integer.valueOf(tL_StarGiftAuctionAcquiredGift.round)));
+        spannableStringBuilder.setSpan(new f51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+        spannableStringBuilder2.append((CharSequence) ja.X0(false, a2.l(tL_StarGiftAuctionAcquiredGift.bid_amount, ',', new StringBuilder("⭐️")), 0.75f, null));
+        String formatString = LocaleController.formatString(R.string.Gift2AuctionsAcquiredTop, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.pos));
+        sz0 sz0Var = new sz0(cVar.getContext(), cVar.f10503a);
+        sz0Var.a(spannableStringBuilder).setFilled(true);
+        sz0Var.k(LocaleController.getString(R.string.Gift2AuctionsAcquiredRecipient), cVar.f10504b, DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer), new gf.c(20, cVar, onClickListener));
+        sz0Var.f(tL_StarGiftAuctionAcquiredGift.date, LocaleController.getString(R.string.Gift2AuctionsAcquiredDate));
+        sz0Var.e(LocaleController.getString(R.string.Gift2AuctionsAcquiredAcceptedBid), spannableStringBuilder2, formatString, null, null);
+        cVar.addView(sz0Var, k7.b6.c(-2.0f, -1));
     }
 
-    public final boolean b(int i10, ArrayList arrayList) {
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            if (((a) arrayList.get(i11)).d == i10 && !this.f13902j.contains(arrayList.get(i11))) {
-                return false;
-            }
-        }
-        return true;
+    @Override
+    public final View createView(Context context, sl0 sl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        c cVar = new c(context, i10, f6Var);
+        cVar.setLayoutParams(k7.b6.c(-2.0f, -1));
+        return cVar;
     }
 
-    public final void c() {
-        if (!this.f13895a) {
-            HashSet hashSet = this.f13901i;
-            hashSet.clear();
-            HashSet hashSet2 = this.f13902j;
-            Iterator it = hashSet2.iterator();
-            while (it.hasNext()) {
-                long j10 = ((a) it.next()).f13890b;
-                if (j10 != 0) {
-                    hashSet.add(Long.valueOf(j10));
-                }
-            }
-            HashSet hashSet3 = this.f13904l;
-            hashSet3.clear();
-            Iterator it2 = hashSet.iterator();
-            while (it2.hasNext()) {
-                q6 q6Var = (q6) this.f13897c.get(((Long) it2.next()).longValue());
-                if (q6Var != null) {
-                    SparseArray sparseArray = q6Var.d;
-                    int i10 = 0;
-                    while (true) {
-                        if (i10 < sparseArray.size()) {
-                            ArrayList arrayList = ((r6) sparseArray.valueAt(i10)).f41979b;
-                            int size = arrayList.size();
-                            int i11 = 0;
-                            while (i11 < size) {
-                                Object obj = arrayList.get(i11);
-                                i11++;
-                                if (!hashSet2.contains((a) obj)) {
-                                    break;
-                                }
-                            }
-                            i10++;
-                        } else {
-                            hashSet3.add(Long.valueOf(q6Var.f41543a));
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public final void d() {
-        this.f13903k = 0L;
-        this.f13902j.clear();
-        this.f13904l.clear();
-    }
-
-    public final ArrayList e(int i10) {
-        if (i10 == 0 || i10 == 1) {
-            return this.d;
-        }
-        if (i10 == 2) {
-            return this.f13898e;
-        }
-        if (i10 == 3) {
-            return this.f13899f;
-        }
-        if (i10 == 4) {
-            return this.f13900g;
-        }
-        if (i10 == 7) {
-            return this.h;
-        }
-        return null;
-    }
-
-    public final long f(int i10) {
-        if (i10 == 0) {
-            return this.f13910r;
-        }
-        if (i10 == 1) {
-            return this.f13911s;
-        }
-        if (i10 == 2) {
-            return this.f13912t;
-        }
-        if (i10 == 3) {
-            return this.f13913u;
-        }
-        if (i10 == 4) {
-            return this.v;
-        }
-        return -1L;
-    }
-
-    public final void g(a aVar, boolean z10) {
-        long j10 = aVar.f13891c;
-        if (!z10) {
-            j10 = -j10;
-        }
-        int i10 = aVar.d;
-        if (i10 == 0) {
-            this.f13910r += j10;
-        } else if (i10 == 1) {
-            this.f13911s += j10;
-        } else if (i10 == 2) {
-            this.f13912t += j10;
-        } else if (i10 == 3) {
-            this.f13913u += j10;
-        } else if (i10 == 4) {
-            this.v += j10;
-        }
-    }
-
-    public final boolean h() {
-        if (this.d.isEmpty() && this.f13898e.isEmpty() && this.f13899f.isEmpty()) {
-            if (this.f13895a || this.f13896b.isEmpty()) {
-                return true;
-            }
-            return false;
-        }
+    @Override
+    public final boolean isClickable() {
         return false;
-    }
-
-    public final void i(a aVar) {
-        HashSet hashSet = this.f13902j;
-        if (hashSet.contains(aVar)) {
-            hashSet.remove(aVar);
-            g(aVar, false);
-            this.f13903k -= aVar.f13891c;
-            a(aVar.d, false);
-        } else {
-            hashSet.add(aVar);
-            g(aVar, true);
-            this.f13903k += aVar.f13891c;
-            a(aVar.d, true);
-        }
-        c();
     }
 }

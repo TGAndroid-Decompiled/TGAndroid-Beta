@@ -1,55 +1,58 @@
 package org.telegram.ui.Components;
+public final class fh implements Runnable {
+    public final int f24876a;
+    public final li f24877b;
+    public final boolean f24878c;
 
-import android.view.KeyEvent;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class fh implements Utilities.Callback4 {
-    public final int f28400a;
-    public final KeyEvent.Callback f28401b;
-
-    public fh(KeyEvent.Callback callback, int i10) {
-        this.f28400a = i10;
-        this.f28401b = callback;
+    public fh(li liVar, boolean z4, int i10) {
+        this.f24876a = i10;
+        this.f24877b = liVar;
+        this.f24878c = z4;
     }
 
     @Override
-    public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-        switch (this.f28400a) {
+    public final void run() {
+        switch (this.f24876a) {
             case 0:
-                ni niVar = (ni) this.f28401b;
-                CharSequence charSequence = (CharSequence) obj;
-                Integer num = (Integer) obj2;
-                Integer num2 = (Integer) obj3;
-                Boolean bool = (Boolean) obj4;
-                th thVar = niVar.A0;
-                thVar.setText(charSequence);
-                thVar.w(charSequence.length(), charSequence.length());
-                niVar.z1();
-                return;
+                boolean z4 = this.f24878c;
+                li liVar = this.f24877b;
+                if (!z4) {
+                    liVar.Z0.setVisibility(8);
+                    return;
+                } else {
+                    liVar.getClass();
+                    return;
+                }
             case 1:
-                ni niVar2 = (ni) this.f28401b;
-                CharSequence charSequence2 = (CharSequence) obj;
-                Integer num3 = (Integer) obj2;
-                Integer num4 = (Integer) obj3;
-                Boolean bool2 = (Boolean) obj4;
-                wh whVar = niVar2.L0;
-                whVar.setText(charSequence2);
-                whVar.w(charSequence2.length(), charSequence2.length());
-                niVar2.z1();
-                return;
+                boolean z10 = this.f24878c;
+                li liVar2 = this.f24877b;
+                if (!z10) {
+                    liVar2.f26751w.setVisibility(8);
+                    return;
+                } else {
+                    liVar2.getClass();
+                    return;
+                }
+            case 2:
+                boolean z11 = this.f24878c;
+                li liVar3 = this.f24877b;
+                if (!z11) {
+                    liVar3.f26759y.setVisibility(8);
+                    return;
+                } else {
+                    liVar3.getClass();
+                    return;
+                }
             default:
-                ed edVar = (ed) this.f28401b;
-                Integer num5 = (Integer) obj2;
-                Integer num6 = (Integer) obj3;
-                Boolean bool3 = (Boolean) obj4;
-                nh.g gVar = edVar.f18076f;
-                gVar.setText((CharSequence) obj);
-                gVar.d();
-                gVar.k(true);
-                nh.e eVar = edVar.V;
-                AndroidUtilities.cancelRunOnUIThread(eVar);
-                eVar.run();
-                return;
+                boolean z12 = this.f24878c;
+                li liVar4 = this.f24877b;
+                if (z12) {
+                    liVar4.f26746u1.setVisibility(4);
+                    return;
+                } else {
+                    liVar4.getClass();
+                    return;
+                }
         }
     }
 }

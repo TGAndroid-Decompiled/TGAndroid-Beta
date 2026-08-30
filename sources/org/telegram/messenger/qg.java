@@ -1,28 +1,29 @@
 package org.telegram.messenger;
 
-import java.util.function.Consumer;
-public final class qg implements Runnable {
-    public final int f21367a;
-    public final MessagesStorage f21368b;
-    public final long f21369c;
-    public final Consumer d;
+import java.util.Comparator;
+import org.telegram.messenger.support.LongSparseIntArray;
+public final class qg implements Comparator {
+    public final int f18224a;
+    public final LongSparseIntArray f18225b;
 
-    public qg(MessagesStorage messagesStorage, long j10, Consumer consumer, int i10) {
-        this.f21367a = i10;
-        this.f21368b = messagesStorage;
-        this.f21369c = j10;
-        this.d = consumer;
+    public qg(LongSparseIntArray longSparseIntArray, int i10) {
+        this.f18224a = i10;
+        this.f18225b = longSparseIntArray;
     }
 
     @Override
-    public final void run() {
-        switch (this.f21367a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$checkLoadedRemoteFilters$68;
+        int lambda$resetDialogs$94;
+        Long l10 = (Long) obj;
+        Long l11 = (Long) obj2;
+        switch (this.f18224a) {
             case 0:
-                this.f21368b.lambda$loadStoryAlbumsCache$270(this.f21369c, this.d);
-                return;
+                lambda$checkLoadedRemoteFilters$68 = MessagesStorage.lambda$checkLoadedRemoteFilters$68(this.f18225b, l10, l11);
+                return lambda$checkLoadedRemoteFilters$68;
             default:
-                this.f21368b.lambda$loadTopics$51(this.f21369c, this.d);
-                return;
+                lambda$resetDialogs$94 = MessagesStorage.lambda$resetDialogs$94(this.f18225b, l10, l11);
+                return lambda$resetDialogs$94;
         }
     }
 }

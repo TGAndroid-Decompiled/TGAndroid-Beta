@@ -1,36 +1,31 @@
 package org.telegram.messenger;
-public final class y5 implements Runnable {
-    public final int f22225a;
-    public final org.telegram.ui.ActionBar.c2 f22226b;
-    public final boolean[] f22227c;
 
-    public y5(org.telegram.ui.ActionBar.c2 c2Var, boolean[] zArr, int i10) {
-        this.f22225a = i10;
-        this.f22226b = c2Var;
-        this.f22227c = zArr;
+import android.content.DialogInterface;
+import org.telegram.messenger.MediaController;
+public final class y5 implements DialogInterface.OnCancelListener {
+    public final int f19021a;
+    public final Object f19022b;
+
+    public y5(Object obj, int i10) {
+        this.f19021a = i10;
+        this.f19022b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f22225a) {
+    public final void onCancel(DialogInterface dialogInterface) {
+        switch (this.f19021a) {
             case 0:
-                MediaController.lambda$saveFile$45(this.f22227c, this.f22226b);
+                MediaController.lambda$saveFile$44((boolean[]) this.f19022b, dialogInterface);
                 return;
             case 1:
-                MediaController.lambda$saveFile$49(this.f22226b, this.f22227c);
+                MediaController.lambda$saveFile$51((boolean[]) this.f19022b, dialogInterface);
                 return;
             case 2:
-                MediaController.lambda$saveFile$52(this.f22227c, this.f22226b);
+                MessagesController.lambda$openByUserName$457((boolean[]) this.f19022b, dialogInterface);
                 return;
             default:
-                MediaController.lambda$saveFile$54(this.f22226b, this.f22227c);
+                ((MediaController.MediaLoader) this.f19022b).lambda$new$0(dialogInterface);
                 return;
         }
-    }
-
-    public y5(boolean[] zArr, org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        this.f22225a = i10;
-        this.f22227c = zArr;
-        this.f22226b = c2Var;
     }
 }

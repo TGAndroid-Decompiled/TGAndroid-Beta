@@ -1,29 +1,27 @@
 package v7;
-public final class c extends h {
-    public final int f49445c;
-    public final float d;
 
-    public c(float f9, int i10) {
-        super(0, Float.valueOf(Math.max(f9, 0.0f)));
-        this.f49445c = i10;
-        switch (i10) {
-            case 1:
-                super(2, Float.valueOf(Math.max(f9, 0.0f)));
-                this.d = Math.max(f9, 0.0f);
-                return;
-            default:
-                this.d = Math.max(f9, 0.0f);
-                return;
-        }
+import android.os.Parcel;
+import android.os.RemoteException;
+import b6.m;
+import java.util.HashMap;
+public final class c {
+    public final w7.f f45623a;
+    public h f45624b;
+
+    public c(w7.f fVar) {
+        new HashMap();
+        m.h(fVar);
+        this.f45623a = fVar;
     }
 
-    @Override
-    public final String toString() {
-        switch (this.f49445c) {
-            case 0:
-                return "[Dash: length=" + this.d + "]";
-            default:
-                return "[Gap: length=" + this.d + "]";
+    public final void a(int i10) {
+        try {
+            w7.f fVar = this.f45623a;
+            Parcel M0 = fVar.M0();
+            M0.writeInt(i10);
+            fVar.Q0(M0, 16);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
     }
 }

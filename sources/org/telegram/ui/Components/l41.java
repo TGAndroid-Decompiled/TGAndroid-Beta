@@ -1,43 +1,43 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class l41 extends f2.a1 {
-    public final s41 f30228a;
-
-    public l41(s41 s41Var) {
-        this.f30228a = s41Var;
-    }
-
-    @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        f2.a1 a1Var = this.f30228a.f32490y;
-        if (a1Var != null) {
-            a1Var.a(recyclerView, i10);
-        }
-    }
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.ScrollView;
+import org.telegram.messenger.R;
+public final class l41 extends ScrollView {
+    public Drawable f26553a;
+    public z5 f26554b;
+    public boolean f26555c;
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        s41 s41Var = this.f30228a;
-        r41 r41Var = s41Var.f32487s;
-        i41 i41Var = s41Var.f32485n;
-        f2.a1 a1Var = s41Var.f32490y;
-        if (a1Var != null) {
-            a1Var.b(i41Var, i10, i11);
+    public final void dispatchDraw(Canvas canvas) {
+        float f10;
+        super.dispatchDraw(canvas);
+        z5 z5Var = this.f26554b;
+        if (canScrollVertically(-1)) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
         }
-        if (i11 > 0 && i41Var.getAdapter() == r41Var && s41Var.F && !r41Var.f32175r && !r41Var.f32176s) {
-            if (s41Var.f32486r.N0() >= ((r41Var.f32177w + 1) - ((r41Var.v + 1) * 10)) - 1) {
-                s41 s41Var2 = r41Var.f32178x;
-                if (s41Var2.F && !r41Var.f32175r && !r41Var.f32176s) {
-                    r41Var.f32175r = true;
-                    TLRPC.TL_messages_getOldFeaturedStickers tL_messages_getOldFeaturedStickers = new TLRPC.TL_messages_getOldFeaturedStickers();
-                    tL_messages_getOldFeaturedStickers.offset = r41Var.f32174n.size();
-                    tL_messages_getOldFeaturedStickers.limit = 40;
-                    ConnectionsManager.getInstance(s41Var2.f32480a).sendRequest(tL_messages_getOldFeaturedStickers, new a2(r41Var, 17));
-                }
+        float d = z5Var.d(f10, false) * 0.5f;
+        if (d > 0.0f) {
+            if (this.f26553a == null) {
+                this.f26553a = getContext().getResources().getDrawable(R.drawable.header_shadow);
             }
+            this.f26553a.setBounds(0, getScrollY(), getWidth(), this.f26553a.getIntrinsicHeight() + getScrollY());
+            this.f26553a.setAlpha((int) (d * 255.0f));
+            this.f26553a.draw(canvas);
+        }
+    }
+
+    @Override
+    public final void onNestedScroll(View view, int i10, int i11, int i12, int i13) {
+        super.onNestedScroll(view, i10, i11, i12, i13);
+        boolean canScrollVertically = canScrollVertically(-1);
+        if (this.f26555c != canScrollVertically) {
+            invalidate();
+            this.f26555c = canScrollVertically;
         }
     }
 }

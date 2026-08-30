@@ -1,90 +1,35 @@
 package cg;
+public final class j1 implements Runnable {
+    public final int f2434a;
+    public final p1 f2435b;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewConfiguration;
-import java.lang.reflect.Field;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class j1 extends m2.g {
-    public long f3165s0;
-    public boolean f3166t0;
-    public final i1 f3167u0;
-    public final p1 f3168v0;
-
-    public j1(p1 p1Var, Context context) {
-        super(context);
-        this.f3168v0 = p1Var;
-        try {
-            Field declaredField = m2.g.class.getDeclaredField("r");
-            declaredField.setAccessible(true);
-            i1 i1Var = new i1(this, getContext());
-            this.f3167u0 = i1Var;
-            declaredField.set(this, i1Var);
-        } catch (Exception e10) {
-            FileLog.e(e10);
-        }
+    public j1(p1 p1Var, int i10) {
+        this.f2434a = i10;
+        this.f2435b = p1Var;
     }
 
-    public final boolean A(MotionEvent motionEvent) {
-        i1 i1Var;
-        if (motionEvent.getAction() == 0) {
-            this.f3165s0 = System.currentTimeMillis();
-            return true;
-        }
-        if (motionEvent.getAction() == 1) {
-            if (System.currentTimeMillis() - this.f3165s0 <= ViewConfiguration.getTapTimeout() && (i1Var = this.f3167u0) != null && i1Var.isFinished()) {
-                this.f3166t0 = true;
-                p1 p1Var = this.f3168v0;
-                if (motionEvent.getX() > getWidth() * 0.45f) {
-                    if (p1Var.C + 1 < p1Var.d.size()) {
-                        x(p1Var.C + 1, true);
-                    }
-                } else {
-                    int i10 = p1Var.C - 1;
-                    if (i10 >= 0) {
-                        x(i10, true);
-                    }
+    @Override
+    public final void run() {
+        switch (this.f2434a) {
+            case 0:
+                o1 o1Var = this.f2435b.f2492a;
+                if (o1Var != null) {
+                    o1Var.b();
+                    return;
                 }
-                this.f3166t0 = false;
-                return false;
-            }
-        } else if (motionEvent.getAction() == 3) {
-            this.f3165s0 = -1L;
+                return;
+            case 1:
+                p1 p1Var = this.f2435b;
+                p1Var.f2494c.a(p1Var.f2497r);
+                n1 n1Var = p1Var.d;
+                n1Var.getClass();
+                n1Var.postRunnable(new m1(n1Var, 2));
+                p1Var.d = null;
+                return;
+            default:
+                p1 p1Var2 = this.f2435b;
+                p1Var2.f2494c.q(p1Var2.f2500x);
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        try {
-            A(motionEvent);
-            return super.onInterceptTouchEvent(motionEvent);
-        } catch (Exception unused) {
-            return false;
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int dp = AndroidUtilities.dp(100.0f);
-        if (getChildCount() > 0) {
-            getChildAt(0).measure(i10, View.MeasureSpec.makeMeasureSpec(0, 0));
-            dp = getChildAt(0).getMeasuredHeight();
-        }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(dp + this.f3168v0.H, 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f3168v0.f3270w) {
-            boolean A = A(motionEvent);
-            if (!super.onTouchEvent(motionEvent) && !A) {
-                return false;
-            }
-            return true;
-        }
-        return false;
     }
 }

@@ -9,50 +9,50 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 public final class a0 extends b0 {
-    public final ArrayList f5651e = new ArrayList();
-    public final ArrayList f5652f = new ArrayList();
-    public final p0 f5653g;
+    public final ArrayList e = new ArrayList();
+    public final ArrayList f4952f = new ArrayList();
+    public final o0 f4953g;
     public CharSequence h;
-    public Boolean f5654i;
+    public Boolean f4954i;
 
     public a0() {
         ?? obj = new Object();
-        obj.f5719a = "";
-        obj.f5720b = null;
-        obj.f5721c = null;
+        obj.f5006a = "";
+        obj.f5007b = null;
+        obj.f5008c = null;
         obj.d = null;
-        obj.f5722e = false;
-        obj.f5723f = false;
-        this.f5653g = obj;
+        obj.e = false;
+        obj.f5009f = false;
+        this.f4953g = obj;
     }
 
     @Override
     public final void a(Bundle bundle) {
         super.a(bundle);
-        p0 p0Var = this.f5653g;
-        bundle.putCharSequence("android.selfDisplayName", p0Var.f5719a);
-        bundle.putBundle("android.messagingStyleUser", p0Var.c());
+        o0 o0Var = this.f4953g;
+        bundle.putCharSequence("android.selfDisplayName", o0Var.f5006a);
+        bundle.putBundle("android.messagingStyleUser", o0Var.c());
         bundle.putCharSequence("android.hiddenConversationTitle", this.h);
-        if (this.h != null && this.f5654i.booleanValue()) {
+        if (this.h != null && this.f4954i.booleanValue()) {
             bundle.putCharSequence("android.conversationTitle", this.h);
         }
-        ArrayList arrayList = this.f5651e;
+        ArrayList arrayList = this.e;
         if (!arrayList.isEmpty()) {
             bundle.putParcelableArray("android.messages", z.a(arrayList));
         }
-        ArrayList arrayList2 = this.f5652f;
+        ArrayList arrayList2 = this.f4952f;
         if (!arrayList2.isEmpty()) {
             bundle.putParcelableArray("android.messages.historic", z.a(arrayList2));
         }
-        Boolean bool = this.f5654i;
+        Boolean bool = this.f4954i;
         if (bool != null) {
             bundle.putBoolean("android.isGroupConversation", bool.booleanValue());
         }
     }
 
     @Override
-    public final void b(e0.i0 r10) {
-        throw new UnsupportedOperationException("Method not decompiled: e0.a0.b(e0.i0):void");
+    public final void b(a4.k r10) {
+        throw new UnsupportedOperationException("Method not decompiled: e0.a0.b(a4.k):void");
     }
 
     @Override
@@ -61,30 +61,30 @@ public final class a0 extends b0 {
     }
 
     public final List d() {
-        return this.f5651e;
+        return this.e;
     }
 
     public final SpannableStringBuilder e(z zVar) {
         p0.b bVar;
         CharSequence charSequence;
-        String str = p0.b.f45404b;
+        String str = p0.b.f40927b;
         if (TextUtils.getLayoutDirectionFromLocale(Locale.getDefault()) == 1) {
-            bVar = p0.b.f45406e;
+            bVar = p0.b.e;
         } else {
             bVar = p0.b.d;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        p0 p0Var = zVar.f5756c;
+        o0 o0Var = zVar.f5041c;
         CharSequence charSequence2 = "";
-        if (p0Var == null) {
+        if (o0Var == null) {
             charSequence = "";
         } else {
-            charSequence = p0Var.f5719a;
+            charSequence = o0Var.f5006a;
         }
         int i10 = -16777216;
         if (TextUtils.isEmpty(charSequence)) {
-            charSequence = this.f5653g.f5719a;
-            int i11 = this.f5655a.f5750w;
+            charSequence = this.f4953g.f5006a;
+            int i11 = this.f4955a.f5035w;
             if (i11 != 0) {
                 i10 = i11;
             }
@@ -92,7 +92,7 @@ public final class a0 extends b0 {
         SpannableStringBuilder c3 = bVar.c(charSequence);
         spannableStringBuilder.append((CharSequence) c3);
         spannableStringBuilder.setSpan(new TextAppearanceSpan(null, 0, 0, ColorStateList.valueOf(i10), null), spannableStringBuilder.length() - c3.length(), spannableStringBuilder.length(), 33);
-        CharSequence charSequence3 = zVar.f5754a;
+        CharSequence charSequence3 = zVar.f5039a;
         if (charSequence3 != null) {
             charSequence2 = charSequence3;
         }
@@ -104,9 +104,9 @@ public final class a0 extends b0 {
         this.h = str;
     }
 
-    public a0(p0 p0Var) {
-        if (!TextUtils.isEmpty(p0Var.f5719a)) {
-            this.f5653g = p0Var;
+    public a0(o0 o0Var) {
+        if (!TextUtils.isEmpty(o0Var.f5006a)) {
+            this.f4953g = o0Var;
             return;
         }
         throw new IllegalArgumentException("User's name must not be empty.");

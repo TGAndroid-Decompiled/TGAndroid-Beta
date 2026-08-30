@@ -1,67 +1,43 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-public final class ri extends ye.c {
-    public final int d;
-    public final int f42117e;
-    public final org.telegram.ui.Cells.s1 f42118f;
-    public final tn f42119g;
+public final class ri implements Runnable {
+    public final int f38056a;
+    public final si f38057b;
+    public final int f38058c;
+    public final boolean d;
+    public final org.telegram.ui.Components.pk0 e;
+    public final float f38059f;
+    public final float h;
+    public final mg.q0 f38060n;
 
-    public ri(tn tnVar, int i10, org.telegram.ui.Cells.s1 s1Var, int i11) {
-        this.d = i11;
-        this.f42119g = tnVar;
-        this.f42117e = i10;
-        this.f42118f = s1Var;
+    public ri(si siVar, int i10, boolean z4, org.telegram.ui.Components.pk0 pk0Var, float f10, float f11, mg.q0 q0Var, int i11) {
+        this.f38056a = i11;
+        this.f38057b = siVar;
+        this.f38058c = i10;
+        this.d = z4;
+        this.e = pk0Var;
+        this.f38059f = f10;
+        this.h = f11;
+        this.f38060n = q0Var;
     }
 
     @Override
-    public final void c(boolean z10) {
-        switch (this.d) {
+    public final void run() {
+        int i10;
+        switch (this.f38056a) {
             case 0:
-                if (!z10) {
-                    AndroidUtilities.runOnUIThread(new bg.f(this, this.f42117e, 22), 240L);
-                    return;
-                }
-                return;
-            case 1:
-                if (!z10) {
-                    AndroidUtilities.runOnUIThread(new bg.f(this, this.f42117e, 24), 240L);
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new ri(this.f38057b, this.f38058c, this.d, this.e, this.f38059f, this.h, this.f38060n, 1), 50L);
                 return;
             default:
-                if (!z10) {
-                    AndroidUtilities.runOnUIThread(new bg.f(this, this.f42117e, 25), 240L);
+                xn xnVar = this.f38057b.f38349s;
+                org.telegram.ui.Cells.a0 q82 = xnVar.q8(this.f38058c, true);
+                if (this.d) {
+                    i10 = ((org.telegram.ui.ActionBar.p2) xnVar).currentAccount;
+                    mg.m0.d(xnVar, this.e, q82, null, this.f38059f, this.h, this.f38060n, i10, 1);
+                    mg.m0.f();
                     return;
                 }
-                return;
-        }
-    }
-
-    @Override
-    public final void d() {
-        switch (this.d) {
-            case 0:
-                int i10 = this.f42117e;
-                tn tnVar = this.f42119g;
-                tnVar.f42971sb = i10;
-                tnVar.f42984tb = 6;
-                this.f42118f.invalidate();
-                return;
-            case 1:
-                int i11 = this.f42117e;
-                tn tnVar2 = this.f42119g;
-                tnVar2.f42971sb = i11;
-                tnVar2.f42984tb = 5;
-                tnVar2.f43010vb = null;
-                this.f42118f.invalidate();
-                return;
-            default:
-                int i12 = this.f42117e;
-                tn tnVar3 = this.f42119g;
-                tnVar3.f42971sb = i12;
-                tnVar3.f42984tb = 7;
-                this.f42118f.invalidate();
                 return;
         }
     }

@@ -1,47 +1,74 @@
 package m3;
-public abstract class a {
-    private int flags;
 
-    public final void addFlag(int i10) {
-        this.flags = i10 | this.flags;
+import android.os.Parcel;
+import android.os.Parcelable;
+import j3.d1;
+import j3.n0;
+import k7.z7;
+import l4.j;
+public final class a implements e4.b {
+    public static final Parcelable.Creator<a> CREATOR = new j(10);
+    public final long f13751a;
+
+    public a(long j10) {
+        this.f13751a = j10;
     }
 
-    public void clear() {
-        this.flags = 0;
+    @Override
+    public final n0 b() {
+        return null;
     }
 
-    public final void clearFlag(int i10) {
-        this.flags = (~i10) & this.flags;
+    @Override
+    public final byte[] d() {
+        return null;
     }
 
-    public final boolean getFlag(int i10) {
-        if ((this.flags & i10) == i10) {
+    @Override
+    public final int describeContents() {
+        return 0;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof a)) {
+            return false;
+        }
+        if (this.f13751a == ((a) obj).f13751a) {
             return true;
         }
         return false;
     }
 
-    public final boolean hasSupplementalData() {
-        return getFlag(268435456);
+    public final int hashCode() {
+        return z7.a(this.f13751a);
     }
 
-    public final boolean isDecodeOnly() {
-        return getFlag(Integer.MIN_VALUE);
+    public final String toString() {
+        Object valueOf;
+        StringBuilder sb = new StringBuilder("Creation time: ");
+        long j10 = this.f13751a;
+        if (j10 == -2082844800000L) {
+            valueOf = "unset";
+        } else {
+            valueOf = Long.valueOf(j10);
+        }
+        sb.append(valueOf);
+        return sb.toString();
     }
 
-    public final boolean isEndOfStream() {
-        return getFlag(4);
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        parcel.writeLong(this.f13751a);
     }
 
-    public final boolean isFirstSample() {
-        return getFlag(134217728);
+    public a(Parcel parcel) {
+        this.f13751a = parcel.readLong();
     }
 
-    public final boolean isKeyFrame() {
-        return getFlag(1);
-    }
-
-    public final void setFlags(int i10) {
-        this.flags = i10;
+    @Override
+    public final void c(d1 d1Var) {
     }
 }

@@ -1,51 +1,40 @@
 package l3;
-public final class e implements j3.g {
-    public static final e h = new e(0, 0, 1, 1, 0);
-    public final int f14077a;
-    public final int f14078b;
-    public final int f14079c;
-    public final int d;
-    public final int f14080e;
-    public ha.c f14081f;
 
-    static {
-        int i10 = f5.d0.f6579a;
-        Integer.toString(0, 36);
-        Integer.toString(1, 36);
-        Integer.toString(2, 36);
-        Integer.toString(3, 36);
-        Integer.toString(4, 36);
-    }
-
-    public e(int i10, int i11, int i12, int i13, int i14) {
-        this.f14077a = i10;
-        this.f14078b = i11;
-        this.f14079c = i12;
-        this.d = i13;
-        this.f14080e = i14;
-    }
-
-    public final ha.c a() {
-        if (this.f14081f == null) {
-            this.f14081f = new ha.c(this);
+import android.content.Context;
+import android.media.AudioDeviceInfo;
+import android.media.AudioManager;
+public abstract class e {
+    private static final s8.z a() {
+        ?? wVar = new com.google.android.gms.common.api.internal.w();
+        Integer[] numArr = {8, 7};
+        s8.l.b(2, numArr);
+        wVar.h(wVar.f2886a + 2);
+        System.arraycopy(numArr, 0, wVar.f2888c, wVar.f2886a, 2);
+        wVar.f2886a += 2;
+        int i10 = h5.d0.f6937a;
+        if (i10 >= 31) {
+            Integer[] numArr2 = {26, 27};
+            s8.l.b(2, numArr2);
+            wVar.h(wVar.f2886a + 2);
+            System.arraycopy(numArr2, 0, wVar.f2888c, wVar.f2886a, 2);
+            wVar.f2886a += 2;
         }
-        return this.f14081f;
+        if (i10 >= 33) {
+            wVar.b(30);
+        }
+        return wVar.i();
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && e.class == obj.getClass()) {
-            e eVar = (e) obj;
-            if (this.f14077a == eVar.f14077a && this.f14078b == eVar.f14078b && this.f14079c == eVar.f14079c && this.d == eVar.d && this.f14080e == eVar.f14080e) {
+    public static final boolean b(Context context) {
+        AudioManager audioManager = (AudioManager) context.getSystemService("audio");
+        audioManager.getClass();
+        AudioDeviceInfo[] devices = audioManager.getDevices(2);
+        s8.z a2 = a();
+        for (AudioDeviceInfo audioDeviceInfo : devices) {
+            if (a2.contains(Integer.valueOf(audioDeviceInfo.getType()))) {
                 return true;
             }
         }
         return false;
-    }
-
-    public final int hashCode() {
-        return ((((((((527 + this.f14077a) * 31) + this.f14078b) * 31) + this.f14079c) * 31) + this.d) * 31) + this.f14080e;
     }
 }

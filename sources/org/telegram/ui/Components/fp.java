@@ -1,23 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-public final class fp {
-    public final org.telegram.ui.ActionBar.b4 f28512a;
-    public Drawable f28513b;
-    public int f28514c;
-    public boolean d;
-    public Bitmap f28515e;
+import android.widget.Toast;
+import java.util.List;
+import org.telegram.messenger.ChatThemeController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC;
+public final class fp implements ResultCallback {
+    public final ChatThemeController f24931a;
+    public final kp f24932b;
 
-    public fp(org.telegram.ui.ActionBar.b4 b4Var) {
-        this.f28512a = b4Var;
+    public fp(kp kpVar, ChatThemeController chatThemeController) {
+        this.f24932b = kpVar;
+        this.f24931a = chatThemeController;
     }
 
-    public final String a() {
-        org.telegram.ui.ActionBar.b4 b4Var = this.f28512a;
-        if (b4Var != null && !b4Var.f22762a) {
-            return b4Var.f22765e;
+    @Override
+    public final void onComplete(Object obj) {
+        int i10;
+        int i11;
+        Void r62 = (Void) obj;
+        ChatThemeController chatThemeController = this.f24931a;
+        if (chatThemeController.isGiftThemesFullyLoaded()) {
+            i10 = 2;
+        } else {
+            i10 = 0;
         }
-        return null;
+        List<org.telegram.ui.ActionBar.e4> emojiThemes = chatThemeController.getEmojiThemes(i10 | 5);
+        kp kpVar = this.f24932b;
+        i11 = ((org.telegram.ui.ActionBar.g3) kpVar).currentAccount;
+        NotificationCenter.getInstance(i11).doOnIdle(new il(4, this, emojiThemes));
+        kpVar.Y = false;
+    }
+
+    @Override
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.k.a(this, th2);
+    }
+
+    @Override
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f24932b.getContext(), tL_error.text, 0).show();
     }
 }

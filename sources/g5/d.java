@@ -1,58 +1,42 @@
 package g5;
+public final class d implements Runnable {
+    public final int f6366a;
+    public final int f6367b;
+    public final long f6368c;
+    public final long d;
+    public final Object e;
 
-import java.util.Arrays;
-public final class d {
-    public long f7033a;
-    public long f7034b;
-    public long f7035c;
-    public long d;
-    public long f7036e;
-    public long f7037f;
-    public final boolean[] f7038g = new boolean[15];
-    public int h;
-
-    public final boolean a() {
-        if (this.d > 15 && this.h == 0) {
-            return true;
-        }
-        return false;
+    public d(Object obj, int i10, long j10, long j11, int i11) {
+        this.f6366a = i11;
+        this.e = obj;
+        this.f6367b = i10;
+        this.f6368c = j10;
+        this.d = j11;
     }
 
-    public final void b(long j10) {
-        long j11 = this.d;
-        if (j11 == 0) {
-            this.f7033a = j10;
-        } else if (j11 == 1) {
-            long j12 = j10 - this.f7033a;
-            this.f7034b = j12;
-            this.f7037f = j12;
-            this.f7036e = 1L;
-        } else {
-            long j13 = j10 - this.f7035c;
-            int i10 = (int) (j11 % 15);
-            long abs = Math.abs(j13 - this.f7034b);
-            boolean[] zArr = this.f7038g;
-            if (abs <= 1000000) {
-                this.f7036e++;
-                this.f7037f += j13;
-                if (zArr[i10]) {
-                    zArr[i10] = false;
-                    this.h--;
+    @Override
+    public final void run() {
+        o4.v vVar;
+        int i10 = this.f6366a;
+        Object obj = this.e;
+        switch (i10) {
+            case 0:
+                k3.f fVar = ((e) obj).f6370b;
+                a9.a aVar = fVar.d;
+                if (((s8.v) aVar.f144b).isEmpty()) {
+                    vVar = null;
+                } else {
+                    vVar = (o4.v) s8.l.h((s8.v) aVar.f144b);
                 }
-            } else if (!zArr[i10]) {
-                zArr[i10] = true;
-                this.h++;
-            }
+                k3.a n10 = fVar.n(vVar);
+                fVar.q(n10, 1006, new k3.d(n10, this.f6367b, this.f6368c, this.d));
+                return;
+            default:
+                int i11 = h5.d0.f6937a;
+                k3.f fVar2 = ((j3.c0) ((l3.q) ((f7.b) obj).f6013c)).f8441a.f8561q;
+                k3.a p10 = fVar2.p();
+                fVar2.q(p10, 1011, new j3.q0(p10, this.f6367b, this.f6368c, this.d));
+                return;
         }
-        this.d++;
-        this.f7035c = j10;
-    }
-
-    public final void c() {
-        this.d = 0L;
-        this.f7036e = 0L;
-        this.f7037f = 0L;
-        this.h = 0;
-        Arrays.fill(this.f7038g, false);
     }
 }

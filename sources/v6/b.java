@@ -1,13 +1,28 @@
 package v6;
-public abstract class b {
-    public static final w5.c f49433a;
-    public static final w5.c[] f49434b;
 
-    static {
-        w5.c cVar = new w5.c("sms_code_autofill", 2L);
-        w5.c cVar2 = new w5.c("sms_code_browser", 2L);
-        w5.c cVar3 = new w5.c("sms_retrieve", 1L);
-        f49433a = cVar3;
-        f49434b = new w5.c[]{cVar, cVar2, cVar3, new w5.c("user_consent", 3L)};
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+public final class b implements d, IInterface {
+    public final IBinder f45617a;
+
+    public b(IBinder iBinder) {
+        this.f45617a = iBinder;
+    }
+
+    public final void E0(Parcel parcel, int i10) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            this.f45617a.transact(i10, parcel, obtain, 0);
+            obtain.readException();
+        } finally {
+            parcel.recycle();
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final IBinder asBinder() {
+        return this.f45617a;
     }
 }

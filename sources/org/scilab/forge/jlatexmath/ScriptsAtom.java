@@ -36,9 +36,9 @@ public class ScriptsAtom extends Atom {
         return this.base.getRightType();
     }
 
-    public ScriptsAtom(Atom atom, Atom atom2, Atom atom3, boolean z10) {
+    public ScriptsAtom(Atom atom, Atom atom2, Atom atom3, boolean z4) {
         this(atom, atom2, atom3);
-        if (z10) {
+        if (z4) {
             return;
         }
         this.align = 1;

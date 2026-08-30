@@ -1,153 +1,88 @@
 package org.telegram.ui;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.WindowManager;
-import android.widget.PopupWindow;
-import java.lang.reflect.Field;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public abstract class u51 extends PopupWindow {
-    public static final Field f43184c;
-    public static final org.telegram.ui.ActionBar.h1 d = new org.telegram.ui.ActionBar.h1(2);
-    public final ViewTreeObserver.OnScrollChangedListener f43185a;
-    public ViewTreeObserver f43186b;
+import org.telegram.messenger.R;
+public final class u51 extends FrameLayout {
+    public final TextView f38845a;
+    public final org.telegram.ui.Components.jj0 f38846b;
+    public final ImageView f38847c;
+    public float d;
+    public ValueAnimator e;
+    public final q61 f38848f;
 
-    static {
-        Field field = null;
-        try {
-            field = PopupWindow.class.getDeclaredField("mOnScrollChangedListener");
-            field.setAccessible(true);
-        } catch (NoSuchFieldException unused) {
+    public u51(q61 q61Var, Context context, boolean z4) {
+        super(context);
+        int i10;
+        this.f38848f = q61Var;
+        LinearLayout f10 = org.telegram.messenger.y3.f(context, 0);
+        if (z4) {
+            i10 = 3;
+        } else {
+            i10 = 17;
         }
-        f43184c = field;
+        addView(f10, k7.b6.e(-2, -2, i10));
+        ?? imageView = new ImageView(context);
+        this.f38846b = imageView;
+        imageView.f(R.raw.unlock_icon, 20, 20, null);
+        int i11 = org.telegram.ui.ActionBar.j6.Te;
+        org.telegram.ui.ActionBar.f6 f6Var = q61Var.W0;
+        imageView.setColorFilter(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+        f10.addView((View) imageView, k7.b6.n(20, 20));
+        TextView textView = new TextView(context);
+        this.f38845a = textView;
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 14.0f);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setLines(1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        f10.addView(textView, k7.b6.q(-2, -2, 17));
+        ImageView imageView2 = new ImageView(context);
+        this.f38847c = imageView2;
+        imageView2.setImageResource(R.drawable.msg_close);
+        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Ve, f6Var), PorterDuff.Mode.MULTIPLY));
+        addView(imageView2, k7.b6.e(24, 24, 21));
     }
 
-    public u51(d61 d61Var) {
-        super(d61Var, -2, -2);
-        setFocusable(true);
-        setAnimationStyle(0);
-        setOutsideTouchable(true);
-        setClippingEnabled(true);
-        setInputMethodMode(0);
-        setSoftInputMode(4);
-        Field field = f43184c;
-        if (field != null) {
-            try {
-                this.f43185a = (ViewTreeObserver.OnScrollChangedListener) field.get(this);
-                field.set(this, d);
-            } catch (Exception unused) {
-                this.f43185a = null;
-            }
-        }
+    public final void a(String str, boolean z4) {
+        this.f38845a.setText(str);
+        b(z4);
     }
 
-    public final void b() {
-        View rootView = getContentView().getRootView();
-        WindowManager.LayoutParams layoutParams = (WindowManager.LayoutParams) rootView.getLayoutParams();
-        layoutParams.flags |= 2;
-        layoutParams.dimAmount = 0.2f;
-        ((WindowManager) getContentView().getContext().getSystemService("window")).updateViewLayout(rootView, layoutParams);
-    }
-
-    public final void c(View view) {
-        ViewTreeObserver viewTreeObserver;
-        if (getContentView() instanceof d61) {
-            ((d61) getContentView()).s(new t51(this, 1));
+    public final void b(boolean z4) {
+        float f10;
+        ValueAnimator valueAnimator = this.e;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.e = null;
         }
-        if (this.f43185a != null) {
-            if (view.getWindowToken() != null) {
-                viewTreeObserver = view.getViewTreeObserver();
-            } else {
-                viewTreeObserver = null;
-            }
-            ViewTreeObserver viewTreeObserver2 = this.f43186b;
-            if (viewTreeObserver != viewTreeObserver2) {
-                if (viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
-                    this.f43186b.removeOnScrollChangedListener(this.f43185a);
-                }
-                this.f43186b = viewTreeObserver;
-                if (viewTreeObserver != null) {
-                    viewTreeObserver.addOnScrollChangedListener(this.f43185a);
-                }
-            }
+        if (z4) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
         }
+        this.d = f10;
+        float dp = (1.0f - this.d) * AndroidUtilities.dp(-8.0f);
+        org.telegram.ui.Components.jj0 jj0Var = this.f38846b;
+        jj0Var.setTranslationX(dp);
+        this.f38845a.setTranslationX((1.0f - this.d) * AndroidUtilities.dp(-8.0f));
+        jj0Var.setAlpha(this.d);
     }
 
     @Override
-    public void dismiss() {
-        if (getContentView() instanceof d61) {
-            d61 d61Var = (d61) getContentView();
-            t51 t51Var = new t51(this, 0);
-            Integer num = d61Var.U1;
-            if (num != null) {
-                d61.Y1.put(num, d61Var.f37347n0.e0());
-            }
-            ValueAnimator valueAnimator = d61Var.R1;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                d61Var.R1 = null;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            d61Var.R1 = ofFloat;
-            ofFloat.addUpdateListener(new g41(d61Var, 3));
-            d61Var.R1.addListener(new org.telegram.ui.Components.ok0(16, d61Var, t51Var));
-            d61Var.R1.setDuration(200L);
-            d61Var.R1.setInterpolator(org.telegram.ui.Components.jr.h);
-            d61Var.R1.start();
-            u41 u41Var = d61Var.f37321b0;
-            if (u41Var != null) {
-                AndroidUtilities.hideKeyboard(u41Var.h);
-            }
-            View rootView = getContentView().getRootView();
-            WindowManager windowManager = (WindowManager) getContentView().getContext().getSystemService("window");
-            if (rootView.getLayoutParams() != null && (rootView.getLayoutParams() instanceof WindowManager.LayoutParams)) {
-                WindowManager.LayoutParams layoutParams = (WindowManager.LayoutParams) rootView.getLayoutParams();
-                try {
-                    int i10 = layoutParams.flags;
-                    if ((i10 & 2) != 0) {
-                        layoutParams.flags = i10 & (-3);
-                        layoutParams.dimAmount = 0.0f;
-                        windowManager.updateViewLayout(rootView, layoutParams);
-                        return;
-                    }
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            }
-            return;
-        }
-        super.dismiss();
-    }
-
-    @Override
-    public final void showAsDropDown(View view) {
-        super.showAsDropDown(view);
-        c(view);
-    }
-
-    @Override
-    public final void showAtLocation(View view, int i10, int i11, int i12) {
-        ViewTreeObserver viewTreeObserver;
-        super.showAtLocation(view, i10, i11, i12);
-        if (this.f43185a != null && (viewTreeObserver = this.f43186b) != null) {
-            if (viewTreeObserver.isAlive()) {
-                this.f43186b.removeOnScrollChangedListener(this.f43185a);
-            }
-            this.f43186b = null;
-        }
-    }
-
-    @Override
-    public final void showAsDropDown(View view, int i10, int i11) {
-        super.showAsDropDown(view, i10, i11);
-        c(view);
-    }
-
-    @Override
-    public final void showAsDropDown(View view, int i10, int i11, int i12) {
-        super.showAsDropDown(view, i10, i11, i12);
-        c(view);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
     }
 }

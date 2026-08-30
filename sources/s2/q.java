@@ -1,13 +1,13 @@
 package s2;
 public final class q {
-    public final long f47526a;
-    public final long f47527b;
-    public final long f47528c;
+    public final long f43940a;
+    public final long f43941b;
+    public final long f43942c;
 
     public q(long j10, long j11, long j12) {
-        this.f47526a = j10;
-        this.f47527b = j11;
-        this.f47528c = j12;
+        this.f43940a = j10;
+        this.f43941b = j11;
+        this.f43942c = j12;
     }
 
     public final boolean equals(Object obj) {
@@ -18,20 +18,20 @@ public final class q {
             return false;
         }
         q qVar = (q) obj;
-        if (this.f47526a == qVar.f47526a && this.f47528c == qVar.f47528c && this.f47527b == qVar.f47527b) {
+        if (this.f43940a == qVar.f43940a && this.f43942c == qVar.f43942c && this.f43941b == qVar.f43941b) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        long j10 = this.f47526a;
-        long j11 = this.f47527b;
-        long j12 = this.f47528c;
+        long j10 = this.f43940a;
+        long j11 = this.f43941b;
+        long j12 = this.f43942c;
         return (((((int) (j10 ^ (j10 >>> 32))) * 31) + ((int) (j11 ^ (j11 >>> 32)))) * 31) + ((int) (j12 ^ (j12 >>> 32)));
     }
 
     public final String toString() {
-        return "Entry{firstChunk=" + this.f47526a + ", samplesPerChunk=" + this.f47527b + ", sampleDescriptionIndex=" + this.f47528c + '}';
+        return "Entry{firstChunk=" + this.f43940a + ", samplesPerChunk=" + this.f43941b + ", sampleDescriptionIndex=" + this.f43942c + '}';
     }
 }

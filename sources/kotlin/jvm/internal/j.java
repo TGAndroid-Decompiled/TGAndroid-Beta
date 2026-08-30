@@ -1,13 +1,12 @@
 package kotlin.jvm.internal;
 
-import a4.w;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
-import org.telegram.ui.th;
+import org.telegram.ui.yh;
 public abstract class j {
-    public static final Object[] f13921a = new Object[0];
+    public static final Object[] f10984a = new Object[0];
 
     public static boolean a(Object obj, Object obj2) {
         if (obj == null) {
@@ -58,9 +57,9 @@ public abstract class j {
                 i10++;
             }
             StackTraceElement stackTraceElement = stackTrace[i10];
-            StringBuilder k9 = th.k("Parameter specified as non-null is null: method ", stackTraceElement.getClassName(), ".", stackTraceElement.getMethodName(), ", parameter ");
-            k9.append(str);
-            NullPointerException nullPointerException = new NullPointerException(k9.toString());
+            StringBuilder m9 = yh.m("Parameter specified as non-null is null: method ", stackTraceElement.getClassName(), ".", stackTraceElement.getMethodName(), ", parameter ");
+            m9.append(str);
+            NullPointerException nullPointerException = new NullPointerException(m9.toString());
             f(nullPointerException, j.class.getName());
             throw nullPointerException;
         }
@@ -83,7 +82,7 @@ public abstract class j {
     }
 
     public static void h(String str) {
-        RuntimeException runtimeException = new RuntimeException(w.n("lateinit property ", str, " has not been initialized"));
+        RuntimeException runtimeException = new RuntimeException(android.support.v4.media.a.o("lateinit property ", str, " has not been initialized"));
         f(runtimeException, j.class.getName());
         throw runtimeException;
     }
@@ -120,7 +119,7 @@ public abstract class j {
                 }
             }
         }
-        return f13921a;
+        return f10984a;
     }
 
     public static final Object[] j(Collection collection, Object[] objArr) {

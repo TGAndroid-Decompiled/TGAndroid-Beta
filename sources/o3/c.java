@@ -1,4 +1,3 @@
 package o3;
-public interface c {
-    long l(long j10);
+public final class c extends Exception {
 }

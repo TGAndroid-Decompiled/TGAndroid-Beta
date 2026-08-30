@@ -1,41 +1,19 @@
 package f7;
 
-import java.util.Set;
-public abstract class f extends a implements Set, j$.util.Set {
-    public transient d f6660b;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import j7.r5;
+public final class f extends com.google.android.gms.common.api.internal.i {
+    public final Object f6016b;
+    public final TaskCompletionSource f6017c;
 
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this || obj == this) {
-            return true;
-        }
-        if (obj instanceof Set) {
-            Set set = (Set) obj;
-            try {
-                if (size() == set.size()) {
-                    if (containsAll(set)) {
-                        return true;
-                    }
-                    return false;
-                }
-            } catch (ClassCastException | NullPointerException unused) {
-            }
-        }
-        return false;
+    public f(Boolean bool, TaskCompletionSource taskCompletionSource) {
+        this.f6016b = bool;
+        this.f6017c = taskCompletionSource;
     }
 
     @Override
-    public final int hashCode() {
-        int i10;
-        int i11 = 0;
-        for (Object obj : this) {
-            if (obj != null) {
-                i10 = obj.hashCode();
-            } else {
-                i10 = 0;
-            }
-            i11 += i10;
-        }
-        return i11;
+    public final void z(Status status) {
+        r5.a(status, this.f6016b, this.f6017c);
     }
 }

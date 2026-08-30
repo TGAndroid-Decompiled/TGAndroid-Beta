@@ -1,33 +1,56 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class r21 implements t21 {
-    public final org.telegram.ui.ActionBar.o2 f41846a;
-    public final Context f41847b;
-    public final org.telegram.ui.ActionBar.c6 f41848c;
-    public final org.telegram.ui.Components.ii0 d;
+import android.app.Activity;
+import android.view.View;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class r21 extends q61 {
+    public final t21 a2;
+    public final g61[] f37908b2;
+    public final u21 f37909c2;
 
-    public r21(org.telegram.ui.ActionBar.o2 o2Var, Context context, org.telegram.ui.ActionBar.c6 c6Var, org.telegram.ui.Components.ii0 ii0Var) {
-        this.f41846a = o2Var;
-        this.f41847b = context;
-        this.f41848c = c6Var;
-        this.d = ii0Var;
+    public r21(u21 u21Var, u21 u21Var2, Activity activity, Integer num, t21 t21Var, g61[] g61VarArr) {
+        super(u21Var2, activity, false, num, 2, null);
+        this.f37909c2 = u21Var;
+        this.a2 = t21Var;
+        this.f37908b2 = g61VarArr;
     }
 
     @Override
-    public final void a() {
-        AndroidUtilities.runOnUIThread(new l21(this.f41846a, this.f41847b, this.f41848c, this.d, 2), 200L);
+    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        int i10;
+        if (l10 != null) {
+            u21 u21Var = this.f37909c2;
+            i10 = ((org.telegram.ui.ActionBar.p2) u21Var).currentAccount;
+            MediaDataController mediaDataController = MediaDataController.getInstance(i10);
+            mediaDataController.setDoubleTapReaction("animated_" + l10);
+            t21 t21Var = this.a2;
+            if (t21Var != null) {
+                t21Var.a(true);
+            }
+            g61 g61Var = this.f37908b2[0];
+            if (g61Var != null) {
+                u21Var.f38833n = null;
+                g61Var.dismiss();
+            }
+        }
     }
 
     @Override
-    public final void b() {
-        AndroidUtilities.runOnUIThread(new av0(29, this.f41846a, this.d), 200L);
-    }
-
-    @Override
-    public final void c() {
-        org.telegram.ui.ActionBar.o2 o2Var = this.f41846a;
-        o2Var.showDialog(new cg.p1(o2Var, 3, true));
+    public final void r(y51 y51Var, mg.q0 q0Var) {
+        int i10;
+        u21 u21Var = this.f37909c2;
+        i10 = ((org.telegram.ui.ActionBar.p2) u21Var).currentAccount;
+        MediaDataController.getInstance(i10).setDoubleTapReaction(q0Var.f14107f);
+        t21 t21Var = this.a2;
+        if (t21Var != null) {
+            t21Var.a(true);
+        }
+        g61 g61Var = this.f37908b2[0];
+        if (g61Var != null) {
+            u21Var.f38833n = null;
+            g61Var.dismiss();
+        }
     }
 }

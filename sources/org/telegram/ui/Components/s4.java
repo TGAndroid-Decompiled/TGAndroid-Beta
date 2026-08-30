@@ -1,9 +1,10 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LocaleController;
-public final class s4 extends qc0 {
+import android.widget.TextView;
+import org.telegram.messenger.Emoji;
+public final class s4 extends e90 {
     @Override
-    public final CharSequence d(int i10) {
-        return LocaleController.formatPluralString("Hours", i10, new Object[0]);
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
     }
 }

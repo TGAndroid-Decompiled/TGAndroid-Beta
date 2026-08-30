@@ -1,29 +1,17 @@
 package j7;
+public final class p1 implements u9.d {
+    public static final p1 f9110a = new Object();
 
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-public final class p1 extends com.google.android.gms.internal.cast.a implements r3 {
-    public final r0 U0(j6.b bVar, t6 t6Var) {
-        r0 aVar;
-        Parcel M0 = M0();
-        int i10 = c0.f10975a;
-        M0.writeStrongBinder(bVar);
-        M0.writeInt(1);
-        t6Var.writeToParcel(M0, 0);
-        Parcel O0 = O0(M0, 1);
-        IBinder readStrongBinder = O0.readStrongBinder();
-        if (readStrongBinder == null) {
-            aVar = 0;
-        } else {
-            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.android.gms.vision.label.internal.client.INativeImageLabeler");
-            if (queryLocalInterface instanceof r0) {
-                aVar = (r0) queryLocalInterface;
-            } else {
-                aVar = new com.google.android.gms.internal.cast.a(readStrongBinder, "com.google.android.gms.vision.label.internal.client.INativeImageLabeler", 5);
-            }
+    static {
+        e2.c.r(e2.c.n(i.class, e2.c.f(6, e2.c.n(i.class, e2.c.f(5, e2.c.n(i.class, e2.c.f(4, e2.c.n(i.class, e2.c.f(3, e2.c.n(i.class, e2.c.f(2, e2.c.n(i.class, new e(1)))))))))))));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            u9.e eVar = (u9.e) obj2;
+            throw null;
         }
-        O0.recycle();
-        return aVar;
+        throw new ClassCastException();
     }
 }

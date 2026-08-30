@@ -6,7 +6,7 @@ public abstract class p1 {
         return absListView.isSelectedChildViewEnabled();
     }
 
-    public static void b(AbsListView absListView, boolean z10) {
-        absListView.setSelectedChildViewEnabled(z10);
+    public static void b(AbsListView absListView, boolean z4) {
+        absListView.setSelectedChildViewEnabled(z4);
     }
 }

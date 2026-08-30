@@ -1,72 +1,43 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-public final class zy0 extends AnimatorListenerAdapter {
-    public final int f45354a;
-    public final boolean f45355b;
-    public final ProfileActivity f45356c;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Stories.ProfileStoriesView;
+public final class zy0 extends ProfileStoriesView {
+    public final Context f40879q0;
+    public final ProfileActivity f40880r0;
 
-    public zy0(ProfileActivity profileActivity, boolean z10, int i10) {
-        this.f45354a = i10;
-        this.f45356c = profileActivity;
-        this.f45355b = z10;
+    public zy0(ProfileActivity profileActivity, Context context, int i10, long j10, boolean z4, l0 l0Var, wy0 wy0Var, org.telegram.ui.ActionBar.f6 f6Var, Context context2) {
+        super(context, i10, j10, z4, l0Var, wy0Var, f6Var);
+        this.f40880r0 = profileActivity;
+        this.f40879q0 = context2;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f45354a) {
-            case 1:
-                this.f45356c.f35992b0 = null;
+    public final void e(a3.c cVar) {
+        TL_stories.PeerStories peerStories;
+        TL_stories.PeerStories peerStories2;
+        ProfileActivity profileActivity = this.f40880r0;
+        long a2 = profileActivity.a();
+        nh.t6 storiesController = profileActivity.getMessagesController().getStoriesController();
+        boolean I = storiesController.I(a2);
+        Context context = this.f40879q0;
+        if (!I && !storiesController.K(a2) && !storiesController.N(a2)) {
+            TLRPC.UserFull userFull = profileActivity.f32158s2;
+            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f32037b1 != profileActivity.getUserConfig().clientUserId) {
+                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f32158s2.stories, cVar);
                 return;
-            default:
-                super.onAnimationCancel(animator);
+            }
+            TLRPC.ChatFull chatFull = profileActivity.f32150r2;
+            if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
+                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f32150r2.stories, cVar);
                 return;
+            } else {
+                profileActivity.K3();
+                return;
+            }
         }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        org.telegram.ui.Cells.w3 w3Var;
-        switch (this.f45354a) {
-            case 0:
-                ProfileActivity profileActivity = this.f45356c;
-                boolean z10 = this.f45355b;
-                ProfileActivity.n1(profileActivity, z10);
-                profileActivity.U.setClickable(true);
-                if (z10) {
-                    org.telegram.ui.ActionBar.w0 w0Var = profileActivity.Q0;
-                    if (w0Var.B.getWidth() != 0 && !w0Var.f23920e.isFocused()) {
-                        w0Var.f23920e.requestFocus();
-                        AndroidUtilities.showKeyboard(w0Var.f23920e);
-                    }
-                }
-                profileActivity.k4(true);
-                profileActivity.R1 = null;
-                profileActivity.fragmentView.invalidate();
-                if (z10) {
-                    profileActivity.Q4 = true;
-                    profileActivity.F4();
-                    Activity parentActivity = profileActivity.getParentActivity();
-                    i10 = ((org.telegram.ui.ActionBar.o2) profileActivity).classGuid;
-                    AndroidUtilities.requestAdjustResize(parentActivity, i10);
-                    profileActivity.L.setPreventMoving(false);
-                    return;
-                }
-                return;
-            default:
-                ProfileActivity profileActivity2 = this.f45356c;
-                if (profileActivity2.f35992b0 != null && (w3Var = profileActivity2.f36000c0) != null) {
-                    if (!this.f45355b) {
-                        w3Var.setVisibility(4);
-                    }
-                    profileActivity2.f35992b0 = null;
-                    return;
-                }
-                return;
-        }
+        profileActivity.getOrCreateStoryViewer().D(context, a2, cVar);
     }
 }

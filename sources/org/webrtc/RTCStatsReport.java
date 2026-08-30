@@ -23,18 +23,18 @@ public class RTCStatsReport {
     }
 
     public String toString() {
-        StringBuilder sb2 = new StringBuilder("{ timestampUs: ");
-        sb2.append(this.timestampUs);
-        sb2.append(", stats: [\n");
-        boolean z10 = true;
+        StringBuilder sb = new StringBuilder("{ timestampUs: ");
+        sb.append(this.timestampUs);
+        sb.append(", stats: [\n");
+        boolean z4 = true;
         for (RTCStats rTCStats : this.stats.values()) {
-            if (!z10) {
-                sb2.append(",\n");
+            if (!z4) {
+                sb.append(",\n");
             }
-            sb2.append(rTCStats);
-            z10 = false;
+            sb.append(rTCStats);
+            z4 = false;
         }
-        sb2.append(" ] }");
-        return sb2.toString();
+        sb.append(" ] }");
+        return sb.toString();
     }
 }

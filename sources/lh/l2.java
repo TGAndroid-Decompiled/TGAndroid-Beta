@@ -1,59 +1,51 @@
 package lh;
 
-import android.util.SparseIntArray;
-public final class l2 extends oc.i {
-    public final int d;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class l2 implements Runnable {
+    public final int f12743a = 1;
+    public final g5 f12744b;
+    public final TLObject f12745c;
+    public final long d;
+    public final long e;
+    public final TLRPC.TL_error f12746f;
+    public final long h;
+    public final Object f12747n;
 
-    public l2(int i10, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(c6Var);
-        this.d = i10;
+    public l2(g5 g5Var, TLObject tLObject, long j10, long j11, Utilities.Callback callback, TLRPC.TL_error tL_error, long j12) {
+        this.f12744b = g5Var;
+        this.f12745c = tLObject;
+        this.d = j10;
+        this.e = j11;
+        this.f12747n = callback;
+        this.f12746f = tL_error;
+        this.h = j12;
     }
 
     @Override
-    public final void G1() {
-        switch (this.d) {
+    public final void run() {
+        switch (this.f12743a) {
             case 0:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.f19483b;
-                sparseIntArray.append(org.telegram.ui.ActionBar.g6.f23133h5, -14737633);
-                sparseIntArray.append(org.telegram.ui.ActionBar.g6.f23009a7, -13421773);
-                return;
-            case 1:
-                ((SparseIntArray) this.f19483b).put(org.telegram.ui.ActionBar.g6.He, -1071635414);
-                return;
-            case 2:
-                SparseIntArray sparseIntArray2 = (SparseIntArray) this.f19483b;
-                sparseIntArray2.put(org.telegram.ui.ActionBar.g6.He, i0.a.d(0.2f, -16777216, -1));
-                sparseIntArray2.put(org.telegram.ui.ActionBar.g6.Xd, i0.a.d(0.5f, -16777216, -1));
-                return;
-            case 3:
-                ((SparseIntArray) this.f19483b).put(org.telegram.ui.ActionBar.g6.He, i0.a.k(-1, 30));
-                return;
-            case 4:
-                ((SparseIntArray) this.f19483b).put(org.telegram.ui.ActionBar.g6.He, i0.a.k(-1, 30));
-                return;
-            case 5:
-                SparseIntArray sparseIntArray3 = (SparseIntArray) this.f19483b;
-                sparseIntArray3.append(org.telegram.ui.ActionBar.g6.f23133h5, -14803426);
-                sparseIntArray3.append(org.telegram.ui.ActionBar.g6.f23009a7, -16777216);
-                return;
-            case 6:
-                ((SparseIntArray) this.f19483b).put(org.telegram.ui.ActionBar.g6.He, i0.a.k(-1, 30));
-                return;
-            case 7:
-                SparseIntArray sparseIntArray4 = (SparseIntArray) this.f19483b;
-                sparseIntArray4.append(org.telegram.ui.ActionBar.g6.f23133h5, -14737633);
-                sparseIntArray4.append(org.telegram.ui.ActionBar.g6.f23009a7, -13421773);
-                return;
-            case 8:
-                SparseIntArray sparseIntArray5 = (SparseIntArray) this.f19483b;
-                sparseIntArray5.append(org.telegram.ui.ActionBar.g6.f23133h5, -14803426);
-                sparseIntArray5.append(org.telegram.ui.ActionBar.g6.f23009a7, -16777216);
+                long j10 = this.h;
+                TLRPC.TL_error tL_error = this.f12746f;
+                g5.H0(this.f12744b, (org.telegram.ui.ActionBar.d2) this.f12747n, this.f12745c, this.d, this.e, j10, tL_error);
                 return;
             default:
-                SparseIntArray sparseIntArray6 = (SparseIntArray) this.f19483b;
-                sparseIntArray6.append(org.telegram.ui.ActionBar.g6.f23133h5, -14803426);
-                sparseIntArray6.append(org.telegram.ui.ActionBar.g6.f23009a7, -16777216);
+                TLRPC.TL_error tL_error2 = this.f12746f;
+                long j11 = this.h;
+                g5.f0(this.f12744b, this.f12745c, this.d, this.e, (Utilities.Callback) this.f12747n, tL_error2, j11);
                 return;
         }
+    }
+
+    public l2(g5 g5Var, org.telegram.ui.ActionBar.d2 d2Var, TLObject tLObject, long j10, long j11, long j12, TLRPC.TL_error tL_error) {
+        this.f12744b = g5Var;
+        this.f12747n = d2Var;
+        this.f12745c = tLObject;
+        this.d = j10;
+        this.e = j11;
+        this.h = j12;
+        this.f12746f = tL_error;
     }
 }

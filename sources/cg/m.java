@@ -1,18 +1,63 @@
 package cg;
 
-import android.graphics.Bitmap;
-import java.util.ArrayList;
-public final class m extends b {
-    public final ArrayList d;
-    public final Bitmap f3211e;
-    public final int f3212f;
+import java.util.Arrays;
+import java.util.List;
+import org.telegram.messenger.R;
+public abstract class m {
+    public static final List f2447a = Arrays.asList(new Object(), new Object(), new Object(), new Object(), new Object(), new Object());
 
-    public m(android.content.Context r22, int r23, org.telegram.ui.ActionBar.c6 r24) {
-        throw new UnsupportedOperationException("Method not decompiled: cg.m.<init>(android.content.Context, int, org.telegram.ui.ActionBar.c6):void");
+    public float a() {
+        return 0.85f;
     }
 
-    @Override
-    public final f2.p0 a() {
-        return new g(this, 0);
+    public float b() {
+        return 0.0f;
+    }
+
+    public int c() {
+        return -16777216;
+    }
+
+    public float d() {
+        return 0.25f;
+    }
+
+    public abstract int e();
+
+    public float f() {
+        return 1.0f;
+    }
+
+    public float g() {
+        return 0.4f;
+    }
+
+    public float h() {
+        return 1.0f;
+    }
+
+    public String i(int i10) {
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    return null;
+                }
+                return "brush";
+            }
+            return "compositeWithMask";
+        }
+        return "blitWithMask";
+    }
+
+    public float j() {
+        return 1.0f;
+    }
+
+    public float k() {
+        return 0.15f;
+    }
+
+    public int l() {
+        return R.drawable.paint_radial_brush;
     }
 }

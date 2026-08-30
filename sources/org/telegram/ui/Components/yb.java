@@ -1,30 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.widget.TextView;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public class yb extends jb {
-    public final t9 f35010a;
-    public final TextView f35011b;
+public final class yb extends FrameLayout {
+    public final z5 f30956a;
+    public final z5 f30957b;
+    public final Paint f30958c;
+    public final RectF d;
+    public final long e;
+    public final zb f30959f;
 
-    public yb(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, c6Var);
-        t9 t9Var = new t9(getContext());
-        this.f35010a = t9Var;
-        TextView textView = new TextView(getContext());
-        this.f35011b = textView;
-        addView(t9Var, i7.f6.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
-        textView.setGravity(8388611);
-        textView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.g6.Hi));
-        textView.setTextSize(1, 15.0f);
-        textView.setTypeface(Typeface.SANS_SERIF);
-        addView(textView, i7.f6.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+    public yb(zb zbVar, Activity activity) {
+        super(activity);
+        this.f30959f = zbVar;
+        nr nrVar = nr.h;
+        this.f30956a = new z5(this, 320L, nrVar);
+        this.f30957b = new z5(this, 320L, nrVar);
+        Paint paint = new Paint(1);
+        this.f30958c = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(268435455);
+        paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        this.d = new RectF();
+        this.e = System.currentTimeMillis();
     }
 
     @Override
-    public CharSequence getAccessibilityText() {
-        return this.f35011b.getText();
+    public final void onDraw(Canvas canvas) {
+        boolean z4;
+        zb zbVar = this.f30959f;
+        float d = this.f30956a.d(zbVar.f31305a, false);
+        if (zbVar.f31305a >= 1.0f) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        float e = this.f30957b.e(z4);
+        float width = getWidth() / 2.0f;
+        float height = getHeight() / 2.0f;
+        RectF rectF = this.d;
+        rectF.set(width - AndroidUtilities.dpf2(13.0f), height - AndroidUtilities.dpf2(13.0f), AndroidUtilities.dpf2(13.0f) + width, AndroidUtilities.dpf2(13.0f) + height);
+        float currentTimeMillis = (((float) (System.currentTimeMillis() - this.e)) * 0.45f) % 5400.0f;
+        float max = Math.max(0.0f, ((1520.0f * currentTimeMillis) / 5400.0f) - 20.0f);
+        for (int i10 = 0; i10 < 4; i10++) {
+            u1.a aVar = rp.h;
+            int i11 = i10 * 1350;
+            aVar.getInterpolation((currentTimeMillis - i11) / 667.0f);
+            max += aVar.getInterpolation((currentTimeMillis - (i11 + 667)) / 667.0f) * 250.0f;
+        }
+        int l1 = org.telegram.ui.ActionBar.j6.l1((1.0f - e) * 1.0f, -1);
+        Paint paint = this.f30958c;
+        paint.setColor(l1);
+        canvas.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, d) * (-360.0f), false, paint);
+        if (d < 1.0f && e < 1.0f) {
+            invalidate();
+        }
+        super.onDraw(canvas);
     }
 }

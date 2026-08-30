@@ -1,8 +1,8 @@
 package h2;
 public final class b {
-    public final String f7512a;
+    public final String f6893a;
 
     public b(String str) {
-        this.f7512a = str;
+        this.f6893a = str;
     }
 }

@@ -120,7 +120,7 @@ public class EglBase10Impl implements EglBase10 {
         }
 
         @Override
-        public void setKeepScreenOn(boolean z10) {
+        public void setKeepScreenOn(boolean z4) {
         }
 
         @Override
@@ -146,9 +146,9 @@ public class EglBase10Impl implements EglBase10 {
         EGLDisplay eglDisplay = getEglDisplay();
         this.eglDisplay = eglDisplay;
         this.eglConfig = getEglConfig(egl10, eglDisplay, iArr);
-        int k9 = e.k(iArr);
-        Logging.d("EglBase10Impl", "Using OpenGL ES version " + k9);
-        this.eglContext = createEglContext(eGLContext, this.eglDisplay, this.eglConfig, k9);
+        int k10 = e.k(iArr);
+        Logging.d("EglBase10Impl", "Using OpenGL ES version " + k10);
+        this.eglContext = createEglContext(eGLContext, this.eglDisplay, this.eglConfig, k10);
     }
 
     public static long access$000() {
@@ -180,13 +180,13 @@ public class EglBase10Impl implements EglBase10 {
         throw new RuntimeException("Failed to create EGL context: 0x" + Integer.toHexString(this.egl.eglGetError()));
     }
 
-    private void createSurfaceInternal(Object obj, boolean z10) {
+    private void createSurfaceInternal(Object obj, boolean z4) {
         if (!(obj instanceof SurfaceHolder) && !(obj instanceof SurfaceTexture)) {
             throw new IllegalStateException("Input must be either a SurfaceHolder or SurfaceTexture");
         }
         checkIsNotReleased();
         EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
-        if (z10) {
+        if (z4) {
             if (this.eglBackgroundSurface == eGLSurface) {
                 EGLSurface eglCreateWindowSurface = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344});
                 this.eglBackgroundSurface = eglCreateWindowSurface;
@@ -258,9 +258,9 @@ public class EglBase10Impl implements EglBase10 {
             if (eglCreatePbufferSurface != eGLSurface2) {
                 return;
             }
-            StringBuilder o10 = com.google.android.recaptcha.internal.a.o("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
-            o10.append(Integer.toHexString(this.egl.eglGetError()));
-            throw new RuntimeException(o10.toString());
+            StringBuilder m9 = e2.c.m("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
+            m9.append(Integer.toHexString(this.egl.eglGetError()));
+            throw new RuntimeException(m9.toString());
         }
         throw new RuntimeException("Already has an EGLSurface");
     }
@@ -363,9 +363,9 @@ public class EglBase10Impl implements EglBase10 {
     }
 
     @Override
-    public void releaseSurface(boolean z10) {
+    public void releaseSurface(boolean z4) {
         EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
-        if (z10) {
+        if (z4) {
             EGLSurface eGLSurface2 = this.eglBackgroundSurface;
             if (eGLSurface2 != eGLSurface) {
                 this.egl.eglDestroySurface(this.eglDisplay, eGLSurface2);
@@ -396,8 +396,8 @@ public class EglBase10Impl implements EglBase10 {
     }
 
     @Override
-    public void swapBuffers(boolean z10) {
-        EGLSurface eGLSurface = z10 ? this.eglBackgroundSurface : this.eglSurface;
+    public void swapBuffers(boolean z4) {
+        EGLSurface eGLSurface = z4 ? this.eglBackgroundSurface : this.eglSurface;
         checkIsNotReleased();
         if (eGLSurface != EGL10.EGL_NO_SURFACE) {
             synchronized (EglBase.lock) {
@@ -414,7 +414,7 @@ public class EglBase10Impl implements EglBase10 {
     }
 
     @Override
-    public void swapBuffers(long j10, boolean z10) {
-        swapBuffers(z10);
+    public void swapBuffers(long j10, boolean z4) {
+        swapBuffers(z4);
     }
 }

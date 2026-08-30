@@ -1,79 +1,100 @@
 package ph;
 
 import android.content.Context;
-import android.os.Bundle;
-import nh.t4;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.Components.il0;
-import org.telegram.ui.Components.jl0;
-import org.telegram.ui.Components.k51;
-import org.telegram.ui.Components.xa;
-import org.telegram.ui.l20;
-public final class e1 extends xa {
-    public final int T;
-    public final String U;
-    public k51 V;
-    public final b1 W;
-    public boolean X;
-    public boolean Y;
-    public final bh.v Z;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.df;
+import org.telegram.ui.Components.li;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.pt;
+public final class e1 extends sl0 {
+    public final int U2;
+    public final FrameLayout V2;
 
-    public e1(android.content.Context r27, int r28, long r29, org.telegram.tgnet.TLRPC.TL_messages_preparedInlineMessage r31, java.io.File r32, org.telegram.tgnet.TLRPC.WebPage r33, org.telegram.ui.ActionBar.c6 r34, org.telegram.ui.web.u r35, bh.v r36) {
-        throw new UnsupportedOperationException("Method not decompiled: ph.e1.<init>(android.content.Context, int, long, org.telegram.tgnet.TLRPC$TL_messages_preparedInlineMessage, java.io.File, org.telegram.tgnet.TLRPC$WebPage, org.telegram.ui.ActionBar.c6, org.telegram.ui.web.u, bh.v):void");
-    }
-
-    public static ph.d1 P(int r4, long r5, org.telegram.tgnet.TLRPC.BotInlineResult r7, org.telegram.tgnet.TLRPC.TL_photo r8, org.telegram.tgnet.TLRPC.TL_document r9, org.telegram.tgnet.TLRPC.WebPage r10) {
-        throw new UnsupportedOperationException("Method not decompiled: ph.e1.P(int, long, org.telegram.tgnet.TLRPC$BotInlineResult, org.telegram.tgnet.TLRPC$TL_photo, org.telegram.tgnet.TLRPC$TL_document, org.telegram.tgnet.TLRPC$WebPage):ph.d1");
-    }
-
-    public static void Q(Context context, int i10, long j10, String str, c6 c6Var, org.telegram.ui.web.u uVar, bh.v vVar) {
-        org.telegram.ui.ActionBar.c2 c2Var = new org.telegram.ui.ActionBar.c2(context, 3, null);
-        c2Var.q(500L);
-        TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
-        tL_messages_getPreparedInlineMessage.bot = MessagesController.getInstance(i10).getInputUser(j10);
-        tL_messages_getPreparedInlineMessage.f22490id = str;
-        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getPreparedInlineMessage, new l20(i10, c2Var, context, j10, c6Var, uVar, vVar));
+    public e1(FrameLayout frameLayout, Context context, int i10) {
+        super(context, null);
+        this.U2 = i10;
+        this.V2 = frameLayout;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        if (!this.X && !this.Y) {
-            this.Y = true;
-            bh.v vVar = this.Z;
-            if (vVar != null) {
-                vVar.run("USER_DECLINED", null);
-            }
+    public boolean E0(float f10) {
+        int i10;
+        switch (this.U2) {
+            case 2:
+                li liVar = ((uf.c0) this.V2).f24278b;
+                int dp = AndroidUtilities.dp(30.0f) + liVar.Y1[0];
+                if (!liVar.f26692d0) {
+                    i10 = AndroidUtilities.statusBarHeight;
+                } else {
+                    i10 = 0;
+                }
+                if (f10 < dp + i10) {
+                    return false;
+                }
+                return true;
+            default:
+                return super.E0(f10);
         }
     }
 
     @Override
-    public final void onCreate(Bundle bundle) {
-        int h;
-        super.onCreate(bundle);
-        jl0 jl0Var = this.d;
-        if (jl0Var.getAdapter() == null) {
-            h = 0;
-        } else {
-            h = jl0Var.getAdapter().h();
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.U2) {
+            case 1:
+                df dfVar = (df) this.V2;
+                e1 e1Var = dfVar.f43821c;
+                if (e1Var.getLayoutManager() != null && e1Var.getAdapter() != null && e1Var.getAdapter().h() != 0) {
+                    float dp = dfVar.h - AndroidUtilities.dp(8.0f);
+                    dfVar.e = dp - AndroidUtilities.dp(16.0f);
+                    pg.b bVar = dfVar.f43824r;
+                    if (bVar != null) {
+                        bVar.draw(canvas);
+                    }
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set((getMeasuredWidth() / 2.0f) - AndroidUtilities.dp(12.0f), dp - AndroidUtilities.dp(4.0f), (getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(12.0f), dp);
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), dfVar.d);
+                    super.dispatchDraw(canvas);
+                    return;
+                }
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
-        jl0Var.u0(Math.max(h - 1, 0));
     }
 
     @Override
-    public final il0 v(jl0 jl0Var) {
-        k51 k51Var = new k51(jl0Var, getContext(), this.T, 0, true, new t4(this, 10), this.resourcesProvider);
-        this.V = k51Var;
-        return k51Var;
+    public void k0(int i10, int i11) {
+        int i12 = this.U2;
     }
 
     @Override
-    public final CharSequence y() {
-        return LocaleController.getString(R.string.BotShareMessage);
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.U2) {
+            case 0:
+                pt q10 = pt.q();
+                i1 i1Var = (i1) this.V2;
+                boolean r10 = q10.r(motionEvent, i1Var.f41733b, i1Var.f41735f, this.f28750m2);
+                if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
+                    return false;
+                }
+                return true;
+            default:
+                return super.onInterceptTouchEvent(motionEvent);
+        }
+    }
+
+    public e1(uf.c0 c0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        this.U2 = 2;
+        this.V2 = c0Var;
+    }
+
+    private final void w1(int i10, int i11) {
     }
 }

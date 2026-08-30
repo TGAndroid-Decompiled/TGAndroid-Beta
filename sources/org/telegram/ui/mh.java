@@ -1,38 +1,31 @@
 package org.telegram.ui;
-public final class mh implements Runnable {
-    public final int f40561a = 1;
-    public final int f40562b;
-    public final tn f40563c;
-    public final boolean d;
 
-    public mh(int i10, tn tnVar, boolean z10) {
-        this.f40562b = i10;
-        this.f40563c = tnVar;
-        this.d = z10;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class mh implements RequestDelegate {
+    public final int f36304a;
+    public final xn f36305b;
+    public final TLRPC.TL_attachMenuBot f36306c;
+    public final TLRPC.User d;
+
+    public mh(xn xnVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.User user, int i10) {
+        this.f36304a = i10;
+        this.f36305b = xnVar;
+        this.f36306c = tL_attachMenuBot;
+        this.d = user;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40561a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f36304a) {
             case 0:
-                boolean z10 = this.d;
-                this.f40563c.yc(this.f40562b, z10);
+                AndroidUtilities.runOnUIThread(new ph(this.f36305b, this.f36306c, tL_error, this.d));
                 return;
             default:
-                int i10 = this.f40562b;
-                tn tnVar = this.f40563c;
-                if (i10 != 2) {
-                    tnVar.U9();
-                    tnVar.Yb();
-                }
-                qh.p0.f(org.telegram.ui.Components.tc.a0(tnVar), i10, this.d);
+                AndroidUtilities.runOnUIThread(new ph(this.f36305b, tL_error, this.f36306c, this.d));
                 return;
         }
-    }
-
-    public mh(tn tnVar, boolean z10, int i10) {
-        this.f40563c = tnVar;
-        this.d = z10;
-        this.f40562b = i10;
     }
 }

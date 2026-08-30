@@ -2,45 +2,55 @@ package dg;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
 public final class g extends AnimatorListenerAdapter {
-    public final int f5585a;
-    public final i f5586b;
+    public final int f4516a;
+    public final j f4517b;
 
-    public g(i iVar, int i10) {
-        this.f5585a = i10;
-        this.f5586b = iVar;
+    public g(j jVar, int i10) {
+        this.f4516a = i10;
+        this.f4517b = jVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f5585a) {
+        switch (this.f4516a) {
             case 0:
-                super.onAnimationEnd(animator);
-                i iVar = this.f5586b;
-                iVar.f5590b.d = 0.0f;
-                iVar.P = null;
-                iVar.h(iVar.E);
+                j jVar = this.f4517b;
+                if (animator == jVar.U) {
+                    jVar.U = null;
+                    return;
+                }
                 return;
             case 1:
-                super.onAnimationEnd(animator);
-                i iVar2 = this.f5586b;
-                iVar2.f5590b.d = 0.0f;
-                iVar2.P = null;
-                iVar2.h(iVar2.E);
+                j jVar2 = this.f4517b;
+                if (animator == jVar2.V) {
+                    jVar2.V = null;
+                    return;
+                }
                 return;
             case 2:
-                super.onAnimationEnd(animator);
-                i iVar3 = this.f5586b;
-                iVar3.f5590b.d = 0.0f;
-                iVar3.P = null;
-                iVar3.h(iVar3.E);
+                j jVar3 = this.f4517b;
+                if (animator == jVar3.M) {
+                    jVar3.M = null;
+                    jVar3.L = 0.0f;
+                    return;
+                }
+                return;
+            case 3:
+                j jVar4 = this.f4517b;
+                if (animator == jVar4.N) {
+                    jVar4.N = null;
+                    return;
+                }
                 return;
             default:
-                super.onAnimationEnd(animator);
-                i iVar4 = this.f5586b;
-                iVar4.f5590b.d = 0.0f;
-                iVar4.P = null;
-                iVar4.h(iVar4.E);
+                j jVar5 = this.f4517b;
+                if (!jVar5.f4590i0) {
+                    AndroidUtilities.removeFromParent(jVar5.E);
+                    jVar5.E = null;
+                    return;
+                }
                 return;
         }
     }

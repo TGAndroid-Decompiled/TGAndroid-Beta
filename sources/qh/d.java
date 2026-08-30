@@ -1,40 +1,35 @@
 package qh;
 
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.ActionBar.c2;
-public final class d implements MessagesStorage.LongCallback {
-    public final int f46684a;
-    public final c2 f46685b;
-    public final long f46686c;
-    public final boolean d;
-    public final NotificationCenter.NotificationCenterDelegate f46687e;
+import android.app.Activity;
+import android.view.ViewGroup;
+import f2.l1;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.p2;
+import org.telegram.ui.Cells.m4;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.w51;
+import ph.d4;
+public final class d extends w51 {
+    public final g K;
 
-    public d(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, c2 c2Var, long j10, boolean z10, int i10) {
-        this.f46684a = i10;
-        this.f46687e = notificationCenterDelegate;
-        this.f46685b = c2Var;
-        this.f46686c = j10;
-        this.d = z10;
+    public d(g gVar, sl0 sl0Var, Activity activity, int i10, int i11, d4 d4Var, f6 f6Var) {
+        super(sl0Var, activity, i10, i11, true, d4Var, f6Var);
+        this.K = gVar;
     }
 
     @Override
-    public final void run(long j10) {
-        switch (this.f46684a) {
-            case 0:
-                g gVar = (g) this.f46687e;
-                gVar.getClass();
-                this.f46685b.dismiss();
-                if (j10 != 0) {
-                    gVar.f46700a = -j10;
-                    gVar.f46701b = gVar.getMessagesController().getChat(Long.valueOf(j10));
-                    gVar.W(this.f46686c, this.d);
-                    return;
-                }
-                return;
-            default:
-                i0.p((i0) this.f46687e, this.f46685b, this.f46686c, this.d, j10);
-                return;
+    public final l1 x(ViewGroup viewGroup, int i10) {
+        f6 f6Var;
+        if (i10 == 42) {
+            g gVar = this.K;
+            Activity parentActivity = gVar.getParentActivity();
+            int i11 = j6.L6;
+            f6Var = ((p2) gVar).resourceProvider;
+            m4 m4Var = new m4(parentActivity, i11, 21, 0, false, f6Var);
+            m4Var.setHeight(25);
+            return new l1(m4Var);
         }
+        return super.x(viewGroup, i10);
     }
 }

@@ -1,24 +1,30 @@
 package lh;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class c8 implements Utilities.Callback {
-    public final int f15446a;
-    public final d8 f15447b;
+import android.view.View;
+public final class c8 implements View.OnClickListener {
+    public final int f12257a;
+    public final org.telegram.ui.ActionBar.g3[] f12258b;
 
-    public c8(d8 d8Var, int i10) {
-        this.f15446a = i10;
-        this.f15447b = d8Var;
+    public c8(org.telegram.ui.ActionBar.g3[] g3VarArr, int i10) {
+        this.f12257a = i10;
+        this.f12258b = g3VarArr;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f15446a) {
+    public final void onClick(View view) {
+        switch (this.f12257a) {
             case 0:
-                d8.c(this.f15447b, (TLRPC.TL_messages_stickerSet) obj);
+                this.f12258b[0].dismiss();
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.g3 g3Var = this.f12258b[0];
+                if (g3Var != null) {
+                    g3Var.dismiss();
+                    return;
+                }
                 return;
             default:
-                d8.b(this.f15447b, (TLRPC.TL_messages_stickerSet) obj);
+                this.f12258b[0].dismiss();
                 return;
         }
     }

@@ -1,16 +1,41 @@
 package j3;
 
-import java.util.ArrayList;
+import java.util.List;
 public final class m0 {
-    public final ArrayList f10625a;
-    public final l4.h1 f10626b;
-    public final int f10627c;
-    public final long d;
-
-    public m0(ArrayList arrayList, l4.h1 h1Var, int i10, long j10) {
-        this.f10625a = arrayList;
-        this.f10626b = h1Var;
-        this.f10627c = i10;
-        this.d = j10;
-    }
+    public i5.b A;
+    public int E;
+    public int F;
+    public String f8673a;
+    public String f8674b;
+    public String f8675c;
+    public int d;
+    public int e;
+    public String h;
+    public e4.c f8678i;
+    public long f8680k;
+    public String f8681l;
+    public int f8682m;
+    public String f8683n;
+    public String f8684o;
+    public List f8686q;
+    public o3.g f8687r;
+    public int f8691w;
+    public byte[] f8693y;
+    public int f8676f = -1;
+    public int f8677g = -1;
+    public int f8685p = -1;
+    public long f8688s = Long.MAX_VALUE;
+    public int f8689t = -1;
+    public int f8690u = -1;
+    public float v = -1.0f;
+    public float f8692x = 1.0f;
+    public int f8694z = -1;
+    public int B = -1;
+    public int C = -1;
+    public int D = -1;
+    public int G = -1;
+    public int H = -1;
+    public int I = -1;
+    public int J = 0;
+    public boolean f8679j = false;
 }

@@ -1,72 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
+import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
-import android.view.animation.AnimationUtils;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-public final class cg0 extends Drawable {
-    public final Paint f27478a;
-    public final int f27479b;
-    public boolean f27480c;
-    public float d;
-    public long f27481e;
-    public View f27482f;
-    public int f27483g = 255;
-    public float h = 300.0f;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+public final class cg0 extends org.telegram.ui.o4 {
+    public final int h;
+    public final Object f23995n;
 
-    public cg0(int i10) {
-        this.f27479b = AndroidUtilities.dp(i10);
-        Paint paint = new Paint(1);
-        this.f27478a = paint;
-        paint.setColor(-1);
+    public cg0(Object obj, Context context, int i10) {
+        super(context);
+        this.h = i10;
+        this.f23995n = obj;
     }
 
-    public final void a(boolean z10, boolean z11) {
-        float f9;
-        if (this.f27480c != z10) {
-            this.f27480c = z10;
-            if (!z11) {
-                if (z10) {
-                    f9 = 1.0f;
-                } else {
-                    f9 = 0.0f;
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j10) {
+        MessageObject playingMessageObject;
+        switch (this.h) {
+            case 0:
+                boolean drawChild = super.drawChild(canvas, view, j10);
+                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f23995n;
+                if (view == pipRoundVideoView.f23072c && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
+                    pipRoundVideoView.B.set(AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), getMeasuredWidth() - AndroidUtilities.dpf2(1.5f), getMeasuredHeight() - AndroidUtilities.dpf2(1.5f));
+                    canvas.drawArc(pipRoundVideoView.B, -90.0f, playingMessageObject.audioProgress * 360.0f, false, org.telegram.ui.ActionBar.j6.f20027k2);
                 }
-                this.d = f9;
-            }
-            this.f27481e = AnimationUtils.currentAnimationTimeMillis();
-            invalidateSelf();
+                return drawChild;
+            default:
+                return super.drawChild(canvas, view, j10);
         }
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.cg0.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f27479b;
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f27479b;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f27483g = i10;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f27478a.setColorFilter(colorFilter);
+    public void onMeasure(int i10, int i11) {
+        switch (this.h) {
+            case 1:
+                super.onMeasure(i10, i11);
+                e91 e91Var = (e91) this.f23995n;
+                if (e91Var.f24532f != null) {
+                    ViewGroup.LayoutParams layoutParams = e91Var.d.getLayoutParams();
+                    layoutParams.width = getMeasuredWidth();
+                    layoutParams.height = getMeasuredHeight();
+                    ImageView imageView = e91Var.e;
+                    if (imageView != null) {
+                        ViewGroup.LayoutParams layoutParams2 = imageView.getLayoutParams();
+                        layoutParams2.width = getMeasuredWidth();
+                        layoutParams2.height = getMeasuredHeight();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
     }
 }

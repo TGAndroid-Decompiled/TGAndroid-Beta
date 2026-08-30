@@ -1,41 +1,35 @@
 package a4;
 
-import android.media.MediaCodec;
-import android.os.Handler;
-import android.os.Message;
-import f5.d0;
-public final class a implements MediaCodec.OnFrameRenderedListener {
-    public final int f50a;
-    public final g5.i f51b;
+import h5.d0;
+import java.math.BigInteger;
+import r3.r;
+import r3.s;
+import r3.t;
+public final class a implements s {
+    public final b f47a;
 
-    public a(n nVar, g5.i iVar, int i10) {
-        this.f50a = i10;
-        this.f51b = iVar;
+    public a(b bVar) {
+        this.f47a = bVar;
     }
 
     @Override
-    public final void onFrameRendered(MediaCodec mediaCodec, long j10, long j11) {
-        switch (this.f50a) {
-            case 0:
-                g5.i iVar = this.f51b;
-                Handler handler = iVar.f7046a;
-                if (d0.f6579a < 30) {
-                    handler.sendMessageAtFrontOfQueue(Message.obtain(handler, 0, (int) (j10 >> 32), (int) j10));
-                    return;
-                } else {
-                    iVar.a(j10);
-                    return;
-                }
-            default:
-                g5.i iVar2 = this.f51b;
-                Handler handler2 = iVar2.f7046a;
-                if (d0.f6579a < 30) {
-                    handler2.sendMessageAtFrontOfQueue(Message.obtain(handler2, 0, (int) (j10 >> 32), (int) j10));
-                    return;
-                } else {
-                    iVar2.a(j10);
-                    return;
-                }
-        }
+    public final boolean c() {
+        return true;
+    }
+
+    @Override
+    public final r f(long j10) {
+        b bVar = this.f47a;
+        long j11 = bVar.f49b;
+        BigInteger valueOf = BigInteger.valueOf((bVar.d.f80i * j10) / 1000000);
+        long j12 = bVar.f50c;
+        t tVar = new t(j10, d0.i((valueOf.multiply(BigInteger.valueOf(j12 - j11)).divide(BigInteger.valueOf(bVar.f51f)).longValue() + j11) - 30000, bVar.f49b, j12 - 1));
+        return new r(tVar, tVar);
+    }
+
+    @Override
+    public final long g() {
+        b bVar = this.f47a;
+        return (bVar.f51f * 1000000) / bVar.d.f80i;
     }
 }

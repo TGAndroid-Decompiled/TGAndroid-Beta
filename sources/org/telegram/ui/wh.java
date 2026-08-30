@@ -1,46 +1,39 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class wh implements org.telegram.ui.Components.l8 {
-    public final tn f44309a;
+import android.view.View;
+import j$.util.Objects;
+import java.util.Locale;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+public final class wh implements Utilities.CallbackReturn {
+    public final int f39740a;
 
-    public wh(tn tnVar) {
-        this.f44309a = tnVar;
+    public wh(int i10) {
+        this.f39740a = i10;
     }
 
     @Override
-    public final void T0(int i10, int i11) {
-        int i12;
-        tn tnVar = this.f44309a;
-        tnVar.getMessagesController().setDialogHistoryTTL(tnVar.P5, i10);
-        if (tnVar.W7 != null || tnVar.V7 != null) {
-            tnVar.Q7();
-            UndoView undoView = tnVar.f42989u3;
-            if (undoView == null) {
-                return;
-            }
-            long j10 = tnVar.P5;
-            TLRPC.User user = tnVar.f42801f;
-            TLRPC.UserFull userFull = tnVar.W7;
-            if (userFull != null) {
-                i12 = userFull.ttl_period;
-            } else {
-                i12 = tnVar.V7.ttl_period;
-            }
-            undoView.k(j10, i11, user, Integer.valueOf(i12), null, null);
+    public final Object run(Object obj) {
+        boolean z4 = true;
+        switch (this.f39740a) {
+            case 0:
+                MessageObject messageObject = (MessageObject) obj;
+                return Boolean.valueOf((messageObject == null || messageObject.getFactCheck() == null) ? false : false);
+            case 1:
+                MessageObject messageObject2 = (MessageObject) obj;
+                return Boolean.valueOf((messageObject2 == null || messageObject2.getEffect() == null) ? false : false);
+            case 2:
+                return LocaleController.formatPluralString("Hours", ((Integer) obj).intValue(), new Object[0]);
+            case 3:
+                return LocaleController.formatPluralString("Minutes", ((Integer) obj).intValue(), new Object[0]);
+            case 4:
+                View view = (View) obj;
+                return Boolean.valueOf(((view instanceof org.telegram.ui.Cells.a9) || (view instanceof org.telegram.ui.Cells.z6) || (view instanceof w10) || (view instanceof org.telegram.ui.Cells.u3) || (view instanceof org.telegram.ui.Cells.a2) || Objects.equals(view.getTag(), -33024)) ? false : false);
+            case 5:
+                return Boolean.valueOf(org.telegram.ui.Components.w51.K(((Integer) obj).intValue()));
+            default:
+                return String.format(Locale.US, "%.1f%%", Float.valueOf(((Integer) obj).intValue() / 10.0f));
         }
-    }
-
-    @Override
-    public final void dismiss() {
-        org.telegram.ui.ActionBar.o1 o1Var = this.f44309a.M8;
-        if (o1Var != null) {
-            o1Var.dismiss();
-        }
-    }
-
-    @Override
-    public final void e1() {
     }
 }

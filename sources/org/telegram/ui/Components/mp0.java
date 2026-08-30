@@ -1,85 +1,91 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
-public final class mp0 extends org.telegram.ui.ActionBar.q1 {
-    public final np0 f30751x;
+public final class mp0 extends sl0 {
+    public final int U2;
+    public final lq0 V2;
 
-    public mp0(np0 np0Var, np0 np0Var2) {
-        super(np0Var2);
-        this.f30751x = np0Var;
+    public mp0(lq0 lq0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        super(context, f6Var);
+        this.U2 = i10;
+        this.V2 = lq0Var;
     }
 
     @Override
-    public final boolean b() {
-        dq0 dq0Var = this.f30751x.D0;
-        if (!dq0Var.isDismissed() && dq0Var.U) {
-            return !dq0Var.d.m();
+    public final boolean E0(float f10) {
+        float f11;
+        float f12;
+        switch (this.U2) {
+            case 0:
+                lq0 lq0Var = this.V2;
+                if (lq0Var.f26848e0 && lq0Var.f26856l0[1] != null) {
+                    f11 = 111.0f;
+                } else {
+                    f11 = 58.0f;
+                }
+                if (f10 >= AndroidUtilities.dp(f11) + lq0Var.D0.f7214b) {
+                    return true;
+                }
+                return false;
+            default:
+                lq0 lq0Var2 = this.V2;
+                if (lq0Var2.f26848e0 && lq0Var2.f26856l0[1] != null) {
+                    f12 = 111.0f;
+                } else {
+                    f12 = 58.0f;
+                }
+                if (f10 >= AndroidUtilities.dp(f12) + lq0Var2.D0.f7214b) {
+                    return true;
+                }
+                return false;
         }
-        return false;
     }
 
     @Override
-    public final void e(float r9, float r10, boolean r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mp0.e(float, float, boolean):void");
-    }
-
-    @Override
-    public final void f() {
-        dq0 dq0Var = this.f30751x.D0;
-        gp0 gp0Var = dq0Var.d;
-        if (gp0Var == null || !gp0Var.m()) {
-            int i10 = dq0Var.J0;
-            AndroidUtilities.dp(20.0f);
+    public final void draw(Canvas canvas) {
+        float f10;
+        float f11;
+        switch (this.U2) {
+            case 0:
+                lq0 lq0Var = this.V2;
+                sl0 sl0Var = lq0Var.B;
+                if (sl0Var.getVisibility() != 8) {
+                    canvas.save();
+                    int i10 = lq0Var.m0;
+                    if (lq0Var.f26848e0 && lq0Var.f26856l0[1] != null) {
+                        f10 = 111.0f;
+                    } else {
+                        f10 = 58.0f;
+                    }
+                    canvas.clipRect(0, AndroidUtilities.dp(f10) + i10, getWidth(), getHeight());
+                }
+                super.draw(canvas);
+                if (sl0Var.getVisibility() != 8) {
+                    canvas.restore();
+                    return;
+                }
+                return;
+            default:
+                lq0 lq0Var2 = this.V2;
+                sl0 sl0Var2 = lq0Var2.B;
+                if (sl0Var2.getVisibility() != 8) {
+                    canvas.save();
+                    int i11 = lq0Var2.m0;
+                    if (lq0Var2.f26848e0 && lq0Var2.f26856l0[1] != null) {
+                        f11 = 111.0f;
+                    } else {
+                        f11 = 58.0f;
+                    }
+                    canvas.clipRect(0, AndroidUtilities.dp(f11) + i11, getWidth(), getHeight());
+                }
+                super.draw(canvas);
+                if (sl0Var2.getVisibility() != 8) {
+                    canvas.restore();
+                    return;
+                }
+                return;
         }
-        dq0Var.f27844n0 = false;
-        int i11 = dq0Var.f27842l0;
-        dq0Var.m0 = i11;
-        dq0Var.B.setTopGlowOffset(i11);
-        dq0Var.f27828b.setTranslationY(dq0Var.f27842l0);
-        dq0Var.M.setTranslationY(dq0Var.f27842l0);
-        dq0Var.B.setTranslationY(0.0f);
-        dq0Var.C.setTranslationY(0.0f);
-        dq0Var.Y0();
-    }
-
-    @Override
-    public final void g(int i10, boolean z10) {
-        int i11;
-        np0 np0Var = this.f30751x;
-        dq0 dq0Var = np0Var.D0;
-        int i12 = dq0Var.m0;
-        int i13 = dq0Var.f27842l0;
-        if (i12 != i13) {
-            np0Var.f31115x0 = i12;
-            np0Var.f31116y0 = i13;
-            dq0Var.f27844n0 = true;
-            dq0Var.f27842l0 = i12;
-        } else {
-            np0Var.f31115x0 = -1;
-        }
-        int i14 = np0Var.f31113v0;
-        int i15 = np0Var.f31114w0;
-        if (i14 != i15) {
-            np0Var.f31117z0 = 0;
-            np0Var.A0 = 0;
-            dq0Var.f27844n0 = true;
-            if (!z10) {
-                np0Var.A0 = 0 - (i14 - i15);
-            } else {
-                np0Var.A0 = i14 - i15;
-            }
-            if (z10) {
-                i11 = np0Var.f31115x0;
-            } else {
-                i11 = np0Var.f31116y0;
-            }
-            dq0Var.f27842l0 = i11;
-        } else {
-            np0Var.f31117z0 = -1;
-        }
-        dq0Var.B.setTopGlowOffset((int) (dq0Var.f27846p0 + dq0Var.f27842l0));
-        dq0Var.f27828b.setTranslationY(dq0Var.f27846p0 + dq0Var.f27842l0);
-        dq0Var.M.setTranslationY(dq0Var.f27846p0 + dq0Var.f27842l0);
-        np0Var.invalidate();
     }
 }

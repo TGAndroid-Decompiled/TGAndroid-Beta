@@ -1,29 +1,22 @@
 package s7;
 
+import android.app.PendingIntent;
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.q;
-public final class g extends a6.a implements q {
-    public static final Parcelable.Creator<g> CREATOR = new s6.i(11);
-    public final Status f47674a;
-    public final h f47675b;
+import j7.f5;
+import r5.c0;
+public final class g extends c6.a {
+    public static final Parcelable.Creator<g> CREATOR = new c0(8);
+    public final PendingIntent f44104a;
 
-    public g(Status status, h hVar) {
-        this.f47674a = status;
-        this.f47675b = hVar;
-    }
-
-    @Override
-    public final Status i() {
-        return this.f47674a;
+    public g(PendingIntent pendingIntent) {
+        this.f44104a = pendingIntent;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = com.google.android.gms.internal.cast.o.q(parcel, 20293);
-        com.google.android.gms.internal.cast.o.k(parcel, 1, this.f47674a, i10);
-        com.google.android.gms.internal.cast.o.k(parcel, 2, this.f47675b, i10);
-        com.google.android.gms.internal.cast.o.r(parcel, q6);
+        int q10 = f5.q(parcel, 20293);
+        f5.k(parcel, 1, this.f44104a, i10);
+        f5.r(parcel, q10);
     }
 }

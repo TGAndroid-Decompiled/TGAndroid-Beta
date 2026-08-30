@@ -1,27 +1,46 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class f60 implements RequestDelegate {
-    public final int f28326a;
-    public final h60 f28327b;
+public final class f60 extends sl0 {
+    public int U2;
+    public final s60 V2;
 
-    public f60(h60 h60Var, int i10) {
-        this.f28326a = i10;
-        this.f28327b = h60Var;
+    public f60(s60 s60Var, Context context) {
+        super(context, null);
+        this.V2 = s60Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f28326a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new g(this.f28327b, tL_error, tLObject, 13));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new gt(19, this.f28327b, tL_error));
-                return;
+    public final void onMeasure(int i10, int i11) {
+        s60 s60Var = this.V2;
+        f60 f60Var = s60Var.S;
+        if (this.U2 != View.MeasureSpec.getSize(i11)) {
+            this.U2 = View.MeasureSpec.getSize(i11);
+            s60Var.X = true;
+            f60Var.setPadding(0, 0, 0, 0);
+            s60Var.X = false;
+            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
+            int measuredHeight = getMeasuredHeight();
+            int i12 = this.U2;
+            int i13 = (int) ((i12 / 5.0f) * 2.0f);
+            if (i13 < AndroidUtilities.dp(60.0f) + (i12 - measuredHeight)) {
+                i13 = this.U2 - measuredHeight;
+            }
+            s60Var.X = true;
+            f60Var.setPadding(0, i13, 0, 0);
+            s60Var.X = false;
+            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
         }
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.V2.X) {
+            return;
+        }
+        super.requestLayout();
     }
 }

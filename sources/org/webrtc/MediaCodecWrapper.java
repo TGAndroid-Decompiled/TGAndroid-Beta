@@ -34,7 +34,7 @@ interface MediaCodecWrapper {
 
     void release();
 
-    void releaseOutputBuffer(int i10, boolean z10);
+    void releaseOutputBuffer(int i10, boolean z4);
 
     void setParameters(Bundle bundle);
 

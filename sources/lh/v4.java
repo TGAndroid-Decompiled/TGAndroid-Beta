@@ -1,32 +1,40 @@
 package lh;
 
 import android.content.Context;
-import android.view.View;
+import android.text.SpannableStringBuilder;
 import org.telegram.messenger.AndroidUtilities;
-public final class v4 extends View {
-    public final int f16311a;
-    public final y4 f16312b;
+import org.telegram.messenger.Emoji;
+import org.telegram.ui.Components.sc;
+import org.telegram.ui.Components.tc;
+public final class v4 extends sc {
+    public final org.telegram.ui.ActionBar.f6 K;
+    public String L;
+    public int M;
 
-    public v4(y4 y4Var, Context context, int i10) {
-        super(context);
-        this.f16311a = i10;
-        this.f16312b = y4Var;
+    public v4(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, null);
+        this.K = f6Var;
+        setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
+        setTextSize(1, 14.0f);
+        setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f16311a) {
-            case 0:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f16312b.d.f15435e), 1073741824));
-                return;
-            default:
-                c5 c5Var = this.f16312b.d;
-                int i12 = c5Var.f15441x.J;
-                if (i12 >= c5Var.f15438r.getPaddingTop() && !c5Var.N) {
-                    i12 = 0;
-                }
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(i12, 1073741824));
-                return;
+    public final void e(String str, int i10, o1 o1Var) {
+        ah.a aVar;
+        if (str == this.L && this.M == i10) {
+            return;
         }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(Emoji.replaceEmoji(str, getPaint().getFontMetricsInt(), false));
+        SpannableStringBuilder append = spannableStringBuilder.append((CharSequence) " ");
+        String G0 = rh.k.G0(i10);
+        if (o1Var != null) {
+            aVar = new ah.a(this, o1Var, i10, 8);
+        } else {
+            aVar = null;
+        }
+        append.append((CharSequence) tc.b(G0, aVar, this.K, null));
+        setText(spannableStringBuilder);
+        this.L = str;
+        this.M = i10;
     }
 }

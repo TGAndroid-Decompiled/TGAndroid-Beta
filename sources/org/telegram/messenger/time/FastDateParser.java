@@ -1,7 +1,7 @@
 package org.telegram.messenger.time;
 
-import a4.w;
-import com.google.android.recaptcha.internal.a;
+import android.support.v4.media.a;
+import e2.c;
 import j$.util.DesugarTimeZone;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.ObjectInputStream;
@@ -84,8 +84,8 @@ public class FastDateParser implements DateParser, Serializable {
         }
 
         @Override
-        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb2) {
-            FastDateParser.escapeRegex(sb2, this.formatField, true);
+        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb) {
+            FastDateParser.escapeRegex(sb, this.formatField, true);
             return false;
         }
 
@@ -110,12 +110,12 @@ public class FastDateParser implements DateParser, Serializable {
         }
 
         @Override
-        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb2) {
-            sb2.append('(');
+        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb) {
+            sb.append('(');
             for (String str : this.keyValues.keySet()) {
-                FastDateParser.escapeRegex(sb2, str, false).append('|');
+                FastDateParser.escapeRegex(sb, str, false).append('|');
             }
-            sb2.setCharAt(sb2.length() - 1, ')');
+            sb.setCharAt(sb.length() - 1, ')');
             return true;
         }
 
@@ -123,14 +123,14 @@ public class FastDateParser implements DateParser, Serializable {
         public void setCalendar(FastDateParser fastDateParser, Calendar calendar, String str) {
             Integer num = this.keyValues.get(str);
             if (num == null) {
-                StringBuilder sb2 = new StringBuilder(str);
-                sb2.append(" not in (");
+                StringBuilder sb = new StringBuilder(str);
+                sb.append(" not in (");
                 for (String str2 : this.keyValues.keySet()) {
-                    sb2.append(str2);
-                    sb2.append(' ');
+                    sb.append(str2);
+                    sb.append(' ');
                 }
-                sb2.setCharAt(sb2.length() - 1, ')');
-                throw new IllegalArgumentException(sb2.toString());
+                sb.setCharAt(sb.length() - 1, ')');
+                throw new IllegalArgumentException(sb.toString());
             }
             calendar.set(this.field, num.intValue());
         }
@@ -168,17 +168,17 @@ public class FastDateParser implements DateParser, Serializable {
                     }
                 }
             }
-            StringBuilder n10 = a.n("(GMT[+\\-]\\d{0,1}\\d{2}|[+\\-]\\d{2}:?\\d{2}|");
+            StringBuilder l10 = c.l("(GMT[+\\-]\\d{0,1}\\d{2}|[+\\-]\\d{2}:?\\d{2}|");
             for (String str : this.tzNames.keySet()) {
-                FastDateParser.escapeRegex(n10, str, false).append('|');
+                FastDateParser.escapeRegex(l10, str, false).append('|');
             }
-            n10.setCharAt(n10.length() - 1, ')');
-            this.validTimeZoneChars = n10.toString();
+            l10.setCharAt(l10.length() - 1, ')');
+            this.validTimeZoneChars = l10.toString();
         }
 
         @Override
-        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb2) {
-            sb2.append(this.validTimeZoneChars);
+        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb) {
+            sb.append(this.validTimeZoneChars);
             return true;
         }
 
@@ -213,34 +213,34 @@ public class FastDateParser implements DateParser, Serializable {
         return i11 + 100;
     }
 
-    public static StringBuilder escapeRegex(StringBuilder sb2, String str, boolean z10) {
-        sb2.append("\\Q");
+    public static StringBuilder escapeRegex(StringBuilder sb, String str, boolean z4) {
+        sb.append("\\Q");
         int i10 = 0;
         while (i10 < str.length()) {
             char charAt = str.charAt(i10);
             if (charAt != '\'') {
                 if (charAt == '\\' && (i10 = i10 + 1) != str.length()) {
-                    sb2.append(charAt);
+                    sb.append(charAt);
                     charAt = str.charAt(i10);
                     if (charAt == 'E') {
-                        sb2.append("E\\\\E\\");
+                        sb.append("E\\\\E\\");
                         charAt = 'Q';
                     }
                 }
-            } else if (z10) {
+            } else if (z4) {
                 i10++;
                 if (i10 == str.length()) {
-                    return sb2;
+                    return sb;
                 }
                 charAt = str.charAt(i10);
             } else {
                 continue;
             }
-            sb2.append(charAt);
+            sb.append(charAt);
             i10++;
         }
-        sb2.append("\\E");
-        return sb2;
+        sb.append("\\E");
+        return sb;
     }
 
     private static ConcurrentMap<Locale, Strategy> getCache(int i10) {
@@ -259,7 +259,7 @@ public class FastDateParser implements DateParser, Serializable {
         return concurrentMap;
     }
 
-    private static String[] getDisplayNameArray(int i10, boolean z10, Locale locale) {
+    private static String[] getDisplayNameArray(int i10, boolean z4, Locale locale) {
         DateFormatSymbols dateFormatSymbols = new DateFormatSymbols(locale);
         if (i10 != 0) {
             if (i10 != 2) {
@@ -268,12 +268,12 @@ public class FastDateParser implements DateParser, Serializable {
                         return null;
                     }
                     return dateFormatSymbols.getAmPmStrings();
-                } else if (z10) {
+                } else if (z4) {
                     return dateFormatSymbols.getWeekdays();
                 } else {
                     return dateFormatSymbols.getShortWeekdays();
                 }
-            } else if (z10) {
+            } else if (z4) {
                 return dateFormatSymbols.getMonths();
             } else {
                 return dateFormatSymbols.getShortMonths();
@@ -318,7 +318,7 @@ public class FastDateParser implements DateParser, Serializable {
                 switch (charAt) {
                     case '\'':
                         if (str.length() > 2) {
-                            return new CopyQuotedStrategy(a.m(str, 1, 1));
+                            return new CopyQuotedStrategy(c.j(str, 1, 1));
                         }
                         return new CopyQuotedStrategy(str);
                     case 'S':
@@ -377,7 +377,7 @@ public class FastDateParser implements DateParser, Serializable {
     }
 
     private void init(Calendar calendar) {
-        StringBuilder sb2 = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         ArrayList arrayList = new ArrayList();
         Matcher matcher = formatPattern.matcher(this.pattern);
         if (matcher.lookingAt()) {
@@ -391,7 +391,7 @@ public class FastDateParser implements DateParser, Serializable {
                 }
                 String group2 = matcher.group();
                 this.nextStrategy = getStrategy(group2, calendar);
-                if (strategy.addRegex(this, sb2)) {
+                if (strategy.addRegex(this, sb)) {
                     arrayList.add(strategy);
                 }
                 this.currentFormatField = group2;
@@ -399,12 +399,12 @@ public class FastDateParser implements DateParser, Serializable {
             }
             this.nextStrategy = null;
             if (matcher.regionStart() == matcher.regionEnd()) {
-                if (strategy.addRegex(this, sb2)) {
+                if (strategy.addRegex(this, sb)) {
                     arrayList.add(strategy);
                 }
                 this.currentFormatField = null;
                 this.strategies = (Strategy[]) arrayList.toArray(new Strategy[arrayList.size()]);
-                this.parsePattern = Pattern.compile(sb2.toString());
+                this.parsePattern = Pattern.compile(sb.toString());
                 return;
             }
             throw new IllegalArgumentException("Failed to parse \"" + this.pattern + "\" ; gave up at index " + matcher.regionStart());
@@ -481,9 +481,9 @@ public class FastDateParser implements DateParser, Serializable {
             if (this.locale.equals(JAPANESE_IMPERIAL)) {
                 throw new ParseException("(The " + this.locale + " locale does not support dates before 1868 AD)\nUnparseable date: \"" + str + "\" does not match " + this.parsePattern.pattern(), 0);
             }
-            StringBuilder s10 = w.s("Unparseable date: \"", str, "\" does not match ");
-            s10.append(this.parsePattern.pattern());
-            throw new ParseException(s10.toString(), 0);
+            StringBuilder t6 = a.t("Unparseable date: \"", str, "\" does not match ");
+            t6.append(this.parsePattern.pattern());
+            throw new ParseException(t6.toString(), 0);
         }
         return parse;
     }
@@ -559,14 +559,14 @@ public class FastDateParser implements DateParser, Serializable {
         }
 
         @Override
-        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb2) {
+        public boolean addRegex(FastDateParser fastDateParser, StringBuilder sb) {
             if (fastDateParser.isNextNumber()) {
-                sb2.append("(\\p{Nd}{");
-                sb2.append(fastDateParser.getFieldWidth());
-                sb2.append("}+)");
+                sb.append("(\\p{Nd}{");
+                sb.append(fastDateParser.getFieldWidth());
+                sb.append("}+)");
                 return true;
             }
-            sb2.append("(\\p{Nd}++)");
+            sb.append("(\\p{Nd}++)");
             return true;
         }
 
@@ -589,7 +589,7 @@ public class FastDateParser implements DateParser, Serializable {
         private Strategy() {
         }
 
-        public abstract boolean addRegex(FastDateParser fastDateParser, StringBuilder sb2);
+        public abstract boolean addRegex(FastDateParser fastDateParser, StringBuilder sb);
 
         public boolean isNumber() {
             return false;

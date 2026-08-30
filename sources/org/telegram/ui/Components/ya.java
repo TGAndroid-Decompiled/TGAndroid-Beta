@@ -1,44 +1,64 @@
 package org.telegram.ui.Components;
+public final class ya implements o1.f {
+    public final int f30952a;
+    public final Object f30953b;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.Layout;
-import android.text.Spanned;
-import android.text.style.LeadingMarginSpan;
-public final class ya implements LeadingMarginSpan {
-    public final int f35005a;
-    public final int f35006b;
-
-    public ya(int i10, int i11) {
-        this.f35005a = i10;
-        this.f35006b = i11;
+    public ya(Object obj, int i10) {
+        this.f30952a = i10;
+        this.f30953b = obj;
     }
 
     @Override
-    public final void drawLeadingMargin(Canvas canvas, Paint paint, int i10, int i11, int i12, int i13, int i14, CharSequence charSequence, int i15, int i16, boolean z10, Layout layout) {
-        int i17;
-        if (((Spanned) charSequence).getSpanStart(this) == i15) {
-            Paint.Style style = paint.getStyle();
-            int color = paint.getColor();
-            paint.setColor(-11491093);
-            paint.setStyle(Paint.Style.FILL);
-            if (layout != null) {
-                if (layout.getLineForOffset(i15) != layout.getLineCount() - 1) {
-                    i17 = (int) layout.getSpacingAdd();
-                } else {
-                    i17 = 0;
+    public final void a(o1.h hVar, boolean z4, float f10, float f11) {
+        switch (this.f30952a) {
+            case 0:
+                ic icVar = (ic) this.f30953b;
+                if (icVar.d == hVar) {
+                    icVar.d = null;
+                    return;
                 }
-                i14 -= i17;
-            }
-            int i18 = this.f35006b;
-            canvas.drawCircle((i11 * i18) + i10, (i12 + i14) / 2.0f, i18, paint);
-            paint.setColor(color);
-            paint.setStyle(style);
+                return;
+            case 1:
+                ua uaVar = (ua) this.f30953b;
+                if (!z4) {
+                    uaVar.run();
+                    return;
+                }
+                return;
+            case 2:
+                zo0 zo0Var = (zo0) this.f30953b;
+                zo0Var.f31415q = false;
+                zo0Var.dismiss();
+                return;
+            case 3:
+                ap0 ap0Var = (ap0) this.f30953b;
+                ap0Var.f23491s = false;
+                ap0Var.f23490r = false;
+                if (!z4) {
+                    hVar.c();
+                }
+                if (hVar == ap0Var.f23488f) {
+                    ap0Var.f23488f = null;
+                    return;
+                }
+                return;
+            case 4:
+                lq0 lq0Var = (lq0) this.f30953b;
+                lq0Var.B.setVisibility(8);
+                lq0Var.f26870w0.setVisibility(8);
+                iq0 iq0Var = lq0Var.I;
+                iq0Var.f25775f = null;
+                iq0Var.l();
+                lq0Var.f26874y0 = null;
+                lq0Var.J0 = false;
+                return;
+            default:
+                lq0 lq0Var2 = ((sp0) this.f30953b).d;
+                lq0Var2.C.setVisibility(8);
+                lq0Var2.D.setVisibility(8);
+                lq0Var2.f26868v0.setVisibility(8);
+                lq0Var2.f26874y0 = null;
+                return;
         }
-    }
-
-    @Override
-    public final int getLeadingMargin(boolean z10) {
-        return (this.f35006b * 2) + this.f35005a;
     }
 }

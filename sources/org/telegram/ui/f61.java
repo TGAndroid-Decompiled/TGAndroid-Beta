@@ -1,15 +1,22 @@
 package org.telegram.ui;
+public final class f61 implements Runnable {
+    public final int f34175a;
+    public final g61 f34176b;
 
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class f61 extends EditTextBoldCursor {
+    public f61(g61 g61Var, int i10) {
+        this.f34175a = i10;
+        this.f34176b = g61Var;
+    }
+
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
-            clearFocus();
-            requestFocus();
+    public final void run() {
+        switch (this.f34175a) {
+            case 0:
+                g61.a(this.f34176b);
+                return;
+            default:
+                this.f34176b.dismiss();
+                return;
         }
-        return super.onTouchEvent(motionEvent);
     }
 }

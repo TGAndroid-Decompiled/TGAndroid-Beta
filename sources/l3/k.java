@@ -1,37 +1,114 @@
 package l3;
 
-import jh.d3;
-public final class k implements Runnable {
-    public final int f14110a;
-    public final n f14111b;
-    public final Exception f14112c;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+public final class k {
+    public final s8.v f11160a;
+    public final ArrayList f11161b = new ArrayList();
+    public ByteBuffer[] f11162c = new ByteBuffer[0];
+    public boolean d;
 
-    public k(n nVar, Exception exc, int i10) {
-        this.f14110a = i10;
-        this.f14111b = nVar;
-        this.f14112c = exc;
+    public k(s8.v vVar) {
+        this.f11160a = vVar;
+        l lVar = l.e;
+        this.d = false;
     }
 
-    @Override
-    public final void run() {
-        int i10 = this.f14110a;
-        Exception exc = this.f14112c;
-        n nVar = this.f14111b;
-        switch (i10) {
-            case 0:
-                o oVar = nVar.f14151b;
-                int i11 = f5.d0.f6579a;
-                k3.f fVar = ((j3.h0) oVar).f10477a.f10594r;
-                k3.a k9 = fVar.k();
-                fVar.l(k9, 1029, new d3(k9, exc, 2));
-                return;
-            default:
-                o oVar2 = nVar.f14151b;
-                int i12 = f5.d0.f6579a;
-                k3.f fVar2 = ((j3.h0) oVar2).f10477a.f10594r;
-                k3.a k10 = fVar2.k();
-                fVar2.l(k10, 1014, new d3(k10, exc, 29));
-                return;
+    public final void a() {
+        ArrayList arrayList = this.f11161b;
+        arrayList.clear();
+        this.d = false;
+        int i10 = 0;
+        while (true) {
+            s8.v vVar = this.f11160a;
+            if (i10 >= vVar.size()) {
+                break;
+            }
+            n nVar = (n) vVar.get(i10);
+            nVar.flush();
+            if (nVar.isActive()) {
+                arrayList.add(nVar);
+            }
+            i10++;
         }
+        this.f11162c = new ByteBuffer[arrayList.size()];
+        for (int i11 = 0; i11 <= b(); i11++) {
+            this.f11162c[i11] = ((n) arrayList.get(i11)).a();
+        }
+    }
+
+    public final int b() {
+        return this.f11162c.length - 1;
+    }
+
+    public final boolean c() {
+        if (this.d && ((n) this.f11161b.get(b())).d() && !this.f11162c[b()].hasRemaining()) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean d() {
+        return !this.f11161b.isEmpty();
+    }
+
+    public final void e(ByteBuffer byteBuffer) {
+        boolean z4;
+        ByteBuffer byteBuffer2;
+        boolean z10;
+        for (boolean z11 = true; z11; z11 = z4) {
+            z4 = false;
+            for (int i10 = 0; i10 <= b(); i10++) {
+                if (!this.f11162c[i10].hasRemaining()) {
+                    ArrayList arrayList = this.f11161b;
+                    n nVar = (n) arrayList.get(i10);
+                    if (nVar.d()) {
+                        if (!this.f11162c[i10].hasRemaining() && i10 < b()) {
+                            ((n) arrayList.get(i10 + 1)).c();
+                        }
+                    } else {
+                        if (i10 > 0) {
+                            byteBuffer2 = this.f11162c[i10 - 1];
+                        } else if (byteBuffer.hasRemaining()) {
+                            byteBuffer2 = byteBuffer;
+                        } else {
+                            byteBuffer2 = n.f11198a;
+                        }
+                        nVar.b(byteBuffer2);
+                        this.f11162c[i10] = nVar.a();
+                        if (byteBuffer2.remaining() - byteBuffer2.remaining() <= 0 && !this.f11162c[i10].hasRemaining()) {
+                            z10 = false;
+                        } else {
+                            z10 = true;
+                        }
+                        z4 |= z10;
+                    }
+                }
+            }
+        }
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof k)) {
+            return false;
+        }
+        s8.v vVar = ((k) obj).f11160a;
+        s8.v vVar2 = this.f11160a;
+        if (vVar2.size() != vVar.size()) {
+            return false;
+        }
+        for (int i10 = 0; i10 < vVar2.size(); i10++) {
+            if (vVar2.get(i10) != vVar.get(i10)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return this.f11160a.hashCode();
     }
 }

@@ -1,44 +1,211 @@
 package jh;
 
-import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
+import k7.b6;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class e implements RequestDelegate {
-    public final int f11983a = 0;
-    public final boolean f11984b;
-    public final long f11985c;
-    public final Object d;
-    public final Object f11986e;
-    public final Object f11987f;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.p2;
+import org.telegram.ui.Components.c9;
+import org.telegram.ui.te;
+public final class e {
+    public final p2 f9419a;
+    public final TLRPC.Chat f9420b;
+    public final int f9421c;
+    public FrameLayout d;
+    public b e;
+    public LinearLayout f9422f;
+    public TextView f9423g;
+    public ImageView h;
+    public c f9424i;
+    public TLRPC.ChatFull f9425j;
+    public int f9426k;
+    public int f9427l = -1;
+    public d f9428m;
 
-    public e(q qVar, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z10, long j10) {
-        this.d = qVar;
-        this.f11986e = twoStepVerificationActivity;
-        this.f11987f = activity;
-        this.f11984b = z10;
-        this.f11985c = j10;
+    public e(TLRPC.Chat chat, p2 p2Var) {
+        this.f9419a = p2Var;
+        this.f9420b = chat;
+        this.f9421c = p2Var.getCurrentAccount();
     }
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f11983a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new f((q) this.d, tL_error, (TwoStepVerificationActivity) this.f11986e, (Activity) this.f11987f, this.f11984b, this.f11985c, tLObject));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new i((lh.s6) this.d, tL_error, this.f11984b, this.f11985c, (f5.d) this.f11986e, (org.telegram.ui.ActionBar.c6) this.f11987f));
-                return;
+    public final void a(boolean z4, boolean z10) {
+        boolean z11;
+        if (this.d.getVisibility() == 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (z4 != z11) {
+            if (z4) {
+                int i10 = this.f9427l;
+                p2 p2Var = this.f9419a;
+                TLRPC.Chat chat = this.f9420b;
+                if (i10 == -1 && chat != null) {
+                    this.f9427l = p2Var.getMessagesController().getChatPendingRequestsOnClosed(chat.f19184id);
+                }
+                int i11 = this.f9426k;
+                int i12 = this.f9427l;
+                if (i11 != i12) {
+                    if (i12 != 0 && chat != null) {
+                        p2Var.getMessagesController().setChatPendingRequestsOnClose(chat.f19184id, 0);
+                    }
+                } else {
+                    return;
+                }
+            }
+            d dVar = this.f9428m;
+            if (dVar != null) {
+                dVar.g(z4, z10);
+            }
         }
     }
 
-    public e(lh.s6 s6Var, boolean z10, long j10, f5.d dVar, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.d = s6Var;
-        this.f11984b = z10;
-        this.f11985c = j10;
-        this.f11986e = dVar;
-        this.f11987f = c6Var;
+    public final void b(ArrayList arrayList) {
+        arrayList.add(new l6(this.f9423g, 4, null, null, null, null, j6.f19949fe));
+        arrayList.add(new l6(this.h, 8, null, null, null, null, j6.f19914de));
+    }
+
+    public final FrameLayout c() {
+        if (this.d == null) {
+            p2 p2Var = this.f9419a;
+            FrameLayout frameLayout = new FrameLayout(p2Var.getParentActivity());
+            this.d = frameLayout;
+            frameLayout.setBackground(j6.K0(false));
+            this.d.setOnClickListener(new View.OnClickListener(this) {
+                public final e f9418b;
+
+                {
+                    this.f9418b = this;
+                }
+
+                @Override
+                public final void onClick(View view) {
+                    switch (r2) {
+                        case 0:
+                            e eVar = this.f9418b;
+                            p2 p2Var2 = eVar.f9419a;
+                            if (eVar.f9424i == null) {
+                                eVar.f9424i = new c(eVar, p2Var2, eVar.f9420b.f19184id);
+                            }
+                            p2Var2.showDialog(eVar.f9424i);
+                            return;
+                        default:
+                            e eVar2 = this.f9418b;
+                            eVar2.f9419a.getMessagesController().setChatPendingRequestsOnClose(eVar2.f9420b.f19184id, eVar2.f9426k);
+                            eVar2.f9427l = eVar2.f9426k;
+                            eVar2.a(false, true);
+                            return;
+                    }
+                }
+            });
+            LinearLayout linearLayout = new LinearLayout(p2Var.getParentActivity());
+            this.f9422f = linearLayout;
+            linearLayout.setOrientation(0);
+            this.d.addView(this.f9422f, b6.d(-1, -1.0f, 48, 0.0f, 0.0f, 100.0f, 0.0f));
+            b bVar = new b(0, p2Var.getParentActivity(), false);
+            this.e = bVar;
+            bVar.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
+            c9 c9Var = this.e.f24206a;
+            for (int i10 = 0; i10 < c9Var.f23924c.length; i10++) {
+                c9Var.l(0, null, 0);
+            }
+            this.f9422f.addView(this.e, b6.d(-2, -1.0f, 48, 8.0f, 0.0f, 10.0f, 0.0f));
+            TextView textView = new TextView(p2Var.getParentActivity());
+            this.f9423g = textView;
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            this.f9423g.setGravity(16);
+            this.f9423g.setSingleLine();
+            this.f9423g.setText((CharSequence) null);
+            this.f9423g.setTextColor(p2Var.getThemedColor(j6.f19949fe));
+            this.f9423g.setTypeface(AndroidUtilities.bold());
+            this.f9422f.addView(this.f9423g, b6.d(-1, -1.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
+            ImageView imageView = new ImageView(p2Var.getParentActivity());
+            this.h = imageView;
+            imageView.setBackground(j6.f0(p2Var.getThemedColor(j6.f20264x7) & 436207615, 1, AndroidUtilities.dp(14.0f)));
+            this.h.setColorFilter(new PorterDuffColorFilter(p2Var.getThemedColor(j6.f19914de), PorterDuff.Mode.MULTIPLY));
+            this.h.setContentDescription(LocaleController.getString(R.string.Close));
+            this.h.setImageResource(R.drawable.miniplayer_close);
+            this.h.setScaleType(ImageView.ScaleType.CENTER);
+            this.h.setOnClickListener(new View.OnClickListener(this) {
+                public final e f9418b;
+
+                {
+                    this.f9418b = this;
+                }
+
+                @Override
+                public final void onClick(View view) {
+                    switch (r2) {
+                        case 0:
+                            e eVar = this.f9418b;
+                            p2 p2Var2 = eVar.f9419a;
+                            if (eVar.f9424i == null) {
+                                eVar.f9424i = new c(eVar, p2Var2, eVar.f9420b.f19184id);
+                            }
+                            p2Var2.showDialog(eVar.f9424i);
+                            return;
+                        default:
+                            e eVar2 = this.f9418b;
+                            eVar2.f9419a.getMessagesController().setChatPendingRequestsOnClose(eVar2.f9420b.f19184id, eVar2.f9426k);
+                            eVar2.f9427l = eVar2.f9426k;
+                            eVar2.a(false, true);
+                            return;
+                    }
+                }
+            });
+            this.d.addView(this.h, b6.d(36, -1.0f, 53, 0.0f, 0.0f, 4.0f, 0.0f));
+            TLRPC.ChatFull chatFull = this.f9425j;
+            if (chatFull != null) {
+                e(chatFull.requests_pending, chatFull.recent_requesters, false);
+            }
+        }
+        return this.d;
+    }
+
+    public final void d(te teVar) {
+        this.f9428m = teVar;
+    }
+
+    public final void e(int i10, List list, boolean z4) {
+        if (this.d != null) {
+            p2 p2Var = this.f9419a;
+            if (i10 <= 0) {
+                TLRPC.Chat chat = this.f9420b;
+                if (chat != null) {
+                    p2Var.getMessagesController().setChatPendingRequestsOnClose(chat.f19184id, 0);
+                    this.f9427l = 0;
+                }
+                a(false, z4);
+                this.f9426k = 0;
+            } else if (this.f9426k != i10) {
+                this.f9426k = i10;
+                this.f9423g.setText(LocaleController.formatPluralString("JoinUsersRequests", i10, new Object[0]));
+                a(true, z4);
+                if (list != null && !list.isEmpty()) {
+                    int min = Math.min(3, list.size());
+                    for (int i11 = 0; i11 < min; i11++) {
+                        TLRPC.User user = p2Var.getMessagesController().getUser((Long) list.get(i11));
+                        if (user != null) {
+                            this.e.b(i11, user, this.f9421c);
+                        }
+                    }
+                    this.e.setCount(min);
+                    this.e.a(true);
+                }
+            }
+        }
     }
 }
