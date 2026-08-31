@@ -1,49 +1,63 @@
 package org.telegram.ui;
 
-import android.text.style.URLSpan;
-import android.view.View;
-import android.view.ViewParent;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class h20 implements Utilities.CallbackReturn {
-    public final int f34732a;
-    public final Object f34733b;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.Shader;
+public final class h20 {
+    public LinearGradient f37311b;
+    public final Paint[] f37310a = new Paint[4];
+    public final Matrix f37312c = new Matrix();
 
-    public h20(Object obj, int i10) {
-        this.f34732a = i10;
-        this.f34733b = obj;
+    public final void a(Canvas canvas, RectF rectF, float f10) {
+        Paint[] paintArr = this.f37310a;
+        if (paintArr[0] == null) {
+            Paint paint = new Paint(1);
+            paintArr[0] = paint;
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        }
+        paintArr[0].setShader(this.f37311b);
+        paintArr[0].setAlpha((int) (f10 * 255.0f));
+        canvas.drawRect(rectF, paintArr[0]);
     }
 
-    @Override
-    public final Object run(Object obj) {
-        switch (this.f34732a) {
-            case 0:
-                l20 l20Var = (l20) this.f34733b;
-                View view = (View) obj;
-                l20Var.getClass();
-                ViewParent parent = view.getParent();
-                org.telegram.ui.Components.sl0 sl0Var = l20Var.f35881c;
-                if (parent != sl0Var) {
-                    return Boolean.FALSE;
-                }
-                return Boolean.valueOf(!org.telegram.ui.Components.w51.K(sl0Var.T(view).f5788f));
-            case 1:
-                wf0 wf0Var = (wf0) this.f34733b;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                if (tL_error != null && "PHONE_CODE_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    AndroidUtilities.runOnUIThread(new tf0(wf0Var, 1));
-                    return Boolean.TRUE;
-                }
-                return Boolean.FALSE;
-            default:
-                ProfileActivity profileActivity = (ProfileActivity) this.f34733b;
-                URLSpan uRLSpan = (URLSpan) obj;
-                if (uRLSpan != null) {
-                    profileActivity.B4(uRLSpan.getURL(), null);
-                    return Boolean.TRUE;
-                }
-                return Boolean.FALSE;
+    public final void b(Canvas canvas, RectF rectF, int i10, float f10) {
+        if (f10 <= 0.0f) {
+            return;
         }
+        if (this.f37311b == null) {
+            this.f37311b = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{-65536, 16711680}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        }
+        Paint[] paintArr = this.f37310a;
+        if (paintArr[i10] == null) {
+            paintArr[i10] = new Paint(1);
+            paintArr[i10].setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        }
+        paintArr[i10].setShader(this.f37311b);
+        Matrix matrix = this.f37312c;
+        matrix.reset();
+        if (i10 == 0) {
+            matrix.postScale(1.0f, rectF.width() / 16.0f);
+            matrix.postRotate(-90.0f);
+            matrix.postTranslate(rectF.left, rectF.top);
+        } else if (i10 == 1) {
+            matrix.postScale(1.0f, rectF.height() / 16.0f);
+            matrix.postTranslate(rectF.left, rectF.top);
+        } else if (i10 == 2) {
+            matrix.postScale(1.0f, rectF.width() / 16.0f);
+            matrix.postRotate(90.0f);
+            matrix.postTranslate(rectF.right, rectF.top);
+        } else if (i10 == 3) {
+            matrix.postScale(1.0f, rectF.height() / 16.0f);
+            matrix.postScale(1.0f, -1.0f);
+            matrix.postTranslate(rectF.left, rectF.bottom);
+        }
+        this.f37311b.setLocalMatrix(matrix);
+        paintArr[i10].setAlpha((int) (f10 * 255.0f));
+        canvas.drawRect(rectF, paintArr[i10]);
     }
 }

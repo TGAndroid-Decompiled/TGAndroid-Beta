@@ -2,18 +2,18 @@ package ld;
 
 import java.util.concurrent.ScheduledFuture;
 public final class n0 implements o0 {
-    public final ScheduledFuture f11905a;
+    public final ScheduledFuture f12337a;
 
     public n0(ScheduledFuture scheduledFuture) {
-        this.f11905a = scheduledFuture;
+        this.f12337a = scheduledFuture;
     }
 
     @Override
     public final void dispose() {
-        this.f11905a.cancel(false);
+        this.f12337a.cancel(false);
     }
 
     public final String toString() {
-        return "DisposableFutureHandle[" + this.f11905a + ']';
+        return "DisposableFutureHandle[" + this.f12337a + ']';
     }
 }

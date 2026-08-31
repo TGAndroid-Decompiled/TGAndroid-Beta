@@ -1,90 +1,76 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.os.SystemClock;
-import java.io.File;
 import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-public final class r70 implements Runnable {
-    public final int f28401a = 1;
-    public final org.telegram.ui.ActionBar.d2 f28402b;
-    public final Context f28403c;
+public final class r70 implements RequestDelegate {
+    public final int f30618a = 1;
+    public final Context f30619b;
+    public final long f30620c;
     public final int d;
-    public final long e;
-    public final TLObject f28404f;
+    public final Object f30621e;
+    public final Object f30622f;
+    public final Object f30623g;
     public final Object h;
-    public final Object f28405n;
-    public final Object f28406r;
-    public final Object f28407s;
+    public final Object f30624i;
 
-    public r70(org.telegram.ui.ActionBar.d2 d2Var, Context context, int i10, long j10, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File[] fileArr, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.web.u uVar, dh.v vVar) {
-        this.f28402b = d2Var;
-        this.f28403c = context;
+    public r70(Context context, oh.h0 h0Var, long j10, byte[] bArr, org.telegram.messenger.video.a aVar, qc qcVar, org.telegram.messenger.video.d dVar, int i10) {
+        this.f30619b = context;
+        this.f30621e = h0Var;
+        this.f30620c = j10;
+        this.f30622f = bArr;
+        this.f30623g = aVar;
+        this.h = qcVar;
+        this.f30624i = dVar;
         this.d = i10;
-        this.e = j10;
-        this.f28404f = tL_messages_preparedInlineMessage;
-        this.h = fileArr;
-        this.f28405n = f6Var;
-        this.f28406r = uVar;
-        this.f28407s = vVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28401a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f30618a) {
             case 0:
-                org.telegram.ui.ActionBar.d2 d2Var = this.f28402b;
-                AccountInstance accountInstance = (AccountInstance) this.h;
-                w70 w70Var = (w70) this.f28405n;
-                org.telegram.ui.ActionBar.p2 p2Var = (org.telegram.ui.ActionBar.p2) this.f28406r;
-                TLRPC.Peer peer = (TLRPC.Peer) this.f28407s;
-                try {
-                    d2Var.dismiss();
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                TLObject tLObject = this.f28404f;
-                if (tLObject != null) {
-                    TL_phone.joinAsPeers joinaspeers = (TL_phone.joinAsPeers) tLObject;
-                    if (joinaspeers.peers.size() == 1) {
-                        w70Var.a(accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId(joinaspeers.peers.get(0))), false, false, false);
-                        return;
-                    }
-                    y70.D = joinaspeers.peers;
-                    long j10 = this.e;
-                    y70.F = j10;
-                    y70.E = SystemClock.elapsedRealtime();
-                    y70.G = accountInstance.getCurrentAccount();
-                    accountInstance.getMessagesController().putChats(joinaspeers.chats, false);
-                    accountInstance.getMessagesController().putUsers(joinaspeers.users, false);
-                    y70.v(this.f28403c, j10, joinaspeers.peers, p2Var, this.d, peer, w70Var);
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new t70((org.telegram.ui.ActionBar.d2) this.f30621e, tLObject, (AccountInstance) this.f30622f, (y70) this.f30623g, this.f30620c, this.f30619b, (org.telegram.ui.ActionBar.p2) this.h, this.d, (TLRPC.Peer) this.f30624i));
                 return;
             default:
-                TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) this.f28404f;
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f28405n;
-                org.telegram.ui.web.u uVar = (org.telegram.ui.web.u) this.f28406r;
-                dh.v vVar = (dh.v) this.f28407s;
-                this.f28402b.dismiss();
-                new rh.f1(this.f28403c, this.d, this.e, tL_messages_preparedInlineMessage, ((File[]) this.h)[0], null, f6Var, uVar, vVar).show();
-                return;
+                oh.h0 h0Var = (oh.h0) this.f30621e;
+                byte[] bArr = (byte[]) this.f30622f;
+                org.telegram.messenger.video.a aVar = (org.telegram.messenger.video.a) this.f30623g;
+                qc qcVar = (qc) this.h;
+                org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f30624i;
+                Context context = this.f30619b;
+                if (tLObject != null) {
+                    if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
+                        AndroidUtilities.runOnUIThread(new mh.z2(tLObject, context, h0Var, this.f30620c, bArr, aVar, qcVar, dVar));
+                        return;
+                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
+                        AndroidUtilities.runOnUIThread(new org.telegram.ui.a31(aVar, qcVar, context, h0Var, 0), 200L);
+                        return;
+                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
+                        AndroidUtilities.runOnUIThread(new org.telegram.ui.bu0(aVar, qcVar, this.d, 6), 200L);
+                        return;
+                    } else {
+                        return;
+                    }
+                } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.a31(aVar, qcVar, context, h0Var, 1), 200L);
+                    return;
+                } else {
+                    return;
+                }
         }
     }
 
-    public r70(org.telegram.ui.ActionBar.d2 d2Var, TLObject tLObject, AccountInstance accountInstance, w70 w70Var, long j10, Context context, org.telegram.ui.ActionBar.p2 p2Var, int i10, TLRPC.Peer peer) {
-        this.f28402b = d2Var;
-        this.f28404f = tLObject;
-        this.h = accountInstance;
-        this.f28405n = w70Var;
-        this.e = j10;
-        this.f28403c = context;
-        this.f28406r = p2Var;
+    public r70(org.telegram.ui.ActionBar.d2 d2Var, AccountInstance accountInstance, y70 y70Var, long j10, Context context, org.telegram.ui.ActionBar.p2 p2Var, int i10, TLRPC.Peer peer) {
+        this.f30621e = d2Var;
+        this.f30622f = accountInstance;
+        this.f30623g = y70Var;
+        this.f30620c = j10;
+        this.f30619b = context;
+        this.h = p2Var;
         this.d = i10;
-        this.f28407s = peer;
+        this.f30624i = peer;
     }
 }

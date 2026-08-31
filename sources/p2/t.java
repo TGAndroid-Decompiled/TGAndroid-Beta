@@ -1,198 +1,245 @@
 package p2;
 
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.os.DeadObjectException;
-import android.os.Parcel;
-import j$.util.Objects;
-import java.util.concurrent.Callable;
-public final class t implements Callable {
-    public final int f41020a;
-    public final Object f41021b;
-    public final Object f41022c;
-    public final Object d;
+import android.content.ComponentName;
+import android.content.ServiceConnection;
+import android.os.IBinder;
+import android.os.IInterface;
+import com.google.android.gms.internal.play_billing.a4;
+import com.google.android.gms.internal.play_billing.b4;
+import com.google.android.gms.internal.play_billing.c4;
+import com.google.android.gms.internal.play_billing.d4;
+import com.google.android.gms.internal.play_billing.f3;
+import com.google.android.gms.internal.play_billing.g3;
+import com.google.android.gms.internal.play_billing.j3;
+import com.google.android.gms.internal.play_billing.k3;
+import com.google.android.gms.internal.play_billing.l3;
+import com.google.android.gms.internal.play_billing.z3;
+import java.util.concurrent.TimeUnit;
+import n7.qa;
+import org.telegram.ui.Components.ul0;
+public final class t implements ServiceConnection {
+    public final c f44176a;
+    public final com.google.android.gms.internal.play_billing.m f44177b;
+    public final com.google.android.gms.internal.play_billing.m f44178c;
+    public final b d;
 
-    public t(Object obj, Object obj2, Object obj3, int i10) {
-        this.f41020a = i10;
-        this.f41021b = obj;
-        this.f41022c = obj2;
-        this.d = obj3;
+    public t(b bVar, c cVar) {
+        this.d = bVar;
+        com.google.android.gms.internal.play_billing.h hVar = bVar.B;
+        this.f44177b = new com.google.android.gms.internal.play_billing.m(hVar);
+        this.f44178c = new com.google.android.gms.internal.play_billing.m(hVar);
+        this.f44176a = cVar;
     }
 
-    private final java.lang.Object a() {
-        throw new UnsupportedOperationException("Method not decompiled: p2.t.a():java.lang.Object");
+    public final Long a(boolean z4) {
+        if (z4) {
+            com.google.android.gms.internal.play_billing.m mVar = this.f44177b;
+            if (mVar.f3534b) {
+                long a2 = mVar.f3533a.a();
+                if (mVar.f3534b) {
+                    mVar.f3534b = false;
+                    long j10 = (a2 - mVar.d) + mVar.f3535c;
+                    mVar.f3535c = j10;
+                    return Long.valueOf(TimeUnit.MILLISECONDS.convert(j10, TimeUnit.NANOSECONDS));
+                }
+                throw new IllegalStateException("This stopwatch is already stopped.");
+            }
+            return null;
+        }
+        com.google.android.gms.internal.play_billing.m mVar2 = this.f44178c;
+        if (mVar2.f3534b) {
+            long a10 = mVar2.f3533a.a();
+            if (mVar2.f3534b) {
+                mVar2.f3534b = false;
+                long j11 = (a10 - mVar2.d) + mVar2.f3535c;
+                mVar2.f3535c = j11;
+                return Long.valueOf(TimeUnit.MILLISECONDS.convert(j11, TimeUnit.NANOSECONDS));
+            }
+            throw new IllegalStateException("This stopwatch is already stopped.");
+        }
+        return null;
     }
 
-    private final java.lang.Object b() {
-        throw new UnsupportedOperationException("Method not decompiled: p2.t.b():java.lang.Object");
-    }
-
-    private final Object c() {
-        Bundle c3;
-        com.google.android.gms.internal.play_billing.c cVar;
-        b bVar = (b) this.f41021b;
-        String str = (String) this.f41022c;
-        String str2 = (String) this.d;
+    public final void b(h hVar, int i10, String str, boolean z4) {
         try {
-            synchronized (bVar.f40941a) {
-                cVar = bVar.f40946i;
+            j3 s6 = k3.s();
+            int i11 = hVar.f44145a;
+            s6.c();
+            k3.r((k3) s6.f3602b, i11);
+            String str2 = hVar.f44147c;
+            s6.c();
+            k3.o((k3) s6.f3602b, str2);
+            s6.c();
+            k3.q((k3) s6.f3602b, i10);
+            if (str != null) {
+                s6.c();
+                k3.n((k3) s6.f3602b, str);
             }
-            if (cVar == null) {
-                return com.google.android.gms.internal.play_billing.u.c(107, b0.h);
+            Long a2 = a(z4);
+            b bVar = this.d;
+            if (z4) {
+                c4 r10 = d4.r();
+                r10.d(false);
+                r10.e();
+                if (a2 != null) {
+                    long longValue = a2.longValue();
+                    r10.c();
+                    d4.p((d4) r10.f3602b, longValue);
+                }
+                f3 u10 = g3.u();
+                u10.d(s6);
+                u10.c();
+                g3.t((g3) u10.f3602b, 6);
+                u10.e(r10);
+                bVar.h((g3) u10.a());
+                return;
             }
-            return ((com.google.android.gms.internal.play_billing.a) cVar).W0(bVar.f40945g.getPackageName(), str, str2);
-        } catch (DeadObjectException e) {
-            h hVar = b0.h;
-            String a2 = z.a(e);
-            c3 = com.google.android.gms.internal.play_billing.u.c(5, hVar);
+            z3 p10 = a4.p();
+            p10.c();
+            a4.n((a4) p10.f3602b, (k3) s6.a());
             if (a2 != null) {
-                c3.putString("ADDITIONAL_LOG_DETAILS", a2);
+                long longValue2 = a2.longValue();
+                p10.c();
+                a4.o((a4) p10.f3602b, longValue2);
             }
-            return c3;
-        } catch (Exception e6) {
-            h hVar2 = b0.f40966f;
-            String a10 = z.a(e6);
-            c3 = com.google.android.gms.internal.play_billing.u.c(5, hVar2);
-            if (a10 != null) {
-                c3.putString("ADDITIONAL_LOG_DETAILS", a10);
+            bVar.h.r1((a4) p10.a());
+        } catch (Throwable th2) {
+            com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
+        }
+    }
+
+    public final void c(h hVar) {
+        b bVar = this.d;
+        synchronized (bVar.f44103a) {
+            try {
+                if (bVar.f44104b == 3) {
+                    return;
+                }
+                try {
+                    this.f44176a.onBillingSetupFinished(hVar);
+                } catch (Throwable th2) {
+                    com.google.android.gms.internal.play_billing.u.i("BillingClient", "Exception while calling onBillingSetupFinished.", th2);
+                }
+            } catch (Throwable th3) {
+                throw th3;
             }
-            return c3;
         }
     }
 
     @Override
-    public final Object call() {
-        Exception exc;
-        DeadObjectException deadObjectException;
-        com.google.android.gms.internal.play_billing.c cVar;
-        int readInt;
-        String str;
-        switch (this.f41020a) {
-            case 0:
-                b bVar = (b) this.f41021b;
-                j jVar = (j) this.f41022c;
-                i iVar = (i) this.d;
-                if (!bVar.n()) {
-                    h hVar = b0.h;
-                    bVar.y(2, 4, hVar);
-                    jVar.a(hVar, iVar.f40996a);
-                    return null;
-                }
-                String str2 = "Error consuming purchase with token. Response code: ";
-                String str3 = iVar.f40996a;
+    public final void onBindingDied(ComponentName componentName) {
+        com.google.android.gms.internal.play_billing.u.h("BillingClient", "Billing service died.");
+        try {
+            b bVar = this.d;
+            if (b.q(bVar)) {
+                qa qaVar = bVar.h;
+                f3 u10 = g3.u();
+                u10.c();
+                g3.t((g3) u10.f3602b, 6);
+                j3 s6 = k3.s();
+                s6.c();
+                k3.q((k3) s6.f3602b, 110);
+                u10.d(s6);
+                c4 r10 = d4.r();
+                r10.d(false);
+                r10.e();
+                u10.e(r10);
+                qaVar.k1((g3) u10.a());
+            } else {
+                bVar.h.q1(l3.n());
+            }
+        } catch (Throwable th2) {
+            com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
+        }
+        b bVar2 = this.d;
+        synchronized (bVar2.f44103a) {
+            if (bVar2.f44104b != 3 && bVar2.f44104b != 0) {
+                bVar2.k(0);
+                bVar2.m();
                 try {
-                    com.google.android.gms.internal.play_billing.u.g("BillingClient", "Consuming purchase with token: ".concat(str3));
-                    try {
-                        synchronized (bVar.f40941a) {
-                            try {
-                                cVar = bVar.f40946i;
-                            } catch (Throwable th2) {
-                                th = th2;
-                                while (true) {
-                                    try {
-                                        throw th;
-                                    } catch (Throwable th3) {
-                                        th = th3;
-                                    }
-                                }
-                            }
-                        }
-                        try {
-                            if (cVar == null) {
-                                str2 = str3;
-                                try {
-                                    bVar.g(jVar, str2, b0.h, 107, "Service has been reset to null.", null);
-                                    return null;
-                                } catch (DeadObjectException e) {
-                                    e = e;
-                                    deadObjectException = e;
-                                    bVar.g(jVar, str2, b0.h, 29, "Error consuming purchase!", deadObjectException);
-                                    return null;
-                                } catch (Exception e6) {
-                                    e = e6;
-                                    exc = e;
-                                    bVar.g(jVar, str2, b0.f40966f, 29, "Error consuming purchase!", exc);
-                                    return null;
-                                }
-                            }
-                            if (bVar.f40951n) {
-                                String packageName = bVar.f40945g.getPackageName();
-                                boolean z4 = bVar.f40951n;
-                                String str4 = bVar.f40943c;
-                                String str5 = bVar.d;
-                                long longValue = bVar.A.longValue();
-                                Bundle bundle = new Bundle();
-                                if (z4) {
-                                    com.google.android.gms.internal.play_billing.u.b(bundle, str4, str5, longValue);
-                                }
-                                Bundle V0 = ((com.google.android.gms.internal.play_billing.a) cVar).V0(packageName, str3, bundle);
-                                readInt = V0.getInt("RESPONSE_CODE");
-                                str = com.google.android.gms.internal.play_billing.u.f("BillingClient", V0);
-                            } else {
-                                String packageName2 = bVar.f40945g.getPackageName();
-                                com.google.android.gms.internal.play_billing.a aVar = (com.google.android.gms.internal.play_billing.a) cVar;
-                                Parcel S0 = aVar.S0();
-                                S0.writeInt(3);
-                                S0.writeString(packageName2);
-                                S0.writeString(str3);
-                                Parcel T0 = aVar.T0(S0, 5);
-                                readInt = T0.readInt();
-                                T0.recycle();
-                                str = "";
-                            }
-                            h a2 = b0.a(readInt, str);
-                            if (readInt == 0) {
-                                com.google.android.gms.internal.play_billing.u.g("BillingClient", "Successfully consumed purchase.");
-                                jVar.a(a2, str3);
-                                return null;
-                            }
-                            bVar.g(jVar, str3, a2, 23, "Error consuming purchase with token. Response code: " + readInt, null);
-                            return null;
-                        } catch (DeadObjectException e10) {
-                            deadObjectException = e10;
-                            str2 = str3;
-                            bVar.g(jVar, str2, b0.h, 29, "Error consuming purchase!", deadObjectException);
-                            return null;
-                        } catch (Exception e11) {
-                            exc = e11;
-                            str2 = str3;
-                            bVar.g(jVar, str2, b0.f40966f, 29, "Error consuming purchase!", exc);
-                            return null;
-                        }
-                    } catch (DeadObjectException e12) {
-                        e = e12;
-                    } catch (Exception e13) {
-                        e = e13;
-                    }
-                } catch (DeadObjectException e14) {
-                    e = e14;
-                    str2 = str3;
-                } catch (Exception e15) {
-                    e = e15;
-                    str2 = str3;
+                    this.f44176a.onBillingServiceDisconnected();
+                } catch (Throwable th3) {
+                    com.google.android.gms.internal.play_billing.u.i("BillingClient", "Exception while calling onBillingServiceDisconnected.", th3);
                 }
-            case 1:
-                return a();
-            case 2:
-                return b();
-            case 3:
-                return c();
-            case 4:
-                return Boolean.valueOf(((SharedPreferences) this.f41021b).getBoolean((String) this.f41022c, ((Boolean) this.d).booleanValue()));
-            case 5:
-                return Integer.valueOf(((SharedPreferences) this.f41021b).getInt((String) this.f41022c, ((Integer) this.d).intValue()));
-            case 6:
-                return Long.valueOf(((SharedPreferences) this.f41021b).getLong((String) this.f41022c, ((Long) this.d).longValue()));
-            default:
-                return ((SharedPreferences) this.f41021b).getString((String) this.f41022c, (String) this.d);
+            }
         }
     }
 
-    public t(b bVar, o oVar, String str) {
-        this.f41020a = 2;
-        this.f41022c = oVar;
-        this.d = str;
-        Objects.requireNonNull(bVar);
-        this.f41021b = bVar;
+    @Override
+    public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+        com.google.android.gms.internal.play_billing.c aVar;
+        com.google.android.gms.internal.play_billing.u.g("BillingClient", "Billing service connected.");
+        b bVar = this.d;
+        synchronized (bVar.f44103a) {
+            try {
+                if (bVar.f44104b == 3) {
+                    return;
+                }
+                int i10 = com.google.android.gms.internal.play_billing.b.f3438b;
+                if (iBinder == null) {
+                    aVar = 0;
+                } else {
+                    IInterface queryLocalInterface = iBinder.queryLocalInterface("com.android.vending.billing.IInAppBillingService");
+                    if (queryLocalInterface instanceof com.google.android.gms.internal.play_billing.c) {
+                        aVar = (com.google.android.gms.internal.play_billing.c) queryLocalInterface;
+                    } else {
+                        aVar = new a7.a(iBinder, "com.android.vending.billing.IInAppBillingService", 2);
+                    }
+                }
+                bVar.f44109i = aVar;
+                if (b.f(new h2.f(this, 8), 30000L, new ul0(this, 6), bVar.r(), bVar.e()) == null) {
+                    h u10 = bVar.u();
+                    bVar.j(25, u10);
+                    c(u10);
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    @Override
+    public final void onServiceDisconnected(ComponentName componentName) {
+        com.google.android.gms.internal.play_billing.u.h("BillingClient", "Billing service disconnected.");
+        try {
+            b bVar = this.d;
+            if (b.q(bVar)) {
+                qa qaVar = bVar.h;
+                f3 u10 = g3.u();
+                u10.c();
+                g3.t((g3) u10.f3602b, 6);
+                j3 s6 = k3.s();
+                s6.c();
+                k3.q((k3) s6.f3602b, 109);
+                u10.d(s6);
+                c4 r10 = d4.r();
+                r10.d(false);
+                r10.e();
+                u10.e(r10);
+                qaVar.k1((g3) u10.a());
+            } else {
+                bVar.h.t1(b4.n());
+            }
+        } catch (Throwable th2) {
+            com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
+        }
+        com.google.android.gms.internal.play_billing.m mVar = this.f44178c;
+        mVar.f3535c = 0L;
+        mVar.f3534b = false;
+        mVar.a();
+        b bVar2 = this.d;
+        synchronized (bVar2.f44103a) {
+            try {
+                if (bVar2.f44104b != 3) {
+                    bVar2.k(0);
+                    try {
+                        this.f44176a.onBillingServiceDisconnected();
+                    } catch (Throwable th3) {
+                        com.google.android.gms.internal.play_billing.u.i("BillingClient", "Exception while calling onBillingServiceDisconnected.", th3);
+                    }
+                }
+            } finally {
+            }
+        }
     }
 }

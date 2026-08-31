@@ -1,8 +1,8 @@
 package h5;
 public final class x {
-    public static final x f7003c = new x(-1, -1);
-    public final int f7004a;
-    public final int f7005b;
+    public static final x f7311c = new x(-1, -1);
+    public final int f7312a;
+    public final int f7313b;
 
     static {
         new x(0, 0);
@@ -16,8 +16,8 @@ public final class x {
             z4 = true;
         }
         a.f(z4);
-        this.f7004a = i10;
-        this.f7005b = i11;
+        this.f7312a = i10;
+        this.f7313b = i11;
     }
 
     public final boolean equals(Object obj) {
@@ -29,7 +29,7 @@ public final class x {
         }
         if (obj instanceof x) {
             x xVar = (x) obj;
-            if (this.f7004a == xVar.f7004a && this.f7005b == xVar.f7005b) {
+            if (this.f7312a == xVar.f7312a && this.f7313b == xVar.f7313b) {
                 return true;
             }
         }
@@ -37,11 +37,11 @@ public final class x {
     }
 
     public final int hashCode() {
-        int i10 = this.f7004a;
-        return ((i10 >>> 16) | (i10 << 16)) ^ this.f7005b;
+        int i10 = this.f7312a;
+        return ((i10 >>> 16) | (i10 << 16)) ^ this.f7313b;
     }
 
     public final String toString() {
-        return this.f7004a + "x" + this.f7005b;
+        return this.f7312a + "x" + this.f7313b;
     }
 }

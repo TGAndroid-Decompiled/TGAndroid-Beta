@@ -2,24 +2,24 @@ package n1;
 
 import kotlin.jvm.internal.j;
 public final class d {
-    public final String f14213a;
+    public final String f15187a;
 
     public d(String str) {
-        this.f14213a = str;
+        this.f15187a = str;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof d) {
-            return j.a(this.f14213a, ((d) obj).f14213a);
+            return j.a(this.f15187a, ((d) obj).f15187a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f14213a.hashCode();
+        return this.f15187a.hashCode();
     }
 
     public final String toString() {
-        return this.f14213a;
+        return this.f15187a;
     }
 }

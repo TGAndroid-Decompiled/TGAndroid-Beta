@@ -5,14 +5,14 @@ import b4.f0;
 import h5.c0;
 import java.util.ArrayList;
 import java.util.Collections;
-import org.telegram.ui.al0;
+import org.telegram.ui.cl0;
 import q5.g0;
 import s8.i0;
 public final class i {
-    public static final int[] f43224b = {5, 4, 12, 8, 3, 10, 9, 11, 6, 2, 0, 1, 7, 16, 15, 14};
-    public static final g0 f43225c = new g0(new al0(24));
-    public static final g0 d = new g0(new al0(25));
-    public i0 f43226a;
+    public static final int[] f46559b = {5, 4, 12, 8, 3, 10, 9, 11, 6, 2, 0, 1, 7, 16, 15, 14};
+    public static final g0 f46560c = new g0(new cl0(24));
+    public static final g0 d = new g0(new cl0(25));
+    public i0 f46561a;
 
     public final void a(int i10, ArrayList arrayList) {
         switch (i10) {
@@ -29,9 +29,9 @@ public final class i {
                 arrayList.add(new s3.a(1));
                 return;
             case 4:
-                k K = f43225c.K(0);
-                if (K != null) {
-                    arrayList.add(K);
+                k I = f46560c.I(0);
+                if (I != null) {
+                    arrayList.add(I);
                     return;
                 } else {
                     arrayList.add(new u3.a());
@@ -57,18 +57,18 @@ public final class i {
                 arrayList.add(new a0());
                 return;
             case 11:
-                if (this.f43226a == null) {
-                    s8.t tVar = s8.v.f44157b;
-                    this.f43226a = i0.e;
+                if (this.f46561a == null) {
+                    s8.t tVar = s8.v.f47143b;
+                    this.f46561a = i0.f47108e;
                 }
-                arrayList.add(new f0(1, new c0(0L), new b4.f(0, this.f43226a)));
+                arrayList.add(new f0(1, new c0(0L), new b4.f(0, this.f46561a)));
                 return;
             case 12:
                 ?? obj = new Object();
-                obj.f2069c = 0;
+                obj.f2249c = 0;
                 obj.d = -1L;
-                obj.f2070f = -1;
-                obj.f2071g = -1L;
+                obj.f2251f = -1;
+                obj.f2252g = -1L;
                 arrayList.add(obj);
                 return;
             case 13:
@@ -78,9 +78,9 @@ public final class i {
                 arrayList.add(new w3.a());
                 return;
             case 15:
-                k K2 = d.K(new Object[0]);
-                if (K2 != null) {
-                    arrayList.add(K2);
+                k I2 = d.I(new Object[0]);
+                if (I2 != null) {
+                    arrayList.add(I2);
                     return;
                 }
                 return;

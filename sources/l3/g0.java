@@ -3,41 +3,41 @@ package l3;
 import android.media.AudioAttributes;
 import android.media.AudioTrack;
 public final class g0 {
-    public final j3.n0 f11142a;
-    public final int f11143b;
-    public final int f11144c;
+    public final j3.n0 f11505a;
+    public final int f11506b;
+    public final int f11507c;
     public final int d;
-    public final int e;
-    public final int f11145f;
-    public final int f11146g;
+    public final int f11508e;
+    public final int f11509f;
+    public final int f11510g;
     public final int h;
-    public final k f11147i;
-    public final boolean f11148j;
+    public final k f11511i;
+    public final boolean f11512j;
 
     public g0(j3.n0 n0Var, int i10, int i11, int i12, int i13, int i14, int i15, int i16, k kVar, boolean z4) {
-        this.f11142a = n0Var;
-        this.f11143b = i10;
-        this.f11144c = i11;
+        this.f11505a = n0Var;
+        this.f11506b = i10;
+        this.f11507c = i11;
         this.d = i12;
-        this.e = i13;
-        this.f11145f = i14;
-        this.f11146g = i15;
+        this.f11508e = i13;
+        this.f11509f = i14;
+        this.f11510g = i15;
         this.h = i16;
-        this.f11147i = kVar;
-        this.f11148j = z4;
+        this.f11511i = kVar;
+        this.f11512j = z4;
     }
 
     public static AudioAttributes c(d dVar, boolean z4) {
         if (z4) {
             return new AudioAttributes.Builder().setContentType(3).setFlags(16).setUsage(1).build();
         }
-        return (AudioAttributes) dVar.a().f9354b;
+        return (AudioAttributes) dVar.a().f16615b;
     }
 
     public final AudioTrack a(boolean z4, d dVar, int i10) {
         boolean z10;
         boolean z11;
-        int i11 = this.f11144c;
+        int i11 = this.f11507c;
         try {
             AudioTrack b10 = b(z4, dVar, i10);
             int state = b10.getState();
@@ -53,34 +53,34 @@ public final class g0 {
             } else {
                 z11 = false;
             }
-            throw new s(state, this.e, this.f11145f, this.h, this.f11142a, z11, null);
-        } catch (IllegalArgumentException | UnsupportedOperationException e) {
+            throw new s(state, this.f11508e, this.f11509f, this.h, this.f11505a, z11, null);
+        } catch (IllegalArgumentException | UnsupportedOperationException e6) {
             if (i11 == 1) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            throw new s(0, this.e, this.f11145f, this.h, this.f11142a, z10, e);
+            throw new s(0, this.f11508e, this.f11509f, this.h, this.f11505a, z10, e6);
         }
     }
 
     public final AudioTrack b(boolean z4, d dVar, int i10) {
         int i11;
-        int i12 = h5.d0.f6937a;
+        int i12 = h5.d0.f7237a;
         boolean z10 = false;
-        int i13 = this.f11146g;
-        int i14 = this.f11145f;
-        int i15 = this.e;
+        int i13 = this.f11510g;
+        int i14 = this.f11509f;
+        int i15 = this.f11508e;
         if (i12 >= 29) {
             AudioTrack.Builder sessionId = new AudioTrack.Builder().setAudioAttributes(c(dVar, z4)).setAudioFormat(k0.g(i15, i14, i13)).setTransferMode(1).setBufferSizeInBytes(this.h).setSessionId(i10);
-            if (this.f11144c == 1) {
+            if (this.f11507c == 1) {
                 z10 = true;
             }
             return sessionId.setOffloadedPlayback(z10).build();
         } else if (i12 >= 21) {
             return new AudioTrack(c(dVar, z4), k0.g(i15, i14, i13), this.h, 1, i10);
         } else {
-            int i16 = dVar.f11135c;
+            int i16 = dVar.f11496c;
             if (i16 != 13) {
                 switch (i16) {
                     case 2:
@@ -110,9 +110,9 @@ public final class g0 {
                 i11 = 1;
             }
             if (i10 == 0) {
-                return new AudioTrack(i11, this.e, this.f11145f, this.f11146g, this.h, 1);
+                return new AudioTrack(i11, this.f11508e, this.f11509f, this.f11510g, this.h, 1);
             }
-            return new AudioTrack(i11, this.e, this.f11145f, this.f11146g, this.h, 1, i10);
+            return new AudioTrack(i11, this.f11508e, this.f11509f, this.f11510g, this.h, 1, i10);
         }
     }
 }

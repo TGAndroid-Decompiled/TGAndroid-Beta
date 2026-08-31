@@ -3,17 +3,17 @@ package mc;
 import java.util.ArrayList;
 import java.util.Map;
 public final class a extends c {
-    public final a e;
-    public ArrayList f13910f;
+    public final a f13628e;
+    public ArrayList f13629f;
 
     public a(String str, int i10, Map map, a aVar) {
         super(i10, str, map);
-        this.e = aVar;
+        this.f13628e = aVar;
     }
 
     @Override
     public final Map a() {
-        return this.f13913c;
+        return this.f13632c;
     }
 
     public final void b(int i10) {
@@ -21,7 +21,7 @@ public final class a extends c {
             return;
         }
         this.d = i10;
-        ArrayList arrayList = this.f13910f;
+        ArrayList arrayList = this.f13629f;
         if (arrayList != null) {
             int size = arrayList.size();
             int i11 = 0;
@@ -36,23 +36,23 @@ public final class a extends c {
     public final String toString() {
         String str;
         StringBuilder sb = new StringBuilder("BlockImpl{name='");
-        sb.append(this.f13911a);
+        sb.append(this.f13630a);
         sb.append("', start=");
-        sb.append(this.f13912b);
+        sb.append(this.f13631b);
         sb.append(", end=");
         sb.append(this.d);
         sb.append(", attributes=");
-        sb.append(this.f13913c);
+        sb.append(this.f13632c);
         sb.append(", parent=");
-        a aVar = this.e;
+        a aVar = this.f13628e;
         if (aVar != null) {
-            str = aVar.f13911a;
+            str = aVar.f13630a;
         } else {
             str = null;
         }
         sb.append(str);
         sb.append(", children=");
-        sb.append(this.f13910f);
+        sb.append(this.f13629f);
         sb.append('}');
         return sb.toString();
     }

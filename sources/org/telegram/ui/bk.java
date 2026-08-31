@@ -10,12 +10,12 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class bk extends org.telegram.ui.Components.pa0 {
+public final class bk extends org.telegram.ui.Components.ra0 {
     public boolean S;
     public final xn T;
 
-    public bk(xn xnVar, Context context, long j10, long j11, xn xnVar2, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, j10, j11, xnVar2, f6Var);
+    public bk(xn xnVar, Context context, long j10, long j11, xn xnVar2, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, j10, j11, xnVar2, g6Var);
         this.T = xnVar;
         this.S = true;
     }
@@ -23,7 +23,7 @@ public final class bk extends org.telegram.ui.Components.pa0 {
     @Override
     public final boolean a() {
         xn xnVar = this.T;
-        if (xnVar.O.getVisibility() == 0 && !xnVar.f40074k3) {
+        if (xnVar.O.getVisibility() == 0 && !xnVar.f43243k3) {
             return false;
         }
         return true;
@@ -58,7 +58,7 @@ public final class bk extends org.telegram.ui.Components.pa0 {
             }
             String str2 = botInlineResult.description;
             String str3 = botInlineResult.content.url;
-            org.telegram.ui.Components.pu.I(xnVar, null, ylVar, str, str2, str3, str3, inlineResultWidthAndHeight[0], inlineResultWidthAndHeight[1], -1, xnVar.x9());
+            org.telegram.ui.Components.ru.I(xnVar, null, ylVar, str, str2, str3, str3, inlineResultWidthAndHeight[0], inlineResultWidthAndHeight[1], -1, xnVar.x9());
         }
     }
 
@@ -68,12 +68,12 @@ public final class bk extends org.telegram.ui.Components.pa0 {
         xn xnVar = this.T;
         jk jkVar = xnVar.V;
         if (jkVar != null) {
-            tf.u0 adapter = getAdapter();
-            TLRPC.User user = adapter.f44860t0;
+            uf.u0 adapter = getAdapter();
+            TLRPC.User user = adapter.f48717t0;
             if (user != null) {
                 str = user.bot_inline_placeholder;
             } else {
-                String str2 = adapter.f44852n0;
+                String str2 = adapter.f48709n0;
                 if (str2 != null && str2.equals("gif")) {
                     str = LocaleController.getString(R.string.SearchGifsTitle);
                 } else {
@@ -84,12 +84,12 @@ public final class bk extends org.telegram.ui.Components.pa0 {
             org.telegram.ui.Components.ne neVar = xnVar.V.L1;
             if (neVar != null) {
                 if (z4) {
-                    neVar.e = true;
-                    neVar.f24346b = System.currentTimeMillis();
+                    neVar.f26982e = true;
+                    neVar.f26980b = System.currentTimeMillis();
                     neVar.invalidateSelf();
                     return;
                 }
-                neVar.e = false;
+                neVar.f26982e = false;
             }
         }
     }
@@ -100,11 +100,11 @@ public final class bk extends org.telegram.ui.Components.pa0 {
         if (xnVar.W4 && ((getAdapter().O == null || xnVar.X4 || xnVar.Y4) && xnVar.h != null && getAdapter().O != null)) {
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             if (!globalMainSettings.getBoolean("secretbot", false)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xnVar.getParentActivity(), 0, xnVar.f39968ba);
-                alertDialog$Builder.f19503a.O = LocaleController.getString(R.string.AppName);
-                alertDialog$Builder.f19503a.Q = LocaleController.getString(R.string.SecretChatContextBotAlert);
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xnVar.getParentActivity(), 0, xnVar.f43136ba);
+                alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.SecretChatContextBotAlert);
                 alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                xnVar.showDialog(alertDialog$Builder.f19503a);
+                xnVar.showDialog(alertDialog$Builder.f21166a);
                 globalMainSettings.edit().putBoolean("secretbot", true).commit();
             }
         }
@@ -116,13 +116,13 @@ public final class bk extends org.telegram.ui.Components.pa0 {
         boolean z10;
         if (this.S != z4) {
             xn xnVar = this.T;
-            org.telegram.ui.Components.qy0 qy0Var = xnVar.f39946a1;
+            org.telegram.ui.Components.ry0 ry0Var = xnVar.f43114a1;
             if (!xnVar.isInPreviewMode() && z4) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            AndroidUtilities.updateViewShow(qy0Var, z10, false, true);
+            AndroidUtilities.updateViewShow(ry0Var, z10, false, true);
             this.S = z4;
         }
     }

@@ -9,19 +9,19 @@ import android.os.Process;
 import android.util.Log;
 import java.util.Calendar;
 public final class n extends f2.v {
-    public final int f6277c = 0;
+    public final int f6745c = 0;
     public final q d;
-    public final Object e;
+    public final Object f6746e;
 
     public n(q qVar, androidx.biometric.e eVar) {
         super(qVar);
         this.d = qVar;
-        this.e = eVar;
+        this.f6746e = eVar;
     }
 
     @Override
     public final IntentFilter d() {
-        switch (this.f6277c) {
+        switch (this.f6745c) {
             case 0:
                 IntentFilter intentFilter = new IntentFilter();
                 intentFilter.addAction("android.os.action.POWER_SAVE_MODE_CHANGED");
@@ -41,25 +41,25 @@ public final class n extends f2.v {
         boolean z4;
         long j10;
         Location location2;
-        switch (this.f6277c) {
+        switch (this.f6745c) {
             case 0:
-                if (((PowerManager) this.e).isPowerSaveMode()) {
+                if (((PowerManager) this.f6746e).isPowerSaveMode()) {
                     return 2;
                 }
                 return 1;
             default:
-                androidx.biometric.e eVar = (androidx.biometric.e) this.e;
+                androidx.biometric.e eVar = (androidx.biometric.e) this.f6746e;
                 x xVar = (x) eVar.d;
-                LocationManager locationManager = (LocationManager) eVar.f479c;
-                if (xVar.f6326a > System.currentTimeMillis()) {
-                    z4 = xVar.f6327b;
+                LocationManager locationManager = (LocationManager) eVar.f528c;
+                if (xVar.f6799a > System.currentTimeMillis()) {
+                    z4 = xVar.f6800b;
                 } else {
-                    Context context = (Context) eVar.f478b;
+                    Context context = (Context) eVar.f527b;
                     Location location3 = null;
-                    if (f0.f.a(context, "android.permission.ACCESS_COARSE_LOCATION", Process.myPid(), Process.myUid(), context.getPackageName()) == 0) {
+                    if (f0.e.a(context, "android.permission.ACCESS_COARSE_LOCATION", Process.myPid(), Process.myUid(), context.getPackageName()) == 0) {
                         try {
-                        } catch (Exception e) {
-                            Log.d("TwilightManager", "Failed to get last known location", e);
+                        } catch (Exception e6) {
+                            Log.d("TwilightManager", "Failed to get last known location", e6);
                         }
                         if (locationManager.isProviderEnabled("network")) {
                             location2 = locationManager.getLastKnownLocation("network");
@@ -70,13 +70,13 @@ public final class n extends f2.v {
                     } else {
                         location = null;
                     }
-                    if (f0.f.a(context, "android.permission.ACCESS_FINE_LOCATION", Process.myPid(), Process.myUid(), context.getPackageName()) == 0) {
+                    if (f0.e.a(context, "android.permission.ACCESS_FINE_LOCATION", Process.myPid(), Process.myUid(), context.getPackageName()) == 0) {
                         try {
                             if (locationManager.isProviderEnabled("gps")) {
                                 location3 = locationManager.getLastKnownLocation("gps");
                             }
-                        } catch (Exception e6) {
-                            Log.d("TwilightManager", "Failed to get last known location", e6);
+                        } catch (Exception e10) {
+                            Log.d("TwilightManager", "Failed to get last known location", e10);
                         }
                     }
                     if (location3 == null || location == null ? location3 != null : location3.getTime() > location.getTime()) {
@@ -91,13 +91,13 @@ public final class n extends f2.v {
                         w wVar = w.d;
                         wVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis - 86400000);
                         wVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis);
-                        if (wVar.f6325c == 1) {
+                        if (wVar.f6798c == 1) {
                             z4 = true;
                         }
-                        long j11 = wVar.f6324b;
-                        long j12 = wVar.f6323a;
+                        long j11 = wVar.f6797b;
+                        long j12 = wVar.f6796a;
                         wVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis + 86400000);
-                        long j13 = wVar.f6324b;
+                        long j13 = wVar.f6797b;
                         if (j11 != -1 && j12 != -1) {
                             if (currentTimeMillis > j12) {
                                 j11 = j13;
@@ -108,8 +108,8 @@ public final class n extends f2.v {
                         } else {
                             j10 = currentTimeMillis + 43200000;
                         }
-                        xVar.f6327b = z4;
-                        xVar.f6326a = j10;
+                        xVar.f6800b = z4;
+                        xVar.f6799a = j10;
                     } else {
                         Log.i("TwilightManager", "Could not get last known location. This is probably because the app does not have any location permissions. Falling back to hardcoded sunrise/sunset values.");
                         int i10 = Calendar.getInstance().get(11);
@@ -127,7 +127,7 @@ public final class n extends f2.v {
 
     @Override
     public final void k() {
-        switch (this.f6277c) {
+        switch (this.f6745c) {
             case 0:
                 this.d.d(true);
                 return;
@@ -140,6 +140,6 @@ public final class n extends f2.v {
     public n(q qVar, Context context) {
         super(qVar);
         this.d = qVar;
-        this.e = (PowerManager) context.getApplicationContext().getSystemService("power");
+        this.f6746e = (PowerManager) context.getApplicationContext().getSystemService("power");
     }
 }

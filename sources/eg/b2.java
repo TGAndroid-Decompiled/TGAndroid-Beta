@@ -1,70 +1,38 @@
 package eg;
 
 import android.content.Context;
-import android.view.MotionEvent;
+import android.graphics.Canvas;
 import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.Emoji;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.e90;
-public final class b2 extends e90 {
-    public final int I;
+import org.telegram.messenger.AndroidUtilities;
+public final class b2 extends View {
+    public int f5094a;
+    public float f5095b;
+    public final c2 f5096c;
 
-    public b2(Context context, int i10, f6 f6Var) {
-        super(context, f6Var);
-        this.I = i10;
+    public b2(c2 c2Var, Context context) {
+        super(context);
+        this.f5096c = c2Var;
+        setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+        setLayoutParams(new f2.x0(-2, 0));
     }
 
     @Override
-    public int a() {
-        switch (this.I) {
-            case 0:
-                return 3;
-            default:
-                return super.a();
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        c2 c2Var = this.f5096c;
+        c2Var.U2.setColor(this.f5094a);
+        float min = Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f;
+        if (this.f5095b != 0.0f) {
+            min -= (c2Var.V2.getStrokeWidth() + AndroidUtilities.dp(3.0f)) * this.f5095b;
         }
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.I) {
-            case 5:
-                if (getAlpha() < 0.9f) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return super.dispatchTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.I) {
-            case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    @Override
-    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.I) {
-            case 2:
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
-                return;
-            case 3:
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
-                return;
-            case 4:
-                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
-                return;
-            default:
-                super.setText(charSequence, bufferType);
-                return;
+        float width = ((getWidth() / 2.0f) + getPaddingLeft()) - getPaddingRight();
+        float height = ((getHeight() / 2.0f) + getPaddingTop()) - getPaddingBottom();
+        c2.x1(width, height, min, this.f5094a, canvas);
+        if (this.f5095b != 0.0f) {
+            float min2 = (Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f);
+            c2Var.V2.setColor(this.f5094a);
+            c2Var.V2.setAlpha(255);
+            canvas.drawCircle(width, height, min2, c2Var.V2);
         }
     }
 }

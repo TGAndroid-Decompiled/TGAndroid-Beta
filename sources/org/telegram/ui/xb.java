@@ -10,43 +10,43 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class xb implements RequestDelegate {
-    public final int f39891a;
-    public final bc f39892b;
-    public final CountDownLatch f39893c;
+    public final int f43018a;
+    public final ac f43019b;
+    public final CountDownLatch f43020c;
     public final Runnable d;
 
-    public xb(bc bcVar, CountDownLatch countDownLatch, Runnable runnable, int i10) {
-        this.f39891a = i10;
-        this.f39892b = bcVar;
-        this.f39893c = countDownLatch;
+    public xb(ac acVar, CountDownLatch countDownLatch, Runnable runnable, int i10) {
+        this.f43018a = i10;
+        this.f43019b = acVar;
+        this.f43020c = countDownLatch;
         this.d = runnable;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f39891a) {
+        switch (this.f43018a) {
             case 0:
-                final bc bcVar = this.f39892b;
-                final CountDownLatch countDownLatch = this.f39893c;
+                final ac acVar = this.f43019b;
+                final CountDownLatch countDownLatch = this.f43020c;
                 final Runnable runnable = this.d;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
                             case 0:
-                                bc bcVar2 = bcVar;
-                                ArrayList arrayList = bcVar2.h;
+                                ac acVar2 = acVar;
+                                ArrayList arrayList = acVar2.h;
                                 CountDownLatch countDownLatch2 = countDownLatch;
                                 if (countDownLatch2 != null) {
                                     countDownLatch2.countDown();
                                 }
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null) {
-                                    bcVar2.K = 20;
+                                    acVar2.K = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject2;
                                     boolean z4 = false;
-                                    MessagesController.getInstance(bcVar2.f32895b).putUsers(tL_premium_boostsList.users, false);
-                                    bcVar2.H = tL_premium_boostsList.next_offset;
+                                    MessagesController.getInstance(acVar2.f35119b).putUsers(tL_premium_boostsList.users, false);
+                                    acVar2.H = tL_premium_boostsList.next_offset;
                                     arrayList.addAll(tL_premium_boostsList.boosts);
                                     int size = arrayList.size();
                                     int i10 = 0;
@@ -62,12 +62,12 @@ public final class xb implements RequestDelegate {
                                             }
                                             i10 += i12;
                                         } else {
-                                            bcVar2.f32900s = Math.max(0, tL_premium_boostsList.count - i10);
-                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && bcVar2.f32900s > 0) {
+                                            acVar2.f35125s = Math.max(0, tL_premium_boostsList.count - i10);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && acVar2.f35125s > 0) {
                                                 z4 = true;
                                             }
-                                            bcVar2.f32899r = z4;
-                                            bcVar2.M = tL_premium_boostsList.count;
+                                            acVar2.f35124r = z4;
+                                            acVar2.M = tL_premium_boostsList.count;
                                             Runnable runnable2 = runnable;
                                             if (runnable2 != null) {
                                                 runnable2.run();
@@ -81,19 +81,19 @@ public final class xb implements RequestDelegate {
                                 }
                                 break;
                             default:
-                                bc bcVar3 = bcVar;
-                                ArrayList arrayList2 = bcVar3.f32898n;
+                                ac acVar3 = acVar;
+                                ArrayList arrayList2 = acVar3.f35123n;
                                 CountDownLatch countDownLatch3 = countDownLatch;
                                 if (countDownLatch3 != null) {
                                     countDownLatch3.countDown();
                                 }
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 != null) {
-                                    bcVar3.J = 20;
+                                    acVar3.J = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList2 = (TL_stories.TL_premium_boostsList) tLObject3;
                                     boolean z10 = false;
-                                    MessagesController.getInstance(bcVar3.f32895b).putUsers(tL_premium_boostsList2.users, false);
-                                    bcVar3.I = tL_premium_boostsList2.next_offset;
+                                    MessagesController.getInstance(acVar3.f35119b).putUsers(tL_premium_boostsList2.users, false);
+                                    acVar3.I = tL_premium_boostsList2.next_offset;
                                     arrayList2.addAll(tL_premium_boostsList2.boosts);
                                     int size2 = arrayList2.size();
                                     int i14 = 0;
@@ -109,12 +109,12 @@ public final class xb implements RequestDelegate {
                                             }
                                             i14 += i16;
                                         } else {
-                                            bcVar3.f32901w = Math.max(0, tL_premium_boostsList2.count - i14);
-                                            if (!TextUtils.isEmpty(tL_premium_boostsList2.next_offset) && bcVar3.f32901w > 0) {
+                                            acVar3.f35126w = Math.max(0, tL_premium_boostsList2.count - i14);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList2.next_offset) && acVar3.f35126w > 0) {
                                                 z10 = true;
                                             }
-                                            bcVar3.v = z10;
-                                            bcVar3.L = tL_premium_boostsList2.count;
+                                            acVar3.v = z10;
+                                            acVar3.L = tL_premium_boostsList2.count;
                                             Runnable runnable3 = runnable;
                                             if (runnable3 != null) {
                                                 runnable3.run();
@@ -132,27 +132,27 @@ public final class xb implements RequestDelegate {
                 });
                 return;
             default:
-                final bc bcVar2 = this.f39892b;
-                final CountDownLatch countDownLatch2 = this.f39893c;
+                final ac acVar2 = this.f43019b;
+                final CountDownLatch countDownLatch2 = this.f43020c;
                 final Runnable runnable2 = this.d;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
                             case 0:
-                                bc bcVar22 = bcVar2;
-                                ArrayList arrayList = bcVar22.h;
+                                ac acVar22 = acVar2;
+                                ArrayList arrayList = acVar22.h;
                                 CountDownLatch countDownLatch22 = countDownLatch2;
                                 if (countDownLatch22 != null) {
                                     countDownLatch22.countDown();
                                 }
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null) {
-                                    bcVar22.K = 20;
+                                    acVar22.K = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject2;
                                     boolean z4 = false;
-                                    MessagesController.getInstance(bcVar22.f32895b).putUsers(tL_premium_boostsList.users, false);
-                                    bcVar22.H = tL_premium_boostsList.next_offset;
+                                    MessagesController.getInstance(acVar22.f35119b).putUsers(tL_premium_boostsList.users, false);
+                                    acVar22.H = tL_premium_boostsList.next_offset;
                                     arrayList.addAll(tL_premium_boostsList.boosts);
                                     int size = arrayList.size();
                                     int i10 = 0;
@@ -168,12 +168,12 @@ public final class xb implements RequestDelegate {
                                             }
                                             i10 += i12;
                                         } else {
-                                            bcVar22.f32900s = Math.max(0, tL_premium_boostsList.count - i10);
-                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && bcVar22.f32900s > 0) {
+                                            acVar22.f35125s = Math.max(0, tL_premium_boostsList.count - i10);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && acVar22.f35125s > 0) {
                                                 z4 = true;
                                             }
-                                            bcVar22.f32899r = z4;
-                                            bcVar22.M = tL_premium_boostsList.count;
+                                            acVar22.f35124r = z4;
+                                            acVar22.M = tL_premium_boostsList.count;
                                             Runnable runnable22 = runnable2;
                                             if (runnable22 != null) {
                                                 runnable22.run();
@@ -187,19 +187,19 @@ public final class xb implements RequestDelegate {
                                 }
                                 break;
                             default:
-                                bc bcVar3 = bcVar2;
-                                ArrayList arrayList2 = bcVar3.f32898n;
+                                ac acVar3 = acVar2;
+                                ArrayList arrayList2 = acVar3.f35123n;
                                 CountDownLatch countDownLatch3 = countDownLatch2;
                                 if (countDownLatch3 != null) {
                                     countDownLatch3.countDown();
                                 }
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 != null) {
-                                    bcVar3.J = 20;
+                                    acVar3.J = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList2 = (TL_stories.TL_premium_boostsList) tLObject3;
                                     boolean z10 = false;
-                                    MessagesController.getInstance(bcVar3.f32895b).putUsers(tL_premium_boostsList2.users, false);
-                                    bcVar3.I = tL_premium_boostsList2.next_offset;
+                                    MessagesController.getInstance(acVar3.f35119b).putUsers(tL_premium_boostsList2.users, false);
+                                    acVar3.I = tL_premium_boostsList2.next_offset;
                                     arrayList2.addAll(tL_premium_boostsList2.boosts);
                                     int size2 = arrayList2.size();
                                     int i14 = 0;
@@ -215,12 +215,12 @@ public final class xb implements RequestDelegate {
                                             }
                                             i14 += i16;
                                         } else {
-                                            bcVar3.f32901w = Math.max(0, tL_premium_boostsList2.count - i14);
-                                            if (!TextUtils.isEmpty(tL_premium_boostsList2.next_offset) && bcVar3.f32901w > 0) {
+                                            acVar3.f35126w = Math.max(0, tL_premium_boostsList2.count - i14);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList2.next_offset) && acVar3.f35126w > 0) {
                                                 z10 = true;
                                             }
-                                            bcVar3.v = z10;
-                                            bcVar3.L = tL_premium_boostsList2.count;
+                                            acVar3.v = z10;
+                                            acVar3.L = tL_premium_boostsList2.count;
                                             Runnable runnable3 = runnable2;
                                             if (runnable3 != null) {
                                                 runnable3.run();

@@ -1,27 +1,26 @@
 package org.telegram.ui.Components;
+public final class sm implements Runnable {
+    public final int f31088a;
+    public final sn f31089b;
+    public final int f31090c;
 
-import android.animation.ValueAnimator;
-public final class sm implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28777a;
-    public final qn f28778b;
-
-    public sm(qn qnVar, int i10) {
-        this.f28777a = i10;
-        this.f28778b = qnVar;
+    public sm(sn snVar, int i10, int i11) {
+        this.f31088a = i11;
+        this.f31089b = snVar;
+        this.f31090c = i10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28777a) {
+    public final void run() {
+        switch (this.f31088a) {
             case 0:
-                qn qnVar = this.f28778b;
-                qnVar.getClass();
-                qnVar.B.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f31089b.e0(this.f31090c, null);
+                return;
+            case 1:
+                this.f31089b.b0(this.f31090c);
                 return;
             default:
-                qn qnVar2 = this.f28778b;
-                qnVar2.getClass();
-                qnVar2.B.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f31089b.e0(this.f31090c, null);
                 return;
         }
     }

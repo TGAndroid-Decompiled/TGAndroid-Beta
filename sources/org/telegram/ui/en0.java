@@ -1,68 +1,69 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.webkit.WebView;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class en0 implements Runnable {
-    public final int f34050a;
-    public final jo0 f34051b;
-    public final TLObject f34052c;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class en0 extends FrameLayout {
+    public TextView f36621a;
+    public TextView f36622b;
+    public ImageView f36623c;
+    public boolean d;
 
-    public en0(jo0 jo0Var, TLObject tLObject, int i10) {
-        this.f34050a = i10;
-        this.f34051b = jo0Var;
-        this.f34052c = tLObject;
+    public final void a(String str, boolean z4) {
+        this.f36621a.setText(str);
+        this.f36622b.setText("");
+        this.d = z4;
+        setWillNotDraw(!z4);
     }
 
     @Override
-    public final void run() {
-        switch (this.f34050a) {
-            case 0:
-                jo0.e0(this.f34051b, this.f34052c);
-                return;
-            case 1:
-                jo0 jo0Var = this.f34051b;
-                Utilities.Callback callback = jo0Var.f35390a1;
-                TLObject tLObject = this.f34052c;
-                if (callback != null) {
-                    callback.run((TLRPC.TL_payments_paymentVerificationNeeded) tLObject);
-                }
-                jo0Var.D0(false);
-                jo0Var.f35420w0 = true;
-                jo0Var.H0(true, true);
-                org.telegram.ui.Components.rq rqVar = jo0Var.f35412r;
-                if (rqVar != null) {
-                    rqVar.setVisibility(0);
-                }
-                org.telegram.ui.ActionBar.w0 w0Var = jo0Var.f35407n;
-                if (w0Var != null) {
-                    w0Var.setEnabled(false);
-                    jo0Var.f35407n.getContentView().setVisibility(4);
-                }
-                org.telegram.ui.ActionBar.e5 parentLayout = jo0Var.getParentLayout();
-                Activity parentActivity = jo0Var.getParentActivity();
-                jo0Var.getMessagesController().newMessageCallback = new d7(jo0Var, parentLayout, parentActivity, 17);
-                WebView webView = jo0Var.f35419w;
-                if (webView != null) {
-                    webView.setVisibility(0);
-                    WebView webView2 = jo0Var.f35419w;
-                    String str = ((TLRPC.TL_payments_paymentVerificationNeeded) tLObject).url;
-                    jo0Var.f35421x = str;
-                    webView2.loadUrl(str);
-                }
-                jo0Var.X0 = true;
-                jo0Var.f35396c1 = 3;
-                io0 io0Var = jo0Var.W0;
-                if (io0Var != null) {
-                    io0Var.a(3);
-                    return;
-                }
-                return;
-            default:
-                jo0.c0(this.f34051b, this.f34052c);
-                return;
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        if (this.d) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(20.0f);
+            }
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(20.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21779k0);
         }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.d ? 1 : 0), 1073741824));
+    }
+
+    public void setChecked(boolean z4) {
+        int i10;
+        ImageView imageView = this.f36623c;
+        if (z4) {
+            i10 = 0;
+        } else {
+            i10 = 4;
+        }
+        imageView.setVisibility(i10);
+    }
+
+    public void setNeedDivider(boolean z4) {
+        this.d = z4;
+        setWillNotDraw(!z4);
+        invalidate();
+    }
+
+    public void setValue(CharSequence charSequence) {
+        this.f36622b.setText(charSequence);
     }
 }

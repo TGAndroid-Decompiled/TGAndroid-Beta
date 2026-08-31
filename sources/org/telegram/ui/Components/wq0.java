@@ -1,73 +1,117 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class wq0 implements View.OnClickListener {
-    public final int f30409a;
-    public final yu0 f30410b;
+import android.os.Bundle;
+import android.util.SparseArray;
+import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.mf1;
+public final class wq0 implements w10, org.telegram.ui.jy {
+    public final zu0 f32838a;
 
-    public wq0(yu0 yu0Var, int i10) {
-        this.f30409a = i10;
-        this.f30410b = yu0Var;
+    @Override
+    public boolean C() {
+        return false;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f30409a) {
-            case 0:
-                this.f30410b.L(true);
-                return;
-            case 1:
-                this.f30410b.C0(102, view);
-                return;
-            case 2:
-                this.f30410b.C0(100, view);
-                return;
-            case 3:
-                this.f30410b.C0(103, view);
-                return;
-            case 4:
-                this.f30410b.C0(104, view);
-                return;
-            case 5:
-                this.f30410b.C0(101, view);
-                return;
-            case 6:
-                yu0 yu0Var = this.f30410b;
-                sr0 sr0Var = yu0Var.T;
-                or0 or0Var = yu0Var.S;
-                if (yu0Var.f31131n0.getAlpha() >= 0.1f) {
-                    if (or0Var != null && or0Var.g()) {
-                        or0Var.i();
-                    }
-                    if (sr0Var != null && sr0Var.f35204w) {
-                        xu0 i12 = yu0Var.i1(yu0Var.h1(yu0Var.getClosestTab()));
-                        qt0 W = yu0Var.W(i12.f30728a);
-                        if (W != null) {
-                            sr0Var.setReorderingAlbums(false);
-                            wr0 wr0Var = W.h;
-                            for (int i10 = 0; i10 < wr0Var.getChildCount(); i10++) {
-                                View childAt = wr0Var.getChildAt(i10);
-                                if (childAt instanceof org.telegram.ui.Cells.r7) {
-                                    ((org.telegram.ui.Cells.r7) childAt).l(false, true);
-                                }
-                            }
-                            wu0 wu0Var = i12.f30730c;
-                            if (wu0Var != null && wu0Var.f30093x) {
-                                wu0Var.f30093x = false;
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.ActionBar.p2 p2Var = this.f30410b.f31144s1;
-                p2Var.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
-                ph.da.E(p2Var.getParentActivity(), p2Var.getCurrentAccount()).R(null);
-                return;
+    public boolean J(org.telegram.ui.py pyVar) {
+        return false;
+    }
+
+    public void a(boolean z4) {
+        zu0 zu0Var = this.f32838a;
+        if (!z4) {
+            zu0Var.requestLayout();
         }
+        zu0Var.setVisibleHeight(zu0Var.J1);
+    }
+
+    @Override
+    public boolean v(org.telegram.ui.py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, mf1 mf1Var) {
+        UndoView undoView;
+        zu0 zu0Var = this.f32838a;
+        SparseArray[] sparseArrayArr = zu0Var.W0;
+        org.telegram.ui.ActionBar.p2 p2Var = zu0Var.f34004s1;
+        ArrayList<MessageObject> arrayList2 = new ArrayList<>();
+        int i12 = 1;
+        while (true) {
+            int i13 = 0;
+            if (i12 < 0) {
+                break;
+            }
+            ArrayList arrayList3 = new ArrayList();
+            for (int i14 = 0; i14 < sparseArrayArr[i12].size(); i14++) {
+                arrayList3.add(Integer.valueOf(sparseArrayArr[i12].keyAt(i14)));
+            }
+            Collections.sort(arrayList3);
+            int size = arrayList3.size();
+            while (i13 < size) {
+                Object obj = arrayList3.get(i13);
+                i13++;
+                Integer num = (Integer) obj;
+                if (num.intValue() > 0) {
+                    arrayList2.add((MessageObject) sparseArrayArr[i12].get(num.intValue()));
+                }
+            }
+            sparseArrayArr[i12].clear();
+            i12--;
+        }
+        zu0Var.X0 = 0;
+        zu0Var.b1(false);
+        iu0 iu0Var = zu0Var.O;
+        if (iu0Var != null) {
+            iu0Var.f27912w.clear();
+        }
+        if (arrayList.size() <= 1 && ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId != p2Var.getUserConfig().getClientUserId() && charSequence == null) {
+            long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
+            Bundle i15 = android.support.v4.media.a.i("scrollToTopOnResume", true);
+            if (DialogObject.isEncryptedDialog(j10)) {
+                i15.putInt("enc_id", DialogObject.getEncryptedChatId(j10));
+            } else {
+                if (DialogObject.isUserDialog(j10)) {
+                    i15.putLong("user_id", j10);
+                } else {
+                    i15.putLong("chat_id", -j10);
+                }
+                if (!p2Var.getMessagesController().checkCanOpenChat(i15, pyVar)) {
+                    return true;
+                }
+            }
+            p2Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+            org.telegram.ui.xn xnVar = new org.telegram.ui.xn(i15);
+            bg.e.a(xnVar, (MessagesStorage.TopicKey) arrayList.get(0));
+            pyVar.presentFragment(xnVar, true);
+            xnVar.Ab(arrayList2);
+            return true;
+        }
+        zu0Var.r1(true);
+        for (int i16 = 0; i16 < arrayList.size(); i16++) {
+            long j11 = ((MessagesStorage.TopicKey) arrayList.get(i16)).dialogId;
+            if (charSequence != null) {
+                p2Var.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j11, null, null, null, true, null, null, null, true, 0, 0, null, false));
+            }
+            p2Var.getSendMessagesHelper().sendMessage(arrayList2, j11, false, false, true, 0, 0L);
+        }
+        pyVar.finishFragment();
+        if (p2Var instanceof ProfileActivity) {
+            undoView = ((ProfileActivity) p2Var).J;
+        } else {
+            undoView = null;
+        }
+        if (undoView == null) {
+            return true;
+        }
+        if (arrayList.size() == 1) {
+            undoView.m(((MessagesStorage.TopicKey) arrayList.get(0)).dialogId, Integer.valueOf(arrayList2.size()), 53);
+            return true;
+        }
+        undoView.k(0L, 53, Integer.valueOf(arrayList2.size()), Integer.valueOf(arrayList.size()), null, null);
+        return true;
     }
 }

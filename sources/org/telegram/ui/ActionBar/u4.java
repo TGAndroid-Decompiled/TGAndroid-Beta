@@ -1,11 +1,27 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.animation.Interpolator;
-public final class u4 implements Interpolator {
-    public final float f20602a = 1.0f / ((float) (1.0d - Math.pow(100, -1.0f)));
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
+public final class u4 extends AnimatorListenerAdapter {
+    public final int f22310a;
+    public final x4 f22311b;
+
+    public u4(x4 x4Var, int i10) {
+        this.f22310a = i10;
+        this.f22311b = x4Var;
+    }
 
     @Override
-    public final float getInterpolation(float f10) {
-        return 1.0f - (((float) (1.0d - Math.pow(100, -(1.0f - f10)))) * this.f20602a);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f22310a) {
+            case 0:
+                NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new p(this, 13));
+                return;
+            default:
+                NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new p(this, 14));
+                return;
+        }
     }
 }

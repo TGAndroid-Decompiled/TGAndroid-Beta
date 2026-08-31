@@ -1,40 +1,91 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.app.Activity;
+import android.view.View;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-public final class af1 extends FrameLayout {
-    public TextView f32575a;
-    public float f32576b;
-    public boolean f32577c;
+public final class af1 extends View {
+    public final HashMap f35161a;
+    public final bf1 f35162b;
+
+    public af1(bf1 bf1Var, Activity activity) {
+        super(activity);
+        this.f35162b = bf1Var;
+        this.f35161a = new HashMap();
+    }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        int i10 = 1;
-        if (this.f32577c) {
-            float f10 = this.f32576b + 0.013333334f;
-            this.f32576b = f10;
-            if (f10 > 1.0f) {
-                this.f32577c = false;
-                this.f32576b = 1.0f;
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        int i13;
+        float f10;
+        int i14;
+        int dp;
+        boolean z4;
+        int i15;
+        bf1 bf1Var = this.f35162b;
+        mf1 mf1Var = bf1Var.d;
+        int size = View.MeasureSpec.getSize(i10);
+        int dp2 = AndroidUtilities.dp(64.0f);
+        int i16 = 0;
+        int i17 = 0;
+        for (int i18 = 0; i18 < bf1Var.F().size(); i18++) {
+            if (bf1Var.F().get(i18) != null && ((df1) bf1Var.F().get(i18)).f36216c != null) {
+                String str = ((df1) bf1Var.F().get(i18)).f36216c.title;
+                HashMap hashMap = this.f35161a;
+                Boolean bool = (Boolean) hashMap.get(str);
+                if (bool == null) {
+                    int i19 = 50;
+                    if (!LocaleController.isRTL) {
+                        if (mf1Var.isInPreviewMode()) {
+                            i15 = 11;
+                        } else {
+                            i15 = 50;
+                        }
+                        f10 = i15 + 4;
+                    } else {
+                        f10 = 18.0f;
+                    }
+                    int dp3 = AndroidUtilities.dp(f10);
+                    if (!LocaleController.isRTL) {
+                        i14 = size - dp3;
+                        dp = AndroidUtilities.dp(22.0f);
+                    } else {
+                        i14 = size - dp3;
+                        if (mf1Var.isInPreviewMode()) {
+                            i19 = 11;
+                        }
+                        dp = AndroidUtilities.dp(i19 + 13);
+                    }
+                    if (org.telegram.ui.ActionBar.k6.B0[0].measureText(str) <= (i14 - dp) - ((int) Math.ceil(org.telegram.ui.ActionBar.k6.I0.measureText("00:00")))) {
+                        z4 = true;
+                    } else {
+                        z4 = false;
+                    }
+                    bool = Boolean.valueOf(z4);
+                    hashMap.put(str, bool);
+                }
+                if (!bool.booleanValue()) {
+                    i13 = 20;
+                } else {
+                    i13 = 0;
+                }
+                int dp4 = AndroidUtilities.dp(i13 + 64);
+                if (((df1) bf1Var.F().get(i18)).f36216c.f20895id == 1) {
+                    dp2 = dp4;
+                }
+                if (((df1) bf1Var.F().get(i18)).f36216c.hidden) {
+                    i16++;
+                }
+                i17 += dp4;
             }
+        }
+        if (i16 > 0) {
+            i12 = (((mf1Var.K.getMeasuredHeight() - mf1Var.K.getPaddingTop()) - mf1Var.K.getPaddingBottom()) - i17) + dp2;
         } else {
-            float f11 = this.f32576b - 0.013333334f;
-            this.f32576b = f11;
-            if (f11 < 0.0f) {
-                this.f32577c = true;
-                this.f32576b = 0.0f;
-            }
+            i12 = 0;
         }
-        TextView textView = this.f32575a;
-        float interpolation = org.telegram.ui.Components.nr.f27346f.getInterpolation(this.f32576b) * AndroidUtilities.dp(8.0f);
-        if (LocaleController.isRTL) {
-            i10 = -1;
-        }
-        textView.setTranslationX(interpolation * i10);
-        invalidate();
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, i12), 1073741824));
     }
 }

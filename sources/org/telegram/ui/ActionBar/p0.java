@@ -2,25 +2,25 @@ package org.telegram.ui.ActionBar;
 
 import android.transition.Transition;
 public final class p0 implements Transition.TransitionListener {
-    public final w0 f20510a;
+    public final w0 f22210a;
 
     public p0(w0 w0Var) {
-        this.f20510a = w0Var;
+        this.f22210a = w0Var;
     }
 
     @Override
     public final void onTransitionCancel(Transition transition) {
-        this.f20510a.f20656f0.unlock();
+        this.f22210a.f22352f0.unlock();
     }
 
     @Override
     public final void onTransitionEnd(Transition transition) {
-        this.f20510a.f20656f0.unlock();
+        this.f22210a.f22352f0.unlock();
     }
 
     @Override
     public final void onTransitionStart(Transition transition) {
-        this.f20510a.f20656f0.lock();
+        this.f22210a.f22352f0.lock();
     }
 
     @Override

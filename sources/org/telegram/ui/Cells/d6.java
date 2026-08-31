@@ -4,16 +4,16 @@ import android.content.Context;
 import java.util.ArrayList;
 import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.xz0;
+import org.telegram.ui.zz0;
 public final class d6 implements n2 {
-    public final org.telegram.ui.ActionBar.p2 f20942a;
-    public final Context f20943b;
-    public final xz0 f20944c;
+    public final org.telegram.ui.ActionBar.p2 f22677a;
+    public final Context f22678b;
+    public final zz0 f22679c;
 
-    public d6(xz0 xz0Var, org.telegram.ui.ActionBar.p2 p2Var, Context context) {
-        this.f20944c = xz0Var;
-        this.f20942a = p2Var;
-        this.f20943b = context;
+    public d6(zz0 zz0Var, org.telegram.ui.ActionBar.p2 p2Var, Context context) {
+        this.f22679c = zz0Var;
+        this.f22677a = p2Var;
+        this.f22678b = context;
     }
 
     @Override
@@ -24,8 +24,8 @@ public final class d6 implements n2 {
     @Override
     public final void c() {
         boolean z4;
-        org.telegram.ui.ActionBar.p2 p2Var = this.f20942a;
-        nh.t6 storiesController = p2Var.getMessagesController().getStoriesController();
+        org.telegram.ui.ActionBar.p2 p2Var = this.f22677a;
+        oh.t6 storiesController = p2Var.getMessagesController().getStoriesController();
         ArrayList arrayList = storiesController.h;
         if (arrayList.isEmpty()) {
             return;
@@ -42,15 +42,15 @@ public final class d6 implements n2 {
                 arrayList2.add(Long.valueOf(peerDialogId));
             }
         }
-        p2Var.getOrCreateStoryViewer().F(this.f20943b, null, arrayList2, 0, null, null, new nh.c7(this.f20944c), false);
+        p2Var.getOrCreateStoryViewer().F(this.f22678b, null, arrayList2, 0, null, null, new oh.c7(this.f22679c), false);
     }
 
     @Override
     public final void e(r2 r2Var) {
-        org.telegram.ui.ActionBar.p2 p2Var = this.f20942a;
+        org.telegram.ui.ActionBar.p2 p2Var = this.f22677a;
         if (p2Var.getMessagesController().getStoriesController().I(r2Var.getDialogId())) {
             p2Var.getOrCreateStoryViewer().getClass();
-            p2Var.getOrCreateStoryViewer().D(p2Var.getContext(), r2Var.getDialogId(), new nh.c7(this.f20944c));
+            p2Var.getOrCreateStoryViewer().D(p2Var.getContext(), r2Var.getDialogId(), new oh.c7(this.f22679c));
         }
     }
 

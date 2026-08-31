@@ -10,8 +10,8 @@ public class b0 extends pa.u {
         while (aVar.k()) {
             try {
                 arrayList.add(Integer.valueOf(aVar.p()));
-            } catch (NumberFormatException e) {
-                throw new RuntimeException(e);
+            } catch (NumberFormatException e6) {
+                throw new RuntimeException(e6);
             }
         }
         aVar.e();

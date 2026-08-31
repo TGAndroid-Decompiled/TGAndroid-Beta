@@ -1,37 +1,11 @@
 package org.telegram.messenger;
 
-import android.content.Intent;
-import org.telegram.messenger.NotificationBadge;
-public final class k implements Runnable {
-    public final int f17614a;
-    public final Intent f17615b;
-
-    public k(Intent intent, int i10) {
-        this.f17614a = i10;
-        this.f17615b = intent;
-    }
-
+import android.text.util.Linkify;
+public final class k implements Linkify.MatchFilter {
     @Override
-    public final void run() {
-        switch (this.f17614a) {
-            case 0:
-                AndroidUtilities.lambda$googleVoiceClientService_performAction$2(this.f17615b);
-                return;
-            case 1:
-                NotificationBadge.AdwHomeBadger.a(this.f17615b);
-                return;
-            case 2:
-                NotificationBadge.ApexHomeBadger.a(this.f17615b);
-                return;
-            case 3:
-                NotificationBadge.AsusHomeBadger.a(this.f17615b);
-                return;
-            case 4:
-                NotificationBadge.DefaultBadger.a(this.f17615b);
-                return;
-            default:
-                NotificationBadge.SonyHomeBadger.a(this.f17615b);
-                return;
-        }
+    public final boolean acceptMatch(CharSequence charSequence, int i10, int i11) {
+        boolean lambda$static$7;
+        lambda$static$7 = AndroidUtilities.lambda$static$7(charSequence, i10, i11);
+        return lambda$static$7;
     }
 }

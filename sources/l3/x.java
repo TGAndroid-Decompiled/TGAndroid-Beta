@@ -2,31 +2,31 @@ package l3;
 
 import android.media.AudioTrack;
 public final class x {
-    public final w f11277a;
-    public int f11278b;
-    public long f11279c;
+    public final w f11648a;
+    public int f11649b;
+    public long f11650c;
     public long d;
-    public long e;
-    public long f11280f;
+    public long f11651e;
+    public long f11652f;
 
     public x(AudioTrack audioTrack) {
-        if (h5.d0.f6937a >= 19) {
-            this.f11277a = new w(audioTrack);
+        if (h5.d0.f7237a >= 19) {
+            this.f11648a = new w(audioTrack);
             a();
             return;
         }
-        this.f11277a = null;
+        this.f11648a = null;
         b(3);
     }
 
     public final void a() {
-        if (this.f11277a != null) {
+        if (this.f11648a != null) {
             b(0);
         }
     }
 
     public final void b(int i10) {
-        this.f11278b = i10;
+        this.f11649b = i10;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2 && i10 != 3) {
@@ -42,9 +42,9 @@ public final class x {
             this.d = 10000L;
             return;
         }
-        this.e = 0L;
-        this.f11280f = -1L;
-        this.f11279c = System.nanoTime() / 1000;
+        this.f11651e = 0L;
+        this.f11652f = -1L;
+        this.f11650c = System.nanoTime() / 1000;
         this.d = 10000L;
     }
 }

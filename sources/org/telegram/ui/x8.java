@@ -2,28 +2,28 @@ package org.telegram.ui;
 
 import android.graphics.Canvas;
 import android.view.View;
-public final class x8 implements ng.j {
-    public final int f39873a;
-    public final Object f39874b;
+public final class x8 implements og.j {
+    public final int f42993a;
+    public final Object f42994b;
 
     public x8(Object obj, int i10) {
-        this.f39873a = i10;
-        this.f39874b = obj;
+        this.f42993a = i10;
+        this.f42994b = obj;
     }
 
     @Override
     public final boolean a(Canvas canvas, View view, long j10) {
-        switch (this.f39873a) {
+        switch (this.f42993a) {
             case 0:
-                return ((org.telegram.ui.Components.g61) this.f39874b).drawChild(canvas, view, j10);
+                return ((org.telegram.ui.Components.i61) this.f42994b).drawChild(canvas, view, j10);
             case 1:
-                ProfileActivity profileActivity = (ProfileActivity) this.f39874b;
+                ProfileActivity profileActivity = (ProfileActivity) this.f42994b;
                 if (view == profileActivity.L) {
                     return true;
                 }
-                return profileActivity.f32028a.drawChild(canvas, view, j10);
+                return profileActivity.f34560a.drawChild(canvas, view, j10);
             default:
-                return ((if1) this.f39874b).drawChild(canvas, view, j10);
+                return ((kf1) this.f42994b).drawChild(canvas, view, j10);
         }
     }
 }

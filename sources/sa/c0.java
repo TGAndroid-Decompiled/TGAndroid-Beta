@@ -8,8 +8,8 @@ public class c0 extends pa.u {
         }
         try {
             return Long.valueOf(aVar.q());
-        } catch (NumberFormatException e) {
-            throw new RuntimeException(e);
+        } catch (NumberFormatException e6) {
+            throw new RuntimeException(e6);
         }
     }
 

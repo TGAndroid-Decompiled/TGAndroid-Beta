@@ -2,27 +2,27 @@ package k6;
 
 import android.content.Context;
 public final class c {
-    public static final c f9755b;
-    public b f9756a;
+    public static final c f10476b;
+    public b f10477a;
 
     static {
         ?? obj = new Object();
-        obj.f9756a = null;
-        f9755b = obj;
+        obj.f10477a = null;
+        f10476b = obj;
     }
 
     public static b a(Context context) {
         b bVar;
-        c cVar = f9755b;
+        c cVar = f10476b;
         synchronized (cVar) {
             try {
-                if (cVar.f9756a == null) {
+                if (cVar.f10477a == null) {
                     if (context.getApplicationContext() != null) {
                         context = context.getApplicationContext();
                     }
-                    cVar.f9756a = new b(context, 0);
+                    cVar.f10477a = new b(context, 0);
                 }
-                bVar = cVar.f9756a;
+                bVar = cVar.f10477a;
             } catch (Throwable th2) {
                 throw th2;
             }

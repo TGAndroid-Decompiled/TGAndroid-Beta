@@ -7,52 +7,52 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.pr;
 public abstract class n1 extends Drawable {
-    public final int f21426a;
-    public final Path f21427b;
-    public final Paint f21428c;
+    public final int f23202a;
+    public final Path f23203b;
+    public final Paint f23204c;
     public final Object d;
 
     public n1(int i10) {
-        this.f21426a = i10;
+        this.f23202a = i10;
         switch (i10) {
             case 1:
-                this.f21427b = new Path();
+                this.f23203b = new Path();
                 Paint paint = new Paint(1);
-                this.f21428c = paint;
+                this.f23204c = paint;
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setStrokeJoin(Paint.Join.ROUND);
                 paint.setStrokeCap(Paint.Cap.ROUND);
-                this.d = new org.telegram.ui.Components.z5(new org.telegram.ui.web.o0(this, 4), 350L, nr.h, 0);
+                this.d = new org.telegram.ui.Components.z5(new org.telegram.ui.web.s0(this, 3), 350L, pr.h, 0);
                 return;
             default:
                 Paint paint2 = new Paint(1);
-                this.f21428c = paint2;
+                this.f23204c = paint2;
                 paint2.setColor(-1);
                 this.d = new RectF();
-                this.f21427b = new Path();
+                this.f23203b = new Path();
                 return;
         }
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f21426a) {
+        switch (this.f23202a) {
             case 0:
                 e();
-                canvas.drawPath(this.f21427b, this.f21428c);
+                canvas.drawPath(this.f23203b, this.f23204c);
                 return;
             default:
-                float e = ((org.telegram.ui.Components.z5) this.d).e(true);
+                float e6 = ((org.telegram.ui.Components.z5) this.d).e(true);
                 float centerX = getBounds().centerX();
                 float centerY = getBounds().centerY();
                 float width = getBounds().width();
                 float f10 = 0.57f * width;
-                Path path = this.f21427b;
+                Path path = this.f23203b;
                 path.rewind();
                 float f11 = f10 / 2.0f;
-                path.moveTo(centerX - AndroidUtilities.lerp(f11, (-f10) / 2.0f, e), centerY);
+                path.moveTo(centerX - AndroidUtilities.lerp(f11, (-f10) / 2.0f, e6), centerY);
                 float f12 = f11 + centerX;
                 path.lineTo(f12, centerY);
                 float f13 = f12 - (0.27f * width);
@@ -61,10 +61,10 @@ public abstract class n1 extends Drawable {
                 path.lineTo(f12, centerY);
                 path.lineTo(f13, f14 + centerY);
                 canvas.save();
-                Paint paint = this.f21428c;
+                Paint paint = this.f23204c;
                 paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-                canvas.translate(0.0f, (-width) * 0.1f * e);
-                canvas.rotate(e * 90.0f, centerX, centerY);
+                canvas.translate(0.0f, (-width) * 0.1f * e6);
+                canvas.rotate(e6 * 90.0f, centerX, centerY);
                 canvas.drawPath(path, paint);
                 canvas.restore();
                 return;
@@ -75,7 +75,7 @@ public abstract class n1 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f21426a) {
+        switch (this.f23202a) {
             case 1:
                 return AndroidUtilities.dp(24.0f);
             default:
@@ -85,7 +85,7 @@ public abstract class n1 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f21426a) {
+        switch (this.f23202a) {
             case 1:
                 return AndroidUtilities.dp(24.0f);
             default:
@@ -95,7 +95,7 @@ public abstract class n1 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f21426a) {
+        switch (this.f23202a) {
             case 0:
                 return -2;
             default:
@@ -105,12 +105,12 @@ public abstract class n1 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        int i11 = this.f21426a;
+        int i11 = this.f23202a;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f21426a;
+        int i10 = this.f23202a;
     }
 
     private final void a(int i10) {

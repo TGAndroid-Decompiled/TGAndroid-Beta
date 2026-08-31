@@ -1,25 +1,23 @@
 package org.telegram.ui.Components;
+public final class qt extends j6 {
+    public final int W;
+    public final EditTextBoldCursor X;
 
-import android.text.Editable;
-import org.telegram.messenger.Utilities;
-public final class qt implements Utilities.Callback {
-    public final vt f28234a;
-    public final int f28235b;
-    public final int f28236c;
-
-    public qt(vt vtVar, int i10, int i11) {
-        this.f28234a = vtVar;
-        this.f28235b = i10;
-        this.f28236c = i11;
+    public qt(int i10, EditTextBoldCursor editTextBoldCursor) {
+        super(false, false, false, false);
+        this.W = i10;
+        this.X = editTextBoldCursor;
     }
 
     @Override
-    public final void run(Object obj) {
-        CharSequence charSequence = (CharSequence) obj;
-        vt vtVar = this.f28234a;
-        Editable text = vtVar.getText();
-        int i10 = this.f28235b;
-        text.replace(i10, this.f28236c, charSequence);
-        vtVar.setSelection(i10, charSequence.length() + i10);
+    public final void invalidateSelf() {
+        switch (this.W) {
+            case 0:
+                this.X.invalidate();
+                return;
+            default:
+                this.X.invalidate();
+                return;
+        }
     }
 }

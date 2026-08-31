@@ -7,21 +7,21 @@ import org.telegram.messenger.e6;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.n5;
+import org.telegram.ui.ActionBar.o5;
 import org.telegram.ui.LaunchActivity;
 public final class o implements RequestDelegate {
-    public final int f18817a;
-    public final int f18818b;
+    public final int f20448a;
+    public final int f20449b;
 
     public o(int i10, int i11) {
-        this.f18817a = i11;
-        this.f18818b = i10;
+        this.f20448a = i11;
+        this.f20449b = i10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f18817a;
-        int i11 = this.f18818b;
+        int i10 = this.f20448a;
+        int i11 = this.f20449b;
         switch (i10) {
             case 0:
                 VoIPGroupNotification.a(i11, tLObject, tL_error);
@@ -30,7 +30,7 @@ public final class o implements RequestDelegate {
                 VoIPPreNotificationService.lambda$decline$4(i11, tLObject, tL_error);
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new n5(i11, tLObject));
+                AndroidUtilities.runOnUIThread(new o5(i11, tLObject));
                 return;
             case 3:
                 if (tLObject instanceof TLRPC.TL_updates) {
@@ -39,12 +39,12 @@ public final class o implements RequestDelegate {
                 }
                 return;
             case 4:
-                Pattern pattern = LaunchActivity.f31612y1;
-                AndroidUtilities.runOnUIThread(new n5(i11, tLObject, 2));
+                Pattern pattern = LaunchActivity.f34134y1;
+                AndroidUtilities.runOnUIThread(new o5(i11, tLObject, 2));
                 return;
             case 5:
-                Pattern pattern2 = LaunchActivity.f31612y1;
-                AndroidUtilities.runOnUIThread(new n5(i11, tLObject, 1));
+                Pattern pattern2 = LaunchActivity.f34134y1;
+                AndroidUtilities.runOnUIThread(new o5(i11, tLObject, 1));
                 return;
             default:
                 AndroidUtilities.runOnUIThread(new e6(i11, 11));

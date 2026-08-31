@@ -1,69 +1,47 @@
 package org.telegram.ui;
 
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 public final class yj0 implements Runnable {
-    public final int f40532a;
-    public final NotificationsCustomSettingsActivity f40533b;
-    public final View f40534c;
-    public final int d;
+    public final int f43649a;
+    public final NotificationsCustomSettingsActivity f43650b;
+    public final lk0 f43651c;
+    public final View d;
 
-    public yj0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, View view, int i10, int i11) {
-        this.f40532a = i11;
-        this.f40533b = notificationsCustomSettingsActivity;
-        this.f40534c = view;
-        this.d = i10;
+    public yj0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, lk0 lk0Var, View view, int i10, int i11) {
+        this.f43649a = i11;
+        this.f43650b = notificationsCustomSettingsActivity;
+        this.f43651c = lk0Var;
+        this.d = view;
     }
 
     @Override
     public final void run() {
-        switch (this.f40532a) {
+        switch (this.f43649a) {
             case 0:
-                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f40533b;
-                ArrayList arrayList = notificationsCustomSettingsActivity.F;
-                View view = this.f40534c;
-                if (view instanceof org.telegram.ui.Cells.u8) {
-                    int i10 = this.d;
-                    if (i10 >= 0 && i10 < arrayList.size()) {
-                        ((dk0) arrayList.get(i10)).h = notificationsCustomSettingsActivity.f0();
-                    }
-                    ((org.telegram.ui.Cells.u8) view).b(notificationsCustomSettingsActivity.f0(), LocaleController.getString("LedColor", R.string.LedColor), true);
-                    return;
-                }
-                notificationsCustomSettingsActivity.l0(true);
+                this.f43650b.k0(this.f43651c, this.d, false);
                 return;
             case 1:
-                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity2 = this.f40533b;
-                ArrayList arrayList2 = notificationsCustomSettingsActivity2.F;
-                View view2 = this.f40534c;
-                if (view2 instanceof org.telegram.ui.Cells.aa) {
-                    int i11 = this.d;
-                    if (i11 >= 0 && i11 < arrayList2.size()) {
-                        ((dk0) arrayList2.get(i11)).f33672f = notificationsCustomSettingsActivity2.g0();
-                    }
-                    org.telegram.ui.Cells.aa aaVar = (org.telegram.ui.Cells.aa) view2;
-                    aaVar.c(LocaleController.getString("PopupNotification", R.string.PopupNotification), notificationsCustomSettingsActivity2.g0(), true, aaVar.h);
-                    return;
-                }
-                notificationsCustomSettingsActivity2.l0(true);
+                this.f43650b.e0(this.f43651c, this.d);
+                return;
+            case 2:
+                NotificationsCustomSettingsActivity.X(this.f43650b, this.f43651c, this.d);
+                return;
+            case 3:
+                NotificationsCustomSettingsActivity.V(this.f43650b, this.f43651c, this.d);
+                return;
+            case 4:
+                this.f43650b.e0(this.f43651c, this.d);
                 return;
             default:
-                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity3 = this.f40533b;
-                ArrayList arrayList3 = notificationsCustomSettingsActivity3.F;
-                View view3 = this.f40534c;
-                if (view3 instanceof org.telegram.ui.Cells.aa) {
-                    int i12 = this.d;
-                    if (i12 >= 0 && i12 < arrayList3.size()) {
-                        ((dk0) arrayList3.get(i12)).f33672f = notificationsCustomSettingsActivity3.h0();
-                    }
-                    org.telegram.ui.Cells.aa aaVar2 = (org.telegram.ui.Cells.aa) view3;
-                    aaVar2.c(LocaleController.getString("NotificationsImportance", R.string.NotificationsImportance), notificationsCustomSettingsActivity3.h0(), true, aaVar2.h);
-                    return;
-                }
-                notificationsCustomSettingsActivity3.l0(true);
+                this.f43650b.k0(this.f43651c, this.d, true);
                 return;
         }
+    }
+
+    public yj0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, lk0 lk0Var, View view, boolean z4, int i10) {
+        this.f43649a = i10;
+        this.f43650b = notificationsCustomSettingsActivity;
+        this.f43651c = lk0Var;
+        this.d = view;
     }
 }

@@ -1,153 +1,117 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import java.io.File;
-import java.net.URLEncoder;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
 public final class g71 {
-    public int f25071a;
-    public boolean f25072b;
-    public long f25073c;
-    public Uri d;
-    public long e;
-    public Uri f25074f;
-    public TLRPC.Document f25075g;
-    public TLRPC.Document h;
-    public int f25076i;
-    public int f25077j;
-    public long f25078k;
-    public double f25079l;
-    public String f25080m;
+    public final boolean f27129a;
+    public final int f27130b;
+    public final int f27131c;
+    public final ArrayList d;
 
-    public static Uri a(int i10, int i11, TLRPC.Document document) {
-        StringBuilder m9 = kh.a2.m(i10, "?account=", "&id=");
-        m9.append(document.f19190id);
-        m9.append("&hash=");
-        m9.append(document.access_hash);
-        m9.append("&dc=");
-        m9.append(document.dc_id);
-        m9.append("&size=");
-        m9.append(document.size);
-        m9.append("&mime=");
-        m9.append(URLEncoder.encode(document.mime_type, "UTF-8"));
-        m9.append("&rid=");
-        m9.append(i11);
-        m9.append("&name=");
-        m9.append(URLEncoder.encode(FileLoader.getDocumentFileName(document), "UTF-8"));
-        m9.append("&reference=");
-        byte[] bArr = document.file_reference;
-        if (bArr == null) {
-            bArr = new byte[0];
-        }
-        m9.append(Utilities.bytesToHex(bArr));
-        String sb = m9.toString();
-        return Uri.parse("tg://" + MessageObject.getFileName(document) + sb);
+    public g71(i71 i71Var) {
+        ArrayList arrayList = new ArrayList();
+        this.d = arrayList;
+        this.f27129a = i71Var.f27686b;
+        this.f27130b = i71Var.f27691i;
+        this.f27131c = i71Var.f27692j;
+        arrayList.add(i71Var);
     }
 
-    public static g71 d(int i10, TLRPC.Document document, TLRPC.Document document2, int i11, boolean z4) {
-        TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo;
+    public final i71 a() {
+        ArrayList arrayList = this.d;
+        i71 i71Var = null;
+        if (arrayList.isEmpty()) {
+            return null;
+        }
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            i71 i71Var2 = (i71) obj;
+            if (i71Var2.b()) {
+                return i71Var2;
+            }
+        }
+        long j10 = Long.MAX_VALUE;
+        for (int i11 = 0; i11 < arrayList.size(); i11++) {
+            i71 i71Var3 = (i71) arrayList.get(i11);
+            if (i71Var3.f27693k < j10 && k71.Y(i71Var3.f27695m)) {
+                j10 = i71Var3.f27693k;
+                i71Var = i71Var3;
+            }
+        }
+        if (i71Var != null) {
+            return i71Var;
+        }
+        return (i71) arrayList.get(0);
+    }
+
+    public final int b() {
+        int min = Math.min(this.f27130b, this.f27131c);
+        if (Math.abs(min - 2160) < 55) {
+            return 2160;
+        }
+        if (Math.abs(min - 1440) < 55) {
+            return 1440;
+        }
+        if (Math.abs(min - 1080) < 55) {
+            return 1080;
+        }
+        if (Math.abs(min - 720) < 55) {
+            return 720;
+        }
+        if (Math.abs(min - 480) < 55) {
+            return 480;
+        }
+        if (Math.abs(min - 360) < 55) {
+            return 360;
+        }
+        if (Math.abs(min - 240) < 55) {
+            return 240;
+        }
+        if (Math.abs(min - 144) < 55) {
+            return 144;
+        }
+        return min;
+    }
+
+    public final String toString() {
         String str;
-        String str2;
-        ?? obj = new Object();
-        int i12 = 0;
-        while (true) {
-            if (i12 < document.attributes.size()) {
-                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i12);
-                if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                    tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) documentAttribute;
-                    break;
-                }
-                i12++;
+        boolean z4 = SharedConfig.debugVideoQualities;
+        boolean z10 = this.f27129a;
+        String str2 = "";
+        if (z4) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(this.f27130b);
+            sb.append("x");
+            sb.append(this.f27131c);
+            if (!z10) {
+                str = "";
             } else {
-                tL_documentAttributeVideo = null;
-                break;
+                str = " (" + LocaleController.getString(R.string.QualitySource) + ")";
             }
-        }
-        if (tL_documentAttributeVideo != null && (str2 = tL_documentAttributeVideo.video_codec) != null) {
-            str = str2.toLowerCase();
-        } else {
-            str = null;
-        }
-        obj.f25071a = i10;
-        obj.f25075g = document;
-        obj.f25073c = document.f19190id;
-        obj.d = a(i10, i11, document);
-        if (document2 != null) {
-            obj.h = document2;
-            obj.e = document2.f19190id;
-            obj.f25074f = a(i10, i11, document2);
-            File pathToAttach = FileLoader.getInstance(i10).getPathToAttach(document2, null, false, z4);
-            if (pathToAttach != null && pathToAttach.exists()) {
-                obj.f25074f = Uri.fromFile(pathToAttach);
-            } else {
-                File pathToAttach2 = FileLoader.getInstance(i10).getPathToAttach(document2, null, true, z4);
-                if (pathToAttach2 != null && pathToAttach2.exists()) {
-                    obj.f25074f = Uri.fromFile(pathToAttach2);
-                }
+            sb.append(str);
+            sb.append("\n");
+            ArrayList arrayList = this.d;
+            sb.append(AndroidUtilities.formatFileSize((long) ((i71) arrayList.get(0)).f27694l).replace(" ", ""));
+            sb.append("/s");
+            if (((i71) arrayList.get(0)).f27695m != null) {
+                str2 = ", " + ((i71) arrayList.get(0)).f27695m;
             }
+            sb.append(str2);
+            return sb.toString();
         }
-        obj.f25080m = str;
-        long j10 = document.size;
-        obj.f25078k = j10;
-        if (tL_documentAttributeVideo != null) {
-            double d = tL_documentAttributeVideo.duration;
-            obj.f25076i = tL_documentAttributeVideo.f19191w;
-            obj.f25077j = tL_documentAttributeVideo.h;
-            obj.f25079l = j10 / d;
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(b());
+        sb2.append("p");
+        if (z10) {
+            str2 = " (" + LocaleController.getString(R.string.QualitySource) + ")";
         }
-        File pathToAttach3 = FileLoader.getInstance(i10).getPathToAttach(document, null, false, z4);
-        if (pathToAttach3 != null && pathToAttach3.exists()) {
-            obj.d = Uri.fromFile(pathToAttach3);
-            return obj;
-        }
-        File pathToAttach4 = FileLoader.getInstance(i10).getPathToAttach(document, null, true, z4);
-        if (pathToAttach4 != null && pathToAttach4.exists()) {
-            obj.d = Uri.fromFile(pathToAttach4);
-        }
-        return obj;
-    }
-
-    public final boolean b() {
-        Uri uri = this.d;
-        if (uri != null && "file".equalsIgnoreCase(uri.getScheme())) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean c() {
-        Uri uri = this.f25074f;
-        if (uri != null && "file".equalsIgnoreCase(uri.getScheme())) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void e(boolean z4) {
-        if (!b() && this.f25075g != null) {
-            File pathToAttach = FileLoader.getInstance(this.f25071a).getPathToAttach(this.f25075g, null, false, z4);
-            if (pathToAttach != null && pathToAttach.exists()) {
-                this.d = Uri.fromFile(pathToAttach);
-            } else {
-                File pathToAttach2 = FileLoader.getInstance(this.f25071a).getPathToAttach(this.f25075g, null, true, z4);
-                if (pathToAttach2 != null && pathToAttach2.exists()) {
-                    this.d = Uri.fromFile(pathToAttach2);
-                }
-            }
-        }
-        if (!c() && this.h != null) {
-            File pathToAttach3 = FileLoader.getInstance(this.f25071a).getPathToAttach(this.h, null, false, z4);
-            if (pathToAttach3 != null && pathToAttach3.exists()) {
-                this.f25074f = Uri.fromFile(pathToAttach3);
-                return;
-            }
-            File pathToAttach4 = FileLoader.getInstance(this.f25071a).getPathToAttach(this.h, null, true, z4);
-            if (pathToAttach4 != null && pathToAttach4.exists()) {
-                this.f25074f = Uri.fromFile(pathToAttach4);
-            }
-        }
+        sb2.append(str2);
+        return sb2.toString();
     }
 }

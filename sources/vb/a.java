@@ -1,10 +1,10 @@
 package vb;
 public final class a {
-    public final byte[] f45646a;
-    public final byte[] f45647b;
+    public final byte[] f48943a;
+    public final byte[] f48944b;
 
     public a(byte[] bArr, byte[] bArr2) {
-        this.f45646a = bArr;
-        this.f45647b = bArr2;
+        this.f48943a = bArr;
+        this.f48944b = bArr2;
     }
 }

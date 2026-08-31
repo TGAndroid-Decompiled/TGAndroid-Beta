@@ -1,45 +1,72 @@
 package org.telegram.ui;
-public final class ct implements Runnable {
-    public final int f33424a;
-    public final int f33425b;
-    public final Object f33426c;
-    public final Object d;
-    public final Object e;
 
-    public ct(int i10, Object obj, Object obj2, Object obj3, int i11) {
-        this.f33424a = i11;
-        this.f33425b = i10;
-        this.d = obj;
-        this.e = obj2;
-        this.f33426c = obj3;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class ct implements r0.o, org.telegram.ui.Components.qk0 {
+    public final qt f35906a;
+
+    public ct(qt qtVar) {
+        this.f35906a = qtVar;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ct.run():void");
+    public r0.m1 M0(View view, r0.m1 m1Var) {
+        this.f35906a.f40688q = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
+        return m1Var;
     }
 
-    public ct(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f33424a = i11;
-        this.d = obj;
-        this.f33425b = i10;
-        this.e = obj2;
-        this.f33426c = obj3;
+    @Override
+    public boolean g() {
+        return true;
     }
 
-    public ct(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f33424a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f33425b = i10;
-        this.f33426c = obj3;
+    @Override
+    public boolean h() {
+        return false;
     }
 
-    public ct(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f33424a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f33426c = obj3;
-        this.f33425b = i10;
+    @Override
+    public void o(View view, ng.q0 q0Var, boolean z4, boolean z10) {
+        if (q0Var != null) {
+            qt qtVar = this.f35906a;
+            ng.d0 reactionsWindow = qtVar.P.getReactionsWindow();
+            if (qtVar.f40686o.contains(q0Var.f16178f)) {
+                if (qtVar.f40686o.size() > 1) {
+                    qtVar.f40686o.remove(q0Var.f16178f);
+                } else {
+                    return;
+                }
+            } else {
+                qtVar.f40686o.add(q0Var.f16178f);
+                if (qtVar.f40686o.size() > 7) {
+                    qtVar.f40686o.remove(0);
+                }
+            }
+            qtVar.P.setSelectedEmojis(qtVar.f40686o);
+            if (reactionsWindow != null) {
+                ng.z zVar = reactionsWindow.f16043m;
+                qtVar.P.p(null, null, false);
+                if (zVar != null) {
+                    zVar.setSelectedReactions(qtVar.f40686o);
+                    zVar.setRecentReactions(qtVar.P.S);
+                }
+                reactionsWindow.d();
+            }
+        }
+    }
+
+    @Override
+    public boolean t() {
+        return false;
+    }
+
+    @Override
+    public void m() {
+    }
+
+    @Override
+    public void j(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i10, boolean z4) {
     }
 }

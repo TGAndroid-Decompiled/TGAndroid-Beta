@@ -9,21 +9,21 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.Components.fl0;
-import org.telegram.ui.Components.sc0;
-public final class b implements r8.i, h5.j, fl0, sc0, c2 {
-    public final int f4132a;
-    public final int f4133b;
+import org.telegram.ui.Components.gl0;
+import org.telegram.ui.Components.uc0;
+public final class b implements r8.i, h5.j, gl0, uc0, c2 {
+    public final int f4198a;
+    public final int f4199b;
 
     public b(int i10, int i11) {
-        this.f4132a = i11;
-        this.f4133b = i10;
+        this.f4198a = i11;
+        this.f4199b = i10;
     }
 
     @Override
     public String e(int i10) {
-        int i11 = this.f4132a;
-        int i12 = this.f4133b;
+        int i11 = this.f4198a;
+        int i12 = this.f4199b;
         switch (i11) {
             case 4:
                 if (i10 == 0) {
@@ -46,26 +46,26 @@ public final class b implements r8.i, h5.j, fl0, sc0, c2 {
 
     @Override
     public Object get() {
-        switch (this.f4132a) {
+        switch (this.f4198a) {
             case 0:
-                return new HandlerThread(c.j(this.f4133b, "ExoPlayer:MediaCodecAsyncAdapter:"));
+                return new HandlerThread(c.j(this.f4199b, "ExoPlayer:MediaCodecAsyncAdapter:"));
             default:
-                return new HandlerThread(c.j(this.f4133b, "ExoPlayer:MediaCodecQueueingThread:"));
+                return new HandlerThread(c.j(this.f4199b, "ExoPlayer:MediaCodecQueueingThread:"));
         }
     }
 
     @Override
-    public void i(d2 d2Var, int i10) {
-        MessagesController.getInstance(this.f4133b).performLogout(1);
+    public void invoke(Object obj) {
+        ((y1) obj).onRepeatModeChanged(this.f4199b);
     }
 
     @Override
-    public void invoke(Object obj) {
-        ((y1) obj).onRepeatModeChanged(this.f4133b);
+    public void j(d2 d2Var, int i10) {
+        MessagesController.getInstance(this.f4199b).performLogout(1);
     }
 
     @Override
     public int run() {
-        return this.f4133b;
+        return this.f4199b;
     }
 }

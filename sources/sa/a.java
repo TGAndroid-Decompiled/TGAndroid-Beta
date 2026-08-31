@@ -6,7 +6,7 @@ public class a implements pa.v {
     @Override
     public final pa.u create(pa.g gVar, wa.a aVar) {
         Type componentType;
-        Type type = aVar.f46506b;
+        Type type = aVar.f49484b;
         boolean z4 = type instanceof GenericArrayType;
         if (!z4 && (!(type instanceof Class) || !((Class) type).isArray())) {
             return null;

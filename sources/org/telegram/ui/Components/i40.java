@@ -1,54 +1,111 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
+import android.text.TextUtils;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class i40 extends AnimatorListenerAdapter {
-    public final int f25552a;
-    public final k40 f25553b;
+import org.telegram.tgnet.ConnectionsManager;
+public abstract class i40 extends x51 {
+    public final int K;
+    public final ArrayList L;
+    public boolean M;
+    public oh.f6 N;
+    public boolean O;
+    public boolean P;
+    public int Q;
+    public int R;
+    public boolean S;
+    public int T;
+    public String U;
+    public String V;
+    public int W;
+    public gy X;
+    public final boolean[] Y;
 
-    public i40(k40 k40Var, int i10) {
-        this.f25552a = i10;
-        this.f25553b = k40Var;
+    public i40(tl0 tl0Var, Context context, int i10) {
+        super(tl0Var, context, i10, 0, false, null, null);
+        this.L = new ArrayList();
+        this.Q = 0;
+        this.R = -1;
+        this.Y = new boolean[1];
+        this.f32958s = new d(this, 16);
+        this.K = i10;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        long j10;
-        switch (this.f25552a) {
-            case 0:
-                k40 k40Var = this.f25553b;
-                k40Var.f26148f = null;
-                if (!k40Var.E) {
-                    vp vpVar = new vp(this, 21);
-                    k40Var.h = vpVar;
-                    if (k40Var.f26149n == 0) {
-                        j10 = 10000;
-                    } else {
-                        j10 = 2000;
-                    }
-                    AndroidUtilities.runOnUIThread(vpVar, j10);
-                    return;
-                }
-                return;
-            case 1:
-                k40 k40Var2 = this.f25553b;
-                k40Var2.f26148f = null;
-                if (!k40Var2.E) {
-                    vp vpVar2 = new vp(this, 22);
-                    k40Var2.h = vpVar2;
-                    AndroidUtilities.runOnUIThread(vpVar2, k40Var2.B);
-                    return;
-                }
-                return;
-            default:
-                k40 k40Var3 = this.f25553b;
-                k40Var3.setVisibility(4);
-                k40Var3.getClass();
-                k40Var3.e = null;
-                k40Var3.d = null;
-                k40Var3.f26148f = null;
-                return;
+    public static String X(String str, boolean[] zArr) {
+        boolean z4;
+        if (zArr != null) {
+            zArr[0] = false;
         }
+        if (str != null && !str.isEmpty()) {
+            String trim = str.trim();
+            if (trim.length() > 1) {
+                if ((trim.charAt(0) == '#' || trim.charAt(0) == '$') && trim.indexOf(64) < 0) {
+                    if (zArr != null) {
+                        if (trim.charAt(0) == '$') {
+                            z4 = true;
+                        } else {
+                            z4 = false;
+                        }
+                        zArr[0] = z4;
+                    }
+                    return trim.substring(1);
+                }
+                return null;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public final void V() {
+        oh.f6 f6Var = this.N;
+        if (f6Var != null && f6Var.I != 0) {
+            ConnectionsManager.getInstance(f6Var.f17398c).cancelRequest(f6Var.I, true);
+            f6Var.I = 0;
+        }
+        this.M = false;
+        if (this.R >= 0) {
+            ConnectionsManager.getInstance(this.K).cancelRequest(this.R, true);
+            this.R = -1;
+        }
+        AndroidUtilities.cancelRunOnUIThread(this.X);
+        this.Q++;
+        this.P = false;
+    }
+
+    public final void W() {
+        tl0 tl0Var;
+        if (!TextUtils.isEmpty(this.U) && !this.S && !this.P && (tl0Var = this.d) != null) {
+            for (int i10 = 0; i10 < tl0Var.getChildCount(); i10++) {
+                if (tl0Var.getChildAt(i10) instanceof u00) {
+                    Y(this.U);
+                    return;
+                }
+            }
+        }
+    }
+
+    public final void Y(String str) {
+        this.U = str;
+        String X = X(str, this.Y);
+        if (!TextUtils.equals(this.V, X)) {
+            this.L.clear();
+            this.S = false;
+            this.T = 0;
+            V();
+        } else if (this.P) {
+            return;
+        }
+        int i10 = this.Q + 1;
+        this.Q = i10;
+        if (X == null) {
+            return;
+        }
+        this.P = true;
+        N(true);
+        gy gyVar = new gy(this, i10, X, 3);
+        this.X = gyVar;
+        AndroidUtilities.runOnUIThread(gyVar, 300L);
     }
 }

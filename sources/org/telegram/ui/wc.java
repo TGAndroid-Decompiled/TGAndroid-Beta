@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class wc extends org.telegram.ui.Components.w11 {
+public final class wc extends org.telegram.ui.Components.x11 {
     @Override
     public final String b() {
         return LocaleController.getString(R.string.ChannelNoWallpaper);

@@ -1,75 +1,35 @@
 package sh;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import k7.b6;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.a6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.p9;
-public final class f extends FrameLayout implements a6 {
-    public final p9 f44332a;
-    public final f6 f44333b;
-    public final TextView f44334c;
-    public final TextView d;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.i61;
+import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.x51;
+public final class f extends i51 {
+    static {
+        i51.setup(new i51());
+    }
 
-    public f(Context context, f6 f6Var) {
-        super(context);
-        this.f44333b = f6Var;
-        p9 p9Var = new p9(context);
-        this.f44332a = p9Var;
-        p9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
-        addView(p9Var, b6.d(72, 72.0f, 49, 0.0f, 36.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.f44334c = textView;
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 20.0f);
-        textView.setGravity(17);
-        addView(textView, b6.d(-1, -2.0f, 49, 24.0f, 123.0f, 24.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.d = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setGravity(17);
-        textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        addView(textView2, b6.d(-1, -2.0f, 49, 32.0f, 157.0f, 32.0f, 0.0f));
-        e();
+    public static j51 a(int i10, int i11, int i12, CharSequence charSequence, String str) {
+        j51 J = j51.J(f.class);
+        J.d = i10;
+        J.f28027z = i11;
+        J.f28013k = i12;
+        J.f28014l = charSequence;
+        J.f28015m = str;
+        return J;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        Drawable drawable = j6.S0;
-        p9 p9Var = this.f44332a;
-        lf.r.a(canvas, drawable, (p9Var.getWidth() / 2.0f) + p9Var.getLeft(), (p9Var.getHeight() / 2.0f) + p9Var.getTop(), p9Var.getHeight());
+    public final void bindView(View view, j51 j51Var, boolean z4, x51 x51Var, i61 i61Var) {
+        ((g) view).a(j51Var.f28027z, j51Var.f28013k, j51Var.f28014l, j51Var.f28015m);
     }
 
     @Override
-    public final void e() {
-        int i10 = j6.G6;
-        f6 f6Var = this.f44333b;
-        this.f44334c.setTextColor(j6.v0(i10, f6Var));
-        this.d.setTextColor(j6.v0(j6.f20298z6, f6Var));
-    }
-
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(218.0f), 1073741824));
-    }
-
-    public void setSubtitle(CharSequence charSequence) {
-        this.d.setText(charSequence);
-    }
-
-    public void setTitle(CharSequence charSequence) {
-        this.f44334c.setText(charSequence);
+    public final View createView(Context context, tl0 tl0Var, int i10, int i11, g6 g6Var) {
+        return new g(context, g6Var);
     }
 }

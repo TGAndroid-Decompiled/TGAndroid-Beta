@@ -1,36 +1,36 @@
 package org.telegram.ui;
-public final class fj extends qg.b {
-    public final int f34268n;
-    public final xn f34269r;
+public final class fj extends rg.b {
+    public final int f36902n;
+    public final xn f36903r;
 
-    public fj(xn xnVar, org.telegram.ui.ActionBar.f6 f6Var, int i10, int i11) {
-        super(i10, f6Var);
-        this.f34268n = i11;
-        this.f34269r = xnVar;
+    public fj(xn xnVar, org.telegram.ui.ActionBar.g6 g6Var, int i10, int i11) {
+        super(i10, g6Var);
+        this.f36902n = i11;
+        this.f36903r = xnVar;
     }
 
     @Override
-    public final int D2() {
+    public final int U() {
         int i10;
         int i11;
-        switch (this.f34268n) {
+        switch (this.f36902n) {
             case 0:
-                xn xnVar = this.f34269r;
+                xn xnVar = this.f36903r;
                 i10 = ((org.telegram.ui.ActionBar.p2) xnVar).currentAccount;
-                if (!rg.b.c(i10, xnVar.f39968ba)) {
-                    return i0.a.k(xnVar.getThemedColor(org.telegram.ui.ActionBar.j6.Sd), 255);
+                if (!sg.b.c(i10, xnVar.f43136ba)) {
+                    return i0.a.k(xnVar.getThemedColor(org.telegram.ui.ActionBar.k6.Sd), 255);
                 }
-                if (xnVar.f39968ba != null && !org.telegram.ui.ActionBar.j6.I.q()) {
+                if (xnVar.f43136ba != null && !org.telegram.ui.ActionBar.k6.I.q()) {
                     return i0.a.k(this.d, 216);
                 }
                 return this.d;
             default:
-                xn xnVar2 = this.f34269r;
+                xn xnVar2 = this.f36903r;
                 i11 = ((org.telegram.ui.ActionBar.p2) xnVar2).currentAccount;
-                if (!rg.b.c(i11, xnVar2.f39968ba)) {
-                    return i0.a.k(xnVar2.getThemedColor(org.telegram.ui.ActionBar.j6.f19906d6), 255);
+                if (!sg.b.c(i11, xnVar2.f43136ba)) {
+                    return i0.a.k(xnVar2.getThemedColor(org.telegram.ui.ActionBar.k6.f21659d6), 255);
                 }
-                if (xnVar2.f39968ba != null && !org.telegram.ui.ActionBar.j6.I.q()) {
+                if (xnVar2.f43136ba != null && !org.telegram.ui.ActionBar.k6.I.q()) {
                     return i0.a.k(this.d, 216);
                 }
                 return this.d;

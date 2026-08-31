@@ -4,16 +4,16 @@ import cb.e;
 import h5.w;
 import r3.v;
 public final class d extends e {
-    public final w f45580b;
-    public final w f45581c;
+    public final w f48872b;
+    public final w f48873c;
     public int d;
-    public boolean e;
-    public boolean f45582f;
-    public int f45583g;
+    public boolean f48874e;
+    public boolean f48875f;
+    public int f48876g;
 
     public d(v vVar) {
         super(vVar);
-        this.f45580b = new w(h5.a.d);
-        this.f45581c = new w(4);
+        this.f48872b = new w(h5.a.d);
+        this.f48873c = new w(4);
     }
 }

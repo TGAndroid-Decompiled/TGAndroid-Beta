@@ -3,18 +3,18 @@ package e5;
 import h5.w;
 import java.util.regex.Pattern;
 public final class c {
-    public static final Pattern f5109c = Pattern.compile("\\[voice=\"([^\"]*)\"\\]");
+    public static final Pattern f4946c = Pattern.compile("\\[voice=\"([^\"]*)\"\\]");
     public static final Pattern d = Pattern.compile("^((?:[0-9]*\\.)?[0-9]+)(px|em|%)$");
-    public final w f5110a = new w();
-    public final StringBuilder f5111b = new StringBuilder();
+    public final w f4947a = new w();
+    public final StringBuilder f4948b = new StringBuilder();
 
     public static String a(w wVar, StringBuilder sb) {
         boolean z4 = false;
         sb.setLength(0);
-        int i10 = wVar.f7001b;
-        int i11 = wVar.f7002c;
+        int i10 = wVar.f7309b;
+        int i11 = wVar.f7310c;
         while (i10 < i11 && !z4) {
-            char c3 = (char) wVar.f7000a[i10];
+            char c3 = (char) wVar.f7308a[i10];
             if ((c3 < 'A' || c3 > 'Z') && ((c3 < 'a' || c3 > 'z') && ((c3 < '0' || c3 > '9') && c3 != '#' && c3 != '-' && c3 != '.' && c3 != '_'))) {
                 z4 = true;
             } else {
@@ -22,7 +22,7 @@ public final class c {
                 sb.append(c3);
             }
         }
-        wVar.G(i10 - wVar.f7001b);
+        wVar.G(i10 - wVar.f7309b);
         return sb.toString();
     }
 
@@ -41,12 +41,12 @@ public final class c {
     public static void c(w wVar) {
         while (true) {
             for (boolean z4 = true; wVar.a() > 0 && z4; z4 = false) {
-                int i10 = wVar.f7001b;
-                byte[] bArr = wVar.f7000a;
+                int i10 = wVar.f7309b;
+                byte[] bArr = wVar.f7308a;
                 byte b10 = bArr[i10];
                 char c3 = (char) b10;
                 if (c3 != '\t' && c3 != '\n' && c3 != '\f' && c3 != '\r' && c3 != ' ') {
-                    int i11 = wVar.f7002c;
+                    int i11 = wVar.f7310c;
                     int i12 = i10 + 2;
                     if (i12 <= i11) {
                         int i13 = i10 + 1;
@@ -62,7 +62,7 @@ public final class c {
                                     i12 = i14;
                                 }
                             }
-                            wVar.G(i11 - wVar.f7001b);
+                            wVar.G(i11 - wVar.f7309b);
                         }
                     }
                 } else {

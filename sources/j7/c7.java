@@ -1,22 +1,49 @@
 package j7;
 
-import java.nio.ByteBuffer;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Bundle;
 public abstract class c7 {
-    public e4.c a(e4.e eVar) {
-        boolean z4;
-        ByteBuffer byteBuffer = eVar.d;
-        byteBuffer.getClass();
-        if (byteBuffer.position() == 0 && byteBuffer.hasArray() && byteBuffer.arrayOffset() == 0) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        h5.a.f(z4);
-        if (eVar.e(Integer.MIN_VALUE)) {
+    public static Intent a(Context context, ComponentName componentName) {
+        String b10 = b(context, componentName);
+        if (b10 == null) {
             return null;
         }
-        return b(eVar, byteBuffer);
+        ComponentName componentName2 = new ComponentName(componentName.getPackageName(), b10);
+        if (b(context, componentName2) == null) {
+            return Intent.makeMainActivity(componentName2);
+        }
+        return new Intent().setComponent(componentName2);
     }
 
-    public abstract e4.c b(e4.e eVar, ByteBuffer byteBuffer);
+    public static String b(Context context, ComponentName componentName) {
+        int i10;
+        String string;
+        PackageManager packageManager = context.getPackageManager();
+        int i11 = Build.VERSION.SDK_INT;
+        if (i11 >= 29) {
+            i10 = 269222528;
+        } else if (i11 >= 24) {
+            i10 = 787072;
+        } else {
+            i10 = 640;
+        }
+        ActivityInfo activityInfo = packageManager.getActivityInfo(componentName, i10);
+        String str = activityInfo.parentActivityName;
+        if (str != null) {
+            return str;
+        }
+        Bundle bundle = activityInfo.metaData;
+        if (bundle == null || (string = bundle.getString("android.support.PARENT_ACTIVITY")) == null) {
+            return null;
+        }
+        if (string.charAt(0) == '.') {
+            return context.getPackageName() + string;
+        }
+        return string;
+    }
 }

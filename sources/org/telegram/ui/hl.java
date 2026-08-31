@@ -8,27 +8,27 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class hl extends FrameLayout {
-    public float f34909a;
-    public float f34910b;
-    public final xn f34911c;
+    public float f37528a;
+    public float f37529b;
+    public final xn f37530c;
 
     public hl(xn xnVar, Activity activity) {
         super(activity);
-        this.f34911c = xnVar;
+        this.f37530c = xnVar;
         setOnLongClickListener(new w(this, 2));
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        xn xnVar = this.f34911c;
-        if (view == xnVar.f40222w2) {
+        xn xnVar = this.f37530c;
+        if (view == xnVar.f43391w2) {
             canvas.save();
             canvas.clipRect(0, 0, getMeasuredWidth(), AndroidUtilities.dp(48.0f));
         }
-        org.telegram.ui.ActionBar.k5[] k5VarArr = xnVar.A2;
-        if (view != k5VarArr[0] && view != k5VarArr[1]) {
+        org.telegram.ui.ActionBar.l5[] l5VarArr = xnVar.A2;
+        if (view != l5VarArr[0] && view != l5VarArr[1]) {
             boolean drawChild = super.drawChild(canvas, view, j10);
-            if (view == xnVar.f40222w2) {
+            if (view == xnVar.f43391w2) {
                 canvas.restore();
             }
             return drawChild;
@@ -43,8 +43,8 @@ public final class hl extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        xn xnVar = this.f34911c;
-        if (xnVar.f40236x2) {
+        xn xnVar = this.f37530c;
+        if (xnVar.f43405x2) {
             int i12 = 0;
             while (true) {
                 AnimatorSet[] animatorSetArr = xnVar.E2;
@@ -55,7 +55,7 @@ public final class hl extends FrameLayout {
                     }
                     i12++;
                 } else {
-                    xnVar.f40236x2 = false;
+                    xnVar.f43405x2 = false;
                     return;
                 }
             }
@@ -64,16 +64,16 @@ public final class hl extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.f34909a = motionEvent.getY();
+        this.f37528a = motionEvent.getY();
         int action = motionEvent.getAction();
-        xn xnVar = this.f34911c;
+        xn xnVar = this.f37530c;
         if (action == 1) {
             xnVar.finishPreviewFragment();
         } else if (motionEvent.getAction() == 2) {
-            float f10 = this.f34910b - this.f34909a;
+            float f10 = this.f37529b - this.f37528a;
             xnVar.movePreviewFragment(f10);
             if (f10 < 0.0f) {
-                this.f34910b = this.f34909a;
+                this.f37529b = this.f37528a;
             }
         }
         return super.onTouchEvent(motionEvent);

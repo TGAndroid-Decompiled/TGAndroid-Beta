@@ -17,22 +17,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import kh.a2;
 import org.xmlpull.v1.XmlPullParser;
 import s8.i0;
-import vh.v2;
 public abstract class a {
-    public static final byte[] f6917a = {0, 0, 0, 1};
-    public static final String[] f6918b = {"", "A", "B", "C"};
-    public static final Object f6919c = new Object();
+    public static final byte[] f7216a = {0, 0, 0, 1};
+    public static final String[] f7217b = {"", "A", "B", "C"};
+    public static final Object f7218c = new Object();
     public static final byte[] d = {0, 0, 0, 1};
-    public static final float[] e = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
-    public static final Object f6920f = new Object();
-    public static int[] f6921g = new int[10];
+    public static final float[] f7219e = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
+    public static final Object f7220f = new Object();
+    public static int[] f7221g = new int[10];
     public static final Object h = new Object();
-    public static final Object f6922i = new Object();
-    public static boolean f6923j;
-    public static long f6924k;
+    public static final Object f7222i = new Object();
+    public static boolean f7223j;
+    public static long f7224k;
 
     public static void A(MediaFormat mediaFormat, String str, int i10) {
         if (i10 != -1) {
@@ -174,7 +172,7 @@ public abstract class a {
                         f11 = i34 / i35;
                     }
                 } else if (i33 < 17) {
-                    f11 = e[i33];
+                    f11 = f7219e[i33];
                 } else {
                     e2.c.q(i33, "Unexpected aspect_ratio_idc value: ", "NalUnitUtil");
                 }
@@ -354,13 +352,13 @@ public abstract class a {
 
     public static void I(MediaFormat mediaFormat, List list) {
         for (int i10 = 0; i10 < list.size(); i10++) {
-            mediaFormat.setByteBuffer(a2.j(i10, "csd-"), ByteBuffer.wrap((byte[]) list.get(i10)));
+            mediaFormat.setByteBuffer(l.d.j(i10, "csd-"), ByteBuffer.wrap((byte[]) list.get(i10)));
         }
     }
 
     public static int J(int i10, byte[] bArr) {
         int i11;
-        synchronized (f6920f) {
+        synchronized (f7220f) {
             int i12 = 0;
             int i13 = 0;
             while (i12 < i10) {
@@ -380,11 +378,11 @@ public abstract class a {
                     }
                 }
                 if (i12 < i10) {
-                    int[] iArr = f6921g;
+                    int[] iArr = f7221g;
                     if (iArr.length <= i13) {
-                        f6921g = Arrays.copyOf(iArr, iArr.length * 2);
+                        f7221g = Arrays.copyOf(iArr, iArr.length * 2);
                     }
-                    f6921g[i13] = i12;
+                    f7221g[i13] = i12;
                     i12 += 3;
                     i13++;
                 }
@@ -393,7 +391,7 @@ public abstract class a {
             int i14 = 0;
             int i15 = 0;
             for (int i16 = 0; i16 < i13; i16++) {
-                int i17 = f6921g[i16] - i15;
+                int i17 = f7221g[i16] - i15;
                 System.arraycopy(bArr, i15, bArr, i14, i17);
                 int i18 = i14 + i17;
                 int i19 = i18 + 1;
@@ -408,7 +406,7 @@ public abstract class a {
     }
 
     public static void K(String str, String str2) {
-        synchronized (f6919c) {
+        synchronized (f7218c) {
             Log.w(str, str2);
         }
     }
@@ -421,7 +419,7 @@ public abstract class a {
         DatagramSocket datagramSocket;
         long j10;
         char c3;
-        synchronized (f6922i) {
+        synchronized (f7222i) {
         }
         InetAddress byName = InetAddress.getByName("time.android.com");
         DatagramSocket datagramSocket2 = new DatagramSocket();
@@ -488,7 +486,7 @@ public abstract class a {
 
     public static String b(String str, Throwable th2) {
         String replace;
-        synchronized (f6919c) {
+        synchronized (f7218c) {
             try {
                 if (th2 == null) {
                     replace = null;
@@ -511,7 +509,7 @@ public abstract class a {
             }
         }
         if (!TextUtils.isEmpty(replace)) {
-            StringBuilder f10 = v2.f(str, "\n  ");
+            StringBuilder f10 = w.c.f(str, "\n  ");
             f10.append(replace.replace("\n", "\n  "));
             f10.append('\n');
             return f10.toString();
@@ -520,14 +518,14 @@ public abstract class a {
     }
 
     public static void c(String str) {
-        if (d0.f6937a >= 18) {
+        if (d0.f7237a >= 18) {
             Trace.beginSection(str);
         }
     }
 
     public static String d(int i10, int i11, int i12, int i13, boolean z4, int[] iArr) {
         char c3;
-        String str = f6918b[i10];
+        String str = f7217b[i10];
         Integer valueOf = Integer.valueOf(i11);
         Integer valueOf2 = Integer.valueOf(i12);
         if (z4) {
@@ -536,7 +534,7 @@ public abstract class a {
             c3 = 'L';
         }
         Object[] objArr = {str, valueOf, valueOf2, Character.valueOf(c3), Integer.valueOf(i13)};
-        int i14 = d0.f6937a;
+        int i14 = d0.f7237a;
         StringBuilder sb = new StringBuilder(String.format(Locale.US, "hvc1.%s%d.%X.%c%d", objArr));
         int length = iArr.length;
         while (length > 0 && iArr[length - 1] == 0) {
@@ -600,7 +598,7 @@ public abstract class a {
     public static void l(byte b10, byte b11, int i10, long j10) {
         if (b10 != 3) {
             if (b11 != 4 && b11 != 5) {
-                throw new IOException(a2.j(b11, "SNTP: Untrusted mode: "));
+                throw new IOException(l.d.j(b11, "SNTP: Untrusted mode: "));
             }
             if (i10 != 0 && i10 <= 15) {
                 if (j10 != 0) {
@@ -608,7 +606,7 @@ public abstract class a {
                 }
                 throw new IOException("SNTP: Zero transmitTime");
             }
-            throw new IOException(a2.j(i10, "SNTP: Untrusted stratum: "));
+            throw new IOException(l.d.j(i10, "SNTP: Untrusted stratum: "));
         }
         throw new IOException("SNTP: Unsynchronized server");
     }
@@ -620,13 +618,13 @@ public abstract class a {
     }
 
     public static void n(String str, String str2) {
-        synchronized (f6919c) {
+        synchronized (f7218c) {
             Log.d(str, str2);
         }
     }
 
     public static void o(String str, String str2) {
-        synchronized (f6919c) {
+        synchronized (f7218c) {
             Log.e(str, str2);
         }
     }
@@ -636,7 +634,7 @@ public abstract class a {
     }
 
     public static void q() {
-        if (d0.f6937a >= 18) {
+        if (d0.f7237a >= 18) {
             Trace.endSection();
         }
     }
@@ -701,7 +699,7 @@ public abstract class a {
     }
 
     public static i0 s(j3.f fVar, ArrayList arrayList) {
-        s8.t tVar = s8.v.f44157b;
+        s8.t tVar = s8.v.f47143b;
         s8.l.c(4, "initialCapacity");
         Object[] objArr = new Object[4];
         int i10 = 0;
@@ -781,7 +779,7 @@ public abstract class a {
     }
 
     public static void v(String str, String str2) {
-        synchronized (f6919c) {
+        synchronized (f7218c) {
             Log.i(str, str2);
         }
     }

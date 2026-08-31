@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public abstract class s extends o implements List, RandomAccess {
-    public static final q f11612b = new q(w.e, 0);
+    public static final q f12009b = new q(w.f12077e, 0);
 
     @Override
     public final void add(int i10, Object obj) {
@@ -35,7 +35,7 @@ public abstract class s extends o implements List, RandomAccess {
                 if (size == list.size()) {
                     if (list instanceof RandomAccess) {
                         for (int i10 = 0; i10 < size; i10++) {
-                            if (k7.i.a(get(i10), list.get(i10))) {
+                            if (k7.j.a(get(i10), list.get(i10))) {
                             }
                         }
                         return true;
@@ -45,7 +45,7 @@ public abstract class s extends o implements List, RandomAccess {
                     while (true) {
                         if (listIterator.hasNext()) {
                             if (it.hasNext()) {
-                                if (!k7.i.a(listIterator.next(), it.next())) {
+                                if (!k7.j.a(listIterator.next(), it.next())) {
                                     break;
                                 }
                             } else {
@@ -120,13 +120,13 @@ public abstract class s extends o implements List, RandomAccess {
 
     @Override
     public s subList(int i10, int i11) {
-        k7.j.b(i10, i11, size());
+        k7.k.b(i10, i11, size());
         int i12 = i11 - i10;
         if (i12 == size()) {
             return this;
         }
         if (i12 == 0) {
-            return w.e;
+            return w.f12077e;
         }
         return new r(this, i10, i12);
     }
@@ -136,11 +136,11 @@ public abstract class s extends o implements List, RandomAccess {
         int size = size();
         if (i10 >= 0 && i10 <= size) {
             if (isEmpty()) {
-                return f11612b;
+                return f12009b;
             }
             return new q(this, i10);
         }
-        throw new IndexOutOfBoundsException(k7.j.c(i10, size, "index"));
+        throw new IndexOutOfBoundsException(k7.k.c(i10, size, "index"));
     }
 
     @Override

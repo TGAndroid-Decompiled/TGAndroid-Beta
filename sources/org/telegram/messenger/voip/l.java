@@ -8,43 +8,43 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class l implements Runnable {
-    public final int f18799a;
-    public final Object f18800b;
-    public final Object f18801c;
+    public final int f20428a;
+    public final Object f20429b;
+    public final Object f20430c;
     public final Object d;
-    public final Object e;
+    public final Object f20431e;
 
     public l(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f18799a = i10;
-        this.f18800b = obj;
-        this.f18801c = obj2;
+        this.f20428a = i10;
+        this.f20429b = obj;
+        this.f20430c = obj2;
         this.d = obj3;
-        this.e = obj4;
+        this.f20431e = obj4;
     }
 
     @Override
     public final void run() {
-        switch (this.f18799a) {
+        switch (this.f20428a) {
             case 0:
-                VoIPDebugToSend.d((VoIPDebugToSend) this.f18800b, (VoIPDebugToSend.Data) this.f18801c, (File) this.d, (TL_phone.saveCallDebug) this.e);
+                VoIPDebugToSend.d((VoIPDebugToSend) this.f20429b, (VoIPDebugToSend.Data) this.f20430c, (File) this.d, (TL_phone.saveCallDebug) this.f20431e);
                 return;
             case 1:
-                ((NativeInstance) this.f18800b).lambda$onAudioLevelsUpdated$1((int[]) this.f18801c, (float[]) this.d, (boolean[]) this.e);
+                ((NativeInstance) this.f20429b).lambda$onAudioLevelsUpdated$1((int[]) this.f20430c, (float[]) this.d, (boolean[]) this.f20431e);
                 return;
             case 2:
-                VoIPPreNotificationService.lambda$acknowledge$2((TLObject) this.f18800b, (TLRPC.TL_error) this.f18801c, (Context) this.d, (Runnable) this.e);
+                VoIPPreNotificationService.lambda$acknowledge$2((TLObject) this.f20429b, (TLRPC.TL_error) this.f20430c, (Context) this.d, (Runnable) this.f20431e);
                 return;
             case 3:
-                ((VoIPService) this.f18800b).lambda$startConferenceGroupCall$44((TLObject) this.f18801c, (TL_phone.PhoneCall) this.d, (TL_phone.exportGroupCallInvite) this.e);
+                ((VoIPService) this.f20429b).lambda$startConferenceGroupCall$44((TLObject) this.f20430c, (TL_phone.PhoneCall) this.d, (TL_phone.exportGroupCallInvite) this.f20431e);
                 return;
             case 4:
-                ((VoIPService) this.f18800b).lambda$startOutgoingCall$9((TLRPC.TL_error) this.f18801c, (TLObject) this.d, (byte[]) this.e);
+                ((VoIPService) this.f20429b).lambda$startOutgoingCall$9((TLRPC.TL_error) this.f20430c, (TLObject) this.d, (byte[]) this.f20431e);
                 return;
             case 5:
-                ((VoIPService) this.f18800b).lambda$startGroupCheckShortpoll$63((TLRPC.TL_error) this.f18801c, (TLObject) this.d, (TL_phone.checkGroupCall) this.e);
+                ((VoIPService) this.f20429b).lambda$startGroupCheckShortpoll$63((TLRPC.TL_error) this.f20430c, (TLObject) this.d, (TL_phone.checkGroupCall) this.f20431e);
                 return;
             default:
-                ((VoIPService) this.f18800b).lambda$startConferenceGroupCall$31((TLObject) this.f18801c, (AccountInstance) this.d, (TLRPC.TL_error) this.e);
+                ((VoIPService) this.f20429b).lambda$startConferenceGroupCall$31((TLObject) this.f20430c, (AccountInstance) this.d, (TLRPC.TL_error) this.f20431e);
                 return;
         }
     }

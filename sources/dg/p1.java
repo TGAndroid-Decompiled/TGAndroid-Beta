@@ -1,47 +1,47 @@
 package dg;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.et0;
-public final class p1 implements cg.o1 {
-    public final q1 f4719a;
+import android.graphics.Color;
+import android.opengl.GLES20;
+import java.util.HashMap;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public final class p1 {
+    public int f4639a;
+    public HashMap f4640b;
 
-    public p1(q1 q1Var) {
-        this.f4719a = q1Var;
+    public static void a(int i10, int i11) {
+        GLES20.glUniform4f(i10, Color.red(i11) / 255.0f, Color.green(i11) / 255.0f, Color.blue(i11) / 255.0f, Color.alpha(i11) / 255.0f);
     }
 
-    @Override
-    public final void a() {
-        q1 q1Var = this.f4719a;
-        q1Var.e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new o1(q1Var, 0)).setInterpolator(nr.h);
+    public static c5.e b(int i10, String str) {
+        int glCreateShader = GLES20.glCreateShader(i10);
+        GLES20.glShaderSource(glCreateShader, str);
+        GLES20.glCompileShader(glCreateShader);
+        int[] iArr = new int[1];
+        GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
+        if (iArr[0] == 0 && BuildVars.LOGS_ENABLED) {
+            FileLog.e(GLES20.glGetShaderInfoLog(glCreateShader));
+        }
+        int i11 = iArr[0];
+        ?? obj = new Object();
+        obj.f2268a = glCreateShader;
+        obj.f2269b = i11;
+        return obj;
     }
 
-    @Override
-    public final boolean d() {
-        return true;
+    public static void c(int i10, int i11, int i12) {
+        if (i10 != 0) {
+            GLES20.glDeleteShader(i10);
+        }
+        if (i11 != 0) {
+            GLES20.glDeleteShader(i11);
+        }
+        if (i12 != 0) {
+            GLES20.glDeleteProgram(i10);
+        }
     }
 
-    @Override
-    public final void e() {
-        q1 q1Var = this.f4719a;
-        q1Var.f4728b.f2428a.e();
-        q1Var.f4734w.setViewHidden(false);
-        PhotoViewer photoViewer = ((et0) q1Var).H;
-        Drawable[] drawableArr = PhotoViewer.Q8;
-        photoViewer.X2(true, true);
-    }
-
-    @Override
-    public final void f() {
-        this.f4719a.f4734w.setViewHidden(true);
-    }
-
-    @Override
-    public final void b() {
-    }
-
-    @Override
-    public final void c() {
+    public final int d(String str) {
+        return ((Integer) this.f4640b.get(str)).intValue();
     }
 }

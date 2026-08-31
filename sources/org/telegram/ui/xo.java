@@ -8,32 +8,32 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class xo extends org.telegram.ui.Cells.a9 {
     public ValueAnimator v;
-    public int f40272w;
-    public final dp f40273x;
+    public int f43441w;
+    public final ep f43442x;
 
-    public xo(dp dpVar, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, 12, f6Var);
-        this.f40273x = dpVar;
-        this.f40272w = -1;
+    public xo(ep epVar, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, 12, g6Var);
+        this.f43442x = epVar;
+        this.f43441w = -1;
     }
 
     @Override
     public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
         super.onLayout(z4, i10, i11, i12, i13);
-        if (this.f40272w != -1) {
-            dp dpVar = this.f40273x;
-            if (dpVar.h != null) {
+        if (this.f43441w != -1) {
+            ep epVar = this.f43442x;
+            if (epVar.h != null) {
                 ArrayList arrayList = new ArrayList();
                 boolean z10 = false;
-                for (int i14 = 0; i14 < dpVar.h.getChildCount(); i14++) {
-                    View childAt = dpVar.h.getChildAt(i14);
+                for (int i14 = 0; i14 < epVar.h.getChildCount(); i14++) {
+                    View childAt = epVar.h.getChildAt(i14);
                     if (z10) {
                         arrayList.add(childAt);
                     } else if (childAt == this) {
                         z10 = true;
                     }
                 }
-                float height = this.f40272w - getHeight();
+                float height = this.f43441w - getHeight();
                 ValueAnimator valueAnimator = this.v;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
@@ -41,12 +41,12 @@ public final class xo extends org.telegram.ui.Cells.a9 {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 this.v = ofFloat;
                 ofFloat.addUpdateListener(new gg(arrayList, height, 1));
-                this.v.setInterpolator(org.telegram.ui.Components.nr.h);
+                this.v.setInterpolator(org.telegram.ui.Components.pr.h);
                 this.v.setDuration(350L);
                 this.v.start();
             }
         }
-        this.f40272w = getHeight();
+        this.f43441w = getHeight();
     }
 
     @Override
@@ -55,21 +55,21 @@ public final class xo extends org.telegram.ui.Cells.a9 {
         if (charSequence != 0) {
             charSequence = AndroidUtilities.replaceTags(charSequence.toString());
             int indexOf = charSequence.toString().indexOf(10);
-            dp dpVar = this.f40273x;
+            ep epVar = this.f43442x;
             if (indexOf >= 0) {
                 charSequence.replace(indexOf, indexOf + 1, " ");
-                charSequence.setSpan(new ForegroundColorSpan(dpVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20122p7)), 0, indexOf, 33);
+                charSequence.setSpan(new ForegroundColorSpan(epVar.getThemedColor(org.telegram.ui.ActionBar.k6.f21876p7)), 0, indexOf, 33);
             }
-            org.telegram.ui.Components.f51[] f51VarArr = (org.telegram.ui.Components.f51[]) charSequence.getSpans(0, charSequence.length(), org.telegram.ui.Components.f51.class);
-            kg.f fVar = dpVar.f33746a;
+            org.telegram.ui.Components.g51[] g51VarArr = (org.telegram.ui.Components.g51[]) charSequence.getSpans(0, charSequence.length(), org.telegram.ui.Components.g51.class);
+            lg.f fVar = epVar.f36629a;
             if (fVar != null && fVar.getText() != null) {
-                str = dpVar.f33746a.getText().toString();
+                str = epVar.f36629a.getText().toString();
             } else {
                 str = "";
             }
-            for (int i10 = 0; i10 < f51VarArr.length; i10++) {
-                charSequence.setSpan(new org.telegram.ui.Cells.i(5, (Object) this, str), charSequence.getSpanStart(f51VarArr[i10]), charSequence.getSpanEnd(f51VarArr[i10]), 33);
-                charSequence.removeSpan(f51VarArr[i10]);
+            for (int i10 = 0; i10 < g51VarArr.length; i10++) {
+                charSequence.setSpan(new org.telegram.ui.Cells.i(5, (Object) this, str), charSequence.getSpanStart(g51VarArr[i10]), charSequence.getSpanEnd(g51VarArr[i10]), 33);
+                charSequence.removeSpan(g51VarArr[i10]);
             }
         }
         super.setText(charSequence);

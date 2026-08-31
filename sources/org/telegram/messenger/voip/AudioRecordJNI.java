@@ -8,7 +8,7 @@ import android.media.audiofx.NoiseSuppressor;
 import android.text.TextUtils;
 import java.nio.ByteBuffer;
 import java.util.regex.Pattern;
-import nh.n4;
+import oh.z1;
 public class AudioRecordJNI {
     private AcousticEchoCanceler aec;
     private AutomaticGainControl agc;
@@ -73,8 +73,8 @@ public class AudioRecordJNI {
                     this.audioRecord.read(byteBuffer, 1764);
                     Resampler.convert44to48(byteBuffer, this.buffer);
                 }
-            } catch (Exception e) {
-                VLog.e(e);
+            } catch (Exception e6) {
+                VLog.e(e6);
             }
             if (!this.running) {
                 this.audioRecord.stop();
@@ -90,8 +90,8 @@ public class AudioRecordJNI {
         if (!TextUtils.isEmpty(string)) {
             try {
                 return Pattern.compile(string);
-            } catch (Exception e) {
-                VLog.e(e);
+            } catch (Exception e6) {
+                VLog.e(e6);
                 return null;
             }
         }
@@ -109,7 +109,7 @@ public class AudioRecordJNI {
             } else {
                 byteBuffer = null;
             }
-            Thread thread = new Thread(new n4(29, this, byteBuffer));
+            Thread thread = new Thread(new z1(28, this, byteBuffer));
             this.thread = thread;
             thread.start();
             return;
@@ -213,8 +213,8 @@ public class AudioRecordJNI {
         if (thread != null) {
             try {
                 thread.join();
-            } catch (InterruptedException e) {
-                VLog.e(e);
+            } catch (InterruptedException e6) {
+                VLog.e(e6);
             }
             this.thread = null;
         }
@@ -255,8 +255,8 @@ public class AudioRecordJNI {
                     this.audioRecord.startRecording();
                 }
                 return true;
-            } catch (Exception e) {
-                VLog.e("Error initializing AudioRecord", e);
+            } catch (Exception e6) {
+                VLog.e("Error initializing AudioRecord", e6);
             }
         }
         return false;

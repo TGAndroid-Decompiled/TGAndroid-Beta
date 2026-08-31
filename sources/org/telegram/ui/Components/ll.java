@@ -1,36 +1,77 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
+import java.util.HashMap;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.PhotoViewer;
 public final class ll implements Utilities.Callback {
-    public final int f26787a;
-    public final boolean f26788b;
-    public final Object f26789c;
-    public final Object d;
+    public final int f28765a = 1;
+    public final boolean f28766b;
+    public final boolean f28767c;
+    public final int d;
+    public final am f28768e;
 
-    public ll(Object obj, boolean z4, Object obj2, int i10) {
-        this.f26787a = i10;
-        this.f26789c = obj;
-        this.f26788b = z4;
-        this.d = obj2;
+    public ll(rl rlVar, boolean z4, boolean z10, int i10) {
+        this.f28768e = rlVar;
+        this.f28766b = z4;
+        this.f28767c = z10;
+        this.d = i10;
     }
 
     @Override
-    public final void run(java.lang.Object r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ll.run(java.lang.Object):void");
+    public final void run(Object obj) {
+        int i10;
+        switch (this.f28765a) {
+            case 0:
+                Long l10 = (Long) obj;
+                mi miVar = ((vl) this.f28768e).f31923b.f26546b;
+                if (miVar != null) {
+                    miVar.F1 = true;
+                }
+                miVar.W1.I1(7, true, this.f28766b, this.d, 0, 0L, miVar.s1(), this.f28767c, l10.longValue());
+                HashMap hashMap = ChatAttachAlertPhotoLayout.f24738p1;
+                hashMap.clear();
+                ChatAttachAlertPhotoLayout.f24737o1.clear();
+                ChatAttachAlertPhotoLayout.f24739q1.clear();
+                hashMap.clear();
+                PhotoViewer.t1();
+                PhotoViewer.t1().G0(PhotoViewer.t1().M, false);
+                PhotoViewer.t1().f34377r2 = true;
+                return;
+            default:
+                Long l11 = (Long) obj;
+                PhotoViewer.t1();
+                PhotoViewer.t1().L = false;
+                PhotoViewer.t1().f34377r2 = false;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((rl) this.f28768e).f30796c;
+                mi miVar2 = chatAttachAlertPhotoLayout.f26546b;
+                miVar2.f29082p2 = true;
+                miVar2.F1 = true;
+                chatAttachAlertPhotoLayout.a0(false);
+                ki kiVar = miVar2.W1;
+                boolean z4 = this.f28766b;
+                if (z4) {
+                    i10 = 4;
+                } else {
+                    i10 = 8;
+                }
+                kiVar.I1(i10, true, this.f28767c, this.d, 0, 0L, miVar2.s1(), z4, l11.longValue());
+                ChatAttachAlertPhotoLayout.f24737o1.clear();
+                ChatAttachAlertPhotoLayout.f24739q1.clear();
+                ChatAttachAlertPhotoLayout.f24738p1.clear();
+                chatAttachAlertPhotoLayout.D.l();
+                chatAttachAlertPhotoLayout.v.l();
+                miVar2.dismiss(true);
+                PhotoViewer.t1();
+                PhotoViewer.t1().G0(PhotoViewer.t1().M, false);
+                PhotoViewer.t1().f34377r2 = true;
+                return;
+        }
     }
 
-    public ll(nl nlVar, File file, boolean z4) {
-        this.f26787a = 0;
-        this.f26789c = nlVar;
-        this.d = file;
-        this.f26788b = z4;
-    }
-
-    public ll(boolean z4, Object obj, Object obj2, int i10) {
-        this.f26787a = i10;
-        this.f26788b = z4;
-        this.f26789c = obj;
-        this.d = obj2;
+    public ll(vl vlVar, boolean z4, int i10, boolean z10) {
+        this.f28768e = vlVar;
+        this.f28766b = z4;
+        this.d = i10;
+        this.f28767c = z10;
     }
 }

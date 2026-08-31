@@ -147,12 +147,12 @@ public final class TelegramQRCodeWriter {
             }
         }
         int i14 = this.sideQuadSize;
-        if ((i10 < i14 || i10 >= this.input.f45649b - i14) && i11 < i14) {
+        if ((i10 < i14 || i10 >= this.input.f48946b - i14) && i11 < i14) {
             return false;
         }
-        if ((i10 >= i14 || i11 < this.input.f45650c - i14) && i10 >= 0 && i11 >= 0) {
+        if ((i10 >= i14 || i11 < this.input.f48947c - i14) && i10 >= 0 && i11 >= 0) {
             vb.b bVar = this.input;
-            if (i10 < bVar.f45649b && i11 < bVar.f45650c && bVar.a(i10, i11) == 1) {
+            if (i10 < bVar.f48946b && i11 < bVar.f48947c && bVar.a(i10, i11) == 1) {
                 return true;
             }
         }

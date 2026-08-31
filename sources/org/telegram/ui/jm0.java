@@ -1,55 +1,70 @@
 package org.telegram.ui;
 
-import java.util.Comparator;
-import org.telegram.tgnet.TLRPC;
-public final class jm0 implements Comparator {
-    public final dn0 f35380a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class jm0 extends AnimatorListenerAdapter {
+    public final int f38185a;
+    public final boolean f38186b;
+    public final fn0 f38187c;
 
-    public jm0(dn0 dn0Var) {
-        this.f35380a = dn0Var;
-    }
-
-    public final int a(TLRPC.SecureValueError secureValueError) {
-        if (secureValueError instanceof TLRPC.TL_secureValueError) {
-            return 0;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorFrontSide) {
-            return 1;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorReverseSide) {
-            return 2;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorSelfie) {
-            return 3;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFile) {
-            return 4;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFiles) {
-            return 5;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorFile) {
-            return 6;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorFiles) {
-            return 7;
-        }
-        if (secureValueError instanceof TLRPC.TL_secureValueErrorData) {
-            return dn0.C0(this.f35380a, ((TLRPC.TL_secureValueErrorData) secureValueError).field);
-        }
-        return 100;
+    public jm0(fn0 fn0Var, boolean z4, int i10) {
+        this.f38185a = i10;
+        this.f38187c = fn0Var;
+        this.f38186b = z4;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int a2 = a((TLRPC.SecureValueError) obj);
-        int a10 = a((TLRPC.SecureValueError) obj2);
-        if (a2 < a10) {
-            return -1;
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f38185a) {
+            case 0:
+                fn0 fn0Var = this.f38187c;
+                AnimatorSet animatorSet = fn0Var.J;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    fn0Var.J = null;
+                    return;
+                }
+                return;
+            default:
+                fn0 fn0Var2 = this.f38187c;
+                AnimatorSet animatorSet2 = fn0Var2.J;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    fn0Var2.J = null;
+                    return;
+                }
+                return;
         }
-        if (a2 > a10) {
-            return 1;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f38185a) {
+            case 0:
+                fn0 fn0Var = this.f38187c;
+                AnimatorSet animatorSet = fn0Var.J;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f38186b) {
+                        fn0Var.K.setVisibility(4);
+                        return;
+                    } else {
+                        fn0Var.I.getContentView().setVisibility(4);
+                        return;
+                    }
+                }
+                return;
+            default:
+                fn0 fn0Var2 = this.f38187c;
+                AnimatorSet animatorSet2 = fn0Var2.J;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    if (!this.f38186b) {
+                        fn0Var2.M.setVisibility(4);
+                        return;
+                    } else {
+                        fn0Var2.L.setVisibility(4);
+                        return;
+                    }
+                }
+                return;
         }
-        return 0;
     }
 }

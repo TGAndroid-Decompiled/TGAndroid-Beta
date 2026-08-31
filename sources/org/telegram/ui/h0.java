@@ -3,28 +3,28 @@ package org.telegram.ui;
 import android.net.Uri;
 import org.telegram.messenger.Utilities;
 public final class h0 implements Utilities.Callback0Return {
-    public final l4 f34710a;
-    public final String f34711b;
-    public final boolean[] f34712c;
+    public final l4 f37296a;
+    public final String f37297b;
+    public final boolean[] f37298c;
     public final af.f d;
 
     public h0(l4 l4Var, String str, boolean[] zArr, af.f fVar) {
-        this.f34710a = l4Var;
-        this.f34711b = str;
-        this.f34712c = zArr;
+        this.f37296a = l4Var;
+        this.f37297b = str;
+        this.f37298c = zArr;
         this.d = fVar;
     }
 
     @Override
     public final Object run() {
-        String str = this.f34711b;
-        if (!af.g.f(Uri.parse(str), false, this.f34712c)) {
+        String str = this.f37297b;
+        if (!af.g.f(Uri.parse(str), false, this.f37298c)) {
             return Boolean.FALSE;
         }
-        l4 l4Var = this.f34710a;
+        l4 l4Var = this.f37296a;
         af.f fVar = this.d;
         if (fVar != null) {
-            fVar.f166c = new org.telegram.messenger.voip.b(16, l4Var, fVar);
+            fVar.f181c = new org.telegram.messenger.voip.h(15, l4Var, fVar);
         } else {
             y3 y3Var = l4Var.H;
             if (y3Var != null) {

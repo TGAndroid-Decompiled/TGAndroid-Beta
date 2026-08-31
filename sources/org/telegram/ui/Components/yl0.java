@@ -1,191 +1,172 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.ValueAnimator;
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import java.util.ArrayList;
-public final class yl0 extends Drawable implements Animator.AnimatorListener {
-    public final Context f31044a;
-    public ColorFilter f31045b;
-    public Drawable d;
-    public Drawable e;
-    public ValueAnimator f31047f;
-    public boolean f31049r;
-    public int f31046c = 0;
-    public float h = 1.0f;
-    public final ArrayList f31048n = new ArrayList();
+import org.telegram.messenger.AndroidUtilities;
+public final class yl0 extends Drawable {
+    public final yv f33540e;
+    public final yv f33541f;
+    public float h;
+    public float f33543i;
+    public final Rect f33537a = new Rect();
+    public final pr f33538b = jt.f28197b;
+    public final int f33539c = AndroidUtilities.dp(24.0f);
+    public final int d = AndroidUtilities.dp(24.0f);
+    public long f33542g = -1;
 
-    public yl0(Context context) {
-        this.f31044a = context;
+    public yl0() {
+        yv yvVar = new yv();
+        this.f33540e = yvVar;
+        yvVar.f33585c.setColor(-2130706433);
+        yv yvVar2 = new yv();
+        this.f33541f = yvVar2;
+        yvVar2.f33585c.setColor(-2130706433);
     }
 
-    public final void a(int i10, boolean z4) {
-        if (this.f31046c == i10) {
-            return;
-        }
-        b(this.f31044a.getDrawable(i10).mutate(), z4);
-        this.f31046c = i10;
+    public final void a(Canvas canvas, float f10) {
+        Rect bounds = getBounds();
+        float interpolation = this.f33538b.getInterpolation(f10);
+        Rect rect = this.f33537a;
+        rect.left = (int) (AndroidUtilities.dp(2.0f) * this.h);
+        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f33543i));
+        rect.bottom = dp;
+        rect.right = bounds.right - rect.left;
+        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f33543i));
+        yv yvVar = this.f33541f;
+        yvVar.setBounds(rect);
+        yvVar.draw(canvas);
+        int dp2 = AndroidUtilities.dp(12.0f);
+        rect.right = dp2;
+        rect.left = dp2;
+        int dp3 = AndroidUtilities.dp(8.0f);
+        rect.bottom = dp3;
+        rect.top = dp3;
+        rect.inset(-AndroidUtilities.dp(AndroidUtilities.lerp(10, 11, interpolation)), -AndroidUtilities.dp(AndroidUtilities.lerp(2, 3, interpolation)));
+        yv yvVar2 = this.f33540e;
+        yvVar2.setBounds(rect);
+        yvVar2.setAlpha(AndroidUtilities.lerp(128, 255, interpolation));
+        yvVar2.draw(canvas);
     }
 
-    public final void b(Drawable drawable, boolean z4) {
-        if (drawable == null) {
-            this.d = null;
-            this.e = null;
-            invalidateSelf();
-            return;
-        }
-        z4 = (getBounds() == null || getBounds().isEmpty()) ? false : false;
-        Drawable drawable2 = this.d;
-        if (drawable == drawable2) {
-            drawable2.setColorFilter(this.f31045b);
-            return;
-        }
-        this.f31046c = 0;
-        this.e = drawable2;
-        this.d = drawable;
-        drawable.setColorFilter(this.f31045b);
-        c(this.d, getBounds());
-        c(this.e, getBounds());
-        ValueAnimator valueAnimator = this.f31047f;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.f31047f.cancel();
-        }
-        if (!z4) {
-            this.h = 1.0f;
-            this.e = null;
-            return;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f31047f = ofFloat;
-        ofFloat.addUpdateListener(new i70(this, 10));
-        this.f31047f.addListener(this);
-        this.f31047f.setDuration(150L);
-        this.f31047f.start();
+    public final void b(Canvas canvas, float f10) {
+        Rect bounds = getBounds();
+        float interpolation = this.f33538b.getInterpolation(f10);
+        Rect rect = this.f33537a;
+        rect.left = (int) (AndroidUtilities.dp(2.0f) * this.h);
+        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f33543i));
+        rect.bottom = dp;
+        rect.right = bounds.right - rect.left;
+        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f33543i));
+        rect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, -8, interpolation)));
+        yv yvVar = this.f33541f;
+        yvVar.setBounds(rect);
+        yvVar.draw(canvas);
+        rect.left = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(1, 2, interpolation)) * this.h);
+        int dpf2 = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(5, 6, interpolation)) * this.f33543i);
+        rect.top = dpf2;
+        rect.right = bounds.right - rect.left;
+        rect.bottom = dpf2 + ((int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(6, 4, interpolation)) * this.f33543i));
+        rect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, 8, interpolation)));
+        yv yvVar2 = this.f33540e;
+        yvVar2.setBounds(rect);
+        yvVar2.setAlpha(255);
+        yvVar2.draw(canvas);
     }
 
-    public final void c(Drawable drawable, Rect rect) {
-        int height;
-        int intrinsicHeight;
-        int width;
-        int intrinsicWidth;
-        if (drawable == null) {
-            return;
-        }
-        if (this.f31049r) {
-            drawable.setBounds(rect);
-            return;
-        }
-        if (drawable.getIntrinsicHeight() < 0) {
-            height = rect.top;
-            intrinsicHeight = rect.bottom;
-        } else {
-            height = ((rect.height() - drawable.getIntrinsicHeight()) / 2) + rect.top;
-            intrinsicHeight = drawable.getIntrinsicHeight() + height;
-        }
-        if (drawable.getIntrinsicWidth() < 0) {
-            width = rect.left;
-            intrinsicWidth = rect.right;
-        } else {
-            width = ((rect.width() - drawable.getIntrinsicWidth()) / 2) + rect.left;
-            intrinsicWidth = drawable.getIntrinsicWidth() + width;
-        }
-        drawable.setBounds(width, height, intrinsicWidth, intrinsicHeight);
+    public final void c(Canvas canvas, float f10) {
+        Rect bounds = getBounds();
+        float interpolation = this.f33538b.getInterpolation(f10);
+        Rect rect = this.f33537a;
+        rect.left = (int) (AndroidUtilities.dp(2.0f) * this.h);
+        int dp = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.f33543i));
+        rect.bottom = dp;
+        rect.right = bounds.right - rect.left;
+        rect.top = dp - ((int) (AndroidUtilities.dp(4.0f) * this.f33543i));
+        rect.offset(0, AndroidUtilities.dp(-8.0f));
+        yv yvVar = this.f33541f;
+        yvVar.setBounds(rect);
+        yvVar.draw(canvas);
+        rect.left = (int) (AndroidUtilities.dpf2(2.0f) * this.h);
+        int dpf2 = (int) (AndroidUtilities.dpf2(6.0f) * this.f33543i);
+        rect.top = dpf2;
+        rect.right = bounds.right - rect.left;
+        rect.bottom = dpf2 + ((int) (AndroidUtilities.dpf2(4.0f) * this.f33543i));
+        rect.offset(0, AndroidUtilities.dp(8.0f));
+        yv yvVar2 = this.f33540e;
+        yvVar2.setBounds(rect);
+        yvVar2.setAlpha(AndroidUtilities.lerp(255, 128, interpolation));
+        yvVar2.draw(canvas);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        int centerX = getBounds().centerX();
-        int centerY = getBounds().centerY();
-        if (this.h != 1.0f && this.d != null) {
-            canvas.save();
-            float f10 = this.h;
-            canvas.scale(f10, f10, centerX, centerY);
-            this.d.setAlpha((int) (this.h * 255.0f));
-            this.d.draw(canvas);
-            canvas.restore();
-        } else {
-            Drawable drawable = this.d;
-            if (drawable != null) {
-                drawable.setAlpha(255);
-                this.d.draw(canvas);
+        if (this.f33542g > 0) {
+            int currentTimeMillis = (int) (System.currentTimeMillis() - this.f33542g);
+            int i10 = currentTimeMillis - 300;
+            if (i10 >= 0) {
+                if (i10 < 150) {
+                    a(canvas, i10 / 150.0f);
+                } else {
+                    int i11 = currentTimeMillis - 750;
+                    if (i11 >= 0) {
+                        if (i11 < 200) {
+                            b(canvas, i11 / 200.0f);
+                        } else {
+                            int i12 = currentTimeMillis - 1250;
+                            if (i12 >= 0) {
+                                if (i12 < 150) {
+                                    c(canvas, i12 / 150.0f);
+                                } else {
+                                    c(canvas, 1.0f);
+                                    if (currentTimeMillis - 1400 >= 100) {
+                                        this.f33542g = System.currentTimeMillis();
+                                    }
+                                }
+                            } else {
+                                b(canvas, 1.0f);
+                            }
+                        }
+                    } else {
+                        a(canvas, 1.0f);
+                    }
+                }
+            } else {
+                a(canvas, 0.0f);
             }
-        }
-        float f11 = this.h;
-        if (f11 != 1.0f && this.e != null) {
-            float f12 = 1.0f - f11;
-            canvas.save();
-            canvas.scale(f12, f12, centerX, centerY);
-            this.e.setAlpha((int) (f12 * 255.0f));
-            this.e.draw(canvas);
-            canvas.restore();
+            invalidateSelf();
             return;
         }
-        Drawable drawable2 = this.e;
-        if (drawable2 != null) {
-            drawable2.setAlpha(255);
-            this.e.draw(canvas);
-        }
+        a(canvas, 0.0f);
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.d;
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f33539c;
     }
 
     @Override
     public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        ArrayList arrayList = this.f31048n;
-        if (arrayList != null) {
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                ((View) arrayList.get(i10)).invalidate();
-            }
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.e = null;
-        invalidateSelf();
+        return -3;
     }
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        c(this.d, rect);
-        c(this.e, rect);
+        this.h = rect.width() / this.f33539c;
+        this.f33543i = rect.height() / this.d;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f31045b = colorFilter;
-        Drawable drawable = this.d;
-        if (drawable != null) {
-            drawable.setColorFilter(colorFilter);
-        }
-        Drawable drawable2 = this.e;
-        if (drawable2 != null) {
-            drawable2.setColorFilter(colorFilter);
-        }
+        this.f33540e.setColorFilter(colorFilter);
+        this.f33541f.setColorFilter(colorFilter);
         invalidateSelf();
-    }
-
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-    }
-
-    @Override
-    public final void onAnimationRepeat(Animator animator) {
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
     }
 
     @Override

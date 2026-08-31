@@ -1,19 +1,30 @@
 package org.telegram.ui;
-public final class ix extends f2.i0 {
-    public final ny I;
-    public final jx J;
 
-    public ix(jx jxVar, ny nyVar) {
-        this.J = jxVar;
-        this.I = nyVar;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+public final class ix extends org.telegram.ui.Components.aa {
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 
     @Override
-    public final int R0() {
-        ny nyVar = this.I;
-        if (nyVar.f36747s == 0 && this.J.T.Z3() && nyVar.v == 2) {
-            return 1;
-        }
-        return 0;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final int w1() {
+        return AndroidUtilities.dp(48.0f);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
     }
 }

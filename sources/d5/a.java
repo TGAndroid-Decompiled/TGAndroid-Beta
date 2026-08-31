@@ -9,45 +9,44 @@ import h5.d0;
 import h5.w;
 import java.nio.charset.Charset;
 import java.util.List;
-import kh.a2;
 import r8.d;
 import v4.e;
 import v4.f;
 public final class a extends e {
-    public final w f4213n;
-    public final boolean f4214o;
-    public final int f4215p;
-    public final int f4216q;
-    public final String f4217r;
-    public final float f4218s;
-    public final int f4219t;
+    public final w f4285n;
+    public final boolean f4286o;
+    public final int f4287p;
+    public final int f4288q;
+    public final String f4289r;
+    public final float f4290s;
+    public final int f4291t;
 
     public a(List list) {
         super("Tx3gDecoder");
-        this.f4213n = new w();
+        this.f4285n = new w();
         if (list.size() == 1 && (((byte[]) list.get(0)).length == 48 || ((byte[]) list.get(0)).length == 53)) {
             byte[] bArr = (byte[]) list.get(0);
-            this.f4215p = bArr[24];
-            this.f4216q = ((bArr[26] & 255) << 24) | ((bArr[27] & 255) << 16) | ((bArr[28] & 255) << 8) | (bArr[29] & 255);
-            this.f4217r = "Serif".equals(new String(bArr, 43, bArr.length - 43, d.f43389c)) ? "serif" : "sans-serif";
+            this.f4287p = bArr[24];
+            this.f4288q = ((bArr[26] & 255) << 24) | ((bArr[27] & 255) << 16) | ((bArr[28] & 255) << 8) | (bArr[29] & 255);
+            this.f4289r = "Serif".equals(new String(bArr, 43, bArr.length - 43, d.f46738c)) ? "serif" : "sans-serif";
             int i10 = bArr[25] * 20;
-            this.f4219t = i10;
+            this.f4291t = i10;
             boolean z4 = (bArr[0] & 32) != 0;
-            this.f4214o = z4;
+            this.f4286o = z4;
             if (z4) {
-                this.f4218s = d0.g(((bArr[11] & 255) | ((bArr[10] & 255) << 8)) / i10, 0.0f, 0.95f);
+                this.f4290s = d0.g(((bArr[11] & 255) | ((bArr[10] & 255) << 8)) / i10, 0.0f, 0.95f);
                 return;
             } else {
-                this.f4218s = 0.85f;
+                this.f4290s = 0.85f;
                 return;
             }
         }
-        this.f4215p = 0;
-        this.f4216q = -1;
-        this.f4217r = "sans-serif";
-        this.f4214o = false;
-        this.f4218s = 0.85f;
-        this.f4219t = -1;
+        this.f4287p = 0;
+        this.f4288q = -1;
+        this.f4289r = "sans-serif";
+        this.f4286o = false;
+        this.f4290s = 0.85f;
+        this.f4291t = -1;
     }
 
     public static void l(SpannableStringBuilder spannableStringBuilder, int i10, int i11, int i12, int i13, int i14) {
@@ -96,7 +95,7 @@ public final class a extends e {
     @Override
     public final f k(int i10, boolean z4, byte[] bArr) {
         String s6;
-        w wVar = this.f4213n;
+        w wVar = this.f4285n;
         wVar.D(i10, bArr);
         int i11 = 2;
         if (wVar.a() >= 2) {
@@ -104,28 +103,28 @@ public final class a extends e {
             if (z10 == 0) {
                 s6 = "";
             } else {
-                int i12 = wVar.f7001b;
+                int i12 = wVar.f7309b;
                 Charset B = wVar.B();
-                int i13 = z10 - (wVar.f7001b - i12);
+                int i13 = z10 - (wVar.f7309b - i12);
                 if (B == null) {
-                    B = d.f43389c;
+                    B = d.f46738c;
                 }
                 s6 = wVar.s(i13, B);
             }
             if (s6.isEmpty()) {
-                return b.f4220b;
+                return b.f4292b;
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(s6);
-            m(spannableStringBuilder, this.f4215p, 0, 0, spannableStringBuilder.length(), 16711680);
-            l(spannableStringBuilder, this.f4216q, -1, 0, spannableStringBuilder.length(), 16711680);
+            m(spannableStringBuilder, this.f4287p, 0, 0, spannableStringBuilder.length(), 16711680);
+            l(spannableStringBuilder, this.f4288q, -1, 0, spannableStringBuilder.length(), 16711680);
             int length = spannableStringBuilder.length();
-            String str = this.f4217r;
+            String str = this.f4289r;
             if (str != "sans-serif") {
                 spannableStringBuilder.setSpan(new TypefaceSpan(str), 0, length, 16711713);
             }
-            float f10 = this.f4218s;
+            float f10 = this.f4290s;
             while (wVar.a() >= 8) {
-                int i14 = wVar.f7001b;
+                int i14 = wVar.f7309b;
                 int g10 = wVar.g();
                 int g11 = wVar.g();
                 if (g11 == 1937013100) {
@@ -141,7 +140,7 @@ public final class a extends e {
                                 wVar.G(1);
                                 int g12 = wVar.g();
                                 if (z13 > spannableStringBuilder.length()) {
-                                    StringBuilder m9 = a2.m(z13, "Truncating styl end (", ") to cueText.length() (");
+                                    StringBuilder m9 = l.d.m(z13, "Truncating styl end (", ") to cueText.length() (");
                                     m9.append(spannableStringBuilder.length());
                                     m9.append(").");
                                     h5.a.K("Tx3gDecoder", m9.toString());
@@ -151,8 +150,8 @@ public final class a extends e {
                                 if (z12 >= i16) {
                                     h5.a.K("Tx3gDecoder", "Ignoring styl with start (" + z12 + ") >= end (" + i16 + ").");
                                 } else {
-                                    m(spannableStringBuilder, u10, this.f4215p, z12, i16, 0);
-                                    l(spannableStringBuilder, g12, this.f4216q, z12, i16, 0);
+                                    m(spannableStringBuilder, u10, this.f4287p, z12, i16, 0);
+                                    l(spannableStringBuilder, g12, this.f4288q, z12, i16, 0);
                                 }
                                 i15++;
                                 i11 = 2;
@@ -164,10 +163,10 @@ public final class a extends e {
                     } else {
                         throw new Exception("Unexpected subtitle format.");
                     }
-                } else if (g11 == 1952608120 && this.f4214o) {
+                } else if (g11 == 1952608120 && this.f4286o) {
                     i11 = 2;
                     if (wVar.a() >= 2) {
-                        f10 = d0.g(wVar.z() / this.f4219t, 0.0f, 0.95f);
+                        f10 = d0.g(wVar.z() / this.f4291t, 0.0f, 0.95f);
                     } else {
                         throw new Exception("Unexpected subtitle format.");
                     }

@@ -1,92 +1,39 @@
 package oh;
 
 import android.content.Context;
-import android.graphics.Canvas;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.cl0;
-import org.telegram.ui.Components.ou0;
-import org.telegram.ui.Components.pt0;
-public final class i extends ou0 {
-    public final r f16588n3;
+import org.telegram.ui.hx;
+public final class i extends org.telegram.ui.ActionBar.m {
+    public final int d = 1;
+    public final FrameLayout f17203e;
 
-    public i(r rVar, Context context) {
-        super(context);
-        this.f16588n3 = rVar;
+    public i(hx hxVar, Context context, cb.m mVar) {
+        super(context, null, mVar);
+        this.f17203e = hxVar;
     }
 
     @Override
-    public final boolean A1() {
-        return true;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        int i10 = 0;
-        int i11 = 0;
-        for (int i12 = 0; i12 < getChildCount(); i12++) {
-            int bottom = getChildAt(i12).getBottom() - getPaddingTop();
-            if (bottom > i11) {
-                i11 = bottom;
-            }
-        }
-        float f10 = i11;
-        r rVar = this.f16588n3;
-        o oVar = rVar.G;
-        if (rVar.f16602b) {
-            pt0 pt0Var = rVar.f16606r;
-            int i13 = 0;
-            for (int i14 = 0; i14 < pt0Var.getChildCount(); i14++) {
-                int bottom2 = pt0Var.getChildAt(i14).getBottom() - pt0Var.getPaddingTop();
-                if (bottom2 > i13) {
-                    i13 = bottom2;
+    public final void e(xd.j jVar) {
+        switch (this.d) {
+            case 0:
+                super.e(jVar);
+                ((hx) this.f17203e).invalidate();
+                return;
+            default:
+                super.e(jVar);
+                float totalVisibility = getTotalVisibility();
+                eh.d dVar = ((org.telegram.ui.ActionBar.k) this.f17203e).C0;
+                if (dVar != null) {
+                    dVar.setTranslationY(totalVisibility * AndroidUtilities.dp(-11.0f));
+                    return;
                 }
-            }
-            f10 = AndroidUtilities.lerp(f10, i13, rVar.f16603c);
+                return;
         }
-        if (rVar.v.h() <= 0) {
-            i10 = 8;
-        }
-        oVar.setVisibility(i10);
-        oVar.setTranslationY(f10);
     }
 
-    @Override
-    public final int getAnimateToColumnsCount() {
-        return this.f16588n3.e;
-    }
-
-    @Override
-    public final float getChangeColumnsProgress() {
-        return this.f16588n3.f16603c;
-    }
-
-    @Override
-    public final int getColumnsCount() {
-        return this.f16588n3.d;
-    }
-
-    @Override
-    public final cl0 getMovingAdapter() {
-        r rVar = this.f16588n3;
-        if (rVar.D.f5690y == 0 && !rVar.T.D.f31161z1) {
-            return rVar.v;
-        }
-        return null;
-    }
-
-    @Override
-    public final cl0 getSupportingAdapter() {
-        return this.f16588n3.f16608w;
-    }
-
-    @Override
-    public final pt0 getSupportingListView() {
-        return this.f16588n3.f16606r;
-    }
-
-    @Override
-    public final boolean z1() {
-        return this.f16588n3.f16602b;
+    public i(org.telegram.ui.ActionBar.k kVar, Context context, org.telegram.ui.ActionBar.g6 g6Var, cb.m mVar) {
+        super(context, g6Var, mVar);
+        this.f17203e = kVar;
     }
 }

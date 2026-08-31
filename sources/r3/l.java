@@ -1,26 +1,26 @@
 package r3;
 public interface l extends g5.j {
-    void c(int i10, int i11, byte[] bArr);
+    void b(int i10, int i11, byte[] bArr);
 
-    boolean d(byte[] bArr, int i10, int i11, boolean z4);
+    boolean c(byte[] bArr, int i10, int i11, boolean z4);
 
-    int f(int i10, int i11, byte[] bArr);
+    int e(int i10, int i11, byte[] bArr);
+
+    boolean f(byte[] bArr, int i10, int i11, boolean z4);
+
+    long g();
 
     long getLength();
 
     long getPosition();
 
-    boolean h(byte[] bArr, int i10, int i11, boolean z4);
+    void i(int i10);
 
-    long i();
-
-    void n(int i10);
+    void r();
 
     void readFully(byte[] bArr, int i10, int i11);
 
+    void s(int i10);
+
     int skip(int i10);
-
-    void t();
-
-    void u(int i10);
 }

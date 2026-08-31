@@ -1,100 +1,45 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Bitmap;
-import java.io.File;
-import java.io.FileOutputStream;
+import android.graphics.Point;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class c4 implements Runnable {
-    public final int f19546a;
-    public final Bitmap f19547b;
-    public final File f19548c;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class c4 implements Utilities.Callback {
+    public final Utilities.Callback f21208a;
+    public final TLRPC.WallPaper f21209b;
+    public final int f21210c;
+    public final int d;
+    public final long f21211e;
 
-    public c4(Bitmap bitmap, File file, int i10) {
-        this.f19546a = i10;
-        this.f19547b = bitmap;
-        this.f19548c = file;
+    public c4(Utilities.Callback callback, TLRPC.WallPaper wallPaper, int i10, int i11, long j10) {
+        this.f21208a = callback;
+        this.f21209b = wallPaper;
+        this.f21210c = i10;
+        this.d = i11;
+        this.f21211e = j10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19546a) {
-            case 0:
-                File file = this.f19548c;
-                Bitmap bitmap = this.f19547b;
-                try {
-                    FileOutputStream fileOutputStream = new FileOutputStream(file);
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
-                    fileOutputStream.close();
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            case 1:
-                try {
-                    this.f19547b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f19548c));
-                    return;
-                } catch (Exception e6) {
-                    FileLog.e(e6);
-                    return;
-                }
-            case 2:
-                Bitmap bitmap2 = this.f19547b;
-                try {
-                    try {
-                        bitmap2.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.f19548c));
-                        if (bitmap2.isRecycled()) {
-                            return;
-                        }
-                    } catch (Exception e10) {
-                        FileLog.e(e10);
-                        if (bitmap2 == null || bitmap2.isRecycled()) {
-                            return;
-                        }
-                    }
-                    bitmap2.recycle();
-                    return;
-                } catch (Throwable th2) {
-                    if (bitmap2 != null && !bitmap2.isRecycled()) {
-                        bitmap2.recycle();
-                    }
-                    throw th2;
-                }
-            case 3:
-                Bitmap bitmap3 = this.f19547b;
-                try {
-                    try {
-                        bitmap3.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.f19548c));
-                    } finally {
-                        AndroidUtilities.recycleBitmap(bitmap3);
-                    }
-                } catch (Exception e11) {
-                    FileLog.e(e11);
-                }
-                return;
-            case 4:
-                try {
-                    this.f19547b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f19548c));
-                    return;
-                } catch (Exception e12) {
-                    FileLog.e(e12);
-                    return;
-                }
-            default:
-                try {
-                    this.f19547b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f19548c));
-                    return;
-                } catch (Exception e13) {
-                    FileLog.e(e13);
-                    return;
-                }
+    public final void run(Object obj) {
+        qf.a aVar = (qf.a) obj;
+        Utilities.Callback callback = this.f21208a;
+        if (aVar != null) {
+            callback.run(aVar);
+            return;
         }
-    }
-
-    public c4(File file, Bitmap bitmap) {
-        this.f19546a = 0;
-        this.f19548c = file;
-        this.f19547b = bitmap;
+        TLRPC.WallPaper wallPaper = this.f21209b;
+        ImageLocation forDocument = ImageLocation.getForDocument(wallPaper.document);
+        ImageReceiver imageReceiver = new ImageReceiver();
+        imageReceiver.setAllowLoadingOnAttachedOnly(false);
+        Point point = AndroidUtilities.displaySize;
+        int min = Math.min(point.x, point.y);
+        Point point2 = AndroidUtilities.displaySize;
+        int max = Math.max(point2.x, point2.y);
+        imageReceiver.setImage(forDocument, (min / AndroidUtilities.density) + "_" + (max / AndroidUtilities.density) + "_f", null, ".jpg", wallPaper, 1);
+        imageReceiver.setDelegate(new org.telegram.tgnet.f(this.f21210c, this.d, this.f21211e, callback));
+        ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
     }
 }

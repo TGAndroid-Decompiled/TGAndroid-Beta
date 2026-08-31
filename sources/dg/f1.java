@@ -1,89 +1,104 @@
 package dg;
 
-import android.text.TextUtils;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class f1 extends TLObject {
-    public static final int f4504j = 0;
-    public int f4505a;
-    public String f4506b;
-    public String f4507c;
-    public TLRPC.WebPage d;
-    public boolean e;
-    public boolean f4508f = true;
-    public int f4509i;
+import android.graphics.Bitmap;
+import android.graphics.PointF;
+import org.telegram.ui.Components.kv0;
+public final class f1 {
+    public final float f4533a;
+    public final float f4534b;
+    public final PointF f4535c;
+    public final PointF d;
+    public final float f4536e;
+    public final PointF f4537f;
+    public final PointF f4538g;
 
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z4) {
-        boolean z10;
-        int readInt32 = inputSerializedData.readInt32(z4);
-        this.f4505a = readInt32;
-        boolean z11 = false;
-        if ((readInt32 & 8) != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public f1(h8.a aVar, Bitmap bitmap, kv0 kv0Var, boolean z4) {
+        float degrees;
+        PointF pointF = null;
+        PointF pointF2 = null;
+        PointF pointF3 = null;
+        PointF pointF4 = null;
+        for (h8.d dVar : aVar.f7352b) {
+            PointF pointF5 = dVar.f7360a;
+            int i10 = dVar.f7361b;
+            if (i10 != 4) {
+                if (i10 != 5) {
+                    if (i10 != 10) {
+                        if (i10 == 11) {
+                            pointF4 = b(pointF5, bitmap, kv0Var, z4);
+                        }
+                    } else {
+                        pointF2 = b(pointF5, bitmap, kv0Var, z4);
+                    }
+                } else {
+                    pointF3 = b(pointF5, bitmap, kv0Var, z4);
+                }
+            } else {
+                pointF = b(pointF5, bitmap, kv0Var, z4);
+            }
         }
-        this.e = z10;
-        if ((readInt32 & 16) != 0) {
-            z11 = true;
+        if (pointF != null && pointF2 != null) {
+            if (pointF.x < pointF2.x) {
+                PointF pointF6 = pointF2;
+                pointF2 = pointF;
+                pointF = pointF6;
+            }
+            PointF pointF7 = new PointF((pointF2.x * 0.5f) + (pointF.x * 0.5f), (pointF2.y * 0.5f) + (pointF.y * 0.5f));
+            this.d = pointF7;
+            float hypot = (float) Math.hypot(pointF2.x - pointF.x, pointF2.y - pointF.y);
+            this.f4536e = hypot;
+            this.f4534b = (float) Math.toDegrees(Math.atan2(pointF2.y - pointF.y, pointF2.x - pointF.x) + 3.141592653589793d);
+            this.f4533a = 2.35f * hypot;
+            float f10 = hypot * 0.8f;
+            float f11 = pointF7.x;
+            double radians = (float) Math.toRadians(degrees - 90.0f);
+            this.f4535c = new PointF((((float) Math.cos(radians)) * f10) + f11, (f10 * ((float) Math.sin(radians))) + pointF7.y);
         }
-        this.f4508f = z11;
-        this.f4507c = inputSerializedData.readString(z4);
-        if ((this.f4505a & 1) != 0) {
-            this.d = TLRPC.WebPage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z4), z4);
-        }
-        if ((this.f4505a & 2) != 0) {
-            this.f4506b = inputSerializedData.readString(z4);
-        }
-        if ((this.f4505a & 4) != 0) {
-            this.f4509i = inputSerializedData.readInt32(z4);
+        if (pointF3 != null && pointF4 != null) {
+            if (pointF3.x < pointF4.x) {
+                PointF pointF8 = pointF4;
+                pointF4 = pointF3;
+                pointF3 = pointF8;
+            }
+            PointF pointF9 = new PointF((pointF4.x * 0.5f) + (pointF3.x * 0.5f), (pointF4.y * 0.5f) + (pointF3.y * 0.5f));
+            this.f4537f = pointF9;
+            float f12 = this.f4536e * 0.7f;
+            float f13 = pointF9.x;
+            double radians2 = (float) Math.toRadians(this.f4534b + 90.0f);
+            this.f4538g = new PointF((((float) Math.cos(radians2)) * f12) + f13, (f12 * ((float) Math.sin(radians2))) + pointF9.y);
         }
     }
 
-    @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        outputSerializedData.writeInt32(-625858389);
-        if (this.d != null) {
-            i10 = this.f4505a | 1;
+    public static PointF b(PointF pointF, Bitmap bitmap, kv0 kv0Var, boolean z4) {
+        int width;
+        int height;
+        if (z4) {
+            width = bitmap.getHeight();
         } else {
-            i10 = this.f4505a & (-2);
+            width = bitmap.getWidth();
         }
-        this.f4505a = i10;
-        if (!TextUtils.isEmpty(this.f4506b)) {
-            i11 = this.f4505a | 2;
+        float f10 = width;
+        if (z4) {
+            height = bitmap.getWidth();
         } else {
-            i11 = this.f4505a & (-3);
+            height = bitmap.getHeight();
         }
-        this.f4505a = i11;
-        if (this.e) {
-            i12 = i11 | 8;
-        } else {
-            i12 = i11 & (-9);
+        return new PointF((kv0Var.f28463a * pointF.x) / f10, (kv0Var.f28464b * pointF.y) / height);
+    }
+
+    public final PointF a(int i10) {
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        return null;
+                    }
+                    return this.f4538g;
+                }
+                return this.f4537f;
+            }
+            return this.d;
         }
-        this.f4505a = i12;
-        if (this.f4508f) {
-            i13 = i12 | 16;
-        } else {
-            i13 = i12 & (-17);
-        }
-        this.f4505a = i13;
-        outputSerializedData.writeInt32(i13);
-        outputSerializedData.writeString(this.f4507c);
-        if ((this.f4505a & 1) != 0) {
-            this.d.serializeToStream(outputSerializedData);
-        }
-        if ((this.f4505a & 2) != 0) {
-            outputSerializedData.writeString(this.f4506b);
-        }
-        if ((this.f4505a & 4) != 0) {
-            outputSerializedData.writeInt32(this.f4509i);
-        }
+        return this.f4535c;
     }
 }

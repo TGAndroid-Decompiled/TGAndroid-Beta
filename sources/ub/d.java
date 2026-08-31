@@ -5,6 +5,6 @@ import java.util.Comparator;
 public final class d implements Comparator, Serializable {
     @Override
     public final int compare(Object obj, Object obj2) {
-        return Float.compare(((c) obj).f45211c, ((c) obj2).f45211c);
+        return Float.compare(((c) obj).f48471c, ((c) obj2).f48471c);
     }
 }

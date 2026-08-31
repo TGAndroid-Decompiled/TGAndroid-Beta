@@ -1,65 +1,88 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
+import android.content.Context;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
 public final class oi0 extends Drawable {
-    public Path f27572a;
-    public Paint f27573b;
-    public float f27574c;
+    public final Drawable f29773a;
+    public final Drawable f29774b;
+    public final Paint f29775c;
+    public final RectF d;
+    public int f29776e;
+    public long f29777f;
+    public float f29778g;
+    public boolean h;
+    public boolean f29779i;
 
-    public final void a() {
-        int dp = AndroidUtilities.dp(18.0f);
-        Path path = this.f27572a;
-        path.reset();
-        float f10 = dp >> 1;
-        path.moveTo(f10, AndroidUtilities.dpf2(4.98f));
-        path.lineTo(AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
-        path.lineTo(dp - AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
-        path.lineTo(f10, AndroidUtilities.dpf2(4.98f));
-        Paint paint = this.f27573b;
-        paint.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-        this.f27574c = AndroidUtilities.density;
+    public oi0(Context context) {
+        Paint paint = new Paint(1);
+        this.f29775c = paint;
+        this.d = new RectF();
+        this.f29776e = 0;
+        this.f29773a = context.getResources().getDrawable(R.drawable.outline_shield_plain_24).mutate();
+        this.f29774b = context.getResources().getDrawable(R.drawable.outline_shield_check).mutate();
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        this.f29777f = SystemClock.elapsedRealtime();
+    }
+
+    public final void a(Drawable drawable) {
+        Rect bounds = getBounds();
+        drawable.setBounds(org.telegram.ui.b.u(2, bounds.centerX(), drawable), org.telegram.ui.b.f(2, bounds.centerY(), drawable), org.telegram.ui.b.A(2, bounds.centerX(), drawable), org.telegram.ui.b.y(2, bounds.centerY(), drawable));
+    }
+
+    public final void b(boolean z4, boolean z10, boolean z11) {
+        float f10;
+        this.f29779i = z4;
+        this.h = z10;
+        this.f29777f = SystemClock.elapsedRealtime();
+        if (!z11) {
+            if (this.h) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
+            }
+            this.f29778g = f10;
+        }
+        invalidateSelf();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Paint paint = this.f27573b;
-        if (this.f27574c != AndroidUtilities.density) {
-            a();
-        }
-        canvas.save();
-        canvas.translate(getBounds().left, getBounds().top);
-        canvas.drawPath(this.f27572a, paint);
-        canvas.drawRect(AndroidUtilities.dpf2(7.56f), AndroidUtilities.dpf2(8.0f), AndroidUtilities.dp(18.0f) - AndroidUtilities.dpf2(7.56f), AndroidUtilities.dpf2(11.1f), paint);
-        canvas.restore();
+    public final void draw(android.graphics.Canvas r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.oi0.draw(android.graphics.Canvas):void");
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.0f);
+        return AndroidUtilities.dp(24.0f);
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(18.0f);
+        return AndroidUtilities.dp(24.0f);
     }
 
     @Override
     public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
+        return -2;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
+        this.f29773a.setColorFilter(colorFilter);
+        this.f29774b.setColorFilter(colorFilter);
+        this.f29775c.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
     }
 }

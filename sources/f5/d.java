@@ -1,9 +1,9 @@
 package f5;
 public final class d implements r8.f {
-    public final p f5916a;
+    public final p f6015a;
 
     public d(p pVar) {
-        this.f5916a = pVar;
+        this.f6015a = pVar;
     }
 
     @Override

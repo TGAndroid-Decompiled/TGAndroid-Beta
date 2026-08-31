@@ -1,39 +1,17 @@
 package org.telegram.ui.Components;
 
-import android.graphics.RectF;
-import java.util.HashSet;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC;
 public final class yr implements Utilities.Callback2 {
-    public final int f31084a;
+    public final int f33564a;
+    public final gs f33565b;
 
-    public yr(int i10) {
-        this.f31084a = i10;
+    public yr(gs gsVar, int i10) {
+        this.f33564a = i10;
+        this.f33565b = gsVar;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f31084a) {
-            case 0:
-                TLRPC.Bool bool = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                int i10 = es.D0;
-                return;
-            case 1:
-                Boolean bool2 = (Boolean) obj;
-                HashSet<Long> hashSet = (HashSet) obj2;
-                VoIPService sharedInstance = VoIPService.getSharedInstance();
-                if (sharedInstance != null) {
-                    sharedInstance.convertToConferenceCall(bool2.booleanValue(), hashSet);
-                    return;
-                }
-                return;
-            default:
-                TLRPC.Bool bool3 = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                RectF rectF = ug.d.E;
-                return;
-        }
+    public final void run(java.lang.Object r13, java.lang.Object r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yr.run(java.lang.Object, java.lang.Object):void");
     }
 }

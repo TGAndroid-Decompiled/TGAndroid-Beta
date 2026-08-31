@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.view.ViewPropertyAnimator;
 public final class zb extends eb {
-    public float f31305a;
-    public yb f31306b;
-    public p9 f31307c;
+    public float f33850a;
+    public yb f33851b;
+    public p9 f33852c;
     public k6 d;
-    public boolean e;
+    public boolean f33853e;
 
     @Override
     public CharSequence getAccessibilityText() {
@@ -16,7 +16,7 @@ public final class zb extends eb {
     public void setProgress(float f10) {
         boolean z4;
         float f11;
-        boolean z10 = this.e;
+        boolean z10 = this.f33853e;
         boolean z11 = false;
         float f12 = 1.0f;
         int i10 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
@@ -29,21 +29,21 @@ public final class zb extends eb {
             if (i10 < 0) {
                 z11 = true;
             }
-            this.e = z11;
-            ViewPropertyAnimator animate = this.f31307c.animate();
-            if (this.e) {
+            this.f33853e = z11;
+            ViewPropertyAnimator animate = this.f33852c.animate();
+            if (this.f33853e) {
                 f11 = 0.78f;
             } else {
                 f11 = 1.0f;
             }
             ViewPropertyAnimator scaleX = animate.scaleX(f11);
-            if (this.e) {
+            if (this.f33853e) {
                 f12 = 0.78f;
             }
-            scaleX.scaleY(f12).setDuration(320L).setInterpolator(nr.h).start();
+            scaleX.scaleY(f12).setDuration(320L).setInterpolator(pr.h).start();
         }
-        this.f31305a = f10;
-        this.f31306b.invalidate();
+        this.f33850a = f10;
+        this.f33851b.invalidate();
     }
 
     public void setTextColor(int i10) {

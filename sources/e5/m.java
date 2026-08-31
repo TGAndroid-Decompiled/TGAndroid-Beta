@@ -5,11 +5,11 @@ import h5.w;
 import j3.r1;
 import java.util.regex.Pattern;
 public abstract class m {
-    public static final Pattern f5151a = Pattern.compile("^NOTE([ \t].*)?$");
+    public static final Pattern f4990a = Pattern.compile("^NOTE([ \t].*)?$");
 
     public static boolean a(w wVar) {
         wVar.getClass();
-        String h = wVar.h(r8.d.f43389c);
+        String h = wVar.h(r8.d.f46738c);
         if (h != null && h.startsWith("WEBVTT")) {
             return true;
         }
@@ -24,7 +24,7 @@ public abstract class m {
     }
 
     public static long c(String str) {
-        int i10 = d0.f6937a;
+        int i10 = d0.f7237a;
         String[] split = str.split("\\.", 2);
         long j10 = 0;
         for (String str2 : split[0].split(":", -1)) {
@@ -38,11 +38,11 @@ public abstract class m {
     }
 
     public static void d(w wVar) {
-        int i10 = wVar.f7001b;
+        int i10 = wVar.f7309b;
         if (a(wVar)) {
             return;
         }
         wVar.F(i10);
-        throw r1.a("Expected WEBVTT. Got " + wVar.h(r8.d.f43389c), null);
+        throw r1.a("Expected WEBVTT. Got " + wVar.h(r8.d.f46738c), null);
     }
 }

@@ -10,53 +10,53 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.TwoStepVerificationActivity;
 public final class wd implements Runnable {
-    public final int f18899a;
-    public final boolean f18900b;
-    public final boolean f18901c;
+    public final int f20540a;
+    public final boolean f20541b;
+    public final boolean f20542c;
     public final Object d;
-    public final Object e;
-    public final Object f18902f;
+    public final Object f20543e;
+    public final Object f20544f;
     public final Object h;
 
     public wd(MessagesController messagesController, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.p2 p2Var, TLRPC.TL_channels_editAdmin tL_channels_editAdmin, boolean z4, boolean z10) {
-        this.f18899a = 0;
+        this.f20540a = 0;
         this.d = messagesController;
-        this.e = tL_error;
-        this.f18902f = p2Var;
+        this.f20543e = tL_error;
+        this.f20544f = p2Var;
         this.h = tL_channels_editAdmin;
-        this.f18900b = z4;
-        this.f18901c = z10;
+        this.f20541b = z4;
+        this.f20542c = z10;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f18899a;
+        int i10 = this.f20540a;
         Object obj = this.h;
-        Object obj2 = this.f18902f;
-        Object obj3 = this.e;
+        Object obj2 = this.f20544f;
+        Object obj3 = this.f20543e;
         Object obj4 = this.d;
         switch (i10) {
             case 0:
-                ((MessagesController) obj4).lambda$setUserAdminRole$101((TLRPC.TL_error) obj3, (org.telegram.ui.ActionBar.p2) obj2, (TLRPC.TL_channels_editAdmin) obj, this.f18900b, this.f18901c);
+                ((MessagesController) obj4).lambda$setUserAdminRole$101((TLRPC.TL_error) obj3, (org.telegram.ui.ActionBar.p2) obj2, (TLRPC.TL_channels_editAdmin) obj, this.f20541b, this.f20542c);
                 return;
             case 1:
-                ((NotificationsController) obj4).lambda$processNewMessages$27((ArrayList) obj3, (ArrayList) obj2, this.f18900b, this.f18901c, (CountDownLatch) obj);
+                ((NotificationsController) obj4).lambda$processNewMessages$27((ArrayList) obj3, (ArrayList) obj2, this.f20541b, this.f20542c, (CountDownLatch) obj);
                 return;
             case 2:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) obj4;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) obj3;
                 org.telegram.ui.ActionBar.p2 p2Var = (org.telegram.ui.ActionBar.p2) obj2;
                 org.telegram.ui.ActionBar.p2 p2Var2 = (org.telegram.ui.ActionBar.p2) obj;
-                if (this.f18900b) {
+                if (this.f20541b) {
                     actionBarLayout.h = true;
                     actionBarLayout.G = actionBarPopupWindow$ActionBarPopupWindowLayout;
                     actionBarLayout.U = false;
-                    actionBarLayout.f19481s.setScaleX(1.0f);
-                    actionBarLayout.f19481s.setScaleY(1.0f);
+                    actionBarLayout.f21143s.setScaleX(1.0f);
+                    actionBarLayout.f21143s.setScaleY(1.0f);
                 } else {
-                    Drawable drawable = ActionBarLayout.f19444m1;
-                    actionBarLayout.T(p2Var, this.f18901c);
-                    actionBarLayout.f19481s.setTranslationX(0.0f);
+                    Drawable drawable = ActionBarLayout.f21105m1;
+                    actionBarLayout.T(p2Var, this.f20542c);
+                    actionBarLayout.f21143s.setTranslationX(0.0f);
                 }
                 if (p2Var != null) {
                     p2Var.onTransitionAnimationEnd(false, false);
@@ -65,28 +65,28 @@ public final class wd implements Runnable {
                 p2Var2.onBecomeFullyVisible();
                 return;
             default:
-                TwoStepVerificationActivity.a0((TwoStepVerificationActivity) obj4, (TLRPC.TL_error) obj3, (TLObject) obj2, this.f18900b, this.f18901c, (Runnable) obj);
+                TwoStepVerificationActivity.a0((TwoStepVerificationActivity) obj4, (TLRPC.TL_error) obj3, (TLObject) obj2, this.f20541b, this.f20542c, (Runnable) obj);
                 return;
         }
     }
 
     public wd(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, Object obj2, boolean z4, boolean z10, Object obj3, int i10) {
-        this.f18899a = i10;
+        this.f20540a = i10;
         this.d = notificationCenterDelegate;
-        this.e = obj;
-        this.f18902f = obj2;
-        this.f18900b = z4;
-        this.f18901c = z10;
+        this.f20543e = obj;
+        this.f20544f = obj2;
+        this.f20541b = z4;
+        this.f20542c = z10;
         this.h = obj3;
     }
 
     public wd(ActionBarLayout actionBarLayout, boolean z4, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, boolean z10, org.telegram.ui.ActionBar.p2 p2Var, org.telegram.ui.ActionBar.p2 p2Var2) {
-        this.f18899a = 2;
+        this.f20540a = 2;
         this.d = actionBarLayout;
-        this.f18900b = z4;
-        this.e = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f18901c = z10;
-        this.f18902f = p2Var;
+        this.f20541b = z4;
+        this.f20543e = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f20542c = z10;
+        this.f20544f = p2Var;
         this.h = p2Var2;
     }
 }

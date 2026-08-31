@@ -11,39 +11,39 @@ import android.util.Log;
 import android.widget.ImageView;
 import com.google.android.gms.tasks.Task;
 import i9.u;
-import j7.r7;
+import j7.s7;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import l7.w0;
-import m.f3;
-import m.m1;
+import m.e3;
+import m.l1;
 import m.q;
 import r0.j0;
 public final class k {
-    public static k e;
-    public int f46823a;
-    public final Object f46824b;
-    public Object f46825c;
+    public static k f50427e;
+    public int f50428a;
+    public final Object f50429b;
+    public Object f50430c;
     public Object d;
 
     public k(int i10, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f46823a = i10;
+        this.f50428a = i10;
         this.d = str;
-        this.f46824b = arrayList;
-        this.f46825c = arrayList2;
+        this.f50429b = arrayList;
+        this.f50430c = arrayList2;
     }
 
     public static synchronized k d(Context context) {
         k kVar;
         synchronized (k.class) {
             try {
-                if (e == null) {
-                    e = new k(context, Executors.unconfigurableScheduledExecutorService(Executors.newScheduledThreadPool(1, new u("MessengerIpcClient"))));
+                if (f50427e == null) {
+                    f50427e = new k(context, Executors.unconfigurableScheduledExecutorService(Executors.newScheduledThreadPool(1, new u("MessengerIpcClient"))));
                 }
-                kVar = e;
+                kVar = f50427e;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -52,54 +52,54 @@ public final class k {
     }
 
     public void a() {
-        ImageView imageView = (ImageView) this.f46824b;
+        ImageView imageView = (ImageView) this.f50429b;
         Drawable drawable = imageView.getDrawable();
         if (drawable != null) {
-            m1.a(drawable);
+            l1.a(drawable);
         }
         if (drawable != null) {
             int i10 = Build.VERSION.SDK_INT;
             if (i10 <= 21 && i10 == 21) {
-                if (((f3) this.d) == null) {
+                if (((e3) this.d) == null) {
                     this.d = new Object();
                 }
-                f3 f3Var = (f3) this.d;
-                f3Var.f13505c = null;
-                f3Var.f13504b = false;
-                f3Var.d = null;
-                f3Var.f13503a = false;
+                e3 e3Var = (e3) this.d;
+                e3Var.f13184c = null;
+                e3Var.f13183b = false;
+                e3Var.d = null;
+                e3Var.f13182a = false;
                 ColorStateList imageTintList = imageView.getImageTintList();
                 if (imageTintList != null) {
-                    f3Var.f13504b = true;
-                    f3Var.f13505c = imageTintList;
+                    e3Var.f13183b = true;
+                    e3Var.f13184c = imageTintList;
                 }
                 PorterDuff.Mode imageTintMode = imageView.getImageTintMode();
                 if (imageTintMode != null) {
-                    f3Var.f13503a = true;
-                    f3Var.d = imageTintMode;
+                    e3Var.f13182a = true;
+                    e3Var.d = imageTintMode;
                 }
-                if (f3Var.f13504b || f3Var.f13503a) {
-                    q.d(drawable, f3Var, imageView.getDrawableState());
+                if (e3Var.f13183b || e3Var.f13182a) {
+                    q.d(drawable, e3Var, imageView.getDrawableState());
                     return;
                 }
             }
-            f3 f3Var2 = (f3) this.f46825c;
-            if (f3Var2 != null) {
-                q.d(drawable, f3Var2, imageView.getDrawableState());
+            e3 e3Var2 = (e3) this.f50430c;
+            if (e3Var2 != null) {
+                q.d(drawable, e3Var2, imageView.getDrawableState());
             }
         }
     }
 
     public String b(int i10, String str, long j10, long j11) {
-        String[] strArr = (String[]) this.f46824b;
+        String[] strArr = (String[]) this.f50429b;
         String[] strArr2 = (String[]) this.d;
         StringBuilder sb = new StringBuilder();
         int i11 = 0;
         while (true) {
-            int i12 = this.f46823a;
+            int i12 = this.f50428a;
             if (i11 < i12) {
                 sb.append(strArr[i11]);
-                int i13 = ((int[]) this.f46825c)[i11];
+                int i13 = ((int[]) this.f50430c)[i11];
                 if (i13 == 1) {
                     sb.append(str);
                 } else if (i13 == 2) {
@@ -121,19 +121,19 @@ public final class k {
         Drawable drawable;
         Drawable drawable2;
         int resourceId;
-        ImageView imageView = (ImageView) this.f46824b;
+        ImageView imageView = (ImageView) this.f50429b;
         Context context = imageView.getContext();
-        int[] iArr = f.a.f5622f;
+        int[] iArr = f.a.f5692f;
         w0 y10 = w0.y(context, attributeSet, iArr, i10);
-        TypedArray typedArray = (TypedArray) y10.f11677c;
-        j0.j(imageView, imageView.getContext(), iArr, attributeSet, (TypedArray) y10.f11677c, i10);
+        TypedArray typedArray = (TypedArray) y10.f12081c;
+        j0.j(imageView, imageView.getContext(), iArr, attributeSet, (TypedArray) y10.f12081c, i10);
         try {
             Drawable drawable3 = imageView.getDrawable();
-            if (drawable3 == null && (resourceId = typedArray.getResourceId(1, -1)) != -1 && (drawable3 = r7.b(imageView.getContext(), resourceId)) != null) {
+            if (drawable3 == null && (resourceId = typedArray.getResourceId(1, -1)) != -1 && (drawable3 = s7.b(imageView.getContext(), resourceId)) != null) {
                 imageView.setImageDrawable(drawable3);
             }
             if (drawable3 != null) {
-                m1.a(drawable3);
+                l1.a(drawable3);
             }
             if (typedArray.hasValue(2)) {
                 ColorStateList r10 = y10.r(2);
@@ -147,7 +147,7 @@ public final class k {
                 }
             }
             if (typedArray.hasValue(3)) {
-                PorterDuff.Mode b10 = m1.b(typedArray.getInt(3, -1), null);
+                PorterDuff.Mode b10 = l1.b(typedArray.getInt(3, -1), null);
                 int i12 = Build.VERSION.SDK_INT;
                 imageView.setImageTintMode(b10);
                 if (i12 == 21 && (drawable = imageView.getDrawable()) != null && imageView.getImageTintList() != null) {
@@ -177,25 +177,25 @@ public final class k {
         } catch (Throwable th2) {
             throw th2;
         }
-        return jVar.f46821b.getTask();
+        return jVar.f50424b.getTask();
     }
 
     public k(Serializable serializable, Serializable serializable2, Serializable serializable3, int i10) {
-        this.f46824b = serializable;
-        this.f46825c = serializable2;
+        this.f50429b = serializable;
+        this.f50430c = serializable2;
         this.d = serializable3;
-        this.f46823a = i10;
+        this.f50428a = i10;
     }
 
     public k(Context context, ScheduledExecutorService scheduledExecutorService) {
         this.d = new i(this);
-        this.f46823a = 1;
-        this.f46825c = scheduledExecutorService;
-        this.f46824b = context.getApplicationContext();
+        this.f50428a = 1;
+        this.f50430c = scheduledExecutorService;
+        this.f50429b = context.getApplicationContext();
     }
 
     public k(ImageView imageView) {
-        this.f46823a = 0;
-        this.f46824b = imageView;
+        this.f50428a = 0;
+        this.f50429b = imageView;
     }
 }

@@ -27,12 +27,12 @@ public final class i extends c {
         PackageInfo packageInfo;
         boolean b10 = super.b();
         if (b10 && (i10 = Build.VERSION.SDK_INT) < 29) {
-            boolean z4 = n2.c.f14219a;
+            boolean z4 = n2.a.f15190a;
             if (i10 >= 26) {
                 packageInfo = k6.a.c();
             } else {
                 try {
-                    packageInfo = n2.c.a();
+                    packageInfo = n2.a.a();
                 } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InvocationTargetException unused) {
                     packageInfo = null;
                 }

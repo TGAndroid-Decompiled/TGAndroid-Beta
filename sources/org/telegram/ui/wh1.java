@@ -1,40 +1,24 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.TextUtils;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.LinearLayout;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.messenger.voip.VoIPServiceState;
-public final class wh1 extends LinearLayout {
-    public final ai1 f39748a;
+import org.webrtc.RendererCommon;
+public final class wh1 implements RendererCommon.RendererEvents {
+    public final ci1 f42822a;
 
-    public wh1(ai1 ai1Var, Activity activity) {
-        super(activity);
-        this.f39748a = ai1Var;
+    public wh1(ci1 ci1Var) {
+        this.f42822a = ci1Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        VoIPServiceState sharedState = VoIPService.getSharedState();
-        CharSequence text = this.f39748a.B.getText();
-        if (sharedState != null && !TextUtils.isEmpty(text)) {
-            StringBuilder sb = new StringBuilder(text);
-            sb.append(", ");
-            if (sharedState.getPrivateCall() != null && sharedState.getPrivateCall().video) {
-                sb.append(LocaleController.getString(R.string.VoipInVideoCallBranding));
-            } else {
-                sb.append(LocaleController.getString(R.string.VoipInCallBranding));
-            }
-            long callDuration = sharedState.getCallDuration();
-            if (callDuration > 0) {
-                sb.append(", ");
-                sb.append(LocaleController.formatDuration((int) (callDuration / 1000)));
-            }
-            accessibilityNodeInfo.setText(sb);
+    public final void onFirstFrameRendered() {
+        ci1 ci1Var = this.f42822a;
+        c2.p pVar = ci1Var.f35840i1;
+        if (pVar != null) {
+            pVar.run();
+            ci1Var.f35840i1 = null;
         }
+    }
+
+    @Override
+    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
     }
 }

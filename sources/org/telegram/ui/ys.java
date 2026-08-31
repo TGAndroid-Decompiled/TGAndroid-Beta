@@ -1,47 +1,62 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ys implements TextWatcher {
-    public final EditTextBoldCursor f40567a;
+import android.os.Build;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class ys extends f2.a1 {
+    public boolean f43700a;
+    public boolean f43701b;
+    public final ContactsActivity f43702c;
 
-    public ys(EditTextBoldCursor editTextBoldCursor) {
-        this.f40567a = editTextBoldCursor;
+    public ys(ContactsActivity contactsActivity) {
+        this.f43702c = contactsActivity;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        try {
-            String obj = editable.toString();
-            if (!obj.isEmpty()) {
-                int intValue = Utilities.parseInt((CharSequence) obj).intValue();
-                EditTextBoldCursor editTextBoldCursor = this.f40567a;
-                if (intValue < 0) {
-                    editTextBoldCursor.setText("0");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                } else if (intValue > 300) {
-                    editTextBoldCursor.setText("300");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                } else {
-                    if (!obj.equals("" + intValue)) {
-                        editTextBoldCursor.setText("" + intValue);
-                        editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                    }
-                }
+    public final void a(RecyclerView recyclerView, int i10) {
+        if (i10 == 1) {
+            ContactsActivity contactsActivity = this.f43702c;
+            if ((contactsActivity.C && contactsActivity.B) || contactsActivity.W.f26172r.isFocused()) {
+                AndroidUtilities.hideKeyboard(contactsActivity.getParentActivity().getCurrentFocus());
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+            this.f43701b = true;
+            return;
         }
+        this.f43701b = false;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int i12;
+        og.e eVar;
+        boolean z4;
+        ContactsActivity contactsActivity = this.f43702c;
+        int L0 = contactsActivity.f34068n.L0();
+        boolean z10 = false;
+        View childAt = recyclerView.getChildAt(0);
+        if (childAt != null) {
+            i12 = childAt.getTop();
+        } else {
+            i12 = 0;
+        }
+        if (contactsActivity.f34080w != null && !contactsActivity.C) {
+            if (i11 > 0) {
+                z4 = true;
+            } else {
+                z4 = false;
+            }
+            if (i11 != 0 && this.f43700a && (z4 || this.f43701b)) {
+                contactsActivity.f34082x = !z4;
+                ContactsActivity.e0(contactsActivity);
+            }
+            this.f43700a = true;
+        }
+        contactsActivity.V.b((L0 != 0 || i12 < contactsActivity.f34060f.getPaddingTop()) ? true : true, true);
+        if (Build.VERSION.SDK_INT >= 31 && (eVar = contactsActivity.f34072q0) != null) {
+            eVar.f(i10, i11);
+            contactsActivity.g0();
+        }
+        ContactsActivity.d0(contactsActivity);
     }
 }

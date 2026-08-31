@@ -1,42 +1,42 @@
 package org.telegram.ui;
 public final class so implements Runnable {
-    public final int f38412a;
-    public final dp f38413b;
+    public final int f41331a;
+    public final ep f41332b;
 
-    public so(dp dpVar, int i10) {
-        this.f38412a = i10;
-        this.f38413b = dpVar;
+    public so(ep epVar, int i10) {
+        this.f41331a = i10;
+        this.f41332b = epVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f38412a) {
+        switch (this.f41331a) {
             case 0:
-                dp dpVar = this.f38413b;
-                dpVar.Z = true;
-                dpVar.b0();
+                ep epVar = this.f41332b;
+                epVar.Z = true;
+                epVar.b0();
                 return;
             case 1:
-                dp dpVar2 = this.f38413b;
-                dpVar2.U = dpVar2.getMessagesController().getChat(Long.valueOf(dpVar2.W));
-                dpVar2.Y();
+                ep epVar2 = this.f41332b;
+                epVar2.U = epVar2.getMessagesController().getChat(Long.valueOf(epVar2.W));
+                epVar2.Y();
                 return;
             case 2:
-                this.f38413b.a0(false);
+                this.f41332b.a0(false);
                 return;
             case 3:
-                dp dpVar3 = this.f38413b;
-                dpVar3.Z = true;
-                if (dpVar3.f33746a.length() > 0) {
-                    dpVar3.W(dpVar3.f33746a.getText().toString());
+                ep epVar3 = this.f41332b;
+                epVar3.Z = true;
+                if (epVar3.f36629a.length() > 0) {
+                    epVar3.W(epVar3.f36629a.getText().toString());
                 }
-                dpVar3.b0();
+                epVar3.b0();
                 return;
             case 4:
-                this.f38413b.Y();
+                this.f41332b.Y();
                 return;
             default:
-                this.f38413b.a0(true);
+                this.f41332b.a0(true);
                 return;
         }
     }

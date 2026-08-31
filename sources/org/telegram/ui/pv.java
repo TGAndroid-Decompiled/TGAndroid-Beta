@@ -1,27 +1,30 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class pv implements Runnable {
-    public final int f37541a;
-    public final oy f37542b;
-    public final TLRPC.TL_attachMenuBot f37543c;
-    public final LaunchActivity d;
+import android.animation.ValueAnimator;
+public final class pv implements ValueAnimator.AnimatorUpdateListener {
+    public final int f40163a;
+    public final py f40164b;
 
-    public pv(oy oyVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, LaunchActivity launchActivity, int i10) {
-        this.f37541a = i10;
-        this.f37542b = oyVar;
-        this.f37543c = tL_attachMenuBot;
-        this.d = launchActivity;
+    public pv(py pyVar, int i10) {
+        this.f40163a = i10;
+        this.f40164b = pyVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37541a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f40163a) {
             case 0:
-                oy.v0(this.f37542b, this.f37543c, this.d);
+                py pyVar = this.f40164b;
+                pyVar.getClass();
+                pyVar.z4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 1:
+                this.f40164b.D4(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                oy.w0(this.f37542b, this.f37543c, this.d);
+                py pyVar2 = this.f40164b;
+                pyVar2.getClass();
+                pyVar2.F4(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

@@ -3,7 +3,7 @@ package kotlin.jvm.internal;
 import dd.u;
 import dd.v;
 import dd.w;
-import j7.m5;
+import j7.n5;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -11,9 +11,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 public final class e implements hd.c, d {
-    public static final Map f10981b;
-    public static final LinkedHashMap f10982c;
-    public final Class f10983a;
+    public static final Map f11331b;
+    public static final LinkedHashMap f11332c;
+    public final Class f11333a;
 
     static {
         int i10 = 0;
@@ -28,7 +28,7 @@ public final class e implements hd.c, d {
                 throw new ArithmeticException("Index overflow has happened.");
             }
         }
-        f10981b = tc.r.d(arrayList);
+        f11331b = tc.r.d(arrayList);
         HashMap hashMap = new HashMap();
         hashMap.put("boolean", "kotlin.Boolean");
         hashMap.put("char", "kotlin.Char");
@@ -78,7 +78,7 @@ public final class e implements hd.c, d {
             sb.append("CompanionObject");
             hashMap3.put(sb.toString(), str.concat(".Companion"));
         }
-        for (Map.Entry entry : f10981b.entrySet()) {
+        for (Map.Entry entry : f11331b.entrySet()) {
             int intValue = ((Number) entry.getValue()).intValue();
             String name = ((Class) entry.getKey()).getName();
             hashMap3.put(name, "kotlin.Function" + intValue);
@@ -90,31 +90,31 @@ public final class e implements hd.c, d {
             j.b(str2);
             linkedHashMap.put(key, jd.j.j(str2, str2));
         }
-        f10982c = linkedHashMap;
+        f11332c = linkedHashMap;
     }
 
     public e(Class jClass) {
         j.e(jClass, "jClass");
-        this.f10983a = jClass;
+        this.f11333a = jClass;
     }
 
     @Override
     public final Class a() {
-        return this.f10983a;
+        return this.f11333a;
     }
 
     public final boolean equals(Object obj) {
-        if ((obj instanceof e) && m5.a(this).equals(m5.a((hd.c) obj))) {
+        if ((obj instanceof e) && n5.a(this).equals(n5.a((hd.c) obj))) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return m5.a(this).hashCode();
+        return n5.a(this).hashCode();
     }
 
     public final String toString() {
-        return this.f10983a + " (Kotlin reflection is not available)";
+        return this.f11333a + " (Kotlin reflection is not available)";
     }
 }

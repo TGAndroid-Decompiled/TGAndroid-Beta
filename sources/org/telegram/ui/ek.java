@@ -5,7 +5,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class ek extends org.telegram.ui.Components.l81 {
+public final class ek extends org.telegram.ui.Components.m81 {
     public final int Q;
     public final Object R;
 
@@ -50,7 +50,7 @@ public final class ek extends org.telegram.ui.Components.l81 {
         switch (this.Q) {
             case 4:
                 super.onLayout(z4, i10, i11, i12, i13);
-                ga1.Y((ga1) this.R);
+                ha1.Y((ha1) this.R);
                 return;
             default:
                 super.onLayout(z4, i10, i11, i12, i13);
@@ -72,9 +72,9 @@ public final class ek extends org.telegram.ui.Components.l81 {
     public void t(View view, View view2, int i10, int i11) {
         switch (this.Q) {
             case 7:
-                ph.f8 f8Var = (ph.f8) this.R;
-                if (ph.f8.d0(f8Var)) {
-                    f8Var.f1();
+                qh.d8 d8Var = (qh.d8) this.R;
+                if (qh.d8.d0(d8Var)) {
+                    d8Var.f1();
                     return;
                 }
                 return;
@@ -87,14 +87,14 @@ public final class ek extends org.telegram.ui.Components.l81 {
     public void u() {
         switch (this.Q) {
             case 4:
-                ga1 ga1Var = (ga1) this.R;
-                ga1Var.m0(ga1Var.f34536f0.getCurrentPosition(), true);
-                ga1Var.n0(0.0f, false);
-                ga1.W(ga1Var);
+                ha1 ha1Var = (ha1) this.R;
+                ha1Var.m0(ha1Var.f37426f0.getCurrentPosition(), true);
+                ha1Var.n0(0.0f, false);
+                ha1.W(ha1Var);
                 return;
             case 8:
                 if (getCurrentPosition() == 1) {
-                    ((sh.i0) this.R).v.d.V2.N(false);
+                    ((th.i0) this.R).v.d.V2.N(false);
                     return;
                 }
                 return;
@@ -105,11 +105,11 @@ public final class ek extends org.telegram.ui.Components.l81 {
 
     @Override
     public void v() {
-        h31 h31Var;
+        j31 j31Var;
         switch (this.Q) {
             case 3:
-                if ((getCurrentView() instanceof j31) && (h31Var = ((j31) getCurrentView()).f35220n) != null) {
-                    AndroidUtilities.hideKeyboard(h31Var);
+                if ((getCurrentView() instanceof l31) && (j31Var = ((l31) getCurrentView()).f38576n) != null) {
+                    AndroidUtilities.hideKeyboard(j31Var);
                     return;
                 }
                 return;
@@ -130,47 +130,47 @@ public final class ek extends org.telegram.ui.Components.l81 {
                 xnVar.q9(1);
                 return;
             case 1:
-                gp0 gp0Var = (gp0) this.R;
-                gp0Var.E.setSelected(gp0Var.f34662y.getPositionAnimated());
-                gp0Var.e.setProgressToGradient(1.0f - gp0Var.f34662y.getPositionAnimated());
+                ip0 ip0Var = (ip0) this.R;
+                ip0Var.E.setSelected(ip0Var.f37914y.getPositionAnimated());
+                ip0Var.f37907e.setProgressToGradient(1.0f - ip0Var.f37914y.getPositionAnimated());
                 return;
             case 2:
-                ((rv0) this.R).e();
+                ((tv0) this.R).e();
                 return;
             case 3:
-                k31.o((k31) this.R).invalidate();
+                m31.o((m31) this.R).invalidate();
                 return;
             case 4:
-                ga1 ga1Var = (ga1) this.R;
-                float positionAnimated = ga1Var.f34536f0.getPositionAnimated();
-                ga1Var.n0(positionAnimated, !z4);
+                ha1 ha1Var = (ha1) this.R;
+                float positionAnimated = ha1Var.f37426f0.getPositionAnimated();
+                ha1Var.n0(positionAnimated, !z4);
                 if (!z4) {
-                    ga1Var.m0(Math.round(positionAnimated), true);
+                    ha1Var.m0(Math.round(positionAnimated), true);
                 }
-                ga1.W(ga1Var);
-                ga1.Y(ga1Var);
+                ha1.W(ha1Var);
+                ha1.Y(ha1Var);
                 return;
             case 5:
-                ((rd1) this.R).e();
+                ((ud1) this.R).e();
                 return;
             case 6:
-                ph.y1 y1Var = (ph.y1) this.R;
-                ek ekVar = y1Var.f42605f;
-                ph.x1 x1Var = y1Var.h;
+                qh.y1 y1Var = (qh.y1) this.R;
+                ek ekVar = y1Var.f46345f;
+                qh.x1 x1Var = y1Var.h;
                 if (x1Var != null) {
                     x1Var.C = ekVar.getPositionAnimated();
                     x1Var.invalidate();
                 }
-                viewGroup = ((org.telegram.ui.ActionBar.g3) y1Var).containerView;
+                viewGroup = ((org.telegram.ui.ActionBar.h3) y1Var).containerView;
                 viewGroup.invalidate();
                 invalidate();
-                ph.y1.D = ekVar.getCurrentPosition();
+                qh.y1.D = ekVar.getCurrentPosition();
                 return;
             case 7:
-                ph.f8.c0((ph.f8) this.R).invalidate();
+                qh.d8.c0((qh.d8) this.R).invalidate();
                 return;
             default:
-                sh.i0.s((sh.i0) this.R).invalidate();
+                th.i0.s((th.i0) this.R).invalidate();
                 return;
         }
     }
@@ -181,9 +181,9 @@ public final class ek extends org.telegram.ui.Components.l81 {
             case 0:
                 if (i10 == 0) {
                     xn xnVar = (xn) this.R;
-                    if (xnVar.f40133p1) {
-                        xnVar.f40133p1 = false;
-                        xnVar.f40109n1.h.clear();
+                    if (xnVar.f43302p1) {
+                        xnVar.f43302p1 = false;
+                        xnVar.f43278n1.h.clear();
                         return;
                     }
                     return;
@@ -194,8 +194,8 @@ public final class ek extends org.telegram.ui.Components.l81 {
         }
     }
 
-    public ek(Context context, org.telegram.ui.ActionBar.f6 f6Var, xn xnVar) {
-        super(context, f6Var);
+    public ek(Context context, org.telegram.ui.ActionBar.g6 g6Var, xn xnVar) {
+        super(context, g6Var);
         this.Q = 0;
         this.R = xnVar;
     }

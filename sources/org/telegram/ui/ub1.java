@@ -1,86 +1,28 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ub1 implements RequestDelegate {
-    public final int f38900a;
-    public final cd1 f38901b;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.tgnet.tl.TL_stories;
+public final class ub1 implements h5.d {
+    public final int f41878a;
+    public final ed1 f41879b;
 
-    public ub1(cd1 cd1Var, int i10) {
-        this.f38900a = i10;
-        this.f38901b = cd1Var;
+    public ub1(ed1 ed1Var, int i10) {
+        this.f41878a = i10;
+        this.f41879b = ed1Var;
     }
 
     @Override
-    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38900a) {
+    public final void accept(Object obj) {
+        switch (this.f41878a) {
             case 0:
-                final cd1 cd1Var = this.f38901b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                cd1.V(cd1Var, tLObject);
-                                return;
-                            default:
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
-                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
-                                    if (tL_wallPaper.pattern) {
-                                        cd1 cd1Var2 = cd1Var;
-                                        cd1Var2.T0 = tL_wallPaper;
-                                        cd1Var2.b1(false);
-                                        cd1Var2.j1();
-                                        cd1Var2.R0.add(0, cd1Var2.T0);
-                                        ad1 ad1Var = cd1Var2.N0;
-                                        if (ad1Var != null) {
-                                            ad1Var.l();
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
+                ed1 ed1Var = this.f41879b;
+                ed1Var.S1 = (TL_stories.TL_premium_boostsStatus) obj;
+                ed1Var.R1 = true;
+                ed1Var.h1(true);
+                ed1Var.Q1 = false;
                 return;
             default:
-                final cd1 cd1Var2 = this.f38901b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                cd1.V(cd1Var2, tLObject);
-                                return;
-                            default:
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
-                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
-                                    if (tL_wallPaper.pattern) {
-                                        cd1 cd1Var22 = cd1Var2;
-                                        cd1Var22.T0 = tL_wallPaper;
-                                        cd1Var22.b1(false);
-                                        cd1Var22.j1();
-                                        cd1Var22.R0.add(0, cd1Var22.T0);
-                                        ad1 ad1Var = cd1Var22.N0;
-                                        if (ad1Var != null) {
-                                            ad1Var.l();
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
+                ed1.X(this.f41879b, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
         }
     }

@@ -6,49 +6,49 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class h0 implements RequestDelegate {
-    public final int f17344a;
-    public final Object f17345b;
+    public final int f18803a;
+    public final Object f18804b;
 
     public h0(Object obj, int i10) {
-        this.f17344a = i10;
-        this.f17345b = obj;
+        this.f18803a = i10;
+        this.f18804b = obj;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17344a) {
+        switch (this.f18803a) {
             case 0:
-                BirthdayController.d((BirthdayController) this.f17345b, tLObject, tL_error);
+                BirthdayController.d((BirthdayController) this.f18804b, tLObject, tL_error);
                 return;
             case 1:
-                ChannelBoostsController.lambda$getBoostsStats$1((h5.d) this.f17345b, tLObject, tL_error);
+                ChannelBoostsController.lambda$getBoostsStats$1((h5.d) this.f18804b, tLObject, tL_error);
                 return;
             case 2:
-                ((DownloadController) this.f17345b).lambda$loadAutoDownloadConfig$2(tLObject, tL_error);
+                ((DownloadController) this.f18804b).lambda$loadAutoDownloadConfig$2(tLObject, tL_error);
                 return;
             case 3:
-                ((FileLoadOperation) this.f17345b).lambda$requestFileOffsets$21(tLObject, tL_error);
+                ((FileLoadOperation) this.f18804b).lambda$requestFileOffsets$21(tLObject, tL_error);
                 return;
             case 4:
-                MessagesController.lambda$unblockPeer$111((Runnable) this.f17345b, tLObject, tL_error);
+                MessagesController.lambda$unblockPeer$111((Runnable) this.f18804b, tLObject, tL_error);
                 return;
             case 5:
-                MessagesController.lambda$getChannelParticipant$472((Utilities.Callback) this.f17345b, tLObject, tL_error);
+                MessagesController.lambda$getChannelParticipant$472((Utilities.Callback) this.f18804b, tLObject, tL_error);
                 return;
             case 6:
-                MessagesController.lambda$checkIsInChat$473((MessagesController.IsInChatCheckedCallback) this.f17345b, tLObject, tL_error);
+                MessagesController.lambda$checkIsInChat$473((MessagesController.IsInChatCheckedCallback) this.f18804b, tLObject, tL_error);
                 return;
             case 7:
-                ((MessagesController.SavedMusicIds) this.f17345b).lambda$load$1(tLObject, tL_error);
+                ((MessagesController.SavedMusicIds) this.f18804b).lambda$load$1(tLObject, tL_error);
                 return;
             case 8:
-                ((MessagesController.SavedMusicList) this.f17345b).lambda$load$1(tLObject, tL_error);
+                ((MessagesController.SavedMusicList) this.f18804b).lambda$load$1(tLObject, tL_error);
                 return;
             case 9:
-                ((TopicsController) this.f17345b).lambda$toggleViewForumAsMessages$18(tLObject, tL_error);
+                ((TopicsController) this.f18804b).lambda$toggleViewForumAsMessages$18(tLObject, tL_error);
                 return;
             default:
-                ((UserConfig) this.f17345b).lambda$loadGlobalTTl$4(tLObject, tL_error);
+                ((UserConfig) this.f18804b).lambda$loadGlobalTTl$4(tLObject, tL_error);
                 return;
         }
     }

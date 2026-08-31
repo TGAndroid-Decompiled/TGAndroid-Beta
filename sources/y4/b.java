@@ -4,16 +4,16 @@ import h5.w;
 import java.util.zip.Inflater;
 import v4.e;
 public final class b extends e {
-    public final w f47067n;
-    public final w f47068o;
-    public final a f47069p;
-    public Inflater f47070q;
+    public final w f50752n;
+    public final w f50753o;
+    public final a f50754p;
+    public Inflater f50755q;
 
     public b() {
         super("PgsDecoder");
-        this.f47067n = new w();
-        this.f47068o = new w();
-        this.f47069p = new a();
+        this.f50752n = new w();
+        this.f50753o = new w();
+        this.f50754p = new a();
     }
 
     @Override

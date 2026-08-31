@@ -1,4 +1,4 @@
 package od;
 public interface b {
-    Object z(c cVar, wc.c cVar2);
+    Object x(c cVar, wc.c cVar2);
 }

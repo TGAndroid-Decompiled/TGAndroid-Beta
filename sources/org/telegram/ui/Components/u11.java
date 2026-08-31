@@ -1,8 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.BitmapDrawable;
-public final class u11 extends BitmapDrawable {
-    public u11(java.io.File r34, org.telegram.messenger.DocumentObject.ThemeDocument r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.u11.<init>(java.io.File, org.telegram.messenger.DocumentObject$ThemeDocument):void");
+import android.util.SparseIntArray;
+public final class u11 extends org.telegram.ui.ActionBar.h5 {
+    public final SparseIntArray R;
+
+    public u11(boolean z4, SparseIntArray sparseIntArray) {
+        super(2, z4, false, null);
+        this.R = sparseIntArray;
+    }
+
+    @Override
+    public final int g(int i10) {
+        return this.R.get(i10);
+    }
+
+    @Override
+    public final int h(int i10) {
+        return this.R.get(i10);
     }
 }

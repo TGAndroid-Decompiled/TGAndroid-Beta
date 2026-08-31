@@ -4,22 +4,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.tgnet.tl.TL_stories;
 public final class p5 implements h5.d {
-    public final int f37183a;
-    public final y5 f37184b;
+    public final int f39924a;
+    public final y5 f39925b;
 
     public p5(y5 y5Var, int i10) {
-        this.f37183a = i10;
-        this.f37184b = y5Var;
+        this.f39924a = i10;
+        this.f39925b = y5Var;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f37183a) {
+        switch (this.f39924a) {
             case 0:
-                this.f37184b.P = (ChannelBoostsController.CanApplyBoost) obj;
+                this.f39925b.P = (ChannelBoostsController.CanApplyBoost) obj;
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.b(19, this.f37184b, (TL_stories.TL_premium_boostsStatus) obj));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.h(18, this.f39925b, (TL_stories.TL_premium_boostsStatus) obj));
                 return;
         }
     }

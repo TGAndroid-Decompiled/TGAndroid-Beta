@@ -1,9 +1,9 @@
 package n7;
 public final class n6 implements u9.d {
-    public static final n6 f14672a = new Object();
+    public static final n6 f15667a = new Object();
 
     static {
-        e2.c.r(kh.a2.p(w.class, new s(1)));
+        e2.c.r(l.d.p(w.class, new s(1)));
     }
 
     @Override

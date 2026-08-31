@@ -2,184 +2,236 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.LinearGradient;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Shader;
-import android.os.SystemClock;
-import android.view.MotionEvent;
+import android.graphics.RectF;
+import android.os.Build;
+import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import java.util.Random;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
-public final class g30 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, VoIPService.StateListener {
-    public final int B;
-    public final jj0 C;
-    public final gj0 D;
-    public long E;
-    public final boolean F;
-    public final Random G;
-    public boolean H;
-    public final f30[] I;
-    public boolean J;
-    public float K;
-    public float L;
-    public final OvershootInterpolator M;
-    public float N;
-    public final Paint f25026a;
-    public final u9 f25027b;
-    public final u9 f25028c;
-    public float d;
-    public float e;
-    public float f25029f;
-    public f30 h;
-    public f30 f25030n;
-    public float f25031r;
-    public boolean f25032s;
+public final class g30 extends LinearLayout implements VoIPService.StateListener, NotificationCenter.NotificationCenterDelegate {
+    public float B;
+    public float C;
+    public TextView f27086a;
+    public TextView f27087b;
+    public org.telegram.ui.Components.voip.w2 f27088c;
+    public org.telegram.ui.Components.voip.w2 d;
+    public p9 f27089e;
+    public RectF f27090f;
+    public Paint h;
+    public LinearGradient f27091n;
+    public int f27092r;
+    public float f27093s;
     public float v;
-    public final LinearGradient f25033w;
-    public final Matrix f25034x;
-    public float f25035y;
+    public boolean f27094w;
+    public int f27095x;
+    public boolean f27096y;
 
-    public g30(int i10, Context context, boolean z4) {
-        super(context);
-        this.f25026a = new Paint(1);
-        this.f25027b = new u9(8);
-        this.f25028c = new u9(9);
-        this.f25031r = 1.0f;
-        this.f25034x = new Matrix();
-        this.f25035y = 0.0f;
-        this.G = new Random();
-        this.I = new f30[4];
-        this.M = new OvershootInterpolator();
-        this.F = z4;
-        this.B = i10;
-        for (int i11 = 0; i11 < 4; i11++) {
-            this.I[i11] = new f30(i11);
+    public static void a(g30 g30Var, Context context) {
+        boolean z4;
+        if (VoIPService.getSharedInstance() == null) {
+            return;
         }
-        this.f25027b.f29132b = AndroidUtilities.dp(37.0f);
-        this.f25027b.f29131a = AndroidUtilities.dp(32.0f);
-        this.f25028c.f29132b = AndroidUtilities.dp(37.0f);
-        this.f25028c.f29131a = AndroidUtilities.dp(32.0f);
-        this.f25027b.b();
-        this.f25028c.b();
-        int i12 = R.raw.voice_outlined;
-        gj0 gj0Var = new gj0(i12, "" + R.raw.voice_outlined, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(30.0f), true, null);
-        this.D = gj0Var;
-        setWillNotDraw(false);
-        ?? imageView = new ImageView(context);
-        this.C = imageView;
-        imageView.setAnimation(gj0Var);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView);
-        this.f25033w = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(350.0f), 0.0f, new int[]{-2801343, -561538, 0}, new float[]{0.0f, 0.4f, 1.0f}, Shader.TileMode.CLAMP);
-        if (z4) {
-            setState(0);
-        }
-    }
-
-    private void setAmplitude(double d) {
-        float min = (float) (Math.min(8500.0d, d) / 8500.0d);
-        this.e = min;
-        this.f25029f = (min - this.d) / 265.0f;
-    }
-
-    public final void a() {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null && sharedInstance.groupCall != null) {
-            int callState = sharedInstance.getCallState();
-            if (callState != 1 && callState != 2 && callState != 6 && callState != 5) {
-                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) sharedInstance.groupCall.participants.f(sharedInstance.getSelfId());
-                if (groupCallParticipant != null && !groupCallParticipant.can_self_unmute && groupCallParticipant.muted && !ChatObject.canManageCalls(sharedInstance.getChat())) {
-                    if (!sharedInstance.isMicMute()) {
-                        sharedInstance.setMicMute(true, false, false);
-                    }
-                    setState(3);
-                    long uptimeMillis = SystemClock.uptimeMillis();
-                    MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 3, 0.0f, 0.0f, 0);
-                    if (getParent() != null) {
-                        ((View) getParent()).dispatchTouchEvent(obtain);
-                        return;
-                    }
-                    return;
-                }
-                setState(sharedInstance.isMicMute() ? 1 : 0);
-                return;
+        Context context2 = g30Var.getContext();
+        if (Build.VERSION.SDK_INT >= 23 && !Settings.canDrawOverlays(context)) {
+            z4 = false;
+        } else {
+            z4 = true;
+        }
+        sharedInstance.toggleSpeakerphoneOrShowRouteSheet(context2, z4);
+    }
+
+    public static void b(g30 g30Var, Context context) {
+        boolean z4;
+        Context context2 = g30Var.getContext();
+        e30 e30Var = new e30(context, 0);
+        if (Build.VERSION.SDK_INT >= 23 && !Settings.canDrawOverlays(context)) {
+            z4 = false;
+        } else {
+            z4 = true;
+        }
+        org.telegram.ui.d60.t1(context2, e30Var, z4, false);
+    }
+
+    public final void c(float f10, float f11, int i10) {
+        this.f27092r = i10;
+        this.f27093s = f10;
+        this.v = f11;
+        invalidate();
+        this.f27094w = true;
+    }
+
+    public final void d(boolean z4) {
+        VoIPService sharedInstance;
+        boolean z10;
+        boolean z11;
+        float f10;
+        int i10;
+        org.telegram.ui.Components.voip.w2 w2Var = this.d;
+        org.telegram.ui.Components.voip.w2 w2Var2 = this.f27088c;
+        if (w2Var2 != null && w2Var != null && (sharedInstance = VoIPService.getSharedInstance()) != null) {
+            boolean isBluetoothOn = sharedInstance.isBluetoothOn();
+            if (!isBluetoothOn && sharedInstance.isSpeakerphoneOn()) {
+                z10 = true;
+            } else {
+                z10 = false;
             }
-            setState(2);
+            w2Var2.b(z10, z4);
+            if (isBluetoothOn) {
+                z11 = z4;
+                w2Var2.c(R.drawable.calls_bluetooth, -1, 0, 0.1f, true, LocaleController.getString(R.string.VoipAudioRoutingBluetooth), false, z11);
+            } else {
+                z11 = z4;
+                if (z10) {
+                    w2Var2.c(R.drawable.calls_speaker, -1, 0, 0.3f, true, LocaleController.getString(R.string.VoipSpeaker), false, z11);
+                } else if (sharedInstance.isHeadsetPlugged()) {
+                    w2Var2.c(R.drawable.calls_headphones, -1, 0, 0.1f, true, LocaleController.getString(R.string.VoipAudioRoutingHeadset), false, z11);
+                } else {
+                    w2Var2.c(R.drawable.calls_speaker, -1, 0, 0.1f, true, LocaleController.getString(R.string.VoipSpeaker), false, z11);
+                }
+            }
+            if (sharedInstance.mutedByAdmin()) {
+                w2Var.c(R.drawable.calls_unmute, -1, i0.a.k(-1, 76), 0.1f, true, LocaleController.getString(R.string.VoipMutedByAdminShort), true, z11);
+            } else {
+                int i11 = R.drawable.calls_unmute;
+                if (sharedInstance.isMicMute()) {
+                    f10 = 0.3f;
+                } else {
+                    f10 = 0.15f;
+                }
+                int k10 = i0.a.k(-1, (int) (f10 * 255.0f));
+                if (sharedInstance.isMicMute()) {
+                    i10 = R.string.VoipUnmute;
+                } else {
+                    i10 = R.string.VoipMute;
+                }
+                w2Var.c(i11, -1, k10, 0.1f, true, LocaleController.getString(i10), sharedInstance.isMicMute(), z11);
+            }
+            invalidate();
         }
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.webRtcMicAmplitudeEvent) {
-            setAmplitude(((Float) objArr[0]).floatValue() * 4000.0f);
-        } else if (i10 == NotificationCenter.groupCallUpdated) {
-            a();
+        boolean mutedByAdmin;
+        if (i10 == NotificationCenter.groupCallUpdated) {
+            e();
+            if (VoIPService.getSharedInstance() != null && (mutedByAdmin = VoIPService.getSharedInstance().mutedByAdmin()) != this.f27096y) {
+                this.f27096y = mutedByAdmin;
+                invalidate();
+            }
+        }
+    }
+
+    public final void e() {
+        String str;
+        TextView textView = this.f27087b;
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null && sharedInstance.groupCall != null) {
+            int callState = sharedInstance.getCallState();
+            if (!sharedInstance.isSwitchingStream() && (callState == 1 || callState == 2 || callState == 6 || callState == 5)) {
+                textView.setText(LocaleController.getString("VoipGroupConnecting", R.string.VoipGroupConnecting));
+                return;
+            }
+            TLRPC.GroupCall groupCall = sharedInstance.groupCall.call;
+            if (groupCall.rtmp_stream) {
+                str = "ViewersWatching";
+            } else {
+                str = "Participants";
+            }
+            textView.setText(LocaleController.formatPluralString(str, groupCall.participants_count, new Object[0]));
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
-        boolean z4;
-        int i10;
+        long j10;
+        String str;
+        float f10;
+        ChatObject.Call call;
+        int i10 = this.f27095x;
         super.onAttachedToWindow();
-        if (!this.F) {
-            setAmplitude(0.0d);
-            NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.webRtcMicAmplitudeEvent);
-            NotificationCenter.getInstance(this.B).addObserver(this, NotificationCenter.groupCallUpdated);
-            if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().isMicMute()) {
-                z4 = true;
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null && sharedInstance.groupCall != null) {
+            z8 z8Var = new z8((org.telegram.ui.ActionBar.g6) null);
+            TLRPC.Chat chat = sharedInstance.getChat();
+            int[] iArr = org.telegram.ui.ActionBar.k6.f21877p8;
+            long j11 = 0;
+            if (chat != null) {
+                j10 = chat.f20843id;
             } else {
-                z4 = false;
+                j10 = 0;
             }
+            int w02 = org.telegram.ui.ActionBar.k6.w0(null, iArr[z8.e(j10)], false);
+            int[] iArr2 = org.telegram.ui.ActionBar.k6.f21896q8;
+            if (chat != null) {
+                j11 = chat.f20843id;
+            }
+            z8Var.i(w02, org.telegram.ui.ActionBar.k6.w0(null, iArr2[z8.e(j11)], false));
+            z8Var.k(i10, chat);
+            if (chat != null) {
+                this.f27089e.h(ImageLocation.getForLocal(chat.photo.photo_small), "50_50", z8Var, null);
+            }
+            if (sharedInstance.isConference() && (call = sharedInstance.groupCall) != null) {
+                if (call.sortedParticipants.size() == 1) {
+                    str = LocaleController.getString(R.string.ConferenceChat);
+                } else {
+                    StringBuilder sb = new StringBuilder();
+                    for (int i11 = 0; i11 < Math.min(3, sharedInstance.groupCall.sortedParticipants.size()); i11++) {
+                        if (i11 > 0) {
+                            sb.append(", ");
+                        }
+                        sb.append(DialogObject.getShortName(DialogObject.getPeerDialogId(sharedInstance.groupCall.sortedParticipants.get(i11).peer)));
+                    }
+                    if (sharedInstance.groupCall.sortedParticipants.size() > 3) {
+                        sb.append(" ");
+                        sb.append(LocaleController.formatPluralString("AndOther", sharedInstance.groupCall.sortedParticipants.size() - 3, new Object[0]));
+                    }
+                    str = sb.toString();
+                }
+            } else if (!TextUtils.isEmpty(sharedInstance.groupCall.call.title)) {
+                str = sharedInstance.groupCall.call.title;
+            } else if (chat != null) {
+                str = chat.title;
+            } else {
+                str = "";
+            }
+            if (str != null) {
+                str = str.replace("\n", " ").replaceAll(" +", " ").trim();
+            }
+            this.f27086a.setText(str);
+            e();
+            sharedInstance.registerStateListener(this);
             if (VoIPService.getSharedInstance() != null) {
-                VoIPService.getSharedInstance().registerStateListener(this);
+                this.f27096y = VoIPService.getSharedInstance().mutedByAdmin();
             }
-            if (z4) {
-                i10 = 13;
+            float f11 = 0.0f;
+            if (this.f27096y) {
+                f10 = 1.0f;
             } else {
-                i10 = 24;
+                f10 = 0.0f;
             }
-            gj0 gj0Var = this.D;
-            gj0Var.N(i10);
-            gj0Var.L(gj0Var.f25154f - 1, false, true);
-            a();
+            this.C = f10;
+            this.B = (VoIPService.getSharedInstance() == null || VoIPService.getSharedInstance().isMicMute() || this.f27096y) ? 1.0f : 1.0f;
         }
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.groupCallUpdated);
+        d(false);
     }
 
     @Override
     public final void onAudioSettingsChanged() {
-        boolean z4;
-        int i10;
-        if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().isMicMute()) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        if (z4) {
-            i10 = 13;
-        } else {
-            i10 = 24;
-        }
-        gj0 gj0Var = this.D;
-        if (gj0Var.N(i10)) {
-            if (z4) {
-                gj0Var.K(0);
-            } else {
-                gj0Var.K(12);
-            }
-        }
-        this.C.d();
-        a();
+        d(true);
     }
 
     @Override
@@ -195,33 +247,21 @@ public final class g30 extends FrameLayout implements NotificationCenter.Notific
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (!this.F) {
-            NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.webRtcMicAmplitudeEvent);
-            NotificationCenter.getInstance(this.B).removeObserver(this, NotificationCenter.groupCallUpdated);
-            if (VoIPService.getSharedInstance() != null) {
-                VoIPService.getSharedInstance().unregisterStateListener(this);
-            }
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null) {
+            sharedInstance.unregisterStateListener(this);
         }
+        NotificationCenter.getInstance(this.f27095x).removeObserver(this, NotificationCenter.groupCallUpdated);
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r22) {
+    public final void onDraw(android.graphics.Canvas r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.g30.onDraw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        int i10;
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        a30 a30Var = a30.f23277a0;
-        if (a30Var != null) {
-            if (a30Var.f23286w) {
-                i10 = R.string.AccDescrCloseMenu;
-            } else {
-                i10 = R.string.AccDescrOpenMenu2;
-            }
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(i10)));
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(230.0f), 1073741824), i11);
     }
 
     @Override
@@ -241,60 +281,11 @@ public final class g30 extends FrameLayout implements NotificationCenter.Notific
 
     @Override
     public final void onStateChanged(int i10) {
-        a();
+        e();
     }
 
     @Override
     public final void onVideoAvailableChange(boolean z4) {
         org.telegram.messenger.voip.v0.h(this, z4);
-    }
-
-    public void setPinnedProgress(float f10) {
-        this.L = f10;
-    }
-
-    public void setPressedState(boolean z4) {
-        this.J = z4;
-    }
-
-    public void setRemoveAngle(double d) {
-        this.N = (float) d;
-    }
-
-    public void setState(int i10) {
-        String string;
-        f30 f30Var = this.h;
-        if (f30Var != null && f30Var.f24766i == i10) {
-            return;
-        }
-        this.f25030n = f30Var;
-        f30 f30Var2 = this.I[i10];
-        this.h = f30Var2;
-        float f10 = 0.0f;
-        if (f30Var != null) {
-            this.f25031r = 0.0f;
-        } else {
-            this.f25031r = 1.0f;
-            int i11 = f30Var2.f24766i;
-            if (i11 != 3 && i11 != 2) {
-                f10 = 1.0f;
-            }
-            this.f25035y = f10;
-        }
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null && ChatObject.isChannelOrGiga(sharedInstance.getChat())) {
-            string = LocaleController.getString(R.string.VoipChannelVoiceChat);
-        } else {
-            string = LocaleController.getString(R.string.VoipGroupVoiceChat);
-        }
-        if (i10 == 0) {
-            string = org.telegram.messenger.y3.h(R.string.VoipTapToMute, vh.v2.f(string, ", "));
-        } else if (i10 == 2) {
-            string = org.telegram.messenger.y3.h(R.string.Connecting, vh.v2.f(string, ", "));
-        } else if (i10 == 3) {
-            string = org.telegram.messenger.y3.h(R.string.VoipMutedByAdmin, vh.v2.f(string, ", "));
-        }
-        setContentDescription(string);
-        invalidate();
     }
 }

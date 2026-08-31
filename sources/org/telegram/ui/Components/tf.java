@@ -24,7 +24,7 @@ public final class tf extends org.telegram.ui.xn {
         super.onBecomeFullyVisible();
         if (!this.Nc) {
             this.Nc = true;
-            qc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Oc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Pc)), new gg.y1(this, this.Qc, 17)), R.raw.contact_check).j();
+            qc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Oc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Pc)), new hg.y1(this, this.Qc, 16)), R.raw.contact_check).j();
         }
     }
 }

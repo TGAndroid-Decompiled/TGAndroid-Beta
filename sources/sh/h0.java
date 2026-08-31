@@ -1,109 +1,142 @@
 package sh;
 
+import android.app.DownloadManager;
 import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
-import k7.b6;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.y3;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.g3;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.lb0;
-public final class h0 extends f0 {
-    public final i0 h;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import android.util.Pair;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import org.json.JSONObject;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.NotificationCenter;
+public final class h0 {
+    public static final HashMap f47445g = new HashMap();
+    public static final HashMap h = new HashMap();
+    public final Context f47446a;
+    public final int f47447b;
+    public final long f47448c;
+    public final DownloadManager d;
+    public final ArrayList f47449e = new ArrayList();
+    public g0 f47450f;
 
-    public h0(i0 i0Var, Context context) {
-        super(i0Var, context);
-        int i10;
-        f6 f6Var;
-        f6 f6Var2;
-        f6 f6Var3;
-        f6 f6Var4;
-        this.h = i0Var;
-        i10 = ((g3) i0Var).currentAccount;
-        r rVar = new r(i0Var, 5);
-        s sVar = new s(i0Var, 5);
-        f6Var = ((g3) i0Var).resourcesProvider;
-        g61 g61Var = new g61(context, i10, 0, false, rVar, sVar, null, f6Var);
-        this.d = g61Var;
-        g61Var.p1();
-        g61 g61Var2 = this.d;
-        g61Var2.V2.f30240r = false;
-        g61Var2.setClipToPadding(false);
-        this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
-        this.d.j(new lb0(this, 18));
-        this.f44337c.addView(this.d, 0, b6.c(-1.0f, -1));
-        f6Var2 = ((g3) i0Var).resourcesProvider;
-        org.telegram.ui.ActionBar.k kVar = new org.telegram.ui.ActionBar.k(context, f6Var2);
-        this.f44335a = kVar;
-        kVar.setOccupyStatusBar(false);
-        org.telegram.ui.ActionBar.k kVar2 = this.f44335a;
-        int i11 = j6.G6;
-        kVar2.setTitleColor(i0Var.getThemedColor(i11));
-        this.f44335a.B(i0Var.getThemedColor(j6.f20300z8), false);
-        this.f44335a.setBackButtonImage(R.drawable.ic_ab_back);
-        this.f44335a.C(i0Var.getThemedColor(j6.f20283y8), false);
-        this.f44335a.setTitle(LocaleController.getString(R.string.CommunityPendingRequestsTitle));
-        this.f44335a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
-        this.f44335a.setActionBarMenuOnItemClick(new e(this, 5));
-        this.f44337c.addView(this.f44335a, b6.e(-1, 56, 48));
-        LinearLayout f10 = y3.f(context, 0);
-        f10.setPadding(AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(12.0f));
-        f6Var3 = ((g3) i0Var).resourcesProvider;
-        ph.d dVar = new ph.d(context, f6Var3, true);
-        dVar.d();
-        dVar.setColor(i0.a.d(0.125f, i0Var.getThemedColor(j6.f19906d6), i0Var.getThemedColor(i11)));
-        dVar.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
-        dVar.e();
-        dVar.setOnClickListener(new View.OnClickListener(this) {
-            public final h0 f44345b;
-
-            {
-                this.f44345b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f44345b.h.J.f(false, true);
-                        return;
-                    default:
-                        this.f44345b.h.J.f(true, true);
-                        return;
+    public h0(Context context, int i10, long j10) {
+        this.f47446a = context;
+        this.f47447b = i10;
+        this.f47448c = j10;
+        this.d = (DownloadManager) context.getSystemService("download");
+        SharedPreferences sharedPreferences = context.getSharedPreferences("botdownloads_" + i10, 0);
+        Set<String> stringSet = sharedPreferences.getStringSet("" + j10, null);
+        if (stringSet != null) {
+            for (String str : stringSet) {
+                try {
+                    g0 g0Var = new g0(this, new JSONObject(str));
+                    File file = g0Var.d;
+                    if (file != null && file.exists()) {
+                        this.f47449e.add(g0Var);
+                    }
+                } catch (Exception e6) {
+                    FileLog.e(e6);
                 }
             }
-        });
-        f10.addView(dVar, b6.p(0, 48, 1.0f, 0, 4, 0, 4, 0));
-        f6Var4 = ((g3) i0Var).resourcesProvider;
-        ph.d dVar2 = new ph.d(context, f6Var4, true);
-        dVar2.setText(LocaleController.getString(R.string.CommunityPendingRequestAddAll));
-        dVar2.e();
-        dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final h0 f44345b;
+        }
+    }
 
-            {
-                this.f44345b = this;
+    public static void a() {
+        Context context = ApplicationLoader.applicationContext;
+        if (context == null) {
+            return;
+        }
+        for (int i10 = 0; i10 < 4; i10++) {
+            context.getSharedPreferences("botdownloads_" + i10, 0).edit().clear().apply();
+        }
+        f47445g.clear();
+    }
+
+    public static h0 c(Context context, int i10, long j10) {
+        Pair pair = new Pair(Integer.valueOf(i10), Long.valueOf(j10));
+        HashMap hashMap = f47445g;
+        h0 h0Var = (h0) hashMap.get(pair);
+        if (h0Var == null) {
+            h0 h0Var2 = new h0(context, i10, j10);
+            hashMap.put(pair, h0Var2);
+            return h0Var2;
+        }
+        return h0Var;
+    }
+
+    public final void b(String str, String str2) {
+        g0 d = d(str);
+        if (d != null) {
+            this.f47450f = d;
+            d.f47435k = true;
+            e();
+            return;
+        }
+        g0 g0Var = new g0(this, str, str2);
+        this.f47450f = g0Var;
+        g0Var.f47436l = false;
+        this.f47449e.add(g0Var);
+        f();
+        e();
+    }
+
+    public final g0 d(String str) {
+        ArrayList arrayList = this.f47449e;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            g0 g0Var = (g0) obj;
+            if (TextUtils.equals(g0Var.f47428b, str) && g0Var.h) {
+                return g0Var;
             }
+        }
+        return null;
+    }
 
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f44345b.h.J.f(false, true);
-                        return;
-                    default:
-                        this.f44345b.h.J.f(true, true);
-                        return;
+    public final void e() {
+        NotificationCenter.getInstance(this.f47447b).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botDownloadsUpdate, new Object[0]);
+    }
+
+    public final void f() {
+        String absolutePath;
+        int i10 = 0;
+        SharedPreferences.Editor edit = this.f47446a.getSharedPreferences("botdownloads_" + this.f47447b, 0).edit();
+        edit.clear();
+        HashSet hashSet = new HashSet();
+        ArrayList arrayList = this.f47449e;
+        int size = arrayList.size();
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            g0 g0Var = (g0) obj;
+            g0Var.getClass();
+            JSONObject jSONObject = new JSONObject();
+            try {
+                jSONObject.put("url", g0Var.f47428b);
+                jSONObject.put("file_name", g0Var.f47429c);
+                jSONObject.put("size", g0Var.f47432g);
+                File file = g0Var.d;
+                if (file == null) {
+                    absolutePath = null;
+                } else {
+                    absolutePath = file.getAbsolutePath();
                 }
+                jSONObject.put("path", absolutePath);
+                jSONObject.put("done", g0Var.h);
+                jSONObject.put("mime", g0Var.f47430e);
+            } catch (Exception e6) {
+                FileLog.e(e6);
             }
-        });
-        f10.addView(dVar2, b6.p(0, 48, 1.0f, 0, 4, 0, 4, 0));
-        this.f44337c.addView(f10, b6.f(-2.0f, 80, 0, 0, 0, AndroidUtilities.navigationBarHeight));
-        a();
+            hashSet.add(jSONObject.toString());
+        }
+        edit.putStringSet("" + this.f47448c, hashSet);
+        edit.apply();
     }
 }

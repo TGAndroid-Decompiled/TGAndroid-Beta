@@ -5,14 +5,14 @@ public enum c implements x9.b {
     IOS(2),
     WEB(3);
     
-    public final int f7463a;
+    public final int f8034a;
 
     c(int i10) {
-        this.f7463a = i10;
+        this.f8034a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f7463a;
+        return this.f8034a;
     }
 }

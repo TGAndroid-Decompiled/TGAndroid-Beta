@@ -1,8 +1,8 @@
 package m;
 
-import android.widget.PopupWindow;
+import android.content.res.Configuration;
 public abstract class h2 {
-    public static void a(PopupWindow popupWindow, boolean z4) {
-        popupWindow.setTouchModal(z4);
+    public static int a(Configuration configuration) {
+        return configuration.getLayoutDirection();
     }
 }

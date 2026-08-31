@@ -9,9 +9,9 @@ public abstract class y {
 
     public static void b(MediaDrm mediaDrm, byte[] bArr, k3.k kVar) {
         LogSessionId logSessionId;
-        k3.j jVar = kVar.f9735a;
+        k3.j jVar = kVar.f10455a;
         jVar.getClass();
-        LogSessionId logSessionId2 = jVar.f9734a;
+        LogSessionId logSessionId2 = jVar.f10454a;
         logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
         if (!logSessionId2.equals(logSessionId)) {
             MediaDrm.PlaybackComponent playbackComponent = mediaDrm.getPlaybackComponent(bArr);

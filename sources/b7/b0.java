@@ -2,32 +2,32 @@ package b7;
 
 import java.util.Iterator;
 public final class b0 extends q {
-    public static final Object[] f1667r;
-    public static final b0 f1668s;
+    public static final Object[] f1805r;
+    public static final b0 f1806s;
     public final transient Object[] d;
-    public final transient int e;
-    public final transient Object[] f1669f;
+    public final transient int f1807e;
+    public final transient Object[] f1808f;
     public final transient int h;
-    public final transient int f1670n;
+    public final transient int f1809n;
 
     static {
         Object[] objArr = new Object[0];
-        f1667r = objArr;
-        f1668s = new b0(0, 0, 0, objArr, objArr);
+        f1805r = objArr;
+        f1806s = new b0(0, 0, 0, objArr, objArr);
     }
 
     public b0(int i10, int i11, int i12, Object[] objArr, Object[] objArr2) {
         this.d = objArr;
-        this.e = i10;
-        this.f1669f = objArr2;
+        this.f1807e = i10;
+        this.f1808f = objArr2;
         this.h = i11;
-        this.f1670n = i12;
+        this.f1809n = i12;
     }
 
     @Override
     public final boolean contains(Object obj) {
         if (obj != null) {
-            Object[] objArr = this.f1669f;
+            Object[] objArr = this.f1808f;
             if (objArr.length != 0) {
                 int rotateLeft = (int) (Integer.rotateLeft((int) (obj.hashCode() * (-862048943)), 15) * 461845907);
                 while (true) {
@@ -52,13 +52,13 @@ public final class b0 extends q {
 
     @Override
     public final int hashCode() {
-        return this.e;
+        return this.f1807e;
     }
 
     @Override
     public final int i(Object[] objArr) {
         Object[] objArr2 = this.d;
-        int i10 = this.f1670n;
+        int i10 = this.f1809n;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
     }
@@ -70,7 +70,7 @@ public final class b0 extends q {
 
     @Override
     public final int n() {
-        return this.f1670n;
+        return this.f1809n;
     }
 
     @Override
@@ -90,11 +90,11 @@ public final class b0 extends q {
 
     @Override
     public final int size() {
-        return this.f1670n;
+        return this.f1809n;
     }
 
     @Override
     public final o u() {
-        return o.t(this.f1670n, this.d);
+        return o.t(this.f1809n, this.d);
     }
 }

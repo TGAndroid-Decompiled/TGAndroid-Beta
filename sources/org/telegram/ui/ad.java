@@ -4,98 +4,98 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-public final class ad implements org.telegram.ui.ActionBar.f6 {
-    public final bd f32520a;
+public final class ad implements org.telegram.ui.ActionBar.g6 {
+    public final bd f35131a;
 
     public ad(bd bdVar) {
-        this.f32520a = bdVar;
+        this.f35131a = bdVar;
     }
 
     @Override
-    public final Paint G(String str) {
-        if (str.equals("paintDivider")) {
-            return this.f32520a.f32937v0;
+    public final int B0(int i10) {
+        bd bdVar = this.f35131a;
+        int indexOfKey = bdVar.f35439o0.indexOfKey(i10);
+        if (indexOfKey >= 0) {
+            return bdVar.f35439o0.valueAt(indexOfKey);
         }
-        return org.telegram.ui.ActionBar.j6.S0(str);
+        org.telegram.ui.ActionBar.g6 g6Var = bdVar.f35438n0;
+        if (g6Var != null) {
+            return g6Var.B0(i10);
+        }
+        return org.telegram.ui.ActionBar.k6.w0(null, i10, false);
+    }
+
+    @Override
+    public final Paint F(String str) {
+        if (str.equals("paintDivider")) {
+            return this.f35131a.f35448v0;
+        }
+        return org.telegram.ui.ActionBar.k6.S0(str);
+    }
+
+    @Override
+    public final int Z0(int i10) {
+        return B0(i10);
     }
 
     @Override
     public final boolean a() {
-        return this.f32520a.G;
+        return this.f35131a.G;
     }
 
     @Override
-    public final int c0(int i10) {
-        return x0(i10);
-    }
-
-    @Override
-    public final int g1(int i10) {
-        return x0(i10);
+    public final int e0(int i10) {
+        return B0(i10);
     }
 
     @Override
     public final Drawable getDrawable(String str) {
-        bd bdVar = this.f32520a;
-        Drawable drawable = bdVar.f32936u0;
-        Drawable drawable2 = bdVar.f32935t0;
+        bd bdVar = this.f35131a;
+        Drawable drawable = bdVar.f35447u0;
+        Drawable drawable2 = bdVar.f35446t0;
         if (str.equals("drawableMsgIn")) {
-            return bdVar.f32929p0;
+            return bdVar.f35440p0;
         }
         if (str.equals("drawableMsgInSelected")) {
-            return bdVar.f32930q0;
+            return bdVar.f35441q0;
         }
         if (str.equals("drawableMsgOut")) {
-            return bdVar.f32932r0;
+            return bdVar.f35443r0;
         }
         if (str.equals("drawableMsgOutSelected")) {
-            return bdVar.f32934s0;
+            return bdVar.f35445s0;
         }
         if (str.equals("drawableMsgOutCheckRead")) {
-            drawable2.setColorFilter(x0(org.telegram.ui.ActionBar.j6.La), PorterDuff.Mode.MULTIPLY);
+            drawable2.setColorFilter(B0(org.telegram.ui.ActionBar.k6.La), PorterDuff.Mode.MULTIPLY);
             return drawable2;
         } else if (str.equals("drawableMsgOutHalfCheck")) {
-            drawable.setColorFilter(x0(org.telegram.ui.ActionBar.j6.La), PorterDuff.Mode.MULTIPLY);
+            drawable.setColorFilter(B0(org.telegram.ui.ActionBar.k6.La), PorterDuff.Mode.MULTIPLY);
             return drawable;
         } else {
-            org.telegram.ui.ActionBar.f6 f6Var = bdVar.f32927n0;
-            if (f6Var != null) {
-                return f6Var.getDrawable(str);
+            org.telegram.ui.ActionBar.g6 g6Var = bdVar.f35438n0;
+            if (g6Var != null) {
+                return g6Var.getDrawable(str);
             }
-            return org.telegram.ui.ActionBar.j6.O0(str);
+            return org.telegram.ui.ActionBar.k6.O0(str);
         }
     }
 
     @Override
     public final void l(float f10, float f11, int i10, int i11) {
-        org.telegram.ui.ActionBar.j6.q(f10, f11, i10, i11);
+        org.telegram.ui.ActionBar.k6.q(f10, f11, i10, i11);
     }
 
     @Override
-    public final boolean m0() {
+    public final boolean o0() {
         return false;
     }
 
     @Override
-    public final ColorFilter x() {
-        return org.telegram.ui.ActionBar.j6.f20222v3;
+    public final ColorFilter w() {
+        return org.telegram.ui.ActionBar.k6.f21976v3;
     }
 
     @Override
-    public final int x0(int i10) {
-        bd bdVar = this.f32520a;
-        int indexOfKey = bdVar.f32928o0.indexOfKey(i10);
-        if (indexOfKey >= 0) {
-            return bdVar.f32928o0.valueAt(indexOfKey);
-        }
-        org.telegram.ui.ActionBar.f6 f6Var = bdVar.f32927n0;
-        if (f6Var != null) {
-            return f6Var.x0(i10);
-        }
-        return org.telegram.ui.ActionBar.j6.w0(null, i10, false);
-    }
-
-    @Override
-    public final void K0(int i10, int i11) {
+    public final void J0(int i10, int i11) {
     }
 }

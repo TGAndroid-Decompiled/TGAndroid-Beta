@@ -3,21 +3,21 @@ package qc;
 import java.util.regex.Pattern;
 import ne.p;
 import ne.s;
-import vh.v2;
+import org.telegram.ui.yh;
 public final class a extends h {
-    public static final Pattern e = Pattern.compile("^<([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)>");
-    public static final Pattern f42994f = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
+    public static final Pattern f44760e = Pattern.compile("^<([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)>");
+    public static final Pattern f44761f = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
 
     @Override
     public final p b() {
-        String a2 = a(e);
+        String a2 = a(f44760e);
         if (a2 != null) {
             String j10 = e2.c.j(a2, 1, 1);
-            ne.k kVar = new ne.k(1, v2.e("mailto:", j10), null);
+            ne.k kVar = new ne.k(1, yh.k("mailto:", j10), null);
             kVar.b(new s(j10));
             return kVar;
         }
-        String a10 = a(f42994f);
+        String a10 = a(f44761f);
         if (a10 == null) {
             return null;
         }

@@ -1,0 +1,19 @@
+package qh;
+public final class m2 extends f2.w {
+    public final a3 Q;
+
+    public m2(a3 a3Var) {
+        super(3);
+        this.Q = a3Var;
+    }
+
+    @Override
+    public final void b0(bf.f fVar, f2.j1 j1Var) {
+        super.b0(fVar, j1Var);
+        a3 a3Var = this.Q;
+        if (a3Var.R) {
+            a3Var.R = false;
+            a3Var.a();
+        }
+    }
+}

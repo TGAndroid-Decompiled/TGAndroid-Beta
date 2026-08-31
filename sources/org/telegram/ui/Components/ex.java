@@ -1,33 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ex extends AnimatorListenerAdapter {
-    public final int f24692a;
-    public final boolean f24693b;
-    public final kz f24694c;
+import android.view.MotionEvent;
+import org.telegram.tgnet.TLRPC;
+public final class ex extends c51 {
+    public final mz f26657b;
 
-    public ex(kz kzVar, boolean z4, int i10) {
-        this.f24692a = i10;
-        this.f24694c = kzVar;
-        this.f24693b = z4;
+    public ex(mz mzVar) {
+        this.f26657b = mzVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f24692a) {
-            case 0:
-                if (!this.f24693b) {
-                    this.f24694c.f26483x.setVisibility(4);
-                    return;
-                }
-                return;
-            default:
-                if (!this.f24693b) {
-                    this.f24694c.f26487y.setVisibility(4);
-                    return;
-                }
-                return;
+    public final boolean a() {
+        return this.f26657b.f29315q1.b();
+    }
+
+    @Override
+    public final String[] b() {
+        return this.f26657b.T0;
+    }
+
+    @Override
+    public final boolean c() {
+        return this.f26657b.f29315q1.c();
+    }
+
+    @Override
+    public final boolean d(v41 v41Var, MotionEvent motionEvent) {
+        org.telegram.ui.qt q10 = org.telegram.ui.qt.q();
+        mz mzVar = this.f26657b;
+        mzVar.getMeasuredHeight();
+        return q10.r(motionEvent, v41Var, mzVar.f29276d2, mzVar.W1);
+    }
+
+    @Override
+    public final boolean e(v41 v41Var, k kVar, MotionEvent motionEvent) {
+        org.telegram.ui.qt q10 = org.telegram.ui.qt.q();
+        mz mzVar = this.f26657b;
+        mzVar.getMeasuredHeight();
+        return q10.s(motionEvent, v41Var, kVar, mzVar.f29276d2, mzVar.W1);
+    }
+
+    @Override
+    public final void f(TLRPC.Document document, Object obj, boolean z4, int i10) {
+        this.f26657b.f29315q1.m(null, document, null, obj, null, z4, i10);
+    }
+
+    @Override
+    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z4) {
+        mz mzVar = this.f26657b;
+        mzVar.f29315q1.r(stickerSetCovered);
+        if (z4) {
+            mzVar.Z(true);
         }
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+        this.f26657b.f29315q1.h(stickerSetCovered);
+    }
+
+    @Override
+    public final void i(String[] strArr) {
+        this.f26657b.T0 = strArr;
     }
 }

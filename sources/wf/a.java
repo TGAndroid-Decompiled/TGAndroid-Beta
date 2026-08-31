@@ -1,14 +1,135 @@
 package wf;
 
-import org.telegram.messenger.SegmentTree;
-public final class a {
-    public long[] f46531a;
-    public SegmentTree f46532b;
-    public String f46533c;
-    public String d;
-    public int f46535g;
-    public long e = 0;
-    public long f46534f = Long.MAX_VALUE;
-    public int h = -16777216;
-    public int f46536i = -1;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import java.util.ArrayList;
+import org.telegram.messenger.y3;
+public final class a extends g {
+    @Override
+    public float getMinDistance() {
+        return 0.1f;
+    }
+
+    @Override
+    public final yf.f h(xf.a aVar) {
+        return new yf.a(aVar, this.T0);
+    }
+
+    @Override
+    public final void k(android.graphics.Canvas r29) {
+        throw new UnsupportedOperationException("Method not decompiled: wf.a.k(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void n(Canvas canvas) {
+        float f10;
+        int i10;
+        ArrayList arrayList;
+        int i11;
+        int i12;
+        float f11;
+        ArrayList arrayList2;
+        float f12;
+        int measuredHeight = getMeasuredHeight();
+        int i13 = g.f49528n1;
+        int i14 = measuredHeight - i13;
+        int measuredHeight2 = (getMeasuredHeight() - this.f49582y0) - i13;
+        ArrayList arrayList3 = this.d;
+        int size = arrayList3.size();
+        if (this.f49553e0 != null) {
+            int i15 = 0;
+            while (i15 < size) {
+                yf.a aVar = (yf.a) arrayList3.get(i15);
+                boolean z4 = aVar.f50932n;
+                Paint paint = aVar.f50923c;
+                float[] fArr = aVar.f50929k;
+                if (!z4 && aVar.f50933o == 0.0f) {
+                    i10 = i14;
+                    arrayList = arrayList3;
+                    i11 = i15;
+                } else {
+                    aVar.f50924e.reset();
+                    float[] fArr2 = this.f49553e0.f50547b;
+                    int length = fArr2.length;
+                    if (fArr2.length < 2) {
+                        f10 = 1.0f;
+                    } else {
+                        f10 = fArr2[1] * this.f49583z0;
+                    }
+                    long[] jArr = aVar.f50921a.f50539a;
+                    float f13 = aVar.f50933o;
+                    int i16 = 0;
+                    int i17 = 0;
+                    while (i16 < length) {
+                        int i18 = i15;
+                        long j10 = jArr[i16];
+                        if (j10 < 0) {
+                            i12 = i14;
+                            arrayList2 = arrayList3;
+                        } else {
+                            xf.b bVar = this.f49553e0;
+                            i12 = i14;
+                            float f14 = this.f49583z0 * bVar.f50547b[i16];
+                            if (g.f49539y1) {
+                                f12 = this.f49558g0;
+                                f11 = f14;
+                                arrayList2 = arrayList3;
+                            } else {
+                                f11 = f14;
+                                arrayList2 = arrayList3;
+                                f12 = (float) bVar.f50549e;
+                            }
+                            float A = y3.A((float) j10, f12, f13, 1.0f) * (i12 - measuredHeight2);
+                            fArr[i17] = f11;
+                            fArr[i17 + 1] = A;
+                            int i19 = i17 + 3;
+                            fArr[i17 + 2] = f11;
+                            i17 += 4;
+                            fArr[i19] = getMeasuredHeight() - this.f49572s;
+                        }
+                        i16++;
+                        i15 = i18;
+                        i14 = i12;
+                        arrayList3 = arrayList2;
+                    }
+                    i10 = i14;
+                    arrayList = arrayList3;
+                    i11 = i15;
+                    paint.setStrokeWidth(f10 + 2.0f);
+                    canvas.drawLines(fArr, 0, i17, paint);
+                }
+                i15 = i11 + 1;
+                i14 = i10;
+                arrayList3 = arrayList;
+            }
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        F();
+        k(canvas);
+        i(canvas);
+        ArrayList arrayList = this.f49544b;
+        this.f49562j0 = arrayList.size();
+        int i10 = 0;
+        while (true) {
+            this.f49563k0 = i10;
+            int i11 = this.f49563k0;
+            if (i11 < this.f49562j0) {
+                l(canvas, (yf.d) arrayList.get(i11));
+                p(canvas, (yf.d) arrayList.get(this.f49563k0));
+                i10 = this.f49563k0 + 1;
+            } else {
+                j(canvas);
+                m(canvas);
+                super.onDraw(canvas);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void o(Canvas canvas) {
+    }
 }

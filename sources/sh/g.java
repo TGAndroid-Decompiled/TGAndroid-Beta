@@ -1,180 +1,115 @@
 package sh;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
-import java.util.ArrayList;
-import k7.b6;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import k7.c6;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Cells.h6;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.z4;
-import org.telegram.ui.Components.z8;
-import org.telegram.ui.web.u1;
-import org.telegram.ui.web.y0;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.yh;
-public final class g extends p2 implements NotificationCenter.NotificationCenterDelegate {
-    public long f44339a;
-    public TLRPC.Chat f44340b;
-    public TLRPC.User f44341c;
-    public FrameLayout d;
-    public g61 e;
-    public f f44342f;
-    public ArrayList h;
-    public NotificationCenter.ObserversGroup f44343n;
+public final class g extends FrameLayout {
+    public final ImageView f47422a;
+    public final FrameLayout.LayoutParams f47423b;
+    public final FrameLayout.LayoutParams f47424c;
+    public final TextView d;
+    public final TextView f47425e;
+    public final TextView f47426f;
 
-    public static void U(g gVar, i51 i51Var) {
-        g gVar2;
-        if (i51Var.d == 1) {
-            gVar2 = gVar;
-            z4.R(gVar.getParentActivity(), gVar2, LocaleController.getString(R.string.CommunityNewCommunityTitle), null, LocaleController.getString(R.string.CommunityNewCommunityNameHint), null, Integer.MAX_VALUE, LocaleController.getString(R.string.Create), gVar.resourceProvider, new c(gVar));
-        } else {
-            gVar2 = gVar;
-        }
-        Object obj = i51Var.G;
-        if (obj instanceof TLRPC.Chat) {
-            TLRPC.Chat chat = (TLRPC.Chat) obj;
-            gVar2.getMessagesController().getChat(Long.valueOf(-gVar2.f44339a));
-            gVar2.showDialog(new uh.a(gVar2.getParentActivity(), chat, gVar2.f44339a, new u1(14, gVar2, chat)));
-        }
+    public g(Context context, g6 g6Var) {
+        super(context);
+        ImageView imageView = new ImageView(context);
+        this.f47422a = imageView;
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        FrameLayout.LayoutParams d = c6.d(28, 28.0f, 51, 17.0f, 14.33f, 0.0f, 0.0f);
+        this.f47423b = d;
+        addView(imageView, d);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        FrameLayout.LayoutParams d10 = c6.d(-1, -2.0f, 55, 62.0f, 10.0f, 40.0f, 8.66f);
+        this.f47424c = d10;
+        addView(linearLayout, d10);
+        TextView textView = new TextView(context);
+        this.d = textView;
+        org.telegram.ui.b.g(15.0f, 1, textView);
+        textView.setTextColor(k6.v0(k6.G6, g6Var));
+        TextView i10 = yh.i(linearLayout, textView, c6.t(-1, -2, 55, 0, 0, 0, 0), context);
+        this.f47425e = i10;
+        i10.setTextSize(1, 14.0f);
+        i10.setTextColor(k6.v0(k6.f22053z6, g6Var));
+        linearLayout.addView(i10, c6.t(-1, -2, 55, 0, 3, 0, 0));
+        ImageView imageView2 = new ImageView(context);
+        imageView2.setColorFilter(new PorterDuffColorFilter(k6.v0(k6.M6, g6Var), mode));
+        imageView2.setImageResource(R.drawable.msg_arrowright);
+        imageView2.setScaleType(scaleType);
+        addView(imageView2, c6.d(24, 24.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.f47426f = textView2;
+        textView2.setTextColor(-1);
+        textView2.setBackground(k6.b0(AndroidUtilities.dp(4.0f), k6.v0(k6.uj, g6Var)));
+        textView2.setTextSize(1, 13.0f);
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        textView2.setGravity(17);
+        textView2.setVisibility(8);
+        addView(textView2, c6.d(-2, 18.0f, 21, 0.0f, 0.0f, 35.33f, 0.0f));
     }
 
-    public final void V(String str, boolean z4) {
-        if (!ChatObject.isChannel(this.f44340b) && this.f44341c == null) {
-            d2 d2Var = new d2(getParentActivity(), 3, null);
-            d2Var.q(250L);
-            getMessagesController().convertToMegaGroup(getParentActivity(), -this.f44339a, this, new o9.b(this, d2Var, str, z4, 5));
+    public final void a(int i10, int i11, CharSequence charSequence, CharSequence charSequence2) {
+        ImageView imageView = this.f47422a;
+        imageView.setImageResource(i11);
+        imageView.setBackground(k6.b0(AndroidUtilities.dp(9.0f), i10));
+        TextView textView = this.d;
+        textView.setText(charSequence);
+        boolean isEmpty = TextUtils.isEmpty(charSequence2);
+        TextView textView2 = this.f47425e;
+        FrameLayout.LayoutParams layoutParams = this.f47424c;
+        FrameLayout.LayoutParams layoutParams2 = this.f47423b;
+        if (isEmpty) {
+            layoutParams2.topMargin = AndroidUtilities.dp(10.0f);
+            layoutParams2.bottomMargin = AndroidUtilities.dp(10.0f);
+            textView.setTypeface(null);
+            textView.setTextSize(1, 16.0f);
+            layoutParams.topMargin = 0;
+            layoutParams.bottomMargin = 0;
+            layoutParams.gravity = 23;
+            textView2.setVisibility(8);
             return;
         }
-        getMessagesController().createCommunity(str, this.f44339a, z4, new b(this, 1));
+        layoutParams2.topMargin = AndroidUtilities.dp(14.33f);
+        layoutParams2.bottomMargin = AndroidUtilities.dp(10.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 15.0f);
+        layoutParams.topMargin = AndroidUtilities.dp(10.0f);
+        layoutParams.bottomMargin = AndroidUtilities.dp(8.66f);
+        layoutParams.gravity = 55;
+        textView2.setText(charSequence2);
+        textView2.setVisibility(0);
     }
 
-    public final void W(long j10, boolean z4) {
-        if (!ChatObject.isChannel(this.f44340b) && this.f44341c == null) {
-            d2 d2Var = new d2(getParentActivity(), 3, null);
-            d2Var.q(250L);
-            getMessagesController().convertToMegaGroup(getParentActivity(), -this.f44339a, this, new d(this, d2Var, j10, z4, 0));
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    }
+
+    public void setPercent(CharSequence charSequence) {
+        boolean isEmpty = TextUtils.isEmpty(charSequence);
+        TextView textView = this.f47426f;
+        if (isEmpty) {
+            textView.setVisibility(8);
             return;
         }
-        int i10 = this.currentAccount;
-        long j11 = -this.f44339a;
-        MessagesController.getInstance(i10).linkCommunity(-j11, j10, z4, new kh.l(this, j11, 3));
-    }
-
-    @Override
-    public final View createView(Context context) {
-        int i10;
-        setHasOwnBackground(true);
-        this.actionBar.setAddToContainer(false);
-        this.actionBar.setAllowOverlayTitle(false);
-        yh.z(false, this.actionBar);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new e(this, 0));
-        sg.c cVar = new sg.c();
-        cVar.a(getThemedColor(j6.f19906d6));
-        ng.a aVar = new ng.a(cVar);
-        this.actionBar.setBackground(null);
-        this.actionBar.M(aVar, rg.b.n(this.resourceProvider), false);
-        this.actionBar.M0 = true;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.d = frameLayout;
-        frameLayout.setBackgroundColor(j6.w0(null, j6.f19852a7, false));
-        f fVar = new f(context, this.resourceProvider);
-        this.f44342f = fVar;
-        fVar.setTitle(LocaleController.getString(R.string.CommunityTitle));
-        f fVar2 = this.f44342f;
-        if (this.f44341c != null) {
-            i10 = R.string.CommunityDescriptionBot;
-        } else if (ChatObject.isChannelAndNotMegaGroup(this.f44340b)) {
-            i10 = R.string.CommunityDescriptionChannel;
-        } else {
-            i10 = R.string.CommunityDescriptionGroup;
-        }
-        fVar2.setSubtitle(LocaleController.getString(i10));
-        this.f44342f.setTag(-33024);
-        TLRPC.User user = this.f44341c;
-        if (user != null) {
-            this.f44342f.f44332a.e(user, new z8(0, this.f44341c));
-        } else {
-            TLRPC.Chat chat = this.f44340b;
-            if (chat != null) {
-                this.f44342f.f44332a.e(chat, new z8(this.f44340b));
-            }
-        }
-        g61 g61Var = new g61(this, new b(this, 0), new c(this), new c(this));
-        this.e = g61Var;
-        g61Var.setClipToPadding(false);
-        g61 g61Var2 = this.e;
-        g61Var2.V2.f30240r = false;
-        g61Var2.p1();
-        this.d.addView(this.e, b6.c(-1.0f, -1));
-        this.d.addView(this.actionBar, b6.e(-1, -2, 48));
-        FrameLayout frameLayout2 = this.d;
-        this.fragmentView = frameLayout2;
-        return frameLayout2;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12;
-        if (i10 == NotificationCenter.chatInfoDidLoad) {
-            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            long j10 = chatFull.f19185id;
-            View y12 = this.e.y1((int) (j10 ^ (j10 >>> 32)));
-            if (y12 instanceof h6) {
-                h6 h6Var = (h6) y12;
-                ArrayList<TL_communities.CommunityPeer> arrayList = chatFull.linked_peers;
-                if (arrayList != null) {
-                    i12 = arrayList.size();
-                } else {
-                    i12 = 0;
-                }
-                h6Var.setSubLabel(LocaleController.formatPluralString("Chats", i12, new Object[0]));
-                return;
-            }
-            this.e.V2.N(false);
-        }
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        this.f44339a = this.arguments.getLong("dialog_id", 0L);
-        this.f44340b = getMessagesController().getChat(Long.valueOf(-this.f44339a));
-        this.f44341c = getMessagesController().getUser(Long.valueOf(this.f44339a));
-        this.h = getMessagesController().getJoinedCommunities();
-        getMessagesController().fetchJoinedCommunities(new y0(this, 14), this.classGuid);
-        this.f44343n = getNotificationCenter().createObserversGroup(this).add(NotificationCenter.chatInfoDidLoad);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        NotificationCenter.ObserversGroup observersGroup = this.f44343n;
-        if (observersGroup != null) {
-            observersGroup.removeAllObservers();
-            this.f44343n = null;
-        }
-        super.onFragmentDestroy();
-    }
-
-    @Override
-    public final void onInsets(int i10, int i11, int i12, int i13) {
-        super.onInsets(i10, i11, i12, i13);
-        this.e.setPadding(0, i11, 0, i13);
+        textView.setVisibility(0);
+        textView.setText(charSequence);
     }
 }

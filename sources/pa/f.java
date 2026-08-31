@@ -2,11 +2,11 @@ package pa;
 
 import sa.y;
 public class f extends y {
-    public u f41078a = null;
+    public u f44236a = null;
 
     @Override
     public final u a() {
-        u uVar = this.f41078a;
+        u uVar = this.f44236a;
         if (uVar != null) {
             return uVar;
         }
@@ -15,7 +15,7 @@ public class f extends y {
 
     @Override
     public final Object read(xa.a aVar) {
-        u uVar = this.f41078a;
+        u uVar = this.f44236a;
         if (uVar != null) {
             return uVar.read(aVar);
         }
@@ -24,7 +24,7 @@ public class f extends y {
 
     @Override
     public final void write(xa.b bVar, Object obj) {
-        u uVar = this.f41078a;
+        u uVar = this.f44236a;
         if (uVar != null) {
             uVar.write(bVar, obj);
             return;

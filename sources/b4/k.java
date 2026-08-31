@@ -1,37 +1,37 @@
 package b4;
 public final class k implements i {
-    public static final double[] f1407q = {23.976023976023978d, 24.0d, 25.0d, 29.97002997002997d, 30.0d, 50.0d, 59.94005994005994d, 60.0d};
-    public String f1408a;
-    public r3.v f1409b;
-    public final d0 f1410c;
+    public static final double[] f1519q = {23.976023976023978d, 24.0d, 25.0d, 29.97002997002997d, 30.0d, 50.0d, 59.94005994005994d, 60.0d};
+    public String f1520a;
+    public r3.v f1521b;
+    public final d0 f1522c;
     public final h5.w d;
-    public final v e;
-    public final boolean[] f1411f = new boolean[4];
-    public final j f1412g;
+    public final v f1523e;
+    public final boolean[] f1524f = new boolean[4];
+    public final j f1525g;
     public long h;
-    public boolean f1413i;
-    public boolean f1414j;
-    public long f1415k;
-    public long f1416l;
-    public long f1417m;
-    public long f1418n;
-    public boolean f1419o;
-    public boolean f1420p;
+    public boolean f1526i;
+    public boolean f1527j;
+    public long f1528k;
+    public long f1529l;
+    public long f1530m;
+    public long f1531n;
+    public boolean f1532o;
+    public boolean f1533p;
 
     public k(d0 d0Var) {
-        this.f1410c = d0Var;
+        this.f1522c = d0Var;
         ?? obj = new Object();
         obj.d = new byte[128];
-        this.f1412g = obj;
+        this.f1525g = obj;
         if (d0Var != null) {
-            this.e = new v(178);
+            this.f1523e = new v(178);
             this.d = new h5.w();
         } else {
-            this.e = null;
+            this.f1523e = null;
             this.d = null;
         }
-        this.f1416l = -9223372036854775807L;
-        this.f1418n = -9223372036854775807L;
+        this.f1529l = -9223372036854775807L;
+        this.f1531n = -9223372036854775807L;
     }
 
     @Override
@@ -41,29 +41,29 @@ public final class k implements i {
 
     @Override
     public final void b() {
-        h5.a.m(this.f1411f);
-        j jVar = this.f1412g;
-        jVar.f1404a = false;
-        jVar.f1405b = 0;
-        jVar.f1406c = 0;
-        v vVar = this.e;
+        h5.a.m(this.f1524f);
+        j jVar = this.f1525g;
+        jVar.f1516a = false;
+        jVar.f1517b = 0;
+        jVar.f1518c = 0;
+        v vVar = this.f1523e;
         if (vVar != null) {
             vVar.f();
         }
         this.h = 0L;
-        this.f1413i = false;
-        this.f1416l = -9223372036854775807L;
-        this.f1418n = -9223372036854775807L;
+        this.f1526i = false;
+        this.f1529l = -9223372036854775807L;
+        this.f1531n = -9223372036854775807L;
     }
 
     @Override
     public final void c(r3.m mVar, h0 h0Var) {
         h0Var.a();
         h0Var.b();
-        this.f1408a = h0Var.e;
+        this.f1520a = h0Var.f1514e;
         h0Var.b();
-        this.f1409b = mVar.c2(h0Var.d, 2);
-        d0 d0Var = this.f1410c;
+        this.f1521b = mVar.i2(h0Var.d, 2);
+        d0 d0Var = this.f1522c;
         if (d0Var != null) {
             d0Var.b(mVar, h0Var);
         }
@@ -71,7 +71,7 @@ public final class k implements i {
 
     @Override
     public final void e(int i10, long j10) {
-        this.f1416l = j10;
+        this.f1529l = j10;
     }
 
     @Override

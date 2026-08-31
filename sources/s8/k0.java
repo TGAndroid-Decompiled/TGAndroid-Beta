@@ -3,13 +3,13 @@ package s8;
 import java.util.Map;
 public final class k0 extends z {
     public final transient x d;
-    public final transient Object[] e;
-    public final transient int f44134f;
+    public final transient Object[] f47114e;
+    public final transient int f47115f;
 
     public k0(x xVar, Object[] objArr, int i10) {
         this.d = xVar;
-        this.e = objArr;
-        this.f44134f = i10;
+        this.f47114e = objArr;
+        this.f47115f = i10;
     }
 
     @Override
@@ -37,7 +37,7 @@ public final class k0 extends z {
 
     @Override
     public final int size() {
-        return this.f44134f;
+        return this.f47115f;
     }
 
     @Override

@@ -4,22 +4,22 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 public final class a implements c, IInterface {
-    public final IBinder f41059a;
+    public final IBinder f44215a;
 
     public a(IBinder iBinder) {
-        this.f41059a = iBinder;
+        this.f44215a = iBinder;
     }
 
     public final Parcel E0(Parcel parcel, int i10) {
         Parcel obtain = Parcel.obtain();
         try {
             try {
-                this.f41059a.transact(i10, parcel, obtain, 0);
+                this.f44215a.transact(i10, parcel, obtain, 0);
                 obtain.readException();
                 return obtain;
-            } catch (RuntimeException e) {
+            } catch (RuntimeException e6) {
                 obtain.recycle();
-                throw e;
+                throw e6;
             }
         } finally {
             parcel.recycle();
@@ -28,6 +28,6 @@ public final class a implements c, IInterface {
 
     @Override
     public final IBinder asBinder() {
-        return this.f41059a;
+        return this.f44215a;
     }
 }

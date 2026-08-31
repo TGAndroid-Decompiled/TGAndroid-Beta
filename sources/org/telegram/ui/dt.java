@@ -1,55 +1,45 @@
 package org.telegram.ui;
+public final class dt implements Runnable {
+    public final int f36299a;
+    public final int f36300b;
+    public final Object f36301c;
+    public final Object d;
+    public final Object f36302e;
 
-import android.app.Activity;
-import android.view.View;
-public final class dt implements View.OnClickListener {
-    public final int f33797a;
-    public final pt f33798b;
-
-    public dt(pt ptVar, int i10) {
-        this.f33797a = i10;
-        this.f33798b = ptVar;
+    public dt(int i10, Object obj, Object obj2, Object obj3, int i11) {
+        this.f36299a = i11;
+        this.f36300b = i10;
+        this.d = obj;
+        this.f36302e = obj2;
+        this.f36301c = obj3;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f33797a) {
-            case 0:
-                pt ptVar = this.f33798b;
-                ptVar.K = false;
-                ptVar.f37537z.invalidate();
-                ptVar.n();
-                return;
-            case 1:
-                pt ptVar2 = this.f33798b;
-                Activity activity = ptVar2.f37534w;
-                if (activity instanceof LaunchActivity) {
-                    LaunchActivity launchActivity = (LaunchActivity) activity;
-                    if (launchActivity.O() != null && launchActivity.O().getLastFragment() != null) {
-                        launchActivity.O().getLastFragment().dismissCurrentDialog();
-                    }
-                    launchActivity.p0(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(5)));
-                }
-                ptVar2.K = false;
-                ptVar2.f37537z.invalidate();
-                ptVar2.n();
-                return;
-            case 2:
-                pt ptVar3 = this.f33798b;
-                nt ntVar = ptVar3.f37524l;
-                if (ntVar != null) {
-                    ntVar.K();
-                }
-                ptVar3.p();
-                return;
-            default:
-                pt ptVar4 = this.f33798b;
-                nt ntVar2 = ptVar4.f37524l;
-                if (ntVar2 != null) {
-                    ntVar2.r();
-                }
-                ptVar4.p();
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dt.run():void");
+    }
+
+    public dt(Object obj, int i10, Object obj2, Object obj3, int i11) {
+        this.f36299a = i11;
+        this.d = obj;
+        this.f36300b = i10;
+        this.f36302e = obj2;
+        this.f36301c = obj3;
+    }
+
+    public dt(Object obj, Object obj2, int i10, Object obj3, int i11) {
+        this.f36299a = i11;
+        this.d = obj;
+        this.f36302e = obj2;
+        this.f36300b = i10;
+        this.f36301c = obj3;
+    }
+
+    public dt(Object obj, Object obj2, Object obj3, int i10, int i11) {
+        this.f36299a = i11;
+        this.d = obj;
+        this.f36302e = obj2;
+        this.f36301c = obj3;
+        this.f36300b = i10;
     }
 }

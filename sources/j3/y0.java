@@ -6,42 +6,42 @@ import java.util.List;
 public final class y0 implements g {
     public static final String B;
     public static final q0 C;
-    public static final String f8884r;
-    public static final String f8885s;
+    public static final String f9482r;
+    public static final String f9483s;
     public static final String v;
-    public static final String f8886w;
-    public static final String f8887x;
-    public static final String f8888y;
-    public final Uri f8889a;
-    public final String f8890b;
-    public final w0 f8891c;
+    public static final String f9484w;
+    public static final String f9485x;
+    public static final String f9486y;
+    public final Uri f9487a;
+    public final String f9488b;
+    public final w0 f9489c;
     public final r0 d;
-    public final List e;
-    public final String f8892f;
+    public final List f9490e;
+    public final String f9491f;
     public final s8.v h;
-    public final Object f8893n;
+    public final Object f9492n;
 
     static {
-        int i10 = h5.d0.f6937a;
-        f8884r = Integer.toString(0, 36);
-        f8885s = Integer.toString(1, 36);
+        int i10 = h5.d0.f7237a;
+        f9482r = Integer.toString(0, 36);
+        f9483s = Integer.toString(1, 36);
         v = Integer.toString(2, 36);
-        f8886w = Integer.toString(3, 36);
-        f8887x = Integer.toString(4, 36);
-        f8888y = Integer.toString(5, 36);
+        f9484w = Integer.toString(3, 36);
+        f9485x = Integer.toString(4, 36);
+        f9486y = Integer.toString(5, 36);
         B = Integer.toString(6, 36);
         C = new q0(4);
     }
 
     public y0(Uri uri, String str, w0 w0Var, r0 r0Var, List list, String str2, s8.v vVar, Object obj) {
-        this.f8889a = uri;
-        this.f8890b = str;
-        this.f8891c = w0Var;
+        this.f9487a = uri;
+        this.f9488b = str;
+        this.f9489c = w0Var;
         this.d = r0Var;
-        this.e = list;
-        this.f8892f = str2;
+        this.f9490e = list;
+        this.f9491f = str2;
         this.h = vVar;
-        s8.t tVar = s8.v.f44157b;
+        s8.t tVar = s8.v.f47143b;
         s8.l.c(4, "initialCapacity");
         Object[] objArr = new Object[4];
         int i10 = 0;
@@ -50,13 +50,13 @@ public final class y0 implements g {
         while (i10 < vVar.size()) {
             b1 b1Var = (b1) vVar.get(i10);
             ?? obj2 = new Object();
-            obj2.d = b1Var.f8435a;
-            obj2.f2143a = b1Var.f8436b;
-            obj2.e = b1Var.f8437c;
-            obj2.f2144b = b1Var.d;
-            obj2.f2145c = b1Var.e;
-            obj2.f2146f = b1Var.f8438f;
-            obj2.f2147g = b1Var.h;
+            obj2.d = b1Var.f8993a;
+            obj2.f2330a = b1Var.f8994b;
+            obj2.f2333e = b1Var.f8995c;
+            obj2.f2331b = b1Var.d;
+            obj2.f2332c = b1Var.f8996e;
+            obj2.f2334f = b1Var.f8997f;
+            obj2.f2335g = b1Var.h;
             b1 b1Var2 = new b1(obj2);
             int i12 = i11 + 1;
             if (objArr.length < i12) {
@@ -74,7 +74,7 @@ public final class y0 implements g {
             i11++;
         }
         s8.v.s(i11, objArr);
-        this.f8893n = obj;
+        this.f9492n = obj;
     }
 
     public final boolean equals(Object obj) {
@@ -85,7 +85,7 @@ public final class y0 implements g {
             return false;
         }
         y0 y0Var = (y0) obj;
-        if (this.f8889a.equals(y0Var.f8889a) && h5.d0.a(this.f8890b, y0Var.f8890b) && h5.d0.a(this.f8891c, y0Var.f8891c) && h5.d0.a(this.d, y0Var.d) && this.e.equals(y0Var.e) && h5.d0.a(this.f8892f, y0Var.f8892f) && this.h.equals(y0Var.h) && h5.d0.a(this.f8893n, y0Var.f8893n)) {
+        if (this.f9487a.equals(y0Var.f9487a) && h5.d0.a(this.f9488b, y0Var.f9488b) && h5.d0.a(this.f9489c, y0Var.f9489c) && h5.d0.a(this.d, y0Var.d) && this.f9490e.equals(y0Var.f9490e) && h5.d0.a(this.f9491f, y0Var.f9491f) && this.h.equals(y0Var.h) && h5.d0.a(this.f9492n, y0Var.f9492n)) {
             return true;
         }
         return false;
@@ -96,16 +96,16 @@ public final class y0 implements g {
         int hashCode2;
         int hashCode3;
         int hashCode4;
-        int hashCode5 = this.f8889a.hashCode() * 31;
+        int hashCode5 = this.f9487a.hashCode() * 31;
         int i10 = 0;
-        String str = this.f8890b;
+        String str = this.f9488b;
         if (str == null) {
             hashCode = 0;
         } else {
             hashCode = str.hashCode();
         }
         int i11 = (hashCode5 + hashCode) * 31;
-        w0 w0Var = this.f8891c;
+        w0 w0Var = this.f9489c;
         if (w0Var == null) {
             hashCode2 = 0;
         } else {
@@ -118,15 +118,15 @@ public final class y0 implements g {
         } else {
             hashCode3 = r0Var.hashCode();
         }
-        int hashCode6 = (this.e.hashCode() + ((i12 + hashCode3) * 31)) * 31;
-        String str2 = this.f8892f;
+        int hashCode6 = (this.f9490e.hashCode() + ((i12 + hashCode3) * 31)) * 31;
+        String str2 = this.f9491f;
         if (str2 == null) {
             hashCode4 = 0;
         } else {
             hashCode4 = str2.hashCode();
         }
         int hashCode7 = (this.h.hashCode() + ((hashCode6 + hashCode4) * 31)) * 31;
-        Object obj = this.f8893n;
+        Object obj = this.f9492n;
         if (obj != null) {
             i10 = obj.hashCode();
         }

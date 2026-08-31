@@ -1,40 +1,44 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.OrientationEventListener;
-public final class ss0 extends OrientationEventListener {
-    public final PhotoViewer f38434a;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ss0 extends org.telegram.ui.Components.v00 {
+    public final zr0 f41361e;
+    public final PhotoViewer f41362f;
 
-    public ss0(Context context, PhotoViewer photoViewer) {
-        super(context);
-        this.f38434a = photoViewer;
+    public ss0(PhotoViewer photoViewer, zr0 zr0Var) {
+        super(false);
+        this.f41362f = photoViewer;
+        this.f41361e = zr0Var;
     }
 
     @Override
-    public final void onOrientationChanged(int i10) {
-        xs0 xs0Var;
-        Activity activity;
-        int i11;
-        PhotoViewer photoViewer = this.f38434a;
-        if (photoViewer.T3 != null && (xs0Var = photoViewer.f31886v2) != null && xs0Var.getVisibility() == 0 && (activity = photoViewer.f31913y) != null && (i11 = photoViewer.V3) != 0) {
-            if (i11 == 1) {
-                if (i10 >= 240 && i10 <= 300) {
-                    photoViewer.W3 = true;
-                } else if (photoViewer.W3 && i10 > 0) {
-                    if (i10 >= 330 || i10 <= 30) {
-                        activity.setRequestedOrientation(photoViewer.U3);
-                        photoViewer.V3 = 0;
-                        photoViewer.W3 = false;
-                    }
-                }
-            } else if (i10 > 0 && (i10 >= 330 || i10 <= 30)) {
-                photoViewer.W3 = true;
-            } else if (photoViewer.W3 && i10 >= 240 && i10 <= 300) {
-                activity.setRequestedOrientation(photoViewer.U3);
-                photoViewer.V3 = 0;
-                photoViewer.W3 = false;
-            }
-        }
+    public final CharSequence d() {
+        StringBuilder sb = new StringBuilder();
+        PhotoViewer photoViewer = this.f41362f;
+        int[] iArr = photoViewer.f34306j3;
+        sb.append(LocaleController.formatPluralString("Minutes", iArr[0], new Object[0]));
+        sb.append(' ');
+        sb.append(LocaleController.formatPluralString("Seconds", iArr[1], new Object[0]));
+        String sb2 = sb.toString();
+        StringBuilder sb3 = new StringBuilder();
+        int[] iArr2 = photoViewer.f34315k3;
+        sb3.append(LocaleController.formatPluralString("Minutes", iArr2[0], new Object[0]));
+        sb3.append(' ');
+        sb3.append(LocaleController.formatPluralString("Seconds", iArr2[1], new Object[0]));
+        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, sb2, sb3.toString());
+    }
+
+    @Override
+    public final float k() {
+        return this.f41362f.f34341n3.c();
+    }
+
+    @Override
+    public final void l(float f10) {
+        this.f41361e.b(f10);
+        PhotoViewer photoViewer = this.f41362f;
+        photoViewer.f34341n3.h(f10, false);
+        photoViewer.f34350o3.invalidate();
     }
 }

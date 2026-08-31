@@ -1,34 +1,15 @@
 package org.telegram.ui;
-public final class rw0 implements Runnable {
-    public final int f38133a;
-    public final PrivacyControlActivity f38134b;
+public final class rw0 {
+    public final int f41056a;
+    public final int f41057b;
+    public final CharSequence f41058c;
+    public final String d;
+    public int f41059e;
 
-    public rw0(PrivacyControlActivity privacyControlActivity, int i10) {
-        this.f38133a = i10;
-        this.f38134b = privacyControlActivity;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f38133a) {
-            case 0:
-                PrivacyControlActivity privacyControlActivity = this.f38134b;
-                privacyControlActivity.getClass();
-                privacyControlActivity.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
-                return;
-            case 1:
-                PrivacyControlActivity.U(this.f38134b);
-                return;
-            case 2:
-                PrivacyControlActivity privacyControlActivity2 = this.f38134b;
-                privacyControlActivity2.getClass();
-                privacyControlActivity2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
-                return;
-            default:
-                PrivacyControlActivity privacyControlActivity3 = this.f38134b;
-                privacyControlActivity3.getClass();
-                privacyControlActivity3.presentFragment(new PremiumPreviewFragment(0, "settings"));
-                return;
-        }
+    public rw0(int i10, int i11, String str, String str2) {
+        this.f41056a = i10;
+        this.f41057b = i11;
+        this.f41058c = str;
+        this.d = str2;
     }
 }

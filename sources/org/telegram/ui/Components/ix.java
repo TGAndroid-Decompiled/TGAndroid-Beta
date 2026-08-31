@@ -1,20 +1,12 @@
 package org.telegram.ui.Components;
-
-import android.content.Context;
-import android.view.MotionEvent;
-public final class ix extends ux {
-    public final kz f25793d3;
-
-    public ix(kz kzVar, Context context) {
-        super(kzVar, context);
-        this.f25793d3 = kzVar;
-    }
-
+public final class ix extends org.telegram.ui.xn {
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f25793d3.f26426f) {
-            return false;
+    public final void onTransitionAnimationEnd(boolean z4, boolean z10) {
+        org.telegram.ui.jk jkVar;
+        super.onTransitionAnimationEnd(z4, z10);
+        if (z4 && (jkVar = this.V) != null) {
+            jkVar.s1();
+            this.V.postDelayed(new xp(this, 13), 100L);
         }
-        return super.onInterceptTouchEvent(motionEvent);
     }
 }

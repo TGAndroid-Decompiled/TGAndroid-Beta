@@ -7,16 +7,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class ga extends org.telegram.ui.Components.rl0 {
-    public final pa f34523c;
+public final class ga extends org.telegram.ui.Components.sl0 {
+    public final pa f37140c;
 
     public ga(pa paVar) {
-        this.f34523c = paVar;
+        this.f37140c = paVar;
     }
 
     @Override
-    public final boolean D(f2.l1 l1Var) {
-        if (l1Var.f5788f == 4) {
+    public final boolean D(f2.m1 m1Var) {
+        if (m1Var.f5879f == 4) {
             return true;
         }
         return false;
@@ -25,18 +25,18 @@ public final class ga extends org.telegram.ui.Components.rl0 {
     @Override
     public final int h() {
         int i10;
-        pa paVar = this.f34523c;
-        org.telegram.ui.Components.sl0 sl0Var = paVar.f37252b;
+        pa paVar = this.f37140c;
+        org.telegram.ui.Components.tl0 tl0Var = paVar.f39992b;
         ArrayList arrayList = paVar.v;
-        if (sl0Var != null) {
-            ArrayList arrayList2 = sl0Var.H2;
+        if (tl0Var != null) {
+            ArrayList arrayList2 = tl0Var.H2;
             if (arrayList2 != null) {
                 arrayList2.clear();
             } else {
-                sl0Var.H2 = new ArrayList();
+                tl0Var.H2 = new ArrayList();
             }
             if (arrayList.size() > 0) {
-                paVar.f37252b.H2.add(Long.valueOf(AndroidUtilities.pack(3, arrayList.size() + 3)));
+                paVar.f39992b.H2.add(Long.valueOf(AndroidUtilities.pack(3, arrayList.size() + 3)));
             }
         }
         if (paVar.v.size() > 0) {
@@ -68,14 +68,14 @@ public final class ga extends org.telegram.ui.Components.rl0 {
     }
 
     @Override
-    public final void v(f2.l1 l1Var, int i10) {
+    public final void v(f2.m1 m1Var, int i10) {
         int i11;
         int i12;
         boolean z4;
-        pa paVar = this.f34523c;
-        long j10 = paVar.f37259x;
-        int i13 = l1Var.f5788f;
-        View view = l1Var.f5785a;
+        pa paVar = this.f37140c;
+        long j10 = paVar.f40000x;
+        int i13 = m1Var.f5879f;
+        View view = m1Var.f5875a;
         if (i13 != 0) {
             if (i13 != 2) {
                 if (i13 != 3) {
@@ -94,14 +94,14 @@ public final class ga extends org.telegram.ui.Components.rl0 {
                     } else {
                         z4 = false;
                     }
-                    maVar.a(tL_username, z4, false, paVar.f37259x);
+                    maVar.a(tL_username, z4, false, paVar.f40000x);
                     return;
                 }
-                paVar.f37255n = true;
+                paVar.f39996n = true;
                 ja jaVar = (ja) view;
-                paVar.f37260y = jaVar;
-                jaVar.f35303a.setText(paVar.f37256r);
-                paVar.f37255n = false;
+                paVar.f40001y = jaVar;
+                jaVar.f38062a.setText(paVar.f39997r);
+                paVar.f39996n = false;
                 return;
             }
             org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) view;
@@ -127,8 +127,8 @@ public final class ga extends org.telegram.ui.Components.rl0 {
     }
 
     @Override
-    public final f2.l1 x(ViewGroup viewGroup, int i10) {
-        pa paVar = this.f34523c;
+    public final f2.m1 x(ViewGroup viewGroup, int i10) {
+        pa paVar = this.f37140c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -136,16 +136,16 @@ public final class ga extends org.telegram.ui.Components.rl0 {
                         if (i10 != 4) {
                             return null;
                         }
-                        return new f2.l1(new fa(this, paVar.getParentActivity(), paVar.getResourceProvider()));
+                        return new f2.m1(new fa(this, paVar.getParentActivity(), paVar.getResourceProvider()));
                     }
-                    return new f2.l1(new ja(paVar, paVar.getParentActivity()));
+                    return new f2.m1(new ja(paVar, paVar.getParentActivity()));
                 }
-                return new f2.l1(new org.telegram.ui.Cells.a9(paVar.getParentActivity()));
+                return new f2.m1(new org.telegram.ui.Cells.a9(paVar.getParentActivity()));
             }
             oa oaVar = new oa(paVar, paVar.getParentActivity());
             oaVar.setTag(-33024);
-            return new f2.l1(oaVar);
+            return new f2.m1(oaVar);
         }
-        return new f2.l1(new org.telegram.ui.Cells.m4(paVar.getParentActivity()));
+        return new f2.m1(new org.telegram.ui.Cells.m4(paVar.getParentActivity()));
     }
 }

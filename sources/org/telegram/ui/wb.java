@@ -3,42 +3,42 @@ package org.telegram.ui;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
 public final class wb implements Runnable {
-    public final int f39387a;
-    public final bc f39388b;
+    public final int f42437a;
+    public final ac f42438b;
 
-    public wb(bc bcVar, int i10) {
-        this.f39387a = i10;
-        this.f39388b = bcVar;
+    public wb(ac acVar, int i10) {
+        this.f42437a = i10;
+        this.f42438b = acVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f39387a) {
+        switch (this.f42437a) {
             case 0:
                 CountDownLatch countDownLatch = new CountDownLatch(2);
-                bc bcVar = this.f39388b;
-                bcVar.a(countDownLatch, null);
-                bcVar.b(countDownLatch, null);
+                ac acVar = this.f42438b;
+                acVar.a(countDownLatch, null);
+                acVar.b(countDownLatch, null);
                 try {
                     countDownLatch.await();
                 } catch (InterruptedException unused) {
                 }
-                AndroidUtilities.runOnUIThread(new wb(bcVar, 3));
+                AndroidUtilities.runOnUIThread(new wb(acVar, 3));
                 return;
             case 1:
-                bc bcVar2 = this.f39388b;
-                bcVar2.E = false;
-                bcVar2.d(true);
+                ac acVar2 = this.f42438b;
+                acVar2.E = false;
+                acVar2.d(true);
                 return;
             case 2:
-                bc bcVar3 = this.f39388b;
-                bcVar3.E = false;
-                bcVar3.d(true);
+                ac acVar3 = this.f42438b;
+                acVar3.E = false;
+                acVar3.d(true);
                 return;
             default:
-                bc bcVar4 = this.f39388b;
-                bcVar4.E = false;
-                bcVar4.d(true);
+                ac acVar4 = this.f42438b;
+                acVar4.E = false;
+                acVar4.d(true);
                 return;
         }
     }

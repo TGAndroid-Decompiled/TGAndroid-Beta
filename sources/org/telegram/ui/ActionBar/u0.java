@@ -5,31 +5,31 @@ import android.view.View;
 import android.widget.TextView;
 import org.telegram.ui.qh;
 public final class u0 {
-    public final int f20587a;
-    public int f20588b;
-    public int f20589c;
+    public final int f22296a;
+    public int f22297b;
+    public int f22298c;
     public Drawable d;
-    public CharSequence e;
-    public boolean f20590f;
-    public View f20591g;
+    public CharSequence f22299e;
+    public boolean f22300f;
+    public View f22301g;
     public int h;
-    public View f20592i;
-    public qh f20593j;
-    public int f20594k = 0;
-    public int f20595l = 0;
-    public Integer f20596m;
-    public Integer f20597n;
+    public View f22302i;
+    public qh f22303j;
+    public int f22304k = 0;
+    public int f22305l = 0;
+    public Integer f22306m;
+    public Integer f22307n;
 
     public u0(int i10) {
-        this.f20587a = i10;
+        this.f22296a = i10;
     }
 
     public final void a(int i10, int i11) {
-        Integer num = this.f20596m;
-        if (num == null || this.f20597n == null || num.intValue() != i10 || this.f20597n.intValue() != i11) {
-            this.f20596m = Integer.valueOf(i10);
-            this.f20597n = Integer.valueOf(i11);
-            View view = this.f20592i;
+        Integer num = this.f22306m;
+        if (num == null || this.f22307n == null || num.intValue() != i10 || this.f22307n.intValue() != i11) {
+            this.f22306m = Integer.valueOf(i10);
+            this.f22307n = Integer.valueOf(i11);
+            View view = this.f22302i;
             if (view instanceof g1) {
                 ((g1) view).c(i10, i11);
             }
@@ -37,9 +37,9 @@ public final class u0 {
     }
 
     public final void b(int i10) {
-        if (i10 != this.f20589c) {
-            this.f20589c = i10;
-            View view = this.f20592i;
+        if (i10 != this.f22298c) {
+            this.f22298c = i10;
+            View view = this.f22302i;
             if (view instanceof g1) {
                 ((g1) view).setIcon(i10);
             }
@@ -47,16 +47,16 @@ public final class u0 {
     }
 
     public final void c(qh qhVar) {
-        this.f20593j = qhVar;
-        View view = this.f20592i;
+        this.f22303j = qhVar;
+        View view = this.f22302i;
         if (view != null) {
             view.setOnClickListener(qhVar);
         }
     }
 
     public final void d(CharSequence charSequence) {
-        this.e = charSequence;
-        View view = this.f20592i;
+        this.f22299e = charSequence;
+        View view = this.f22302i;
         if (view instanceof g1) {
             ((g1) view).setText(charSequence);
         } else if (view instanceof TextView) {
@@ -65,8 +65,8 @@ public final class u0 {
     }
 
     public final void e(int i10) {
-        this.f20594k = i10;
-        View view = this.f20592i;
+        this.f22304k = i10;
+        View view = this.f22302i;
         if (view != null) {
             view.setVisibility(i10);
         }

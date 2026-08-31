@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import org.telegram.messenger.FileLoader;
-import vh.v2;
+import w.c;
 public final class EncryptedFileDataSource extends g {
     private int bytesRemaining;
     EncryptedFileInputStream fileInputStream;
@@ -31,8 +31,8 @@ public final class EncryptedFileDataSource extends g {
     public void close() {
         try {
             this.fileInputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e6) {
+            e6.printStackTrace();
         }
         if (this.opened) {
             this.opened = false;
@@ -54,12 +54,12 @@ public final class EncryptedFileDataSource extends g {
 
     @Override
     public long open(p pVar) {
-        Uri uri = pVar.f6401a;
-        long j10 = pVar.f6404f;
-        long j11 = pVar.e;
+        Uri uri = pVar.f6885a;
+        long j10 = pVar.f6889f;
+        long j11 = pVar.f6888e;
         this.uri = uri;
-        File file = new File(pVar.f6401a.getPath());
-        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), v2.k(file.getName(), ".key")));
+        File file = new File(pVar.f6885a.getPath());
+        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), c.e(file.getName(), ".key")));
         this.fileInputStream = encryptedFileInputStream;
         encryptedFileInputStream.skip(j11);
         transferInitializing(pVar);
@@ -92,8 +92,8 @@ public final class EncryptedFileDataSource extends g {
         int min = Math.min(i11, i12);
         try {
             this.fileInputStream.read(bArr, i10, min);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e6) {
+            e6.printStackTrace();
         }
         this.bytesRemaining -= min;
         bytesTransferred(min);

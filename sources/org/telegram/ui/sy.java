@@ -1,50 +1,73 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
+import android.appwidget.AppWidgetManager;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
-public final class sy implements DialogInterface.OnClickListener {
-    public final int f38454a;
-    public final int f38455b;
-    public final Object f38456c;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatsWidgetProvider;
+import org.telegram.messenger.ContactsWidgetProvider;
+import org.telegram.messenger.MessagesStorage;
+public final class sy extends org.telegram.ui.ActionBar.j {
+    public final yy f41392a;
 
-    public sy(Object obj, int i10, int i11) {
-        this.f38454a = i11;
-        this.f38456c = obj;
-        this.f38455b = i10;
+    public sy(yy yyVar) {
+        this.f41392a = yyVar;
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i10) {
-        switch (this.f38454a) {
-            case 0:
-                xy xyVar = ((ty) this.f38456c).f38777b;
-                if (i10 == 0) {
-                    xyVar.e.remove(this.f38455b - xyVar.f40330n);
-                    xyVar.Z();
-                    wy wyVar = xyVar.f40329f;
-                    if (wyVar != null) {
-                        wyVar.a();
+    public final void b(int i10) {
+        int i11;
+        yy yyVar = this.f41392a;
+        int i12 = yyVar.f43738w;
+        ArrayList arrayList = yyVar.f43733e;
+        int i13 = yyVar.f43739x;
+        if (i10 == -1) {
+            if (yyVar.f43740y == null) {
+                yyVar.Y();
+            } else {
+                yyVar.finishFragment();
+            }
+        } else if (i10 == 1 && yyVar.getParentActivity() != null) {
+            ArrayList<MessagesStorage.TopicKey> arrayList2 = new ArrayList<>();
+            for (int i14 = 0; i14 < arrayList.size(); i14++) {
+                arrayList2.add(MessagesStorage.TopicKey.of(((Long) arrayList.get(i14)).longValue(), 0L));
+            }
+            yyVar.getMessagesStorage().putWidgetDialogs(i13, arrayList2);
+            SharedPreferences.Editor edit = yyVar.getParentActivity().getSharedPreferences("shortcut_widget", 0).edit();
+            i11 = ((org.telegram.ui.ActionBar.p2) yyVar).currentAccount;
+            edit.putInt("account" + i13, i11);
+            edit.putInt("type" + i13, i12);
+            edit.commit();
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(yyVar.getParentActivity());
+            if (i12 == 0) {
+                ChatsWidgetProvider.updateWidget(yyVar.getParentActivity(), appWidgetManager, i13);
+            } else {
+                ContactsWidgetProvider.updateWidget(yyVar.getParentActivity(), appWidgetManager, i13);
+            }
+            a1 a1Var = yyVar.f43740y;
+            if (a1Var != null) {
+                int i15 = a1Var.f34973a;
+                Object obj = a1Var.f34974b;
+                switch (i15) {
+                    case 25:
+                        ChatsWidgetConfigActivity chatsWidgetConfigActivity = (ChatsWidgetConfigActivity) obj;
+                        int i16 = ChatsWidgetConfigActivity.C;
+                        Intent intent = new Intent();
+                        intent.putExtra("appWidgetId", chatsWidgetConfigActivity.B);
+                        chatsWidgetConfigActivity.setResult(-1, intent);
+                        chatsWidgetConfigActivity.finish();
                         return;
-                    }
-                    return;
+                    default:
+                        ContactsWidgetConfigActivity contactsWidgetConfigActivity = (ContactsWidgetConfigActivity) obj;
+                        int i17 = ContactsWidgetConfigActivity.C;
+                        Intent intent2 = new Intent();
+                        intent2.putExtra("appWidgetId", contactsWidgetConfigActivity.B);
+                        contactsWidgetConfigActivity.setResult(-1, intent2);
+                        contactsWidgetConfigActivity.finish();
+                        return;
                 }
-                return;
-            case 1:
-                NotificationsSettingsActivity.X((NotificationsSettingsActivity) this.f38456c, this.f38455b, i10);
-                return;
-            default:
-                ThemeActivity themeActivity = (ThemeActivity) this.f38456c;
-                themeActivity.getClass();
-                SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                edit.putInt("sortContactsBy", i10);
-                edit.commit();
-                lb1 lb1Var = themeActivity.f32331a;
-                if (lb1Var != null) {
-                    lb1Var.m(this.f38455b);
-                    return;
-                }
-                return;
+            }
+            yyVar.Y();
         }
     }
 }

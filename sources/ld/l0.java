@@ -1,13 +1,13 @@
 package ld;
 
 import java.util.concurrent.CancellationException;
-import k7.n7;
+import k7.o7;
 public abstract class l0 extends sd.i {
-    public int f11896c;
+    public int f12326c;
 
     public l0(int i10) {
-        super(0L, sd.k.f44281g);
-        this.f11896c = i10;
+        super(0L, sd.k.f47275g);
+        this.f12326c = i10;
     }
 
     public abstract void c(Object obj, CancellationException cancellationException);
@@ -24,7 +24,7 @@ public abstract class l0 extends sd.i {
         if (vVar == null) {
             return null;
         }
-        return vVar.f11930a;
+        return vVar.f12368a;
     }
 
     public final void i(Throwable th2, Throwable th3) {
@@ -32,7 +32,7 @@ public abstract class l0 extends sd.i {
             return;
         }
         if (th2 != null && th3 != null) {
-            n7.a(th2, th3);
+            o7.a(th2, th3);
         }
         if (th2 == null) {
             th2 = th3;

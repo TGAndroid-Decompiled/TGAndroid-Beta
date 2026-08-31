@@ -1,42 +1,42 @@
 package bc;
 
 import java.io.InputStream;
-import p2.w;
+import p2.v;
 public final class a {
-    public static int f1761f;
-    public InputStream f1762a;
-    public int f1763b;
-    public int f1764c;
+    public static int f1911f;
+    public InputStream f1912a;
+    public int f1913b;
+    public int f1914c;
     public int d;
-    public w e;
+    public v f1915e;
 
     public final int a() {
         char c3;
         if (this.d == 8) {
-            this.f1763b = this.f1764c;
-            this.f1764c = this.f1762a.read();
+            this.f1913b = this.f1914c;
+            this.f1914c = this.f1912a.read();
             this.d = 0;
-            if (this.f1763b == -1) {
+            if (this.f1913b == -1) {
                 return -1;
             }
         }
-        int i10 = this.f1763b;
+        int i10 = this.f1913b;
         int i11 = this.d;
         int i12 = (i10 >> (7 - i11)) & 1;
         this.d = i11 + 1;
-        w wVar = this.e;
+        v vVar = this.f1915e;
         if (i12 == 0) {
             c3 = '0';
         } else {
             c3 = '1';
         }
-        int i13 = wVar.f41029b;
-        char[] cArr = (char[]) wVar.f41030c;
+        int i13 = vVar.f44182b;
+        char[] cArr = (char[]) vVar.f44183c;
         if (i13 < cArr.length - 1) {
             cArr[i13] = c3;
-            wVar.f41029b = i13 + 1;
+            vVar.f44182b = i13 + 1;
         }
-        f1761f++;
+        f1911f++;
         return i12;
     }
 
@@ -89,21 +89,21 @@ public final class a {
 
     public final void f(String str, String str2) {
         StringBuilder sb = new StringBuilder();
-        int i10 = f1761f;
-        w wVar = this.e;
-        String valueOf = String.valueOf(i10 - wVar.f41029b);
+        int i10 = f1911f;
+        v vVar = this.f1915e;
+        String valueOf = String.valueOf(i10 - vVar.f44182b);
         int length = 8 - valueOf.length();
         sb.append("@".concat(valueOf));
         for (int i11 = 0; i11 < length; i11++) {
             sb.append(' ');
         }
         sb.append(str);
-        int length2 = (100 - sb.length()) - wVar.f41029b;
+        int length2 = (100 - sb.length()) - vVar.f44182b;
         for (int i12 = 0; i12 < length2; i12++) {
             sb.append(' ');
         }
-        sb.append(wVar);
+        sb.append(vVar);
         sb.append(" (" + str2 + ")");
-        wVar.f41029b = 0;
+        vVar.f44182b = 0;
     }
 }

@@ -1,31 +1,31 @@
 package f7;
 
-import j7.l7;
+import j7.m7;
 public final class t extends u {
-    public final transient int f6044c;
+    public final transient int f6155c;
     public final transient int d;
-    public final u e;
+    public final u f6156e;
 
     public t(u uVar, int i10, int i11) {
-        this.e = uVar;
-        this.f6044c = i10;
+        this.f6156e = uVar;
+        this.f6155c = i10;
         this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
-        l7.a(i10, this.d);
-        return this.e.get(i10 + this.f6044c);
+        m7.a(i10, this.d);
+        return this.f6156e.get(i10 + this.f6155c);
     }
 
     @Override
     public final int n() {
-        return this.e.o() + this.f6044c + this.d;
+        return this.f6156e.o() + this.f6155c + this.d;
     }
 
     @Override
     public final int o() {
-        return this.e.o() + this.f6044c;
+        return this.f6156e.o() + this.f6155c;
     }
 
     @Override
@@ -35,14 +35,14 @@ public final class t extends u {
 
     @Override
     public final Object[] q() {
-        return this.e.q();
+        return this.f6156e.q();
     }
 
     @Override
     public final u subList(int i10, int i11) {
-        l7.b(i10, i11, this.d);
-        int i12 = this.f6044c;
-        return this.e.subList(i10 + i12, i11 + i12);
+        m7.b(i10, i11, this.d);
+        int i12 = this.f6155c;
+        return this.f6156e.subList(i10 + i12, i11 + i12);
     }
 
     @Override

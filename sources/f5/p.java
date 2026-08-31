@@ -17,20 +17,20 @@ import o4.t0;
 import s8.h0;
 import s8.i0;
 public final class p extends t {
-    public static final h0 f5950k = new s8.m(new e5.f(4));
-    public static final h0 f5951l = new s8.m(new e5.f(5));
+    public static final h0 f6052k = new s8.m(new e5.f(3));
+    public static final h0 f6053l = new s8.m(new e5.f(4));
     public final Object d;
-    public final Context e;
-    public final db.a f5952f;
-    public final boolean f5953g;
+    public final Context f6054e;
+    public final db.a f6055f;
+    public final boolean f6056g;
     public h h;
-    public final k f5954i;
-    public l3.d f5955j;
+    public final k f6057i;
+    public l3.d f6058j;
 
     public p(Context context, db.a aVar) {
         Context context2;
         boolean z4;
-        int i10 = h.f5926d0;
+        int i10 = h.f6026d0;
         h hVar = new h(new g(context));
         this.d = new Object();
         if (context != null) {
@@ -38,18 +38,18 @@ public final class p extends t {
         } else {
             context2 = null;
         }
-        this.e = context2;
-        this.f5952f = aVar;
+        this.f6054e = context2;
+        this.f6055f = aVar;
         this.h = hVar;
-        this.f5955j = l3.d.h;
+        this.f6058j = l3.d.h;
         if (context != null && d0.F(context)) {
             z4 = true;
         } else {
             z4 = false;
         }
-        this.f5953g = z4;
-        if (!z4 && context != null && d0.f6937a >= 32) {
-            this.f5954i = k.f(context);
+        this.f6056g = z4;
+        if (!z4 && context != null && d0.f7237a >= 32) {
+            this.f6057i = k.f(context);
         }
         if (this.h.W && context == null) {
             h5.a.K("DefaultTrackSelector", "Audio channel count constraints cannot be applied without reference to Context. Build the track selector instance with one of the non-deprecated constructors that take a Context argument.");
@@ -57,27 +57,27 @@ public final class p extends t {
     }
 
     public static void c(t0 t0Var, h hVar, HashMap hashMap) {
-        for (int i10 = 0; i10 < t0Var.f16421a; i10++) {
-            u uVar = (u) hVar.L.get(t0Var.a(i10));
-            if (uVar != null) {
-                s0 s0Var = uVar.f5966a;
-                u uVar2 = (u) hashMap.get(Integer.valueOf(s0Var.f16420c));
-                if (uVar2 == null || (uVar2.f5967b.isEmpty() && !uVar.f5967b.isEmpty())) {
-                    hashMap.put(Integer.valueOf(s0Var.f16420c), uVar);
+        for (int i10 = 0; i10 < t0Var.f16576a; i10++) {
+            v vVar = (v) hVar.L.get(t0Var.a(i10));
+            if (vVar != null) {
+                s0 s0Var = vVar.f6071a;
+                v vVar2 = (v) hashMap.get(Integer.valueOf(s0Var.f16573c));
+                if (vVar2 == null || (vVar2.f6072b.isEmpty() && !vVar.f6072b.isEmpty())) {
+                    hashMap.put(Integer.valueOf(s0Var.f16573c), vVar);
                 }
             }
         }
     }
 
     public static int d(n0 n0Var, String str, boolean z4) {
-        if (!TextUtils.isEmpty(str) && str.equals(n0Var.f8737c)) {
+        if (!TextUtils.isEmpty(str) && str.equals(n0Var.f9320c)) {
             return 4;
         }
         String h = h(str);
-        String h9 = h(n0Var.f8737c);
+        String h9 = h(n0Var.f9320c);
         if (h9 != null && h != null) {
             if (!h9.startsWith(h) && !h.startsWith(h9)) {
-                int i10 = d0.f6937a;
+                int i10 = d0.f7237a;
                 if (!h9.split("-", 2)[0].equals(h.split("-", 2)[0])) {
                     return 0;
                 }
@@ -114,19 +114,19 @@ public final class p extends t {
         RandomAccess randomAccess;
         s sVar2 = sVar;
         ArrayList arrayList = new ArrayList();
-        int i12 = sVar2.f5958a;
+        int i12 = sVar2.f6061a;
         int i13 = 0;
         while (i13 < i12) {
-            if (i10 == sVar2.f5959b[i13]) {
-                t0 t0Var = sVar2.f5960c[i13];
-                for (int i14 = 0; i14 < t0Var.f16421a; i14++) {
+            if (i10 == sVar2.f6062b[i13]) {
+                t0 t0Var = sVar2.f6063c[i13];
+                for (int i14 = 0; i14 < t0Var.f16576a; i14++) {
                     s0 a2 = t0Var.a(i14);
-                    i0 e = mVar.e(i13, a2, iArr[i13][i14]);
-                    int i15 = a2.f16418a;
+                    i0 e6 = mVar.e(i13, a2, iArr[i13][i14]);
+                    int i15 = a2.f16571a;
                     boolean[] zArr = new boolean[i15];
                     int i16 = 0;
                     while (i16 < i15) {
-                        n nVar = (n) e.get(i16);
+                        n nVar = (n) e6.get(i16);
                         int a10 = nVar.a();
                         if (zArr[i16] || a10 == 0) {
                             i11 = i12;
@@ -138,7 +138,7 @@ public final class p extends t {
                                 arrayList2.add(nVar);
                                 int i17 = i16 + 1;
                                 while (i17 < i15) {
-                                    n nVar2 = (n) e.get(i17);
+                                    n nVar2 = (n) e6.get(i17);
                                     int i18 = i12;
                                     if (nVar2.a() == 2 && nVar.b(nVar2)) {
                                         arrayList2.add(nVar2);
@@ -167,10 +167,10 @@ public final class p extends t {
         List list = (List) Collections.max(arrayList, comparator);
         int[] iArr2 = new int[list.size()];
         for (int i19 = 0; i19 < list.size(); i19++) {
-            iArr2[i19] = ((n) list.get(i19)).f5942c;
+            iArr2[i19] = ((n) list.get(i19)).f6043c;
         }
         n nVar3 = (n) list.get(0);
-        return Pair.create(new q(0, nVar3.f5941b, iArr2), Integer.valueOf(nVar3.f5940a));
+        return Pair.create(new q(0, nVar3.f6042b, iArr2), Integer.valueOf(nVar3.f6041a));
     }
 
     @Override
@@ -178,23 +178,23 @@ public final class p extends t {
         k kVar;
         synchronized (this.d) {
             try {
-                if (d0.f6937a >= 32 && (kVar = this.f5954i) != null) {
+                if (d0.f7237a >= 32 && (kVar = this.f6057i) != null) {
                     kVar.e();
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        this.f5962a = null;
-        this.f5963b = null;
+        this.f6066a = null;
+        this.f6067b = null;
     }
 
     @Override
     public final void b(l3.d dVar) {
         boolean equals;
         synchronized (this.d) {
-            equals = this.f5955j.equals(dVar);
-            this.f5955j = dVar;
+            equals = this.f6058j.equals(dVar);
+            this.f6058j = dVar;
         }
         if (!equals) {
             g();
@@ -215,7 +215,7 @@ public final class p extends t {
         k kVar;
         synchronized (this.d) {
             try {
-                if (this.h.W && !this.f5953g && d0.f6937a >= 32 && (kVar = this.f5954i) != null && kVar.f5932b) {
+                if (this.h.W && !this.f6056g && d0.f7237a >= 32 && (kVar = this.f6057i) != null && kVar.f6032b) {
                     z4 = true;
                 } else {
                     z4 = false;
@@ -224,8 +224,8 @@ public final class p extends t {
                 throw th2;
             }
         }
-        if (z4 && (k0Var = this.f5962a) != null) {
-            k0Var.f8651n.d(10);
+        if (z4 && (k0Var = this.f6066a) != null) {
+            k0Var.f9229n.d(10);
         }
     }
 
@@ -233,19 +233,19 @@ public final class p extends t {
         boolean z4;
         k0 k0Var;
         synchronized (this.d) {
-            z4 = this.h.f5927a0;
+            z4 = this.h.f6027a0;
         }
-        if (z4 && (k0Var = this.f5962a) != null) {
-            k0Var.f8651n.d(26);
+        if (z4 && (k0Var = this.f6066a) != null) {
+            k0Var.f9229n.d(26);
         }
     }
 
-    public final void k(w wVar) {
-        if (wVar instanceof h) {
-            l((h) wVar);
+    public final void k(x xVar) {
+        if (xVar instanceof h) {
+            l((h) xVar);
         }
         g gVar = new g(e());
-        gVar.a(wVar);
+        gVar.a(xVar);
         l(new h(gVar));
     }
 
@@ -257,12 +257,12 @@ public final class p extends t {
             this.h = hVar;
         }
         if (!equals) {
-            if (hVar.W && this.e == null) {
+            if (hVar.W && this.f6054e == null) {
                 h5.a.K("DefaultTrackSelector", "Audio channel count constraints cannot be applied without reference to Context. Build the track selector instance with one of the non-deprecated constructors that take a Context argument.");
             }
-            k0 k0Var = this.f5962a;
+            k0 k0Var = this.f6066a;
             if (k0Var != null) {
-                k0Var.f8651n.d(10);
+                k0Var.f9229n.d(10);
             }
         }
     }

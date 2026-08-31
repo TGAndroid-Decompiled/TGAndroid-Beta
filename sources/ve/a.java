@@ -3,14 +3,14 @@ package ve;
 import android.content.Context;
 import android.util.SparseArray;
 import java.io.BufferedInputStream;
+import oh.h4;
 import org.telegram.tgnet.SerializedData;
-import ph.j5;
 public final class a {
-    public static final a f45672b = new a();
-    public final SparseArray f45673a;
+    public static final a f48971b = new a();
+    public final SparseArray f48972a;
 
     public a() {
-        this.f45673a = new SparseArray();
+        this.f48972a = new SparseArray();
     }
 
     public static SparseArray a(Context context, int i10, SparseArray sparseArray) {
@@ -45,13 +45,13 @@ public final class a {
 
     public final String b(String str) {
         if (str != null) {
-            return (String) this.f45673a.get(str.hashCode());
+            return (String) this.f48972a.get(str.hashCode());
         }
         return null;
     }
 
-    public a(j5 j5Var) {
-        SparseArray sparseArray = (SparseArray) j5Var.f41782b;
-        this.f45673a = sparseArray == null ? new SparseArray() : sparseArray;
+    public a(h4 h4Var) {
+        SparseArray sparseArray = (SparseArray) h4Var.f17180b;
+        this.f48972a = sparseArray == null ? new SparseArray() : sparseArray;
     }
 }

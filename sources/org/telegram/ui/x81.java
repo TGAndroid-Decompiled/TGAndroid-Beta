@@ -1,34 +1,35 @@
 package org.telegram.ui;
 
-import android.text.TextWatcher;
-import android.widget.TextView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class x81 implements TextWatcher {
-    public boolean f39877a;
-    public final int f39878b;
-    public final EditTextBoldCursor f39879c;
-    public final org.telegram.ui.Components.ad0 d;
-    public final int[] e;
-    public final TextView f39880f;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.style.ReplacementSpan;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class x81 extends ReplacementSpan {
+    public final org.telegram.ui.Components.l01 f43001a = new org.telegram.ui.Components.l01(LocaleController.getString(R.string.StakeDiceTitleBeta), 12.0f, AndroidUtilities.bold());
+    public final Paint f43002b = new Paint(1);
+    public final org.telegram.ui.ActionBar.g6 f43003c;
 
-    public x81(int i10, EditTextBoldCursor editTextBoldCursor, org.telegram.ui.Components.ad0 ad0Var, int[] iArr, TextView textView) {
-        this.f39878b = i10;
-        this.f39879c = editTextBoldCursor;
-        this.d = ad0Var;
-        this.e = iArr;
-        this.f39880f = textView;
+    public x81(org.telegram.ui.ActionBar.g6 g6Var) {
+        this.f43003c = g6Var;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.x81.afterTextChanged(android.text.Editable):void");
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
+        float dp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.0f);
+        int v02 = org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Oh, this.f43003c);
+        Paint paint2 = this.f43002b;
+        paint2.setColor(v02);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(f10, dp - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f) + f10 + this.f43001a.f28521c, AndroidUtilities.dp(9.0f) + dp);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), paint2);
+        this.f43001a.c(f10 + AndroidUtilities.dp(8.0f), dp, 1.0f, -1, canvas);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return (int) (AndroidUtilities.dp(16.0f) + this.f43001a.f28521c);
     }
 }

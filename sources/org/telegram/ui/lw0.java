@@ -1,76 +1,55 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
+import android.animation.ValueAnimator;
 import android.view.View;
-import java.util.ArrayList;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class lw0 extends org.telegram.ui.Components.sl0 {
-    public final Paint U2;
-    public final Path V2;
-    public final ow0 W2;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class lw0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f38898a;
+    public final Object f38899b;
+    public final View f38900c;
+    public final Object d;
 
-    public lw0(ow0 ow0Var, Context context) {
-        super(context, null);
-        this.W2 = ow0Var;
-        Paint paint = new Paint(1);
-        this.U2 = paint;
-        paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19977h5, false));
-        this.V2 = new Path();
+    public lw0(Object obj, ViewGroup viewGroup, Object obj2, int i10) {
+        this.f38898a = i10;
+        this.f38899b = obj;
+        this.f38900c = viewGroup;
+        this.d = obj2;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Path path = this.V2;
-        path.rewind();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        path.addRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
-        canvas.drawPath(path, this.U2);
-        canvas.save();
-        canvas.clipPath(path);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.W2.f36994n.f31968n0 >= 1.0f) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.W2.f36994n.f31968n0 >= 1.0f) {
-            return false;
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        PremiumPreviewFragment premiumPreviewFragment = this.W2.f36994n;
-        int i14 = 0;
-        int i15 = 0;
-        while (true) {
-            ArrayList arrayList = premiumPreviewFragment.d;
-            if (i14 < arrayList.size()) {
-                premiumPreviewFragment.J.a((qw0) arrayList.get(i14), false);
-                premiumPreviewFragment.J.measure(View.MeasureSpec.makeMeasureSpec(i10, 1073741824), View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
-                ((qw0) arrayList.get(i14)).h = i15;
-                i15 += premiumPreviewFragment.J.getMeasuredHeight();
-                i14++;
-            } else {
-                premiumPreviewFragment.L = i15;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float dp;
+        switch (this.f38898a) {
+            case 0:
+                qw0 qw0Var = (qw0) this.f38899b;
+                PremiumPreviewFragment premiumPreviewFragment = qw0Var.f40712n;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View view = this.f38900c;
+                view.setAlpha(floatValue);
+                view.setScaleX(floatValue);
+                view.setScaleY(floatValue);
+                float animatedFraction = ((ValueAnimator) this.d).getAnimatedFraction();
+                for (int i10 = 0; i10 < premiumPreviewFragment.R.getChildCount(); i10++) {
+                    View childAt = premiumPreviewFragment.R.getChildAt(i10);
+                    if (childAt != qw0Var.f40710e) {
+                        if (childAt == qw0Var.f40709c) {
+                            dp = 0.0f - (AndroidUtilities.dp(15.0f) * animatedFraction);
+                        } else {
+                            dp = 0.0f + (AndroidUtilities.dp(8.0f) * animatedFraction);
+                        }
+                        childAt.setTranslationY((view.getMeasuredHeight() * animatedFraction) + dp);
+                    }
+                }
                 return;
-            }
+            default:
+                ra1 ra1Var = (ra1) this.f38899b;
+                ra1Var.getClass();
+                ra1Var.f40886a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((ChatActivityEnterView) this.f38900c).getEditField().setAlpha(ra1Var.f40886a);
+                ((org.telegram.ui.Components.li) this.d).invalidate();
+                return;
         }
     }
 }

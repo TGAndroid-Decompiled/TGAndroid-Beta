@@ -1,176 +1,405 @@
 package lh;
 
 import android.content.Context;
-import android.view.MotionEvent;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.text.InputFilter;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.nr;
-public final class u0 extends View implements NotificationCenter.NotificationCenterDelegate {
-    public float B;
-    public l7 C;
-    public final ArrayList D;
-    public final ArrayList E;
-    public final HashSet F;
-    public int G;
-    public final DecelerateInterpolator H;
-    public final LinearInterpolator I;
-    public t0 J;
-    public final int f13178a;
-    public final long f13179b;
-    public final View f13180c;
-    public boolean d;
-    public float e;
-    public float f13181f;
-    public boolean h;
-    public float f13182n;
-    public float f13183r;
-    public float f13184s;
-    public float v;
-    public float f13185w;
-    public float f13186x;
-    public final org.telegram.ui.Components.z5 f13187y;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.Arrays;
+import java.util.WeakHashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.ff;
+import org.telegram.ui.Components.ic;
+import org.telegram.ui.Components.k6;
+import org.telegram.ui.Components.lg;
+import org.telegram.ui.Components.n40;
+import org.telegram.ui.Components.np;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.xn;
+public final class u0 extends org.telegram.ui.ActionBar.h3 {
+    public final int B;
+    public int C;
+    public boolean D;
+    public final s0 E;
+    public final TL_stars.TL_starGiftUnique F;
+    public final long G;
+    public mh.a3 H;
+    public boolean I;
+    public final f6 f12982b;
+    public final vg.j f12983c;
+    public final tg.e d;
+    public final og.a f12984e;
+    public final vg.f f12985f;
+    public final dh.i h;
+    public final q0 f12986n;
+    public final FrameLayout f12987r;
+    public final np f12988s;
+    public final TextView v;
+    public final k6 f12989w;
+    public final ImageView f12990x;
+    public final Drawable f12991y;
 
-    public u0(Context context, int i10, long j10, org.telegram.ui.l0 l0Var) {
-        super(context);
-        this.d = true;
-        this.f13187y = new org.telegram.ui.Components.z5(this, 0L, 350L, nr.h);
-        this.B = 1.0f;
-        this.D = new ArrayList();
-        this.E = new ArrayList();
-        this.F = new HashSet();
-        this.H = new DecelerateInterpolator();
-        this.I = new LinearInterpolator();
-        this.f13178a = i10;
-        this.f13179b = j10;
-        this.f13180c = l0Var;
-    }
-
-    public final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: lh.u0.a():void");
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.starUserGiftsLoaded && ((Long) objArr[0]).longValue() == this.f13179b) {
-            a();
+    public u0(Context context, g6 g6Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10) {
+        super(context, null, true, true);
+        boolean z4;
+        xn xnVar;
+        this.f12983c = new vg.j();
+        dh.i iVar = new dh.i(new n0(this, 0));
+        this.h = iVar;
+        AndroidUtilities.enableEdgeToEdge(getWindow());
+        this.F = tL_starGiftUnique;
+        this.G = j10;
+        this.B = MessagesController.getInstance(this.currentAccount).stargiftsMessageLengthMax;
+        ?? obj = new Object();
+        this.d = obj;
+        og.a aVar = new og.a(obj);
+        this.f12984e = aVar;
+        p0 p0Var = new p0(this, context);
+        this.containerView = p0Var;
+        int i10 = this.backgroundPaddingLeft;
+        p0Var.setPadding(i10, 0, i10, 0);
+        vg.i iVar2 = new vg.i(this.containerView);
+        ViewGroup viewGroup = this.containerView;
+        aVar.d = iVar2;
+        aVar.f16754e = viewGroup;
+        dh.e eVar = new dh.e(this.container);
+        ViewGroup viewGroup2 = this.containerView;
+        iVar.f4767y = eVar;
+        iVar.B = viewGroup2;
+        eVar.d.add(iVar);
+        Drawable e6 = qh.j5.e(null, this.currentAccount, j10, org.telegram.ui.ActionBar.k6.I.q());
+        this.f12991y = e6;
+        p0Var.V(e6);
+        f6 f6Var = new f6(context, this.currentAccount, g6Var);
+        this.f12982b = f6Var;
+        f6Var.a(tL_starGiftUnique, UserConfig.getInstance(this.currentAccount).getClientUserId(), null, LocaleController.getString(R.string.GiftMessageSendNow), false);
+        f6Var.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
+        f6Var.setLayoutBackground(new org.telegram.ui.ActionBar.x5(f6Var, this.containerView, AndroidUtilities.dp(18.0f), p("paintChatActionBackground")));
+        p0Var.addView(f6Var, k7.c6.e(-2, -2, 48));
+        vg.f fVar = new vg.f(context);
+        this.f12985f = fVar;
+        fVar.setClipChildren(false);
+        fVar.setWindowInsetsProvider(iVar);
+        fVar.setInputIslandBubbleDrawable(aVar.c(fVar, sg.b.b(g6Var), false));
+        fVar.setUnderKeyboardBackgroundDrawable(aVar.c(fVar, sg.b.b(g6Var), false));
+        FrameLayout inputIslandBubbleContainer = fVar.getInputIslandBubbleContainer();
+        inputIslandBubbleContainer.setClipChildren(false);
+        FrameLayout inAppKeyboardBubbleContainer = fVar.getInAppKeyboardBubbleContainer();
+        q0 q0Var = new q0(this, AndroidUtilities.getActivity(), p0Var);
+        this.f12986n = q0Var;
+        q0Var.setInAppInsetsController(iVar);
+        q0Var.setOverrideHint(LocaleController.getString(R.string.GiftMessageAddHint));
+        q0Var.f24686u4 = false;
+        this.containerView.setClipChildren(false);
+        this.containerView.setClipToPadding(false);
+        q0Var.f24681t4 = false;
+        if (!AndroidUtilities.isInMultiwindow && ((xnVar = q0Var.L2) == null || !xnVar.isInBubbleMode())) {
+            z4 = true;
+        } else {
+            z4 = false;
         }
-    }
-
-    @Override
-    public final void dispatchDraw(android.graphics.Canvas r32) {
-        throw new UnsupportedOperationException("Method not decompiled: lh.u0.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f13178a).addObserver(this, NotificationCenter.starUserGiftsLoaded);
-        ArrayList arrayList = this.E;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((t0) obj).f13109j.a(this);
+        q0Var.f24597e2 = z4;
+        q0Var.V0(false, false, false);
+        q0Var.g1(true, false);
+        q0Var.f24688v1.setPadding(0, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(20.0f), 0);
+        q0Var.getSendButton().setAlpha(0.0f);
+        q0Var.getEditField().setMaxLines(3);
+        q0Var.setCustomWindowView(this.container);
+        q0Var.setViewParentForEmoji(inAppKeyboardBubbleContainer);
+        inputIslandBubbleContainer.addView(q0Var, k7.c6.d(-1, -2.0f, 83, 7.0f, 0.0f, 7.0f, 0.0f));
+        this.containerView.addView(fVar.getFadeView(), k7.c6.c(-1.0f, -1));
+        this.containerView.addView(fVar, k7.c6.c(-1.0f, -1));
+        q0Var.setDelegate(new r0(this, tL_starGiftUnique));
+        ff ffVar = q0Var.B0;
+        Object obj2 = new Object();
+        InputFilter[] filters = ffVar.getFilters();
+        if (filters == null) {
+            ffVar.setFilters(new InputFilter[]{obj2});
+        } else {
+            InputFilter[] inputFilterArr = (InputFilter[]) Arrays.copyOf(filters, filters.length + 1);
+            inputFilterArr[filters.length] = obj2;
+            ffVar.setFilters(inputFilterArr);
         }
-        a();
-    }
+        k6 k6Var = new k6(context, false, false, false);
+        this.f12989w = k6Var;
+        k6Var.setAllowCancel(true);
+        k6Var.setScaleProperty(0.6f);
+        k6Var.setVisibility(8);
+        k6Var.setTextSize(AndroidUtilities.dp(15.0f));
+        k6Var.setTextColor(getThemedColor(org.telegram.ui.ActionBar.k6.f22036y6));
+        k6Var.setTypeface(AndroidUtilities.bold());
+        k6Var.setGravity(17);
+        this.containerView.addView(k6Var, k7.c6.d(56, 20.0f, 85, 3.0f, 0.0f, 3.0f, 54.0f));
+        ?? lgVar = new lg(R.drawable.send_plane_24, context, g6Var, false);
+        this.E = lgVar;
+        int dp = AndroidUtilities.dp(38.0f);
+        int dp2 = AndroidUtilities.dp(38.0f);
+        lgVar.F = dp;
+        lgVar.G = dp2;
+        lgVar.J = AndroidUtilities.dp(6.0f);
+        lgVar.K = AndroidUtilities.dp(8.0f);
+        lgVar.f28719e0 = true;
+        this.containerView.addView((View) lgVar, k7.c6.e(110, 50, 85));
+        lgVar.setScrimViewBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.k6.f21659d6));
+        lgVar.setOnClickListener(new View.OnClickListener(this) {
+            public final u0 f12873b;
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f13178a).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
-        ArrayList arrayList = this.E;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((t0) obj).f13109j.o(this);
-        }
-    }
+            {
+                this.f12873b = this;
+            }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        t0 t0Var;
-        t0 t0Var2;
-        t0 t0Var3;
-        if (!this.d) {
-            return false;
-        }
-        float x10 = motionEvent.getX();
-        float y10 = motionEvent.getY();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.E;
-            if (i10 < arrayList.size()) {
-                if (((t0) arrayList.get(i10)).f13111l.contains(x10, y10)) {
-                    t0Var = (t0) arrayList.get(i10);
-                    break;
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        u0 u0Var = this.f12873b;
+                        if (u0Var.B - u0Var.C < 0) {
+                            AndroidUtilities.shakeView(u0Var.f12989w);
+                            return;
+                        }
+                        mh.a3 a3Var = u0Var.H;
+                        if (a3Var != null) {
+                            TLRPC.TL_textWithEntities textWithEntities = u0Var.f12986n.getTextWithEntities();
+                            boolean z10 = u0Var.D;
+                            mh.g5 g5Var = (mh.g5) a3Var.f13683c;
+                            u0 u0Var2 = (u0) a3Var.d;
+                            TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) a3Var.f13684e;
+                            long j11 = a3Var.f13682b;
+                            mf.b bVar = (mf.b) a3Var.f13685f;
+                            if (!u0Var2.I) {
+                                g5Var.c2(tL_starGiftUnique2, j11, bVar, textWithEntities, z10, u0Var2);
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    case 1:
+                        u0 u0Var3 = this.f12873b;
+                        boolean z11 = u0Var3.D;
+                        u0Var3.D = !z11;
+                        u0Var3.f12988s.a(z11, true);
+                        return;
+                    default:
+                        this.f12873b.dismiss();
+                        return;
                 }
-                i10++;
-            } else {
-                t0Var = null;
-                break;
             }
-        }
-        if (motionEvent.getAction() == 0) {
-            this.J = t0Var;
-            if (t0Var != null) {
-                t0Var.f13112m.c(true);
+        });
+        TextView textView = new TextView(context);
+        this.v = textView;
+        int i11 = org.telegram.ui.ActionBar.k6.ic;
+        textView.setTextColor(getThemedColor(i11));
+        textView.setTextSize(1, 14.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setText(LocaleController.getString(R.string.GiftMessagePreviewInChat));
+        textView.setGravity(17);
+        textView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
+        textView.setBackground(new org.telegram.ui.ActionBar.x5(textView, this.containerView, AndroidUtilities.dp(23.0f) / 2, p("paintChatActionBackground")));
+        this.containerView.addView(textView, k7.c6.e(-2, 23, 49));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f12987r = frameLayout;
+        TextView textView2 = new TextView(context);
+        textView2.setTextColor(getThemedColor(i11));
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setText(LocaleController.getString(R.string.GiftMessageMakeMessagePublic));
+        frameLayout.addView(textView2, k7.c6.d(-2, -2.0f, 16, 36.0f, 0.0f, 14.0f, 0.0f));
+        np npVar = new np(context, 18, g6Var);
+        this.f12988s = npVar;
+        npVar.getCheckBoxBase().j(true);
+        npVar.getCheckBoxBase().f24798e = 0.9f;
+        npVar.b(i11, i11, org.telegram.ui.ActionBar.k6.f21786k7);
+        npVar.setDrawUnchecked(true);
+        npVar.a(!this.D, false);
+        f6Var.getLayout().R = new n0(this, 1);
+        npVar.setDrawBackgroundAsArc(10);
+        frameLayout.addView(npVar, k7.c6.d(18, 18.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
+        frameLayout.setBackground(new org.telegram.ui.ActionBar.x5(frameLayout, this.containerView, AndroidUtilities.dp(16.0f), p("paintChatActionBackground")));
+        frameLayout.setOnClickListener(new View.OnClickListener(this) {
+            public final u0 f12873b;
+
+            {
+                this.f12873b = this;
             }
-        } else if (motionEvent.getAction() == 2) {
-            t0 t0Var4 = this.J;
-            if (t0Var4 != t0Var && t0Var4 != null) {
-                t0Var4.f13112m.c(false);
-                this.J = null;
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        u0 u0Var = this.f12873b;
+                        if (u0Var.B - u0Var.C < 0) {
+                            AndroidUtilities.shakeView(u0Var.f12989w);
+                            return;
+                        }
+                        mh.a3 a3Var = u0Var.H;
+                        if (a3Var != null) {
+                            TLRPC.TL_textWithEntities textWithEntities = u0Var.f12986n.getTextWithEntities();
+                            boolean z10 = u0Var.D;
+                            mh.g5 g5Var = (mh.g5) a3Var.f13683c;
+                            u0 u0Var2 = (u0) a3Var.d;
+                            TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) a3Var.f13684e;
+                            long j11 = a3Var.f13682b;
+                            mf.b bVar = (mf.b) a3Var.f13685f;
+                            if (!u0Var2.I) {
+                                g5Var.c2(tL_starGiftUnique2, j11, bVar, textWithEntities, z10, u0Var2);
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    case 1:
+                        u0 u0Var3 = this.f12873b;
+                        boolean z11 = u0Var3.D;
+                        u0Var3.D = !z11;
+                        u0Var3.f12988s.a(z11, true);
+                        return;
+                    default:
+                        this.f12873b.dismiss();
+                        return;
+                }
             }
-        } else if (motionEvent.getAction() == 1) {
-            if (this.J != null) {
-                af.g.s(getContext(), "https://t.me/nft/" + t0Var3.e);
-                this.J.f13112m.c(false);
-                this.J = null;
+        });
+        this.containerView.addView(frameLayout, k7.c6.e(-2, 32, 81));
+        ImageView imageView = new ImageView(context);
+        this.f12990x = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.ic_close_white);
+        org.telegram.ui.ActionBar.x5 x5Var = new org.telegram.ui.ActionBar.x5(imageView, this.containerView, AndroidUtilities.dp(16.0f), p("paintChatActionBackground"));
+        int dp3 = AndroidUtilities.dp(32.0f);
+        int dp4 = AndroidUtilities.dp(32.0f);
+        Matrix matrix = ug.c.f48791a;
+        imageView.setBackground(new org.telegram.ui.ActionBar.w5(dp3, dp4, x5Var));
+        imageView.setOnClickListener(new View.OnClickListener(this) {
+            public final u0 f12873b;
+
+            {
+                this.f12873b = this;
             }
-        } else if (motionEvent.getAction() == 3 && (t0Var2 = this.J) != null) {
-            t0Var2.f13112m.c(false);
-            this.J = null;
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        u0 u0Var = this.f12873b;
+                        if (u0Var.B - u0Var.C < 0) {
+                            AndroidUtilities.shakeView(u0Var.f12989w);
+                            return;
+                        }
+                        mh.a3 a3Var = u0Var.H;
+                        if (a3Var != null) {
+                            TLRPC.TL_textWithEntities textWithEntities = u0Var.f12986n.getTextWithEntities();
+                            boolean z10 = u0Var.D;
+                            mh.g5 g5Var = (mh.g5) a3Var.f13683c;
+                            u0 u0Var2 = (u0) a3Var.d;
+                            TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) a3Var.f13684e;
+                            long j11 = a3Var.f13682b;
+                            mf.b bVar = (mf.b) a3Var.f13685f;
+                            if (!u0Var2.I) {
+                                g5Var.c2(tL_starGiftUnique2, j11, bVar, textWithEntities, z10, u0Var2);
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    case 1:
+                        u0 u0Var3 = this.f12873b;
+                        boolean z11 = u0Var3.D;
+                        u0Var3.D = !z11;
+                        u0Var3.f12988s.a(z11, true);
+                        return;
+                    default:
+                        this.f12873b.dismiss();
+                        return;
+                }
+            }
+        });
+        this.containerView.addView(imageView, k7.c6.e(56, 56, 53));
+        k7.e6.b(frameLayout, 0.05f, 1.2f);
+        k7.e6.a(imageView);
+        ViewGroup viewGroup3 = this.containerView;
+        hg.f fVar2 = new hg.f(this, 24);
+        WeakHashMap weakHashMap = r0.j0.f46438a;
+        r0.b0.j(viewGroup3, fVar2);
+    }
+
+    @Override
+    public final boolean canDismissWithSwipe() {
+        return false;
+    }
+
+    public final void o() {
+        dh.i iVar = this.h;
+        int i10 = iVar.e(647).f7758b;
+        float inputBubbleHeight = this.f12985f.getInputBubbleHeight() + iVar.c() + AndroidUtilities.dp(9.0f);
+        int height = this.containerView.getHeight();
+        f6 f6Var = this.f12982b;
+        FrameLayout frameLayout = this.f12987r;
+        f6Var.setTranslationY(Math.min((((AndroidUtilities.dp(36.0f) + i10) - (AndroidUtilities.dp(46.0f) + inputBubbleHeight)) / 2.0f) + ((height - f6Var.getHeight()) / 2.0f), ((((this.containerView.getHeight() - inputBubbleHeight) - AndroidUtilities.dp(14.0f)) - frameLayout.getHeight()) - AndroidUtilities.dp(10.0f)) - f6Var.getHeight()));
+        f6Var.invalidate();
+        float y10 = f6Var.getY() - AndroidUtilities.dp(33.0f);
+        TextView textView = this.v;
+        textView.setTranslationY(y10);
+        textView.invalidate();
+        frameLayout.setTranslationY(-(inputBubbleHeight + AndroidUtilities.dp(14.0f)));
+        frameLayout.invalidate();
+        float f10 = i10;
+        ImageView imageView = this.f12990x;
+        imageView.setTranslationY(f10);
+        imageView.invalidate();
+    }
+
+    @Override
+    public final void onBackPressed() {
+        q0 q0Var = this.f12986n;
+        if (q0Var != null && q0Var.t0()) {
+            q0Var.m0(true);
+        } else {
+            super.onBackPressed();
         }
-        if (this.J == null) {
-            return false;
-        }
-        return true;
     }
 
-    public void setActionBarActionMode(float f10) {
-        this.f13182n = f10;
-        invalidate();
-    }
-
-    public void setActive(boolean z4) {
-        this.d = z4;
-    }
-
-    public void setExpandCoords(float f10) {
-        this.f13185w = f10;
-        invalidate();
-    }
-
-    public void setExpandProgress(float f10) {
-        if (this.e != f10) {
-            this.e = f10;
-            invalidate();
+    @Override
+    public final void onOpenAnimationEnd() {
+        super.onOpenAnimationEnd();
+        setAllowNestedScroll(false);
+        ic.a(this.container, new t0(this, 0));
+        n40 n40Var = n40.f29391s;
+        if (n40Var.c()) {
+            n40Var.b();
+            TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(this.G);
+            StringBuilder sb = new StringBuilder();
+            TL_stars.TL_starGiftUnique tL_starGiftUnique = this.F;
+            sb.append(tL_starGiftUnique.title);
+            sb.append(" #");
+            new qc(this.container, this.resourcesProvider).V(Arrays.asList(userOrChat), LocaleController.getString(R.string.GiftMessageAddTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftMessageAddDescription, DialogObject.getShortName(userOrChat), l.d.l(tL_starGiftUnique.num, ',', sb))), null).k(true);
         }
     }
 
-    public void setProgressToStoriesInsets(float f10) {
-        if (this.B == f10) {
-            return;
+    public final Paint p(String str) {
+        Paint paint;
+        g6 g6Var = this.resourcesProvider;
+        if (g6Var != null) {
+            paint = g6Var.F("paintChatActionBackground");
+        } else {
+            paint = null;
         }
-        this.B = f10;
-        invalidate();
+        if (paint != null) {
+            return paint;
+        }
+        return org.telegram.ui.ActionBar.k6.S0("paintChatActionBackground");
     }
 }

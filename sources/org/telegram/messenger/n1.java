@@ -2,40 +2,40 @@ package org.telegram.messenger;
 
 import android.app.Activity;
 import java.util.HashMap;
-import org.telegram.ui.oy;
+import org.telegram.ui.py;
 public final class n1 implements Runnable {
-    public final int f17888a = 0;
-    public final boolean f17889b;
-    public final boolean f17890c;
+    public final int f19410a = 0;
+    public final boolean f19411b;
+    public final boolean f19412c;
     public final boolean d;
-    public final Object e;
-    public final Object f17891f;
+    public final Object f19413e;
+    public final Object f19414f;
 
     public n1(ContactsController contactsController, HashMap hashMap, boolean z4, boolean z10, boolean z11) {
-        this.e = contactsController;
-        this.f17891f = hashMap;
-        this.f17889b = z4;
-        this.f17890c = z10;
+        this.f19413e = contactsController;
+        this.f19414f = hashMap;
+        this.f19411b = z4;
+        this.f19412c = z10;
         this.d = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f17888a) {
+        switch (this.f19410a) {
             case 0:
-                ((ContactsController) this.e).lambda$syncPhoneBookByAlert$7((HashMap) this.f17891f, this.f17889b, this.f17890c, this.d);
+                ((ContactsController) this.f19413e).lambda$syncPhoneBookByAlert$7((HashMap) this.f19414f, this.f19411b, this.f19412c, this.d);
                 return;
             default:
-                oy.h0((oy) this.e, this.f17889b, this.f17890c, this.d, (Activity) this.f17891f);
+                py.h0((py) this.f19413e, this.f19411b, this.f19412c, this.d, (Activity) this.f19414f);
                 return;
         }
     }
 
-    public n1(oy oyVar, boolean z4, boolean z10, boolean z11, Activity activity) {
-        this.e = oyVar;
-        this.f17889b = z4;
-        this.f17890c = z10;
+    public n1(py pyVar, boolean z4, boolean z10, boolean z11, Activity activity) {
+        this.f19413e = pyVar;
+        this.f19411b = z4;
+        this.f19412c = z10;
         this.d = z11;
-        this.f17891f = activity;
+        this.f19414f = activity;
     }
 }

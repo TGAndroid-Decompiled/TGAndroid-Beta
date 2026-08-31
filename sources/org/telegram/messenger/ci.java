@@ -1,47 +1,67 @@
 package org.telegram.messenger;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.TelegramMediaSession;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ci implements Runnable {
-    public final int f17000a;
-    public final Object f17001b;
-    public final Object f17002c;
-    public final long d;
-    public final Object e;
+    public final int f18428a;
+    public final Object f18429b;
+    public final Object f18430c;
+    public final Object d;
+    public final Object f18431e;
 
-    public ci(Object obj, Object obj2, long j10, Object obj3, int i10) {
-        this.f17000a = i10;
-        this.f17001b = obj;
-        this.f17002c = obj2;
-        this.d = j10;
-        this.e = obj3;
+    public ci(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
+        this.f18428a = i10;
+        this.f18430c = obj;
+        this.f18429b = obj2;
+        this.d = obj3;
+        this.f18431e = obj4;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ci.run():void");
+        switch (this.f18428a) {
+            case 0:
+                ((SavedMessagesController) this.f18430c).lambda$loadDialogs$2((TLObject) this.f18429b, (ArrayList) this.d, (TLRPC.TL_error) this.f18431e);
+                return;
+            case 1:
+                ((SendMessagesHelper) this.f18430c).lambda$performSendDelayedMessage$57((TLObject) this.f18429b, (SendMessagesHelper.DelayedMessage) this.d, (String) this.f18431e);
+                return;
+            case 2:
+                ((SendMessagesHelper) this.f18430c).lambda$sendMessage$19((TLRPC.TL_messages_forwardMessages) this.f18429b, (ArrayList) this.d, (jj) this.f18431e);
+                return;
+            case 3:
+                ((SendMessagesHelper) this.f18430c).lambda$didReceivedNotification$4((SendMessagesHelper.DelayedMessage) this.f18429b, (File) this.d, (MessageObject) this.f18431e);
+                return;
+            case 4:
+                ((TelegramMediaSession) this.f18430c).lambda$loadBrowseChildren$4((MessagesStorage) this.f18429b, (TelegramMediaSession.BrowseChildrenCallback) this.d, (String) this.f18431e);
+                return;
+            case 5:
+                ((UnconfirmedAuthController) this.f18430c).lambda$readCache$0((ArrayList) this.d, (HashSet) this.f18429b, (ArrayList) this.f18431e);
+                return;
+            default:
+                ((UserNameResolver) this.f18430c).lambda$resolve$0((String) this.d, (TLRPC.TL_error) this.f18431e, (TLObject) this.f18429b);
+                return;
+        }
     }
 
-    public ci(Object obj, Object obj2, Object obj3, long j10, int i10) {
-        this.f17000a = i10;
-        this.f17001b = obj;
-        this.f17002c = obj2;
-        this.e = obj3;
-        this.d = j10;
+    public ci(String str, UserNameResolver userNameResolver, TLObject tLObject, TLRPC.TL_error tL_error) {
+        this.f18428a = 6;
+        this.f18430c = userNameResolver;
+        this.d = str;
+        this.f18431e = tL_error;
+        this.f18429b = tLObject;
     }
 
-    public ci(org.telegram.ui.ActionBar.g3 g3Var, long j10, Object obj, Object obj2, int i10) {
-        this.f17000a = i10;
-        this.f17001b = g3Var;
-        this.d = j10;
-        this.f17002c = obj;
-        this.e = obj2;
-    }
-
-    public ci(ph.z7 z7Var, TLRPC.Chat chat, MessagesStorage messagesStorage, long j10) {
-        this.f17000a = 11;
-        this.f17001b = z7Var;
-        this.e = chat;
-        this.f17002c = messagesStorage;
-        this.d = j10;
+    public ci(UnconfirmedAuthController unconfirmedAuthController, ArrayList arrayList, HashSet hashSet, ArrayList arrayList2) {
+        this.f18428a = 5;
+        this.f18430c = unconfirmedAuthController;
+        this.d = arrayList;
+        this.f18429b = hashSet;
+        this.f18431e = arrayList2;
     }
 }

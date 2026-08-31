@@ -1,30 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import org.telegram.messenger.NotificationCenter;
-public final class z20 extends AnimatorListenerAdapter {
-    public final View f31222a;
-    public final View f31223b;
-    public final WindowManager f31224c;
-    public final View d;
-    public final View e;
-    public final a30 f31225f;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.TLRPC;
+public final class z20 implements Runnable {
+    public final a30 f33701a;
 
-    public z20(a30 a30Var, y20 y20Var, dg.u2 u2Var, WindowManager windowManager, FrameLayout frameLayout, org.telegram.ui.w7 w7Var) {
-        this.f31225f = a30Var;
-        this.f31222a = y20Var;
-        this.f31223b = u2Var;
-        this.f31224c = windowManager;
-        this.d = frameLayout;
-        this.e = w7Var;
+    public z20(a30 a30Var) {
+        this.f33701a = a30Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        NotificationCenter.getInstance(this.f31225f.h).doOnIdle(new gg.j0(this.f31222a, this.f31223b, this.f31224c, this.d, this.e, 28));
+    public final void run() {
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null && sharedInstance.isMicMute()) {
+            TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) sharedInstance.groupCall.participants.f(sharedInstance.getSelfId());
+            if (groupCallParticipant == null || groupCallParticipant.can_self_unmute || !groupCallParticipant.muted || ChatObject.canManageCalls(sharedInstance.getChat())) {
+                a30 a30Var = this.f33701a;
+                AndroidUtilities.runOnUIThread(a30Var.f25148f, 90L);
+                try {
+                    a30Var.performHapticFeedback(3, 2);
+                } catch (Exception unused) {
+                }
+                a30Var.f25146c = true;
+            }
+        }
     }
 }

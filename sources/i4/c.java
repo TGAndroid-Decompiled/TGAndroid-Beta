@@ -9,14 +9,14 @@ import java.util.Arrays;
 import org.telegram.ui.yh;
 public final class c implements e4.b {
     public static final Parcelable.Creator<c> CREATOR = new o(7);
-    public final byte[] f7247a;
-    public final String f7248b;
-    public final String f7249c;
+    public final byte[] f7794a;
+    public final String f7795b;
+    public final String f7796c;
 
     public c(String str, String str2, byte[] bArr) {
-        this.f7247a = bArr;
-        this.f7248b = str;
-        this.f7249c = str2;
+        this.f7794a = bArr;
+        this.f7795b = str;
+        this.f7796c = str2;
     }
 
     @Override
@@ -26,9 +26,9 @@ public final class c implements e4.b {
 
     @Override
     public final void c(d1 d1Var) {
-        String str = this.f7248b;
+        String str = this.f7795b;
         if (str != null) {
-            d1Var.f8465a = str;
+            d1Var.f9027a = str;
         }
     }
 
@@ -47,31 +47,31 @@ public final class c implements e4.b {
             return true;
         }
         if (obj != null && c.class == obj.getClass()) {
-            return Arrays.equals(this.f7247a, ((c) obj).f7247a);
+            return Arrays.equals(this.f7794a, ((c) obj).f7794a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f7247a);
+        return Arrays.hashCode(this.f7794a);
     }
 
     public final String toString() {
-        return android.support.v4.media.a.m(this.f7247a.length, "\"", yh.m("ICY: title=\"", this.f7248b, "\", url=\"", this.f7249c, "\", rawMetadata.length=\""));
+        return android.support.v4.media.a.m(this.f7794a.length, "\"", yh.m("ICY: title=\"", this.f7795b, "\", url=\"", this.f7796c, "\", rawMetadata.length=\""));
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeByteArray(this.f7247a);
-        parcel.writeString(this.f7248b);
-        parcel.writeString(this.f7249c);
+        parcel.writeByteArray(this.f7794a);
+        parcel.writeString(this.f7795b);
+        parcel.writeString(this.f7796c);
     }
 
     public c(Parcel parcel) {
         byte[] createByteArray = parcel.createByteArray();
         createByteArray.getClass();
-        this.f7247a = createByteArray;
-        this.f7248b = parcel.readString();
-        this.f7249c = parcel.readString();
+        this.f7794a = createByteArray;
+        this.f7795b = parcel.readString();
+        this.f7796c = parcel.readString();
     }
 }

@@ -1,12 +1,15 @@
 package j7;
+
+import java.lang.ref.Reference;
+import java.util.ArrayList;
 public abstract class h0 {
-    public abstract boolean a(c0.h hVar, c0.d dVar, c0.d dVar2);
-
-    public abstract boolean b(c0.h hVar, Object obj, Object obj2);
-
-    public abstract boolean c(c0.h hVar, c0.g gVar, c0.g gVar2);
-
-    public abstract void d(c0.g gVar, c0.g gVar2);
-
-    public abstract void e(c0.g gVar, Thread thread);
+    public static void a(ArrayList arrayList, Object obj) {
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            Object obj2 = ((Reference) arrayList.get(size)).get();
+            if (obj2 == null || obj2 == obj) {
+                arrayList.remove(size);
+                return;
+            }
+        }
+    }
 }

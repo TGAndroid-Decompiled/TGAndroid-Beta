@@ -1,42 +1,42 @@
 package lc;
 
 import j4.h;
-import k7.u;
+import k7.v;
 import ke.e;
 import ne.p;
 public final class b extends pe.a {
-    public final a f11853a = new p();
-    public final StringBuilder f11854b = new StringBuilder();
-    public final int f11855c;
+    public final a f12274a = new p();
+    public final StringBuilder f12275b = new StringBuilder();
+    public final int f12276c;
 
     public b(int i10) {
-        this.f11855c = i10;
+        this.f12276c = i10;
     }
 
     @Override
     public final void a(CharSequence charSequence) {
-        StringBuilder sb = this.f11854b;
+        StringBuilder sb = this.f12275b;
         sb.append(charSequence);
         sb.append('\n');
     }
 
     @Override
     public final void d() {
-        this.f11853a.f11852g = this.f11854b.toString();
+        this.f12274a.f12273g = this.f12275b.toString();
     }
 
     @Override
     public final ne.a e() {
-        return this.f11853a;
+        return this.f12274a;
     }
 
     @Override
     public final h h(e eVar) {
         int i10;
-        int i11 = eVar.e;
-        CharSequence charSequence = eVar.f10347a;
+        int i11 = eVar.f11122e;
+        CharSequence charSequence = eVar.f11119a;
         int length = charSequence.length();
-        if (eVar.f10351g < 4) {
+        if (eVar.f11124g < 4) {
             int i12 = i11;
             while (true) {
                 if (i12 < length) {
@@ -50,11 +50,11 @@ public final class b extends pe.a {
                     break;
                 }
             }
-            int i13 = this.f11855c;
-            if (i10 == i13 && u.b(' ', charSequence, i11 + i13, length) == length) {
+            int i13 = this.f12276c;
+            if (i10 == i13 && v.b(' ', charSequence, i11 + i13, length) == length) {
                 return new h(-1, -1, true);
             }
         }
-        return h.a(eVar.f10348b);
+        return h.a(eVar.f11120b);
     }
 }

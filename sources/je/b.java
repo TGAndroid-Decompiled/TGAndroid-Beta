@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import ke.e;
 import ne.p;
 public final class b extends pe.a {
-    public final ArrayList f9367c;
+    public final ArrayList f10002c;
     public final ArrayList d;
-    public final ie.a f9365a = new p();
-    public final ArrayList f9366b = new ArrayList();
-    public boolean e = true;
+    public final ie.a f10000a = new p();
+    public final ArrayList f10001b = new ArrayList();
+    public boolean f10003e = true;
 
     public b(ArrayList arrayList, ArrayList arrayList2) {
-        this.f9367c = arrayList;
+        this.f10002c = arrayList;
         this.d = arrayList2;
     }
 
@@ -53,16 +53,16 @@ public final class b extends pe.a {
 
     @Override
     public final void a(CharSequence charSequence) {
-        if (this.e) {
-            this.e = false;
+        if (this.f10003e) {
+            this.f10003e = false;
         } else {
-            this.f9366b.add(charSequence);
+            this.f10001b.add(charSequence);
         }
     }
 
     @Override
     public final ne.a e() {
-        return this.f9365a;
+        return this.f10000a;
     }
 
     @Override
@@ -72,13 +72,13 @@ public final class b extends pe.a {
         ArrayList arrayList2 = this.d;
         int size = arrayList2.size();
         ?? pVar = new p();
-        ?? r32 = this.f9365a;
+        ?? r32 = this.f10000a;
         r32.b(pVar);
         ?? pVar2 = new p();
         pVar.b(pVar2);
         int i10 = 0;
         while (true) {
-            arrayList = this.f9367c;
+            arrayList = this.f10002c;
             if (i10 >= size) {
                 break;
             }
@@ -88,11 +88,11 @@ public final class b extends pe.a {
                 pVar3.h = (c) arrayList.get(i10);
             }
             aVar.a(str2.trim(), pVar3);
-            pVar3.f7487g = true;
+            pVar3.f8059g = true;
             pVar2.b(pVar3);
             i10++;
         }
-        ArrayList arrayList3 = this.f9366b;
+        ArrayList arrayList3 = this.f10001b;
         int size2 = arrayList3.size();
         ?? r52 = 0;
         int i11 = 0;
@@ -125,8 +125,8 @@ public final class b extends pe.a {
 
     @Override
     public final h h(e eVar) {
-        if (eVar.f10347a.toString().contains("|")) {
-            return h.a(eVar.f10348b);
+        if (eVar.f11119a.toString().contains("|")) {
+            return h.a(eVar.f11120b);
         }
         return null;
     }

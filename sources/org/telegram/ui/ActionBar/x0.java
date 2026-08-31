@@ -5,31 +5,31 @@ import android.view.View;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 public final class x0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f20723a;
-    public final Object f20724b;
+    public final int f22399a;
+    public final Object f22400b;
 
     public x0(Object obj, int i10) {
-        this.f20723a = i10;
-        this.f20724b = obj;
+        this.f22399a = i10;
+        this.f22400b = obj;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f20723a) {
+        switch (this.f22399a) {
             case 0:
-                d1 d1Var = (d1) this.f20724b;
+                d1 d1Var = (d1) this.f22400b;
                 d1Var.getClass();
-                d1Var.f19573a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d1Var.f21223a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 d1Var.invalidate();
                 return;
             case 1:
-                g1 g1Var = (g1) this.f20724b;
+                g1 g1Var = (g1) this.f22400b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 g1Var.setTextColor(i0.a.d(floatValue, -1, -9194260));
                 g1Var.setIconColor(i0.a.d(floatValue, -1, -9194260));
                 return;
             case 2:
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f20724b;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f22400b;
                 int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 for (int i10 = 0; i10 < itemsCount; i10++) {
@@ -46,36 +46,36 @@ public final class x0 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 3:
-                r1 r1Var = (r1) this.f20724b;
-                if (!r1Var.e) {
+                r1 r1Var = (r1) this.f22400b;
+                if (!r1Var.f22253e) {
                     float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                    if (r1Var.f20558r) {
+                    if (r1Var.f22265r) {
                         floatValue3 = 1.0f - floatValue3;
                     }
-                    float w10 = (int) e2.c.w(1.0f, floatValue3, r1Var.f20557q, r1Var.f20556p * floatValue3);
-                    if (!(r1Var instanceof mg.o)) {
-                        r1Var.f20544a.setTranslationY(w10);
+                    float w10 = (int) e2.c.w(1.0f, floatValue3, r1Var.f22264q, r1Var.f22263p * floatValue3);
+                    if (!(r1Var instanceof ng.o)) {
+                        r1Var.f22250a.setTranslationY(w10);
                     }
-                    r1Var.e(-w10, floatValue3, r1Var.f20559s);
+                    r1Var.e(-w10, floatValue3, r1Var.f22266s);
                     return;
                 }
                 return;
             case 4:
-                n3 n3Var = (n3) this.f20724b;
-                n3Var.getClass();
-                n3Var.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                Iterator it = n3Var.F.iterator();
+                o3 o3Var = (o3) this.f22400b;
+                o3Var.getClass();
+                o3Var.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                Iterator it = o3Var.F.iterator();
                 while (it.hasNext()) {
                     ((Runnable) it.next()).run();
                 }
-                n3Var.invalidate();
+                o3Var.invalidate();
                 return;
             default:
-                v3 v3Var = (v3) this.f20724b;
-                v3Var.f20621i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                w3 w3Var = v3Var.f20617b;
-                if (w3Var != null) {
-                    w3Var.invalidate();
+                w3 w3Var = (w3) this.f22400b;
+                w3Var.f22380i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x3 x3Var = w3Var.f22375b;
+                if (x3Var != null) {
+                    x3Var.invalidate();
                     return;
                 }
                 return;

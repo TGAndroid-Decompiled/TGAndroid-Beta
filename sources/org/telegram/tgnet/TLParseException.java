@@ -1,6 +1,6 @@
 package org.telegram.tgnet;
 
-import nh.n5;
+import oh.t3;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
@@ -23,7 +23,7 @@ public class TLParseException extends RuntimeException {
         }
         FileLog.e(tLParseException, z10);
         if (i10 != -847714938 && i10 != -779361553) {
-            AndroidUtilities.runOnUIThread(new n5(tLParseException, 18));
+            AndroidUtilities.runOnUIThread(new t3(tLParseException, 17));
         }
         if (!z4) {
             return;

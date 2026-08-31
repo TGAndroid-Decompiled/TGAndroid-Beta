@@ -1,194 +1,83 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class wy extends FrameLayout {
-    public org.telegram.ui.Components.n9 f39813a;
-    public org.telegram.ui.Components.n9 f39814b;
-    public Drawable f39815c;
-    public Drawable d;
-    public final Drawable e;
-    public Paint f39816f;
-    public RectF h;
-    public final ViewGroup[] f39817n;
-    public final xy f39818r;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class wy extends f2.b0 {
+    public boolean d;
+    public final yy f42905e;
 
-    public wy(xy xyVar, Context context) {
-        super(context);
-        this.f39818r = xyVar;
-        this.f39816f = new Paint(1);
-        this.h = new RectF();
-        this.f39817n = new ViewGroup[2];
-        int i10 = 0;
-        setWillNotDraw(false);
-        setPadding(0, AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f));
-        LinearLayout f10 = org.telegram.messenger.y3.f(context, 1);
-        addView(f10, k7.b6.e(-2, -2, 17));
-        org.telegram.ui.Cells.v0 v0Var = new org.telegram.ui.Cells.v0(context);
-        v0Var.setCustomText(LocaleController.getString(R.string.WidgetPreview));
-        f10.addView(v0Var, k7.b6.t(-2, -2, 17, 0, 0, 0, 4));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setBackgroundResource(R.drawable.widget_bg);
-        f10.addView(linearLayout, k7.b6.t(-2, -2, 17, 10, 0, 10, 0));
-        xyVar.d = new ImageView(context);
-        int i11 = xyVar.f40333w;
-        if (i11 == 0) {
-            while (i10 < 2) {
-                this.f39817n[i10] = (ViewGroup) xyVar.getParentActivity().getLayoutInflater().inflate(R.layout.shortcut_widget_item, (ViewGroup) null);
-                linearLayout.addView(this.f39817n[i10], k7.b6.n(-1, -2));
-                i10++;
-            }
-            linearLayout.addView(xyVar.d, k7.b6.q(218, 160, 17));
-            xyVar.d.setImageResource(R.drawable.chats_widget_preview);
-        } else if (i11 == 1) {
-            while (i10 < 2) {
-                this.f39817n[i10] = (ViewGroup) xyVar.getParentActivity().getLayoutInflater().inflate(R.layout.contacts_widget_item, (ViewGroup) null);
-                linearLayout.addView(this.f39817n[i10], k7.b6.n(160, -2));
-                i10++;
-            }
-            linearLayout.addView(xyVar.d, k7.b6.q(160, 160, 17));
-            xyVar.d.setImageResource(R.drawable.contacts_widget_preview);
-        }
-        a();
-        this.e = org.telegram.ui.ActionBar.j6.V0(context, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.j6.f19871b7);
-    }
-
-    public final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wy.a():void");
+    public wy(yy yyVar) {
+        this.f42905e = yyVar;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
+    public final void a(RecyclerView recyclerView, f2.m1 m1Var) {
+        super.a(recyclerView, m1Var);
+        m1Var.f5875a.setPressed(false);
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        org.telegram.ui.Components.n9 n9Var = this.f39813a;
-        if (n9Var != null) {
-            n9Var.dispose();
-            this.f39813a = null;
+    public final int e(RecyclerView recyclerView, f2.m1 m1Var) {
+        if (m1Var.f5879f != 3) {
+            return f2.b0.l(0, 0);
         }
-        org.telegram.ui.Components.n9 n9Var2 = this.f39814b;
-        if (n9Var2 != null) {
-            n9Var2.dispose();
-            this.f39814b = null;
-        }
+        return f2.b0.l(3, 0);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Drawable drawable;
-        Drawable s02 = org.telegram.ui.ActionBar.j6.s0();
-        Drawable drawable2 = this.f39815c;
-        if (s02 != drawable2 && s02 != null) {
-            if (org.telegram.ui.ActionBar.j6.sl != null) {
-                this.d = drawable2;
-                this.f39814b = this.f39813a;
+    public final boolean n(RecyclerView recyclerView, f2.m1 m1Var, f2.m1 m1Var2) {
+        boolean z4;
+        boolean z10 = false;
+        if (m1Var.f5879f != m1Var2.f5879f) {
+            return false;
+        }
+        int b10 = m1Var.b();
+        int b11 = m1Var2.b();
+        yy yyVar = this.f42905e;
+        vy vyVar = yyVar.f43730a;
+        yy yyVar2 = vyVar.d;
+        int i10 = yyVar2.f43735n;
+        ArrayList arrayList = yyVar2.f43733e;
+        int i11 = b10 - i10;
+        int i12 = b11 - i10;
+        int i13 = yyVar2.f43736r - i10;
+        if (i11 >= 0 && i12 >= 0 && i11 < i13 && i12 < i13) {
+            arrayList.set(i11, (Long) arrayList.get(i12));
+            arrayList.set(i12, (Long) arrayList.get(i11));
+            vyVar.p(b10, b11);
+            org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) m1Var.f5875a;
+            if (b11 != yyVar.f43736r - 1) {
+                z4 = true;
             } else {
-                org.telegram.ui.Components.n9 n9Var = this.f39813a;
-                if (n9Var != null) {
-                    n9Var.dispose();
-                    this.f39813a = null;
-                }
+                z4 = false;
             }
-            this.f39815c = s02;
+            g4Var.setDrawDivider(z4);
+            org.telegram.ui.Cells.g4 g4Var2 = (org.telegram.ui.Cells.g4) m1Var2.f5875a;
+            if (b10 != yyVar.f43736r - 1) {
+                z10 = true;
+            }
+            g4Var2.setDrawDivider(z10);
+            this.d = true;
         }
-        xy xyVar = this.f39818r;
-        float themeAnimationValue = xy.W(xyVar).getThemeAnimationValue();
-        for (int i10 = 0; i10 < 2; i10++) {
-            if (i10 == 0) {
-                drawable = this.d;
-            } else {
-                drawable = this.f39815c;
+        return true;
+    }
+
+    @Override
+    public final void p(f2.m1 m1Var, int i10) {
+        yy yyVar = this.f42905e;
+        if (i10 != 0) {
+            yyVar.f43731b.I0(false);
+            m1Var.f5875a.setPressed(true);
+        } else if (this.d) {
+            xy xyVar = yyVar.f43734f;
+            if (xyVar != null) {
+                xyVar.a();
             }
-            if (drawable != null) {
-                if (i10 == 1 && this.d != null && xy.X(xyVar) != null) {
-                    drawable.setAlpha((int) (255.0f * themeAnimationValue));
-                } else {
-                    drawable.setAlpha(255);
-                }
-                if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof org.telegram.ui.Components.dc0)) {
-                    if (drawable instanceof BitmapDrawable) {
-                        if (((BitmapDrawable) drawable).getTileModeX() == Shader.TileMode.REPEAT) {
-                            canvas.save();
-                            float f10 = 2.0f / AndroidUtilities.density;
-                            canvas.scale(f10, f10);
-                            drawable.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f10), (int) Math.ceil(getMeasuredHeight() / f10));
-                        } else {
-                            int measuredHeight = getMeasuredHeight();
-                            float max = Math.max(getMeasuredWidth() / drawable.getIntrinsicWidth(), measuredHeight / drawable.getIntrinsicHeight());
-                            int ceil = (int) Math.ceil(drawable.getIntrinsicWidth() * max);
-                            int ceil2 = (int) Math.ceil(drawable.getIntrinsicHeight() * max);
-                            int measuredWidth = (getMeasuredWidth() - ceil) / 2;
-                            int i11 = (measuredHeight - ceil2) / 2;
-                            canvas.save();
-                            canvas.clipRect(0, 0, ceil, getMeasuredHeight());
-                            drawable.setBounds(measuredWidth, i11, ceil + measuredWidth, ceil2 + i11);
-                        }
-                        drawable.draw(canvas);
-                        canvas.restore();
-                    }
-                } else {
-                    drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                    if (drawable instanceof org.telegram.ui.Components.o9) {
-                        this.f39813a = ((org.telegram.ui.Components.o9) drawable).c(canvas, this);
-                    } else {
-                        drawable.draw(canvas);
-                    }
-                }
-                if (i10 == 0 && this.d != null && themeAnimationValue >= 1.0f) {
-                    org.telegram.ui.Components.n9 n9Var2 = this.f39814b;
-                    if (n9Var2 != null) {
-                        n9Var2.dispose();
-                        this.f39814b = null;
-                    }
-                    this.d = null;
-                    invalidate();
-                }
-            }
+            this.d = false;
         }
-        int measuredWidth2 = getMeasuredWidth();
-        int measuredHeight2 = getMeasuredHeight();
-        Drawable drawable3 = this.e;
-        drawable3.setBounds(0, 0, measuredWidth2, measuredHeight2);
-        drawable3.draw(canvas);
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(264.0f), 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void dispatchSetPressed(boolean z4) {
+    public final void q(f2.m1 m1Var) {
     }
 }

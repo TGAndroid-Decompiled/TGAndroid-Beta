@@ -1,15 +1,15 @@
 package ne;
 
-import k7.g0;
+import k7.h0;
 public final class h extends a {
-    public char f14943g;
+    public char f15962g;
     public int h;
-    public int f14944i;
-    public String f14945j;
-    public String f14946k;
+    public int f15963i;
+    public String f15964j;
+    public String f15965k;
 
     @Override
-    public final void a(g0 g0Var) {
-        g0Var.f(this);
+    public final void a(h0 h0Var) {
+        h0Var.f(this);
     }
 }

@@ -7,37 +7,37 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.tl.TL_account;
 public final class b2 implements TextView.OnEditorActionListener {
-    public final int f23539a;
-    public final int f23540b;
-    public final org.telegram.ui.ActionBar.d2[] f23541c;
+    public final int f25459a;
+    public final int f25460b;
+    public final org.telegram.ui.ActionBar.d2[] f25461c;
     public final View d;
-    public final EditTextBoldCursor e;
-    public final Object f23542f;
+    public final EditTextBoldCursor f25462e;
+    public final Object f25463f;
 
     public b2(EditTextBoldCursor editTextBoldCursor, int i10, Object obj, org.telegram.ui.ActionBar.d2[] d2VarArr, View view, int i11) {
-        this.f23539a = i11;
-        this.e = editTextBoldCursor;
-        this.f23540b = i10;
-        this.f23542f = obj;
-        this.f23541c = d2VarArr;
+        this.f25459a = i11;
+        this.f25462e = editTextBoldCursor;
+        this.f25460b = i10;
+        this.f25463f = obj;
+        this.f25461c = d2VarArr;
         this.d = view;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f23539a) {
+        switch (this.f25459a) {
             case 0:
-                MessagesStorage.StringCallback stringCallback = (MessagesStorage.StringCallback) this.f23542f;
+                MessagesStorage.StringCallback stringCallback = (MessagesStorage.StringCallback) this.f25463f;
                 if (i10 != 6) {
                     return false;
                 }
-                EditTextBoldCursor editTextBoldCursor = this.e;
+                EditTextBoldCursor editTextBoldCursor = this.f25462e;
                 String obj = editTextBoldCursor.getText().toString();
-                if (obj.length() > this.f23540b) {
+                if (obj.length() > this.f25460b) {
                     AndroidUtilities.shakeView(editTextBoldCursor);
                 } else {
                     stringCallback.run(obj);
-                    org.telegram.ui.ActionBar.d2 d2Var = this.f23541c[0];
+                    org.telegram.ui.ActionBar.d2 d2Var = this.f25461c[0];
                     if (d2Var != null) {
                         d2Var.dismiss();
                     }
@@ -48,8 +48,8 @@ public final class b2 implements TextView.OnEditorActionListener {
                 }
                 return true;
             default:
-                uf.n nVar = (uf.n) this.e;
-                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.f23542f;
+                vf.n nVar = (vf.n) this.f25462e;
+                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.f25463f;
                 if (i10 != 6) {
                     return false;
                 }
@@ -57,7 +57,7 @@ public final class b2 implements TextView.OnEditorActionListener {
                 if (obj2.length() > 32) {
                     AndroidUtilities.shakeView(nVar);
                 } else {
-                    uf.t d = uf.t.d(this.f23540b);
+                    vf.t d = vf.t.d(this.f25460b);
                     TL_account.TL_businessChatLink c3 = d.c(tL_businessChatLink.link);
                     if (c3 != null) {
                         TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
@@ -66,13 +66,13 @@ public final class b2 implements TextView.OnEditorActionListener {
                         tL_inputBusinessChatLink.title = obj2;
                         d.b(c3, tL_inputBusinessChatLink, null);
                     }
-                    org.telegram.ui.ActionBar.d2[] d2VarArr = this.f23541c;
+                    org.telegram.ui.ActionBar.d2[] d2VarArr = this.f25461c;
                     org.telegram.ui.ActionBar.d2 d2Var2 = d2VarArr[0];
                     if (d2Var2 != null) {
                         d2Var2.dismiss();
                     }
-                    if (d2VarArr[0] == uf.q.d) {
-                        uf.q.d = null;
+                    if (d2VarArr[0] == vf.q.d) {
+                        vf.q.d = null;
                     }
                     View view2 = this.d;
                     if (view2 != null) {

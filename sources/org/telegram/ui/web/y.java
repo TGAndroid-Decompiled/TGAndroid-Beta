@@ -8,20 +8,20 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.gj0;
-import org.telegram.ui.iy;
-import org.telegram.ui.kf1;
-import org.telegram.ui.oy;
-public final class y implements gj0, iy {
-    public final a1 f39704a;
-    public final boolean[] f39705b;
-    public final String f39706c;
+import org.telegram.ui.hj0;
+import org.telegram.ui.jy;
+import org.telegram.ui.mf1;
+import org.telegram.ui.py;
+public final class y implements hj0, jy {
+    public final a1 f42773a;
+    public final boolean[] f42774b;
+    public final String f42775c;
     public final TL_keyboard.TL_buttonTypeRequestPeer d;
 
     public y(a1 a1Var, boolean[] zArr, String str, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer) {
-        this.f39704a = a1Var;
-        this.f39705b = zArr;
-        this.f39706c = str;
+        this.f42773a = a1Var;
+        this.f42774b = zArr;
+        this.f42775c = str;
         this.d = tL_buttonTypeRequestPeer;
     }
 
@@ -31,7 +31,7 @@ public final class y implements gj0, iy {
     }
 
     @Override
-    public boolean K(oy oyVar) {
+    public boolean J(py pyVar) {
         return false;
     }
 
@@ -39,12 +39,12 @@ public final class y implements gj0, iy {
     public void a(ArrayList arrayList) {
         if (!arrayList.isEmpty()) {
             int i10 = 0;
-            this.f39705b[0] = true;
+            this.f42774b[0] = true;
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            a1 a1Var = this.f39704a;
+            a1 a1Var = this.f42773a;
             MessagesController.getInstance(a1Var.J);
             tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(a1Var.R);
-            String str = this.f39706c;
+            String str = this.f42775c;
             tL_messages_sendBotRequestedPeer.webapp_req_id = str;
             tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
             int size = arrayList.size();
@@ -58,15 +58,15 @@ public final class y implements gj0, iy {
     }
 
     @Override
-    public boolean w(oy oyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, kf1 kf1Var) {
+    public boolean v(py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, mf1 mf1Var) {
         if (!arrayList.isEmpty()) {
             int i12 = 0;
-            this.f39705b[0] = true;
+            this.f42774b[0] = true;
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            a1 a1Var = this.f39704a;
+            a1 a1Var = this.f42773a;
             MessagesController.getInstance(a1Var.J);
             tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(a1Var.R);
-            String str = this.f39706c;
+            String str = this.f42775c;
             tL_messages_sendBotRequestedPeer.webapp_req_id = str;
             tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
             HashSet hashSet = new HashSet();
@@ -82,7 +82,7 @@ public final class y implements gj0, iy {
             }
             ConnectionsManager.getInstance(a1Var.J).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new w(a1Var, str, 1));
         }
-        oyVar.finishFragment();
+        pyVar.finishFragment();
         return true;
     }
 }

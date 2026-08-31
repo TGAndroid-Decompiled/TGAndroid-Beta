@@ -1,22 +1,22 @@
 package r4;
 public interface h {
-    long S();
+    boolean A();
 
-    long U(long j10);
+    long C();
 
-    long W(long j10, long j11);
+    long F(long j10);
+
+    long I(long j10, long j11);
 
     long a(long j10);
 
-    long e(long j10, long j11);
+    long h(long j10, long j11);
 
-    long j(long j10, long j11);
+    long m(long j10, long j11);
 
-    long k(long j10, long j11);
+    long n(long j10, long j11);
 
-    s4.j l(long j10);
+    s4.j p(long j10);
 
-    long q(long j10, long j11);
-
-    boolean w();
+    long t(long j10, long j11);
 }

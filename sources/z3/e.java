@@ -3,13 +3,13 @@ package z3;
 import android.util.Pair;
 import h5.d0;
 import h5.w;
-import k7.t6;
+import k7.u6;
 public abstract class e {
-    public static final byte[] f47286a;
+    public static final byte[] f50976a;
 
     static {
-        int i10 = d0.f6937a;
-        f47286a = "OpusHead".getBytes(r8.d.f43389c);
+        int i10 = d0.f7237a;
+        f50976a = "OpusHead".getBytes(r8.d.f46738c);
     }
 
     public static a4.c a(int i10, w wVar) {
@@ -86,7 +86,7 @@ public abstract class e {
         int i13;
         Integer num2;
         boolean z12;
-        int i14 = wVar.f7001b;
+        int i14 = wVar.f7309b;
         while (i14 - i10 < i11) {
             wVar.F(i14);
             int g10 = wVar.g();
@@ -96,7 +96,7 @@ public abstract class e {
             } else {
                 z4 = false;
             }
-            t6.a("childAtomSize must be positive", z4);
+            u6.a("childAtomSize must be positive", z4);
             if (wVar.g() == 1936289382) {
                 int i15 = i14 + 8;
                 int i16 = -1;
@@ -111,7 +111,7 @@ public abstract class e {
                         num3 = Integer.valueOf(wVar.g());
                     } else if (g12 == 1935894637) {
                         wVar.G(4);
-                        str = wVar.s(4, r8.d.f43389c);
+                        str = wVar.s(4, r8.d.f46738c);
                     } else if (g12 == 1935894633) {
                         i16 = i15;
                         i17 = g11;
@@ -127,13 +127,13 @@ public abstract class e {
                     } else {
                         z10 = false;
                     }
-                    t6.a("frma atom is mandatory", z10);
+                    u6.a("frma atom is mandatory", z10);
                     if (i16 != -1) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    t6.a("schi atom is mandatory", z11);
+                    u6.a("schi atom is mandatory", z11);
                     int i18 = i16 + 8;
                     while (true) {
                         if (i18 - i16 < i17) {
@@ -181,8 +181,8 @@ public abstract class e {
                     if (qVar != null) {
                         z13 = true;
                     }
-                    t6.a("tenc atom is mandatory", z13);
-                    int i19 = d0.f6937a;
+                    u6.a("tenc atom is mandatory", z13);
+                    int i19 = d0.f7237a;
                     create = Pair.create(num, qVar);
                 }
                 if (create != null) {

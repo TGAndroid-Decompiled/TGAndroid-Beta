@@ -9,19 +9,19 @@ import y8.b;
 import y8.c;
 import y8.d;
 public final class a implements e {
-    public static final a f7048b = new a(0);
-    public static final a f7049c = new a(1);
+    public static final a f7362b = new a(0);
+    public static final a f7363c = new a(1);
     public static final a d = new a(2);
-    public static final a e = new a(3);
-    public final int f7050a;
+    public static final a f7364e = new a(3);
+    public final int f7365a;
 
     public a(int i10) {
-        this.f7050a = i10;
+        this.f7365a = i10;
     }
 
     @Override
-    public final Object f0(j jVar) {
-        switch (this.f7050a) {
+    public final Object e0(j jVar) {
+        switch (this.f7365a) {
             case 0:
                 Object f10 = jVar.f(new t(y8.a.class, Executor.class));
                 kotlin.jvm.internal.j.d(f10, "c.get(Qualified.qualifie…a, Executor::class.java))");

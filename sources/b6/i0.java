@@ -9,41 +9,41 @@ import android.os.StrictMode;
 import java.util.HashMap;
 import java.util.concurrent.Executor;
 public final class i0 implements ServiceConnection {
-    public final HashMap f1603a = new HashMap();
-    public int f1604b = 2;
-    public boolean f1605c;
+    public final HashMap f1733a = new HashMap();
+    public int f1734b = 2;
+    public boolean f1735c;
     public IBinder d;
-    public final h0 e;
-    public ComponentName f1606f;
+    public final h0 f1736e;
+    public ComponentName f1737f;
     public final k0 h;
 
     public i0(k0 k0Var, h0 h0Var) {
         this.h = k0Var;
-        this.e = h0Var;
+        this.f1736e = h0Var;
     }
 
     public static y5.a a(i0 i0Var, String str, Executor executor) {
         try {
-            Intent a2 = i0Var.e.a(i0Var.h.f1620b);
-            i0Var.f1604b = 3;
+            Intent a2 = i0Var.f1736e.a(i0Var.h.f1752b);
+            i0Var.f1734b = 3;
             StrictMode.VmPolicy vmPolicy = StrictMode.getVmPolicy();
             if (Build.VERSION.SDK_INT >= 31) {
                 StrictMode.setVmPolicy(i6.g.a(new StrictMode.VmPolicy.Builder(vmPolicy)).build());
             }
             try {
                 k0 k0Var = i0Var.h;
-                boolean c3 = k0Var.d.c(k0Var.f1620b, str, a2, i0Var, 4225, executor);
-                i0Var.f1605c = c3;
+                boolean c3 = k0Var.d.c(k0Var.f1752b, str, a2, i0Var, 4225, executor);
+                i0Var.f1735c = c3;
                 if (c3) {
-                    i0Var.h.f1621c.sendMessageDelayed(i0Var.h.f1621c.obtainMessage(1, i0Var.e), i0Var.h.f1622f);
-                    y5.a aVar = y5.a.e;
+                    i0Var.h.f1753c.sendMessageDelayed(i0Var.h.f1753c.obtainMessage(1, i0Var.f1736e), i0Var.h.f1755f);
+                    y5.a aVar = y5.a.f50756e;
                     StrictMode.setVmPolicy(vmPolicy);
                     return aVar;
                 }
-                i0Var.f1604b = 2;
+                i0Var.f1734b = 2;
                 try {
                     k0 k0Var2 = i0Var.h;
-                    k0Var2.d.b(k0Var2.f1620b, i0Var);
+                    k0Var2.d.b(k0Var2.f1752b, i0Var);
                 } catch (IllegalArgumentException unused) {
                 }
                 y5.a aVar2 = new y5.a(16);
@@ -53,8 +53,8 @@ public final class i0 implements ServiceConnection {
                 StrictMode.setVmPolicy(vmPolicy);
                 throw th2;
             }
-        } catch (a0 e) {
-            return e.f1559a;
+        } catch (a0 e6) {
+            return e6.f1686a;
         }
     }
 
@@ -65,15 +65,15 @@ public final class i0 implements ServiceConnection {
 
     @Override
     public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        synchronized (this.h.f1619a) {
+        synchronized (this.h.f1751a) {
             try {
-                this.h.f1621c.removeMessages(1, this.e);
+                this.h.f1753c.removeMessages(1, this.f1736e);
                 this.d = iBinder;
-                this.f1606f = componentName;
-                for (ServiceConnection serviceConnection : this.f1603a.values()) {
+                this.f1737f = componentName;
+                for (ServiceConnection serviceConnection : this.f1733a.values()) {
                     serviceConnection.onServiceConnected(componentName, iBinder);
                 }
-                this.f1604b = 1;
+                this.f1734b = 1;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -82,15 +82,15 @@ public final class i0 implements ServiceConnection {
 
     @Override
     public final void onServiceDisconnected(ComponentName componentName) {
-        synchronized (this.h.f1619a) {
+        synchronized (this.h.f1751a) {
             try {
-                this.h.f1621c.removeMessages(1, this.e);
+                this.h.f1753c.removeMessages(1, this.f1736e);
                 this.d = null;
-                this.f1606f = componentName;
-                for (ServiceConnection serviceConnection : this.f1603a.values()) {
+                this.f1737f = componentName;
+                for (ServiceConnection serviceConnection : this.f1733a.values()) {
                     serviceConnection.onServiceDisconnected(componentName);
                 }
-                this.f1604b = 2;
+                this.f1734b = 2;
             } catch (Throwable th2) {
                 throw th2;
             }

@@ -1,36 +1,54 @@
 package oh;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.TranslateController;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.w51;
-public final class s extends h51 {
-    public static final int f16611a = 0;
-
-    static {
-        h51.setup(new h51());
+import j$.util.DesugarArrays;
+import j$.util.stream.Collectors;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.qd;
+public abstract class s {
+    public static int[] a() {
+        return new int[]{10000, 3600, 400, 20, -10787210, -8681059, -14341066, 2000, 1800, 280, 10, -2013375, -1482439, -7666429, 500, 900, 200, 7, -1214690, -1214690, -6606592, 250, 600, 150, 4, -1926647, -1926647, -6668800, 100, 300, 110, 3, -12539616, -12539616, -15244800, 50, 120, 80, 2, -12147733, -12147733, -16756594, 10, 60, 60, 1, -6988581, -6988581, -11991141, 0, 30, 30, 0, -6988581, -6988581, -11991141};
     }
 
-    @Override
-    public final void bindView(View view, i51 i51Var, boolean z4, w51 w51Var, g61 g61Var) {
-        t tVar = (t) view;
-        TranslateController.Language language = (TranslateController.Language) i51Var.G;
-        tVar.f16612a.setText(language.displayName);
-        tVar.f16613b.setText(language.ownDisplayName);
-        if (tVar.f16614c != z4) {
-            tVar.invalidate();
+    public static int b(int i10, int i11, int i12) {
+        int[] iArr = MessagesController.getInstance(i10).starsGroupcallMessageLimits;
+        for (int i13 = 0; i13 < iArr.length / 7; i13++) {
+            int i14 = i13 * 7;
+            if (i11 >= iArr[i14]) {
+                return iArr[i14 + 1 + i12];
+            }
         }
-        tVar.f16614c = z4;
-        tVar.setWillNotDraw(!z4);
+        return 0;
     }
 
-    @Override
-    public final View createView(Context context, sl0 sl0Var, int i10, int i11, f6 f6Var) {
-        return new t(context);
+    public static int[] c(org.telegram.tgnet.TLRPC.TL_jsonArray r13) {
+        throw new UnsupportedOperationException("Method not decompiled: oh.s.c(org.telegram.tgnet.TLRPC$TL_jsonArray):int[]");
+    }
+
+    public static int[] d(String str) {
+        if (str != null && str.length() != 0) {
+            try {
+                return DesugarArrays.stream(str.split(",")).mapToInt(new org.telegram.messenger.e4(1)).toArray();
+            } catch (Exception e6) {
+                FileLog.e(e6);
+                return a();
+            }
+        }
+        return a();
+    }
+
+    public static boolean e(int[] iArr, int[] iArr2) {
+        if (iArr2 != null && iArr.length == iArr2.length) {
+            for (int i10 = 0; i10 < iArr.length; i10++) {
+                if (iArr[i10] == iArr2[i10]) {
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public static String f(int[] iArr) {
+        return (String) DesugarArrays.stream(iArr).mapToObj(new qd(0)).collect(Collectors.joining(","));
     }
 }

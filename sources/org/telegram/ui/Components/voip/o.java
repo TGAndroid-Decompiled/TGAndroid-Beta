@@ -1,167 +1,291 @@
 package org.telegram.ui.Components.voip;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.TextureView;
+import android.content.Intent;
+import android.media.projection.MediaProjectionManager;
+import android.util.LongSparseArray;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.ui.Components.f91;
-import org.telegram.ui.c60;
-public final class o extends s2 {
-    public float f29810d0;
-    public final ChatObject.Call f29811e0;
-    public final k0 f29812f0;
-    public final TextPaint f29813g0;
-    public final StaticLayout f29814h0;
-    public final TextPaint f29815i0;
-    public final String f29816j0;
-    public final float f29817k0;
-    public final StaticLayout f29818l0;
-    public final c60 m0;
-    public final String f29819n0;
-    public final float f29820o0;
-    public final t f29821p0;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Cells.r3;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.Components.dq;
+import org.telegram.ui.Components.k6;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.qd;
+import org.telegram.ui.Components.td0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.bu0;
+import org.telegram.ui.lf;
+import org.telegram.ui.ti0;
+import org.telegram.ui.vh1;
+import org.telegram.ui.yx0;
+import qh.d5;
+import qh.e5;
+import qh.p7;
+import qh.r9;
+import wh.g4;
+import wh.i4;
+public final class o implements View.OnClickListener {
+    public final int f32214a;
+    public final Object f32215b;
 
-    public o(t tVar, Context context, ChatObject.Call call, k0 k0Var, TextPaint textPaint, StaticLayout staticLayout, TextPaint textPaint2, String str, float f10, StaticLayout staticLayout2, c60 c60Var, String str2, float f11) {
-        super(context, false, false, true, true);
-        this.f29821p0 = tVar;
-        this.f29811e0 = call;
-        this.f29812f0 = k0Var;
-        this.f29813g0 = textPaint;
-        this.f29814h0 = staticLayout;
-        this.f29815i0 = textPaint2;
-        this.f29816j0 = str;
-        this.f29817k0 = f10;
-        this.f29818l0 = staticLayout2;
-        this.m0 = c60Var;
-        this.f29819n0 = str2;
-        this.f29820o0 = f11;
+    public o(Object obj, int i10) {
+        this.f32214a = i10;
+        this.f32215b = obj;
     }
 
     @Override
-    public final void a() {
-        super.a();
-        this.f29810d0 = this.f29821p0.f29944t0;
-    }
-
-    @Override
-    public final void b() {
+    public final void onClick(View view) {
+        Utilities.Callback callback;
         int i10;
-        ChatObject.VideoParticipant videoParticipant;
-        t tVar = this.f29821p0;
-        TextView textView = tVar.L;
-        o oVar = tVar.f29919a;
-        invalidate();
-        ChatObject.Call call = this.f29811e0;
-        if (call != null && call.call.rtmp_stream && tVar.f29948w0) {
-            AndroidUtilities.cancelRunOnUIThread(tVar.f29950x0);
-            tVar.f29948w0 = false;
-            textView.animate().cancel();
-            textView.animate().alpha(0.0f).setDuration(150L).start();
-            oVar.animate().cancel();
-            oVar.animate().alpha(1.0f).setDuration(150L).start();
+        int i11;
+        wh.a aVar;
+        g4 g4Var;
+        switch (this.f32214a) {
+            case 0:
+                u uVar = (u) this.f32215b;
+                if (VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().stopScreenCapture();
+                }
+                uVar.K.animate().alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setDuration(180L).start();
+                return;
+            case 1:
+                v0 v0Var = (v0) this.f32215b;
+                if (!v0Var.f32408a) {
+                    if (v0Var.f32417x == 0 && v0Var.f32418y) {
+                        ((Activity) v0Var.getContext()).startActivityForResult(((MediaProjectionManager) v0Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
+                        return;
+                    } else {
+                        v0Var.b(false, true);
+                        return;
+                    }
+                }
+                return;
+            case 2:
+                vh1 vh1Var = (vh1) this.f32215b;
+                if (!vh1Var.f31965a) {
+                    if (vh1Var.f31973w == 0) {
+                        ((Activity) vh1Var.getContext()).startActivityForResult(((MediaProjectionManager) vh1Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
+                        return;
+                    } else {
+                        vh1Var.a(false, true);
+                        return;
+                    }
+                }
+                return;
+            case 3:
+                Context context = (Context) this.f32215b;
+                if (VoIPService.getSharedInstance() != null) {
+                    Intent action = new Intent(context, LaunchActivity.class).setAction("voip_chat");
+                    action.putExtra("currentAccount", VoIPService.getSharedInstance().getAccount());
+                    if (!(context instanceof Activity)) {
+                        action.addFlags(268435456);
+                    }
+                    context.startActivity(action);
+                    h1.j();
+                    return;
+                }
+                return;
+            case 4:
+                org.telegram.ui.web.k kVar = (org.telegram.ui.web.k) this.f32215b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kVar.getContext());
+                alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.WebRecentClearTitle);
+                alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.WebRecentClearText);
+                alertDialog$Builder.k(LocaleController.getString(R.string.OK), new org.telegram.ui.web.a(kVar));
+                l.d.u(R.string.Cancel, alertDialog$Builder, null);
+                return;
+            case 5:
+                ((org.telegram.ui.web.s0) this.f32215b).run();
+                return;
+            case 6:
+                qh.k kVar2 = (qh.k) this.f32215b;
+                qh.f fVar = kVar2.f45517f;
+                fVar.d();
+                fVar.k(true);
+                qh.e eVar = kVar2.W;
+                AndroidUtilities.cancelRunOnUIThread(eVar);
+                eVar.run();
+                return;
+            case 7:
+                ((r9) this.f32215b).B();
+                return;
+            case 8:
+                qh.n0.a((qh.n0) this.f32215b);
+                return;
+            case 9:
+                ((bu0) this.f32215b).run();
+                return;
+            case 10:
+                e5 e5Var = ((d5) this.f32215b).f45213x;
+                if (e5Var.f45251r && (callback = e5Var.f45249f) != null) {
+                    callback.run(5);
+                    return;
+                }
+                return;
+            case 11:
+                p7 p7Var = (p7) ((td0) this.f32215b).h;
+                if (p7Var != null) {
+                    p7Var.run();
+                    return;
+                }
+                return;
+            case 12:
+                ((lf) this.f32215b).run();
+                return;
+            case 13:
+                ((lf) this.f32215b).run();
+                return;
+            case 14:
+                ChatActivityEnterView.h(((qd) ((sh.l0) this.f32215b).d).f30372a, (TL_keyboard.KeyboardButton) view.getTag());
+                return;
+            case 15:
+                ((yx0) this.f32215b).run();
+                return;
+            case 16:
+                th.n nVar = (th.n) this.f32215b;
+                TLRPC.Chat chat = nVar.E;
+                if (chat != null && !chat.title.equals(((mh.m) nVar.f48157n.f45839b).getText().toString())) {
+                    nVar.getMessagesController().changeChatTitle(nVar.E.f20843id, ((mh.m) nVar.f48157n.f45839b).getText().toString(), new th.i(nVar, 1));
+                }
+                TLRPC.Chat chat2 = nVar.E;
+                if (chat2 != null && nVar.h != nVar.f48156f) {
+                    if (chat2.default_banned_rights == null) {
+                        chat2.default_banned_rights = new TLRPC.TL_chatBannedRights();
+                    }
+                    nVar.E.default_banned_rights.manage_linked_peers = !nVar.h;
+                    nVar.getMessagesController().setDefaultBannedRole(nVar.f48153b, nVar.E.default_banned_rights, false, nVar);
+                }
+                nVar.finishFragment();
+                return;
+            case 17:
+                ((th.c0) this.f32215b).h.d.D(0);
+                return;
+            case 18:
+                th.i0.x(((th.d0) this.f32215b).f48108r);
+                return;
+            case 19:
+                uf.k kVar3 = (uf.k) this.f32215b;
+                MessagesController.getInstance(kVar3.C).hintDialogs.clear();
+                MessagesController.getGlobalMainSettings().edit().remove("installReferer").commit();
+                kVar3.l();
+                return;
+            case 20:
+                ((uf.p) this.f32215b).run();
+                return;
+            case 21:
+                ((uf.h0) this.f32215b).K();
+                return;
+            case 22:
+                uf.m1 m1Var = (uf.m1) this.f32215b;
+                LongSparseArray longSparseArray = m1Var.f48649n;
+                r3 r3Var = (r3) view.getParent();
+                TLRPC.StickerSetCovered stickerSet = r3Var.getStickerSet();
+                if (stickerSet != null && m1Var.h.indexOfKey(stickerSet.set.f20870id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f20870id) < 0) {
+                    if (r3Var.f23549r) {
+                        longSparseArray.put(stickerSet.set.f20870id, stickerSet);
+                        m1Var.f48647e.f31259a.h(r3Var.getStickerSet());
+                        return;
+                    }
+                    m1Var.F(stickerSet, r3Var);
+                    return;
+                }
+                return;
+            case 23:
+                vf.e eVar2 = (vf.e) this.f32215b;
+                k6 k6Var = eVar2.f49025f;
+                int i12 = eVar2.f49021a;
+                boolean z4 = eVar2.f49027r;
+                eVar2.f49027r = !z4;
+                dq dqVar = eVar2.h;
+                if (!z4) {
+                    i10 = R.string.BizBotStart;
+                } else {
+                    i10 = R.string.BizBotStop;
+                }
+                dqVar.c(LocaleController.getString(i10), true, true);
+                k6Var.a();
+                if (eVar2.f49027r) {
+                    i11 = R.string.BizBotStatusStopped;
+                } else {
+                    i11 = R.string.BizBotStatusManages;
+                }
+                k6Var.c(LocaleController.getString(i11), true, true);
+                if (eVar2.f49027r) {
+                    eVar2.f49029w |= 1;
+                } else {
+                    eVar2.f49029w &= -2;
+                }
+                MessagesController.getNotificationsSettings(i12).edit().putInt("dialog_botflags" + eVar2.f49028s, eVar2.f49029w).apply();
+                TL_account.toggleConnectedBotPaused toggleconnectedbotpaused = new TL_account.toggleConnectedBotPaused();
+                toggleconnectedbotpaused.peer = MessagesController.getInstance(i12).getInputPeer(eVar2.f49028s);
+                toggleconnectedbotpaused.paused = eVar2.f49027r;
+                ConnectionsManager.getInstance(i12).sendRequest(toggleconnectedbotpaused, null);
+                return;
+            case 24:
+                TL_account.TL_businessChatLink tL_businessChatLink = ((vf.o) this.f32215b).f49155f;
+                if (tL_businessChatLink != null) {
+                    AndroidUtilities.addToClipboard(tL_businessChatLink.link);
+                    qc.a0(LaunchActivity.R()).k(false).j();
+                    return;
+                }
+                return;
+            case 25:
+                ((vh.b) this.f32215b).dismiss();
+                return;
+            case 26:
+                wh.q qVar = (wh.q) this.f32215b;
+                qVar.H(0, true, 0, false, 0L);
+                ti0 ti0Var = qVar.L;
+                if (ti0Var != null) {
+                    ti0Var.h(true);
+                    qVar.L = null;
+                    return;
+                }
+                return;
+            case 27:
+                wh.r0 r0Var = (wh.r0) this.f32215b;
+                wh.z2 z2Var = r0Var.h;
+                if (z2Var != null && (aVar = r0Var.f49964f) != null) {
+                    wh.r3 r3Var2 = z2Var.f50217a;
+                    r3Var2.getClass();
+                    if (wh.r3.x3(aVar)) {
+                        TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f49616b;
+                        wh.d2 d2Var = r3Var2.G3;
+                        if (d2Var != null) {
+                            d2Var.d();
+                        }
+                        pageblockdetails.open = !pageblockdetails.open;
+                        r3Var2.V2.N(true);
+                        wh.d2 d2Var2 = r3Var2.G3;
+                        if (d2Var2 != null) {
+                            d2Var2.h();
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                i4 i4Var = (i4) this.f32215b;
+                wh.a aVar2 = i4Var.f50174a;
+                if (aVar2 != null && (g4Var = i4Var.D) != null) {
+                    ((wh.n3) g4Var).f49889a.f49979e3.n(aVar2);
+                    return;
+                }
+                return;
         }
-        boolean z4 = tVar.f29938p0;
-        r2 r2Var = this.d;
-        if (!z4 && r2Var.getAlpha() != 1.0f) {
-            r2Var.animate().setDuration(300L).alpha(1.0f);
-        }
-        TextureView textureView = this.e;
-        if (textureView != null && textureView.getAlpha() != 1.0f) {
-            textureView.animate().setDuration(300L).alpha(1.0f);
-        }
-        ImageView imageView = tVar.f29945u0;
-        if (imageView != null && imageView.getParent() != null) {
-            if (tVar.f29945u0.getAlpha() == 1.0f) {
-                tVar.f29945u0.animate().alpha(0.0f).setDuration(300L).setListener(new f91(this, 2)).start();
-            } else if (tVar.f29945u0.getParent() != null) {
-                oVar.removeView(tVar.f29945u0);
-            }
-        }
-        int i11 = r2Var.rotatedFrameHeight;
-        if (i11 != 0 && (i10 = r2Var.rotatedFrameWidth) != 0 && (videoParticipant = tVar.f29947w) != null) {
-            videoParticipant.setAspectRatio(i10, i11, call);
-        }
-    }
-
-    @Override
-    public final void dispatchDraw(android.graphics.Canvas r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.o.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        t tVar = this.f29821p0;
-        if (tVar.f29929g0 && view == tVar.f29919a.d) {
-            canvas.save();
-            float f10 = tVar.f29922b0;
-            canvas.scale(f10, f10, tVar.f29924c0, tVar.f29925d0);
-            canvas.translate(tVar.f29926e0, tVar.f29928f0);
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void e() {
-        super.e();
-        t tVar = this.f29821p0;
-        o oVar = tVar.f29919a;
-        ImageView imageView = tVar.f29945u0;
-        if (imageView != null && imageView.getParent() != null) {
-            tVar.f29945u0.getLayoutParams().width = oVar.d.getMeasuredWidth();
-            tVar.f29945u0.getLayoutParams().height = oVar.d.getMeasuredHeight();
-        }
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        t tVar = this.f29821p0;
-        tVar.N = true;
-        tVar.invalidate();
-        tVar.N = false;
-    }
-
-    @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        int i14;
-        ChatObject.VideoParticipant videoParticipant;
-        t tVar = this.f29821p0;
-        o oVar = tVar.f29919a;
-        boolean z10 = tVar.v;
-        r2 r2Var = this.d;
-        if (z10 && tVar.O && r2Var.rotatedFrameHeight != 0 && r2Var.rotatedFrameWidth != 0) {
-            if (tVar.h) {
-                oVar.U = 1;
-            } else if (tVar.f29921b) {
-                oVar.U = 1;
-            } else if (this.f29812f0.f29713b) {
-                oVar.U = 0;
-            } else if (tVar.f29947w.presentation) {
-                oVar.U = 1;
-            } else {
-                oVar.U = 2;
-            }
-            tVar.O = false;
-        }
-        super.onLayout(z4, i10, i11, i12, i13);
-        int i15 = r2Var.rotatedFrameHeight;
-        if (i15 != 0 && (i14 = r2Var.rotatedFrameWidth) != 0 && (videoParticipant = tVar.f29947w) != null) {
-            videoParticipant.setAspectRatio(i14, i15, this.f29811e0);
-        }
-    }
-
-    @Override
-    public final void requestLayout() {
-        this.f29821p0.requestLayout();
-        super.requestLayout();
     }
 }

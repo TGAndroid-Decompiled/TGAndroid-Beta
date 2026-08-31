@@ -1,17 +1,17 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class e01 extends uf.a1 {
-    public final g01 D;
+public final class e01 extends org.telegram.ui.Cells.j5 {
+    public final i01 v;
 
-    public e01(g01 g01Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
-        this.D = g01Var;
+    public e01(i01 i01Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(18, 70, context, g6Var, false);
+        this.v = i01Var;
     }
 
     @Override
     public final int a(int i10) {
-        this.D.e.getClass();
+        this.v.f37715e.getClass();
         return i10;
     }
 }

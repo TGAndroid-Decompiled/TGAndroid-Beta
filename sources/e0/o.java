@@ -3,29 +3,29 @@ package e0;
 import android.app.Notification;
 import java.util.ArrayList;
 public final class o extends b0 {
-    public final int e;
-    public Object f5005f;
+    public final int f4833e;
+    public Object f4834f;
 
     public o(boolean z4) {
-        this.e = 0;
+        this.f4833e = 0;
     }
 
     @Override
     public final void b(a4.k kVar) {
-        switch (this.e) {
+        switch (this.f4833e) {
             case 0:
-                Notification.BigTextStyle bigText = new Notification.BigTextStyle((Notification.Builder) kVar.f87c).setBigContentTitle(this.f4956b).bigText((CharSequence) this.f5005f);
+                Notification.BigTextStyle bigText = new Notification.BigTextStyle((Notification.Builder) kVar.f94c).setBigContentTitle(this.f4776b).bigText((CharSequence) this.f4834f);
                 if (this.d) {
-                    bigText.setSummaryText(this.f4957c);
+                    bigText.setSummaryText(this.f4777c);
                     return;
                 }
                 return;
             default:
-                Notification.InboxStyle bigContentTitle = new Notification.InboxStyle((Notification.Builder) kVar.f87c).setBigContentTitle(this.f4956b);
+                Notification.InboxStyle bigContentTitle = new Notification.InboxStyle((Notification.Builder) kVar.f94c).setBigContentTitle(this.f4776b);
                 if (this.d) {
-                    bigContentTitle.setSummaryText(this.f4957c);
+                    bigContentTitle.setSummaryText(this.f4777c);
                 }
-                ArrayList arrayList = (ArrayList) this.f5005f;
+                ArrayList arrayList = (ArrayList) this.f4834f;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
@@ -39,7 +39,7 @@ public final class o extends b0 {
 
     @Override
     public final String c() {
-        switch (this.e) {
+        switch (this.f4833e) {
             case 0:
                 return "androidx.core.app.NotificationCompat$BigTextStyle";
             default:
@@ -49,28 +49,28 @@ public final class o extends b0 {
 
     public void d(String str) {
         if (str != null) {
-            ((ArrayList) this.f5005f).add(t.d(str));
+            ((ArrayList) this.f4834f).add(t.d(str));
         }
     }
 
     public void e(String str) {
-        this.f5005f = t.d(str);
+        this.f4834f = t.d(str);
     }
 
     public void f(String str) {
-        this.f4956b = t.d(str);
+        this.f4776b = t.d(str);
     }
 
     public void g(String str) {
-        this.f4957c = t.d(str);
+        this.f4777c = t.d(str);
         this.d = true;
     }
 
     public o(int i10) {
-        this.e = i10;
+        this.f4833e = i10;
         switch (i10) {
             case 1:
-                this.f5005f = new ArrayList();
+                this.f4834f = new ArrayList();
                 return;
             default:
                 return;

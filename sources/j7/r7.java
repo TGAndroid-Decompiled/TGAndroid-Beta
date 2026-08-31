@@ -1,13 +1,10 @@
 package j7;
-
-import android.content.Context;
-import android.graphics.drawable.Drawable;
 public abstract class r7 {
-    public static android.content.res.ColorStateList a(android.content.Context r8, int r9) {
-        throw new UnsupportedOperationException("Method not decompiled: j7.r7.a(android.content.Context, int):android.content.res.ColorStateList");
-    }
-
-    public static Drawable b(Context context, int i10) {
-        return m.n2.d().g(context, i10);
+    public static gd.e a(int i10, int i11) {
+        if (i11 <= Integer.MIN_VALUE) {
+            gd.e eVar = gd.e.d;
+            return gd.e.d;
+        }
+        return new gd.d(i10, i11 - 1, 1);
     }
 }

@@ -1,5 +1,10 @@
 package org.telegram.ui;
 
-import android.widget.FrameLayout;
-public final class zu extends FrameLayout {
+import android.view.MotionEvent;
+import android.view.View;
+public final class zu implements View.OnTouchListener {
+    @Override
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        return true;
+    }
 }

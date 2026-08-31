@@ -23,7 +23,7 @@ public interface rg {
 
     boolean n();
 
-    zn o();
+    bo o();
 
     void p();
 }

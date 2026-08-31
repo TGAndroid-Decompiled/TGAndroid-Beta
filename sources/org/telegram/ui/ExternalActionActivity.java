@@ -22,26 +22,26 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public class ExternalActionActivity extends Activity implements org.telegram.ui.ActionBar.b5 {
-    public static final ArrayList f31587x = new ArrayList();
-    public static final ArrayList f31588y = new ArrayList();
-    public boolean f31589a;
-    public org.telegram.ui.Components.vd0 f31590b;
-    public ActionBarLayout f31591c;
+public class ExternalActionActivity extends Activity implements org.telegram.ui.ActionBar.c5 {
+    public static final ArrayList f34106x = new ArrayList();
+    public static final ArrayList f34107y = new ArrayList();
+    public boolean f34108a;
+    public org.telegram.ui.Components.xd0 f34109b;
+    public ActionBarLayout f34110c;
     public ActionBarLayout d;
-    public org.telegram.ui.Components.qv0 e;
-    public org.telegram.ui.ActionBar.y3 f31592f;
+    public org.telegram.ui.Components.qv0 f34111e;
+    public org.telegram.ui.ActionBar.z3 f34112f;
     public Intent h;
-    public boolean f31593n;
-    public int f31594r;
-    public int f31595s;
+    public boolean f34113n;
+    public int f34114r;
+    public int f34115s;
     public boolean v;
-    public z5 f31596w;
+    public z5 f34116w;
 
     @Override
     public final void b(ActionBarLayout actionBarLayout, boolean z4) {
         if (AndroidUtilities.isTablet() && actionBarLayout == this.d) {
-            this.f31591c.U(z4, z4);
+            this.f34110c.U(z4, z4);
         }
     }
 
@@ -51,10 +51,10 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
         }
         i();
         this.h = intent;
-        this.f31593n = z4;
+        this.f34113n = z4;
         this.v = z10;
-        this.f31594r = i10;
-        this.f31595s = i11;
+        this.f34114r = i10;
+        this.f34115s = i11;
         UserConfig.getInstance(i10).saveConfig(false);
         return false;
     }
@@ -68,27 +68,27 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
                 int activatedAccountsCount = UserConfig.getActivatedAccountsCount();
                 if (activatedAccountsCount == 0) {
                     this.h = intent;
-                    this.f31593n = z4;
+                    this.f34113n = z4;
                     this.v = z10;
-                    this.f31594r = i10;
-                    this.f31595s = i11;
-                    ng0 ng0Var = new ng0();
+                    this.f34114r = i10;
+                    this.f34115s = i11;
+                    og0 og0Var = new og0();
                     if (AndroidUtilities.isTablet()) {
-                        this.d.c(-1, ng0Var);
+                        this.d.c(-1, og0Var);
                     } else {
-                        this.f31591c.c(-1, ng0Var);
+                        this.f34110c.c(-1, og0Var);
                     }
                     if (!AndroidUtilities.isTablet()) {
-                        this.e.setVisibility(8);
+                        this.f34111e.setVisibility(8);
                     }
-                    this.f31591c.c0();
+                    this.f34110c.c0();
                     if (AndroidUtilities.isTablet()) {
                         this.d.c0();
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this);
-                    alertDialog$Builder.f19503a.O = LocaleController.getString(R.string.AppName);
-                    alertDialog$Builder.f19503a.Q = LocaleController.getString(R.string.PleaseLoginPassport);
-                    kh.a2.C(R.string.OK, alertDialog$Builder, null);
+                    alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.AppName);
+                    alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.PleaseLoginPassport);
+                    l.d.C(R.string.OK, alertDialog$Builder, null);
                     return;
                 } else if (activatedAccountsCount >= 2) {
                     org.telegram.ui.ActionBar.d2 i12 = org.telegram.ui.Components.z4.i(this, new org.telegram.ui.Components.w4() {
@@ -101,7 +101,7 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
                             boolean z12 = z4;
                             boolean z13 = z10;
                             boolean z14 = z11;
-                            ArrayList arrayList = ExternalActionActivity.f31587x;
+                            ArrayList arrayList = ExternalActionActivity.f34106x;
                             if (i13 != i15 && i13 != (i14 = UserConfig.selectedAccount)) {
                                 ConnectionsManager.getInstance(i14).setAppPaused(true, false);
                                 UserConfig.selectedAccount = i13;
@@ -129,7 +129,7 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
             if (longExtra != 0 && ((!TextUtils.isEmpty(stringExtra2) || !TextUtils.isEmpty(stringExtra)) && !TextUtils.isEmpty(getauthorizationform.scope) && !TextUtils.isEmpty(getauthorizationform.public_key))) {
                 int[] iArr = {0};
                 org.telegram.ui.ActionBar.d2 d2Var = new org.telegram.ui.ActionBar.d2(this, 3, null);
-                d2Var.setOnCancelListener(new jz(i10, 0, iArr));
+                d2Var.setOnCancelListener(new kz(i10, 0, iArr));
                 d2Var.show();
                 iArr[0] = ConnectionsManager.getInstance(i10).sendRequest(getauthorizationform, new w8(this, iArr, i10, d2Var, getauthorizationform, stringExtra2, stringExtra, 1), 10);
                 return;
@@ -141,13 +141,13 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
             if (this.d.getFragmentStack().isEmpty()) {
                 this.d.c(-1, new b7());
             }
-        } else if (this.f31591c.getFragmentStack().isEmpty()) {
-            this.f31591c.c(-1, new b7());
+        } else if (this.f34110c.getFragmentStack().isEmpty()) {
+            this.f34110c.c(-1, new b7());
         }
         if (!AndroidUtilities.isTablet()) {
-            this.e.setVisibility(8);
+            this.f34111e.setVisibility(8);
         }
-        this.f31591c.c0();
+        this.f34110c.c0();
         if (AndroidUtilities.isTablet()) {
             this.d.c0();
         }
@@ -162,38 +162,38 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
             layoutParams.topMargin = (((AndroidUtilities.displaySize.y - layoutParams.height) - i10) / 2) + i10;
             this.d.getView().setLayoutParams(layoutParams);
             if (AndroidUtilities.isSmallTablet() && getResources().getConfiguration().orientation != 2) {
-                RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) this.f31591c.getView().getLayoutParams();
+                RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) this.f34110c.getView().getLayoutParams();
                 layoutParams2.width = -1;
                 layoutParams2.height = -1;
-                this.f31591c.getView().setLayoutParams(layoutParams2);
+                this.f34110c.getView().setLayoutParams(layoutParams2);
                 return;
             }
             int i11 = (AndroidUtilities.displaySize.x / 100) * 35;
             if (i11 < AndroidUtilities.dp(320.0f)) {
                 i11 = AndroidUtilities.dp(320.0f);
             }
-            RelativeLayout.LayoutParams layoutParams3 = (RelativeLayout.LayoutParams) this.f31591c.getView().getLayoutParams();
+            RelativeLayout.LayoutParams layoutParams3 = (RelativeLayout.LayoutParams) this.f34110c.getView().getLayoutParams();
             layoutParams3.width = i11;
             layoutParams3.height = -1;
-            this.f31591c.getView().setLayoutParams(layoutParams3);
-            if (AndroidUtilities.isSmallTablet() && this.f31591c.getFragmentStack().size() == 2) {
-                ((org.telegram.ui.ActionBar.p2) this.f31591c.getFragmentStack().get(1)).onPause();
-                this.f31591c.getFragmentStack().remove(1);
-                this.f31591c.c0();
+            this.f34110c.getView().setLayoutParams(layoutParams3);
+            if (AndroidUtilities.isSmallTablet() && this.f34110c.getFragmentStack().size() == 2) {
+                ((org.telegram.ui.ActionBar.p2) this.f34110c.getFragmentStack().get(1)).onPause();
+                this.f34110c.getFragmentStack().remove(1);
+                this.f34110c.c0();
             }
         }
     }
 
     public final void g() {
-        if (this.f31589a) {
+        if (this.f34108a) {
             return;
         }
-        z5 z5Var = this.f31596w;
+        z5 z5Var = this.f34116w;
         if (z5Var != null) {
             AndroidUtilities.cancelRunOnUIThread(z5Var);
-            this.f31596w = null;
+            this.f34116w = null;
         }
-        this.f31589a = true;
+        this.f34108a = true;
     }
 
     @Override
@@ -202,20 +202,20 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
     }
 
     public final void i() {
-        if (this.f31590b == null) {
+        if (this.f34109b == null) {
             return;
         }
         SharedConfig.appLocked = true;
-        if (SecretMediaViewer.g() && SecretMediaViewer.f().f32264s) {
+        if (SecretMediaViewer.g() && SecretMediaViewer.f().f34800s) {
             SecretMediaViewer.f().e(false, false);
         } else if (PhotoViewer.C1() && PhotoViewer.t1().Q1()) {
             PhotoViewer.t1().G0(false, true);
         } else if (l4.I() && l4.x().S) {
             l4.x().o(false, true);
         }
-        this.f31590b.j(false, -1, -1, null);
+        this.f34109b.j(false, -1, -1, null);
         SharedConfig.isWaitingForPasscodeEnter = true;
-        this.f31590b.setDelegate(new fu(this, 7));
+        this.f34109b.setDelegate(new gu(this, 7));
     }
 
     @Override
@@ -226,11 +226,11 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
     @Override
     public final boolean k(ActionBarLayout actionBarLayout) {
         if (AndroidUtilities.isTablet()) {
-            if (actionBarLayout == this.f31591c && actionBarLayout.getFragmentStack().size() <= 1) {
+            if (actionBarLayout == this.f34110c && actionBarLayout.getFragmentStack().size() <= 1) {
                 g();
                 finish();
                 return false;
-            } else if (actionBarLayout == this.d && this.f31591c.getFragmentStack().isEmpty() && this.d.getFragmentStack().size() == 1) {
+            } else if (actionBarLayout == this.d && this.f34110c.getFragmentStack().isEmpty() && this.d.getFragmentStack().size() == 1) {
                 g();
                 finish();
                 return false;
@@ -244,14 +244,14 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
     }
 
     @Override
-    public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.c5 c5Var) {
-        org.telegram.ui.ActionBar.p2 p2Var = c5Var.f19549a;
+    public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.d5 d5Var) {
+        org.telegram.ui.ActionBar.p2 p2Var = d5Var.f21276a;
         return true;
     }
 
     @Override
     public final void onBackPressed() {
-        if (this.f31590b.getVisibility() == 0) {
+        if (this.f34109b.getVisibility() == 0) {
             finish();
         } else if (PhotoViewer.t1().Q1()) {
             PhotoViewer.t1().G0(true, false);
@@ -259,10 +259,10 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
             if (this.d.getView().getVisibility() == 0) {
                 this.d.G();
             } else {
-                this.f31591c.G();
+                this.f34110c.G();
             }
         } else {
-            this.f31591c.G();
+            this.f34110c.G();
         }
     }
 
@@ -272,10 +272,10 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
         AndroidUtilities.checkDisplaySize(this, configuration);
         AndroidUtilities.setPreferredMaxRefreshRate(getWindow());
         super.onConfigurationChanged(configuration);
-        if (!AndroidUtilities.isTablet() || (actionBarLayout = this.f31591c) == null) {
+        if (!AndroidUtilities.isTablet() || (actionBarLayout = this.f34110c) == null) {
             return;
         }
-        actionBarLayout.getView().getViewTreeObserver().addOnGlobalLayoutListener(new kz(this));
+        actionBarLayout.getView().getViewTreeObserver().addOnGlobalLayoutListener(new lz(this));
     }
 
     @Override
@@ -290,8 +290,8 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
             try {
                 getWindow().setFlags(8192, 8192);
                 AndroidUtilities.logFlagSecure();
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e6) {
+                FileLog.e(e6);
             }
         }
         super.onCreate(bundle);
@@ -299,31 +299,31 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
         }
         AndroidUtilities.fillStatusBarHeight(this, false);
-        org.telegram.ui.ActionBar.j6.R(this);
-        org.telegram.ui.ActionBar.j6.J(this, false);
-        this.f31591c = new ActionBarLayout(this, false);
-        org.telegram.ui.ActionBar.y3 y3Var = new org.telegram.ui.ActionBar.y3(this);
-        this.f31592f = y3Var;
-        setContentView(y3Var, new ViewGroup.LayoutParams(-1, -1));
+        org.telegram.ui.ActionBar.k6.R(this);
+        org.telegram.ui.ActionBar.k6.J(this, false);
+        this.f34110c = new ActionBarLayout(this, false);
+        org.telegram.ui.ActionBar.z3 z3Var = new org.telegram.ui.ActionBar.z3(this);
+        this.f34112f = z3Var;
+        setContentView(z3Var, new ViewGroup.LayoutParams(-1, -1));
         if (AndroidUtilities.isTablet()) {
             getWindow().setSoftInputMode(16);
             RelativeLayout relativeLayout = new RelativeLayout(this);
-            this.f31592f.addView(relativeLayout);
+            this.f34112f.addView(relativeLayout);
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) relativeLayout.getLayoutParams();
             layoutParams.width = -1;
             layoutParams.height = -1;
             relativeLayout.setLayoutParams(layoutParams);
-            org.telegram.ui.Components.z51 z51Var = new org.telegram.ui.Components.z51(this, null, 1);
-            this.e = z51Var;
-            z51Var.setOccupyStatusBar(false);
-            this.e.V(org.telegram.ui.ActionBar.j6.r0());
-            relativeLayout.addView(this.e, k7.b6.w(-1, -1));
-            relativeLayout.addView(this.f31591c.getView(), k7.b6.w(-1, -1));
+            org.telegram.ui.Components.a61 a61Var = new org.telegram.ui.Components.a61(this, null, 1);
+            this.f34111e = a61Var;
+            a61Var.setOccupyStatusBar(false);
+            this.f34111e.V(org.telegram.ui.ActionBar.k6.r0());
+            relativeLayout.addView(this.f34111e, k7.c6.w(-1, -1));
+            relativeLayout.addView(this.f34110c.getView(), k7.c6.w(-1, -1));
             FrameLayout frameLayout = new FrameLayout(this);
             frameLayout.setBackgroundColor(2130706432);
-            relativeLayout.addView(frameLayout, k7.b6.w(-1, -1));
+            relativeLayout.addView(frameLayout, k7.c6.w(-1, -1));
             frameLayout.setOnTouchListener(new f0(this, 2));
-            frameLayout.setOnClickListener(new dg.m(19));
+            frameLayout.setOnClickListener(new eg.m(19));
             ActionBarLayout actionBarLayout = new ActionBarLayout(this, false);
             this.d = actionBarLayout;
             actionBarLayout.setRemoveActionBarExtraHeight(true);
@@ -336,29 +336,29 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
             } else {
                 i10 = 700;
             }
-            relativeLayout.addView(view, k7.b6.w(530, i10));
-            this.d.setFragmentStack(f31588y);
+            relativeLayout.addView(view, k7.c6.w(530, i10));
+            this.d.setFragmentStack(f34107y);
             this.d.setDelegate(this);
-            this.d.setDrawerLayoutContainer(this.f31592f);
+            this.d.setDrawerLayoutContainer(this.f34112f);
         } else {
             RelativeLayout relativeLayout2 = new RelativeLayout(this);
-            this.f31592f.addView(relativeLayout2, k7.b6.c(-1.0f, -1));
-            org.telegram.ui.Components.z51 z51Var2 = new org.telegram.ui.Components.z51(this, null, 2);
-            this.e = z51Var2;
-            z51Var2.setOccupyStatusBar(false);
-            this.e.V(org.telegram.ui.ActionBar.j6.r0());
-            relativeLayout2.addView(this.e, k7.b6.w(-1, -1));
-            relativeLayout2.addView(this.f31591c.getView(), k7.b6.w(-1, -1));
+            this.f34112f.addView(relativeLayout2, k7.c6.c(-1.0f, -1));
+            org.telegram.ui.Components.a61 a61Var2 = new org.telegram.ui.Components.a61(this, null, 2);
+            this.f34111e = a61Var2;
+            a61Var2.setOccupyStatusBar(false);
+            this.f34111e.V(org.telegram.ui.ActionBar.k6.r0());
+            relativeLayout2.addView(this.f34111e, k7.c6.w(-1, -1));
+            relativeLayout2.addView(this.f34110c.getView(), k7.c6.w(-1, -1));
         }
-        this.f31592f.setParentActionBarLayout(this.f31591c);
-        this.f31591c.setDrawerLayoutContainer(this.f31592f);
-        this.f31591c.setFragmentStack(f31587x);
-        this.f31591c.setDelegate(this);
-        org.telegram.ui.Components.vd0 vd0Var = new org.telegram.ui.Components.vd0(this);
-        this.f31590b = vd0Var;
-        this.f31592f.addView(vd0Var, k7.b6.c(-1.0f, -1));
+        this.f34112f.setParentActionBarLayout(this.f34110c);
+        this.f34110c.setDrawerLayoutContainer(this.f34112f);
+        this.f34110c.setFragmentStack(f34106x);
+        this.f34110c.setDelegate(this);
+        org.telegram.ui.Components.xd0 xd0Var = new org.telegram.ui.Components.xd0(this);
+        this.f34109b = xd0Var;
+        this.f34112f.addView(xd0Var, k7.c6.c(-1.0f, -1));
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeOtherAppActivities, this);
-        this.f31591c.X();
+        this.f34110c.X();
         ActionBarLayout actionBarLayout2 = this.d;
         if (actionBarLayout2 != null) {
             actionBarLayout2.X();
@@ -382,7 +382,7 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
     @Override
     public final void onLowMemory() {
         super.onLowMemory();
-        this.f31591c.J();
+        this.f34110c.J();
         if (AndroidUtilities.isTablet()) {
             this.d.J();
         }
@@ -397,20 +397,20 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
     @Override
     public final void onPause() {
         super.onPause();
-        this.f31591c.L();
+        this.f34110c.L();
         if (AndroidUtilities.isTablet()) {
             this.d.L();
         }
         ApplicationLoader.externalInterfacePaused = true;
-        z5 z5Var = this.f31596w;
+        z5 z5Var = this.f34116w;
         if (z5Var != null) {
             AndroidUtilities.cancelRunOnUIThread(z5Var);
-            this.f31596w = null;
+            this.f34116w = null;
         }
         if (!SharedConfig.passcodeHash.isEmpty()) {
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
             z5 z5Var2 = new z5(this, 3);
-            this.f31596w = z5Var2;
+            this.f34116w = z5Var2;
             if (SharedConfig.appLocked) {
                 AndroidUtilities.runOnUIThread(z5Var2, 1000L);
             } else {
@@ -423,24 +423,24 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
             SharedConfig.lastPauseTime = 0;
         }
         SharedConfig.saveConfig();
-        org.telegram.ui.Components.vd0 vd0Var = this.f31590b;
-        if (vd0Var != null) {
-            AndroidUtilities.cancelRunOnUIThread(vd0Var.O);
+        org.telegram.ui.Components.xd0 xd0Var = this.f34109b;
+        if (xd0Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(xd0Var.O);
         }
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        this.f31591c.M();
+        this.f34110c.M();
         if (AndroidUtilities.isTablet()) {
             this.d.M();
         }
         ApplicationLoader.externalInterfacePaused = false;
-        z5 z5Var = this.f31596w;
+        z5 z5Var = this.f34116w;
         if (z5Var != null) {
             AndroidUtilities.cancelRunOnUIThread(z5Var);
-            this.f31596w = null;
+            this.f34116w = null;
         }
         if (AndroidUtilities.needShowPasscode(true)) {
             i();
@@ -449,19 +449,19 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
             SharedConfig.lastPauseTime = 0;
             SharedConfig.saveConfig();
         }
-        if (this.f31590b.getVisibility() != 0) {
-            this.f31591c.M();
+        if (this.f34109b.getVisibility() != 0) {
+            this.f34110c.M();
             if (AndroidUtilities.isTablet()) {
                 this.d.M();
                 return;
             }
             return;
         }
-        this.f31591c.n();
+        this.f34110c.n();
         if (AndroidUtilities.isTablet()) {
             this.d.n();
         }
-        this.f31590b.i();
+        this.f34109b.i();
     }
 
     @Override

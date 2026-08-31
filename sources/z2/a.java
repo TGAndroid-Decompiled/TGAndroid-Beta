@@ -2,13 +2,13 @@ package z2;
 
 import m1.j;
 public final class a {
-    public final int f47270a;
-    public final long f47271b;
+    public final int f50957a;
+    public final long f50958b;
 
     public a(int i10, long j10) {
         if (i10 != 0) {
-            this.f47270a = i10;
-            this.f47271b = j10;
+            this.f50957a = i10;
+            this.f50958b = j10;
             return;
         }
         throw new NullPointerException("Null status");
@@ -18,7 +18,7 @@ public final class a {
         if (obj != this) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                if (j.a(this.f47270a, aVar.f47270a) && this.f47271b == aVar.f47271b) {
+                if (j.b(this.f50957a, aVar.f50957a) && this.f50958b == aVar.f50958b) {
                     return true;
                 }
                 return false;
@@ -29,14 +29,14 @@ public final class a {
     }
 
     public final int hashCode() {
-        long j10 = this.f47271b;
-        return ((j.b(this.f47270a) ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)));
+        long j10 = this.f50958b;
+        return ((j.c(this.f50957a) ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)));
     }
 
     public final String toString() {
         String str;
         StringBuilder sb = new StringBuilder("BackendResponse{status=");
-        int i10 = this.f47270a;
+        int i10 = this.f50957a;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -56,6 +56,6 @@ public final class a {
         }
         sb.append(str);
         sb.append(", nextRequestWaitMillis=");
-        return android.support.v4.media.a.q(sb, this.f47271b, "}");
+        return android.support.v4.media.a.q(sb, this.f50958b, "}");
     }
 }

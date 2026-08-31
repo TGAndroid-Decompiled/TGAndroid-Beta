@@ -3,35 +3,35 @@ package z3;
 import java.util.ArrayList;
 import java.util.Arrays;
 public final class a extends n3.a {
-    public final long f47278c;
+    public final long f50966c;
     public final ArrayList d;
-    public final ArrayList e;
+    public final ArrayList f50967e;
 
     public a(int i10, long j10) {
         super(i10, 2);
-        this.f47278c = j10;
+        this.f50966c = j10;
         this.d = new ArrayList();
-        this.e = new ArrayList();
+        this.f50967e = new ArrayList();
     }
 
-    public final a j(int i10) {
-        ArrayList arrayList = this.e;
+    public final a i(int i10) {
+        ArrayList arrayList = this.f50967e;
         int size = arrayList.size();
         for (int i11 = 0; i11 < size; i11++) {
             a aVar = (a) arrayList.get(i11);
-            if (aVar.f14222b == i10) {
+            if (aVar.f15193b == i10) {
                 return aVar;
             }
         }
         return null;
     }
 
-    public final b k(int i10) {
+    public final b j(int i10) {
         ArrayList arrayList = this.d;
         int size = arrayList.size();
         for (int i11 = 0; i11 < size; i11++) {
             b bVar = (b) arrayList.get(i11);
-            if (bVar.f14222b == i10) {
+            if (bVar.f15193b == i10) {
                 return bVar;
             }
         }
@@ -40,6 +40,6 @@ public final class a extends n3.a {
 
     @Override
     public final String toString() {
-        return n3.a.d(this.f14222b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.e.toArray());
+        return n3.a.c(this.f15193b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.f50967e.toArray());
     }
 }

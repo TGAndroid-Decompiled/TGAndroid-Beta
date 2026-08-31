@@ -3,28 +3,28 @@ package a5;
 import android.graphics.Color;
 import k7.y7;
 public final class e {
-    public final String f113a;
-    public final int f114b;
-    public final Integer f115c;
+    public final String f123a;
+    public final int f124b;
+    public final Integer f125c;
     public final Integer d;
-    public final float e;
-    public final boolean f116f;
-    public final boolean f117g;
+    public final float f126e;
+    public final boolean f127f;
+    public final boolean f128g;
     public final boolean h;
-    public final boolean f118i;
-    public final int f119j;
+    public final boolean f129i;
+    public final int f130j;
 
     public e(String str, int i10, Integer num, Integer num2, float f10, boolean z4, boolean z10, boolean z11, boolean z12, int i11) {
-        this.f113a = str;
-        this.f114b = i10;
-        this.f115c = num;
+        this.f123a = str;
+        this.f124b = i10;
+        this.f125c = num;
         this.d = num2;
-        this.e = f10;
-        this.f116f = z4;
-        this.f117g = z10;
+        this.f126e = f10;
+        this.f127f = z4;
+        this.f128g = z10;
         this.h = z11;
-        this.f118i = z12;
-        this.f119j = i11;
+        this.f129i = z12;
+        this.f130j = i11;
     }
 
     public static int a(String str) {
@@ -63,8 +63,8 @@ public final class e {
                 return false;
             }
             return true;
-        } catch (NumberFormatException e) {
-            h5.a.L("SsaStyle", "Failed to parse boolean value: '" + str + "'", e);
+        } catch (NumberFormatException e6) {
+            h5.a.L("SsaStyle", "Failed to parse boolean value: '" + str + "'", e6);
             return false;
         }
     }
@@ -87,8 +87,8 @@ public final class e {
             int a2 = y7.a(((parseLong >> 24) & 255) ^ 255);
             int a10 = y7.a((parseLong >> 16) & 255);
             return Integer.valueOf(Color.argb(a2, y7.a(parseLong & 255), y7.a((parseLong >> 8) & 255), a10));
-        } catch (IllegalArgumentException e) {
-            h5.a.L("SsaStyle", "Failed to parse color expression: '" + str + "'", e);
+        } catch (IllegalArgumentException e6) {
+            h5.a.L("SsaStyle", "Failed to parse color expression: '" + str + "'", e6);
             return null;
         }
     }

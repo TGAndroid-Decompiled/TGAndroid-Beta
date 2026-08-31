@@ -2,26 +2,26 @@ package org.telegram.messenger;
 
 import java.util.function.Consumer;
 public final class ug implements Runnable {
-    public final int f18601a;
-    public final MessagesStorage f18602b;
-    public final long f18603c;
+    public final int f20211a;
+    public final MessagesStorage f20212b;
+    public final long f20213c;
     public final Consumer d;
 
     public ug(MessagesStorage messagesStorage, long j10, Consumer consumer, int i10) {
-        this.f18601a = i10;
-        this.f18602b = messagesStorage;
-        this.f18603c = j10;
+        this.f20211a = i10;
+        this.f20212b = messagesStorage;
+        this.f20213c = j10;
         this.d = consumer;
     }
 
     @Override
     public final void run() {
-        switch (this.f18601a) {
+        switch (this.f20211a) {
             case 0:
-                this.f18602b.lambda$loadStoryAlbumsCache$270(this.f18603c, this.d);
+                this.f20212b.lambda$loadStoryAlbumsCache$270(this.f20213c, this.d);
                 return;
             default:
-                this.f18602b.lambda$loadTopics$51(this.f18603c, this.d);
+                this.f20212b.lambda$loadTopics$51(this.f20213c, this.d);
                 return;
         }
     }

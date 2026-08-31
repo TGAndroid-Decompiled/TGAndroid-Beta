@@ -7,15 +7,15 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.tgnet.tl.TL_stories;
 public final class d implements Vector.TLDeserializer {
-    public final int f19441a;
+    public final int f21102a;
 
     public d(int i10) {
-        this.f19441a = i10;
+        this.f21102a = i10;
     }
 
     @Override
     public final TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z4) {
-        switch (this.f19441a) {
+        switch (this.f21102a) {
             case 0:
                 return TL_stats.TL_statsGroupTopAdmin.TLdeserialize(inputSerializedData, i10, z4);
             case 1:

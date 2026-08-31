@@ -8,7 +8,7 @@ import pa.v;
 public class c implements v {
     @Override
     public final u create(g gVar, wa.a aVar) {
-        if (aVar.f46505a == Timestamp.class) {
+        if (aVar.f49483a == Timestamp.class) {
             gVar.getClass();
             return new d(gVar.b(new wa.a(Date.class)));
         }

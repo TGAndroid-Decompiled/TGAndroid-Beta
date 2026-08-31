@@ -1,92 +1,158 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.R;
-public final class hh0 {
-    public static final hh0 B;
-    public static final hh0 C;
-    public static final hh0 D;
-    public static final hh0 E;
-    public static final hh0 F;
-    public static final hh0 G;
-    public static final hh0 H;
-    public static final hh0[] I;
-    public static final hh0 d;
-    public static final hh0 e;
-    public static final hh0 f25416f;
-    public static final hh0 h;
-    public static final hh0 f25417n;
-    public static final hh0 f25418r;
-    public static final hh0 f25419s;
-    public static final hh0 v;
-    public static final hh0 f25420w;
-    public static final hh0 f25421x;
-    public static final hh0 f25422y;
-    public final int f25423a;
-    public final int f25424b;
-    public final int f25425c;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.os.Bundle;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityManager;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.accessibility.AccessibilityNodeProvider;
+import android.widget.Button;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.ui.ProfileActivity;
+public class hh0 extends AccessibilityNodeProvider {
+    public final int f27490a = 1;
+    public final Object f27491b;
 
-    static {
-        int i10 = R.string.ProfileActionsMessage;
-        int i11 = R.drawable.filled_profile_message_24;
-        int i12 = R.drawable.outline_profile_message_24;
-        hh0 hh0Var = new hh0("MESSAGE", 0, i10, i11, i12);
-        d = hh0Var;
-        hh0 hh0Var2 = new hh0("NOTIFICATION_MUTE", 1, R.string.ProfileButtonMute, R.drawable.filled_profile_mute_24, R.drawable.outline_profile_mute_24);
-        e = hh0Var2;
-        hh0 hh0Var3 = new hh0("NOTIFICATION_UNMUTE", 2, R.string.ProfileButtonUnmute, R.drawable.filled_profile_unmute_24, R.drawable.outline_profile_unmute_24);
-        f25416f = hh0Var3;
-        hh0 hh0Var4 = new hh0("DISCUSS", 3, R.string.ProfileActionsDiscuss, i11, i12);
-        h = hh0Var4;
-        hh0 hh0Var5 = new hh0("GIFT", 4, R.string.ProfileActionsGift, R.drawable.gift, R.drawable.input_gift_s);
-        f25417n = hh0Var5;
-        hh0 hh0Var6 = new hh0("SHARE", 5, R.string.ProfileActionsShare, R.drawable.action_share, R.drawable.msg_share);
-        f25418r = hh0Var6;
-        hh0 hh0Var7 = new hh0("CALL", 6, R.string.ProfileActionsCall, R.drawable.filled_profile_call_24, R.drawable.outline_profile_call_24);
-        f25419s = hh0Var7;
-        hh0 hh0Var8 = new hh0("VIDEO", 7, R.string.ProfileActionsVideo, R.drawable.filled_profile_video_24, R.drawable.outline_profile_video_24);
-        v = hh0Var8;
-        hh0 hh0Var9 = new hh0("JOIN", 8, R.string.ProfileActionsJoin, R.drawable.filled_profile_member_24, R.drawable.outline_profile_member_24);
-        f25420w = hh0Var9;
-        hh0 hh0Var10 = new hh0("REPORT", 9, R.string.ProfileActionsReport, R.drawable.report, R.drawable.msg_report);
-        f25421x = hh0Var10;
-        int i13 = R.string.ProfileActionsLeave;
-        int i14 = R.drawable.leave;
-        hh0 hh0Var11 = new hh0("LEAVE", 10, i13, i14, i14);
-        f25422y = hh0Var11;
-        int i15 = R.string.ProfileActionsVoiceChat;
-        int i16 = R.drawable.live_stream;
-        hh0 hh0Var12 = new hh0("VOICE_CHAT", 11, i15, i16, i16);
-        B = hh0Var12;
-        hh0 hh0Var13 = new hh0("STREAM", 12, R.string.ProfileActionsLiveStream, i16, i16);
-        C = hh0Var13;
-        hh0 hh0Var14 = new hh0("STORY", 13, R.string.ProfileActionsAddStory, R.drawable.filled_profile_story, R.drawable.outline_profile_story);
-        D = hh0Var14;
-        hh0 hh0Var15 = new hh0("STOP", 14, R.string.ProfileActionsStop, R.drawable.filled_profile_stop_24, R.drawable.outline_profile_stop_24);
-        E = hh0Var15;
-        hh0 hh0Var16 = new hh0("SET_PHOTO", 15, R.string.ProfileActionsEditPhoto2, R.drawable.filled_profile_photo, R.drawable.outline_profile_photo);
-        F = hh0Var16;
-        int i17 = R.string.ProfileActionsEditUsername;
-        int i18 = R.drawable.filled_profile_edit_24;
-        int i19 = R.drawable.outline_profile_edit_24;
-        hh0 hh0Var17 = new hh0("EDIT_USERNAME", 16, i17, i18, i19);
-        hh0 hh0Var18 = new hh0("EDIT_INFO", 17, R.string.ProfileActionsEditInfo, i18, i19);
-        G = hh0Var18;
-        hh0 hh0Var19 = new hh0("SETTINGS", 18, R.string.Settings, R.drawable.filled_profile_settings, R.drawable.outline_profile_settings);
-        H = hh0Var19;
-        I = new hh0[]{hh0Var, hh0Var2, hh0Var3, hh0Var4, hh0Var5, hh0Var6, hh0Var7, hh0Var8, hh0Var9, hh0Var10, hh0Var11, hh0Var12, hh0Var13, hh0Var14, hh0Var15, hh0Var16, hh0Var17, hh0Var18, hh0Var19};
+    public hh0(org.telegram.ui.Cells.f1 f1Var) {
+        this.f27491b = f1Var;
     }
 
-    public hh0(String str, int i10, int i11, int i12, int i13) {
-        this.f25423a = i11;
-        this.f25424b = i12;
-        this.f25425c = i13;
+    @Override
+    public final AccessibilityNodeInfo createAccessibilityNodeInfo(int i10) {
+        ih0 ih0Var;
+        switch (this.f27490a) {
+            case 0:
+                int[] iArr = {0, 0};
+                lh0 lh0Var = (lh0) this.f27491b;
+                ArrayList arrayList = lh0Var.f28735a;
+                lh0Var.getLocationOnScreen(iArr);
+                if (i10 == -1) {
+                    AccessibilityNodeInfo obtain = AccessibilityNodeInfo.obtain(lh0Var);
+                    lh0Var.onInitializeAccessibilityNodeInfo(obtain);
+                    obtain.setEnabled(true);
+                    for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                        obtain.addChild(lh0Var, ((ih0) arrayList.get(i11)).f27786a);
+                    }
+                    return obtain;
+                }
+                int i12 = 0;
+                while (true) {
+                    if (i12 < arrayList.size()) {
+                        if (((ih0) arrayList.get(i12)).f27786a == i10) {
+                            ih0Var = (ih0) arrayList.get(i12);
+                        } else {
+                            i12++;
+                        }
+                    } else {
+                        ih0Var = null;
+                    }
+                }
+                if (ih0Var != null) {
+                    RectF rectF = ih0Var.d;
+                    if (!rectF.isEmpty()) {
+                        AccessibilityNodeInfo obtain2 = AccessibilityNodeInfo.obtain();
+                        obtain2.setSource(lh0Var, i10);
+                        obtain2.setParent(lh0Var);
+                        obtain2.setPackageName(lh0Var.getContext().getPackageName());
+                        obtain2.addAction(16);
+                        obtain2.addAction(64);
+                        obtain2.setClickable(true);
+                        obtain2.setFocusable(true);
+                        obtain2.setEnabled(true);
+                        obtain2.setVisibleToUser(true);
+                        obtain2.setClassName(Button.class.getName());
+                        obtain2.setText(ih0Var.f27795l.k());
+                        Rect rect = new Rect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+                        obtain2.setBoundsInParent(rect);
+                        rect.offset(iArr[0], iArr[1]);
+                        obtain2.setBoundsInScreen(rect);
+                        return obtain2;
+                    }
+                }
+                return null;
+            default:
+                s0.d i13 = ((org.telegram.ui.Cells.f1) this.f27491b).i(i10);
+                if (i13 == null) {
+                    return null;
+                }
+                return i13.f46850a;
+        }
     }
 
-    public static hh0 valueOf(String str) {
-        return (hh0) Enum.valueOf(hh0.class, str);
+    @Override
+    public List findAccessibilityNodeInfosByText(String str, int i10) {
+        switch (this.f27490a) {
+            case 1:
+                ((org.telegram.ui.Cells.f1) this.f27491b).getClass();
+                return null;
+            default:
+                return super.findAccessibilityNodeInfosByText(str, i10);
+        }
     }
 
-    public static hh0[] values() {
-        return (hh0[]) I.clone();
+    @Override
+    public AccessibilityNodeInfo findFocus(int i10) {
+        switch (this.f27490a) {
+            case 1:
+                s0.d o10 = ((org.telegram.ui.Cells.f1) this.f27491b).o(i10);
+                if (o10 == null) {
+                    return null;
+                }
+                return o10.f46850a;
+            default:
+                return super.findFocus(i10);
+        }
+    }
+
+    @Override
+    public final boolean performAction(int i10, int i11, Bundle bundle) {
+        ih0 ih0Var;
+        switch (this.f27490a) {
+            case 0:
+                lh0 lh0Var = (lh0) this.f27491b;
+                ArrayList arrayList = lh0Var.f28735a;
+                if (i10 == -1) {
+                    return lh0Var.performAccessibilityAction(i11, bundle);
+                }
+                int i12 = 0;
+                while (true) {
+                    if (i12 < arrayList.size()) {
+                        if (((ih0) arrayList.get(i12)).f27786a == i10) {
+                            ih0Var = (ih0) arrayList.get(i12);
+                        } else {
+                            i12++;
+                        }
+                    } else {
+                        ih0Var = null;
+                    }
+                }
+                if (ih0Var != null) {
+                    if (i11 == 64) {
+                        if (((AccessibilityManager) lh0Var.getContext().getSystemService("accessibility")).isTouchExplorationEnabled()) {
+                            AccessibilityEvent obtain = AccessibilityEvent.obtain(32768);
+                            obtain.setPackageName(lh0Var.getContext().getPackageName());
+                            obtain.setSource(lh0Var, i10);
+                            if (lh0Var.getParent() != null) {
+                                lh0Var.getParent().requestSendAccessibilityEvent(lh0Var, obtain);
+                            }
+                        }
+                    } else if (i11 == 16) {
+                        kh0 kh0Var = lh0Var.C;
+                        if (kh0Var != null) {
+                            ProfileActivity.Y(((org.telegram.ui.rx0) kh0Var).f41061b, i10, 0.0f, 0.0f);
+                        }
+                    }
+                    return true;
+                }
+                return false;
+            default:
+                return ((org.telegram.ui.Cells.f1) this.f27491b).D(i10, i11, bundle);
+        }
+    }
+
+    public hh0(lh0 lh0Var) {
+        this.f27491b = lh0Var;
     }
 }

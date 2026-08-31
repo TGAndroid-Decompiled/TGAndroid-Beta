@@ -1,6 +1,4 @@
 package sa;
-
-import kh.a2;
 public class b1 extends pa.u {
     @Override
     public final Object read(xa.a aVar) {
@@ -13,11 +11,11 @@ public class b1 extends pa.u {
             if (p10 <= 255 && p10 >= -128) {
                 return Byte.valueOf((byte) p10);
             }
-            StringBuilder m9 = a2.m(p10, "Lossy conversion from ", " to byte; at path ");
+            StringBuilder m9 = l.d.m(p10, "Lossy conversion from ", " to byte; at path ");
             m9.append(aVar.j());
             throw new RuntimeException(m9.toString());
-        } catch (NumberFormatException e) {
-            throw new RuntimeException(e);
+        } catch (NumberFormatException e6) {
+            throw new RuntimeException(e6);
         }
     }
 

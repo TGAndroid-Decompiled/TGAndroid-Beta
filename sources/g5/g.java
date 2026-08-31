@@ -24,7 +24,7 @@ public abstract class g implements m {
 
     public final void bytesTransferred(int i10) {
         p pVar = this.dataSpec;
-        int i11 = h5.d0.f6937a;
+        int i11 = h5.d0.f7237a;
         for (int i12 = 0; i12 < this.listenerCount; i12++) {
             boolean z4 = this.isNetwork;
             s sVar = (s) this.listeners.get(i12);
@@ -50,7 +50,7 @@ public abstract class g implements m {
 
     public final void transferEnded() {
         p pVar = this.dataSpec;
-        int i10 = h5.d0.f6937a;
+        int i10 = h5.d0.f7237a;
         for (int i11 = 0; i11 < this.listenerCount; i11++) {
             ((s) this.listeners.get(i11)).e(pVar, this.isNetwork);
         }

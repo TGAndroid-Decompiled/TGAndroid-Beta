@@ -1,20 +1,20 @@
 package k7;
 public final class e7 {
-    public final Long f9795a;
-    public final d7 f9796b;
-    public final y6 f9797c;
+    public final Long f10518a;
+    public final d7 f10519b;
+    public final y6 f10520c;
     public final Integer d;
-    public final Integer e;
-    public final Integer f9798f;
-    public final Integer f9799g;
+    public final Integer f10521e;
+    public final Integer f10522f;
+    public final Integer f10523g;
 
-    public e7(m.s3 s3Var) {
-        this.f9795a = (Long) s3Var.f13641a;
-        this.f9796b = (d7) s3Var.f13642b;
-        this.f9797c = (y6) s3Var.f13643c;
-        this.d = (Integer) s3Var.d;
-        this.e = (Integer) s3Var.e;
-        this.f9798f = (Integer) s3Var.f13644f;
-        this.f9799g = (Integer) s3Var.h;
+    public e7(m.r3 r3Var) {
+        this.f10518a = (Long) r3Var.f13327a;
+        this.f10519b = (d7) r3Var.f13328b;
+        this.f10520c = (y6) r3Var.f13329c;
+        this.d = (Integer) r3Var.d;
+        this.f10521e = (Integer) r3Var.f13330e;
+        this.f10522f = (Integer) r3Var.f13331f;
+        this.f10523g = (Integer) r3Var.h;
     }
 }

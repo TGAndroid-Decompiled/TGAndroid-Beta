@@ -52,8 +52,8 @@ public final class EmuInputDevicesDetector {
                     return arrayList;
                 }
             }
-        } catch (IOException e) {
-            FileLog.e(e);
+        } catch (IOException e6) {
+            FileLog.e(e6);
             return null;
         }
     }

@@ -1,10 +1,10 @@
 package b4;
 public final class h0 {
-    public final String f1401a;
-    public final int f1402b;
-    public final int f1403c;
+    public final String f1511a;
+    public final int f1512b;
+    public final int f1513c;
     public int d;
-    public String e;
+    public String f1514e;
 
     public h0(int i10, int i11) {
         this(Integer.MIN_VALUE, i10, i11);
@@ -14,12 +14,12 @@ public final class h0 {
         int i10;
         int i11 = this.d;
         if (i11 == Integer.MIN_VALUE) {
-            i10 = this.f1402b;
+            i10 = this.f1512b;
         } else {
-            i10 = i11 + this.f1403c;
+            i10 = i11 + this.f1513c;
         }
         this.d = i10;
-        this.e = this.f1401a + this.d;
+        this.f1514e = this.f1511a + this.d;
     }
 
     public final void b() {
@@ -36,10 +36,10 @@ public final class h0 {
         } else {
             str = android.support.v4.media.a.l(i10, "/");
         }
-        this.f1401a = str;
-        this.f1402b = i11;
-        this.f1403c = i12;
+        this.f1511a = str;
+        this.f1512b = i11;
+        this.f1513c = i12;
         this.d = Integer.MIN_VALUE;
-        this.e = "";
+        this.f1514e = "";
     }
 }

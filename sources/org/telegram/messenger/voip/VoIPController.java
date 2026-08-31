@@ -8,7 +8,7 @@ import java.util.Calendar;
 import java.util.Locale;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
-import org.telegram.ui.Components.voip.f2;
+import org.telegram.ui.Components.voip.g2;
 public class VoIPController {
     public static final int DATA_SAVING_ALWAYS = 2;
     public static final int DATA_SAVING_MOBILE = 1;
@@ -260,7 +260,7 @@ public class VoIPController {
     }
 
     private String getLogFilePath(long j10) {
-        File f10 = f2.f();
+        File f10 = g2.f();
         if (!BuildVars.DEBUG_VERSION) {
             ArrayList arrayList = new ArrayList(Arrays.asList(f10.listFiles()));
             while (arrayList.size() > 20) {

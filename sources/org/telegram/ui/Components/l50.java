@@ -1,14 +1,23 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class l50 extends File {
+import android.content.Context;
+public final class l50 extends t50 {
+    public final z50 d;
+
+    public l50(z50 z50Var, Context context) {
+        super(z50Var, context);
+        this.d = z50Var;
+    }
+
     @Override
-    public final boolean delete() {
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.e("delete camera file");
-        }
-        return super.delete();
+    public final void setAlpha(float f10) {
+        super.setAlpha(f10);
+        this.d.invalidate();
+    }
+
+    @Override
+    public final void setRotationY(float f10) {
+        super.setRotationY(f10);
+        this.d.invalidate();
     }
 }

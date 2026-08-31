@@ -1,4 +1,4 @@
 package h3;
 public interface a {
-    long X();
+    long W();
 }

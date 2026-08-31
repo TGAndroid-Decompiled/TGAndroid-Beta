@@ -1,56 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
 import android.view.View;
-public final class tp0 implements View.OnTouchListener {
-    public final int f29000a;
-    public final Rect f29001b;
-    public final lq0 f29002c;
+import java.util.concurrent.atomic.AtomicReference;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class tp0 implements NotificationCenter.NotificationCenterDelegate {
+    public final TLRPC.Dialog f31433a;
+    public final AtomicReference f31434b;
+    public final View f31435c;
+    public final mq0 d;
 
-    public tp0(lq0 lq0Var, int i10) {
-        this.f29000a = i10;
-        switch (i10) {
-            case 1:
-                this.f29002c = lq0Var;
-                this.f29001b = new Rect();
-                return;
-            default:
-                this.f29002c = lq0Var;
-                this.f29001b = new Rect();
-                return;
-        }
+    public tp0(mq0 mq0Var, TLRPC.Dialog dialog, AtomicReference atomicReference, View view) {
+        this.d = mq0Var;
+        this.f31433a = dialog;
+        this.f31434b = atomicReference;
+        this.f31435c = view;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        lq0 lq0Var;
-        org.telegram.ui.ActionBar.p1 p1Var;
-        lq0 lq0Var2;
-        org.telegram.ui.ActionBar.p1 p1Var2;
-        switch (this.f29000a) {
-            case 0:
-                if (motionEvent.getActionMasked() == 0 && (p1Var = (lq0Var = this.f29002c).G0) != null && p1Var.isShowing()) {
-                    Rect rect = this.f29001b;
-                    view.getHitRect(rect);
-                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        lq0Var.G0.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            default:
-                if (motionEvent.getActionMasked() == 0 && (p1Var2 = (lq0Var2 = this.f29002c).G0) != null && p1Var2.isShowing()) {
-                    Rect rect2 = this.f29001b;
-                    view.getHitRect(rect2);
-                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        lq0Var2.G0.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-        }
+    public final void didReceivedNotification(int r9, int r10, java.lang.Object... r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.tp0.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 }

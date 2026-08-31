@@ -1,194 +1,225 @@
 package qh;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.os.Build;
+import android.view.MotionEvent;
+import android.view.RoundedCorner;
 import android.view.View;
+import android.view.ViewParent;
+import android.view.WindowInsets;
 import android.widget.FrameLayout;
-import android.widget.TextView;
-import cg.u;
-import dg.n;
-import f2.l;
-import fg.i;
-import k7.b6;
-import lh.t7;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.Components.pa;
-import org.telegram.ui.Components.rl0;
-import org.telegram.ui.Components.sa;
-import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.w51;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.jk;
-import org.telegram.ui.xn;
-import ph.d4;
-import ph.f3;
-public final class f extends sa implements NotificationCenter.NotificationCenterDelegate {
-    public final mf.a U;
-    public final u V;
-    public final FrameLayout W;
-    public Runnable X;
-    public w51 Y;
+import org.telegram.ui.Components.bd;
+import org.telegram.ui.Components.bu;
+import org.telegram.ui.Components.fu;
+import org.telegram.ui.Components.mz;
+import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.qv0;
+import org.telegram.ui.Components.xt;
+import org.telegram.ui.ns0;
+public final class f extends fu {
+    public org.telegram.ui.Components.fa S;
+    public qg.b T;
+    public final org.telegram.ui.ActionBar.g6 U;
+    public final org.telegram.ui.Components.ba V;
+    public final k W;
 
-    public f(Context context, f6 f6Var, mf.a aVar, boolean z4, Runnable runnable) {
-        super(context, null, false, false, false, 1, f6Var);
-        this.v = 0.2f;
-        this.X = runnable;
-        fixNavigationBar();
-        sl0 sl0Var = this.d;
-        int i10 = this.backgroundPaddingLeft;
-        sl0Var.setPadding(i10, 0, i10, 0);
-        this.d.setOnItemClickListener(new n(this, 18));
-        l lVar = new l();
-        lVar.f5818m = false;
-        lVar.C = false;
-        lVar.o(nr.h);
-        lVar.n(350L);
-        this.d.setItemAnimator(lVar);
-        setBackgroundColor(j6.v0(j6.f19977h5, f6Var));
-        this.U = aVar;
-        u uVar = new u(context, 4, f6Var);
-        this.V = uVar;
-        ((TextView) uVar.f2536c).setText(LocaleController.formatString(R.string.TonNeededTitle, mf.a.i(aVar.f13929b - t7.y(this.currentAccount, true).s().f13929b, mf.b.f13931b).d()));
-        TextView textView = (TextView) uVar.d;
-        textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.FragmentAddFunds)));
-        textView.setMaxWidth(f3.a(textView.getText(), textView.getPaint()));
-        this.e.setTitle(y());
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.W = frameLayout;
-        ph.d dVar = new ph.d(getContext(), getResourcesProvider(), true);
-        frameLayout.addView(dVar, b6.t(-1, 48, 17, 20, 10, 20, 20));
-        if (!z4 && !g.B0()) {
-            dVar.g(LocaleController.getString(R.string.Close), false, true);
-            dVar.setOnClickListener(new View.OnClickListener(this) {
-                public final f f43075b;
+    public f(k kVar, Context context, qv0 qv0Var, int i10, oh.b bVar, org.telegram.ui.ActionBar.g6 g6Var, org.telegram.ui.Components.ba baVar) {
+        super(context, qv0Var, null, i10, true, bVar);
+        this.W = kVar;
+        this.U = g6Var;
+        this.V = baVar;
+    }
 
-                {
-                    this.f43075b = this;
+    @Override
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        k kVar = this.W;
+        if ((kVar instanceof p) && ((p) kVar).L1) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void f() {
+        super.f();
+        mz emojiView = getEmojiView();
+        if (emojiView != null) {
+            k kVar = this.W;
+            if (kVar.getEditTextStyle() == 2 || kVar.getEditTextStyle() == 3) {
+                emojiView.f29325t0 = false;
+                emojiView.f29330u2 = false;
+                emojiView.setShouldDrawBackground(false);
+                if (kVar instanceof bd) {
+                    emojiView.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);
+                    emojiView.f29270c = 3;
                 }
+                emojiView.U();
+            }
+        }
+        if (emojiView != null) {
+            emojiView.F2 = true;
+            emojiView.setClipToOutline(true);
+            emojiView.setOutlineProvider(new hg.j1(17));
+        }
+    }
 
-                @Override
-                public final void onClick(View view) {
-                    switch (r2) {
-                        case 0:
-                            af.g.u(this.f43075b.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
-                            return;
-                        default:
-                            this.f43075b.dismiss();
-                            return;
+    @Override
+    public final void g(Canvas canvas, bu buVar) {
+        float lerp;
+        Bitmap bitmap;
+        ?? r14;
+        int i10;
+        int i11;
+        WindowInsets rootWindowInsets;
+        k kVar = this.W;
+        og.i iVar = kVar.d;
+        RectF rectF = kVar.f45538w0;
+        rectF.set(0.0f, 0.0f, buVar.getWidth(), AndroidUtilities.dp(29.0f) + buVar.getHeight());
+        int i12 = 0;
+        if (kVar.f45516e0 != null) {
+            if (this.T == null) {
+                if (Build.VERSION.SDK_INT >= 31 && (rootWindowInsets = getRootWindowInsets()) != null) {
+                    RoundedCorner roundedCorner = rootWindowInsets.getRoundedCorner(3);
+                    RoundedCorner roundedCorner2 = rootWindowInsets.getRoundedCorner(2);
+                    if (roundedCorner == null) {
+                        i11 = 0;
+                    } else {
+                        i11 = roundedCorner.getRadius();
                     }
+                    if (roundedCorner2 == null) {
+                        i10 = 0;
+                    } else {
+                        i10 = roundedCorner2.getRadius();
+                    }
+                } else {
+                    i10 = 0;
+                    i11 = 0;
                 }
-            });
+                qg.b c3 = kVar.f45516e0.c(buVar, null, false);
+                c3.n(sg.b.i(this.U));
+                this.T = c3;
+                c3.r(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), i10, i11);
+                qg.b bVar = this.T;
+                bVar.f44857k = true;
+                bVar.t(AndroidUtilities.dp(32.0f));
+                qg.b bVar2 = this.T;
+                bVar2.h.f44841g = 0.4f;
+                bVar2.j();
+            }
+            Rect rect = AndroidUtilities.rectTmp2;
+            rectF.round(rect);
+            this.T.setBounds(rect);
+            this.T.draw(canvas);
+        } else if (kVar.g()) {
+            if (this.S == null) {
+                this.S = new org.telegram.ui.Components.fa(this.V, buVar, 7, false);
+            }
+            kVar.h(this.S, canvas, kVar.f45538w0, AndroidUtilities.dp(29.0f), false, 0.0f, -buVar.getY(), false);
+            iVar.f16820k = AndroidUtilities.dp(29.0f);
+            iVar.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, AndroidUtilities.dp(29.0f) + ((int) rectF.bottom));
+            iVar.draw(canvas);
         } else {
-            dVar.g(LocaleController.getString(R.string.TopUpViaFragment), false, true);
-            dVar.setOnClickListener(new View.OnClickListener(this) {
-                public final f f43075b;
-
-                {
-                    this.f43075b = this;
-                }
-
-                @Override
-                public final void onClick(View view) {
-                    switch (r2) {
-                        case 0:
-                            af.g.u(this.f43075b.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
-                            return;
-                        default:
-                            this.f43075b.dismiss();
-                            return;
+            Paint paint = kVar.f45515e;
+            FrameLayout frameLayout = kVar.G;
+            if (kVar.f45524l0 > 0.0f && kVar.f45531r0 != null && kVar.f45528p0 != null && (bitmap = kVar.f45527o0) != null && !bitmap.isRecycled()) {
+                kVar.f45529q0.reset();
+                kVar.f45529q0.postScale(frameLayout.getWidth() / kVar.f45527o0.getWidth(), frameLayout.getHeight() / kVar.f45527o0.getHeight());
+                float f10 = 0.0f;
+                float f11 = 0.0f;
+                bu buVar2 = buVar;
+                while (i12 < 8 && buVar2 != null) {
+                    f10 += buVar2.getX();
+                    f11 += buVar2.getY();
+                    ViewParent parent = buVar2.getParent();
+                    if (parent instanceof View) {
+                        r14 = (View) parent;
+                    } else {
+                        r14 = 0;
                     }
+                    i12++;
+                    buVar2 = r14;
                 }
-            });
-        }
-        w51 w51Var = this.Y;
-        if (w51Var != null) {
-            w51Var.N(false);
-        }
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        Runnable runnable;
-        if (i10 == NotificationCenter.starOptionsLoaded || i10 == NotificationCenter.starBalanceUpdated) {
-            w51 w51Var = this.Y;
-            if (w51Var != null) {
-                w51Var.N(true);
+                kVar.f45529q0.postTranslate(-f10, -f11);
+                kVar.f45528p0.setLocalMatrix(kVar.f45529q0);
+                kVar.f45531r0.setAlpha((int) (kVar.f45524l0 * 255.0f * 0.95f));
+                canvas.drawRoundRect(rectF, 0.0f, 0.0f, kVar.f45531r0);
             }
-            mf.a s6 = t7.y(this.currentAccount, true).s();
-            int i12 = R.string.TonNeededTitle;
-            mf.a aVar = this.U;
-            ((TextView) this.V.f2536c).setText(LocaleController.formatString(i12, mf.a.i(aVar.f13929b - s6.f13929b, mf.b.f13931b).d()));
-            pa paVar = this.e;
-            if (paVar != null) {
-                paVar.setTitle(y());
+            if (kVar.f45531r0 == null) {
+                lerp = 128.0f;
+            } else {
+                lerp = AndroidUtilities.lerp(128, 153, kVar.f45524l0) * 0.95f;
             }
-            if (s6.f13929b >= aVar.f13929b && (runnable = this.X) != null) {
-                runnable.run();
-                this.X = null;
-                dismiss();
+            paint.setAlpha((int) lerp);
+            canvas.drawRoundRect(rectF, 0.0f, 0.0f, paint);
+        }
+    }
+
+    @Override
+    public final void p() {
+        this.W.I.a();
+    }
+
+    @Override
+    public final void q(int i10, int i11) {
+        this.W.s(i10, i11);
+    }
+
+    @Override
+    public final boolean t(int i10) {
+        k kVar = this.W;
+        f fVar = kVar.f45517f;
+        ObjectAnimator objectAnimator = kVar.f45514d0;
+        if (objectAnimator != null && objectAnimator.isRunning() && i10 == kVar.V) {
+            return false;
+        }
+        kVar.invalidate();
+        if (kVar.T) {
+            kVar.T = false;
+            if (kVar.U != i10) {
+                ObjectAnimator objectAnimator2 = kVar.f45514d0;
+                if (objectAnimator2 == null || !objectAnimator2.isRunning() || i10 != kVar.V) {
+                    ObjectAnimator objectAnimator3 = kVar.f45514d0;
+                    if (objectAnimator3 != null) {
+                        objectAnimator3.cancel();
+                    }
+                    fVar.getEditText().setScrollY(kVar.U);
+                    xt editText = fVar.getEditText();
+                    int i11 = kVar.U;
+                    kVar.V = i10;
+                    ObjectAnimator ofInt = ObjectAnimator.ofInt(editText, "scrollY", i11, i10);
+                    kVar.f45514d0 = ofInt;
+                    ofInt.setDuration(240L);
+                    kVar.f45514d0.setInterpolator(pr.h);
+                    kVar.f45514d0.addListener(new ns0(this, 28));
+                    kVar.f45514d0.start();
+                    return false;
+                }
+                return true;
             }
+            return true;
         }
+        return true;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        u uVar = this.V;
-        if (uVar != null) {
-            ((i) uVar.f2535b).setPaused(true);
-        }
+    public final void u() {
+        this.W.I.f45412e = true;
     }
 
     @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starOptionsLoaded);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starBalanceUpdated);
-    }
-
-    @Override
-    public final void show() {
-        jk jkVar;
-        if (t7.y(this.currentAccount, true).s().f13929b >= this.U.f13929b) {
-            Runnable runnable = this.X;
-            if (runnable != null) {
-                runnable.run();
-                this.X = null;
-                return;
-            }
-            return;
-        }
-        p2 R = LaunchActivity.R();
-        if (R instanceof xn) {
-            xn xnVar = (xn) R;
-            if (xnVar.x9() && (jkVar = xnVar.V) != null) {
-                jkVar.P();
-            }
-        }
-        super.show();
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starOptionsLoaded);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starBalanceUpdated);
-    }
-
-    @Override
-    public final rl0 v(sl0 sl0Var) {
-        w51 w51Var = new w51(this.d, getContext(), this.currentAccount, 0, true, new d4(this, 6), this.resourcesProvider);
-        this.Y = w51Var;
-        return w51Var;
-    }
-
-    @Override
-    public final CharSequence y() {
-        u uVar = this.V;
-        if (uVar == null) {
-            return null;
-        }
-        return ((TextView) uVar.f2536c).getText();
+    public final void y() {
+        this.W.I.a();
     }
 }

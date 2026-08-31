@@ -6,7 +6,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import k7.a8;
 public abstract class c {
-    public static final a8 f45204a;
+    public static final a8 f48463a;
 
     static {
         b bVar;
@@ -15,7 +15,7 @@ public abstract class c {
         } catch (ReflectiveOperationException unused) {
             bVar = new Object();
         }
-        f45204a = bVar;
+        f48463a = bVar;
     }
 
     public static void a(AccessibleObject accessibleObject, StringBuilder sb) {
@@ -82,10 +82,10 @@ public abstract class c {
     public static void f(AccessibleObject accessibleObject) {
         try {
             accessibleObject.setAccessible(true);
-        } catch (Exception e) {
+        } catch (Exception e6) {
             StringBuilder t6 = android.support.v4.media.a.t("Failed making ", d(accessibleObject, false), " accessible; either increase its visibility or write a custom TypeAdapter for its declaring type.");
-            t6.append(e(e));
-            throw new RuntimeException(t6.toString(), e);
+            t6.append(e(e6));
+            throw new RuntimeException(t6.toString(), e6);
         }
     }
 }

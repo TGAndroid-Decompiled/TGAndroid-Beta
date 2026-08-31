@@ -1,14 +1,14 @@
 package xd;
 public interface d {
+    void E();
+
     void a();
 
-    void g(boolean z4);
+    void i(boolean z4);
 
-    boolean h();
+    boolean k();
 
-    boolean j(float f10);
+    boolean l(float f10);
 
-    void k();
-
-    void u();
+    void m();
 }

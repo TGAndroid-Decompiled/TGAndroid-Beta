@@ -1,83 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-public final class q40 implements org.telegram.ui.eq0 {
-    public boolean f28052a;
-    public final HashMap f28053b;
-    public final ArrayList f28054c;
-    public final w40 d;
-
-    public q40(w40 w40Var, HashMap hashMap, ArrayList arrayList) {
-        this.d = w40Var;
-        this.f28053b = hashMap;
-        this.f28054c = arrayList;
-    }
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class q40 extends Drawable {
+    public byte[] f30270a;
+    public final Paint f30271b = new Paint();
+    public final int[] f30272c = {-1, -2758925, -13805707, -13657655};
 
     @Override
-    public final boolean e() {
-        return this.d.f30191b.e();
-    }
-
-    @Override
-    public final void f(int i10, boolean z4, boolean z10) {
-        String str;
-        HashMap hashMap = this.f28053b;
-        if (!hashMap.isEmpty()) {
-            w40 w40Var = this.d;
-            if (w40Var.f30191b != null && !this.f28052a && !z4) {
-                this.f28052a = true;
-                ArrayList arrayList = new ArrayList();
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList2 = this.f28054c;
-                    if (i11 < arrayList2.size()) {
-                        Object obj = hashMap.get(arrayList2.get(i11));
-                        SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                        arrayList.add(sendingMediaInfo);
-                        if (obj instanceof MediaController.SearchImage) {
-                            MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                            String str2 = searchImage.imagePath;
-                            if (str2 != null) {
-                                sendingMediaInfo.path = str2;
-                            } else {
-                                sendingMediaInfo.searchImage = searchImage;
-                            }
-                            sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
-                            sendingMediaInfo.thumbPath = searchImage.thumbPath;
-                            CharSequence charSequence = searchImage.caption;
-                            if (charSequence != null) {
-                                str = charSequence.toString();
-                            } else {
-                                str = null;
-                            }
-                            sendingMediaInfo.caption = str;
-                            sendingMediaInfo.entities = searchImage.entities;
-                            sendingMediaInfo.masks = searchImage.stickers;
-                            sendingMediaInfo.ttl = searchImage.ttl;
-                        }
-                        i11++;
-                    } else {
-                        w40.b(w40Var, false, arrayList);
-                        return;
+    public final void draw(Canvas canvas) {
+        byte[] bArr = this.f30270a;
+        if (bArr != null) {
+            int length = bArr.length;
+            int[] iArr = this.f30272c;
+            Paint paint = this.f30271b;
+            if (length == 16) {
+                float floor = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 8.0f);
+                float f10 = 8.0f * floor;
+                float max = Math.max(0.0f, (getBounds().width() - f10) / 2.0f);
+                float max2 = Math.max(0.0f, (getBounds().height() - f10) / 2.0f);
+                int i10 = 0;
+                for (int i11 = 0; i11 < 8; i11++) {
+                    int i12 = 0;
+                    while (i12 < 8) {
+                        int i13 = i10 + 2;
+                        paint.setColor(iArr[Math.abs((this.f30270a[i10 / 8] >> (i10 % 8)) & 3) % 4]);
+                        float f11 = (i12 * floor) + max;
+                        float f12 = i11 * floor;
+                        canvas.drawRect(f11, f12 + max2, f11 + floor, f12 + floor + max2, paint);
+                        i12++;
+                        i10 = i13;
                     }
                 }
+                return;
+            }
+            float floor2 = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 12.0f);
+            float f13 = 12.0f * floor2;
+            float max3 = Math.max(0.0f, (getBounds().width() - f13) / 2.0f);
+            float max4 = Math.max(0.0f, (getBounds().height() - f13) / 2.0f);
+            int i14 = 0;
+            int i15 = 0;
+            while (i15 < 12) {
+                int i16 = i14;
+                for (int i17 = 0; i17 < 12; i17++) {
+                    paint.setColor(iArr[Math.abs((this.f30270a[i16 / 8] >> (i16 % 8)) & 3) % 4]);
+                    float f14 = (i17 * floor2) + max3;
+                    float f15 = i15 * floor2;
+                    canvas.drawRect(f14, f15 + max4, f14 + floor2, f15 + floor2 + max4, paint);
+                    i16 += 2;
+                }
+                i15++;
+                i14 = i16;
             }
         }
     }
 
     @Override
-    public final void a() {
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(32.0f);
     }
 
     @Override
-    public final void b(Editable editable) {
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(32.0f);
     }
 
     @Override
-    public final void c() {
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

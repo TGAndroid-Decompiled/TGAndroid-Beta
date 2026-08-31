@@ -1,8 +1,8 @@
 package qd;
 public final class m {
-    public final int f43033a;
+    public final int f44811a;
 
     public m(int i10) {
-        this.f43033a = i10;
+        this.f44811a = i10;
     }
 }

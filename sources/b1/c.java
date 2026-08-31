@@ -4,26 +4,26 @@ import dd.l;
 import kotlin.jvm.internal.q;
 import sc.i;
 public final class c implements dd.a {
-    public final int f1272a;
-    public final l f1273b;
-    public final q f1274c;
+    public final int f1372a;
+    public final l f1373b;
+    public final q f1374c;
 
     public c(l lVar, q qVar, int i10) {
-        this.f1272a = i10;
-        this.f1273b = lVar;
-        this.f1274c = qVar;
+        this.f1372a = i10;
+        this.f1373b = lVar;
+        this.f1374c = qVar;
     }
 
     @Override
     public final Object invoke() {
-        switch (this.f1272a) {
+        switch (this.f1372a) {
             case 0:
-                this.f1273b.invoke(this.f1274c.f10990a);
+                this.f1373b.invoke(this.f1374c.f11340a);
                 break;
             default:
-                this.f1273b.invoke(this.f1274c.f10990a);
+                this.f1373b.invoke(this.f1374c.f11340a);
                 break;
         }
-        return i.f44253a;
+        return i.f47243a;
     }
 }

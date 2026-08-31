@@ -1,6 +1,6 @@
 package org.telegram.ui;
 public final class mn {
-    public int f36353a;
-    public int f36354b;
-    public int f36355c;
+    public int f39178a;
+    public int f39179b;
+    public int f39180c;
 }

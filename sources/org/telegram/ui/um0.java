@@ -1,26 +1,26 @@
 package org.telegram.ui;
-public final class um0 implements org.telegram.ui.ActionBar.c2 {
-    public final int f38976a;
-    public final zm0 f38977b;
 
-    public um0(zm0 zm0Var, int i10) {
-        this.f38976a = i10;
-        this.f38977b = zm0Var;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class um0 extends ClickableSpan {
+    public final fn0 f41976a;
+
+    public um0(fn0 fn0Var) {
+        this.f41976a = fn0Var;
     }
 
     @Override
-    public final void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f38976a) {
-            case 0:
-                zm0 zm0Var = this.f38977b;
-                zm0Var.c(true);
-                zm0Var.N.finishFragment();
-                return;
-            default:
-                zm0 zm0Var2 = this.f38977b;
-                zm0Var2.c(true);
-                zm0Var2.N.K1(null, 0, true);
-                return;
-        }
+    public final void onClick(View view) {
+        fn0 fn0Var = this.f41976a;
+        af.g.s(fn0Var.getParentActivity(), fn0Var.f36973y.privacy_policy_url);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        textPaint.setUnderlineText(true);
+        textPaint.setTypeface(AndroidUtilities.bold());
     }
 }

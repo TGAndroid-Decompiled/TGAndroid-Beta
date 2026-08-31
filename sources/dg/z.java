@@ -1,68 +1,72 @@
 package dg;
 
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.pa0;
-public final class z implements o1.f {
-    public final int f4872a;
-    public final FrameLayout f4873b;
-    public final boolean f4874c;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import wh.v5;
+public final class z implements View.OnFocusChangeListener {
+    public final int f4737a;
+    public final Object f4738b;
 
-    public z(FrameLayout frameLayout, boolean z4, int i10) {
-        this.f4872a = i10;
-        this.f4873b = frameLayout;
-        this.f4874c = z4;
+    public z(Object obj, int i10) {
+        this.f4737a = i10;
+        this.f4738b = obj;
     }
 
     @Override
-    public final void a(o1.h hVar, boolean z4, float f10, float f11) {
-        int i10;
-        switch (this.f4872a) {
+    public final void onFocusChange(View view, boolean z4) {
+        float f10;
+        switch (this.f4737a) {
             case 0:
-                e1 e1Var = (e1) this.f4873b;
-                q2 q2Var = e1Var.f4485s1;
-                if (hVar == e1Var.C1) {
-                    e1Var.C1 = null;
-                    if (!this.f4874c) {
-                        q2Var.setVisibility(8);
-                    }
-                    q2Var.setMaskProvider(null);
+                EditTextBoldCursor editTextBoldCursor = ((c0) this.f4738b).f4448c;
+                if (!z4 && TextUtils.isEmpty(editTextBoldCursor.getText())) {
+                    editTextBoldCursor.setText("0");
                     return;
                 }
                 return;
             case 1:
-                e1 e1Var2 = (e1) this.f4873b;
-                z0 z0Var = e1Var2.D1;
-                if (hVar == e1Var2.J1) {
-                    e1Var2.J1 = null;
-                    if (!this.f4874c) {
-                        z0Var.setVisibility(8);
-                        cg.f1.e(e1Var2.M1).g();
-                        z0Var.getAdapter().l();
-                        return;
-                    }
+                EditTextBoldCursor editTextBoldCursor2 = ((d0) this.f4738b).d;
+                if (!z4 && TextUtils.isEmpty(editTextBoldCursor2.getText())) {
+                    editTextBoldCursor2.setText("0");
                     return;
                 }
                 return;
-            default:
-                pa0 pa0Var = (pa0) this.f4873b;
-                if (!z4) {
-                    pa0Var.H = null;
-                    boolean z10 = this.f4874c;
-                    if (z10) {
-                        i10 = 8;
-                    } else {
-                        i10 = 0;
-                    }
-                    pa0Var.setVisibility(i10);
-                    if (pa0Var.K && z10) {
-                        pa0Var.K = false;
-                        pa0Var.f27801b.setLayoutManager(pa0Var.getNeededLayoutManager());
-                        pa0Var.F = true;
-                        pa0Var.o(true);
+            case 2:
+                mh.l lVar = ((mh.p) this.f4738b).J;
+                if (z4) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                lVar.b(f10, f10, true);
+                return;
+            case 3:
+                mh.m0 m0Var = (mh.m0) this.f4738b;
+                m0Var.Z.c(z4, !TextUtils.isEmpty(m0Var.f14422a0.getText()));
+                return;
+            case 4:
+                mh.r0 r0Var = (mh.r0) this.f4738b;
+                r0Var.f14656f.c(z4, !TextUtils.isEmpty(r0Var.h.getText()));
+                return;
+            case 5:
+                mh.v0 v0Var = (mh.v0) this.f4738b;
+                v0Var.f14913b.c(z4, !TextUtils.isEmpty(v0Var.f14914c.getText()));
+                return;
+            case 6:
+                ng.p pVar = (ng.p) this.f4738b;
+                if (z4) {
+                    pVar.n(true);
+                    Runnable runnable = pVar.f16063e;
+                    if (runnable != null) {
+                        runnable.run();
                         return;
                     }
                     return;
                 }
+                pVar.m();
+                return;
+            default:
+                v5.a((v5) this.f4738b, z4);
                 return;
         }
     }

@@ -8,18 +8,18 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import r0.m1;
 public abstract class e implements a2 {
-    public Object f2215a;
+    public Object f2406a;
 
     public abstract Object E(Object obj);
 
     public Object F(Object obj) {
-        synchronized (((HashMap) this.f2215a)) {
+        synchronized (((HashMap) this.f2406a)) {
             try {
-                if (((HashMap) this.f2215a).containsKey(obj)) {
-                    return ((HashMap) this.f2215a).get(obj);
+                if (((HashMap) this.f2406a).containsKey(obj)) {
+                    return ((HashMap) this.f2406a).get(obj);
                 }
                 Object E = E(obj);
-                ((HashMap) this.f2215a).put(obj, E);
+                ((HashMap) this.f2406a).put(obj, E);
                 return E;
             } catch (Throwable th2) {
                 throw th2;
@@ -39,7 +39,7 @@ public abstract class e implements a2 {
     public abstract m1 I(m1 m1Var, List list);
 
     public void J() {
-        synchronized (this.f2215a) {
+        synchronized (this.f2406a) {
         }
     }
 
@@ -48,22 +48,22 @@ public abstract class e implements a2 {
     public e(int i10) {
         switch (i10) {
             case 2:
-                this.f2215a = new Object();
+                this.f2406a = new Object();
                 return;
             case 3:
-                this.f2215a = new n2();
+                this.f2406a = new n2();
                 return;
             case 7:
-                this.f2215a = new LinkedHashMap();
+                this.f2406a = new LinkedHashMap();
                 return;
             default:
-                this.f2215a = new HashMap();
+                this.f2406a = new HashMap();
                 return;
         }
     }
 
     public e(String str, Bundle data) {
         kotlin.jvm.internal.j.e(data, "data");
-        this.f2215a = data;
+        this.f2406a = data;
     }
 }

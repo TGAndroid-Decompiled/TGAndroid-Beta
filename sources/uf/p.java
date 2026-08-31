@@ -1,22 +1,38 @@
 package uf;
 
-import android.text.TextUtils;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.tl.TL_account;
-public final class p {
-    public TL_account.TL_businessChatLink f45412a;
+import org.telegram.ui.k10;
+import org.telegram.ui.tv;
+public final class p implements Runnable {
+    public final int f48666a;
+    public final z f48667b;
 
-    public final boolean equals(Object obj) {
-        TL_account.TL_businessChatLink tL_businessChatLink = this.f45412a;
-        if (this == obj) {
-            return true;
+    public p(z zVar, int i10) {
+        this.f48666a = i10;
+        this.f48667b = zVar;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f48666a) {
+            case 0:
+                z zVar = this.f48667b;
+                k10 k10Var = zVar.f48781x0;
+                if (k10Var != null) {
+                    ((tv) k10Var).h(false, null, zVar.f48777v0, zVar.f48779w0);
+                    return;
+                }
+                return;
+            default:
+                z zVar2 = this.f48667b;
+                zVar2.getClass();
+                zVar2.f48753c = w.All;
+                zVar2.F.clear();
+                int i10 = zVar2.C0;
+                if (i10 >= 0 && i10 < zVar2.h()) {
+                    zVar2.m(zVar2.C0);
+                }
+                zVar2.Q();
+                return;
         }
-        if (obj != null && p.class == obj.getClass()) {
-            TL_account.TL_businessChatLink tL_businessChatLink2 = ((p) obj).f45412a;
-            if (tL_businessChatLink.views == tL_businessChatLink2.views && TextUtils.equals(tL_businessChatLink.link, tL_businessChatLink2.link) && TextUtils.equals(tL_businessChatLink.title, tL_businessChatLink2.title) && TextUtils.equals(tL_businessChatLink.message, tL_businessChatLink2.message) && MediaDataController.entitiesEqual(tL_businessChatLink.entities, tL_businessChatLink2.entities)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

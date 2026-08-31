@@ -15,9 +15,9 @@ import org.telegram.messenger.RichMessageLayout;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class q1 extends AccessibilityNodeProvider {
-    public final Path f21564a = new Path();
-    public final RectF f21565b = new RectF();
-    public final Rect f21566c = new Rect();
+    public final Path f23351a = new Path();
+    public final RectF f23352b = new RectF();
+    public final Rect f23353c = new Rect();
     public final t1 d;
 
     public q1(t1 t1Var) {
@@ -31,7 +31,7 @@ public final class q1 extends AccessibilityNodeProvider {
         t1 t1Var = this.d;
         if (z4) {
             int i11 = i10 - 3000;
-            CharSequence charSequence = t1Var.f22273v7.caption;
+            CharSequence charSequence = t1Var.f24073v7.caption;
             if (!(charSequence instanceof Spannable) || i11 < 0) {
                 return null;
             }
@@ -43,7 +43,7 @@ public final class q1 extends AccessibilityNodeProvider {
             return clickableSpanArr[i11];
         }
         int i12 = i10 - 2000;
-        CharSequence charSequence2 = t1Var.f22273v7.messageText;
+        CharSequence charSequence2 = t1Var.f24073v7.messageText;
         if (!(charSequence2 instanceof Spannable) || i12 < 0) {
             return null;
         }
@@ -58,7 +58,7 @@ public final class q1 extends AccessibilityNodeProvider {
     public final RichMessageLayout.RichBlock b(int i10, int[] iArr) {
         RichMessageLayout richMessageLayout;
         int i11;
-        MessageObject messageObject = this.d.f22273v7;
+        MessageObject messageObject = this.d.f24073v7;
         if (messageObject != null && (richMessageLayout = messageObject.richLayout) != null && i10 - 6000 >= 0) {
             int i12 = 0;
             for (int i13 = 0; i13 < richMessageLayout.blocks.size(); i13++) {
@@ -90,7 +90,7 @@ public final class q1 extends AccessibilityNodeProvider {
         TLRPC.MessageReplyHeader messageReplyHeader;
         t1 t1Var = this.d;
         ArrayList arrayList = t1Var.V5;
-        ArrayList arrayList2 = t1Var.f22132l7;
+        ArrayList arrayList2 = t1Var.f23932l7;
         if (i10 == -1) {
             t1Var.performAccessibilityAction(i11, bundle);
             return true;
@@ -103,7 +103,7 @@ public final class q1 extends AccessibilityNodeProvider {
                 if (i10 == 5000) {
                     k1 k1Var2 = t1Var.Gc;
                     if (k1Var2 != null) {
-                        k1Var2.y0(t1Var, t1Var.Vb, 0.0f, 0.0f);
+                        k1Var2.x0(t1Var, t1Var.Vb, 0.0f, 0.0f);
                         return true;
                     }
                 } else if (i10 >= 6000) {
@@ -117,14 +117,14 @@ public final class q1 extends AccessibilityNodeProvider {
                 } else if (i10 >= 3000) {
                     ClickableSpan a2 = a(i10, true);
                     if (a2 != null) {
-                        t1Var.Gc.W0(t1Var, a2, false);
+                        t1Var.Gc.a1(t1Var, a2, false);
                         t1Var.I3(i10, 1, null);
                         return true;
                     }
                 } else if (i10 >= 2000) {
                     ClickableSpan a10 = a(i10, false);
                     if (a10 != null) {
-                        t1Var.Gc.W0(t1Var, a10, false);
+                        t1Var.Gc.a1(t1Var, a10, false);
                         t1Var.I3(i10, 1, null);
                         return true;
                     }
@@ -134,14 +134,14 @@ public final class q1 extends AccessibilityNodeProvider {
                         if (i12 < arrayList2.size()) {
                             e0 e0Var = (e0) arrayList2.get(i12);
                             k1 k1Var3 = t1Var.Gc;
-                            if (k1Var3 != null && !e0Var.f20971m) {
-                                BotInlineKeyboard.ButtonCustom buttonCustom = e0Var.f20968j;
+                            if (k1Var3 != null && !e0Var.f22708m) {
+                                BotInlineKeyboard.ButtonCustom buttonCustom = e0Var.f22705j;
                                 if (buttonCustom != null) {
-                                    k1Var3.E(t1Var, buttonCustom);
+                                    k1Var3.D(t1Var, buttonCustom);
                                 } else {
-                                    TL_keyboard.KeyboardInlineButton keyboardInlineButton = e0Var.f20967i;
+                                    TL_keyboard.KeyboardInlineButton keyboardInlineButton = e0Var.f22704i;
                                     if (keyboardInlineButton != null) {
-                                        k1Var3.o1(t1Var, keyboardInlineButton);
+                                        k1Var3.s1(t1Var, keyboardInlineButton);
                                     }
                                 }
                             }
@@ -154,7 +154,7 @@ public final class q1 extends AccessibilityNodeProvider {
                             r1 r1Var = (r1) arrayList.get(i13);
                             if (t1Var.Gc != null) {
                                 ArrayList arrayList3 = new ArrayList();
-                                arrayList3.add(r1Var.f21613s);
+                                arrayList3.add(r1Var.f23404s);
                                 t1Var.Gc.i(t1Var, arrayList3, -1, 0, 0);
                             }
                             t1Var.I3(i10, 1, null);
@@ -166,31 +166,31 @@ public final class q1 extends AccessibilityNodeProvider {
                     } else if (i10 == 499) {
                         k1 k1Var4 = t1Var.Gc;
                         if (k1Var4 != null) {
-                            k1Var4.R0(t1Var.Y2, t1Var);
+                            k1Var4.U0(t1Var.Y2, t1Var);
                             return true;
                         }
                     } else if (i10 == 492) {
                         k1 k1Var5 = t1Var.Gc;
                         if (k1Var5 != null) {
-                            k1Var5.R0(5, t1Var);
+                            k1Var5.U0(5, t1Var);
                             return true;
                         }
                     } else if (i10 == 491) {
                         k1 k1Var6 = t1Var.Gc;
                         if (k1Var6 != null) {
-                            k1Var6.R0(5, t1Var);
+                            k1Var6.U0(5, t1Var);
                             return true;
                         }
                     } else if (i10 == 490) {
                         k1 k1Var7 = t1Var.Gc;
                         if (k1Var7 != null) {
-                            k1Var7.R0(31, t1Var);
+                            k1Var7.U0(31, t1Var);
                             return true;
                         }
                     } else if (i10 == 489) {
                         k1 k1Var8 = t1Var.Gc;
                         if (k1Var8 != null) {
-                            k1Var8.R0(30, t1Var);
+                            k1Var8.U0(30, t1Var);
                             return true;
                         }
                     } else if (i10 == 498) {
@@ -200,23 +200,23 @@ public final class q1 extends AccessibilityNodeProvider {
                             return true;
                         }
                     } else if (i10 == 497) {
-                        if (t1Var.Gc != null && ((!t1Var.T7 || t1Var.R7 || t1Var.f22273v7.getReplyTopMsgId() != 0) && (t1Var.f22273v7.hasValidReplyMessageObject() || t1Var.f22275v9 || ((message = t1Var.f22273v7.messageOwner) != null && (messageReplyHeader = message.reply_to) != null && messageReplyHeader.reply_from != null)))) {
-                            t1Var.Gc.e2(t1Var, t1Var.f22273v7.getReplyMsgId(), 0.0f, 0.0f, false);
+                        if (t1Var.Gc != null && ((!t1Var.T7 || t1Var.R7 || t1Var.f24073v7.getReplyTopMsgId() != 0) && (t1Var.f24073v7.hasValidReplyMessageObject() || t1Var.f24075v9 || ((message = t1Var.f24073v7.messageOwner) != null && (messageReplyHeader = message.reply_to) != null && messageReplyHeader.reply_from != null)))) {
+                            t1Var.Gc.k2(t1Var, t1Var.f24073v7.getReplyMsgId(), 0.0f, 0.0f, false);
                             return true;
                         }
                     } else if (i10 == 494) {
                         k1 k1Var10 = t1Var.Gc;
                         if (k1Var10 != null) {
-                            TLRPC.Chat chat = t1Var.f22066gc;
+                            TLRPC.Chat chat = t1Var.f23866gc;
                             if (chat != null) {
-                                k1Var10.T(t1Var, chat, t1Var.f22273v7.messageOwner.fwd_from.channel_post, t1Var.f22011d1, t1Var.f22026e1, false);
+                                k1Var10.S(t1Var, chat, t1Var.f24073v7.messageOwner.fwd_from.channel_post, t1Var.f23811d1, t1Var.f23826e1, false);
                                 return true;
                             }
-                            TLRPC.User user = t1Var.f22036ec;
+                            TLRPC.User user = t1Var.f23836ec;
                             if (user != null) {
-                                k1Var10.y0(t1Var, user, t1Var.f22011d1, t1Var.f22026e1);
+                                k1Var10.x0(t1Var, user, t1Var.f23811d1, t1Var.f23826e1);
                                 return true;
-                            } else if (t1Var.f22080hc != null) {
+                            } else if (t1Var.f23880hc != null) {
                                 k1Var10.n(t1Var);
                                 return true;
                             }
@@ -228,7 +228,7 @@ public final class q1 extends AccessibilityNodeProvider {
                                 k1Var11.q(t1Var);
                                 return true;
                             }
-                            k1Var11.u(t1Var);
+                            k1Var11.t(t1Var);
                             return true;
                         }
                     } else if (i10 == 493 && (i1Var = t1Var.J5) != null) {
@@ -243,7 +243,7 @@ public final class q1 extends AccessibilityNodeProvider {
                 }
                 ClickableSpan a11 = a(i10, z4);
                 if (a11 != null && (k1Var = t1Var.Gc) != null) {
-                    k1Var.W0(t1Var, a11, true);
+                    k1Var.a1(t1Var, a11, true);
                     t1Var.I3(i10, 2, null);
                 }
             }

@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class sd implements View.OnClickListener {
-    public final int f38301a;
-    public final org.telegram.ui.ActionBar.g3 f38302b;
+    public final int f41230a;
+    public final org.telegram.ui.ActionBar.h3 f41231b;
 
-    public sd(org.telegram.ui.ActionBar.g3 g3Var, int i10) {
-        this.f38301a = i10;
-        this.f38302b = g3Var;
+    public sd(org.telegram.ui.ActionBar.h3 h3Var, int i10) {
+        this.f41230a = i10;
+        this.f41231b = h3Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f38301a) {
+        switch (this.f41230a) {
             case 0:
-                this.f38302b.dismiss();
+                this.f41231b.dismiss();
                 return;
             default:
-                this.f38302b.dismiss();
+                this.f41231b.dismiss();
                 return;
         }
     }

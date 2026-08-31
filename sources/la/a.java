@@ -2,33 +2,32 @@ package la;
 
 import android.os.Build;
 import java.util.ArrayList;
-import kh.a2;
 public final class a {
-    public final String f11730a;
-    public final String f11731b;
-    public final String f11732c;
+    public final String f12137a;
+    public final String f12138b;
+    public final String f12139c;
     public final p d;
-    public final ArrayList e;
+    public final ArrayList f12140e;
 
     public a(String str, String versionName, String appBuildVersion, p pVar, ArrayList arrayList) {
         String deviceManufacturer = Build.MANUFACTURER;
         kotlin.jvm.internal.j.e(versionName, "versionName");
         kotlin.jvm.internal.j.e(appBuildVersion, "appBuildVersion");
         kotlin.jvm.internal.j.e(deviceManufacturer, "deviceManufacturer");
-        this.f11730a = str;
-        this.f11731b = versionName;
-        this.f11732c = appBuildVersion;
+        this.f12137a = str;
+        this.f12138b = versionName;
+        this.f12139c = appBuildVersion;
         this.d = pVar;
-        this.e = arrayList;
+        this.f12140e = arrayList;
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                if (this.f11730a.equals(aVar.f11730a) && kotlin.jvm.internal.j.a(this.f11731b, aVar.f11731b) && kotlin.jvm.internal.j.a(this.f11732c, aVar.f11732c)) {
+                if (this.f12137a.equals(aVar.f12137a) && kotlin.jvm.internal.j.a(this.f12138b, aVar.f12138b) && kotlin.jvm.internal.j.a(this.f12139c, aVar.f12139c)) {
                     String str = Build.MANUFACTURER;
-                    if (!kotlin.jvm.internal.j.a(str, str) || !this.d.equals(aVar.d) || !this.e.equals(aVar.e)) {
+                    if (!kotlin.jvm.internal.j.a(str, str) || !this.d.equals(aVar.d) || !this.f12140e.equals(aVar.f12140e)) {
                         return false;
                     }
                     return true;
@@ -41,11 +40,11 @@ public final class a {
     }
 
     public final int hashCode() {
-        int e = a2.e(a2.e(a2.e(this.f11730a.hashCode() * 31, 31, this.f11731b), 31, this.f11732c), 31, Build.MANUFACTURER);
-        return this.e.hashCode() + ((this.d.hashCode() + e) * 31);
+        int e6 = l.d.e(l.d.e(l.d.e(this.f12137a.hashCode() * 31, 31, this.f12138b), 31, this.f12139c), 31, Build.MANUFACTURER);
+        return this.f12140e.hashCode() + ((this.d.hashCode() + e6) * 31);
     }
 
     public final String toString() {
-        return "AndroidApplicationInfo(packageName=" + this.f11730a + ", versionName=" + this.f11731b + ", appBuildVersion=" + this.f11732c + ", deviceManufacturer=" + Build.MANUFACTURER + ", currentProcessDetails=" + this.d + ", appProcessDetails=" + this.e + ')';
+        return "AndroidApplicationInfo(packageName=" + this.f12137a + ", versionName=" + this.f12138b + ", appBuildVersion=" + this.f12139c + ", deviceManufacturer=" + Build.MANUFACTURER + ", currentProcessDetails=" + this.d + ", appProcessDetails=" + this.f12140e + ')';
     }
 }

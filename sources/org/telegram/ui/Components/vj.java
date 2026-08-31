@@ -1,70 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.MotionEvent;
-public final class vj extends sl0 {
-    public final int U2;
-    public final Paint V2;
-    public final hk W2;
+import java.io.File;
+import java.util.Comparator;
+public final class vj implements Comparator {
+    public final int f31918a;
+    public final jk f31919b;
 
-    public vj(hk hkVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, f6Var);
-        this.U2 = i10;
-        switch (i10) {
-            case 1:
-                this.W2 = hkVar;
-                super(context, f6Var);
-                this.V2 = new Paint();
-                return;
-            default:
-                this.W2 = hkVar;
-                this.V2 = new Paint();
-                return;
-        }
+    public vj(jk jkVar, int i10) {
+        this.f31918a = i10;
+        this.f31919b = jkVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        switch (this.U2) {
+    public final int compare(Object obj, Object obj2) {
+        ck ckVar = (ck) obj;
+        ck ckVar2 = (ck) obj2;
+        switch (this.f31918a) {
             case 0:
-                if (this.W2.f25433n == 2 && getChildCount() > 0) {
-                    float f10 = 2.1474836E9f;
-                    for (int i10 = 0; i10 < getChildCount(); i10++) {
-                        if (getChildAt(i10).getY() < f10) {
-                            f10 = getChildAt(i10).getY();
+                jk jkVar = this.f31919b;
+                jkVar.getClass();
+                File file = ckVar.f25993f;
+                if (file != null) {
+                    if (ckVar2.f25993f != null) {
+                        boolean isDirectory = file.isDirectory();
+                        if (isDirectory != ckVar2.f25993f.isDirectory()) {
+                            if (isDirectory) {
+                            }
+                        } else if (!isDirectory && !jkVar.W) {
+                            int i10 = (ckVar.f25993f.lastModified() > ckVar2.f25993f.lastModified() ? 1 : (ckVar.f25993f.lastModified() == ckVar2.f25993f.lastModified() ? 0 : -1));
+                            if (i10 == 0) {
+                                return 0;
+                            }
+                            if (i10 > 0) {
+                            }
+                        } else {
+                            return ckVar.f25993f.getName().compareToIgnoreCase(ckVar2.f25993f.getName());
                         }
                     }
-                    this.V2.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19977h5, false));
+                    return 1;
                 }
-                super.dispatchDraw(canvas);
-                return;
+                return -1;
             default:
-                if (this.W2.f25433n == 1 && getChildCount() > 0) {
-                    float f11 = 2.1474836E9f;
-                    for (int i11 = 0; i11 < getChildCount(); i11++) {
-                        if (getChildAt(i11).getY() < f11) {
-                            f11 = getChildAt(i11).getY();
-                        }
-                    }
-                    this.V2.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19977h5, false));
+                if (this.f31919b.W) {
+                    return ckVar.f25993f.getName().compareToIgnoreCase(ckVar2.f25993f.getName());
                 }
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.U2) {
-            case 0:
-                if (this.W2.f25433n != 0) {
-                    return false;
+                int i11 = (ckVar.f25993f.lastModified() > ckVar2.f25993f.lastModified() ? 1 : (ckVar.f25993f.lastModified() == ckVar2.f25993f.lastModified() ? 0 : -1));
+                if (i11 == 0) {
+                    return 0;
                 }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
+                if (i11 > 0) {
+                    return -1;
+                }
+                return 1;
         }
     }
 }

@@ -2,18 +2,18 @@ package f7;
 
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import j7.r5;
+import j7.p5;
 public final class f extends com.google.android.gms.common.api.internal.i {
-    public final Object f6016b;
-    public final TaskCompletionSource f6017c;
+    public final Object f6124b;
+    public final TaskCompletionSource f6125c;
 
     public f(Boolean bool, TaskCompletionSource taskCompletionSource) {
-        this.f6016b = bool;
-        this.f6017c = taskCompletionSource;
+        this.f6124b = bool;
+        this.f6125c = taskCompletionSource;
     }
 
     @Override
     public final void z(Status status) {
-        r5.a(status, this.f6016b, this.f6017c);
+        p5.a(status, this.f6124b, this.f6125c);
     }
 }

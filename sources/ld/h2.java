@@ -2,7 +2,7 @@ package ld;
 
 import k7.b8;
 public final class h2 implements uc.f, uc.g {
-    public static final h2 f11891a = new Object();
+    public static final h2 f12320a = new Object();
 
     @Override
     public final Object fold(Object obj, dd.p pVar) {

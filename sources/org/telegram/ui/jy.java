@@ -1,10 +1,10 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class jy extends TLRPC.Dialog {
-    public final int f35526a;
+import java.util.ArrayList;
+public interface jy {
+    boolean C();
 
-    public jy(int i10) {
-        this.f35526a = i10;
-    }
+    boolean J(py pyVar);
+
+    boolean v(py pyVar, ArrayList arrayList, CharSequence charSequence, boolean z4, boolean z10, int i10, int i11, mf1 mf1Var);
 }

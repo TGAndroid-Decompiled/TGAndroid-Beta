@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public final class d {
-    public final ArrayList f10290a;
+    public final ArrayList f11056a;
 
     public d(JSONArray jSONArray) {
         ArrayList arrayList = new ArrayList();
@@ -14,15 +14,15 @@ public final class d {
             for (int i10 = 0; i10 < jSONArray.length(); i10++) {
                 JSONObject optJSONObject = jSONArray.optJSONObject(i10);
                 if (optJSONObject != null) {
-                    arrayList.add(new p2.l(optJSONObject));
+                    arrayList.add(new p2.k(optJSONObject));
                 }
             }
         }
-        this.f10290a = arrayList;
+        this.f11056a = arrayList;
     }
 
     public void a() {
-        ArrayList arrayList = this.f10290a;
+        ArrayList arrayList = this.f11056a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -32,8 +32,8 @@ public final class d {
                 try {
                     throw null;
                     break;
-                } catch (Exception e) {
-                    l.d.log(Level.WARNING, "could not delete file ", (Throwable) e);
+                } catch (Exception e6) {
+                    l.d.log(Level.WARNING, "could not delete file ", (Throwable) e6);
                 }
             } else {
                 throw new ClassCastException();
@@ -45,7 +45,7 @@ public final class d {
     public d(int i10) {
         switch (i10) {
             case 2:
-                this.f10290a = new ArrayList();
+                this.f11056a = new ArrayList();
                 new ArrayList();
                 new ArrayList();
                 return;
@@ -54,7 +54,7 @@ public final class d {
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                this.f10290a = new ArrayList();
+                this.f11056a = new ArrayList();
                 return;
         }
     }

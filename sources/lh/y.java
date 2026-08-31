@@ -1,54 +1,32 @@
 package lh;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_payments;
-public final class y {
-    public final int f13367a;
-    public final long f13368b;
-    public int f13369c;
-    public boolean d;
-    public final ArrayList e = new ArrayList();
-    public long f13370f;
-    public boolean f13371g;
-    public boolean h;
-    public int f13372i;
+import android.content.Context;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.g6;
+public final class y implements Runnable {
+    public final int f13109a;
+    public final Context f13110b;
+    public final g6 f13111c;
+    public final TL_stars.StarGift d;
 
-    public y(int i10, long j10) {
-        this.f13371g = false;
-        this.h = false;
-        this.f13367a = i10;
-        this.f13368b = j10;
-        if (System.currentTimeMillis() - this.f13370f > 900000) {
-            this.f13369c = 0;
-            this.h = false;
-            this.d = false;
-            if (this.f13372i != 0) {
-                ConnectionsManager.getInstance(i10).cancelRequest(this.f13372i, true);
-                this.f13372i = 0;
-            }
-            this.f13371g = false;
-            a();
-        }
+    public y(Context context, g6 g6Var, TL_stars.StarGift starGift, int i10) {
+        this.f13109a = i10;
+        this.f13110b = context;
+        this.f13111c = g6Var;
+        this.d = starGift;
     }
 
-    public final void a() {
-        if (!this.f13371g && !this.h && !this.d) {
-            this.f13370f = System.currentTimeMillis();
-            this.f13371g = true;
-            TL_payments.getConnectedStarRefBots getconnectedstarrefbots = new TL_payments.getConnectedStarRefBots();
-            int i10 = this.f13367a;
-            getconnectedstarrefbots.peer = MessagesController.getInstance(i10).getInputPeer(this.f13368b);
-            getconnectedstarrefbots.limit = 20;
-            ArrayList arrayList = this.e;
-            if (!arrayList.isEmpty()) {
-                TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) kh.a2.i(1, arrayList);
-                getconnectedstarrefbots.flags |= 4;
-                getconnectedstarrefbots.offset_date = connectedbotstarref.date;
-                getconnectedstarrefbots.offset_link = connectedbotstarref.url;
-            }
-            this.f13372i = ConnectionsManager.getInstance(i10).sendRequest(getconnectedstarrefbots, new gf.a(this, 6));
+    @Override
+    public final void run() {
+        switch (this.f13109a) {
+            case 0:
+                g6 g6Var = this.f13111c;
+                f0.U(this.f13110b, this.d, g6Var);
+                return;
+            default:
+                g6 g6Var2 = this.f13111c;
+                f0.U(this.f13110b, this.d, g6Var2);
+                return;
         }
     }
 }

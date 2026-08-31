@@ -22,7 +22,7 @@ public class TL_phone {
         public byte[] g_a_hash;
         public byte[] g_a_or_b;
         public byte[] g_b;
-        public long f19408id;
+        public long f21069id;
         public long key_fingerprint;
         public boolean need_debug;
         public boolean need_rating;
@@ -131,7 +131,7 @@ public class TL_phone {
             this.p2p_allowed = TLObject.hasFlag(readInt32, 32);
             this.video = TLObject.hasFlag(this.flags, 64);
             this.conference_supported = TLObject.hasFlag(this.flags, 256);
-            this.f19408id = inputSerializedData.readInt64(z4);
+            this.f21069id = inputSerializedData.readInt64(z4);
             this.access_hash = inputSerializedData.readInt64(z4);
             this.date = inputSerializedData.readInt32(z4);
             this.admin_id = inputSerializedData.readInt64(z4);
@@ -156,7 +156,7 @@ public class TL_phone {
             int flag3 = TLObject.setFlag(flag2, 256, this.conference_supported);
             this.flags = flag3;
             outputSerializedData.writeInt32(flag3);
-            outputSerializedData.writeInt64(this.f19408id);
+            outputSerializedData.writeInt64(this.f21069id);
             outputSerializedData.writeInt64(this.access_hash);
             outputSerializedData.writeInt32(this.date);
             outputSerializedData.writeInt64(this.admin_id);
@@ -180,7 +180,7 @@ public class TL_phone {
             int readInt32 = inputSerializedData.readInt32(z4);
             this.flags = readInt32;
             this.video = TLObject.hasFlag(readInt32, 64);
-            this.f19408id = inputSerializedData.readInt64(z4);
+            this.f21069id = inputSerializedData.readInt64(z4);
             this.access_hash = inputSerializedData.readInt64(z4);
             this.date = inputSerializedData.readInt32(z4);
             this.admin_id = inputSerializedData.readInt64(z4);
@@ -195,7 +195,7 @@ public class TL_phone {
             int flag = TLObject.setFlag(this.flags, 64, this.video);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
-            outputSerializedData.writeInt64(this.f19408id);
+            outputSerializedData.writeInt64(this.f21069id);
             outputSerializedData.writeInt64(this.access_hash);
             outputSerializedData.writeInt32(this.date);
             outputSerializedData.writeInt64(this.admin_id);
@@ -215,7 +215,7 @@ public class TL_phone {
             this.need_rating = TLObject.hasFlag(readInt32, 4);
             this.need_debug = TLObject.hasFlag(this.flags, 8);
             this.video = TLObject.hasFlag(this.flags, 64);
-            this.f19408id = inputSerializedData.readInt64(z4);
+            this.f21069id = inputSerializedData.readInt64(z4);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.reason = TLRPC.PhoneCallDiscardReason.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z4), z4);
             }
@@ -234,7 +234,7 @@ public class TL_phone {
             int flag3 = TLObject.setFlag(flag2, 64, this.video);
             this.flags = flag3;
             outputSerializedData.writeInt32(flag3);
-            outputSerializedData.writeInt64(this.f19408id);
+            outputSerializedData.writeInt64(this.f21069id);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.reason.serializeToStream(outputSerializedData);
             }
@@ -249,13 +249,13 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z4) {
-            this.f19408id = inputSerializedData.readInt64(z4);
+            this.f21069id = inputSerializedData.readInt64(z4);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1399245077);
-            outputSerializedData.writeInt64(this.f19408id);
+            outputSerializedData.writeInt64(this.f21069id);
         }
     }
 
@@ -321,7 +321,7 @@ public class TL_phone {
             int readInt32 = inputSerializedData.readInt32(z4);
             this.flags = readInt32;
             this.video = TLObject.hasFlag(readInt32, 64);
-            this.f19408id = inputSerializedData.readInt64(z4);
+            this.f21069id = inputSerializedData.readInt64(z4);
             this.access_hash = inputSerializedData.readInt64(z4);
             this.date = inputSerializedData.readInt32(z4);
             this.admin_id = inputSerializedData.readInt64(z4);
@@ -338,7 +338,7 @@ public class TL_phone {
             int flag = TLObject.setFlag(this.flags, 64, this.video);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
-            outputSerializedData.writeInt64(this.f19408id);
+            outputSerializedData.writeInt64(this.f21069id);
             outputSerializedData.writeInt64(this.access_hash);
             outputSerializedData.writeInt32(this.date);
             outputSerializedData.writeInt64(this.admin_id);
@@ -359,7 +359,7 @@ public class TL_phone {
             this.flags = readInt32;
             this.p2p_allowed = TLObject.hasFlag(readInt32, 32);
             this.video = TLObject.hasFlag(this.flags, 64);
-            this.f19408id = inputSerializedData.readInt64(z4);
+            this.f21069id = inputSerializedData.readInt64(z4);
             this.access_hash = inputSerializedData.readInt64(z4);
             this.date = inputSerializedData.readInt32(z4);
             this.admin_id = inputSerializedData.readInt64(z4);
@@ -379,7 +379,7 @@ public class TL_phone {
             int flag2 = TLObject.setFlag(flag, 64, this.video);
             this.flags = flag2;
             outputSerializedData.writeInt32(flag2);
-            outputSerializedData.writeInt64(this.f19408id);
+            outputSerializedData.writeInt64(this.f21069id);
             outputSerializedData.writeInt64(this.access_hash);
             outputSerializedData.writeInt32(this.date);
             outputSerializedData.writeInt64(this.admin_id);
@@ -1324,7 +1324,7 @@ public class TL_phone {
             int readInt32 = inputSerializedData.readInt32(z4);
             this.flags = readInt32;
             this.video = TLObject.hasFlag(readInt32, 64);
-            this.f19408id = inputSerializedData.readInt64(z4);
+            this.f21069id = inputSerializedData.readInt64(z4);
             this.access_hash = inputSerializedData.readInt64(z4);
             this.date = inputSerializedData.readInt32(z4);
             this.admin_id = inputSerializedData.readInt64(z4);
@@ -1339,7 +1339,7 @@ public class TL_phone {
             int flag = TLObject.setFlag(this.flags, 64, this.video);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
-            outputSerializedData.writeInt64(this.f19408id);
+            outputSerializedData.writeInt64(this.f21069id);
             outputSerializedData.writeInt64(this.access_hash);
             outputSerializedData.writeInt32(this.date);
             outputSerializedData.writeInt64(this.admin_id);

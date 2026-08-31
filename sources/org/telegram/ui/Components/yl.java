@@ -1,43 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class yl extends TextView {
-    public float f31041a;
-    public boolean f31042b;
-    public final Paint f31043c;
+import android.view.View;
+import org.telegram.messenger.MediaController;
+public final class yl implements vl0 {
+    public final ChatAttachAlertPhotoLayout f33536a;
 
-    public yl(Context context, Paint paint) {
-        super(context);
-        this.f31043c = paint;
-        this.f31041a = 0.0f;
+    public yl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
+        this.f33536a = chatAttachAlertPhotoLayout;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int i10 = (int) ((this.f31041a * 130.0f) + 125.0f);
-        Paint paint = this.f31043c;
-        paint.setAlpha(i10);
-        if (!this.f31042b) {
-            float f10 = this.f31041a - 0.026666667f;
-            this.f31041a = f10;
-            if (f10 <= 0.0f) {
-                this.f31041a = 0.0f;
-                this.f31042b = true;
-            }
-        } else {
-            float f11 = this.f31041a + 0.026666667f;
-            this.f31041a = f11;
-            if (f11 >= 1.0f) {
-                this.f31041a = 1.0f;
-                this.f31042b = false;
-            }
+    public final void a(boolean z4) {
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f33536a;
+        chatAttachAlertPhotoLayout.I = z4 ? 1 : 0;
+        chatAttachAlertPhotoLayout.B.d1(true);
+    }
+
+    @Override
+    public final boolean b(int i10) {
+        if (this.f33536a.D.j(i10) == 0) {
+            return true;
         }
-        super.onDraw(canvas);
-        canvas.drawCircle(AndroidUtilities.dp(14.0f), getMeasuredHeight() / 2, AndroidUtilities.dp(4.0f), paint);
-        invalidate();
+        return false;
+    }
+
+    @Override
+    public final void c(View view, boolean z4) {
+        if (z4 == this.f33536a.H && (view instanceof org.telegram.ui.Cells.t5)) {
+            org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
+            t5Var.f24157w.b(t5Var);
+        }
+    }
+
+    @Override
+    public final boolean d(int i10) {
+        MediaController.PhotoEntry M = this.f33536a.D.M(i10);
+        if (M != null && ChatAttachAlertPhotoLayout.f24738p1.containsKey(Integer.valueOf(M.imageId))) {
+            return true;
+        }
+        return false;
     }
 }

@@ -6,10 +6,10 @@ import com.google.android.gms.cast.MediaError;
 import com.google.android.gms.cast.MediaInfo;
 import com.google.android.gms.cast.MediaTrack;
 public final class v implements Parcelable.Creator {
-    public final int f42873a;
+    public final int f44632a;
 
     public v(int i10) {
-        this.f42873a = i10;
+        this.f44632a = i10;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class v implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f42873a) {
+        switch (this.f44632a) {
             case 0:
                 return new a[i10];
             case 1:

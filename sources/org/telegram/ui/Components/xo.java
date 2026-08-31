@@ -1,28 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import org.telegram.ui.cd1;
-public final class xo extends cd1 {
-    public final int f30704h2;
+import android.animation.ValueAnimator;
+public final class xo implements ValueAnimator.AnimatorUpdateListener {
+    public boolean f33141a = false;
+    public final mp f33142b;
 
-    public xo(Object obj, Bitmap bitmap, boolean z4, int i10) {
-        super(obj, bitmap, z4);
-        this.f30704h2 = i10;
+    public xo(mp mpVar) {
+        this.f33142b = mpVar;
     }
 
     @Override
-    public final boolean U0() {
-        switch (this.f30704h2) {
-            case 0:
-                return true;
-            case 1:
-                return true;
-            case 2:
-                return true;
-            case 3:
-                return true;
-            default:
-                return true;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        mp mpVar = this.f33142b;
+        mpVar.P = floatValue;
+        mpVar.O.invalidate();
+        if (!this.f33141a && mpVar.P > 0.5f) {
+            this.f33141a = true;
         }
     }
 }

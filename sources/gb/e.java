@@ -9,23 +9,23 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 public final class e extends j {
     public ThickLanguageIdentifier d;
-    public final Context e;
-    public final fb.a f6500f;
-    public final boolean f6501g;
+    public final Context f6994e;
+    public final fb.a f6995f;
+    public final boolean f6996g;
 
     public e(Context context, fb.a aVar) {
-        this.e = context;
-        this.f6500f = aVar;
+        this.f6994e = context;
+        this.f6995f = aVar;
         aVar.getClass();
-        this.f6501g = true;
+        this.f6996g = true;
     }
 
     @Override
     public final void b() {
-        m.k(Thread.currentThread().equals(((AtomicReference) this.f2224a.d).get()));
+        m.k(Thread.currentThread().equals(((AtomicReference) this.f2415a.d).get()));
         if (this.d == null) {
-            this.f6500f.getClass();
-            ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.e);
+            this.f6995f.getClass();
+            ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.f6994e);
             this.d = thickLanguageIdentifier;
             thickLanguageIdentifier.b();
         }
@@ -33,7 +33,7 @@ public final class e extends j {
 
     @Override
     public final void c() {
-        m.k(Thread.currentThread().equals(((AtomicReference) this.f2224a.d).get()));
+        m.k(Thread.currentThread().equals(((AtomicReference) this.f2415a.d).get()));
         ThickLanguageIdentifier thickLanguageIdentifier = this.d;
         if (thickLanguageIdentifier != null) {
             thickLanguageIdentifier.c();
@@ -57,8 +57,8 @@ public final class e extends j {
                     Object obj = a2.get(i10);
                     i10++;
                     IdentifiedLanguage identifiedLanguage = (IdentifiedLanguage) obj;
-                    if (!"unknown".equals(identifiedLanguage.f4060a)) {
-                        str2 = identifiedLanguage.f4060a;
+                    if (!"unknown".equals(identifiedLanguage.f4115a)) {
+                        str2 = identifiedLanguage.f4115a;
                         break;
                     }
                 } else {

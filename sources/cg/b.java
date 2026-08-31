@@ -1,38 +1,14 @@
 package cg;
+public abstract class b {
+    public int f2505a;
+    public boolean f2506b;
 
-import org.telegram.messenger.R;
-public final class b extends m {
-    @Override
-    public final float a() {
-        return 1.0f;
+    public b(int i10, boolean z4) {
+        this.f2505a = i10;
+        this.f2506b = z4;
     }
 
-    @Override
-    public final float d() {
-        return 1.0f;
-    }
-
-    @Override
-    public final int e() {
-        return R.raw.photo_blur;
-    }
-
-    @Override
-    public final float g() {
-        return 0.35f;
-    }
-
-    @Override
-    public final String i(int i10) {
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    return null;
-                }
-                return "brush";
-            }
-            return "compositeWithMaskBlurer";
-        }
-        return "blitWithMaskBlurer";
+    public boolean a(b bVar) {
+        return false;
     }
 }

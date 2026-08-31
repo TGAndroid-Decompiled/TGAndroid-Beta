@@ -1,33 +1,131 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class mi0 implements Runnable {
-    public final int f36323a;
-    public final ni0 f36324b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+public final class mi0 extends org.telegram.ui.Components.tl0 {
+    public final ArrayList U2;
+    public final org.telegram.ui.Components.z5 V2;
+    public final org.telegram.ui.Components.z5 W2;
+    public final h20 X2;
+    public final ti0 Y2;
 
-    public mi0(ni0 ni0Var, int i10) {
-        this.f36323a = i10;
-        this.f36324b = ni0Var;
+    public mi0(ti0 ti0Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var);
+        this.Y2 = ti0Var;
+        this.U2 = new ArrayList(10);
+        org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.h;
+        this.V2 = new org.telegram.ui.Components.z5(this, 0L, 360L, prVar);
+        this.W2 = new org.telegram.ui.Components.z5(this, 0L, 360L, prVar);
+        this.X2 = new h20();
     }
 
     @Override
-    public final void run() {
-        switch (this.f36323a) {
-            case 0:
-                this.f36324b.W = null;
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                    return;
-                }
-                return;
-            default:
-                this.f36324b.W = null;
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                    return;
-                }
-                return;
+    public final void dispatchDraw(android.graphics.Canvas r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.mi0.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        org.telegram.ui.Cells.t1 t1Var;
+        ti0 ti0Var = this.Y2;
+        if (ti0Var.f41653w && ((view == (t1Var = ti0Var.N) && t1Var != null && t1Var.getCurrentPosition() == null) || view == ti0Var.U)) {
+            return false;
         }
+        if (!(view instanceof org.telegram.ui.Cells.t1)) {
+            return true;
+        }
+        org.telegram.ui.Cells.t1 t1Var2 = (org.telegram.ui.Cells.t1) view;
+        t1Var2.setInvalidatesParent(true);
+        t1Var2.K1(canvas);
+        canvas.save();
+        canvas.translate(t1Var2.getX(), t1Var2.getY());
+        canvas.scale(t1Var2.getScaleX(), t1Var2.getScaleY(), t1Var2.getPivotX(), t1Var2.getPivotY());
+        if (t1Var2.C1() && t1Var2.getCurrentPosition() == null) {
+            canvas.save();
+            canvas.translate(0.0f, t1Var2.getPaddingTop());
+            t1Var2.D1(canvas, true, false);
+            canvas.restore();
+        }
+        canvas.restore();
+        boolean drawChild = super.drawChild(canvas, view, j10);
+        canvas.save();
+        canvas.translate(t1Var2.getX(), t1Var2.getY() + t1Var2.getPaddingTop());
+        canvas.scale(t1Var2.getScaleX(), t1Var2.getScaleY(), t1Var2.getPivotX(), t1Var2.getPivotY());
+        if (t1Var2.getCurrentPosition() != null && (((t1Var2.getCurrentPosition().flags & t1Var2.t0()) != 0 && (t1Var2.getCurrentPosition().flags & 1) != 0) || (t1Var2.getCurrentMessagesGroup() != null && t1Var2.getCurrentMessagesGroup().isDocuments))) {
+            t1Var2.I1(t1Var2.getAlpha(), canvas, false);
+        }
+        if (t1Var2.getCurrentPosition() != null && (((t1Var2.getCurrentPosition().flags & 8) != 0 && (t1Var2.getCurrentPosition().flags & 1) != 0) || (t1Var2.getCurrentMessagesGroup() != null && t1Var2.getCurrentMessagesGroup().isDocuments))) {
+            t1Var2.d2(canvas, t1Var2.getAlpha(), null);
+            t1Var2.N1(canvas, t1Var2.getAlpha());
+        }
+        if (t1Var2.getCurrentPosition() != null) {
+            t1Var2.W1(canvas, t1Var2.getAlpha());
+        }
+        if (t1Var2.getCurrentPosition() == null || t1Var2.getCurrentPosition().last) {
+            t1Var2.m2(t1Var2.getAlpha(), canvas, true);
+        }
+        t1Var2.X1(canvas);
+        t1Var2.getTransitionParams().i();
+        canvas.restore();
+        t1Var2.setInvalidatesParent(false);
+        return drawChild;
+    }
+
+    @Override
+    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        for (int i14 = 0; i14 < getChildCount(); i14++) {
+            View childAt = getChildAt(i14);
+            if (childAt.getTop() != 0 && (childAt instanceof si0)) {
+                si0 si0Var = (si0) childAt;
+                si0Var.Ce = childAt.getTop();
+                si0Var.De = childAt.getBottom();
+                si0Var.Ee = si0Var.getMessageObject().getId();
+            }
+        }
+        super.onLayout(z4, i10, i11, i12, i13);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f10;
+        int measuredHeight;
+        int l10;
+        int i12;
+        ti0 ti0Var = this.Y2;
+        if (ti0Var.K.isEmpty()) {
+            f10 = -6.0f;
+        } else {
+            f10 = 48.0f;
+        }
+        int dp = AndroidUtilities.dp(f10);
+        ViewGroup viewGroup = ti0Var.W;
+        if (viewGroup == null) {
+            measuredHeight = 0;
+        } else {
+            measuredHeight = viewGroup.getMeasuredHeight();
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - ti0Var.f41631e.f7758b), Integer.MIN_VALUE));
+        if (ti0Var.f41638j0) {
+            l10 = ti0Var.V;
+        } else {
+            l10 = ti0Var.T.l();
+        }
+        int max = Math.max(AndroidUtilities.dp(12.0f) + l10, -((AndroidUtilities.dp(7.0f) + ti0Var.f41640l0[0]) - getMeasuredWidth()));
+        int i13 = ti0Var.L;
+        int measuredWidth = getMeasuredWidth() - max;
+        if (ti0Var.M.i()) {
+            i12 = 0;
+        } else {
+            i12 = 40;
+        }
+        float max2 = Math.max(1, getMeasuredWidth() - max) / Math.max(1, ((getMeasuredWidth() - max) - AndroidUtilities.dp(8.0f)) + Math.max(0, i13 - (measuredWidth - AndroidUtilities.dp(i12 + 8))));
+        setPivotX(getMeasuredWidth());
+        setPivotY(getMeasuredHeight());
+        setScaleX(max2);
+        setScaleY(max2);
     }
 }

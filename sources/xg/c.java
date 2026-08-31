@@ -1,136 +1,123 @@
 package xg;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import c5.j;
+import eg.m;
+import k7.c6;
+import k7.e6;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.voip.v2;
-public abstract class c extends ViewGroup {
-    public int f46979a;
-    public int f46980b;
-    public final LinkedHashMap f46981c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.fj;
+public final class c extends LinearLayout {
+    public static final int f50561e = 0;
+    public final g6 f50562a;
+    public final j f50563b;
+    public final j f50564c;
+    public float d;
 
-    public c(Context context) {
+    public c(Context context, g6 g6Var, fj fjVar, og.a aVar) {
         super(context);
-        this.f46981c = new LinkedHashMap(16);
+        j jVar = new j(this);
+        this.f50563b = jVar;
+        j jVar2 = new j(this);
+        this.f50564c = jVar2;
+        this.f50562a = g6Var;
+        wg.a c3 = wg.a.c(context, aVar, g6Var, fjVar);
+        jVar.f2315a = c3;
+        c3.setOnClickListener(new m(28));
+        e6.b((wg.a) jVar.f2315a, 0.065f, 2.0f);
+        wg.a c10 = wg.a.c(context, aVar, g6Var, fjVar);
+        jVar2.f2315a = c10;
+        c10.setOnClickListener(new m(28));
+        e6.b((wg.a) jVar2.f2315a, 0.065f, 2.0f);
+        a(jVar, LocaleController.getString(R.string.Reply), R.drawable.input_reply, false);
+        a(jVar2, LocaleController.getString(R.string.Forward), R.drawable.input_forward, true);
+        setOrientation(0);
+        setClipChildren(false);
+        addView((wg.a) jVar.f2315a, c6.m(1.0f, 0, 56, 1, -1, 0));
+        addView((wg.a) jVar2.f2315a, c6.m(1.0f, 0, 56, -1, 1, 0));
     }
 
-    public final void a(v2 v2Var) {
-        addView(v2Var);
-        this.f46981c.put(v2Var, new b(v2Var, new a(this, 0)));
-    }
-
-    public final void b(boolean z4, boolean z10) {
-        boolean z11;
-        int min;
-        int i10;
-        boolean z12;
-        xd.c cVar;
-        int measuredWidth;
-        int i11;
-        int measuredWidth2 = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        if (measuredWidth2 > measuredHeight) {
-            z11 = false;
+    public final void a(j jVar, String str, int i10, boolean z4) {
+        Drawable drawable;
+        TextView textView = new TextView(getContext());
+        textView.setText(str);
+        textView.setGravity(16);
+        textView.setTextSize(1, 15.0f);
+        textView.setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+        textView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+        int i11 = k6.Xk;
+        g6 g6Var = this.f50562a;
+        textView.setTextColor(k6.v0(i11, g6Var));
+        textView.setTypeface(AndroidUtilities.bold());
+        Drawable mutate = getContext().getResources().getDrawable(i10).mutate();
+        mutate.setColorFilter(new PorterDuffColorFilter(k6.v0(k6.Wk, g6Var), PorterDuff.Mode.MULTIPLY));
+        if (z4) {
+            drawable = mutate;
         } else {
-            z11 = true;
+            drawable = null;
         }
-        if (measuredWidth2 > 0 && measuredHeight > 0) {
-            LinkedHashMap linkedHashMap = this.f46981c;
-            int i12 = 0;
-            for (b bVar : linkedHashMap.values()) {
-                if (bVar.h) {
-                    i12++;
-                }
-            }
-            if (i12 == 0) {
-                i12 = 1;
-            }
-            if (!z11) {
-                int min2 = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (org.telegram.ui.b.z(50.0f, i12, measuredWidth2) / (i12 + 0.333f)), 0), measuredWidth2 / i12);
-                min = AndroidUtilities.dp(76.0f);
-                i10 = (measuredWidth2 - (i12 * min2)) / 2;
-                measuredWidth2 = min2;
-            } else {
-                min = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (org.telegram.ui.b.z(50.0f, i12, measuredHeight) / (i12 + 0.333f)), 0), measuredHeight / i12);
-                i10 = (measuredHeight - (i12 * min)) / 2;
-            }
-            int i13 = 0;
-            for (Map.Entry entry : linkedHashMap.entrySet()) {
-                b bVar2 = (b) entry.getValue();
-                boolean z13 = bVar2.h;
-                v2 v2Var = bVar2.e;
-                xd.c cVar2 = bVar2.f46976b;
-                xd.a aVar = bVar2.f46977c;
-                xd.c cVar3 = bVar2.f46975a;
-                if (z13) {
-                    if (!z11) {
-                        measuredWidth = ((measuredWidth2 - v2Var.getMeasuredWidth()) / 2) + (measuredWidth2 * i13) + i10;
-                        i11 = getMeasuredHeight() - AndroidUtilities.dp(76.0f);
-                    } else {
-                        measuredWidth = ((measuredWidth2 - v2Var.getMeasuredWidth()) / 2) + (getMeasuredWidth() - measuredWidth2);
-                        i11 = (min * i13) + i10;
-                    }
-                    if (!z10 && ((z4 || cVar3.f46898g) && aVar.f46893f)) {
-                        cVar3.a(measuredWidth);
-                    } else {
-                        cVar3.c(measuredWidth);
-                    }
-                    if (!z10 && ((z4 || cVar2.f46898g) && aVar.f46893f)) {
-                        cVar2.a(i11);
-                    } else {
-                        cVar2.c(i11);
-                    }
-                    i13++;
-                }
-                boolean z14 = bVar2.h;
-                if (!z10 && (z4 || ((cVar = aVar.h) != null && cVar.f46898g))) {
-                    z12 = true;
-                } else {
-                    z12 = false;
-                }
-                aVar.a(z14, z12);
-            }
-            invalidate();
+        if (z4) {
+            mutate = null;
         }
+        textView.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, mutate, (Drawable) null);
+        jVar.f2316b = textView;
+        ((wg.a) jVar.f2315a).addView(textView, c6.e(-2, -2, 17));
     }
 
-    public final void c(v2 v2Var, boolean z4, boolean z10) {
-        b bVar = (b) this.f46981c.get(v2Var);
-        if (bVar != null && bVar.h != z4) {
-            bVar.h = z4;
-            b(z10, false);
+    public final void b(j jVar) {
+        int i10;
+        float f10 = this.d * ((xd.a) jVar.f2317c).f50504e;
+        float f11 = (1.0f - f10) * (-AndroidUtilities.dp(54.0f));
+        float interpolation = (1.0f - wd.a.f49492a.getInterpolation(f10)) * (getMeasuredWidth() / 2.0f);
+        if (jVar == this.f50563b) {
+            interpolation *= -1.0f;
         }
+        ((wg.a) jVar.f2315a).setTranslationX(interpolation);
+        ((wg.a) jVar.f2315a).setTranslationY(f11);
+        ((wg.a) jVar.f2315a).setAlpha(f10);
+        wg.a aVar = (wg.a) jVar.f2315a;
+        if (f10 > 0.0f) {
+            i10 = 0;
+        } else {
+            i10 = 4;
+        }
+        aVar.setVisibility(i10);
     }
 
-    @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-        }
+    public View getForwardButton() {
+        return (wg.a) this.f50564c.f2315a;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        setMeasuredDimension(size, size2);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824);
-        int childCount = getChildCount();
-        for (int i12 = 0; i12 < childCount; i12++) {
-            getChildAt(i12).measure(makeMeasureSpec, makeMeasureSpec2);
+        super.onMeasure(i10, i11);
+        b(this.f50564c);
+        b(this.f50563b);
+    }
+
+    public void setForwardButtonOnClickListener(View.OnClickListener onClickListener) {
+        ((wg.a) this.f50564c.f2315a).setOnClickListener(onClickListener);
+    }
+
+    public void setReplyButtonOnClickListener(View.OnClickListener onClickListener) {
+        ((wg.a) this.f50563b.f2315a).setOnClickListener(onClickListener);
+    }
+
+    public void setTotalVisibilityFactor(float f10) {
+        if (this.d != f10) {
+            this.d = f10;
+            b(this.f50564c);
+            b(this.f50563b);
         }
-        if (this.f46979a == size && this.f46980b == size2) {
-            b(true, false);
-            return;
-        }
-        b(false, true);
-        this.f46979a = size;
-        this.f46980b = size2;
     }
 }

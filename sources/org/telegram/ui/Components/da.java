@@ -4,21 +4,21 @@ import android.graphics.Paint;
 import android.view.View;
 import java.util.ArrayList;
 public final class da implements View.OnAttachStateChangeListener {
-    public final int f24212a;
-    public final Object f24213b;
-    public final Object f24214c;
+    public final int f26237a;
+    public final Object f26238b;
+    public final Object f26239c;
 
     public da(int i10, Object obj, Object obj2) {
-        this.f24212a = i10;
-        this.f24214c = obj;
-        this.f24213b = obj2;
+        this.f26237a = i10;
+        this.f26239c = obj;
+        this.f26238b = obj2;
     }
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        int i10 = this.f24212a;
-        Object obj = this.f24213b;
-        Object obj2 = this.f24214c;
+        int i10 = this.f26237a;
+        Object obj = this.f26238b;
+        Object obj2 = this.f26239c;
         switch (i10) {
             case 0:
                 ba baVar = (ba) obj;
@@ -28,32 +28,32 @@ public final class da implements View.OnAttachStateChangeListener {
                 }
                 return;
             default:
-                k01 k01Var = (k01) obj2;
-                k01Var.f26089k = u5.update(k01Var.f26090l, (View) obj, k01Var.f26089k, k01Var.f26083b);
+                l01 l01Var = (l01) obj2;
+                l01Var.f28527k = u5.update(l01Var.f28528l, (View) obj, l01Var.f28527k, l01Var.f28520b);
                 return;
         }
     }
 
     @Override
     public final void onViewDetachedFromWindow(View view) {
-        switch (this.f24212a) {
+        switch (this.f26237a) {
             case 0:
-                fa faVar = (fa) this.f24214c;
-                ba baVar = (ba) this.f24213b;
+                fa faVar = (fa) this.f26239c;
+                ba baVar = (ba) this.f26238b;
                 if (baVar != null) {
                     ArrayList arrayList = baVar.d;
                     arrayList.remove(faVar);
-                    if (baVar.e.isEmpty() && arrayList.isEmpty()) {
-                        baVar.f23617n.a();
+                    if (baVar.f25543e.isEmpty() && arrayList.isEmpty()) {
+                        baVar.f25551n.a();
                     }
                 }
-                faVar.f24837n = null;
+                faVar.f26842n = null;
                 Paint paint = faVar.h;
-                faVar.f24838o = null;
+                faVar.f26843o = null;
                 paint.setShader(null);
                 return;
             default:
-                u5.release((View) this.f24213b, ((k01) this.f24214c).f26089k);
+                u5.release((View) this.f26238b, ((l01) this.f26239c).f28527k);
                 return;
         }
     }

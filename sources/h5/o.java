@@ -4,10 +4,10 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import k7.z6;
+import k7.a7;
 public abstract class o {
-    public static final ArrayList f6966a = new ArrayList();
-    public static final Pattern f6967b = Pattern.compile("^mp4a\\.([a-zA-Z0-9]{2})(?:\\.([0-9]{1,2}))?$");
+    public static final ArrayList f7269a = new ArrayList();
+    public static final Pattern f7270b = Pattern.compile("^mp4a\\.([a-zA-Z0-9]{2})(?:\\.([0-9]{1,2}))?$");
 
     public static String a(String str, String str2) {
         if (str != null && str2 != null) {
@@ -29,7 +29,7 @@ public abstract class o {
     }
 
     public static int b(String str, String str2) {
-        c5.e e;
+        c5.e e6;
         str.getClass();
         char c3 = 65535;
         switch (str.hashCode()) {
@@ -114,10 +114,10 @@ public abstract class o {
             case 2:
                 return 7;
             case 3:
-                if (str2 == null || (e = e(str2)) == null) {
+                if (str2 == null || (e6 = e(str2)) == null) {
                     return 0;
                 }
-                return e.a();
+                return e6.a();
             case 4:
                 return 5;
             case 5:
@@ -140,10 +140,10 @@ public abstract class o {
     }
 
     public static String c(String str) {
-        c5.e e;
+        c5.e e6;
         String str2 = null;
         if (str != null) {
-            String b10 = z6.b(str.trim());
+            String b10 = a7.b(str.trim());
             if (!b10.startsWith("avc1") && !b10.startsWith("avc3")) {
                 if (!b10.startsWith("hev1") && !b10.startsWith("hvc1")) {
                     if (!b10.startsWith("dvav") && !b10.startsWith("dva1") && !b10.startsWith("dvhe") && !b10.startsWith("dvh1")) {
@@ -153,8 +153,8 @@ public abstract class o {
                         if (!b10.startsWith("vp9") && !b10.startsWith("vp09")) {
                             if (!b10.startsWith("vp8") && !b10.startsWith("vp08")) {
                                 if (b10.startsWith("mp4a")) {
-                                    if (b10.startsWith("mp4a.") && (e = e(b10)) != null) {
-                                        str2 = d(e.f2085a);
+                                    if (b10.startsWith("mp4a.") && (e6 = e(b10)) != null) {
+                                        str2 = d(e6.f2268a);
                                     }
                                     if (str2 == null) {
                                         return "audio/mp4a-latm";
@@ -201,7 +201,7 @@ public abstract class o {
                                                         return "application/cea-708";
                                                     }
                                                     if (!b10.contains("eia608") && !b10.contains("cea608")) {
-                                                        ArrayList arrayList = f6966a;
+                                                        ArrayList arrayList = f7269a;
                                                         if (arrayList.size() > 0) {
                                                             arrayList.get(0).getClass();
                                                             throw new ClassCastException();
@@ -303,7 +303,7 @@ public abstract class o {
 
     public static c5.e e(String str) {
         int i10;
-        Matcher matcher = f6967b.matcher(str);
+        Matcher matcher = f7270b.matcher(str);
         if (matcher.matches()) {
             String group = matcher.group(1);
             group.getClass();
@@ -349,7 +349,7 @@ public abstract class o {
                 if ("application/x-camera-motion".equals(str)) {
                     return 6;
                 }
-                ArrayList arrayList = f6966a;
+                ArrayList arrayList = f7269a;
                 if (arrayList.size() <= 0) {
                     return -1;
                 }

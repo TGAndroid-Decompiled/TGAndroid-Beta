@@ -113,7 +113,7 @@ public class SaveToGallerySettingsHelper {
         }
 
         public void save(String str, SharedPreferences sharedPreferences) {
-            sharedPreferences.edit().putBoolean(vh.v2.k(str, "_save_gallery_photo"), this.savePhoto).putBoolean(vh.v2.k(str, "_save_gallery_video"), this.saveVideo).putLong(vh.v2.k(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
+            sharedPreferences.edit().putBoolean(w.c.e(str, "_save_gallery_photo"), this.savePhoto).putBoolean(w.c.e(str, "_save_gallery_video"), this.saveVideo).putLong(w.c.e(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
         }
 
         @Override

@@ -1,33 +1,66 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ln0 implements RequestDelegate {
-    public final int f36112a;
-    public final jo0 f36113b;
+import android.widget.FrameLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import org.telegram.messenger.FileLog;
+public final class ln0 implements OnCompleteListener, org.telegram.ui.ActionBar.c2, yt {
+    public final int f38788a;
+    public final lo0 f38789b;
 
-    public ln0(jo0 jo0Var, int i10) {
-        this.f36112a = i10;
-        this.f36113b = jo0Var;
+    public ln0(lo0 lo0Var, int i10) {
+        this.f38788a = i10;
+        this.f38789b = lo0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f36112a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new fe0(25, this.f36113b, tL_error));
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new kn0(this.f36113b, tL_error, tLObject, 0));
-                return;
+    public void V0(tt ttVar) {
+        switch (this.f38788a) {
             case 2:
-                AndroidUtilities.runOnUIThread(new en0(this.f36113b, tLObject, 2));
+                lo0 lo0Var = this.f38789b;
+                lo0Var.f38830x0 = ttVar;
+                lo0Var.f38807f[4].setText(ttVar.f41703a);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new en0(this.f36113b, tLObject, 0));
+                lo0 lo0Var2 = this.f38789b;
+                lo0Var2.f38830x0 = ttVar;
+                lo0Var2.f38807f[4].setText(ttVar.f41703a);
+                lo0Var2.f38832y0 = ttVar.d;
                 return;
         }
+    }
+
+    @Override
+    public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f38788a) {
+            case 1:
+                lo0 lo0Var = this.f38789b;
+                lo0Var.I0(lo0Var.O0[0]);
+                return;
+            case 2:
+            default:
+                lo0 lo0Var2 = this.f38789b;
+                lo0Var2.D0(true);
+                lo0Var2.z0();
+                return;
+            case 3:
+                this.f38789b.A0(true);
+                return;
+        }
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        lo0 lo0Var = this.f38789b;
+        lo0Var.getClass();
+        if (task.isSuccessful()) {
+            FrameLayout frameLayout = lo0Var.L;
+            if (frameLayout != null) {
+                frameLayout.setVisibility(0);
+                return;
+            }
+            return;
+        }
+        FileLog.e("isReadyToPay failed", task.getException());
     }
 }

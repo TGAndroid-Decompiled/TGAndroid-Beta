@@ -7,9 +7,9 @@ import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class n5 extends FrameLayout {
-    public ImageView f21440a;
-    public ImageView f21441b;
-    public TextView f21442c;
+    public ImageView f23217a;
+    public ImageView f23218b;
+    public TextView f23219c;
     public int d;
 
     @Override
@@ -22,21 +22,21 @@ public final class n5 extends FrameLayout {
     }
 
     public void setType(int i10) {
-        TextView textView = this.f21442c;
-        ImageView imageView = this.f21441b;
-        ImageView imageView2 = this.f21440a;
+        TextView textView = this.f23219c;
+        ImageView imageView = this.f23218b;
+        ImageView imageView2 = this.f23217a;
         if (i10 == 0) {
             imageView2.setImageResource(R.drawable.permissions_camera1);
             imageView.setImageResource(R.drawable.permissions_camera2);
             textView.setText(LocaleController.getString(R.string.CameraPermissionText));
-            imageView2.setLayoutParams(k7.b6.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
-            imageView.setLayoutParams(k7.b6.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
+            imageView2.setLayoutParams(k7.c6.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
+            imageView.setLayoutParams(k7.c6.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
             return;
         }
         imageView2.setImageResource(R.drawable.permissions_gallery1);
         imageView.setImageResource(R.drawable.permissions_gallery2);
         textView.setText(LocaleController.getString(R.string.GalleryPermissionText));
-        imageView2.setLayoutParams(k7.b6.d(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
-        imageView.setLayoutParams(k7.b6.d(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
+        imageView2.setLayoutParams(k7.c6.d(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
+        imageView.setLayoutParams(k7.c6.d(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
     }
 }

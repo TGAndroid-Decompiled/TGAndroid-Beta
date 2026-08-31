@@ -6,51 +6,50 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import k7.y7;
-import kh.a2;
 import o4.l0;
 public final class n implements l0 {
-    public final int f44528a;
-    public final r f44529b;
-    public int f44530c = -1;
+    public final int f47933a;
+    public final r f47934b;
+    public int f47935c = -1;
 
     public n(r rVar, int i10) {
-        this.f44529b = rVar;
-        this.f44528a = i10;
+        this.f47934b = rVar;
+        this.f47933a = i10;
     }
 
     @Override
     public final void a() {
-        int i10 = this.f44530c;
-        r rVar = this.f44529b;
+        int i10 = this.f47935c;
+        r rVar = this.f47934b;
         if (i10 != -2) {
             if (i10 == -1) {
-                rVar.q();
+                rVar.B();
                 return;
             } else if (i10 != -3) {
-                rVar.q();
+                rVar.B();
                 rVar.I[i10].w();
                 return;
             } else {
                 return;
             }
         }
-        rVar.d();
-        throw new IOException(android.support.v4.media.a.o("Unable to bind a sample queue to TrackGroup with MIME type ", rVar.V.a(this.f44528a).d[0].C, "."));
+        rVar.h();
+        throw new IOException(android.support.v4.media.a.o("Unable to bind a sample queue to TrackGroup with MIME type ", rVar.V.a(this.f47933a).d[0].C, "."));
     }
 
     public final void b() {
         boolean z4;
-        if (this.f44530c == -1) {
+        if (this.f47935c == -1) {
             z4 = true;
         } else {
             z4 = false;
         }
         h5.a.f(z4);
-        r rVar = this.f44529b;
-        rVar.d();
+        r rVar = this.f47934b;
+        rVar.h();
         rVar.X.getClass();
         int[] iArr = rVar.X;
-        int i10 = this.f44528a;
+        int i10 = this.f47933a;
         int i11 = iArr[i10];
         if (i11 == -1) {
             if (rVar.W.contains(rVar.V.a(i10))) {
@@ -58,17 +57,17 @@ public final class n implements l0 {
             }
             i11 = -2;
         } else {
-            boolean[] zArr = rVar.f44540a0;
+            boolean[] zArr = rVar.f47946a0;
             if (!zArr[i11]) {
                 zArr[i11] = true;
             }
             i11 = -2;
         }
-        this.f44530c = i11;
+        this.f47935c = i11;
     }
 
     public final boolean c() {
-        int i10 = this.f44530c;
+        int i10 = this.f47935c;
         if (i10 != -1 && i10 != -3 && i10 != -2) {
             return true;
         }
@@ -76,12 +75,12 @@ public final class n implements l0 {
     }
 
     @Override
-    public final boolean d() {
-        if (this.f44530c != -3) {
+    public final boolean h() {
+        if (this.f47935c != -3) {
             if (c()) {
-                int i10 = this.f44530c;
-                r rVar = this.f44529b;
-                if (rVar.n() || !rVar.I[i10].u(rVar.f44549g0)) {
+                int i10 = this.f47935c;
+                r rVar = this.f47934b;
+                if (rVar.z() || !rVar.I[i10].u(rVar.f47956g0)) {
                     return false;
                 }
                 return true;
@@ -92,19 +91,19 @@ public final class n implements l0 {
     }
 
     @Override
-    public final int e(long j10) {
+    public final int l(long j10) {
         Object next;
         Object obj;
         if (c()) {
-            int i10 = this.f44530c;
-            r rVar = this.f44529b;
-            if (!rVar.n()) {
+            int i10 = this.f47935c;
+            r rVar = this.f47934b;
+            if (!rVar.z()) {
                 q qVar = rVar.I[i10];
-                int s6 = qVar.s(j10, rVar.f44549g0);
-                ArrayList arrayList = rVar.f44559y;
+                int s6 = qVar.s(j10, rVar.f47956g0);
+                ArrayList arrayList = rVar.f47966y;
                 if (arrayList != null) {
                     if (!arrayList.isEmpty()) {
-                        obj = a2.i(1, arrayList);
+                        obj = l.d.i(1, arrayList);
                     }
                     obj = null;
                 } else {
@@ -130,17 +129,17 @@ public final class n implements l0 {
     }
 
     @Override
-    public final int f(f7.b bVar, n3.i iVar, int i10) {
+    public final int p(f7.b bVar, n3.i iVar, int i10) {
         n0 n0Var;
-        if (this.f44530c == -3) {
+        if (this.f47935c == -3) {
             iVar.a(4);
             return -4;
         }
         if (c()) {
-            int i11 = this.f44530c;
-            r rVar = this.f44529b;
-            ArrayList arrayList = rVar.f44559y;
-            if (!rVar.n()) {
+            int i11 = this.f47935c;
+            r rVar = this.f47934b;
+            ArrayList arrayList = rVar.f47966y;
+            if (!rVar.z()) {
                 int i12 = 0;
                 if (!arrayList.isEmpty()) {
                     int i13 = 0;
@@ -148,7 +147,7 @@ public final class n implements l0 {
                         int i14 = ((k) arrayList.get(i13)).v;
                         int length = rVar.I.length;
                         for (int i15 = 0; i15 < length; i15++) {
-                            if (rVar.f44540a0[i15] && rVar.I[i15].y() == i14) {
+                            if (rVar.f47946a0[i15] && rVar.I[i15].y() == i14) {
                                 break loop0;
                             }
                         }
@@ -158,14 +157,14 @@ public final class n implements l0 {
                     k kVar = (k) arrayList.get(0);
                     n0 n0Var2 = kVar.d;
                     if (!n0Var2.equals(rVar.T)) {
-                        rVar.v.g(rVar.f44541b, n0Var2, kVar.e, kVar.f42732f, kVar.h);
+                        rVar.v.h(rVar.f47947b, n0Var2, kVar.f44476e, kVar.f44477f, kVar.h);
                     }
                     rVar.T = n0Var2;
                 }
                 if (arrayList.isEmpty() || ((k) arrayList.get(0)).X) {
-                    int z4 = rVar.I[i11].z(bVar, iVar, i10, rVar.f44549g0);
+                    int z4 = rVar.I[i11].z(bVar, iVar, i10, rVar.f47956g0);
                     if (z4 == -5) {
-                        n0 n0Var3 = (n0) bVar.f6013c;
+                        n0 n0Var3 = (n0) bVar.f6121c;
                         n0Var3.getClass();
                         if (i11 == rVar.O) {
                             int a2 = y7.a(rVar.I[i11].y());
@@ -180,7 +179,7 @@ public final class n implements l0 {
                             }
                             n0Var3 = n0Var3.c(n0Var);
                         }
-                        bVar.f6013c = n0Var3;
+                        bVar.f6121c = n0Var3;
                     }
                     return z4;
                 }

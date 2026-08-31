@@ -1,21 +1,15 @@
 package org.telegram.ui;
+public final class ws0 implements Runnable {
+    public final int f42878a;
+    public final xs0 f42879b;
 
-import android.media.MediaFormat;
-import org.telegram.messenger.AndroidUtilities;
-public final class ws0 implements i5.n {
-    public final PhotoViewer f39789a;
-
-    public ws0(PhotoViewer photoViewer) {
-        this.f39789a = photoViewer;
+    public ws0(xs0 xs0Var, int i10) {
+        this.f42878a = i10;
+        this.f42879b = xs0Var;
     }
 
     @Override
-    public final void a(long j10, long j11, j3.n0 n0Var, MediaFormat mediaFormat) {
-        org.telegram.ui.Components.i71 i71Var;
-        PhotoViewer photoViewer = this.f39789a;
-        if (!photoViewer.G4 || (i71Var = photoViewer.C2) == null) {
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new zq0(4, this, i71Var));
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ws0.run():void");
     }
 }

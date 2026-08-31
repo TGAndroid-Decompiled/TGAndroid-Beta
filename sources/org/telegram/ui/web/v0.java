@@ -1,15 +1,22 @@
 package org.telegram.ui.web;
 
-import android.webkit.DownloadListener;
-public final class v0 implements DownloadListener {
-    public final w0 f39677a;
+import android.webkit.WebView;
+public final class v0 implements WebView.FindListener {
+    public final x0 f42745a;
 
-    public v0(w0 w0Var) {
-        this.f39677a = w0Var;
+    public v0(x0 x0Var) {
+        this.f42745a = x0Var;
     }
 
     @Override
-    public final void onDownloadStart(java.lang.String r12, java.lang.String r13, java.lang.String r14, java.lang.String r15, long r16) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.v0.onDownloadStart(java.lang.String, java.lang.String, java.lang.String, java.lang.String, long):void");
+    public final void onFindResultReceived(int i10, int i11, boolean z4) {
+        x0 x0Var = this.f42745a;
+        x0Var.D = i10;
+        x0Var.E = i11;
+        x0Var.getClass();
+        Runnable runnable = x0Var.F;
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 }

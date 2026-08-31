@@ -1,52 +1,100 @@
 package org.telegram.ui.ActionBar;
 
-import android.util.SparseIntArray;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class d4 implements sf.a {
-    public i6 f19621a;
-    public TLRPC.TL_theme f19622b;
-    public TLRPC.TL_chatThemeUniqueGift f19623c;
-    public int d;
-    public int e = -1;
-    public SparseIntArray f19624f;
-    public String f19625g;
-    public int h;
-    public int f19626i;
-    public int f19627j;
-    public int f19628k;
-    public int f19629l;
-    public int f19630m;
-    public int f19631n;
-    public int f19632o;
+import android.graphics.Bitmap;
+import java.io.File;
+import java.io.FileOutputStream;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+public final class d4 implements Runnable {
+    public final int f21273a;
+    public final Bitmap f21274b;
+    public final File f21275c;
 
-    public final long a() {
-        TLRPC.TL_theme tL_theme = this.f19622b;
-        if (tL_theme != null) {
-            return tL_theme.f19321id;
-        }
-        TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f19623c;
-        if (tL_chatThemeUniqueGift != null) {
-            return tL_chatThemeUniqueGift.gift.gift_id;
-        }
-        return 0L;
+    public d4(Bitmap bitmap, File file, int i10) {
+        this.f21273a = i10;
+        this.f21274b = bitmap;
+        this.f21275c = file;
     }
 
-    public final TLRPC.ThemeSettings b(int i10) {
-        ArrayList<TLRPC.ThemeSettings> arrayList;
-        TLRPC.TL_theme tL_theme = this.f19622b;
-        if (tL_theme != null) {
-            arrayList = tL_theme.settings;
-        } else {
-            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f19623c;
-            if (tL_chatThemeUniqueGift != null) {
-                arrayList = tL_chatThemeUniqueGift.theme_settings;
-            }
-            return null;
+    @Override
+    public final void run() {
+        switch (this.f21273a) {
+            case 0:
+                File file = this.f21275c;
+                Bitmap bitmap = this.f21274b;
+                try {
+                    FileOutputStream fileOutputStream = new FileOutputStream(file);
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
+                    fileOutputStream.close();
+                    return;
+                } catch (Exception e6) {
+                    FileLog.e(e6);
+                    return;
+                }
+            case 1:
+                try {
+                    this.f21274b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f21275c));
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return;
+                }
+            case 2:
+                Bitmap bitmap2 = this.f21274b;
+                try {
+                    try {
+                        bitmap2.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.f21275c));
+                        if (bitmap2.isRecycled()) {
+                            return;
+                        }
+                    } catch (Exception e11) {
+                        FileLog.e(e11);
+                        if (bitmap2 == null || bitmap2.isRecycled()) {
+                            return;
+                        }
+                    }
+                    bitmap2.recycle();
+                    return;
+                } catch (Throwable th2) {
+                    if (bitmap2 != null && !bitmap2.isRecycled()) {
+                        bitmap2.recycle();
+                    }
+                    throw th2;
+                }
+            case 3:
+                Bitmap bitmap3 = this.f21274b;
+                try {
+                    try {
+                        bitmap3.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.f21275c));
+                    } finally {
+                        AndroidUtilities.recycleBitmap(bitmap3);
+                    }
+                } catch (Exception e12) {
+                    FileLog.e(e12);
+                }
+                return;
+            case 4:
+                try {
+                    this.f21274b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f21275c));
+                    return;
+                } catch (Exception e13) {
+                    FileLog.e(e13);
+                    return;
+                }
+            default:
+                try {
+                    this.f21274b.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f21275c));
+                    return;
+                } catch (Exception e14) {
+                    FileLog.e(e14);
+                    return;
+                }
         }
-        if (arrayList != null && i10 >= 0 && arrayList.size() > i10) {
-            return arrayList.get(i10);
-        }
-        return null;
+    }
+
+    public d4(File file, Bitmap bitmap) {
+        this.f21273a = 0;
+        this.f21275c = file;
+        this.f21274b = bitmap;
     }
 }

@@ -1,84 +1,116 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import java.util.ArrayList;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.EmojiData;
-import org.telegram.messenger.UserConfig;
-public final class yv implements Runnable {
-    public final int f31162a;
-    public final kz f31163b;
+public final class yv extends Drawable {
+    public final int f33583a;
+    public RectF f33584b;
+    public Paint f33585c;
 
-    public yv(kz kzVar, int i10) {
-        this.f31162a = i10;
-        this.f31163b = kzVar;
+    public yv(int i10, byte b10) {
+        this.f33583a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f31162a) {
+    public final void draw(Canvas canvas) {
+        switch (this.f33583a) {
             case 0:
-                kz kzVar = this.f31163b;
-                kzVar.Z(false);
-                kzVar.F();
+                RectF rectF = this.f33584b;
+                rectF.set(0.0f, 0.0f, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
+                canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(8.0f), AndroidUtilities.dpf2(8.0f), this.f33585c);
                 return;
             case 1:
-                kz kzVar2 = this.f31163b;
-                kzVar2.M.postOnAnimation(new yv(kzVar2, 6));
+                RectF rectF2 = this.f33584b;
+                rectF2.set(getBounds());
+                float height = rectF2.height() * 0.2f;
+                canvas.drawRoundRect(rectF2, height, height, this.f33585c);
                 return;
             case 2:
-                rx rxVar = this.f31163b.O;
-                if (rxVar != null) {
-                    rxVar.F(true);
-                    return;
-                }
-                return;
-            case 3:
-                kz kzVar3 = this.f31163b;
-                kzVar3.f26423e0.postOnAnimation(new yv(kzVar3, 6));
-                return;
-            case 4:
-                kz kzVar4 = this.f31163b;
-                kzVar4.A0.postOnAnimation(new yv(kzVar4, 6));
-                return;
-            case 5:
-                kz kzVar5 = this.f31163b;
-                ky kyVar = kzVar5.f26460q1;
-                if (kyVar != null) {
-                    kyVar.t(kzVar5.O.h);
-                    return;
-                }
-                return;
-            case 6:
-                this.f31163b.C();
-                return;
-            case 7:
-                ky kyVar2 = this.f31163b.f26460q1;
-                if (kyVar2 != null) {
-                    kyVar2.q();
-                    return;
-                }
-                return;
-            case 8:
-                kz kzVar6 = this.f31163b;
-                kzVar6.getClass();
-                Bundle bundle = new Bundle();
-                bundle.putLong("user_id", UserConfig.getInstance(kzVar6.Z0).getClientUserId());
-                kzVar6.V1.presentFragment(new org.telegram.ui.xn(bundle));
+                RectF rectF3 = this.f33584b;
+                rectF3.set(getBounds());
+                rectF3.inset(AndroidUtilities.dp(1.0f), (rectF3.height() - AndroidUtilities.dp(28.0f)) / 2.0f);
+                canvas.drawRoundRect(rectF3, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f33585c);
                 return;
             default:
-                kz kzVar7 = this.f31163b;
-                ArrayList<vx> emojipacks = kzVar7.getEmojipacks();
-                for (int i10 = 0; i10 < emojipacks.size(); i10++) {
-                    if (emojipacks.get(i10).f30104i) {
-                        int i11 = kzVar7.O.f28552s.get(EmojiData.dataColored.length + i10);
-                        kzVar7.M.B0();
-                        kzVar7.W(i11);
-                        kzVar7.H(i11, AndroidUtilities.dp(-9.0f));
-                        kzVar7.n(null, 0);
-                    }
-                }
+                RectF rectF4 = this.f33584b;
+                rectF4.set(getBounds());
+                rectF4.inset(0.0f, (rectF4.height() - AndroidUtilities.dp(28.0f)) / 2.0f);
+                canvas.drawRoundRect(rectF4, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f33585c);
                 return;
         }
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f33583a) {
+            case 0:
+                return -3;
+            case 1:
+                return -3;
+            case 2:
+                return -2;
+            default:
+                return -2;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        switch (this.f33583a) {
+            case 0:
+                this.f33585c.setAlpha(i10);
+                return;
+            case 1:
+                this.f33585c.setAlpha(i10);
+                return;
+            case 2:
+                this.f33585c.setAlpha(i10);
+                return;
+            default:
+                this.f33585c.setAlpha(i10);
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        switch (this.f33583a) {
+            case 0:
+                return;
+            case 1:
+                this.f33585c.setColorFilter(colorFilter);
+                return;
+            case 2:
+            default:
+                return;
+        }
+    }
+
+    public yv() {
+        this.f33583a = 1;
+        this.f33584b = new RectF();
+        this.f33585c = new Paint(1);
+    }
+
+    public yv(int i10) {
+        this.f33583a = 0;
+        Paint paint = new Paint();
+        this.f33585c = paint;
+        this.f33584b = new RectF();
+        paint.setAlpha(45);
+        paint.setColor(i10);
+    }
+
+    private final void a(ColorFilter colorFilter) {
+    }
+
+    private final void b(ColorFilter colorFilter) {
+    }
+
+    private final void c(ColorFilter colorFilter) {
     }
 }

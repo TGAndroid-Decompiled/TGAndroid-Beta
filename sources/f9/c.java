@@ -5,17 +5,17 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.Process;
-import com.google.firebase.messaging.r;
 import java.util.ArrayList;
 import java.util.List;
 import k9.t0;
 import k9.t1;
 import kotlin.jvm.internal.j;
+import sf.e;
 import tc.g;
 import tc.i;
 import tc.o;
 public final class c {
-    public static final c f6107a = new Object();
+    public static final c f6226a = new Object();
 
     public static ArrayList a(Context context) {
         ActivityManager activityManager;
@@ -33,7 +33,7 @@ public final class c {
             list = activityManager.getRunningAppProcesses();
         }
         if (list == null) {
-            list = o.f44650a;
+            list = o.f48064a;
         }
         ArrayList f10 = g.f(list);
         ArrayList arrayList = new ArrayList();
@@ -53,14 +53,14 @@ public final class c {
             Object obj2 = arrayList.get(i11);
             i11++;
             ActivityManager.RunningAppProcessInfo runningAppProcessInfo = (ActivityManager.RunningAppProcessInfo) obj2;
-            r rVar = new r(12, false);
+            e eVar = new e(6, false);
             String str2 = runningAppProcessInfo.processName;
             if (str2 != null) {
-                rVar.f4028b = str2;
-                rVar.d = Integer.valueOf(runningAppProcessInfo.pid);
-                rVar.e = Integer.valueOf(runningAppProcessInfo.importance);
-                rVar.f4029c = Boolean.valueOf(j.a(runningAppProcessInfo.processName, str));
-                arrayList2.add(rVar.p());
+                eVar.f47315b = str2;
+                eVar.f47316c = Integer.valueOf(runningAppProcessInfo.pid);
+                eVar.d = Integer.valueOf(runningAppProcessInfo.importance);
+                eVar.f47317e = Boolean.valueOf(j.a(runningAppProcessInfo.processName, str));
+                arrayList2.add(eVar.n());
             } else {
                 throw new NullPointerException("Null processName");
             }
@@ -80,7 +80,7 @@ public final class c {
             if (i10 < size) {
                 obj = a2.get(i10);
                 i10++;
-                if (((t0) ((t1) obj)).f10248b == myPid) {
+                if (((t0) ((t1) obj)).f11010b == myPid) {
                     break;
                 }
             } else {
@@ -98,12 +98,12 @@ public final class c {
                 processName = "";
             }
             j.e(processName, "processName");
-            r rVar = new r(12, false);
-            rVar.f4028b = processName;
-            rVar.d = Integer.valueOf(myPid);
-            rVar.e = 0;
-            rVar.f4029c = false;
-            return rVar.p();
+            e eVar = new e(6, false);
+            eVar.f47315b = processName;
+            eVar.f47316c = Integer.valueOf(myPid);
+            eVar.d = 0;
+            eVar.f47317e = false;
+            return eVar.n();
         }
         return t1Var;
     }

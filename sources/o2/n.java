@@ -6,7 +6,7 @@ import org.chromium.support_lib_boundary.WebViewProviderBoundaryInterface;
 public interface n {
     WebViewProviderBoundaryInterface createWebView(WebView webView);
 
-    String[] e();
-
     StaticsBoundaryInterface getStatics();
+
+    String[] t();
 }

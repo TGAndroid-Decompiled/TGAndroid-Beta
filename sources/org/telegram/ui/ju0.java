@@ -1,26 +1,117 @@
 package org.telegram.ui;
 
-import android.view.View;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.ClippingImageView;
-public final class ju0 {
-    public ImageReceiver f35495a;
-    public int f35496b;
-    public int f35497c;
-    public View d;
-    public ImageReceiver.BitmapHolder e;
-    public long f35498f;
-    public long f35499g;
-    public int[] h;
-    public int f35500i;
-    public int f35501j;
-    public boolean f35503l;
-    public ClippingImageView f35504m;
-    public int f35505n;
-    public boolean f35507p;
-    public int f35508q;
-    public boolean f35509r;
-    public boolean f35510s;
-    public float f35502k = 1.0f;
-    public boolean f35506o = true;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public interface ju0 {
+    boolean A();
+
+    void B(int i10);
+
+    CharSequence C(int i10);
+
+    void D();
+
+    lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z4, boolean z10);
+
+    void F(boolean z4);
+
+    void G();
+
+    int H();
+
+    void I();
+
+    boolean J();
+
+    boolean K();
+
+    void L(VideoEditedInfo videoEditedInfo);
+
+    boolean M();
+
+    boolean N();
+
+    boolean O();
+
+    boolean P();
+
+    int Q(Object obj);
+
+    int R(int i10);
+
+    boolean S();
+
+    boolean T();
+
+    MessageObject U();
+
+    void V();
+
+    void W(int i10);
+
+    void X(int i10);
+
+    boolean Y();
+
+    void Z(int i10);
+
+    long a();
+
+    String a0();
+
+    boolean b();
+
+    CharSequence b0(int i10);
+
+    ArrayList c();
+
+    void d();
+
+    void e(CharSequence charSequence);
+
+    void f(String str, String str2, boolean z4);
+
+    boolean g();
+
+    boolean h();
+
+    void i();
+
+    ImageReceiver.BitmapHolder j(int i10);
+
+    int k(int i10, VideoEditedInfo videoEditedInfo);
+
+    boolean l();
+
+    void m();
+
+    void n();
+
+    void o(int i10, VideoEditedInfo videoEditedInfo, boolean z4, int i11, int i12, boolean z10);
+
+    boolean p();
+
+    boolean q();
+
+    boolean r();
+
+    void s();
+
+    boolean t();
+
+    boolean u();
+
+    HashMap v();
+
+    boolean w();
+
+    boolean x(int i10);
+
+    int y();
+
+    boolean z();
 }

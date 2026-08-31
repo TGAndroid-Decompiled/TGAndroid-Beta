@@ -89,15 +89,15 @@ public class SQLitePreparedStatement {
                     sb.append(this.query);
                     sb.append(" took ");
                     sb.append(elapsedRealtime);
-                    yh.w("ms", sb);
+                    yh.v("ms", sb);
                 }
             }
             try {
                 this.isFinalized = true;
                 finalize(this.sqliteStatementHandle);
-            } catch (SQLiteException e) {
+            } catch (SQLiteException e6) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e(e.getMessage(), e);
+                    FileLog.e(e6.getMessage(), e6);
                 }
             }
         }

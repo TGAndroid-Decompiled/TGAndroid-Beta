@@ -42,7 +42,7 @@ public class NotificationBadge {
             intent.putExtra("CNAME", NotificationBadge.componentName.getClassName());
             intent.putExtra("COUNT", i10);
             if (NotificationBadge.canResolveBroadcast(intent)) {
-                AndroidUtilities.runOnUIThread(new k(intent, 1));
+                AndroidUtilities.runOnUIThread(new j(intent, 1));
             }
         }
 
@@ -69,7 +69,7 @@ public class NotificationBadge {
             intent.putExtra("count", i10);
             intent.putExtra("class", NotificationBadge.componentName.getClassName());
             if (NotificationBadge.canResolveBroadcast(intent)) {
-                AndroidUtilities.runOnUIThread(new k(intent, 2));
+                AndroidUtilities.runOnUIThread(new j(intent, 2));
             }
         }
 
@@ -97,7 +97,7 @@ public class NotificationBadge {
             intent.putExtra("badge_count_class_name", NotificationBadge.componentName.getClassName());
             intent.putExtra("badge_vip_count", 0);
             if (NotificationBadge.canResolveBroadcast(intent)) {
-                AndroidUtilities.runOnUIThread(new k(intent, 3));
+                AndroidUtilities.runOnUIThread(new j(intent, 3));
             }
         }
 
@@ -132,7 +132,7 @@ public class NotificationBadge {
             intent.putExtra("badge_count", i10);
             intent.putExtra("badge_count_package_name", NotificationBadge.componentName.getPackageName());
             intent.putExtra("badge_count_class_name", NotificationBadge.componentName.getClassName());
-            AndroidUtilities.runOnUIThread(new k(intent, 4));
+            AndroidUtilities.runOnUIThread(new j(intent, 4));
         }
 
         @Override
@@ -145,8 +145,8 @@ public class NotificationBadge {
         public static void lambda$executeBadge$0(Bundle bundle) {
             try {
                 ApplicationLoader.applicationContext.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", (String) null, bundle);
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e6) {
+                FileLog.e(e6);
             }
         }
 
@@ -189,7 +189,7 @@ public class NotificationBadge {
             if (!NotificationBadge.canResolveBroadcast(intent) && !NotificationBadge.canResolveBroadcast(intent2)) {
                 return;
             }
-            AndroidUtilities.runOnUIThread(new yg(0, intent, intent2));
+            AndroidUtilities.runOnUIThread(new fc(29, intent, intent2));
         }
 
         @Override
@@ -331,7 +331,7 @@ public class NotificationBadge {
                 z4 = false;
             }
             intent.putExtra("com.sonyericsson.home.intent.extra.badge.SHOW_MESSAGE", z4);
-            AndroidUtilities.runOnUIThread(new k(intent, 5));
+            AndroidUtilities.runOnUIThread(new j(intent, 5));
         }
 
         private void executeBadgeByContentProvider(int i10) {
@@ -460,14 +460,14 @@ public class NotificationBadge {
         public void lambda$executeBadge$0(Bundle bundle) {
             try {
                 ApplicationLoader.applicationContext.getContentResolver().call(this.CONTENT_URI, "setAppBadgeCount", (String) null, bundle);
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e6) {
+                FileLog.e(e6);
             }
         }
 
         @Override
         public void executeBadge(int i10) {
-            AndroidUtilities.runOnUIThread(new yg(1, this, android.support.v4.media.a.h(i10, "app_badge_count")));
+            AndroidUtilities.runOnUIThread(new yg(0, this, android.support.v4.media.a.h(i10, "app_badge_count")));
         }
 
         @Override

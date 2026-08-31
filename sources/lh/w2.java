@@ -1,27 +1,36 @@
 package lh;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class w2 implements Runnable {
-    public final int f13281a;
-    public final g5 f13282b;
-    public final TLRPC.TL_payments_paymentResult f13283c;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.AndroidUtilities;
+public final class w2 implements TextWatcher {
+    public boolean f13058a;
+    public final u2 f13059b;
 
-    public w2(g5 g5Var, TLRPC.TL_payments_paymentResult tL_payments_paymentResult, int i10) {
-        this.f13281a = i10;
-        this.f13282b = g5Var;
-        this.f13283c = tL_payments_paymentResult;
+    public w2(u2 u2Var) {
+        this.f13059b = u2Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f13281a) {
-            case 0:
-                MessagesController.getInstance(this.f13282b.currentAccount).processUpdates(this.f13283c.updates, false);
-                return;
-            default:
-                MessagesController.getInstance(this.f13282b.currentAccount).processUpdates(this.f13283c.updates, false);
-                return;
+    public final void afterTextChanged(Editable editable) {
+        if (!this.f13058a && editable.length() > 12) {
+            this.f13058a = true;
+            editable.delete(12, editable.length());
+            u2 u2Var = this.f13059b;
+            AndroidUtilities.shakeView(u2Var);
+            try {
+                u2Var.performHapticFeedback(3, 2);
+            } catch (Exception unused) {
+            }
+            this.f13058a = false;
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

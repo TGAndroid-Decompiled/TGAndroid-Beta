@@ -3,7 +3,7 @@ package q4;
 import g5.p;
 import g5.u0;
 import j3.n0;
-import j7.p7;
+import j7.q7;
 import n7.qa;
 import o4.k0;
 public final class i extends a {
@@ -28,13 +28,13 @@ public final class i extends a {
         k0[] k0VarArr;
         long j10;
         if (this.E == 0) {
-            qa qaVar = this.f42713x;
+            qa qaVar = this.f44455x;
             h5.a.j(qaVar);
             long j11 = this.C;
-            for (k0 k0Var : (k0[]) qaVar.f14703c) {
+            for (k0 k0Var : (k0[]) qaVar.f15700c) {
                 if (k0Var.F != j11) {
                     k0Var.F = j11;
-                    k0Var.f16378z = true;
+                    k0Var.f16526z = true;
                 }
             }
             d dVar = this.D;
@@ -45,18 +45,18 @@ public final class i extends a {
             } else {
                 j10 = j12 - this.C;
             }
-            long j14 = this.f42712w;
+            long j14 = this.f44454w;
             if (j14 != -9223372036854775807L) {
                 j13 = j14 - this.C;
             }
             dVar.a(qaVar, j10, j13);
         }
         try {
-            p b10 = this.f42730b.b(this.E);
-            u0 u0Var = this.f42734r;
-            r3.h hVar = new r3.h(u0Var, b10.e, u0Var.open(b10));
+            p b10 = this.f44474b.b(this.E);
+            u0 u0Var = this.f44479r;
+            r3.h hVar = new r3.h(u0Var, b10.f6888e, u0Var.open(b10));
             while (!this.F) {
-                int h = this.D.f42723a.h(hVar, d.f42722s);
+                int h = this.D.f44466a.h(hVar, d.f44465s);
                 if (h != 1) {
                     z4 = true;
                 } else {
@@ -74,18 +74,18 @@ public final class i extends a {
                     break;
                 }
             }
-            this.E = hVar.d - this.f42730b.e;
-            p7.a(this.f42734r);
+            this.E = hVar.d - this.f44474b.f6888e;
+            q7.a(this.f44479r);
             this.G = !this.F;
         } catch (Throwable th2) {
-            p7.a(this.f42734r);
+            q7.a(this.f44479r);
             throw th2;
         }
     }
 
     @Override
     public final long b() {
-        return this.f42751s + this.B;
+        return this.f44498s + this.B;
     }
 
     @Override
@@ -94,7 +94,7 @@ public final class i extends a {
     }
 
     @Override
-    public final void r() {
+    public final void l() {
         this.F = true;
     }
 }

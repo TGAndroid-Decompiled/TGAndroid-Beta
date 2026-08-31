@@ -2,12 +2,12 @@ package q0;
 
 import j$.util.Objects;
 public final class b {
-    public final Object f42676a;
-    public final Object f42677b;
+    public final Object f44417a;
+    public final Object f44418b;
 
     public b(Object obj, Object obj2) {
-        this.f42676a = obj;
-        this.f42677b = obj2;
+        this.f44417a = obj;
+        this.f44418b = obj2;
     }
 
     public final boolean equals(Object obj) {
@@ -15,7 +15,7 @@ public final class b {
             return false;
         }
         b bVar = (b) obj;
-        if (!Objects.equals(bVar.f42676a, this.f42676a) || !Objects.equals(bVar.f42677b, this.f42677b)) {
+        if (!Objects.equals(bVar.f44417a, this.f44417a) || !Objects.equals(bVar.f44418b, this.f44418b)) {
             return false;
         }
         return true;
@@ -24,13 +24,13 @@ public final class b {
     public final int hashCode() {
         int hashCode;
         int i10 = 0;
-        Object obj = this.f42676a;
+        Object obj = this.f44417a;
         if (obj == null) {
             hashCode = 0;
         } else {
             hashCode = obj.hashCode();
         }
-        Object obj2 = this.f42677b;
+        Object obj2 = this.f44418b;
         if (obj2 != null) {
             i10 = obj2.hashCode();
         }
@@ -38,6 +38,6 @@ public final class b {
     }
 
     public final String toString() {
-        return "Pair{" + this.f42676a + " " + this.f42677b + "}";
+        return "Pair{" + this.f44417a + " " + this.f44418b + "}";
     }
 }

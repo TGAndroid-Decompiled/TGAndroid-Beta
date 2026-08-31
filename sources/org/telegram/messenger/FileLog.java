@@ -93,7 +93,7 @@ public class FileLog {
             if (name.startsWith("org.telegram.tgnet.")) {
                 name = name.substring(19);
             }
-            lVar.o("_", name == null ? pa.k.f41087a : new pa.m(name));
+            lVar.o("_", name == null ? pa.k.f44246a : new pa.m(name));
             try {
                 for (Field field : tLObject.getClass().getFields()) {
                     if (FileLog.privateFields == null || !FileLog.privateFields.contains(field.getName())) {
@@ -111,14 +111,14 @@ public class FileLog {
                                     }
                                 }
                             }
-                            lVar.o(field.getName(), ((org.telegram.ui.Cells.f1) nVar).X(obj));
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
+                            lVar.o(field.getName(), ((org.telegram.ui.Cells.f1) nVar).T(obj));
+                        } catch (IllegalAccessException e6) {
+                            e6.printStackTrace();
                         }
                     }
                 }
-            } catch (Exception e6) {
-                e6.printStackTrace();
+            } catch (Exception e10) {
+                e10.printStackTrace();
             }
             return lVar;
         }
@@ -168,8 +168,8 @@ public class FileLog {
                 @Override
                 public boolean shouldSkipField(pa.b bVar) {
                     HashSet hashSet4 = FileLog.privateFields;
-                    Field field = bVar.f41071a;
-                    Field field2 = bVar.f41071a;
+                    Field field = bVar.f44229a;
+                    Field field2 = bVar.f44229a;
                     if (!hashSet4.contains(field.getName())) {
                         if (!"message".equalsIgnoreCase(field2.getName()) || !String.class.equals(field2.getGenericType())) {
                             return false;
@@ -179,26 +179,26 @@ public class FileLog {
                     return true;
                 }
             };
-            ra.f fVar = ra.f.f43407c;
+            ra.f fVar = ra.f.f46759c;
             HashMap hashMap = new HashMap();
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             pa.c cVar = pa.g.h;
-            pa.p pVar = pa.g.f41079i;
-            pa.q qVar = pa.g.f41080j;
+            pa.p pVar = pa.g.f44237i;
+            pa.q qVar = pa.g.f44238j;
             ArrayDeque arrayDeque = new ArrayDeque();
             pa.a aVar = exclusionStrategy;
             Objects.requireNonNull(aVar);
             ra.f clone = fVar.clone();
-            ArrayList arrayList3 = new ArrayList(fVar.f43408a);
-            clone.f43408a = arrayList3;
+            ArrayList arrayList3 = new ArrayList(fVar.f46760a);
+            clone.f46760a = arrayList3;
             arrayList3.add(aVar);
             ByteArrayHexAdapter byteArrayHexAdapter = new ByteArrayHexAdapter();
             boolean z10 = byteArrayHexAdapter instanceof pa.o;
             if (!pa.i.class.isAssignableFrom(byte[].class)) {
                 if (z10) {
                     wa.a aVar2 = new wa.a(byte[].class);
-                    if (aVar2.f46506b == aVar2.f46505a) {
+                    if (aVar2.f49484b == aVar2.f49483a) {
                         z4 = true;
                     } else {
                         z4 = false;
@@ -206,7 +206,7 @@ public class FileLog {
                     arrayList.add(new sa.z(byteArrayHexAdapter, aVar2, z4, null));
                 }
                 wa.a aVar3 = new wa.a(byte[].class);
-                sa.x0 x0Var = sa.h1.f44184a;
+                sa.x0 x0Var = sa.h1.f47171a;
                 arrayList.add(new sa.x0(aVar3, byteArrayHexAdapter, 2));
                 RuntimeClassNameTypeAdapterFactory of2 = RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy);
                 Objects.requireNonNull(of2);
@@ -220,7 +220,7 @@ public class FileLog {
                     ArrayList arrayList5 = new ArrayList(arrayList2);
                     Collections.reverse(arrayList5);
                     arrayList4.addAll(arrayList5);
-                    boolean z11 = va.f.f45643a;
+                    boolean z11 = va.f.f48940a;
                     gson = new pa.g(clone, new HashMap(hashMap), cVar, new ArrayList(arrayList), new ArrayList(arrayList2), arrayList4, pVar, qVar, new ArrayList(arrayDeque));
                     return;
                 }
@@ -319,7 +319,7 @@ public class FileLog {
             ensureInitied();
             Log.e("tmessages", str, th2);
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new d2(8, str, th2));
+                getInstance().logQueue.postRunnable(new d2(7, str, th2));
             }
         }
     }
@@ -402,8 +402,8 @@ public class FileLog {
             String format = fastDateFormat.format(System.currentTimeMillis());
             try {
                 logsDir = AndroidUtilities.getLogsDir();
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (Exception e6) {
+                e6.printStackTrace();
             }
             if (logsDir == null) {
                 return;
@@ -421,8 +421,8 @@ public class FileLog {
                 this.tlStreamWriter = outputStreamWriter2;
                 outputStreamWriter2.write("-----start log " + format + "-----\n");
                 this.tlStreamWriter.flush();
-            } catch (Exception e6) {
-                e6.printStackTrace();
+            } catch (Exception e10) {
+                e10.printStackTrace();
             }
             this.initied = true;
         }
@@ -433,9 +433,9 @@ public class FileLog {
             OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
             outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " D/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
-            if (AndroidUtilities.isENOSPC(e)) {
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            if (AndroidUtilities.isENOSPC(e6)) {
                 LaunchActivity.E(1);
             }
         }
@@ -462,8 +462,8 @@ public class FileLog {
             Log.d("MTProto", str);
             Log.d("MTProto", str2);
             Log.d("MTProto", " ");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e6) {
+            e6.printStackTrace();
         }
     }
 
@@ -477,8 +477,8 @@ public class FileLog {
             Log.d("MTProto", "msgId=" + j11 + " account=" + i10);
             Log.d("MTProto", str);
             Log.d("MTProto", " ");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e6) {
+            e6.printStackTrace();
         }
     }
 
@@ -493,8 +493,8 @@ public class FileLog {
                 outputStreamWriter2.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTrace[i10] + "\n");
             }
             getInstance().streamWriter.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e6) {
+            e6.printStackTrace();
         }
     }
 
@@ -503,8 +503,8 @@ public class FileLog {
             OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
             outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e6) {
+            e6.printStackTrace();
         }
     }
 
@@ -528,8 +528,8 @@ public class FileLog {
                 }
             }
             getInstance().streamWriter.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e6) {
+            e6.printStackTrace();
         }
     }
 
@@ -553,8 +553,8 @@ public class FileLog {
                 }
             }
             getInstance().streamWriter.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e6) {
+            e6.printStackTrace();
         }
         if (BuildVars.DEBUG_PRIVATE_VERSION) {
             System.exit(2);
@@ -566,8 +566,8 @@ public class FileLog {
             OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
             outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " W/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e6) {
+            e6.printStackTrace();
         }
     }
 
@@ -596,8 +596,8 @@ public class FileLog {
         try {
             File logsDir = AndroidUtilities.getLogsDir();
             Debug.dumpHprofData(new File(logsDir, getInstance().dateFormat.format(System.currentTimeMillis()) + "_heap.hprof").getAbsolutePath());
-        } catch (Exception e) {
-            e(e);
+        } catch (Exception e6) {
+            e(e6);
         }
     }
 
@@ -660,8 +660,8 @@ public class FileLog {
                 for (int i10 = 0; i10 < databaseFiles.size(); i10++) {
                     try {
                         AndroidUtilities.copyFile(databaseFiles.get(i10), new File(file, databaseFiles.get(i10).getName()));
-                    } catch (IOException e) {
-                        e(e);
+                    } catch (IOException e6) {
+                        e(e6);
                     }
                 }
             }

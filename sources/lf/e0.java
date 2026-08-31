@@ -7,16 +7,16 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.ViewTreeObserver;
 public final class e0 extends View implements ViewTreeObserver.OnPreDrawListener {
-    public final d0 f11973a;
-    public final boolean f11974b;
-    public int f11975c;
+    public final d0 f12415a;
+    public final boolean f12416b;
+    public int f12417c;
     public ViewTreeObserver d;
 
     public e0(Context context, d0 d0Var) {
         super(context);
-        this.f11975c = 0;
-        this.f11973a = d0Var;
-        this.f11974b = true;
+        this.f12417c = 0;
+        this.f12415a = d0Var;
+        this.f12416b = true;
     }
 
     public final void a() {
@@ -31,7 +31,7 @@ public final class e0 extends View implements ViewTreeObserver.OnPreDrawListener
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f11974b) {
+        if (this.f12416b) {
             ViewTreeObserver viewTreeObserver = getViewTreeObserver();
             this.d = viewTreeObserver;
             viewTreeObserver.addOnPreDrawListener(this);
@@ -51,9 +51,9 @@ public final class e0 extends View implements ViewTreeObserver.OnPreDrawListener
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (!this.f11974b) {
-            this.f11973a.a(this.f11975c);
-            this.f11975c = 0;
+        if (!this.f12416b) {
+            this.f12415a.a(this.f12417c);
+            this.f12417c = 0;
         }
     }
 
@@ -65,9 +65,9 @@ public final class e0 extends View implements ViewTreeObserver.OnPreDrawListener
     @Override
     public final boolean onPreDraw() {
         int i10;
-        if (this.f11974b && (i10 = this.f11975c) != 0) {
-            this.f11973a.a(i10);
-            this.f11975c = 0;
+        if (this.f12416b && (i10 = this.f12417c) != 0) {
+            this.f12415a.a(i10);
+            this.f12417c = 0;
             return true;
         }
         return true;

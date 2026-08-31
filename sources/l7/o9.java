@@ -1,28 +1,28 @@
 package l7;
 public final class o9 {
-    public final String f11580a;
-    public final String f11581b;
-    public final String f11582c;
+    public final String f11973a;
+    public final String f11974b;
+    public final String f11975c;
     public final String d;
-    public final w e;
-    public final String f11583f;
-    public final Boolean f11584g;
+    public final w f11976e;
+    public final String f11977f;
+    public final Boolean f11978g;
     public final Boolean h;
-    public final Boolean f11585i;
-    public final Integer f11586j;
-    public final Integer f11587k;
+    public final Boolean f11979i;
+    public final Integer f11980j;
+    public final Integer f11981k;
 
-    public o9(j7.f8 f8Var) {
-        this.f11580a = f8Var.f8996a;
-        this.f11581b = f8Var.f8997b;
-        this.f11582c = f8Var.f8998c;
-        this.d = f8Var.d;
-        this.e = (w) f8Var.f9003k;
-        this.f11583f = f8Var.e;
-        this.f11584g = (Boolean) f8Var.f8999f;
-        this.h = (Boolean) f8Var.f9000g;
-        this.f11585i = (Boolean) f8Var.h;
-        this.f11586j = f8Var.f9001i;
-        this.f11587k = (Integer) f8Var.f9002j;
+    public o9(j7.g8 g8Var) {
+        this.f11973a = g8Var.f9615a;
+        this.f11974b = g8Var.f9616b;
+        this.f11975c = g8Var.f9617c;
+        this.d = g8Var.d;
+        this.f11976e = (w) g8Var.f9623k;
+        this.f11977f = g8Var.f9618e;
+        this.f11978g = (Boolean) g8Var.f9619f;
+        this.h = (Boolean) g8Var.f9620g;
+        this.f11979i = (Boolean) g8Var.h;
+        this.f11980j = g8Var.f9621i;
+        this.f11981k = (Integer) g8Var.f9622j;
     }
 }

@@ -127,13 +127,13 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         if (z4) {
             return null;
         }
-        org.telegram.ui.ActionBar.j6.R(this);
+        org.telegram.ui.ActionBar.k6.R(this);
         if (tLObject instanceof TLRPC.User) {
             z8Var = new org.telegram.ui.Components.z8(0, (TLRPC.User) tLObject);
         } else {
             z8Var = new org.telegram.ui.Components.z8((TLRPC.Chat) tLObject);
         }
-        z8Var.f31278r = 1;
+        z8Var.f33805r = 1;
         float f12 = i10;
         Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(f12), AndroidUtilities.dp(f12), Bitmap.Config.ARGB_8888);
         z8Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
@@ -202,7 +202,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         if (MediaController.getInstance().isDownloadingCurrentMessage()) {
             android.support.v4.media.session.f0 f0Var = this.playbackState;
             f0Var.c(6, 0L, 1.0f);
-            f0Var.e = 0L;
+            f0Var.f289e = 0L;
         } else {
             MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
             if (playingMessageObject != null && playingMessageObject.isMusic()) {
@@ -237,7 +237,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                 i10 = 2;
             }
             f0Var3.c(i10, j10, getPlaybackSpeed(z4, playingMessageObject));
-            f0Var3.e = j11;
+            f0Var3.f289e = j11;
             if (playingMessageObject != null && playingMessageObject.isMusic()) {
                 int i13 = SharedConfig.repeatMode;
                 if (i13 != 1) {
@@ -356,7 +356,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         }
         ImageReceiver imageReceiver = new ImageReceiver(null);
         this.imageReceiver = imageReceiver;
-        imageReceiver.setDelegate(new d(this, 10));
+        imageReceiver.setDelegate(new d0(this, 9));
         this.mediaSession = new android.support.v4.media.session.c0(this, "telegramAudioPlayer", null, null);
         this.playbackState = new android.support.v4.media.session.f0();
         this.albumArtPlaceholder = Bitmap.createBitmap(AndroidUtilities.dp(102.0f), AndroidUtilities.dp(102.0f), Bitmap.Config.ARGB_8888);
@@ -507,8 +507,8 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                     MediaController.getInstance().cleanupPlayer(true, true);
                     return 2;
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (Exception e6) {
+                e6.printStackTrace();
             }
         }
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
@@ -528,8 +528,8 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                     this.audioManager.registerRemoteControlClient(remoteControlClient);
                 }
                 this.remoteControlClient.setTransportControlFlags(189);
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e10) {
+                FileLog.e(e10);
             }
         }
         createNotification(playingMessageObject, false);

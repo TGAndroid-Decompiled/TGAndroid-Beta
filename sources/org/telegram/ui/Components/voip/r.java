@@ -1,55 +1,21 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class r extends AnimatorListenerAdapter {
-    public final int f29873a;
-    public final t f29874b;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.widget.TextView;
+public final class r extends TextView {
+    public final u f32297a;
 
-    public r(t tVar, int i10) {
-        this.f29873a = i10;
-        this.f29874b = tVar;
+    public r(u uVar, Context context) {
+        super(context);
+        this.f32297a = uVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f10;
-        int i10;
-        switch (this.f29873a) {
-            case 0:
-                t tVar = this.f29874b;
-                tVar.B = false;
-                tVar.invalidate();
-                return;
-            case 1:
-                t tVar2 = this.f29874b;
-                s sVar = tVar2.V;
-                if (tVar2.T) {
-                    f10 = 0.0f;
-                } else {
-                    f10 = 1.0f;
-                }
-                tVar2.U = f10;
-                sVar.setAlpha(f10);
-                if (tVar2.T) {
-                    i10 = 8;
-                } else {
-                    i10 = 0;
-                }
-                sVar.setVisibility(i10);
-                tVar2.f29919a.invalidate();
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                t tVar3 = this.f29874b;
-                tVar3.G0 = null;
-                o oVar = tVar3.f29919a;
-                oVar.setRotationY(0.0f);
-                if (!tVar3.H0) {
-                    oVar.d.clearImage();
-                    return;
-                }
-                return;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (Math.abs(this.f32297a.K.getAlpha() - 1.0f) > 0.001f) {
+            return false;
         }
+        return super.onTouchEvent(motionEvent);
     }
 }

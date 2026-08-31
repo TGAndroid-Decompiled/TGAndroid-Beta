@@ -5,8 +5,8 @@ import org.telegram.ui.Components.Switch;
 public final class i5 extends Switch {
     public final j5 V;
 
-    public i5(j5 j5Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
+    public i5(j5 j5Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var);
         this.V = j5Var;
     }
 

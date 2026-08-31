@@ -2,6 +2,7 @@ package x3;
 
 import android.util.SparseArray;
 import h5.d0;
+import h5.w;
 import j$.util.DesugarCollections;
 import j3.r1;
 import java.nio.ByteBuffer;
@@ -10,25 +11,23 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
-import org.telegram.ui.Components.qk0;
-import p2.w;
+import org.telegram.ui.web.e0;
+import p2.v;
 import r3.h;
 import r3.k;
 import r3.l;
 import r3.m;
-import r3.v;
-import vh.v2;
 public final class d implements k {
-    public static final byte[] f46733c0 = {49, 10, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 48, 48, 32, 45, 45, 62, 32, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 48, 48, 10};
-    public static final byte[] f46734d0;
-    public static final byte[] f46735e0;
-    public static final byte[] f46736f0;
-    public static final UUID f46737g0;
-    public static final Map f46738h0;
+    public static final byte[] f50331c0 = {49, 10, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 48, 48, 32, 45, 45, 62, 32, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 48, 48, 10};
+    public static final byte[] f50332d0;
+    public static final byte[] f50333e0;
+    public static final byte[] f50334f0;
+    public static final UUID f50335g0;
+    public static final Map f50336h0;
     public long A;
     public long B;
-    public w C;
-    public w D;
+    public v C;
+    public v D;
     public boolean E;
     public boolean F;
     public int G;
@@ -51,77 +50,77 @@ public final class d implements k {
     public boolean X;
     public int Y;
     public byte Z;
-    public final b f46739a;
-    public boolean f46740a0;
-    public final e f46741b;
-    public m f46742b0;
-    public final SparseArray f46743c;
+    public final b f50337a;
+    public boolean f50338a0;
+    public final e f50339b;
+    public m f50340b0;
+    public final SparseArray f50341c;
     public final boolean d;
-    public final h5.w e;
-    public final h5.w f46744f;
-    public final h5.w f46745g;
-    public final h5.w h;
-    public final h5.w f46746i;
-    public final h5.w f46747j;
-    public final h5.w f46748k;
-    public final h5.w f46749l;
-    public final h5.w f46750m;
-    public final h5.w f46751n;
-    public ByteBuffer f46752o;
-    public long f46753p;
-    public long f46754q;
-    public long f46755r;
-    public long f46756s;
-    public long f46757t;
-    public c f46758u;
+    public final w f50342e;
+    public final w f50343f;
+    public final w f50344g;
+    public final w h;
+    public final w f50345i;
+    public final w f50346j;
+    public final w f50347k;
+    public final w f50348l;
+    public final w f50349m;
+    public final w f50350n;
+    public ByteBuffer f50351o;
+    public long f50352p;
+    public long f50353q;
+    public long f50354r;
+    public long f50355s;
+    public long f50356t;
+    public c f50357u;
     public boolean v;
-    public int f46759w;
-    public long f46760x;
-    public boolean f46761y;
-    public long f46762z;
+    public int f50358w;
+    public long f50359x;
+    public boolean f50360y;
+    public long f50361z;
 
     static {
-        int i10 = d0.f6937a;
-        f46734d0 = "Format: Start, End, ReadOrder, Layer, Style, Name, MarginL, MarginR, MarginV, Effect, Text".getBytes(r8.d.f43389c);
-        f46735e0 = new byte[]{68, 105, 97, 108, 111, 103, 117, 101, 58, 32, 48, 58, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 58, 48, 48, 58, 48, 48, 58, 48, 48, 44};
-        f46736f0 = new byte[]{87, 69, 66, 86, 84, 84, 10, 10, 48, 48, 58, 48, 48, 58, 48, 48, 46, 48, 48, 48, 32, 45, 45, 62, 32, 48, 48, 58, 48, 48, 58, 48, 48, 46, 48, 48, 48, 10};
-        f46737g0 = new UUID(72057594037932032L, -9223371306706625679L);
+        int i10 = d0.f7237a;
+        f50332d0 = "Format: Start, End, ReadOrder, Layer, Style, Name, MarginL, MarginR, MarginV, Effect, Text".getBytes(r8.d.f46738c);
+        f50333e0 = new byte[]{68, 105, 97, 108, 111, 103, 117, 101, 58, 32, 48, 58, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 58, 48, 48, 58, 48, 48, 58, 48, 48, 44};
+        f50334f0 = new byte[]{87, 69, 66, 86, 84, 84, 10, 10, 48, 48, 58, 48, 48, 58, 48, 48, 46, 48, 48, 48, 32, 45, 45, 62, 32, 48, 48, 58, 48, 48, 58, 48, 48, 46, 48, 48, 48, 10};
+        f50335g0 = new UUID(72057594037932032L, -9223371306706625679L);
         HashMap hashMap = new HashMap();
-        v2.i(0, hashMap, "htc_video_rotA-000", 90, "htc_video_rotA-090");
-        v2.i(180, hashMap, "htc_video_rotA-180", 270, "htc_video_rotA-270");
-        f46738h0 = DesugarCollections.unmodifiableMap(hashMap);
+        w.c.i(0, hashMap, "htc_video_rotA-000", 90, "htc_video_rotA-090");
+        w.c.i(180, hashMap, "htc_video_rotA-180", 270, "htc_video_rotA-270");
+        f50336h0 = DesugarCollections.unmodifiableMap(hashMap);
     }
 
     public d(int i10) {
         boolean z4;
         b bVar = new b();
-        this.f46754q = -1L;
-        this.f46755r = -9223372036854775807L;
-        this.f46756s = -9223372036854775807L;
-        this.f46757t = -9223372036854775807L;
-        this.f46762z = -1L;
+        this.f50353q = -1L;
+        this.f50354r = -9223372036854775807L;
+        this.f50355s = -9223372036854775807L;
+        this.f50356t = -9223372036854775807L;
+        this.f50361z = -1L;
         this.A = -1L;
         this.B = -9223372036854775807L;
-        this.f46739a = bVar;
-        bVar.d = new qk0(this, 20);
+        this.f50337a = bVar;
+        bVar.d = new e0(this, 22);
         if ((i10 & 1) == 0) {
             z4 = true;
         } else {
             z4 = false;
         }
         this.d = z4;
-        this.f46741b = new e();
-        this.f46743c = new SparseArray();
-        this.f46745g = new h5.w(4);
-        this.h = new h5.w(ByteBuffer.allocate(4).putInt(-1).array());
-        this.f46746i = new h5.w(4);
-        this.e = new h5.w(h5.a.d);
-        this.f46744f = new h5.w(4);
-        this.f46747j = new h5.w();
-        this.f46748k = new h5.w();
-        this.f46749l = new h5.w(8);
-        this.f46750m = new h5.w();
-        this.f46751n = new h5.w();
+        this.f50339b = new e();
+        this.f50341c = new SparseArray();
+        this.f50344g = new w(4);
+        this.h = new w(ByteBuffer.allocate(4).putInt(-1).array());
+        this.f50345i = new w(4);
+        this.f50342e = new w(h5.a.d);
+        this.f50343f = new w(4);
+        this.f50346j = new w();
+        this.f50347k = new w();
+        this.f50348l = new w(8);
+        this.f50349m = new w();
+        this.f50350n = new w();
         this.L = new int[1];
     }
 
@@ -139,8 +138,8 @@ public final class d implements k {
         long j13 = j12 - (i11 * 60000000);
         int i12 = (int) (j13 / 1000000);
         String format = String.format(Locale.US, str, Integer.valueOf(i10), Integer.valueOf(i11), Integer.valueOf(i12), Integer.valueOf((int) ((j13 - (i12 * 1000000)) / j11)));
-        int i13 = d0.f6937a;
-        return format.getBytes(r8.d.f43389c);
+        int i13 = d0.f7237a;
+        return format.getBytes(r8.d.f46738c);
     }
 
     public final void a(int i10) {
@@ -151,7 +150,7 @@ public final class d implements k {
     }
 
     public final void b(int i10) {
-        if (this.f46758u != null) {
+        if (this.f50357u != null) {
             return;
         }
         throw r1.a("Element " + i10 + " must be in a TrackEntry", null);
@@ -165,24 +164,24 @@ public final class d implements k {
     public final void d(long j10, long j11) {
         this.B = -9223372036854775807L;
         this.G = 0;
-        b bVar = this.f46739a;
-        bVar.e = 0;
-        bVar.f46707b.clear();
-        e eVar = bVar.f46708c;
-        eVar.f46764b = 0;
-        eVar.f46765c = 0;
-        e eVar2 = this.f46741b;
-        eVar2.f46764b = 0;
-        eVar2.f46765c = 0;
+        b bVar = this.f50337a;
+        bVar.f50305e = 0;
+        bVar.f50303b.clear();
+        e eVar = bVar.f50304c;
+        eVar.f50363b = 0;
+        eVar.f50364c = 0;
+        e eVar2 = this.f50339b;
+        eVar2.f50363b = 0;
+        eVar2.f50364c = 0;
         j();
         int i10 = 0;
         while (true) {
-            SparseArray sparseArray = this.f46743c;
+            SparseArray sparseArray = this.f50341c;
             if (i10 < sparseArray.size()) {
                 r3.w wVar = ((c) sparseArray.valueAt(i10)).T;
                 if (wVar != null) {
-                    wVar.f43255b = false;
-                    wVar.f43256c = 0;
+                    wVar.f46591b = false;
+                    wVar.f46592c = 0;
                 }
                 i10++;
             } else {
@@ -193,20 +192,20 @@ public final class d implements k {
 
     @Override
     public final void e(m mVar) {
-        this.f46742b0 = mVar;
+        this.f50340b0 = mVar;
     }
 
     public final void g(l lVar, int i10) {
-        h5.w wVar = this.f46745g;
-        if (wVar.f7002c >= i10) {
+        w wVar = this.f50344g;
+        if (wVar.f7310c >= i10) {
             return;
         }
-        byte[] bArr = wVar.f7000a;
+        byte[] bArr = wVar.f7308a;
         if (bArr.length < i10) {
             wVar.b(Math.max(bArr.length * 2, i10));
         }
-        byte[] bArr2 = wVar.f7000a;
-        int i11 = wVar.f7002c;
+        byte[] bArr2 = wVar.f7308a;
+        int i11 = wVar.f7310c;
         lVar.readFully(bArr2, i11, i10 - i11);
         wVar.E(i10);
     }
@@ -220,41 +219,41 @@ public final class d implements k {
     public final boolean i(l lVar) {
         long g10;
         int i10;
-        w wVar = new w(11, (byte) 0);
-        h5.w wVar2 = (h5.w) wVar.f41030c;
+        v vVar = new v(11, (byte) 0);
+        w wVar = (w) vVar.f44183c;
         h hVar = (h) lVar;
-        long j10 = hVar.f43222c;
+        long j10 = hVar.f46556c;
         long j11 = 1024;
         int i11 = (j10 > (-1L) ? 1 : (j10 == (-1L) ? 0 : -1));
         if (i11 != 0 && j10 <= 1024) {
             j11 = j10;
         }
         int i12 = (int) j11;
-        hVar.h(wVar2.f7000a, 0, 4, false);
-        long v = wVar2.v();
-        wVar.f41029b = 4;
+        hVar.f(wVar.f7308a, 0, 4, false);
+        long v = wVar.v();
+        vVar.f44182b = 4;
         while (true) {
             if (v != 440786851) {
-                int i13 = wVar.f41029b + 1;
-                wVar.f41029b = i13;
+                int i13 = vVar.f44182b + 1;
+                vVar.f44182b = i13;
                 if (i13 == i12) {
                     break;
                 }
-                hVar.h(wVar2.f7000a, 0, 1, false);
-                v = ((v << 8) & (-256)) | (wVar2.f7000a[0] & 255);
+                hVar.f(wVar.f7308a, 0, 1, false);
+                v = ((v << 8) & (-256)) | (wVar.f7308a[0] & 255);
             } else {
-                long g11 = wVar.g(hVar);
-                long j12 = wVar.f41029b;
+                long g11 = vVar.g(hVar);
+                long j12 = vVar.f44182b;
                 if (g11 != Long.MIN_VALUE && (i11 == 0 || j12 + g11 < j10)) {
                     while (true) {
-                        int i14 = (wVar.f41029b > (j12 + g11) ? 1 : (wVar.f41029b == (j12 + g11) ? 0 : -1));
+                        int i14 = (vVar.f44182b > (j12 + g11) ? 1 : (vVar.f44182b == (j12 + g11) ? 0 : -1));
                         if (i14 < 0) {
-                            if (wVar.g(hVar) == Long.MIN_VALUE || (g10 = wVar.g(hVar)) < 0 || g10 > 2147483647L) {
+                            if (vVar.g(hVar) == Long.MIN_VALUE || (g10 = vVar.g(hVar)) < 0 || g10 > 2147483647L) {
                                 break;
                             } else if (i10 != 0) {
                                 int i15 = (int) g10;
                                 hVar.a(i15, false);
-                                wVar.f41029b += i15;
+                                vVar.f44182b += i15;
                             }
                         } else if (i14 == 0) {
                             return true;
@@ -275,12 +274,12 @@ public final class d implements k {
         this.X = false;
         this.Y = 0;
         this.Z = (byte) 0;
-        this.f46740a0 = false;
-        this.f46747j.C(0);
+        this.f50338a0 = false;
+        this.f50346j.C(0);
     }
 
     public final long k(long j10) {
-        long j11 = this.f46755r;
+        long j11 = this.f50354r;
         if (j11 != -9223372036854775807L) {
             return d0.N(j10, j11, 1000L);
         }
@@ -288,41 +287,41 @@ public final class d implements k {
     }
 
     public final int l(l lVar, c cVar, int i10, boolean z4) {
-        int e;
         int e6;
+        int e10;
         boolean z10;
         boolean z11;
         int i11;
-        if ("S_TEXT/UTF8".equals(cVar.f46712b)) {
-            m(lVar, f46733c0, i10);
+        if ("S_TEXT/UTF8".equals(cVar.f50309b)) {
+            m(lVar, f50331c0, i10);
             int i12 = this.T;
             j();
             return i12;
-        } else if ("S_TEXT/ASS".equals(cVar.f46712b)) {
-            m(lVar, f46735e0, i10);
+        } else if ("S_TEXT/ASS".equals(cVar.f50309b)) {
+            m(lVar, f50333e0, i10);
             int i13 = this.T;
             j();
             return i13;
-        } else if ("S_TEXT/WEBVTT".equals(cVar.f46712b)) {
-            m(lVar, f46736f0, i10);
+        } else if ("S_TEXT/WEBVTT".equals(cVar.f50309b)) {
+            m(lVar, f50334f0, i10);
             int i14 = this.T;
             j();
             return i14;
         } else {
-            v vVar = cVar.X;
+            r3.v vVar = cVar.X;
             boolean z12 = this.V;
-            h5.w wVar = this.f46747j;
+            w wVar = this.f50346j;
             boolean z13 = true;
             if (!z12) {
                 boolean z14 = cVar.h;
-                h5.w wVar2 = this.f46745g;
+                w wVar2 = this.f50344g;
                 if (z14) {
                     this.O &= -1073741825;
                     int i15 = 128;
                     if (!this.W) {
-                        lVar.readFully(wVar2.f7000a, 0, 1);
+                        lVar.readFully(wVar2.f7308a, 0, 1);
                         this.S++;
-                        byte b10 = wVar2.f7000a[0];
+                        byte b10 = wVar2.f7308a[0];
                         if ((b10 & 128) != 128) {
                             this.Z = b10;
                             this.W = true;
@@ -338,12 +337,12 @@ public final class d implements k {
                             z11 = false;
                         }
                         this.O |= 1073741824;
-                        if (!this.f46740a0) {
-                            h5.w wVar3 = this.f46749l;
-                            lVar.readFully(wVar3.f7000a, 0, 8);
+                        if (!this.f50338a0) {
+                            w wVar3 = this.f50348l;
+                            lVar.readFully(wVar3.f7308a, 0, 8);
                             this.S += 8;
-                            this.f46740a0 = true;
-                            byte[] bArr = wVar2.f7000a;
+                            this.f50338a0 = true;
+                            byte[] bArr = wVar2.f7308a;
                             if (!z11) {
                                 i15 = 0;
                             }
@@ -357,7 +356,7 @@ public final class d implements k {
                         }
                         if (z11) {
                             if (!this.X) {
-                                lVar.readFully(wVar2.f7000a, 0, 1);
+                                lVar.readFully(wVar2.f7308a, 0, 1);
                                 this.S++;
                                 wVar2.F(0);
                                 this.Y = wVar2.u();
@@ -365,16 +364,16 @@ public final class d implements k {
                             }
                             int i16 = this.Y * 4;
                             wVar2.C(i16);
-                            lVar.readFully(wVar2.f7000a, 0, i16);
+                            lVar.readFully(wVar2.f7308a, 0, i16);
                             this.S += i16;
                             short s6 = (short) ((this.Y / 2) + 1);
                             int i17 = (s6 * 6) + 2;
-                            ByteBuffer byteBuffer = this.f46752o;
+                            ByteBuffer byteBuffer = this.f50351o;
                             if (byteBuffer == null || byteBuffer.capacity() < i17) {
-                                this.f46752o = ByteBuffer.allocate(i17);
+                                this.f50351o = ByteBuffer.allocate(i17);
                             }
-                            this.f46752o.position(0);
-                            this.f46752o.putShort(s6);
+                            this.f50351o.position(0);
+                            this.f50351o.putShort(s6);
                             int i18 = 0;
                             int i19 = 0;
                             while (true) {
@@ -384,46 +383,46 @@ public final class d implements k {
                                 }
                                 int x10 = wVar2.x();
                                 if (i18 % 2 == 0) {
-                                    this.f46752o.putShort((short) (x10 - i19));
+                                    this.f50351o.putShort((short) (x10 - i19));
                                 } else {
-                                    this.f46752o.putInt(x10 - i19);
+                                    this.f50351o.putInt(x10 - i19);
                                 }
                                 i18++;
                                 i19 = x10;
                             }
                             int i20 = (i10 - this.S) - i19;
                             if (i11 % 2 == 1) {
-                                this.f46752o.putInt(i20);
+                                this.f50351o.putInt(i20);
                             } else {
-                                this.f46752o.putShort((short) i20);
-                                this.f46752o.putInt(0);
+                                this.f50351o.putShort((short) i20);
+                                this.f50351o.putInt(0);
                             }
-                            byte[] array = this.f46752o.array();
-                            h5.w wVar4 = this.f46750m;
+                            byte[] array = this.f50351o.array();
+                            w wVar4 = this.f50349m;
                             wVar4.D(i17, array);
                             vVar.a(i17, wVar4);
                             this.T += i17;
                         }
                     }
                 } else {
-                    byte[] bArr2 = cVar.f46716i;
+                    byte[] bArr2 = cVar.f50314i;
                     if (bArr2 != null) {
                         wVar.D(bArr2.length, bArr2);
                     }
                 }
-                if ("A_OPUS".equals(cVar.f46712b)) {
+                if ("A_OPUS".equals(cVar.f50309b)) {
                     z10 = z4;
-                } else if (cVar.f46714f > 0) {
+                } else if (cVar.f50312f > 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (z10) {
                     this.O |= 268435456;
-                    this.f46751n.C(0);
-                    int i21 = (wVar.f7002c + i10) - this.S;
+                    this.f50350n.C(0);
+                    int i21 = (wVar.f7310c + i10) - this.S;
                     wVar2.C(4);
-                    byte[] bArr3 = wVar2.f7000a;
+                    byte[] bArr3 = wVar2.f7308a;
                     bArr3[0] = (byte) ((i21 >> 24) & 255);
                     bArr3[1] = (byte) ((i21 >> 16) & 255);
                     bArr3[2] = (byte) ((i21 >> 8) & 255);
@@ -433,10 +432,10 @@ public final class d implements k {
                 }
                 this.V = true;
             }
-            int i22 = i10 + wVar.f7002c;
-            if (!"V_MPEG4/ISO/AVC".equals(cVar.f46712b) && !"V_MPEGH/ISO/HEVC".equals(cVar.f46712b)) {
+            int i22 = i10 + wVar.f7310c;
+            if (!"V_MPEG4/ISO/AVC".equals(cVar.f50309b) && !"V_MPEGH/ISO/HEVC".equals(cVar.f50309b)) {
                 if (cVar.T != null) {
-                    if (wVar.f7002c != 0) {
+                    if (wVar.f7310c != 0) {
                         z13 = false;
                     }
                     h5.a.i(z13);
@@ -450,17 +449,17 @@ public final class d implements k {
                     int i24 = i22 - i23;
                     int a2 = wVar.a();
                     if (a2 > 0) {
-                        e6 = Math.min(i24, a2);
-                        vVar.d(e6, wVar);
+                        e10 = Math.min(i24, a2);
+                        vVar.d(e10, wVar);
                     } else {
-                        e6 = vVar.e(lVar, i24, false);
+                        e10 = vVar.e(lVar, i24, false);
                     }
-                    this.S += e6;
-                    this.T += e6;
+                    this.S += e10;
+                    this.T += e10;
                 }
             } else {
-                h5.w wVar5 = this.f46744f;
-                byte[] bArr4 = wVar5.f7000a;
+                w wVar5 = this.f50343f;
+                byte[] bArr4 = wVar5.f7308a;
                 bArr4[0] = 0;
                 bArr4[1] = 0;
                 bArr4[2] = 0;
@@ -477,26 +476,26 @@ public final class d implements k {
                         this.S += i25;
                         wVar5.F(0);
                         this.U = wVar5.x();
-                        h5.w wVar6 = this.e;
+                        w wVar6 = this.f50342e;
                         wVar6.F(0);
                         vVar.d(4, wVar6);
                         this.T += 4;
                     } else {
                         int a10 = wVar.a();
                         if (a10 > 0) {
-                            e = Math.min(i27, a10);
-                            vVar.d(e, wVar);
+                            e6 = Math.min(i27, a10);
+                            vVar.d(e6, wVar);
                         } else {
-                            e = vVar.e(lVar, i27, false);
+                            e6 = vVar.e(lVar, i27, false);
                         }
-                        this.S += e;
-                        this.T += e;
-                        this.U -= e;
+                        this.S += e6;
+                        this.T += e6;
+                        this.U -= e6;
                     }
                 }
             }
-            if ("A_VORBIS".equals(cVar.f46712b)) {
-                h5.w wVar7 = this.h;
+            if ("A_VORBIS".equals(cVar.f50309b)) {
+                w wVar7 = this.h;
                 wVar7.F(0);
                 vVar.d(4, wVar7);
                 this.T += 4;
@@ -509,8 +508,8 @@ public final class d implements k {
 
     public final void m(l lVar, byte[] bArr, int i10) {
         int length = bArr.length + i10;
-        h5.w wVar = this.f46748k;
-        byte[] bArr2 = wVar.f7000a;
+        w wVar = this.f50347k;
+        byte[] bArr2 = wVar.f7308a;
         if (bArr2.length < length) {
             byte[] copyOf = Arrays.copyOf(bArr, length + i10);
             wVar.getClass();
@@ -518,7 +517,7 @@ public final class d implements k {
         } else {
             System.arraycopy(bArr, 0, bArr2, 0, bArr.length);
         }
-        lVar.readFully(wVar.f7000a, bArr.length, i10);
+        lVar.readFully(wVar.f7308a, bArr.length, i10);
         wVar.F(0);
         wVar.E(length);
     }

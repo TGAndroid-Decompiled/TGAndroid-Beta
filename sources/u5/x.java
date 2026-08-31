@@ -7,7 +7,7 @@ import android.os.IInterface;
 import android.os.Looper;
 import android.os.RemoteException;
 import com.google.android.gms.cast.CastDevice;
-import m.s3;
+import m.r3;
 public final class x extends b6.g {
     public static final b V = new b("CastClientImplCxless", null);
     public final CastDevice R;
@@ -15,8 +15,8 @@ public final class x extends b6.g {
     public final Bundle T;
     public final String U;
 
-    public x(Context context, Looper looper, s3 s3Var, CastDevice castDevice, long j10, Bundle bundle, String str, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar) {
-        super(context, looper, 10, s3Var, kVar, lVar, 0);
+    public x(Context context, Looper looper, r3 r3Var, CastDevice castDevice, long j10, Bundle bundle, String str, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar) {
+        super(context, looper, 10, r3Var, kVar, lVar, 0);
         this.R = castDevice;
         this.S = j10;
         this.T = bundle;
@@ -36,8 +36,8 @@ public final class x extends b6.g {
             } finally {
                 super.disconnect();
             }
-        } catch (RemoteException | IllegalStateException e) {
-            V.a(e, "Error while disconnecting the controller interface", new Object[0]);
+        } catch (RemoteException | IllegalStateException e6) {
+            V.a(e6, "Error while disconnecting the controller interface", new Object[0]);
         }
     }
 
@@ -60,7 +60,7 @@ public final class x extends b6.g {
 
     @Override
     public final y5.c[] r() {
-        return q5.y.e;
+        return q5.y.f44641e;
     }
 
     @Override

@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import org.telegram.tgnet.TLRPC;
-public final class pi extends org.telegram.ui.Components.fo {
+public final class pi extends org.telegram.ui.Components.ho {
     public final xn J;
 
-    public pi(xn xnVar, Activity activity, int i10, TLRPC.Document document, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(activity, i10, document, f6Var);
+    public pi(xn xnVar, Activity activity, int i10, TLRPC.Document document, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(activity, i10, document, g6Var);
         this.J = xnVar;
     }
 

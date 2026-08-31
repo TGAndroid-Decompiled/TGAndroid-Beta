@@ -1,19 +1,20 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class th1 extends org.telegram.ui.Components.voip.a1 {
-    public final ai1 S;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class th1 extends AnimatorListenerAdapter {
+    public final ci1 f41621a;
 
-    public th1(ai1 ai1Var, Context context, float f10, float f11) {
-        super(context, f10, f11);
-        this.S = ai1Var;
+    public th1(ci1 ci1Var) {
+        this.f41621a = ci1Var;
     }
 
     @Override
-    public final int[] getFloatingViewLocation() {
-        int[] iArr = new int[2];
-        ai1 ai1Var = this.S;
-        ai1Var.V.getLocationOnScreen(iArr);
-        return new int[]{iArr[0], iArr[1], ai1Var.V.getMeasuredWidth()};
+    public final void onAnimationEnd(Animator animator) {
+        ci1 ci1Var = this.f41621a;
+        ci1Var.B.setText(LocaleController.getString(R.string.VoipCallEnded));
+        ci1Var.B.animate().alpha(1.0f).setDuration(70L).setListener(null).start();
     }
 }

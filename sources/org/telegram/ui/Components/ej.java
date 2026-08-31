@@ -1,69 +1,62 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class ej extends pz {
-    public final int U;
-    public final di V;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+public final class ej implements TextWatcher {
+    public final sj f26561a;
 
-    public ej(di diVar, int i10, sl0 sl0Var, int i11) {
-        super(i10, 0, sl0Var);
-        this.U = i11;
-        this.V = diVar;
+    public ej(sj sjVar) {
+        this.f26561a = sjVar;
     }
 
     @Override
-    public int[] t(View view, Rect rect) {
-        switch (this.U) {
-            case 3:
-                int C = this.f5857n - C();
-                int top = (view.getTop() + rect.top) - view.getScrollY();
-                int min = Math.min(0, top);
-                int max = Math.max(0, (rect.height() + top) - C);
-                if (min == 0) {
-                    min = Math.min(top, max);
+    public final void afterTextChanged(Editable editable) {
+        int currentTop;
+        String obj = editable.toString();
+        if (!obj.isEmpty()) {
+            oz ozVar = this.f26561a.D;
+            if (ozVar != null) {
+                ozVar.setText(LocaleController.getString(R.string.NoResult));
+            }
+        } else {
+            f2.p0 adapter = this.f26561a.f31069s.getAdapter();
+            sj sjVar = this.f26561a;
+            if (adapter != sjVar.B) {
+                currentTop = sjVar.getCurrentTop();
+                this.f26561a.D.setText(LocaleController.getString(R.string.NoContacts));
+                this.f26561a.D.c();
+                sj sjVar2 = this.f26561a;
+                sjVar2.f31069s.setAdapter(sjVar2.B);
+                this.f26561a.B.l();
+                if (currentTop > 0) {
+                    this.f26561a.v.h1(0, -currentTop);
                 }
-                return new int[]{0, min};
-            default:
-                return super.t(view, rect);
+            }
+        }
+        oj ojVar = this.f26561a.C;
+        if (ojVar != null) {
+            if (ojVar.f29782f != null) {
+                Utilities.searchQueue.cancelRunnable(ojVar.f29782f);
+                ojVar.f29782f = null;
+            }
+            int i10 = ojVar.h + 1;
+            ojVar.h = i10;
+            DispatchQueue dispatchQueue = Utilities.searchQueue;
+            mj mjVar = new mj(ojVar, obj, i10, 0);
+            ojVar.f29782f = mjVar;
+            dispatchQueue.postRunnable(mjVar, 300L);
         }
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, f2.i1 i1Var, int i10) {
-        switch (this.U) {
-            case 0:
-                dj djVar = new dj(this, recyclerView.getContext());
-                djVar.f5723a = i10;
-                w0(djVar);
-                return;
-            case 1:
-                wj wjVar = new wj(this, recyclerView.getContext());
-                wjVar.f5723a = i10;
-                w0(wjVar);
-                return;
-            case 2:
-                rk rkVar = new rk(this, recyclerView.getContext());
-                rkVar.f5723a = i10;
-                w0(rkVar);
-                return;
-            case 3:
-                fn fnVar = new fn(this, recyclerView.getContext());
-                fnVar.f5723a = i10;
-                w0(fnVar);
-                return;
-            default:
-                uf.y yVar = new uf.y(this, recyclerView.getContext());
-                yVar.f5723a = i10;
-                w0(yVar);
-                return;
-        }
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
-    public ej(al alVar, lh.e1 e1Var) {
-        super(0, 0, e1Var);
-        this.U = 2;
-        this.V = alVar;
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

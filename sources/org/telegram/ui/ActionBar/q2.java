@@ -2,54 +2,54 @@ package org.telegram.ui.ActionBar;
 
 import android.animation.ValueAnimator;
 public final class q2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f20533a;
-    public final g3 f20534b;
+    public final int f22236a;
+    public final h3 f22237b;
 
-    public q2(g3 g3Var, int i10) {
-        this.f20533a = i10;
-        this.f20534b = g3Var;
+    public q2(h3 h3Var, int i10) {
+        this.f22236a = i10;
+        this.f22237b = h3Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f20533a) {
+        switch (this.f22236a) {
             case 0:
-                g3 g3Var = this.f20534b;
-                g3Var.getClass();
-                g3Var.navigationBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                e3 e3Var = g3Var.container;
-                if (e3Var != null) {
-                    e3Var.invalidate();
+                h3 h3Var = this.f22237b;
+                h3Var.getClass();
+                h3Var.navigationBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                f3 f3Var = h3Var.container;
+                if (f3Var != null) {
+                    f3Var.invalidate();
                     return;
                 }
                 return;
             case 1:
-                g3 g3Var2 = this.f20534b;
-                g3Var2.getClass();
-                g3Var2.navigationBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                e3 e3Var2 = g3Var2.container;
-                if (e3Var2 != null) {
-                    e3Var2.invalidate();
+                h3 h3Var2 = this.f22237b;
+                h3Var2.getClass();
+                h3Var2.navigationBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                f3 f3Var2 = h3Var2.container;
+                if (f3Var2 != null) {
+                    f3Var2.invalidate();
                     return;
                 }
                 return;
             case 2:
-                this.f20534b.onContainerViewTranslation();
+                this.f22237b.onContainerViewTranslation();
                 return;
             case 3:
-                this.f20534b.onContainerViewTranslation();
+                this.f22237b.onContainerViewTranslation();
                 return;
             case 4:
-                this.f20534b.onContainerViewTranslation();
+                this.f22237b.onContainerViewTranslation();
                 return;
             case 5:
-                g3.j(this.f20534b, valueAnimator);
+                h3.j(this.f22237b, valueAnimator);
                 return;
             case 6:
-                this.f20534b.onContainerViewTranslation();
+                this.f22237b.onContainerViewTranslation();
                 return;
             default:
-                g3.i(this.f20534b, valueAnimator);
+                h3.i(this.f22237b, valueAnimator);
                 return;
         }
     }

@@ -1,82 +1,58 @@
 package k7;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.telegram.ui.yh;
 public abstract class g0 {
-    public abstract void a(ne.b bVar);
-
-    public abstract void b(ne.c cVar);
-
-    public void c(ne.d dVar) {
-        v(dVar);
-    }
-
-    public void d(ne.e eVar) {
-        v(eVar);
-    }
-
-    public void e(ne.g gVar) {
-        v(gVar);
-    }
-
-    public void f(ne.h hVar) {
-        v(hVar);
-    }
-
-    public void g(ne.i iVar) {
-        v(iVar);
-    }
-
-    public void h(ne.j jVar) {
-        v(jVar);
-    }
-
-    public void i(ne.k kVar) {
-        v(kVar);
-    }
-
-    public void j(ne.l lVar) {
-        v(lVar);
-    }
-
-    public abstract void k(ne.n nVar);
-
-    public void l(ne.o oVar) {
-        v(oVar);
-    }
-
-    public abstract void m(ne.q qVar);
-
-    public abstract void n(ne.r rVar);
-
-    public void o(ne.s sVar) {
-        v(sVar);
-    }
-
-    public void p(ne.t tVar) {
-        v(tVar);
-    }
-
-    public void q(ne.d dVar) {
-        v(dVar);
-    }
-
-    public void r(ne.g gVar) {
-        v(gVar);
-    }
-
-    public void s(ne.k kVar) {
-        v(kVar);
-    }
-
-    public void t(ne.g gVar) {
-        v(gVar);
-    }
-
-    public void u(ne.g gVar) {
-        v(gVar);
-    }
-
-    public void v(ne.p pVar) {
-        for (ne.p pVar2 = (ne.p) pVar.f14956c; pVar2 != null; pVar2 = (ne.p) pVar2.f14957f) {
-            pVar2.a(this);
+    public static String a(String str, Object... objArr) {
+        int length;
+        int length2;
+        int indexOf;
+        String l10;
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            length = objArr.length;
+            if (i11 >= length) {
+                break;
+            }
+            Object obj = objArr[i11];
+            if (obj == null) {
+                l10 = "null";
+            } else {
+                try {
+                    l10 = obj.toString();
+                } catch (Exception e6) {
+                    String z4 = android.support.v4.media.a.z(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(z4), (Throwable) e6);
+                    l10 = yh.l("<", z4, " threw ", e6.getClass().getName(), ">");
+                }
+            }
+            objArr[i11] = l10;
+            i11++;
         }
+        StringBuilder sb = new StringBuilder(str.length() + (length * 16));
+        int i12 = 0;
+        while (true) {
+            length2 = objArr.length;
+            if (i10 >= length2 || (indexOf = str.indexOf("%s", i12)) == -1) {
+                break;
+            }
+            sb.append((CharSequence) str, i12, indexOf);
+            sb.append(objArr[i10]);
+            i10++;
+            i12 = indexOf + 2;
+        }
+        sb.append((CharSequence) str, i12, str.length());
+        if (i10 < length2) {
+            sb.append(" [");
+            sb.append(objArr[i10]);
+            for (int i13 = i10 + 1; i13 < objArr.length; i13++) {
+                sb.append(", ");
+                sb.append(objArr[i13]);
+            }
+            sb.append(']');
+        }
+        return sb.toString();
     }
 }

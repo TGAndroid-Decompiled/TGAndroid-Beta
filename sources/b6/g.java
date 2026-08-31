@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
-import m.s3;
+import m.r3;
 public abstract class g implements com.google.android.gms.common.api.c {
     public static final y5.c[] Q = new y5.c[0];
     public b B;
@@ -39,23 +39,23 @@ public abstract class g implements com.google.android.gms.common.api.c {
     public volatile g0 N;
     public final AtomicInteger O;
     public final Set P;
-    public int f1584a;
-    public long f1585b;
-    public long f1586c;
+    public int f1713a;
+    public long f1714b;
+    public long f1715c;
     public int d;
-    public long e;
-    public volatile String f1587f;
+    public long f1716e;
+    public volatile String f1717f;
     public androidx.activity.o h;
-    public final Context f1588n;
-    public final Looper f1589r;
-    public final k0 f1590s;
+    public final Context f1718n;
+    public final Looper f1719r;
+    public final k0 f1720s;
     public final b0 v;
-    public final Object f1591w;
-    public final Object f1592x;
-    public z f1593y;
+    public final Object f1721w;
+    public final Object f1722x;
+    public z f1723y;
 
-    public g(Context context, Looper looper, int i10, s3 s3Var, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar, int i11) {
-        synchronized (k0.f1617g) {
+    public g(Context context, Looper looper, int i10, r3 r3Var, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar, int i11) {
+        synchronized (k0.f1749g) {
             try {
                 if (k0.h == null) {
                     k0.h = new k0(context.getApplicationContext(), context.getMainLooper());
@@ -65,15 +65,15 @@ public abstract class g implements com.google.android.gms.common.api.c {
             }
         }
         k0 k0Var = k0.h;
-        Object obj = y5.d.f47080c;
+        Object obj = y5.d.f50766c;
         m.h(kVar);
         m.h(lVar);
         n nVar = new n(kVar);
         n nVar2 = new n(lVar);
-        Object obj2 = y5.d.f47080c;
-        this.f1587f = null;
-        this.f1591w = new Object();
-        this.f1592x = new Object();
+        Object obj2 = y5.d.f50766c;
+        this.f1717f = null;
+        this.f1721w = new Object();
+        this.f1722x = new Object();
         this.D = new ArrayList();
         this.F = 1;
         this.L = null;
@@ -81,17 +81,17 @@ public abstract class g implements com.google.android.gms.common.api.c {
         this.N = null;
         this.O = new AtomicInteger(0);
         m.i(context, "Context must not be null");
-        this.f1588n = context;
+        this.f1718n = context;
         m.i(looper, "Looper must not be null");
-        this.f1589r = looper;
+        this.f1719r = looper;
         m.i(k0Var, "Supervisor must not be null");
-        this.f1590s = k0Var;
+        this.f1720s = k0Var;
         this.v = new b0(this, looper);
         this.I = i10;
         this.G = nVar;
         this.H = nVar2;
-        this.J = (String) s3Var.e;
-        Set<Scope> set = (Set) s3Var.f13642b;
+        this.J = (String) r3Var.f13330e;
+        Set<Scope> set = (Set) r3Var.f13328b;
         for (Scope scope : set) {
             if (!set.contains(scope)) {
                 throw new IllegalStateException("Expanding scopes is not permitted, use implied scopes instead");
@@ -103,7 +103,7 @@ public abstract class g implements com.google.android.gms.common.api.c {
     public static void D(g gVar) {
         int i10;
         int i11;
-        synchronized (gVar.f1591w) {
+        synchronized (gVar.f1721w) {
             i10 = gVar.F;
         }
         if (i10 == 3) {
@@ -117,7 +117,7 @@ public abstract class g implements com.google.android.gms.common.api.c {
     }
 
     public static boolean E(g gVar, int i10, int i11, IInterface iInterface) {
-        synchronized (gVar.f1591w) {
+        synchronized (gVar.f1721w) {
             try {
                 if (gVar.F != i10) {
                     return false;
@@ -131,8 +131,8 @@ public abstract class g implements com.google.android.gms.common.api.c {
     }
 
     public void A(int i10) {
-        this.f1584a = i10;
-        this.f1585b = System.currentTimeMillis();
+        this.f1713a = i10;
+        this.f1714b = System.currentTimeMillis();
     }
 
     public void B(int i10, IBinder iBinder, Bundle bundle, int i11) {
@@ -164,7 +164,7 @@ public abstract class g implements com.google.android.gms.common.api.c {
             z11 = true;
         }
         m.b(z11);
-        synchronized (this.f1591w) {
+        synchronized (this.f1721w) {
             try {
                 this.F = i10;
                 this.C = iInterface;
@@ -174,20 +174,20 @@ public abstract class g implements com.google.android.gms.common.api.c {
                         if (i10 == 4) {
                             m.h(iInterface);
                             IInterface iInterface2 = iInterface;
-                            this.f1586c = System.currentTimeMillis();
+                            this.f1715c = System.currentTimeMillis();
                         }
                     } else {
                         d0 d0Var = this.E;
                         if (d0Var != null && (oVar = this.h) != null) {
-                            Log.e("GmsClient", "Calling connect() while still connected, missing disconnect() for " + ((String) oVar.f318b) + " on " + ((String) oVar.f319c));
-                            k0 k0Var = this.f1590s;
-                            String str = (String) this.h.f318b;
+                            Log.e("GmsClient", "Calling connect() while still connected, missing disconnect() for " + ((String) oVar.f356b) + " on " + ((String) oVar.f357c));
+                            k0 k0Var = this.f1720s;
+                            String str = (String) this.h.f356b;
                             m.h(str);
-                            String str2 = (String) this.h.f319c;
+                            String str2 = (String) this.h.f357c;
                             if (this.J == null) {
-                                this.f1588n.getClass();
+                                this.f1718n.getClass();
                             }
-                            k0Var.c(str, str2, d0Var, this.h.f317a);
+                            k0Var.c(str, str2, d0Var, this.h.f355a);
                             this.O.incrementAndGet();
                         }
                         d0 d0Var2 = new d0(this, this.O.get());
@@ -196,32 +196,32 @@ public abstract class g implements com.google.android.gms.common.api.c {
                         String w10 = w();
                         boolean y10 = y();
                         ?? obj = new Object();
-                        obj.f319c = x10;
-                        obj.f318b = w10;
-                        obj.f317a = y10;
+                        obj.f357c = x10;
+                        obj.f356b = w10;
+                        obj.f355a = y10;
                         this.h = obj;
                         if (y10 && k() < 17895000) {
-                            throw new IllegalStateException("Internal Error, the minimum apk version of this BaseGmsClient is too low to support dynamic lookup. Start service action: ".concat(String.valueOf((String) this.h.f318b)));
+                            throw new IllegalStateException("Internal Error, the minimum apk version of this BaseGmsClient is too low to support dynamic lookup. Start service action: ".concat(String.valueOf((String) this.h.f356b)));
                         }
-                        k0 k0Var2 = this.f1590s;
-                        String str3 = (String) this.h.f318b;
+                        k0 k0Var2 = this.f1720s;
+                        String str3 = (String) this.h.f356b;
                         m.h(str3);
-                        String str4 = (String) this.h.f319c;
+                        String str4 = (String) this.h.f357c;
                         String str5 = this.J;
                         if (str5 == null) {
-                            str5 = this.f1588n.getClass().getName();
+                            str5 = this.f1718n.getClass().getName();
                         }
-                        y5.a b10 = k0Var2.b(new h0(str3, str4, this.h.f317a), d0Var2, str5);
+                        y5.a b10 = k0Var2.b(new h0(str3, str4, this.h.f355a), d0Var2, str5);
                         if (!b10.f()) {
                             androidx.activity.o oVar2 = this.h;
-                            Log.w("GmsClient", "unable to connect to service: " + ((String) oVar2.f318b) + " on " + ((String) oVar2.f319c));
-                            int i11 = b10.f47072b;
+                            Log.w("GmsClient", "unable to connect to service: " + ((String) oVar2.f356b) + " on " + ((String) oVar2.f357c));
+                            int i11 = b10.f50758b;
                             if (i11 == -1) {
                                 i11 = 16;
                             }
-                            if (b10.f47073c != null) {
+                            if (b10.f50759c != null) {
                                 bundle = new Bundle();
-                                bundle.putParcelable("pendingIntent", b10.f47073c);
+                                bundle.putParcelable("pendingIntent", b10.f50759c);
                             }
                             int i12 = this.O.get();
                             f0 f0Var = new f0(this, i11, bundle);
@@ -232,14 +232,14 @@ public abstract class g implements com.google.android.gms.common.api.c {
                 } else {
                     d0 d0Var3 = this.E;
                     if (d0Var3 != null) {
-                        k0 k0Var3 = this.f1590s;
-                        String str6 = (String) this.h.f318b;
+                        k0 k0Var3 = this.f1720s;
+                        String str6 = (String) this.h.f356b;
                         m.h(str6);
-                        String str7 = (String) this.h.f319c;
+                        String str7 = (String) this.h.f357c;
                         if (this.J == null) {
-                            this.f1588n.getClass();
+                            this.f1718n.getClass();
                         }
-                        k0Var3.c(str6, str7, d0Var3, this.h.f317a);
+                        k0Var3.c(str6, str7, d0Var3, this.h.f355a);
                         this.E = null;
                     }
                 }
@@ -263,13 +263,13 @@ public abstract class g implements com.google.android.gms.common.api.c {
 
     @Override
     public final void c(String str) {
-        this.f1587f = str;
+        this.f1717f = str;
         disconnect();
     }
 
     @Override
     public final void d(o5.i iVar) {
-        ((p0) iVar.f16457b).f2854o.f2797x.post(new androidx.activity.i(iVar, 12));
+        ((p0) iVar.f16615b).f2791o.f2731x.post(new androidx.activity.i(iVar, 11));
     }
 
     @Override
@@ -286,8 +286,8 @@ public abstract class g implements com.google.android.gms.common.api.c {
                 throw th2;
             }
         }
-        synchronized (this.f1592x) {
-            this.f1593y = null;
+        synchronized (this.f1722x) {
+            this.f1723y = null;
         }
         F(1, null);
     }
@@ -295,7 +295,7 @@ public abstract class g implements com.google.android.gms.common.api.c {
     @Override
     public final boolean e() {
         boolean z4;
-        synchronized (this.f1591w) {
+        synchronized (this.f1721w) {
             int i10 = this.F;
             z4 = true;
             if (i10 != 2 && i10 != 3) {
@@ -310,12 +310,12 @@ public abstract class g implements com.google.android.gms.common.api.c {
         int i10;
         IInterface iInterface;
         z zVar;
-        synchronized (this.f1591w) {
+        synchronized (this.f1721w) {
             i10 = this.F;
             iInterface = this.C;
         }
-        synchronized (this.f1592x) {
-            zVar = this.f1593y;
+        synchronized (this.f1722x) {
+            zVar = this.f1723y;
         }
         printWriter.append((CharSequence) str).append("mConnectState=");
         if (i10 != 1) {
@@ -349,18 +349,18 @@ public abstract class g implements com.google.android.gms.common.api.c {
         if (zVar == null) {
             printWriter.println("null");
         } else {
-            printWriter.append("IGmsServiceBroker@").println(Integer.toHexString(System.identityHashCode(zVar.f1661a)));
+            printWriter.append("IGmsServiceBroker@").println(Integer.toHexString(System.identityHashCode(zVar.f1798a)));
         }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US);
-        if (this.f1586c > 0) {
+        if (this.f1715c > 0) {
             PrintWriter append = printWriter.append((CharSequence) str).append("lastConnectedTime=");
-            long j10 = this.f1586c;
+            long j10 = this.f1715c;
             String format = simpleDateFormat.format(new Date(j10));
             append.println(j10 + " " + format);
         }
-        if (this.f1585b > 0) {
+        if (this.f1714b > 0) {
             printWriter.append((CharSequence) str).append("lastSuspendedCause=");
-            int i11 = this.f1584a;
+            int i11 = this.f1713a;
             if (i11 != 1) {
                 if (i11 != 2) {
                     if (i11 != 3) {
@@ -375,14 +375,14 @@ public abstract class g implements com.google.android.gms.common.api.c {
                 printWriter.append("CAUSE_SERVICE_DISCONNECTED");
             }
             PrintWriter append2 = printWriter.append(" lastSuspendedTime=");
-            long j11 = this.f1585b;
+            long j11 = this.f1714b;
             String format2 = simpleDateFormat.format(new Date(j11));
             append2.println(j11 + " " + format2);
         }
-        if (this.e > 0) {
+        if (this.f1716e > 0) {
             printWriter.append((CharSequence) str).append("lastFailedStatus=").append((CharSequence) l8.j.a(this.d));
             PrintWriter append3 = printWriter.append(" lastFailedTime=");
-            long j12 = this.e;
+            long j12 = this.f1716e;
             String format3 = simpleDateFormat.format(new Date(j12));
             append3.println(j12 + " " + format3);
         }
@@ -392,7 +392,7 @@ public abstract class g implements com.google.android.gms.common.api.c {
     public final String g() {
         androidx.activity.o oVar;
         if (h() && (oVar = this.h) != null) {
-            return (String) oVar.f319c;
+            return (String) oVar.f357c;
         }
         throw new RuntimeException("Failed to connect when checking package");
     }
@@ -400,7 +400,7 @@ public abstract class g implements com.google.android.gms.common.api.c {
     @Override
     public final boolean h() {
         boolean z4;
-        synchronized (this.f1591w) {
+        synchronized (this.f1721w) {
             if (this.F == 4) {
                 z4 = true;
             } else {
@@ -421,33 +421,33 @@ public abstract class g implements com.google.android.gms.common.api.c {
         }
         String str2 = str;
         int i10 = this.I;
-        int i11 = y5.e.f47081a;
+        int i11 = y5.e.f50767a;
         Scope[] scopeArr = f.B;
         Bundle bundle = new Bundle();
         y5.c[] cVarArr = f.C;
         f fVar = new f(6, i10, i11, null, null, scopeArr, bundle, null, cVarArr, cVarArr, true, 0, false, str2);
-        fVar.d = this.f1588n.getPackageName();
+        fVar.d = this.f1718n.getPackageName();
         fVar.h = t6;
         if (set != null) {
-            fVar.f1576f = (Scope[]) set.toArray(new Scope[0]);
+            fVar.f1705f = (Scope[]) set.toArray(new Scope[0]);
         }
         if (p()) {
-            fVar.f1577n = new Account("<<default account>>", "com.google");
+            fVar.f1706n = new Account("<<default account>>", "com.google");
             if (iVar != null) {
-                fVar.e = iVar.asBinder();
+                fVar.f1704e = iVar.asBinder();
             }
         } else if (this instanceof s7.b) {
-            fVar.f1577n = null;
+            fVar.f1706n = null;
         }
-        fVar.f1578r = Q;
-        fVar.f1579s = r();
+        fVar.f1707r = Q;
+        fVar.f1708s = r();
         if (C()) {
-            fVar.f1581x = true;
+            fVar.f1710x = true;
         }
         try {
-            synchronized (this.f1592x) {
+            synchronized (this.f1722x) {
                 try {
-                    z zVar = this.f1593y;
+                    z zVar = this.f1723y;
                     if (zVar != null) {
                         zVar.E0(new c0(this, this.O.get()), fVar);
                     } else {
@@ -456,19 +456,19 @@ public abstract class g implements com.google.android.gms.common.api.c {
                 } finally {
                 }
             }
-        } catch (DeadObjectException e) {
-            Log.w("GmsClient", "IGmsServiceBroker.getService failed", e);
+        } catch (DeadObjectException e6) {
+            Log.w("GmsClient", "IGmsServiceBroker.getService failed", e6);
             int i12 = this.O.get();
             b0 b0Var = this.v;
             b0Var.sendMessage(b0Var.obtainMessage(6, i12, 3));
-        } catch (RemoteException e6) {
-            e = e6;
+        } catch (RemoteException e10) {
+            e = e10;
             Log.w("GmsClient", "IGmsServiceBroker.getService failed", e);
             B(8, null, null, this.O.get());
-        } catch (SecurityException e10) {
-            throw e10;
-        } catch (RuntimeException e11) {
-            e = e11;
+        } catch (SecurityException e11) {
+            throw e11;
+        } catch (RuntimeException e12) {
+            e = e12;
             Log.w("GmsClient", "IGmsServiceBroker.getService failed", e);
             B(8, null, null, this.O.get());
         }
@@ -488,12 +488,12 @@ public abstract class g implements com.google.android.gms.common.api.c {
         if (g0Var == null) {
             return null;
         }
-        return g0Var.f1595b;
+        return g0Var.f1725b;
     }
 
     @Override
     public final String m() {
-        return this.f1587f;
+        return this.f1717f;
     }
 
     @Override
@@ -529,7 +529,7 @@ public abstract class g implements com.google.android.gms.common.api.c {
 
     public final IInterface u() {
         IInterface iInterface;
-        synchronized (this.f1591w) {
+        synchronized (this.f1721w) {
             try {
                 if (this.F != 5) {
                     if (h()) {
@@ -565,7 +565,7 @@ public abstract class g implements com.google.android.gms.common.api.c {
     }
 
     public void z(y5.a aVar) {
-        this.d = aVar.f47072b;
-        this.e = System.currentTimeMillis();
+        this.d = aVar.f50758b;
+        this.f1716e = System.currentTimeMillis();
     }
 }

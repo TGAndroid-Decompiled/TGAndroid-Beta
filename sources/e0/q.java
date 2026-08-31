@@ -7,7 +7,7 @@ public abstract class q {
         if (rVar == null) {
             return null;
         }
-        Notification.BubbleMetadata.Builder builder = new Notification.BubbleMetadata.Builder(rVar.f5014a, rVar.f5015b.m(null));
+        Notification.BubbleMetadata.Builder builder = new Notification.BubbleMetadata.Builder(rVar.f4844a, rVar.f4845b.m(null));
         Notification.BubbleMetadata.Builder deleteIntent = builder.setDeleteIntent(null);
         boolean z10 = true;
         if ((rVar.d & 1) != 0) {
@@ -20,7 +20,7 @@ public abstract class q {
             z10 = false;
         }
         autoExpandBubble.setSuppressNotification(z10);
-        int i10 = rVar.f5016c;
+        int i10 = rVar.f4846c;
         if (i10 != 0) {
             builder.setDesiredHeight(i10);
         }

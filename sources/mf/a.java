@@ -9,12 +9,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stars;
 public final class a {
-    public final b f13928a;
-    public final long f13929b;
+    public final b f13649a;
+    public final long f13650b;
 
     public a(long j10, b bVar) {
-        this.f13928a = bVar;
-        this.f13929b = j10;
+        this.f13649a = bVar;
+        this.f13650b = j10;
     }
 
     public static a g(long j10, b bVar) {
@@ -44,11 +44,11 @@ public final class a {
     }
 
     public static a j(double d, b bVar) {
-        b bVar2 = b.f13931b;
+        b bVar2 = b.f13652b;
         if (bVar == bVar2) {
             return new a((long) ((d / MessagesController.getInstance(UserConfig.selectedAccount).config.tonUsdRate.get()) * 1000000000), bVar2).n(2);
         }
-        b bVar3 = b.f13930a;
+        b bVar3 = b.f13651a;
         if (bVar == bVar3) {
             return new a((long) (((d * 100000.0d) / MessagesController.getInstance(UserConfig.selectedAccount).starsUsdSellRate1000) * 1000000000), bVar3).n(0);
         }
@@ -57,10 +57,10 @@ public final class a {
 
     public static a l(TL_stars.StarsAmount starsAmount) {
         if (starsAmount instanceof TL_stars.TL_starsAmount) {
-            return i((starsAmount.amount * 1000000000) + starsAmount.nanos, b.f13930a);
+            return i((starsAmount.amount * 1000000000) + starsAmount.nanos, b.f13651a);
         }
         if (starsAmount instanceof TL_stars.TL_starsTonAmount) {
-            return i(starsAmount.amount, b.f13931b);
+            return i(starsAmount.amount, b.f13652b);
         }
         return null;
     }
@@ -70,16 +70,16 @@ public final class a {
         if (l10 != null) {
             return l10;
         }
-        return i(0L, b.f13930a);
+        return i(0L, b.f13651a);
     }
 
     public final long a() {
-        return this.f13929b / 1000000000;
+        return this.f13650b / 1000000000;
     }
 
     public final String b() {
         BigDecimal stripTrailingZeros;
-        BigDecimal divide = new BigDecimal(this.f13929b).divide(BigDecimal.valueOf(1000000000L), MathContext.UNLIMITED);
+        BigDecimal divide = new BigDecimal(this.f13650b).divide(BigDecimal.valueOf(1000000000L), MathContext.UNLIMITED);
         if (divide.signum() == 0) {
             stripTrailingZeros = new BigDecimal(BigInteger.ZERO, 0);
         } else {
@@ -89,12 +89,12 @@ public final class a {
     }
 
     public final double c() {
-        return this.f13929b / 1000000000;
+        return this.f13650b / 1000000000;
     }
 
     public final String d() {
         StringBuilder sb = new StringBuilder(LocaleController.formatNumber(a(), ','));
-        long j10 = this.f13929b % 1000000000;
+        long j10 = this.f13650b % 1000000000;
         if (j10 == 0) {
             return sb.toString();
         }
@@ -114,13 +114,13 @@ public final class a {
 
     public final a e(b bVar) {
         double d;
-        b bVar2 = this.f13928a;
+        b bVar2 = this.f13649a;
         if (bVar2 == bVar) {
             return this;
         }
-        if (bVar2 == b.f13930a) {
+        if (bVar2 == b.f13651a) {
             d = ((c() / 1000.0d) * MessagesController.getInstance(UserConfig.selectedAccount).starsUsdSellRate1000) / 100.0d;
-        } else if (bVar2 == b.f13931b) {
+        } else if (bVar2 == b.f13652b) {
             d = c() * MessagesController.getInstance(UserConfig.selectedAccount).config.tonUsdRate.get();
         } else {
             d = 0.0d;
@@ -133,15 +133,15 @@ public final class a {
         if (this == obj) {
             return true;
         }
-        if ((obj instanceof a) && (this == (aVar = (a) obj) || (this.f13928a == aVar.f13928a && this.f13929b == aVar.f13929b))) {
+        if ((obj instanceof a) && (this == (aVar = (a) obj) || (this.f13649a == aVar.f13649a && this.f13650b == aVar.f13650b))) {
             return true;
         }
         return false;
     }
 
     public final String f() {
-        b bVar = this.f13928a;
-        if (this.f13929b % 1000000000 == 0) {
+        b bVar = this.f13649a;
+        if (this.f13650b % 1000000000 == 0) {
             int ordinal = bVar.ordinal();
             if (ordinal != 0) {
                 if (ordinal == 1) {
@@ -162,7 +162,7 @@ public final class a {
     }
 
     public final boolean k() {
-        if (this.f13929b == 0) {
+        if (this.f13650b == 0) {
             return true;
         }
         return false;
@@ -177,19 +177,19 @@ public final class a {
         for (int i11 = 0; i11 < j10; i11++) {
             j11 *= 10;
         }
-        return i((this.f13929b / j11) * j11, this.f13928a);
+        return i((this.f13650b / j11) * j11, this.f13649a);
     }
 
     public final TL_stars.StarsAmount o() {
-        b bVar = b.f13930a;
-        long j10 = this.f13929b;
-        b bVar2 = this.f13928a;
+        b bVar = b.f13651a;
+        long j10 = this.f13650b;
+        b bVar2 = this.f13649a;
         if (bVar2 == bVar) {
             TL_stars.TL_starsAmount tL_starsAmount = new TL_stars.TL_starsAmount();
             tL_starsAmount.amount = j10 / 1000000000;
             tL_starsAmount.nanos = (int) (j10 % 1000000000);
             return tL_starsAmount;
-        } else if (bVar2 == b.f13931b) {
+        } else if (bVar2 == b.f13652b) {
             TL_stars.TL_starsTonAmount tL_starsTonAmount = new TL_stars.TL_starsTonAmount();
             tL_starsTonAmount.amount = j10;
             return tL_starsTonAmount;

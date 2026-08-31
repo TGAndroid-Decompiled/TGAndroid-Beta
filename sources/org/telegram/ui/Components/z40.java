@@ -1,23 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
-public final class z40 {
-    public long f31231a;
-    public float f31232b;
-    public float f31233c;
-    public boolean d;
-    public float e;
-    public final RectF f31234f = new RectF();
-    public int f31235g;
-    public final Paint h;
-    public final int f31236i;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class z40 extends FrameLayout {
+    public View f33719a;
+    public TextView f33720b;
+    public lj0 f33721c;
+    public LinearLayout d;
 
-    public z40(int i10) {
-        this.f31236i = i10;
-        Paint paint = new Paint(1);
-        this.h = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    }
+
+    public void setGravity(int i10) {
+        this.f33720b.setGravity(i10);
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f33720b.setText(charSequence);
+    }
+
+    public void setTextColor(int i10) {
+        this.f33720b.setTextColor(i10);
     }
 }

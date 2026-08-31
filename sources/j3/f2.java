@@ -1,11 +1,11 @@
 package j3;
 public abstract class f2 implements g {
-    public static final String f8582a;
-    public static final q0 f8583b;
+    public static final String f9150a;
+    public static final q0 f9151b;
 
     static {
-        int i10 = h5.d0.f6937a;
-        f8582a = Integer.toString(0, 36);
-        f8583b = new q0(10);
+        int i10 = h5.d0.f7237a;
+        f9150a = Integer.toString(0, 36);
+        f9151b = new q0(10);
     }
 }

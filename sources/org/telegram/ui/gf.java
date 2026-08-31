@@ -3,22 +3,22 @@ package org.telegram.ui;
 import java.util.regex.Pattern;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-public final class gf implements org.telegram.ui.ActionBar.c2, MessagesController.ErrorDelegate, io0 {
-    public final int f34591a;
-    public final Runnable f34592b;
+public final class gf implements org.telegram.ui.ActionBar.c2, MessagesController.ErrorDelegate, ko0 {
+    public final int f37181a;
+    public final Runnable f37182b;
 
     public gf(int i10, Runnable runnable) {
-        this.f34591a = i10;
-        this.f34592b = runnable;
+        this.f37181a = i10;
+        this.f37182b = runnable;
     }
 
     @Override
     public void a(int i10) {
-        int i11 = this.f34591a;
-        Runnable runnable = this.f34592b;
+        int i11 = this.f37181a;
+        Runnable runnable = this.f37182b;
         switch (i11) {
             case 9:
-                Pattern pattern = LaunchActivity.f31612y1;
+                Pattern pattern = LaunchActivity.f34134y1;
                 if (i10 == 1) {
                     runnable.run();
                     return;
@@ -34,16 +34,16 @@ public final class gf implements org.telegram.ui.ActionBar.c2, MessagesControlle
     }
 
     @Override
-    public void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f34591a) {
+    public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f37181a) {
             case 0:
-                this.f34592b.run();
+                this.f37182b.run();
                 return;
             case 1:
-                this.f34592b.run();
+                this.f37182b.run();
                 return;
             default:
-                Runnable runnable = this.f34592b;
+                Runnable runnable = this.f37182b;
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -54,24 +54,24 @@ public final class gf implements org.telegram.ui.ActionBar.c2, MessagesControlle
 
     @Override
     public boolean run(TLRPC.TL_error tL_error) {
-        switch (this.f34591a) {
+        switch (this.f37181a) {
             case 3:
-                this.f34592b.run();
+                this.f37182b.run();
                 return true;
             case 4:
-                this.f34592b.run();
+                this.f37182b.run();
                 return true;
             case 5:
-                this.f34592b.run();
+                this.f37182b.run();
                 return true;
             case 6:
-                this.f34592b.run();
+                this.f37182b.run();
                 return true;
             case 7:
-                this.f34592b.run();
+                this.f37182b.run();
                 return true;
             default:
-                this.f34592b.run();
+                this.f37182b.run();
                 return true;
         }
     }

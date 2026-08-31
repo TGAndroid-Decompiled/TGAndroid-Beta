@@ -1,58 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class uj0 extends LinearLayout {
-    public boolean f29246a;
+import androidx.recyclerview.widget.RecyclerView;
+public final class uj0 extends f2.a1 {
+    public final f2.j0 f31685a;
+    public final ak0 f31686b;
 
-    public uj0(Context context) {
-        super(context);
+    public uj0(ak0 ak0Var, f2.j0 j0Var) {
+        this.f31686b = ak0Var;
+        this.f31685a = j0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        qj0 qj0Var = null;
-        if (!this.f29246a) {
-            i12 = 0;
-            for (int i13 = 0; i13 < getChildCount(); i13++) {
-                if (getChildAt(i13) instanceof yj0) {
-                    qj0Var = ((yj0) getChildAt(i13)).e;
-                    if (qj0Var.getAdapter().h() == qj0Var.getChildCount()) {
-                        int childCount = qj0Var.getChildCount();
-                        for (int i14 = 0; i14 < childCount; i14++) {
-                            qj0Var.getChildAt(i14).measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), 0), i11);
-                            if (qj0Var.getChildAt(i14).getMeasuredWidth() > i12) {
-                                i12 = qj0Var.getChildAt(i14).getMeasuredWidth();
-                            }
-                        }
-                        i12 += AndroidUtilities.dp(16.0f);
-                    }
-                }
-            }
-        } else {
-            i12 = 0;
-        }
-        int size = View.MeasureSpec.getSize(i10);
-        if (size < AndroidUtilities.dp(240.0f)) {
-            size = AndroidUtilities.dp(240.0f);
-        }
-        if (size > AndroidUtilities.dp(280.0f)) {
-            size = AndroidUtilities.dp(280.0f);
-        }
-        if (size < 0) {
-            size = 0;
-        }
-        if (i12 == 0 || i12 >= size) {
-            i12 = size;
-        }
-        if (qj0Var != null) {
-            for (int i15 = 0; i15 < qj0Var.getChildCount(); i15++) {
-                qj0Var.getChildAt(i15).measure(View.MeasureSpec.makeMeasureSpec(i12, 1073741824), i11);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int loadCount;
+        ak0 ak0Var = this.f31686b;
+        if (ak0Var.f25279w && ak0Var.f25280x && !ak0Var.v) {
+            int N0 = this.f31685a.N0();
+            loadCount = ak0Var.getLoadCount();
+            if (N0 >= (ak0Var.f25275f.h() - 1) - loadCount) {
+                ak0Var.c();
             }
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(i12, 1073741824), i11);
     }
 }

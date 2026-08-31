@@ -1,23 +1,40 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
-public final class e51 extends m61 {
-    public final View N;
-    public final TL_stars.TL_starGiftUnique O;
-    public final f51 P;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class e51 extends f2.w {
+    public final int Q;
+    public final r61 R;
 
-    public e51(f51 f51Var, Context context, Runnable runnable, View view, y51 y51Var, org.telegram.ui.ActionBar.f6 f6Var, View view2, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        super(f51Var.e, context, runnable, view, y51Var, f6Var);
-        this.P = f51Var;
-        this.N = view2;
-        this.O = tL_starGiftUnique;
+    public e51(r61 r61Var, int i10) {
+        super(40);
+        this.Q = i10;
+        this.R = r61Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.P.e.U0 = null;
+    public final void v0(RecyclerView recyclerView, f2.j1 j1Var, int i10) {
+        switch (this.Q) {
+            case 0:
+                try {
+                    org.telegram.ui.Components.fx fxVar = new org.telegram.ui.Components.fx(this, recyclerView.getContext(), 2);
+                    fxVar.f5805a = i10;
+                    w0(fxVar);
+                    return;
+                } catch (Exception e6) {
+                    FileLog.e(e6);
+                    return;
+                }
+            default:
+                try {
+                    org.telegram.ui.Components.fx fxVar2 = new org.telegram.ui.Components.fx(this, recyclerView.getContext(), 4);
+                    fxVar2.f5805a = i10;
+                    w0(fxVar2);
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return;
+                }
+        }
     }
 }

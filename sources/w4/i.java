@@ -3,34 +3,35 @@ package w4;
 import h5.d0;
 import java.util.ArrayDeque;
 import java.util.PriorityQueue;
+import oh.h4;
 import v4.j;
 import v4.k;
 public abstract class i implements v4.g {
-    public final ArrayDeque f46442a = new ArrayDeque();
-    public final ArrayDeque f46443b;
-    public final PriorityQueue f46444c;
+    public final ArrayDeque f49412a = new ArrayDeque();
+    public final ArrayDeque f49413b;
+    public final PriorityQueue f49414c;
     public g d;
-    public long e;
-    public long f46445f;
+    public long f49415e;
+    public long f49416f;
 
     public i() {
         for (int i10 = 0; i10 < 10; i10++) {
-            this.f46442a.add(new j());
+            this.f49412a.add(new j());
         }
-        this.f46443b = new ArrayDeque();
+        this.f49413b = new ArrayDeque();
         for (int i11 = 0; i11 < 2; i11++) {
-            ArrayDeque arrayDeque = this.f46443b;
-            rh.e eVar = new rh.e(this, 18);
+            ArrayDeque arrayDeque = this.f49413b;
+            sf.g gVar = new sf.g(this, 11);
             ?? aVar = new n3.a();
-            aVar.h = eVar;
+            aVar.h = gVar;
             arrayDeque.add(aVar);
         }
-        this.f46444c = new PriorityQueue();
+        this.f49414c = new PriorityQueue();
     }
 
     @Override
     public final void a(long j10) {
-        this.e = j10;
+        this.f49415e = j10;
     }
 
     @Override
@@ -42,7 +43,7 @@ public abstract class i implements v4.g {
             z4 = false;
         }
         h5.a.i(z4);
-        ArrayDeque arrayDeque = this.f46442a;
+        ArrayDeque arrayDeque = this.f49412a;
         if (arrayDeque.isEmpty()) {
             return null;
         }
@@ -63,41 +64,41 @@ public abstract class i implements v4.g {
         h5.a.f(z4);
         g gVar = (g) jVar;
         if (gVar.e(Integer.MIN_VALUE)) {
-            gVar.c();
-            this.f46442a.add(gVar);
+            gVar.b();
+            this.f49412a.add(gVar);
         } else {
-            long j10 = this.f46445f;
-            this.f46445f = 1 + j10;
+            long j10 = this.f49416f;
+            this.f49416f = 1 + j10;
             gVar.v = j10;
-            this.f46444c.add(gVar);
+            this.f49414c.add(gVar);
         }
         this.d = null;
     }
 
-    public abstract e5.b e();
+    public abstract h4 e();
 
     public abstract void f(g gVar);
 
     @Override
     public void flush() {
         ArrayDeque arrayDeque;
-        this.f46445f = 0L;
-        this.e = 0L;
+        this.f49416f = 0L;
+        this.f49415e = 0L;
         while (true) {
-            PriorityQueue priorityQueue = this.f46444c;
+            PriorityQueue priorityQueue = this.f49414c;
             boolean isEmpty = priorityQueue.isEmpty();
-            arrayDeque = this.f46442a;
+            arrayDeque = this.f49412a;
             if (isEmpty) {
                 break;
             }
             g gVar = (g) priorityQueue.poll();
-            int i10 = d0.f6937a;
-            gVar.c();
+            int i10 = d0.f7237a;
+            gVar.b();
             arrayDeque.add(gVar);
         }
         g gVar2 = this.d;
         if (gVar2 != null) {
-            gVar2.c();
+            gVar2.b();
             arrayDeque.add(gVar2);
             this.d = null;
         }
@@ -105,35 +106,35 @@ public abstract class i implements v4.g {
 
     @Override
     public k b() {
-        ArrayDeque arrayDeque = this.f46443b;
+        ArrayDeque arrayDeque = this.f49413b;
         if (arrayDeque.isEmpty()) {
             return null;
         }
         while (true) {
-            PriorityQueue priorityQueue = this.f46444c;
+            PriorityQueue priorityQueue = this.f49414c;
             if (!priorityQueue.isEmpty()) {
-                int i10 = d0.f6937a;
-                if (((g) priorityQueue.peek()).f14242f <= this.e) {
+                int i10 = d0.f7237a;
+                if (((g) priorityQueue.peek()).f15216f <= this.f49415e) {
                     g gVar = (g) priorityQueue.poll();
-                    boolean e = gVar.e(4);
-                    ArrayDeque arrayDeque2 = this.f46442a;
-                    if (e) {
+                    boolean e6 = gVar.e(4);
+                    ArrayDeque arrayDeque2 = this.f49412a;
+                    if (e6) {
                         k kVar = (k) arrayDeque.pollFirst();
                         kVar.a(4);
-                        gVar.c();
+                        gVar.b();
                         arrayDeque2.add(gVar);
                         return kVar;
                     }
                     f(gVar);
                     if (h()) {
-                        e5.b e6 = e();
+                        h4 e10 = e();
                         k kVar2 = (k) arrayDeque.pollFirst();
-                        kVar2.k(gVar.f14242f, e6, Long.MAX_VALUE);
-                        gVar.c();
+                        kVar2.j(gVar.f15216f, e10, Long.MAX_VALUE);
+                        gVar.b();
                         arrayDeque2.add(gVar);
                         return kVar2;
                     }
-                    gVar.c();
+                    gVar.b();
                     arrayDeque2.add(gVar);
                 } else {
                     return null;

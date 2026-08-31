@@ -1,42 +1,69 @@
 package lh;
 
-import android.animation.ValueAnimator;
-import android.widget.FrameLayout;
-public final class y4 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f13392a;
-    public final c5 f13393b;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.i61;
+import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.lj0;
+import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.x51;
+public final class y4 extends i51 {
+    public static final int f13124a = 0;
 
-    public y4(c5 c5Var, int i10) {
-        this.f13392a = i10;
-        this.f13393b = c5Var;
+    static {
+        i51.setup(new i51());
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f13392a) {
-            case 0:
-                c5 c5Var = this.f13393b;
-                c5Var.getClass();
-                c5Var.f12232p0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c5Var.d(c5Var.R);
-                return;
-            case 1:
-                c5 c5Var2 = this.f13393b;
-                c5Var2.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float u10 = e2.c.u((float) Math.pow((floatValue * 2.0f) - 2.0f, 2.0d), 0.075f, floatValue, 1.0f);
-                c5Var2.f12233q0 = u10;
-                FrameLayout frameLayout = c5Var2.f12215b;
-                frameLayout.setScaleX(u10);
-                frameLayout.setScaleY(c5Var2.f12233q0);
-                c5Var2.invalidate();
-                return;
-            default:
-                c5 c5Var3 = this.f13393b;
-                c5Var3.getClass();
-                c5Var3.f12232p0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c5Var3.d(c5Var3.R);
-                return;
+    public final void bindView(View view, j51 j51Var, boolean z4, x51 x51Var, i61 i61Var) {
+        z4 z4Var = (z4) view;
+        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) j51Var.G;
+        int i10 = j51Var.f28027z;
+        String str = (String) j51Var.f28014l;
+        boolean z10 = j51Var.f28008e;
+        g6 g6Var = z4Var.C;
+        lj0 lj0Var = z4Var.f21375c;
+        x4 x4Var = z4Var.K;
+        if (x4Var == null || z4Var.J != stargiftattributepattern.document.f20849id) {
+            z4Var.J = stargiftattributepattern.document.f20849id;
+            if (x4Var != null) {
+                x4Var.o(lj0Var);
+            }
+            ?? l5Var = new org.telegram.ui.Components.l5(3, z4Var.I, stargiftattributepattern.document);
+            z4Var.K = l5Var;
+            l5Var.setColorFilter(new PorterDuffColorFilter(k6.v0(k6.E8, g6Var), PorterDuff.Mode.SRC_IN));
         }
+        if (lj0Var.isAttachedToWindow()) {
+            z4Var.K.a(lj0Var);
+        }
+        SpannableStringBuilder spannableStringBuilder = stargiftattributepattern.name;
+        if (!TextUtils.isEmpty(str)) {
+            spannableStringBuilder = AndroidUtilities.highlightText(spannableStringBuilder, str, g6Var);
+        }
+        if (i10 > 0) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
+            spannableStringBuilder2.append((CharSequence) "  ");
+            int length = spannableStringBuilder2.length();
+            spannableStringBuilder2.append((CharSequence) Integer.toString(i10));
+            spannableStringBuilder2.setSpan(new g51(AndroidUtilities.bold()), length, spannableStringBuilder2.length(), 33);
+            spannableStringBuilder = spannableStringBuilder2;
+        }
+        z4Var.g(spannableStringBuilder, 0, z4Var.K);
+        z4Var.setChecked(z10);
+    }
+
+    @Override
+    public final View createView(Context context, tl0 tl0Var, int i10, int i11, g6 g6Var) {
+        return new z4(context, i10, g6Var);
     }
 }

@@ -13,28 +13,28 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class hd implements Runnable {
-    public final int f25392a = 0;
-    public final Object f25393b;
-    public final boolean f25394c;
+    public final int f27453a = 0;
+    public final Object f27454b;
+    public final boolean f27455c;
     public final int d;
-    public final int e;
-    public final boolean f25395f;
+    public final int f27456e;
+    public final boolean f27457f;
     public final Long h;
-    public final String f25396n;
-    public final Object f25397r;
-    public final Object f25398s;
+    public final String f27458n;
+    public final Object f27459r;
+    public final Object f27460s;
     public final Object v;
 
     public hd(xf xfVar, Object obj, MediaController.PhotoEntry photoEntry, boolean z4, int i10, int i11, boolean z10, Long l10, String str, Object obj2) {
-        this.f25397r = xfVar;
-        this.f25393b = obj;
-        this.f25398s = photoEntry;
-        this.f25394c = z4;
+        this.f27459r = xfVar;
+        this.f27454b = obj;
+        this.f27460s = photoEntry;
+        this.f27455c = z4;
         this.d = i10;
-        this.e = i11;
-        this.f25395f = z10;
+        this.f27456e = i11;
+        this.f27457f = z10;
         this.h = l10;
-        this.f25396n = str;
+        this.f27458n = str;
         this.v = obj2;
     }
 
@@ -50,14 +50,14 @@ public final class hd implements Runnable {
         String str;
         MessageObject threadMessage4;
         String str2;
-        switch (this.f25392a) {
+        switch (this.f27453a) {
             case 0:
-                ChatActivityEnterView.g((ChatActivityEnterView) this.f25397r, (TLRPC.Document) this.f25398s, this.f25396n, (MessageObject.SendAnimationData) this.v, this.f25394c, this.d, this.e, this.f25393b, this.h, this.f25395f);
+                ChatActivityEnterView.g((ChatActivityEnterView) this.f27459r, (TLRPC.Document) this.f27460s, this.f27458n, (MessageObject.SendAnimationData) this.v, this.f27455c, this.d, this.f27456e, this.f27454b, this.h, this.f27457f);
                 return;
             default:
-                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) this.f25398s;
-                ChatActivityEnterView chatActivityEnterView = ((xf) this.f25397r).f30668a;
-                boolean z10 = chatActivityEnterView.f22850v3;
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) this.f27460s;
+                ChatActivityEnterView chatActivityEnterView = ((xf) this.f27459r).f33058a;
+                boolean z10 = chatActivityEnterView.f24690v3;
                 org.telegram.ui.xn xnVar = chatActivityEnterView.L2;
                 boolean z11 = false;
                 if (z10) {
@@ -69,18 +69,18 @@ public final class hd implements Runnable {
                 eg egVar = chatActivityEnterView.V2;
                 SendMessageChatArguments sendMessageChatArguments = null;
                 if (egVar != null) {
-                    storyItem = egVar.e1();
+                    storyItem = egVar.h1();
                 } else {
                     storyItem = null;
                 }
-                Object obj = this.f25393b;
+                Object obj = this.f27454b;
                 boolean z12 = obj instanceof TLRPC.Document;
-                boolean z13 = this.f25394c;
+                boolean z13 = this.f27455c;
                 int i10 = this.d;
-                int i11 = this.e;
+                int i11 = this.f27456e;
                 Long l10 = this.h;
                 int i12 = i10;
-                String str3 = this.f25396n;
+                String str3 = this.f27458n;
                 Object obj2 = this.v;
                 if (z12) {
                     TLRPC.Document document = (TLRPC.Document) obj;
@@ -96,7 +96,7 @@ public final class hd implements Runnable {
                         videoEditedInfo.muted = true;
                         z11 = needConvert;
                     }
-                    boolean z14 = this.f25395f;
+                    boolean z14 = this.f27457f;
                     if (z11) {
                         ArrayList arrayList = new ArrayList();
                         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
@@ -185,7 +185,7 @@ public final class hd implements Runnable {
                         }
                         TLRPC.User user = (TLRPC.User) obj2;
                         HashMap hashMap = new HashMap();
-                        hashMap.put("id", botInlineResult.f19182id);
+                        hashMap.put("id", botInlineResult.f20841id);
                         hashMap.put("query_id", "" + botInlineResult.query_id);
                         hashMap.put("force_gif", "1");
                         if (storyItem3 == null) {
@@ -222,7 +222,7 @@ public final class hd implements Runnable {
                 }
                 eg egVar2 = chatActivityEnterView.V2;
                 if (egVar2 != null) {
-                    egVar2.D(null, z4, i12, 0, 0L);
+                    egVar2.C(null, z4, i12, 0, 0L);
                     return;
                 }
                 return;
@@ -230,15 +230,15 @@ public final class hd implements Runnable {
     }
 
     public hd(ChatActivityEnterView chatActivityEnterView, TLRPC.Document document, String str, MessageObject.SendAnimationData sendAnimationData, boolean z4, int i10, int i11, Object obj, Long l10, boolean z10) {
-        this.f25397r = chatActivityEnterView;
-        this.f25398s = document;
-        this.f25396n = str;
+        this.f27459r = chatActivityEnterView;
+        this.f27460s = document;
+        this.f27458n = str;
         this.v = sendAnimationData;
-        this.f25394c = z4;
+        this.f27455c = z4;
         this.d = i10;
-        this.e = i11;
-        this.f25393b = obj;
+        this.f27456e = i11;
+        this.f27454b = obj;
         this.h = l10;
-        this.f25395f = z10;
+        this.f27457f = z10;
     }
 }

@@ -13,88 +13,88 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.video.VideoAds;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.wc0;
+import org.telegram.ui.Components.yc0;
 import org.telegram.ui.Components.z4;
 import org.telegram.ui.ba;
-import org.telegram.ui.c60;
+import org.telegram.ui.d60;
 import org.telegram.ui.e3;
-import org.telegram.ui.i40;
 import org.telegram.ui.j40;
-import org.telegram.ui.l40;
-import org.telegram.ui.n30;
+import org.telegram.ui.k40;
+import org.telegram.ui.m40;
+import org.telegram.ui.o30;
 public final class f implements View.OnClickListener {
-    public final int f18703a;
-    public final Object f18704b;
-    public final Object f18705c;
+    public final int f20326a;
+    public final Object f20327b;
+    public final Object f20328c;
     public final Object d;
-    public final Object e;
-    public final Object f18706f;
+    public final Object f20329e;
+    public final Object f20330f;
     public final Object h;
-    public final Object f18707n;
+    public final Object f20331n;
 
     public f(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i10) {
-        this.f18703a = i10;
-        this.f18704b = obj;
-        this.f18705c = obj2;
+        this.f20326a = i10;
+        this.f20327b = obj;
+        this.f20328c = obj2;
         this.d = obj3;
-        this.e = obj4;
-        this.f18706f = obj5;
+        this.f20329e = obj4;
+        this.f20330f = obj5;
         this.h = obj6;
-        this.f18707n = obj7;
+        this.f20331n = obj7;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f18703a;
-        Object obj = this.f18707n;
+        int i10 = this.f20326a;
+        Object obj = this.f20331n;
         Object obj2 = this.h;
-        Object obj3 = this.f18706f;
-        Object obj4 = this.e;
+        Object obj3 = this.f20330f;
+        Object obj4 = this.f20329e;
         Object obj5 = this.d;
-        Object obj6 = this.f18705c;
-        Object obj7 = this.f18704b;
+        Object obj6 = this.f20328c;
+        Object obj7 = this.f20327b;
         switch (i10) {
             case 0:
-                ((VideoAds) obj7).lambda$show$17((ic) obj6, (TLRPC.TL_sponsoredMessage) obj5, (Context) obj4, (f6) obj3, (VideoAds.AdLayout) obj2, (e) obj, view);
+                ((VideoAds) obj7).lambda$show$17((ic) obj6, (TLRPC.TL_sponsoredMessage) obj5, (Context) obj4, (g6) obj3, (VideoAds.AdLayout) obj2, (e) obj, view);
                 return;
             default:
-                c60 c60Var = (c60) obj7;
-                wc0 wc0Var = (wc0) obj6;
-                i40 i40Var = (i40) obj5;
-                j40 j40Var = (j40) obj4;
+                d60 d60Var = (d60) obj7;
+                yc0 yc0Var = (yc0) obj6;
+                j40 j40Var = (j40) obj5;
+                k40 k40Var = (k40) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
                 AccountInstance accountInstance = (AccountInstance) obj2;
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj;
-                n30 n30Var = c60Var.f33103b1;
+                o30 o30Var = d60Var.f36016b1;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                c60Var.U0 = ofFloat;
+                d60Var.U0 = ofFloat;
                 ofFloat.setDuration(600L);
-                c60Var.U0.addUpdateListener(new e3(c60Var, 15));
-                c60Var.U0.addListener(new l40(c60Var));
-                c60Var.U0.start();
-                if (ChatObject.isChannelOrGiga(c60Var.W0)) {
-                    n30Var.b(LocaleController.getString(R.string.VoipChannelVoiceChat), true);
+                d60Var.U0.addUpdateListener(new e3(d60Var, 15));
+                d60Var.U0.addListener(new m40(d60Var));
+                d60Var.U0.start();
+                if (ChatObject.isChannelOrGiga(d60Var.W0)) {
+                    o30Var.b(LocaleController.getString(R.string.VoipChannelVoiceChat), true);
                 } else {
-                    n30Var.b(LocaleController.getString(R.string.VoipGroupVoiceChat), true);
+                    o30Var.b(LocaleController.getString(R.string.VoipGroupVoiceChat), true);
                 }
                 Calendar calendar = Calendar.getInstance();
-                boolean g10 = z4.g(null, null, 0L, 604800L, 3, wc0Var, i40Var, j40Var);
-                calendar.setTimeInMillis((wc0Var.getValue() * 86400000) + System.currentTimeMillis());
-                calendar.set(11, i40Var.getValue());
-                calendar.set(12, j40Var.getValue());
+                boolean g10 = z4.g(null, null, 0L, 604800L, 3, yc0Var, j40Var, k40Var);
+                calendar.setTimeInMillis((yc0Var.getValue() * 86400000) + System.currentTimeMillis());
+                calendar.set(11, j40Var.getValue());
+                calendar.set(12, k40Var.getValue());
                 if (g10) {
                     calendar.set(13, 0);
                 }
-                c60Var.f33129h2 = (int) (calendar.getTimeInMillis() / 1000);
-                c60Var.L1(false);
+                d60Var.f36043h2 = (int) (calendar.getTimeInMillis() / 1000);
+                d60Var.L1(false);
                 TL_phone.createGroupCall creategroupcall = new TL_phone.createGroupCall();
                 creategroupcall.peer = MessagesController.getInputPeer(chat);
                 creategroupcall.random_id = Utilities.random.nextInt();
-                creategroupcall.schedule_date = c60Var.f33129h2;
+                creategroupcall.schedule_date = d60Var.f36043h2;
                 creategroupcall.flags |= 2;
-                accountInstance.getConnectionsManager().sendRequest(creategroupcall, new ba(c60Var, chat, inputPeer, 11), 2);
+                accountInstance.getConnectionsManager().sendRequest(creategroupcall, new ba(d60Var, chat, inputPeer, 11), 2);
                 return;
         }
     }

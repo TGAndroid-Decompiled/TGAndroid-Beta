@@ -1,9 +1,9 @@
 package ld;
 public final class d implements k {
-    public final c[] f11867a;
+    public final c[] f12290a;
 
     public d(c[] cVarArr) {
-        this.f11867a = cVarArr;
+        this.f12290a = cVarArr;
     }
 
     @Override
@@ -12,8 +12,8 @@ public final class d implements k {
     }
 
     public final void b() {
-        for (c cVar : this.f11867a) {
-            o0 o0Var = cVar.f11864f;
+        for (c cVar : this.f12290a) {
+            o0 o0Var = cVar.f12287f;
             if (o0Var != null) {
                 o0Var.dispose();
             } else {
@@ -24,6 +24,6 @@ public final class d implements k {
     }
 
     public final String toString() {
-        return "DisposeHandlersOnCancel[" + this.f11867a + ']';
+        return "DisposeHandlersOnCancel[" + this.f12290a + ']';
     }
 }

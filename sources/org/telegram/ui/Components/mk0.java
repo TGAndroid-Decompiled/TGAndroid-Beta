@@ -1,145 +1,32 @@
 package org.telegram.ui.Components;
+public final class mk0 implements Runnable {
+    public final int f29148a;
+    public final pk0 f29149b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class mk0 extends p9 {
-    public final int D;
-    public final nk0 E;
-
-    public mk0(nk0 nk0Var, Context context, int i10) {
-        super(context);
-        this.D = i10;
-        this.E = nk0Var;
+    public mk0(pk0 pk0Var, int i10) {
+        this.f29148a = i10;
+        this.f29149b = pk0Var;
     }
 
     @Override
-    public ImageReceiver c() {
-        switch (this.D) {
+    public final void run() {
+        switch (this.f29148a) {
             case 0:
-                return new lk0(0, this);
-            case 1:
-                return new lk0(1, this);
-            default:
-                return super.c();
-        }
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.D) {
-            case 0:
-                nk0 nk0Var = this.E;
-                mk0 mk0Var = nk0Var.f27300b;
-                super.dispatchDraw(canvas);
-                if (this.f27785a.getLottieAnimation() != null && !nk0Var.B) {
-                    this.f27785a.getLottieAnimation().start();
+                if (this.f29149b.f30098a.getImageReceiver().getLottieAnimation() != null && !this.f29149b.f30098a.getImageReceiver().getLottieAnimation().f27823i0 && !this.f29149b.f30098a.getImageReceiver().getLottieAnimation().w()) {
+                    this.f29149b.f30098a.getImageReceiver().getLottieAnimation().start();
                 }
-                if (nk0Var.f27305s && !nk0Var.v && this.f27785a.getLottieAnimation() != null && this.f27785a.getLottieAnimation().y() && mk0Var.f27785a.getLottieAnimation() != null && mk0Var.f27785a.getLottieAnimation().s()) {
-                    nk0Var.v = true;
-                    mk0Var.f27785a.getLottieAnimation().L(0, false, true);
-                    mk0Var.setVisibility(0);
-                    Runnable runnable = nk0Var.M.M0;
-                    if (runnable != null) {
-                        runnable.run();
-                    }
-                    AndroidUtilities.runOnUIThread(new cc0(this, 17));
-                }
-                invalidate();
+                this.f29149b.B = false;
                 return;
             default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void invalidate(Rect rect) {
-        switch (this.D) {
-            case 0:
-                nk0 nk0Var = this.E;
-                if (mg.g0.c(this, nk0Var.M)) {
-                    return;
+                pk0 pk0Var = this.f29149b;
+                rk0 rk0Var = pk0Var.M;
+                try {
+                    pk0Var.performHapticFeedback(0);
+                } catch (Exception unused) {
                 }
-                super.invalidate(rect);
-                nk0Var.M.invalidate();
-                return;
-            default:
-                super.invalidate(rect);
-                return;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        ImageReceiver imageReceiver;
-        switch (this.D) {
-            case 1:
-                this.E.b();
-                super.onDraw(canvas);
-                return;
-            case 2:
-                l5 l5Var = this.e;
-                if (l5Var != null) {
-                    imageReceiver = l5Var.f26569k;
-                } else {
-                    imageReceiver = this.f27785a;
-                }
-                if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
-                    imageReceiver.getLottieAnimation().start();
-                }
-                super.onDraw(canvas);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void invalidate(int i10, int i11, int i12, int i13) {
-        switch (this.D) {
-            case 0:
-                if (mg.g0.c(this)) {
-                    return;
-                }
-                super.invalidate(i10, i11, i12, i13);
-                return;
-            case 1:
-                if (mg.g0.c(this)) {
-                    return;
-                }
-                super.invalidate(i10, i11, i12, i13);
-                return;
-            default:
-                super.invalidate(i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public final void invalidate() {
-        int i10 = this.D;
-        nk0 nk0Var = this.E;
-        switch (i10) {
-            case 0:
-                if (mg.g0.c(this, nk0Var.M)) {
-                    return;
-                }
-                super.invalidate();
-                nk0Var.M.invalidate();
-                return;
-            case 1:
-                if (mg.g0.c(this)) {
-                    return;
-                }
-                super.invalidate();
-                return;
-            default:
-                super.invalidate();
-                nk0Var.M.invalidate();
+                rk0Var.f30773j0 = rk0Var.Q.indexOf(pk0Var.f30101e);
+                rk0Var.f30772i0 = pk0Var.f30101e;
+                rk0Var.invalidate();
                 return;
         }
     }

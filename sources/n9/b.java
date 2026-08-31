@@ -9,17 +9,17 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 public final class b {
-    public final File f14861a;
-    public final File f14862b;
-    public final File f14863c;
+    public final File f15871a;
+    public final File f15872b;
+    public final File f15873c;
     public final File d;
-    public final File e;
-    public final File f14864f;
+    public final File f15874e;
+    public final File f15875f;
 
     public b(Context context) {
         String str;
         File filesDir = context.getFilesDir();
-        this.f14861a = filesDir;
+        this.f15871a = filesDir;
         if (Build.VERSION.SDK_INT >= 28) {
             str = ".com.google.firebase.crashlytics.files.v2" + File.pathSeparator + Application.getProcessName().replaceAll("[^a-zA-Z0-9.]", "_");
         } else {
@@ -27,19 +27,19 @@ public final class b {
         }
         File file = new File(filesDir, str);
         c(file);
-        this.f14862b = file;
+        this.f15872b = file;
         File file2 = new File(file, "open-sessions");
         c(file2);
-        this.f14863c = file2;
+        this.f15873c = file2;
         File file3 = new File(file, "reports");
         c(file3);
         this.d = file3;
         File file4 = new File(file, "priority-reports");
         c(file4);
-        this.e = file4;
+        this.f15874e = file4;
         File file5 = new File(file, "native-reports");
         c(file5);
-        this.f14864f = file5;
+        this.f15875f = file5;
     }
 
     public static void a(File file) {
@@ -91,7 +91,7 @@ public final class b {
     }
 
     public final File b(String str, String str2) {
-        File file = new File(this.f14863c, str);
+        File file = new File(this.f15873c, str);
         file.mkdirs();
         return new File(file, str2);
     }

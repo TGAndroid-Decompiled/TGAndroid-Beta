@@ -1,18 +1,36 @@
 package eg;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class n2 {
-    public int f5378i;
-    public final RectF f5373a = new RectF();
-    public final RectF f5374b = new RectF();
-    public final Paint f5375c = new Paint();
-    public final ArrayList e = new ArrayList();
-    public float f5376f = 1.0f;
-    public final long h = 2000;
-    public final float f5379j = 1000.0f / AndroidUtilities.screenRefreshRate;
-    public final int f5377g = 200;
-    public final float[] d = new float[800];
+import android.view.ViewGroup;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.sl0;
+public final class n2 extends sl0 {
+    @Override
+    public final boolean D(f2.m1 m1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return dg.s0.c().size();
+    }
+
+    @Override
+    public final void v(f2.m1 m1Var, int i10) {
+        h2 h2Var = (h2) m1Var.f5875a;
+        dg.s0 s0Var = (dg.s0) dg.s0.c().get(i10);
+        h2Var.getClass();
+        h2Var.setTypeface(s0Var.d());
+        String str = s0Var.f4667c;
+        if (str == null) {
+            str = LocaleController.getString(s0Var.f4666b);
+        }
+        h2Var.setText(str);
+    }
+
+    @Override
+    public final f2.m1 x(ViewGroup viewGroup, int i10) {
+        h2 h2Var = new h2(viewGroup.getContext());
+        h2Var.setLayoutParams(new f2.x0(-1, -2));
+        return new f2.m1(h2Var);
+    }
 }

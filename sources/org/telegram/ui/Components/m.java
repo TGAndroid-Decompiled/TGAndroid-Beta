@@ -8,11 +8,11 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class m extends lq0 {
+public final class m extends mq0 {
     public final f0 Y0;
 
-    public m(f0 f0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, null, str, false, str2, false, f6Var);
+    public m(f0 f0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, null, str, false, str2, false, g6Var);
         this.Y0 = f0Var;
     }
 
@@ -26,7 +26,7 @@ public final class m extends lq0 {
                 long j10 = hVar.j(0);
                 if (j10 == UserConfig.getInstance(this.currentAccount).clientUserId) {
                     ic G = qcVar.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AIEditorStyleSharedToSavedMessages, new Object[0])));
-                    G.f25680r = false;
+                    G.f27753r = false;
                     G.j();
                 } else if (j10 < 0) {
                     TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
@@ -38,16 +38,16 @@ public final class m extends lq0 {
                         str = chat.title;
                     }
                     ic G2 = qcVar.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f25680r = false;
+                    G2.f27753r = false;
                     G2.j();
                 } else {
                     ic G3 = qcVar.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AIEditorStyleSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j10)).first_name)));
-                    G3.f25680r = false;
+                    G3.f27753r = false;
                     G3.j();
                 }
             } else {
                 ic Q = qcVar.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("AIEditorStyleSharedToManyChats", hVar.m(), Integer.valueOf(hVar.m()))));
-                Q.f25680r = false;
+                Q.f27753r = false;
                 Q.j();
             }
             try {

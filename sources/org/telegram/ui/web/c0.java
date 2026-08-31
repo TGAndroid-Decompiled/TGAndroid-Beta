@@ -26,7 +26,7 @@ public final class c0 extends xn {
         super.onBecomeFullyVisible();
         if (!this.Nc) {
             this.Nc = true;
-            qc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Oc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Qc.R)), new gg.y1(this, this.Pc, 25)), R.raw.contact_check).j();
+            qc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Oc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Qc.R)), new hg.y1(this, this.Pc, 24)), R.raw.contact_check).j();
         }
     }
 }

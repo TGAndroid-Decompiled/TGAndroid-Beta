@@ -8,21 +8,21 @@ import java.util.Map;
 import java.util.Set;
 import l7.xa;
 public final class b extends l7.d0 {
-    public final xa f44115b;
+    public final xa f47091b;
 
     public b(xa xaVar) {
         super(2);
-        this.f44115b = xaVar;
+        this.f47091b = xaVar;
     }
 
     @Override
     public final void clear() {
-        this.f44115b.clear();
+        this.f47091b.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f44115b.f11694b.entrySet();
+        Set entrySet = this.f47091b.f12098b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -33,12 +33,12 @@ public final class b extends l7.d0 {
 
     @Override
     public final boolean isEmpty() {
-        return this.f44115b.isEmpty();
+        return this.f47091b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new l7.c(this.f44115b, (char) 0);
+        return new l7.c(this.f47091b, (char) 0);
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class b extends l7.d0 {
         }
         Map.Entry entry = (Map.Entry) obj;
         Objects.requireNonNull(entry);
-        e0 e0Var = (e0) this.f44115b.e;
+        e0 e0Var = (e0) this.f47091b.f12100e;
         Object key = entry.getKey();
         Map map = e0Var.d;
         map.getClass();
@@ -62,7 +62,7 @@ public final class b extends l7.d0 {
         if (collection != null) {
             int size = collection.size();
             collection.clear();
-            e0Var.e -= size;
+            e0Var.f47101e -= size;
             return true;
         }
         return true;
@@ -94,12 +94,12 @@ public final class b extends l7.d0 {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            return this.f44115b.keySet().retainAll(hashSet);
+            return this.f47091b.keySet().retainAll(hashSet);
         }
     }
 
     @Override
     public final int size() {
-        return this.f44115b.f11694b.size();
+        return this.f47091b.f12098b.size();
     }
 }

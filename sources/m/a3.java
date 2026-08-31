@@ -1,79 +1,20 @@
 package m;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.TouchDelegate;
 import android.view.View;
-import android.view.ViewConfiguration;
-public final class a3 extends TouchDelegate {
-    public final View f13458a;
-    public final Rect f13459b;
-    public final Rect f13460c;
-    public final Rect d;
-    public final int e;
-    public boolean f13461f;
+import android.widget.ImageView;
+import android.widget.TextView;
+public final class a3 {
+    public final TextView f13141a;
+    public final TextView f13142b;
+    public final ImageView f13143c;
+    public final ImageView d;
+    public final ImageView f13144e;
 
-    public a3(Rect rect, Rect rect2, View view) {
-        super(rect, view);
-        int scaledTouchSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
-        this.e = scaledTouchSlop;
-        Rect rect3 = new Rect();
-        this.f13459b = rect3;
-        Rect rect4 = new Rect();
-        this.d = rect4;
-        Rect rect5 = new Rect();
-        this.f13460c = rect5;
-        rect3.set(rect);
-        rect4.set(rect);
-        int i10 = -scaledTouchSlop;
-        rect4.inset(i10, i10);
-        rect5.set(rect2);
-        this.f13458a = view;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z4;
-        boolean z10;
-        int x10 = (int) motionEvent.getX();
-        int y10 = (int) motionEvent.getY();
-        int action = motionEvent.getAction();
-        boolean z11 = true;
-        if (action != 0) {
-            if (action != 1 && action != 2) {
-                if (action == 3) {
-                    z10 = this.f13461f;
-                    this.f13461f = false;
-                }
-                z4 = true;
-                z11 = false;
-            } else {
-                z10 = this.f13461f;
-                if (z10 && !this.d.contains(x10, y10)) {
-                    z11 = z10;
-                    z4 = false;
-                }
-            }
-            z11 = z10;
-            z4 = true;
-        } else {
-            if (this.f13459b.contains(x10, y10)) {
-                this.f13461f = true;
-                z4 = true;
-            }
-            z4 = true;
-            z11 = false;
-        }
-        if (!z11) {
-            return false;
-        }
-        Rect rect = this.f13460c;
-        View view = this.f13458a;
-        if (z4 && !rect.contains(x10, y10)) {
-            motionEvent.setLocation(view.getWidth() / 2, view.getHeight() / 2);
-        } else {
-            motionEvent.setLocation(x10 - rect.left, y10 - rect.top);
-        }
-        return view.dispatchTouchEvent(motionEvent);
+    public a3(View view) {
+        this.f13141a = (TextView) view.findViewById(16908308);
+        this.f13142b = (TextView) view.findViewById(16908309);
+        this.f13143c = (ImageView) view.findViewById(16908295);
+        this.d = (ImageView) view.findViewById(16908296);
+        this.f13144e = (ImageView) view.findViewById(2131296420);
     }
 }

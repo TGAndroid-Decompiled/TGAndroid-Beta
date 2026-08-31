@@ -5,27 +5,27 @@ import c9.r;
 import e3.f;
 import java.util.concurrent.atomic.AtomicReference;
 import k9.b1;
-import vh.v2;
+import org.telegram.ui.yh;
 public final class a {
-    public static final b f6103c = new Object();
-    public final r f6104a;
-    public final AtomicReference f6105b = new AtomicReference(null);
+    public static final b f6222c = new Object();
+    public final r f6223a;
+    public final AtomicReference f6224b = new AtomicReference(null);
 
     public a(r rVar) {
-        this.f6104a = rVar;
+        this.f6223a = rVar;
         rVar.a(new a1.c(this, 27));
     }
 
     public final b a(String str) {
-        a aVar = (a) this.f6105b.get();
+        a aVar = (a) this.f6224b.get();
         if (aVar == null) {
-            return f6103c;
+            return f6222c;
         }
         return aVar.a(str);
     }
 
     public final boolean b() {
-        a aVar = (a) this.f6105b.get();
+        a aVar = (a) this.f6224b.get();
         if (aVar != null && aVar.b()) {
             return true;
         }
@@ -33,7 +33,7 @@ public final class a {
     }
 
     public final boolean c(String str) {
-        a aVar = (a) this.f6105b.get();
+        a aVar = (a) this.f6224b.get();
         if (aVar != null && aVar.c(str)) {
             return true;
         }
@@ -41,10 +41,10 @@ public final class a {
     }
 
     public final void d(String str, long j10, b1 b1Var) {
-        String e = v2.e("Deferring native open session: ", str);
+        String k10 = yh.k("Deferring native open session: ", str);
         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-            Log.v("FirebaseCrashlytics", e, null);
+            Log.v("FirebaseCrashlytics", k10, null);
         }
-        this.f6104a.a(new f(str, j10, b1Var, 2));
+        this.f6223a.a(new f(str, j10, b1Var, 2));
     }
 }

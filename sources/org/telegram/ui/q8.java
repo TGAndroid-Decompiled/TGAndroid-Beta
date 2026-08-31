@@ -6,31 +6,31 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class q8 implements RequestDelegate {
-    public final int f37662a;
-    public final l9 f37663b;
-    public final org.telegram.ui.ActionBar.d2 f37664c;
+    public final int f40370a;
+    public final l9 f40371b;
+    public final org.telegram.ui.ActionBar.d2 f40372c;
     public final HashSet d;
-    public final TLRPC.TL_inputGroupCallInviteMessage e;
-    public final boolean f37665f;
+    public final TLRPC.TL_inputGroupCallInviteMessage f40373e;
+    public final boolean f40374f;
 
     public q8(l9 l9Var, org.telegram.ui.ActionBar.d2 d2Var, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, boolean z4, int i10) {
-        this.f37662a = i10;
-        this.f37663b = l9Var;
-        this.f37664c = d2Var;
+        this.f40370a = i10;
+        this.f40371b = l9Var;
+        this.f40372c = d2Var;
         this.d = hashSet;
-        this.e = tL_inputGroupCallInviteMessage;
-        this.f37665f = z4;
+        this.f40373e = tL_inputGroupCallInviteMessage;
+        this.f40374f = z4;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f37662a) {
+        switch (this.f40370a) {
             case 0:
-                final l9 l9Var = this.f37663b;
-                final org.telegram.ui.ActionBar.d2 d2Var = this.f37664c;
+                final l9 l9Var = this.f40371b;
+                final org.telegram.ui.ActionBar.d2 d2Var = this.f40372c;
                 final HashSet hashSet = this.d;
-                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage = this.e;
-                final boolean z4 = this.f37665f;
+                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage = this.f40373e;
+                final boolean z4 = this.f40374f;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -46,11 +46,11 @@ public final class q8 implements RequestDelegate {
                 });
                 return;
             default:
-                final l9 l9Var2 = this.f37663b;
-                final org.telegram.ui.ActionBar.d2 d2Var2 = this.f37664c;
+                final l9 l9Var2 = this.f40371b;
+                final org.telegram.ui.ActionBar.d2 d2Var2 = this.f40372c;
                 final HashSet hashSet2 = this.d;
-                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage2 = this.e;
-                final boolean z10 = this.f37665f;
+                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage2 = this.f40373e;
+                final boolean z10 = this.f40374f;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {

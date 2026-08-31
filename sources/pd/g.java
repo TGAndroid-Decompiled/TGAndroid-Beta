@@ -4,30 +4,29 @@ import dd.q;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import kh.a2;
 import ld.e0;
 public final class g extends wc.c implements od.c {
-    public final od.c f41195a;
-    public final uc.h f41196b;
-    public final int f41197c;
+    public final od.c f44362a;
+    public final uc.h f44363b;
+    public final int f44364c;
     public uc.h d;
-    public wc.c e;
+    public wc.c f44365e;
 
     public g(od.c cVar, uc.h hVar) {
-        super(d.f41192a, uc.i.f45219a);
-        this.f41195a = cVar;
-        this.f41196b = hVar;
-        this.f41197c = ((Number) hVar.fold(0, f.f41194b)).intValue();
+        super(d.f44359a, uc.i.f48480a);
+        this.f44362a = cVar;
+        this.f44363b = hVar;
+        this.f44364c = ((Number) hVar.fold(0, f.f44361b)).intValue();
     }
 
     @Override
     public final Object c(Object obj, wc.c cVar) {
         try {
             Object d = d(cVar, obj);
-            if (d == vc.a.f45663a) {
+            if (d == vc.a.f48962a) {
                 return d;
             }
-            return sc.i.f44253a;
+            return sc.i.f47243a;
         } catch (Throwable th2) {
             this.d = new c(th2, cVar.getContext());
             throw th2;
@@ -44,7 +43,7 @@ public final class g extends wc.c implements od.c {
         if (hVar != context) {
             int i11 = 0;
             if (hVar instanceof c) {
-                String str2 = "\n            Flow exception transparency is violated:\n                Previous 'emit' call has thrown exception " + ((c) hVar).f41190a + ", but then emission attempt of value '" + obj + "' has been detected.\n                Emissions from 'catch' blocks are prohibited in order to avoid unspecified behaviour, 'Flow.catch' operator can be used instead.\n                For a more detailed explanation, please refer to Flow documentation.\n            ";
+                String str2 = "\n            Flow exception transparency is violated:\n                Previous 'emit' call has thrown exception " + ((c) hVar).f44357a + ", but then emission attempt of value '" + obj + "' has been detected.\n                Emissions from 'catch' blocks are prohibited in order to avoid unspecified behaviour, 'Flow.catch' operator can be used instead.\n                For a more detailed explanation, please refer to Flow documentation.\n            ";
                 kotlin.jvm.internal.j.e(str2, "<this>");
                 List a2 = id.d.a(new id.e(str2, 2));
                 List list = a2;
@@ -118,7 +117,7 @@ public final class g extends wc.c implements od.c {
                                 str = str4.substring(length3);
                                 kotlin.jvm.internal.j.d(str, "substring(...)");
                             } else {
-                                throw new IllegalArgumentException(a2.k(i10, "Requested character count ", " is less than zero.").toString());
+                                throw new IllegalArgumentException(l.d.k(i10, "Requested character count ", " is less than zero.").toString());
                             }
                         }
                         if (str != null) {
@@ -132,26 +131,26 @@ public final class g extends wc.c implements od.c {
                 StringBuilder sb = new StringBuilder(length2);
                 tc.g.g(arrayList3, sb, "\n", "", "", "...", null);
                 throw new IllegalStateException(sb.toString().toString());
-            } else if (((Number) context.fold(0, new j(this))).intValue() == this.f41197c) {
+            } else if (((Number) context.fold(0, new j(this))).intValue() == this.f44364c) {
                 this.d = context;
             } else {
-                throw new IllegalStateException(("Flow invariant is violated:\n\t\tFlow was collected in " + this.f41196b + ",\n\t\tbut emission happened in " + context + ".\n\t\tPlease refer to 'flow' documentation or use 'flowOn' instead").toString());
+                throw new IllegalStateException(("Flow invariant is violated:\n\t\tFlow was collected in " + this.f44363b + ",\n\t\tbut emission happened in " + context + ".\n\t\tPlease refer to 'flow' documentation or use 'flowOn' instead").toString());
             }
         }
-        this.e = cVar;
-        q qVar = i.f41199a;
-        od.c cVar2 = this.f41195a;
+        this.f44365e = cVar;
+        q qVar = i.f44367a;
+        od.c cVar2 = this.f44362a;
         kotlin.jvm.internal.j.c(cVar2, "null cannot be cast to non-null type kotlinx.coroutines.flow.FlowCollector<kotlin.Any?>");
         Object a10 = qVar.a(cVar2, obj, this);
-        if (!kotlin.jvm.internal.j.a(a10, vc.a.f45663a)) {
-            this.e = null;
+        if (!kotlin.jvm.internal.j.a(a10, vc.a.f48962a)) {
+            this.f44365e = null;
         }
         return a10;
     }
 
     @Override
     public final wc.d getCallerFrame() {
-        wc.c cVar = this.e;
+        wc.c cVar = this.f44365e;
         if (e2.c.s(cVar)) {
             return cVar;
         }
@@ -162,7 +161,7 @@ public final class g extends wc.c implements od.c {
     public final uc.h getContext() {
         uc.h hVar = this.d;
         if (hVar == null) {
-            return uc.i.f45219a;
+            return uc.i.f48480a;
         }
         return hVar;
     }
@@ -178,10 +177,10 @@ public final class g extends wc.c implements od.c {
         if (a2 != null) {
             this.d = new c(a2, getContext());
         }
-        wc.c cVar = this.e;
+        wc.c cVar = this.f44365e;
         if (cVar != null) {
             cVar.resumeWith(obj);
         }
-        return vc.a.f45663a;
+        return vc.a.f48962a;
     }
 }

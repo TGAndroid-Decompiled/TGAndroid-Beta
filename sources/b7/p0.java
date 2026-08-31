@@ -10,9 +10,9 @@ public final class p0 extends q0 {
         b.m(0, i10, bArr.length);
         for (int i12 = i10; i12 >= 3; i12 -= 3) {
             int i13 = ((bArr[i11 + 1] & 255) << 8) | ((bArr[i11] & 255) << 16) | (bArr[i11 + 2] & 255);
-            n0 n0Var = this.f1720a;
-            char[] cArr = n0Var.f1708b;
-            char[] cArr2 = n0Var.f1708b;
+            n0 n0Var = this.f1863a;
+            char[] cArr = n0Var.f1849b;
+            char[] cArr2 = n0Var.f1849b;
             sb.append(cArr[i13 >>> 18]);
             sb.append(cArr2[(i13 >>> 12) & 63]);
             sb.append(cArr2[(i13 >>> 6) & 63]);

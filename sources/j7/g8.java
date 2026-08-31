@@ -1,28 +1,44 @@
 package j7;
-public final class g8 {
-    public final String f9011a;
-    public final String f9012b;
-    public final String f9013c;
-    public final String d;
-    public final n9 e;
-    public final String f9014f;
-    public final Boolean f9015g;
-    public final Boolean h;
-    public final Boolean f9016i;
-    public final Integer f9017j;
-    public final Integer f9018k;
 
-    public g8(f8 f8Var) {
-        this.f9011a = f8Var.f8996a;
-        this.f9012b = f8Var.f8997b;
-        this.f9013c = f8Var.f8998c;
-        this.d = f8Var.d;
-        this.e = (n9) f8Var.f9003k;
-        this.f9014f = f8Var.e;
-        this.f9015g = (Boolean) f8Var.f8999f;
-        this.h = (Boolean) f8Var.f9000g;
-        this.f9016i = (Boolean) f8Var.h;
-        this.f9017j = f8Var.f9001i;
-        this.f9018k = (Integer) f8Var.f9002j;
+import java.io.Serializable;
+public final class g8 {
+    public String f9615a;
+    public String f9616b;
+    public String f9617c;
+    public String d;
+    public String f9618e;
+    public Object f9619f;
+    public Object f9620g;
+    public Object h;
+    public Integer f9621i;
+    public Object f9622j;
+    public Serializable f9623k;
+
+    public k9.a0 a() {
+        String str;
+        if (this.f9615a == null) {
+            str = " sdkVersion";
+        } else {
+            str = "";
+        }
+        if (this.f9616b == null) {
+            str = str.concat(" gmpAppId");
+        }
+        if (this.f9621i == null) {
+            str = w.c.e(str, " platform");
+        }
+        if (this.f9617c == null) {
+            str = w.c.e(str, " installationUuid");
+        }
+        if (((String) this.f9623k) == null) {
+            str = w.c.e(str, " buildVersion");
+        }
+        if (((String) this.f9619f) == null) {
+            str = w.c.e(str, " displayVersion");
+        }
+        if (str.isEmpty()) {
+            return new k9.a0(this.f9615a, this.f9616b, this.f9621i.intValue(), this.f9617c, this.d, this.f9618e, (String) this.f9623k, (String) this.f9619f, (k9.d2) this.f9620g, (k9.j1) this.h, (k9.g1) this.f9622j);
+        }
+        throw new IllegalStateException("Missing required properties:".concat(str));
     }
 }

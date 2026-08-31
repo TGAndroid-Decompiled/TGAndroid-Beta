@@ -3,32 +3,39 @@ package org.telegram.ui.Components.voip;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class b0 extends AnimatorListenerAdapter {
-    public final int f29570a;
-    public final k0 f29571b;
+    public final u f31963a;
+    public final l0 f31964b;
 
-    public b0(k0 k0Var, int i10) {
-        this.f29570a = i10;
-        this.f29571b = k0Var;
+    public b0(l0 l0Var, u uVar) {
+        this.f31964b = l0Var;
+        this.f31963a = uVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f29570a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                k0 k0Var = this.f29571b;
-                k0Var.G0 = null;
-                k0Var.F0 = 0.0f;
-                k0Var.invalidate();
-                return;
-            default:
-                k0 k0Var2 = this.f29571b;
-                k0Var2.f29744y0 = null;
-                k0Var2.f29738v0 = 1.0f;
-                k0Var2.f29729o0 = 0.0f;
-                k0Var2.f29730p0 = 0.0f;
-                k0Var2.invalidate();
-                return;
+        float f10;
+        l0 l0Var = this.f31964b;
+        l0Var.f32169x.unlock();
+        l0Var.f32160r = null;
+        this.f31963a.f32382r = false;
+        if (!l0Var.f32140b) {
+            l0Var.d();
+            l0Var.f32171y = null;
+            l0Var.d = 0L;
+        }
+        if (l0Var.f32140b) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        l0Var.f32142c = f10;
+        l0Var.l();
+        l0Var.i(false);
+        if (!l0Var.f32140b) {
+            l0Var.f32150h0.setVisibility(8);
+            l0Var.f32151i0.setVisibility(8);
+            l0Var.f32141b0.setVisibility(8);
+            l0Var.f32143c0.setVisibility(8);
         }
     }
 }

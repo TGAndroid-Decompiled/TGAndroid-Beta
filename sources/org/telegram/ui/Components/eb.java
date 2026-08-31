@@ -6,13 +6,13 @@ import android.view.ViewGroup;
 public abstract class eb extends nb {
     private db button;
     private int childrenMeasuredWidth;
-    org.telegram.ui.ActionBar.f6 resourcesProvider;
+    org.telegram.ui.ActionBar.g6 resourcesProvider;
     public bc timerView;
     private boolean wrapWidth;
 
-    public eb(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
-        this.resourcesProvider = f6Var;
+    public eb(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var);
+        this.resourcesProvider = g6Var;
     }
 
     public db getButton() {
@@ -53,15 +53,15 @@ public abstract class eb extends nb {
         this.button = dbVar;
         if (dbVar != null) {
             addCallback(dbVar);
-            addView(dbVar, 0, k7.b6.h(-2.0f, -2.0f, 8388629));
+            addView(dbVar, 0, k7.c6.h(-2.0f, -2.0f, 8388629));
         }
     }
 
     public void setTimer() {
         bc bcVar = new bc(getContext(), this.resourcesProvider);
         this.timerView = bcVar;
-        bcVar.f23628b = 5000L;
-        addView(bcVar, k7.b6.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
+        bcVar.f25559b = 5000L;
+        addView(bcVar, k7.c6.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 
     public void setWrapWidth() {

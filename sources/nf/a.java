@@ -1,6 +1,6 @@
 package nf;
 public abstract class a {
-    public float f14960a = 1.0f;
+    public float f15980a = 1.0f;
 
     public abstract short a();
 

@@ -1,28 +1,28 @@
 package i0;
 
 import android.graphics.Insets;
-import com.google.firebase.messaging.p;
+import com.google.firebase.messaging.q;
 public final class b {
-    public static final b e = new b(0, 0, 0, 0);
-    public final int f7213a;
-    public final int f7214b;
-    public final int f7215c;
+    public static final b f7756e = new b(0, 0, 0, 0);
+    public final int f7757a;
+    public final int f7758b;
+    public final int f7759c;
     public final int d;
 
     public b(int i10, int i11, int i12, int i13) {
-        this.f7213a = i10;
-        this.f7214b = i11;
-        this.f7215c = i12;
+        this.f7757a = i10;
+        this.f7758b = i11;
+        this.f7759c = i12;
         this.d = i13;
     }
 
     public static b a(b bVar, b bVar2) {
-        return b(Math.max(bVar.f7213a, bVar2.f7213a), Math.max(bVar.f7214b, bVar2.f7214b), Math.max(bVar.f7215c, bVar2.f7215c), Math.max(bVar.d, bVar2.d));
+        return b(Math.max(bVar.f7757a, bVar2.f7757a), Math.max(bVar.f7758b, bVar2.f7758b), Math.max(bVar.f7759c, bVar2.f7759c), Math.max(bVar.d, bVar2.d));
     }
 
     public static b b(int i10, int i11, int i12, int i13) {
         if (i10 == 0 && i11 == 0 && i12 == 0 && i13 == 0) {
-            return e;
+            return f7756e;
         }
         return new b(i10, i11, i12, i13);
     }
@@ -40,7 +40,7 @@ public final class b {
     }
 
     public final Insets d() {
-        return p.d(this.f7213a, this.f7214b, this.f7215c, this.d);
+        return q.d(this.f7757a, this.f7758b, this.f7759c, this.d);
     }
 
     public final boolean equals(Object obj) {
@@ -51,17 +51,17 @@ public final class b {
             return false;
         }
         b bVar = (b) obj;
-        if (this.d == bVar.d && this.f7213a == bVar.f7213a && this.f7215c == bVar.f7215c && this.f7214b == bVar.f7214b) {
+        if (this.d == bVar.d && this.f7757a == bVar.f7757a && this.f7759c == bVar.f7759c && this.f7758b == bVar.f7758b) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return (((((this.f7213a * 31) + this.f7214b) * 31) + this.f7215c) * 31) + this.d;
+        return (((((this.f7757a * 31) + this.f7758b) * 31) + this.f7759c) * 31) + this.d;
     }
 
     public final String toString() {
-        return "Insets{left=" + this.f7213a + ", top=" + this.f7214b + ", right=" + this.f7215c + ", bottom=" + this.d + '}';
+        return "Insets{left=" + this.f7757a + ", top=" + this.f7758b + ", right=" + this.f7759c + ", bottom=" + this.d + '}';
     }
 }

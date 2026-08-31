@@ -1,217 +1,115 @@
 package mh;
 
-import android.util.LongSparseArray;
-import android.util.SparseArray;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import org.telegram.ui.u6;
-import org.telegram.ui.v6;
-public final class b {
-    public final boolean f14174a;
-    public long f14181k;
-    public boolean f14183m;
-    public boolean f14184n;
-    public boolean f14185o;
-    public boolean f14186p;
-    public boolean f14187q;
-    public long f14188r;
-    public long f14189s;
-    public long f14190t;
-    public long f14191u;
-    public long v;
-    public ArrayList f14175b = new ArrayList();
-    public final LongSparseArray f14176c = new LongSparseArray();
-    public final ArrayList d = new ArrayList();
-    public final ArrayList e = new ArrayList();
-    public final ArrayList f14177f = new ArrayList();
-    public final ArrayList f14178g = new ArrayList();
-    public final ArrayList h = new ArrayList();
-    public final HashSet f14179i = new HashSet();
-    public final HashSet f14180j = new HashSet();
-    public final HashSet f14182l = new HashSet();
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.view.MotionEvent;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BillingController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.g90;
+import org.telegram.ui.Components.oq;
+public final class b extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
+    public final int f13716a;
+    public final org.telegram.ui.ActionBar.g6 f13717b;
+    public final TextView f13718c;
+    public final g90 d;
+    public mf.b f13719e;
+    public final oq[] f13720f;
 
-    public b(boolean z4) {
-        this.f14174a = z4;
+    public b(Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
+        this(context, i10, mf.b.f13651a, g6Var);
     }
 
-    public final void a(int i10, boolean z4) {
-        if (this.f14174a) {
-            if (!z4) {
-                if (i10 == 0) {
-                    this.f14183m = false;
-                    return;
-                } else if (i10 == 1) {
-                    this.f14184n = false;
-                    return;
-                } else if (i10 == 2) {
-                    this.f14185o = false;
-                    return;
-                } else if (i10 == 3) {
-                    this.f14186p = false;
-                    return;
-                } else if (i10 == 4) {
-                    this.f14187q = false;
-                    return;
-                } else {
-                    return;
-                }
-            }
-            ArrayList arrayList = this.d;
-            if (i10 == 0) {
-                this.f14183m = b(i10, arrayList);
-            } else if (i10 == 1) {
-                this.f14184n = b(i10, arrayList);
-            } else if (i10 == 2) {
-                this.f14185o = b(i10, this.e);
-            } else if (i10 == 3) {
-                this.f14186p = b(i10, this.f14177f);
-            } else if (i10 == 4) {
-                this.f14187q = b(i10, this.f14178g);
-            } else if (i10 == 7) {
-                b(i10, this.h);
-            }
+    public final void a() {
+        mf.b bVar = this.f13719e;
+        int i10 = this.f13716a;
+        mf.a s6 = t7.x(i10, bVar).s();
+        mf.b bVar2 = this.f13719e;
+        mf.b bVar3 = mf.b.f13651a;
+        TextView textView = this.f13718c;
+        org.telegram.ui.ActionBar.g6 g6Var = this.f13717b;
+        g90 g90Var = this.d;
+        if (bVar2 == bVar3) {
+            textView.setText(ja.X0(false, LocaleController.formatString(R.string.Gift2MessageStarsInfo, LocaleController.formatNumber(s6.a(), ',')), 0.6f, null));
+            int i11 = org.telegram.ui.ActionBar.k6.Gi;
+            g90Var.setTextColor(org.telegram.ui.ActionBar.k6.v0(i11, g6Var));
+            g90Var.setLinkTextColor(org.telegram.ui.ActionBar.k6.v0(i11, g6Var));
+            g90Var.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2MessageStarsInfoLink), new lh.c3(this, 1)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
+        } else if (bVar2 == mf.b.f13652b) {
+            SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2MessageStarsInfoTON, s6.b()));
+            oq[] oqVarArr = this.f13720f;
+            textView.setText(ja.X0(true, replaceTags, 0.6f, oqVarArr));
+            oqVarArr[0].setColorKey(org.telegram.ui.ActionBar.k6.Gi);
+            StringBuilder sb = new StringBuilder(10);
+            sb.append('~');
+            sb.append(BillingController.getInstance().formatCurrency((long) (MessagesController.getInstance(i10).config.tonUsdRate.get() * s6.c() * 100.0d), "USD", 2));
+            int i12 = org.telegram.ui.ActionBar.k6.Hi;
+            int v02 = org.telegram.ui.ActionBar.k6.v0(i12, g6Var);
+            int i13 = org.telegram.ui.ActionBar.k6.Fi;
+            g90Var.setTextColor(i0.a.d(0.33f, v02, org.telegram.ui.ActionBar.k6.v0(i13, g6Var)));
+            g90Var.setLinkTextColor(i0.a.d(0.33f, org.telegram.ui.ActionBar.k6.v0(i12, g6Var), org.telegram.ui.ActionBar.k6.v0(i13, g6Var)));
+            g90Var.setText(sb);
         }
     }
 
-    public final boolean b(int i10, ArrayList arrayList) {
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            if (((a) arrayList.get(i11)).d == i10 && !this.f14180j.contains(arrayList.get(i11))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public final void c() {
-        if (!this.f14174a) {
-            HashSet hashSet = this.f14179i;
-            hashSet.clear();
-            HashSet hashSet2 = this.f14180j;
-            Iterator it = hashSet2.iterator();
-            while (it.hasNext()) {
-                long j10 = ((a) it.next()).f14170b;
-                if (j10 != 0) {
-                    hashSet.add(Long.valueOf(j10));
-                }
-            }
-            HashSet hashSet3 = this.f14182l;
-            hashSet3.clear();
-            Iterator it2 = hashSet.iterator();
-            while (it2.hasNext()) {
-                u6 u6Var = (u6) this.f14176c.get(((Long) it2.next()).longValue());
-                if (u6Var != null) {
-                    SparseArray sparseArray = u6Var.d;
-                    int i10 = 0;
-                    while (true) {
-                        if (i10 < sparseArray.size()) {
-                            ArrayList arrayList = ((v6) sparseArray.valueAt(i10)).f39086b;
-                            int size = arrayList.size();
-                            int i11 = 0;
-                            while (i11 < size) {
-                                Object obj = arrayList.get(i11);
-                                i11++;
-                                if (!hashSet2.contains((a) obj)) {
-                                    break;
-                                }
-                            }
-                            i10++;
-                        } else {
-                            hashSet3.add(Long.valueOf(u6Var.f38849a));
-                            break;
-                        }
-                    }
-                }
-            }
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.starBalanceUpdated) {
+            a();
         }
     }
 
-    public final void d() {
-        this.f14181k = 0L;
-        this.f14180j.clear();
-        this.f14182l.clear();
-    }
-
-    public final ArrayList e(int i10) {
-        if (i10 == 0 || i10 == 1) {
-            return this.d;
-        }
-        if (i10 == 2) {
-            return this.e;
-        }
-        if (i10 == 3) {
-            return this.f14177f;
-        }
-        if (i10 == 4) {
-            return this.f14178g;
-        }
-        if (i10 == 7) {
-            return this.h;
-        }
-        return null;
-    }
-
-    public final long f(int i10) {
-        if (i10 == 0) {
-            return this.f14188r;
-        }
-        if (i10 == 1) {
-            return this.f14189s;
-        }
-        if (i10 == 2) {
-            return this.f14190t;
-        }
-        if (i10 == 3) {
-            return this.f14191u;
-        }
-        if (i10 == 4) {
-            return this.v;
-        }
-        return -1L;
-    }
-
-    public final void g(a aVar, boolean z4) {
-        long j10 = aVar.f14171c;
-        if (!z4) {
-            j10 = -j10;
-        }
-        int i10 = aVar.d;
-        if (i10 == 0) {
-            this.f14188r += j10;
-        } else if (i10 == 1) {
-            this.f14189s += j10;
-        } else if (i10 == 2) {
-            this.f14190t += j10;
-        } else if (i10 == 3) {
-            this.f14191u += j10;
-        } else if (i10 == 4) {
-            this.v += j10;
-        }
-    }
-
-    public final boolean h() {
-        if (this.d.isEmpty() && this.e.isEmpty() && this.f14177f.isEmpty()) {
-            if (this.f14174a || this.f14175b.isEmpty()) {
-                return true;
-            }
-            return false;
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (isEnabled() && super.dispatchTouchEvent(motionEvent)) {
+            return true;
         }
         return false;
     }
 
-    public final void i(a aVar) {
-        HashSet hashSet = this.f14180j;
-        if (hashSet.contains(aVar)) {
-            hashSet.remove(aVar);
-            g(aVar, false);
-            this.f14181k -= aVar.f14171c;
-            a(aVar.d, false);
-        } else {
-            hashSet.add(aVar);
-            g(aVar, true);
-            this.f14181k += aVar.f14171c;
-            a(aVar.d, true);
-        }
-        c();
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a();
+        int i10 = this.f13716a;
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.starBalanceUpdated);
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.botStarsUpdated);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        int i10 = this.f13716a;
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.starBalanceUpdated);
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.botStarsUpdated);
+    }
+
+    public b(Context context, int i10, mf.b bVar, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context);
+        this.f13720f = new oq[1];
+        this.f13716a = i10;
+        this.f13717b = g6Var;
+        this.f13719e = bVar;
+        setOrientation(1);
+        setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f));
+        setBackground(org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(24.0f), org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Fi, g6Var)));
+        TextView textView = new TextView(context);
+        this.f13718c = textView;
+        textView.setTextSize(1, 13.0f);
+        textView.setTextColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Hi, g6Var));
+        textView.setGravity(17);
+        addView(textView, k7.c6.p(-2, -2, 0.0f, 17, 0, 0, 0, 0));
+        g90 g90Var = new g90(context, g6Var);
+        this.d = g90Var;
+        g90Var.setTextSize(1, 12.0f);
+        g90Var.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2MessageStarsInfoLink), new a(context, g6Var)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
+        g90Var.setGravity(17);
+        addView(g90Var, k7.c6.p(-2, -2, 0.0f, 17, 0, 1, 0, 0));
+        a();
     }
 }

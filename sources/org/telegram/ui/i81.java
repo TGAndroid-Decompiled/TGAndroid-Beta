@@ -1,37 +1,21 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-public final class i81 extends org.telegram.ui.Components.h51 {
-    public static final int f35044a = 0;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class i81 extends org.telegram.ui.Components.mq0 {
+    public final p81 Y0;
 
-    static {
-        org.telegram.ui.Components.h51.setup(new org.telegram.ui.Components.h51());
+    public i81(p81 p81Var, Activity activity, String str) {
+        super(activity, null, str, false, null, false, null);
+        this.Y0 = p81Var;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.i51 i51Var, boolean z4, org.telegram.ui.Components.w51 w51Var, org.telegram.ui.Components.g61 g61Var) {
-        ((j81) view).set(i51Var.f25578z);
-    }
-
-    @Override
-    public final boolean contentsEquals(org.telegram.ui.Components.i51 i51Var, org.telegram.ui.Components.i51 i51Var2) {
-        if (i51Var.f25578z == i51Var2.f25578z) {
-            return true;
+    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z4) {
+        if (!z4) {
+            return;
         }
-        return false;
-    }
-
-    @Override
-    public final View createView(Context context, org.telegram.ui.Components.sl0 sl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        return new j81(context, f6Var);
-    }
-
-    @Override
-    public final boolean equals(org.telegram.ui.Components.i51 i51Var, org.telegram.ui.Components.i51 i51Var2) {
-        if (i51Var.d == i51Var2.d) {
-            return true;
-        }
-        return false;
+        AndroidUtilities.runOnUIThread(new w01(this, hVar, i10), 250L);
     }
 }

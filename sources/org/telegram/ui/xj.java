@@ -8,11 +8,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
-public final class xj extends f2.z0 {
-    public boolean f39927b;
+public final class xj extends f2.a1 {
+    public boolean f43083b;
     public final xn d;
-    public float f39926a = 0.0f;
-    public final int f39928c = AndroidUtilities.dp(100.0f);
+    public float f43082a = 0.0f;
+    public final int f43084c = AndroidUtilities.dp(100.0f);
 
     public xj(xn xnVar) {
         this.d = xnVar;
@@ -22,15 +22,15 @@ public final class xj extends f2.z0 {
     public final void a(RecyclerView recyclerView, int i10) {
         xn xnVar = this.d;
         if (i10 == 0) {
-            org.telegram.ui.Cells.t1 t1Var = xnVar.f40097m2;
+            org.telegram.ui.Cells.t1 t1Var = xnVar.f43266m2;
             if (t1Var != null) {
-                xnVar.f40073k2.e(t1Var, -1, xnVar.f40110n2, xnVar.f40122o2, true);
-                xnVar.f40097m2 = null;
+                xnVar.f43242k2.e(t1Var, -1, xnVar.f43279n2, xnVar.f43291o2, true);
+                xnVar.f43266m2 = null;
             }
-            xnVar.f40025g3 = false;
-            xnVar.f40038h3 = false;
-            xnVar.f40050i3 = false;
-            xnVar.f40062j3 = false;
+            xnVar.f43194g3 = false;
+            xnVar.f43207h3 = false;
+            xnVar.f43219i3 = false;
+            xnVar.f43231j3 = false;
             xnVar.f9(true);
             xnVar.g9(true);
             if (SharedConfig.getDevicePerformanceClass() == 0) {
@@ -38,14 +38,14 @@ public final class xj extends f2.z0 {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
             }
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startSpoilers, new Object[0]);
-            xnVar.f40193u0.setOverScrollMode(0);
+            xnVar.f43362u0.setOverScrollMode(0);
             xnVar.Z8.W();
             xnVar.Wc(false);
             xnVar.q9(1);
-            xnVar.f40142pa = false;
+            xnVar.f43311pa = false;
             return;
         }
-        ph.f3 f3Var = xnVar.f40207v1;
+        qh.f3 f3Var = xnVar.f43376v1;
         if (f3Var != null && f3Var.S) {
             f3Var.e(true);
         }
@@ -55,21 +55,21 @@ public final class xj extends f2.z0 {
         }
         if (i10 == 2) {
             xnVar.A4 = true;
-            xnVar.f40050i3 = true;
+            xnVar.f43219i3 = true;
         } else if (i10 == 1) {
-            xnVar.f40097m2 = null;
+            xnVar.f43266m2 = null;
             xnVar.A4 = true;
-            xnVar.f40025g3 = true;
-            xnVar.f40038h3 = true;
-            xnVar.f40062j3 = true;
-            xnVar.f40050i3 = true;
+            xnVar.f43194g3 = true;
+            xnVar.f43207h3 = true;
+            xnVar.f43231j3 = true;
+            xnVar.f43219i3 = true;
         }
         if (SharedConfig.getDevicePerformanceClass() == 0) {
             int i12 = xn.Ec;
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
         }
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopSpoilers, new Object[0]);
-        mg.v vVar = xnVar.V9;
+        ng.v vVar = xnVar.V9;
         if (vVar != null && vVar.d()) {
             xnVar.V9.setHiddenByScroll(true);
         }
@@ -79,32 +79,32 @@ public final class xj extends f2.z0 {
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         boolean z4;
         boolean z10;
-        ng.e eVar;
+        og.e eVar;
         boolean z11;
         boolean z12;
         xn xnVar = this.d;
-        xn xnVar2 = xnVar.f39954aa;
+        xn xnVar2 = xnVar.f43122aa;
         if (xnVar2 == null) {
             xnVar2 = xnVar;
         }
-        xnVar.f40193u0.invalidate();
+        xnVar.f43362u0.invalidate();
         boolean z13 = true;
         if (i11 < 0) {
             z4 = true;
         } else {
             z4 = false;
         }
-        this.f39927b = z4;
-        int L0 = xnVar.f40220w0.L0();
+        this.f43083b = z4;
+        int L0 = xnVar.f43389w0.L0();
         s5.m mVar = null;
-        if (((i11 != 0 && xnVar.f40142pa && recyclerView.getScrollState() == 2) || recyclerView.getScrollState() == 1) && xnVar.K4 != 0) {
-            if (this.f39927b && !xnVar.L4) {
-                if (!xnVar.f40193u0.U1 && L0 != -1) {
-                    int N0 = xnVar.f40220w0.N0();
+        if (((i11 != 0 && xnVar.f43311pa && recyclerView.getScrollState() == 2) || recyclerView.getScrollState() == 1) && xnVar.K4 != 0) {
+            if (this.f43083b && !xnVar.L4) {
+                if (!xnVar.f43362u0.U1 && L0 != -1) {
+                    int N0 = xnVar.f43389w0.N0();
                     MessageObject messageObject = null;
                     while (true) {
                         if (N0 >= L0) {
-                            View m9 = xnVar.f40220w0.m(N0);
+                            View m9 = xnVar.f43389w0.m(N0);
                             if (m9 instanceof org.telegram.ui.Cells.t1) {
                                 messageObject = ((org.telegram.ui.Cells.t1) m9).getMessageObject();
                             } else if (m9 instanceof org.telegram.ui.Cells.v0) {
@@ -139,14 +139,14 @@ public final class xj extends f2.z0 {
             xnVar.U0.getClass();
             xnVar.h9(true);
         }
-        if (i11 != 0 && xnVar.f40025g3 && !xnVar.c3) {
+        if (i11 != 0 && xnVar.f43194g3 && !xnVar.c3) {
             if (xnVar.I7 != Integer.MAX_VALUE) {
                 xnVar.Ia();
                 xnVar.Wc(false);
             }
             xnVar.Fb(true);
         }
-        if (xnVar.t9() && i11 != 0 && xnVar.f40038h3 && !xnVar.c3) {
+        if (xnVar.t9() && i11 != 0 && xnVar.f43207h3 && !xnVar.c3) {
             if (xnVar.I7 != Integer.MAX_VALUE) {
                 xnVar.Ia();
                 xnVar.Wc(false);
@@ -155,65 +155,65 @@ public final class xj extends f2.z0 {
         }
         xnVar.a7(true);
         if (L0 != -1) {
-            xnVar.f40234x0.h();
+            xnVar.f43403x0.h();
             if (L0 == 0 && xnVar.B6[0]) {
                 if (i11 >= 0) {
-                    xnVar.f39993d9 = false;
+                    xnVar.f43161d9 = false;
                     xnVar.vc();
                 }
             } else {
-                s5.m[] mVarArr = xnVar.f40023g1.e;
+                s5.m[] mVarArr = xnVar.f43192g1.f50585e;
                 if (1 < mVarArr.length) {
                     mVar = mVarArr[1];
                 }
-                if (mVar != null && ((xd.a) mVar.f44089c).f46893f) {
+                if (mVar != null && ((xd.a) mVar.f47063c).f50505f) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                int i12 = this.f39928c;
+                int i12 = this.f43084c;
                 if (i11 > 0) {
                     if (!z11) {
-                        float f10 = this.f39926a + i11;
-                        this.f39926a = f10;
+                        float f10 = this.f43082a + i11;
+                        this.f43082a = f10;
                         if (f10 > i12) {
-                            this.f39926a = 0.0f;
-                            xnVar.f39993d9 = true;
+                            this.f43082a = 0.0f;
+                            xnVar.f43161d9 = true;
                             xnVar.vc();
-                            xnVar.f40036h1 = true;
+                            xnVar.f43205h1 = true;
                         }
                     }
-                } else if (xnVar.f40036h1 && z11) {
-                    float f11 = this.f39926a + i11;
-                    this.f39926a = f11;
+                } else if (xnVar.f43205h1 && z11) {
+                    float f11 = this.f43082a + i11;
+                    this.f43082a = f11;
                     if (f11 < (-i12)) {
-                        xnVar.f39993d9 = false;
+                        xnVar.f43161d9 = false;
                         xnVar.vc();
-                        this.f39926a = 0.0f;
+                        this.f43082a = 0.0f;
                     }
                 }
             }
         }
         xnVar.r9();
         xnVar.Z8.H();
-        ArrayList arrayList = xnVar.f40203ua.C;
+        ArrayList arrayList = xnVar.f43372ua.C;
         for (int i13 = 0; i13 < arrayList.size(); i13++) {
-            if (!((az) arrayList.get(i13)).f32729c) {
-                ((az) arrayList.get(i13)).f32728b -= i11;
+            if (!((bz) arrayList.get(i13)).f35615c) {
+                ((bz) arrayList.get(i13)).f35614b -= i11;
             }
         }
-        mg.m0 m0Var = mg.m0.B;
+        ng.m0 m0Var = ng.m0.B;
         if (m0Var != null) {
-            m0Var.f14062r -= i11;
+            m0Var.f16131r -= i11;
             if (i11 != 0) {
-                m0Var.f14065u = true;
+                m0Var.f16134u = true;
             }
         }
         if (Build.VERSION.SDK_INT >= 31 && (eVar = xnVar2.C) != null) {
             eVar.f(i10, i11);
         }
         xnVar.i7(false);
-        ph.f3 f3Var = xnVar.f40194u1;
+        qh.f3 f3Var = xnVar.f43363u1;
         if (f3Var != null) {
             if (f3Var.S) {
                 f3Var.e(true);
@@ -223,18 +223,18 @@ public final class xj extends f2.z0 {
                 AndroidUtilities.runOnUIThread(new ng(xnVar, 29), 2000L);
             }
         }
-        vl vlVar = xnVar.f40249y1;
+        vl vlVar = xnVar.f43418y1;
         if (vlVar != null && vlVar.S) {
             vlVar.e(true);
         }
-        ph.f3 f3Var2 = xnVar.f40221w1;
+        qh.f3 f3Var2 = xnVar.f43390w1;
         if (f3Var2 != null && f3Var2.S) {
             f3Var2.e(true);
         } else {
             AndroidUtilities.cancelRunOnUIThread(new wj(xnVar, 0));
             AndroidUtilities.runOnUIThread(new wj(xnVar, 1), 2000L);
         }
-        ph.f3 f3Var3 = xnVar.f40235x1;
+        qh.f3 f3Var3 = xnVar.f43404x1;
         if (f3Var3 != null) {
             f3Var3.e(true);
         }
@@ -242,17 +242,17 @@ public final class xj extends f2.z0 {
         if (jkVar != null) {
             jkVar.l0();
         }
-        lh.l5 l5Var = xnVar.nc;
+        mh.l5 l5Var = xnVar.nc;
         if (l5Var != null) {
             l5Var.invalidate();
         }
-        ug.a aVar = xnVar.Nb;
-        if (aVar != null && aVar.f45493b > 0) {
-            int childCount = aVar.f45492a.getChildCount();
+        vg.a aVar = xnVar.Nb;
+        if (aVar != null && aVar.f49255b > 0) {
+            int childCount = aVar.f49254a.getChildCount();
             int i14 = 0;
             while (true) {
                 if (i14 < childCount) {
-                    View childAt = aVar.f45492a.getChildAt(i14);
+                    View childAt = aVar.f49254a.getChildAt(i14);
                     if (childAt instanceof org.telegram.ui.Cells.t1) {
                         z10 = aVar.a(((org.telegram.ui.Cells.t1) childAt).getMessageObject());
                     } else if (childAt instanceof org.telegram.ui.Cells.v0) {

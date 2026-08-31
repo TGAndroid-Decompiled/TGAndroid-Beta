@@ -1,99 +1,82 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import java.util.ArrayList;
-import java.util.HashMap;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class qm0 implements TextWatcher {
-    public final dn0 f37796a;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_account;
+public final class qm0 implements Runnable {
+    public final int f40571a;
+    public final rm0 f40572b;
+    public final TLRPC.TL_error f40573c;
+    public final TLObject d;
 
-    public qm0(dn0 dn0Var) {
-        this.f37796a = dn0Var;
+    public qm0(rm0 rm0Var, TLObject tLObject, TLRPC.TL_error tL_error) {
+        this.f40571a = 0;
+        this.f40572b = rm0Var;
+        this.d = tLObject;
+        this.f40573c = tL_error;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        String str;
-        boolean z4;
-        int indexOf;
-        dn0 dn0Var = this.f37796a;
-        ArrayList arrayList = dn0Var.R0;
-        HashMap hashMap = dn0Var.T0;
-        if (dn0Var.W0) {
-            return;
-        }
-        dn0Var.W0 = true;
-        String d = se.b.d(dn0Var.V[1].getText().toString(), false);
-        dn0Var.V[1].setText(d);
-        org.telegram.ui.Components.h40 h40Var = (org.telegram.ui.Components.h40) dn0Var.V[2];
-        if (d.length() == 0) {
-            h40Var.setHintText((String) null);
-            h40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
-            dn0Var.V[0].setText(LocaleController.getString(R.string.ChooseCountry));
-        } else {
-            int i10 = 4;
-            if (d.length() > 4) {
-                while (true) {
-                    if (i10 >= 1) {
-                        String substring = d.substring(0, i10);
-                        if (((String) hashMap.get(substring)) != null) {
-                            dn0Var.V[1].setText(substring);
-                            str = d.substring(i10) + dn0Var.V[2].getText().toString();
-                            d = substring;
-                            z4 = true;
-                            break;
-                        }
-                        i10--;
-                    } else {
-                        str = null;
-                        z4 = false;
-                        break;
+    public final void run() {
+        switch (this.f40571a) {
+            case 0:
+                rm0 rm0Var = this.f40572b;
+                TLObject tLObject = this.d;
+                TLRPC.TL_error tL_error = this.f40573c;
+                fn0 fn0Var = rm0Var.f40996e;
+                if (tLObject instanceof Vector) {
+                    fn0Var.f36973y = new TL_account.authorizationForm();
+                    Vector vector = (Vector) tLObject;
+                    int size = vector.objects.size();
+                    for (int i10 = 0; i10 < size; i10++) {
+                        fn0Var.f36973y.values.add((TLRPC.TL_secureValue) vector.objects.get(i10));
                     }
+                    rm0Var.a();
+                    return;
                 }
-                if (!z4) {
-                    str = d.substring(1) + dn0Var.V[2].getText().toString();
-                    EditTextBoldCursor editTextBoldCursor = dn0Var.V[1];
-                    d = d.substring(0, 1);
-                    editTextBoldCursor.setText(d);
+                if ("APP_VERSION_OUTDATED".equals(tL_error.text)) {
+                    org.telegram.ui.Components.z4.x0(fn0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
+                } else {
+                    fn0Var.M1(LocaleController.getString(R.string.AppName), tL_error.text);
                 }
-            } else {
-                str = null;
-                z4 = false;
-            }
-            String str2 = (String) hashMap.get(d);
-            if (str2 != null && (indexOf = arrayList.indexOf(str2)) != -1) {
-                dn0Var.V[0].setText((CharSequence) arrayList.get(indexOf));
-                String str3 = (String) dn0Var.U0.get(d);
-                if (str3 != null) {
-                    h40Var.setHintText(str3.replace('X', (char) 8211));
-                    h40Var.setHint((CharSequence) null);
+                fn0Var.N1(true, false);
+                return;
+            case 1:
+                rm0 rm0Var2 = this.f40572b;
+                TLRPC.TL_error tL_error2 = this.f40573c;
+                TLObject tLObject2 = this.d;
+                if (tL_error2 == null) {
+                    TL_account.Password password = (TL_account.Password) tLObject2;
+                    rm0Var2.f40996e.G = password;
+                    TwoStepVerificationActivity.m0(password);
+                    rm0Var2.b();
+                    return;
                 }
-            } else {
-                h40Var.setHintText((String) null);
-                h40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
-                dn0Var.V[0].setText(LocaleController.getString(R.string.WrongCountry));
-            }
-            if (!z4) {
-                EditTextBoldCursor editTextBoldCursor2 = dn0Var.V[1];
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
-            }
-            if (str != null) {
-                h40Var.requestFocus();
-                h40Var.setText(str);
-                h40Var.setSelection(h40Var.length());
-            }
+                rm0Var2.getClass();
+                return;
+            default:
+                rm0 rm0Var3 = this.f40572b;
+                TLRPC.TL_error tL_error3 = this.f40573c;
+                TLObject tLObject3 = this.d;
+                if (tL_error3 == null) {
+                    TL_account.Password password2 = (TL_account.Password) tLObject3;
+                    rm0Var3.f40996e.G = password2;
+                    TwoStepVerificationActivity.m0(password2);
+                    Utilities.globalQueue.postRunnable(new if0(rm0Var3, rm0Var3.f40994b, rm0Var3.d, 12));
+                    return;
+                }
+                return;
         }
-        dn0Var.W0 = false;
     }
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public qm0(rm0 rm0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
+        this.f40571a = i10;
+        this.f40572b = rm0Var;
+        this.f40573c = tL_error;
+        this.d = tLObject;
     }
 }

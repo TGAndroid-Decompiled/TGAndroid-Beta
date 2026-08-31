@@ -1,135 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-import android.widget.FrameLayout;
-import org.telegram.ui.PhotoViewer;
-public final class ve0 implements yf.d {
-    public final int f29443a;
-    public final FrameLayout f29444b;
+import android.graphics.Path;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+public final class ve0 extends Path {
+    public int f31894a;
+    public int f31895b;
+    public int f31896c;
 
-    public ve0(int i10, FrameLayout frameLayout) {
-        this.f29443a = i10;
-        this.f29444b = frameLayout;
-    }
-
-    @Override
-    public final boolean a() {
-        int i10 = this.f29443a;
-        FrameLayout frameLayout = this.f29444b;
-        switch (i10) {
-            case 0:
-                xe0 xe0Var = ((ye0) frameLayout).f31003a;
-                if (xe0Var != null) {
-                    PhotoViewer photoViewer = ((org.telegram.ui.xr0) xe0Var).f40298a;
-                    Drawable[] drawableArr = PhotoViewer.Q8;
-                    return photoViewer.N0();
-                }
-                return false;
-            case 1:
-                ph.c0 c0Var = (ph.c0) frameLayout;
-                c0Var.d.invalidate();
-                return c0Var.f41308f.j();
-            default:
-                ph.f0 f0Var = (ph.f0) frameLayout;
-                f0Var.e.invalidate();
-                return f0Var.h.j();
+    public final void a(int i10, int i11, int i12) {
+        if (this.f31894a == i10 && this.f31895b == i11 && this.f31896c == i12) {
+            return;
         }
-    }
-
-    @Override
-    public final void b() {
-        switch (this.f29443a) {
-            case 0:
-                ((ye0) this.f29444b).f31004b.o();
-                return;
-            case 1:
-                ((ph.c0) this.f29444b).f41308f.o();
-                return;
-            default:
-                ((ph.f0) this.f29444b).h.o();
-                return;
-        }
-    }
-
-    @Override
-    public final void c() {
-        switch (this.f29443a) {
-            case 0:
-                ((ye0) this.f29444b).f31004b.f47246a.g(1, true);
-                return;
-            case 1:
-                ((ph.c0) this.f29444b).f41308f.f47246a.g(1, true);
-                return;
-            default:
-                ((ph.f0) this.f29444b).h.f47246a.g(1, true);
-                return;
-        }
-    }
-
-    @Override
-    public final boolean d() {
-        int i10 = this.f29443a;
-        FrameLayout frameLayout = this.f29444b;
-        switch (i10) {
-            case 0:
-                xe0 xe0Var = ((ye0) frameLayout).f31003a;
-                if (xe0Var == null) {
-                    return false;
-                }
-                PhotoViewer photoViewer = ((org.telegram.ui.xr0) xe0Var).f40298a;
-                Drawable[] drawableArr = PhotoViewer.Q8;
-                return photoViewer.O0(-90.0f, false, null);
-            case 1:
-                ph.c0 c0Var = (ph.c0) frameLayout;
-                ph.a0 a0Var = c0Var.f41308f;
-                boolean m9 = a0Var.m(-90.0f);
-                a0Var.i();
-                c0Var.d.invalidate();
-                return m9;
-            default:
-                ph.f0 f0Var = (ph.f0) frameLayout;
-                ph.a0 a0Var2 = f0Var.h;
-                boolean m10 = a0Var2.m(-90.0f);
-                a0Var2.i();
-                f0Var.e.invalidate();
-                return m10;
-        }
-    }
-
-    @Override
-    public final void e() {
-        switch (this.f29443a) {
-            case 0:
-                ((ye0) this.f29444b).f31004b.k();
-                return;
-            case 1:
-                ((ph.c0) this.f29444b).f41308f.k();
-                return;
-            default:
-                ((ph.f0) this.f29444b).h.k();
-                return;
-        }
-    }
-
-    @Override
-    public final void f(float f10) {
-        switch (this.f29443a) {
-            case 0:
-                ye0 ye0Var = (ye0) this.f29444b;
-                ye0Var.f31004b.setRotation(f10);
-                ye0Var.getClass();
-                xe0 xe0Var = ye0Var.f31003a;
-                if (xe0Var != null) {
-                    ((org.telegram.ui.xr0) xe0Var).a(false);
-                    return;
-                }
-                return;
-            case 1:
-                ((ph.c0) this.f29444b).f41308f.setRotation(f10);
-                return;
-            default:
-                ((ph.f0) this.f29444b).h.setRotation(f10);
-                return;
-        }
+        rewind();
+        RectF rectF = AndroidUtilities.rectTmp;
+        float f10 = i10 - i12;
+        float f11 = i11 + i12;
+        rectF.set(f10, i11 - i12, i10 + i12, f11);
+        arcTo(rectF, -180.0f, 270.0f, false);
+        float f12 = i12 / 81.0f;
+        float f13 = i10;
+        float f14 = f11 - (3.0f * f12);
+        cubicTo(f13 - (13.0f * f12), f11, f13 - (25.0f * f12), f14, f13 - (36.0f * f12), f11 - (8.42f * f12));
+        float f15 = f11 - f12;
+        cubicTo(f13 - (52.0f * f12), f15, f13 - (56.5f * f12), f15, f13 - (78.02f * f12), f15);
+        cubicTo(f13 - (80.0f * f12), f15, f13 - (81.0f * f12), f14, f13 - (79.52f * f12), f11 - (4.5f * f12));
+        float f16 = f13 - (63.73f * f12);
+        cubicTo(f13 - (78.0f * f12), f11 - (6.0f * f12), f16, f11 - (15.0f * f12), f16, f11 - (31.0f * f12));
+        float f17 = i11;
+        cubicTo(f13 - (74.5f * f12), f11 - (44.75f * f12), f10, (f12 * 18.87f) + f17, f10, f17);
+        close();
+        this.f31894a = i10;
+        this.f31895b = i11;
+        this.f31896c = i12;
     }
 }

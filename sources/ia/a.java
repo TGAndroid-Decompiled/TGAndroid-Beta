@@ -4,14 +4,14 @@ public enum a implements x9.b {
     MESSAGE_DELIVERED(1),
     MESSAGE_OPEN(2);
     
-    public final int f7457a;
+    public final int f8028a;
 
     a(int i10) {
-        this.f7457a = i10;
+        this.f8028a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f7457a;
+        return this.f8028a;
     }
 }

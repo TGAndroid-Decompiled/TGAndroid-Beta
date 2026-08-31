@@ -1,53 +1,55 @@
 package oh;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import k7.b6;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.j6;
-public final class t extends LinearLayout {
-    public final TextView f16612a;
-    public final TextView f16613b;
-    public boolean f16614c;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.messenger.SharedConfig;
+public abstract class t extends FrameLayout {
+    public static final HashSet f17752b = new HashSet();
+    public static boolean f17753c = false;
+    public final boolean f17754a;
 
     public t(Context context) {
         super(context);
-        int i10;
-        setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
-        setOrientation(1);
-        TextView textView = new TextView(context);
-        this.f16612a = textView;
-        textView.setTextSize(1, 16.0f);
-        textView.setTextColor(j6.w0(null, j6.f20012j5, false));
-        if (LocaleController.isRTL) {
-            i10 = 5;
+        boolean z4;
+        if (SharedConfig.getDevicePerformanceClass() == 2) {
+            z4 = true;
         } else {
-            i10 = 3;
+            z4 = false;
         }
-        textView.setGravity(i10);
-        addView(textView, b6.t(-1, -2, 51, 0, 7, 0, 0));
-        TextView textView2 = new TextView(context);
-        this.f16613b = textView2;
-        textView2.setTextSize(1, 13.0f);
-        textView2.setTextColor(j6.w0(null, j6.f20139q5, false));
-        textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        addView(textView2, b6.t(-1, -2, 51, 0, 4, 0, 0));
+        this.f17754a = z4;
+    }
+
+    public final void a(boolean z4) {
+        f17753c = false;
+        if (z4) {
+            setLayerType(0, null);
+        }
+        HashSet hashSet = f17752b;
+        Iterator it = hashSet.iterator();
+        while (it.hasNext()) {
+            ((View) it.next()).invalidate();
+        }
+        hashSet.clear();
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (this.f16614c) {
-            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), j6.f20025k0);
+    public final void invalidate() {
+        if (f17753c) {
+            f17752b.add(this);
+        } else {
+            super.invalidate();
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+    public final void invalidate(int i10, int i11, int i12, int i13) {
+        if (f17753c) {
+            f17752b.add(this);
+        } else {
+            super.invalidate(i10, i11, i12, i13);
+        }
     }
 }

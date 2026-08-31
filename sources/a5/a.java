@@ -19,29 +19,29 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import v4.f;
 public final class a extends v4.e {
-    public static final Pattern f93s = Pattern.compile("(?:(\\d+):)?(\\d+):(\\d+)[:.](\\d+)");
-    public final boolean f94n;
-    public final b f95o;
-    public LinkedHashMap f96p;
-    public float f97q;
-    public float f98r;
+    public static final Pattern f101s = Pattern.compile("(?:(\\d+):)?(\\d+):(\\d+)[:.](\\d+)");
+    public final boolean f102n;
+    public final b f103o;
+    public LinkedHashMap f104p;
+    public float f105q;
+    public float f106r;
 
     public a(List list) {
         super("SsaDecoder");
-        this.f97q = -3.4028235E38f;
-        this.f98r = -3.4028235E38f;
+        this.f105q = -3.4028235E38f;
+        this.f106r = -3.4028235E38f;
         if (list != null && !list.isEmpty()) {
-            this.f94n = true;
+            this.f102n = true;
             String m9 = d0.m((byte[]) list.get(0));
             h5.a.f(m9.startsWith("Format:"));
             b b10 = b.b(m9);
             b10.getClass();
-            this.f95o = b10;
-            m(new w((byte[]) list.get(1)), r8.d.f43389c);
+            this.f103o = b10;
+            m(new w((byte[]) list.get(1)), r8.d.f46738c);
             return;
         }
-        this.f94n = false;
-        this.f95o = null;
+        this.f102n = false;
+        this.f103o = null;
     }
 
     public static int l(long j10, ArrayList arrayList, ArrayList arrayList2) {
@@ -74,12 +74,12 @@ public final class a extends v4.e {
     }
 
     public static long n(String str) {
-        Matcher matcher = f93s.matcher(str.trim());
+        Matcher matcher = f101s.matcher(str.trim());
         if (!matcher.matches()) {
             return -9223372036854775807L;
         }
         String group = matcher.group(1);
-        int i10 = d0.f6937a;
+        int i10 = d0.f7237a;
         return (Long.parseLong(matcher.group(4)) * 10000) + (Long.parseLong(matcher.group(3)) * 1000000) + (Long.parseLong(matcher.group(2)) * 60000000) + (Long.parseLong(group) * 3600000000L);
     }
 
@@ -119,14 +119,14 @@ public final class a extends v4.e {
         w wVar2 = new w(bArr, i10);
         Charset B = wVar2.B();
         if (B == null) {
-            B = r8.d.f43389c;
+            B = r8.d.f46738c;
         }
-        boolean z11 = aVar.f94n;
+        boolean z11 = aVar.f102n;
         if (!z11) {
             aVar.m(wVar2, B);
         }
         if (z11) {
-            bVar = aVar.f95o;
+            bVar = aVar.f103o;
         } else {
             bVar = null;
         }
@@ -140,28 +140,28 @@ public final class a extends v4.e {
                         if (bVar == null) {
                             h5.a.K("SsaDecoder", "Skipping dialogue line before complete format: ".concat(h));
                         } else {
-                            int i24 = bVar.e;
+                            int i24 = bVar.f110e;
                             h5.a.f(h.startsWith("Dialogue:"));
                             String[] split = h.substring(9).split(",", i24);
                             if (split.length != i24) {
                                 h5.a.K("SsaDecoder", "Skipping dialogue line with fewer columns than format: ".concat(h));
                             } else {
-                                long n10 = n(split[bVar.f99a]);
+                                long n10 = n(split[bVar.f107a]);
                                 if (n10 == -9223372036854775807L) {
                                     h5.a.K("SsaDecoder", "Skipping invalid timing: ".concat(h));
                                 } else {
-                                    long n11 = n(split[bVar.f100b]);
+                                    long n11 = n(split[bVar.f108b]);
                                     if (n11 == -9223372036854775807L) {
                                         h5.a.K("SsaDecoder", "Skipping invalid timing: ".concat(h));
                                     } else {
-                                        LinkedHashMap linkedHashMap = aVar.f96p;
-                                        if (linkedHashMap != null && (i23 = bVar.f101c) != -1) {
+                                        LinkedHashMap linkedHashMap = aVar.f104p;
+                                        if (linkedHashMap != null && (i23 = bVar.f109c) != -1) {
                                             eVar = (e) linkedHashMap.get(split[i23].trim());
                                         } else {
                                             eVar = null;
                                         }
                                         String str = split[bVar.d];
-                                        Matcher matcher = d.f110a.matcher(str);
+                                        Matcher matcher = d.f120a.matcher(str);
                                         int i25 = -1;
                                         PointF pointF2 = null;
                                         while (matcher.find()) {
@@ -192,14 +192,14 @@ public final class a extends v4.e {
                                             wVar2 = wVar3;
                                         }
                                         wVar = wVar2;
-                                        String replace = d.f110a.matcher(str).replaceAll("").replace("\\N", "\n").replace("\\n", "\n").replace("\\h", " ");
-                                        float f16 = aVar.f97q;
-                                        float f17 = aVar.f98r;
+                                        String replace = d.f120a.matcher(str).replaceAll("").replace("\\N", "\n").replace("\\n", "\n").replace("\\h", " ");
+                                        float f16 = aVar.f105q;
+                                        float f17 = aVar.f106r;
                                         SpannableString spannableString = new SpannableString(replace);
                                         if (eVar != null) {
-                                            boolean z12 = eVar.f117g;
+                                            boolean z12 = eVar.f128g;
                                             Integer num = eVar.d;
-                                            Integer num2 = eVar.f115c;
+                                            Integer num2 = eVar.f125c;
                                             if (num2 != null) {
                                                 z10 = z12;
                                                 charset = B;
@@ -214,10 +214,10 @@ public final class a extends v4.e {
                                                 i16 = 33;
                                                 i17 = 0;
                                             }
-                                            if (eVar.f119j == 3 && num != null) {
+                                            if (eVar.f130j == 3 && num != null) {
                                                 spannableString.setSpan(new BackgroundColorSpan(num.intValue()), i17, spannableString.length(), i16);
                                             }
-                                            float f18 = eVar.e;
+                                            float f18 = eVar.f126e;
                                             if (f18 != -3.4028235E38f && f17 != -3.4028235E38f) {
                                                 f14 = f18 / f17;
                                                 i18 = 1;
@@ -225,7 +225,7 @@ public final class a extends v4.e {
                                                 f14 = -3.4028235E38f;
                                                 i18 = Integer.MIN_VALUE;
                                             }
-                                            boolean z13 = eVar.f116f;
+                                            boolean z13 = eVar.f127f;
                                             if (z13 && z10) {
                                                 f15 = f14;
                                                 i19 = i18;
@@ -246,7 +246,7 @@ public final class a extends v4.e {
                                             if (eVar.h) {
                                                 spannableString.setSpan(new UnderlineSpan(), i21, spannableString.length(), i20);
                                             }
-                                            if (eVar.f118i) {
+                                            if (eVar.f129i) {
                                                 spannableString.setSpan(new StrikethroughSpan(), i21, spannableString.length(), i20);
                                             }
                                             f10 = f15;
@@ -262,7 +262,7 @@ public final class a extends v4.e {
                                         if (i25 != i11) {
                                             i11 = i25;
                                         } else if (eVar != null) {
-                                            i11 = eVar.f114b;
+                                            i11 = eVar.f124b;
                                         }
                                         switch (i11) {
                                             case 0:

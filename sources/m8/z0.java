@@ -14,38 +14,38 @@ import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
-import m.s3;
+import m.r3;
 public final class z0 extends b6.g {
     public final ExecutorService R;
-    public final bb.b S;
-    public final bb.b T;
-    public final bb.b U;
-    public final bb.b V;
-    public final bb.b W;
-    public final bb.b X;
-    public final bb.b Y;
-    public final bb.b Z;
-    public final bb.b f13883a0;
-    public final bb.b f13884b0;
-    public final a1 f13885c0;
+    public final bb.c S;
+    public final bb.c T;
+    public final bb.c U;
+    public final bb.c V;
+    public final bb.c W;
+    public final bb.c X;
+    public final bb.c Y;
+    public final bb.c Z;
+    public final bb.c f13599a0;
+    public final bb.c f13600b0;
+    public final a1 f13601c0;
 
-    public z0(Context context, Looper looper, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar, s3 s3Var) {
-        super(context, looper, 14, s3Var, kVar, lVar, 0);
+    public z0(Context context, Looper looper, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar, r3 r3Var) {
+        super(context, looper, 14, r3Var, kVar, lVar, 0);
         ExecutorService unconfigurableExecutorService = Executors.unconfigurableExecutorService(Executors.newCachedThreadPool());
         a1 a2 = a1.a(context);
-        this.S = new bb.b();
-        this.T = new bb.b();
-        this.U = new bb.b();
-        this.V = new bb.b();
-        this.W = new bb.b();
-        this.X = new bb.b();
-        this.Y = new bb.b();
-        this.Z = new bb.b();
-        this.f13883a0 = new bb.b();
-        this.f13884b0 = new bb.b();
+        this.S = new bb.c();
+        this.T = new bb.c();
+        this.U = new bb.c();
+        this.V = new bb.c();
+        this.W = new bb.c();
+        this.X = new bb.c();
+        this.Y = new bb.c();
+        this.Z = new bb.c();
+        this.f13599a0 = new bb.c();
+        this.f13600b0 = new bb.c();
         b6.m.h(unconfigurableExecutorService);
         this.R = unconfigurableExecutorService;
-        this.f13885c0 = a2;
+        this.f13601c0 = a2;
         File file = new File(new File(context.getFilesDir(), "wearos_assets"), "streamtmp");
         file.mkdirs();
         File[] listFiles = file.listFiles();
@@ -69,8 +69,8 @@ public final class z0 extends b6.g {
             this.X.a(iBinder);
             this.Y.a(iBinder);
             this.Z.a(iBinder);
-            this.f13883a0.a(iBinder);
-            this.f13884b0.a(iBinder);
+            this.f13599a0.a(iBinder);
+            this.f13600b0.a(iBinder);
             this.V.a(iBinder);
             i10 = 0;
         }
@@ -84,7 +84,7 @@ public final class z0 extends b6.g {
 
     @Override
     public final boolean j() {
-        if (!this.f13885c0.b()) {
+        if (!this.f13601c0.b()) {
             return true;
         }
         return false;
@@ -100,7 +100,7 @@ public final class z0 extends b6.g {
         int i10;
         b6.b0 b0Var = this.v;
         AtomicInteger atomicInteger = this.O;
-        Context context = this.f1588n;
+        Context context = this.f1718n;
         if (!j()) {
             try {
                 Bundle bundle = context.getPackageManager().getApplicationInfo("com.google.android.wearable.app.cn", 128).metaData;
@@ -115,7 +115,7 @@ public final class z0 extends b6.g {
                     if (context.getPackageManager().resolveActivity(intent, 65536) == null) {
                         intent = new Intent("android.intent.action.VIEW", Uri.parse("market://details").buildUpon().appendQueryParameter("id", "com.google.android.wearable.app.cn").build());
                     }
-                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, t7.b.f44616a);
+                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, t7.b.f48027a);
                     b6.m.i(bVar, "Connection progress callbacks cannot be null.");
                     this.B = bVar;
                     b0Var.sendMessage(b0Var.obtainMessage(3, atomicInteger.get(), 6, activity));
@@ -145,7 +145,7 @@ public final class z0 extends b6.g {
 
     @Override
     public final y5.c[] r() {
-        return l8.j.f11720b;
+        return l8.j.f12127b;
     }
 
     @Override
@@ -160,7 +160,7 @@ public final class z0 extends b6.g {
 
     @Override
     public final String x() {
-        if (this.f13885c0.b()) {
+        if (this.f13601c0.b()) {
             return "com.google.android.wearable.app.cn";
         }
         return "com.google.android.gms";

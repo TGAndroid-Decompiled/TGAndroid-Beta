@@ -1,50 +1,28 @@
 package org.telegram.ui;
-public final class qb0 implements Runnable {
-    public final int f37715a;
-    public final wb0 f37716b;
-    public final String f37717c;
 
-    public qb0(wb0 wb0Var, String str, int i10) {
-        this.f37715a = i10;
-        this.f37716b = wb0Var;
-        this.f37717c = str;
+import org.telegram.tgnet.ConnectionsManager;
+public final class qb0 implements Runnable {
+    public final int f40428a;
+    public final xb0 f40429b;
+
+    public qb0(xb0 xb0Var, int i10) {
+        this.f40428a = i10;
+        this.f40429b = xb0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f37715a) {
+        switch (this.f40428a) {
             case 0:
-                wb0 wb0Var = this.f37716b;
-                wb0Var.getClass();
-                String str = this.f37717c;
-                if ("disable".equalsIgnoreCase(str)) {
-                    wb0Var.o("turnPasswordOffRow");
-                }
-                if ("change".equalsIgnoreCase(str)) {
-                    wb0Var.o("changePasswordRow");
-                }
-                if ("change-email".equalsIgnoreCase(str)) {
-                    wb0Var.o("emailRow");
+                xb0 xb0Var = this.f40429b;
+                if (xb0Var.h >= 0) {
+                    ConnectionsManager.getInstance(xb0Var.f43022b).cancelRequest(xb0Var.h, true);
+                    xb0Var.h = -1;
                     return;
                 }
                 return;
             default:
-                wb0 wb0Var2 = this.f37716b;
-                wb0Var2.getClass();
-                String str2 = this.f37717c;
-                if ("disable".equalsIgnoreCase(str2)) {
-                    wb0Var2.o("disablePasscodeRow");
-                }
-                if ("change".equalsIgnoreCase(str2)) {
-                    wb0Var2.o("changePasscodeRow");
-                }
-                if ("auto-lock".equalsIgnoreCase(str2)) {
-                    wb0Var2.o("autoLockRow");
-                }
-                if ("fingerprint".equalsIgnoreCase(str2)) {
-                    wb0Var2.o("fingerprintRow");
-                    return;
-                }
+                this.f40429b.a();
                 return;
         }
     }

@@ -1,19 +1,25 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-public final class x30 extends org.telegram.ui.Components.vh0 {
-    public final c60 f39851p1;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.tgnet.TLRPC;
+public final class x30 extends t4 {
+    public final d60 R;
 
-    public x30(c60 c60Var, LaunchActivity launchActivity, z40 z40Var, j50 j50Var, w30 w30Var) {
-        super(launchActivity, z40Var, j50Var, w30Var);
-        this.f39851p1 = c60Var;
+    public x30(d60 d60Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.R = d60Var;
     }
 
     @Override
-    public final void invalidate() {
-        ViewGroup viewGroup;
-        super.invalidate();
-        viewGroup = ((org.telegram.ui.ActionBar.g3) this.f39851p1).containerView;
-        viewGroup.invalidate();
+    public final void c() {
+        d60 d60Var = this.R;
+        AccountInstance accountInstance = d60Var.d;
+        y30 y30Var = d60Var.f36014b;
+        long dialogId = y30Var.getDialogId();
+        if (dialogId > 0) {
+            TLRPC.User user = accountInstance.getMessagesController().getUser(Long.valueOf(dialogId));
+            y30Var.H(null, ImageLocation.getForUserOrChat(accountInstance.getCurrentAccount(), user, 0), ImageLocation.getForUserOrChat(accountInstance.getCurrentAccount(), user, 1), false);
+        }
     }
 }

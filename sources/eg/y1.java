@@ -1,336 +1,347 @@
 package eg;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.ContextWrapper;
+import android.graphics.Paint;
+import android.graphics.PointF;
+import android.graphics.RectF;
+import android.text.TextPaint;
+import android.util.SparseIntArray;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import kh.e6;
-import lh.g5;
-import n7.qa;
-import nh.d4;
-import nh.i9;
-import nh.m4;
+import java.util.ArrayList;
+import k7.c6;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.g3;
-import org.telegram.ui.Components.au;
-import org.telegram.ui.Components.bd0;
-import org.telegram.ui.Components.bu;
-import org.telegram.ui.Components.hv;
-import org.telegram.ui.Components.zx;
-import org.telegram.ui.LaunchActivity;
-import ph.c5;
-import ph.l4;
-public final class y1 extends org.telegram.ui.ActionBar.p2 {
-    public final int f5582a;
-    public final Object f5583b;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.h5;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.ba;
+import org.telegram.ui.Components.tk0;
+import qh.i5;
+import qh.o4;
+import qh.s6;
+public abstract class y1 extends j {
+    public final a9.a A0;
+    public h5 B0;
+    public h5 C0;
+    public h5 D0;
+    public h5 E0;
+    public h5 F0;
+    public h5 G0;
+    public h5 H0;
+    public h5 I0;
+    public final q1 f5552n0;
+    public final r1 f5553o0;
+    public final ArrayList f5554p0;
+    public final MessageObject.GroupedMessages f5555q0;
+    public boolean f5556r0;
+    public boolean f5557s0;
+    public TextureView f5558t0;
+    public boolean f5559u0;
+    public int f5560v0;
+    public int f5561w0;
+    public boolean f5562x0;
+    public boolean f5563y0;
+    public final SparseIntArray f5564z0;
 
-    public y1(Object obj, int i10) {
-        super(null);
-        this.f5582a = i10;
-        this.f5583b = obj;
-    }
-
-    @Override
-    public View createView(Context context) {
-        switch (this.f5582a) {
-            case 9:
-                this.hasOwnBackground = true;
-                this.actionBar.setAddToContainer(false);
-                View view = new View(context);
-                view.setBackgroundColor(0);
-                return view;
-            default:
-                return super.createView(context);
-        }
-    }
-
-    @Override
-    public Context getContext() {
-        switch (this.f5582a) {
-            case 3:
-                return ((g5) this.f5583b).getContext();
-            case 5:
-                return ((m4) this.f5583b).f15607b.getContext();
-            case 6:
-                return ((bu) this.f5583b).f23749a.getContext();
-            case 12:
-                return ((c5) this.f5583b).getContext();
-            default:
-                return super.getContext();
-        }
-    }
-
-    @Override
-    public int getCurrentAccount() {
-        switch (this.f5582a) {
-            case 0:
-                return this.currentAccount;
-            case 1:
-            case 2:
-            case 4:
-            case 9:
-            case 10:
-            case 11:
-            default:
-                return super.getCurrentAccount();
-            case 3:
-                return this.currentAccount;
-            case 5:
-                return this.currentAccount;
-            case 6:
-                return this.currentAccount;
-            case 7:
-                return this.currentAccount;
-            case 8:
-                return ((zx) this.f5583b).B.Z0;
-            case 12:
-                return this.currentAccount;
-        }
-    }
-
-    @Override
-    public View getFragmentView() {
-        ViewGroup viewGroup;
-        ViewGroup viewGroup2;
-        switch (this.f5582a) {
-            case 0:
-                viewGroup = ((g3) ((e2) this.f5583b)).containerView;
-                return viewGroup;
-            case 7:
-                viewGroup2 = ((g3) ((hv) this.f5583b).f25506x).containerView;
-                return viewGroup2;
-            case 8:
-                return ((zx) this.f5583b).B.f26462r;
-            default:
-                return super.getFragmentView();
-        }
-    }
-
-    @Override
-    public FrameLayout getLayoutContainer() {
-        ViewGroup viewGroup;
-        switch (this.f5582a) {
-            case 0:
-                return ((e2) this.f5583b).J0;
-            case 7:
-                viewGroup = ((g3) ((hv) this.f5583b).f25506x).containerView;
-                return (FrameLayout) viewGroup;
-            case 8:
-                return ((zx) this.f5583b).B.f26462r;
-            default:
-                return super.getLayoutContainer();
-        }
-    }
-
-    @Override
-    public Activity getParentActivity() {
-        switch (this.f5582a) {
-            case 0:
-                org.telegram.ui.ActionBar.p2 p2Var = ((e2) this.f5583b).f5273q0;
-                if (p2Var == null) {
-                    return null;
+    public y1(Context context, PointF pointF, ArrayList arrayList, ba baVar, boolean z4, i5 i5Var) {
+        super(context, pointF);
+        p1 p1Var;
+        TLRPC.Message message;
+        TLRPC.Message tL_messageService;
+        Boolean D;
+        TLRPC.MessageFwdHeader messageFwdHeader;
+        TLRPC.Peer peer;
+        this.f5554p0 = new ArrayList();
+        this.f5560v0 = 1;
+        this.f5561w0 = 1;
+        this.f5562x0 = true;
+        this.f5563y0 = k6.I.q();
+        this.f5564z0 = new SparseIntArray();
+        o4 o4Var = (o4) this;
+        ?? obj = new Object();
+        obj.f159f = o4Var;
+        TextPaint textPaint = new TextPaint();
+        obj.f155a = textPaint;
+        TextPaint textPaint2 = new TextPaint();
+        obj.f156b = textPaint2;
+        TextPaint textPaint3 = new TextPaint();
+        obj.f157c = textPaint3;
+        new Paint(3);
+        obj.d = new Paint(3);
+        Paint paint = new Paint(3);
+        obj.f158e = paint;
+        textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
+        textPaint2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
+        textPaint3.setTextSize(AndroidUtilities.dp(15.0f));
+        textPaint3.setTypeface(AndroidUtilities.bold());
+        paint.setColor(352321536);
+        this.A0 = obj;
+        setRotation(0.0f);
+        setScale(1.0f);
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            MessageObject messageObject = (MessageObject) arrayList.get(i10);
+            TLRPC.Message message2 = messageObject.messageOwner;
+            int i11 = message2.date;
+            if (message2 instanceof TLRPC.TL_message) {
+                tL_messageService = new TLRPC.TL_message();
+            } else if (message2 instanceof TLRPC.TL_messageService) {
+                tL_messageService = new TLRPC.TL_messageService();
+            } else {
+                message = message2;
+                D = s6.D(messageObject);
+                if (D != null && D.booleanValue() && (messageFwdHeader = message.fwd_from) != null && (peer = messageFwdHeader.from_id) != null) {
+                    message.from_id = peer;
+                    message.peer_id = peer;
+                    message.flags &= -5;
+                    message.fwd_from = null;
                 }
-                return p2Var.getParentActivity();
-            case 1:
-                return ((org.telegram.ui.ActionBar.p2) this.f5583b).getParentActivity();
-            case 2:
-                e6 e6Var = (e6) this.f5583b;
-                Activity ownerActivity = e6Var.getOwnerActivity();
-                if (ownerActivity == null) {
-                    ownerActivity = LaunchActivity.D1;
+                message.voiceTranscriptionOpen = false;
+                int i12 = messageObject.currentAccount;
+                MessageObject messageObject2 = new MessageObject(i12, message, messageObject.replyMessageObject, MessagesController.getInstance(i12).getUsers(), MessagesController.getInstance(messageObject.currentAccount).getChats(), null, null, true, true, 0L, true, z4, false);
+                messageObject2.setType();
+                this.f5554p0.add(messageObject2);
+            }
+            tL_messageService.f20864id = message2.f20864id;
+            tL_messageService.from_id = message2.from_id;
+            tL_messageService.peer_id = message2.peer_id;
+            tL_messageService.date = message2.date;
+            tL_messageService.expire_date = message2.expire_date;
+            tL_messageService.action = message2.action;
+            tL_messageService.message = message2.message;
+            tL_messageService.media = message2.media;
+            tL_messageService.flags = message2.flags;
+            tL_messageService.mentioned = message2.mentioned;
+            tL_messageService.media_unread = message2.media_unread;
+            tL_messageService.out = message2.out;
+            tL_messageService.unread = message2.unread;
+            tL_messageService.entities = message2.entities;
+            tL_messageService.via_bot_name = message2.via_bot_name;
+            tL_messageService.reply_markup = message2.reply_markup;
+            tL_messageService.views = message2.views;
+            tL_messageService.forwards = message2.forwards;
+            tL_messageService.replies = message2.replies;
+            tL_messageService.edit_date = message2.edit_date;
+            tL_messageService.silent = message2.silent;
+            tL_messageService.post = message2.post;
+            tL_messageService.from_scheduled = message2.from_scheduled;
+            tL_messageService.legacy = message2.legacy;
+            tL_messageService.edit_hide = message2.edit_hide;
+            tL_messageService.pinned = message2.pinned;
+            tL_messageService.fwd_from = message2.fwd_from;
+            tL_messageService.via_bot_id = message2.via_bot_id;
+            tL_messageService.reply_to = message2.reply_to;
+            tL_messageService.post_author = message2.post_author;
+            tL_messageService.grouped_id = message2.grouped_id;
+            tL_messageService.reactions = message2.reactions;
+            tL_messageService.restriction_reason = message2.restriction_reason;
+            tL_messageService.ttl_period = message2.ttl_period;
+            tL_messageService.noforwards = message2.noforwards;
+            tL_messageService.invert_media = message2.invert_media;
+            tL_messageService.send_state = message2.send_state;
+            tL_messageService.fwd_msg_id = message2.fwd_msg_id;
+            tL_messageService.attachPath = message2.attachPath;
+            tL_messageService.params = message2.params;
+            tL_messageService.random_id = message2.random_id;
+            tL_messageService.local_id = message2.local_id;
+            tL_messageService.dialog_id = message2.dialog_id;
+            tL_messageService.ttl = message2.ttl;
+            tL_messageService.destroyTime = message2.destroyTime;
+            tL_messageService.destroyTimeMillis = message2.destroyTimeMillis;
+            tL_messageService.layer = message2.layer;
+            tL_messageService.seq_in = message2.seq_in;
+            tL_messageService.seq_out = message2.seq_out;
+            tL_messageService.with_my_score = message2.with_my_score;
+            tL_messageService.replyMessage = message2.replyMessage;
+            tL_messageService.reqId = message2.reqId;
+            tL_messageService.realId = message2.realId;
+            tL_messageService.stickerVerified = message2.stickerVerified;
+            tL_messageService.isThreadMessage = message2.isThreadMessage;
+            tL_messageService.voiceTranscription = message2.voiceTranscription;
+            tL_messageService.voiceTranscriptionOpen = message2.voiceTranscriptionOpen;
+            tL_messageService.voiceTranscriptionRated = message2.voiceTranscriptionRated;
+            tL_messageService.voiceTranscriptionFinal = message2.voiceTranscriptionFinal;
+            tL_messageService.voiceTranscriptionForce = message2.voiceTranscriptionForce;
+            tL_messageService.voiceTranscriptionId = message2.voiceTranscriptionId;
+            tL_messageService.premiumEffectWasPlayed = message2.premiumEffectWasPlayed;
+            tL_messageService.originalLanguage = message2.originalLanguage;
+            tL_messageService.translatedToLanguage = message2.translatedToLanguage;
+            tL_messageService.translatedText = message2.translatedText;
+            tL_messageService.replyStory = message2.replyStory;
+            message = tL_messageService;
+            D = s6.D(messageObject);
+            if (D != null) {
+                message.from_id = peer;
+                message.peer_id = peer;
+                message.flags &= -5;
+                message.fwd_from = null;
+            }
+            message.voiceTranscriptionOpen = false;
+            int i122 = messageObject.currentAccount;
+            MessageObject messageObject22 = new MessageObject(i122, message, messageObject.replyMessageObject, MessagesController.getInstance(i122).getUsers(), MessagesController.getInstance(messageObject.currentAccount).getChats(), null, null, true, true, 0L, true, z4, false);
+            messageObject22.setType();
+            this.f5554p0.add(messageObject22);
+        }
+        this.f5555q0 = null;
+        if (this.f5554p0.size() > 1) {
+            MessageObject.GroupedMessages groupedMessages = new MessageObject.GroupedMessages();
+            this.f5555q0 = groupedMessages;
+            groupedMessages.messages.addAll(this.f5554p0);
+            groupedMessages.groupId = ((MessageObject) this.f5554p0.get(0)).getGroupId();
+            groupedMessages.calculate();
+        }
+        q1 q1Var = new q1(o4Var, context);
+        this.f5552n0 = q1Var;
+        addView(q1Var, c6.c(-1.0f, -1));
+        r1 r1Var = new r1(o4Var, context, this.A0);
+        this.f5553o0 = r1Var;
+        r1Var.setAdapter(new u1(o4Var, context, baVar, i5Var, z4));
+        v1 v1Var = new v1(o4Var);
+        v1Var.O = new w1(o4Var);
+        r1Var.setLayoutManager(v1Var);
+        r1Var.i(new Object());
+        q1Var.addView(r1Var, c6.c(-1.0f, -1));
+        if (i5Var != null && i5Var.f45427g) {
+            dg.h0 h0Var = new dg.h0(o4Var, 2);
+            p1 p1Var2 = new p1(o4Var, 0);
+            i5Var.f45423b = h0Var;
+            i5Var.f45424c = p1Var2;
+            TextureView textureView = i5Var.f45422a;
+            if (textureView != null) {
+                h0Var.run(textureView);
+            }
+            if (i5Var.d && (p1Var = i5Var.f45424c) != null) {
+                p1Var.run(Integer.valueOf(i5Var.f45425e), Integer.valueOf(i5Var.f45426f));
+            }
+        }
+        k();
+    }
+
+    public org.telegram.ui.Cells.t1 getCell() {
+        r1 r1Var = this.f5553o0;
+        if (r1Var != null) {
+            for (int i10 = 0; i10 < r1Var.getChildCount(); i10++) {
+                if (r1Var.getChildAt(i10) instanceof org.telegram.ui.Cells.t1) {
+                    return (org.telegram.ui.Cells.t1) r1Var.getChildAt(i10);
                 }
-                if (ownerActivity == null) {
-                    return AndroidUtilities.findActivity(e6Var.getContext());
-                }
-                return ownerActivity;
-            case 3:
-                for (Context context = ((g5) this.f5583b).getContext(); context instanceof ContextWrapper; context = ((ContextWrapper) context).getBaseContext()) {
-                    if (context instanceof Activity) {
-                        return (Activity) context;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public static org.telegram.ui.Cells.t1 q(o4 o4Var) {
+        return o4Var.getCell();
+    }
+
+    @Override
+    public final i a() {
+        return new f1(this, getContext());
+    }
+
+    @Override
+    public float getBounceScale() {
+        return 0.02f;
+    }
+
+    @Override
+    public tk0 getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Object();
+        }
+        float scaleX = viewGroup.getScaleX();
+        return new tk0(((getPositionX() * scaleX) - (((getScale() * getMeasuredWidth()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), ((getPositionY() * scaleX) - (((getScale() * getMeasuredHeight()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), (getScale() * getMeasuredWidth() * scaleX) + AndroidUtilities.dp(71.0f), (getScale() * getMeasuredHeight() * scaleX) + AndroidUtilities.dp(71.0f));
+    }
+
+    @Override
+    public final void k() {
+        setX(getPositionX() - (getMeasuredWidth() / 2.0f));
+        setY(getPositionY() - (getMeasuredHeight() / 2.0f));
+        m();
+        if (this.f5557s0) {
+            s();
+        }
+    }
+
+    @Override
+    public final void onMeasure(int r5, int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: eg.y1.onMeasure(int, int):void");
+    }
+
+    public final float r(RectF rectF) {
+        float y10;
+        float f10;
+        float f11;
+        float dp;
+        float f12 = 2.1474836E9f;
+        float f13 = 2.1474836E9f;
+        float f14 = -2.1474836E9f;
+        float f15 = -2.1474836E9f;
+        int i10 = 0;
+        while (true) {
+            r1 r1Var = this.f5553o0;
+            if (i10 < r1Var.getChildCount()) {
+                View childAt = r1Var.getChildAt(i10);
+                boolean z4 = childAt instanceof org.telegram.ui.Cells.t1;
+                q1 q1Var = this.f5552n0;
+                if (z4) {
+                    org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) childAt;
+                    if (t1Var.getMessageObject() != null && t1Var.getMessageObject().isRoundVideo() && t1Var.getPhotoImage() != null) {
+                        f10 = t1Var.getPhotoImage().getImageX() + t1Var.getX() + q1Var.getX();
+                        f11 = t1Var.getPhotoImage().getImageX2() + t1Var.getX() + q1Var.getX();
+                        dp = t1Var.getPhotoImage().getImageY() + t1Var.getY() + q1Var.getY();
+                        float y11 = q1Var.getY();
+                        y10 = t1Var.getPhotoImage().getImageY2() + t1Var.getY() + y11;
+                    } else {
+                        float x10 = childAt.getX() + q1Var.getX() + t1Var.getBackgroundDrawableLeft() + AndroidUtilities.dp(1.0f);
+                        if (this.f5555q0 == null) {
+                            x10 += AndroidUtilities.dp(8.0f);
+                        }
+                        float x11 = ((childAt.getX() + q1Var.getX()) + t1Var.getBackgroundDrawableRight()) - AndroidUtilities.dp(1.66f);
+                        float y12 = childAt.getY() + q1Var.getY() + t1Var.getBackgroundDrawableTop();
+                        y10 = ((childAt.getY() + q1Var.getY()) + t1Var.getBackgroundDrawableBottom()) - AndroidUtilities.dp(1.0f);
+                        f10 = x10;
+                        f11 = x11;
+                        dp = AndroidUtilities.dp(2.0f) + y12;
+                    }
+                    f12 = Math.min(Math.min(f12, f10), f11);
+                    f14 = Math.max(Math.max(f14, f10), f11);
+                    f13 = Math.min(Math.min(f13, dp), y10);
+                    f15 = Math.max(Math.max(f15, dp), y10);
+                } else if (childAt instanceof org.telegram.ui.Cells.v0) {
+                    org.telegram.ui.Cells.v0 v0Var = (org.telegram.ui.Cells.v0) childAt;
+                    if (v0Var.C0.d()) {
+                        float x12 = v0Var.getX() + q1Var.getX() + v0Var.getBoundsLeft();
+                        float x13 = v0Var.getX() + q1Var.getX() + v0Var.getBoundsRight();
+                        float y13 = v0Var.getY() + q1Var.getY();
+                        float y14 = v0Var.getY() + q1Var.getY() + v0Var.getMeasuredHeight();
+                        f12 = Math.min(Math.min(f12, x12), x13);
+                        f14 = Math.max(Math.max(f14, x12), x13);
+                        f13 = Math.min(Math.min(f13, y13), y14);
+                        f15 = Math.max(Math.max(f15, y13), y14);
                     }
                 }
-                return null;
-            case 4:
-                Activity findActivity = AndroidUtilities.findActivity(((d4) this.f5583b).getContext());
-                if (findActivity == null) {
-                    return LaunchActivity.D1;
-                }
-                return findActivity;
-            case 5:
-            case 7:
-            case 8:
-            case 9:
-            default:
-                return super.getParentActivity();
-            case 6:
-                for (Context context2 = getContext(); context2 instanceof ContextWrapper; context2 = ((ContextWrapper) context2).getBaseContext()) {
-                    if (context2 instanceof Activity) {
-                        return (Activity) context2;
-                    }
-                }
-                return null;
-            case 10:
-                return ((org.telegram.ui.web.a1) this.f5583b).T;
-            case 11:
-                return LaunchActivity.D1;
-            case 12:
-                return AndroidUtilities.findActivity(((c5) this.f5583b).getContext());
+                i10++;
+            } else {
+                rectF.set(f12, f13, f14, f15);
+                return AndroidUtilities.dp(SharedConfig.bubbleRadius);
+            }
         }
     }
 
-    @Override
-    public f6 getResourceProvider() {
-        f6 f6Var;
-        f6 f6Var2;
-        f6 f6Var3;
-        switch (this.f5582a) {
-            case 1:
-                return new qa(new nh.b());
-            case 2:
-                f6Var = ((g3) ((e6) this.f5583b)).resourcesProvider;
-                return f6Var;
-            case 3:
-            case 6:
-            case 9:
-            default:
-                return super.getResourceProvider();
-            case 4:
-                return new nh.m2(0, ((d4) this.f5583b).f15257y0);
-            case 5:
-                return ((m4) this.f5583b).f15607b.f15271s;
-            case 7:
-                f6Var2 = ((g3) ((hv) this.f5583b).f25506x).resourcesProvider;
-                return f6Var2;
-            case 8:
-                return ((zx) this.f5583b).B.W1;
-            case 10:
-                return new nh.m2(5, ((org.telegram.ui.web.a1) this.f5583b).e);
-            case 11:
-                f6Var3 = ((g3) ((l4) this.f5583b)).resourcesProvider;
-                return new nh.m2(6, f6Var3);
-            case 12:
-                return ((c5) this.f5583b).D1;
+    public final void s() {
+        r1 r1Var = this.f5553o0;
+        r1Var.invalidate();
+        for (int i10 = 0; i10 < r1Var.getChildCount(); i10++) {
+            r1Var.getChildAt(i10).invalidate();
         }
     }
 
-    @Override
-    public Dialog getVisibleDialog() {
-        switch (this.f5582a) {
-            case 6:
-                return new au(this, ((bu) this.f5583b).f23749a.getContext());
-            default:
-                return super.getVisibleDialog();
-        }
-    }
-
-    @Override
-    public boolean isLightStatusBar() {
-        switch (this.f5582a) {
-            case 1:
-                return false;
-            case 4:
-                return false;
-            case 10:
-                return false;
-            case 11:
-                return false;
-            default:
-                return super.isLightStatusBar();
-        }
-    }
-
-    @Override
-    public void onTransitionAnimationEnd(boolean z4, boolean z10) {
-        switch (this.f5582a) {
-            case 9:
-                if (z4 && z10) {
-                    ((bd0) this.f5583b).dismiss();
-                    return;
-                }
-                return;
-            default:
-                super.onTransitionAnimationEnd(z4, z10);
-                return;
-        }
-    }
-
-    @Override
-    public boolean presentFragment(org.telegram.ui.ActionBar.p2 p2Var) {
-        switch (this.f5582a) {
-            case 1:
-                return false;
-            case 4:
-                i9 i9Var = ((d4) this.f5583b).G0;
-                if (i9Var != null) {
-                    i9Var.H(p2Var);
-                    return true;
-                }
-                return true;
-            case 12:
-                org.telegram.ui.ActionBar.p2 R = LaunchActivity.R();
-                if (R == 0) {
-                    return false;
-                }
-                ?? obj = new Object();
-                obj.f20478a = true;
-                R.showAsSheet(p2Var, obj);
-                return true;
-            default:
-                return super.presentFragment(p2Var);
-        }
-    }
-
-    @Override
-    public Dialog showDialog(Dialog dialog) {
-        switch (this.f5582a) {
-            case 0:
-                dialog.show();
-                return dialog;
-            case 3:
-                dialog.show();
-                return dialog;
-            case 4:
-                i9 i9Var = ((d4) this.f5583b).G0;
-                if (i9Var != null) {
-                    i9Var.showDialog(dialog);
-                } else if (dialog != null) {
-                    dialog.show();
-                }
-                return dialog;
-            case 10:
-                dialog.show();
-                return dialog;
-            case 11:
-                dialog.show();
-                return dialog;
-            default:
-                return super.showDialog(dialog);
-        }
-    }
-
-    public y1(org.telegram.ui.ActionBar.p2 p2Var) {
-        super(null);
-        this.f5582a = 1;
-        this.f5583b = p2Var;
-    }
-
-    public y1(l4 l4Var) {
-        super(null);
-        int i10;
-        this.f5582a = 11;
-        this.f5583b = l4Var;
-        i10 = ((g3) l4Var).currentAccount;
-        this.currentAccount = i10;
-    }
-
-    public y1(org.telegram.ui.web.a1 a1Var) {
-        super(null);
-        this.f5582a = 10;
-        this.f5583b = a1Var;
-        this.currentAccount = a1Var.J;
+    public void setupTheme(qh.s6 r8) {
+        throw new UnsupportedOperationException("Method not decompiled: eg.y1.setupTheme(qh.s6):void");
     }
 }

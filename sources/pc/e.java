@@ -1,20 +1,20 @@
 package pc;
 public final class e extends n3.a {
-    public final StringBuilder f41163c;
+    public final StringBuilder f44327c;
 
     public e() {
         super(4, 1);
-        this.f41163c = new StringBuilder();
+        this.f44327c = new StringBuilder();
     }
 
     @Override
-    public final n3.a h() {
-        n3.a.i(this.f41163c);
+    public final n3.a g() {
+        n3.a.h(this.f44327c);
         return this;
     }
 
     @Override
     public final String toString() {
-        return "<!--" + this.f41163c.toString() + "-->";
+        return "<!--" + this.f44327c.toString() + "-->";
     }
 }

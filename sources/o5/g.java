@@ -6,11 +6,11 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.m;
 import com.google.android.gms.common.api.q;
 public final class g extends com.google.android.gms.common.api.internal.e {
-    public final int f16453q;
+    public final int f16611q;
 
     public g(m mVar, int i10) {
-        super(k5.a.f9748a, mVar);
-        this.f16453q = i10;
+        super(k5.a.f10469a, mVar);
+        this.f16611q = i10;
     }
 
     @Override
@@ -20,20 +20,20 @@ public final class g extends com.google.android.gms.common.api.internal.e {
 
     @Override
     public final q d(Status status) {
-        int i10 = this.f16453q;
+        int i10 = this.f16611q;
         return status;
     }
 
     @Override
     public final void n(com.google.android.gms.common.api.c cVar) {
-        switch (this.f16453q) {
+        switch (this.f16611q) {
             case 0:
                 e eVar = (e) cVar;
                 k kVar = (k) eVar.u();
                 f fVar = new f(this, 0);
                 GoogleSignInOptions googleSignInOptions = eVar.R;
                 Parcel I0 = kVar.I0();
-                int i10 = w6.f.f46468a;
+                int i10 = w6.f.f49441a;
                 I0.writeStrongBinder(fVar);
                 w6.f.c(I0, googleSignInOptions);
                 kVar.J0(I0, 102);
@@ -44,7 +44,7 @@ public final class g extends com.google.android.gms.common.api.internal.e {
                 f fVar2 = new f(this, 1);
                 GoogleSignInOptions googleSignInOptions2 = eVar2.R;
                 Parcel I02 = kVar2.I0();
-                int i11 = w6.f.f46468a;
+                int i11 = w6.f.f49441a;
                 I02.writeStrongBinder(fVar2);
                 w6.f.c(I02, googleSignInOptions2);
                 kVar2.J0(I02, 103);

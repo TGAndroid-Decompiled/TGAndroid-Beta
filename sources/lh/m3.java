@@ -1,24 +1,46 @@
 package lh;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
+import android.content.Context;
 import android.view.View;
-public final class m3 extends ClickableSpan {
-    public final long f12794a;
-    public final g5 f12795b;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.qc;
+public final class m3 extends mh.g5 {
+    public final int f12852o1;
+    public final Object f12853p1;
 
-    public m3(g5 g5Var, long j10) {
-        this.f12795b = g5Var;
-        this.f12794a = j10;
+    public m3(n3 n3Var, Context context, int i10, long j10, g6 g6Var, int i11) {
+        super(context, i10, j10, g6Var, null);
+        this.f12852o1 = i11;
+        this.f12853p1 = n3Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.f12795b.X1(this.f12794a);
+    public int getBottomInset() {
+        switch (this.f12852o1) {
+            case 3:
+                return ((mh.g5) this.f12853p1).getBottomInset();
+            default:
+                return super.getBottomInset();
+        }
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setColor(textPaint.linkColor);
+    public qc getBulletinFactory() {
+        switch (this.f12852o1) {
+            case 0:
+                return qc.a0(((n3) this.f12853p1).f12860a.f13098a);
+            case 1:
+                return qc.a0(((n3) this.f12853p1).f12860a.f13098a);
+            case 2:
+                return qc.a0(((n3) this.f12853p1).f12860a.f13098a);
+            default:
+                return super.getBulletinFactory();
+        }
+    }
+
+    public m3(mh.g5 g5Var, Context context, int i10, long j10, g6 g6Var, View view) {
+        super(context, i10, j10, g6Var, view);
+        this.f12852o1 = 3;
+        this.f12853p1 = g5Var;
     }
 }

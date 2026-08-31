@@ -8,8 +8,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import kh.a2;
-import nh.e1;
+import oh.e1;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraSession;
 public class Camera1Session implements CameraSession {
@@ -126,23 +125,23 @@ public class Camera1Session implements CameraSession {
                         try {
                             open.setDisplayOrientation(0);
                             createSessionCallback.onDone(new Camera1Session(events, z4, context, surfaceTextureHelper, cameraIndex, open, cameraInfo, findClosestCaptureFormat, nanoTime));
-                        } catch (RuntimeException e) {
+                        } catch (RuntimeException e6) {
                             open.release();
-                            createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e.getMessage());
+                            createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e6.getMessage());
                         }
-                    } catch (RuntimeException e6) {
+                    } catch (RuntimeException e10) {
                         open.release();
-                        createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e6.getMessage());
+                        createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e10.getMessage());
                     }
-                } catch (IOException | RuntimeException e10) {
+                } catch (IOException | RuntimeException e11) {
                     open.release();
-                    createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e10.getMessage());
+                    createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e11.getMessage());
                 }
-            } catch (RuntimeException e11) {
-                createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e11.getMessage());
+            } catch (RuntimeException e12) {
+                createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e12.getMessage());
             }
-        } catch (IllegalArgumentException e12) {
-            createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e12.getMessage());
+        } catch (IllegalArgumentException e13) {
+            createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e13.getMessage());
         }
     }
 
@@ -217,7 +216,7 @@ public class Camera1Session implements CameraSession {
                 if (i10 == 100) {
                     j10 = "Camera server died!";
                 } else {
-                    j10 = a2.j(i10, "Camera error: ");
+                    j10 = l.d.j(i10, "Camera error: ");
                 }
                 Logging.e("Camera1Session", j10);
                 Camera1Session.this.stopInternal();
@@ -235,9 +234,9 @@ public class Camera1Session implements CameraSession {
         }
         try {
             this.camera.startPreview();
-        } catch (RuntimeException e) {
+        } catch (RuntimeException e6) {
             stopInternal();
-            this.events.onCameraError(this, e.getMessage());
+            this.events.onCameraError(this, e6.getMessage());
         }
     }
 

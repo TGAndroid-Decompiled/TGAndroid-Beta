@@ -1,40 +1,40 @@
 package r4;
 
-import com.google.firebase.messaging.r;
+import com.google.firebase.messaging.s;
 import g5.n0;
 import java.util.ArrayList;
 import java.util.List;
 public final class k {
-    public final n0 f43305a;
-    public final r f43306b;
-    public final int[] f43307c;
+    public final n0 f46647a;
+    public final s f46648b;
+    public final int[] f46649c;
     public final int d;
-    public final g5.m e;
-    public final long f43308f;
-    public final n f43309g;
+    public final g5.m f46650e;
+    public final long f46651f;
+    public final n f46652g;
     public final i[] h;
-    public f5.c f43310i;
-    public s4.c f43311j;
-    public int f43312k;
-    public o4.b f43313l;
-    public boolean f43314m;
+    public f5.c f46653i;
+    public s4.c f46654j;
+    public int f46655k;
+    public o4.b f46656l;
+    public boolean f46657m;
 
-    public k(n0 n0Var, s4.c cVar, r rVar, int i10, int[] iArr, f5.c cVar2, int i11, g5.m mVar, long j10, boolean z4, ArrayList arrayList, n nVar) {
+    public k(n0 n0Var, s4.c cVar, s sVar, int i10, int[] iArr, f5.c cVar2, int i11, g5.m mVar, long j10, boolean z4, ArrayList arrayList, n nVar) {
         int i12;
         r3.k iVar;
         int i13;
         q4.d dVar;
         ?? obj = new Object();
-        obj.f43305a = n0Var;
-        obj.f43311j = cVar;
-        obj.f43306b = rVar;
-        obj.f43307c = iArr;
-        obj.f43310i = cVar2;
+        obj.f46647a = n0Var;
+        obj.f46654j = cVar;
+        obj.f46648b = sVar;
+        obj.f46649c = iArr;
+        obj.f46653i = cVar2;
         obj.d = i11;
-        obj.e = mVar;
-        obj.f43312k = i10;
-        obj.f43308f = j10;
-        obj.f43309g = nVar;
+        obj.f46650e = mVar;
+        obj.f46655k = i10;
+        obj.f46651f = j10;
+        obj.f46652g = nVar;
         long d = cVar.d(i10);
         ArrayList a2 = obj.a();
         obj.h = new i[cVar2.p()];
@@ -43,11 +43,11 @@ public final class k {
         k kVar = obj;
         while (i15 < kVar.h.length) {
             s4.m mVar2 = (s4.m) a2.get(cVar2.f(i15));
-            s4.b Q = rVar.Q(mVar2.f44023b);
+            s4.b n10 = sVar.n(mVar2.f46989b);
             i[] iVarArr = kVar.h;
             int i16 = i15;
-            Q = Q == null ? (s4.b) mVar2.f44023b.get(i14) : Q;
-            j3.n0 n0Var2 = mVar2.f44022a;
+            n10 = n10 == null ? (s4.b) mVar2.f46989b.get(i14) : n10;
+            j3.n0 n0Var2 = mVar2.f46988a;
             String str = n0Var2.B;
             if (h5.o.i(str)) {
                 i13 = i16;
@@ -69,7 +69,7 @@ public final class k {
             }
             q4.d dVar2 = dVar;
             int i17 = i13;
-            iVarArr[i17] = new i(d, mVar2, Q, dVar2, 0L, mVar2.c());
+            iVarArr[i17] = new i(d, mVar2, n10, dVar2, 0L, mVar2.c());
             i15 = i17 + 1;
             kVar = this;
             i14 = 0;
@@ -77,10 +77,10 @@ public final class k {
     }
 
     public final ArrayList a() {
-        List list = this.f43311j.b(this.f43312k).f44012c;
+        List list = this.f46654j.b(this.f46655k).f46977c;
         ArrayList arrayList = new ArrayList();
-        for (int i10 : this.f43307c) {
-            arrayList.addAll(((s4.a) list.get(i10)).f43981c);
+        for (int i10 : this.f46649c) {
+            arrayList.addAll(((s4.a) list.get(i10)).f46942c);
         }
         return arrayList;
     }
@@ -88,9 +88,9 @@ public final class k {
     public final i b(int i10) {
         i[] iVarArr = this.h;
         i iVar = iVarArr[i10];
-        s4.b Q = this.f43306b.Q(iVar.f43302b.f44023b);
-        if (Q != null && !Q.equals(iVar.f43303c)) {
-            i iVar2 = new i(iVar.e, iVar.f43302b, Q, iVar.f43301a, iVar.f43304f, iVar.d);
+        s4.b n10 = this.f46648b.n(iVar.f46643b.f46989b);
+        if (n10 != null && !n10.equals(iVar.f46644c)) {
+            i iVar2 = new i(iVar.f46645e, iVar.f46643b, n10, iVar.f46642a, iVar.f46646f, iVar.d);
             iVarArr[i10] = iVar2;
             return iVar2;
         }

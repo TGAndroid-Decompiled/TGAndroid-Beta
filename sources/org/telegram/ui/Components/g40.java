@@ -1,111 +1,58 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.ConnectionsManager;
-public abstract class g40 extends w51 {
-    public final int K;
-    public final ArrayList L;
-    public boolean M;
-    public nh.f6 N;
-    public boolean O;
-    public boolean P;
-    public int Q;
-    public int R;
-    public boolean S;
-    public int T;
-    public String U;
-    public String V;
-    public int W;
-    public ey X;
-    public final boolean[] Y;
+import android.view.View;
+import org.telegram.messenger.HashtagSearchController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class g40 implements Utilities.Callback5, Utilities.Callback5Return {
+    public final h40 f27100a;
 
-    public g40(sl0 sl0Var, Context context, int i10) {
-        super(sl0Var, context, i10, 0, false, null, null);
-        this.L = new ArrayList();
-        this.Q = 0;
-        this.R = -1;
-        this.Y = new boolean[1];
-        this.f30241s = new d(this, 16);
-        this.K = i10;
+    public g40(h40 h40Var) {
+        this.f27100a = h40Var;
     }
 
-    public static String X(String str, boolean[] zArr) {
-        boolean z4;
-        if (zArr != null) {
-            zArr[0] = false;
-        }
-        if (str != null && !str.isEmpty()) {
-            String trim = str.trim();
-            if (trim.length() > 1) {
-                if ((trim.charAt(0) == '#' || trim.charAt(0) == '$') && trim.indexOf(64) < 0) {
-                    if (zArr != null) {
-                        if (trim.charAt(0) == '$') {
-                            z4 = true;
-                        } else {
-                            z4 = false;
-                        }
-                        zArr[0] = z4;
-                    }
-                    return trim.substring(1);
-                }
-                return null;
-            }
-            return null;
-        }
-        return null;
-    }
-
-    public final void V() {
-        nh.f6 f6Var = this.N;
-        if (f6Var != null && f6Var.I != 0) {
-            ConnectionsManager.getInstance(f6Var.f15577c).cancelRequest(f6Var.I, true);
-            f6Var.I = 0;
-        }
-        this.M = false;
-        if (this.R >= 0) {
-            ConnectionsManager.getInstance(this.K).cancelRequest(this.R, true);
-            this.R = -1;
-        }
-        AndroidUtilities.cancelRunOnUIThread(this.X);
-        this.Q++;
-        this.P = false;
-    }
-
-    public final void W() {
-        sl0 sl0Var;
-        if (!TextUtils.isEmpty(this.U) && !this.S && !this.P && (sl0Var = this.d) != null) {
-            for (int i10 = 0; i10 < sl0Var.getChildCount(); i10++) {
-                if (sl0Var.getChildAt(i10) instanceof t00) {
-                    Y(this.U);
-                    return;
-                }
-            }
-        }
-    }
-
-    public final void Y(String str) {
-        this.U = str;
-        String X = X(str, this.Y);
-        if (!TextUtils.equals(this.V, X)) {
-            this.L.clear();
-            this.S = false;
-            this.T = 0;
-            V();
-        } else if (this.P) {
+    @Override
+    public void mo27run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        int i10 = ((j51) obj).d;
+        h40 h40Var = this.f27100a;
+        if (i10 == 0) {
+            HashtagSearchController.getInstance(h40Var.f27371a).clearHistory();
+            h40Var.f27375f.N(true);
             return;
         }
-        int i10 = this.Q + 1;
-        this.Q = i10;
-        if (X == null) {
-            return;
+        Utilities.Callback callback = h40Var.h;
+        if (callback != null) {
+            callback.run((String) h40Var.f27373c.get(i10 - 1));
         }
-        this.P = true;
-        N(true);
-        ey eyVar = new ey(this, i10, X, 3);
-        this.X = eyVar;
-        AndroidUtilities.runOnUIThread(eyVar, 300L);
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        int i10 = ((j51) obj).d;
+        boolean z4 = false;
+        if (i10 != 0) {
+            h40 h40Var = this.f27100a;
+            String str = (String) h40Var.f27373c.get(i10 - 1);
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(h40Var.getContext(), 0, h40Var.f27372b);
+            String string = LocaleController.getString(R.string.ClearSearchSingleAlertTitle);
+            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+            d2Var.O = string;
+            d2Var.Q = LocaleController.formatString(R.string.ClearSearchSingleHashtagAlertText, str);
+            alertDialog$Builder.k(LocaleController.getString(R.string.ClearSearchRemove), new o1(20, h40Var, str));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            d2Var.show();
+            z4 = true;
+        }
+        return Boolean.valueOf(z4);
     }
 }

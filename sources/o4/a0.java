@@ -1,30 +1,30 @@
 package o4;
 public final class a0 implements Runnable {
-    public final int f16292a;
-    public final e0 f16293b;
+    public final int f16434a;
+    public final e0 f16435b;
 
     public a0(e0 e0Var, int i10) {
-        this.f16292a = i10;
-        this.f16293b = e0Var;
+        this.f16434a = i10;
+        this.f16435b = e0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f16292a) {
+        switch (this.f16434a) {
             case 0:
-                this.f16293b.i();
+                this.f16435b.v();
                 return;
             case 1:
-                e0 e0Var = this.f16293b;
+                e0 e0Var = this.f16435b;
                 if (!e0Var.Y) {
                     s sVar = e0Var.D;
                     sVar.getClass();
-                    sVar.Z(e0Var);
+                    sVar.s(e0Var);
                     return;
                 }
                 return;
             default:
-                this.f16293b.S = true;
+                this.f16435b.S = true;
                 return;
         }
     }

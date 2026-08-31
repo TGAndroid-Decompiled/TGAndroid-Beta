@@ -1,21 +1,20 @@
 package org.telegram.ui;
+public final class g30 extends f2.v {
+    public final d60 f37074c;
 
-import android.view.ViewGroup;
-public final class g30 extends f2.l {
-    public final c60 F;
-
-    public g30(c60 c60Var) {
-        this.F = c60Var;
+    public g30(d60 d60Var) {
+        this.f37074c = d60Var;
     }
 
     @Override
-    public final void P(f2.l1 l1Var) {
-        ViewGroup viewGroup;
-        c60 c60Var = this.F;
-        c60Var.N.invalidate();
-        c60Var.X1.invalidate();
-        viewGroup = ((org.telegram.ui.ActionBar.g3) c60Var).containerView;
-        viewGroup.invalidate();
-        c60.J0(c60Var);
+    public final int i(int i10) {
+        int size = this.f37074c.f36058l2.f38021e.size();
+        if (size > 1 && size != 2) {
+            if (size != 3 || i10 == 0 || i10 == 1) {
+                return 3;
+            }
+            return 6;
+        }
+        return 6;
     }
 }

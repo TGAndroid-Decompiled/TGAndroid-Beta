@@ -2,11 +2,11 @@ package p2;
 
 import n7.qa;
 public final class d {
-    public final n f40979a;
-    public final String f40980b;
+    public final m f44133a;
+    public final String f44134b;
 
     public d(qa qaVar) {
-        this.f40979a = (n) qaVar.f14702b;
-        this.f40980b = (String) qaVar.f14703c;
+        this.f44133a = (m) qaVar.f15699b;
+        this.f44134b = (String) qaVar.f15700c;
     }
 }

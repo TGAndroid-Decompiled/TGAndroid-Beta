@@ -6,36 +6,36 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import androidx.core.graphics.drawable.IconCompat;
 public final class n extends b0 {
-    public IconCompat e;
-    public IconCompat f5001f;
-    public boolean f5002g;
+    public IconCompat f4828e;
+    public IconCompat f4829f;
+    public boolean f4830g;
 
     @Override
     public final void b(a4.k kVar) {
-        Context context = (Context) kVar.f86b;
-        Notification.BigPictureStyle bigContentTitle = new Notification.BigPictureStyle((Notification.Builder) kVar.f87c).setBigContentTitle(this.f4956b);
-        IconCompat iconCompat = this.e;
+        Context context = (Context) kVar.f93b;
+        Notification.BigPictureStyle bigContentTitle = new Notification.BigPictureStyle((Notification.Builder) kVar.f94c).setBigContentTitle(this.f4776b);
+        IconCompat iconCompat = this.f4828e;
         if (iconCompat != null) {
             if (Build.VERSION.SDK_INT >= 31) {
                 m.a(bigContentTitle, iconCompat.m(context));
             } else if (iconCompat.i() == 1) {
-                bigContentTitle = bigContentTitle.bigPicture(this.e.f());
+                bigContentTitle = bigContentTitle.bigPicture(this.f4828e.f());
             }
         }
-        if (this.f5002g) {
-            IconCompat iconCompat2 = this.f5001f;
+        if (this.f4830g) {
+            IconCompat iconCompat2 = this.f4829f;
             if (iconCompat2 == null) {
                 bigContentTitle.bigLargeIcon((Bitmap) null);
             } else if (Build.VERSION.SDK_INT >= 23) {
                 l.a(bigContentTitle, iconCompat2.m(context));
             } else if (iconCompat2.i() == 1) {
-                bigContentTitle.bigLargeIcon(this.f5001f.f());
+                bigContentTitle.bigLargeIcon(this.f4829f.f());
             } else {
                 bigContentTitle.bigLargeIcon((Bitmap) null);
             }
         }
         if (this.d) {
-            bigContentTitle.setSummaryText(this.f4957c);
+            bigContentTitle.setSummaryText(this.f4777c);
         }
         if (Build.VERSION.SDK_INT >= 31) {
             m.c(bigContentTitle, false);

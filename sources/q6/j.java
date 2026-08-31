@@ -2,13 +2,13 @@ package q6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import j7.f5;
+import j7.g5;
 import java.util.Arrays;
 public final class j extends l {
     public static final Parcelable.Creator<j> CREATOR = new r0(19);
-    public final b7.w0 f42920a;
-    public final b7.w0 f42921b;
-    public final b7.w0 f42922c;
+    public final b7.w0 f44683a;
+    public final b7.w0 f44684b;
+    public final b7.w0 f44685c;
     public final String[] d;
 
     public j(byte[] bArr, byte[] bArr2, byte[] bArr3, String[] strArr) {
@@ -18,9 +18,9 @@ public final class j extends l {
         b7.w0 t9 = b7.w0.t(bArr2.length, bArr2);
         b6.m.h(bArr3);
         b7.w0 t10 = b7.w0.t(bArr3.length, bArr3);
-        this.f42920a = t6;
-        this.f42921b = t9;
-        this.f42922c = t10;
+        this.f44683a = t6;
+        this.f44684b = t9;
+        this.f44685c = t10;
         b6.m.h(strArr);
         this.d = strArr;
     }
@@ -32,7 +32,7 @@ public final class j extends l {
     public final boolean equals(Object obj) {
         if (obj instanceof j) {
             j jVar = (j) obj;
-            if (b6.m.l(this.f42920a, jVar.f42920a) && b6.m.l(this.f42921b, jVar.f42921b) && b6.m.l(this.f42922c, jVar.f42922c)) {
+            if (b6.m.l(this.f44683a, jVar.f44683a) && b6.m.l(this.f44684b, jVar.f44684b) && b6.m.l(this.f44685c, jVar.f44685c)) {
                 return true;
             }
             return false;
@@ -41,17 +41,17 @@ public final class j extends l {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(Arrays.hashCode(new Object[]{this.f42920a})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f42921b})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f42922c}))});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(Arrays.hashCode(new Object[]{this.f44683a})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f44684b})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f44685c}))});
     }
 
     public final String toString() {
         androidx.biometric.e eVar = new androidx.biometric.e(getClass().getSimpleName(), 7);
         b7.o0 o0Var = b7.q0.d;
-        byte[] u10 = this.f42920a.u();
+        byte[] u10 = this.f44683a.u();
         eVar.D(o0Var.c(u10.length, u10), "keyHandle");
-        byte[] u11 = this.f42921b.u();
+        byte[] u11 = this.f44684b.u();
         eVar.D(o0Var.c(u11.length, u11), "clientDataJSON");
-        byte[] u12 = this.f42922c.u();
+        byte[] u12 = this.f44685c.u();
         eVar.D(o0Var.c(u12.length, u12), "attestationObject");
         eVar.D(Arrays.toString(this.d), "transports");
         return eVar.toString();
@@ -59,11 +59,11 @@ public final class j extends l {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q10 = f5.q(parcel, 20293);
-        f5.c(parcel, 2, this.f42920a.u());
-        f5.c(parcel, 3, this.f42921b.u());
-        f5.c(parcel, 4, this.f42922c.u());
-        f5.m(parcel, 5, this.d);
-        f5.r(parcel, q10);
+        int q10 = g5.q(parcel, 20293);
+        g5.c(parcel, 2, this.f44683a.u());
+        g5.c(parcel, 3, this.f44684b.u());
+        g5.c(parcel, 4, this.f44685c.u());
+        g5.m(parcel, 5, this.d);
+        g5.r(parcel, q10);
     }
 }

@@ -1,22 +1,18 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-public final class bt0 implements View.OnClickListener {
-    public final long f23746a;
-    public final org.telegram.ui.ActionBar.f6 f23747b;
-    public final Context f23748c;
-    public final yu0 d;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class bt0 extends mq0 {
+    public final org.telegram.ui.ActionBar.p2 Y0;
 
-    public bt0(yu0 yu0Var, long j10, org.telegram.ui.ActionBar.f6 f6Var, Context context) {
-        this.d = yu0Var;
-        this.f23746a = j10;
-        this.f23747b = f6Var;
-        this.f23748c = context;
+    public bt0(Context context, String str, String str2, org.telegram.ui.ActionBar.g6 g6Var, org.telegram.ui.ActionBar.p2 p2Var) {
+        super(context, null, str, false, str2, false, g6Var);
+        this.Y0 = p2Var;
     }
 
     @Override
-    public final void onClick(android.view.View r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bt0.onClick(android.view.View):void");
+    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z4) {
+        AndroidUtilities.runOnUIThread(new gy(this.Y0, hVar, i10, 12), 100L);
     }
 }

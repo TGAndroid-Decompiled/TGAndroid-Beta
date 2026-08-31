@@ -2,7 +2,7 @@ package h7;
 
 import java.util.Set;
 public abstract class f extends a implements Set, j$.util.Set {
-    public transient d f7019b;
+    public transient d f7328b;
 
     @Override
     public final boolean equals(Object obj) {

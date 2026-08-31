@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
-public final class vl extends ph.f3 {
+public final class vl extends qh.f3 {
     public final xn I0;
 
     public vl(xn xnVar, Activity activity) {
@@ -13,6 +13,6 @@ public final class vl extends ph.f3 {
     @Override
     public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
         super.onLayout(z4, i10, i11, i12, i13);
-        setTranslationY(((-getTop()) - AndroidUtilities.dp(120.0f)) + this.I0.f40262z1);
+        setTranslationY(((-getTop()) - AndroidUtilities.dp(120.0f)) + this.I0.f43431z1);
     }
 }

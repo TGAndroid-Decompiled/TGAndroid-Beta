@@ -8,21 +8,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 public final class l extends m {
-    public static final l f45056n;
+    public static final l f48305n;
     public final List d;
-    public final List e;
-    public final List f45057f;
-    public final List f45058g;
+    public final List f48306e;
+    public final List f48307f;
+    public final List f48308g;
     public final List h;
-    public final List f45059i;
-    public final n0 f45060j;
-    public final List f45061k;
-    public final Map f45062l;
-    public final List f45063m;
+    public final List f48309i;
+    public final n0 f48310j;
+    public final List f48311k;
+    public final Map f48312l;
+    public final List f48313m;
 
     static {
         List list = Collections.EMPTY_LIST;
-        f45056n = new l("", list, list, list, list, list, list, null, list, false, Collections.EMPTY_MAP, list);
+        f48305n = new l("", list, list, list, list, list, list, null, list, false, Collections.EMPTY_MAP, list);
     }
 
     public l(String str, List list, List list2, List list3, List list4, List list5, List list6, n0 n0Var, List list7, boolean z4, Map map, List list8) {
@@ -30,7 +30,7 @@ public final class l extends m {
         List list9;
         ArrayList arrayList = new ArrayList();
         for (int i10 = 0; i10 < list2.size(); i10++) {
-            Uri uri = ((k) list2.get(i10)).f45052a;
+            Uri uri = ((k) list2.get(i10)).f48300a;
             if (!arrayList.contains(uri)) {
                 arrayList.add(uri);
             }
@@ -40,25 +40,25 @@ public final class l extends m {
         b(arrayList, list5);
         b(arrayList, list6);
         this.d = DesugarCollections.unmodifiableList(arrayList);
-        this.e = DesugarCollections.unmodifiableList(list2);
-        this.f45057f = DesugarCollections.unmodifiableList(list3);
-        this.f45058g = DesugarCollections.unmodifiableList(list4);
+        this.f48306e = DesugarCollections.unmodifiableList(list2);
+        this.f48307f = DesugarCollections.unmodifiableList(list3);
+        this.f48308g = DesugarCollections.unmodifiableList(list4);
         this.h = DesugarCollections.unmodifiableList(list5);
-        this.f45059i = DesugarCollections.unmodifiableList(list6);
-        this.f45060j = n0Var;
+        this.f48309i = DesugarCollections.unmodifiableList(list6);
+        this.f48310j = n0Var;
         if (list7 != null) {
             list9 = DesugarCollections.unmodifiableList(list7);
         } else {
             list9 = null;
         }
-        this.f45061k = list9;
-        this.f45062l = DesugarCollections.unmodifiableMap(map);
-        this.f45063m = DesugarCollections.unmodifiableList(list8);
+        this.f48311k = list9;
+        this.f48312l = DesugarCollections.unmodifiableMap(map);
+        this.f48313m = DesugarCollections.unmodifiableList(list8);
     }
 
     public static void b(ArrayList arrayList, List list) {
         for (int i10 = 0; i10 < list.size(); i10++) {
-            Uri uri = ((j) list.get(i10)).f45049a;
+            Uri uri = ((j) list.get(i10)).f48297a;
             if (!arrayList.contains(uri)) {
                 arrayList.add(uri);
             }
@@ -73,7 +73,7 @@ public final class l extends m {
             while (true) {
                 if (i12 < list2.size()) {
                     n4.b bVar = (n4.b) list2.get(i12);
-                    if (bVar.f14262b == i10 && bVar.f14263c == i11) {
+                    if (bVar.f15240b == i10 && bVar.f15241c == i11) {
                         arrayList.add(obj);
                         break;
                     }
@@ -86,8 +86,8 @@ public final class l extends m {
 
     @Override
     public final Object a(List list) {
-        ArrayList c3 = c(0, this.e, list);
+        ArrayList c3 = c(0, this.f48306e, list);
         List list2 = Collections.EMPTY_LIST;
-        return new l(this.f45064a, this.f45065b, c3, list2, c(1, this.f45058g, list), c(2, this.h, list), list2, this.f45060j, this.f45061k, this.f45066c, this.f45062l, this.f45063m);
+        return new l(this.f48314a, this.f48315b, c3, list2, c(1, this.f48308g, list), c(2, this.h, list), list2, this.f48310j, this.f48311k, this.f48316c, this.f48312l, this.f48313m);
     }
 }

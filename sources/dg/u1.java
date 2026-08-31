@@ -1,68 +1,77 @@
 package dg;
 
 import android.content.Context;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Paint;
-import android.text.TextPaint;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.fa;
-import ph.o4;
-public final class u1 extends org.telegram.ui.Cells.v0 {
-    public final fa f4807h2;
-    public final TextPaint f4808i2;
-    public final w1 f4809j2;
+import android.view.ViewGroup;
+import java.io.Serializable;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.g6;
+public final class u1 implements Runnable {
+    public final int f4684a;
+    public final int f4685b;
+    public final Object f4686c;
+    public final Object d;
+    public final Object f4687e;
 
-    public u1(w1 w1Var, Context context, a9.a aVar) {
-        super(context, aVar, false);
-        this.f4809j2 = w1Var;
-        this.f4807h2 = new fa(w1Var.d, this, 10, false);
-        TextPaint textPaint = new TextPaint(1);
-        this.f4808i2 = textPaint;
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
-        textPaint.setColor(-1);
+    public u1(int i10, Context context, g6 g6Var, TL_stars.SavedStarGift savedStarGift) {
+        this.f4684a = 4;
+        this.f4685b = i10;
+        this.f4686c = context;
+        this.d = g6Var;
+        this.f4687e = savedStarGift;
     }
 
     @Override
-    public final Paint G(String str) {
-        float f10;
-        float f11;
-        if (!"paintChatActionText".equals(str) && !"paintChatActionText2".equals(str)) {
-            if ("paintChatActionBackground".equals(str)) {
-                o4 o4Var = this.f4809j2.h;
-                o4Var.f4355s0 = true;
-                boolean z4 = o4Var.f4361y0;
-                fa faVar = this.f4807h2;
-                if (faVar.f24841r != z4) {
-                    faVar.f24841r = z4;
-                    if (faVar.f24832i == 10) {
-                        ColorMatrix colorMatrix = new ColorMatrix();
-                        colorMatrix.setSaturation(1.6f);
-                        if (faVar.f24841r) {
-                            f10 = 0.97f;
-                        } else {
-                            f10 = 0.92f;
-                        }
-                        AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, f10);
-                        if (faVar.f24841r) {
-                            f11 = 0.12f;
-                        } else {
-                            f11 = -0.06f;
-                        }
-                        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, f11);
-                        faVar.h.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                        faVar.f24831g.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                    }
-                }
-                Paint c3 = faVar.c(1.0f);
-                if (c3 != null) {
-                    return c3;
-                }
-            }
-            return super.G(str);
-        }
-        return this.f4808i2;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: dg.u1.run():void");
+    }
+
+    public u1(ViewGroup viewGroup, Object obj, Object obj2, int i10, int i11) {
+        this.f4684a = i11;
+        this.f4686c = viewGroup;
+        this.d = obj;
+        this.f4687e = obj2;
+        this.f4685b = i10;
+    }
+
+    public u1(fg.v0 v0Var, ArrayList arrayList, int i10, TLRPC.TL_messages_inactiveChats tL_messages_inactiveChats) {
+        this.f4684a = 3;
+        this.f4686c = v0Var;
+        this.f4687e = arrayList;
+        this.f4685b = i10;
+        this.d = tL_messages_inactiveChats;
+    }
+
+    public u1(Object obj, int i10, Object obj2, Object obj3, int i11) {
+        this.f4684a = i11;
+        this.f4686c = obj;
+        this.f4685b = i10;
+        this.d = obj2;
+        this.f4687e = obj3;
+    }
+
+    public u1(Object obj, int i10, ArrayList arrayList, Serializable serializable, int i11) {
+        this.f4684a = i11;
+        this.f4686c = obj;
+        this.f4685b = i10;
+        this.f4687e = arrayList;
+        this.d = serializable;
+    }
+
+    public u1(Object obj, Object obj2, int i10, Object obj3, int i11) {
+        this.f4684a = i11;
+        this.f4686c = obj;
+        this.d = obj2;
+        this.f4685b = i10;
+        this.f4687e = obj3;
+    }
+
+    public u1(Object obj, ArrayList arrayList, Object obj2, int i10, int i11) {
+        this.f4684a = i11;
+        this.f4686c = obj;
+        this.f4687e = arrayList;
+        this.d = obj2;
+        this.f4685b = i10;
     }
 }

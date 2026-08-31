@@ -1,74 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.widget.FrameLayout;
-public final class up0 extends AnimatorListenerAdapter {
-    public final int f29269a;
-    public final boolean f29270b;
-    public final lq0 f29271c;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+public final class up0 implements View.OnTouchListener {
+    public final int f31701a;
+    public final Rect f31702b;
+    public final mq0 f31703c;
 
-    public up0(lq0 lq0Var, boolean z4, int i10) {
-        this.f29269a = i10;
-        this.f29271c = lq0Var;
-        this.f29270b = z4;
-    }
-
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f29269a) {
-            case 0:
-                AnimatorSet[] animatorSetArr = this.f29271c.Q;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    animatorSetArr[0] = null;
-                    return;
-                }
+    public up0(mq0 mq0Var, int i10) {
+        this.f31701a = i10;
+        switch (i10) {
+            case 1:
+                this.f31703c = mq0Var;
+                this.f31702b = new Rect();
                 return;
             default:
-                lq0 lq0Var = this.f29271c;
-                if (animator.equals(lq0Var.f26873y)) {
-                    lq0Var.f26873y = null;
-                    return;
-                }
+                this.f31703c = mq0Var;
+                this.f31702b = new Rect();
                 return;
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f29269a) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        mq0 mq0Var;
+        org.telegram.ui.ActionBar.p1 p1Var;
+        mq0 mq0Var2;
+        org.telegram.ui.ActionBar.p1 p1Var2;
+        switch (this.f31701a) {
             case 0:
-                lq0 lq0Var = this.f29271c;
-                AnimatorSet[] animatorSetArr = lq0Var.Q;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f29270b) {
-                        lq0Var.P[0].setVisibility(4);
+                if (motionEvent.getActionMasked() == 0 && (p1Var = (mq0Var = this.f31703c).G0) != null && p1Var.isShowing()) {
+                    Rect rect = this.f31702b;
+                    view.getHitRect(rect);
+                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        mq0Var.G0.d(true);
+                        return false;
                     }
-                    animatorSetArr[0] = null;
-                    return;
+                    return false;
                 }
-                return;
+                return false;
             default:
-                lq0 lq0Var2 = this.f29271c;
-                FrameLayout frameLayout = lq0Var2.h;
-                if (animator.equals(lq0Var2.f26873y)) {
-                    if (!this.f29270b) {
-                        lq0Var2.f26845c.setVisibility(4);
-                        FrameLayout frameLayout2 = lq0Var2.Z;
-                        if (frameLayout2 != null && frameLayout == null) {
-                            frameLayout2.setVisibility(4);
-                        }
-                        lq0Var2.f26849f.setVisibility(4);
-                    } else if (frameLayout != null) {
-                        frameLayout.setVisibility(4);
+                if (motionEvent.getActionMasked() == 0 && (p1Var2 = (mq0Var2 = this.f31703c).G0) != null && p1Var2.isShowing()) {
+                    Rect rect2 = this.f31702b;
+                    view.getHitRect(rect2);
+                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        mq0Var2.G0.d(true);
+                        return false;
                     }
-                    lq0Var2.f26873y = null;
-                    return;
+                    return false;
                 }
-                return;
+                return false;
         }
     }
 }

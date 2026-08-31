@@ -6,7 +6,7 @@ public final class b extends uc.a implements f {
     private volatile Object _preHandler;
 
     public b() {
-        super(b0.f11860a);
+        super(b0.f12282a);
         this._preHandler = this;
     }
 

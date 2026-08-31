@@ -1,36 +1,15 @@
 package org.telegram.ui;
+public final class nv implements Runnable {
+    public final int f39528a;
+    public final py f39529b;
 
-import android.content.DialogInterface;
-public final class nv implements DialogInterface.OnDismissListener {
-    public final int f36729a;
-    public final oy f36730b;
-
-    public nv(oy oyVar, int i10) {
-        this.f36729a = i10;
-        this.f36730b = oyVar;
+    public nv(py pyVar, int i10) {
+        this.f39528a = i10;
+        this.f39529b = pyVar;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f36729a) {
-            case 0:
-                oy.i0(this.f36730b);
-                return;
-            case 1:
-                oy oyVar = this.f36730b;
-                if (oyVar.P3 != null) {
-                    oyVar.getMessagesController().removeSuggestion(0L, oyVar.P3);
-                    oyVar.P3 = null;
-                    oyVar.L4();
-                    return;
-                }
-                return;
-            case 2:
-                this.f36730b.b4(true);
-                return;
-            default:
-                this.f36730b.b4(true);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.nv.run():void");
     }
 }

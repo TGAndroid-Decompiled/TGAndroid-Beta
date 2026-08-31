@@ -6,12 +6,12 @@ import android.text.TextUtils;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import j7.q5;
+import j7.o5;
 import org.telegram.ui.yh;
 public abstract class m {
-    public static final Object f1624a = new Object();
-    public static boolean f1625b;
-    public static int f1626c;
+    public static final Object f1757a = new Object();
+    public static boolean f1758b;
+    public static int f1759c;
 
     public static void a(String str, boolean z4) {
         if (z4) {
@@ -107,15 +107,15 @@ public abstract class m {
     }
 
     public static com.google.android.gms.common.api.f m(Status status) {
-        if (status.f2720c != null) {
+        if (status.f2648c != null) {
             return new com.google.android.gms.common.api.f(status);
         }
         return new com.google.android.gms.common.api.f(status);
     }
 
-    public static Task n(q5 q5Var, l lVar) {
+    public static Task n(o5 o5Var, l lVar) {
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        q5Var.b(new u(q5Var, taskCompletionSource, lVar));
+        o5Var.b(new u(o5Var, taskCompletionSource, lVar));
         return taskCompletionSource.getTask();
     }
 }

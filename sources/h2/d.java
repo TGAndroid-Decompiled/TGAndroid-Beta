@@ -20,8 +20,8 @@ import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
 public abstract class d {
-    public static volatile ArrayList f6897a;
-    public static final Object f6898b = new Object();
+    public static volatile ArrayList f7195a;
+    public static final Object f7196b = new Object();
 
     public static String a(XmlResourceParser xmlResourceParser, String str) {
         String attributeValue = xmlResourceParser.getAttributeValue("http://schemas.android.com/apk/res/android", str);
@@ -52,15 +52,15 @@ public abstract class d {
                     if (next == 1) {
                         break;
                     } else if (next == 2 && newPullParser.getName().equals("target") && (f10 = f(newPullParser, context)) != null) {
-                        kVar.put(f10.f6909c.f6334b, f10);
+                        kVar.put(f10.f7207c.f6808b, f10);
                     }
                 }
             }
             fileInputStream.close();
             return kVar;
-        } catch (Exception e) {
+        } catch (Exception e6) {
             file.delete();
-            Log.e("ShortcutInfoCompatSaver", "Failed to load saved values from file " + file.getAbsolutePath() + ". Old state removed, new added", e);
+            Log.e("ShortcutInfoCompatSaver", "Failed to load saved values from file " + file.getAbsolutePath() + ". Old state removed, new added", e6);
             return kVar;
         }
     }
@@ -124,8 +124,8 @@ public abstract class d {
                                 } else if (next == 2 && loadXmlMetaData.getName().equals("share-target") && (d = d(loadXmlMetaData)) != null) {
                                     arrayList2.add(d);
                                 }
-                            } catch (Exception e) {
-                                Log.e("ShareTargetXmlParser", "Failed to parse the Xml resource: ", e);
+                            } catch (Exception e6) {
+                                Log.e("ShareTargetXmlParser", "Failed to parse the Xml resource: ", e6);
                             }
                         }
                         loadXmlMetaData.close();
@@ -200,29 +200,29 @@ public abstract class d {
             }
         }
         ?? obj = new Object();
-        obj.f6333a = context;
-        obj.f6334b = b10;
-        obj.e = b11;
-        obj.f6342m = parseInt;
+        obj.f6807a = context;
+        obj.f6808b = b10;
+        obj.f6810e = b11;
+        obj.f6817m = parseInt;
         if (!TextUtils.isEmpty(b12)) {
-            obj.f6336f = b12;
+            obj.f6811f = b12;
         }
         if (!TextUtils.isEmpty(b13)) {
-            obj.f6337g = b13;
+            obj.f6812g = b13;
         }
         if (unflattenFromString != null) {
             obj.d = unflattenFromString;
         }
         if (!arrayList.isEmpty()) {
-            obj.f6335c = (Intent[]) arrayList.toArray(new Intent[0]);
+            obj.f6809c = (Intent[]) arrayList.toArray(new Intent[0]);
         }
         if (!hashSet.isEmpty()) {
             a0.g gVar = new a0.g(0);
             gVar.addAll(hashSet);
-            obj.f6339j = gVar;
+            obj.f6814j = gVar;
         }
-        if (!TextUtils.isEmpty(obj.e)) {
-            Intent[] intentArr = obj.f6335c;
+        if (!TextUtils.isEmpty(obj.f6810e)) {
+            Intent[] intentArr = obj.f6809c;
             if (intentArr != null && intentArr.length != 0) {
                 return new h(obj, b15, b16);
             }
@@ -241,17 +241,17 @@ public abstract class d {
     public static void h(XmlSerializer xmlSerializer, h hVar) {
         Intent[] intentArr;
         xmlSerializer.startTag(null, "target");
-        g0.c cVar = hVar.f6909c;
-        String str = hVar.f6908b;
-        String str2 = hVar.f6907a;
-        g(xmlSerializer, "id", cVar.f6334b);
-        g(xmlSerializer, "short_label", cVar.e.toString());
-        g(xmlSerializer, "rank", Integer.toString(cVar.f6342m));
-        if (!TextUtils.isEmpty(cVar.f6336f)) {
-            g(xmlSerializer, "long_label", cVar.f6336f.toString());
+        g0.c cVar = hVar.f7207c;
+        String str = hVar.f7206b;
+        String str2 = hVar.f7205a;
+        g(xmlSerializer, "id", cVar.f6808b);
+        g(xmlSerializer, "short_label", cVar.f6810e.toString());
+        g(xmlSerializer, "rank", Integer.toString(cVar.f6817m));
+        if (!TextUtils.isEmpty(cVar.f6811f)) {
+            g(xmlSerializer, "long_label", cVar.f6811f.toString());
         }
-        if (!TextUtils.isEmpty(cVar.f6337g)) {
-            g(xmlSerializer, "disabled_message", cVar.f6337g.toString());
+        if (!TextUtils.isEmpty(cVar.f6812g)) {
+            g(xmlSerializer, "disabled_message", cVar.f6812g.toString());
         }
         ComponentName componentName = cVar.d;
         if (componentName != null) {
@@ -263,7 +263,7 @@ public abstract class d {
         if (!TextUtils.isEmpty(str)) {
             g(xmlSerializer, "icon_bitmap_path", str);
         }
-        Intent[] intentArr2 = cVar.f6335c;
+        Intent[] intentArr2 = cVar.f6809c;
         for (Intent intent : (Intent[]) Arrays.copyOf(intentArr2, intentArr2.length)) {
             xmlSerializer.startTag(null, "intent");
             g(xmlSerializer, "action", intent.getAction());
@@ -273,7 +273,7 @@ public abstract class d {
             }
             xmlSerializer.endTag(null, "intent");
         }
-        for (String str3 : cVar.f6339j) {
+        for (String str3 : cVar.f6814j) {
             if (!TextUtils.isEmpty(str3)) {
                 xmlSerializer.startTag(null, "categories");
                 g(xmlSerializer, "name", str3);

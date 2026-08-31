@@ -1,136 +1,182 @@
 package lh;
 
-import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
 import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.ChannelBoostsController;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import java.util.HashMap;
+import mh.j7;
+import mh.l7;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.as;
-import org.telegram.ui.Components.c70;
-import org.telegram.ui.jo0;
-import org.telegram.ui.oy;
-import org.telegram.ui.po;
-public final class r2 implements View.OnClickListener {
-    public final int f13004a;
-    public final long f13005b;
-    public final Object f13006c;
-    public final Object d;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.e81;
+import org.telegram.ui.Components.pr0;
+public final class r2 extends e81 {
+    public final int f12920a;
+    public final g6 f12921b;
+    public final pr0 f12922c;
 
-    public r2(Object obj, Object obj2, long j10, int i10) {
-        this.f13004a = i10;
-        this.f13006c = obj;
-        this.d = obj2;
-        this.f13005b = j10;
+    public r2(pr0 pr0Var, int i10, g6 g6Var) {
+        this.f12922c = pr0Var;
+        this.f12920a = i10;
+        this.f12921b = g6Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f13004a) {
-            case 0:
-                g5.Y0((g5) this.f13006c, (String) this.d, this.f13005b);
-                return;
-            case 1:
-                final po poVar = (po) this.f13006c;
-                final boolean[] zArr = (boolean[]) this.d;
-                if (!zArr[0]) {
-                    final org.telegram.ui.ActionBar.d2 d2Var = new org.telegram.ui.ActionBar.d2(poVar.getParentActivity(), 3, null);
-                    d2Var.q(400L);
-                    zArr[0] = true;
-                    final boolean z4 = !poVar.J.b();
-                    if (poVar.J.getCheckBox().C == null) {
-                        poVar.J.setChecked(z4);
-                    }
-                    ChannelBoostsController boostsController = poVar.getMessagesController().getBoostsController();
-                    final long j10 = this.f13005b;
-                    boostsController.getBoostsStats(j10, new h5.d() {
-                        @Override
-                        public final void accept(Object obj) {
-                            int i10;
-                            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
-                            po poVar2 = po.this;
-                            TLRPC.Chat chat = poVar2.f37406u0;
-                            int i11 = chat.level;
-                            int i12 = tL_premium_boostsStatus.level;
-                            if (i11 != i12) {
-                                chat.level = i12;
-                                poVar2.getMessagesController().putChat(poVar2.f37406u0, false);
-                            }
-                            Switch checkBox = poVar2.J.getCheckBox();
-                            if (tL_premium_boostsStatus.level < poVar2.getMessagesController().channelAutotranslationLevelMin) {
-                                i10 = R.drawable.permission_locked;
-                            } else {
-                                i10 = 0;
-                            }
-                            checkBox.setIcon(i10);
-                            boolean z10 = z4;
-                            boolean[] zArr2 = zArr;
-                            org.telegram.ui.ActionBar.d2 d2Var2 = d2Var;
-                            if (z10 && tL_premium_boostsStatus.level < poVar2.getMessagesController().channelAutotranslationLevelMin) {
-                                poVar2.J.setChecked(false);
-                                zArr2[0] = false;
-                                ChannelBoostsController boostsController2 = poVar2.getMessagesController().getBoostsController();
-                                long j11 = j10;
-                                boostsController2.userCanBoostChannel(j11, tL_premium_boostsStatus, new lh.w1(poVar2, d2Var2, tL_premium_boostsStatus, j11));
-                                return;
-                            }
-                            TLRPC.TL_channels_toggleAutotranslation tL_channels_toggleAutotranslation = new TLRPC.TL_channels_toggleAutotranslation();
-                            poVar2.getMessagesController();
-                            tL_channels_toggleAutotranslation.channel = MessagesController.getInputChannel(poVar2.f37406u0);
-                            tL_channels_toggleAutotranslation.enabled = z10;
-                            poVar2.J.setChecked(z10);
-                            zArr2[0] = false;
-                            d2Var2.dismiss();
-                            poVar2.getConnectionsManager().sendRequest(tL_channels_toggleAutotranslation, new org.telegram.messenger.zd(4, poVar2, z10), 64);
-                        }
-                    });
-                    return;
-                }
-                return;
-            case 2:
-                ((org.telegram.ui.ActionBar.d2[]) this.f13006c)[0].dismiss();
-                ((as) this.d).run(-this.f13005b);
-                return;
-            case 3:
-                ((org.telegram.ui.ActionBar.d2[]) this.f13006c)[0].dismiss();
-                ((as) this.d).run(-this.f13005b);
-                return;
-            case 4:
-                c70.N((c70) this.f13006c, (Context) this.d, this.f13005b);
-                return;
-            case 5:
-                oy oyVar = (oy) this.f13006c;
-                boolean hasUnread = ((org.telegram.ui.Cells.r2) this.d).getHasUnread();
-                long j11 = this.f13005b;
-                if (hasUnread) {
-                    oyVar.j4(j11);
-                } else {
-                    oyVar.getMessagesController().markDialogAsUnread(j11, null, 0L);
-                }
-                oyVar.finishPreviewFragment();
-                return;
-            default:
-                jo0 jo0Var = (jo0) this.f13006c;
-                jo0Var.getClass();
-                long longValue = ((Long) ((TextView) this.d).getTag()).longValue();
-                Long l10 = jo0Var.E0;
-                if (l10 != null && longValue == l10.longValue()) {
-                    jo0Var.f35404j0 = true;
-                    jo0Var.f35399f[0].setText("");
-                    jo0Var.f35404j0 = false;
-                    jo0Var.E0 = 0L;
-                    jo0Var.L0();
-                } else {
-                    jo0Var.f35399f[0].setText(LocaleController.getInstance().formatCurrencyString(this.f13005b, false, true, true, jo0Var.f35425z0.invoice.currency));
-                }
-                EditTextBoldCursor editTextBoldCursor = jo0Var.f35399f[0];
-                editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                return;
+    public final void a(ArrayList arrayList) {
+        pr0 pr0Var = this.f12922c;
+        k2 k2Var = pr0Var.K;
+        j7 j7Var = pr0Var.f13101e;
+        ArrayList arrayList2 = new ArrayList();
+        int size = arrayList.size();
+        int i10 = 0;
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList.get(i11);
+            i11++;
+            Integer num = (Integer) obj;
+            int intValue = num.intValue();
+            if (intValue != -1 && intValue != -2) {
+                arrayList2.add(num);
+            }
         }
+        j7Var.getClass();
+        HashMap hashMap = new HashMap();
+        ArrayList arrayList3 = j7Var.f14303e;
+        int size2 = arrayList3.size();
+        int i12 = 0;
+        while (i12 < size2) {
+            Object obj2 = arrayList3.get(i12);
+            i12++;
+            TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj2;
+            hashMap.put(Integer.valueOf(tL_starGiftCollection.collection_id), tL_starGiftCollection);
+        }
+        ArrayList arrayList4 = new ArrayList();
+        int size3 = arrayList2.size();
+        int i13 = 0;
+        while (i13 < size3) {
+            Object obj3 = arrayList2.get(i13);
+            i13++;
+            Integer num2 = (Integer) obj3;
+            num2.getClass();
+            TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) hashMap.get(num2);
+            if (tL_starGiftCollection2 != null) {
+                arrayList4.add(tL_starGiftCollection2);
+            }
+        }
+        arrayList3.clear();
+        arrayList3.addAll(arrayList4);
+        j7Var.j();
+        n3 currentPage = pr0Var.getCurrentPage();
+        if (currentPage != null) {
+            if (currentPage.d) {
+                i10 = j7Var.f(currentPage.f12863e.d) + 1;
+            }
+            pr0Var.f13103n.e(0.0f, i10, i10);
+        }
+        AndroidUtilities.cancelRunOnUIThread(k2Var);
+        AndroidUtilities.runOnUIThread(k2Var, 1000L);
+    }
+
+    @Override
+    public final void b(View view, int i10, int i11) {
+        l7 l7Var;
+        boolean z4;
+        pr0 pr0Var = this.f12922c;
+        j7 j7Var = pr0Var.f13101e;
+        n3 n3Var = (n3) view;
+        int i12 = 0;
+        if (i11 == 0) {
+            l7Var = pr0Var.d;
+            z4 = false;
+        } else {
+            int i13 = i10 - 1;
+            if (i13 >= 0) {
+                if (i13 < j7Var.d().size()) {
+                    l7Var = j7Var.e(((TL_stars.TL_starGiftCollection) j7Var.d().get(i13)).collection_id);
+                    z4 = true;
+                }
+            } else {
+                j7Var.getClass();
+            }
+            l7Var = null;
+            z4 = true;
+        }
+        n3Var.d = z4;
+        n3Var.f12863e = l7Var;
+        if (l7Var != null) {
+            l7Var.a();
+        }
+        n3Var.f(false);
+        LinearLayout linearLayout = n3Var.B;
+        if (linearLayout != null) {
+            if (!n3Var.f12860a.f13101e.h()) {
+                i12 = 8;
+            }
+            linearLayout.setVisibility(i12);
+        }
+        n3Var.setVisibleHeight(pr0Var.N);
+        n3Var.setHasTabs(!j7Var.d().isEmpty());
+    }
+
+    @Override
+    public final boolean c(int i10) {
+        if (i10 == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final View d(int i10) {
+        if (i10 == -1) {
+            return null;
+        }
+        return new n3(this.f12922c, this.f12920a, this.f12921b);
+    }
+
+    @Override
+    public final int e() {
+        return this.f12922c.f13101e.d().size() + 1;
+    }
+
+    @Override
+    public final int f(int i10) {
+        if (i10 == 0) {
+            return -2;
+        }
+        return ((TL_stars.TL_starGiftCollection) this.f12922c.f13101e.d().get(i10 - 1)).collection_id;
+    }
+
+    @Override
+    public final CharSequence g(int i10) {
+        if (i10 == 0) {
+            return LocaleController.getString(R.string.Gift2CollectionAll);
+        }
+        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f12922c.f13101e.d().get(i10 - 1);
+        if (tL_starGiftCollection == null) {
+            return null;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_starGiftCollection.title);
+        if (tL_starGiftCollection.icon != null) {
+            TextPaint textPaint = new TextPaint(1);
+            textPaint.setTextSize(AndroidUtilities.dp(16.0f));
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("e ");
+            spannableStringBuilder2.setSpan(new org.telegram.ui.Components.u5(tL_starGiftCollection.icon, textPaint.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.insert(0, (CharSequence) spannableStringBuilder2);
+        }
+        return spannableStringBuilder;
+    }
+
+    @Override
+    public final int h(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        return 1;
     }
 }

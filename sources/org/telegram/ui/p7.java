@@ -11,6 +11,6 @@ public final class p7 extends org.telegram.ui.Cells.r7 {
 
     @Override
     public final void h() {
-        this.D0.v.v.r(null, (mh.a) getTag(), true);
+        this.D0.v.v.Y(null, (nh.a) getTag(), true);
     }
 }

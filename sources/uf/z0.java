@@ -1,95 +1,53 @@
 package uf;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import k7.b6;
-import kh.a2;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Components.g61;
-import ph.d4;
-import ph.ga;
-public final class z0 extends p2 {
-    public final CharSequence f45486a;
-    public final ArrayList f45487b;
-    public final int f45488c;
-    public final int d;
-    public final int e;
-    public ga f45489f;
-    public v0 h;
-    public g61 f45490n;
-    public boolean f45491r;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.iw0;
+public final class z0 extends sl0 {
+    public u0 f48785c;
+    public Integer d;
+    public iw0 f48786e;
+    public boolean f48787f;
+    public int h;
 
-    public z0(CharSequence charSequence, ArrayList arrayList, int i10, int i11, int i12) {
-        super(null);
-        this.f45486a = charSequence;
-        this.f45487b = arrayList;
-        this.f45488c = i10;
-        this.d = i11;
-        this.e = i12;
-        this.f45491r = !arrayList.isEmpty();
-    }
-
-    public final boolean U() {
-        ArrayList arrayList = this.f45487b;
-        if (arrayList.size() != 1 || ((w0) arrayList.get(0)).f45470a != 0 || ((w0) arrayList.get(0)).f45471b != 1439) {
+    @Override
+    public final boolean D(f2.m1 m1Var) {
+        if (m1Var.b() == 0) {
             return false;
         }
-        return true;
-    }
-
-    public final boolean V() {
-        ArrayList arrayList = this.f45487b;
-        if (arrayList.size() >= this.e) {
-            return false;
-        }
-        if (!arrayList.isEmpty() && !U() && ((w0) a2.i(1, arrayList)).f45471b >= Math.min(1438, this.d - 2)) {
-            return false;
-        }
-        return true;
+        return this.f48785c.D(m1Var);
     }
 
     @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(this.f45486a);
-        this.actionBar.setActionBarMenuOnItemClick(new sh.e(this, 12));
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(j6.w0(null, j6.f19852a7, false));
-        g61 g61Var = new g61(this, new d4(this, 23), new rh.e(this, 5), null);
-        this.f45490n = g61Var;
-        g61Var.p1();
-        this.actionBar.setAdaptiveBackground(this.f45490n);
-        frameLayout.addView(this.f45490n, b6.c(-1.0f, -1));
-        this.fragmentView = frameLayout;
-        return frameLayout;
+    public final int h() {
+        u0 u0Var = this.f48785c;
+        int K = u0Var.K();
+        u0Var.I0 = K;
+        return K + 1;
     }
 
     @Override
-    public final void onBecomeFullyHidden() {
-        v0 v0Var = this.h;
-        if (v0Var != null) {
-            v0Var.run();
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return -983904;
         }
-        super.onBecomeFullyHidden();
+        return this.f48785c.j(i10 - 1);
     }
 
     @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        if (!this.f45491r) {
-            ArrayList arrayList = this.f45487b;
-            if (!arrayList.isEmpty()) {
-                arrayList.clear();
-                ga gaVar = this.f45489f;
-                if (gaVar != null) {
-                    gaVar.run();
-                }
-            }
+    public final void v(f2.m1 m1Var, int i10) {
+        if (i10 > 0) {
+            this.f48785c.v(m1Var, i10 - 1);
         }
+    }
+
+    @Override
+    public final f2.m1 x(ViewGroup viewGroup, int i10) {
+        if (i10 == -983904) {
+            iw0 iw0Var = new iw0(this, viewGroup.getContext(), 10);
+            this.f48786e = iw0Var;
+            return new f2.m1(iw0Var);
+        }
+        return this.f48785c.x(viewGroup, i10);
     }
 }

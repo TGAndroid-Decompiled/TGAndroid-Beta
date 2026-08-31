@@ -2,9 +2,9 @@ package o4;
 public interface l0 {
     void a();
 
-    boolean d();
+    boolean h();
 
-    int e(long j10);
+    int l(long j10);
 
-    int f(f7.b bVar, n3.i iVar, int i10);
+    int p(f7.b bVar, n3.i iVar, int i10);
 }

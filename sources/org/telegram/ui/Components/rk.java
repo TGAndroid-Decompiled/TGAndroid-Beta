@@ -1,24 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class rk extends f2.j0 {
-    public final ej f28480r;
+import org.telegram.tgnet.TLRPC;
+public final class rk implements y4 {
+    public final int f30748a;
+    public final cl f30749b;
+    public final TLRPC.TL_messageMediaVenue f30750c;
 
-    public rk(ej ejVar, Context context) {
-        super(context);
-        this.f28480r = ejVar;
+    public rk(cl clVar, TLRPC.TL_messageMediaVenue tL_messageMediaVenue, int i10) {
+        this.f30748a = i10;
+        this.f30749b = clVar;
+        this.f30750c = tL_messageMediaVenue;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        int k10 = super.k(i10, view);
-        al alVar = (al) this.f28480r.V;
-        return k10 - (alVar.M.getPaddingTop() - (alVar.f23445x0 - alVar.f23443w0));
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 4;
+    public final void I(int i10, int i11, boolean z4) {
+        switch (this.f30748a) {
+            case 0:
+                cl clVar = this.f30749b;
+                clVar.f26018u0.d(this.f30750c, clVar.f26019v0, z4, i10, 0L);
+                clVar.f26546b.dismiss(true);
+                return;
+            default:
+                cl clVar2 = this.f30749b;
+                clVar2.f26018u0.d(this.f30750c, clVar2.f26019v0, z4, i10, 0L);
+                clVar2.f26546b.dismiss(true);
+                return;
+        }
     }
 }

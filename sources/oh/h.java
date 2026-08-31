@@ -1,101 +1,155 @@
 package oh;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import f2.i1;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Cells.s7;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.jv0;
-import org.telegram.ui.Components.nz;
-public final class h extends nz {
-    public final int X = 0;
-    public final Object Y;
+import org.telegram.ui.Components.tl0;
+import org.telegram.ui.hx;
+public final class h extends tl0 {
+    public final int U2;
+    public final hx V2;
 
-    public h() {
-        super(100, false);
-        this.Y = new Object();
+    public h(hx hxVar, Context context, int i10) {
+        super(context, null);
+        this.U2 = i10;
+        this.V2 = hxVar;
     }
 
     @Override
-    public int A() {
-        switch (this.X) {
-            case 0:
-                return 0;
-            default:
-                return super.A();
-        }
-    }
-
-    @Override
-    public jv0 D1(int i10) {
-        switch (this.X) {
-            case 0:
-                jv0 jv0Var = (jv0) this.Y;
-                jv0Var.f26053b = 100.0f;
-                jv0Var.f26052a = 100.0f;
-                return jv0Var;
-            default:
-                return super.D1(i10);
-        }
-    }
-
-    @Override
-    public void U(bf.f fVar, i1 i1Var, View view, s0.e eVar) {
-        s0.d dVar;
-        switch (this.X) {
-            case 0:
-                super.U(fVar, i1Var, view, eVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = eVar.f43904a;
-                AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
-                if (collectionItemInfo != null) {
-                    dVar = new s0.d(collectionItemInfo);
-                } else {
-                    dVar = null;
-                }
-                if (dVar != null) {
-                    Object obj = dVar.f43902a;
-                    if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
-                        accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
-                        return;
+    public void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        boolean z4;
+        switch (this.U2) {
+            case 1:
+                hx hxVar = this.V2;
+                ArrayList arrayList = hxVar.M;
+                arrayList.clear();
+                int i10 = 0;
+                for (int i11 = 0; i11 < getChildCount(); i11++) {
+                    o oVar = (o) getChildAt(i11);
+                    int R = RecyclerView.R(oVar);
+                    oVar.f17517b = R;
+                    boolean z10 = true;
+                    oVar.f17516a = true;
+                    if (R == 0) {
+                        z4 = true;
+                    } else {
+                        z4 = false;
                     }
+                    oVar.d = z4;
+                    if (R != hxVar.f17607y.size() - 1) {
+                        z10 = false;
+                    }
+                    oVar.f17518c = z10;
+                    arrayList.add(oVar);
+                }
+                Collections.sort(arrayList, hxVar.f17600t0);
+                while (i10 < arrayList.size()) {
+                    o oVar2 = (o) arrayList.get(i10);
+                    int save = canvas.save();
+                    canvas.translate(oVar2.getX(), oVar2.getY());
+                    if (oVar2.getAlpha() != 1.0f) {
+                        canvas2 = canvas;
+                        canvas2.saveLayerAlpha(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), (int) (oVar2.getAlpha() * 255.0f), 31);
+                    } else {
+                        canvas2 = canvas;
+                    }
+                    canvas2.scale(oVar2.getScaleX(), oVar2.getScaleY(), AndroidUtilities.dp(14.0f), oVar2.getCy());
+                    oVar2.draw(canvas2);
+                    canvas2.restoreToCount(save);
+                    i10++;
+                    canvas = canvas2;
+                }
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.U2) {
+            case 0:
+                if (motionEvent.getAction() == 0) {
+                    hx hxVar = this.V2;
+                    if (hxVar.W > 0.2f || hxVar.getAlpha() == 0.0f) {
+                        return false;
+                    }
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j10) {
+        switch (this.U2) {
+            case 0:
+                if (this.V2.M.contains(view)) {
+                    return true;
+                }
+                return super.drawChild(canvas, view, j10);
+            default:
+                return super.drawChild(canvas, view, j10);
+        }
+    }
+
+    @Override
+    public void k0(int i10, int i11) {
+        switch (this.U2) {
+            case 1:
+                qh.f3 f3Var = this.V2.G;
+                if (f3Var != null) {
+                    f3Var.e(true);
                     return;
                 }
                 return;
             default:
-                super.U(fVar, i1Var, view, eVar);
                 return;
         }
     }
 
     @Override
-    public int W0(i1 i1Var) {
-        switch (this.X) {
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.U2) {
             case 1:
-                if (((g61) this.Y).X2) {
-                    return AndroidUtilities.displaySize.y;
-                }
-                return super.W0(i1Var);
+                return false;
             default:
-                return super.W0(i1Var);
+                return super.onInterceptTouchEvent(motionEvent);
         }
     }
 
     @Override
-    public void z0(i1 i1Var, int[] iArr) {
-        switch (this.X) {
+    public void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        switch (this.U2) {
             case 0:
-                super.z0(i1Var, iArr);
-                iArr[1] = Math.max(iArr[1], s7.a(1) * 2);
+                ArrayList arrayList = this.V2.V;
+                super.onLayout(z4, i10, i11, i12, i13);
+                for (int i14 = 0; i14 < arrayList.size(); i14++) {
+                    ((Runnable) arrayList.get(i14)).run();
+                }
+                arrayList.clear();
                 return;
             default:
-                super.z0(i1Var, iArr);
+                super.onLayout(z4, i10, i11, i12, i13);
                 return;
         }
     }
 
-    public h(g61 g61Var, int i10) {
-        super(i10, false);
-        this.Y = g61Var;
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.U2) {
+            case 1:
+                return false;
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
     }
 }

@@ -2,8 +2,8 @@ package org.telegram.ui.Cells;
 
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.oy;
-public final class j2 extends nh.i7 {
+import org.telegram.ui.py;
+public final class j2 extends oh.i7 {
     public final r2 S;
 
     public j2(r2 r2Var) {
@@ -23,19 +23,19 @@ public final class j2 extends nh.i7 {
     public final boolean d(long j10) {
         r2 r2Var = this.S;
         int i10 = r2Var.C0;
-        oy oyVar = r2Var.f21735w4;
-        if (oyVar != null && !r2Var.L0) {
+        py pyVar = r2Var.f23526w4;
+        if (pyVar != null && !r2Var.L0) {
             if (j10 > 0) {
                 TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j10));
                 if (user != null && user.linked_community_id != 0) {
-                    oyVar.showDialog(new sh.i0(oyVar, user.linked_community_id));
+                    pyVar.showDialog(new th.i0(pyVar, user.linked_community_id));
                     return true;
                 }
                 return false;
             }
             TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j10));
             if (chat != null && chat.linked_community_id != 0) {
-                oyVar.showDialog(new sh.i0(oyVar, chat.linked_community_id));
+                pyVar.showDialog(new th.i0(pyVar, chat.linked_community_id));
                 return true;
             }
             return false;
@@ -46,7 +46,7 @@ public final class j2 extends nh.i7 {
     @Override
     public final void e() {
         r2 r2Var = this.S;
-        n2 n2Var = r2Var.f21620a0;
+        n2 n2Var = r2Var.f23411a0;
         if (n2Var == null) {
             return;
         }
@@ -56,7 +56,7 @@ public final class j2 extends nh.i7 {
     @Override
     public final void f(long j10) {
         r2 r2Var = this.S;
-        n2 n2Var = r2Var.f21620a0;
+        n2 n2Var = r2Var.f23411a0;
         if (n2Var == null) {
             return;
         }

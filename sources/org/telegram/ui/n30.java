@@ -1,29 +1,43 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.TextUtils;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class n30 extends org.telegram.ui.Components.w7 {
-    public final c60 B;
-    public final Activity f36436y;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class n30 implements Runnable {
+    public final d60 f39280a;
 
-    public n30(c60 c60Var, LaunchActivity launchActivity, Activity activity) {
-        super(launchActivity);
-        this.B = c60Var;
-        this.f36436y = activity;
+    public n30(d60 d60Var) {
+        this.f39280a = d60Var;
     }
 
     @Override
-    public final TextView a() {
-        TextView textView = new TextView(this.f36436y);
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19987hg, false));
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(51);
-        textView.setSingleLine(true);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setOnClickListener(new org.telegram.ui.Components.rx0(24, this, textView));
-        return textView;
+    public final void run() {
+        int i10;
+        d60 d60Var = this.f39280a;
+        org.telegram.ui.ActionBar.l5 l5Var = d60Var.R;
+        j50 j50Var = d60Var.S;
+        if (j50Var != null && !d60Var.isDismissed()) {
+            ChatObject.Call call = d60Var.X0;
+            if (call != null) {
+                i10 = call.call.schedule_date;
+            } else {
+                i10 = d60Var.f36043h2;
+            }
+            if (i10 != 0) {
+                int currentTime = i10 - d60Var.d.getConnectionsManager().getCurrentTime();
+                if (currentTime >= 86400) {
+                    j50Var.l(LocaleController.formatPluralString("Days", Math.round(currentTime / 86400.0f), new Object[0]), false);
+                } else {
+                    j50Var.l(AndroidUtilities.formatFullDuration(Math.abs(currentTime)), false);
+                    if (currentTime < 0 && l5Var.getTag() == null) {
+                        l5Var.setTag(1);
+                        l5Var.l(LocaleController.getString(R.string.VoipChatLateBy), false);
+                    }
+                }
+                d60Var.T.l(LocaleController.formatStartsTime(i10, 3), false);
+                AndroidUtilities.runOnUIThread(d60Var.f36092t2, 1000L);
+            }
+        }
     }
 }

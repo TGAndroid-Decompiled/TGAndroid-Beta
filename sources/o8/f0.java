@@ -7,20 +7,20 @@ import android.util.Log;
 import java.util.IllegalFormatException;
 import java.util.Locale;
 public final class f0 {
-    public final String f16481a;
+    public final String f16640a;
 
     public f0(String str) {
         int myUid = Process.myUid();
         int myPid = Process.myPid();
-        this.f16481a = ("UID: [" + myUid + "]  PID: [" + myPid + "] ").concat(str);
+        this.f16640a = ("UID: [" + myUid + "]  PID: [" + myPid + "] ").concat(str);
     }
 
     public static String d(String str, String str2, Object... objArr) {
         if (objArr.length > 0) {
             try {
                 str2 = String.format(Locale.US, str2, objArr);
-            } catch (IllegalFormatException e) {
-                Log.e("PlayCore", "Unable to format ".concat(str2), e);
+            } catch (IllegalFormatException e6) {
+                Log.e("PlayCore", "Unable to format ".concat(str2), e6);
                 str2 = str2 + " [" + TextUtils.join(", ", objArr) + "]";
             }
         }
@@ -29,19 +29,19 @@ public final class f0 {
 
     public final void a(RemoteException remoteException, String str, Object... objArr) {
         if (Log.isLoggable("PlayCore", 6)) {
-            Log.e("PlayCore", d(this.f16481a, str, objArr), remoteException);
+            Log.e("PlayCore", d(this.f16640a, str, objArr), remoteException);
         }
     }
 
     public final void b(String str, Object... objArr) {
         if (Log.isLoggable("PlayCore", 4)) {
-            Log.i("PlayCore", d(this.f16481a, str, objArr));
+            Log.i("PlayCore", d(this.f16640a, str, objArr));
         }
     }
 
     public final void c(String str, Object... objArr) {
         if (Log.isLoggable("PlayCore", 5)) {
-            Log.w("PlayCore", d(this.f16481a, str, objArr));
+            Log.w("PlayCore", d(this.f16640a, str, objArr));
         }
     }
 }

@@ -111,8 +111,8 @@ public final class ExtendedDefaultDataSource implements m {
                 addListenersToDataSource(mVar);
             } catch (ClassNotFoundException unused) {
                 a.K("ExtendedDefaultDataSource", "Attempting to play RTMP stream without depending on the RTMP extension");
-            } catch (Exception e) {
-                throw new RuntimeException("Error instantiating RTMP extension", e);
+            } catch (Exception e6) {
+                throw new RuntimeException("Error instantiating RTMP extension", e6);
             }
             if (this.rtmpDataSource == null) {
                 this.rtmpDataSource = this.baseDataSource;
@@ -187,15 +187,15 @@ public final class ExtendedDefaultDataSource implements m {
             z4 = false;
         }
         a.i(z4);
-        Uri uri = pVar.f6401a;
+        Uri uri = pVar.f6885a;
         if ("mtproto".equals(uri.getScheme())) {
-            uri = this.mtprotoUris.get(Long.parseLong(pVar.f6401a.toString().substring(8)));
+            uri = this.mtprotoUris.get(Long.parseLong(pVar.f6885a.toString().substring(8)));
             c4.c a2 = pVar.a();
-            a2.e = uri;
+            a2.f2244e = uri;
             pVar = a2.d();
         }
         String scheme = uri.getScheme();
-        int i10 = d0.f6937a;
+        int i10 = d0.f7237a;
         String scheme2 = uri.getScheme();
         if (!TextUtils.isEmpty(scheme2) && !"file".equals(scheme2)) {
             if ("tg".equals(scheme)) {

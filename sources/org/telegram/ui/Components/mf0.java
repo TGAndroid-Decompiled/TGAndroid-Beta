@@ -1,141 +1,104 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class mf0 extends rl0 {
-    public final Context f27009c;
-    public final nf0 d;
+import java.util.ArrayList;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+public final class mf0 {
+    public float f29019a = 0.0f;
+    public float f29020b = 25.0f;
+    public float f29021c = 50.0f;
+    public float d = 75.0f;
+    public float f29022e = 100.0f;
+    public float[] f29023f;
 
-    public mf0(nf0 nf0Var, Context context) {
-        this.d = nf0Var;
-        this.f27009c = context;
+    public final float[] a() {
+        float f10 = this.f29019a;
+        float f11 = this.f29022e;
+        int i10 = 5;
+        float[] fArr = {-0.001f, f10 / 100.0f, 0.0f, f10 / 100.0f, 0.25f, this.f29020b / 100.0f, 0.5f, this.f29021c / 100.0f, 0.75f, this.d / 100.0f, 1.0f, f11 / 100.0f, 1.001f, f11 / 100.0f};
+        int i11 = 100;
+        ArrayList arrayList = new ArrayList(100);
+        ArrayList arrayList2 = new ArrayList(100);
+        arrayList2.add(Float.valueOf(fArr[0]));
+        arrayList2.add(Float.valueOf(fArr[1]));
+        int i12 = 1;
+        while (i12 < i10) {
+            int i13 = (i12 - 1) * 2;
+            float f12 = fArr[i13];
+            float f13 = fArr[i13 + 1];
+            int i14 = i12 * 2;
+            float f14 = fArr[i14];
+            float f15 = fArr[i14 + 1];
+            int i15 = i12 + 1;
+            int i16 = i15 * 2;
+            float f16 = fArr[i16];
+            float f17 = fArr[i16 + 1];
+            int i17 = (i12 + 2) * 2;
+            float f18 = fArr[i17];
+            float f19 = fArr[i17 + 1];
+            int i18 = 1;
+            while (i18 < i11) {
+                float f20 = i18 * 0.01f;
+                float f21 = f20 * f20;
+                float f22 = f21 * f20;
+                float w10 = ((((((f14 * 3.0f) - f12) - (f16 * 3.0f)) + f18) * f22) + ((((f16 * 4.0f) + ((f12 * 2.0f) - (f14 * 5.0f))) - f18) * f21) + e2.c.w(f16, f12, f20, f14 * 2.0f)) * 0.5f;
+                float max = Math.max(0.0f, Math.min(1.0f, ((((((f15 * 3.0f) - f13) - (f17 * 3.0f)) + f19) * f22) + ((((4.0f * f17) + ((2.0f * f13) - (5.0f * f15))) - f19) * f21) + e2.c.w(f17, f13, f20, f15 * 2.0f)) * 0.5f));
+                if (w10 > f12) {
+                    arrayList2.add(Float.valueOf(w10));
+                    arrayList2.add(Float.valueOf(max));
+                }
+                if ((i18 - 1) % 2 == 0) {
+                    arrayList.add(Float.valueOf(max));
+                }
+                i18++;
+                i11 = 100;
+            }
+            arrayList2.add(Float.valueOf(f16));
+            arrayList2.add(Float.valueOf(f17));
+            i12 = i15;
+            i10 = 5;
+            i11 = 100;
+        }
+        arrayList2.add(Float.valueOf(fArr[12]));
+        arrayList2.add(Float.valueOf(fArr[13]));
+        this.f29023f = new float[arrayList.size()];
+        int i19 = 0;
+        while (true) {
+            float[] fArr2 = this.f29023f;
+            if (i19 >= fArr2.length) {
+                break;
+            }
+            fArr2[i19] = ((Float) arrayList.get(i19)).floatValue();
+            i19++;
+        }
+        int size = arrayList2.size();
+        float[] fArr3 = new float[size];
+        for (int i20 = 0; i20 < size; i20++) {
+            fArr3[i20] = ((Float) arrayList2.get(i20)).floatValue();
+        }
+        return fArr3;
     }
 
-    @Override
-    public final boolean D(f2.l1 l1Var) {
+    public final boolean b() {
+        if (Math.abs(this.f29019a - 0.0f) < 1.0E-5d && Math.abs(this.f29020b - 25.0f) < 1.0E-5d && Math.abs(this.f29021c - 50.0f) < 1.0E-5d && Math.abs(this.d - 75.0f) < 1.0E-5d && Math.abs(this.f29022e - 100.0f) < 1.0E-5d) {
+            return true;
+        }
         return false;
     }
 
-    @Override
-    public final int h() {
-        return this.d.C;
+    public final void c(InputSerializedData inputSerializedData, boolean z4) {
+        this.f29019a = inputSerializedData.readFloat(z4);
+        this.f29020b = inputSerializedData.readFloat(z4);
+        this.f29021c = inputSerializedData.readFloat(z4);
+        this.d = inputSerializedData.readFloat(z4);
+        this.f29022e = inputSerializedData.readFloat(z4);
     }
 
-    @Override
-    public final long i(int i10) {
-        return i10;
-    }
-
-    @Override
-    public final int j(int i10) {
-        nf0 nf0Var = this.d;
-        if (i10 != nf0Var.f27268y && i10 != nf0Var.B) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void v(f2.l1 l1Var, int i10) {
-        int i11 = l1Var.f5788f;
-        View view = l1Var.f5785a;
-        nf0 nf0Var = this.d;
-        if (i11 != 0) {
-            if (i11 == 1) {
-                org.telegram.ui.Cells.u5 u5Var = (org.telegram.ui.Cells.u5) view;
-                u5Var.setTag(Integer.valueOf(i10));
-                if (i10 == nf0Var.f27268y) {
-                    u5Var.a(nf0Var.K, LocaleController.getString(R.string.TintShadows));
-                    return;
-                } else if (i10 == nf0Var.B) {
-                    u5Var.a(nf0Var.L, LocaleController.getString(R.string.TintHighlights));
-                    return;
-                } else {
-                    return;
-                }
-            }
-            return;
-        }
-        org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) view;
-        v5Var.setTag(Integer.valueOf(i10));
-        if (i10 == nf0Var.f27238b) {
-            v5Var.a(LocaleController.getString(R.string.Enhance), 0, nf0Var.D);
-        } else if (i10 == nf0Var.f27257r) {
-            v5Var.a(LocaleController.getString(R.string.Highlights), -100, nf0Var.M);
-        } else if (i10 == nf0Var.d) {
-            v5Var.a(LocaleController.getString(R.string.Contrast), -100, nf0Var.F);
-        } else if (i10 == nf0Var.f27240c) {
-            v5Var.a(LocaleController.getString(R.string.Exposure), -100, nf0Var.E);
-        } else if (i10 == nf0Var.f27244f) {
-            v5Var.a(LocaleController.getString(R.string.Warmth), -100, nf0Var.G);
-        } else if (i10 == nf0Var.e) {
-            v5Var.a(LocaleController.getString(R.string.Saturation), -100, nf0Var.H);
-        } else if (i10 == nf0Var.v) {
-            v5Var.a(LocaleController.getString(R.string.Vignette), 0, nf0Var.O);
-        } else if (i10 == nf0Var.f27259s) {
-            v5Var.a(LocaleController.getString(R.string.Shadows), -100, nf0Var.N);
-        } else if (i10 == nf0Var.f27264w) {
-            v5Var.a(LocaleController.getString(R.string.Grain), 0, nf0Var.P);
-        } else if (i10 == nf0Var.f27266x) {
-            v5Var.a(LocaleController.getString(R.string.Sharpen), 0, nf0Var.R);
-        } else if (i10 == nf0Var.h) {
-            v5Var.a(LocaleController.getString(R.string.Fade), 0, nf0Var.I);
-        } else if (i10 == nf0Var.f27252n) {
-            v5Var.a(LocaleController.getString(R.string.SoftenSkin), 0, nf0Var.J);
-        }
-    }
-
-    @Override
-    public final f2.l1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.u5 u5Var;
-        Context context = this.f27009c;
-        if (i10 == 0) {
-            org.telegram.ui.ActionBar.f6 f6Var = this.d.F0;
-            ?? frameLayout = new FrameLayout(context);
-            frameLayout.e = new m2.b((Object) frameLayout, 7);
-            TextView textView = new TextView(context);
-            frameLayout.f22500a = textView;
-            textView.setGravity(5);
-            textView.setTextColor(-1);
-            textView.setTextSize(1, 12.0f);
-            textView.setMaxLines(1);
-            textView.setSingleLine(true);
-            textView.setEllipsize(TextUtils.TruncateAt.END);
-            frameLayout.addView(textView, k7.b6.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
-            TextView textView2 = new TextView(context);
-            frameLayout.f22501b = textView2;
-            org.telegram.ui.b.l(org.telegram.ui.ActionBar.j6.f20304zf, f6Var, textView2, 1, 12.0f);
-            textView2.setGravity(5);
-            textView2.setSingleLine(true);
-            frameLayout.addView(textView2, k7.b6.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
-            ?? view = new View(context);
-            Paint paint = new Paint();
-            view.f23373a = paint;
-            Paint paint2 = new Paint(1);
-            view.f23374b = paint2;
-            view.f23375c = AndroidUtilities.dp(16.0f);
-            view.d = 0;
-            view.e = 0.0f;
-            view.f23376f = false;
-            paint.setColor(-11711155);
-            paint2.setColor(-1);
-            frameLayout.f22502c = view;
-            frameLayout.addView(view, k7.b6.d(-1, 40.0f, 19, 96.0f, 0.0f, 24.0f, 0.0f));
-            frameLayout.setSeekBarDelegate(new fv(this, 10));
-            u5Var = frameLayout;
-        } else {
-            org.telegram.ui.Cells.u5 u5Var2 = new org.telegram.ui.Cells.u5(context);
-            u5Var2.setOnClickListener(new z70(this, 6));
-            u5Var = u5Var2;
-        }
-        return new f2.l1(u5Var);
+    public final void d(OutputSerializedData outputSerializedData) {
+        outputSerializedData.writeFloat(this.f29019a);
+        outputSerializedData.writeFloat(this.f29020b);
+        outputSerializedData.writeFloat(this.f29021c);
+        outputSerializedData.writeFloat(this.d);
+        outputSerializedData.writeFloat(this.f29022e);
     }
 }

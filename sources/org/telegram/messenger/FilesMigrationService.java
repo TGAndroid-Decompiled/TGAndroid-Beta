@@ -23,7 +23,7 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.function.Consumer;
-import org.telegram.ui.Components.ax0;
+import org.telegram.ui.Components.bx0;
 public class FilesMigrationService extends Service {
     public static FilesMigrationBottomSheet filesMigrationBottomSheet = null;
     public static boolean hasOldFolder = false;
@@ -110,12 +110,12 @@ public class FilesMigrationService extends Service {
         }
         try {
             Files.move(path, file2.toPath(), new CopyOption[0]);
-        } catch (Exception e) {
-            FileLog.e((Throwable) e, false);
+        } catch (Exception e6) {
+            FileLog.e((Throwable) e6, false);
             try {
                 path.toFile().delete();
-            } catch (Exception e6) {
-                FileLog.e(e6);
+            } catch (Exception e10) {
+                FileLog.e(e10);
             }
         }
         this.movedFilesCount++;
@@ -145,13 +145,13 @@ public class FilesMigrationService extends Service {
                         }
                     });
                     convert.close();
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } catch (Exception e6) {
+                    FileLog.e(e6);
                 }
                 try {
                     file.delete();
-                } catch (Exception e6) {
-                    FileLog.e(e6);
+                } catch (Exception e10) {
+                    FileLog.e(e10);
                 }
             }
         }
@@ -212,7 +212,7 @@ public class FilesMigrationService extends Service {
         return super.onStartCommand(intent, i10, i11);
     }
 
-    public static class FilesMigrationBottomSheet extends org.telegram.ui.ActionBar.g3 {
+    public static class FilesMigrationBottomSheet extends org.telegram.ui.ActionBar.h3 {
         org.telegram.ui.ActionBar.p2 fragment;
 
         public FilesMigrationBottomSheet(org.telegram.ui.ActionBar.p2 p2Var) {
@@ -220,32 +220,32 @@ public class FilesMigrationService extends Service {
             this.fragment = p2Var;
             setCanceledOnTouchOutside(false);
             Activity parentActivity = p2Var.getParentActivity();
-            LinearLayout h = kh.a2.h(parentActivity, 1);
-            ax0 ax0Var = new ax0(parentActivity, this.currentAccount);
-            ax0Var.setStickerNum(7);
-            ax0Var.getImageReceiver().setAutoRepeat(1);
-            h.addView(ax0Var, k7.b6.t(144, 144, 1, 0, 16, 0, 0));
+            LinearLayout h = l.d.h(parentActivity, 1);
+            bx0 bx0Var = new bx0(parentActivity, this.currentAccount);
+            bx0Var.setStickerNum(7);
+            bx0Var.getImageReceiver().setAutoRepeat(1);
+            h.addView(bx0Var, k7.c6.t(144, 144, 1, 0, 16, 0, 0));
             TextView textView = new TextView(parentActivity);
             textView.setGravity(8388611);
-            int i10 = org.telegram.ui.ActionBar.j6.f20012j5;
-            y3.t(textView, org.telegram.ui.ActionBar.j6.w0(null, i10, false), 1, 20.0f);
+            int i10 = org.telegram.ui.ActionBar.k6.f21766j5;
+            y3.t(textView, org.telegram.ui.ActionBar.k6.w0(null, i10, false), 1, 20.0f);
             textView.setText(LocaleController.getString(R.string.MigrateOldFolderTitle));
-            h.addView(textView, k7.b6.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
+            h.addView(textView, k7.c6.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
             TextView textView2 = new TextView(parentActivity);
             textView2.setGravity(8388611);
             textView2.setTextSize(1, 15.0f);
-            textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+            textView2.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, i10, false));
             y3.q(R.string.MigrateOldFolderDescription, textView2);
-            h.addView(textView2, k7.b6.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
+            h.addView(textView2, k7.c6.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
             TextView textView3 = new TextView(parentActivity);
             textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             textView3.setGravity(17);
             textView3.setTextSize(1, 14.0f);
             textView3.setTypeface(AndroidUtilities.bold());
             textView3.setText(LocaleController.getString(R.string.MigrateOldFolderButton));
-            textView3.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Sh, false));
-            textView3.setBackground(org.telegram.ui.ActionBar.z5.f(new float[]{6.0f}, org.telegram.ui.ActionBar.j6.Oh));
-            h.addView(textView3, k7.b6.d(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
+            textView3.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.Sh, false));
+            textView3.setBackground(org.telegram.ui.ActionBar.a6.f(new float[]{6.0f}, org.telegram.ui.ActionBar.k6.Oh));
+            h.addView(textView3, k7.c6.d(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
             textView3.setOnClickListener(new x3(this, 0));
             ScrollView scrollView = new ScrollView(parentActivity);
             scrollView.addView(h);

@@ -74,8 +74,8 @@ public final class EmojiPack {
         if (instance == null) {
             try {
                 instance = new EmojiPack();
-            } catch (IOException e) {
-                throw new RuntimeException("Unable to open emoji pack", e);
+            } catch (IOException e6) {
+                throw new RuntimeException("Unable to open emoji pack", e6);
             }
         }
         return instance;
@@ -91,7 +91,7 @@ public final class EmojiPack {
                 int i14 = 65535 & order.getShort();
                 int i15 = order.getInt();
                 int i16 = order.getInt();
-                validateRange(i15, i16, kh.a2.j(i13, "emoji "));
+                validateRange(i15, i16, l.d.j(i13, "emoji "));
                 this.emojis.put(i13, new EmojiEntry(i15, i16, i14));
             }
             int i17 = order.getInt();
@@ -101,14 +101,14 @@ public final class EmojiPack {
                     int i20 = order.getShort() & 65535;
                     int i21 = order.getInt();
                     int i22 = order.getInt();
-                    validateRange(i21, i22, kh.a2.j(i20, "mask "));
+                    validateRange(i21, i22, l.d.j(i20, "mask "));
                     this.masks.put(i20, new ImageEntry(i21, i22));
                 }
                 return;
             }
-            throw new IOException(kh.a2.j(i17, "Invalid mask metadata length: "));
+            throw new IOException(l.d.j(i17, "Invalid mask metadata length: "));
         }
-        throw new IOException(kh.a2.j(i10, "Invalid emoji metadata length: "));
+        throw new IOException(l.d.j(i10, "Invalid emoji metadata length: "));
     }
 
     private void validateRange(int i10, int i11, String str) {

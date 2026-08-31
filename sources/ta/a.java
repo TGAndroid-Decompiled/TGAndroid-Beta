@@ -3,7 +3,7 @@ package ta;
 import j$.util.DesugarTimeZone;
 import java.util.TimeZone;
 public abstract class a {
-    public static final TimeZone f44620a = DesugarTimeZone.getTimeZone("UTC");
+    public static final TimeZone f48031a = DesugarTimeZone.getTimeZone("UTC");
 
     public static boolean a(String str, int i10, char c3) {
         if (i10 < str.length() && str.charAt(i10) == c3) {

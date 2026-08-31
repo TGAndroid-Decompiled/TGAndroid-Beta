@@ -15,7 +15,7 @@ public class TeXEnvironment {
     private int style;
     private String textStyle;
     private float textwidth;
-    private TeXFont f16650tf;
+    private TeXFont f18036tf;
 
     public TeXEnvironment(int i10, TeXFont teXFont) {
         this(i10, teXFont, (Color) null, (Color) null);
@@ -24,7 +24,7 @@ public class TeXEnvironment {
     public TeXEnvironment copy() {
         int i10 = this.depth;
         if (i10 <= 64) {
-            return new TeXEnvironment(this.style, this.scaleFactor, this.f16650tf, this.background, this.color, this.textStyle, this.smallCap, i10 + 1);
+            return new TeXEnvironment(this.style, this.scaleFactor, this.f18036tf, this.background, this.color, this.textStyle, this.smallCap, i10 + 1);
         }
         throw new DepthLimitExceededException();
     }
@@ -61,7 +61,7 @@ public class TeXEnvironment {
     public int getLastFontId() {
         int i10 = this.lastFontId;
         if (i10 == -1) {
-            return this.f16650tf.getMuFontId();
+            return this.f18036tf.getMuFontId();
         }
         return i10;
     }
@@ -71,7 +71,7 @@ public class TeXEnvironment {
     }
 
     public float getSize() {
-        return this.f16650tf.getSize();
+        return this.f18036tf.getSize();
     }
 
     public boolean getSmallCap() {
@@ -79,7 +79,7 @@ public class TeXEnvironment {
     }
 
     public float getSpace() {
-        return this.f16650tf.getScaleFactor() * this.f16650tf.getSpace(this.style);
+        return this.f18036tf.getScaleFactor() * this.f18036tf.getSpace(this.style);
     }
 
     public int getStyle() {
@@ -87,7 +87,7 @@ public class TeXEnvironment {
     }
 
     public TeXFont getTeXFont() {
-        return this.f16650tf;
+        return this.f18036tf;
     }
 
     public String getTextStyle() {
@@ -177,7 +177,7 @@ public class TeXEnvironment {
         this.scaleFactor = 1.0f;
         this.isColored = false;
         this.style = i10;
-        this.f16650tf = teXFont;
+        this.f18036tf = teXFont;
         this.background = color;
         this.color = color2;
         setInterline(1, 1.0f);
@@ -205,7 +205,7 @@ public class TeXEnvironment {
         this.isColored = false;
         this.style = i10;
         this.scaleFactor = f10;
-        this.f16650tf = teXFont;
+        this.f18036tf = teXFont;
         this.textStyle = str;
         this.smallCap = z4;
         this.depth = i11;

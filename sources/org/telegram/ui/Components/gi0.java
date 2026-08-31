@@ -1,55 +1,97 @@
 package org.telegram.ui.Components;
 
-import java.util.Locale;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class gi0 implements sc0, uc0 {
-    public final int f25144a;
-    public final li0 f25145b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.Button;
+import org.telegram.messenger.AndroidUtilities;
+public final class gi0 extends Button {
+    public final RectF f27205a;
+    public final Paint f27206b;
+    public boolean f27207c;
+    public float d;
+    public long f27208e;
+    public int f27209f;
 
-    public gi0(li0 li0Var, int i10) {
-        this.f25144a = i10;
-        this.f25145b = li0Var;
+    public gi0(Context context) {
+        super(context);
+        setAllCaps(false);
+        setTextSize(1, 14.0f);
+        setTypeface(AndroidUtilities.bold());
+        setOutlineProvider(null);
+        k7.i6.a(this, 8.0f, 0.0f, 8.0f, 0.0f);
+        int dp = AndroidUtilities.dp(60.0f);
+        setMinWidth(dp);
+        setMinimumWidth(dp);
+        this.f27205a = new RectF();
+        Paint paint = new Paint(1);
+        this.f27206b = paint;
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
     }
 
-    @Override
-    public String e(int i10) {
-        int i11 = this.f25144a;
-        li0 li0Var = this.f25145b;
-        switch (i11) {
-            case 0:
-                if (li0Var.L) {
-                    return LocaleController.formatString("MilesShort", R.string.MilesShort, Integer.valueOf(i10));
-                }
-                return LocaleController.formatString("KMetersShort", R.string.KMetersShort, Integer.valueOf(i10));
-            default:
-                if (li0Var.L) {
-                    if (i10 == 1) {
-                        return LocaleController.formatString("FootsShort", R.string.FootsShort, 250);
-                    }
-                    if (i10 > 1) {
-                        i10--;
-                    }
-                    Locale locale = Locale.US;
-                    return kh.a2.j(i10, ".");
-                } else if (i10 == 1) {
-                    return LocaleController.formatString("MetersShort", R.string.MetersShort, 50);
+    public final void a(boolean z4, boolean z10) {
+        float f10;
+        if (this.f27207c != z4) {
+            this.f27207c = z4;
+            if (!z10) {
+                if (z4) {
+                    f10 = 1.0f;
                 } else {
-                    if (i10 > 1) {
-                        i10--;
-                    }
-                    return LocaleController.formatString("MetersShort", R.string.MetersShort, Integer.valueOf(i10 * 100));
+                    f10 = 0.0f;
                 }
+                this.d = f10;
+            }
+            this.f27208e = System.currentTimeMillis();
+            invalidate();
         }
     }
 
     @Override
-    public void q(wc0 wc0Var, int i10) {
-        li0 li0Var = this.f25145b;
-        try {
-            li0Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (!this.f27207c && this.d == 0.0f) {
+            return;
         }
-        li0Var.c(true);
+        int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(11.0f);
+        RectF rectF = this.f27205a;
+        rectF.set(measuredWidth, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(8.0f) + measuredWidth, AndroidUtilities.dp(11.0f));
+        int min = Math.min(255, (int) (this.d * 255.0f));
+        Paint paint = this.f27206b;
+        paint.setAlpha(min);
+        canvas.drawArc(rectF, this.f27209f, 220.0f, false, paint);
+        long currentTimeMillis = System.currentTimeMillis();
+        if (Math.abs(this.f27208e - System.currentTimeMillis()) < 1000) {
+            long j10 = currentTimeMillis - this.f27208e;
+            int i10 = (int) (this.f27209f + (((float) (360 * j10)) / 2000.0f));
+            this.f27209f = i10 - ((i10 / 360) * 360);
+            if (this.f27207c) {
+                float f10 = this.d;
+                if (f10 < 1.0f) {
+                    float f11 = (((float) j10) / 200.0f) + f10;
+                    this.d = f11;
+                    if (f11 > 1.0f) {
+                        this.d = 1.0f;
+                    }
+                }
+            } else {
+                float f12 = this.d;
+                if (f12 > 0.0f) {
+                    float f13 = f12 - (((float) j10) / 200.0f);
+                    this.d = f13;
+                    if (f13 < 0.0f) {
+                        this.d = 0.0f;
+                    }
+                }
+            }
+        }
+        this.f27208e = currentTimeMillis;
+        postInvalidateOnAnimation();
+    }
+
+    public void setProgressColor(int i10) {
+        this.f27206b.setColor(i10);
     }
 }

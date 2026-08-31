@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public final class f {
-    public final int f1369a;
-    public final List f1370b;
+    public final int f1476a;
+    public final List f1477b;
 
     public f(int i10, List list) {
-        this.f1369a = i10;
-        this.f1370b = list;
+        this.f1476a = i10;
+        this.f1477b = list;
     }
 
     public i0 a(int i10, androidx.biometric.e eVar) {
-        String str = (String) eVar.f478b;
+        String str = (String) eVar.f527b;
         if (i10 != 2) {
             if (i10 != 3 && i10 != 4) {
                 if (i10 != 21) {
@@ -69,7 +69,7 @@ public final class f {
                                 }
                                 return new w(new g(str));
                             }
-                            return new w(new h((List) eVar.f479c));
+                            return new w(new h((List) eVar.f528c));
                         }
                         return new w(new s(new d0(0, b(eVar))));
                     } else if (c(4)) {
@@ -91,19 +91,19 @@ public final class f {
         int i10;
         List list;
         boolean c3 = c(32);
-        List list2 = this.f1370b;
+        List list2 = this.f1477b;
         if (c3) {
             return list2;
         }
         h5.w wVar = new h5.w((byte[]) eVar.d);
         while (wVar.a() > 0) {
             int u10 = wVar.u();
-            int u11 = wVar.f7001b + wVar.u();
+            int u11 = wVar.f7309b + wVar.u();
             if (u10 == 134) {
                 ArrayList arrayList = new ArrayList();
                 int u12 = wVar.u() & 31;
                 for (int i11 = 0; i11 < u12; i11++) {
-                    String s6 = wVar.s(3, r8.d.f43389c);
+                    String s6 = wVar.s(3, r8.d.f46738c);
                     int u13 = wVar.u();
                     if ((u13 & 128) != 0) {
                         z4 = true;
@@ -125,10 +125,10 @@ public final class f {
                         list = null;
                     }
                     m0 m0Var = new m0();
-                    m0Var.f8684o = str;
-                    m0Var.f8675c = s6;
+                    m0Var.f9265o = str;
+                    m0Var.f9255c = s6;
                     m0Var.G = i10;
-                    m0Var.f8686q = list;
+                    m0Var.f9267q = list;
                     arrayList.add(new n0(m0Var));
                 }
                 list2 = arrayList;
@@ -139,19 +139,19 @@ public final class f {
     }
 
     public boolean c(int i10) {
-        if ((i10 & this.f1369a) != 0) {
+        if ((i10 & this.f1476a) != 0) {
             return true;
         }
         return false;
     }
 
     public f() {
-        this.f1369a = 1;
-        this.f1370b = Collections.singletonList(null);
+        this.f1476a = 1;
+        this.f1477b = Collections.singletonList(null);
     }
 
     public f(ArrayList arrayList) {
-        this.f1369a = 0;
-        this.f1370b = arrayList;
+        this.f1476a = 0;
+        this.f1477b = arrayList;
     }
 }

@@ -136,8 +136,8 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
             try {
                 this.countDownLatch.await();
                 return;
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e6) {
+                FileLog.e(e6);
                 return;
             }
         }

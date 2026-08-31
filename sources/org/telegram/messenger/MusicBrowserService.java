@@ -42,6 +42,6 @@ public class MusicBrowserService extends MediaBrowserService {
             return;
         }
         result.detach();
-        telegramMediaSession.loadBrowseChildren(str, new d(result, 9));
+        telegramMediaSession.loadBrowseChildren(str, new d0(result, 8));
     }
 }

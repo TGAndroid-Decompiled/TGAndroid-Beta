@@ -1,25 +1,25 @@
 package pb;
 public final class g {
-    public final float f41113a;
-    public final float f41114b;
-    public final float f41115c;
+    public final float f44274a;
+    public final float f44275b;
+    public final float f44276c;
     public final float d;
-    public final float e;
-    public final float f41116f;
-    public final float f41117g;
+    public final float f44277e;
+    public final float f44278f;
+    public final float f44279g;
     public final float h;
-    public final float f41118i;
+    public final float f44280i;
 
     public g(float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17, float f18) {
-        this.f41113a = f10;
-        this.f41114b = f13;
-        this.f41115c = f16;
+        this.f44274a = f10;
+        this.f44275b = f13;
+        this.f44276c = f16;
         this.d = f11;
-        this.e = f14;
-        this.f41116f = f17;
-        this.f41117g = f12;
+        this.f44277e = f14;
+        this.f44278f = f17;
+        this.f44279g = f12;
         this.h = f15;
-        this.f41118i = f18;
+        this.f44280i = f18;
     }
 
     public static g a(float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17) {

@@ -33,7 +33,7 @@ public class ContactsWidgetProvider extends AppWidgetProvider {
             int i13 = sharedPreferences.getInt("account" + i10, -1);
             if (i13 == -1) {
                 SharedPreferences.Editor edit = sharedPreferences.edit();
-                edit.putInt(kh.a2.j(i10, "account"), UserConfig.selectedAccount);
+                edit.putInt(l.d.j(i10, "account"), UserConfig.selectedAccount);
                 edit.putInt("type" + i10, 0).commit();
             }
             ArrayList<Long> arrayList = new ArrayList<>();

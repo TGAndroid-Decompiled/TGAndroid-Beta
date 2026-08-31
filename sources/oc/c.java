@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Map;
 public abstract class c {
-    public static final Map f16543a;
+    public static final Map f16711a;
 
     static {
         Map map;
@@ -17,6 +17,6 @@ public abstract class c {
             th2.printStackTrace();
             map = map2;
         }
-        f16543a = map;
+        f16711a = map;
     }
 }

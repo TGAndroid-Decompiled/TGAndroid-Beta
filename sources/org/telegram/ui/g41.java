@@ -1,53 +1,62 @@
 package org.telegram.ui;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class g41 extends AnimatorListenerAdapter {
-    public final int f34446a;
-    public final SecretMediaViewer f34447b;
+import android.animation.ObjectAnimator;
+import android.transition.Fade;
+import android.transition.TransitionValues;
+import android.view.View;
+import android.view.ViewGroup;
+public final class g41 extends Fade {
+    public final int f37083a;
+    public final boolean f37084b;
+    public final boolean f37085c;
+    public final SecretMediaViewer d;
 
-    public g41(SecretMediaViewer secretMediaViewer, int i10) {
-        this.f34446a = i10;
-        this.f34447b = secretMediaViewer;
+    public g41(SecretMediaViewer secretMediaViewer, boolean z4, boolean z10, int i10) {
+        super(1);
+        this.f37083a = i10;
+        switch (i10) {
+            case 1:
+                this.d = secretMediaViewer;
+                this.f37084b = z4;
+                this.f37085c = z10;
+                super(2);
+                return;
+            default:
+                this.d = secretMediaViewer;
+                this.f37084b = z4;
+                this.f37085c = z10;
+                return;
+        }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f34446a) {
+    public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.f37083a) {
             case 0:
-                SecretMediaViewer secretMediaViewer = this.f34447b;
-                Runnable runnable = secretMediaViewer.f32250l0;
-                if (runnable != null) {
-                    runnable.run();
-                    secretMediaViewer.f32250l0 = null;
-                    return;
+                Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+                if (this.f37084b && !this.f37085c && view == this.d.W) {
+                    onAppear.addListener(new ns0(this, 16));
+                    ((ObjectAnimator) onAppear).addUpdateListener(new j11(this, 4));
                 }
-                return;
-            case 1:
-                SecretMediaViewer secretMediaViewer2 = this.f34447b;
-                AnimatorSet animatorSet = secretMediaViewer2.D;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    secretMediaViewer2.C.setVisibility(8);
-                    secretMediaViewer2.D = null;
-                    secretMediaViewer2.X.scrollTo(0, 0);
-                    return;
-                }
-                return;
-            case 2:
-                SecretMediaViewer secretMediaViewer3 = this.f34447b;
-                Runnable runnable2 = secretMediaViewer3.f32250l0;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    secretMediaViewer3.f32250l0 = null;
-                    return;
-                }
-                return;
+                return onAppear;
             default:
-                SecretMediaViewer secretMediaViewer4 = this.f34447b;
-                secretMediaViewer4.H0 = null;
-                secretMediaViewer4.e.invalidate();
-                return;
+                return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+        }
+    }
+
+    @Override
+    public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.f37083a) {
+            case 1:
+                Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+                if (!this.f37084b && this.f37085c && view == this.d.W) {
+                    onDisappear.addListener(new ns0(this, 17));
+                    ((ObjectAnimator) onDisappear).addUpdateListener(new j11(this, 5));
+                }
+                return onDisappear;
+            default:
+                return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
         }
     }
 }

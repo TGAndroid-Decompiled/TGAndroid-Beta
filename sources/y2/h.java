@@ -3,24 +3,24 @@ package y2;
 import java.util.HashMap;
 import java.util.Map;
 public final class h {
-    public final String f47010a;
-    public final Integer f47011b;
-    public final l f47012c;
+    public final String f50688a;
+    public final Integer f50689b;
+    public final l f50690c;
     public final long d;
-    public final long e;
-    public final Map f47013f;
+    public final long f50691e;
+    public final Map f50692f;
 
     public h(String str, Integer num, l lVar, long j10, long j11, HashMap hashMap) {
-        this.f47010a = str;
-        this.f47011b = num;
-        this.f47012c = lVar;
+        this.f50688a = str;
+        this.f50689b = num;
+        this.f50690c = lVar;
         this.d = j10;
-        this.e = j11;
-        this.f47013f = hashMap;
+        this.f50691e = j11;
+        this.f50692f = hashMap;
     }
 
     public final String a(String str) {
-        String str2 = (String) this.f47013f.get(str);
+        String str2 = (String) this.f50692f.get(str);
         if (str2 == null) {
             return "";
         }
@@ -28,7 +28,7 @@ public final class h {
     }
 
     public final int b(String str) {
-        String str2 = (String) this.f47013f.get(str);
+        String str2 = (String) this.f50692f.get(str);
         if (str2 == null) {
             return 0;
         }
@@ -37,16 +37,16 @@ public final class h {
 
     public final a9.a c() {
         ?? obj = new Object();
-        String str = this.f47010a;
+        String str = this.f50688a;
         if (str != null) {
-            obj.f144b = str;
-            obj.f143a = this.f47011b;
-            l lVar = this.f47012c;
+            obj.f156b = str;
+            obj.f155a = this.f50689b;
+            l lVar = this.f50690c;
             if (lVar != null) {
-                obj.f145c = lVar;
+                obj.f157c = lVar;
                 obj.d = Long.valueOf(this.d);
-                obj.e = Long.valueOf(this.e);
-                obj.f146f = new HashMap(this.f47013f);
+                obj.f158e = Long.valueOf(this.f50691e);
+                obj.f159f = new HashMap(this.f50692f);
                 return obj;
             }
             throw new NullPointerException("Null encodedPayload");
@@ -61,8 +61,8 @@ public final class h {
         }
         if (obj instanceof h) {
             h hVar = (h) obj;
-            Integer num2 = hVar.f47011b;
-            if (this.f47010a.equals(hVar.f47010a) && ((num = this.f47011b) != null ? num.equals(num2) : num2 == null) && this.f47012c.equals(hVar.f47012c) && this.d == hVar.d && this.e == hVar.e && this.f47013f.equals(hVar.f47013f)) {
+            Integer num2 = hVar.f50689b;
+            if (this.f50688a.equals(hVar.f50688a) && ((num = this.f50689b) != null ? num.equals(num2) : num2 == null) && this.f50690c.equals(hVar.f50690c) && this.d == hVar.d && this.f50691e == hVar.f50691e && this.f50692f.equals(hVar.f50692f)) {
                 return true;
             }
         }
@@ -71,19 +71,19 @@ public final class h {
 
     public final int hashCode() {
         int hashCode;
-        int hashCode2 = (this.f47010a.hashCode() ^ 1000003) * 1000003;
-        Integer num = this.f47011b;
+        int hashCode2 = (this.f50688a.hashCode() ^ 1000003) * 1000003;
+        Integer num = this.f50689b;
         if (num == null) {
             hashCode = 0;
         } else {
             hashCode = num.hashCode();
         }
         long j10 = this.d;
-        long j11 = this.e;
-        return ((((((((hashCode2 ^ hashCode) * 1000003) ^ this.f47012c.hashCode()) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ this.f47013f.hashCode();
+        long j11 = this.f50691e;
+        return ((((((((hashCode2 ^ hashCode) * 1000003) ^ this.f50690c.hashCode()) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ this.f50692f.hashCode();
     }
 
     public final String toString() {
-        return "EventInternal{transportName=" + this.f47010a + ", code=" + this.f47011b + ", encodedPayload=" + this.f47012c + ", eventMillis=" + this.d + ", uptimeMillis=" + this.e + ", autoMetadata=" + this.f47013f + "}";
+        return "EventInternal{transportName=" + this.f50688a + ", code=" + this.f50689b + ", encodedPayload=" + this.f50690c + ", eventMillis=" + this.d + ", uptimeMillis=" + this.f50691e + ", autoMetadata=" + this.f50692f + "}";
     }
 }

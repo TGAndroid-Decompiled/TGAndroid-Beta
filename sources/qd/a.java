@@ -3,8 +3,8 @@ package qd;
 import java.util.ArrayList;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-import k7.n7;
-import k7.p7;
+import k7.o7;
+import k7.q7;
 import ld.a0;
 import ld.b0;
 import ld.b2;
@@ -14,27 +14,27 @@ import ld.f1;
 import ld.g2;
 import ld.w0;
 public abstract class a {
-    public static final i5.c f43013a = new i5.c("NO_DECISION", 3);
-    public static final i5.c f43014b = new i5.c("CLOSED", 3);
-    public static final i5.c f43015c = new i5.c("UNDEFINED", 3);
-    public static final i5.c d = new i5.c("REUSABLE_CLAIMED", 3);
-    public static final i5.c e = new i5.c("CONDITION_FALSE", 3);
-    public static final i5.c f43016f = new i5.c("NO_THREAD_ELEMENTS", 3);
+    public static final com.google.android.gms.internal.clearcut.e f44788a = new com.google.android.gms.internal.clearcut.e("NO_DECISION", 2);
+    public static final com.google.android.gms.internal.clearcut.e f44789b = new com.google.android.gms.internal.clearcut.e("CLOSED", 2);
+    public static final com.google.android.gms.internal.clearcut.e f44790c = new com.google.android.gms.internal.clearcut.e("UNDEFINED", 2);
+    public static final com.google.android.gms.internal.clearcut.e d = new com.google.android.gms.internal.clearcut.e("REUSABLE_CLAIMED", 2);
+    public static final com.google.android.gms.internal.clearcut.e f44791e = new com.google.android.gms.internal.clearcut.e("CONDITION_FALSE", 2);
+    public static final com.google.android.gms.internal.clearcut.e f44792f = new com.google.android.gms.internal.clearcut.e("NO_THREAD_ELEMENTS", 2);
 
     public static final Object a(t tVar, long j10, dd.p pVar) {
         while (true) {
-            if (tVar.f43041c >= j10 && !tVar.d()) {
+            if (tVar.f44820c >= j10 && !tVar.d()) {
                 return tVar;
             }
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f43019a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f44795a;
             Object obj = atomicReferenceFieldUpdater.get(tVar);
-            i5.c cVar = f43014b;
-            if (obj == cVar) {
-                return cVar;
+            com.google.android.gms.internal.clearcut.e eVar = f44789b;
+            if (obj == eVar) {
+                return eVar;
             }
             t tVar2 = (t) ((d) obj);
             if (tVar2 == null) {
-                tVar2 = (t) pVar.invoke(Long.valueOf(tVar.f43041c + 1), tVar);
+                tVar2 = (t) pVar.invoke(Long.valueOf(tVar.f44820c + 1), tVar);
                 while (!atomicReferenceFieldUpdater.compareAndSet(tVar, null, tVar2)) {
                     if (atomicReferenceFieldUpdater.get(tVar) != null) {
                         break;
@@ -49,7 +49,7 @@ public abstract class a {
     }
 
     public static final t b(Object obj) {
-        if (obj != f43014b) {
+        if (obj != f44789b) {
             return (t) obj;
         }
         throw new IllegalStateException("Does not contain segment");
@@ -57,7 +57,7 @@ public abstract class a {
 
     public static final void c(Throwable th2, uc.h hVar) {
         Throwable runtimeException;
-        for (md.b bVar : f.f43022a) {
+        for (md.b bVar : f.f44798a) {
             try {
                 bVar.c(th2);
             } catch (Throwable th3) {
@@ -65,14 +65,14 @@ public abstract class a {
                     runtimeException = th2;
                 } else {
                     runtimeException = new RuntimeException("Exception while trying to handle coroutine exception", th3);
-                    n7.a(runtimeException, th2);
+                    o7.a(runtimeException, th2);
                 }
                 Thread currentThread = Thread.currentThread();
                 currentThread.getUncaughtExceptionHandler().uncaughtException(currentThread, runtimeException);
             }
         }
         try {
-            n7.a(th2, new g(hVar));
+            o7.a(th2, new g(hVar));
         } catch (Throwable unused) {
         }
         Thread currentThread2 = Thread.currentThread();
@@ -80,7 +80,7 @@ public abstract class a {
     }
 
     public static final boolean d(Object obj) {
-        if (obj == f43014b) {
+        if (obj == f44789b) {
             return true;
         }
         return false;
@@ -101,17 +101,17 @@ public abstract class a {
     }
 
     public static final void f(uc.h hVar, Object obj) {
-        if (obj != f43016f) {
+        if (obj != f44792f) {
             if (obj instanceof y) {
                 y yVar = (y) obj;
-                b2[] b2VarArr = yVar.f43049b;
+                b2[] b2VarArr = yVar.f44829b;
                 int length = b2VarArr.length - 1;
                 if (length < 0) {
                     return;
                 }
                 b2 b2Var = b2VarArr[length];
                 kotlin.jvm.internal.j.b(null);
-                Object obj2 = yVar.f43048a[length];
+                Object obj2 = yVar.f44828a[length];
                 throw null;
             }
             Object fold = hVar.fold(null, w.d);
@@ -127,7 +127,7 @@ public abstract class a {
         if (cVar instanceof h) {
             h hVar = (h) cVar;
             a0 a0Var = hVar.d;
-            wc.c cVar2 = hVar.e;
+            wc.c cVar2 = hVar.f44801e;
             Throwable a2 = sc.f.a(obj);
             if (a2 == null) {
                 vVar = obj;
@@ -136,35 +136,35 @@ public abstract class a {
             }
             cVar2.getContext();
             if (a0Var.e()) {
-                hVar.f43025f = vVar;
-                hVar.f11896c = 1;
+                hVar.f44802f = vVar;
+                hVar.f12326c = 1;
                 a0Var.c(cVar2.getContext(), hVar);
                 return;
             }
             w0 a10 = c2.a();
-            if (a10.f11934c >= 4294967296L) {
-                hVar.f43025f = vVar;
-                hVar.f11896c = 1;
-                tc.e eVar = a10.e;
+            if (a10.f12372c >= 4294967296L) {
+                hVar.f44802f = vVar;
+                hVar.f12326c = 1;
+                tc.e eVar = a10.f12373e;
                 if (eVar == null) {
                     eVar = new tc.e();
-                    a10.e = eVar;
+                    a10.f12373e = eVar;
                 }
                 eVar.addLast(hVar);
                 return;
             }
             a10.h(true);
             try {
-                f1 f1Var = (f1) cVar2.getContext().get(b0.f11861b);
+                f1 f1Var = (f1) cVar2.getContext().get(b0.f12283b);
                 if (f1Var != null && !f1Var.isActive()) {
                     CancellationException cancellationException = f1Var.getCancellationException();
                     hVar.c(vVar, cancellationException);
-                    hVar.resumeWith(p7.a(cancellationException));
+                    hVar.resumeWith(q7.a(cancellationException));
                 } else {
                     Object obj2 = hVar.h;
                     uc.h context = cVar2.getContext();
                     Object k10 = k(context, obj2);
-                    if (k10 != f43016f) {
+                    if (k10 != f44792f) {
                         g2Var = e0.v(cVar2, context, k10);
                     } else {
                         g2Var = null;
@@ -203,14 +203,14 @@ public abstract class a {
 
     public static final Object k(uc.h hVar, Object obj) {
         if (obj == null) {
-            obj = hVar.fold(0, w.f43044c);
+            obj = hVar.fold(0, w.f44823c);
             kotlin.jvm.internal.j.b(obj);
         }
         if (obj == 0) {
-            return f43016f;
+            return f44792f;
         }
         if (obj instanceof Integer) {
-            return hVar.fold(new y(((Number) obj).intValue(), hVar), w.e);
+            return hVar.fold(new y(((Number) obj).intValue(), hVar), w.f44824e);
         }
         android.support.v4.media.a.v(obj);
         throw null;

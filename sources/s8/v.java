@@ -5,14 +5,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
-import k7.a7;
 import k7.b7;
+import k7.c7;
 public abstract class v extends q implements List, RandomAccess {
-    public static final t f44157b = new t(i0.e, 0);
+    public static final t f47143b = new t(i0.f47108e, 0);
 
     public static i0 s(int i10, Object[] objArr) {
         if (i10 == 0) {
-            return i0.e;
+            return i0.f47108e;
         }
         return new i0(i10, objArr);
     }
@@ -21,7 +21,7 @@ public abstract class v extends q implements List, RandomAccess {
         if (collection instanceof q) {
             v i10 = ((q) collection).i();
             if (i10.r()) {
-                Object[] array = i10.toArray(q.f44146a);
+                Object[] array = i10.toArray(q.f47131a);
                 return s(array.length, array);
             }
             return i10;
@@ -33,7 +33,7 @@ public abstract class v extends q implements List, RandomAccess {
 
     public static i0 u(Object[] objArr) {
         if (objArr.length == 0) {
-            return i0.e;
+            return i0.f47108e;
         }
         Object[] objArr2 = (Object[]) objArr.clone();
         l.b(objArr2.length, objArr2);
@@ -79,14 +79,14 @@ public abstract class v extends q implements List, RandomAccess {
                 if (size == list.size()) {
                     if (list instanceof RandomAccess) {
                         for (int i10 = 0; i10 < size; i10++) {
-                            if (a7.a(get(i10), list.get(i10))) {
+                            if (b7.a(get(i10), list.get(i10))) {
                             }
                         }
                     } else {
                         Iterator it = list.iterator();
                         for (Object obj2 : this) {
                             if (it.hasNext()) {
-                                if (!a7.a(obj2, it.next())) {
+                                if (!b7.a(obj2, it.next())) {
                                 }
                             }
                         }
@@ -162,22 +162,22 @@ public abstract class v extends q implements List, RandomAccess {
 
     @Override
     public final t listIterator(int i10) {
-        b7.d(i10, size());
+        c7.d(i10, size());
         if (isEmpty()) {
-            return f44157b;
+            return f47143b;
         }
         return new t(this, i10);
     }
 
     @Override
     public v subList(int i10, int i11) {
-        b7.e(i10, i11, size());
+        c7.e(i10, i11, size());
         int i12 = i11 - i10;
         if (i12 == size()) {
             return this;
         }
         if (i12 == 0) {
-            return i0.e;
+            return i0.f47108e;
         }
         return new u(this, i10, i12);
     }

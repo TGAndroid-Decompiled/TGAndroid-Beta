@@ -10,20 +10,20 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class o implements o0 {
-    public final l f45094a;
-    public final i f45095b;
-    public static final Pattern f45069c = Pattern.compile("AVERAGE-BANDWIDTH=(\\d+)\\b");
+    public final l f48345a;
+    public final i f48346b;
+    public static final Pattern f48319c = Pattern.compile("AVERAGE-BANDWIDTH=(\\d+)\\b");
     public static final Pattern d = Pattern.compile("VIDEO=\"(.+?)\"");
-    public static final Pattern e = Pattern.compile("AUDIO=\"(.+?)\"");
-    public static final Pattern f45073f = Pattern.compile("SUBTITLES=\"(.+?)\"");
+    public static final Pattern f48322e = Pattern.compile("AUDIO=\"(.+?)\"");
+    public static final Pattern f48324f = Pattern.compile("SUBTITLES=\"(.+?)\"");
     public static final Pattern h = Pattern.compile("CLOSED-CAPTIONS=\"(.+?)\"");
-    public static final Pattern f45081n = Pattern.compile("[^-]BANDWIDTH=(\\d+)\\b");
-    public static final Pattern f45086r = Pattern.compile("CHANNELS=\"(.+?)\"");
-    public static final Pattern f45088s = Pattern.compile("CODECS=\"(.+?)\"");
+    public static final Pattern f48332n = Pattern.compile("[^-]BANDWIDTH=(\\d+)\\b");
+    public static final Pattern f48337r = Pattern.compile("CHANNELS=\"(.+?)\"");
+    public static final Pattern f48339s = Pattern.compile("CODECS=\"(.+?)\"");
     public static final Pattern v = Pattern.compile("MIME=\"(.+?)\"");
-    public static final Pattern f45091w = Pattern.compile("CACHED=\"(.+?)\"");
-    public static final Pattern f45092x = Pattern.compile("DOCID=\"(.+?)\"");
-    public static final Pattern f45093y = Pattern.compile("DOCFILENAME=\"(.+?)\"");
+    public static final Pattern f48342w = Pattern.compile("CACHED=\"(.+?)\"");
+    public static final Pattern f48343x = Pattern.compile("DOCID=\"(.+?)\"");
+    public static final Pattern f48344y = Pattern.compile("DOCFILENAME=\"(.+?)\"");
     public static final Pattern B = Pattern.compile("ACCOUNT=\"(.+?)\"");
     public static final Pattern C = Pattern.compile("RESOLUTION=(\\d+x\\d+)");
     public static final Pattern D = Pattern.compile("FRAME-RATE=([\\d\\.]+)\\b");
@@ -49,30 +49,30 @@ public final class o implements o0 {
     public static final Pattern X = Pattern.compile("BYTERANGE-START=(\\d+)\\b");
     public static final Pattern Y = Pattern.compile("BYTERANGE-LENGTH=(\\d+)\\b");
     public static final Pattern Z = Pattern.compile("METHOD=(NONE|AES-128|SAMPLE-AES|SAMPLE-AES-CENC|SAMPLE-AES-CTR)\\s*(?:,|$)");
-    public static final Pattern f45067a0 = Pattern.compile("KEYFORMAT=\"(.+?)\"");
-    public static final Pattern f45068b0 = Pattern.compile("KEYFORMATVERSIONS=\"(.+?)\"");
-    public static final Pattern f45070c0 = Pattern.compile("URI=\"(.+?)\"");
-    public static final Pattern f45071d0 = Pattern.compile("IV=([^,.*]+)");
-    public static final Pattern f45072e0 = Pattern.compile("TYPE=(AUDIO|VIDEO|SUBTITLES|CLOSED-CAPTIONS)");
-    public static final Pattern f45074f0 = Pattern.compile("TYPE=(PART|MAP)");
-    public static final Pattern f45075g0 = Pattern.compile("LANGUAGE=\"(.+?)\"");
-    public static final Pattern f45076h0 = Pattern.compile("NAME=\"(.+?)\"");
-    public static final Pattern f45077i0 = Pattern.compile("GROUP-ID=\"(.+?)\"");
-    public static final Pattern f45078j0 = Pattern.compile("CHARACTERISTICS=\"(.+?)\"");
-    public static final Pattern f45079k0 = Pattern.compile("INSTREAM-ID=\"((?:CC|SERVICE)\\d+)\"");
-    public static final Pattern f45080l0 = a("AUTOSELECT");
+    public static final Pattern f48317a0 = Pattern.compile("KEYFORMAT=\"(.+?)\"");
+    public static final Pattern f48318b0 = Pattern.compile("KEYFORMATVERSIONS=\"(.+?)\"");
+    public static final Pattern f48320c0 = Pattern.compile("URI=\"(.+?)\"");
+    public static final Pattern f48321d0 = Pattern.compile("IV=([^,.*]+)");
+    public static final Pattern f48323e0 = Pattern.compile("TYPE=(AUDIO|VIDEO|SUBTITLES|CLOSED-CAPTIONS)");
+    public static final Pattern f48325f0 = Pattern.compile("TYPE=(PART|MAP)");
+    public static final Pattern f48326g0 = Pattern.compile("LANGUAGE=\"(.+?)\"");
+    public static final Pattern f48327h0 = Pattern.compile("NAME=\"(.+?)\"");
+    public static final Pattern f48328i0 = Pattern.compile("GROUP-ID=\"(.+?)\"");
+    public static final Pattern f48329j0 = Pattern.compile("CHARACTERISTICS=\"(.+?)\"");
+    public static final Pattern f48330k0 = Pattern.compile("INSTREAM-ID=\"((?:CC|SERVICE)\\d+)\"");
+    public static final Pattern f48331l0 = a("AUTOSELECT");
     public static final Pattern m0 = a("DEFAULT");
-    public static final Pattern f45082n0 = a("FORCED");
-    public static final Pattern f45083o0 = a("INDEPENDENT");
-    public static final Pattern f45084p0 = a("GAP");
-    public static final Pattern f45085q0 = a("PRECISE");
-    public static final Pattern f45087r0 = Pattern.compile("VALUE=\"(.+?)\"");
-    public static final Pattern f45089s0 = Pattern.compile("IMPORT=\"(.+?)\"");
-    public static final Pattern f45090t0 = Pattern.compile("\\{\\$([a-zA-Z0-9\\-_]+)\\}");
+    public static final Pattern f48333n0 = a("FORCED");
+    public static final Pattern f48334o0 = a("INDEPENDENT");
+    public static final Pattern f48335p0 = a("GAP");
+    public static final Pattern f48336q0 = a("PRECISE");
+    public static final Pattern f48338r0 = Pattern.compile("VALUE=\"(.+?)\"");
+    public static final Pattern f48340s0 = Pattern.compile("IMPORT=\"(.+?)\"");
+    public static final Pattern f48341t0 = Pattern.compile("\\{\\$([a-zA-Z0-9\\-_]+)\\}");
 
     public o(l lVar, i iVar) {
-        this.f45094a = lVar;
-        this.f45095b = iVar;
+        this.f48345a = lVar;
+        this.f48346b = iVar;
     }
 
     public static Pattern a(String str) {
@@ -83,28 +83,28 @@ public final class o implements o0 {
         o3.f[] fVarArr2 = new o3.f[fVarArr.length];
         for (int i10 = 0; i10 < fVarArr.length; i10++) {
             o3.f fVar = fVarArr[i10];
-            fVarArr2[i10] = new o3.f(fVar.f16258b, fVar.f16259c, fVar.d, null);
+            fVarArr2[i10] = new o3.f(fVar.f16398b, fVar.f16399c, fVar.d, null);
         }
         return new o3.g(str, true, fVarArr2);
     }
 
     public static o3.f c(String str, String str2, HashMap hashMap) {
-        String i10 = i(str, f45068b0, "1", hashMap);
+        String i10 = i(str, f48318b0, "1", hashMap);
         boolean equals = "urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed".equals(str2);
-        Pattern pattern = f45070c0;
+        Pattern pattern = f48320c0;
         if (equals) {
             String j10 = j(str, pattern, hashMap);
             return new o3.f(j3.h.d, null, "video/mp4", Base64.decode(j10.substring(j10.indexOf(44)), 0));
         } else if ("com.widevine".equals(str2)) {
             UUID uuid = j3.h.d;
-            int i11 = d0.f6937a;
-            return new o3.f(uuid, null, "hls", str.getBytes(r8.d.f43389c));
+            int i11 = d0.f7237a;
+            return new o3.f(uuid, null, "hls", str.getBytes(r8.d.f46738c));
         } else if (!"com.microsoft.playready".equals(str2) || !"1".equals(i10)) {
             return null;
         } else {
             String j11 = j(str, pattern, hashMap);
             byte[] decode = Base64.decode(j11.substring(j11.indexOf(44)), 0);
-            UUID uuid2 = j3.h.e;
+            UUID uuid2 = j3.h.f9165e;
             return new o3.f(uuid2, null, "video/mp4", z3.j.a(uuid2, null, decode));
         }
     }
@@ -166,7 +166,7 @@ public final class o implements o0 {
     }
 
     public static String k(String str, Map map) {
-        Matcher matcher = f45090t0.matcher(str);
+        Matcher matcher = f48341t0.matcher(str);
         StringBuffer stringBuffer = new StringBuffer();
         while (matcher.find()) {
             String group = matcher.group(1);
@@ -179,7 +179,7 @@ public final class o implements o0 {
     }
 
     @Override
-    public final java.lang.Object r(android.net.Uri r7, g5.o r8) {
-        throw new UnsupportedOperationException("Method not decompiled: u4.o.r(android.net.Uri, g5.o):java.lang.Object");
+    public final java.lang.Object w(android.net.Uri r7, g5.o r8) {
+        throw new UnsupportedOperationException("Method not decompiled: u4.o.w(android.net.Uri, g5.o):java.lang.Object");
     }
 }

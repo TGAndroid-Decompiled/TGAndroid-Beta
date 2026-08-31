@@ -2,27 +2,27 @@ package org.telegram.ui;
 
 import android.content.Context;
 import org.telegram.messenger.ChatObject;
-public final class wo implements org.telegram.ui.Components.w80 {
-    public final Context f39775a;
-    public final dp f39776b;
+public final class wo implements org.telegram.ui.Components.x80 {
+    public final Context f42864a;
+    public final ep f42865b;
 
-    public wo(dp dpVar, Context context) {
-        this.f39776b = dpVar;
-        this.f39775a = context;
+    public wo(ep epVar, Context context) {
+        this.f42865b = epVar;
+        this.f42864a = context;
     }
 
     @Override
     public final void c() {
-        this.f39776b.X(true);
+        this.f42865b.X(true);
     }
 
     @Override
     public final void e() {
-        dp dpVar = this.f39776b;
-        org.telegram.ui.Components.s60 s60Var = new org.telegram.ui.Components.s60(this.f39775a, dpVar.f33758i0, dpVar.V, dpVar.f33761l0, dpVar, dpVar.W, true, ChatObject.isChannel(dpVar.U));
-        dp dpVar2 = this.f39776b;
-        dpVar2.m0 = s60Var;
-        dpVar2.m0.show();
+        ep epVar = this.f42865b;
+        org.telegram.ui.Components.u60 u60Var = new org.telegram.ui.Components.u60(this.f42864a, epVar.f36642i0, epVar.V, epVar.f36645l0, epVar, epVar.W, true, ChatObject.isChannel(epVar.U));
+        ep epVar2 = this.f42865b;
+        epVar2.m0 = u60Var;
+        epVar2.m0.show();
     }
 
     @Override
@@ -30,6 +30,6 @@ public final class wo implements org.telegram.ui.Components.w80 {
     }
 
     @Override
-    public final void j() {
+    public final void k() {
     }
 }

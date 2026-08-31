@@ -9,23 +9,23 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
-public final class vf implements org.telegram.ui.hu0 {
-    public boolean f29445a;
-    public final Object f29446b;
-    public final Object f29447c;
+public final class vf implements org.telegram.ui.ju0 {
+    public boolean f31897a;
+    public final Object f31898b;
+    public final Object f31899c;
     public final MediaController.PhotoEntry d;
-    public final xf e;
+    public final xf f31900e;
 
     public vf(xf xfVar, Object obj, Object obj2, MediaController.PhotoEntry photoEntry) {
-        this.e = xfVar;
-        this.f29446b = obj;
-        this.f29447c = obj2;
+        this.f31900e = xfVar;
+        this.f31898b = obj;
+        this.f31899c = obj2;
         this.d = photoEntry;
     }
 
     @Override
     public final boolean A() {
-        return this.f29445a;
+        return this.f31897a;
     }
 
     @Override
@@ -34,13 +34,13 @@ public final class vf implements org.telegram.ui.hu0 {
     }
 
     @Override
-    public final org.telegram.ui.ju0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z4, boolean z10) {
+    public final org.telegram.ui.lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z4, boolean z10) {
         return null;
     }
 
     @Override
     public final void F(boolean z4) {
-        this.f29445a = z4;
+        this.f31897a = z4;
     }
 
     @Override
@@ -135,12 +135,12 @@ public final class vf implements org.telegram.ui.hu0 {
 
     @Override
     public final void d() {
-        ph.f fVar;
+        qh.f fVar;
         bd f12 = PhotoViewer.t1().f1();
-        if (f12 != null && (fVar = f12.f41809f) != null) {
-            yt ytVar = fVar.f24367a;
-            ytVar.requestFocus();
-            AndroidUtilities.showKeyboard(ytVar);
+        if (f12 != null && (fVar = f12.f45517f) != null) {
+            au auVar = fVar.f27001a;
+            auVar.requestFocus();
+            AndroidUtilities.showKeyboard(auVar);
         }
     }
 
@@ -171,7 +171,7 @@ public final class vf implements org.telegram.ui.hu0 {
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z4, int i11, int i12, boolean z10) {
-        this.e.B(null, this.f29446b, null, this.f29447c, z4, i11, i12, this.d, this.f29445a);
+        this.f31900e.B(null, this.f31898b, null, this.f31899c, z4, i11, i12, this.d, this.f31897a);
     }
 
     @Override

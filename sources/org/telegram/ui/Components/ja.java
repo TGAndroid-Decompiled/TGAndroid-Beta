@@ -16,23 +16,23 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public abstract class ja extends View {
-    public final org.telegram.ui.ActionBar.f6 f25942a;
-    public final ia[] f25943b;
-    public final Paint f25944c;
+    public final org.telegram.ui.ActionBar.g6 f28084a;
+    public final ia[] f28085b;
+    public final Paint f28086c;
     public float d;
-    public int e;
-    public boolean f25945f;
+    public int f28087e;
+    public boolean f28088f;
     public final z5 h;
-    public Utilities.Callback f25946n;
-    public boolean f25947r;
+    public Utilities.Callback f28089n;
+    public boolean f28090r;
 
-    public ja(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public ja(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
-        this.f25944c = new Paint(1);
-        this.h = new z5(this, 0L, 210L, nr.h);
-        this.f25942a = f6Var;
-        ca0 ca0Var = (ca0) this;
-        this.f25943b = new ia[]{new ia(ca0Var, 0, R.raw.msg_stories_saved, 20, 40, LocaleController.getString(R.string.ProfileMyStoriesTab)), new ia(ca0Var, 1, R.raw.msg_stories_archive, 0, 0, LocaleController.getString(R.string.ProfileStoriesArchiveTab))};
+        this.f28086c = new Paint(1);
+        this.h = new z5(this, 0L, 210L, pr.h);
+        this.f28084a = g6Var;
+        ea0 ea0Var = (ea0) this;
+        this.f28085b = new ia[]{new ia(ea0Var, 0, R.raw.msg_stories_saved, 20, 40, LocaleController.getString(R.string.ProfileMyStoriesTab)), new ia(ea0Var, 1, R.raw.msg_stories_archive, 0, 0, LocaleController.getString(R.string.ProfileStoriesArchiveTab))};
         setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
         a(0.0f, false);
     }
@@ -40,14 +40,14 @@ public abstract class ja extends View {
     public final void a(float f10, boolean z4) {
         float f11;
         boolean z10;
-        ia[] iaVarArr = this.f25943b;
+        ia[] iaVarArr = this.f28085b;
         float clamp = Utilities.clamp(f10, iaVarArr.length, 0.0f);
         this.d = clamp;
-        this.e = Math.round(clamp);
+        this.f28087e = Math.round(clamp);
         for (int i10 = 0; i10 < iaVarArr.length; i10++) {
             ia iaVar = iaVarArr[i10];
-            float abs = Math.abs(this.e - i10);
-            if (iaVarArr[i10].f25662l) {
+            float abs = Math.abs(this.f28087e - i10);
+            if (iaVarArr[i10].f27730l) {
                 f11 = 0.25f;
             } else {
                 f11 = 0.35f;
@@ -57,35 +57,35 @@ public abstract class ja extends View {
             } else {
                 z10 = false;
             }
-            int i11 = iaVar.f25661k;
-            int i12 = iaVar.f25660j;
-            gj0 gj0Var = iaVar.f25655b;
-            if (iaVar.f25662l != z10) {
-                if (iaVar.f25664n.f25943b[iaVar.f25654a].f25660j != 0) {
+            int i11 = iaVar.f27729k;
+            int i12 = iaVar.f27728j;
+            ij0 ij0Var = iaVar.f27722b;
+            if (iaVar.f27730l != z10) {
+                if (iaVar.f27732n.f28085b[iaVar.f27721a].f27728j != 0) {
                     if (z10) {
-                        gj0Var.N(i12);
-                        if (gj0Var.Y >= i11 - 2) {
-                            gj0Var.L(0, false, false);
+                        ij0Var.N(i12);
+                        if (ij0Var.Y >= i11 - 2) {
+                            ij0Var.L(0, false, false);
                         }
-                        if (gj0Var.Y <= i12) {
-                            gj0Var.start();
+                        if (ij0Var.Y <= i12) {
+                            ij0Var.start();
                         } else {
-                            gj0Var.K(i12);
+                            ij0Var.K(i12);
                         }
-                    } else if (gj0Var.Y >= i12 - 1) {
-                        gj0Var.N(i11 - 1);
-                        gj0Var.start();
+                    } else if (ij0Var.Y >= i12 - 1) {
+                        ij0Var.N(i11 - 1);
+                        ij0Var.start();
                     } else {
-                        gj0Var.N(0);
-                        gj0Var.K(0);
+                        ij0Var.N(0);
+                        ij0Var.K(0);
                     }
                 } else if (z10) {
-                    gj0Var.K(0);
+                    ij0Var.K(0);
                     if (z4) {
-                        gj0Var.start();
+                        ij0Var.start();
                     }
                 }
-                iaVar.f25662l = z10;
+                iaVar.f27730l = z10;
             }
         }
         invalidate();
@@ -93,7 +93,7 @@ public abstract class ja extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        org.telegram.ui.ActionBar.f6 f6Var;
+        org.telegram.ui.ActionBar.g6 g6Var;
         float f10;
         float f11;
         float f12;
@@ -101,24 +101,24 @@ public abstract class ja extends View {
         boolean z4;
         float f14;
         ja jaVar = this;
-        int i10 = org.telegram.ui.ActionBar.j6.f19906d6;
-        org.telegram.ui.ActionBar.f6 f6Var2 = jaVar.f25942a;
-        canvas.drawColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var2));
-        canvas.drawRect(0.0f, 0.0f, jaVar.getWidth(), AndroidUtilities.getShadowHeight(), org.telegram.ui.ActionBar.j6.f20025k0);
+        int i10 = org.telegram.ui.ActionBar.k6.f21659d6;
+        org.telegram.ui.ActionBar.g6 g6Var2 = jaVar.f28084a;
+        canvas.drawColor(org.telegram.ui.ActionBar.k6.v0(i10, g6Var2));
+        canvas.drawRect(0.0f, 0.0f, jaVar.getWidth(), AndroidUtilities.getShadowHeight(), org.telegram.ui.ActionBar.k6.f21779k0);
         int width = (jaVar.getWidth() - jaVar.getPaddingLeft()) - jaVar.getPaddingRight();
-        ia[] iaVarArr = jaVar.f25943b;
+        ia[] iaVarArr = jaVar.f28085b;
         int length = width / iaVarArr.length;
         int min = Math.min(AndroidUtilities.dp(64.0f), length);
-        float e = jaVar.h.e(jaVar.f25945f);
-        Paint paint = jaVar.f25944c;
+        float e6 = jaVar.h.e(jaVar.f28088f);
+        Paint paint = jaVar.f28086c;
         float f15 = 0.0f;
-        if (e > 0.0f) {
+        if (e6 > 0.0f) {
             f10 = 9.0f;
             f11 = 16.0f;
-            paint.setColor(i0.a.k(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var2), (int) (((Math.abs((Math.floor(jaVar.d) + 0.5d) - jaVar.d) * 1.2000000476837158d) + 0.4000000059604645d) * 18.0d * e)));
+            paint.setColor(i0.a.k(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.G6, g6Var2), (int) (((Math.abs((Math.floor(jaVar.d) + 0.5d) - jaVar.d) * 1.2000000476837158d) + 0.4000000059604645d) * 18.0d * e6)));
             float f16 = length;
             float f17 = f16 / 2.0f;
-            f6Var = f6Var2;
+            g6Var = g6Var2;
             f12 = 41.0f;
             float lerp = AndroidUtilities.lerp((((float) Math.floor(jaVar.d)) * f16) + f17, (f16 * ((float) Math.ceil(jaVar.d))) + f17, jaVar.d - ((int) f14)) + jaVar.getPaddingLeft();
             RectF rectF = AndroidUtilities.rectTmp;
@@ -126,7 +126,7 @@ public abstract class ja extends View {
             rectF.set(lerp - f18, AndroidUtilities.dp(9.0f), lerp + f18, AndroidUtilities.dp(41.0f));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint);
         } else {
-            f6Var = f6Var2;
+            g6Var = g6Var2;
             f10 = 9.0f;
             f11 = 16.0f;
             f12 = 41.0f;
@@ -136,21 +136,21 @@ public abstract class ja extends View {
             ia iaVar = iaVarArr[i11];
             int paddingLeft = (i11 * length) + jaVar.getPaddingLeft();
             RectF rectF2 = iaVar.h;
-            StaticLayout staticLayout = iaVar.e;
-            org.telegram.ui.Cells.z zVar = iaVar.f25656c;
-            gj0 gj0Var = iaVar.f25655b;
+            StaticLayout staticLayout = iaVar.f27724e;
+            org.telegram.ui.Cells.z zVar = iaVar.f27723c;
+            ij0 ij0Var = iaVar.f27722b;
             int i12 = length;
             rectF2.set(paddingLeft, f15, paddingLeft + length, jaVar.getHeight());
             float min2 = 1.0f - Math.min(1.0f, Math.abs(jaVar.d - i11));
-            org.telegram.ui.ActionBar.f6 f6Var3 = f6Var;
-            int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.D6, f6Var3);
-            int i13 = org.telegram.ui.ActionBar.j6.G6;
-            int d = i0.a.d(min2, v02, org.telegram.ui.ActionBar.j6.v0(i13, f6Var3));
+            org.telegram.ui.ActionBar.g6 g6Var3 = g6Var;
+            int v02 = org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.D6, g6Var3);
+            int i13 = org.telegram.ui.ActionBar.k6.G6;
+            int d = i0.a.d(min2, v02, org.telegram.ui.ActionBar.k6.v0(i13, g6Var3));
             iaVar.d.setColor(d);
-            if (iaVar.f25663m != d) {
-                iaVar.f25663m = d;
+            if (iaVar.f27731m != d) {
+                iaVar.f27731m = d;
                 f13 = min2;
-                gj0Var.setColorFilter(new PorterDuffColorFilter(d, PorterDuff.Mode.SRC_IN));
+                ij0Var.setColorFilter(new PorterDuffColorFilter(d, PorterDuff.Mode.SRC_IN));
             } else {
                 f13 = min2;
             }
@@ -159,15 +159,15 @@ public abstract class ja extends View {
             ia[] iaVarArr2 = iaVarArr;
             int i14 = min;
             rect.set((int) (rectF2.centerX() - f19), AndroidUtilities.dp(f10), (int) (rectF2.centerX() + f19), AndroidUtilities.dp(f12));
-            z5 z5Var = iaVar.f25659i;
+            z5 z5Var = iaVar.f27727i;
             if (f13 > 0.6f) {
                 z4 = true;
             } else {
                 z4 = false;
             }
-            float e6 = z5Var.e(z4);
-            if (e < 1.0f) {
-                paint.setColor(i0.a.k(org.telegram.ui.ActionBar.j6.v0(i13, f6Var3), (int) ((1.0f - e) * e6 * 18.0f)));
+            float e10 = z5Var.e(z4);
+            if (e6 < 1.0f) {
+                paint.setColor(i0.a.k(org.telegram.ui.ActionBar.k6.v0(i13, g6Var3), (int) ((1.0f - e6) * e10 * 18.0f)));
                 RectF rectF3 = AndroidUtilities.rectTmp;
                 rectF3.set(rect);
                 canvas.drawRoundRect(rectF3, AndroidUtilities.dp(f11), AndroidUtilities.dp(f11), paint);
@@ -176,15 +176,15 @@ public abstract class ja extends View {
             zVar.draw(canvas);
             float dp = AndroidUtilities.dp(29.0f) / 2.0f;
             rect.set((int) (rectF2.centerX() - dp), (int) (AndroidUtilities.dpf2(24.66f) - dp), (int) (rectF2.centerX() + dp), (int) (AndroidUtilities.dpf2(24.66f) + dp));
-            gj0Var.setBounds(rect);
-            gj0Var.draw(canvas);
+            ij0Var.setBounds(rect);
+            ij0Var.draw(canvas);
             canvas.save();
-            canvas.translate((rectF2.centerX() - (iaVar.f25657f / 2.0f)) - iaVar.f25658g, AndroidUtilities.dp(50.0f) - (staticLayout.getHeight() / 2.0f));
+            canvas.translate((rectF2.centerX() - (iaVar.f27725f / 2.0f)) - iaVar.f27726g, AndroidUtilities.dp(50.0f) - (staticLayout.getHeight() / 2.0f));
             staticLayout.draw(canvas);
             canvas.restore();
             i11++;
             jaVar = this;
-            f6Var = f6Var3;
+            g6Var = g6Var3;
             length = i12;
             iaVarArr = iaVarArr2;
             min = i14;
@@ -201,17 +201,17 @@ public abstract class ja extends View {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         Utilities.Callback callback;
         if (motionEvent.getAction() == 0) {
-            this.f25947r = true;
+            this.f28090r = true;
             return true;
         }
         int action = motionEvent.getAction();
-        ia[] iaVarArr = this.f25943b;
+        ia[] iaVarArr = this.f28085b;
         if (action != 1 && motionEvent.getAction() != 2) {
             if (motionEvent.getAction() == 3) {
                 for (ia iaVar : iaVarArr) {
-                    iaVar.f25656c.setState(new int[0]);
+                    iaVar.f27723c.setState(new int[0]);
                 }
-                this.f25947r = false;
+                this.f28090r = false;
                 return true;
             }
         } else {
@@ -222,10 +222,10 @@ public abstract class ja extends View {
                     RectF rectF = iaVarArr[i10].h;
                     if (rectF.left < x10 && rectF.right > x10) {
                         if (motionEvent.getAction() != 1) {
-                            if (this.f25947r) {
-                                iaVarArr[i10].f25656c.setState(new int[0]);
+                            if (this.f28090r) {
+                                iaVarArr[i10].f27723c.setState(new int[0]);
                             }
-                            iaVarArr[i10].f25656c.setState(new int[]{16842919, 16842910});
+                            iaVarArr[i10].f27723c.setState(new int[]{16842919, 16842910});
                         }
                     } else {
                         i10++;
@@ -237,19 +237,19 @@ public abstract class ja extends View {
             }
             for (int i11 = 0; i11 < iaVarArr.length; i11++) {
                 if (i11 != i10 || motionEvent.getAction() == 1) {
-                    iaVarArr[i11].f25656c.setState(new int[0]);
+                    iaVarArr[i11].f27723c.setState(new int[0]);
                 }
             }
-            if (i10 >= 0 && this.e != i10 && (callback = this.f25946n) != null) {
+            if (i10 >= 0 && this.f28087e != i10 && (callback = this.f28089n) != null) {
                 callback.run(Integer.valueOf(i10));
             }
-            this.f25947r = false;
+            this.f28090r = false;
         }
         return super.onTouchEvent(motionEvent);
     }
 
     public void setOnTabClick(Utilities.Callback<Integer> callback) {
-        this.f25946n = callback;
+        this.f28089n = callback;
     }
 
     public void setProgress(float f10) {
@@ -257,10 +257,10 @@ public abstract class ja extends View {
     }
 
     public void setScrolling(boolean z4) {
-        if (this.f25945f == z4) {
+        if (this.f28088f == z4) {
             return;
         }
-        this.f25945f = z4;
+        this.f28088f = z4;
         invalidate();
     }
 
@@ -268,9 +268,9 @@ public abstract class ja extends View {
     public final boolean verifyDrawable(Drawable drawable) {
         int i10 = 0;
         while (true) {
-            ia[] iaVarArr = this.f25943b;
+            ia[] iaVarArr = this.f28085b;
             if (i10 < iaVarArr.length) {
-                if (iaVarArr[i10].f25656c == drawable) {
+                if (iaVarArr[i10].f27723c == drawable) {
                     return true;
                 }
                 i10++;

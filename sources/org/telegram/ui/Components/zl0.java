@@ -1,20 +1,194 @@
 package org.telegram.ui.Components;
-public final class zl0 {
-    public final float f31380a;
-    public final float f31381b;
-    public final float f31382c;
-    public final float d;
-    public final boolean e;
 
-    public zl0(float f10, float f11, float f12, float f13, int i10) {
-        this(f10, f11, f12, f13);
-        this.e = true;
+import android.animation.Animator;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import java.util.ArrayList;
+public final class zl0 extends Drawable implements Animator.AnimatorListener {
+    public final Context f33911a;
+    public ColorFilter f33912b;
+    public Drawable d;
+    public Drawable f33914e;
+    public ValueAnimator f33915f;
+    public boolean f33917r;
+    public int f33913c = 0;
+    public float h = 1.0f;
+    public final ArrayList f33916n = new ArrayList();
+
+    public zl0(Context context) {
+        this.f33911a = context;
     }
 
-    public zl0(float f10, float f11, float f12, float f13) {
-        this.f31380a = f10;
-        this.f31381b = f11;
-        this.f31382c = f12;
-        this.d = f13;
+    public final void a(int i10, boolean z4) {
+        if (this.f33913c == i10) {
+            return;
+        }
+        b(this.f33911a.getDrawable(i10).mutate(), z4);
+        this.f33913c = i10;
+    }
+
+    public final void b(Drawable drawable, boolean z4) {
+        if (drawable == null) {
+            this.d = null;
+            this.f33914e = null;
+            invalidateSelf();
+            return;
+        }
+        z4 = (getBounds() == null || getBounds().isEmpty()) ? false : false;
+        Drawable drawable2 = this.d;
+        if (drawable == drawable2) {
+            drawable2.setColorFilter(this.f33912b);
+            return;
+        }
+        this.f33913c = 0;
+        this.f33914e = drawable2;
+        this.d = drawable;
+        drawable.setColorFilter(this.f33912b);
+        c(this.d, getBounds());
+        c(this.f33914e, getBounds());
+        ValueAnimator valueAnimator = this.f33915f;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.f33915f.cancel();
+        }
+        if (!z4) {
+            this.h = 1.0f;
+            this.f33914e = null;
+            return;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.f33915f = ofFloat;
+        ofFloat.addUpdateListener(new k70(this, 10));
+        this.f33915f.addListener(this);
+        this.f33915f.setDuration(150L);
+        this.f33915f.start();
+    }
+
+    public final void c(Drawable drawable, Rect rect) {
+        int height;
+        int intrinsicHeight;
+        int width;
+        int intrinsicWidth;
+        if (drawable == null) {
+            return;
+        }
+        if (this.f33917r) {
+            drawable.setBounds(rect);
+            return;
+        }
+        if (drawable.getIntrinsicHeight() < 0) {
+            height = rect.top;
+            intrinsicHeight = rect.bottom;
+        } else {
+            height = ((rect.height() - drawable.getIntrinsicHeight()) / 2) + rect.top;
+            intrinsicHeight = drawable.getIntrinsicHeight() + height;
+        }
+        if (drawable.getIntrinsicWidth() < 0) {
+            width = rect.left;
+            intrinsicWidth = rect.right;
+        } else {
+            width = ((rect.width() - drawable.getIntrinsicWidth()) / 2) + rect.left;
+            intrinsicWidth = drawable.getIntrinsicWidth() + width;
+        }
+        drawable.setBounds(width, height, intrinsicWidth, intrinsicHeight);
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int centerX = getBounds().centerX();
+        int centerY = getBounds().centerY();
+        if (this.h != 1.0f && this.d != null) {
+            canvas.save();
+            float f10 = this.h;
+            canvas.scale(f10, f10, centerX, centerY);
+            this.d.setAlpha((int) (this.h * 255.0f));
+            this.d.draw(canvas);
+            canvas.restore();
+        } else {
+            Drawable drawable = this.d;
+            if (drawable != null) {
+                drawable.setAlpha(255);
+                this.d.draw(canvas);
+            }
+        }
+        float f11 = this.h;
+        if (f11 != 1.0f && this.f33914e != null) {
+            float f12 = 1.0f - f11;
+            canvas.save();
+            canvas.scale(f12, f12, centerX, centerY);
+            this.f33914e.setAlpha((int) (f12 * 255.0f));
+            this.f33914e.draw(canvas);
+            canvas.restore();
+            return;
+        }
+        Drawable drawable2 = this.f33914e;
+        if (drawable2 != null) {
+            drawable2.setAlpha(255);
+            this.f33914e.draw(canvas);
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void invalidateSelf() {
+        super.invalidateSelf();
+        ArrayList arrayList = this.f33916n;
+        if (arrayList != null) {
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                ((View) arrayList.get(i10)).invalidate();
+            }
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        this.f33914e = null;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        c(this.d, rect);
+        c(this.f33914e, rect);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f33912b = colorFilter;
+        Drawable drawable = this.d;
+        if (drawable != null) {
+            drawable.setColorFilter(colorFilter);
+        }
+        Drawable drawable2 = this.f33914e;
+        if (drawable2 != null) {
+            drawable2.setColorFilter(colorFilter);
+        }
+        invalidateSelf();
+    }
+
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+    }
+
+    @Override
+    public final void onAnimationRepeat(Animator animator) {
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
     }
 }

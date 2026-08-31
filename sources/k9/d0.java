@@ -1,11 +1,11 @@
 package k9;
 public final class d0 extends h1 {
-    public final String f10112a;
-    public final String f10113b;
+    public final String f10853a;
+    public final String f10854b;
 
     public d0(String str, String str2) {
-        this.f10112a = str;
-        this.f10113b = str2;
+        this.f10853a = str;
+        this.f10854b = str2;
     }
 
     public final boolean equals(Object obj) {
@@ -14,7 +14,7 @@ public final class d0 extends h1 {
         }
         if (obj instanceof h1) {
             d0 d0Var = (d0) ((h1) obj);
-            if (this.f10112a.equals(d0Var.f10112a) && this.f10113b.equals(d0Var.f10113b)) {
+            if (this.f10853a.equals(d0Var.f10853a) && this.f10854b.equals(d0Var.f10854b)) {
                 return true;
             }
         }
@@ -22,13 +22,13 @@ public final class d0 extends h1 {
     }
 
     public final int hashCode() {
-        return ((this.f10112a.hashCode() ^ 1000003) * 1000003) ^ this.f10113b.hashCode();
+        return ((this.f10853a.hashCode() ^ 1000003) * 1000003) ^ this.f10854b.hashCode();
     }
 
     public final String toString() {
         StringBuilder sb = new StringBuilder("CustomAttribute{key=");
-        sb.append(this.f10112a);
+        sb.append(this.f10853a);
         sb.append(", value=");
-        return android.support.v4.media.a.r(sb, this.f10113b, "}");
+        return android.support.v4.media.a.r(sb, this.f10854b, "}");
     }
 }

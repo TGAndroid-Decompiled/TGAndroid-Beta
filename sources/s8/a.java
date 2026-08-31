@@ -5,20 +5,20 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 public final class a implements Iterator {
-    public final Iterator f44109a;
-    public Object f44110b = null;
-    public Collection f44111c = null;
-    public Iterator d = c0.f44120a;
-    public final e0 e;
+    public final Iterator f47083a;
+    public Object f47084b = null;
+    public Collection f47085c = null;
+    public Iterator d = c0.f47096a;
+    public final e0 f47086e;
 
     public a(e0 e0Var) {
-        this.e = e0Var;
-        this.f44109a = e0Var.d.entrySet().iterator();
+        this.f47086e = e0Var;
+        this.f47083a = e0Var.d.entrySet().iterator();
     }
 
     @Override
     public final boolean hasNext() {
-        if (!this.f44109a.hasNext() && !this.d.hasNext()) {
+        if (!this.f47083a.hasNext() && !this.d.hasNext()) {
             return false;
         }
         return true;
@@ -27,10 +27,10 @@ public final class a implements Iterator {
     @Override
     public final Object next() {
         if (!this.d.hasNext()) {
-            Map.Entry entry = (Map.Entry) this.f44109a.next();
-            this.f44110b = entry.getKey();
+            Map.Entry entry = (Map.Entry) this.f47083a.next();
+            this.f47084b = entry.getKey();
             Collection collection = (Collection) entry.getValue();
-            this.f44111c = collection;
+            this.f47085c = collection;
             this.d = collection.iterator();
         }
         return this.d.next();
@@ -39,12 +39,12 @@ public final class a implements Iterator {
     @Override
     public final void remove() {
         this.d.remove();
-        Collection collection = this.f44111c;
+        Collection collection = this.f47085c;
         Objects.requireNonNull(collection);
         if (collection.isEmpty()) {
-            this.f44109a.remove();
+            this.f47083a.remove();
         }
-        e0 e0Var = this.e;
-        e0Var.e--;
+        e0 e0Var = this.f47086e;
+        e0Var.f47101e--;
     }
 }

@@ -3,7 +3,6 @@ package sa;
 import j$.util.Objects;
 import java.io.IOException;
 import java.util.ArrayList;
-import kh.a2;
 public final class n extends xa.b {
     public static final m E = new m();
     public static final pa.m F = new pa.m("closed");
@@ -14,7 +13,7 @@ public final class n extends xa.b {
     public n() {
         super(E);
         this.B = new ArrayList();
-        this.D = pa.k.f41087a;
+        this.D = pa.k.f44246a;
     }
 
     @Override
@@ -82,13 +81,13 @@ public final class n extends xa.b {
 
     @Override
     public final xa.b i() {
-        w(pa.k.f41087a);
+        w(pa.k.f44246a);
         return this;
     }
 
     @Override
     public final void n(double d) {
-        if (this.f46883n == 1 || (!Double.isNaN(d) && !Double.isInfinite(d))) {
+        if (this.f50493n == 1 || (!Double.isNaN(d) && !Double.isInfinite(d))) {
             w(new pa.m(Double.valueOf(d)));
             return;
         }
@@ -103,7 +102,7 @@ public final class n extends xa.b {
     @Override
     public final void p(Boolean bool) {
         if (bool == null) {
-            w(pa.k.f41087a);
+            w(pa.k.f44246a);
         } else {
             w(new pa.m(bool));
         }
@@ -112,10 +111,10 @@ public final class n extends xa.b {
     @Override
     public final void q(Number number) {
         if (number == null) {
-            w(pa.k.f41087a);
+            w(pa.k.f44246a);
             return;
         }
-        if (this.f46883n != 1) {
+        if (this.f50493n != 1) {
             double doubleValue = number.doubleValue();
             if (Double.isNaN(doubleValue) || Double.isInfinite(doubleValue)) {
                 throw new IllegalArgumentException("JSON forbids NaN and infinities: " + number);
@@ -127,7 +126,7 @@ public final class n extends xa.b {
     @Override
     public final void r(String str) {
         if (str == null) {
-            w(pa.k.f41087a);
+            w(pa.k.f44246a);
         } else {
             w(new pa.m(str));
         }
@@ -147,7 +146,7 @@ public final class n extends xa.b {
     }
 
     public final pa.i v() {
-        return (pa.i) a2.i(1, this.B);
+        return (pa.i) l.d.i(1, this.B);
     }
 
     public final void w(pa.i iVar) {
@@ -161,7 +160,7 @@ public final class n extends xa.b {
         } else {
             pa.i v = v();
             if (v instanceof pa.h) {
-                ((pa.h) v).f41086a.add(iVar);
+                ((pa.h) v).f44245a.add(iVar);
                 return;
             }
             throw new IllegalStateException();

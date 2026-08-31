@@ -1,31 +1,84 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class rw extends f2.v {
-    public final kz f28545c;
+import android.content.Context;
+import android.os.Build;
+import android.view.MotionEvent;
+import j$.util.Objects;
+import org.telegram.messenger.AndroidUtilities;
+public final class rw extends cg.e {
+    public boolean V2;
+    public final mz W2;
 
-    public rw(kz kzVar) {
-        this.f28545c = kzVar;
+    public rw(mz mzVar, Context context) {
+        super(context, null);
+        this.W2 = mzVar;
     }
 
     @Override
-    public final int i(int i10) {
-        kz kzVar = this.f28545c;
-        fz fzVar = kzVar.f26480w0;
-        f2.o0 adapter = kzVar.A0.getAdapter();
-        bz bzVar = kzVar.f26476v0;
-        if (adapter == bzVar) {
-            if (i10 == 0) {
-                return bzVar.d;
-            }
-            if (i10 == bzVar.f23768s || (bzVar.h.get(i10) != null && !(bzVar.h.get(i10) instanceof TLRPC.Document))) {
-                return bzVar.d;
-            }
-            return 1;
-        } else if (i10 != fzVar.f24998x && (fzVar.f24995r.get(i10) == null || (fzVar.f24995r.get(i10) instanceof TLRPC.Document))) {
-            return 1;
-        } else {
-            return bzVar.d;
+    public final void k0(int i10, int i11) {
+        int i12;
+        og.e eVar;
+        mz mzVar = this.W2;
+        hz hzVar = mzVar.f29335w0;
+        if (Build.VERSION.SDK_INT >= 31 && (eVar = mzVar.f29287g2) != null) {
+            eVar.f(i10, i11);
+            mzVar.C();
         }
+        if (mzVar.f29346z0 != null) {
+            vw vwVar = mzVar.f29343y0;
+            if (mzVar.A0.canScrollVertically(-1)) {
+                i12 = AndroidUtilities.getShadowHeight();
+            } else {
+                i12 = 0;
+            }
+            vwVar.setUnderlineHeight(i12);
+        }
+        if (hzVar != null && getAdapter() == hzVar && hzVar.d == 0) {
+            hz hzVar2 = hzVar.L.f27048w;
+            if (!hzVar2.N.D0.C && !hzVar2.f27611y) {
+                if (mzVar.B0.N0() + 50 > hzVar.h()) {
+                    fz fzVar = hzVar.L;
+                    Objects.requireNonNull(fzVar);
+                    AndroidUtilities.runOnUIThread(new qw(fzVar, 0));
+                }
+            }
+        }
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        mz mzVar = this.W2;
+        if (!mzVar.f29281f) {
+            org.telegram.ui.qt q10 = org.telegram.ui.qt.q();
+            rw rwVar = mzVar.A0;
+            mzVar.getMeasuredHeight();
+            boolean r10 = q10.r(motionEvent, rwVar, mzVar.f29276d2, this.f31383m2);
+            if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
+        mz mzVar = this.W2;
+        if (mzVar.F0 && mzVar.f29331v0.h() > 0) {
+            this.V2 = true;
+            mzVar.B0.h1(0, 0);
+            mzVar.F0 = false;
+            this.V2 = false;
+        }
+        super.onLayout(z4, i10, i11, i12, i13);
+        mzVar.q(true);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.V2) {
+            return;
+        }
+        super.requestLayout();
     }
 }

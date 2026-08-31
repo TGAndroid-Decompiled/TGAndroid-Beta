@@ -51,9 +51,9 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
         boolean z4 = false;
         for (int i11 = 0; i11 < SharedConfig.proxyList.size(); i11++) {
             SharedConfig.ProxyInfo proxyInfo = SharedConfig.proxyList.get(i11);
-            if (proxyInfo.type != 2 && !proxyInfo.checking && SystemClock.elapsedRealtime() - proxyInfo.availableCheckTime >= 120000) {
+            if (!proxyInfo.checking && SystemClock.elapsedRealtime() - proxyInfo.availableCheckTime >= 120000) {
                 proxyInfo.checking = true;
-                proxyInfo.proxyCheckPingId = ConnectionsManager.getInstance(i10).checkProxy(proxyInfo.address, proxyInfo.port, proxyInfo.username, proxyInfo.password, proxyInfo.secret, new d(proxyInfo, 11));
+                ConnectionsManager.getInstance(i10).checkProxy(proxyInfo.settings, new d0(proxyInfo, 10));
                 z4 = true;
             }
         }
@@ -70,36 +70,27 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     private void switchToAvailable() {
         this.isCurrentlyChecking = false;
         if (SharedConfig.proxyRotationEnabled) {
-            SharedConfig.ProxyInfo proxyInfo = SharedConfig.currentProxy;
-            if (proxyInfo == null || proxyInfo.type != 2) {
-                ArrayList arrayList = new ArrayList(SharedConfig.proxyList);
-                Collections.sort(arrayList, new s(26));
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    SharedConfig.ProxyInfo proxyInfo2 = (SharedConfig.ProxyInfo) obj;
-                    if (proxyInfo2 != SharedConfig.currentProxy && proxyInfo2.type != 2 && !proxyInfo2.checking && proxyInfo2.available) {
-                        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                        edit.putString("proxy_ip", proxyInfo2.address);
-                        edit.putString("proxy_pass", proxyInfo2.password);
-                        edit.putString("proxy_user", proxyInfo2.username);
-                        edit.putInt("proxy_port", proxyInfo2.port);
-                        edit.putString("proxy_secret", proxyInfo2.secret);
-                        edit.putInt("proxy_type", proxyInfo2.type);
-                        edit.putBoolean("proxy_enabled", true);
-                        if (!proxyInfo2.secret.isEmpty()) {
-                            edit.putBoolean("proxy_enabled_calls", false);
-                        }
-                        edit.apply();
-                        SharedConfig.currentProxy = proxyInfo2;
-                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
-                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxyChangedByRotation, new Object[0]);
-                        SharedConfig.ProxyInfo proxyInfo3 = SharedConfig.currentProxy;
-                        ConnectionsManager.setProxySettings(true, proxyInfo3.address, proxyInfo3.port, proxyInfo3.username, proxyInfo3.password, proxyInfo3.secret, proxyInfo3.type);
-                        return;
+            ArrayList arrayList = new ArrayList(SharedConfig.proxyList);
+            Collections.sort(arrayList, new d(26));
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                SharedConfig.ProxyInfo proxyInfo = (SharedConfig.ProxyInfo) obj;
+                if (proxyInfo != SharedConfig.currentProxy && !proxyInfo.checking && proxyInfo.available) {
+                    SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+                    edit.putBoolean("proxy_enabled", true);
+                    proxyInfo.settings.f(edit);
+                    if (!proxyInfo.settings.f47304f.isEmpty()) {
+                        edit.putBoolean("proxy_enabled_calls", false);
                     }
+                    edit.apply();
+                    SharedConfig.currentProxy = proxyInfo;
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxyChangedByRotation, new Object[0]);
+                    ConnectionsManager.setProxySettings(true, SharedConfig.currentProxy.settings);
+                    return;
                 }
             }
         }

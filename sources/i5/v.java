@@ -1,14 +1,14 @@
 package i5;
 public final class v implements Runnable {
-    public final int f7333a;
-    public final long f7334b;
-    public final Object f7335c;
+    public final int f7888a;
+    public final long f7889b;
+    public final Object f7890c;
     public final Object d;
 
     public v(Object obj, long j10, Object obj2, int i10) {
-        this.f7333a = i10;
-        this.f7335c = obj;
-        this.f7334b = j10;
+        this.f7888a = i10;
+        this.f7890c = obj;
+        this.f7889b = j10;
         this.d = obj2;
     }
 
@@ -18,9 +18,9 @@ public final class v implements Runnable {
     }
 
     public v(Object obj, Object obj2, long j10, int i10) {
-        this.f7333a = i10;
-        this.f7335c = obj;
+        this.f7888a = i10;
+        this.f7890c = obj;
         this.d = obj2;
-        this.f7334b = j10;
+        this.f7889b = j10;
     }
 }

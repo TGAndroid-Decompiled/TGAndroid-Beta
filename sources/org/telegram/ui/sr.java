@@ -1,56 +1,40 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-public final class sr implements Drawable.Callback {
-    public final int f38428a;
-    public final Drawable f38429b;
+import android.view.ContextThemeWrapper;
+import android.view.View;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class sr {
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f41354a;
+    public final LinearLayout f41355b;
+    public final wq0 f41356c;
 
-    public sr(int i10, Drawable drawable) {
-        this.f38428a = i10;
-        this.f38429b = drawable;
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        switch (this.f38428a) {
-            case 0:
-                ((tr) this.f38429b).invalidateSelf();
-                return;
-            default:
-                org.telegram.ui.Cells.v0 v0Var = ((s01) this.f38429b).h;
-                if (v0Var != null) {
-                    v0Var.invalidate();
-                    return;
-                }
-                return;
+    public sr(ContextThemeWrapper contextThemeWrapper, org.telegram.ui.Components.ch0 ch0Var, wq0 wq0Var) {
+        this.f41356c = wq0Var;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, contextThemeWrapper, null);
+        this.f41354a = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setFitItems(true);
+        org.telegram.ui.ActionBar.g1 c3 = org.telegram.ui.ActionBar.w0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
+        c3.setOnClickListener(new rr(ch0Var, 0));
+        c3.c(-328966, -328966);
+        c3.setSelectorColor(268435455);
+        View dVar = new eh.d(contextThemeWrapper, 11);
+        dVar.setMinimumWidth(AndroidUtilities.dp(196.0f));
+        dVar.setBackgroundColor(-15198184);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(dVar);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) dVar.getLayoutParams();
+        if (LocaleController.isRTL) {
+            layoutParams.gravity = 5;
         }
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
-        switch (this.f38428a) {
-            case 0:
-                ((tr) this.f38429b).scheduleSelf(runnable, j10);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.f38428a) {
-            case 0:
-                ((tr) this.f38429b).unscheduleSelf(runnable);
-                return;
-            default:
-                return;
-        }
-    }
-
-    private final void b(Drawable drawable, Runnable runnable) {
-    }
-
-    private final void a(Drawable drawable, Runnable runnable, long j10) {
+        layoutParams.width = -1;
+        layoutParams.height = AndroidUtilities.dp(8.0f);
+        dVar.setLayoutParams(layoutParams);
+        LinearLayout linearLayout = new LinearLayout(contextThemeWrapper);
+        this.f41355b = linearLayout;
+        linearLayout.setOrientation(1);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(linearLayout);
     }
 }

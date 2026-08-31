@@ -9,31 +9,31 @@ import h5.d0;
 import h5.v;
 public final class h {
     public static final byte[] h = {0, 7, 8, 15};
-    public static final byte[] f46793i = {0, 119, -120, -1};
-    public static final byte[] f46794j = {0, 17, 34, 51, 68, 85, 102, 119, -120, -103, -86, -69, -52, -35, -18, -1};
-    public final Paint f46795a;
-    public final Paint f46796b;
-    public final Canvas f46797c;
+    public static final byte[] f50395i = {0, 119, -120, -1};
+    public static final byte[] f50396j = {0, 17, 34, 51, 68, 85, 102, 119, -120, -103, -86, -69, -52, -35, -18, -1};
+    public final Paint f50397a;
+    public final Paint f50398b;
+    public final Canvas f50399c;
     public final b d;
-    public final a e;
-    public final g f46798f;
-    public Bitmap f46799g;
+    public final a f50400e;
+    public final g f50401f;
+    public Bitmap f50402g;
 
     public h(int i10, int i11) {
         Paint paint = new Paint();
-        this.f46795a = paint;
+        this.f50397a = paint;
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
         paint.setPathEffect(null);
         Paint paint2 = new Paint();
-        this.f46796b = paint2;
+        this.f50398b = paint2;
         paint2.setStyle(Paint.Style.FILL);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OVER));
         paint2.setPathEffect(null);
-        this.f46797c = new Canvas();
+        this.f50399c = new Canvas();
         this.d = new b(719, 575, 0, 719, 0, 575);
-        this.e = new a(0, new int[]{0, -1, -16777216, -8421505}, b(), c());
-        this.f46798f = new g(i10, i11);
+        this.f50400e = new a(0, new int[]{0, -1, -16777216, -8421505}, b(), c());
+        this.f50401f = new g(i10, i11);
     }
 
     public static byte[] a(int i10, int i11, v vVar) {
@@ -341,7 +341,7 @@ public final class h {
         int i11 = vVar.i(2);
         boolean h9 = vVar.h();
         vVar.s(1);
-        byte[] bArr2 = d0.f6940f;
+        byte[] bArr2 = d0.f7241f;
         if (i11 == 1) {
             vVar.s(vVar.i(8) * 16);
         } else if (i11 == 0) {

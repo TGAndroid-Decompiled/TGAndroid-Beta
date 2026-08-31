@@ -1,85 +1,29 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class a71 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f32476a;
-    public final TLRPC.Chat f32477b;
-    public TLRPC.ChannelParticipantsFilter f32478c;
-    public boolean f32479f;
-    public boolean h;
-    public boolean f32481r;
-    public boolean f32482s;
-    public final ArrayList d = new ArrayList();
-    public final ArrayList e = new ArrayList();
-    public int f32480n = -1;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Shader;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class a71 extends View {
+    public final Paint f35056a;
+    public final LinearGradient f35057b;
 
-    public a71(int i10, long j10, TLRPC.ChannelParticipantsFilter channelParticipantsFilter) {
-        this.f32476a = i10;
-        this.f32477b = MessagesController.getInstance(i10).getChat(Long.valueOf(j10));
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(j10);
-        this.f32478c = channelParticipantsFilter;
-        if (chatFull == null) {
-            if (!this.f32482s) {
-                this.f32482s = true;
-                NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.chatInfoDidLoad);
-            }
-            MessagesController.getInstance(i10).loadFullChat(j10, 0, false);
-        }
-    }
-
-    public final void a() {
-        if (this.f32482s) {
-            return;
-        }
-        this.f32482s = false;
-        int i10 = this.f32476a;
-        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.chatInfoDidLoad);
-        if (this.f32480n >= 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(this.f32480n, true);
-            this.f32480n = -1;
-        }
-        this.f32479f = false;
-    }
-
-    public final void b() {
-        int size;
-        if (!this.f32479f && !this.h) {
-            TLRPC.ChannelParticipantsFilter channelParticipantsFilter = this.f32478c;
-            if (!(channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) || !TextUtils.isEmpty(channelParticipantsFilter.f19183q)) {
-                this.f32479f = true;
-                TLRPC.Chat chat = this.f32477b;
-                if (ChatObject.isChannel(chat)) {
-                    TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
-                    tL_channels_getParticipants.channel = MessagesController.getInputChannel(chat);
-                    tL_channels_getParticipants.filter = this.f32478c;
-                    tL_channels_getParticipants.limit = 30;
-                    if (this.f32481r) {
-                        size = 0;
-                    } else {
-                        size = this.d.size();
-                    }
-                    tL_channels_getParticipants.offset = size;
-                    ConnectionsManager.getInstance(this.f32476a).sendRequestTyped(tL_channels_getParticipants, new Object(), new d5(this, 24));
-                }
-            }
-        }
+    public a71(c71 c71Var, Context context) {
+        super(context);
+        this.f35056a = new Paint(1);
+        float dp = AndroidUtilities.dp(68.0f);
+        int i10 = org.telegram.ui.ActionBar.k6.f21731h5;
+        this.f35057b = new LinearGradient(0.0f, 0.0f, 0.0f, dp, new int[]{org.telegram.ui.ActionBar.k6.l1(0.0f, c71Var.getThemedColor(i10)), c71Var.getThemedColor(i10)}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.chatInfoDidLoad) {
-            long j10 = ((TLRPC.ChatFull) objArr[0]).f19185id;
-            TLRPC.Chat chat = this.f32477b;
-            if (j10 == chat.f19184id && !ChatObject.isChannel(chat) && this.f32479f) {
-                this.f32479f = false;
-                b();
-            }
-        }
+    public final void onDraw(Canvas canvas) {
+        LinearGradient linearGradient = this.f35057b;
+        Paint paint = this.f35056a;
+        paint.setShader(linearGradient);
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
     }
 }

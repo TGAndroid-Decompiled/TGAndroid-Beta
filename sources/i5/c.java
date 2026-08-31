@@ -1,7 +1,6 @@
 package i5;
 public final class c {
-    public final int f7263a;
-    public String f7264b;
+    public String f7812a;
 
     public static c a(h5.w wVar) {
         String str;
@@ -30,20 +29,9 @@ public final class c {
         }
         sb.append(str2);
         sb.append(u11);
-        return new c(sb.toString(), 0);
-    }
-
-    public String toString() {
-        switch (this.f7263a) {
-            case 3:
-                return "<" + this.f7264b + '>';
-            default:
-                return super.toString();
-        }
-    }
-
-    public c(String str, int i10) {
-        this.f7263a = i10;
-        this.f7264b = str;
+        String sb2 = sb.toString();
+        ?? obj = new Object();
+        obj.f7812a = sb2;
+        return obj;
     }
 }

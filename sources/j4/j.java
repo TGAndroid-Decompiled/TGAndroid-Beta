@@ -3,10 +3,10 @@ package j4;
 import j3.d1;
 import j3.n0;
 public abstract class j implements e4.b {
-    public final String f8924a;
+    public final String f9529a;
 
     public j(String str) {
-        this.f8924a = str;
+        this.f9529a = str;
     }
 
     @Override
@@ -25,7 +25,7 @@ public abstract class j implements e4.b {
     }
 
     public String toString() {
-        return this.f8924a;
+        return this.f9529a;
     }
 
     @Override

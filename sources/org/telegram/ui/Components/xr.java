@@ -1,22 +1,51 @@
 package org.telegram.ui.Components;
-public final class xr implements Runnable {
-    public final int f30717a;
-    public final es f30718b;
 
-    public xr(es esVar, int i10) {
-        this.f30717a = i10;
-        this.f30718b = esVar;
+import android.content.Context;
+import android.widget.PopupWindow;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public abstract class xr {
+    public final org.telegram.ui.ActionBar.p1 f33166a;
+    public boolean f33167b;
+
+    public xr(Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z4) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert2, z4 ? 1 : 0, context, g6Var);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setAnimationEnabled(false);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new vr(this, 0));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new t(this, 27));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
+        b(actionBarPopupWindow$ActionBarPopupWindowLayout);
+        org.telegram.ui.ActionBar.p1 p1Var = new org.telegram.ui.ActionBar.p1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f33166a = p1Var;
+        p1Var.f22216b = false;
+        p1Var.setAnimationStyle(R.style.PopupContextAnimation2);
+        p1Var.setOutsideTouchable(true);
+        p1Var.setClippingEnabled(true);
+        p1Var.setInputMethodMode(2);
+        p1Var.setSoftInputMode(0);
+        p1Var.getContentView().setFocusableInTouchMode(true);
+        if (AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
+            p1Var.setFocusable(true);
+        }
+        p1Var.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public final void onDismiss() {
+                xr xrVar = xr.this;
+                xrVar.c();
+                xrVar.f33167b = false;
+            }
+        });
     }
 
-    @Override
-    public final void run() {
-        switch (this.f30717a) {
-            case 0:
-                this.f30718b.W(false);
-                return;
-            default:
-                es.Q(this.f30718b);
-                return;
+    public final void a() {
+        org.telegram.ui.ActionBar.p1 p1Var = this.f33166a;
+        if (p1Var != null) {
+            p1Var.dismiss();
         }
     }
+
+    public abstract void b(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout);
+
+    public abstract void c();
 }

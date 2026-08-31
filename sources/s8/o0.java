@@ -1,32 +1,32 @@
 package s8;
 public final class o0 extends z {
-    public static final Object[] f44138r;
-    public static final o0 f44139s;
+    public static final Object[] f47122r;
+    public static final o0 f47123s;
     public final transient Object[] d;
-    public final transient int e;
-    public final transient Object[] f44140f;
+    public final transient int f47124e;
+    public final transient Object[] f47125f;
     public final transient int h;
-    public final transient int f44141n;
+    public final transient int f47126n;
 
     static {
         Object[] objArr = new Object[0];
-        f44138r = objArr;
-        f44139s = new o0(0, 0, 0, objArr, objArr);
+        f47122r = objArr;
+        f47123s = new o0(0, 0, 0, objArr, objArr);
     }
 
     public o0(int i10, int i11, int i12, Object[] objArr, Object[] objArr2) {
         this.d = objArr;
-        this.e = i10;
-        this.f44140f = objArr2;
+        this.f47124e = i10;
+        this.f47125f = objArr2;
         this.h = i11;
-        this.f44141n = i12;
+        this.f47126n = i12;
     }
 
     @Override
     public final boolean contains(Object obj) {
         int hashCode;
         if (obj != null) {
-            Object[] objArr = this.f44140f;
+            Object[] objArr = this.f47125f;
             if (objArr.length != 0) {
                 if (obj == null) {
                     hashCode = 0;
@@ -52,13 +52,13 @@ public final class o0 extends z {
 
     @Override
     public final int hashCode() {
-        return this.e;
+        return this.f47124e;
     }
 
     @Override
     public final int n(int i10, Object[] objArr) {
         Object[] objArr2 = this.d;
-        int i11 = this.f44141n;
+        int i11 = this.f47126n;
         System.arraycopy(objArr2, 0, objArr, i10, i11);
         return i10 + i11;
     }
@@ -70,7 +70,7 @@ public final class o0 extends z {
 
     @Override
     public final int p() {
-        return this.f44141n;
+        return this.f47126n;
     }
 
     @Override
@@ -85,12 +85,12 @@ public final class o0 extends z {
 
     @Override
     public final int size() {
-        return this.f44141n;
+        return this.f47126n;
     }
 
     @Override
     public final v v() {
-        return v.s(this.f44141n, this.d);
+        return v.s(this.f47126n, this.d);
     }
 
     @Override

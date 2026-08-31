@@ -4,26 +4,26 @@ import e4.c;
 import e4.e;
 import h5.v;
 import h5.w;
-import j7.c7;
+import j7.d7;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import r8.d;
-public final class b extends c7 {
-    public final int f5895a;
+public final class b extends d7 {
+    public final int f5993a;
 
     public static g4.a c(w wVar) {
         String p10 = wVar.p();
         p10.getClass();
         String p11 = wVar.p();
         p11.getClass();
-        return new g4.a(p10, p11, wVar.o(), wVar.o(), Arrays.copyOfRange(wVar.f7000a, wVar.f7001b, wVar.f7002c));
+        return new g4.a(p10, p11, wVar.o(), wVar.o(), Arrays.copyOfRange(wVar.f7308a, wVar.f7309b, wVar.f7310c));
     }
 
     @Override
     public final c b(e eVar, ByteBuffer byteBuffer) {
-        switch (this.f5895a) {
+        switch (this.f5993a) {
             case 0:
                 if (byteBuffer.get() != 116) {
                     return null;
@@ -53,7 +53,7 @@ public final class b extends c7 {
                             if (i14 == 3) {
                                 while (vVar.f() < f12) {
                                     int i15 = vVar.i(8);
-                                    Charset charset = d.f43387a;
+                                    Charset charset = d.f46736a;
                                     byte[] bArr = new byte[i15];
                                     vVar.k(i15, bArr);
                                     String str3 = new String(bArr, charset);
@@ -65,7 +65,7 @@ public final class b extends c7 {
                                 }
                             }
                         } else if (i12 == 21) {
-                            Charset charset2 = d.f43387a;
+                            Charset charset2 = d.f46736a;
                             byte[] bArr2 = new byte[i13];
                             vVar.k(i13, bArr2);
                             str2 = new String(bArr2, charset2);

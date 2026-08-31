@@ -1,29 +1,32 @@
 package org.telegram.messenger.voip;
 public final class g implements Runnable {
-    public final int f18780a;
-    public final GroupCallMessagesController f18781b;
-    public final long f18782c;
-    public final GroupCallMessage d;
+    public final int f20408a = 0;
+    public final VideoCapturerDevice f20409b;
+    public final long f20410c;
+    public final int d;
 
-    public g(GroupCallMessagesController groupCallMessagesController, long j10, GroupCallMessage groupCallMessage, int i10) {
-        this.f18780a = i10;
-        this.f18781b = groupCallMessagesController;
-        this.f18782c = j10;
-        this.d = groupCallMessage;
+    public g(VideoCapturerDevice videoCapturerDevice, int i10, long j10) {
+        this.f20409b = videoCapturerDevice;
+        this.d = i10;
+        this.f20410c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18780a) {
+        switch (this.f20408a) {
             case 0:
-                GroupCallMessagesController.a(this.f18781b, this.f18782c, this.d);
-                return;
-            case 1:
-                GroupCallMessagesController.f(this.f18781b, this.f18782c, this.d);
+                VideoCapturerDevice.b(this.f20409b, this.d, this.f20410c);
                 return;
             default:
-                GroupCallMessagesController.g(this.f18781b, this.f18782c, this.d);
+                long j10 = this.f20410c;
+                VideoCapturerDevice.h(this.f20409b, this.d, j10);
                 return;
         }
+    }
+
+    public g(VideoCapturerDevice videoCapturerDevice, long j10, int i10) {
+        this.f20409b = videoCapturerDevice;
+        this.f20410c = j10;
+        this.d = i10;
     }
 }

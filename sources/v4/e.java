@@ -5,8 +5,8 @@ public abstract class e extends n3.l implements g {
     public e(String str) {
         super(new j[2], new k[2]);
         boolean z4;
-        int i10 = this.f14253g;
-        n3.i[] iVarArr = this.e;
+        int i10 = this.f15229g;
+        n3.i[] iVarArr = this.f15227e;
         if (i10 == iVarArr.length) {
             z4 = true;
         } else {
@@ -14,7 +14,7 @@ public abstract class e extends n3.l implements g {
         }
         h5.a.i(z4);
         for (n3.i iVar : iVarArr) {
-            iVar.k(1024);
+            iVar.j(1024);
         }
     }
 
@@ -40,11 +40,11 @@ public abstract class e extends n3.l implements g {
         try {
             ByteBuffer byteBuffer = jVar2.d;
             byteBuffer.getClass();
-            kVar.k(jVar2.f14242f, k(byteBuffer.limit(), z4, byteBuffer.array()), jVar2.f45612s);
-            kVar.f14222b &= Integer.MAX_VALUE;
+            kVar.j(jVar2.f15216f, k(byteBuffer.limit(), z4, byteBuffer.array()), jVar2.f48907s);
+            kVar.f15193b &= Integer.MAX_VALUE;
             return null;
-        } catch (h e) {
-            return e;
+        } catch (h e6) {
+            return e6;
         }
     }
 

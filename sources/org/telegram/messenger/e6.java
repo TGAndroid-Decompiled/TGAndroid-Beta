@@ -5,50 +5,50 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.LaunchActivity;
 public final class e6 implements Runnable {
-    public final int f17103a;
-    public final int f17104b;
+    public final int f18541a;
+    public final int f18542b;
 
     public e6(int i10, int i11) {
-        this.f17103a = i11;
-        this.f17104b = i10;
+        this.f18541a = i11;
+        this.f18542b = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17103a) {
+        switch (this.f18541a) {
             case 0:
-                MediaController.lambda$loadGalleryPhotosAlbums$57(this.f17104b);
+                MediaController.lambda$loadGalleryPhotosAlbums$57(this.f18542b);
                 return;
             case 1:
-                MediaController.lambda$checkGallery$1(this.f17104b);
+                MediaController.lambda$checkGallery$1(this.f18542b);
                 return;
             case 2:
-                NotificationRepeat.a(this.f17104b);
+                NotificationRepeat.a(this.f18542b);
                 return;
             case 3:
-                PushListenerController.lambda$processRemoteMessage$3(this.f17104b);
+                PushListenerController.lambda$processRemoteMessage$3(this.f18542b);
                 return;
             case 4:
-                PushListenerController.lambda$processRemoteMessage$4(this.f17104b);
+                PushListenerController.lambda$processRemoteMessage$4(this.f18542b);
                 return;
             case 5:
-                SharedConfig.lambda$checkLogsToDelete$3(this.f17104b);
+                SharedConfig.lambda$checkLogsToDelete$3(this.f18542b);
                 return;
             case 6:
-                ConnectionsManager.lambda$onUpdate$13(this.f17104b);
+                ConnectionsManager.lambda$onUpdate$13(this.f18542b);
                 return;
             case 7:
-                ConnectionsManager.lambda$onSessionCreated$14(this.f17104b);
+                ConnectionsManager.lambda$onSessionCreated$14(this.f18542b);
                 return;
             case 8:
-                ConnectionsManager.lambda$onLogout$16(this.f17104b);
+                ConnectionsManager.lambda$onLogout$16(this.f18542b);
                 return;
             case 9:
-                MediaDataController.getInstance(this.f17104b).checkStickers(5);
+                MediaDataController.getInstance(this.f18542b).checkStickers(5);
                 return;
             case 10:
-                int i10 = this.f17104b;
-                Pattern pattern = LaunchActivity.f31612y1;
+                int i10 = this.f18542b;
+                Pattern pattern = LaunchActivity.f34134y1;
                 ApplicationLoader.mainInterfacePausedStageQueue = true;
                 ApplicationLoader.mainInterfacePausedStageQueueTime = 0L;
                 if (VoIPService.getSharedInstance() == null) {
@@ -57,7 +57,7 @@ public final class e6 implements Runnable {
                 }
                 return;
             default:
-                MediaDataController.getInstance(this.f17104b).loadAttachMenuBots(false, true);
+                MediaDataController.getInstance(this.f18542b).loadAttachMenuBots(false, true);
                 return;
         }
     }

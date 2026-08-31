@@ -1,43 +1,27 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.MediaController;
-public final class xl implements ul0 {
-    public final ChatAttachAlertPhotoLayout f30690a;
+public final class xl extends f2.k0 {
+    public final zi f33133r;
 
-    public xl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f30690a = chatAttachAlertPhotoLayout;
+    public xl(zi ziVar, Context context) {
+        super(context);
+        this.f33133r = ziVar;
     }
 
     @Override
-    public final void a(boolean z4) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30690a;
-        chatAttachAlertPhotoLayout.I = z4 ? 1 : 0;
-        chatAttachAlertPhotoLayout.B.d1(true);
+    public final int k(int i10, View view) {
+        int topScrollOffset;
+        int k10 = super.k(i10, view);
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f33133r.R;
+        int paddingTop = chatAttachAlertPhotoLayout.B.getPaddingTop();
+        topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
+        return k10 - (paddingTop - topScrollOffset);
     }
 
     @Override
-    public final boolean b(int i10) {
-        if (this.f30690a.D.j(i10) == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void c(View view, boolean z4) {
-        if (z4 == this.f30690a.H && (view instanceof org.telegram.ui.Cells.t5)) {
-            org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
-            t5Var.f22354w.b(t5Var);
-        }
-    }
-
-    @Override
-    public final boolean d(int i10) {
-        MediaController.PhotoEntry M = this.f30690a.D.M(i10);
-        if (M != null && ChatAttachAlertPhotoLayout.f22896p1.containsKey(Integer.valueOf(M.imageId))) {
-            return true;
-        }
-        return false;
+    public final int m(int i10) {
+        return super.m(i10) * 2;
     }
 }

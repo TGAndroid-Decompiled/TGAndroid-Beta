@@ -4,22 +4,22 @@ import j3.r1;
 import java.util.Collections;
 import java.util.List;
 public final class f {
-    public final List f7273a;
-    public final int f7274b;
-    public final int f7275c;
+    public final List f7823a;
+    public final int f7824b;
+    public final int f7825c;
     public final int d;
-    public final int e;
-    public final float f7276f;
-    public final String f7277g;
+    public final int f7826e;
+    public final float f7827f;
+    public final String f7828g;
 
     public f(List list, int i10, int i11, int i12, int i13, float f10, String str) {
-        this.f7273a = list;
-        this.f7274b = i10;
-        this.f7275c = i11;
+        this.f7823a = list;
+        this.f7824b = i10;
+        this.f7825c = i11;
         this.d = i12;
-        this.e = i13;
-        this.f7276f = f10;
-        this.f7277g = str;
+        this.f7826e = i13;
+        this.f7827f = f10;
+        this.f7828g = str;
     }
 
     public static f a(h5.w wVar) {
@@ -29,7 +29,7 @@ public final class f {
             wVar.G(21);
             int u10 = wVar.u() & 3;
             int u11 = wVar.u();
-            int i11 = wVar.f7001b;
+            int i11 = wVar.f7309b;
             int i12 = 0;
             int i13 = 0;
             for (int i14 = 0; i14 < u11; i14++) {
@@ -59,15 +59,15 @@ public final class f {
                     int i22 = u10;
                     System.arraycopy(h5.a.d, i12, bArr, i17, 4);
                     int i23 = i17 + 4;
-                    System.arraycopy(wVar.f7000a, wVar.f7001b, bArr, i23, z12);
+                    System.arraycopy(wVar.f7308a, wVar.f7309b, bArr, i23, z12);
                     if (u12 == 33 && i21 == 0) {
                         h5.p B = h5.a.B(i23, i23 + z12, bArr);
-                        i18 = B.f6974j;
-                        i19 = B.f6975k;
-                        i20 = B.f6976l;
-                        float f11 = B.f6973i;
+                        i18 = B.f7278j;
+                        i19 = B.f7279k;
+                        i20 = B.f7280l;
+                        float f11 = B.f7277i;
                         i10 = u11;
-                        str = h5.a.d(B.f6968a, B.f6970c, B.d, B.f6971f, B.f6969b, B.e);
+                        str = h5.a.d(B.f7271a, B.f7273c, B.d, B.f7275f, B.f7272b, B.f7274e);
                         f10 = f11;
                     } else {
                         i10 = u11;
@@ -89,8 +89,8 @@ public final class f {
                 singletonList = Collections.singletonList(bArr);
             }
             return new f(singletonList, i24 + 1, i18, i19, i20, f10, str);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw r1.a("Error parsing HEVC config", e);
+        } catch (ArrayIndexOutOfBoundsException e6) {
+            throw r1.a("Error parsing HEVC config", e6);
         }
     }
 }

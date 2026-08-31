@@ -1,25 +1,21 @@
 package org.telegram.messenger.voip;
-public final class c implements Runnable {
-    public final int f18762a;
-    public final ConferenceCall f18763b;
 
-    public c(ConferenceCall conferenceCall, int i10) {
-        this.f18762a = i10;
-        this.f18763b = conferenceCall;
+import j$.util.function.Function$CC;
+import java.util.function.Function;
+import org.telegram.messenger.voip.ConferenceCall;
+public final class c implements Function {
+    public Function andThen(Function function) {
+        return Function$CC.$default$andThen(this, function);
     }
 
     @Override
-    public final void run() {
-        switch (this.f18762a) {
-            case 0:
-                ConferenceCall.n(this.f18763b);
-                return;
-            case 1:
-                ConferenceCall.g(this.f18763b);
-                return;
-            default:
-                ConferenceCall.j(this.f18763b);
-                return;
-        }
+    public final Object apply(Object obj) {
+        String lambda$poll$9;
+        lambda$poll$9 = ConferenceCall.lambda$poll$9((ConferenceCall.CallParticipant) obj);
+        return lambda$poll$9;
+    }
+
+    public Function compose(Function function) {
+        return Function$CC.$default$compose(this, function);
     }
 }

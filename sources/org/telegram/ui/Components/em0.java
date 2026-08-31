@@ -3,101 +3,86 @@ package org.telegram.ui.Components;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-public final class em0 extends Drawable {
-    public long f24605a;
-    public boolean f24606b;
-    public Paint f24607c;
+public final class em0 extends nw0 {
     public float d;
-    public float e;
-    public float f24608f;
-    public int f24609g;
-    public int h;
-    public int f24610i;
-    public org.telegram.ui.Cells.t1 f24611j;
-    public float f24612k;
-    public int f24613l;
-    public int f24614m;
-    public org.telegram.ui.ActionBar.f6 f24615n;
+    public final Paint f26580f;
+    public boolean f26576a = false;
+    public long f26577b = 0;
+    public boolean f26578c = false;
+    public int f26579e = 1;
 
-    public final void a() {
-        if (this.f24606b) {
-            return;
+    public em0(boolean z4) {
+        if (z4) {
+            this.f26580f = new Paint(1);
         }
-        this.f24605a = System.currentTimeMillis();
-        this.f24606b = true;
-        this.f24611j.invalidate();
     }
 
-    public final void b() {
-        if (!this.f24606b) {
-            return;
+    @Override
+    public final void b(int i10) {
+        Paint paint = this.f26580f;
+        if (paint != null) {
+            paint.setColor(i10);
         }
-        this.f24606b = false;
+    }
+
+    @Override
+    public final void c(boolean z4) {
+        this.f26576a = z4;
+    }
+
+    @Override
+    public final void d() {
+        this.f26577b = System.currentTimeMillis();
+        this.f26578c = true;
+        invalidateSelf();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Paint paint = this.f24607c;
-        paint.setColor(i0.a.d(this.f24612k, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.ic, this.f24615n), this.f24613l));
-        int i10 = this.f24614m;
-        if (i10 != 255) {
-            paint.setAlpha((int) ((paint.getAlpha() / 255.0f) * i10));
+        float f10;
+        Paint paint = this.f26580f;
+        if (paint == null) {
+            paint = org.telegram.ui.ActionBar.k6.f21638c2;
         }
-        int i11 = getBounds().left;
-        int i12 = getBounds().top;
-        int i13 = 0;
-        while (i13 < 3) {
-            Canvas canvas2 = canvas;
-            canvas2.drawRect(AndroidUtilities.dp(2.0f) + i11, AndroidUtilities.dp((this.d * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(4.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
-            canvas2.drawRect(AndroidUtilities.dp(5.0f) + i11, AndroidUtilities.dp((this.e * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(7.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
-            canvas2.drawRect(AndroidUtilities.dp(8.0f) + i11, AndroidUtilities.dp((this.f24608f * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(10.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
-            i13++;
-            canvas = canvas2;
+        paint.setAlpha(((int) (this.d * 200.0f)) + 55);
+        float dp = AndroidUtilities.dp(6.0f);
+        if (this.f26576a) {
+            f10 = 8.0f;
+        } else {
+            f10 = 9.0f;
         }
-        if (this.f24606b) {
+        canvas.drawCircle(dp, AndroidUtilities.dp(f10), AndroidUtilities.dp(4.0f), paint);
+        if (this.f26578c) {
             long currentTimeMillis = System.currentTimeMillis();
-            long j10 = currentTimeMillis - this.f24605a;
-            this.f24605a = currentTimeMillis;
+            long j10 = currentTimeMillis - this.f26577b;
+            this.f26577b = currentTimeMillis;
             if (j10 > 50) {
                 j10 = 50;
             }
-            float f10 = (float) j10;
-            float f11 = ((f10 / 300.0f) * this.f24609g) + this.d;
-            this.d = f11;
-            if (f11 > 1.0f) {
-                this.f24609g = -1;
+            float f11 = this.d;
+            int i10 = this.f26579e;
+            float f12 = (((float) (i10 * j10)) / 400.0f) + f11;
+            this.d = f12;
+            if (i10 > 0 && f12 >= 1.0f) {
+                this.f26579e = -1;
                 this.d = 1.0f;
-            } else if (f11 < 0.0f) {
-                this.f24609g = 1;
+            } else if (i10 < 0 && f12 <= 0.0f) {
+                this.f26579e = 1;
                 this.d = 0.0f;
             }
-            float f12 = ((f10 / 310.0f) * this.h) + this.e;
-            this.e = f12;
-            if (f12 > 1.0f) {
-                this.h = -1;
-                this.e = 1.0f;
-            } else if (f12 < 0.0f) {
-                this.h = 1;
-                this.e = 0.0f;
-            }
-            float f13 = ((f10 / 320.0f) * this.f24610i) + this.f24608f;
-            this.f24608f = f13;
-            if (f13 > 1.0f) {
-                this.f24610i = -1;
-                this.f24608f = 1.0f;
-            } else if (f13 < 0.0f) {
-                this.f24610i = 1;
-                this.f24608f = 0.0f;
-            }
-            this.f24611j.invalidate();
+            a();
         }
     }
 
     @Override
+    public final void e() {
+        this.f26578c = false;
+    }
+
+    @Override
     public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(12.0f);
+        return AndroidUtilities.dp(10.0f);
     }
 
     @Override
@@ -107,12 +92,11 @@ public final class em0 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        return -2;
+        return 0;
     }
 
     @Override
     public final void setAlpha(int i10) {
-        this.f24614m = i10;
     }
 
     @Override

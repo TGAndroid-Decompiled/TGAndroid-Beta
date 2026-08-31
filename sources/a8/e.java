@@ -10,10 +10,10 @@ import com.google.android.gms.common.api.internal.t0;
 import com.google.android.gms.common.api.internal.u;
 import com.google.android.gms.tasks.Task;
 public final class e extends com.google.android.gms.common.api.j {
-    public static int f134k = 1;
+    public static int f146k = 1;
 
     public e(Context context, com.google.android.gms.common.api.i iVar) {
-        super(context, l8.j.f11719a, l8.i.f11718a, iVar);
+        super(context, l8.j.f12126a, l8.i.f12125a, iVar);
     }
 
     public Intent f() {
@@ -21,17 +21,17 @@ public final class e extends com.google.android.gms.common.api.j {
         int i10 = h - 1;
         if (h != 0) {
             com.google.android.gms.common.api.b bVar = this.d;
-            Context context = this.f2911a;
+            Context context = this.f2852a;
             if (i10 != 2) {
                 if (i10 != 3) {
-                    o5.h.f16454a.f("getNoImplementationSignInIntent()", new Object[0]);
+                    o5.h.f16612a.g("getNoImplementationSignInIntent()", new Object[0]);
                     Intent a2 = o5.h.a(context, (GoogleSignInOptions) bVar);
                     a2.setAction("com.google.android.gms.auth.NO_IMPL");
                     return a2;
                 }
                 return o5.h.a(context, (GoogleSignInOptions) bVar);
             }
-            o5.h.f16454a.f("getFallbackSignInIntent()", new Object[0]);
+            o5.h.f16612a.g("getFallbackSignInIntent()", new Object[0]);
             Intent a10 = o5.h.a(context, (GoogleSignInOptions) bVar);
             a10.setAction("com.google.android.gms.auth.APPAUTH_SIGN_IN");
             return a10;
@@ -47,16 +47,16 @@ public final class e extends com.google.android.gms.common.api.j {
         } else {
             z4 = false;
         }
-        o5.h.f16454a.f("Signing out", new Object[0]);
-        o5.h.b(this.f2911a);
+        o5.h.f16612a.g("Signing out", new Object[0]);
+        o5.h.b(this.f2852a);
         t0 t0Var = this.h;
         if (z4) {
             BasePendingResult uVar = new u(t0Var, 0);
-            uVar.a(Status.e);
+            uVar.a(Status.f2642e);
             basePendingResult = uVar;
         } else {
             o5.g gVar = new o5.g(t0Var, 0);
-            t0Var.f2877b.d(1, gVar);
+            t0Var.f2816b.d(1, gVar);
             basePendingResult = gVar;
         }
         return m.n(basePendingResult, new db.a(3));
@@ -65,20 +65,20 @@ public final class e extends com.google.android.gms.common.api.j {
     public synchronized int h() {
         int i10;
         try {
-            i10 = f134k;
+            i10 = f146k;
             if (i10 == 1) {
-                Context context = this.f2911a;
+                Context context = this.f2852a;
                 y5.d dVar = y5.d.d;
                 int d = dVar.d(context, 12451000);
                 if (d == 0) {
                     i10 = 4;
-                    f134k = 4;
+                    f146k = 4;
                 } else if (dVar.b(context, null, d) == null && m6.e.a(context, "com.google.android.gms.auth.api.fallback") != 0) {
                     i10 = 3;
-                    f134k = 3;
+                    f146k = 3;
                 } else {
                     i10 = 2;
-                    f134k = 2;
+                    f146k = 2;
                 }
             }
         } catch (Throwable th2) {

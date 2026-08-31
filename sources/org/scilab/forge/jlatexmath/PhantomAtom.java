@@ -3,10 +3,10 @@ public class PhantomAtom extends Atom implements Row {
     private boolean d;
     private RowAtom elements;
     private boolean h;
-    private boolean f16642w;
+    private boolean f18028w;
 
     public PhantomAtom(Atom atom) {
-        this.f16642w = true;
+        this.f18028w = true;
         this.h = true;
         this.d = true;
         if (atom == null) {
@@ -22,7 +22,7 @@ public class PhantomAtom extends Atom implements Row {
         float f11;
         Box createBox = this.elements.createBox(teXEnvironment);
         float f12 = 0.0f;
-        if (this.f16642w) {
+        if (this.f18028w) {
             f10 = createBox.getWidth();
         } else {
             f10 = 0.0f;
@@ -55,7 +55,7 @@ public class PhantomAtom extends Atom implements Row {
 
     public PhantomAtom(Atom atom, boolean z4, boolean z10, boolean z11) {
         this(atom);
-        this.f16642w = z4;
+        this.f18028w = z4;
         this.h = z10;
         this.d = z11;
     }

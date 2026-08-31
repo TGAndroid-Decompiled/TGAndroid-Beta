@@ -6,62 +6,62 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class w7 extends FrameLayout {
-    public final int f39354a;
-    public int f39355b;
-    public final NotificationCenter.NotificationCenterDelegate f39356c;
+    public final int f42395a;
+    public int f42396b;
+    public final NotificationCenter.NotificationCenterDelegate f42397c;
 
     public w7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10) {
         super(context);
-        this.f39354a = i10;
-        this.f39356c = notificationCenterDelegate;
-        this.f39355b = -1;
+        this.f42395a = i10;
+        this.f42397c = notificationCenterDelegate;
+        this.f42396b = -1;
     }
 
     @Override
     public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        switch (this.f39354a) {
+        switch (this.f42395a) {
             case 0:
                 super.onLayout(z4, i10, i11, i12, i13);
                 int measuredWidth = (getMeasuredWidth() + getMeasuredHeight()) << 16;
-                if (this.f39355b != measuredWidth) {
-                    this.f39355b = measuredWidth;
-                    ((j8) this.f39356c).I.l();
+                if (this.f42396b != measuredWidth) {
+                    this.f42396b = measuredWidth;
+                    ((j8) this.f42397c).I.l();
                     return;
                 }
                 return;
             case 1:
                 super.onLayout(z4, i10, i11, i12, i13);
                 int i14 = i13 - i11;
-                int i15 = this.f39355b;
+                int i15 = this.f42396b;
                 if (i15 != -1 && Math.abs(i15 - i14) > AndroidUtilities.dp(20.0f)) {
-                    jq jqVar = (jq) this.f39356c;
-                    jqVar.f35432b.x0(jqVar.S - 1);
+                    kq kqVar = (kq) this.f42397c;
+                    kqVar.f38457b.x0(kqVar.S - 1);
                 }
-                this.f39355b = i14;
+                this.f42396b = i14;
                 return;
             default:
                 super.onLayout(z4, i10, i11, i12, i13);
                 Point point = AndroidUtilities.displaySize;
                 int i16 = point.x + point.y;
-                int i17 = this.f39355b;
+                int i17 = this.f42396b;
                 if (i17 > 0 && i17 != i16) {
                     setVisibility(8);
-                    org.telegram.ui.Components.a30 a30Var = (org.telegram.ui.Components.a30) this.f39356c;
-                    a30Var.f23286w = false;
-                    a30Var.a();
+                    org.telegram.ui.Components.c30 c30Var = (org.telegram.ui.Components.c30) this.f42397c;
+                    c30Var.f25779w = false;
+                    c30Var.a();
                 }
-                this.f39355b = i16;
+                this.f42396b = i16;
                 return;
         }
     }
 
     @Override
     public void setVisibility(int i10) {
-        switch (this.f39354a) {
+        switch (this.f42395a) {
             case 2:
                 super.setVisibility(i10);
                 if (i10 == 8) {
-                    this.f39355b = -1;
+                    this.f42396b = -1;
                     return;
                 }
                 return;
@@ -73,7 +73,7 @@ public final class w7 extends FrameLayout {
 
     public w7(j8 j8Var, Context context) {
         super(context);
-        this.f39354a = 0;
-        this.f39356c = j8Var;
+        this.f42395a = 0;
+        this.f42397c = j8Var;
     }
 }

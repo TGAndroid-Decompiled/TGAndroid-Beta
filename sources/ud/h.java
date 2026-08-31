@@ -8,13 +8,13 @@ import k1.o;
 import ld.m;
 import qd.t;
 public class h {
-    public static final AtomicReferenceFieldUpdater f45228b = AtomicReferenceFieldUpdater.newUpdater(h.class, Object.class, "head$volatile");
-    public static final AtomicLongFieldUpdater f45229c = AtomicLongFieldUpdater.newUpdater(h.class, "deqIdx$volatile");
+    public static final AtomicReferenceFieldUpdater f48489b = AtomicReferenceFieldUpdater.newUpdater(h.class, Object.class, "head$volatile");
+    public static final AtomicLongFieldUpdater f48490c = AtomicLongFieldUpdater.newUpdater(h.class, "deqIdx$volatile");
     public static final AtomicReferenceFieldUpdater d = AtomicReferenceFieldUpdater.newUpdater(h.class, Object.class, "tail$volatile");
-    public static final AtomicLongFieldUpdater e = AtomicLongFieldUpdater.newUpdater(h.class, "enqIdx$volatile");
-    public static final AtomicIntegerFieldUpdater f45230f = AtomicIntegerFieldUpdater.newUpdater(h.class, "_availablePermits$volatile");
+    public static final AtomicLongFieldUpdater f48491e = AtomicLongFieldUpdater.newUpdater(h.class, "enqIdx$volatile");
+    public static final AtomicIntegerFieldUpdater f48492f = AtomicIntegerFieldUpdater.newUpdater(h.class, "_availablePermits$volatile");
     private volatile int _availablePermits$volatile;
-    public final o f45231a;
+    public final o f48493a;
     private volatile long deqIdx$volatile;
     private volatile long enqIdx$volatile;
     private volatile Object head$volatile;
@@ -26,7 +26,7 @@ public class h {
             this.head$volatile = jVar;
             this.tail$volatile = jVar;
             this._availablePermits$volatile = 1 - i10;
-            this.f45231a = new o(this, 1);
+            this.f48493a = new o(this, 1);
             return;
         }
         throw new IllegalArgumentException("The number of acquired permits should be in 0..1".toString());
@@ -35,22 +35,22 @@ public class h {
     public final void a(c cVar) {
         Object a2;
         j jVar;
-        m mVar = cVar.f45222a;
-        d dVar = cVar.f45223b;
+        m mVar = cVar.f48483a;
+        d dVar = cVar.f48484b;
         while (true) {
-            int andDecrement = f45230f.getAndDecrement(this);
+            int andDecrement = f48492f.getAndDecrement(this);
             if (andDecrement <= 1) {
-                sc.i iVar = sc.i.f44253a;
+                sc.i iVar = sc.i.f47243a;
                 if (andDecrement > 0) {
-                    d.f45224g.set(dVar, null);
+                    d.f48485g.set(dVar, null);
                     mVar.B(new b(dVar, cVar, 0), iVar);
                     return;
                 }
                 AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d;
                 j jVar2 = (j) atomicReferenceFieldUpdater.get(this);
-                long andIncrement = e.getAndIncrement(this);
-                f fVar = f.f45226a;
-                long j10 = andIncrement / i.f45235f;
+                long andIncrement = f48491e.getAndIncrement(this);
+                f fVar = f.f48487a;
+                long j10 = andIncrement / i.f48498f;
                 while (true) {
                     a2 = qd.a.a(jVar2, j10, fVar);
                     if (!qd.a.d(a2)) {
@@ -58,7 +58,7 @@ public class h {
                         while (true) {
                             t tVar = (t) atomicReferenceFieldUpdater.get(this);
                             jVar = jVar2;
-                            if (tVar.f43041c >= b10.f43041c) {
+                            if (tVar.f44820c >= b10.f44820c) {
                                 break;
                             } else if (!b10.j()) {
                                 break;
@@ -82,18 +82,18 @@ public class h {
                     jVar2 = jVar;
                 }
                 j jVar3 = (j) qd.a.b(a2);
-                AtomicReferenceArray atomicReferenceArray = jVar3.e;
-                int i10 = (int) (andIncrement % i.f45235f);
+                AtomicReferenceArray atomicReferenceArray = jVar3.f48499e;
+                int i10 = (int) (andIncrement % i.f48498f);
                 while (!atomicReferenceArray.compareAndSet(i10, null, cVar)) {
                     if (atomicReferenceArray.get(i10) != null) {
-                        i5.c cVar2 = i.f45233b;
-                        i5.c cVar3 = i.f45234c;
-                        while (!atomicReferenceArray.compareAndSet(i10, cVar2, cVar3)) {
-                            if (atomicReferenceArray.get(i10) != cVar2) {
+                        com.google.android.gms.internal.clearcut.e eVar = i.f48495b;
+                        com.google.android.gms.internal.clearcut.e eVar2 = i.f48496c;
+                        while (!atomicReferenceArray.compareAndSet(i10, eVar, eVar2)) {
+                            if (atomicReferenceArray.get(i10) != eVar) {
                                 break;
                             }
                         }
-                        d.f45224g.set(dVar, null);
+                        d.f48485g.set(dVar, null);
                         mVar.B(new b(dVar, cVar, 0), iVar);
                         return;
                     }

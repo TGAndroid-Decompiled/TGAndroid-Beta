@@ -10,9 +10,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.RadioButton;
 public final class i6 extends FrameLayout {
-    public final TextView f21212a;
-    public final TextView f21213b;
-    public final RadioButton f21214c;
+    public final TextView f22970a;
+    public final TextView f22971b;
+    public final RadioButton f22972c;
     public boolean d;
 
     public i6(Context context, boolean z4) {
@@ -25,12 +25,12 @@ public final class i6 extends FrameLayout {
         int i15;
         int i16;
         RadioButton radioButton = new RadioButton(context);
-        this.f21214c = radioButton;
+        this.f22972c = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
         if (z4) {
-            radioButton.b(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.D5, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.E5, false));
+            radioButton.b(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.D5, false), org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.E5, false));
         } else {
-            radioButton.b(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19961g7, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19979h7, false));
+            radioButton.b(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21715g7, false), org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21733h7, false));
         }
         boolean z10 = LocaleController.isRTL;
         if (z10) {
@@ -44,13 +44,13 @@ public final class i6 extends FrameLayout {
         } else {
             i11 = 20;
         }
-        addView(radioButton, k7.b6.d(22, 22.0f, i17, i11, 10.0f, z10 ? 20 : 0, 0.0f));
+        addView(radioButton, k7.c6.d(22, 22.0f, i17, i11, 10.0f, z10 ? 20 : 0, 0.0f));
         TextView textView = new TextView(context);
-        this.f21212a = textView;
+        this.f22970a = textView;
         if (z4) {
-            textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20012j5, false));
+            textView.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21766j5, false));
         } else {
-            textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
+            textView.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.G6, false));
         }
         textView.setTextSize(1, 16.0f);
         textView.setLines(1);
@@ -74,13 +74,13 @@ public final class i6 extends FrameLayout {
         } else {
             i14 = 61;
         }
-        addView(textView, k7.b6.d(-2, -2.0f, i18, i14, 10.0f, z11 ? 61 : 23, 0.0f));
+        addView(textView, k7.c6.d(-2, -2.0f, i18, i14, 10.0f, z11 ? 61 : 23, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f21213b = textView2;
+        this.f22971b = textView2;
         if (z4) {
-            textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20139q5, false));
+            textView2.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21893q5, false));
         } else {
-            textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20298z6, false));
+            textView2.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f22053z6, false));
         }
         textView2.setTextSize(1, 13.0f);
         if (LocaleController.isRTL) {
@@ -100,17 +100,17 @@ public final class i6 extends FrameLayout {
         } else {
             i16 = 61;
         }
-        addView(textView2, k7.b6.d(-2, -2.0f, i19, i16, 35.0f, z12 ? 61 : 17, 0.0f));
+        addView(textView2, k7.c6.d(-2, -2.0f, i19, i16, 35.0f, z12 ? 61 : 17, 0.0f));
     }
 
     public final void a(boolean z4) {
-        this.f21214c.a(z4, true);
+        this.f22972c.a(z4, true);
     }
 
     public final void b(String str, String str2, boolean z4, boolean z10) {
-        this.f21212a.setText(str);
-        this.f21213b.setText(str2);
-        this.f21214c.a(z10, false);
+        this.f22970a.setText(str);
+        this.f22971b.setText(str2);
+        this.f22972c.a(z10, false);
         this.d = z4;
     }
 
@@ -130,7 +130,7 @@ public final class i6 extends FrameLayout {
             if (!LocaleController.isRTL) {
                 f11 = 0.0f;
             }
-            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f11), getHeight() - 1, org.telegram.ui.ActionBar.j6.f20025k0);
+            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f11), getHeight() - 1, org.telegram.ui.ActionBar.k6.f21779k0);
         }
     }
 
@@ -139,7 +139,7 @@ public final class i6 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.RadioButton");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f21214c.f23149f);
+        accessibilityNodeInfo.setChecked(this.f22972c.f25006f);
     }
 
     @Override

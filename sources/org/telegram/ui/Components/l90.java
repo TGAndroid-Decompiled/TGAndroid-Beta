@@ -1,68 +1,99 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.text.TextPaint;
+import android.text.style.ReplacementSpan;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class l90 extends View {
-    public final TextPaint f26604a;
-    public final Paint f26605b;
-    public final String f26606c;
-    public final Rect d;
-    public View e;
+public final class l90 extends ReplacementSpan {
+    public final int f28674a;
+    public View f28675b;
+    public final k90 f28676c;
+    public final int d;
+    public float f28677e;
+    public float f28678f;
+    public float h;
+    public boolean f28679n;
 
-    public l90(Context context) {
-        super(context);
-        TextPaint textPaint = new TextPaint(1);
-        this.f26604a = textPaint;
-        this.f26605b = new Paint(1);
-        this.d = new Rect();
-        this.f26606c = LocaleController.getString(R.string.LoginOrSingInWithGoogle);
-        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
-        a();
+    public l90(int i10, View view) {
+        this(view, i10, AndroidUtilities.dp(2.0f), null);
     }
 
-    public final void a() {
-        this.f26604a.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20281y6, false));
-        this.f26605b.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Ii, false));
-        invalidate();
+    public final void a(int i10, int i11) {
+        Integer valueOf = Integer.valueOf(i10);
+        k90 k90Var = this.f28676c;
+        k90Var.f28340o = valueOf;
+        k90Var.f28341p = Integer.valueOf(i11);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
-        super.onDraw(canvas);
-        View view = this.e;
-        Rect rect = this.d;
-        if (view != null) {
-            dp = ((((getWidth() - rect.width()) - AndroidUtilities.dp(8.0f)) - this.e.getPaddingLeft()) - this.e.getPaddingRight()) / 2.0f;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
+        int alpha;
+        View view;
+        boolean z4 = this.f28679n;
+        int i15 = this.f28674a;
+        if (z4 && (view = this.f28675b) != null && view.getMeasuredWidth() > 0) {
+            i15 = ((this.f28675b.getMeasuredWidth() - this.f28675b.getPaddingLeft()) - this.f28675b.getPaddingRight()) - i15;
+        }
+        float f11 = this.f28678f;
+        k90 k90Var = this.f28676c;
+        if (f11 > 0.0f) {
+            float f12 = (i12 + i14) / 2.0f;
+            int i16 = (int) f10;
+            float f13 = f11 / 2.0f;
+            k90Var.setBounds(i16, (int) (f12 - f13), i15 + i16, (int) (f13 + f12));
         } else {
-            dp = AndroidUtilities.dp(64.0f);
+            int i17 = (int) f10;
+            float w10 = e2.c.w(1.0f, this.f28677e, org.telegram.messenger.y3.B(2.0f, i14, i12) / 2.0f, i12);
+            float f14 = this.d;
+            k90Var.setBounds(i17, (int) (w10 + f14), i15 + i17, (int) (((i14 - AndroidUtilities.dp(2.0f)) - ((1.0f - this.f28677e) * (org.telegram.messenger.y3.B(2.0f, i14, i12) / 2.0f))) + f14));
         }
-        Paint paint = this.f26605b;
-        canvas.drawLine((((getWidth() - rect.width()) / 2.0f) - AndroidUtilities.dp(8.0f)) - dp, getHeight() / 2.0f, ((getWidth() - rect.width()) / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, paint);
-        canvas.drawLine(((rect.width() + getWidth()) / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, ((rect.width() + getWidth()) / 2.0f) + AndroidUtilities.dp(8.0f) + dp, getHeight() / 2.0f, paint);
-        int height = getHeight();
-        canvas.drawText(this.f26606c, (getWidth() - rect.width()) / 2.0f, (rect.height() + height) / 2.0f, this.f26604a);
+        if (paint == null) {
+            alpha = 255;
+        } else {
+            alpha = paint.getAlpha();
+        }
+        k90Var.setAlpha((int) (alpha * this.h));
+        k90Var.draw(canvas);
+        View view2 = this.f28675b;
+        if (view2 != null) {
+            view2.invalidate();
+        }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        View view = this.e;
-        if (view != null) {
-            i10 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(view.getMeasuredWidth()), 1073741824);
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        View view;
+        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
+        if (fontMetricsInt != null) {
+            fontMetricsInt.ascent = (int) fontMetrics.ascent;
+            fontMetricsInt.bottom = (int) fontMetrics.bottom;
+            fontMetricsInt.descent = (int) fontMetrics.descent;
+            fontMetricsInt.leading = (int) fontMetrics.leading;
+            fontMetricsInt.top = (int) fontMetrics.top;
         }
-        super.onMeasure(i10, i11);
-        String str = this.f26606c;
-        this.f26604a.getTextBounds(str, 0, str.length(), this.d);
+        k90 k90Var = this.f28676c;
+        if (k90Var.f28340o == null && k90Var.f28341p == null) {
+            k90Var.e(org.telegram.ui.ActionBar.k6.l1(0.1f, paint.getColor()), org.telegram.ui.ActionBar.k6.l1(0.25f, paint.getColor()));
+        }
+        boolean z4 = this.f28679n;
+        int i12 = this.f28674a;
+        if (z4 && (view = this.f28675b) != null && view.getMeasuredWidth() > 0) {
+            return ((this.f28675b.getMeasuredWidth() - this.f28675b.getPaddingLeft()) - this.f28675b.getPaddingRight()) - i12;
+        }
+        return i12;
     }
 
-    public void setMeasureAfter(View view) {
-        this.e = view;
+    public l90(View view, int i10, int i11, org.telegram.ui.ActionBar.g6 g6Var) {
+        this.f28677e = 1.0f;
+        this.f28678f = -1.0f;
+        this.h = 1.0f;
+        this.f28679n = false;
+        this.f28675b = view;
+        this.f28674a = i10;
+        this.d = i11;
+        k90 k90Var = new k90(g6Var);
+        this.f28676c = k90Var;
+        k90Var.j(4.0f);
     }
 }

@@ -2,20 +2,23 @@ package j3;
 
 import android.content.Context;
 public class l {
-    public final Context f8662a;
-    public final h7.u f8663b = new h7.u(4);
-    public int f8664c = 0;
+    public final Context f9242a;
+    public final h7.u f9243b = new h7.u(4);
+    public int f9244c = 0;
 
     public l(Context context) {
-        this.f8662a = context;
+        this.f9242a = context;
     }
 
     public l3.k0 a(Context context) {
-        com.google.firebase.messaging.r rVar = new com.google.firebase.messaging.r(context);
-        if (((androidx.biometric.e) rVar.d) == null) {
-            rVar.d = new androidx.biometric.e(new l3.n[0]);
+        ?? obj = new Object();
+        obj.f4080a = context;
+        obj.f4081b = l3.g.f11501c;
+        obj.d = l3.l0.f11563a;
+        if (((androidx.biometric.e) obj.f4082c) == null) {
+            obj.f4082c = new androidx.biometric.e(new l3.n[0]);
         }
-        return new l3.k0(rVar);
+        return new l3.k0(obj);
     }
 
     public final j3.e[] b(android.os.Handler r22, j3.c0 r23, j3.c0 r24, j3.c0 r25, j3.c0 r26) {

@@ -5,12 +5,12 @@ import b4.f0;
 import h5.c0;
 import h5.w;
 import j3.n0;
-import j7.p7;
+import j7.q7;
 import java.io.EOFException;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import k7.z6;
+import k7.a7;
 import s8.i0;
 public final class k extends q4.k {
     public static final AtomicInteger Y = new AtomicInteger();
@@ -38,9 +38,9 @@ public final class k extends q4.k {
     public boolean W;
     public boolean X;
     public final int v;
-    public final int f44503w;
-    public final Uri f44504x;
-    public final boolean f44505y;
+    public final int f47907w;
+    public final Uri f47908x;
+    public final boolean f47909y;
 
     public k(j jVar, g5.m mVar, g5.p pVar, n0 n0Var, boolean z4, g5.m mVar2, g5.p pVar2, boolean z10, Uri uri, List list, int i10, Object obj, long j10, long j11, long j12, int i11, boolean z11, int i12, boolean z12, boolean z13, c0 c0Var, o3.g gVar, b bVar, j4.i iVar, w wVar, boolean z14, k3.k kVar) {
         super(mVar, pVar, n0Var, i10, obj, j10, j11, j12);
@@ -48,7 +48,7 @@ public final class k extends q4.k {
         this.N = z4;
         this.B = i11;
         this.X = z11;
-        this.f44503w = i12;
+        this.f47907w = i12;
         this.D = pVar2;
         this.C = mVar2;
         if (pVar2 != null) {
@@ -58,7 +58,7 @@ public final class k extends q4.k {
         }
         this.S = z15;
         this.O = z10;
-        this.f44504x = uri;
+        this.f47908x = uri;
         this.F = z13;
         this.H = c0Var;
         this.G = z12;
@@ -68,15 +68,15 @@ public final class k extends q4.k {
         this.E = bVar;
         this.L = iVar;
         this.M = wVar;
-        this.f44505y = z14;
-        s8.t tVar = s8.v.f44157b;
-        this.V = i0.e;
+        this.f47909y = z14;
+        s8.t tVar = s8.v.f47143b;
+        this.V = i0.f47108e;
         this.v = Y.getAndIncrement();
     }
 
     public static byte[] e(String str) {
         int i10;
-        if (z6.b(str).startsWith("0x")) {
+        if (a7.b(str).startsWith("0x")) {
             str = str.substring(2);
         }
         byte[] byteArray = new BigInteger(str, 16).toByteArray();
@@ -95,7 +95,7 @@ public final class k extends q4.k {
         b bVar;
         this.Q.getClass();
         if (this.P == null && (bVar = this.E) != null) {
-            r3.k kVar = bVar.f44476a;
+            r3.k kVar = bVar.f47878a;
             if ((kVar instanceof f0) || (kVar instanceof z3.i)) {
                 this.P = bVar;
                 this.S = false;
@@ -112,7 +112,7 @@ public final class k extends q4.k {
         }
         if (!this.T) {
             if (!this.G) {
-                d(this.f42734r, this.f42730b, this.N);
+                d(this.f44479r, this.f44474b, this.N);
             }
             this.U = !this.T;
         }
@@ -138,34 +138,34 @@ public final class k extends q4.k {
         try {
             r3.h g10 = g(mVar, b10);
             if (z10) {
-                g10.u(this.R);
+                g10.s(this.R);
             }
             do {
                 try {
                     if (this.T) {
                         break;
                     }
-                } catch (EOFException e) {
-                    if ((this.d.e & 16384) != 0) {
-                        this.P.f44476a.d(0L, 0L);
+                } catch (EOFException e6) {
+                    if ((this.d.f9321e & 16384) != 0) {
+                        this.P.f47878a.d(0L, 0L);
                         j10 = g10.d;
                     } else {
-                        throw e;
+                        throw e6;
                     }
                 }
-            } while (this.P.f44476a.h(g10, b.d) == 0);
+            } while (this.P.f47878a.h(g10, b.d) == 0);
             j10 = g10.d;
-            this.R = (int) (j10 - pVar.e);
+            this.R = (int) (j10 - pVar.f6888e);
         } catch (Exception unused) {
         } catch (Throwable th2) {
-            p7.a(mVar);
+            q7.a(mVar);
             throw th2;
         }
-        p7.a(mVar);
+        q7.a(mVar);
     }
 
     public final int f(int i10) {
-        h5.a.i(!this.f44505y);
+        h5.a.i(!this.f47909y);
         if (i10 >= this.V.size()) {
             return 0;
         }
@@ -177,7 +177,7 @@ public final class k extends q4.k {
     }
 
     @Override
-    public final void r() {
+    public final void l() {
         this.T = true;
     }
 }

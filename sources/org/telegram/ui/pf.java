@@ -5,25 +5,25 @@ import android.view.View;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 public final class pf implements Utilities.CallbackReturn {
-    public final int f37298a;
-    public final Object f37299b;
-    public final Object f37300c;
+    public final int f40026a;
+    public final Object f40027b;
+    public final Object f40028c;
 
     public pf(int i10, Object obj, Object obj2) {
-        this.f37298a = i10;
-        this.f37299b = obj;
-        this.f37300c = obj2;
+        this.f40026a = i10;
+        this.f40027b = obj;
+        this.f40028c = obj2;
     }
 
     @Override
     public final Object run(Object obj) {
         org.telegram.ui.Cells.t1 t1Var;
-        switch (this.f37298a) {
+        switch (this.f40026a) {
             case 0:
-                xn xnVar = (xn) this.f37299b;
-                View view = (View) this.f37300c;
+                xn xnVar = (xn) this.f40027b;
+                View view = (View) this.f40028c;
                 URLSpan uRLSpan = (URLSpan) obj;
-                MessageObject messageObject = xnVar.f39949a5;
+                MessageObject messageObject = xnVar.f43117a5;
                 if (view instanceof org.telegram.ui.Cells.t1) {
                     t1Var = (org.telegram.ui.Cells.t1) view;
                 } else {
@@ -32,7 +32,7 @@ public final class pf implements Utilities.CallbackReturn {
                 xnVar.U7(uRLSpan, false, messageObject, t1Var);
                 return Boolean.TRUE;
             default:
-                return eh.c.d((View) obj, (String) this.f37299b, (String) this.f37300c, null, null);
+                return fh.c.d((View) obj, (String) this.f40027b, (String) this.f40028c, null, null);
         }
     }
 }

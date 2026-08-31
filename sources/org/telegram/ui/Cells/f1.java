@@ -2,11 +2,9 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PointF;
-import android.graphics.SurfaceTexture;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -15,9 +13,10 @@ import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 import com.android.billingclient.api.ProxyBillingActivityV2;
+import com.google.android.gms.identitycredentials.GetCredentialRequest;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
@@ -25,7 +24,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
@@ -33,28 +31,24 @@ import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.f71;
-import org.telegram.ui.Components.fh0;
-import org.telegram.ui.Components.i71;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.lg0;
-import org.telegram.ui.Components.li;
-import org.telegram.ui.Components.ma0;
-import org.telegram.ui.Components.o70;
-import org.telegram.ui.Components.wn0;
-import org.telegram.ui.Components.x61;
-import org.telegram.ui.Components.z50;
-import org.telegram.ui.zx;
-public class f1 implements x61, org.telegram.ui.Components.y4, ma0, r0.o, androidx.activity.result.b, f71, OnCompleteListener, ra.m, pa.n, t5.a, tf.j1, com.google.android.gms.common.api.internal.s, vh.g0, vh.p3 {
-    public final int f21044a;
-    public Object f21045b;
+import org.telegram.ui.Components.b60;
+import org.telegram.ui.Components.hh0;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.mi;
+import org.telegram.ui.Components.ng0;
+import org.telegram.ui.Components.oa0;
+import org.telegram.ui.Components.q70;
+import org.telegram.ui.Components.z61;
+public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androidx.activity.result.b, eg.q2, OnCompleteListener, ra.m, pa.n, o4.m0, com.google.android.gms.common.api.internal.s, uf.j1, wh.h0, wh.p3 {
+    public final int f22787a;
+    public Object f22788b;
 
     public f1(Object obj, int i10) {
-        this.f21044a = i10;
-        this.f21045b = obj;
+        this.f22787a = i10;
+        this.f22788b = obj;
     }
 
-    public static float[] G(ArrayList arrayList) {
+    public static float[] r(ArrayList arrayList) {
         double d;
         double d10;
         float f10;
@@ -185,7 +179,7 @@ public class f1 implements x61, org.telegram.ui.Components.y4, ma0, r0.o, androi
                 i19 = i20;
             }
             f11 = 0.0f;
-            arrayList2.add((PointF) kh.a2.i(1, arrayList));
+            arrayList2.add((PointF) l.d.i(1, arrayList));
         }
         float f21 = ((PointF) arrayList2.get(0)).x;
         if (f21 > f11) {
@@ -193,7 +187,7 @@ public class f1 implements x61, org.telegram.ui.Components.y4, ma0, r0.o, androi
                 arrayList2.add(0, new PointF(i23, 0.0f));
             }
         }
-        float f22 = ((PointF) kh.a2.i(1, arrayList2)).x;
+        float f22 = ((PointF) l.d.i(1, arrayList2)).x;
         if (f22 < f10) {
             for (int i24 = ((int) f22) + 1; i24 <= 255; i24++) {
                 arrayList2.add(new PointF(i24, 255.0f));
@@ -212,7 +206,7 @@ public class f1 implements x61, org.telegram.ui.Components.y4, ma0, r0.o, androi
         return fArr;
     }
 
-    public static f1 K(float f10, int i10) {
+    public static f1 t(float f10, int i10) {
         boolean z4;
         Point point = AndroidUtilities.displaySize;
         int i11 = (int) (point.x * f10);
@@ -239,95 +233,116 @@ public class f1 implements x61, org.telegram.ui.Components.y4, ma0, r0.o, androi
     }
 
     @Override
-    public void A(vh.a aVar) {
-        vh.y1 y1Var = (vh.y1) this.f21045b;
-        if (aVar != null && (aVar.f45775b instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(y1Var)) {
-            li liVar = new li(y1Var.getParentActivity(), y1Var, false, false, false, y1Var.getResourceProvider());
-            liVar.W1 = new db.a(24);
-            liVar.M = true;
-            liVar.f26746u1.setVisibility(8);
-            liVar.f26733q2 = new ph.m1(y1Var, aVar, liVar, 6);
-            liVar.r1();
-            liVar.show();
+    public void B(CharSequence charSequence) {
+        switch (this.f22787a) {
+            case 26:
+                wh.l3 l3Var = ((wh.y) this.f22788b).L;
+                if (l3Var != null) {
+                    l3Var.getClass();
+                    if (charSequence != null && charSequence.length() > 0) {
+                        l3Var.f49863a.t4(charSequence.toString());
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                wh.k3 k3Var = ((wh.o4) this.f22788b).K;
+                if (k3Var != null) {
+                    k3Var.getClass();
+                    if (charSequence != null && charSequence.length() > 0) {
+                        k3Var.f49827a.t4(charSequence.toString());
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
+    }
+
+    public boolean D(int i10, int i11, Bundle bundle) {
+        return false;
+    }
+
+    @Override
+    public l9 E() {
+        switch (this.f22787a) {
+            case 26:
+                return (wh.y) this.f22788b;
+            default:
+                return (wh.o4) this.f22788b;
         }
     }
 
     @Override
-    public void B() {
-        vh.y1 y1Var = (vh.y1) this.f21045b;
+    public void F(wh.v5 v5Var, String str) {
+        wh.z1 z1Var = (wh.z1) this.f22788b;
+        if (z1Var.f50211w0 == null) {
+            z1Var.f50211w0 = new m.r3(new sf.g(this, 14), z1Var.getResourceProvider());
+        }
+        z1Var.f50211w0.f(v5Var, str);
+    }
+
+    @Override
+    public wh.a G() {
+        switch (this.f22787a) {
+            case 26:
+                return ((wh.y) this.f22788b).f50174a;
+            default:
+                return ((wh.o4) this.f22788b).f50174a;
+        }
+    }
+
+    @Override
+    public void H(float f10) {
+        qh.f9 f9Var = (qh.f9) this.f22788b;
+        dg.e1.e(f9Var.C1).k(String.valueOf(dg.m.f4581a.indexOf(f9Var.L0.getCurrentBrush())), f10);
+        dg.e2 e2Var = f9Var.f44989x1;
+        e2Var.f4526c = f10;
+        f9Var.E0(e2Var, null, false);
+    }
+
+    @Override
+    public void I(int i10, int i11, boolean z4) {
+        ((ChatActivityEnterView) this.f22788b).T0(i10, z4, 0, true, 0L);
+    }
+
+    @Override
+    public void J() {
+        wh.z1 z1Var = (wh.z1) this.f22788b;
         int i10 = 0;
-        vh.y1.Z(y1Var, false, true);
-        int i11 = y1Var.F0;
+        wh.z1.Z(z1Var, false, true);
+        int i11 = z1Var.F0;
         if (i11 != 2) {
             i10 = i11;
         }
-        y1Var.x0(i10, true);
+        z1Var.x0(i10, true);
     }
 
     @Override
-    public o70 C(View view) {
-        return o70.H((vh.y1) this.f21045b, view);
-    }
-
-    public s0.e D(int i10) {
+    public a0.h K() {
         return null;
-    }
-
-    @Override
-    public vh.a E() {
-        switch (this.f21044a) {
-            case 26:
-                return ((vh.x) this.f21045b).f46283a;
-            default:
-                return ((vh.o4) this.f21045b).f46283a;
-        }
-    }
-
-    public s0.e F(int i10) {
-        return null;
-    }
-
-    @Override
-    public void H() {
-        vh.y1 y1Var = (vh.y1) this.f21045b;
-        y1Var.z0();
-        y1Var.C0();
-    }
-
-    @Override
-    public a0.h I() {
-        switch (this.f21044a) {
-            case 22:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public void J(int i10, int i11, boolean z4) {
-        ((ChatActivityEnterView) this.f21045b).T0(i10, z4, 0, true, 0L);
     }
 
     @Override
     public boolean L() {
-        switch (this.f21044a) {
+        switch (this.f22787a) {
             case 26:
-                vh.x xVar = (vh.x) this.f21045b;
-                vh.l3 l3Var = xVar.L;
+                wh.y yVar = (wh.y) this.f22788b;
+                wh.l3 l3Var = yVar.L;
                 if (l3Var != null) {
-                    vh.a aVar = xVar.f46283a;
-                    if (l3Var.f46003a.S4()) {
+                    wh.a aVar = yVar.f50174a;
+                    if (l3Var.f49863a.S4()) {
                         return true;
                     }
                 }
                 return false;
             default:
-                vh.o4 o4Var = (vh.o4) this.f21045b;
-                vh.k3 k3Var = o4Var.K;
+                wh.o4 o4Var = (wh.o4) this.f22788b;
+                wh.k3 k3Var = o4Var.K;
                 if (k3Var != null) {
-                    vh.a aVar2 = o4Var.f46283a;
-                    if (k3Var.f45978a.S4()) {
+                    wh.a aVar2 = o4Var.f50174a;
+                    if (k3Var.f49827a.S4()) {
                         return true;
                     }
                 }
@@ -337,28 +352,28 @@ public class f1 implements x61, org.telegram.ui.Components.y4, ma0, r0.o, androi
 
     @Override
     public void M(int i10, int i11) {
-        switch (this.f21044a) {
+        switch (this.f22787a) {
             case 26:
-                vh.x xVar = (vh.x) this.f21045b;
-                vh.l3 l3Var = xVar.L;
+                wh.y yVar = (wh.y) this.f22788b;
+                wh.l3 l3Var = yVar.L;
                 if (l3Var != null) {
-                    vh.a aVar = xVar.f46283a;
-                    vh.c2 c2Var = l3Var.f46003a.G3;
-                    if (c2Var != null) {
-                        c2Var.f(i10, i11);
+                    wh.a aVar = yVar.f50174a;
+                    wh.d2 d2Var = l3Var.f49863a.G3;
+                    if (d2Var != null) {
+                        d2Var.f(i10, i11);
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                vh.o4 o4Var = (vh.o4) this.f21045b;
-                vh.k3 k3Var = o4Var.K;
+                wh.o4 o4Var = (wh.o4) this.f22788b;
+                wh.k3 k3Var = o4Var.K;
                 if (k3Var != null) {
-                    vh.a aVar2 = o4Var.f46283a;
-                    vh.c2 c2Var2 = k3Var.f45978a.G3;
-                    if (c2Var2 != null) {
-                        c2Var2.f(i10, i11);
+                    wh.a aVar2 = o4Var.f50174a;
+                    wh.d2 d2Var2 = k3Var.f49827a.G3;
+                    if (d2Var2 != null) {
+                        d2Var2.f(i10, i11);
                         return;
                     }
                     return;
@@ -368,91 +383,15 @@ public class f1 implements x61, org.telegram.ui.Components.y4, ma0, r0.o, androi
     }
 
     @Override
-    public r0.m1 N0(View view, r0.m1 m1Var) {
+    public r0.m1 M0(View view, r0.m1 m1Var) {
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
-        im0 im0Var = (im0) this.f21045b;
-        im0Var.v.setPadding(defaultWindowInsets.f7213a, defaultWindowInsets.f7214b, defaultWindowInsets.f7215c, defaultWindowInsets.d);
-        im0Var.f25752s.requestLayout();
-        return r0.m1.f43129b;
+        jm0 jm0Var = (jm0) this.f22788b;
+        jm0Var.v.setPadding(defaultWindowInsets.f7757a, defaultWindowInsets.f7758b, defaultWindowInsets.f7759c, defaultWindowInsets.d);
+        jm0Var.f28163s.requestLayout();
+        return r0.m1.f46451b;
     }
 
-    @Override
-    public void P() {
-        switch (this.f21044a) {
-            case 26:
-                vh.x xVar = (vh.x) this.f21045b;
-                vh.l3 l3Var = xVar.L;
-                if (l3Var != null) {
-                    vh.a aVar = xVar.f46283a;
-                    vh.r3 r3Var = l3Var.f46003a;
-                    vh.c2 c2Var = r3Var.G3;
-                    if (c2Var != null) {
-                        c2Var.g();
-                    }
-                    r3Var.f46112e3.onContentChanged();
-                    return;
-                }
-                return;
-            default:
-                vh.o4 o4Var = (vh.o4) this.f21045b;
-                vh.k3 k3Var = o4Var.K;
-                if (k3Var != null) {
-                    vh.a aVar2 = o4Var.f46283a;
-                    vh.r3 r3Var2 = k3Var.f45978a;
-                    vh.c2 c2Var2 = r3Var2.G3;
-                    if (c2Var2 != null) {
-                        c2Var2.g();
-                    }
-                    r3Var2.f46112e3.onContentChanged();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public boolean Q(int i10) {
-        switch (this.f21044a) {
-            case 22:
-                if (i10 == ((wn0) this.f21045b).f44891a0) {
-                    return true;
-                }
-                return false;
-            default:
-                return true;
-        }
-    }
-
-    public boolean S(int i10, int i11, Bundle bundle) {
-        return false;
-    }
-
-    @Override
-    public void T(ArrayList arrayList) {
-        boolean z4;
-        switch (this.f21044a) {
-            case 22:
-                wn0 wn0Var = (wn0) this.f21045b;
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    wn0Var.G.add(((tf.i1) arrayList.get(i10)).f44755a);
-                }
-                zx zxVar = wn0Var.R;
-                if (zxVar != null) {
-                    if (wn0Var.A0 > 0) {
-                        z4 = true;
-                    } else {
-                        z4 = false;
-                    }
-                    zxVar.d(z4, false);
-                }
-                wn0Var.l();
-                return;
-            default:
-                return;
-        }
-    }
-
-    public JSONObject U() {
+    public JSONObject O() {
         FileInputStream fileInputStream;
         JSONObject jSONObject;
         FileInputStream fileInputStream2 = null;
@@ -460,15 +399,15 @@ public class f1 implements x61, org.telegram.ui.Components.y4, ma0, r0.o, androi
             Log.d("FirebaseCrashlytics", "Checking for cached settings...", null);
         }
         try {
-            File file = (File) this.f21045b;
+            File file = (File) this.f22788b;
             if (file.exists()) {
                 fileInputStream = new FileInputStream(file);
                 try {
                     try {
                         jSONObject = new JSONObject(i9.h.j(fileInputStream));
                         fileInputStream2 = fileInputStream;
-                    } catch (Exception e) {
-                        e = e;
+                    } catch (Exception e6) {
+                        e = e6;
                         Log.e("FirebaseCrashlytics", "Failed to fetch cached settings", e);
                         i9.h.c(fileInputStream, "Error while closing settings cache file.");
                         return null;
@@ -487,8 +426,8 @@ public class f1 implements x61, org.telegram.ui.Components.y4, ma0, r0.o, androi
             }
             i9.h.c(fileInputStream2, "Error while closing settings cache file.");
             return jSONObject;
-        } catch (Exception e6) {
-            e = e6;
+        } catch (Exception e10) {
+            e = e10;
             fileInputStream = null;
         } catch (Throwable th3) {
             th = th3;
@@ -497,11 +436,62 @@ public class f1 implements x61, org.telegram.ui.Components.y4, ma0, r0.o, androi
         }
     }
 
-    public pa.i X(Object obj) {
-        pa.g gVar = ((sa.a0) this.f21045b).f44167b;
+    @Override
+    public q70 P(View view) {
+        return q70.H((wh.z1) this.f22788b, view);
+    }
+
+    @Override
+    public void Q() {
+        switch (this.f22787a) {
+            case 26:
+                wh.y yVar = (wh.y) this.f22788b;
+                wh.l3 l3Var = yVar.L;
+                if (l3Var != null) {
+                    wh.a aVar = yVar.f50174a;
+                    wh.r3 r3Var = l3Var.f49863a;
+                    wh.d2 d2Var = r3Var.G3;
+                    if (d2Var != null) {
+                        d2Var.g();
+                    }
+                    r3Var.f49979e3.onContentChanged();
+                    return;
+                }
+                return;
+            default:
+                wh.o4 o4Var = (wh.o4) this.f22788b;
+                wh.k3 k3Var = o4Var.K;
+                if (k3Var != null) {
+                    wh.a aVar2 = o4Var.f50174a;
+                    wh.r3 r3Var2 = k3Var.f49827a;
+                    wh.d2 d2Var2 = r3Var2.G3;
+                    if (d2Var2 != null) {
+                        d2Var2.g();
+                    }
+                    r3Var2.f49979e3.onContentChanged();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public boolean R(int i10) {
+        return true;
+    }
+
+    @Override
+    public void S() {
+        wh.z1 z1Var = (wh.z1) this.f22788b;
+        z1Var.z0();
+        z1Var.C0();
+    }
+
+    public pa.i T(Object obj) {
+        pa.g gVar = ((sa.a0) this.f22788b).f47153b;
         gVar.getClass();
         if (obj == null) {
-            return pa.k.f41087a;
+            return pa.k.f44246a;
         }
         Class<?> cls = obj.getClass();
         sa.n nVar = new sa.n();
@@ -510,54 +500,193 @@ public class f1 implements x61, org.telegram.ui.Components.y4, ma0, r0.o, androi
     }
 
     @Override
-    public void a(TLRPC.BotInlineResult botInlineResult, boolean z4, int i10) {
-        int i11 = this.f21044a;
+    public void U(int i10, int i11, CharSequence charSequence, boolean z4) {
+        mi miVar = (mi) this.f22788b;
+        if (miVar.m1() == null) {
+            return;
+        }
+        try {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(miVar.m1().getText());
+            spannableStringBuilder.replace(i10, i11 + i10, charSequence);
+            if (z4) {
+                Emoji.replaceEmoji(spannableStringBuilder, miVar.m1().getEditText().getPaint().getFontMetricsInt(), false);
+            }
+            miVar.m1().setText(spannableStringBuilder);
+            miVar.m1().setSelection(i10 + charSequence.length());
+        } catch (Exception e6) {
+            FileLog.e(e6);
+        }
     }
 
     @Override
-    public void a0() {
-        switch (this.f21044a) {
+    public void W() {
+        switch (this.f22787a) {
             case 26:
-                vh.x xVar = (vh.x) this.f21045b;
-                vh.l3 l3Var = xVar.L;
+                wh.y yVar = (wh.y) this.f22788b;
+                wh.l3 l3Var = yVar.L;
                 if (l3Var != null) {
-                    vh.a aVar = xVar.f46283a;
-                    vh.r3.O1(l3Var.f46003a);
+                    wh.a aVar = yVar.f50174a;
+                    wh.r3.O1(l3Var.f49863a);
                     return;
                 }
                 return;
             default:
-                vh.o4 o4Var = (vh.o4) this.f21045b;
-                vh.k3 k3Var = o4Var.K;
+                wh.o4 o4Var = (wh.o4) this.f22788b;
+                wh.k3 k3Var = o4Var.K;
                 if (k3Var != null) {
-                    vh.a aVar2 = o4Var.f46283a;
-                    vh.r3.O1(k3Var.f45978a);
+                    wh.a aVar2 = o4Var.f50174a;
+                    wh.r3.O1(k3Var.f49827a);
                     return;
                 }
                 return;
         }
     }
 
+    public float Y(int i10, int i11, int i12, int i13) {
+        boolean z4;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18;
+        int i19;
+        int i20;
+        boolean z10;
+        int i21 = 1;
+        if (Math.abs(i13 - i11) > Math.abs(i12 - i10)) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        if (z4) {
+            i15 = i10;
+            i14 = i11;
+            i17 = i12;
+            i16 = i13;
+        } else {
+            i14 = i10;
+            i15 = i11;
+            i16 = i12;
+            i17 = i13;
+        }
+        int abs = Math.abs(i16 - i14);
+        int abs2 = Math.abs(i17 - i15);
+        int i22 = (-abs) / 2;
+        int i23 = -1;
+        if (i14 < i16) {
+            i18 = 1;
+        } else {
+            i18 = -1;
+        }
+        if (i15 < i17) {
+            i23 = 1;
+        }
+        int i24 = i16 + i18;
+        int i25 = i14;
+        int i26 = i15;
+        int i27 = 0;
+        while (i25 != i24) {
+            if (z4) {
+                i19 = i26;
+            } else {
+                i19 = i25;
+            }
+            if (z4) {
+                i20 = i25;
+            } else {
+                i20 = i26;
+            }
+            boolean z11 = z4;
+            if (i27 == i21) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int i28 = abs;
+            if (z10 == ((pb.b) this.f22788b).b(i19, i20)) {
+                if (i27 == 2) {
+                    return k7.o6.b(i25, i26, i14, i15);
+                }
+                i27++;
+            }
+            i22 += abs2;
+            if (i22 > 0) {
+                if (i26 == i17) {
+                    break;
+                }
+                i26 += i23;
+                i22 -= i28;
+            }
+            i25 += i18;
+            abs = i28;
+            z4 = z11;
+            i21 = 1;
+        }
+        if (i27 == 2) {
+            return k7.o6.b(i24, i17, i14, i15);
+        }
+        return Float.NaN;
+    }
+
+    public float Z(int i10, int i11, int i12, int i13) {
+        float f10;
+        float f11;
+        pb.b bVar = (pb.b) this.f22788b;
+        float Y = Y(i10, i11, i12, i13);
+        int i14 = i10 - (i12 - i10);
+        int i15 = 0;
+        if (i14 < 0) {
+            f10 = i10 / (i10 - i14);
+            i14 = 0;
+        } else {
+            int i16 = bVar.f44255a;
+            if (i14 >= i16) {
+                int i17 = i16 - 1;
+                f10 = ((i16 - 1) - i10) / (i14 - i10);
+                i14 = i17;
+            } else {
+                f10 = 1.0f;
+            }
+        }
+        float f12 = i11;
+        int i18 = (int) (f12 - ((i13 - i11) * f10));
+        if (i18 < 0) {
+            f11 = f12 / (i11 - i18);
+        } else {
+            int i19 = bVar.f44256b;
+            if (i18 >= i19) {
+                f11 = ((i19 - 1) - i11) / (i18 - i11);
+                i15 = i19 - 1;
+            } else {
+                i15 = i18;
+                f11 = 1.0f;
+            }
+        }
+        return (Y(i10, i11, (int) (((i14 - i10) * f11) + i10), i15) + Y) - 1.0f;
+    }
+
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f21044a) {
+        switch (this.f22787a) {
             case 23:
-                u5.r rVar = new u5.r(0, (TaskCompletionSource) obj2);
-                u5.i iVar = (u5.i) ((u5.t) obj).u();
-                Parcel M0 = iVar.M0();
-                com.google.android.gms.internal.cast.t.d(M0, rVar);
-                M0.writeStringArray((String[]) this.f21045b);
-                iVar.R0(M0, 5);
+                v6.f fVar = new v6.f(1, (TaskCompletionSource) obj2);
+                com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true));
+                Parcel obtain = Parcel.obtain();
+                obtain.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
+                int i10 = e7.a.f4991a;
+                obtain.writeStrongBinder(fVar);
+                e7.a.b(obtain, (GetCredentialRequest) this.f22788b);
+                e7.a.b(obtain, gVar);
+                ((v6.b) ((v6.d) ((v6.e) obj).u())).E0(obtain, 1);
                 return;
             default:
-                w6.a aVar = new w6.a((TaskCompletionSource) obj2);
-                w6.i iVar2 = (w6.i) ((w6.c) obj).u();
-                String str = ((w6.b) this.f21045b).f46464k;
-                Parcel I0 = iVar2.I0();
-                int i10 = w6.f.f46468a;
-                I0.writeStrongBinder(aVar);
-                I0.writeString(str);
-                iVar2.J0(I0, 2);
+                o5.l lVar = new o5.l((TaskCompletionSource) obj2);
+                w6.i iVar = (w6.i) ((w6.c) obj).u();
+                Parcel I0 = iVar.I0();
+                int i11 = w6.f.f49441a;
+                I0.writeStrongBinder(lVar);
+                w6.f.c(I0, (l5.e) this.f22788b);
+                iVar.J0(I0, 1);
                 return;
         }
     }
@@ -565,40 +694,40 @@ public class f1 implements x61, org.telegram.ui.Components.y4, ma0, r0.o, androi
     @Override
     public boolean b(float f10) {
         boolean z4;
-        vh.y1 y1Var = (vh.y1) this.f21045b;
-        FrameLayout frameLayout = y1Var.f46313s0;
+        wh.z1 z1Var = (wh.z1) this.f22788b;
+        FrameLayout frameLayout = z1Var.f50206s0;
         if (frameLayout != null) {
             int[] iArr = new int[2];
             frameLayout.getLocationOnScreen(iArr);
             if (f10 >= iArr[1]) {
                 z4 = true;
-                vh.y1.Z(y1Var, z4, true);
+                wh.z1.Z(z1Var, z4, true);
                 return z4;
             }
         }
         z4 = false;
-        vh.y1.Z(y1Var, z4, true);
+        wh.z1.Z(z1Var, z4, true);
         return z4;
     }
 
     @Override
-    public void c(vh.d1 d1Var) {
-        switch (this.f21044a) {
+    public void c(wh.e1 e1Var) {
+        switch (this.f22787a) {
             case 26:
-                vh.l3 l3Var = ((vh.x) this.f21045b).L;
+                wh.l3 l3Var = ((wh.y) this.f22788b).L;
                 if (l3Var != null) {
-                    vh.r3 r3Var = l3Var.f46003a;
-                    vh.r3.M1(r3Var, d1Var);
-                    r3Var.f46112e3.e(d1Var, true);
+                    wh.r3 r3Var = l3Var.f49863a;
+                    wh.r3.M1(r3Var, e1Var);
+                    r3Var.f49979e3.h(e1Var, true);
                     return;
                 }
                 return;
             default:
-                vh.k3 k3Var = ((vh.o4) this.f21045b).K;
+                wh.k3 k3Var = ((wh.o4) this.f22788b).K;
                 if (k3Var != null) {
-                    vh.r3 r3Var2 = k3Var.f45978a;
-                    vh.r3.M1(r3Var2, d1Var);
-                    r3Var2.f46112e3.e(d1Var, true);
+                    wh.r3 r3Var2 = k3Var.f49827a;
+                    wh.r3.M1(r3Var2, e1Var);
+                    r3Var2.f49979e3.h(e1Var, true);
                     return;
                 }
                 return;
@@ -606,23 +735,93 @@ public class f1 implements x61, org.telegram.ui.Components.y4, ma0, r0.o, androi
     }
 
     @Override
-    public Paint.FontMetricsInt d() {
-        switch (this.f21044a) {
-            case 3:
-                return ((li) this.f21045b).B0.getEditText().getPaint().getFontMetricsInt();
+    public void d(wh.o3 o3Var, View view) {
+        wh.z1 z1Var = (wh.z1) this.f22788b;
+        q70 H = q70.H(z1Var, view);
+        H.Q = true;
+        z1Var.f50208u0 = wh.d4.c(H, z1Var, z1Var.getParentActivity(), z1Var.getResourceProvider(), o3Var, false);
+    }
+
+    public float e(ub.c cVar, ub.c cVar2) {
+        int i10 = (int) cVar.f16704b;
+        int i11 = (int) cVar2.f16704b;
+        float Z = Z((int) cVar.f16703a, i10, (int) cVar2.f16703a, i11);
+        float Z2 = Z((int) cVar2.f16703a, i11, (int) cVar.f16703a, i10);
+        if (Float.isNaN(Z)) {
+            return Z2 / 7.0f;
+        }
+        if (Float.isNaN(Z2)) {
+            return Z / 7.0f;
+        }
+        return (Z + Z2) / 14.0f;
+    }
+
+    @Override
+    public void f() {
+        switch (this.f22787a) {
+            case 26:
+                wh.y yVar = (wh.y) this.f22788b;
+                wh.l3 l3Var = yVar.L;
+                if (l3Var != null) {
+                    wh.r3.P1(l3Var.f49863a, yVar.f50174a);
+                    return;
+                }
+                return;
             default:
-                return ((ph.k) this.f21045b).f41809f.getEditText().getPaint().getFontMetricsInt();
+                wh.o4 o4Var = (wh.o4) this.f22788b;
+                wh.k3 k3Var = o4Var.K;
+                if (k3Var != null) {
+                    wh.r3.P1(k3Var.f49827a, o4Var.f50174a);
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public void f(Object obj) {
+    public void g(int i10) {
+        AndroidUtilities.runOnUIThread(new qh.v9(this, 21));
+    }
+
+    @Override
+    public float get() {
+        qh.f9 f9Var = (qh.f9) this.f22788b;
+        int i10 = f9Var.C1;
+        dg.m currentBrush = f9Var.L0.getCurrentBrush();
+        if (currentBrush == null) {
+            return dg.e1.e(i10).f4520i;
+        }
+        return dg.e1.e(i10).f(String.valueOf(dg.m.f4581a.indexOf(currentBrush)), currentBrush.d());
+    }
+
+    public s0.d i(int i10) {
+        return null;
+    }
+
+    @Override
+    public void invalidate() {
+        switch (this.f22787a) {
+            case 0:
+                ((t1) ((g1) this.f22788b).f22830b).invalidate();
+                return;
+            default:
+                ((ng0) this.f22788b).h.invalidate();
+                return;
+        }
+    }
+
+    public pb.d j(cb.m r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.f1.j(cb.m):pb.d");
+    }
+
+    @Override
+    public void k(Object obj) {
         Bundle extras;
-        ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f21045b;
+        ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f22788b;
         androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
         proxyBillingActivityV2.getClass();
-        Intent intent = aVar.f330b;
-        int i10 = com.google.android.gms.internal.play_billing.u.e("ProxyBillingActivityV2", intent).f40993a;
+        Intent intent = aVar.f368b;
+        int i10 = com.google.android.gms.internal.play_billing.u.e("ProxyBillingActivityV2", intent).f44145a;
         ResultReceiver resultReceiver = proxyBillingActivityV2.J;
         if (resultReceiver != null) {
             if (intent == null) {
@@ -632,440 +831,319 @@ public class f1 implements x61, org.telegram.ui.Components.y4, ma0, r0.o, androi
             }
             resultReceiver.send(i10, extras);
         }
-        int i11 = aVar.f329a;
+        int i11 = aVar.f367a;
         if (i11 != -1 || i10 != 0) {
             com.google.android.gms.internal.play_billing.u.h("ProxyBillingActivityV2", "Alternative billing only dialog finished with resultCode " + i11 + " and billing's responseCode: " + i10);
         }
         proxyBillingActivityV2.finish();
     }
 
-    @Override
-    public void g(int i10) {
-        boolean z4;
-        switch (this.f21044a) {
-            case 22:
-                wn0 wn0Var = (wn0) this.f21045b;
-                wn0Var.A0--;
-                wn0Var.f44892b0 = i10;
-                if (wn0Var.f44894c0 != i10) {
-                    wn0Var.f44912s.clear();
-                }
-                if (wn0Var.f44895d0 != i10) {
-                    wn0Var.F.clear();
-                }
-                wn0Var.K = true;
-                zx zxVar = wn0Var.R;
-                if (zxVar != null) {
-                    if (wn0Var.A0 > 0) {
-                        z4 = true;
+    public ub.a m(float f10, float f11, int i10, int i11) {
+        int i12;
+        ub.a b10;
+        ub.a b11;
+        int i13 = (int) (f11 * f10);
+        int max = Math.max(0, i10 - i13);
+        pb.b bVar = (pb.b) this.f22788b;
+        int min = Math.min(bVar.f44255a - 1, i10 + i13) - max;
+        float f12 = 3.0f * f10;
+        if (min >= f12) {
+            int max2 = Math.max(0, i11 - i13);
+            int min2 = Math.min(bVar.f44256b - 1, i11 + i13) - max2;
+            if (min2 >= f12) {
+                pb.b bVar2 = (pb.b) this.f22788b;
+                ub.b bVar3 = new ub.b(bVar2, max, max2, min, min2, f10);
+                int i14 = bVar3.f48468e;
+                int i15 = bVar3.f48467c;
+                int i16 = i14 + i15;
+                int i17 = bVar3.f48469f;
+                int i18 = (i17 / 2) + bVar3.d;
+                int[] iArr = new int[3];
+                for (int i19 = 0; i19 < i17; i19++) {
+                    if ((i19 & 1) == 0) {
+                        i12 = (i19 + 1) / 2;
                     } else {
-                        z4 = false;
+                        i12 = -((i19 + 1) / 2);
                     }
-                    zxVar.d(z4, true);
-                }
-                wn0Var.l();
-                zx zxVar2 = wn0Var.R;
-                if (zxVar2 != null) {
-                    zxVar2.c();
-                    return;
-                }
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new ph.ga(this, 19));
-                return;
-        }
-    }
-
-    @Override
-    public void h() {
-        switch (this.f21044a) {
-            case 26:
-                vh.x xVar = (vh.x) this.f21045b;
-                vh.l3 l3Var = xVar.L;
-                if (l3Var != null) {
-                    vh.r3.P1(l3Var.f46003a, xVar.f46283a);
-                    return;
-                }
-                return;
-            default:
-                vh.o4 o4Var = (vh.o4) this.f21045b;
-                vh.k3 k3Var = o4Var.K;
-                if (k3Var != null) {
-                    vh.r3.P1(k3Var.f45978a, o4Var.f46283a);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public void i(TLRPC.TL_document tL_document, String str, Object obj) {
-        int i10 = this.f21044a;
-    }
-
-    @Override
-    public void invalidate() {
-        switch (this.f21044a) {
-            case 0:
-                ((t1) ((g1) this.f21045b).f21083b).invalidate();
-                return;
-            default:
-                ((lg0) this.f21045b).h.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public void j(int i10, int i11, CharSequence charSequence, boolean z4) {
-        switch (this.f21044a) {
-            case 3:
-                li liVar = (li) this.f21045b;
-                if (liVar.m1() != null) {
-                    try {
-                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(liVar.m1().getText());
-                        spannableStringBuilder.replace(i10, i11 + i10, charSequence);
-                        if (z4) {
-                            Emoji.replaceEmoji(spannableStringBuilder, liVar.m1().getEditText().getPaint().getFontMetricsInt(), false);
+                    int i20 = i12 + i18;
+                    iArr[0] = 0;
+                    iArr[1] = 0;
+                    iArr[2] = 0;
+                    int i21 = i15;
+                    while (i21 < i16 && !bVar2.b(i21, i20)) {
+                        i21++;
+                    }
+                    int i22 = 0;
+                    while (i21 < i16) {
+                        if (bVar2.b(i21, i20)) {
+                            if (i22 == 1) {
+                                iArr[1] = iArr[1] + 1;
+                            } else if (i22 == 2) {
+                                if (bVar3.a(iArr) && (b11 = bVar3.b(i20, i21, iArr)) != null) {
+                                    return b11;
+                                }
+                                iArr[0] = iArr[2];
+                                iArr[1] = 1;
+                                iArr[2] = 0;
+                                i22 = 1;
+                            } else {
+                                i22++;
+                                iArr[i22] = iArr[i22] + 1;
+                            }
+                        } else {
+                            if (i22 == 1) {
+                                i22++;
+                            }
+                            iArr[i22] = iArr[i22] + 1;
                         }
-                        liVar.m1().setText(spannableStringBuilder);
-                        liVar.m1().setSelection(i10 + charSequence.length());
-                        return;
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return;
+                        i21++;
+                    }
+                    if (bVar3.a(iArr) && (b10 = bVar3.b(i20, i16, iArr)) != null) {
+                        return b10;
                     }
                 }
-                return;
-            default:
-                ph.f fVar = ((ph.k) this.f21045b).f41809f;
-                if (fVar != null) {
-                    try {
-                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(fVar.getText());
-                        spannableStringBuilder2.replace(i10, i11 + i10, charSequence);
-                        if (z4) {
-                            Emoji.replaceEmoji(spannableStringBuilder2, fVar.getEditText().getPaint().getFontMetricsInt(), false);
-                        }
-                        fVar.setText(spannableStringBuilder2);
-                        fVar.setSelection(i10 + charSequence.length());
-                        return;
-                    } catch (Exception e6) {
-                        FileLog.e(e6);
-                        return;
-                    }
+                ArrayList arrayList = bVar3.f48466b;
+                if (!arrayList.isEmpty()) {
+                    return (ub.a) arrayList.get(0);
                 }
-                return;
+                throw ob.e.a();
+            }
+            throw ob.e.a();
+        }
+        throw ob.e.a();
+    }
+
+    @Override
+    public void n(wh.a aVar) {
+        wh.z1 z1Var = (wh.z1) this.f22788b;
+        if (aVar != null && (aVar.f49616b instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(z1Var)) {
+            mi miVar = new mi(z1Var.getParentActivity(), z1Var, false, false, false, z1Var.getResourceProvider());
+            miVar.W1 = new h7.u(24);
+            miVar.M = true;
+            miVar.f29098u1.setVisibility(8);
+            miVar.f29085q2 = new qh.m1(z1Var, aVar, miVar, 6);
+            miVar.r1();
+            miVar.show();
         }
     }
 
-    @Override
-    public void k(String str) {
-        int i10 = this.f21044a;
-    }
-
-    @Override
-    public void l(vh.o3 o3Var, View view) {
-        vh.y1 y1Var = (vh.y1) this.f21045b;
-        o70 H = o70.H(y1Var, view);
-        H.Q = true;
-        y1Var.f46315u0 = vh.d4.c(H, y1Var, y1Var.getParentActivity(), y1Var.getResourceProvider(), o3Var, false);
-    }
-
-    @Override
-    public void m(int i10) {
-        ((vh.y1) this.f21045b).o0(74, i10);
-    }
-
-    @Override
-    public void n() {
-        int i10;
-        vh.y1 y1Var = (vh.y1) this.f21045b;
-        vh.f3 f3Var = y1Var.M.f46124k3;
-        if (f3Var != null && f3Var.y() && y1Var.M.C4()) {
-            i10 = 1;
-        } else {
-            i10 = 0;
-        }
-        y1Var.x0(i10, true);
-        y1Var.y0();
-        y1Var.w0();
+    public s0.d o(int i10) {
+        return null;
     }
 
     @Override
     public void onComplete(Task task) {
-        switch (this.f21044a) {
-            case 16:
-                r5.c.h((r5.c) ((r5.j) this.f21045b).f43373c, "joinApplication", task);
-                return;
-            default:
-                ld.m mVar = (ld.m) this.f21045b;
-                Exception exception = task.getException();
-                if (exception == null) {
-                    if (task.isCanceled()) {
-                        mVar.n(null);
-                        return;
-                    } else {
-                        mVar.resumeWith(task.getResult());
-                        return;
-                    }
-                }
-                mVar.resumeWith(k7.p7.a(exception));
-                return;
-        }
+        r5.c.h((r5.c) ((r5.j) this.f22788b).f46722c, "joinApplication", task);
     }
 
     @Override
     public void onContentChanged() {
-        vh.y1 y1Var = (vh.y1) this.f21045b;
-        if (y1Var.f46316v0 != null) {
-            boolean m32 = y1Var.M.m3();
-            y1Var.I0 = m32;
-            y1Var.f46316v0.h(m32);
-            y1Var.f46316v0.invalidate();
+        wh.z1 z1Var = (wh.z1) this.f22788b;
+        if (z1Var.f50209v0 != null) {
+            boolean m32 = z1Var.M.m3();
+            z1Var.I0 = m32;
+            z1Var.f50209v0.h(m32);
+            z1Var.f50209v0.invalidate();
         }
-        y1Var.C0();
-        Runnable runnable = y1Var.J0;
+        z1Var.C0();
+        Runnable runnable = z1Var.J0;
         AndroidUtilities.cancelRunOnUIThread(runnable);
         AndroidUtilities.runOnUIThread(runnable, 1000L);
     }
 
     @Override
-    public void onRenderedFirstFrame(k3.a aVar) {
-    }
-
-    @Override
-    public void onStateChanged(boolean z4, int i10) {
-        ph.l5 l5Var = (ph.l5) this.f21045b;
-        ph.i5 i5Var = l5Var.I;
-        AndroidUtilities.cancelRunOnUIThread(i5Var);
-        i71 i71Var = l5Var.f41910y;
-        if (i71Var != null && i71Var.y()) {
-            AndroidUtilities.runOnUIThread(i5Var);
-        }
-    }
-
-    @Override
-    public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        return false;
-    }
-
-    @Override
-    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        ((ph.l5) this.f21045b).i();
-    }
-
-    @Override
-    public void p(Bitmap bitmap) {
-        ((t5.h) this.f21045b).e(bitmap, 3);
+    public void p(int i10) {
+        ((wh.z1) this.f22788b).o0(74, i10);
     }
 
     @Override
     public void q() {
-        vh.y1 y1Var = (vh.y1) this.f21045b;
-        y1Var.F0 = y1Var.H0;
-        vh.y1.Z(y1Var, false, false);
-        y1Var.x0(2, true);
-    }
-
-    @Override
-    public void s(vh.v5 v5Var, String str) {
-        vh.y1 y1Var = (vh.y1) this.f21045b;
-        if (y1Var.f46318w0 == null) {
-            y1Var.f46318w0 = new m.s3(new rh.e(this, 10), y1Var.getResourceProvider());
+        int i10;
+        wh.z1 z1Var = (wh.z1) this.f22788b;
+        wh.f3 f3Var = z1Var.M.f49991k3;
+        if (f3Var != null && f3Var.y() && z1Var.M.C4()) {
+            i10 = 1;
+        } else {
+            i10 = 0;
         }
-        y1Var.f46318w0.f(v5Var, str);
+        z1Var.x0(i10, true);
+        z1Var.y0();
+        z1Var.w0();
     }
 
     @Override
-    public Object s2() {
-        Class cls = (Class) this.f21045b;
-        try {
-            return ra.r.f43434a.a(cls);
-        } catch (Exception e) {
-            throw new RuntimeException("Unable to create instance of " + cls + ". Registering an InstanceCreator or a TypeAdapter for this type, or adding a no-args constructor may fix this problem.", e);
+    public void s(o4.n0 n0Var) {
+        t4.r rVar = (t4.r) n0Var;
+        t4.l lVar = (t4.l) this.f22788b;
+        lVar.D.s(lVar);
+    }
+
+    @Override
+    public void u() {
+        wh.z1 z1Var = (wh.z1) this.f22788b;
+        z1Var.F0 = z1Var.H0;
+        wh.z1.Z(z1Var, false, false);
+        z1Var.x0(2, true);
+    }
+
+    public void v() {
+        t4.r[] rVarArr;
+        t4.r[] rVarArr2;
+        t4.l lVar = (t4.l) this.f22788b;
+        int i10 = lVar.E - 1;
+        lVar.E = i10;
+        if (i10 > 0) {
+            return;
         }
-    }
-
-    @Override
-    public a0.h t() {
-        switch (this.f21044a) {
-            case 22:
-                return null;
-            default:
-                return null;
+        int i11 = 0;
+        for (t4.r rVar : lVar.G) {
+            rVar.h();
+            i11 += rVar.V.f16576a;
         }
-    }
-
-    @Override
-    public m9 u() {
-        switch (this.f21044a) {
-            case 26:
-                vh.l3 l3Var = ((vh.x) this.f21045b).L;
-                if (l3Var != null) {
-                    return l3Var.f46003a.getTextSelectionHelper();
-                }
-                return null;
-            default:
-                vh.k3 k3Var = ((vh.o4) this.f21045b).K;
-                if (k3Var != null) {
-                    return k3Var.f45978a.getTextSelectionHelper();
-                }
-                return null;
+        o4.s0[] s0VarArr = new o4.s0[i11];
+        int i12 = 0;
+        for (t4.r rVar2 : lVar.G) {
+            rVar2.h();
+            int i13 = rVar2.V.f16576a;
+            int i14 = 0;
+            while (i14 < i13) {
+                rVar2.h();
+                s0VarArr[i12] = rVar2.V.a(i14);
+                i14++;
+                i12++;
+            }
         }
+        lVar.F = new o4.t0(s0VarArr);
+        lVar.D.a(lVar);
     }
 
     @Override
-    public void w(vh.q3 q3Var, View view) {
-        vh.y1 y1Var = (vh.y1) this.f21045b;
-        o70 H = o70.H(y1Var, view);
+    public Paint.FontMetricsInt w() {
+        return ((mi) this.f22788b).B0.getEditText().getPaint().getFontMetricsInt();
+    }
+
+    @Override
+    public void x(wh.q3 q3Var, View view) {
+        wh.z1 z1Var = (wh.z1) this.f22788b;
+        q70 H = q70.H(z1Var, view);
         H.Q = true;
-        y1Var.getParentActivity();
-        y1Var.getResourceProvider();
-        y1Var.f46315u0 = vh.d4.b(H, y1Var, q3Var, false);
+        z1Var.getParentActivity();
+        z1Var.getResourceProvider();
+        z1Var.f50208u0 = wh.d4.b(H, z1Var, q3Var, false);
     }
 
     @Override
-    public void y(CharSequence charSequence) {
-        switch (this.f21044a) {
+    public a0.h y() {
+        return null;
+    }
+
+    @Override
+    public Object y2() {
+        Class cls = (Class) this.f22788b;
+        try {
+            return ra.r.f46789a.a(cls);
+        } catch (Exception e6) {
+            throw new RuntimeException("Unable to create instance of " + cls + ". Registering an InstanceCreator or a TypeAdapter for this type, or adding a no-args constructor may fix this problem.", e6);
+        }
+    }
+
+    @Override
+    public m9 z() {
+        switch (this.f22787a) {
             case 26:
-                vh.l3 l3Var = ((vh.x) this.f21045b).L;
+                wh.l3 l3Var = ((wh.y) this.f22788b).L;
                 if (l3Var != null) {
-                    l3Var.getClass();
-                    if (charSequence != null && charSequence.length() > 0) {
-                        l3Var.f46003a.t4(charSequence.toString());
-                        return;
-                    }
-                    return;
+                    return l3Var.f49863a.getTextSelectionHelper();
                 }
-                return;
+                return null;
             default:
-                vh.k3 k3Var = ((vh.o4) this.f21045b).K;
+                wh.k3 k3Var = ((wh.o4) this.f22788b).K;
                 if (k3Var != null) {
-                    k3Var.getClass();
-                    if (charSequence != null && charSequence.length() > 0) {
-                        k3Var.f45978a.t4(charSequence.toString());
-                        return;
-                    }
-                    return;
+                    return k3Var.f49827a.getTextSelectionHelper();
                 }
-                return;
+                return null;
         }
     }
 
-    @Override
-    public l9 z() {
-        switch (this.f21044a) {
-            case 26:
-                return (vh.x) this.f21045b;
-            default:
-                return (vh.o4) this.f21045b;
-        }
-    }
-
-    public f1(u5.s sVar, String[] strArr) {
-        this.f21044a = 23;
-        this.f21045b = strArr;
-    }
-
-    @Override
-    public void onRenderedFirstFrame() {
+    public f1(w6.b bVar, l5.e eVar) {
+        this.f22787a = 25;
+        this.f22788b = eVar;
     }
 
     public f1(n9.b bVar) {
-        this.f21044a = 9;
-        this.f21045b = new File(bVar.f14862b, "com.crashlytics.settings.json");
+        this.f22787a = 9;
+        this.f22788b = new File(bVar.f15872b, "com.crashlytics.settings.json");
     }
 
     public f1(int i10) {
-        this.f21044a = i10;
+        this.f22787a = i10;
         switch (i10) {
-            case 18:
+            case 17:
                 if (Build.VERSION.SDK_INT >= 26) {
-                    this.f21045b = new fh0(this);
+                    this.f22788b = new hh0(this);
                     return;
                 } else {
-                    this.f21045b = new fh0(this);
+                    this.f22788b = new hh0(this);
                     return;
                 }
-            case 19:
-            default:
-                return;
             case 20:
-                this.f21045b = new LinkedHashMap(5, 1.0f, false);
+                this.f22788b = new oh.h4(rb.a.h, 17);
+                return;
+            default:
                 return;
         }
     }
 
     public f1(int i10, int i11, int[] iArr) {
-        this.f21044a = 1;
-        z50[] z50VarArr = new z50[(iArr.length / 2) + 1];
-        this.f21045b = z50VarArr;
-        z50 z50Var = new z50(i10, i11);
+        this.f22787a = 1;
+        b60[] b60VarArr = new b60[(iArr.length / 2) + 1];
+        this.f22788b = b60VarArr;
+        b60 b60Var = new b60(i10, i11);
         int i12 = 0;
-        z50VarArr[0] = z50Var;
+        b60VarArr[0] = b60Var;
         while (i12 < iArr.length / 2) {
             int i13 = i12 + 1;
             int i14 = i12 * 2;
-            ((z50[]) this.f21045b)[i13] = new z50(iArr[i14], iArr[i14 + 1]);
+            ((b60[]) this.f22788b)[i13] = new b60(iArr[i14], iArr[i14 + 1]);
             i12 = i13;
         }
     }
 
     public f1(Context context, GestureDetector.OnGestureListener onGestureListener) {
-        this.f21044a = 13;
-        this.f21045b = new GestureDetector(context, onGestureListener, null);
+        this.f22787a = 12;
+        this.f22788b = new GestureDetector(context, onGestureListener, null);
     }
 
-    public f1(TextView textView) {
-        this.f21044a = 12;
-        this.f21045b = new q1.g(textView);
-    }
-
-    private final void N(ArrayList arrayList) {
-    }
-
-    private final void o(String str) {
-    }
-
-    private final void r(String str) {
+    public f1(EditText editText) {
+        this.f22787a = 10;
+        this.f22788b = new n7.qa(editText);
     }
 
     @Override
-    public void onSeekFinished(k3.a aVar) {
+    public void A() {
     }
 
     @Override
-    public void onSeekStarted(k3.a aVar) {
+    public void C(int i10) {
     }
 
     @Override
-    public void v() {
+    public void V(ArrayList arrayList) {
     }
 
     @Override
-    public void x(int i10) {
+    public void X(String str) {
     }
 
     @Override
-    public void e(vh.d1 d1Var, boolean z4) {
+    public void h(wh.e1 e1Var, boolean z4) {
     }
 
     @Override
-    public void onError(i71 i71Var, Exception exc) {
-    }
-
-    private final void O(TLRPC.TL_document tL_document, String str, Object obj) {
-    }
-
-    private final void R(TLRPC.TL_document tL_document, String str, Object obj) {
-    }
-
-    private final void V(TLRPC.BotInlineResult botInlineResult, boolean z4, int i10) {
-    }
-
-    private final void W(TLRPC.BotInlineResult botInlineResult, boolean z4, int i10) {
+    public void N(TLRPC.TL_document tL_document, String str, Object obj) {
     }
 
     @Override
-    public void onVideoSizeChanged(int i10, int i11, int i12, float f10) {
+    public void l(TLRPC.BotInlineResult botInlineResult, boolean z4, int i10) {
     }
 }

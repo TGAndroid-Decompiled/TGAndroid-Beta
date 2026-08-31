@@ -1,26 +1,54 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class fx extends f2.j0 {
-    public final int f24968r;
+public final class fx extends xh.o {
+    public final int f27031q;
+    public final Object f27032r;
 
-    public fx(Context context, int i10) {
-        super(context);
-        this.f24968r = i10;
+    public fx(Object obj, Context context, int i10) {
+        super(context, 2);
+        this.f27031q = i10;
+        this.f27032r = obj;
     }
 
     @Override
-    public final int i(int i10, int i11, int i12, int i13, int i14) {
-        return super.i(i10, i11, i12, i13, i14) + this.f24968r;
+    public void e() {
+        switch (this.f27031q) {
+            case 0:
+                ((mz) this.f27032r).f29271c0 = true;
+                return;
+            case 3:
+                ((org.telegram.ui.r61) this.f27032r).f40824t1 = true;
+                return;
+            case 5:
+                ((qh.d1) this.f27032r).Y2 = true;
+                return;
+            default:
+                return;
+        }
     }
 
     @Override
-    public final int m(int i10) {
-        return super.m(i10) * 16;
-    }
-
-    @Override
-    public final int p() {
-        return -1;
+    public final void i() {
+        switch (this.f27031q) {
+            case 0:
+                ((mz) this.f27032r).f29271c0 = false;
+                return;
+            case 1:
+                ((lx) this.f27032r).Q.f29271c0 = false;
+                return;
+            case 2:
+                ((org.telegram.ui.e51) this.f27032r).R.f40824t1 = false;
+                return;
+            case 3:
+                ((org.telegram.ui.r61) this.f27032r).f40824t1 = false;
+                return;
+            case 4:
+                ((org.telegram.ui.e51) this.f27032r).R.f40824t1 = false;
+                return;
+            default:
+                ((qh.d1) this.f27032r).Y2 = false;
+                return;
+        }
     }
 }

@@ -2,20 +2,20 @@ package ra;
 
 import java.util.Map;
 public final class k implements Map.Entry {
-    public k f43417a;
-    public k f43418b;
-    public k f43419c;
+    public k f46770a;
+    public k f46771b;
+    public k f46772c;
     public k d;
-    public k e;
-    public final Object f43420f;
+    public k f46773e;
+    public final Object f46774f;
     public final boolean h;
-    public Object f43421n;
-    public int f43422r;
+    public Object f46775n;
+    public int f46776r;
 
     public k(boolean z4) {
-        this.f43420f = null;
+        this.f46774f = null;
         this.h = z4;
-        this.e = this;
+        this.f46773e = this;
         this.d = this;
     }
 
@@ -23,9 +23,9 @@ public final class k implements Map.Entry {
     public final boolean equals(Object obj) {
         if (obj instanceof Map.Entry) {
             Map.Entry entry = (Map.Entry) obj;
-            Object obj2 = this.f43420f;
+            Object obj2 = this.f46774f;
             if (obj2 != null ? obj2.equals(entry.getKey()) : entry.getKey() == null) {
-                Object obj3 = this.f43421n;
+                Object obj3 = this.f46775n;
                 if (obj3 == null) {
                     if (entry.getValue() == null) {
                         return true;
@@ -40,25 +40,25 @@ public final class k implements Map.Entry {
 
     @Override
     public final Object getKey() {
-        return this.f43420f;
+        return this.f46774f;
     }
 
     @Override
     public final Object getValue() {
-        return this.f43421n;
+        return this.f46775n;
     }
 
     @Override
     public final int hashCode() {
         int hashCode;
         int i10 = 0;
-        Object obj = this.f43420f;
+        Object obj = this.f46774f;
         if (obj == null) {
             hashCode = 0;
         } else {
             hashCode = obj.hashCode();
         }
-        Object obj2 = this.f43421n;
+        Object obj2 = this.f46775n;
         if (obj2 != null) {
             i10 = obj2.hashCode();
         }
@@ -70,23 +70,23 @@ public final class k implements Map.Entry {
         if (obj == null && !this.h) {
             throw new NullPointerException("value == null");
         }
-        Object obj2 = this.f43421n;
-        this.f43421n = obj;
+        Object obj2 = this.f46775n;
+        this.f46775n = obj;
         return obj2;
     }
 
     public final String toString() {
-        return this.f43420f + "=" + this.f43421n;
+        return this.f46774f + "=" + this.f46775n;
     }
 
     public k(boolean z4, k kVar, Object obj, k kVar2, k kVar3) {
-        this.f43417a = kVar;
-        this.f43420f = obj;
+        this.f46770a = kVar;
+        this.f46774f = obj;
         this.h = z4;
-        this.f43422r = 1;
+        this.f46776r = 1;
         this.d = kVar2;
-        this.e = kVar3;
+        this.f46773e = kVar3;
         kVar3.d = this;
-        kVar2.e = this;
+        kVar2.f46773e = this;
     }
 }

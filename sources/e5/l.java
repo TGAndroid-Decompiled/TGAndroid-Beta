@@ -2,13 +2,13 @@ package e5;
 
 import h5.w;
 public final class l extends v4.e {
-    public final w f5149n;
-    public final c f5150o;
+    public final w f4988n;
+    public final c f4989o;
 
     public l() {
         super("WebvttDecoder");
-        this.f5149n = new w();
-        this.f5150o = new c();
+        this.f4988n = new w();
+        this.f4989o = new c();
     }
 
     @Override

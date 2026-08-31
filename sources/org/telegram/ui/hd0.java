@@ -1,28 +1,84 @@
 package org.telegram.ui;
-public final class hd0 implements org.telegram.ui.ActionBar.c2 {
-    public final int f34816a;
-    public final ng0 f34817b;
 
-    public hd0(ng0 ng0Var, int i10) {
-        this.f34816a = i10;
-        this.f34817b = ng0Var;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class hd0 implements RequestDelegate {
+    public final int f37463a;
+    public final og0 f37464b;
+    public final TLRPC.auth_SentCode f37465c;
+    public final Bundle d;
+    public final boolean f37466e;
+
+    public hd0(int i10, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, og0 og0Var, boolean z4) {
+        this.f37463a = i10;
+        this.f37464b = og0Var;
+        this.f37465c = auth_sentcode;
+        this.d = bundle;
+        this.f37466e = z4;
     }
 
     @Override
-    public final void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f34816a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f37463a) {
             case 0:
-                ng0 ng0Var = this.f34817b;
-                ng0Var.f36624b[ng0Var.f36622a].d();
-                ng0Var.k1(true, true);
-                return;
-            default:
-                ng0 ng0Var2 = this.f34817b;
-                ng0Var2.f36634i0 = true;
-                if (ng0Var2.f36622a != 0) {
-                    ng0Var2.u1(0, true, null, true);
+                boolean z4 = tLObject instanceof TLRPC.TL_boolTrue;
+                final og0 og0Var = this.f37464b;
+                final TLRPC.auth_SentCode auth_sentcode = this.f37465c;
+                final Bundle bundle = this.d;
+                if (z4) {
+                    og0Var.k1(false, true);
+                    og0Var.f39766l0 = false;
+                    auth_sentcode.type.verifiedFirebase = true;
+                    final boolean z10 = this.f37466e;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r1) {
+                                case 0:
+                                    og0Var.g1(bundle, auth_sentcode, z10);
+                                    return;
+                                default:
+                                    og0Var.g1(bundle, auth_sentcode, z10);
+                                    return;
+                            }
+                        }
+                    });
                     return;
                 }
+                FileLog.d("{PLAYINTEGRITY_REQUESTFIREBASESMS_FALSE} Resend firebase sms because auth.requestFirebaseSms = false");
+                og0Var.s1(bundle, auth_sentcode, "PLAYINTEGRITY_REQUESTFIREBASESMS_FALSE");
+                return;
+            default:
+                boolean z11 = tLObject instanceof TLRPC.TL_boolTrue;
+                final og0 og0Var2 = this.f37464b;
+                final TLRPC.auth_SentCode auth_sentcode2 = this.f37465c;
+                final Bundle bundle2 = this.d;
+                if (z11) {
+                    og0Var2.k1(false, true);
+                    og0Var2.f39766l0 = false;
+                    auth_sentcode2.type.verifiedFirebase = true;
+                    final boolean z12 = this.f37466e;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r1) {
+                                case 0:
+                                    og0Var2.g1(bundle2, auth_sentcode2, z12);
+                                    return;
+                                default:
+                                    og0Var2.g1(bundle2, auth_sentcode2, z12);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
+                FileLog.d("{SAFETYNET_REQUESTFIREBASESMS_FALSE} Resend firebase sms because auth.requestFirebaseSms = false");
+                og0Var2.s1(bundle2, auth_sentcode2, "SAFETYNET_REQUESTFIREBASESMS_FALSE");
                 return;
         }
     }

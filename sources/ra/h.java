@@ -1,14 +1,14 @@
 package ra;
 public final class h extends Number {
-    public final String f43411a;
+    public final String f46763a;
 
     public h(String str) {
-        this.f43411a = str;
+        this.f46763a = str;
     }
 
     @Override
     public final double doubleValue() {
-        return Double.parseDouble(this.f43411a);
+        return Double.parseDouble(this.f46763a);
     }
 
     public final boolean equals(Object obj) {
@@ -16,23 +16,23 @@ public final class h extends Number {
             return true;
         }
         if (obj instanceof h) {
-            return this.f43411a.equals(((h) obj).f43411a);
+            return this.f46763a.equals(((h) obj).f46763a);
         }
         return false;
     }
 
     @Override
     public final float floatValue() {
-        return Float.parseFloat(this.f43411a);
+        return Float.parseFloat(this.f46763a);
     }
 
     public final int hashCode() {
-        return this.f43411a.hashCode();
+        return this.f46763a.hashCode();
     }
 
     @Override
     public final int intValue() {
-        String str = this.f43411a;
+        String str = this.f46763a;
         try {
             try {
                 return Integer.parseInt(str);
@@ -46,7 +46,7 @@ public final class h extends Number {
 
     @Override
     public final long longValue() {
-        String str = this.f43411a;
+        String str = this.f46763a;
         try {
             return Long.parseLong(str);
         } catch (NumberFormatException unused) {
@@ -55,6 +55,6 @@ public final class h extends Number {
     }
 
     public final String toString() {
-        return this.f43411a;
+        return this.f46763a;
     }
 }

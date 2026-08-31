@@ -7,21 +7,21 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class nk extends FrameLayout {
-    public final int f36678a;
-    public final xn f36679b;
+    public final int f39469a;
+    public final xn f39470b;
 
     public nk(xn xnVar, Context context, int i10) {
         super(context);
-        this.f36678a = i10;
-        this.f36679b = xnVar;
+        this.f39469a = i10;
+        this.f39470b = xnVar;
     }
 
     @Override
     public void measureChildWithMargins(View view, int i10, int i11, int i12, int i13) {
         int i14;
-        switch (this.f36678a) {
+        switch (this.f39469a) {
             case 1:
-                xn xnVar = this.f36679b;
+                xn xnVar = this.f39470b;
                 if (view == xnVar.R2) {
                     ImageView imageView = xnVar.P2;
                     if (imageView != null && imageView.getVisibility() != 8) {
@@ -45,10 +45,10 @@ public final class nk extends FrameLayout {
 
     @Override
     public void setTranslationY(float f10) {
-        switch (this.f36678a) {
+        switch (this.f39469a) {
             case 2:
                 super.setTranslationY(f10);
-                this.f36679b.U0.invalidate();
+                this.f39470b.U0.invalidate();
                 return;
             default:
                 super.setTranslationY(f10);
@@ -59,10 +59,10 @@ public final class nk extends FrameLayout {
     @Override
     public void setVisibility(int i10) {
         boolean z4;
-        switch (this.f36678a) {
+        switch (this.f39469a) {
             case 0:
                 super.setVisibility(i10);
-                h5.u uVar = this.f36679b.f40260yc;
+                h5.u uVar = this.f39470b.f43429yc;
                 boolean z10 = false;
                 if (i10 == 0) {
                     z4 = true;

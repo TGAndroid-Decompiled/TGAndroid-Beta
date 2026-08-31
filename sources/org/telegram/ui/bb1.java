@@ -1,68 +1,13 @@
 package org.telegram.ui;
+public final class bb1 extends org.telegram.ui.ActionBar.j {
+    public final ThemeActivity f35413a;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.os.Bundle;
-import android.text.TextPaint;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class bb1 extends FrameLayout {
-    public final org.telegram.ui.Components.ko0 f32891a;
-    public final int f32892b;
-    public final TextPaint f32893c;
-    public final ThemeActivity d;
-
-    public bb1(ThemeActivity themeActivity, Context context) {
-        super(context);
-        this.d = themeActivity;
-        this.f32892b = 17;
-        setWillNotDraw(false);
-        TextPaint textPaint = new TextPaint(1);
-        this.f32893c = textPaint;
-        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-        org.telegram.ui.Components.ko0 ko0Var = new org.telegram.ui.Components.ko0(context);
-        this.f32891a = ko0Var;
-        ko0Var.setReportChanges(true);
-        ko0Var.setSeparatorsCount(18);
-        ko0Var.setDelegate(new ov0(this, 3));
-        ko0Var.setImportantForAccessibility(2);
-        addView(ko0Var, k7.b6.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
+    public bb1(ThemeActivity themeActivity) {
+        this.f35413a = themeActivity;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f32891a.invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.I6, false);
-        TextPaint textPaint = this.f32893c;
-        textPaint.setColor(w02);
-        canvas.drawText("" + SharedConfig.bubbleRadius, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f32891a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-        this.f32891a.setProgress(SharedConfig.bubbleRadius / this.f32892b);
-    }
-
-    @Override
-    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f32891a.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
-            return false;
-        }
-        return true;
+    public final void b(int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bb1.b(int):void");
     }
 }

@@ -24,7 +24,7 @@ import java.io.InputStream;
 import java.security.Signature;
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
-import m.a1;
+import m.z0;
 import org.telegram.messenger.FileLog;
 public abstract class b {
     public static void A(LayerDrawable layerDrawable, LayerDrawable layerDrawable2, int i10) {
@@ -61,8 +61,8 @@ public abstract class b {
             return null;
         }
         Mac mac = (Mac) eVar.d;
-        Signature signature = (Signature) eVar.f478b;
-        Cipher cipher = (Cipher) eVar.f479c;
+        Signature signature = (Signature) eVar.f527b;
+        Cipher cipher = (Cipher) eVar.f528c;
         if (cipher != null) {
             return new FingerprintManager.CryptoObject(cipher);
         }
@@ -83,8 +83,8 @@ public abstract class b {
         return new Notification.Action.Builder(icon, charSequence, pendingIntent);
     }
 
-    public static int c(a1 a1Var) {
-        return a1Var.getBreakStrategy();
+    public static int c(z0 z0Var) {
+        return z0Var.getBreakStrategy();
     }
 
     public static Drawable d(CompoundButton compoundButton) {
@@ -106,8 +106,8 @@ public abstract class b {
         return null;
     }
 
-    public static int g(a1 a1Var) {
-        return a1Var.getHyphenationFrequency();
+    public static int g(z0 z0Var) {
+        return z0Var.getHyphenationFrequency();
     }
 
     public static int h(Drawable drawable) {
@@ -125,8 +125,8 @@ public abstract class b {
                 return false;
             }
             return a2.hasEnrolledFingerprints();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e6) {
+            FileLog.e(e6);
             return false;
         }
     }
@@ -146,8 +146,8 @@ public abstract class b {
                 return false;
             }
             return a2.isHardwareDetected();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e6) {
+            FileLog.e(e6);
             return false;
         }
     }
@@ -168,8 +168,8 @@ public abstract class b {
         activity.requestPermissions(strArr, i10);
     }
 
-    public static void r(a1 a1Var, int i10) {
-        a1Var.setBreakStrategy(i10);
+    public static void r(z0 z0Var, int i10) {
+        z0Var.setBreakStrategy(i10);
     }
 
     public static void s(TextView textView, ColorStateList colorStateList) {
@@ -180,8 +180,8 @@ public abstract class b {
         textView.setCompoundDrawableTintMode(mode);
     }
 
-    public static void u(a1 a1Var, int i10) {
-        a1Var.setHyphenationFrequency(i10);
+    public static void u(z0 z0Var, int i10) {
+        z0Var.setHyphenationFrequency(i10);
     }
 
     public static void v(Notification.Builder builder, Icon icon) {
@@ -202,30 +202,30 @@ public abstract class b {
 
     public static Icon z(IconCompat iconCompat, Context context) {
         Icon createWithBitmap;
-        switch (iconCompat.f595a) {
+        switch (iconCompat.f650a) {
             case -1:
-                return (Icon) iconCompat.f596b;
+                return (Icon) iconCompat.f651b;
             case 0:
             default:
                 throw new IllegalArgumentException("Unknown type");
             case 1:
-                createWithBitmap = Icon.createWithBitmap((Bitmap) iconCompat.f596b);
+                createWithBitmap = Icon.createWithBitmap((Bitmap) iconCompat.f651b);
                 break;
             case 2:
-                createWithBitmap = Icon.createWithResource(iconCompat.h(), iconCompat.e);
+                createWithBitmap = Icon.createWithResource(iconCompat.h(), iconCompat.f653e);
                 break;
             case 3:
-                createWithBitmap = Icon.createWithData((byte[]) iconCompat.f596b, iconCompat.e, iconCompat.f598f);
+                createWithBitmap = Icon.createWithData((byte[]) iconCompat.f651b, iconCompat.f653e, iconCompat.f654f);
                 break;
             case 4:
-                createWithBitmap = Icon.createWithContentUri((String) iconCompat.f596b);
+                createWithBitmap = Icon.createWithContentUri((String) iconCompat.f651b);
                 break;
             case 5:
                 if (Build.VERSION.SDK_INT >= 26) {
-                    createWithBitmap = k6.a.b((Bitmap) iconCompat.f596b);
+                    createWithBitmap = k6.a.b((Bitmap) iconCompat.f651b);
                     break;
                 } else {
-                    createWithBitmap = Icon.createWithBitmap(IconCompat.b((Bitmap) iconCompat.f596b, false));
+                    createWithBitmap = Icon.createWithBitmap(IconCompat.b((Bitmap) iconCompat.f651b, false));
                     break;
                 }
             case 6:
@@ -250,12 +250,12 @@ public abstract class b {
                     throw new IllegalArgumentException("Context is required to resolve the file uri of the icon: " + iconCompat.j());
                 }
         }
-        ColorStateList colorStateList = iconCompat.f599g;
+        ColorStateList colorStateList = iconCompat.f655g;
         if (colorStateList != null) {
             createWithBitmap.setTintList(colorStateList);
         }
         PorterDuff.Mode mode = iconCompat.h;
-        if (mode != IconCompat.f594k) {
+        if (mode != IconCompat.f649k) {
             createWithBitmap.setTintMode(mode);
         }
         return createWithBitmap;

@@ -1,37 +1,25 @@
 package oh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.t00;
-public final class m extends t00 {
-    public final Paint R;
-    public final r S;
+import j$.util.Objects;
+public final class m extends cg.b {
+    public final long f17422c;
 
-    public m(r rVar, Context context) {
-        super(context, null);
-        this.S = rVar;
-        this.R = new Paint();
+    public m(long j10) {
+        super(0, false);
+        this.f17422c = j10;
     }
 
-    @Override
-    public final int getColumnsCount() {
-        return this.S.d;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if ((obj instanceof m) && this.f17422c == ((m) obj).f17422c) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final int getViewType() {
-        setIsSingleCell(false);
-        return 27;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int v02 = j6.v0(j6.f19906d6, this.S.T.f16617c);
-        Paint paint = this.R;
-        paint.setColor(v02);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);
-        super.onDraw(canvas);
+    public final int hashCode() {
+        return Objects.hash(Long.valueOf(this.f17422c));
     }
 }

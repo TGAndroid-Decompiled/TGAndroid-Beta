@@ -1,16 +1,55 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public final class mu0 {
-    public final int f36386a;
-    public final ArrayList f36387b;
-    public final hu0 f36388c;
-    public final PhotoViewer d;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class mu0 extends org.telegram.ui.Components.a60 {
+    public final nu0 d;
 
-    public mu0(PhotoViewer photoViewer, int i10, ArrayList arrayList, hu0 hu0Var) {
-        this.d = photoViewer;
-        this.f36387b = arrayList;
-        this.f36386a = i10;
-        this.f36388c = hu0Var;
+    public mu0(nu0 nu0Var) {
+        this.d = nu0Var;
+    }
+
+    @Override
+    public final CharSequence d() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));
+        if (this.d.f39527s.V7 > 0) {
+            sb.append(", ");
+            sb.append(this.d.f39527s.U7 + 1);
+            sb.append(" / ");
+            sb.append(this.d.f39527s.V7);
+        }
+        sb.append(", ");
+        sb.append(this.d.h);
+        sb.append(" – ");
+        sb.append(this.d.f39525n);
+        return sb.toString();
+    }
+
+    @Override
+    public final int i() {
+        return Math.max(0, this.d.f39527s.V7 - 1);
+    }
+
+    @Override
+    public final int j() {
+        return this.d.f39527s.U7;
+    }
+
+    @Override
+    public final void k(int i10) {
+        int max;
+        if (this.d.f39527s.V7 > 0 && (max = Math.max(0, Math.min(this.d.f39527s.V7 - 1, i10))) != this.d.f39527s.U7) {
+            nu0 nu0Var = this.d;
+            nu0Var.f39526r = nu0Var.f39527s.U7;
+            this.d.f39527s.U7 = max;
+            this.d.f39527s.R0();
+            this.d.invalidate();
+            int i11 = this.d.f39527s.U7;
+            nu0 nu0Var2 = this.d;
+            if (i11 != nu0Var2.f39526r) {
+                nu0Var2.f39527s.p2(1);
+            }
+        }
     }
 }

@@ -64,15 +64,15 @@ public final class a extends e {
         float[] fArr;
         while (!h() && this.E < 100000 + j10) {
             i iVar = this.B;
-            iVar.c();
-            b bVar = this.f8490c;
+            iVar.b();
+            b bVar = this.f9053c;
             bVar.l();
             if (s(bVar, iVar, 0) == -4 && !iVar.e(4)) {
-                this.E = iVar.f14242f;
+                this.E = iVar.f15216f;
                 if (this.D != null && !iVar.e(Integer.MIN_VALUE)) {
-                    iVar.l();
+                    iVar.k();
                     ByteBuffer byteBuffer = iVar.d;
-                    int i10 = h5.d0.f6937a;
+                    int i10 = h5.d0.f7237a;
                     if (byteBuffer.remaining() != 16) {
                         fArr = null;
                     } else {

@@ -155,8 +155,8 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
                     NetworkChangeDetector.NetworkInformation networkInformation = new NetworkChangeDetector.NetworkInformation(wifiP2pGroup.getInterface(), NetworkChangeDetector.ConnectionType.CONNECTION_WIFI, NetworkChangeDetector.ConnectionType.CONNECTION_NONE, 0L, iPAddressArr);
                     this.wifiP2pNetworkInfo = networkInformation;
                     this.observer.onNetworkConnect(networkInformation);
-                } catch (SocketException e) {
-                    Logging.e("NetworkMonitorAutoDetect", "Unable to get WifiP2p network interface", e);
+                } catch (SocketException e6) {
+                    Logging.e("NetworkMonitorAutoDetect", "Unable to get WifiP2p network interface", e6);
                 }
             }
         }

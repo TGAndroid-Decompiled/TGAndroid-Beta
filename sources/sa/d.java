@@ -8,25 +8,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 public final class d implements pa.v {
-    public final int f44177a;
-    public final q5.g0 f44178b;
+    public final int f47164a;
+    public final q5.g0 f47165b;
 
     public d(int i10, q5.g0 g0Var) {
-        this.f44177a = i10;
-        this.f44178b = g0Var;
+        this.f47164a = i10;
+        this.f47165b = g0Var;
     }
 
     @Override
     public final pa.u create(pa.g gVar, wa.a aVar) {
         Type[] actualTypeArguments;
         pa.u uVar;
-        int i10 = this.f44177a;
-        q5.g0 g0Var = this.f44178b;
+        int i10 = this.f47164a;
+        q5.g0 g0Var = this.f47165b;
         Type type = Object.class;
         switch (i10) {
             case 0:
-                Type type2 = aVar.f46506b;
-                Class cls = aVar.f46505a;
+                Type type2 = aVar.f49484b;
+                Class cls = aVar.f49483a;
                 if (!Collection.class.isAssignableFrom(cls)) {
                     return null;
                 }
@@ -38,10 +38,10 @@ public final class d implements pa.v {
                 if (j10 instanceof ParameterizedType) {
                     type = ((ParameterizedType) j10).getActualTypeArguments()[0];
                 }
-                return new c(gVar, type, gVar.b(new wa.a(type)), g0Var.I(aVar));
+                return new c(gVar, type, gVar.b(new wa.a(type)), g0Var.z(aVar));
             default:
-                Type type3 = aVar.f46506b;
-                Class cls2 = aVar.f46505a;
+                Type type3 = aVar.f49484b;
+                Class cls2 = aVar.f49483a;
                 if (!Map.class.isAssignableFrom(cls2)) {
                     return null;
                 }
@@ -59,12 +59,12 @@ public final class d implements pa.v {
                 if (type4 != Boolean.TYPE && type4 != Boolean.class) {
                     uVar = gVar.b(new wa.a(type4));
                 } else {
-                    uVar = h1.f44186c;
+                    uVar = h1.f47173c;
                 }
                 pa.u b10 = gVar.b(new wa.a(actualTypeArguments[1]));
-                ra.m I = g0Var.I(aVar);
+                ra.m z4 = g0Var.z(aVar);
                 Type[] typeArr = actualTypeArguments;
-                return new o(this, gVar, typeArr[0], uVar, typeArr[1], b10, I);
+                return new o(this, gVar, typeArr[0], uVar, typeArr[1], b10, z4);
         }
     }
 }

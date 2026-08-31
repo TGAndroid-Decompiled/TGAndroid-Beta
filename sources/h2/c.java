@@ -1,12 +1,12 @@
 package h2;
 public final class c {
-    public final b[] f6894a;
-    public final String f6895b;
-    public final String[] f6896c;
+    public final b[] f7192a;
+    public final String f7193b;
+    public final String[] f7194c;
 
     public c(b[] bVarArr, String str, String[] strArr) {
-        this.f6894a = bVarArr;
-        this.f6895b = str;
-        this.f6896c = strArr;
+        this.f7192a = bVarArr;
+        this.f7193b = str;
+        this.f7194c = strArr;
     }
 }

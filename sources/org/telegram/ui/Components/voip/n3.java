@@ -1,27 +1,48 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class n3 extends AnimatorListenerAdapter {
-    public final o3 f29809a;
+public final class n3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f32212a;
+    public final p3 f32213b;
 
-    public n3(o3 o3Var) {
-        this.f29809a = o3Var;
+    public n3(p3 p3Var, int i10) {
+        this.f32212a = i10;
+        this.f32213b = p3Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator, boolean z4) {
-        o3 o3Var = this.f29809a;
-        o3Var.e = o3Var.f29831c;
-        o3Var.f29832f = o3Var.d;
-        o3Var.f29831c = AndroidUtilities.dp(12.0f) + Utilities.random.nextInt(AndroidUtilities.dp(16.0f));
-        o3Var.d = AndroidUtilities.dp(12.0f) + Utilities.random.nextInt(AndroidUtilities.dp(16.0f));
-        ValueAnimator valueAnimator = o3Var.f29830b;
-        if (valueAnimator != null) {
-            valueAnimator.start();
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f32212a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                p3 p3Var = this.f32213b;
+                p3Var.f32273n = floatValue;
+                p3Var.f32270k.invalidate();
+                if (p3Var.f32273n > 1.0f && p3Var.f32277r == null) {
+                    ValueAnimator ofInt = ValueAnimator.ofInt(AndroidUtilities.dp(12), 0);
+                    p3Var.f32277r = ofInt;
+                    ofInt.addUpdateListener(new n3(p3Var, 2));
+                    p3Var.f32277r.setDuration(350 - valueAnimator.getCurrentPlayTime());
+                    p3Var.f32277r.start();
+                    return;
+                }
+                return;
+            case 1:
+                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                p3 p3Var2 = this.f32213b;
+                p3Var2.f32272m = intValue;
+                p3Var2.f32270k.invalidate();
+                return;
+            default:
+                int intValue2 = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                p3 p3Var3 = this.f32213b;
+                if (p3Var3.f32268i <= p3Var3.f32274o / 2) {
+                    intValue2 = -intValue2;
+                }
+                p3Var3.f32275p = intValue2;
+                p3Var3.f32270k.invalidate();
+                return;
         }
     }
 }

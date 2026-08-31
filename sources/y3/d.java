@@ -2,7 +2,7 @@ package y3;
 
 import h5.w;
 import l3.o0;
-import ph.j5;
+import org.telegram.ui.Components.ai;
 import r3.j;
 import r3.k;
 import r3.l;
@@ -10,39 +10,39 @@ import r3.m;
 import r3.p;
 import r3.v;
 public final class d implements k {
-    public final int f47037a;
-    public final long f47038b;
-    public final w f47039c;
+    public final int f50719a;
+    public final long f50720b;
+    public final w f50721c;
     public final o0 d;
-    public final p e;
-    public final j5 f47040f;
-    public final j f47041g;
+    public final p f50722e;
+    public final ai f50723f;
+    public final j f50724g;
     public m h;
-    public v f47042i;
-    public v f47043j;
-    public int f47044k;
-    public e4.c f47045l;
-    public long f47046m;
-    public long f47047n;
-    public long f47048o;
-    public int f47049p;
-    public f f47050q;
-    public boolean f47051r;
-    public boolean f47052s;
-    public long f47053t;
+    public v f50725i;
+    public v f50726j;
+    public int f50727k;
+    public e4.c f50728l;
+    public long f50729m;
+    public long f50730n;
+    public long f50731o;
+    public int f50732p;
+    public f f50733q;
+    public boolean f50734r;
+    public boolean f50735s;
+    public long f50736t;
 
     public d(int i10) {
         this(i10, -9223372036854775807L);
     }
 
     public final a a(l lVar, boolean z4) {
-        w wVar = this.f47039c;
-        lVar.c(0, 4, wVar.f7000a);
+        w wVar = this.f50721c;
+        lVar.b(0, 4, wVar.f7308a);
         wVar.F(0);
         int g10 = wVar.g();
         o0 o0Var = this.d;
         o0Var.a(g10);
-        return new r3.g(lVar.getLength(), o0Var.e, o0Var.f11206b, z4, lVar.getPosition());
+        return new r3.g(lVar.getLength(), o0Var.f11574e, o0Var.f11572b, z4, lVar.getPosition());
     }
 
     public final boolean b(r3.l r9) {
@@ -55,25 +55,25 @@ public final class d implements k {
 
     @Override
     public final void d(long j10, long j11) {
-        this.f47044k = 0;
-        this.f47046m = -9223372036854775807L;
-        this.f47047n = 0L;
-        this.f47049p = 0;
-        this.f47053t = j11;
-        f fVar = this.f47050q;
+        this.f50727k = 0;
+        this.f50729m = -9223372036854775807L;
+        this.f50730n = 0L;
+        this.f50732p = 0;
+        this.f50736t = j11;
+        f fVar = this.f50733q;
         if ((fVar instanceof b) && !((b) fVar).d(j11)) {
-            this.f47052s = true;
-            this.f47043j = this.f47041g;
+            this.f50735s = true;
+            this.f50726j = this.f50724g;
         }
     }
 
     @Override
     public final void e(m mVar) {
         this.h = mVar;
-        v c22 = mVar.c2(0, 1);
-        this.f47042i = c22;
-        this.f47043j = c22;
-        this.h.f1();
+        v i22 = mVar.i2(0, 1);
+        this.f50725i = i22;
+        this.f50726j = i22;
+        this.h.i1();
     }
 
     @Override
@@ -87,16 +87,16 @@ public final class d implements k {
     }
 
     public d(int i10, long j10) {
-        this.f47037a = i10;
-        this.f47038b = j10;
-        this.f47039c = new w(10);
+        this.f50719a = i10;
+        this.f50720b = j10;
+        this.f50721c = new w(10);
         this.d = new Object();
-        this.e = new p();
-        this.f47046m = -9223372036854775807L;
-        this.f47040f = new j5(2);
+        this.f50722e = new p();
+        this.f50729m = -9223372036854775807L;
+        this.f50723f = new ai(9);
         j jVar = new j();
-        this.f47041g = jVar;
-        this.f47043j = jVar;
+        this.f50724g = jVar;
+        this.f50726j = jVar;
     }
 
     @Override

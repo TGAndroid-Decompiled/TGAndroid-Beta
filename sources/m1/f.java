@@ -19,7 +19,7 @@ public final class f extends x {
     private static final f DEFAULT_INSTANCE;
     private static volatile x0 PARSER = null;
     public static final int PREFERENCES_FIELD_NUMBER = 1;
-    private o0 preferences_ = o0.f700b;
+    private o0 preferences_ = o0.f764b;
 
     static {
         f fVar = new f();
@@ -29,7 +29,7 @@ public final class f extends x {
 
     public static o0 i(f fVar) {
         o0 o0Var = fVar.preferences_;
-        if (!o0Var.f701a) {
+        if (!o0Var.f765a) {
             fVar.preferences_ = o0Var.b();
         }
         return fVar.preferences_;
@@ -46,18 +46,18 @@ public final class f extends x {
         n a2 = n.a();
         x xVar = (x) fVar.d(4);
         try {
-            z0 z0Var = z0.f748c;
+            z0 z0Var = z0.f815c;
             z0Var.getClass();
             c1 a10 = z0Var.a(xVar.getClass());
-            androidx.datastore.preferences.protobuf.i iVar2 = hVar.f662b;
+            androidx.datastore.preferences.protobuf.i iVar2 = hVar.f723b;
             if (iVar2 != null) {
                 iVar = iVar2;
             } else {
                 ?? obj = new Object();
-                obj.f673c = 0;
-                Charset charset = a0.f617a;
+                obj.f735c = 0;
+                Charset charset = a0.f674a;
                 obj.d = hVar;
-                hVar.f662b = obj;
+                hVar.f723b = obj;
                 iVar = obj;
             }
             a10.i(xVar, iVar, a2);
@@ -66,29 +66,29 @@ public final class f extends x {
                 return (f) xVar;
             }
             throw new IOException(new a7.b().getMessage());
-        } catch (IOException e) {
-            if (e.getCause() instanceof c0) {
-                throw ((c0) e.getCause());
-            }
-            throw new IOException(e.getMessage());
-        } catch (RuntimeException e6) {
+        } catch (IOException e6) {
             if (e6.getCause() instanceof c0) {
                 throw ((c0) e6.getCause());
             }
-            throw e6;
+            throw new IOException(e6.getMessage());
+        } catch (RuntimeException e10) {
+            if (e10.getCause() instanceof c0) {
+                throw ((c0) e10.getCause());
+            }
+            throw e10;
         }
     }
 
     @Override
     public final Object d(int i10) {
         x0 x0Var;
-        switch (j.b(i10)) {
+        switch (j.c(i10)) {
             case 0:
                 return (byte) 1;
             case 1:
                 return null;
             case 2:
-                return new b1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", e.f13709a});
+                return new b1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", e.f13416a});
             case 3:
                 return new f();
             case 4:

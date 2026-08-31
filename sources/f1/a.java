@@ -1,6 +1,5 @@
 package f1;
 
-import a3.c;
 import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.RectF;
@@ -9,18 +8,19 @@ import android.util.Log;
 import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
 import c1.f;
 import com.google.android.gms.tasks.OnFailureListener;
-import gg.g0;
+import hg.g0;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.concurrent.Executor;
-import kh.i5;
 import kotlin.jvm.internal.j;
-import lh.t7;
-import mg.q0;
-import nh.c9;
-import nh.g4;
+import lh.i5;
+import mh.t7;
+import ng.q0;
+import oh.c9;
+import oh.h4;
+import oh.i4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.MediaDataController;
@@ -29,52 +29,51 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.ActionBar.m3;
 import org.telegram.ui.ActionBar.n3;
-import org.telegram.ui.Components.uc0;
+import org.telegram.ui.ActionBar.o3;
 import org.telegram.ui.Components.wc0;
+import org.telegram.ui.Components.yc0;
 import org.telegram.ui.Components.z4;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.a30;
-import org.telegram.ui.q61;
-import org.telegram.ui.wf0;
-import org.telegram.ui.zy0;
+import org.telegram.ui.b30;
+import org.telegram.ui.bz0;
+import org.telegram.ui.r61;
+import org.telegram.ui.xf0;
 import p2.h;
-import p2.o;
-import ph.d;
+import p2.n;
+import qh.d;
 import v0.i;
-import v0.n;
 import v0.p;
-public final class a implements OnFailureListener, BillingController.ProductDetailsResponseListenerLegacy, c9, c2, uc0, o, MediaDataController.KeywordResultCallback {
-    public final Object f5648a;
-    public final Object f5649b;
-    public final Object f5650c;
+public final class a implements OnFailureListener, BillingController.ProductDetailsResponseListenerLegacy, c9, c2, wc0, n, MediaDataController.KeywordResultCallback {
+    public final Object f5717a;
+    public final Object f5718b;
+    public final Object f5719c;
     public final Object d;
-    public final Object e;
+    public final Object f5720e;
 
     public a(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        this.f5648a = obj;
-        this.f5649b = obj2;
-        this.f5650c = obj3;
+        this.f5717a = obj;
+        this.f5718b = obj2;
+        this.f5719c = obj3;
         this.d = obj4;
-        this.e = obj5;
+        this.f5720e = obj5;
     }
 
     @Override
     public void b(h hVar, List list) {
-        AndroidUtilities.runOnUIThread(new g0((wf0) this.f5648a, hVar, list, (String) this.f5649b, (TLRPC.TL_inputStorePaymentAuthCode) this.f5650c, (TLRPC.TL_payments_canPurchaseStore) this.d, (a30) this.e, 10));
+        AndroidUtilities.runOnUIThread(new g0((xf0) this.f5717a, hVar, list, (String) this.f5718b, (TLRPC.TL_inputStorePaymentAuthCode) this.f5719c, (TLRPC.TL_payments_canPurchaseStore) this.d, (b30) this.f5720e, 10));
     }
 
     @Override
     public void g(float f10, Canvas canvas, RectF rectF, boolean z4) {
-        c cVar = (c) this.f5648a;
-        RectF rectF2 = (RectF) this.f5649b;
-        g4 g4Var = (g4) this.f5650c;
+        h4 h4Var = (h4) this.f5717a;
+        RectF rectF2 = (RectF) this.f5718b;
+        i4 i4Var = (i4) this.f5719c;
         RectF rectF3 = (RectF) this.d;
-        g4 g4Var2 = (g4) this.e;
-        RectF rectF4 = g4Var.f15359m;
+        i4 i4Var2 = (i4) this.f5720e;
+        RectF rectF4 = i4Var.f17217m;
         rectF2.set(rectF4);
-        RectF rectF5 = g4Var2.f15359m;
+        RectF rectF5 = i4Var2.f17217m;
         rectF3.set(rectF5);
         rectF4.set(rectF);
         try {
@@ -86,62 +85,62 @@ public final class a implements OnFailureListener, BillingController.ProductDeta
             rectF5.set(centerX - width2, centerY - height, centerX + width2, centerY + height);
         } catch (Exception unused) {
         }
-        int i10 = ProfileStoriesView.f32303p0;
-        ((zy0) cVar.f46b).a(canvas, g4Var, g4Var2);
+        int i10 = ProfileStoriesView.f34841p0;
+        ((bz0) h4Var.f17180b).a(canvas, i4Var, i4Var2);
         rectF4.set(rectF2);
         rectF5.set(rectF3);
     }
 
     @Override
-    public void i(d2 d2Var, int i10) {
-        n3 n3Var = (n3) this.f5648a;
-        ((boolean[]) this.f5649b)[0] = true;
-        n3Var.h(n3Var.f20488w, (m3) this.f5650c, true);
+    public void j(d2 d2Var, int i10) {
+        o3 o3Var = (o3) this.f5717a;
+        ((boolean[]) this.f5718b)[0] = true;
+        o3Var.h(o3Var.f22200w, (n3) this.f5719c, true);
         ((Utilities.Callback) this.d).run(Boolean.TRUE);
-        ((d2[]) this.e)[0].dismiss();
+        ((d2[]) this.f5720e)[0].dismiss();
     }
 
     @Override
-    public void onFailure(Exception e) {
-        n request = (n) this.f5648a;
-        b bVar = (b) this.f5649b;
-        i iVar = (i) this.f5650c;
+    public void onFailure(Exception e6) {
+        v0.n request = (v0.n) this.f5717a;
+        b bVar = (b) this.f5718b;
+        i iVar = (i) this.f5719c;
         Executor executor = (Executor) this.d;
-        CancellationSignal cancellationSignal = (CancellationSignal) this.e;
-        j.e(e, "e");
+        CancellationSignal cancellationSignal = (CancellationSignal) this.f5720e;
+        j.e(e6, "e");
         CredentialProviderPlayServicesImpl.Companion.getClass();
         j.e(request, "request");
-        for (p pVar : request.f45547a) {
+        for (p pVar : request.f48837a) {
         }
         Log.w("GetCredentialController", "Pre-u credman get flow failed; retrying with gis flow");
-        new f(bVar.e).g(request, cancellationSignal, executor, iVar);
+        new f(bVar.f5721e).g(request, cancellationSignal, executor, iVar);
     }
 
     @Override
     public void onProductDetailsResponse(h hVar, List list) {
-        AndroidUtilities.runOnUIThread(new g0((t7) this.f5648a, list, (i5) this.f5649b, (TLRPC.TL_inputStorePaymentStarsGift) this.f5650c, (TL_stars.TL_starsGiftOption) this.d, hVar, (Activity) this.e, 4));
+        AndroidUtilities.runOnUIThread(new g0((t7) this.f5717a, list, (i5) this.f5718b, (TLRPC.TL_inputStorePaymentStarsGift) this.f5719c, (TL_stars.TL_starsGiftOption) this.d, hVar, (Activity) this.f5720e, 4));
     }
 
     @Override
-    public void q(wc0 wc0Var, int i10) {
-        z4.c((d) this.f5648a, (wc0) this.f5649b, (wc0) this.f5650c, (wc0) this.d, (wc0) this.e);
+    public void q(yc0 yc0Var, int i10) {
+        z4.c((d) this.f5717a, (yc0) this.f5718b, (yc0) this.f5719c, (yc0) this.d, (yc0) this.f5720e);
     }
 
     @Override
     public void run(ArrayList arrayList, String str) {
         TLRPC.TL_availableReaction tL_availableReaction;
-        q61 q61Var = (q61) this.f5648a;
-        LinkedHashSet linkedHashSet = (LinkedHashSet) this.f5649b;
-        HashMap hashMap = (HashMap) this.f5650c;
+        r61 r61Var = (r61) this.f5717a;
+        LinkedHashSet linkedHashSet = (LinkedHashSet) this.f5718b;
+        HashMap hashMap = (HashMap) this.f5719c;
         ArrayList arrayList2 = (ArrayList) this.d;
-        Runnable runnable = (Runnable) this.e;
-        q61Var.getClass();
+        Runnable runnable = (Runnable) this.f5720e;
+        r61Var.getClass();
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             try {
                 if (((MediaDataController.KeywordResult) arrayList.get(i10)).emoji.startsWith("animated_")) {
                     linkedHashSet.add(Long.valueOf(Long.parseLong(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji.substring(9))));
                 } else {
-                    int i11 = q61Var.T;
+                    int i11 = r61Var.T;
                     if ((i11 == 1 || i11 == 11 || i11 == 2) && (tL_availableReaction = (TLRPC.TL_availableReaction) hashMap.get(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji)) != null) {
                         arrayList2.add(q0.c(tL_availableReaction));
                     }

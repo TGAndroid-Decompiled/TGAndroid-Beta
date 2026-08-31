@@ -6,42 +6,42 @@ import java.io.File;
 import java.util.Collections;
 import java.util.List;
 public final class k {
-    public final s f7392a;
-    public final j f7393b;
+    public final s f7956a;
+    public final j f7957b;
 
     public k(s sVar, n9.b bVar) {
-        this.f7392a = sVar;
-        this.f7393b = new j(bVar);
+        this.f7956a = sVar;
+        this.f7957b = new j(bVar);
     }
 
     public final String a(String str) {
         String substring;
-        j jVar = this.f7393b;
+        j jVar = this.f7957b;
         synchronized (jVar) {
-            if (Objects.equals(jVar.f7390b, str)) {
-                return jVar.f7391c;
+            if (Objects.equals(jVar.f7954b, str)) {
+                return jVar.f7955c;
             }
-            n9.b bVar = jVar.f7389a;
+            n9.b bVar = jVar.f7953a;
             i iVar = j.d;
-            File file = new File(bVar.f14863c, str);
+            File file = new File(bVar.f15873c, str);
             file.mkdirs();
-            List e = n9.b.e(file.listFiles(iVar));
-            if (e.isEmpty()) {
+            List e6 = n9.b.e(file.listFiles(iVar));
+            if (e6.isEmpty()) {
                 substring = null;
                 Log.w("FirebaseCrashlytics", "Unable to read App Quality Sessions session id.", null);
             } else {
-                substring = ((File) Collections.min(e, j.e)).getName().substring(4);
+                substring = ((File) Collections.min(e6, j.f7952e)).getName().substring(4);
             }
             return substring;
         }
     }
 
     public final void b(String str) {
-        j jVar = this.f7393b;
+        j jVar = this.f7957b;
         synchronized (jVar) {
-            if (!Objects.equals(jVar.f7390b, str)) {
-                j.a(jVar.f7389a, str, jVar.f7391c);
-                jVar.f7390b = str;
+            if (!Objects.equals(jVar.f7954b, str)) {
+                j.a(jVar.f7953a, str, jVar.f7955c);
+                jVar.f7954b = str;
             }
         }
     }

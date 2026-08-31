@@ -1,84 +1,102 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ql0 implements org.telegram.ui.ActionBar.c2, xt, rm0 {
-    public final int f37794a;
-    public final dn0 f37795b;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ql0 implements View.OnClickListener {
+    public final int f40569a;
+    public final fn0 f40570b;
 
-    public ql0(dn0 dn0Var, int i10) {
-        this.f37794a = i10;
-        this.f37795b = dn0Var;
+    public ql0(fn0 fn0Var, int i10) {
+        this.f40569a = i10;
+        this.f40570b = fn0Var;
     }
 
     @Override
-    public void D(String str, String str2) {
-        this.f37795b.x1();
-    }
-
-    @Override
-    public void b1(st stVar) {
-        String str;
-        switch (this.f37794a) {
-            case 2:
-                dn0 dn0Var = this.f37795b;
-                dn0Var.V[5].setText(stVar.f38435a);
-                dn0Var.f33722s = stVar.d;
-                return;
-            default:
-                dn0 dn0Var2 = this.f37795b;
-                dn0Var2.V[0].setText(stVar.f38435a);
-                if (dn0Var2.R0.indexOf(stVar.f38435a) != -1) {
-                    dn0Var2.W0 = true;
-                    String str2 = (String) dn0Var2.S0.get(stVar.f38435a);
-                    dn0Var2.V[1].setText(str2);
-                    String str3 = (String) dn0Var2.U0.get(str2);
-                    EditTextBoldCursor editTextBoldCursor = dn0Var2.V[2];
-                    if (str3 != null) {
-                        str = str3.replace('X', (char) 8211);
-                    } else {
-                        str = null;
-                    }
-                    editTextBoldCursor.setHintText(str);
-                    dn0Var2.W0 = false;
-                }
-                AndroidUtilities.runOnUIThread(new nl0(dn0Var2, 3), 300L);
-                dn0Var2.V[2].requestFocus();
-                EditTextBoldCursor editTextBoldCursor2 = dn0Var2.V[2];
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                return;
-        }
-    }
-
-    @Override
-    public void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f37794a) {
+    public final void onClick(View view) {
+        switch (this.f40569a) {
             case 0:
-                dn0 dn0Var = this.f37795b;
-                dn0Var.getClass();
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    dn0Var.getParentActivity().startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
+                fn0 fn0Var = this.f40570b;
+                fn0Var.P0 = 2;
+                fn0Var.D1();
+                return;
             case 1:
-                this.f37795b.finishFragment();
+                this.f40570b.d1();
                 return;
             case 2:
+                fn0 fn0Var2 = this.f40570b;
+                fn0Var2.P0 = 3;
+                fn0Var2.D1();
+                return;
             case 3:
-            default:
-                dn0.a0(this.f37795b);
+                fn0 fn0Var3 = this.f40570b;
+                fn0Var3.P0 = 1;
+                fn0Var3.D1();
                 return;
             case 4:
-                dn0.d0(this.f37795b);
+                fn0 fn0Var4 = this.f40570b;
+                fn0Var4.P0 = 4;
+                fn0Var4.D1();
+                return;
+            case 5:
+                fn0.e0(this.f40570b);
+                return;
+            case 6:
+                fn0 fn0Var5 = this.f40570b;
+                fn0Var5.f36931f = true;
+                fn0Var5.I.callOnClick();
+                fn0Var5.f36931f = false;
+                return;
+            case 7:
+                fn0 fn0Var6 = this.f40570b;
+                fn0Var6.P0 = 0;
+                fn0Var6.D1();
+                return;
+            case 8:
+                fn0 fn0Var7 = this.f40570b;
+                fn0Var7.P0 = 4;
+                fn0Var7.D1();
+                return;
+            case 9:
+                this.f40570b.d1();
+                return;
+            case 10:
+                fn0.b0(this.f40570b);
+                return;
+            case 11:
+                fn0.c0(this.f40570b);
+                return;
+            case 12:
+                this.f40570b.C1();
+                return;
+            case 13:
+                fn0 fn0Var8 = this.f40570b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(fn0Var8.getParentActivity());
+                alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
+                alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
+                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new sl0(fn0Var8, 5));
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+                fn0Var8.showDialog(d2Var);
+                TextView textView = (TextView) d2Var.d(-1);
+                if (textView != null) {
+                    textView.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21895q7, false));
+                    return;
+                }
+                return;
+            case 14:
+                this.f40570b.C1();
+                return;
+            case 15:
+                fn0.V(this.f40570b);
+                return;
+            default:
+                fn0 fn0Var9 = this.f40570b;
+                fn0Var9.f36931f = true;
+                fn0Var9.I.callOnClick();
+                fn0Var9.f36931f = false;
                 return;
         }
     }

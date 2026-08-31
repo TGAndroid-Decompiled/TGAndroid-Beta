@@ -3,17 +3,17 @@ package r0;
 import android.content.Context;
 import android.view.VelocityTracker;
 public final class i {
-    public final Context f43108a;
-    public final o2.o f43109b;
-    public VelocityTracker f43110c;
+    public final Context f46427a;
+    public final org.telegram.ui.Cells.f1 f46428b;
+    public VelocityTracker f46429c;
     public float d;
-    public int e = -1;
-    public int f43111f = -1;
-    public int f43112g = -1;
+    public int f46430e = -1;
+    public int f46431f = -1;
+    public int f46432g = -1;
     public final int[] h = {Integer.MAX_VALUE, 0};
 
-    public i(Context context, o2.o oVar) {
-        this.f43108a = context;
-        this.f43109b = oVar;
+    public i(Context context, org.telegram.ui.Cells.f1 f1Var) {
+        this.f46427a = context;
+        this.f46428b = f1Var;
     }
 }

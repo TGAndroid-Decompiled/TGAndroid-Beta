@@ -1,92 +1,90 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class t70 extends FrameLayout {
-    public final y70 f28916a;
+import android.os.SystemClock;
+import java.io.File;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_phone;
+public final class t70 implements Runnable {
+    public final int f31276a = 1;
+    public final org.telegram.ui.ActionBar.d2 f31277b;
+    public final Context f31278c;
+    public final int d;
+    public final long f31279e;
+    public final TLObject f31280f;
+    public final Object h;
+    public final Object f31281n;
+    public final Object f31282r;
+    public final Object f31283s;
 
-    public t70(y70 y70Var, Context context) {
-        super(context);
-        this.f28916a = y70Var;
+    public t70(org.telegram.ui.ActionBar.d2 d2Var, Context context, int i10, long j10, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File[] fileArr, org.telegram.ui.ActionBar.g6 g6Var, org.telegram.ui.web.u uVar, eh.w wVar) {
+        this.f31277b = d2Var;
+        this.f31278c = context;
+        this.d = i10;
+        this.f31279e = j10;
+        this.f31280f = tL_messages_preparedInlineMessage;
+        this.h = fileArr;
+        this.f31281n = g6Var;
+        this.f31282r = uVar;
+        this.f31283s = wVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int i10;
-        y70 y70Var = this.f28916a;
-        Drawable drawable = y70Var.f30909b;
-        int i11 = y70Var.f30913r;
-        i10 = ((org.telegram.ui.ActionBar.g3) y70Var).backgroundPaddingTop;
-        drawable.setBounds(0, i11 - i10, getMeasuredWidth(), getMeasuredHeight());
-        drawable.draw(canvas);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            y70 y70Var = this.f28916a;
-            if (y70Var.f30913r != 0 && motionEvent.getY() < y70Var.f30913r) {
-                y70Var.dismiss();
-                return true;
-            }
+    public final void run() {
+        switch (this.f31276a) {
+            case 0:
+                org.telegram.ui.ActionBar.d2 d2Var = this.f31277b;
+                AccountInstance accountInstance = (AccountInstance) this.h;
+                y70 y70Var = (y70) this.f31281n;
+                org.telegram.ui.ActionBar.p2 p2Var = (org.telegram.ui.ActionBar.p2) this.f31282r;
+                TLRPC.Peer peer = (TLRPC.Peer) this.f31283s;
+                try {
+                    d2Var.dismiss();
+                } catch (Exception e6) {
+                    FileLog.e(e6);
+                }
+                TLObject tLObject = this.f31280f;
+                if (tLObject != null) {
+                    TL_phone.joinAsPeers joinaspeers = (TL_phone.joinAsPeers) tLObject;
+                    if (joinaspeers.peers.size() == 1) {
+                        y70Var.a(accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId(joinaspeers.peers.get(0))), false, false, false);
+                        return;
+                    }
+                    a80.D = joinaspeers.peers;
+                    long j10 = this.f31279e;
+                    a80.F = j10;
+                    a80.E = SystemClock.elapsedRealtime();
+                    a80.G = accountInstance.getCurrentAccount();
+                    accountInstance.getMessagesController().putChats(joinaspeers.chats, false);
+                    accountInstance.getMessagesController().putUsers(joinaspeers.users, false);
+                    a80.v(this.f31278c, j10, joinaspeers.peers, p2Var, this.d, peer, y70Var);
+                    return;
+                }
+                return;
+            default:
+                TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) this.f31280f;
+                org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.f31281n;
+                org.telegram.ui.web.u uVar = (org.telegram.ui.web.u) this.f31282r;
+                eh.w wVar = (eh.w) this.f31283s;
+                this.f31277b.dismiss();
+                new sh.e1(this.f31278c, this.d, this.f31279e, tL_messages_preparedInlineMessage, ((File[]) this.h)[0], null, g6Var, uVar, wVar).show();
+                return;
         }
-        return super.onInterceptTouchEvent(motionEvent);
     }
 
-    @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        super.onLayout(z4, i10, i11, i12, i13);
-        y70.o(this.f28916a);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        int i13;
-        int size = View.MeasureSpec.getSize(i11) - AndroidUtilities.statusBarHeight;
-        y70 y70Var = this.f28916a;
-        TextView textView = y70Var.f30911f;
-        measureChildWithMargins(textView, i10, 0, i11, 0);
-        int measuredHeight = textView.getMeasuredHeight();
-        u70 u70Var = y70Var.d;
-        ((FrameLayout.LayoutParams) u70Var.getLayoutParams()).topMargin = AndroidUtilities.dp(65.0f) + measuredHeight;
-        getMeasuredWidth();
-        int D = org.telegram.messenger.y3.D(58.0f, y70Var.h.size(), AndroidUtilities.dp(80.0f));
-        i12 = ((org.telegram.ui.ActionBar.g3) y70Var).backgroundPaddingTop;
-        int C = org.telegram.messenger.y3.C(55.0f, i12 + D, measuredHeight);
-        int i14 = size / 5;
-        if (C < i14 * 3) {
-            i13 = size - C;
-        } else {
-            i13 = i14 * 2;
-        }
-        if (u70Var.getPaddingTop() != i13) {
-            y70Var.f30912n = true;
-            u70Var.setPadding(0, i13, 0, 0);
-            y70Var.f30912n = false;
-        }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f28916a.isDismissed() && super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f28916a.f30912n) {
-            return;
-        }
-        super.requestLayout();
+    public t70(org.telegram.ui.ActionBar.d2 d2Var, TLObject tLObject, AccountInstance accountInstance, y70 y70Var, long j10, Context context, org.telegram.ui.ActionBar.p2 p2Var, int i10, TLRPC.Peer peer) {
+        this.f31277b = d2Var;
+        this.f31280f = tLObject;
+        this.h = accountInstance;
+        this.f31281n = y70Var;
+        this.f31279e = j10;
+        this.f31278c = context;
+        this.f31282r = p2Var;
+        this.d = i10;
+        this.f31283s = peer;
     }
 }

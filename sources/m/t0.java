@@ -1,8 +1,13 @@
 package m;
 
-import java.util.Locale;
+import android.os.LocaleList;
+import android.widget.TextView;
 public abstract class t0 {
-    public static Locale a(String str) {
-        return Locale.forLanguageTag(str);
+    public static LocaleList a(String str) {
+        return LocaleList.forLanguageTags(str);
+    }
+
+    public static void b(TextView textView, LocaleList localeList) {
+        textView.setTextLocales(localeList);
     }
 }

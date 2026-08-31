@@ -1,13 +1,13 @@
 package s8;
 
 import java.util.Map;
-import k7.a7;
+import k7.b7;
 public abstract class j implements Map.Entry {
     @Override
     public final boolean equals(Object obj) {
         if (obj instanceof Map.Entry) {
             Map.Entry entry = (Map.Entry) obj;
-            if (a7.a(getKey(), entry.getKey()) && a7.a(getValue(), entry.getValue())) {
+            if (b7.a(getKey(), entry.getKey()) && b7.a(getValue(), entry.getValue())) {
                 return true;
             }
         }

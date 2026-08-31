@@ -1,59 +1,43 @@
 package lh;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.ks;
-import org.telegram.ui.Components.ps;
-public final class a implements Runnable {
-    public final int f12082a = 0;
-    public final org.telegram.ui.ActionBar.f6 f12083b;
-    public final Context f12084c;
+import android.view.View;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+import org.telegram.ui.Components.jl0;
+public final class a implements jl0 {
+    public final int f12577a;
 
-    public a(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f12084c = context;
-        this.f12083b = f6Var;
+    public a(int i10) {
+        this.f12577a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f12082a) {
+    public final void f(int i10, View view) {
+        switch (this.f12577a) {
             case 0:
-                new aa(this.f12084c, this.f12083b).show();
+                int i11 = d.X;
+                return;
+            case 1:
+                int i12 = s.f12936x0;
+                return;
+            case 2:
+                if (view instanceof org.telegram.ui.Cells.x) {
+                    ((org.telegram.ui.Cells.x) view).a();
+                    return;
+                }
+                return;
+            case 3:
+                boolean z4 = ChatAttachAlertPhotoLayout.f24736n1;
+                if (view instanceof org.telegram.ui.Cells.t5) {
+                    org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
+                    t5Var.f24157w.b(t5Var);
+                    return;
+                }
                 return;
             default:
-                org.telegram.ui.ActionBar.d2[] d2VarArr = new org.telegram.ui.ActionBar.d2[1];
-                String string = LocaleController.getString(R.string.AppsTabInfoText);
-                ks ksVar = new ks(d2VarArr, 0);
-                org.telegram.ui.ActionBar.f6 f6Var = this.f12083b;
-                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(AndroidUtilities.replaceLinks(string, f6Var, ksVar));
-                Matcher matcher = Pattern.compile("@([a-zA-Z0-9_-]+)").matcher(replaceTags);
-                while (true) {
-                    boolean find = matcher.find();
-                    Context context = this.f12084c;
-                    if (find) {
-                        replaceTags.setSpan(new org.telegram.ui.p0(d2VarArr, context, matcher.group(1), 1), matcher.start(), matcher.end(), 33);
-                    } else {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
-                        String string2 = LocaleController.getString(R.string.AppsTabInfoTitle);
-                        org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f19503a;
-                        d2Var.O = string2;
-                        d2Var.Q = replaceTags;
-                        alertDialog$Builder.k(LocaleController.getString(R.string.AppsTabInfoButton), null);
-                        d2VarArr[0] = alertDialog$Builder.o();
-                        return;
-                    }
-                }
+                return;
         }
     }
 
-    public a(ps psVar, org.telegram.ui.ActionBar.f6 f6Var, Context context) {
-        this.f12083b = f6Var;
-        this.f12084c = context;
+    private final void a(int i10, View view) {
     }
 }

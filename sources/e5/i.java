@@ -1,15 +1,15 @@
 package e5;
 public final class i implements Comparable {
-    public final int f5136a;
-    public final d f5137b;
+    public final int f4974a;
+    public final d f4975b;
 
     public i(int i10, d dVar) {
-        this.f5136a = i10;
-        this.f5137b = dVar;
+        this.f4974a = i10;
+        this.f4975b = dVar;
     }
 
     @Override
     public final int compareTo(Object obj) {
-        return Integer.compare(this.f5136a, ((i) obj).f5136a);
+        return Integer.compare(this.f4974a, ((i) obj).f4974a);
     }
 }

@@ -1,22 +1,42 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class gx extends nh.q {
-    public final oy L0;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class gx {
+    public final int f37282a;
+    public final hx f37283b;
+    public final View f37284c;
 
-    public gx(oy oyVar, Context context, oy oyVar2, int i10, int i11) {
-        super(context, oyVar2, i10, i11);
-        this.L0 = oyVar;
+    public gx(hx hxVar, View view, int i10) {
+        this.f37282a = i10;
+        this.f37283b = hxVar;
+        this.f37284c = view;
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.k kVar;
-        kVar = ((org.telegram.ui.ActionBar.p2) this.L0).actionBar;
-        if (!kVar.s() && super.dispatchTouchEvent(motionEvent)) {
-            return true;
+    public final void a(boolean z4) {
+        switch (this.f37282a) {
+            case 0:
+                View view = this.f37284c;
+                if (view instanceof oh.o) {
+                    this.f37283b.L0.B0.i((oh.o) view, false);
+                    if (z4) {
+                        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.jc(20), 500L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                View view2 = this.f37284c;
+                if (view2 instanceof oh.o) {
+                    this.f37283b.L0.B0.i((oh.o) view2, false);
+                    if (z4) {
+                        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.jc(20), 500L);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        return false;
     }
 }

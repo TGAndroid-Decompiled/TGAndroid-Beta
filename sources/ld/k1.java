@@ -17,8 +17,8 @@ public abstract class k1 extends qd.k implements d1, o0, a1 {
             Object u10 = i10.u();
             if (u10 instanceof k1) {
                 if (u10 == this) {
-                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = u1.f11927a;
-                    q0 q0Var = e0.f11879j;
+                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = u1.f12365a;
+                    q0 q0Var = e0.f12303j;
                     while (!atomicReferenceFieldUpdater2.compareAndSet(i10, u10, q0Var)) {
                         if (atomicReferenceFieldUpdater2.get(i10) != u10) {
                             break;
@@ -39,14 +39,14 @@ public abstract class k1 extends qd.k implements d1, o0, a1 {
                         }
                         kotlin.jvm.internal.j.c(f10, "null cannot be cast to non-null type kotlinx.coroutines.internal.LockFreeLinkedListNode{ kotlinx.coroutines.internal.LockFreeLinkedListKt.Node }");
                         qd.k kVar2 = (qd.k) f10;
-                        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater3 = qd.k.f43031c;
+                        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater3 = qd.k.f44809c;
                         qd.q qVar = (qd.q) atomicReferenceFieldUpdater3.get(kVar2);
                         if (qVar == null) {
                             qVar = new qd.q(kVar2);
                             atomicReferenceFieldUpdater3.set(kVar2, qVar);
                         }
                         do {
-                            atomicReferenceFieldUpdater = qd.k.f43029a;
+                            atomicReferenceFieldUpdater = qd.k.f44807a;
                             if (atomicReferenceFieldUpdater.compareAndSet(this, f10, qVar)) {
                                 kVar2.d();
                                 return;

@@ -1,59 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
+import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
-public final class db0 extends f2.x {
-    public final qb0 S;
+public final class db0 implements Runnable {
+    public final int f26243a;
+    public final sb0 f26244b;
+    public final Context f26245c;
 
-    public db0(qb0 qb0Var) {
-        super(true);
-        this.S = qb0Var;
+    public db0(sb0 sb0Var, Context context, int i10) {
+        this.f26243a = i10;
+        this.f26244b = sb0Var;
+        this.f26245c = context;
     }
 
     @Override
-    public final boolean B1(int i10) {
-        byte b10;
-        qb0 qb0Var = this.S;
-        MessageObject messageObject = qb0Var.f28107r.previewMessages.get(i10);
-        MessageObject.GroupedMessages a2 = qb0.a(qb0Var, messageObject);
-        if (a2 != null) {
-            MessageObject.GroupedMessagePosition position = a2.getPosition(messageObject);
-            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
-                int size = a2.posArray.size();
-                for (int i11 = 0; i11 < size; i11++) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition = a2.posArray.get(i11);
-                    if (groupedMessagePosition != position) {
-                        byte b11 = groupedMessagePosition.minY;
-                        byte b12 = position.minY;
-                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
-                            return true;
-                        }
-                    }
+    public final void run() {
+        switch (this.f26243a) {
+            case 0:
+                sb0 sb0Var = this.f26244b;
+                sb0Var.W.a(false);
+                AndroidUtilities.runOnUIThread(new db0(sb0Var, this.f26245c, 1));
+                return;
+            default:
+                Context context = this.f26245c;
+                if (AndroidUtilities.isContextSafe(context)) {
+                    new fg.n1(context, 43, this.f26244b.W.C).show();
+                    return;
                 }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean C1(View view) {
-        return false;
-    }
-
-    @Override
-    public final void b0(bf.f fVar, f2.i1 i1Var) {
-        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            super.b0(fVar, i1Var);
-            return;
-        }
-        try {
-            super.b0(fVar, i1Var);
-        } catch (Exception e) {
-            FileLog.e(e);
-            AndroidUtilities.runOnUIThread(new vp(this, 28));
+                return;
         }
     }
 }

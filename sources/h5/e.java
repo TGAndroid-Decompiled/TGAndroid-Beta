@@ -9,17 +9,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 public final class e implements Iterable {
-    public final Object f6948a = new Object();
-    public final HashMap f6949b = new HashMap();
-    public Set f6950c = Collections.EMPTY_SET;
+    public final Object f7249a = new Object();
+    public final HashMap f7250b = new HashMap();
+    public Set f7251c = Collections.EMPTY_SET;
     public List d = Collections.EMPTY_LIST;
 
     public final int i(o3.l lVar) {
         int i10;
-        synchronized (this.f6948a) {
+        synchronized (this.f7249a) {
             try {
-                if (this.f6949b.containsKey(lVar)) {
-                    i10 = ((Integer) this.f6949b.get(lVar)).intValue();
+                if (this.f7250b.containsKey(lVar)) {
+                    i10 = ((Integer) this.f7250b.get(lVar)).intValue();
                 } else {
                     i10 = 0;
                 }
@@ -33,16 +33,16 @@ public final class e implements Iterable {
     @Override
     public final Iterator iterator() {
         Iterator it;
-        synchronized (this.f6948a) {
+        synchronized (this.f7249a) {
             it = this.d.iterator();
         }
         return it;
     }
 
     public final void n(o3.l lVar) {
-        synchronized (this.f6948a) {
+        synchronized (this.f7249a) {
             try {
-                Integer num = (Integer) this.f6949b.get(lVar);
+                Integer num = (Integer) this.f7250b.get(lVar);
                 if (num == null) {
                     return;
                 }
@@ -50,12 +50,12 @@ public final class e implements Iterable {
                 arrayList.remove(lVar);
                 this.d = DesugarCollections.unmodifiableList(arrayList);
                 if (num.intValue() == 1) {
-                    this.f6949b.remove(lVar);
-                    HashSet hashSet = new HashSet(this.f6950c);
+                    this.f7250b.remove(lVar);
+                    HashSet hashSet = new HashSet(this.f7251c);
                     hashSet.remove(lVar);
-                    this.f6950c = DesugarCollections.unmodifiableSet(hashSet);
+                    this.f7251c = DesugarCollections.unmodifiableSet(hashSet);
                 } else {
-                    this.f6949b.put(lVar, Integer.valueOf(num.intValue() - 1));
+                    this.f7250b.put(lVar, Integer.valueOf(num.intValue() - 1));
                 }
             } catch (Throwable th2) {
                 throw th2;

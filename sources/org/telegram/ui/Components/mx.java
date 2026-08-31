@@ -1,46 +1,26 @@
 package org.telegram.ui.Components;
+public final class mx extends f2.v {
+    public final mz f29260c;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Objects;
-import org.telegram.messenger.AndroidUtilities;
-public final class mx extends jz {
-    public final kz d;
-
-    public mx(kz kzVar) {
-        super(kzVar, 1);
-        this.d = kzVar;
+    public mx(mz mzVar) {
+        this.f29260c = mzVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        if (i10 == 0) {
-            this.d.f26417c0 = false;
-        }
-        super.a(recyclerView, i10);
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ng.e eVar;
-        kz kzVar = this.d;
-        jy jyVar = kzVar.P;
-        jx jxVar = kzVar.N;
-        kzVar.W(jxVar.I0());
-        if (Build.VERSION.SDK_INT >= 31 && (eVar = kzVar.f26432g2) != null) {
-            eVar.f(i10, i11);
-            kzVar.C();
-        }
-        super.b(recyclerView, i10, i11);
-        if (jyVar != null && kzVar.M.getAdapter() == jyVar) {
-            jy jyVar2 = jyVar.f26065x.f25796a;
-            if (!jyVar2.C.S.C && !jyVar2.B) {
-                if (jxVar.N0() + 20 > jyVar.h()) {
-                    iy iyVar = jyVar.f26065x;
-                    Objects.requireNonNull(iyVar);
-                    AndroidUtilities.runOnUIThread(new ow(iyVar, 1));
-                }
+    public final int i(int i10) {
+        mz mzVar = this.f29260c;
+        tx txVar = mzVar.O;
+        lx lxVar = mzVar.N;
+        f2.p0 adapter = mzVar.M.getAdapter();
+        ly lyVar = mzVar.P;
+        if (adapter == lyVar) {
+            int j10 = lyVar.j(i10);
+            if (j10 == 1 || j10 == 3 || j10 == 2 || j10 == 4 || j10 == 5) {
+                return lxVar.J;
             }
+        } else if ((mzVar.f29264a0 && i10 == 0) || i10 == txVar.d || i10 == txVar.f31470c || i10 == txVar.f31472f || txVar.f31474r.indexOfKey(i10) >= 0 || txVar.v.indexOfKey(i10) >= 0) {
+            return lxVar.J;
         }
+        return 1;
     }
 }

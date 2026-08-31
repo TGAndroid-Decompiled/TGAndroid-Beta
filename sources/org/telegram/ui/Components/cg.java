@@ -9,23 +9,23 @@ import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.SendMessageChatArguments;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.VideoEditedInfo;
-public final class cg extends org.telegram.ui.yt0 {
-    public boolean f23992a;
-    public final MediaController.PhotoEntry f23993b;
-    public final File f23994c;
+public final class cg extends org.telegram.ui.au0 {
+    public boolean f25947a;
+    public final MediaController.PhotoEntry f25948b;
+    public final File f25949c;
     public final dg d;
 
     public cg(dg dgVar, MediaController.PhotoEntry photoEntry, File file) {
         this.d = dgVar;
-        this.f23993b = photoEntry;
-        this.f23994c = file;
+        this.f25948b = photoEntry;
+        this.f25949c = file;
     }
 
     @Override
     public final void G() {
-        if (!this.f23992a) {
+        if (!this.f25947a) {
             try {
-                this.f23994c.delete();
+                this.f25949c.delete();
             } catch (Throwable unused) {
             }
         }
@@ -46,13 +46,13 @@ public final class cg extends org.telegram.ui.yt0 {
         org.telegram.ui.xn xnVar;
         ChatActivityEnterView chatActivityEnterView = this.d.d;
         org.telegram.ui.nn nnVar = chatActivityEnterView.R2;
-        if (nnVar != null && (xnVar = chatActivityEnterView.L2) != null && nnVar.f36694f) {
+        if (nnVar != null && (xnVar = chatActivityEnterView.L2) != null && nnVar.f39488f) {
             xnVar.Rb();
             return;
         }
         ArrayList arrayList = new ArrayList();
         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-        MediaController.PhotoEntry photoEntry = this.f23993b;
+        MediaController.PhotoEntry photoEntry = this.f25948b;
         if (!photoEntry.isVideo && (str2 = photoEntry.imagePath) != null) {
             sendingMediaInfo.path = str2;
         } else {
@@ -81,7 +81,7 @@ public final class cg extends org.telegram.ui.yt0 {
         sendingMediaInfo.canDeleteAfter = true;
         arrayList.add(sendingMediaInfo);
         photoEntry.reset();
-        this.f23992a = true;
+        this.f25947a = true;
         boolean checkUpdateStickersOrder = SendMessagesHelper.checkUpdateStickersOrder(sendingMediaInfo.caption);
         AccountInstance accountInstance = chatActivityEnterView.O;
         MessageSuggestionParams messageSuggestionParams = null;
@@ -104,12 +104,12 @@ public final class cg extends org.telegram.ui.yt0 {
         long sendMonoForumPeerId = chatActivityEnterView.getSendMonoForumPeerId();
         org.telegram.ui.xn xnVar3 = chatActivityEnterView.L2;
         if (xnVar3 != null) {
-            messageSuggestionParams = xnVar3.f39989d5;
+            messageSuggestionParams = xnVar3.f43157d5;
         }
         SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j10, messageObject, threadMessage, null, nnVar2, false, false, messageObject2, z4, i11, i12, i13, checkUpdateStickersOrder, null, sendMessageChatArguments, 0L, false, 0L, sendMonoForumPeerId, messageSuggestionParams);
         eg egVar = chatActivityEnterView.V2;
         if (egVar != null) {
-            egVar.D(null, true, i11, i12, 0L);
+            egVar.C(null, true, i11, i12, 0L);
         }
     }
 }

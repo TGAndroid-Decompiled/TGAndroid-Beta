@@ -3,25 +3,25 @@ package ma;
 import java.util.Iterator;
 import java.util.Map;
 public final class b extends wc.c {
-    public Map f13888a;
-    public Iterator f13889b;
-    public d f13890c;
+    public Map f13604a;
+    public Iterator f13605b;
+    public d f13606c;
     public ud.d d;
-    public Map e;
-    public Object f13891f;
+    public Map f13607e;
+    public Object f13608f;
     public Object h;
-    public final c f13892n;
-    public int f13893r;
+    public final c f13609n;
+    public int f13610r;
 
     public b(c cVar, wc.c cVar2) {
         super(cVar2);
-        this.f13892n = cVar;
+        this.f13609n = cVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
         this.h = obj;
-        this.f13893r |= Integer.MIN_VALUE;
-        return this.f13892n.b(this);
+        this.f13610r |= Integer.MIN_VALUE;
+        return this.f13609n.b(this);
     }
 }

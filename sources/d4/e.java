@@ -7,25 +7,25 @@ import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 public final class e {
-    public static final ArrayDeque f4140g = new ArrayDeque();
+    public static final ArrayDeque f4208g = new ArrayDeque();
     public static final Object h = new Object();
-    public final MediaCodec f4141a;
-    public final HandlerThread f4142b;
-    public androidx.mediarouter.app.d f4143c;
+    public final MediaCodec f4209a;
+    public final HandlerThread f4210b;
+    public androidx.mediarouter.app.d f4211c;
     public final AtomicReference d;
-    public final h5.c e;
-    public boolean f4144f;
+    public final h5.c f4212e;
+    public boolean f4213f;
 
     public e(MediaCodec mediaCodec, HandlerThread handlerThread) {
         ?? obj = new Object();
-        this.f4141a = mediaCodec;
-        this.f4142b = handlerThread;
-        this.e = obj;
+        this.f4209a = mediaCodec;
+        this.f4210b = handlerThread;
+        this.f4212e = obj;
         this.d = new AtomicReference();
     }
 
     public static d b() {
-        ArrayDeque arrayDeque = f4140g;
+        ArrayDeque arrayDeque = f4208g;
         synchronized (arrayDeque) {
             try {
                 if (arrayDeque.isEmpty()) {
@@ -39,31 +39,31 @@ public final class e {
     }
 
     public static void d(d dVar) {
-        ArrayDeque arrayDeque = f4140g;
+        ArrayDeque arrayDeque = f4208g;
         synchronized (arrayDeque) {
             arrayDeque.add(dVar);
         }
     }
 
     public final void a() {
-        if (this.f4144f) {
+        if (this.f4213f) {
             try {
-                androidx.mediarouter.app.d dVar = this.f4143c;
+                androidx.mediarouter.app.d dVar = this.f4211c;
                 dVar.getClass();
                 dVar.removeCallbacksAndMessages(null);
-                h5.c cVar = this.e;
+                h5.c cVar = this.f4212e;
                 cVar.b();
-                androidx.mediarouter.app.d dVar2 = this.f4143c;
+                androidx.mediarouter.app.d dVar2 = this.f4211c;
                 dVar2.getClass();
                 dVar2.obtainMessage(2).sendToTarget();
                 synchronized (cVar) {
-                    while (!cVar.f6933a) {
+                    while (!cVar.f7233a) {
                         cVar.wait();
                     }
                 }
-            } catch (InterruptedException e) {
+            } catch (InterruptedException e6) {
                 Thread.currentThread().interrupt();
-                throw new IllegalStateException(e);
+                throw new IllegalStateException(e6);
             }
         }
     }
@@ -72,12 +72,12 @@ public final class e {
         RuntimeException runtimeException = (RuntimeException) this.d.getAndSet(null);
         if (runtimeException == null) {
             d b10 = b();
-            b10.f4137a = i10;
-            b10.f4138b = 0;
+            b10.f4204a = i10;
+            b10.f4205b = 0;
             b10.d = j10;
-            b10.e = 0;
-            MediaCodec.CryptoInfo cryptoInfo = b10.f4139c;
-            cryptoInfo.numSubSamples = dVar.f14228f;
+            b10.f4207e = 0;
+            MediaCodec.CryptoInfo cryptoInfo = b10.f4206c;
+            cryptoInfo.numSubSamples = dVar.f15200f;
             int[] iArr = dVar.d;
             int[] iArr2 = cryptoInfo.numBytesOfClearData;
             if (iArr != null) {
@@ -88,7 +88,7 @@ public final class e {
                 }
             }
             cryptoInfo.numBytesOfClearData = iArr2;
-            int[] iArr3 = dVar.e;
+            int[] iArr3 = dVar.f15199e;
             int[] iArr4 = cryptoInfo.numBytesOfEncryptedData;
             if (iArr3 != null) {
                 if (iArr4 != null && iArr4.length >= iArr3.length) {
@@ -98,7 +98,7 @@ public final class e {
                 }
             }
             cryptoInfo.numBytesOfEncryptedData = iArr4;
-            byte[] bArr = dVar.f14226b;
+            byte[] bArr = dVar.f15197b;
             byte[] bArr2 = cryptoInfo.key;
             if (bArr != null) {
                 if (bArr2 != null && bArr2.length >= bArr.length) {
@@ -109,7 +109,7 @@ public final class e {
             }
             bArr2.getClass();
             cryptoInfo.key = bArr2;
-            byte[] bArr3 = dVar.f14225a;
+            byte[] bArr3 = dVar.f15196a;
             byte[] bArr4 = cryptoInfo.iv;
             if (bArr3 != null) {
                 if (bArr4 != null && bArr4.length >= bArr3.length) {
@@ -120,11 +120,11 @@ public final class e {
             }
             bArr4.getClass();
             cryptoInfo.iv = bArr4;
-            cryptoInfo.mode = dVar.f14227c;
-            if (d0.f6937a >= 24) {
-                cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f14229g, dVar.h));
+            cryptoInfo.mode = dVar.f15198c;
+            if (d0.f7237a >= 24) {
+                cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f15201g, dVar.h));
             }
-            this.f4143c.obtainMessage(1, b10).sendToTarget();
+            this.f4211c.obtainMessage(1, b10).sendToTarget();
             return;
         }
         throw runtimeException;

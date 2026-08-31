@@ -1,40 +1,47 @@
 package org.telegram.messenger;
 
-import java.util.Comparator;
-import org.telegram.messenger.SavedMessagesController;
-import org.telegram.messenger.SecretChatHelper;
-import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
-public final class di implements Comparator {
-    public final int f17078a;
+public final class di implements Runnable {
+    public final int f18512a;
+    public final Object f18513b;
+    public final Object f18514c;
+    public final long d;
+    public final Object f18515e;
 
-    public di(int i10) {
-        this.f17078a = i10;
+    public di(Object obj, Object obj2, long j10, Object obj3, int i10) {
+        this.f18512a = i10;
+        this.f18513b = obj;
+        this.f18514c = obj2;
+        this.d = j10;
+        this.f18515e = obj3;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$updateAllDialogs$0;
-        int lambda$resendMessages$13;
-        int lambda$checkSecretHoles$16;
-        int lambda$saveProxyList$4;
-        int lambda$sortTopics$9;
-        switch (this.f17078a) {
-            case 0:
-                lambda$updateAllDialogs$0 = SavedMessagesController.lambda$updateAllDialogs$0((SavedMessagesController.SavedDialog) obj, (SavedMessagesController.SavedDialog) obj2);
-                return lambda$updateAllDialogs$0;
-            case 1:
-                lambda$resendMessages$13 = SecretChatHelper.lambda$resendMessages$13((TLRPC.Message) obj, (TLRPC.Message) obj2);
-                return lambda$resendMessages$13;
-            case 2:
-                lambda$checkSecretHoles$16 = SecretChatHelper.lambda$checkSecretHoles$16((SecretChatHelper.TL_decryptedMessageHolder) obj, (SecretChatHelper.TL_decryptedMessageHolder) obj2);
-                return lambda$checkSecretHoles$16;
-            case 3:
-                lambda$saveProxyList$4 = SharedConfig.lambda$saveProxyList$4((SharedConfig.ProxyInfo) obj, (SharedConfig.ProxyInfo) obj2);
-                return lambda$saveProxyList$4;
-            default:
-                lambda$sortTopics$9 = TopicsController.lambda$sortTopics$9((TLRPC.TL_forumTopic) obj, (TLRPC.TL_forumTopic) obj2);
-                return lambda$sortTopics$9;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.di.run():void");
+    }
+
+    public di(Object obj, Object obj2, Object obj3, long j10, int i10) {
+        this.f18512a = i10;
+        this.f18513b = obj;
+        this.f18514c = obj2;
+        this.f18515e = obj3;
+        this.d = j10;
+    }
+
+    public di(org.telegram.ui.ActionBar.h3 h3Var, long j10, Object obj, Object obj2, int i10) {
+        this.f18512a = i10;
+        this.f18513b = h3Var;
+        this.d = j10;
+        this.f18514c = obj;
+        this.f18515e = obj2;
+    }
+
+    public di(qh.x7 x7Var, TLRPC.Chat chat, MessagesStorage messagesStorage, long j10) {
+        this.f18512a = 11;
+        this.f18513b = x7Var;
+        this.f18515e = chat;
+        this.f18514c = messagesStorage;
+        this.d = j10;
     }
 }

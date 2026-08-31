@@ -8,20 +8,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.LaunchActivity;
 public final class sf implements Runnable {
-    public final MessageObject f28701a;
-    public final long f28702b;
-    public final TL_keyboard.KeyboardButtonProto f28703c;
+    public final MessageObject f31048a;
+    public final long f31049b;
+    public final TL_keyboard.KeyboardButtonProto f31050c;
     public final MessageObject d;
-    public final TLRPC.User e;
-    public final ChatActivityEnterView f28704f;
+    public final TLRPC.User f31051e;
+    public final ChatActivityEnterView f31052f;
 
     public sf(ChatActivityEnterView chatActivityEnterView, MessageObject messageObject, long j10, TL_keyboard.KeyboardButtonProto keyboardButtonProto, MessageObject messageObject2, TLRPC.User user) {
-        this.f28704f = chatActivityEnterView;
-        this.f28701a = messageObject;
-        this.f28702b = j10;
-        this.f28703c = keyboardButtonProto;
+        this.f31052f = chatActivityEnterView;
+        this.f31048a = messageObject;
+        this.f31049b = j10;
+        this.f31050c = keyboardButtonProto;
         this.d = messageObject2;
-        this.e = user;
+        this.f31051e = user;
     }
 
     @Override
@@ -29,19 +29,19 @@ public final class sf implements Runnable {
         int i10;
         long N8;
         String restrictionReason;
-        ChatActivityEnterView chatActivityEnterView = this.f28704f;
+        ChatActivityEnterView chatActivityEnterView = this.f31052f;
         org.telegram.ui.xn xnVar = chatActivityEnterView.L2;
-        if (chatActivityEnterView.f22781i1.R() <= AndroidUtilities.dp(20.0f) && !chatActivityEnterView.t0()) {
+        if (chatActivityEnterView.f24621i1.R() <= AndroidUtilities.dp(20.0f) && !chatActivityEnterView.t0()) {
             if (xnVar != null) {
                 int i11 = chatActivityEnterView.N;
-                long j10 = this.f28701a.messageOwner.dialog_id;
-                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f28703c;
+                long j10 = this.f31048a.messageOwner.dialog_id;
+                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f31050c;
                 String text = keyboardButtonProto.getText();
                 String url = keyboardButtonProto.getUrl();
                 boolean c3 = mf.c.c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class);
                 MessageObject messageObject = this.d;
                 if (messageObject != null) {
-                    i10 = messageObject.messageOwner.f19205id;
+                    i10 = messageObject.messageOwner.f20864id;
                 } else {
                     i10 = 0;
                 }
@@ -50,17 +50,17 @@ public final class sf implements Runnable {
                 } else {
                     N8 = xnVar.N8();
                 }
-                rh.z3 b10 = rh.z3.b(i11, j10, this.f28702b, text, url, c3 ? 1 : 0, i10, N8, null, false, null, null, 0, false, false);
+                sh.y3 b10 = sh.y3.b(i11, j10, this.f31049b, text, url, c3 ? 1 : 0, i10, N8, null, false, null, null, 0, false, false);
                 LaunchActivity launchActivity = LaunchActivity.D1;
                 if (launchActivity != null && launchActivity.P() != null && LaunchActivity.D1.P().m(b10) != null) {
-                    rh.a0 a0Var = chatActivityEnterView.f22780i0;
-                    if (a0Var != null) {
-                        a0Var.setOpened(false);
+                    sh.z zVar = chatActivityEnterView.f24620i0;
+                    if (zVar != null) {
+                        zVar.setOpened(false);
                         return;
                     }
                     return;
                 }
-                TLRPC.User user = this.e;
+                TLRPC.User user = this.f31051e;
                 if (user == null) {
                     restrictionReason = null;
                 } else {
@@ -71,10 +71,10 @@ public final class sf implements Runnable {
                     MessagesController.showCantOpenAlert(xnVar, restrictionReason);
                     return;
                 }
-                rh.q2 q2Var = new rh.q2(chatActivityEnterView.getContext(), chatActivityEnterView.S3);
-                q2Var.f43689h0 = chatActivityEnterView.K2;
-                q2Var.s(xnVar, b10);
-                q2Var.show();
+                sh.p2 p2Var = new sh.p2(chatActivityEnterView.getContext(), chatActivityEnterView.S3);
+                p2Var.f47593h0 = chatActivityEnterView.K2;
+                p2Var.s(xnVar, b10);
+                p2Var.show();
                 return;
             }
             return;

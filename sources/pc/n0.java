@@ -12,23 +12,23 @@ public enum n0 extends a2 {
             if (d != ' ') {
                 if (d != '\"' && d != '\'') {
                     if (d != '/') {
-                        v vVar = a2.f41127a;
+                        v vVar = a2.f44290a;
                         if (d != 65535) {
                             if (d != '\t' && d != '\n' && d != '\f' && d != '\r') {
                                 switch (d) {
                                     case '<':
                                         break;
                                     case '=':
-                                        kVar.f41174c = a2.W;
+                                        kVar.f44340c = a2.W;
                                         return;
                                     case '>':
                                         kVar.k();
-                                        kVar.f41174c = vVar;
+                                        kVar.f44340c = vVar;
                                         return;
                                     default:
-                                        kVar.f41177i.r();
+                                        kVar.f44344i.p();
                                         aVar.q();
-                                        kVar.f41174c = m0Var;
+                                        kVar.f44340c = m0Var;
                                         return;
                                 }
                             } else {
@@ -36,24 +36,24 @@ public enum n0 extends a2 {
                             }
                         } else {
                             kVar.l(this);
-                            kVar.f41174c = vVar;
+                            kVar.f44340c = vVar;
                             return;
                         }
                     } else {
-                        kVar.f41174c = a2.f41130b0;
+                        kVar.f44340c = a2.f44293b0;
                         return;
                     }
                 }
                 kVar.m(this);
-                kVar.f41177i.r();
-                kVar.f41177i.j(d);
-                kVar.f41174c = m0Var;
+                kVar.f44344i.p();
+                kVar.f44344i.i(d);
+                kVar.f44340c = m0Var;
                 return;
             }
             return;
         }
         kVar.m(this);
-        kVar.f41177i.j((char) 65533);
-        kVar.f41174c = m0Var;
+        kVar.f44344i.i((char) 65533);
+        kVar.f44340c = m0Var;
     }
 }

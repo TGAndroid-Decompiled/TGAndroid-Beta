@@ -1,13 +1,13 @@
 package nd;
 
-import k7.o8;
+import k7.p8;
 public final class a {
-    public static final a[] f14912a;
+    public static final a[] f15928a;
 
     static {
         a[] aVarArr = {new Enum("SUSPEND", 0), new Enum("DROP_OLDEST", 1), new Enum("DROP_LATEST", 2)};
-        f14912a = aVarArr;
-        o8.a(aVarArr);
+        f15928a = aVarArr;
+        p8.a(aVarArr);
     }
 
     public static a valueOf(String str) {
@@ -15,6 +15,6 @@ public final class a {
     }
 
     public static a[] values() {
-        return (a[]) f14912a.clone();
+        return (a[]) f15928a.clone();
     }
 }

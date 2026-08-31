@@ -2,7 +2,7 @@ package k3;
 
 import android.content.SharedPreferences;
 import android.widget.EditText;
-import nh.p5;
+import oh.p5;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -16,26 +16,32 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.Components.yu0;
+import org.telegram.ui.Components.zu0;
 public final class d implements h5.j, RequestDelegateTimestamp, c2, MessagesStorage.StringCallback {
-    public final int f9702a;
-    public final int f9703b;
-    public final long f9704c;
+    public final int f10418a;
+    public final int f10419b;
+    public final long f10420c;
     public final Object d;
 
     public d(Object obj, int i10, long j10, int i11) {
-        this.f9702a = i11;
-        this.f9704c = j10;
-        this.f9703b = i10;
+        this.f10418a = i11;
+        this.f10420c = j10;
+        this.f10419b = i10;
         this.d = obj;
     }
 
     @Override
-    public void i(d2 d2Var, int i10) {
-        int i11 = this.f9702a;
+    public void invoke(Object obj) {
+        b bVar = (b) obj;
+        bVar.e((a) this.d, this.f10419b, this.f10420c);
+    }
+
+    @Override
+    public void j(d2 d2Var, int i10) {
+        int i11 = this.f10418a;
         Object obj = this.d;
-        int i12 = this.f9703b;
-        long j10 = this.f9704c;
+        int i12 = this.f10419b;
+        long j10 = this.f10420c;
         switch (i11) {
             case 2:
                 EditText editText = (EditText) obj;
@@ -112,39 +118,33 @@ public final class d implements h5.j, RequestDelegateTimestamp, c2, MessagesStor
     }
 
     @Override
-    public void invoke(Object obj) {
-        b bVar = (b) obj;
-        bVar.e((a) this.d, this.f9703b, this.f9704c);
-    }
-
-    @Override
     public void run(String str) {
-        yu0.i((yu0) this.d, this.f9704c, this.f9703b, str);
+        zu0.i((zu0) this.d, this.f10420c, this.f10419b, str);
     }
 
     public d(a aVar, int i10, long j10, long j11) {
-        this.f9702a = 0;
+        this.f10418a = 0;
         this.d = aVar;
-        this.f9703b = i10;
-        this.f9704c = j10;
+        this.f10419b = i10;
+        this.f10420c = j10;
     }
 
     @Override
     public void run(TLObject tLObject, TLRPC.TL_error tL_error, long j10) {
-        ((VoIPService) this.d).lambda$createGroupInstance$78(this.f9703b, this.f9704c, tLObject, tL_error, j10);
+        ((VoIPService) this.d).lambda$createGroupInstance$78(this.f10419b, this.f10420c, tLObject, tL_error, j10);
     }
 
     public d(VoIPService voIPService, int i10, long j10) {
-        this.f9702a = 1;
+        this.f10418a = 1;
         this.d = voIPService;
-        this.f9703b = i10;
-        this.f9704c = j10;
+        this.f10419b = i10;
+        this.f10420c = j10;
     }
 
-    public d(yu0 yu0Var, long j10, int i10) {
-        this.f9702a = 4;
-        this.d = yu0Var;
-        this.f9704c = j10;
-        this.f9703b = i10;
+    public d(zu0 zu0Var, long j10, int i10) {
+        this.f10418a = 4;
+        this.d = zu0Var;
+        this.f10420c = j10;
+        this.f10419b = i10;
     }
 }

@@ -5,9 +5,9 @@ public class RotateAtom extends Atom {
     private double angle;
     private Atom base;
     private int option;
-    private float f16646x;
+    private float f18032x;
     private int xunit;
-    private float f16647y;
+    private float f18033y;
     private int yunit;
 
     public RotateAtom(Atom atom, String str, String str2) {
@@ -23,7 +23,7 @@ public class RotateAtom extends Atom {
         if (this.option != -1) {
             return new RotateBox(this.base.createBox(teXEnvironment), this.angle, this.option);
         }
-        return new RotateBox(this.base.createBox(teXEnvironment), this.angle, SpaceAtom.getFactor(this.xunit, teXEnvironment) * this.f16646x, SpaceAtom.getFactor(this.yunit, teXEnvironment) * this.f16647y);
+        return new RotateBox(this.base.createBox(teXEnvironment), this.angle, SpaceAtom.getFactor(this.xunit, teXEnvironment) * this.f18032x, SpaceAtom.getFactor(this.yunit, teXEnvironment) * this.f18033y);
     }
 
     public RotateAtom(Atom atom, double d, String str) {
@@ -39,18 +39,18 @@ public class RotateAtom extends Atom {
         if (parseMap.containsKey("x")) {
             float[] length = SpaceAtom.getLength(parseMap.get("x"));
             this.xunit = (int) length[0];
-            this.f16646x = length[1];
+            this.f18032x = length[1];
         } else {
             this.xunit = 3;
-            this.f16646x = 0.0f;
+            this.f18032x = 0.0f;
         }
         if (parseMap.containsKey("y")) {
             float[] length2 = SpaceAtom.getLength(parseMap.get("y"));
             this.yunit = (int) length2[0];
-            this.f16647y = length2[1];
+            this.f18033y = length2[1];
             return;
         }
         this.yunit = 3;
-        this.f16647y = 0.0f;
+        this.f18033y = 0.0f;
     }
 }

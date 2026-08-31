@@ -7,20 +7,20 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class oa extends qv0 {
-    public final boolean f27528t0;
-    public final boolean f27529u0;
-    public final sa f27530v0;
+    public final boolean f29722t0;
+    public final boolean f29723u0;
+    public final sa f29724v0;
 
     public oa(sa saVar, Context context, boolean z4, boolean z10) {
         super(context, null);
-        this.f27530v0 = saVar;
-        this.f27528t0 = z4;
-        this.f27529u0 = z10;
+        this.f29724v0 = saVar;
+        this.f29722t0 = z4;
+        this.f29723u0 = z10;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        sa saVar = this.f27530v0;
+        sa saVar = this.f29724v0;
         saVar.H(canvas, this);
         super.dispatchDraw(canvas);
         saVar.G(canvas, this);
@@ -31,8 +31,8 @@ public final class oa extends qv0 {
         Drawable drawable;
         if (motionEvent.getAction() == 0) {
             float y10 = motionEvent.getY();
-            sa saVar = this.f27530v0;
-            drawable = ((org.telegram.ui.ActionBar.g3) saVar).shadowDrawable;
+            sa saVar = this.f29724v0;
+            drawable = ((org.telegram.ui.ActionBar.h3) saVar).shadowDrawable;
             if (y10 < drawable.getBounds().top) {
                 saVar.dismiss();
             }
@@ -42,8 +42,8 @@ public final class oa extends qv0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (!this.f27529u0) {
-            this.f27530v0.getClass();
+        if (!this.f29723u0) {
+            this.f29724v0.getClass();
         }
         return super.drawChild(canvas, view, j10);
     }
@@ -59,30 +59,30 @@ public final class oa extends qv0 {
         float f10;
         boolean z4;
         int i13;
-        du duVar;
+        fu fuVar;
         int size = View.MeasureSpec.getSize(i11);
-        sa saVar = this.f27530v0;
+        sa saVar = this.f29724v0;
         saVar.h = size;
         saVar.D(i10, i11);
-        if (this.f27528t0) {
+        if (this.f29722t0) {
             i11 = View.MeasureSpec.makeMeasureSpec(saVar.h, 1073741824);
         }
         if (saVar.M != null) {
             int size2 = View.MeasureSpec.getSize(i10);
             int size3 = View.MeasureSpec.getSize(i11);
             setMeasuredDimension(size2, size3);
-            du duVar2 = saVar.M;
-            if (duVar2 != null && !duVar2.K && AndroidUtilities.dp(20.0f) >= 0) {
-                du duVar3 = saVar.M;
-                if (!duVar3.e && !duVar3.L) {
-                    duVar3.j();
+            fu fuVar2 = saVar.M;
+            if (fuVar2 != null && !fuVar2.K && AndroidUtilities.dp(20.0f) >= 0) {
+                fu fuVar3 = saVar.M;
+                if (!fuVar3.f27004e && !fuVar3.L) {
+                    fuVar3.j();
                 }
             }
             int i14 = 0;
             if (AndroidUtilities.dp(20.0f) >= 0) {
-                z4 = ((org.telegram.ui.ActionBar.g3) saVar).keyboardVisible;
-                if (!z4 && (duVar = saVar.M) != null) {
-                    i13 = duVar.getEmojiPadding();
+                z4 = ((org.telegram.ui.ActionBar.h3) saVar).keyboardVisible;
+                if (!z4 && (fuVar = saVar.M) != null) {
+                    i13 = fuVar.getEmojiPadding();
                 } else {
                     i13 = 0;
                 }
@@ -96,8 +96,8 @@ public final class oa extends qv0 {
             while (i14 < childCount) {
                 View childAt = getChildAt(i14);
                 if (childAt != null && childAt.getVisibility() != 8) {
-                    du duVar4 = saVar.M;
-                    if (duVar4 != null && duVar4.l(childAt)) {
+                    fu fuVar4 = saVar.M;
+                    if (fuVar4 != null && fuVar4.l(childAt)) {
                         if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
                             childAt.measure(View.MeasureSpec.makeMeasureSpec(size2, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
                         } else if (AndroidUtilities.isTablet()) {

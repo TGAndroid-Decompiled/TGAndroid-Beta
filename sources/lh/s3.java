@@ -1,180 +1,114 @@
 package lh;
 
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+import mh.l7;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
-public final class s3 implements View.OnClickListener {
-    public final int f13064a;
-    public final f4 f13065b;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.pz;
+import org.telegram.ui.Components.q70;
+import org.telegram.ui.Components.sa;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.u00;
+import org.telegram.ui.Components.x51;
+public final class s3 extends sa implements NotificationCenter.NotificationCenterDelegate {
+    public final int U;
+    public final l7 V;
+    public final HashSet W;
+    public final pz X;
+    public final qh.d Y;
+    public q70 Z;
+    public x51 f12962a0;
 
-    public s3(f4 f4Var, int i10) {
-        this.f13064a = i10;
-        this.f13065b = f4Var;
+    public s3(org.telegram.ui.ActionBar.p2 p2Var, long j10, int i10, eg.h3 h3Var) {
+        super(p2Var);
+        this.W = new HashSet();
+        this.I = false;
+        this.H = AndroidUtilities.dp(12.0f);
+        fixNavigationBar();
+        J();
+        this.U = i10;
+        this.V = new l7(this.currentAccount, j10, true);
+        this.f31015e.setActionBarMenuOnItemClick(new p3(this, this.f31015e.n().a(1, R.drawable.ic_ab_other), j10));
+        FrameLayout frameLayout = new FrameLayout(getContext());
+        frameLayout.setBackgroundColor(k6.v0(k6.f21731h5, this.resourcesProvider));
+        int i11 = this.backgroundPaddingLeft;
+        frameLayout.setPadding(i11, 0, i11, 0);
+        this.containerView.addView(frameLayout, k7.c6.d(-1, -2.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
+        View view = new View(getContext());
+        view.setBackgroundColor(k6.v0(k6.f21660d7, this.resourcesProvider));
+        frameLayout.addView(view, k7.c6.a(-1.0f, 1.0f / AndroidUtilities.density, 55));
+        qh.d dVar = new qh.d(getContext(), this.resourcesProvider, true);
+        this.Y = dVar;
+        dVar.g(LocaleController.getString(R.string.Gift2CollectionAddGiftsButton), false, true);
+        dVar.setEnabled(false);
+        dVar.setOnClickListener(new dg.n(12, this, h3Var));
+        frameLayout.addView(dVar, k7.c6.d(-1, 48.0f, 119, 10.0f, (1.0f / AndroidUtilities.density) + 10.0f, 10.0f, 10.0f));
+        getContext();
+        pz pzVar = new pz(3, false);
+        this.X = pzVar;
+        pzVar.O = new q3(this);
+        this.d.setPadding(AndroidUtilities.dp(9.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(9.0f) + this.backgroundPaddingLeft, 0);
+        this.d.setSelectorType(9);
+        this.d.setSelectorDrawableColor(0);
+        this.d.setLayoutManager(pzVar);
+        this.d.setOnItemClickListener(new ag.h(this, 7));
+        this.d.j(new r3(this));
+        f2.l lVar = new f2.l();
+        lVar.f5910m = false;
+        lVar.C = false;
+        lVar.o(pr.h);
+        lVar.n(350L);
+        this.d.setItemAnimator(lVar);
+        this.f12962a0.N(true);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starUserGiftsLoaded);
+    }
+
+    public final boolean S() {
+        tl0 tl0Var = this.d;
+        if (tl0Var != null && tl0Var.D) {
+            for (int i10 = 0; i10 < tl0Var.getChildCount(); i10++) {
+                if (tl0Var.getChildAt(i10) instanceof u00) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
-    public final void onClick(View view) {
-        TL_stars.StarGift starGift;
-        TL_stars.StarGift starGift2;
-        TL_stars.StarGift starGift3;
-        d4 d4Var;
-        int i10 = this.f13064a;
-        boolean z4 = true;
-        f4 f4Var = this.f13065b;
-        switch (i10) {
-            case 0:
-                if (f4Var.M.getAlpha() >= 1.0f) {
-                    f4Var.f12410d0.run();
-                    return;
-                }
-                return;
-            case 1:
-                if (f4Var.M.getAlpha() >= 1.0f) {
-                    f4Var.f12410d0.run();
-                    return;
-                }
-                return;
-            case 2:
-                f4Var.getClass();
-                f4Var.b((u3) view);
-                return;
-            case 3:
-                f4Var.getClass();
-                f4Var.b((u3) view);
-                return;
-            case 4:
-                f4 f4Var2 = this.f13065b;
-                LinearLayout linearLayout = f4Var2.D;
-                d4[] d4VarArr = f4Var2.f12418n;
-                if (f4Var2.getAlpha() >= 1.0f && !f4Var2.f12411e0) {
-                    if (f4Var2.f12414g0) {
-                        f4Var2.a(f4Var2.T, f4Var2.U, f4Var2.V, f4Var2.W);
-                        return;
-                    }
-                    ArrayList arrayList = new ArrayList();
-                    for (d4 d4Var2 : d4VarArr) {
-                        if (d4Var2 != null) {
-                            TL_stars.StarGift starGift4 = d4Var2.h;
-                            if (starGift4 != null) {
-                                starGift3 = starGift4;
-                            } else {
-                                starGift3 = null;
-                            }
-                            if (starGift3 != null) {
-                                if (starGift4 == null) {
-                                    starGift4 = null;
-                                }
-                                arrayList.add(starGift4);
-                            }
-                        }
-                    }
-                    if (!arrayList.isEmpty() && f4Var2.f12407b0 != null) {
-                        TextView textView = f4Var2.H;
-                        f4Var2.f12411e0 = true;
-                        f4Var2.f12414g0 = false;
-                        ph.f3 f3Var = f4Var2.Q;
-                        if (f3Var != null) {
-                            f3Var.e(true);
-                            f4Var2.Q = null;
-                        }
-                        textView.setText("");
-                        f4Var2.I.setText(LocaleController.formatString(R.string.GiftCraftProgressSuccessChance, rh.k.G0(f4Var2.getGiftsSuccessChance())));
-                        for (int i11 = 0; i11 < d4VarArr.length; i11++) {
-                            d4 d4Var3 = d4VarArr[i11];
-                            if (d4Var3 != null) {
-                                d4Var3.setClickable(false);
-                                d4 d4Var4 = d4VarArr[i11];
-                                TL_stars.StarGift starGift5 = d4Var4.h;
-                                if (starGift5 == null) {
-                                    starGift5 = null;
-                                }
-                                if (starGift5 == null) {
-                                    d4Var4.animate().alpha(0.0f).start();
-                                }
-                            }
-                        }
-                        int i12 = 0;
-                        while (true) {
-                            if (i12 < d4VarArr.length) {
-                                d4 d4Var5 = d4VarArr[i12];
-                                if (d4Var5 != null) {
-                                    TL_stars.StarGift starGift6 = d4Var5.h;
-                                    if (starGift6 != null) {
-                                        starGift2 = starGift6;
-                                    } else {
-                                        starGift2 = null;
-                                    }
-                                    if (starGift2 != null) {
-                                        if (starGift6 == null) {
-                                            starGift6 = null;
-                                        }
-                                        textView.setText(starGift6.title + " #" + LocaleController.formatNumber(starGift6.num, ','));
-                                    }
-                                }
-                                i12++;
-                            }
-                        }
-                        f4Var2.N.animate().alpha(0.0f).start();
-                        linearLayout.animate().alpha(0.0f).start();
-                        f4Var2.O.animate().alpha(1.0f).start();
-                        f4Var2.M.animate().alpha(0.25f).start();
-                        f4Var2.G.d();
-                        ArrayList arrayList2 = new ArrayList();
-                        for (d4 d4Var6 : d4VarArr) {
-                            TL_stars.StarGift starGift7 = d4Var6.h;
-                            if (starGift7 != null) {
-                                starGift = starGift7;
-                            } else {
-                                starGift = null;
-                            }
-                            if (starGift != null) {
-                                if (starGift7 == null) {
-                                    starGift7 = null;
-                                }
-                                arrayList2.add(starGift7);
-                            }
-                        }
-                        f4Var2.f12407b0.run(arrayList2, new dh.v(3, f4Var2, arrayList2), new b(f4Var2, 6));
-                        return;
-                    }
-                    AndroidUtilities.shakeViewSpring(linearLayout);
-                    return;
-                }
-                return;
-            default:
-                d4 d4Var7 = (d4) view;
-                TL_stars.StarGift starGift8 = d4Var7.h;
-                if (starGift8 == null) {
-                    starGift8 = null;
-                }
-                if (starGift8 != null && !d4Var7.f12300n) {
-                    d4Var7.a(null, true);
-                    f4Var.d(true);
-                    return;
-                }
-                int i13 = 0;
-                while (true) {
-                    d4[] d4VarArr2 = f4Var.f12418n;
-                    if (i13 < d4VarArr2.length && (d4Var = d4VarArr2[i13]) != view) {
-                        if (d4Var != null) {
-                            TL_stars.StarGift starGift9 = d4Var.h;
-                            if (starGift9 == null) {
-                                starGift9 = null;
-                            }
-                            if (starGift9 != null) {
-                                z4 = false;
-                            }
-                        }
-                        i13++;
-                    }
-                }
-                f4Var.f12409c0.run(new kh.a1(6, f4Var, d4Var7), Boolean.valueOf(z4));
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        x51 x51Var;
+        if (i10 == NotificationCenter.starUserGiftsLoaded && (x51Var = this.f12962a0) != null) {
+            x51Var.N(true);
+            if (S()) {
+                this.V.a();
+            }
         }
+    }
+
+    @Override
+    public final void dismiss() {
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
+        super.dismiss();
+    }
+
+    @Override
+    public final sl0 v(tl0 tl0Var) {
+        x51 x51Var = new x51(tl0Var, getContext(), this.currentAccount, 0, false, new eg.p1(this, 11), this.resourcesProvider);
+        this.f12962a0 = x51Var;
+        x51Var.f32957r = false;
+        return x51Var;
+    }
+
+    @Override
+    public final CharSequence y() {
+        return LocaleController.getString(R.string.Gift2CollectionAddGiftsTitle);
     }
 }

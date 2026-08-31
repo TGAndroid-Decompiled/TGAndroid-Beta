@@ -2,13 +2,13 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MrzRecognizer;
 public interface u9 {
-    String G0();
+    String E0();
 
-    void K(String str);
+    void J(String str);
 
-    void S0(MrzRecognizer.Result result);
+    void P0(MrzRecognizer.Result result);
 
-    boolean f1(String str, m9 m9Var);
+    boolean e1(String str, m9 m9Var);
 
     void onDismiss();
 }

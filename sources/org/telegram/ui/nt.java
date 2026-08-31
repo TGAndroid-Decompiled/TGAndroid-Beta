@@ -1,93 +1,70 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLObject;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
-public interface nt {
-    void A(CharSequence charSequence, String str, org.telegram.ui.Components.vk vkVar);
+public final class nt extends org.telegram.ui.Components.sl0 {
+    public final ArrayList f39514c;
+    public final qt d;
 
-    boolean B();
+    public nt(qt qtVar, ArrayList arrayList) {
+        this.d = qtVar;
+        this.f39514c = arrayList;
+    }
 
-    void C(TLRPC.Document document);
+    @Override
+    public final boolean D(f2.m1 m1Var) {
+        return true;
+    }
 
-    boolean D();
+    @Override
+    public final int h() {
+        return this.f39514c.size();
+    }
 
-    boolean E(TLRPC.Document document);
+    @Override
+    public final void v(f2.m1 m1Var, int i10) {
+        pt ptVar = (pt) m1Var.f5875a;
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.f39514c.get(i10);
+        org.telegram.ui.ActionBar.l5 l5Var = ptVar.f40156b;
+        org.telegram.ui.Components.p9 p9Var = ptVar.f40155a;
+        ptVar.d = stickerSetCovered;
+        if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
+            l5Var.l(LocaleController.getString(R.string.NewStickerPack), false);
+            p9Var.setImageResource(R.drawable.msg_addbot);
+            return;
+        }
+        l5Var.l(stickerSetCovered.set.title, false);
+        TLRPC.Document document = stickerSetCovered.cover;
+        if (document != null) {
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerSetCovered.cover, org.telegram.ui.ActionBar.k6.f21605a7, 1.0f, 1.0f, ptVar.f40157c);
+            if (svgThumb != null) {
+                if (closestPhotoSizeWithSize != null) {
+                    p9Var.i(ImageLocation.getForDocument(closestPhotoSizeWithSize, stickerSetCovered.cover), null, "webp", svgThumb, stickerSetCovered);
+                    return;
+                } else {
+                    p9Var.i(ImageLocation.getForDocument(stickerSetCovered.cover), null, "webp", svgThumb, stickerSetCovered);
+                    return;
+                }
+            }
+            p9Var.i(ImageLocation.getForDocument(closestPhotoSizeWithSize, stickerSetCovered.cover), null, "webp", null, stickerSetCovered);
+            return;
+        }
+        p9Var.l(null, null, null, null, null, 0);
+    }
 
-    void F(TLRPC.Document document);
-
-    String G(boolean z4);
-
-    void H(TLRPC.Document document);
-
-    boolean I();
-
-    boolean J();
-
-    void K();
-
-    void L();
-
-    void M(TLRPC.InputStickerSet inputStickerSet, boolean z4);
-
-    boolean N(TLRPC.Document document);
-
-    void O(String str);
-
-    Boolean P(TLRPC.Document document);
-
-    boolean Q();
-
-    long a();
-
-    boolean b();
-
-    boolean c();
-
-    org.telegram.ui.Components.o70 d(ah.d dVar);
-
-    TLRPC.TL_messageMediaPoll e();
-
-    boolean f(TLRPC.Document document);
-
-    boolean g();
-
-    TLRPC.PollAnswer h();
-
-    boolean i();
-
-    void j(SendMessagesHelper.ImportingSticker importingSticker);
-
-    boolean k();
-
-    boolean l(int i10);
-
-    void m(TLRPC.Document document, String str, Object obj, boolean z4, int i10, int i11);
-
-    void n(String str);
-
-    void o(TLRPC.Document document);
-
-    boolean p();
-
-    void q(TLRPC.Document document);
-
-    void r();
-
-    void s(int i10, int i11, Object obj, TLObject tLObject, boolean z4);
-
-    void t();
-
-    void u(TLRPC.Document document);
-
-    void v(TLRPC.StickerSet stickerSet, String str);
-
-    void w(TLObject tLObject, Object obj);
-
-    boolean x();
-
-    void y(String str);
-
-    MessageObject z();
+    @Override
+    public final f2.m1 x(ViewGroup viewGroup, int i10) {
+        pt ptVar = new pt(viewGroup.getContext(), this.d.f40674c0);
+        ptVar.setLayoutParams(new f2.x0(-2, AndroidUtilities.dp(48.0f)));
+        return new f2.m1(ptVar);
+    }
 }

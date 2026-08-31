@@ -2,16 +2,16 @@ package k7;
 
 import java.util.AbstractMap;
 public final class ua extends ra {
-    public final va f10006c;
+    public final va f10739c;
 
     public ua(va vaVar) {
-        this.f10006c = vaVar;
+        this.f10739c = vaVar;
     }
 
     @Override
     public final Object get(int i10) {
-        va vaVar = this.f10006c;
-        j7.t8.a(i10, vaVar.e);
+        va vaVar = this.f10739c;
+        j7.u8.a(i10, vaVar.f10747e);
         Object[] objArr = vaVar.d;
         int i11 = i10 + i10;
         Object obj = objArr[i11];
@@ -23,6 +23,6 @@ public final class ua extends ra {
 
     @Override
     public final int size() {
-        return this.f10006c.e;
+        return this.f10739c.f10747e;
     }
 }

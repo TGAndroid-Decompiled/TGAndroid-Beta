@@ -1,114 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
-import org.telegram.tgnet.TLRPC;
-public final class mj extends rl0 {
-    public final Context f27038c;
-    public ArrayList d = new ArrayList();
-    public ArrayList e = new ArrayList();
-    public kj f27039f;
-    public int h;
-    public final qj f27040n;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+public final class mj implements Runnable {
+    public final int f29120a;
+    public final oj f29121b;
+    public final String f29122c;
+    public final int d;
 
-    public mj(qj qjVar, Context context) {
-        this.f27040n = qjVar;
-        this.f27038c = context;
+    public mj(oj ojVar, String str, int i10, int i11) {
+        this.f29120a = i11;
+        this.f29121b = ojVar;
+        this.f29122c = str;
+        this.d = i10;
     }
 
     @Override
-    public final boolean D(f2.l1 l1Var) {
-        if (l1Var.f5788f == 0) {
-            return true;
+    public final void run() {
+        switch (this.f29120a) {
+            case 0:
+                oj ojVar = this.f29121b;
+                String str = this.f29122c;
+                int i10 = this.d;
+                ojVar.getClass();
+                AndroidUtilities.runOnUIThread(new mj(ojVar, str, i10, 1));
+                return;
+            default:
+                oj ojVar2 = this.f29121b;
+                String str2 = this.f29122c;
+                int i11 = this.d;
+                ojVar2.getClass();
+                int i12 = UserConfig.selectedAccount;
+                Utilities.searchQueue.postRunnable(new nj(ojVar2, str2, new ArrayList(ContactsController.getInstance(i12).contactsBook.values()), new ArrayList(ContactsController.getInstance(i12).contacts), i12, i11));
+                return;
         }
-        return false;
-    }
-
-    public final Object E(int i10) {
-        int i11 = i10 - 1;
-        if (i11 >= 0 && i11 < this.d.size()) {
-            return this.d.get(i11);
-        }
-        return null;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.size() + 2;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 1;
-        }
-        if (i10 == h() - 1) {
-            return 2;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void l() {
-        super.l();
-        this.f27040n.N();
-    }
-
-    @Override
-    public final void v(f2.l1 l1Var, int i10) {
-        boolean z4;
-        TLRPC.User user;
-        if (l1Var.f5788f == 0) {
-            pj pjVar = (pj) l1Var.f5785a;
-            if (i10 != h() - 2) {
-                z4 = true;
-            } else {
-                z4 = false;
-            }
-            Object E = E(i10);
-            if (E instanceof ContactsController.Contact) {
-                ContactsController.Contact contact = (ContactsController.Contact) E;
-                user = contact.user;
-                if (user == null) {
-                    pjVar.setCurrentId(contact.contact_id);
-                    pjVar.a(null, (CharSequence) this.e.get(i10 - 1), new hj(contact, 1), z4);
-                    user = null;
-                }
-            } else {
-                user = (TLRPC.User) E;
-            }
-            if (user != null) {
-                pjVar.a(user, (CharSequence) this.e.get(i10 - 1), new ij(1, user), z4);
-            }
-            boolean containsKey = this.f27040n.f28143w.containsKey(fj.a(E));
-            lp lpVar = pjVar.d;
-            if (lpVar.getVisibility() != 0) {
-                lpVar.setVisibility(0);
-            }
-            lpVar.a(containsKey, false);
-        }
-    }
-
-    @Override
-    public final f2.l1 x(ViewGroup viewGroup, int i10) {
-        View pjVar;
-        Context context = this.f27038c;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                pjVar = new View(context);
-                pjVar.setTag(-33024);
-            } else {
-                pjVar = new View(context);
-                pjVar.setLayoutParams(new f2.w0(-1, AndroidUtilities.dp(56.0f)));
-                pjVar.setTag(-33024);
-            }
-        } else {
-            pjVar = new pj(context, this.f27040n.f24277a);
-        }
-        return new f2.l1(pjVar);
     }
 }

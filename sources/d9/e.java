@@ -1,27 +1,26 @@
 package d9;
 
-import androidx.biometric.f0;
 import java.util.concurrent.ExecutorService;
 public final class e implements Runnable {
-    public final int f4282a;
-    public final g f4283b;
-    public final Runnable f4284c;
-    public final f0 d;
+    public final int f4361a;
+    public final g f4362b;
+    public final Runnable f4363c;
+    public final y5.h d;
 
-    public e(g gVar, Runnable runnable, f0 f0Var, int i10) {
-        this.f4282a = i10;
-        this.f4283b = gVar;
-        this.f4284c = runnable;
-        this.d = f0Var;
+    public e(g gVar, Runnable runnable, y5.h hVar, int i10) {
+        this.f4361a = i10;
+        this.f4362b = gVar;
+        this.f4363c = runnable;
+        this.d = hVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f4282a) {
+        switch (this.f4361a) {
             case 0:
-                ExecutorService executorService = this.f4283b.f4288a;
-                final Runnable runnable = this.f4284c;
-                final f0 f0Var = this.d;
+                ExecutorService executorService = this.f4362b.f4367a;
+                final Runnable runnable = this.f4363c;
+                final y5.h hVar = this.d;
                 executorService.execute(new Runnable() {
                     @Override
                     public final void run() {
@@ -30,27 +29,27 @@ public final class e implements Runnable {
                                 try {
                                     runnable.run();
                                     return;
-                                } catch (Exception e) {
-                                    ((i) f0Var.f483b).l(e);
-                                    throw e;
+                                } catch (Exception e6) {
+                                    ((i) hVar.f50776b).l(e6);
+                                    throw e6;
                                 }
                             case 1:
                                 try {
                                     runnable.run();
                                     return;
-                                } catch (Exception e6) {
-                                    ((i) f0Var.f483b).l(e6);
+                                } catch (Exception e10) {
+                                    ((i) hVar.f50776b).l(e10);
                                     return;
                                 }
                             default:
                                 Runnable runnable2 = runnable;
-                                i iVar = (i) f0Var.f483b;
+                                i iVar = (i) hVar.f50776b;
                                 try {
                                     runnable2.run();
                                     iVar.k(null);
                                     return;
-                                } catch (Exception e10) {
-                                    iVar.l(e10);
+                                } catch (Exception e11) {
+                                    iVar.l(e11);
                                     return;
                                 }
                         }
@@ -58,9 +57,9 @@ public final class e implements Runnable {
                 });
                 return;
             case 1:
-                ExecutorService executorService2 = this.f4283b.f4288a;
-                final Runnable runnable2 = this.f4284c;
-                final f0 f0Var2 = this.d;
+                ExecutorService executorService2 = this.f4362b.f4367a;
+                final Runnable runnable2 = this.f4363c;
+                final y5.h hVar2 = this.d;
                 executorService2.execute(new Runnable() {
                     @Override
                     public final void run() {
@@ -69,27 +68,27 @@ public final class e implements Runnable {
                                 try {
                                     runnable2.run();
                                     return;
-                                } catch (Exception e) {
-                                    ((i) f0Var2.f483b).l(e);
-                                    throw e;
+                                } catch (Exception e6) {
+                                    ((i) hVar2.f50776b).l(e6);
+                                    throw e6;
                                 }
                             case 1:
                                 try {
                                     runnable2.run();
                                     return;
-                                } catch (Exception e6) {
-                                    ((i) f0Var2.f483b).l(e6);
+                                } catch (Exception e10) {
+                                    ((i) hVar2.f50776b).l(e10);
                                     return;
                                 }
                             default:
                                 Runnable runnable22 = runnable2;
-                                i iVar = (i) f0Var2.f483b;
+                                i iVar = (i) hVar2.f50776b;
                                 try {
                                     runnable22.run();
                                     iVar.k(null);
                                     return;
-                                } catch (Exception e10) {
-                                    iVar.l(e10);
+                                } catch (Exception e11) {
+                                    iVar.l(e11);
                                     return;
                                 }
                         }
@@ -97,9 +96,9 @@ public final class e implements Runnable {
                 });
                 return;
             default:
-                ExecutorService executorService3 = this.f4283b.f4288a;
-                final Runnable runnable3 = this.f4284c;
-                final f0 f0Var3 = this.d;
+                ExecutorService executorService3 = this.f4362b.f4367a;
+                final Runnable runnable3 = this.f4363c;
+                final y5.h hVar3 = this.d;
                 executorService3.execute(new Runnable() {
                     @Override
                     public final void run() {
@@ -108,27 +107,27 @@ public final class e implements Runnable {
                                 try {
                                     runnable3.run();
                                     return;
-                                } catch (Exception e) {
-                                    ((i) f0Var3.f483b).l(e);
-                                    throw e;
+                                } catch (Exception e6) {
+                                    ((i) hVar3.f50776b).l(e6);
+                                    throw e6;
                                 }
                             case 1:
                                 try {
                                     runnable3.run();
                                     return;
-                                } catch (Exception e6) {
-                                    ((i) f0Var3.f483b).l(e6);
+                                } catch (Exception e10) {
+                                    ((i) hVar3.f50776b).l(e10);
                                     return;
                                 }
                             default:
                                 Runnable runnable22 = runnable3;
-                                i iVar = (i) f0Var3.f483b;
+                                i iVar = (i) hVar3.f50776b;
                                 try {
                                     runnable22.run();
                                     iVar.k(null);
                                     return;
-                                } catch (Exception e10) {
-                                    iVar.l(e10);
+                                } catch (Exception e11) {
+                                    iVar.l(e11);
                                     return;
                                 }
                         }

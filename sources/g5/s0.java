@@ -1,6 +1,6 @@
 package g5;
 public final class s0 {
-    public int f6436a;
-    public int f6437b;
-    public float f6438c;
+    public int f6925a;
+    public int f6926b;
+    public float f6927c;
 }

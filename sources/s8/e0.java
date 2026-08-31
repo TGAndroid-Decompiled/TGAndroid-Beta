@@ -8,13 +8,13 @@ import java.util.SortedMap;
 import l7.xa;
 public final class e0 extends k implements Serializable {
     public transient Map d;
-    public transient int e;
-    public transient d0 f44124f;
+    public transient int f47101e;
+    public transient d0 f47102f;
 
     @Override
     public final xa a() {
         xa xaVar;
-        xa xaVar2 = this.f44133c;
+        xa xaVar2 = this.f47113c;
         if (xaVar2 == null) {
             Map map = this.d;
             if (map instanceof NavigableMap) {
@@ -24,7 +24,7 @@ public final class e0 extends k implements Serializable {
             } else {
                 xaVar = new xa(this, map, 2);
             }
-            this.f44133c = xaVar;
+            this.f47113c = xaVar;
             return xaVar;
         }
         return xaVar2;
@@ -36,6 +36,6 @@ public final class e0 extends k implements Serializable {
             collection.clear();
         }
         map.clear();
-        this.e = 0;
+        this.f47101e = 0;
     }
 }

@@ -1,105 +1,105 @@
 package org.telegram.messenger.voip;
 public final class u implements Runnable {
-    public final int f18842a;
-    public final VoIPService f18843b;
+    public final int f20475a;
+    public final VoIPService f20476b;
 
     public u(VoIPService voIPService, int i10) {
-        this.f18842a = i10;
-        this.f18843b = voIPService;
+        this.f20475a = i10;
+        this.f20476b = voIPService;
     }
 
     @Override
     public final void run() {
-        switch (this.f18842a) {
+        switch (this.f20475a) {
             case 0:
-                this.f18843b.lambda$playConnectedSound$88();
+                this.f20476b.lambda$playConnectedSound$88();
                 return;
             case 1:
-                this.f18843b.lambda$playStartRecordSound$119();
+                this.f20476b.lambda$playStartRecordSound$119();
                 return;
             case 2:
-                this.f18843b.lambda$playAllowTalkSound$120();
+                this.f20476b.lambda$playAllowTalkSound$120();
                 return;
             case 3:
-                this.f18843b.lambda$getConnectionAndStartCall$106();
+                this.f20476b.lambda$getConnectionAndStartCall$106();
                 return;
             case 4:
-                this.f18843b.lambda$callFailed$114();
+                this.f20476b.lambda$callFailed$114();
                 return;
             case 5:
-                this.f18843b.lambda$callFailed$115();
+                this.f20476b.lambda$callFailed$115();
                 return;
             case 6:
-                this.f18843b.lambda$callEnded$122();
+                this.f20476b.lambda$callEnded$122();
                 return;
             case 7:
-                this.f18843b.lambda$callEnded$123();
+                this.f20476b.lambda$callEnded$123();
                 return;
             case 8:
-                this.f18843b.lambda$callEnded$124();
+                this.f20476b.lambda$callEnded$124();
                 return;
             case 9:
-                this.f18843b.lambda$callEnded$125();
+                this.f20476b.lambda$callEnded$125();
                 return;
             case 10:
-                this.f18843b.lambda$onCallUpdated$16();
+                this.f20476b.lambda$onCallUpdated$16();
                 return;
             case 11:
-                this.f18843b.lambda$onCallUpdated$17();
+                this.f20476b.lambda$onCallUpdated$17();
                 return;
             case 12:
-                this.f18843b.lambda$onCallUpdated$18();
+                this.f20476b.lambda$onCallUpdated$18();
                 return;
             case 13:
-                this.f18843b.lambda$setMicMute$0();
+                this.f20476b.lambda$setMicMute$0();
                 return;
             case 14:
-                this.f18843b.lambda$switchToSpeaker$92();
+                this.f20476b.lambda$switchToSpeaker$92();
                 return;
             case 15:
-                this.f18843b.lambda$endConnectionServiceCall$126();
+                this.f20476b.lambda$endConnectionServiceCall$126();
                 return;
             case 16:
-                this.f18843b.lambda$onConnectionStateChanged$116();
+                this.f20476b.lambda$onConnectionStateChanged$116();
                 return;
             case 17:
-                this.f18843b.lambda$onConnectionStateChanged$117();
+                this.f20476b.lambda$onConnectionStateChanged$117();
                 return;
             case 18:
-                this.f18843b.lambda$convertToConferenceCall$30();
+                this.f20476b.lambda$convertToConferenceCall$30();
                 return;
             case 19:
-                this.f18843b.lambda$initiateActualEncryptedCall$84();
+                this.f20476b.lambda$initiateActualEncryptedCall$84();
                 return;
             case 20:
-                this.f18843b.lambda$loadResources$108();
+                this.f20476b.lambda$loadResources$108();
                 return;
             case 21:
-                this.f18843b.lambda$setupCaptureDevice$14();
+                this.f20476b.lambda$setupCaptureDevice$14();
                 return;
             case 22:
-                this.f18843b.lambda$startOutgoingCall$8();
+                this.f20476b.lambda$startOutgoingCall$8();
                 return;
             case 23:
-                this.f18843b.lambda$onStartCommand$2();
+                this.f20476b.lambda$onStartCommand$2();
                 return;
             case 24:
-                this.f18843b.lambda$onStartCommand$3();
+                this.f20476b.lambda$onStartCommand$3();
                 return;
             case 25:
-                this.f18843b.lambda$declineIncomingCall$104();
+                this.f20476b.lambda$declineIncomingCall$104();
                 return;
             case 26:
-                this.f18843b.callFailed();
+                this.f20476b.callFailed();
                 return;
             case 27:
-                this.f18843b.lambda$startGroupCheckShortpoll$65();
+                this.f20476b.lambda$startGroupCheckShortpoll$65();
                 return;
             case 28:
-                this.f18843b.lambda$onDestroy$99();
+                this.f20476b.lambda$onDestroy$99();
                 return;
             default:
-                this.f18843b.lambda$startConnectingSound$89();
+                this.f20476b.lambda$startConnectingSound$89();
                 return;
         }
     }

@@ -5,14 +5,14 @@ public enum b implements x9.b {
     TOPIC(2),
     DISPLAY_NOTIFICATION(3);
     
-    public final int f7460a;
+    public final int f8031a;
 
     b(int i10) {
-        this.f7460a = i10;
+        this.f8031a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f7460a;
+        return this.f8031a;
     }
 }

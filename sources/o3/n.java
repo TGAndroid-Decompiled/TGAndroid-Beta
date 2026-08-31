@@ -1,8 +1,8 @@
 package o3;
 
-import m.j0;
+import mh.c3;
 public interface n {
-    public static final j0 f16272j = new j0(9);
+    public static final c3 f16413j = new c3(2);
 
     void release();
 }

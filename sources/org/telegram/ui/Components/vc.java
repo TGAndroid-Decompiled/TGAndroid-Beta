@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
 public class vc {
-    public int f29420a;
-    public boolean f29421b;
-    public long f29422c;
+    public int f31880a;
+    public boolean f31881b;
+    public long f31882c;
 }

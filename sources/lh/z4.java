@@ -1,44 +1,36 @@
 package lh;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.view.View;
-public final class z4 extends org.telegram.ui.Components.p9 {
-    public final int D;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+public final class z4 extends org.telegram.ui.ActionBar.g1 {
+    public final int I;
+    public long J;
+    public x4 K;
 
-    public z4(Context context, int i10) {
-        super(context);
-        this.D = i10;
+    public z4(Context context, int i10, g6 g6Var) {
+        super(0, context, g6Var, false, false);
+        this.I = i10;
+        setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
+        int v02 = k6.v0(k6.E8, g6Var);
+        int i11 = k6.F8;
+        c(v02, k6.v0(i11, g6Var));
+        e(k6.v0(i11, g6Var), PorterDuff.Mode.SRC_IN);
+        this.f21375c.setTranslationX(AndroidUtilities.dp(2.0f));
+        a(2);
+        setBackground(null);
+        this.f21375c.addOnAttachStateChangeListener(new ff.b(this, 5));
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.D) {
-            case 1:
-                int size = View.MeasureSpec.getSize(i10);
-                setMeasuredDimension(size, size);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
+            size = AndroidUtilities.dp(250.0f);
         }
-    }
-
-    @Override
-    public void setAlpha(float f10) {
-        int i10;
-        switch (this.D) {
-            case 0:
-                super.setAlpha(f10);
-                if (f10 > 0.0f) {
-                    i10 = 0;
-                } else {
-                    i10 = 4;
-                }
-                setVisibility(i10);
-                return;
-            default:
-                super.setAlpha(f10);
-                return;
-        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
     }
 }

@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class kd implements View.OnClickListener {
-    public final int f26254a;
-    public final ChatActivityEnterView f26255b;
+    public final int f28373a;
+    public final ChatActivityEnterView f28374b;
 
     public kd(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f26254a = i10;
-        this.f26255b = chatActivityEnterView;
+        this.f28373a = i10;
+        this.f28374b = chatActivityEnterView;
     }
 
     @Override

@@ -4,38 +4,38 @@ import h5.d0;
 import r3.r;
 import r3.t;
 public final class h implements f {
-    public final long f47057a;
-    public final int f47058b;
-    public final long f47059c;
+    public final long f50740a;
+    public final int f50741b;
+    public final long f50742c;
     public final long d;
-    public final long e;
-    public final long[] f47060f;
+    public final long f50743e;
+    public final long[] f50744f;
 
     public h(long j10, int i10, long j11, long j12, long[] jArr) {
-        this.f47057a = j10;
-        this.f47058b = i10;
-        this.f47059c = j11;
-        this.f47060f = jArr;
+        this.f50740a = j10;
+        this.f50741b = i10;
+        this.f50742c = j11;
+        this.f50744f = jArr;
         this.d = j12;
-        this.e = j12 != -1 ? j10 + j12 : -1L;
+        this.f50743e = j12 != -1 ? j10 + j12 : -1L;
     }
 
     @Override
     public final long a(long j10) {
         long j11;
         double d;
-        long j12 = j10 - this.f47057a;
-        if (c() && j12 > this.f47058b) {
-            long[] jArr = this.f47060f;
+        long j12 = j10 - this.f50740a;
+        if (c() && j12 > this.f50741b) {
+            long[] jArr = this.f50744f;
             h5.a.j(jArr);
             double d10 = (j12 * 256.0d) / this.d;
-            int e = d0.e(jArr, (long) d10, true);
-            long j13 = this.f47059c;
-            long j14 = (e * j13) / 100;
-            long j15 = jArr[e];
-            int i10 = e + 1;
+            int e6 = d0.e(jArr, (long) d10, true);
+            long j13 = this.f50742c;
+            long j14 = (e6 * j13) / 100;
+            long j15 = jArr[e6];
+            int i10 = e6 + 1;
             long j16 = (j13 * i10) / 100;
-            if (e == 99) {
+            if (e6 == 99) {
                 j11 = 256;
             } else {
                 j11 = jArr[i10];
@@ -52,12 +52,12 @@ public final class h implements f {
 
     @Override
     public final long b() {
-        return this.e;
+        return this.f50743e;
     }
 
     @Override
     public final boolean c() {
-        if (this.f47060f != null) {
+        if (this.f50744f != null) {
             return true;
         }
         return false;
@@ -68,14 +68,14 @@ public final class h implements f {
         double d;
         double d10;
         boolean c3 = c();
-        int i10 = this.f47058b;
-        long j11 = this.f47057a;
+        int i10 = this.f50741b;
+        long j11 = this.f50740a;
         if (!c3) {
             t tVar = new t(0L, j11 + i10);
             return new r(tVar, tVar);
         }
-        long i11 = d0.i(j10, 0L, this.f47059c);
-        double d11 = (i11 * 100.0d) / this.f47059c;
+        long i11 = d0.i(j10, 0L, this.f50742c);
+        double d11 = (i11 * 100.0d) / this.f50742c;
         double d12 = 0.0d;
         if (d11 <= 0.0d) {
             d = 256.0d;
@@ -84,7 +84,7 @@ public final class h implements f {
             d12 = 256.0d;
         } else {
             int i12 = (int) d11;
-            long[] jArr = this.f47060f;
+            long[] jArr = this.f50744f;
             h5.a.j(jArr);
             double d13 = jArr[i12];
             if (i12 == 99) {
@@ -103,6 +103,6 @@ public final class h implements f {
 
     @Override
     public final long g() {
-        return this.f47059c;
+        return this.f50742c;
     }
 }

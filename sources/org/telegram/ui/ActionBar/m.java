@@ -6,30 +6,30 @@ import android.text.TextUtils;
 import android.widget.FrameLayout;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.pr;
 public abstract class m extends FrameLayout implements xd.i {
-    public final f6 f20443a;
-    public final cb.m f20444b;
-    public final xd.j f20445c;
+    public final g6 f22124a;
+    public final cb.m f22125b;
+    public final xd.j f22126c;
 
-    public m(Context context, f6 f6Var, cb.m mVar) {
+    public m(Context context, g6 g6Var, cb.m mVar) {
         super(context);
-        this.f20445c = new xd.j(this, nr.h, 350L);
-        this.f20443a = f6Var;
-        this.f20444b = mVar;
+        this.f22126c = new xd.j(this, pr.h, 350L);
+        this.f22124a = g6Var;
+        this.f22125b = mVar;
     }
 
     public final void b(CharSequence charSequence) {
         boolean z4;
         SpannableString spannableString;
         boolean isEmpty = TextUtils.isEmpty(charSequence);
-        xd.j jVar = this.f20445c;
+        xd.j jVar = this.f22126c;
         if (isEmpty) {
-            jVar.f46912a.r(null, true);
+            jVar.f50528a.r(null, true);
             return;
         }
         int indexOf = TextUtils.indexOf(charSequence, "...");
-        cb.m mVar = this.f20444b;
+        cb.m mVar = this.f22125b;
         if (indexOf >= 0) {
             SpannableString valueOf = SpannableString.valueOf(charSequence);
             mVar.x(valueOf, indexOf);
@@ -40,38 +40,38 @@ public abstract class m extends FrameLayout implements xd.i {
             spannableString = charSequence;
         }
         l lVar = new l(this, getContext());
-        int i10 = j6.gl;
-        f6 f6Var = this.f20443a;
-        lVar.setTextColor(j6.v0(i10, f6Var));
-        lVar.setLinkTextColor(j6.v0(i10, f6Var));
+        int i10 = k6.gl;
+        g6 g6Var = this.f22124a;
+        lVar.setTextColor(k6.v0(i10, g6Var));
+        lVar.setLinkTextColor(k6.v0(i10, g6Var));
         lVar.setTextSize(1, 14.0f);
         lVar.setAlpha(0.0f);
         lVar.setText(spannableString);
         if (z4) {
             mVar.c(lVar);
         }
-        addView(lVar, k7.b6.c(-2.0f, -2));
+        addView(lVar, k7.c6.c(-2.0f, -2));
         jVar.i(lVar, true);
     }
 
     public final void c() {
-        Iterator it = this.f20445c.iterator();
+        Iterator it = this.f22126c.iterator();
         while (it.hasNext()) {
             xd.e eVar = (xd.e) it.next();
-            int i10 = j6.gl;
-            f6 f6Var = this.f20443a;
-            ((l) eVar.f46899a).setTextColor(j6.v0(i10, f6Var));
-            ((l) eVar.f46899a).setLinkTextColor(j6.v0(i10, f6Var));
+            int i10 = k6.gl;
+            g6 g6Var = this.f22124a;
+            ((l) eVar.f50512a).setTextColor(k6.v0(i10, g6Var));
+            ((l) eVar.f50512a).setLinkTextColor(k6.v0(i10, g6Var));
         }
     }
 
     public void e(xd.j jVar) {
         float f10;
-        Iterator it = this.f20445c.iterator();
+        Iterator it = this.f22126c.iterator();
         while (it.hasNext()) {
             xd.e eVar = (xd.e) it.next();
             float c3 = eVar.c();
-            Object obj = eVar.f46899a;
+            Object obj = eVar.f50512a;
             float lerp = AndroidUtilities.lerp(0.85f, 1.0f, c3);
             l lVar = (l) obj;
             lVar.setAlpha(c3);
@@ -87,7 +87,7 @@ public abstract class m extends FrameLayout implements xd.i {
     }
 
     public float getTotalVisibility() {
-        return this.f20445c.f46912a.d.f46905c.f46913a;
+        return this.f22126c.f50528a.d.f50519c.f50529a;
     }
 
     @Override

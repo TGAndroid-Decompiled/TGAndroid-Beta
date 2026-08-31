@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import org.telegram.ui.yh;
 public abstract class j {
-    public static final Object[] f10984a = new Object[0];
+    public static final Object[] f11334a = new Object[0];
 
     public static boolean a(Object obj, Object obj2) {
         if (obj == null) {
@@ -119,7 +119,7 @@ public abstract class j {
                 }
             }
         }
-        return f10984a;
+        return f11334a;
     }
 
     public static final Object[] j(Collection collection, Object[] objArr) {

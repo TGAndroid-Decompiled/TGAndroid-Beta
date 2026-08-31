@@ -7,16 +7,16 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 public final class o extends pa.u {
-    public final int f44209a;
-    public final Object f44210b;
-    public final Object f44211c;
+    public final int f47197a;
+    public final Object f47198b;
+    public final Object f47199c;
     public final Object d;
 
     public o(Class cls) {
         Field[] fieldArr;
-        this.f44209a = 2;
-        this.f44210b = new HashMap();
-        this.f44211c = new HashMap();
+        this.f47197a = 2;
+        this.f47198b = new HashMap();
+        this.f47199c = new HashMap();
         this.d = new HashMap();
         try {
             for (Field field : (Field[]) AccessController.doPrivileged(new g1(cls))) {
@@ -27,34 +27,34 @@ public final class o extends pa.u {
                 if (bVar != null) {
                     name = bVar.value();
                     for (String str2 : bVar.alternate()) {
-                        ((HashMap) this.f44210b).put(str2, r42);
+                        ((HashMap) this.f47198b).put(str2, r42);
                     }
                 }
-                ((HashMap) this.f44210b).put(name, r42);
-                ((HashMap) this.f44211c).put(str, r42);
+                ((HashMap) this.f47198b).put(name, r42);
+                ((HashMap) this.f47199c).put(str, r42);
                 ((HashMap) this.d).put(r42, name);
             }
-        } catch (IllegalAccessException e) {
-            throw new AssertionError(e);
+        } catch (IllegalAccessException e6) {
+            throw new AssertionError(e6);
         }
     }
 
     @Override
     public final Object read(xa.a aVar) {
-        switch (this.f44209a) {
+        switch (this.f47197a) {
             case 0:
                 int x10 = aVar.x();
                 if (x10 == 9) {
                     aVar.t();
                     return null;
                 }
-                Map map = (Map) ((ra.m) this.d).s2();
+                Map map = (Map) ((ra.m) this.d).y2();
                 if (x10 == 1) {
                     aVar.a();
                     while (aVar.k()) {
                         aVar.a();
-                        Object read = ((pa.u) ((o) this.f44210b).f44211c).read(aVar);
-                        if (map.put(read, ((pa.u) ((o) this.f44211c).f44211c).read(aVar)) == null) {
+                        Object read = ((pa.u) ((o) this.f47198b).f47199c).read(aVar);
+                        if (map.put(read, ((pa.u) ((o) this.f47199c).f47199c).read(aVar)) == null) {
                             aVar.e();
                         } else {
                             throw new RuntimeException("duplicate key: " + read);
@@ -64,7 +64,7 @@ public final class o extends pa.u {
                 } else {
                     aVar.b();
                     while (aVar.k()) {
-                        cb.b.f2211b.getClass();
+                        cb.b.f2402b.getClass();
                         if (aVar instanceof l) {
                             l lVar = (l) aVar;
                             lVar.F(5);
@@ -86,8 +86,8 @@ public final class o extends pa.u {
                                 throw aVar.E("a name");
                             }
                         }
-                        Object read2 = ((pa.u) ((o) this.f44210b).f44211c).read(aVar);
-                        if (map.put(read2, ((pa.u) ((o) this.f44211c).f44211c).read(aVar)) != null) {
+                        Object read2 = ((pa.u) ((o) this.f47198b).f47199c).read(aVar);
+                        if (map.put(read2, ((pa.u) ((o) this.f47199c).f47199c).read(aVar)) != null) {
                             throw new RuntimeException("duplicate key: " + read2);
                         }
                     }
@@ -95,16 +95,16 @@ public final class o extends pa.u {
                 }
                 return map;
             case 1:
-                return ((pa.u) this.f44211c).read(aVar);
+                return ((pa.u) this.f47199c).read(aVar);
             default:
                 if (aVar.x() == 9) {
                     aVar.t();
                     return null;
                 }
                 String v = aVar.v();
-                Enum r02 = (Enum) ((HashMap) this.f44210b).get(v);
+                Enum r02 = (Enum) ((HashMap) this.f47198b).get(v);
                 if (r02 == null) {
-                    return (Enum) ((HashMap) this.f44211c).get(v);
+                    return (Enum) ((HashMap) this.f47199c).get(v);
                 }
                 return r02;
         }
@@ -116,16 +116,16 @@ public final class o extends pa.u {
     }
 
     public o(pa.g gVar, pa.u uVar, Type type) {
-        this.f44209a = 1;
-        this.f44210b = gVar;
-        this.f44211c = uVar;
+        this.f47197a = 1;
+        this.f47198b = gVar;
+        this.f47199c = uVar;
         this.d = type;
     }
 
     public o(d dVar, pa.g gVar, Type type, pa.u uVar, Type type2, pa.u uVar2, ra.m mVar) {
-        this.f44209a = 0;
-        this.f44210b = new o(gVar, uVar, type);
-        this.f44211c = new o(gVar, uVar2, type2);
+        this.f47197a = 0;
+        this.f47198b = new o(gVar, uVar, type);
+        this.f47199c = new o(gVar, uVar2, type2);
         this.d = mVar;
     }
 }

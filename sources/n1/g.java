@@ -17,7 +17,7 @@ import m1.h;
 import m1.i;
 import m1.k;
 public final class g {
-    public static final g f14215a = new Object();
+    public static final g f15189a = new Object();
 
     public final b a(FileInputStream fileInputStream) {
         int i10;
@@ -26,7 +26,7 @@ public final class g {
             b bVar = new b(false);
             e[] pairs = (e[]) Arrays.copyOf(new e[0], 0);
             j.e(pairs, "pairs");
-            if (!bVar.f14209b.get()) {
+            if (!bVar.f15183b.get()) {
                 if (pairs.length <= 0) {
                     Map j10 = l10.j();
                     j.d(j10, "preferencesProto.preferencesMap");
@@ -39,7 +39,7 @@ public final class g {
                         if (x10 == 0) {
                             i10 = -1;
                         } else {
-                            i10 = f.f14214a[m1.j.b(x10)];
+                            i10 = f.f15188a[m1.j.c(x10)];
                         }
                         switch (i10) {
                             case -1:
@@ -78,7 +78,7 @@ public final class g {
                                 throw new IOException("Value not set.", null);
                         }
                     }
-                    Map unmodifiableMap = DesugarCollections.unmodifiableMap(bVar.f14208a);
+                    Map unmodifiableMap = DesugarCollections.unmodifiableMap(bVar.f15182a);
                     j.d(unmodifiableMap, "unmodifiableMap(preferencesMap)");
                     return new b(new LinkedHashMap(unmodifiableMap), true);
                 }
@@ -86,68 +86,68 @@ public final class g {
                 throw null;
             }
             throw new IllegalStateException("Do mutate preferences once returned to DataStore.");
-        } catch (c0 e) {
-            throw new IOException("Unable to parse preferences proto.", e);
+        } catch (c0 e6) {
+            throw new IOException("Unable to parse preferences proto.", e6);
         }
     }
 
     public final void b(Object obj, n nVar) {
         x a2;
-        Map unmodifiableMap = DesugarCollections.unmodifiableMap(((b) obj).f14208a);
+        Map unmodifiableMap = DesugarCollections.unmodifiableMap(((b) obj).f15182a);
         j.d(unmodifiableMap, "unmodifiableMap(preferencesMap)");
         m1.d k10 = m1.f.k();
         for (Map.Entry entry : unmodifiableMap.entrySet()) {
             Object value = entry.getValue();
-            String str = ((d) entry.getKey()).f14213a;
+            String str = ((d) entry.getKey()).f15187a;
             if (value instanceof Boolean) {
                 i y10 = k.y();
                 boolean booleanValue = ((Boolean) value).booleanValue();
                 y10.c();
-                k.m((k) y10.f743b, booleanValue);
+                k.m((k) y10.f810b, booleanValue);
                 a2 = y10.a();
             } else if (value instanceof Float) {
                 i y11 = k.y();
                 float floatValue = ((Number) value).floatValue();
                 y11.c();
-                k.n((k) y11.f743b, floatValue);
+                k.n((k) y11.f810b, floatValue);
                 a2 = y11.a();
             } else if (value instanceof Double) {
                 i y12 = k.y();
                 double doubleValue = ((Number) value).doubleValue();
                 y12.c();
-                k.l((k) y12.f743b, doubleValue);
+                k.l((k) y12.f810b, doubleValue);
                 a2 = y12.a();
             } else if (value instanceof Integer) {
                 i y13 = k.y();
                 int intValue = ((Number) value).intValue();
                 y13.c();
-                k.o((k) y13.f743b, intValue);
+                k.o((k) y13.f810b, intValue);
                 a2 = y13.a();
             } else if (value instanceof Long) {
                 i y14 = k.y();
                 long longValue = ((Number) value).longValue();
                 y14.c();
-                k.i((k) y14.f743b, longValue);
+                k.i((k) y14.f810b, longValue);
                 a2 = y14.a();
             } else if (value instanceof String) {
                 i y15 = k.y();
                 y15.c();
-                k.j((k) y15.f743b, (String) value);
+                k.j((k) y15.f810b, (String) value);
                 a2 = y15.a();
             } else if (value instanceof Set) {
                 i y16 = k.y();
                 m1.g l10 = h.l();
                 l10.c();
-                h.i((h) l10.f743b, (Set) value);
+                h.i((h) l10.f810b, (Set) value);
                 y16.c();
-                k.k((k) y16.f743b, l10);
+                k.k((k) y16.f810b, l10);
                 a2 = y16.a();
             } else {
                 throw new IllegalStateException(j.g(value.getClass().getName(), "PreferencesSerializer does not support type: "));
             }
             k10.getClass();
             k10.c();
-            m1.f.i((m1.f) k10.f743b).put(str, (k) a2);
+            m1.f.i((m1.f) k10.f810b).put(str, (k) a2);
         }
         m1.f fVar = (m1.f) k10.a();
         int a10 = fVar.a();
@@ -157,7 +157,7 @@ public final class g {
         }
         androidx.datastore.preferences.protobuf.k kVar = new androidx.datastore.preferences.protobuf.k(nVar, a10);
         fVar.c(kVar);
-        if (kVar.f685f > 0) {
+        if (kVar.f749f > 0) {
             kVar.B();
         }
     }

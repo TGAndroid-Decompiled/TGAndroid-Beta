@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
 public interface mb {
-    void c(nb nbVar, wa waVar, ua uaVar, xa xaVar);
+    void A(nb nbVar, wa waVar, fg fgVar, il ilVar);
 
-    void v(nb nbVar, wa waVar, fg fgVar, gl glVar);
+    void c(nb nbVar, wa waVar, ua uaVar, xa xaVar);
 }

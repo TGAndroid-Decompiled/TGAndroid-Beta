@@ -1,74 +1,56 @@
 package uf;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.c5;
-import org.telegram.ui.Components.j6;
-import org.telegram.ui.Components.nr;
-public final class g1 extends EditTextBoldCursor {
-    public final c5 f45311b;
-    public int f45312c;
-    public final j6 d;
-    public final f6 e;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.ui.du;
+public final class g1 implements Runnable {
+    public final int f48575a;
+    public final k1 f48576b;
 
-    public g1(Context context, f6 f6Var) {
-        super(context);
-        this.e = f6Var;
-        this.f45311b = new c5(this);
-        j6 j6Var = new j6(false, true, true, false);
-        this.d = j6Var;
-        j6Var.k(0.2f, 160L, nr.h);
-        j6Var.t(AndroidUtilities.dp(15.33f));
-        j6Var.setCallback(this);
-        j6Var.f25884b = 5;
+    public g1(k1 k1Var, int i10) {
+        this.f48575a = i10;
+        this.f48576b = k1Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        super.dispatchDraw(canvas);
-        if (this.f45312c < 0) {
-            i10 = org.telegram.ui.ActionBar.j6.f20122p7;
-        } else {
-            i10 = org.telegram.ui.ActionBar.j6.P5;
+    public final void run() {
+        switch (this.f48575a) {
+            case 0:
+                k1 k1Var = this.f48576b;
+                k1Var.getClass();
+                try {
+                    MessagesStorage.getInstance(k1Var.f48628m).getDatabase().executeFast("DELETE FROM hashtag_recent_v2 WHERE 1").stepThis().dispose();
+                    return;
+                } catch (Exception e6) {
+                    FileLog.e(e6);
+                    return;
+                }
+            default:
+                k1 k1Var2 = this.f48576b;
+                try {
+                    SQLiteCursor queryFinalized = MessagesStorage.getInstance(k1Var2.f48628m).getDatabase().queryFinalized("SELECT id, date FROM hashtag_recent_v2 WHERE 1", new Object[0]);
+                    ArrayList arrayList = new ArrayList();
+                    HashMap hashMap = new HashMap();
+                    while (queryFinalized.next()) {
+                        ?? obj = new Object();
+                        obj.f48603a = queryFinalized.stringValue(0);
+                        obj.f48604b = queryFinalized.intValue(1);
+                        arrayList.add(obj);
+                        hashMap.put(obj.f48603a, obj);
+                    }
+                    queryFinalized.dispose();
+                    Collections.sort(arrayList, new du(21));
+                    AndroidUtilities.runOnUIThread(new h1(k1Var2, arrayList, hashMap, 0));
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return;
+                }
         }
-        int a2 = this.f45311b.a(org.telegram.ui.ActionBar.j6.v0(i10, this.e), false);
-        j6 j6Var = this.d;
-        j6Var.r(a2);
-        j6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        j6Var.draw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        super.onTextChanged(charSequence, i10, i11, i12);
-        j6 j6Var = this.d;
-        if (j6Var != null) {
-            this.f45312c = 32 - charSequence.length();
-            j6Var.b();
-            String str = "";
-            if (this.f45312c <= 4) {
-                str = "" + this.f45312c;
-            }
-            j6Var.q(str, true, true);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.d && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
     }
 }

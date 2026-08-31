@@ -1,69 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SvgHelper;
-public final class l30 extends m2.a {
-    public final m30 f26542c;
+public final class l30 extends TextView {
+    public final Paint[] f28582a;
+    public final o30 f28583b;
 
-    public l30(m30 m30Var) {
-        this.f26542c = m30Var;
-    }
-
-    @Override
-    public final void a(m2.h hVar, Object obj) {
-        hVar.removeView((View) obj);
-    }
-
-    @Override
-    public final int b() {
-        return this.f26542c.e.length;
-    }
-
-    @Override
-    public final Object e(m2.h hVar, int i10) {
-        int i11;
-        k30 k30Var = new k30(this, this.f26542c.getContext(), i10, 0);
-        k30Var.setOnClickListener(new lh.y0(this, i10, 7));
-        k30Var.setFocusable(true);
-        k30Var.setTag(Integer.valueOf(i10));
-        k30Var.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        k30Var.setScaleType(ImageView.ScaleType.FIT_XY);
-        k30Var.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(200.0f), -1));
-        if (i10 == 0) {
-            k30Var.setContentDescription(LocaleController.getString(R.string.VoipRecordAudio));
-        } else if (i10 == 1) {
-            k30Var.setContentDescription(LocaleController.getString(R.string.VoipRecordPortrait));
-        } else {
-            k30Var.setContentDescription(LocaleController.getString(R.string.VoipRecordLandscape));
+    public l30(o30 o30Var, Context context) {
+        super(context);
+        this.f28583b = o30Var;
+        this.f28582a = new Paint[o30Var.f29662e.length];
+        int i10 = 0;
+        while (true) {
+            Paint[] paintArr = this.f28582a;
+            if (i10 < paintArr.length) {
+                paintArr[i10] = new Paint(1);
+                i10++;
+            } else {
+                return;
+            }
         }
-        if (i10 == 0) {
-            i11 = R.raw.record_audio;
-        } else if (i10 == 1) {
-            i11 = R.raw.record_video_p;
-        } else {
-            i11 = R.raw.record_video_l;
-        }
-        SvgHelper.SvgDrawable drawable = SvgHelper.getDrawable(AndroidUtilities.readRes(i11));
-        drawable.setAspectFill(false);
-        k30Var.setImageDrawable(drawable);
-        if (k30Var.getParent() != null) {
-            ((ViewGroup) k30Var.getParent()).removeView(k30Var);
-        }
-        hVar.addView(k30Var, 0);
-        return k30Var;
     }
 
     @Override
-    public final boolean f(View view, Object obj) {
-        return view.equals(obj);
+    public final void onDraw(Canvas canvas) {
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        o30 o30Var = this.f28583b;
+        int i10 = o30Var.h;
+        Paint[] paintArr = this.f28582a;
+        paintArr[i10].setAlpha(255);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[o30Var.h]);
+        float f10 = o30Var.f29663f;
+        if (f10 > 0.0f) {
+            int i11 = o30Var.h;
+            if (i11 + 1 < paintArr.length) {
+                paintArr[i11 + 1].setAlpha((int) (f10 * 255.0f));
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[o30Var.h + 1]);
+            }
+        }
+        super.onDraw(canvas);
     }
 
     @Override
-    public final void h(int i10) {
+    public final void onSizeChanged(int r12, int r13, int r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.l30.onSizeChanged(int, int, int, int):void");
     }
 }

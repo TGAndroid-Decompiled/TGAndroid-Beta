@@ -1,18 +1,29 @@
 package bg;
 
-import f2.q;
-import java.util.ArrayList;
-import org.telegram.ui.Components.rl0;
-public abstract class c extends rl0 {
-    public final a f1810c = new a();
+import org.telegram.ui.mf1;
+import org.telegram.ui.xn;
+public final class c implements Runnable {
+    public final int f1975a;
+    public final xn f1976b;
 
-    public final void E(ArrayList arrayList, ArrayList arrayList2) {
-        if (arrayList2 == null) {
-            arrayList2 = new ArrayList();
+    public c(xn xnVar, int i10) {
+        this.f1975a = i10;
+        this.f1976b = xnVar;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f1975a) {
+            case 0:
+                xn xnVar = this.f1976b;
+                if (xnVar.getParentLayout() != null) {
+                    mf1.I0(xnVar);
+                    return;
+                }
+                return;
+            default:
+                this.f1976b.Yb();
+                return;
         }
-        a aVar = this.f1810c;
-        aVar.f1807c = arrayList;
-        aVar.d = arrayList2;
-        q.c(aVar, true).b(this);
     }
 }

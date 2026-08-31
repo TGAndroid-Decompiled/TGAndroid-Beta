@@ -5,15 +5,15 @@ import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class hf implements TextWatcher {
-    public boolean f25405a;
-    public boolean f25406b;
-    public String f25407c;
+    public boolean f27477a;
+    public boolean f27478b;
+    public String f27479c;
     public boolean d;
-    public boolean e;
-    public final ChatActivityEnterView f25408f;
+    public boolean f27480e;
+    public final ChatActivityEnterView f27481f;
 
     public hf(ChatActivityEnterView chatActivityEnterView) {
-        this.f25408f = chatActivityEnterView;
+        this.f27481f = chatActivityEnterView;
     }
 
     @Override
@@ -23,8 +23,8 @@ public final class hf implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        if (!this.d && this.f25408f.B2) {
-            this.f25407c = charSequence.toString();
+        if (!this.d && this.f27481f.B2) {
+            this.f27479c = charSequence.toString();
         }
     }
 
@@ -39,7 +39,7 @@ public final class hf implements TextWatcher {
         boolean z14;
         boolean z15;
         if (!this.d) {
-            ChatActivityEnterView chatActivityEnterView = this.f25408f;
+            ChatActivityEnterView chatActivityEnterView = this.f27481f;
             uf ufVar = chatActivityEnterView.R0;
             if (ufVar == null) {
                 currentPage = MessagesController.getGlobalEmojiSettings().getInt("selected_page", 0);
@@ -70,7 +70,7 @@ public final class hf implements TextWatcher {
                 } else {
                     z13 = false;
                 }
-                this.e = z13;
+                this.f27480e = z13;
                 if (!chatActivityEnterView.P && chatActivityEnterView.B0.getMeasuredWidth() > 0) {
                     chatActivityEnterView.C0(chatActivityEnterView.Q, chatActivityEnterView.B0.getLineCount());
                 }
@@ -89,13 +89,13 @@ public final class hf implements TextWatcher {
                 }
                 chatActivityEnterView.v1(z15);
             } else {
-                this.e = false;
+                this.f27480e = false;
             }
             if (chatActivityEnterView.O2 == 1) {
                 return;
             }
-            if (chatActivityEnterView.f22861x2 && !chatActivityEnterView.f22870z0 && !chatActivityEnterView.A0 && !chatActivityEnterView.N2 && !chatActivityEnterView.T1 && chatActivityEnterView.V1 == null && i12 > i11 && charSequence.length() > 0 && charSequence.length() == i10 + i12 && charSequence.charAt(charSequence.length() - 1) == '\n') {
-                this.f25406b = true;
+            if (chatActivityEnterView.f24701x2 && !chatActivityEnterView.f24710z0 && !chatActivityEnterView.A0 && !chatActivityEnterView.N2 && !chatActivityEnterView.T1 && chatActivityEnterView.V1 == null && i12 > i11 && charSequence.length() > 0 && charSequence.length() == i10 + i12 && charSequence.charAt(charSequence.length() - 1) == '\n') {
+                this.f27478b = true;
             }
             chatActivityEnterView.T1 = false;
             chatActivityEnterView.J(true);
@@ -111,16 +111,16 @@ public final class hf implements TextWatcher {
                 } else {
                     z10 = true;
                 }
-                egVar.n1(charSequence, z10, false);
+                egVar.r1(charSequence, z10, false);
             }
             if (chatActivityEnterView.O2 != 2 && i12 - i11 > 1) {
-                this.f25405a = true;
+                this.f27477a = true;
             }
-            if (chatActivityEnterView.V1 == null && !chatActivityEnterView.f22751d2 && trimmedString.length() != 0 && chatActivityEnterView.f22867y2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.N2) {
-                chatActivityEnterView.f22867y2 = System.currentTimeMillis();
+            if (chatActivityEnterView.V1 == null && !chatActivityEnterView.f24590d2 && trimmedString.length() != 0 && chatActivityEnterView.f24707y2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.N2) {
+                chatActivityEnterView.f24707y2 = System.currentTimeMillis();
                 eg egVar2 = chatActivityEnterView.V2;
                 if (egVar2 != null) {
-                    egVar2.H1();
+                    egVar2.M1();
                 }
             }
             chatActivityEnterView.R1();

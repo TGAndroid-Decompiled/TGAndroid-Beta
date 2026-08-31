@@ -1,15 +1,15 @@
 package c5;
 public class e {
-    public int f2085a;
-    public int f2086b;
+    public int f2268a;
+    public int f2269b;
 
     public e(int i10, int i11) {
-        this.f2085a = i10;
-        this.f2086b = i11;
+        this.f2268a = i10;
+        this.f2269b = i11;
     }
 
     public int a() {
-        int i10 = this.f2086b;
+        int i10 = this.f2269b;
         if (i10 != 2) {
             if (i10 != 5) {
                 if (i10 != 29) {

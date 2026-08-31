@@ -1,55 +1,50 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ah1 implements TextWatcher {
-    public final UsersSelectActivity f32592a;
+import android.content.Context;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class ah1 extends LinearLayout {
+    public final org.telegram.ui.ActionBar.g6 f35181a;
+    public final ImageView f35182b;
+    public final LinearLayout f35183c;
+    public final TextView d;
+    public final TextView f35184e;
+    public final ImageView f35185f;
+    public boolean h;
+    public boolean f35186n;
 
-    public ah1(UsersSelectActivity usersSelectActivity) {
-        this.f32592a = usersSelectActivity;
+    public ah1(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context);
+        setOrientation(0);
+        this.f35181a = g6Var;
+        ImageView imageView = new ImageView(context);
+        this.f35182b = imageView;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        addView(imageView, k7.c6.t(40, 40, 19, 12, 0, 12, 0));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f35183c = linearLayout;
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f));
+        addView(linearLayout, k7.c6.p(0, -2, 1.0f, 23, 0, 0, 32, 0));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 16.0f);
+        TextView i10 = yh.i(linearLayout, textView, k7.c6.t(-1, -2, 7, 0, 0, 0, 0), context);
+        this.f35184e = i10;
+        i10.setTextSize(1, 13.0f);
+        linearLayout.addView(i10, k7.c6.r(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f35185f = imageView2;
+        imageView2.setScaleType(scaleType);
+        addView(imageView2, k7.c6.t(40, 40, 21, 12, 0, 12, 0));
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        UsersSelectActivity usersSelectActivity = this.f32592a;
-        if (usersSelectActivity.f32389c.length() != 0) {
-            dh1 dh1Var = usersSelectActivity.h;
-            boolean z4 = dh1Var.f33645n;
-            if (!z4) {
-                usersSelectActivity.J = true;
-                usersSelectActivity.I = true;
-                if (!z4) {
-                    dh1Var.f33645n = true;
-                    dh1Var.l();
-                }
-                usersSelectActivity.d.setFastScrollVisible(false);
-                usersSelectActivity.d.setVerticalScrollBarEnabled(true);
-                usersSelectActivity.f32390f.d.setText(LocaleController.getString(R.string.NoResult));
-            }
-            usersSelectActivity.f32390f.e(true, true);
-            usersSelectActivity.h.L(usersSelectActivity.f32389c.getText().toString());
-            return;
-        }
-        usersSelectActivity.J = false;
-        usersSelectActivity.I = false;
-        dh1 dh1Var2 = usersSelectActivity.h;
-        if (dh1Var2.f33645n) {
-            dh1Var2.f33645n = false;
-            dh1Var2.l();
-        }
-        usersSelectActivity.h.L(null);
-        usersSelectActivity.d.setFastScrollVisible(true);
-        usersSelectActivity.d.setVerticalScrollBarEnabled(false);
-        usersSelectActivity.f32390f.d.setText(LocaleController.getString(R.string.NoContacts));
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

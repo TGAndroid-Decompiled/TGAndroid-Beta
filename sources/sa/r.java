@@ -5,31 +5,30 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import vh.v2;
 public final class r extends pa.u {
-    public static final p f44216c = new p(pa.t.f41090a, 1);
-    public final pa.g f44217a;
-    public final pa.t f44218b;
+    public static final p f47204c = new p(pa.t.f44249a, 1);
+    public final pa.g f47205a;
+    public final pa.t f47206b;
 
     public r(pa.g gVar, pa.t tVar) {
-        this.f44217a = gVar;
-        this.f44218b = tVar;
+        this.f47205a = gVar;
+        this.f47206b = tVar;
     }
 
     public final Serializable a(xa.a aVar, int i10) {
-        int b10 = m1.j.b(i10);
-        if (b10 != 5) {
-            if (b10 != 6) {
-                if (b10 != 7) {
-                    if (b10 == 8) {
+        int c3 = m1.j.c(i10);
+        if (c3 != 5) {
+            if (c3 != 6) {
+                if (c3 != 7) {
+                    if (c3 == 8) {
                         aVar.t();
                         return null;
                     }
-                    throw new IllegalStateException("Unexpected token: ".concat(v2.m(i10)));
+                    throw new IllegalStateException("Unexpected token: ".concat(w.c.m(i10)));
                 }
                 return Boolean.valueOf(aVar.n());
             }
-            return this.f44218b.a(aVar);
+            return this.f47206b.a(aVar);
         }
         return aVar.v();
     }
@@ -41,9 +40,9 @@ public final class r extends pa.u {
         Serializable arrayList2;
         boolean z4;
         int x10 = aVar.x();
-        int b10 = m1.j.b(x10);
-        if (b10 != 0) {
-            if (b10 != 2) {
+        int c3 = m1.j.c(x10);
+        if (c3 != 0) {
+            if (c3 != 2) {
                 arrayList = null;
             } else {
                 aVar.b();
@@ -65,9 +64,9 @@ public final class r extends pa.u {
                     str = null;
                 }
                 int x11 = aVar.x();
-                int b11 = m1.j.b(x11);
-                if (b11 != 0) {
-                    if (b11 != 2) {
+                int c10 = m1.j.c(x11);
+                if (c10 != 0) {
+                    if (c10 != 2) {
                         arrayList2 = null;
                     } else {
                         aVar.b();
@@ -115,7 +114,7 @@ public final class r extends pa.u {
             return;
         }
         Class<?> cls = obj.getClass();
-        pa.g gVar = this.f44217a;
+        pa.g gVar = this.f47205a;
         gVar.getClass();
         pa.u b10 = gVar.b(new wa.a(cls));
         if (b10 instanceof r) {

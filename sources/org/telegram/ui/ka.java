@@ -13,32 +13,32 @@ public final class ka extends f2.b0 {
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, f2.l1 l1Var) {
-        super.a(recyclerView, l1Var);
-        View view = l1Var.f5785a;
+    public final void a(RecyclerView recyclerView, f2.m1 m1Var) {
+        super.a(recyclerView, m1Var);
+        View view = m1Var.f5875a;
         view.setPressed(false);
         view.setTag(R.id.dragging, null);
     }
 
     @Override
-    public final int e(RecyclerView recyclerView, f2.l1 l1Var) {
-        if (l1Var.f5788f == 4 && ((ma) l1Var.f5785a).D) {
+    public final int e(RecyclerView recyclerView, f2.m1 m1Var) {
+        if (m1Var.f5879f == 4 && ((ma) m1Var.f5875a).D) {
             return f2.b0.l(3, 0);
         }
         return f2.b0.l(0, 0);
     }
 
     @Override
-    public final boolean n(RecyclerView recyclerView, f2.l1 l1Var, f2.l1 l1Var2) {
-        if (l1Var.f5788f == l1Var2.f5788f) {
-            View view = l1Var2.f5785a;
+    public final boolean n(RecyclerView recyclerView, f2.m1 m1Var, f2.m1 m1Var2) {
+        if (m1Var.f5879f == m1Var2.f5879f) {
+            View view = m1Var2.f5875a;
             if (!(view instanceof ma) || ((ma) view).D) {
-                ga gaVar = this.d.f37253c;
-                int b10 = l1Var.b();
-                int b11 = l1Var2.b();
+                ga gaVar = this.d.f39993c;
+                int b10 = m1Var.b();
+                int b11 = m1Var2.b();
                 int i10 = b10 - 4;
                 int i11 = b11 - 4;
-                pa paVar = gaVar.f34523c;
+                pa paVar = gaVar.f37140c;
                 ArrayList arrayList = paVar.v;
                 if (i10 < arrayList.size() && i11 < arrayList.size()) {
                     if (b10 != b11) {
@@ -61,17 +61,17 @@ public final class ka extends f2.b0 {
     }
 
     @Override
-    public final void p(f2.l1 l1Var, int i10) {
+    public final void p(f2.m1 m1Var, int i10) {
         Boolean bool;
         pa paVar = this.d;
         if (i10 == 0) {
             pa.Y(paVar);
         } else {
-            paVar.f37252b.I0(false);
-            l1Var.f5785a.setPressed(true);
+            paVar.f39992b.I0(false);
+            m1Var.f5875a.setPressed(true);
         }
-        if (l1Var != null) {
-            View view = l1Var.f5785a;
+        if (m1Var != null) {
+            View view = m1Var.f5875a;
             int i11 = R.id.dragging;
             if (i10 == 2) {
                 bool = Boolean.TRUE;
@@ -83,6 +83,6 @@ public final class ka extends f2.b0 {
     }
 
     @Override
-    public final void q(f2.l1 l1Var) {
+    public final void q(f2.m1 m1Var) {
     }
 }

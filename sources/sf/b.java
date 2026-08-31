@@ -1,70 +1,65 @@
 package sf;
 
-import android.text.TextUtils;
-import org.telegram.tgnet.TLRPC;
-public final class b {
-    public final String f44302a;
-    public final String f44303b;
+import mh.m5;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
+public final class b implements Runnable {
+    public final int f47305a;
+    public final e f47306b;
+    public final d f47307c;
 
-    public b(String str, String str2) {
-        this.f44302a = str;
-        this.f44303b = str2;
+    public b(e eVar, d dVar, int i10) {
+        this.f47305a = i10;
+        this.f47306b = eVar;
+        this.f47307c = dVar;
     }
 
-    public static boolean a(b bVar, b bVar2) {
-        if (bVar == bVar2) {
-            return true;
+    @Override
+    public final void run() {
+        switch (this.f47305a) {
+            case 0:
+                e eVar = this.f47306b;
+                d dVar = (d) eVar.f47316c;
+                d dVar2 = this.f47307c;
+                if (dVar == dVar2) {
+                    eVar.d = null;
+                    eVar.p(dVar2);
+                    return;
+                }
+                return;
+            case 1:
+                e eVar2 = this.f47306b;
+                d dVar3 = (d) eVar2.f47316c;
+                d dVar4 = this.f47307c;
+                if (dVar3 == dVar4) {
+                    b bVar = (b) eVar2.d;
+                    if (bVar != null) {
+                        AndroidUtilities.cancelRunOnUIThread(bVar);
+                        eVar2.d = null;
+                    }
+                    int i10 = dVar4.d;
+                    if (i10 == 0) {
+                        eVar2.p(dVar4);
+                        return;
+                    }
+                    b bVar2 = new b(eVar2, dVar4, 2);
+                    eVar2.f47317e = bVar2;
+                    AndroidUtilities.runOnUIThread(bVar2, 20000L);
+                    m5 m5Var = dVar4.f47310a;
+                    ((ConnectionsManager) m5Var.f14450b).checkWebProxyInternal(dVar4.f47311b, i10, new c(eVar2, dVar4));
+                    return;
+                }
+                return;
+            default:
+                e eVar3 = this.f47306b;
+                d dVar5 = (d) eVar3.f47316c;
+                d dVar6 = this.f47307c;
+                if (dVar5 == dVar6) {
+                    eVar3.f47317e = null;
+                    eVar3.p(dVar6);
+                    return;
+                }
+                return;
         }
-        if (bVar != null && bVar2 != null) {
-            return bVar.equals(bVar2);
-        }
-        return false;
-    }
-
-    public static b c(TLRPC.ChatTheme chatTheme) {
-        if (chatTheme instanceof TLRPC.TL_chatTheme) {
-            return new b(((TLRPC.TL_chatTheme) chatTheme).emoticon, null);
-        }
-        if (!(chatTheme instanceof TLRPC.TL_chatThemeUniqueGift)) {
-            return null;
-        }
-        return new b(null, ((TLRPC.TL_chatThemeUniqueGift) chatTheme).gift.slug);
-    }
-
-    public static b d(String str) {
-        return new b(str, null);
-    }
-
-    public final boolean b() {
-        if (TextUtils.isEmpty(this.f44302a) && TextUtils.isEmpty(this.f44303b)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof b) {
-            b bVar = (b) obj;
-            if (TextUtils.equals(this.f44302a, bVar.f44302a) && TextUtils.equals(this.f44303b, bVar.f44303b)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        int i10;
-        int i11 = 0;
-        String str = this.f44302a;
-        if (str != null) {
-            i10 = str.hashCode();
-        } else {
-            i10 = 0;
-        }
-        String str2 = this.f44303b;
-        if (str2 != null) {
-            i11 = str2.hashCode();
-        }
-        return i11 ^ i10;
     }
 }

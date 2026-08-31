@@ -4,9 +4,8 @@ import android.util.SparseIntArray;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Comparator;
-import kh.a2;
-import lh.y3;
-import nh.t6;
+import mh.y3;
+import oh.t6;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
@@ -14,14 +13,14 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stories;
-import vh.z5;
+import wh.z5;
 public final class t implements Comparator {
-    public final int f4202a;
-    public final Object f4203b;
+    public final int f4274a;
+    public final Object f4275b;
 
     public t(Object obj, int i10) {
-        this.f4202a = i10;
-        this.f4203b = obj;
+        this.f4274a = i10;
+        this.f4275b = obj;
     }
 
     @Override
@@ -31,21 +30,21 @@ public final class t implements Comparator {
         int i10;
         int indexOf;
         int indexOf2;
-        switch (this.f4202a) {
+        switch (this.f4274a) {
             case 0:
-                x xVar = (x) this.f4203b;
+                x xVar = (x) this.f4275b;
                 return xVar.b(obj2) - xVar.b(obj);
             case 1:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.f4203b;
-                return sparseIntArray.get(((eg.k) obj).e, Integer.MAX_VALUE) - sparseIntArray.get(((eg.k) obj2).e, Integer.MAX_VALUE);
+                SparseIntArray sparseIntArray = (SparseIntArray) this.f4275b;
+                return sparseIntArray.get(((fg.k) obj).f6369e, Integer.MAX_VALUE) - sparseIntArray.get(((fg.k) obj2).f6369e, Integer.MAX_VALUE);
             case 2:
-                return ((Collator) this.f4203b).compare((String) obj, (String) obj2);
+                return ((Collator) this.f4275b).compare((String) obj, (String) obj2);
             case 3:
-                float[] fArr = ((y3) this.f4203b).f13387r;
+                float[] fArr = ((y3) this.f4275b).f15089r;
                 return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
             case 4:
-                t6 t6Var = (t6) this.f4203b;
-                int i11 = t6Var.f15917a;
+                t6 t6Var = (t6) this.f4275b;
+                int i11 = t6Var.f17770a;
                 TL_stories.PeerStories peerStories = (TL_stories.PeerStories) obj;
                 TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) obj2;
                 long peerDialogId = DialogObject.getPeerDialogId(peerStories.peer);
@@ -81,10 +80,10 @@ public final class t implements Comparator {
                                 if (peerStories.stories.isEmpty()) {
                                     i10 = 0;
                                 } else {
-                                    i10 = ((TL_stories.StoryItem) a2.i(1, peerStories.stories)).date;
+                                    i10 = ((TL_stories.StoryItem) l.d.i(1, peerStories.stories)).date;
                                 }
                                 if (!peerStories2.stories.isEmpty()) {
-                                    i12 = ((TL_stories.StoryItem) a2.i(1, peerStories2.stories)).date;
+                                    i12 = ((TL_stories.StoryItem) l.d.i(1, peerStories2.stories)).date;
                                 }
                                 return i12 - i10;
                             }
@@ -96,7 +95,7 @@ public final class t implements Comparator {
                 }
                 return (K2 ? 1 : 0) - (K ? 1 : 0);
             case 5:
-                ArrayList arrayList = (ArrayList) this.f4203b;
+                ArrayList arrayList = (ArrayList) this.f4275b;
                 MediaController.AlbumEntry albumEntry = (MediaController.AlbumEntry) obj;
                 MediaController.AlbumEntry albumEntry2 = (MediaController.AlbumEntry) obj2;
                 int i13 = albumEntry.bucketId;
@@ -110,7 +109,7 @@ public final class t implements Comparator {
                 }
                 return -1;
             default:
-                z5 z5Var = (z5) this.f4203b;
+                z5 z5Var = (z5) this.f4275b;
                 TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) obj;
                 TL_iv.pageTableCell pagetablecell2 = (TL_iv.pageTableCell) obj2;
                 int b10 = z5Var.b(pagetablecell);

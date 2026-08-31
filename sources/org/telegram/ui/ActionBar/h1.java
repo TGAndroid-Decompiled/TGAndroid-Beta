@@ -3,22 +3,22 @@ package org.telegram.ui.ActionBar;
 import android.view.ViewTreeObserver;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import org.telegram.ui.Components.ru;
-import org.telegram.ui.g61;
+import org.telegram.ui.Components.tu;
+import org.telegram.ui.i61;
 public final class h1 implements ViewTreeObserver.OnScrollChangedListener {
-    public final int f19743a;
+    public final int f21405a;
 
     @Override
     public final void onScrollChanged() {
-        switch (this.f19743a) {
+        switch (this.f21405a) {
             case 0:
-                Method method = p1.f20511k;
+                Method method = p1.f22211k;
                 return;
             case 1:
-                Field field = ru.f28536f;
+                Field field = tu.f31455f;
                 return;
             default:
-                Field field2 = g61.f34454c;
+                Field field2 = i61.f37760c;
                 return;
         }
     }

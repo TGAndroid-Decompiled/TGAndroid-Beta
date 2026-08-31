@@ -1,61 +1,61 @@
 package uf;
 
-import android.location.Address;
-import android.location.Geocoder;
-import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
+import java.util.ArrayList;
+import java.util.Comparator;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.ad0;
-public final class n0 implements Runnable {
-    public final int f45394a = 0;
-    public final u0 f45395b;
-    public final ad0 f45396c;
-    public final d2 d;
+public final class n0 implements Comparator {
+    public final ArrayList f48658a;
+    public final ArrayList f48659b;
 
-    public n0(u0 u0Var, d2 d2Var, ad0 ad0Var) {
-        this.f45395b = u0Var;
-        this.d = d2Var;
-        this.f45396c = ad0Var;
+    public n0(ArrayList arrayList, ArrayList arrayList2) {
+        this.f48658a = arrayList;
+        this.f48659b = arrayList2;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f45394a) {
-            case 0:
-                u0 u0Var = this.f45395b;
-                u0Var.getClass();
-                this.d.dismiss();
-                u0Var.presentFragment(this.f45396c);
-                return;
-            default:
-                u0 u0Var2 = this.f45395b;
-                ad0 ad0Var = this.f45396c;
-                try {
-                    List<Address> fromLocationName = new Geocoder(u0Var2.getParentActivity(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(u0Var2.f45454y, 1);
-                    if (!fromLocationName.isEmpty()) {
-                        Address address = fromLocationName.get(0);
-                        TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
-                        tL_channelLocation.address = u0Var2.f45454y;
-                        TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
-                        tL_channelLocation.geo_point = tL_geoPoint;
-                        tL_geoPoint.lat = address.getLatitude();
-                        tL_channelLocation.geo_point._long = address.getLongitude();
-                        ad0Var.f32552x0 = tL_channelLocation;
+    public final int a(t0 t0Var) {
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            ArrayList arrayList = this.f48658a;
+            if (i11 >= arrayList.size()) {
+                while (true) {
+                    ArrayList arrayList2 = this.f48659b;
+                    if (i10 < Math.min(20, arrayList2.size())) {
+                        if (((TLRPC.Document) arrayList2.get(i10)).f20849id == t0Var.f48688a.f20849id) {
+                            return (arrayList2.size() - i10) + 1000000;
+                        }
+                        i10++;
+                    } else {
+                        return -1;
                     }
-                } catch (Exception e) {
-                    FileLog.e(e);
                 }
-                AndroidUtilities.runOnUIThread(new n0(u0Var2, this.d, ad0Var));
-                return;
+            } else if (((TLRPC.Document) arrayList.get(i11)).f20849id == t0Var.f48688a.f20849id) {
+                return i11 + 2000000;
+            } else {
+                i11++;
+            }
         }
     }
 
-    public n0(u0 u0Var, ad0 ad0Var, d2 d2Var) {
-        this.f45395b = u0Var;
-        this.f45396c = ad0Var;
-        this.d = d2Var;
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        t0 t0Var = (t0) obj;
+        t0 t0Var2 = (t0) obj2;
+        boolean isAnimatedStickerDocument = MessageObject.isAnimatedStickerDocument(t0Var.f48688a, true);
+        if (isAnimatedStickerDocument == MessageObject.isAnimatedStickerDocument(t0Var2.f48688a, true)) {
+            int a2 = a(t0Var);
+            int a10 = a(t0Var2);
+            if (a2 <= a10) {
+                if (a2 >= a10) {
+                    return 0;
+                }
+            } else {
+                return -1;
+            }
+        } else if (isAnimatedStickerDocument) {
+            return -1;
+        }
+        return 1;
     }
 }

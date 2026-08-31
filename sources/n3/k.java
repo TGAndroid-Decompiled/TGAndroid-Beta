@@ -2,13 +2,12 @@ package n3;
 
 import android.text.TextUtils;
 import j3.n0;
-import kh.a2;
 public final class k {
-    public final String f14246a;
-    public final n0 f14247b;
-    public final n0 f14248c;
+    public final String f15220a;
+    public final n0 f15221b;
+    public final n0 f15222c;
     public final int d;
-    public final int e;
+    public final int f15223e;
 
     public k(String str, n0 n0Var, n0 n0Var2, int i10, int i11) {
         boolean z4;
@@ -19,13 +18,13 @@ public final class k {
         }
         h5.a.f(z4);
         if (!TextUtils.isEmpty(str)) {
-            this.f14246a = str;
+            this.f15220a = str;
             n0Var.getClass();
-            this.f14247b = n0Var;
+            this.f15221b = n0Var;
             n0Var2.getClass();
-            this.f14248c = n0Var2;
+            this.f15222c = n0Var2;
             this.d = i10;
-            this.e = i11;
+            this.f15223e = i11;
             return;
         }
         throw new IllegalArgumentException();
@@ -37,7 +36,7 @@ public final class k {
         }
         if (obj != null && k.class == obj.getClass()) {
             k kVar = (k) obj;
-            if (this.d == kVar.d && this.e == kVar.e && this.f14246a.equals(kVar.f14246a) && this.f14247b.equals(kVar.f14247b) && this.f14248c.equals(kVar.f14248c)) {
+            if (this.d == kVar.d && this.f15223e == kVar.f15223e && this.f15220a.equals(kVar.f15220a) && this.f15221b.equals(kVar.f15221b) && this.f15222c.equals(kVar.f15222c)) {
                 return true;
             }
         }
@@ -45,7 +44,7 @@ public final class k {
     }
 
     public final int hashCode() {
-        int e = a2.e((((527 + this.d) * 31) + this.e) * 31, 31, this.f14246a);
-        return this.f14248c.hashCode() + ((this.f14247b.hashCode() + e) * 31);
+        int e6 = l.d.e((((527 + this.d) * 31) + this.f15223e) * 31, 31, this.f15220a);
+        return this.f15222c.hashCode() + ((this.f15221b.hashCode() + e6) * 31);
     }
 }

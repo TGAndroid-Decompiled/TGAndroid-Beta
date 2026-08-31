@@ -1,84 +1,32 @@
 package lh;
 
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.RequestDelegateTimestamp;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class o2 implements Runnable {
-    public final int f12869a;
-    public final long f12870b;
-    public final Object f12871c;
-    public final Object d;
-    public final Object e;
-    public final Object f12872f;
-    public final Object h;
+import org.telegram.ui.Components.pr0;
+public final class o2 implements xd.b, Utilities.Callback2Return {
+    public final pr0 f12875a;
 
-    public o2(Object obj, Object obj2, long j10, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f12869a = i10;
-        this.d = obj;
-        this.f12871c = obj2;
-        this.f12870b = j10;
-        this.e = obj3;
-        this.f12872f = obj4;
-        this.h = obj5;
+    public o2(pr0 pr0Var) {
+        this.f12875a = pr0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: lh.o2.run():void");
+    public void L(int i10, float f10, float f11, xd.c cVar) {
+        this.f12875a.l();
     }
 
-    public o2(g5 g5Var, TLObject tLObject, String str, TL_stars.InputSavedStarGift inputSavedStarGift, TLRPC.TL_error tL_error, long j10) {
-        this.f12869a = 0;
-        this.d = g5Var;
-        this.f12871c = tLObject;
-        this.e = str;
-        this.f12872f = inputSavedStarGift;
-        this.h = tL_error;
-        this.f12870b = j10;
+    @Override
+    public Object run(Object obj, Object obj2) {
+        Integer num = (Integer) obj2;
+        pr0 pr0Var = this.f12875a;
+        pr0Var.i();
+        if (((Integer) obj).intValue() == -1) {
+            pr0Var.h(null, new j2(pr0Var, 0));
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
     }
 
-    public o2(t7 t7Var, boolean[] zArr, long j10, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities, Utilities.Callback2 callback2) {
-        this.f12869a = 1;
-        this.d = t7Var;
-        this.e = zArr;
-        this.f12870b = j10;
-        this.f12871c = tLObject;
-        this.f12872f = tL_textWithEntities;
-        this.h = callback2;
-    }
-
-    public o2(t7 t7Var, boolean[] zArr, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j10, Utilities.Callback2 callback2) {
-        this.f12869a = 2;
-        this.d = t7Var;
-        this.f12871c = zArr;
-        this.e = tL_payments_paymentFormStarGift;
-        this.f12872f = starGift;
-        this.f12870b = j10;
-        this.h = callback2;
-    }
-
-    public o2(ConnectionsManager connectionsManager, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error, RequestDelegateTimestamp requestDelegateTimestamp, long j10) {
-        this.f12869a = 4;
-        this.d = connectionsManager;
-        this.e = requestDelegate;
-        this.f12871c = tLObject;
-        this.h = tL_error;
-        this.f12872f = requestDelegateTimestamp;
-        this.f12870b = j10;
-    }
-
-    public o2(org.telegram.ui.ActionBar.p2 p2Var, TLObject tLObject, MessagesController.DialogFilter dialogFilter, TLRPC.TL_error tL_error, Runnable runnable, long j10) {
-        this.f12869a = 6;
-        this.d = p2Var;
-        this.f12871c = tLObject;
-        this.e = dialogFilter;
-        this.h = tL_error;
-        this.f12872f = runnable;
-        this.f12870b = j10;
+    @Override
+    public void z(float f10, int i10) {
     }
 }

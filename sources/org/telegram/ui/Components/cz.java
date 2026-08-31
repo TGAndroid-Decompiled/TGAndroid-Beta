@@ -1,17 +1,31 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-public final class cz implements Utilities.Callback {
-    public final int f24079a;
-    public final dz f24080b;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class cz extends org.telegram.ui.Cells.d8 {
+    public final int L;
 
-    public cz(dz dzVar, int i10) {
-        this.f24079a = i10;
-        this.f24080b = dzVar;
+    public cz(int i10, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z4) {
+        super(context, g6Var, z4);
+        this.L = i10;
     }
 
     @Override
-    public final void run(java.lang.Object r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.cz.run(java.lang.Object):void");
+    public final void onMeasure(int i10, int i11) {
+        switch (this.L) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
+                return;
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
+                return;
+        }
     }
 }

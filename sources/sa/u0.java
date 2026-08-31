@@ -4,18 +4,17 @@ import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Iterator;
-import vh.v2;
 public class u0 extends pa.u {
     public static pa.i a(xa.a aVar, int i10) {
-        int b10 = m1.j.b(i10);
-        if (b10 != 5) {
-            if (b10 != 6) {
-                if (b10 != 7) {
-                    if (b10 == 8) {
+        int c3 = m1.j.c(i10);
+        if (c3 != 5) {
+            if (c3 != 6) {
+                if (c3 != 7) {
+                    if (c3 == 8) {
                         aVar.t();
-                        return pa.k.f41087a;
+                        return pa.k.f44246a;
                     }
-                    throw new IllegalStateException("Unexpected token: ".concat(v2.m(i10)));
+                    throw new IllegalStateException("Unexpected token: ".concat(w.c.m(i10)));
                 }
                 return new pa.m(Boolean.valueOf(aVar.n()));
             }
@@ -30,7 +29,7 @@ public class u0 extends pa.u {
             if (z4) {
                 if (z4) {
                     pa.m mVar = (pa.m) iVar;
-                    Serializable serializable = mVar.f41089a;
+                    Serializable serializable = mVar.f44248a;
                     if (serializable instanceof Number) {
                         bVar.q(mVar.r());
                         return;
@@ -48,7 +47,7 @@ public class u0 extends pa.u {
             if (z10) {
                 bVar.b();
                 if (z10) {
-                    ArrayList arrayList = ((pa.h) iVar).f41086a;
+                    ArrayList arrayList = ((pa.h) iVar).f44245a;
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
@@ -62,7 +61,7 @@ public class u0 extends pa.u {
                 throw new IllegalStateException("Not a JSON Array: " + iVar);
             } else if (iVar instanceof pa.l) {
                 bVar.c();
-                Iterator it = ((ra.j) iVar.i().f41088a.entrySet()).iterator();
+                Iterator it = ((ra.j) iVar.i().f44247a.entrySet()).iterator();
                 while (((ra.i) it).hasNext()) {
                     ra.k b10 = ((ra.i) it).b();
                     bVar.g((String) b10.getKey());
@@ -91,12 +90,12 @@ public class u0 extends pa.u {
                 lVar.C();
                 return iVar;
             }
-            throw new IllegalStateException("Unexpected " + v2.m(x10) + " when reading a JsonElement.");
+            throw new IllegalStateException("Unexpected " + w.c.m(x10) + " when reading a JsonElement.");
         }
         int x11 = aVar.x();
-        int b10 = m1.j.b(x11);
-        if (b10 != 0) {
-            if (b10 != 2) {
+        int c3 = m1.j.c(x11);
+        if (c3 != 0) {
+            if (c3 != 2) {
                 hVar = null;
             } else {
                 aVar.b();
@@ -118,9 +117,9 @@ public class u0 extends pa.u {
                     str = null;
                 }
                 int x12 = aVar.x();
-                int b11 = m1.j.b(x12);
-                if (b11 != 0) {
-                    if (b11 != 2) {
+                int c10 = m1.j.c(x12);
+                if (c10 != 0) {
+                    if (c10 != 2) {
                         hVar2 = null;
                     } else {
                         aVar.b();
@@ -139,7 +138,7 @@ public class u0 extends pa.u {
                     hVar2 = a(aVar, x12);
                 }
                 if (hVar instanceof pa.h) {
-                    ((pa.h) hVar).f41086a.add(hVar2);
+                    ((pa.h) hVar).f44245a.add(hVar2);
                 } else {
                     ((pa.l) hVar).o(str, hVar2);
                 }

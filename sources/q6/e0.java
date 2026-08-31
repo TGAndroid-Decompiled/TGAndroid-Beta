@@ -8,16 +8,16 @@ public enum e0 implements Parcelable {
     RESIDENT_KEY_REQUIRED("required");
     
     public static final Parcelable.Creator<e0> CREATOR = new r0(4);
-    public final String f42899a;
+    public final String f44659a;
 
     e0(String str) {
-        this.f42899a = str;
+        this.f44659a = str;
     }
 
     public static e0 a(String str) {
         e0[] values;
         for (e0 e0Var : values()) {
-            if (str.equals(e0Var.f42899a)) {
+            if (str.equals(e0Var.f44659a)) {
                 return e0Var;
             }
         }
@@ -31,11 +31,11 @@ public enum e0 implements Parcelable {
 
     @Override
     public final String toString() {
-        return this.f42899a;
+        return this.f44659a;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f42899a);
+        parcel.writeString(this.f44659a);
     }
 }

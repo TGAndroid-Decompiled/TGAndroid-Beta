@@ -9,12 +9,12 @@ import s5.m;
 import v7.j;
 import w7.g;
 public final class c implements e {
-    public final Bundle f11358a;
-    public final j f11359b;
+    public final Bundle f11736a;
+    public final j f11737b;
 
     public c(j jVar, Bundle bundle) {
-        this.f11359b = jVar;
-        this.f11358a = bundle;
+        this.f11737b = jVar;
+        this.f11736a = bundle;
     }
 
     @Override
@@ -24,10 +24,10 @@ public final class c implements e {
 
     @Override
     public final void b() {
-        m mVar = this.f11359b.f45631a;
-        Bundle bundle = this.f11358a;
-        ViewGroup viewGroup = (ViewGroup) mVar.f44088b;
-        g gVar = (g) mVar.f44089c;
+        m mVar = this.f11737b.f48927a;
+        Bundle bundle = this.f11736a;
+        ViewGroup viewGroup = (ViewGroup) mVar.f47062b;
+        g gVar = (g) mVar.f47063c;
         try {
             Bundle bundle2 = new Bundle();
             w7.d.b(bundle, bundle2);
@@ -41,8 +41,8 @@ public final class c implements e {
             mVar.d = (View) b.K0(J0);
             viewGroup.removeAllViews();
             viewGroup.addView((View) mVar.d);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
+        } catch (RemoteException e6) {
+            throw new RuntimeException(e6);
         }
     }
 }

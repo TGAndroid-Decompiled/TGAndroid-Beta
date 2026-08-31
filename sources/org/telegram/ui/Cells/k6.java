@@ -9,12 +9,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.RadioButton;
 public final class k6 extends FrameLayout {
-    public final TextView f21303a;
-    public final TextView f21304b;
-    public final RadioButton f21305c;
+    public final TextView f23068a;
+    public final TextView f23069b;
+    public final RadioButton f23070c;
     public int d;
 
-    public k6(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public k6(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
         int i10;
         int i11;
@@ -26,9 +26,9 @@ public final class k6 extends FrameLayout {
         int i17;
         this.d = 50;
         RadioButton radioButton = new RadioButton(context);
-        this.f21305c = radioButton;
+        this.f23070c = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        radioButton.b(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.D5, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.E5, f6Var));
+        radioButton.b(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.D5, g6Var), org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.E5, g6Var));
         boolean z4 = LocaleController.isRTL;
         if (z4) {
             i10 = 5;
@@ -41,10 +41,10 @@ public final class k6 extends FrameLayout {
         } else {
             i11 = 18;
         }
-        addView(radioButton, k7.b6.d(22, 22.0f, i18, i11, 14.0f, z4 ? 18 : 0, 0.0f));
+        addView(radioButton, k7.c6.d(22, 22.0f, i18, i11, 14.0f, z4 ? 18 : 0, 0.0f));
         TextView textView = new TextView(context);
-        this.f21303a = textView;
-        org.telegram.ui.b.l(org.telegram.ui.ActionBar.j6.f20012j5, f6Var, textView, 1, 16.0f);
+        this.f23068a = textView;
+        org.telegram.ui.b.l(org.telegram.ui.ActionBar.k6.f21766j5, g6Var, textView, 1, 16.0f);
         textView.setLines(1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
@@ -72,10 +72,10 @@ public final class k6 extends FrameLayout {
         } else {
             i15 = 21;
         }
-        addView(textView, k7.b6.d(-2, -2.0f, i19, f10, 13.0f, i15, 0.0f));
+        addView(textView, k7.c6.d(-2, -2.0f, i19, f10, 13.0f, i15, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f21304b = textView2;
-        org.telegram.ui.b.l(org.telegram.ui.ActionBar.j6.f20281y6, f6Var, textView2, 1, 14.0f);
+        this.f23069b = textView2;
+        org.telegram.ui.b.l(org.telegram.ui.ActionBar.k6.f22036y6, g6Var, textView2, 1, 14.0f);
         if (LocaleController.isRTL) {
             i16 = 5;
         } else {
@@ -90,17 +90,17 @@ public final class k6 extends FrameLayout {
         } else {
             i17 = 51;
         }
-        addView(textView2, k7.b6.d(-2, -2.0f, i20, i17, 37.0f, z11 ? 51 : 21, 0.0f));
+        addView(textView2, k7.c6.d(-2, -2.0f, i20, i17, 37.0f, z11 ? 51 : 21, 0.0f));
     }
 
     public final void a(int i10, int i11) {
-        this.f21305c.b(i10, i11);
+        this.f23070c.b(i10, i11);
     }
 
     public final void b(CharSequence charSequence, boolean z4) {
-        this.f21303a.setText(charSequence);
-        this.f21304b.setVisibility(8);
-        this.f21305c.a(z4, false);
+        this.f23068a.setText(charSequence);
+        this.f23069b.setVisibility(8);
+        this.f23070c.a(z4, false);
     }
 
     @Override
@@ -108,13 +108,13 @@ public final class k6 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.RadioButton");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f21305c.f23149f);
+        accessibilityNodeInfo.setChecked(this.f23070c.f25006f);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
-        TextView textView = this.f21304b;
+        TextView textView = this.f23069b;
         if (textView.getVisibility() == 0) {
             textView.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(72.0f), 1073741824), i11);
         }

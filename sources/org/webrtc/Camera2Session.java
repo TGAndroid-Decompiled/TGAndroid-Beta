@@ -14,8 +14,7 @@ import android.view.Surface;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import kh.a2;
-import nh.e1;
+import oh.e1;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraSession;
 public class Camera2Session implements CameraSession {
@@ -67,7 +66,7 @@ public class Camera2Session implements CameraSession {
                     if (i10 != 3) {
                         if (i10 != 4) {
                             if (i10 != 5) {
-                                return a2.j(i10, "Unknown camera error: ");
+                                return l.d.j(i10, "Unknown camera error: ");
                             }
                             return "Camera service has encountered a fatal error.";
                         }
@@ -120,9 +119,9 @@ public class Camera2Session implements CameraSession {
             Camera2Session.this.surface = new Surface(Camera2Session.this.surfaceTextureHelper.getSurfaceTexture());
             try {
                 cameraDevice.createCaptureSession(Arrays.asList(Camera2Session.this.surface), new CaptureSessionCallback(), Camera2Session.this.cameraThreadHandler);
-            } catch (CameraAccessException e) {
+            } catch (CameraAccessException e6) {
                 Camera2Session camera2Session = Camera2Session.this;
-                camera2Session.reportError("Failed to create capture session. " + e);
+                camera2Session.reportError("Failed to create capture session. " + e6);
             }
         }
     }
@@ -205,9 +204,9 @@ public class Camera2Session implements CameraSession {
                 Camera2Session.this.surfaceTextureHelper.startListening(new a(this, 1));
                 Logging.d("Camera2Session", "Camera device successfully started.");
                 Camera2Session.this.callback.onDone(Camera2Session.this);
-            } catch (CameraAccessException e) {
+            } catch (CameraAccessException e6) {
                 Camera2Session camera2Session = Camera2Session.this;
-                camera2Session.reportError("Failed to start capture request. " + e);
+                camera2Session.reportError("Failed to start capture request. " + e6);
             }
         }
     }
@@ -286,8 +285,8 @@ public class Camera2Session implements CameraSession {
         this.events.onCameraOpening();
         try {
             this.cameraManager.openCamera(this.cameraId, new CameraStateCallback(), this.cameraThreadHandler);
-        } catch (Exception e) {
-            reportError("Failed to open camera: " + e);
+        } catch (Exception e6) {
+            reportError("Failed to open camera: " + e6);
         }
     }
 

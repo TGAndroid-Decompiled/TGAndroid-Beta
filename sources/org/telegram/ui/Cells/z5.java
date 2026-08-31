@@ -12,30 +12,30 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.lp;
+import org.telegram.ui.Components.np;
 public final class z5 extends FrameLayout {
-    public org.telegram.ui.Components.p9 f22655a;
-    public FrameLayout f22656b;
-    public lp f22657c;
+    public org.telegram.ui.Components.p9 f24488a;
+    public FrameLayout f24489b;
+    public np f24490c;
     public TextView d;
-    public dg.s1 e;
-    public int f22658f;
+    public eg.q1 f24491e;
+    public int f24492f;
     public int h;
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f22657c.b(org.telegram.ui.ActionBar.j6.W9, org.telegram.ui.ActionBar.j6.X9, org.telegram.ui.ActionBar.j6.V9);
+        this.f24490c.b(org.telegram.ui.ActionBar.k6.W9, org.telegram.ui.ActionBar.k6.X9, org.telegram.ui.ActionBar.k6.V9);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f22658f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f22658f, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f24492f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f24492f, 1073741824));
     }
 
     public void setImage(MediaController.PhotoEntry photoEntry) {
-        dg.s1 s1Var = this.e;
-        org.telegram.ui.Components.p9 p9Var = this.f22655a;
+        eg.q1 q1Var = this.f24491e;
+        org.telegram.ui.Components.p9 p9Var = this.f24488a;
         Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
         String str = photoEntry.thumbPath;
         if (str != null) {
@@ -43,11 +43,11 @@ public final class z5 extends FrameLayout {
         } else if (photoEntry.path != null) {
             p9Var.p(photoEntry.orientation, photoEntry.invert, true);
             if (photoEntry.isLivePhoto()) {
-                s1Var.setVisibility(4);
+                q1Var.setVisibility(4);
                 setContentDescription(LocaleController.getString(R.string.AttachLivePhoto));
                 p9Var.f("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, drawable);
             } else if (photoEntry.isVideo) {
-                s1Var.setVisibility(0);
+                q1Var.setVisibility(0);
                 this.d.setText(AndroidUtilities.formatShortDuration(photoEntry.duration));
                 StringBuilder sb = new StringBuilder();
                 org.telegram.ui.b.i(R.string.AttachVideo, ", ", sb);
@@ -55,7 +55,7 @@ public final class z5 extends FrameLayout {
                 setContentDescription(sb.toString());
                 p9Var.f("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, drawable);
             } else {
-                s1Var.setVisibility(4);
+                q1Var.setVisibility(4);
                 setContentDescription(LocaleController.getString(R.string.AttachPhoto));
                 p9Var.f("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, drawable);
             }
@@ -65,11 +65,11 @@ public final class z5 extends FrameLayout {
     }
 
     public void setNum(int i10) {
-        this.f22657c.setNum(i10);
+        this.f24490c.setNum(i10);
     }
 
     public void setImage(MediaController.SearchImage searchImage) {
-        org.telegram.ui.Components.p9 p9Var = this.f22655a;
+        org.telegram.ui.Components.p9 p9Var = this.f24488a;
         Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
         TLRPC.PhotoSize photoSize = searchImage.thumbPhotoSize;
         if (photoSize != null) {

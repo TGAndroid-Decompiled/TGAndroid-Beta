@@ -1,6 +1,6 @@
 package l3;
 public final class l0 {
-    public static final l0 f11197a = new Object();
+    public static final l0 f11563a = new Object();
 
     public static int a(int i10) {
         switch (i10) {

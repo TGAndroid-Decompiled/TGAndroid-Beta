@@ -9,14 +9,14 @@ import java.util.Arrays;
 import org.telegram.ui.yh;
 public final class u extends c6.a {
     public static final Parcelable.Creator<u> CREATOR = new l4.j(28);
-    public final String f42960a;
-    public final String f42961b;
-    public final b7.w0 f42962c;
+    public final String f44724a;
+    public final String f44725b;
+    public final b7.w0 f44726c;
     public final j d;
-    public final i e;
-    public final k f42963f;
+    public final i f44727e;
+    public final k f44728f;
     public final g h;
-    public final String f42964n;
+    public final String f44729n;
 
     public u(String str, String str2, byte[] bArr, j jVar, i iVar, k kVar, g gVar, String str3) {
         b7.w0 t6;
@@ -37,20 +37,20 @@ public final class u extends c6.a {
             z10 = true;
         }
         b6.m.a("Must provide id and rawId if not an error response.", z10);
-        this.f42960a = str;
-        this.f42961b = str2;
-        this.f42962c = t6;
+        this.f44724a = str;
+        this.f44725b = str2;
+        this.f44726c = t6;
         this.d = jVar;
-        this.e = iVar;
-        this.f42963f = kVar;
+        this.f44727e = iVar;
+        this.f44728f = kVar;
         this.h = gVar;
-        this.f42964n = str3;
+        this.f44729n = str3;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof u) {
             u uVar = (u) obj;
-            if (b6.m.l(this.f42960a, uVar.f42960a) && b6.m.l(this.f42961b, uVar.f42961b) && b6.m.l(this.f42962c, uVar.f42962c) && b6.m.l(this.d, uVar.d) && b6.m.l(this.e, uVar.e) && b6.m.l(this.f42963f, uVar.f42963f) && b6.m.l(this.h, uVar.h) && b6.m.l(this.f42964n, uVar.f42964n)) {
+            if (b6.m.l(this.f44724a, uVar.f44724a) && b6.m.l(this.f44725b, uVar.f44725b) && b6.m.l(this.f44726c, uVar.f44726c) && b6.m.l(this.d, uVar.d) && b6.m.l(this.f44727e, uVar.f44727e) && b6.m.l(this.f44728f, uVar.f44728f) && b6.m.l(this.h, uVar.h) && b6.m.l(this.f44729n, uVar.f44729n)) {
                 return true;
             }
             return false;
@@ -59,12 +59,12 @@ public final class u extends c6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f42960a, this.f42961b, this.f42962c, this.e, this.d, this.f42963f, this.h, this.f42964n});
+        return Arrays.hashCode(new Object[]{this.f44724a, this.f44725b, this.f44726c, this.f44727e, this.d, this.f44728f, this.h, this.f44729n});
     }
 
     public final String toString() {
         byte[] u10;
-        b7.w0 w0Var = this.f42962c;
+        b7.w0 w0Var = this.f44726c;
         if (w0Var == null) {
             u10 = null;
         } else {
@@ -72,23 +72,23 @@ public final class u extends c6.a {
         }
         String c3 = i6.b.c(u10);
         String valueOf = String.valueOf(this.d);
-        String valueOf2 = String.valueOf(this.e);
-        String valueOf3 = String.valueOf(this.f42963f);
+        String valueOf2 = String.valueOf(this.f44727e);
+        String valueOf3 = String.valueOf(this.f44728f);
         String valueOf4 = String.valueOf(this.h);
-        StringBuilder m9 = yh.m("PublicKeyCredential{\n id='", this.f42960a, "', \n type='", this.f42961b, "', \n rawId=");
-        yh.x(m9, c3, ", \n registerResponse=", valueOf, ", \n signResponse=");
-        yh.x(m9, valueOf2, ", \n errorResponse=", valueOf3, ", \n extensionsClientOutputs=");
+        StringBuilder m9 = yh.m("PublicKeyCredential{\n id='", this.f44724a, "', \n type='", this.f44725b, "', \n rawId=");
+        yh.w(m9, c3, ", \n registerResponse=", valueOf, ", \n signResponse=");
+        yh.w(m9, valueOf2, ", \n errorResponse=", valueOf3, ", \n extensionsClientOutputs=");
         m9.append(valueOf4);
         m9.append(", \n authenticatorAttachment='");
-        m9.append(this.f42964n);
+        m9.append(this.f44729n);
         m9.append("'}");
         return m9.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        o1 o1Var = (o1) n1.f1712b.f1713a.f1681a;
-        p1.f1717a.b();
+        o1 o1Var = (o1) n1.f1854b.f1855a.f1820a;
+        p1.f1860a.a();
         throw null;
     }
 }

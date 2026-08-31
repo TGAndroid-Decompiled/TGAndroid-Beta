@@ -1,32 +1,32 @@
 package r3;
 public class g implements s {
-    public final long f43215a;
-    public final long f43216b;
-    public final int f43217c;
+    public final long f46548a;
+    public final long f46549b;
+    public final int f46550c;
     public final long d;
-    public final int e;
-    public final long f43218f;
-    public final boolean f43219g;
+    public final int f46551e;
+    public final long f46552f;
+    public final boolean f46553g;
 
     public g(long j10, int i10, int i11, boolean z4, long j11) {
-        this.f43215a = j10;
-        this.f43216b = j11;
-        this.f43217c = i11 == -1 ? 1 : i11;
-        this.e = i10;
-        this.f43219g = z4;
+        this.f46548a = j10;
+        this.f46549b = j11;
+        this.f46550c = i11 == -1 ? 1 : i11;
+        this.f46551e = i10;
+        this.f46553g = z4;
         if (j10 == -1) {
             this.d = -1L;
-            this.f43218f = -9223372036854775807L;
+            this.f46552f = -9223372036854775807L;
             return;
         }
         long j12 = j10 - j11;
         this.d = j12;
-        this.f43218f = (Math.max(0L, j12) * 8000000) / i10;
+        this.f46552f = (Math.max(0L, j12) * 8000000) / i10;
     }
 
     @Override
     public final boolean c() {
-        if (this.d == -1 && !this.f43219g) {
+        if (this.d == -1 && !this.f46553g) {
             return false;
         }
         return true;
@@ -34,15 +34,15 @@ public class g implements s {
 
     @Override
     public final r f(long j10) {
-        long j11 = this.f43216b;
+        long j11 = this.f46549b;
         long j12 = this.d;
         int i10 = (j12 > (-1L) ? 1 : (j12 == (-1L) ? 0 : -1));
-        if (i10 == 0 && !this.f43219g) {
+        if (i10 == 0 && !this.f46553g) {
             t tVar = new t(0L, j11);
             return new r(tVar, tVar);
         }
-        int i11 = this.e;
-        long j13 = this.f43217c;
+        int i11 = this.f46551e;
+        long j13 = this.f46550c;
         long j14 = (((i11 * j10) / 8000000) / j13) * j13;
         if (i10 != 0) {
             j14 = Math.min(j14, j12 - j13);
@@ -52,7 +52,7 @@ public class g implements s {
         t tVar2 = new t(max2, max);
         if (i10 != 0 && max2 < j10) {
             long j15 = max + j13;
-            if (j15 < this.f43215a) {
+            if (j15 < this.f46548a) {
                 return new r(tVar2, new t((Math.max(0L, j15 - j11) * 8000000) / i11, j15));
             }
         }
@@ -61,6 +61,6 @@ public class g implements s {
 
     @Override
     public final long g() {
-        return this.f43218f;
+        return this.f46552f;
     }
 }

@@ -8,21 +8,21 @@ public enum t1 extends a2 {
     public final void d(k kVar, a aVar) {
         char d = aVar.d();
         if (d != '\t' && d != '\n' && d != '\f' && d != '\r' && d != ' ') {
-            v vVar = a2.f41127a;
+            v vVar = a2.f44290a;
             if (d != '>') {
                 if (d != 65535) {
                     kVar.m(this);
-                    kVar.f41174c = a2.f41161z0;
+                    kVar.f44340c = a2.f44325z0;
                     return;
                 }
                 kVar.l(this);
-                kVar.f41181m.getClass();
+                kVar.f44348m.getClass();
                 kVar.j();
-                kVar.f41174c = vVar;
+                kVar.f44340c = vVar;
                 return;
             }
             kVar.j();
-            kVar.f41174c = vVar;
+            kVar.f44340c = vVar;
         }
     }
 }

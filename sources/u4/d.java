@@ -1,11 +1,11 @@
 package u4;
 public final class d extends g {
-    public final boolean f45017w;
-    public final boolean f45018x;
+    public final boolean f48262w;
+    public final boolean f48263x;
 
     public d(String str, f fVar, long j10, int i10, long j11, o3.g gVar, String str2, String str3, long j12, long j13, boolean z4, boolean z10, boolean z11) {
         super(str, fVar, j10, i10, j11, gVar, str2, str3, j12, j13, z4);
-        this.f45017w = z10;
-        this.f45018x = z11;
+        this.f48262w = z10;
+        this.f48263x = z11;
     }
 }

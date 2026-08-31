@@ -1,47 +1,52 @@
 package gg;
 
-import java.util.Calendar;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.sc0;
-public final class c implements sc0 {
-    public final int f6586a;
-    public final long f6587b;
-    public final Calendar f6588c;
-    public final int d;
+import android.animation.ValueAnimator;
+import org.telegram.ui.Components.voip.l0;
+import org.telegram.ui.ci1;
+public final class c implements ValueAnimator.AnimatorUpdateListener {
+    public final int f7071a;
+    public final float f7072b;
+    public final float f7073c;
+    public final float d;
+    public final Object f7074e;
 
-    public c(long j10, Calendar calendar, int i10, int i11) {
-        this.f6586a = i11;
-        this.f6587b = j10;
-        this.f6588c = calendar;
-        this.d = i10;
+    public c(Object obj, float f10, float f11, float f12, int i10) {
+        this.f7071a = i10;
+        this.f7074e = obj;
+        this.f7072b = f10;
+        this.f7073c = f11;
+        this.d = f12;
     }
 
     @Override
-    public final String e(int i10) {
-        switch (this.f6586a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f7071a) {
             case 0:
-                if (i10 == 0) {
-                    return LocaleController.getString("MessageScheduleToday", R.string.MessageScheduleToday);
-                }
-                long j10 = (i10 * 86400000) + this.f6587b;
-                Calendar calendar = this.f6588c;
-                calendar.setTimeInMillis(j10);
-                if (calendar.get(1) == this.d) {
-                    return LocaleController.getInstance().getFormatterScheduleDay().format(j10);
-                }
-                return LocaleController.getInstance().getFormatterScheduleYear().format(j10);
+                i iVar = (i) this.f7074e;
+                iVar.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                a aVar = iVar.f7087b;
+                aVar.d = this.f7072b * floatValue;
+                aVar.f7049e = this.f7073c * floatValue;
+                aVar.f7051g = floatValue * this.d;
+                return;
+            case 1:
+                l0 l0Var = (l0) this.f7074e;
+                l0Var.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l0Var.f32166v0 = e2.c.w(1.0f, floatValue2, 1.0f, this.f7072b * floatValue2);
+                l0Var.f32157o0 = this.f7073c * floatValue2;
+                l0Var.f32158p0 = this.d * floatValue2;
+                l0Var.invalidate();
+                return;
             default:
-                if (i10 == 0) {
-                    return LocaleController.getString(R.string.MessageScheduleToday);
-                }
-                long j11 = (i10 * 86400000) + this.f6587b;
-                Calendar calendar2 = this.f6588c;
-                calendar2.setTimeInMillis(j11);
-                if (calendar2.get(1) == this.d) {
-                    return LocaleController.getInstance().getFormatterWeek().format(j11) + " " + LocaleController.getInstance().getFormatterScheduleDay().format(j11);
-                }
-                return LocaleController.getInstance().getFormatterScheduleYear().format(j11);
+                ci1 ci1Var = (ci1) this.f7074e;
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ci1Var.f35826c1 = e2.c.w(1.0f, floatValue3, 1.0f, this.f7072b * floatValue3);
+                ci1Var.V0 = this.f7073c * floatValue3;
+                ci1Var.W0 = this.d * floatValue3;
+                ci1Var.f35852s.invalidate();
+                return;
         }
     }
 }

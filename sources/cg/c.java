@@ -1,54 +1,18 @@
 package cg;
 
-import org.telegram.messenger.R;
-public final class c extends m {
-    @Override
-    public final float a() {
-        return 0.3f;
-    }
+import f2.q;
+import java.util.ArrayList;
+import org.telegram.ui.Components.sl0;
+public abstract class c extends sl0 {
+    public final a f2507c = new a();
 
-    @Override
-    public final float b() {
-        return (float) Math.toRadians(0.0d);
-    }
-
-    @Override
-    public final int c() {
-        return -10742;
-    }
-
-    @Override
-    public final float d() {
-        return 0.5f;
-    }
-
-    @Override
-    public final int e() {
-        return R.raw.photo_marker;
-    }
-
-    @Override
-    public final float f() {
-        return 0.45f;
-    }
-
-    @Override
-    public final float g() {
-        return 0.4f;
-    }
-
-    @Override
-    public final float h() {
-        return 1.5f;
-    }
-
-    @Override
-    public final float k() {
-        return 0.04f;
-    }
-
-    @Override
-    public final int l() {
-        return R.drawable.paint_elliptical_brush;
+    public final void E(ArrayList arrayList, ArrayList arrayList2) {
+        if (arrayList2 == null) {
+            arrayList2 = new ArrayList();
+        }
+        a aVar = this.f2507c;
+        aVar.f2504c = arrayList;
+        aVar.d = arrayList2;
+        q.c(aVar, true).b(this);
     }
 }

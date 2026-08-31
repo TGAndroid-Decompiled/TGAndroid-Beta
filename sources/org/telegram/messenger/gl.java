@@ -4,47 +4,47 @@ import org.telegram.messenger.TranslateController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class gl implements Runnable {
-    public final int f17337a;
-    public final BaseController f17338b;
-    public final Object f17339c;
+    public final int f18797a;
+    public final BaseController f18798b;
+    public final Object f18799c;
     public final Object d;
-    public final Object e;
-    public final Runnable f17340f;
+    public final Object f18800e;
+    public final Runnable f18801f;
     public final long h;
 
     public gl(TopicsController topicsController, TLObject tLObject, long j10, TLRPC.TL_messages_forumTopics tL_messages_forumTopics, a0.h hVar, Runnable runnable) {
-        this.f17337a = 2;
-        this.f17338b = topicsController;
-        this.f17339c = tLObject;
+        this.f18797a = 2;
+        this.f18798b = topicsController;
+        this.f18799c = tLObject;
         this.h = j10;
         this.d = tL_messages_forumTopics;
-        this.e = hVar;
-        this.f17340f = runnable;
+        this.f18800e = hVar;
+        this.f18801f = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f17337a) {
+        switch (this.f18797a) {
             case 0:
-                ((TranslateController) this.f17338b).lambda$translatePhoto$43((MessageObject) this.f17339c, (String) this.d, (TranslateController.MessageKey) this.e, this.f17340f, this.h);
+                ((TranslateController) this.f18798b).lambda$translatePhoto$43((MessageObject) this.f18799c, (String) this.d, (TranslateController.MessageKey) this.f18800e, this.f18801f, this.h);
                 return;
             case 1:
-                ((TranslateController) this.f17338b).lambda$translatePhoto$45((MessageObject) this.f17339c, (String) this.d, (TranslateController.MessageKey) this.e, this.f17340f, this.h);
+                ((TranslateController) this.f18798b).lambda$translatePhoto$45((MessageObject) this.f18799c, (String) this.d, (TranslateController.MessageKey) this.f18800e, this.f18801f, this.h);
                 return;
             default:
-                Runnable runnable = this.f17340f;
-                ((TopicsController) this.f17338b).lambda$reloadTopics$14((TLObject) this.f17339c, this.h, (TLRPC.TL_messages_forumTopics) this.d, (a0.h) this.e, runnable);
+                Runnable runnable = this.f18801f;
+                ((TopicsController) this.f18798b).lambda$reloadTopics$14((TLObject) this.f18799c, this.h, (TLRPC.TL_messages_forumTopics) this.d, (a0.h) this.f18800e, runnable);
                 return;
         }
     }
 
     public gl(TranslateController translateController, MessageObject messageObject, String str, TranslateController.MessageKey messageKey, Runnable runnable, long j10, int i10) {
-        this.f17337a = i10;
-        this.f17338b = translateController;
-        this.f17339c = messageObject;
+        this.f18797a = i10;
+        this.f18798b = translateController;
+        this.f18799c = messageObject;
         this.d = str;
-        this.e = messageKey;
-        this.f17340f = runnable;
+        this.f18800e = messageKey;
+        this.f18801f = runnable;
         this.h = j10;
     }
 }

@@ -1,49 +1,11 @@
 package lh;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class k1 implements Runnable {
-    public final int f12694a = 0;
-    public final g5 f12695b;
-    public final TLRPC.TL_error f12696c;
-    public final TwoStepVerificationActivity d;
-    public final TLObject e;
-
-    public k1(g5 g5Var, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity) {
-        this.f12695b = g5Var;
-        this.f12696c = tL_error;
-        this.e = tLObject;
-        this.d = twoStepVerificationActivity;
-    }
-
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class k1 extends FrameLayout {
     @Override
-    public final void run() {
-        switch (this.f12694a) {
-            case 0:
-                g5 g5Var = this.f12695b;
-                g5Var.getClass();
-                if (this.f12696c == null) {
-                    TL_account.Password password = (TL_account.Password) this.e;
-                    TwoStepVerificationActivity twoStepVerificationActivity = this.d;
-                    twoStepVerificationActivity.F = password;
-                    TwoStepVerificationActivity.m0(password);
-                    g5Var.M1(twoStepVerificationActivity.l0(), twoStepVerificationActivity);
-                    return;
-                }
-                return;
-            default:
-                TwoStepVerificationActivity twoStepVerificationActivity2 = this.d;
-                g5.W0(this.f12695b, this.f12696c, this.e, twoStepVerificationActivity2);
-                return;
-        }
-    }
-
-    public k1(g5 g5Var, TLRPC.TL_error tL_error, TwoStepVerificationActivity twoStepVerificationActivity, TLObject tLObject) {
-        this.f12695b = g5Var;
-        this.f12696c = tL_error;
-        this.d = twoStepVerificationActivity;
-        this.e = tLObject;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(120.0f), 1073741824));
     }
 }

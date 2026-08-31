@@ -1,21 +1,43 @@
 package lh;
 
-import org.telegram.messenger.Utilities;
-public final class t3 implements Utilities.Callback {
-    public final int f13118a;
-    public final long f13119b;
-    public final long f13120c;
-    public final Object d;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.g90;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.i61;
+import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.x51;
+public final class t3 extends i51 {
+    public static final int f12973a = 0;
 
-    public t3(Object obj, long j10, long j11, int i10) {
-        this.f13118a = i10;
-        this.d = obj;
-        this.f13119b = j10;
-        this.f13120c = j11;
+    static {
+        i51.setup(new i51());
     }
 
     @Override
-    public final void run(java.lang.Object r21) {
-        throw new UnsupportedOperationException("Method not decompiled: lh.t3.run(java.lang.Object):void");
+    public final void bindView(View view, j51 j51Var, boolean z4, x51 x51Var, i61 i61Var) {
+        Typeface typeface;
+        g90 g90Var = (g90) view;
+        g90Var.setGravity(j51Var.f28027z);
+        g90Var.setTextColor((int) j51Var.B);
+        g90Var.setTextSize(1, j51Var.A);
+        if (j51Var.f28019q) {
+            typeface = AndroidUtilities.bold();
+        } else {
+            typeface = null;
+        }
+        g90Var.setTypeface(typeface);
+        int i10 = j51Var.f28011i;
+        g90Var.setPadding(i10, 0, i10, j51Var.f28013k);
+        g90Var.setText(j51Var.f28014l);
+    }
+
+    @Override
+    public final View createView(Context context, tl0 tl0Var, int i10, int i11, g6 g6Var) {
+        return new fg.a2(context, 1, null);
     }
 }

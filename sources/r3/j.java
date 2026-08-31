@@ -3,7 +3,7 @@ package r3;
 import j3.n0;
 import java.io.EOFException;
 public final class j implements v {
-    public final byte[] f43227a = new byte[4096];
+    public final byte[] f46562a = new byte[4096];
 
     @Override
     public final void a(int i10, h5.w wVar) {
@@ -17,7 +17,7 @@ public final class j implements v {
 
     @Override
     public final int e(g5.j jVar, int i10, boolean z4) {
-        byte[] bArr = this.f43227a;
+        byte[] bArr = this.f46562a;
         int read = jVar.read(bArr, 0, Math.min(bArr.length, i10));
         if (read == -1) {
             if (z4) {

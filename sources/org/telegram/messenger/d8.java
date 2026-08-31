@@ -6,25 +6,25 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.Utilities;
 public final class d8 implements MediaDataController.KeywordResultCallback, MessagesStorage.LongCallback {
-    public final BaseController f17041a;
-    public final Object f17042b;
-    public final Object f17043c;
+    public final BaseController f18471a;
+    public final Object f18472b;
+    public final Object f18473c;
     public final Object d;
 
     public d8(BaseController baseController, Object obj, Object obj2, Object obj3) {
-        this.f17041a = baseController;
-        this.f17042b = obj;
-        this.f17043c = obj2;
+        this.f18471a = baseController;
+        this.f18472b = obj;
+        this.f18473c = obj2;
         this.d = obj3;
     }
 
     @Override
     public void run(long j10) {
-        ((SendMessagesHelper) this.f17041a).lambda$prepareImportHistory$105((Uri) this.f17042b, (ArrayList) this.f17043c, (MessagesStorage.LongCallback) this.d, j10);
+        ((SendMessagesHelper) this.f18471a).lambda$prepareImportHistory$105((Uri) this.f18472b, (ArrayList) this.f18473c, (MessagesStorage.LongCallback) this.d, j10);
     }
 
     @Override
     public void run(ArrayList arrayList, String str) {
-        ((MediaDataController) this.f17041a).lambda$searchStickers$248((MediaDataController.SearchStickersKey) this.f17042b, (MediaDataController.SearchStickersResult) this.f17043c, (Utilities.Callback) this.d, arrayList, str);
+        ((MediaDataController) this.f18471a).lambda$searchStickers$248((MediaDataController.SearchStickersKey) this.f18472b, (MediaDataController.SearchStickersResult) this.f18473c, (Utilities.Callback) this.d, arrayList, str);
     }
 }

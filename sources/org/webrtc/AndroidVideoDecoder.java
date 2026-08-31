@@ -9,7 +9,6 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
-import kh.a2;
 import org.telegram.messenger.FileLog;
 import org.webrtc.EglBase;
 import org.webrtc.EncodedImage;
@@ -77,7 +76,7 @@ public class AndroidVideoDecoder implements VideoDecoder, VideoSink {
             this.frameInfos = new LinkedBlockingDeque();
             return;
         }
-        throw new IllegalArgumentException(a2.j(i10, "Unsupported color format: "));
+        throw new IllegalArgumentException(l.d.j(i10, "Unsupported color format: "));
     }
 
     private VideoFrame.Buffer copyI420Buffer(ByteBuffer byteBuffer, int i10, int i11, int i12, int i13) {
@@ -126,7 +125,7 @@ public class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                 return allocateI420Buffer;
             }
         }
-        throw new AssertionError(a2.j(i10, "Stride is not divisible by two: "));
+        throw new AssertionError(l.d.j(i10, "Stride is not divisible by two: "));
     }
 
     private VideoFrame.Buffer copyNV12ToI420Buffer(ByteBuffer byteBuffer, int i10, int i11, int i12, int i13) {
@@ -248,13 +247,13 @@ public class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                 createOutputThread.start();
                 Logging.d("AndroidVideoDecoder", "initDecodeInternal done");
                 return VideoCodecStatus.OK;
-            } catch (IllegalArgumentException e) {
-                e = e;
+            } catch (IllegalArgumentException e6) {
+                e = e6;
                 Logging.e("AndroidVideoDecoder", "initDecode failed", e);
                 release();
                 return VideoCodecStatus.FALLBACK_SOFTWARE;
-            } catch (IllegalStateException e6) {
-                e = e6;
+            } catch (IllegalStateException e10) {
+                e = e10;
                 Logging.e("AndroidVideoDecoder", "initDecode failed", e);
                 release();
                 return VideoCodecStatus.FALLBACK_SOFTWARE;
@@ -292,14 +291,14 @@ public class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         Logging.d("AndroidVideoDecoder", "Releasing MediaCodec on output thread");
         try {
             this.codec.stop();
-        } catch (Exception e) {
-            Logging.e("AndroidVideoDecoder", "Media decoder stop failed", e);
+        } catch (Exception e6) {
+            Logging.e("AndroidVideoDecoder", "Media decoder stop failed", e6);
         }
         try {
             this.codec.release();
-        } catch (Exception e6) {
-            Logging.e("AndroidVideoDecoder", "Media decoder release failed", e6);
-            this.shutdownException = e6;
+        } catch (Exception e10) {
+            Logging.e("AndroidVideoDecoder", "Media decoder release failed", e10);
+            this.shutdownException = e10;
         }
         Logging.d("AndroidVideoDecoder", "Release on output thread done");
     }
@@ -403,17 +402,17 @@ public class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                             this.keyFrameRequired = false;
                         }
                         return VideoCodecStatus.OK;
-                    } catch (IllegalStateException e) {
-                        Logging.e("AndroidVideoDecoder", "queueInputBuffer failed", e);
+                    } catch (IllegalStateException e6) {
+                        Logging.e("AndroidVideoDecoder", "queueInputBuffer failed", e6);
                         this.frameInfos.pollLast();
                         return VideoCodecStatus.ERROR;
                     }
-                } catch (IllegalStateException e6) {
-                    Logging.e("AndroidVideoDecoder", "getInputBuffer with index=" + dequeueInputBuffer + " failed", e6);
+                } catch (IllegalStateException e10) {
+                    Logging.e("AndroidVideoDecoder", "getInputBuffer with index=" + dequeueInputBuffer + " failed", e10);
                     return VideoCodecStatus.ERROR;
                 }
-            } catch (IllegalStateException e10) {
-                Logging.e("AndroidVideoDecoder", "dequeueInputBuffer failed", e10);
+            } catch (IllegalStateException e11) {
+                Logging.e("AndroidVideoDecoder", "dequeueInputBuffer failed", e11);
                 return VideoCodecStatus.ERROR;
             }
         }
@@ -455,8 +454,8 @@ public class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                     deliverByteFrame(dequeueOutputBuffer, bufferInfo, i10, num);
                 }
             }
-        } catch (IllegalStateException e) {
-            Logging.e("AndroidVideoDecoder", "deliverDecodedFrame failed", e);
+        } catch (IllegalStateException e6) {
+            Logging.e("AndroidVideoDecoder", "deliverDecodedFrame failed", e6);
         }
     }
 

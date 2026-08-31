@@ -25,25 +25,25 @@ import java.util.ArrayList;
 import java.util.List;
 import l3.d;
 public final class a extends s implements y1 {
-    public int f42700a;
-    public int f42701b;
-    public final c f42702c;
+    public int f44441a;
+    public int f44442b;
+    public final c f44443c;
 
     public a(c cVar) {
-        this.f42702c = cVar;
+        this.f44443c = cVar;
     }
 
     @Override
     public final void onAddQueueItem(MediaDescriptionCompat mediaDescriptionCompat) {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override
     public final void onCommand(String str, Bundle bundle, ResultReceiver resultReceiver) {
-        c cVar = this.f42702c;
-        ArrayList arrayList = cVar.e;
+        c cVar = this.f44443c;
+        ArrayList arrayList = cVar.f44448e;
         ArrayList arrayList2 = cVar.d;
-        if (cVar.f42709i != null) {
+        if (cVar.f44451i != null) {
             if (arrayList2.size() <= 0) {
                 if (arrayList.size() > 0) {
                     arrayList.get(0).getClass();
@@ -62,9 +62,9 @@ public final class a extends s implements y1 {
 
     @Override
     public final void onCustomAction(String str, Bundle bundle) {
-        c cVar = this.f42702c;
-        if (cVar.f42709i != null && cVar.f42708g.containsKey(str)) {
-            cVar.f42708g.get(str).getClass();
+        c cVar = this.f44443c;
+        if (cVar.f44451i != null && cVar.f44450g.containsKey(str)) {
+            cVar.f44450g.get(str).getClass();
             throw new ClassCastException();
         }
     }
@@ -73,10 +73,10 @@ public final class a extends s implements y1 {
     public final void onEvents(a2 a2Var, x1 x1Var) {
         boolean z4;
         boolean z10;
-        g gVar = x1Var.f8883a;
+        g gVar = x1Var.f9481a;
         boolean z11 = true;
-        if (gVar.f6955a.get(11)) {
-            if (this.f42700a != a2Var.x()) {
+        if (gVar.f7257a.get(11)) {
+            if (this.f44441a != a2Var.x()) {
                 z4 = true;
             } else {
                 z4 = false;
@@ -86,29 +86,29 @@ public final class a extends s implements y1 {
             z4 = false;
             z10 = false;
         }
-        if (gVar.f6955a.get(0)) {
+        if (gVar.f7257a.get(0)) {
             int o10 = a2Var.z().o();
-            z10 = (this.f42701b == o10 && this.f42700a == a2Var.x()) ? true : true;
-            this.f42701b = o10;
+            z10 = (this.f44442b == o10 && this.f44441a == a2Var.x()) ? true : true;
+            this.f44442b = o10;
             z4 = true;
         }
-        this.f42700a = a2Var.x();
+        this.f44441a = a2Var.x();
         int[] iArr = {4, 5, 7, 8, 12};
         int i10 = 0;
         while (true) {
             if (i10 >= 5) {
                 break;
             }
-            if (gVar.f6955a.get(iArr[i10])) {
+            if (gVar.f7257a.get(iArr[i10])) {
                 z10 = true;
                 break;
             }
             i10++;
         }
-        if (!gVar.f6955a.get(new int[]{9}[0])) {
+        if (!gVar.f7257a.get(new int[]{9}[0])) {
             z11 = z10;
         }
-        c cVar = this.f42702c;
+        c cVar = this.f44443c;
         if (z11) {
             cVar.c();
         }
@@ -119,9 +119,9 @@ public final class a extends s implements y1 {
 
     @Override
     public final void onFastForward() {
-        c cVar = this.f42702c;
+        c cVar = this.f44443c;
         if (c.a(cVar, 64L)) {
-            e eVar = (e) cVar.f42709i;
+            e eVar = (e) cVar.f44451i;
             long C = eVar.C() + eVar.q();
             long duration = eVar.getDuration();
             if (duration != -9223372036854775807L) {
@@ -133,7 +133,7 @@ public final class a extends s implements y1 {
 
     @Override
     public final boolean onMediaButtonEvent(Intent intent) {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
         if (super.onMediaButtonEvent(intent)) {
             return true;
         }
@@ -142,23 +142,23 @@ public final class a extends s implements y1 {
 
     @Override
     public final void onPause() {
-        c cVar = this.f42702c;
+        c cVar = this.f44443c;
         if (c.a(cVar, 2L)) {
-            ((e) cVar.f42709i).p(false);
+            ((e) cVar.f44451i).p(false);
         }
     }
 
     @Override
     public final void onPlay() {
-        c cVar = this.f42702c;
+        c cVar = this.f44443c;
         if (c.a(cVar, 4L)) {
-            if (cVar.f42709i.b() == 1) {
-                cVar.f42709i.a();
-            } else if (cVar.f42709i.b() == 4) {
-                a2 a2Var = cVar.f42709i;
+            if (cVar.f44451i.b() == 1) {
+                cVar.f44451i.a();
+            } else if (cVar.f44451i.b() == 4) {
+                a2 a2Var = cVar.f44451i;
                 ((e) a2Var).K(a2Var.x(), 10, -9223372036854775807L);
             }
-            a2 a2Var2 = cVar.f42709i;
+            a2 a2Var2 = cVar.f44451i;
             a2Var2.getClass();
             ((e) a2Var2).p(true);
         }
@@ -166,17 +166,17 @@ public final class a extends s implements y1 {
 
     @Override
     public final void onPlayFromMediaId(String str, Bundle bundle) {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override
     public final void onPlayFromSearch(String str, Bundle bundle) {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override
     public final void onPlayFromUri(Uri uri, Bundle bundle) {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override
@@ -185,34 +185,34 @@ public final class a extends s implements y1 {
 
     @Override
     public final void onPrepare() {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override
     public final void onPrepareFromMediaId(String str, Bundle bundle) {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override
     public final void onPrepareFromSearch(String str, Bundle bundle) {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override
     public final void onPrepareFromUri(Uri uri, Bundle bundle) {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override
     public final void onRemoveQueueItem(MediaDescriptionCompat mediaDescriptionCompat) {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override
     public final void onRewind() {
-        c cVar = this.f42702c;
+        c cVar = this.f44443c;
         if (c.a(cVar, 8L)) {
-            e eVar = (e) cVar.f42709i;
+            e eVar = (e) cVar.f44451i;
             long C = eVar.C() + (-eVar.D());
             long duration = eVar.getDuration();
             if (duration != -9223372036854775807L) {
@@ -224,35 +224,35 @@ public final class a extends s implements y1 {
 
     @Override
     public final void onSeekTo(long j10) {
-        c cVar = this.f42702c;
+        c cVar = this.f44443c;
         if (c.a(cVar, 256L)) {
-            a2 a2Var = cVar.f42709i;
+            a2 a2Var = cVar.f44451i;
             ((e) a2Var).K(a2Var.x(), 10, j10);
         }
     }
 
     @Override
     public final void onSetCaptioningEnabled(boolean z4) {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override
     public final void onSetPlaybackSpeed(float f10) {
-        c cVar = this.f42702c;
+        c cVar = this.f44443c;
         if (c.a(cVar, 4194304L) && f10 > 0.0f) {
-            a2 a2Var = cVar.f42709i;
-            a2Var.c(new v1(f10, a2Var.d().f8857b));
+            a2 a2Var = cVar.f44451i;
+            a2Var.c(new v1(f10, a2Var.d().f9453b));
         }
     }
 
     @Override
     public final void onSetRating(RatingCompat ratingCompat) {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override
     public final void onSetRepeatMode(int i10) {
-        c cVar = this.f42702c;
+        c cVar = this.f44443c;
         if (c.a(cVar, 262144L)) {
             int i11 = 1;
             if (i10 != 1) {
@@ -261,44 +261,44 @@ public final class a extends s implements y1 {
                     i11 = 0;
                 }
             }
-            cVar.f42709i.e(i11);
+            cVar.f44451i.e(i11);
         }
     }
 
     @Override
     public final void onSetShuffleMode(int i10) {
-        c cVar = this.f42702c;
+        c cVar = this.f44443c;
         if (c.a(cVar, 2097152L)) {
             boolean z4 = true;
             if (i10 != 1 && i10 != 2) {
                 z4 = false;
             }
-            cVar.f42709i.k(z4);
+            cVar.f44451i.k(z4);
         }
     }
 
     @Override
     public final void onSkipToNext() {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override
     public final void onSkipToPrevious() {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override
     public final void onSkipToQueueItem(long j10) {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override
     public final void onStop() {
-        c cVar = this.f42702c;
+        c cVar = this.f44443c;
         if (c.a(cVar, 1L)) {
-            cVar.f42709i.stop();
-            if (cVar.f42711k) {
-                ((e) cVar.f42709i).l();
+            cVar.f44451i.stop();
+            if (cVar.f44453k) {
+                ((e) cVar.f44451i).l();
             }
         }
     }
@@ -313,12 +313,12 @@ public final class a extends s implements y1 {
 
     @Override
     public final void onAddQueueItem(MediaDescriptionCompat mediaDescriptionCompat, int i10) {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override
     public final void onSetRating(RatingCompat ratingCompat, Bundle bundle) {
-        this.f42702c.getClass();
+        this.f44443c.getClass();
     }
 
     @Override

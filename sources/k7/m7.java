@@ -1,22 +1,19 @@
 package k7;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import com.google.android.gms.cast.framework.media.internal.ResourceProvider;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 public abstract class m7 {
-    public static SharedPreferences f9938a;
-
-    public static SharedPreferences a(Context context) {
-        SharedPreferences sharedPreferences;
-        synchronized (SharedPreferences.class) {
-            try {
-                if (f9938a == null) {
-                    f9938a = (SharedPreferences) j7.h5.a(new h2.f(context, 9));
-                }
-                sharedPreferences = f9938a;
-            } catch (Throwable th2) {
-                throw th2;
-            }
+    public static int a(String str) {
+        Integer num;
+        try {
+            Map map = ResourceProvider.f2637a;
+            num = (Integer) ResourceProvider.class.getMethod("findResourceByName", String.class).invoke(null, str);
+        } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InvocationTargetException unused) {
         }
-        return sharedPreferences;
+        if (num == null) {
+            return 0;
+        }
+        return num.intValue();
     }
 }

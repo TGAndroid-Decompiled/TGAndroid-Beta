@@ -19,10 +19,10 @@ public abstract class y {
             return new k3.k(logSessionId);
         }
         if (z4) {
-            k3.f fVar = f0Var.f8561q;
+            k3.f fVar = f0Var.f9128q;
             fVar.getClass();
-            fVar.f9709f.a(iVar);
+            fVar.f10426f.a(iVar);
         }
-        return new k3.k(iVar.f9725c.getSessionId());
+        return new k3.k(iVar.f10444c.getSessionId());
     }
 }

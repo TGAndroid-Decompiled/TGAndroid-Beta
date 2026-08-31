@@ -1,81 +1,46 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class kp0 extends org.telegram.ui.Components.qv0 {
-    public int f35782t0;
-    public boolean f35783u0;
-    public final pp0 f35784v0;
+import android.text.Editable;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class kp0 implements gq0 {
+    public final HashMap f38452a;
+    public final ArrayList f38453b;
+    public final rp0 f38454c;
 
-    public kp0(pp0 pp0Var, Context context) {
-        super(context, null);
-        this.f35784v0 = pp0Var;
+    public kp0(rp0 rp0Var, HashMap hashMap, ArrayList arrayList) {
+        this.f38454c = rp0Var;
+        this.f38452a = hashMap;
+        this.f38453b = arrayList;
     }
 
     @Override
-    public final void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kp0.onLayout(boolean, int, int, int, int):void");
+    public final void c(Editable editable) {
+        rp0 rp0Var = this.f38454c;
+        org.telegram.ui.Components.fu fuVar = rp0Var.J;
+        rp0Var.f41024a = editable;
+        fuVar.setText(editable);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        float f10;
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        setMeasuredDimension(size, size2);
-        int dp = AndroidUtilities.dp(20.0f);
-        int i13 = 0;
-        pp0 pp0Var = this.f35784v0;
-        if (dp >= 0) {
-            if (!AndroidUtilities.isInMultiwindow) {
-                size2 -= pp0Var.J.getEmojiPadding();
-                i11 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
-            }
-        } else {
-            this.f35783u0 = true;
-            pp0Var.J.j();
-            this.f35783u0 = false;
-        }
-        int i14 = i11;
-        int childCount = getChildCount();
-        while (i13 < childCount) {
-            View childAt = getChildAt(i13);
-            if (childAt != null && childAt.getVisibility() != 8) {
-                org.telegram.ui.Components.du duVar = pp0Var.J;
-                if (duVar != null && duVar.l(childAt)) {
-                    if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
-                    } else if (AndroidUtilities.isTablet()) {
-                        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-                        if (AndroidUtilities.isTablet()) {
-                            f10 = 200.0f;
-                        } else {
-                            f10 = 320.0f;
-                        }
-                        childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(f10), getPaddingTop() + (size2 - AndroidUtilities.statusBarHeight)), 1073741824));
-                    } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size2 - AndroidUtilities.statusBarHeight), 1073741824));
-                    }
-                } else {
-                    i12 = i10;
-                    measureChildWithMargins(childAt, i12, 0, i14, 0);
-                    i13++;
-                    i10 = i12;
-                }
-            }
-            i12 = i10;
-            i13++;
-            i10 = i12;
+    public final boolean e() {
+        return true;
+    }
+
+    @Override
+    public final void f(int i10, boolean z4, boolean z10) {
+        rp0 rp0Var = this.f38454c;
+        rp0Var.removeSelfFromStack();
+        if (!z4) {
+            rp0Var.V(this.f38452a, this.f38453b, z10, i10);
         }
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.f35783u0) {
-            return;
-        }
-        super.requestLayout();
+    public final void a() {
+    }
+
+    @Override
+    public final void d() {
     }
 }

@@ -1,34 +1,51 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class wy0 extends tz0 {
-    public wy0(Context context) {
-        super(context);
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.UndoView;
+public final class wy0 implements hq {
+    public final TLRPC.Chat f42906a;
+    public final kq f42907b;
+    public final ProfileActivity f42908c;
+
+    public wy0(ProfileActivity profileActivity, TLRPC.Chat chat, kq kqVar) {
+        this.f42908c = profileActivity;
+        this.f42906a = chat;
+        this.f42907b = kqVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        nh.y2 y2Var;
-        super.dispatchDraw(canvas);
-        org.telegram.ui.Components.l5 l5Var = this.e;
-        if (l5Var != null && (y2Var = l5Var.f26569k) != null) {
-            y2Var.startAnimation();
+    public final void a(TLRPC.User user) {
+        int i10;
+        ProfileActivity profileActivity = this.f42908c;
+        UndoView undoView = profileActivity.J;
+        long j10 = -profileActivity.f34577c1;
+        if (profileActivity.B2.megagroup) {
+            i10 = 10;
+        } else {
+            i10 = 9;
         }
+        undoView.m(j10, user, i10);
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (getImageReceiver().hasNotThumb()) {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenInPhotoViewer)));
-            return;
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLRPC.Chat chat;
+        ProfileActivity profileActivity = this.f42908c;
+        profileActivity.removeSelfFromStack();
+        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f34569b1));
+        if (user != null && (chat = this.f42906a) != null && profileActivity.f34569b1 != 0) {
+            kq kqVar = this.f42907b;
+            if (kqVar.N && kqVar.getParentLayout() != null) {
+                for (org.telegram.ui.ActionBar.p2 p2Var : kqVar.getParentLayout().getFragmentStack()) {
+                    if (p2Var instanceof sb) {
+                        sb sbVar = (sb) p2Var;
+                        sbVar.W0();
+                        AndroidUtilities.runOnUIThread(new if0(sbVar, user, chat, 25));
+                        return;
+                    }
+                }
+            }
         }
-        accessibilityNodeInfo.setVisibleToUser(false);
     }
 }

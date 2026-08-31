@@ -4,49 +4,49 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import java.util.ArrayList;
 public final class f implements Runnable {
-    public final int f5692a;
-    public final ArrayList f5693b;
-    public final l f5694c;
+    public final int f5754a;
+    public final ArrayList f5755b;
+    public final l f5756c;
 
     public f(l lVar, ArrayList arrayList, int i10) {
-        this.f5692a = i10;
-        this.f5694c = lVar;
-        this.f5693b = arrayList;
+        this.f5754a = i10;
+        this.f5756c = lVar;
+        this.f5755b = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f5692a) {
+        switch (this.f5754a) {
             case 0:
-                ArrayList arrayList = this.f5693b;
+                ArrayList arrayList = this.f5755b;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (true) {
-                    l lVar = this.f5694c;
+                    l lVar = this.f5756c;
                     if (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
                         k kVar = (k) obj;
-                        lVar.C(kVar.f5766a, kVar);
-                        lVar.f5780w.add(kVar);
+                        lVar.C(kVar.f5839a, kVar);
+                        lVar.f5859w.add(kVar);
                     } else {
                         arrayList.clear();
-                        lVar.f5779u.remove(arrayList);
+                        lVar.f5858u.remove(arrayList);
                         return;
                     }
                 }
             case 1:
-                ArrayList arrayList2 = this.f5693b;
+                ArrayList arrayList2 = this.f5755b;
                 int size2 = arrayList2.size();
                 int i11 = 0;
                 while (true) {
-                    l lVar2 = this.f5694c;
+                    l lVar2 = this.f5756c;
                     if (i11 < size2) {
                         Object obj2 = arrayList2.get(i11);
                         i11++;
                         j jVar = (j) obj2;
                         lVar2.B(jVar);
-                        lVar2.f5781x.add(jVar);
+                        lVar2.f5860x.add(jVar);
                     } else {
                         arrayList2.clear();
                         lVar2.v.remove(arrayList2);
@@ -54,27 +54,27 @@ public final class f implements Runnable {
                     }
                 }
             default:
-                ArrayList arrayList3 = this.f5693b;
+                ArrayList arrayList3 = this.f5755b;
                 int i12 = Integer.MAX_VALUE;
                 for (int size3 = arrayList3.size() - 1; size3 >= 0; size3--) {
-                    i12 = Math.min(i12, ((l1) arrayList3.get(size3)).b());
+                    i12 = Math.min(i12, ((m1) arrayList3.get(size3)).b());
                 }
                 int size4 = arrayList3.size();
                 while (true) {
                     size4--;
-                    l lVar3 = this.f5694c;
+                    l lVar3 = this.f5756c;
                     if (size4 >= 0) {
-                        l1 l1Var = (l1) arrayList3.get(size4);
-                        long b10 = (l1Var.b() - i12) * lVar3.D;
-                        View view = l1Var.f5785a;
+                        m1 m1Var = (m1) arrayList3.get(size4);
+                        long b10 = (m1Var.b() - i12) * lVar3.D;
+                        View view = m1Var.f5875a;
                         ViewPropertyAnimator animate = view.animate();
-                        lVar3.f5782y.add(l1Var);
+                        lVar3.f5861y.add(m1Var);
                         animate.alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(lVar3.h()).setStartDelay(b10).setInterpolator(lVar3.h);
-                        animate.setUpdateListener(new d(lVar3, l1Var, 1));
-                        animate.setListener(new g(lVar3, l1Var, view, animate)).start();
+                        animate.setUpdateListener(new d(lVar3, m1Var, 1));
+                        animate.setListener(new g(lVar3, m1Var, view, animate)).start();
                     } else {
                         arrayList3.clear();
-                        lVar3.f5778t.remove(arrayList3);
+                        lVar3.f5857t.remove(arrayList3);
                         return;
                     }
                 }

@@ -12,8 +12,8 @@ import android.view.MenuItem;
 import android.view.ViewConfiguration;
 import android.webkit.WebView;
 public abstract class a {
-    public static Context f9752a;
-    public static Boolean f9753b;
+    public static Context f10473a;
+    public static Boolean f10474b;
 
     public static Notification.Builder a(Context context, String str) {
         return new Notification.Builder(context, str);
@@ -39,23 +39,23 @@ public abstract class a {
         Boolean bool;
         synchronized (a.class) {
             Context applicationContext = context.getApplicationContext();
-            Context context2 = f9752a;
-            if (context2 != null && (bool = f9753b) != null && context2 == applicationContext) {
+            Context context2 = f10473a;
+            if (context2 != null && (bool = f10474b) != null && context2 == applicationContext) {
                 return bool.booleanValue();
             }
-            f9753b = null;
+            f10474b = null;
             if (i6.b.d()) {
-                f9753b = Boolean.valueOf(applicationContext.getPackageManager().isInstantApp());
+                f10474b = Boolean.valueOf(applicationContext.getPackageManager().isInstantApp());
             } else {
                 try {
                     context.getClassLoader().loadClass("com.google.android.instantapps.supervisor.InstantAppsRuntime");
-                    f9753b = Boolean.TRUE;
+                    f10474b = Boolean.TRUE;
                 } catch (ClassNotFoundException unused) {
-                    f9753b = Boolean.FALSE;
+                    f10474b = Boolean.FALSE;
                 }
             }
-            f9752a = applicationContext;
-            return f9753b.booleanValue();
+            f10473a = applicationContext;
+            return f10474b.booleanValue();
         }
     }
 

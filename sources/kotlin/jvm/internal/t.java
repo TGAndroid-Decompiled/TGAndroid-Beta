@@ -1,6 +1,4 @@
 package kotlin.jvm.internal;
-
-import kh.a2;
 public abstract class t {
     public static void a(int i10, Object obj) {
         int i11;
@@ -23,7 +21,7 @@ public abstract class t {
                     return;
                 }
             }
-            ClassCastException classCastException = new ClassCastException(android.support.v4.media.a.z(obj.getClass().getName(), " cannot be cast to ", a2.j(i10, "kotlin.jvm.functions.Function")));
+            ClassCastException classCastException = new ClassCastException(android.support.v4.media.a.z(obj.getClass().getName(), " cannot be cast to ", l.d.j(i10, "kotlin.jvm.functions.Function")));
             j.f(classCastException, t.class.getName());
             throw classCastException;
         }

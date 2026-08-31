@@ -1,85 +1,87 @@
 package lh;
 
-import android.text.SpannableStringBuilder;
+import android.content.Context;
+import android.os.Bundle;
+import android.widget.FrameLayout;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.GiftAuctionController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.mq;
-import org.telegram.ui.Components.nb;
-import org.telegram.ui.Components.qb;
-public final class d implements Runnable {
-    public final int f12288a;
-    public final q f12289b;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.sa;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.x51;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+public final class d extends sa {
+    public static final int X = 0;
+    public final List U;
+    public final GiftAuctionController.Auction V;
+    public x51 W;
 
-    public d(q qVar, int i10) {
-        this.f12288a = i10;
-        this.f12289b = qVar;
+    public d(Context context, g6 g6Var, GiftAuctionController.Auction auction, List list) {
+        super(context, null, false, false, false, false, false, 2, g6Var);
+        this.V = auction;
+        this.U = list;
+        this.v = 0.2f;
+        this.I = false;
+        this.H = AndroidUtilities.dp(12.0f);
+        this.f31015e.setTitle(y());
+        fixNavigationBar();
+        this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(64.0f));
+        this.d.setOnItemClickListener(new a(0));
+        this.d.setOverScrollMode(2);
+        qh.d dVar = new qh.d(context, g6Var, true);
+        dVar.setOnClickListener(new androidx.mediarouter.app.c(this, 11));
+        dVar.g(LocaleController.getString(R.string.OK), false, true);
+        FrameLayout.LayoutParams d = k7.c6.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
+        int i10 = d.leftMargin;
+        int i11 = this.backgroundPaddingLeft;
+        d.leftMargin = i10 + i11;
+        d.rightMargin += i11;
+        this.containerView.addView(dVar, d);
+        this.W.N(false);
+    }
+
+    public static void P(d dVar, TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift) {
+        long peerDialogId = DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer);
+        dVar.dismiss();
+        org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
+        if (U != null && !UserObject.isService(peerDialogId)) {
+            Bundle bundle = new Bundle();
+            if (peerDialogId > 0) {
+                bundle.putLong("user_id", peerDialogId);
+                if (peerDialogId == UserConfig.getInstance(dVar.currentAccount).getClientUserId()) {
+                    bundle.putBoolean("my_profile", true);
+                }
+            } else {
+                bundle.putLong("chat_id", -peerDialogId);
+            }
+            bundle.putBoolean("open_gifts", true);
+            U.presentFragment(new ProfileActivity(bundle, null));
+        }
     }
 
     @Override
-    public final void run() {
-        boolean z4;
-        String formatPluralStringSpaced;
-        int i10 = this.f12288a;
-        q qVar = this.f12289b;
-        switch (i10) {
-            case 0:
-                d dVar = qVar.f12959k0;
-                int currentTime = qVar.getConnectionsManager().getCurrentTime();
-                o oVar = qVar.O;
-                if (qVar.M <= 0 && qVar.D <= currentTime) {
-                    z4 = false;
-                } else {
-                    z4 = true;
-                }
-                oVar.setEnabled(z4);
-                if (currentTime < qVar.D) {
-                    qVar.O.g(LocaleController.getString(R.string.BotStarsButtonWithdrawShortUntil), true, true);
-                    if (qVar.f12958j0 == null) {
-                        qVar.f12958j0 = new SpannableStringBuilder("l");
-                        mq mqVar = new mq(R.drawable.mini_switch_lock, 0);
-                        mqVar.setTopOffset(1);
-                        qVar.f12958j0.setSpan(mqVar, 0, 1, 33);
-                    }
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) qVar.f12958j0).append((CharSequence) q.j0(qVar.D - currentTime));
-                    qVar.O.f(spannableStringBuilder, true);
-                    ic icVar = qVar.X;
-                    if (icVar != null) {
-                        nb nbVar = icVar.e;
-                        if ((nbVar instanceof qb) && nbVar.isAttachedToWindow()) {
-                            org.telegram.ui.b.o(R.string.BotStarsWithdrawalToast, new Object[]{q.j0(qVar.D - currentTime)}, ((qb) qVar.X.e).f28100b);
-                        }
-                    }
-                    AndroidUtilities.cancelRunOnUIThread(dVar);
-                    AndroidUtilities.runOnUIThread(dVar, 1000L);
-                    return;
-                }
-                qVar.O.f(null, true);
-                o oVar2 = qVar.O;
-                if (qVar.L) {
-                    formatPluralStringSpaced = LocaleController.getString(R.string.BotStarsButtonWithdrawShortAll);
-                } else {
-                    formatPluralStringSpaced = LocaleController.formatPluralStringSpaced("BotStarsButtonWithdrawShort", (int) qVar.M);
-                }
-                oVar2.g(ja.V0(false, formatPluralStringSpaced, qVar.Q), true, true);
-                return;
-            case 1:
-                q.U(qVar);
-                return;
-            case 2:
-                q.V(qVar);
-                return;
-            case 3:
-                af.g.s(qVar.getParentActivity(), LocaleController.getString(R.string.BotMonetizationBalanceInfoLink));
-                return;
-            case 4:
-                af.g.s(qVar.getParentActivity(), LocaleController.getString(R.string.BotStarsWithdrawInfoLink));
-                return;
-            default:
-                qVar.P.setLoading(false);
-                return;
+    public final sl0 v(tl0 tl0Var) {
+        x51 x51Var = new x51(this.d, getContext(), this.currentAccount, 0, true, new eg.p1(this, 4), this.resourcesProvider);
+        this.W = x51Var;
+        x51Var.f32957r = false;
+        return x51Var;
+    }
+
+    @Override
+    public final CharSequence y() {
+        List list = this.U;
+        if (list == null) {
+            return null;
         }
+        return LocaleController.formatPluralString("Gift2AuctionsAcquiredGifts", list.size(), new Object[0]);
     }
 }

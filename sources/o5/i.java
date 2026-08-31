@@ -1,93 +1,156 @@
 package o5;
 
-import android.content.ComponentName;
-import android.content.ContentProviderClient;
 import android.content.Context;
-import android.database.Cursor;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.net.Uri;
-import android.os.Build;
+import android.graphics.Bitmap;
+import android.media.AudioAttributes;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Parcel;
 import android.os.RemoteException;
+import android.support.v4.media.MediaMetadataCompat;
+import android.support.v4.media.session.c0;
 import android.text.TextUtils;
+import android.text.style.CharacterStyle;
 import android.util.Log;
-import android.view.TextureView;
-import android.view.View;
-import android.view.Window;
-import androidx.biometric.q;
 import androidx.biometric.r;
-import androidx.biometric.u;
 import androidx.fragment.app.f0;
 import androidx.fragment.app.j0;
-import androidx.fragment.app.k0;
-import androidx.fragment.app.v;
 import androidx.lifecycle.a0;
-import androidx.lifecycle.z;
-import androidx.profileinstaller.ProfileInstallReceiver;
 import b6.p;
 import b7.y0;
-import cg.f1;
-import cg.f2;
-import cg.m;
-import cg.m1;
-import cg.n1;
-import cg.p1;
+import c2.u;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.internal.o;
 import com.google.android.gms.common.api.internal.s;
-import com.google.android.gms.internal.cast.i4;
-import com.google.android.gms.internal.play_billing.s1;
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import dg.s2;
-import gg.y1;
-import i9.n;
-import i9.y;
-import java.io.IOException;
+import dg.l1;
+import dg.m1;
+import dg.o1;
+import f2.l0;
+import f2.p0;
+import h5.d0;
+import j7.p5;
 import java.nio.BufferOverflowException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.ReadOnlyBufferException;
-import java.util.ArrayDeque;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.TimeoutException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantLock;
-import l.w;
-import l3.t;
-import lh.g5;
-import mg.q0;
-import nh.d4;
-import nh.z8;
+import la.b0;
+import m.i1;
+import mh.g5;
+import oh.f4;
+import org.chromium.support_lib_boundary.WebMessageListenerBoundaryInterface;
 import org.json.JSONException;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.Components.aq0;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.Cells.ea;
+import org.telegram.ui.Cells.k1;
+import org.telegram.ui.Cells.n9;
+import org.telegram.ui.Cells.t1;
+import org.telegram.ui.Components.bq0;
 import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.ok0;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ft0;
-import org.telegram.ui.ru0;
-public final class i implements a0, androidx.activity.result.b, s, s2, e2.d, a3.b, o, w, t, aq0, m.k, ok0, ru0, o0.a {
-    public static i f16455c;
-    public final int f16456a;
-    public Object f16457b;
+import org.telegram.ui.Components.u5;
+import org.telegram.ui.p61;
+import org.telegram.ui.xu0;
+import s5.m;
+public final class i implements a0, androidx.activity.result.b, s, l0, a3.b, o, i1, Continuation, m.k, bq0, p61, WebMessageListenerBoundaryInterface, k1 {
+    public static i f16613c;
+    public final int f16614a;
+    public final Object f16615b;
 
-    public i(g6.g gVar, g6.a aVar) {
-        this.f16456a = 19;
-        this.f16457b = aVar;
+    public i(Object obj, int i10) {
+        this.f16614a = i10;
+        this.f16615b = obj;
     }
 
-    public static int D(int i10, String str) {
-        int P = P(i10);
-        int x10 = x(str);
-        return Q(x10) + x10 + P;
+    public static synchronized i B(Context context) {
+        i G;
+        synchronized (i.class) {
+            G = G(context.getApplicationContext());
+        }
+        return G;
     }
 
-    public static void K(CharSequence charSequence, ByteBuffer byteBuffer) {
+    public static synchronized i G(Context context) {
+        synchronized (i.class) {
+            i iVar = f16613c;
+            if (iVar != null) {
+                return iVar;
+            }
+            i iVar2 = new i(context);
+            f16613c = iVar2;
+            return iVar2;
+        }
+    }
+
+    public static int I(CharSequence charSequence) {
+        int length = charSequence.length();
+        int i10 = 0;
+        int i11 = 0;
+        while (i11 < length && charSequence.charAt(i11) < 128) {
+            i11++;
+        }
+        int i12 = length;
+        while (true) {
+            if (i11 >= length) {
+                break;
+            }
+            char charAt = charSequence.charAt(i11);
+            if (charAt < 2048) {
+                i12 += (127 - charAt) >>> 31;
+                i11++;
+            } else {
+                int length2 = charSequence.length();
+                while (i11 < length2) {
+                    char charAt2 = charSequence.charAt(i11);
+                    if (charAt2 < 2048) {
+                        i10 += (127 - charAt2) >>> 31;
+                    } else {
+                        i10 += 2;
+                        if (55296 <= charAt2 && charAt2 <= 57343) {
+                            if (Character.codePointAt(charSequence, i11) >= 65536) {
+                                i11++;
+                            } else {
+                                StringBuilder sb = new StringBuilder(39);
+                                sb.append("Unpaired surrogate at index ");
+                                sb.append(i11);
+                                throw new IllegalArgumentException(sb.toString());
+                            }
+                        }
+                    }
+                    i11++;
+                }
+                i12 += i10;
+            }
+        }
+        if (i12 >= length) {
+            return i12;
+        }
+        StringBuilder sb2 = new StringBuilder(54);
+        sb2.append("UTF-8 length does not fit in int: ");
+        sb2.append(i12 + 4294967296L);
+        throw new IllegalArgumentException(sb2.toString());
+    }
+
+    public static int d0(int i10, String str) {
+        int r02 = r0(i10);
+        int I = I(str);
+        return t0(I) + I + r02;
+    }
+
+    public static void h0(CharSequence charSequence, ByteBuffer byteBuffer) {
         int i10;
         char charAt;
         if (!byteBuffer.isReadOnly()) {
@@ -163,9 +226,9 @@ public final class i implements a0, androidx.activity.result.b, s, s2, e2.d, a3.
                     }
                     byteBuffer.position(i10 - byteBuffer.arrayOffset());
                     return;
-                } catch (ArrayIndexOutOfBoundsException e) {
+                } catch (ArrayIndexOutOfBoundsException e6) {
                     BufferOverflowException bufferOverflowException = new BufferOverflowException();
-                    bufferOverflowException.initCause(e);
+                    bufferOverflowException.initCause(e6);
                     throw bufferOverflowException;
                 }
             }
@@ -212,7 +275,7 @@ public final class i implements a0, androidx.activity.result.b, s, s2, e2.d, a3.
         throw new ReadOnlyBufferException();
     }
 
-    public static int O(long j10) {
+    public static int o0(long j10) {
         if (((-128) & j10) == 0) {
             return 1;
         }
@@ -243,11 +306,11 @@ public final class i implements a0, androidx.activity.result.b, s, s2, e2.d, a3.
         return 10;
     }
 
-    public static int P(int i10) {
-        return Q(i10 << 3);
+    public static int r0(int i10) {
+        return t0(i10 << 3);
     }
 
-    public static int Q(int i10) {
+    public static int t0(int i10) {
         if ((i10 & (-128)) == 0) {
             return 1;
         }
@@ -263,80 +326,165 @@ public final class i implements a0, androidx.activity.result.b, s, s2, e2.d, a3.
         return 5;
     }
 
-    public static synchronized i p(Context context) {
-        i u10;
-        synchronized (i.class) {
-            u10 = u(context.getApplicationContext());
+    public void A(String str, String str2) {
+        a0.f fVar = MediaMetadataCompat.d;
+        if (fVar.containsKey(str) && ((Integer) fVar.get(str)).intValue() != 1) {
+            throw new IllegalArgumentException(android.support.v4.media.a.o("The ", str, " key cannot be used to put a String"));
         }
-        return u10;
+        ((Bundle) this.f16615b).putCharSequence(str, str2);
     }
 
-    public static synchronized i u(Context context) {
-        synchronized (i.class) {
-            i iVar = f16455c;
-            if (iVar != null) {
-                return iVar;
-            }
-            i iVar2 = new i(context);
-            f16455c = iVar2;
-            return iVar2;
+    @Override
+    public boolean A0(MessageObject messageObject) {
+        return true;
+    }
+
+    @Override
+    public void C(int i10, int i11) {
+        ((p0) this.f16615b).p(i10, i11);
+    }
+
+    @Override
+    public boolean E2(int i10) {
+        return false;
+    }
+
+    public synchronized void F() {
+        synchronized (this) {
+            b bVar = (b) this.f16615b;
+            ReentrantLock reentrantLock = bVar.f16596a;
+            reentrantLock.lock();
+            bVar.f16597b.edit().clear().apply();
+            reentrantLock.unlock();
         }
     }
 
-    public static int x(CharSequence charSequence) {
-        int length = charSequence.length();
-        int i10 = 0;
-        int i11 = 0;
-        while (i11 < length && charSequence.charAt(i11) < 128) {
-            i11++;
-        }
-        int i12 = length;
-        while (true) {
-            if (i11 >= length) {
-                break;
-            }
-            char charAt = charSequence.charAt(i11);
-            if (charAt < 2048) {
-                i12 += (127 - charAt) >>> 31;
-                i11++;
-            } else {
-                int length2 = charSequence.length();
-                while (i11 < length2) {
-                    char charAt2 = charSequence.charAt(i11);
-                    if (charAt2 < 2048) {
-                        i10 += (127 - charAt2) >>> 31;
-                    } else {
-                        i10 += 2;
-                        if (55296 <= charAt2 && charAt2 <= 57343) {
-                            if (Character.codePointAt(charSequence, i11) >= 65536) {
-                                i11++;
-                            } else {
-                                StringBuilder sb = new StringBuilder(39);
-                                sb.append("Unpaired surrogate at index ");
-                                sb.append(i11);
-                                throw new IllegalArgumentException(sb.toString());
-                            }
-                        }
-                    }
-                    i11++;
+    @Override
+    public boolean H1() {
+        return false;
+    }
+
+    @Override
+    public n9 I2() {
+        return null;
+    }
+
+    public void J(int i10, String str) {
+        ByteBuffer byteBuffer = (ByteBuffer) this.f16615b;
+        e0(i10, 2);
+        try {
+            int t02 = t0(str.length());
+            if (t02 == t0(str.length() * 3)) {
+                int position = byteBuffer.position();
+                if (byteBuffer.remaining() >= t02) {
+                    byteBuffer.position(position + t02);
+                    h0(str, byteBuffer);
+                    int position2 = byteBuffer.position();
+                    byteBuffer.position(position);
+                    b0((position2 - position) - t02);
+                    byteBuffer.position(position2);
+                    return;
                 }
-                i12 += i10;
+                throw new y0(position + t02, byteBuffer.limit());
             }
+            b0(I(str));
+            h0(str, byteBuffer);
+        } catch (BufferOverflowException e6) {
+            y0 y0Var = new y0(byteBuffer.position(), byteBuffer.limit());
+            y0Var.initCause(e6);
+            throw y0Var;
         }
-        if (i12 >= length) {
-            return i12;
-        }
-        StringBuilder sb2 = new StringBuilder(54);
-        sb2.append("UTF-8 length does not fit in int: ");
-        sb2.append(i12 + 4294967296L);
-        throw new IllegalArgumentException(sb2.toString());
     }
 
-    public void A(int i10, byte[] bArr) {
-        I(i10, 2);
-        C(bArr.length);
+    @Override
+    public void L0(int i10, int i11) {
+        ((p0) this.f16615b).t(i10, i11);
+    }
+
+    @Override
+    public boolean N(t1 t1Var, TLRPC.TodoItem todoItem, boolean z4) {
+        return false;
+    }
+
+    @Override
+    public boolean N1(t1 t1Var, TLRPC.Chat chat) {
+        return false;
+    }
+
+    @Override
+    public boolean O() {
+        return false;
+    }
+
+    @Override
+    public boolean P(t1 t1Var) {
+        return false;
+    }
+
+    @Override
+    public boolean P1() {
+        return false;
+    }
+
+    @Override
+    public boolean R() {
+        return false;
+    }
+
+    @Override
+    public boolean R0(long j10) {
+        return false;
+    }
+
+    @Override
+    public void U() {
+        int i10 = this.f16614a;
+    }
+
+    @Override
+    public void U0(int i10, t1 t1Var) {
+        ea eaVar = (ea) this.f16615b;
+        org.telegram.ui.Cells.g gVar = eaVar.v;
+        if (eaVar.a()) {
+            eaVar.f22782s = 2;
+            t1Var.invalidate();
+            AndroidUtilities.cancelRunOnUIThread(gVar);
+            AndroidUtilities.runOnUIThread(gVar, 5000L);
+        }
+    }
+
+    @Override
+    public void U1(t1 t1Var, TLRPC.WebPage webPage, String str, boolean z4) {
+        af.g.s(t1Var.getContext(), str);
+    }
+
+    @Override
+    public int V() {
+        return 0;
+    }
+
+    @Override
+    public void W(Object obj) {
+        CharSequence charSequence = (CharSequence) obj;
+        r rVar = (r) this.f16615b;
+        if (charSequence != null) {
+            if (rVar.R()) {
+                rVar.W(charSequence);
+            }
+            rVar.f553i0.d(null);
+        }
+    }
+
+    @Override
+    public CharacterStyle W1(t1 t1Var) {
+        return null;
+    }
+
+    public void X(int i10, byte[] bArr) {
+        e0(i10, 2);
+        b0(bArr.length);
         int length = bArr.length;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f16457b;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f16615b;
         if (byteBuffer.remaining() >= length) {
             byteBuffer.put(bArr, 0, length);
             return;
@@ -344,9 +492,20 @@ public final class i implements a0, androidx.activity.result.b, s, s2, e2.d, a3.
         throw new y0(byteBuffer.position(), byteBuffer.limit());
     }
 
-    public void B(int i10) {
+    @Override
+    public void X1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
+        ea eaVar = (ea) this.f16615b;
+        org.telegram.ui.Cells.g gVar = eaVar.v;
+        if (eaVar.a()) {
+            eaVar.f22782s = 2;
+            AndroidUtilities.cancelRunOnUIThread(gVar);
+            AndroidUtilities.runOnUIThread(gVar, 5000L);
+        }
+    }
+
+    public void Y(int i10) {
         byte b10 = (byte) i10;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f16457b;
+        ByteBuffer byteBuffer = (ByteBuffer) this.f16615b;
         if (byteBuffer.hasRemaining()) {
             byteBuffer.put(b10);
             return;
@@ -354,107 +513,42 @@ public final class i implements a0, androidx.activity.result.b, s, s2, e2.d, a3.
         throw new y0(byteBuffer.position(), byteBuffer.limit());
     }
 
-    public void C(int i10) {
-        while ((i10 & (-128)) != 0) {
-            B((i10 & 127) | 128);
-            i10 >>>= 7;
-        }
-        B(i10);
-    }
-
-    public void E() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f16457b;
-        if (arrayDeque.isEmpty()) {
-            return;
-        }
-        int size = arrayDeque.size();
-        long M = M();
-        throw new IOException("data item not completed, stackSize: " + size + " scope: " + M);
+    @Override
+    public boolean Y1(t1 t1Var, MessageObject messageObject) {
+        return false;
     }
 
     @Override
-    public void F(float f10) {
-        ft0 ft0Var = (ft0) this.f16457b;
-        f1.e(ft0Var.M1).k(String.valueOf(m.f2447a.indexOf(ft0Var.T0.getCurrentBrush())), f10);
-        f2 f2Var = ft0Var.H1;
-        f2Var.f2403c = f10;
-        ft0Var.s0(f2Var, null);
+    public vg.a Z() {
+        return null;
+    }
+
+    public void a(int i10, boolean z4) {
+        u uVar = (u) this.f16615b;
+        if (z4) {
+            uVar.b(i10);
+        } else {
+            uVar.getClass();
+        }
     }
 
     @Override
-    public void H(MessageObject messageObject) {
-        ((z8) ((d4) this.f16457b).N1).f(false);
-    }
-
-    public void I(int i10, int i11) {
-        C((i10 << 3) | i11);
-    }
-
-    @Override
-    public Cursor J(Uri uri, String[] strArr, String[] strArr2) {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f16457b;
-        if (contentProviderClient == null) {
-            return null;
-        }
-        try {
-            return contentProviderClient.query(uri, strArr, "query = ?", strArr2, null, null);
-        } catch (RemoteException e) {
-            Log.w("FontsProvider", "Unable to query the content provider", e);
-            return null;
-        }
-    }
-
-    public void L(long j10) {
-        long M = M();
-        if (M != j10) {
-            if (M != -1) {
-                if (M == -2) {
-                    M = -2;
-                } else {
-                    return;
-                }
-            }
-            StringBuilder s6 = android.support.v4.media.a.s(j10, "expected non-string scope or scope ", " but found ");
-            s6.append(M);
-            throw new IOException(s6.toString());
-        }
-    }
-
-    public long M() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f16457b;
-        if (arrayDeque.isEmpty()) {
-            return 0L;
-        }
-        return ((Long) arrayDeque.peek()).longValue();
-    }
-
-    public void N(long j10) {
-        while (((-128) & j10) != 0) {
-            B((((int) j10) & 127) | 128);
-            j10 >>>= 7;
-        }
-        B((int) j10);
-    }
-
-    @Override
-    public void a(long j10) {
-        f7.b bVar = ((com.google.android.exoplayer2.ext.ffmpeg.b) this.f16457b).B;
-        Handler handler = (Handler) bVar.f6012b;
-        if (handler != null) {
-            handler.post(new y1(bVar, j10, 1));
-        }
+    public boolean a0(t1 t1Var) {
+        return false;
     }
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f16456a) {
-            case 11:
+        int i10 = this.f16614a;
+        Object obj3 = this.f16615b;
+        switch (i10) {
+            case 8:
                 TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
                 d6.a aVar = (d6.a) ((d6.c) obj).u();
                 Parcel G0 = aVar.G0();
-                y6.a.c(G0, (p) this.f16457b);
+                y6.a.c(G0, (p) obj3);
                 try {
-                    aVar.f124b.transact(1, G0, null, 1);
+                    aVar.f135b.transact(1, G0, null, 1);
                     G0.recycle();
                     taskCompletionSource.setResult(null);
                     return;
@@ -462,444 +556,297 @@ public final class i implements a0, androidx.activity.result.b, s, s2, e2.d, a3.
                     G0.recycle();
                     throw th2;
                 }
-            case 19:
-                g6.f fVar = new g6.f(0, (TaskCompletionSource) obj2);
-                g6.e eVar = (g6.e) ((g6.h) obj).u();
-                Parcel G02 = eVar.G0();
-                y6.a.d(G02, fVar);
-                y6.a.c(G02, (g6.a) this.f16457b);
-                eVar.H0(G02, 1);
-                return;
-            default:
-                j8.j jVar = (j8.j) this.f16457b;
+            case 18:
+                j8.e eVar = (j8.e) obj3;
                 s7.b bVar = (s7.b) obj;
-                Bundle G = bVar.G();
-                G.putBoolean("com.google.android.gms.wallet.EXTRA_USING_AUTO_RESOLVABLE_RESULT", true);
-                s7.a aVar2 = new s7.a(0, (TaskCompletionSource) obj2);
+                bVar.getClass();
+                s7.a aVar2 = new s7.a(1, (TaskCompletionSource) obj2);
                 try {
                     s7.i iVar = (s7.i) bVar.u();
+                    Bundle G = bVar.G();
                     Parcel obtain = Parcel.obtain();
                     obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
-                    int i10 = s7.c.f44100a;
+                    int i11 = s7.c.f47074a;
                     obtain.writeInt(1);
-                    jVar.writeToParcel(obtain, 0);
+                    eVar.writeToParcel(obtain, 0);
                     obtain.writeInt(1);
                     G.writeToParcel(obtain, 0);
                     obtain.writeStrongBinder(aVar2);
-                    iVar.f44108a.transact(19, obtain, null, 1);
+                    iVar.f47082a.transact(14, obtain, null, 1);
                     obtain.recycle();
                     return;
-                } catch (RemoteException e) {
-                    Log.e("WalletClientImpl", "RemoteException getting payment data", e);
+                } catch (RemoteException e6) {
+                    Log.e("WalletClientImpl", "RemoteException during isReadyToPay", e6);
                     Bundle bundle = Bundle.EMPTY;
-                    aVar2.l0(Status.h, null);
+                    p5.a(Status.h, Boolean.FALSE, aVar2.f47073b);
                     return;
                 }
-        }
-    }
-
-    public void b(x5.k kVar, androidx.biometric.w wVar) {
-        k0 k0Var = (k0) this.f16457b;
-        if (k0Var == null) {
-            Log.e("BiometricPromptCompat", "Unable to start authentication. Client fragment manager was null.");
-        } else if (k0Var.P()) {
-            Log.e("BiometricPromptCompat", "Unable to start authentication. Called after onSaveInstanceState().");
-        } else {
-            k0 k0Var2 = (k0) this.f16457b;
-            r rVar = (r) k0Var2.D("androidx.biometric.BiometricFragment");
-            if (rVar == null) {
-                rVar = new r();
-                androidx.fragment.app.a aVar = new androidx.fragment.app.a(k0Var2);
-                aVar.f(0, rVar, "androidx.biometric.BiometricFragment");
-                aVar.e(true, true);
-                k0Var2.A(true);
-                k0Var2.E();
-            }
-            v k10 = rVar.k();
-            if (k10 == null) {
-                Log.e("BiometricFragment", "Not launching prompt. Client activity was null.");
+            default:
+                o7.d dVar = new o7.d(1, (TaskCompletionSource) obj2);
+                Parcel obtain2 = Parcel.obtain();
+                obtain2.writeInterfaceToken("com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService");
+                int i12 = o7.a.f16618a;
+                obtain2.writeStrongBinder(dVar);
+                obtain2.writeInt(1);
+                ((z7.c) obj3).writeToParcel(obtain2, 0);
+                ((o7.c) ((o7.f) obj).u()).E0(obtain2, 1);
                 return;
+        }
+    }
+
+    public MediaMetadataCompat b() {
+        return new MediaMetadataCompat((Bundle) this.f16615b);
+    }
+
+    public void b0(int i10) {
+        while ((i10 & (-128)) != 0) {
+            Y((i10 & 127) | 128);
+            i10 >>>= 7;
+        }
+        Y(i10);
+    }
+
+    @Override
+    public boolean b1(t1 t1Var, boolean z4) {
+        return false;
+    }
+
+    public void c() {
+        m1 m1Var = ((o1) this.f16615b).d;
+        if (m1Var != null) {
+            l1 l1Var = m1Var.f4612s;
+            if (l1Var != null) {
+                m1Var.cancelRunnable(l1Var);
+                m1Var.f4612s = null;
             }
-            androidx.biometric.a0 a0Var = rVar.f504i0;
-            a0Var.f458f = kVar;
-            int i10 = kVar.f46823a;
-            if (i10 == 0) {
-                if (wVar != null) {
-                    i10 = 15;
-                } else {
-                    i10 = 255;
-                }
-            }
-            int i11 = Build.VERSION.SDK_INT;
-            if (i11 >= 23 && i11 < 30 && i10 == 15 && wVar == null) {
-                a0Var.f459g = ee.b.b();
-            } else {
-                a0Var.f459g = wVar;
-            }
-            if (rVar.Q()) {
-                rVar.f504i0.f462k = rVar.q(2131701341);
-            } else {
-                rVar.f504i0.f462k = null;
-            }
-            if (rVar.Q() && new androidx.biometric.e(new u(k10, 0)).i(255) != 0) {
-                rVar.f504i0.f465n = true;
-                rVar.S();
-            } else if (rVar.f504i0.f467p) {
-                rVar.f503h0.postDelayed(new q(rVar), 600L);
-            } else {
-                rVar.X();
-            }
+            l1 l1Var2 = new l1(m1Var, 1);
+            m1Var.f4612s = l1Var2;
+            m1Var.postRunnable(l1Var2, 1L);
         }
     }
 
     @Override
-    public void c(l.k kVar, boolean z4) {
-        ((g.q) this.f16457b).g(kVar);
+    public boolean c0(t1 t1Var, TLRPC.User user) {
+        return false;
     }
 
     @Override
-    public void close() {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f16457b;
-        if (contentProviderClient != null) {
-            if (contentProviderClient instanceof AutoCloseable) {
-                contentProviderClient.close();
-            } else if (contentProviderClient instanceof ExecutorService) {
-                i4.g((ExecutorService) contentProviderClient);
-            } else {
-                contentProviderClient.release();
-            }
-        }
-    }
-
-    public void d() {
-        n1 n1Var = ((p1) this.f16457b).d;
-        if (n1Var != null) {
-            m1 m1Var = n1Var.f2482s;
-            if (m1Var != null) {
-                n1Var.cancelRunnable(m1Var);
-                n1Var.f2482s = null;
-            }
-            m1 m1Var2 = new m1(n1Var, 1);
-            n1Var.f2482s = m1Var2;
-            n1Var.postRunnable(m1Var2, 1L);
-        }
+    public boolean d() {
+        return ((ea) this.f16615b).a();
     }
 
     @Override
-    public boolean e0(l.k kVar) {
-        Window.Callback callback = ((g.q) this.f16457b).f6300f.getCallback();
-        if (callback != null) {
-            callback.onMenuOpened(108, kVar);
-            return true;
-        }
+    public boolean e() {
         return true;
+    }
+
+    public void e0(int i10, int i11) {
+        b0((i10 << 3) | i11);
+    }
+
+    @Override
+    public boolean e2(t1 t1Var, TLRPC.PollAnswer pollAnswer) {
+        return false;
     }
 
     @Override
     public void f(Object obj) {
+        ((u7.c) obj).onLocationAvailability((LocationAvailability) this.f16615b);
+    }
+
+    @Override
+    public String g(t1 t1Var) {
+        return null;
+    }
+
+    @Override
+    public boolean g0() {
+        return false;
+    }
+
+    @Override
+    public boolean g1(int i10, t1 t1Var) {
+        if (i10 == ((ea) this.f16615b).f22782s) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public xu0 g2() {
+        return null;
+    }
+
+    @Override
+    public Object mo38get() {
+        String packageName = ((Context) ((rc.a) this.f16615b).mo38get()).getPackageName();
+        if (packageName != null) {
+            return packageName;
+        }
+        throw new NullPointerException("Cannot return null from a non-@Nullable @Provides method");
+    }
+
+    @Override
+    public String[] getSupportedFeatures() {
+        return new String[]{"WEB_MESSAGE_LISTENER", "WEB_MESSAGE_ARRAY_BUFFER"};
+    }
+
+    @Override
+    public void i1(int i10, int i11) {
+        ((p0) this.f16615b).r(i10, i11, null);
+    }
+
+    @Override
+    public void j0(int i10, int i11) {
+        ((p0) this.f16615b).s(i10, i11);
+    }
+
+    @Override
+    public boolean j2(long j10) {
+        return false;
+    }
+
+    @Override
+    public void k(Object obj) {
         androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
-        j0 j0Var = (j0) this.f16457b;
-        f0 f0Var = (f0) j0Var.F.pollFirst();
+        j0 j0Var = (j0) this.f16615b;
+        f0 f0Var = (f0) j0Var.F.pollLast();
         if (f0Var == null) {
-            Log.w("FragmentManager", "No IntentSenders were started for " + this);
+            Log.w("FragmentManager", "No Activities were started for result for " + this);
             return;
         }
-        String str = f0Var.f843a;
-        int i10 = f0Var.f844b;
-        androidx.fragment.app.s v = j0Var.f857c.v(str);
-        if (v == null) {
-            Log.w("FragmentManager", "Intent Sender result delivered for unknown Fragment " + str);
+        String str = f0Var.f915a;
+        int i10 = f0Var.f916b;
+        androidx.fragment.app.s r10 = j0Var.f929c.r(str);
+        if (r10 == null) {
+            Log.w("FragmentManager", "Activity result delivered for unknown Fragment " + str);
             return;
         }
-        v.x(i10, aVar.f329a, aVar.f330b);
+        r10.x(i10, aVar.f367a, aVar.f368b);
     }
 
     @Override
-    public TextureView f0() {
-        return null;
+    public int k0(t1 t1Var) {
+        return 0;
     }
 
-    public StringBuilder g() {
-        pe.a aVar = (pe.a) this.f16457b;
-        if (aVar instanceof ke.o) {
-            StringBuilder sb = ((ke.o) aVar).f10403b.f10389b;
-            if (sb.length() != 0) {
-                return sb;
-            }
-            return null;
+    @Override
+    public void k2(t1 t1Var, int i10, float f10, float f11, boolean z4) {
+        ea eaVar = (ea) this.f16615b;
+        org.telegram.ui.Cells.g gVar = eaVar.v;
+        if (eaVar.a()) {
+            eaVar.f22782s = 0;
+            t1Var.invalidate();
+            AndroidUtilities.cancelRunOnUIThread(gVar);
+            AndroidUtilities.runOnUIThread(gVar, 5000L);
         }
-        return null;
     }
 
     @Override
-    public Object mo0get() {
-        return new f3.j((Context) ((rc.a) this.f16457b).mo0get(), "com.google.android.datatransport.events", Integer.valueOf(f3.j.d).intValue());
+    public boolean l2(t1 t1Var, TLRPC.TodoItem todoItem) {
+        return false;
+    }
+
+    public void m0(long j10) {
+        while (((-128) & j10) != 0) {
+            Y((((int) j10) & 127) | 128);
+            j10 >>>= 7;
+        }
+        Y((int) j10);
     }
 
     @Override
-    public boolean h() {
-        return true;
+    public boolean m1(MessageObject messageObject) {
+        return org.telegram.ui.b.a(messageObject);
     }
 
     @Override
-    public void i(View view, q0 q0Var, boolean z4, boolean z10) {
-        mg.v vVar = (mg.v) this.f16457b;
-        vVar.f14150a.ab(null, vVar.e, vVar.f14151b, view, 0.0f, 0.0f, q0Var, false, z4, z10, false);
-        AndroidUtilities.runOnUIThread(new lh.b(this, 18));
+    public boolean n0() {
+        return d();
     }
 
     @Override
-    public boolean j() {
+    public void onPostMessage(android.webkit.WebView r9, java.lang.reflect.InvocationHandler r10, android.net.Uri r11, boolean r12, java.lang.reflect.InvocationHandler r13) {
+        throw new UnsupportedOperationException("Method not decompiled: o5.i.onPostMessage(android.webkit.WebView, java.lang.reflect.InvocationHandler, android.net.Uri, boolean, java.lang.reflect.InvocationHandler):void");
+    }
+
+    public void p(b0 b0Var) {
+        ((y2.o) ((v2.f) ((ba.b) this.f16615b).get())).a("FIREBASE_APPQUALITY_SESSION", new v2.c("json"), new hg.f(this, 20)).a(new v2.a(null, b0Var, v2.d.f48850a, null), new sg.a(28));
+    }
+
+    @Override
+    public boolean q0(u5 u5Var) {
         return false;
     }
 
     @Override
-    public void k(int i10, long j10, long j11) {
-        f7.b bVar = ((com.google.android.exoplayer2.ext.ffmpeg.b) this.f16457b).B;
-        Handler handler = (Handler) bVar.f6012b;
-        if (handler != null) {
-            handler.post(new g5.d(bVar, i10, j10, j11, 1));
+    public Object then(Task task) {
+        return ((Callable) this.f16615b).call();
+    }
+
+    public void u(m mVar) {
+        v7.j jVar = (v7.j) this.f16615b;
+        jVar.f48927a = mVar;
+        Iterator it = jVar.f48929c.iterator();
+        while (it.hasNext()) {
+            ((l6.e) it.next()).b();
         }
+        jVar.f48929c.clear();
+        jVar.f48928b = null;
     }
 
     @Override
-    public void l() {
-        Log.d("ProfileInstaller", "DIAGNOSTIC_PROFILE_IS_COMPRESSED");
-    }
-
-    public void m(e3.g gVar, Thread thread, Throwable th2) {
-        n nVar = (n) this.f16457b;
-        synchronized (nVar) {
-            String str = "Handling uncaught exception \"" + th2 + "\" from thread " + thread.getName();
-            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                Log.d("FirebaseCrashlytics", str, null);
-            }
-            try {
-                try {
-                    y.a(nVar.e.W(new i9.l(nVar, System.currentTimeMillis(), th2, thread, gVar)));
-                } catch (TimeoutException unused) {
-                    Log.e("FirebaseCrashlytics", "Cannot send reports. Timed out while fetching settings.", null);
-                }
-            } catch (Exception e) {
-                Log.e("FirebaseCrashlytics", "Error handling uncaught exception", e);
-            }
-        }
-    }
-
-    @Override
-    public void m0(Object obj) {
-        switch (this.f16456a) {
-            case 2:
-                r rVar = (r) this.f16457b;
-                if (((Boolean) obj).booleanValue()) {
-                    if (rVar.R()) {
-                        rVar.W(rVar.q(2131701363));
-                    }
-                    androidx.biometric.a0 a0Var = rVar.f504i0;
-                    if (!a0Var.f465n) {
-                        Log.w("BiometricFragment", "Failure not sent to client. Client is not awaiting a result.");
-                    } else {
-                        Executor executor = a0Var.d;
-                        if (executor == null) {
-                            executor = new androidx.biometric.p(1);
-                        }
-                        executor.execute(new androidx.biometric.h(rVar, 0));
-                    }
-                    androidx.biometric.a0 a0Var2 = rVar.f504i0;
-                    if (a0Var2.f472u == null) {
-                        a0Var2.f472u = new z();
-                    }
-                    androidx.biometric.a0.h(a0Var2.f472u, Boolean.FALSE);
-                    return;
-                }
+    public void u0() {
+        switch (this.f16614a) {
+            case 23:
+                ic k10 = ((g5) this.f16615b).getBulletinFactory().k(false);
+                k10.f27755t = true;
+                k10.j();
                 return;
             default:
-                androidx.lifecycle.t tVar = (androidx.lifecycle.t) obj;
-                androidx.fragment.app.p pVar = (androidx.fragment.app.p) this.f16457b;
-                if (tVar != null && pVar.f910o0) {
-                    pVar.getClass();
-                    throw new IllegalStateException("Fragment " + pVar + " did not return a View from onCreateView() or this was called before onCreateView().");
-                }
+                f4.j0((f4) this.f16615b);
                 return;
         }
     }
 
     @Override
-    public void onSkipSilenceEnabledChanged(boolean z4) {
-        f7.b bVar = ((com.google.android.exoplayer2.ext.ffmpeg.b) this.f16457b).B;
-        Handler handler = (Handler) bVar.f6012b;
-        if (handler != null) {
-            handler.post(new jh.f(1, bVar, z4));
-        }
+    public String v(long j10) {
+        return null;
     }
 
     @Override
-    public void r(Object obj) {
-        com.google.android.gms.common.api.internal.n nVar;
-        u7.c cVar = (u7.c) obj;
-        androidx.activity.o oVar = ((f7.j) this.f16457b).f6024b;
-        synchronized (oVar) {
-            oVar.f317a = false;
-            nVar = ((com.google.android.gms.common.api.internal.p) oVar.f318b).f2843c;
-        }
-        if (nVar != null) {
-            ((f7.d) oVar.f319c).c(nVar, 2441);
-        }
-    }
-
-    @Override
-    public boolean s() {
+    public boolean v2(t1 t1Var, TL_iv.PageBlock pageBlock) {
         return false;
     }
 
-    public synchronized void t() {
-        synchronized (this) {
-            b bVar = (b) this.f16457b;
-            ReentrantLock reentrantLock = bVar.f16439a;
-            reentrantLock.lock();
-            bVar.f16440b.edit().clear().apply();
-            reentrantLock.unlock();
+    public void w(String str, Bitmap bitmap) {
+        a0.f fVar = MediaMetadataCompat.d;
+        if (fVar.containsKey(str) && ((Integer) fVar.get(str)).intValue() != 2) {
+            throw new IllegalArgumentException(android.support.v4.media.a.o("The ", str, " key cannot be used to put a Bitmap"));
         }
+        ((Bundle) this.f16615b).putParcelable(str, bitmap);
     }
 
-    @Override
-    public void t0() {
-        ic k10 = ((g5) this.f16457b).getBulletinFactory().k(false);
-        k10.f25682t = true;
-        k10.j();
-    }
-
-    public String toString() {
-        switch (this.f16456a) {
-            case 7:
-                return "ProviderMetadata{ componentName=" + ((ComponentName) this.f16457b).flattenToShortString() + " }";
-            default:
-                return super.toString();
+    public void x(long j10, String str) {
+        a0.f fVar = MediaMetadataCompat.d;
+        if (fVar.containsKey(str) && ((Integer) fVar.get(str)).intValue() != 0) {
+            throw new IllegalArgumentException(android.support.v4.media.a.o("The ", str, " key cannot be used to put a long"));
         }
-    }
-
-    @Override
-    public void v(int i10, Object obj) {
-        String str;
-        switch (i10) {
-            case 1:
-                str = "RESULT_INSTALL_SUCCESS";
-                break;
-            case 2:
-                str = "RESULT_ALREADY_INSTALLED";
-                break;
-            case 3:
-                str = "RESULT_UNSUPPORTED_ART_VERSION";
-                break;
-            case 4:
-                str = "RESULT_NOT_WRITABLE";
-                break;
-            case 5:
-                str = "RESULT_DESIRED_FORMAT_UNSUPPORTED";
-                break;
-            case 6:
-                str = "RESULT_BASELINE_PROFILE_NOT_FOUND";
-                break;
-            case 7:
-                str = "RESULT_IO_EXCEPTION";
-                break;
-            case 8:
-                str = "RESULT_PARSE_EXCEPTION";
-                break;
-            case 9:
-            default:
-                str = "";
-                break;
-            case 10:
-                str = "RESULT_INSTALL_SKIP_FILE_SUCCESS";
-                break;
-            case 11:
-                str = "RESULT_DELETE_SKIP_FILE_SUCCESS";
-                break;
-        }
-        if (i10 != 6 && i10 != 7 && i10 != 8) {
-            Log.d("ProfileInstaller", str);
-        } else {
-            Log.e("ProfileInstaller", str, (Throwable) obj);
-        }
-        ((ProfileInstallReceiver) this.f16457b).setResultCode(i10);
-    }
-
-    @Override
-    public void w(Exception exc) {
-        h5.a.p("DecoderAudioRenderer", "Audio sink error", exc);
-        f7.b bVar = ((com.google.android.exoplayer2.ext.ffmpeg.b) this.f16457b).B;
-        Handler handler = (Handler) bVar.f6012b;
-        if (handler != null) {
-            handler.post(new l3.o(bVar, exc, 1));
-        }
-    }
-
-    @Override
-    public void w0(MessageObject messageObject) {
-        ((z8) ((d4) this.f16457b).N1).f(true);
-    }
-
-    @Override
-    public void y() {
-        ((com.google.android.exoplayer2.ext.ffmpeg.b) this.f16457b).T = true;
-    }
-
-    public void z(int i10, String str) {
-        ByteBuffer byteBuffer = (ByteBuffer) this.f16457b;
-        I(i10, 2);
-        try {
-            int Q = Q(str.length());
-            if (Q == Q(str.length() * 3)) {
-                int position = byteBuffer.position();
-                if (byteBuffer.remaining() >= Q) {
-                    byteBuffer.position(position + Q);
-                    K(str, byteBuffer);
-                    int position2 = byteBuffer.position();
-                    byteBuffer.position(position);
-                    C((position2 - position) - Q);
-                    byteBuffer.position(position2);
-                    return;
-                }
-                throw new y0(position + Q, byteBuffer.limit());
-            }
-            C(x(str));
-            K(str, byteBuffer);
-        } catch (BufferOverflowException e) {
-            y0 y0Var = new y0(byteBuffer.position(), byteBuffer.limit());
-            y0Var.initCause(e);
-            throw y0Var;
-        }
-    }
-
-    public i(Object obj, int i10) {
-        this.f16456a = i10;
-        this.f16457b = obj;
+        ((Bundle) this.f16615b).putLong(str, j10);
     }
 
     public i(byte[] bArr, int i10) {
-        this.f16456a = 10;
+        this.f16614a = 7;
         ByteBuffer wrap = ByteBuffer.wrap(bArr, 0, i10);
-        this.f16457b = wrap;
+        this.f16615b = wrap;
         wrap.order(ByteOrder.LITTLE_ENDIAN);
-    }
-
-    public i(int i10) {
-        this.f16456a = i10;
-        switch (i10) {
-            case 20:
-                return;
-            default:
-                this.f16457b = new ArrayDeque(16);
-                return;
-        }
     }
 
     public i(Context context) {
         String d;
-        this.f16456a = 0;
+        this.f16614a = 0;
         b a2 = b.a(context);
-        this.f16457b = a2;
+        this.f16615b = a2;
         a2.b();
         String d10 = a2.d("defaultGoogleSignInAccount");
         if (TextUtils.isEmpty(d10) || (d = a2.d(b.f("googleSignInOptions", d10))) == null) {
@@ -911,48 +858,62 @@ public final class i implements a0, androidx.activity.result.b, s, s2, e2.d, a3.
         }
     }
 
-    @Override
-    public float get() {
-        ft0 ft0Var = (ft0) this.f16457b;
-        int i10 = ft0Var.M1;
-        m currentBrush = ft0Var.T0.getCurrentBrush();
-        if (currentBrush == null) {
-            return f1.e(i10).f2397i;
+    public i(l3.d dVar) {
+        this.f16614a = 19;
+        AudioAttributes.Builder usage = new AudioAttributes.Builder().setContentType(dVar.f11494a).setFlags(dVar.f11495b).setUsage(dVar.f11496c);
+        int i10 = d0.f7237a;
+        if (i10 >= 29) {
+            l3.b.a(usage, dVar.d);
         }
-        return f1.e(i10).f(String.valueOf(m.f2447a.indexOf(currentBrush)), currentBrush.d());
-    }
-
-    public i(Context context, Uri uri) {
-        this.f16456a = 29;
-        this.f16457b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
-    }
-
-    public i(LaunchActivity launchActivity, Executor executor, s1 s1Var) {
-        this.f16456a = 3;
-        if (launchActivity == null) {
-            throw new IllegalArgumentException("FragmentActivity must not be null.");
+        if (i10 >= 32) {
+            l3.c.a(usage, dVar.f11497e);
         }
-        if (executor != null) {
-            k0 s6 = launchActivity.s();
-            androidx.biometric.a0 a0Var = (androidx.biometric.a0) new androidx.biometric.e(launchActivity).n(androidx.biometric.a0.class);
-            this.f16457b = s6;
-            a0Var.d = executor;
-            a0Var.e = s1Var;
-            return;
+        this.f16615b = usage.build();
+    }
+
+    public i(int i10) {
+        this.f16614a = i10;
+        switch (i10) {
+            case 15:
+                this.f16615b = new CopyOnWriteArrayList();
+                return;
+            case 16:
+            default:
+                this.f16615b = new Bundle();
+                return;
+            case 17:
+                this.f16615b = new u();
+                return;
         }
-        throw new IllegalArgumentException("Executor must not be null.");
+    }
+
+    public i(MediaMetadataCompat mediaMetadataCompat) {
+        this.f16614a = 1;
+        Bundle bundle = new Bundle(mediaMetadataCompat.f245a);
+        this.f16615b = bundle;
+        c0.a(bundle);
+    }
+
+    private final void h() {
+    }
+
+    private final void l() {
     }
 
     @Override
-    public void G() {
+    public void D0() {
     }
 
     @Override
-    public void V() {
+    public void G2() {
     }
 
     @Override
-    public void e() {
+    public void a2() {
+    }
+
+    @Override
+    public void j() {
     }
 
     @Override
@@ -960,10 +921,214 @@ public final class i implements a0, androidx.activity.result.b, s, s2, e2.d, a3.
     }
 
     @Override
-    public void q() {
+    public void p1() {
     }
 
     @Override
-    public void n(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i10, boolean z4) {
+    public void r() {
+    }
+
+    @Override
+    public void z2() {
+    }
+
+    @Override
+    public void C0(t1 t1Var) {
+    }
+
+    @Override
+    public void E(t1 t1Var) {
+    }
+
+    @Override
+    public void H(MessageObject.TextLayoutBlock textLayoutBlock) {
+    }
+
+    @Override
+    public void I0(t1 t1Var) {
+    }
+
+    @Override
+    public void J1(t1 t1Var) {
+    }
+
+    @Override
+    public void K(t1 t1Var) {
+    }
+
+    @Override
+    public void K0(t1 t1Var) {
+    }
+
+    @Override
+    public void M(MessageObject messageObject) {
+    }
+
+    @Override
+    public void N0(t1 t1Var) {
+    }
+
+    @Override
+    public void R1(t1 t1Var) {
+    }
+
+    @Override
+    public void S0(t1 t1Var) {
+    }
+
+    @Override
+    public void T(t1 t1Var) {
+    }
+
+    @Override
+    public void T1(MessageObject messageObject) {
+    }
+
+    @Override
+    public void c1(t1 t1Var) {
+    }
+
+    @Override
+    public void d1(t1 t1Var) {
+    }
+
+    @Override
+    public void f0(int i10) {
+    }
+
+    @Override
+    public void l0(t1 t1Var) {
+    }
+
+    @Override
+    public void n(t1 t1Var) {
+    }
+
+    @Override
+    public void o2(t1 t1Var) {
+    }
+
+    @Override
+    public void p0(String str) {
+    }
+
+    @Override
+    public void q(t1 t1Var) {
+    }
+
+    @Override
+    public void s(t1 t1Var) {
+    }
+
+    @Override
+    public void t(t1 t1Var) {
+    }
+
+    @Override
+    public void w2(t1 t1Var) {
+    }
+
+    @Override
+    public void y(t1 t1Var) {
+    }
+
+    @Override
+    public void z(t1 t1Var) {
+    }
+
+    @Override
+    public void D(t1 t1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
+    }
+
+    @Override
+    public void L(int i10, t1 t1Var) {
+    }
+
+    @Override
+    public void L1(t1 t1Var, boolean z4) {
+    }
+
+    @Override
+    public void O1(t1 t1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    }
+
+    @Override
+    public void Q(t1 t1Var, kh.f fVar) {
+    }
+
+    @Override
+    public void W0(t1 t1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+    }
+
+    @Override
+    public void c2(t1 t1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+    }
+
+    @Override
+    public void q2(t1 t1Var, long j10) {
+    }
+
+    @Override
+    public void s1(t1 t1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    }
+
+    @Override
+    public void v1(t1 t1Var, TLRPC.Document document) {
+    }
+
+    @Override
+    public void B1(t1 t1Var, float f10, float f11) {
+    }
+
+    @Override
+    public void F0(t1 t1Var, TLObject tLObject, boolean z4) {
+    }
+
+    @Override
+    public void G0(t1 t1Var, float f10, float f11) {
+    }
+
+    @Override
+    public void H2(t1 t1Var, int i10, int i11) {
+    }
+
+    @Override
+    public void a1(t1 t1Var, CharacterStyle characterStyle, boolean z4) {
+    }
+
+    @Override
+    public void i0(t1 t1Var, float f10, float f11) {
+    }
+
+    @Override
+    public void s0(t1 t1Var, float f10, float f11) {
+    }
+
+    @Override
+    public void d2(t1 t1Var, TLRPC.User user, TLRPC.Document document, String str) {
+    }
+
+    @Override
+    public void m(t1 t1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
+    }
+
+    @Override
+    public void x0(t1 t1Var, TLRPC.User user, float f10, float f11) {
+    }
+
+    @Override
+    public void z0(t1 t1Var, float f10, float f11, boolean z4) {
+    }
+
+    @Override
+    public void B2(t1 t1Var, TLRPC.ReactionCount reactionCount, boolean z4, float f10, float f11) {
+    }
+
+    @Override
+    public void i(t1 t1Var, ArrayList arrayList, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public void S(t1 t1Var, TLRPC.Chat chat, int i10, float f10, float f11, boolean z4) {
     }
 }

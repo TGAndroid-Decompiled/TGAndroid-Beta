@@ -1,31 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
+import android.content.Context;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-public final class h60 extends ClickableSpan {
-    public final org.telegram.ui.ActionBar.g3[] f25332a;
-    public final TLRPC.TL_chatInviteImporter f25333b;
+import org.telegram.messenger.AndroidUtilities;
+public final class h60 extends tl0 {
+    public int U2;
+    public final u60 V2;
 
-    public h60(org.telegram.ui.ActionBar.g3[] g3VarArr, TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
-        this.f25332a = g3VarArr;
-        this.f25333b = tL_chatInviteImporter;
+    public h60(u60 u60Var, Context context) {
+        super(context, null);
+        this.V2 = u60Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.f25332a[0].dismiss();
-        org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
-        if (U != null) {
-            U.presentFragment(ProfileActivity.m4(this.f25333b.user_id));
+    public final void onMeasure(int i10, int i11) {
+        u60 u60Var = this.V2;
+        h60 h60Var = u60Var.S;
+        if (this.U2 != View.MeasureSpec.getSize(i11)) {
+            this.U2 = View.MeasureSpec.getSize(i11);
+            u60Var.X = true;
+            h60Var.setPadding(0, 0, 0, 0);
+            u60Var.X = false;
+            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
+            int measuredHeight = getMeasuredHeight();
+            int i12 = this.U2;
+            int i13 = (int) ((i12 / 5.0f) * 2.0f);
+            if (i13 < AndroidUtilities.dp(60.0f) + (i12 - measuredHeight)) {
+                i13 = this.U2 - measuredHeight;
+            }
+            u60Var.X = true;
+            h60Var.setPadding(0, i13, 0, 0);
+            u60Var.X = false;
+            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
         }
+        super.onMeasure(i10, i11);
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
+    public final void requestLayout() {
+        if (this.V2.X) {
+            return;
+        }
+        super.requestLayout();
     }
 }

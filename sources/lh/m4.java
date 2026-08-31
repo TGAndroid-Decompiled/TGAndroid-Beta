@@ -1,12 +1,11 @@
 package lh;
-public abstract class m4 {
-    public String f12796a;
-    public int f12797b;
 
-    public boolean b() {
-        return true;
-    }
-
-    public void a() {
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.i61;
+public final class m4 extends i61 {
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.35f), View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11)));
     }
 }

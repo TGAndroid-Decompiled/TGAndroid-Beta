@@ -1,80 +1,155 @@
 package lg;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import gg.p0;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import k7.c6;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Cells.va;
-import org.telegram.ui.Components.z8;
-public final class c extends va {
-    public final a U;
-    public TL_stories.PrepaidGiveaway V;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.np;
+public final class c extends jg.d {
+    public final np f12533r;
+    public TLRPC.TL_help_country f12534s;
+    public final TextPaint v;
+    public final eh.m f12535w;
 
-    public c(Context context) {
-        super(context, 0, 0, false);
-        this.U = new a(context);
-    }
-
-    @Override
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    public TL_stories.PrepaidGiveaway getPrepaidGiveaway() {
-        return this.V;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
+    public c(Context context, g6 g6Var) {
+        super(context, g6Var);
         int i10;
-        if (this.P) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(70.0f);
-            }
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(70.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, j6.f20025k0);
+        TextPaint textPaint = new TextPaint();
+        this.v = textPaint;
+        this.f12535w = new eh.m(this, 24);
+        textPaint.setTextSize(AndroidUtilities.dp(20.0f));
+        this.f10022f.setVisibility(8);
+        this.f10020c.setVisibility(8);
+        np npVar = new np(context, 21, g6Var);
+        this.f12533r = npVar;
+        npVar.b(k6.B5, k6.f21768j7, k6.C5);
+        npVar.setDrawUnchecked(true);
+        npVar.setDrawBackgroundAsArc(10);
+        addView(npVar);
+        npVar.a(false, false);
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        npVar.setLayoutParams(c6.d(24, 24.0f, i10 | 16, 13.0f, 0.0f, 14.0f, 0.0f));
+    }
+
+    @Override
+    public final int a() {
+        return 22;
+    }
+
+    @Override
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final void c(boolean z4, boolean z10) {
+        np npVar = this.f12533r;
+        if (npVar.getVisibility() == 0) {
+            npVar.a(z4, z10);
         }
     }
 
-    public void setImage(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.V = prepaidGiveaway;
-        boolean z4 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
-        z8 z8Var = this.B;
+    @Override
+    public final void d() {
+        int i10;
+        float f10;
+        float f11;
+        int i11;
+        float f12;
+        float f13;
+        float f14;
+        float f15;
+        boolean z4 = LocaleController.isRTL;
+        int i12 = 3;
         if (z4) {
-            z8Var.g(26);
-            String valueOf = String.valueOf(((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars / 500);
-            a aVar = this.U;
-            aVar.f12078f = valueOf;
-            aVar.e = aVar.f12075a.measureText(valueOf);
-            aVar.invalidateSelf();
-        } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
-            z8Var.g(16);
-            int i10 = ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months;
-            if (i10 == 12) {
-                z8Var.i(-31392, -2796986);
-            } else if (i10 == 6) {
-                z8Var.i(-10703110, -12481584);
-            } else {
-                z8Var.i(-6631068, -11945404);
-            }
-            String valueOf2 = String.valueOf(p0.g() * prepaidGiveaway.quantity);
-            a aVar2 = this.U;
-            aVar2.f12078f = valueOf2;
-            aVar2.e = aVar2.f12075a.measureText(valueOf2);
-            aVar2.invalidateSelf();
+            i10 = 5;
+        } else {
+            i10 = 3;
         }
-        this.f22510b.i(this.U);
+        int i13 = i10 | 16;
+        if (z4) {
+            f10 = 20.0f;
+        } else {
+            f10 = 52.0f;
+        }
+        if (z4) {
+            f11 = 52.0f;
+        } else {
+            f11 = 20.0f;
+        }
+        this.d.setLayoutParams(c6.d(-1, -2.0f, i13, f10, 0.0f, f11, 0.0f));
+        boolean z10 = LocaleController.isRTL;
+        if (z10) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        int i14 = i11 | 16;
+        if (z10) {
+            f12 = 20.0f;
+        } else {
+            f12 = 52.0f;
+        }
+        if (z10) {
+            f13 = 52.0f;
+        } else {
+            f13 = 20.0f;
+        }
+        this.f10021e.setLayoutParams(c6.d(-1, -2.0f, i14, f12, 0.0f, f13, 0.0f));
+        boolean z11 = LocaleController.isRTL;
+        if (z11) {
+            i12 = 5;
+        }
+        int i15 = i12 | 16;
+        if (z11) {
+            f14 = 15.0f;
+        } else {
+            f14 = 20.0f;
+        }
+        if (z11) {
+            f15 = 20.0f;
+        } else {
+            f15 = 15.0f;
+        }
+        this.f10022f.setLayoutParams(c6.d(22, 22.0f, i15, f14, 0.0f, f15, 0.0f));
+    }
+
+    public final void f() {
+        TLRPC.TL_help_country tL_help_country = this.f12534s;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        CharSequence replaceWithRestrictedEmoji = Emoji.replaceWithRestrictedEmoji(LocaleController.getLanguageFlag(tL_help_country.iso2), this.v.getFontMetricsInt(), 0, this.f12535w);
+        if (replaceWithRestrictedEmoji != null) {
+            spannableStringBuilder.append(replaceWithRestrictedEmoji).append((CharSequence) " ");
+            spannableStringBuilder.setSpan(new b(16), replaceWithRestrictedEmoji.length(), replaceWithRestrictedEmoji.length() + 1, 0);
+        } else {
+            spannableStringBuilder.append((CharSequence) " ");
+            spannableStringBuilder.setSpan(new b(34), 0, 1, 0);
+        }
+        String countryName = LocaleController.getCountryName(tL_help_country.iso2);
+        if (TextUtils.isEmpty(countryName)) {
+            countryName = tL_help_country.default_name;
+        }
+        spannableStringBuilder.append((CharSequence) countryName);
+        this.d.k(spannableStringBuilder);
+    }
+
+    public TLRPC.TL_help_country getCountry() {
+        return this.f12534s;
+    }
+
+    @Override
+    public int getFullHeight() {
+        return 44;
     }
 }

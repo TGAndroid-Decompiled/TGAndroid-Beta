@@ -2,14 +2,14 @@ package k;
 
 import android.view.View;
 public abstract class a {
-    public Object f9501a;
-    public boolean f9502b;
+    public Object f10196a;
+    public boolean f10197b;
 
     public abstract void a();
 
     public abstract View b();
 
-    public abstract l.k c();
+    public abstract l.l c();
 
     public abstract h d();
 
@@ -21,7 +21,7 @@ public abstract class a {
 
     public abstract boolean h();
 
-    public abstract void j(View view);
+    public abstract void i(View view);
 
     public abstract void k(int i10);
 

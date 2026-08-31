@@ -1,54 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class yp0 implements TextWatcher {
-    public final lq0 f31072a;
+public final class yp0 extends lq0 {
+    public final mq0 f33557n;
 
-    public yp0(lq0 lq0Var) {
-        this.f31072a = lq0Var;
-    }
+    public yp0(mq0 mq0Var, Context context) {
+        super(context);
+        this.f33557n = mq0Var;
+        this.f28807f = new Paint(1);
+        this.h = new RectF();
+        View view = new View(context);
+        int dp = AndroidUtilities.dp(18.0f);
+        int i10 = org.telegram.ui.ActionBar.k6.O5;
+        int i11 = mq0.X0;
+        view.setBackgroundDrawable(org.telegram.ui.ActionBar.k6.b0(dp, mq0Var.getThemedColor(i10)));
+        addView(view, k7.c6.d(-1, 36.0f, 51, 14.0f, 0.0f, 14.0f, 0.0f));
+        fg.h0 h0Var = new fg.h0(this, context, 18);
+        this.f28805c = h0Var;
+        addView(h0Var, k7.c6.d(-1, 36.0f, 51, 14.0f, 0.0f, 14.0f, 0.0f));
+        org.telegram.ui.ActionBar.l5 l5Var = new org.telegram.ui.ActionBar.l5(context);
+        this.f28804b = l5Var;
+        int i12 = org.telegram.ui.ActionBar.k6.f21848ng;
+        l5Var.setTextColor(mq0Var.getThemedColor(i12));
+        l5Var.setTextSize(13);
+        l5Var.setLeftDrawable(R.drawable.msg_tabs_mic1);
+        l5Var.l(LocaleController.getString(R.string.VoipGroupInviteCanSpeak), false);
+        l5Var.setGravity(17);
+        addView(l5Var, k7.c6.d(-1, -1.0f, 51, 14.0f, 0.0f, 0.0f, 0.0f));
+        l5Var.setOnClickListener(new View.OnClickListener(this) {
+            public final yp0 f28440b;
 
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        lq0 lq0Var = this.f31072a;
-        dq0 dq0Var = lq0Var.H;
-        zw0 zw0Var = lq0Var.N;
-        c20 c20Var = lq0Var.f26868v0;
-        if (!TextUtils.isEmpty(c20Var.f23815r.getText())) {
-            lq0Var.K0(false);
-        }
-        if (lq0Var.f26872x0) {
-            String obj = c20Var.f23815r.getText().toString();
-            if (obj.length() != 0) {
-                if (zw0Var != null) {
-                    zw0Var.d.setText(LocaleController.getString(R.string.NoResult));
-                }
-            } else if (lq0Var.C.getAdapter() != dq0Var) {
-                int F0 = lq0.F0(lq0Var);
-                zw0Var.d.setText(LocaleController.getString(R.string.NoResult));
-                zw0Var.e(false, true);
-                lq0Var.K0(false);
-                dq0Var.l();
-                if (F0 > 0) {
-                    lq0Var.E.h1(0, -F0);
+            {
+                this.f28440b = this;
+            }
+
+            @Override
+            public final void onClick(View view2) {
+                switch (r2) {
+                    case 0:
+                        this.f28440b.a(0);
+                        return;
+                    default:
+                        this.f28440b.a(1);
+                        return;
                 }
             }
-            hq0 hq0Var = lq0Var.J;
-            if (hq0Var != null) {
-                hq0Var.E(obj);
+        });
+        org.telegram.ui.ActionBar.l5 l5Var2 = new org.telegram.ui.ActionBar.l5(context);
+        this.f28803a = l5Var2;
+        l5Var2.setTextColor(mq0Var.getThemedColor(i12));
+        l5Var2.setTextSize(13);
+        l5Var2.setLeftDrawable(R.drawable.msg_tabs_mic2);
+        l5Var2.l(LocaleController.getString(R.string.VoipGroupInviteListenOnly), false);
+        l5Var2.setGravity(17);
+        addView(l5Var2, k7.c6.d(-1, -1.0f, 51, 0.0f, 0.0f, 14.0f, 0.0f));
+        l5Var2.setOnClickListener(new View.OnClickListener(this) {
+            public final yp0 f28440b;
+
+            {
+                this.f28440b = this;
             }
-        }
-    }
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+            @Override
+            public final void onClick(View view2) {
+                switch (r2) {
+                    case 0:
+                        this.f28440b.a(0);
+                        return;
+                    default:
+                        this.f28440b.a(1);
+                        return;
+                }
+            }
+        });
     }
 }

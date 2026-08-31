@@ -2,48 +2,45 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.Path;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class a41 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public final Path f32457a;
-    public pg.b f32458b;
+public final class a41 extends org.telegram.ui.Components.k6 {
+    public boolean f35010s;
+    public final org.telegram.ui.Components.z5 v;
+    public final SaveToGallerySettingsActivity f35011w;
 
-    public a41(Activity activity) {
-        super(activity);
-        this.f32457a = new Path();
+    public a41(SaveToGallerySettingsActivity saveToGallerySettingsActivity, Activity activity) {
+        super(activity, true, true, false);
+        this.f35011w = saveToGallerySettingsActivity;
+        this.v = new org.telegram.ui.Components.z5(this);
+        getDrawable().D = true;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipPath(this.f32457a);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final void e() {
-        pg.b bVar = this.f32458b;
-        if (bVar != null) {
-            bVar.u();
+        float f10;
+        if (this.f35010s) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
         }
+        org.telegram.ui.Components.z5 z5Var = this.v;
+        z5Var.d(f10, false);
+        int i10 = org.telegram.ui.ActionBar.k6.f22036y6;
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f35011w;
+        setTextColor(i0.a.d(z5Var.f33725c, saveToGallerySettingsActivity.getThemedColor(i10), saveToGallerySettingsActivity.getThemedColor(org.telegram.ui.ActionBar.k6.f21839n6)));
+        super.dispatchDraw(canvas);
     }
 
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        Path path = this.f32457a;
-        path.rewind();
-        path.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i10 - AndroidUtilities.dp(9.0f), i11 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
-    }
-
-    public void setBlurredBackground(pg.b bVar) {
-        this.f32458b = bVar;
-        setBackground(bVar);
+    public final void e(boolean z4, boolean z10) {
+        float f10;
+        if (this.f35010s != z4) {
+            this.f35010s = z4;
+            if (z4) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
+            }
+            this.v.d(f10, z10);
+            invalidate();
+        }
     }
 }

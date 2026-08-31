@@ -1,30 +1,12 @@
 package j7;
-
-import android.os.Build;
-import android.util.Log;
 public abstract class i0 {
-    public static void a(Object obj, String str, String str2) {
-        String c3 = c(str);
-        if (Log.isLoggable(c3, 3)) {
-            Log.d(c3, String.format(str2, obj));
-        }
-    }
+    public abstract boolean a(c0.h hVar, c0.d dVar, c0.d dVar2);
 
-    public static void b(String str, String str2, Exception exc) {
-        String c3 = c(str);
-        if (Log.isLoggable(c3, 6)) {
-            Log.e(c3, str2, exc);
-        }
-    }
+    public abstract boolean b(c0.h hVar, Object obj, Object obj2);
 
-    public static String c(String str) {
-        if (Build.VERSION.SDK_INT < 26) {
-            String concat = "TRuntime.".concat(str);
-            if (concat.length() > 23) {
-                return concat.substring(0, 23);
-            }
-            return concat;
-        }
-        return "TRuntime.".concat(str);
-    }
+    public abstract boolean c(c0.h hVar, c0.g gVar, c0.g gVar2);
+
+    public abstract void d(c0.g gVar, c0.g gVar2);
+
+    public abstract void e(c0.g gVar, Thread thread);
 }

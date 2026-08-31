@@ -1,43 +1,91 @@
 package m;
 
+import android.content.res.Resources;
+import android.graphics.Rect;
 import android.view.View;
-import android.view.ViewGroup;
 import androidx.appcompat.widget.SearchView;
-public final class s2 implements View.OnFocusChangeListener {
-    public final int f13639a;
-    public final ViewGroup f13640b;
+import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.BotFullscreenButtons;
+import qh.v9;
+public final class s2 implements View.OnLayoutChangeListener {
+    public final int f13337a;
+    public final Object f13338b;
 
-    public s2(ViewGroup viewGroup, int i10) {
-        this.f13639a = i10;
-        this.f13640b = viewGroup;
+    public s2(Object obj, int i10) {
+        this.f13337a = i10;
+        this.f13338b = obj;
     }
 
     @Override
-    public final void onFocusChange(View view, boolean z4) {
-        switch (this.f13639a) {
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        int i18;
+        int i19 = this.f13337a;
+        int i20 = 0;
+        Object obj = this.f13338b;
+        switch (i19) {
             case 0:
-                SearchView searchView = (SearchView) this.f13640b;
-                View.OnFocusChangeListener onFocusChangeListener = searchView.f414a0;
-                if (onFocusChangeListener != null) {
-                    onFocusChangeListener.onFocusChange(searchView, z4);
+                SearchView searchView = (SearchView) obj;
+                SearchView.SearchAutoComplete searchAutoComplete = searchView.C;
+                View view2 = searchView.K;
+                if (view2.getWidth() > 1) {
+                    Resources resources = searchView.getContext().getResources();
+                    int paddingLeft = searchView.E.getPaddingLeft();
+                    Rect rect = new Rect();
+                    boolean a2 = u3.a(searchView);
+                    if (searchView.f461c0) {
+                        i20 = resources.getDimensionPixelSize(2131165225) + resources.getDimensionPixelSize(2131165226);
+                    }
+                    searchAutoComplete.getDropDownBackground().getPadding(rect);
+                    if (a2) {
+                        i18 = -rect.left;
+                    } else {
+                        i18 = paddingLeft - (rect.left + i20);
+                    }
+                    searchAutoComplete.setDropDownHorizontalOffset(i18);
+                    searchAutoComplete.setDropDownWidth((((view2.getWidth() + rect.left) + rect.right) + i20) - paddingLeft);
                     return;
                 }
                 return;
             case 1:
-                org.telegram.ui.Cells.f3 f3Var = (org.telegram.ui.Cells.f3) this.f13640b;
-                f3Var.h = z4;
-                if (f3Var.f21052f) {
-                    f3Var.c();
+                view.removeOnLayoutChangeListener(this);
+                sh.p2 p2Var = (sh.p2) obj;
+                BotFullscreenButtons botFullscreenButtons = p2Var.f47595j0;
+                sh.g2 g2Var = p2Var.v;
+                g2Var.setSwipeOffsetY(g2Var.getHeight());
+                p2Var.f47588e.setAlpha(1.0f);
+                if (p2Var.D0 != Float.MAX_VALUE) {
+                    g2Var.setSwipeOffsetAnimationDisallowed(true);
+                    g2Var.setOffsetY(p2Var.D0);
+                    g2Var.setSwipeOffsetAnimationDisallowed(false);
+                }
+                p2Var.f47612x.n(true, true);
+                final AnimationNotificationsLocker animationNotificationsLocker = new AnimationNotificationsLocker();
+                animationNotificationsLocker.lock();
+                if (!p2Var.C0 && !p2Var.m()) {
+                    o1.j jVar = new o1.j(g2Var, sh.m3.V, 0.0f);
+                    o1.k kVar = new o1.k(0.0f);
+                    kVar.a(0.75f);
+                    kVar.b(500.0f);
+                    jVar.f16336u = kVar;
+                    jVar.a(new o1.f() {
+                        @Override
+                        public final void a(o1.h hVar, boolean z4, float f10, float f11) {
+                            AnimationNotificationsLocker.this.unlock();
+                        }
+                    });
+                    jVar.f();
+                } else {
+                    g2Var.f(g2Var.getTopActionBarOffsetY() + (-g2Var.getOffsetY()), false, new v9(animationNotificationsLocker, 14));
+                }
+                g2Var.H = true;
+                if (p2Var.f47582a0 && botFullscreenButtons != null) {
+                    botFullscreenButtons.setAlpha(0.0f);
+                    botFullscreenButtons.animate().alpha(1.0f).setDuration(220L).start();
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Cells.i3 i3Var = (org.telegram.ui.Cells.i3) this.f13640b;
-                i3Var.f21202n = z4;
-                if (i3Var.f21201f) {
-                    i3Var.c();
-                }
-                i3Var.a(z4);
+                vf.k.b0((vf.k) obj);
                 return;
         }
     }

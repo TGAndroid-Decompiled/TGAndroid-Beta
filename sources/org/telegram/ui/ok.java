@@ -1,11 +1,11 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class ok extends wg.e {
+public final class ok extends xg.e {
     public final xn I;
 
-    public ok(xn xnVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, fj fjVar, ng.a aVar) {
-        super(context, aVar, f6Var, fjVar);
+    public ok(xn xnVar, Context context, org.telegram.ui.ActionBar.g6 g6Var, fj fjVar, og.a aVar) {
+        super(context, aVar, g6Var, fjVar);
         this.I = xnVar;
     }
 
@@ -13,7 +13,7 @@ public final class ok extends wg.e {
     public final void setVisibility(int i10) {
         boolean z4;
         super.setVisibility(i10);
-        h5.u uVar = this.I.f40260yc;
+        h5.u uVar = this.I.f43429yc;
         boolean z10 = false;
         if (i10 == 0) {
             z4 = true;

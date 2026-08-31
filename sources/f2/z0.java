@@ -1,10 +1,11 @@
 package f2;
 
+import android.view.MotionEvent;
 import androidx.recyclerview.widget.RecyclerView;
-public abstract class z0 {
-    public void a(RecyclerView recyclerView, int i10) {
-    }
+public interface z0 {
+    void a(RecyclerView recyclerView, MotionEvent motionEvent);
 
-    public void b(RecyclerView recyclerView, int i10, int i11) {
-    }
+    boolean b(RecyclerView recyclerView, MotionEvent motionEvent);
+
+    void c(boolean z4);
 }

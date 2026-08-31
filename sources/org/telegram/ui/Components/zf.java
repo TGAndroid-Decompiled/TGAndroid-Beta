@@ -9,10 +9,10 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class zf implements Runnable {
-    public final ChatActivityEnterView f31337a;
+    public final ChatActivityEnterView f33889a;
 
     public zf(ChatActivityEnterView chatActivityEnterView) {
-        this.f31337a = chatActivityEnterView;
+        this.f33889a = chatActivityEnterView;
     }
 
     @Override
@@ -22,18 +22,18 @@ public final class zf implements Runnable {
         boolean z4;
         boolean z10;
         int i10;
-        ChatActivityEnterView chatActivityEnterView = this.f31337a;
+        ChatActivityEnterView chatActivityEnterView = this.f33889a;
         re reVar = chatActivityEnterView.D3;
         Activity activity = chatActivityEnterView.K2;
         eg egVar = chatActivityEnterView.V2;
         if (egVar != null && activity != null) {
-            egVar.C();
+            egVar.B();
             chatActivityEnterView.F3 = true;
             chatActivityEnterView.E3 = false;
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f22769g1;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f24609g1;
             if (slideTextView != null) {
                 slideTextView.setAlpha(1.0f);
-                chatActivityEnterView.f22769g1.setTranslationY(0.0f);
+                chatActivityEnterView.f24609g1.setTranslationY(0.0f);
             }
             SendMessageChatArguments sendMessageChatArguments = null;
             chatActivityEnterView.Y2 = null;
@@ -84,20 +84,20 @@ public final class zf implements Runnable {
                     }
                     ng ngVar = chatActivityEnterView.V0;
                     if (ngVar != null) {
-                        ngVar.f27271a = false;
+                        ngVar.f29472a = false;
                         ngVar.d = 0L;
-                        ngVar.e = 0L;
-                        ngVar.f27272b = false;
+                        ngVar.f29475e = 0L;
+                        ngVar.f29473b = false;
                     }
                 }
             } else if (Build.VERSION.SDK_INT >= 23 && activity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
                 activity.requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 3);
             } else {
-                chatActivityEnterView.V2.b1(1);
-                chatActivityEnterView.f22872z2 = -1.0f;
+                chatActivityEnterView.V2.e1(1);
+                chatActivityEnterView.f24712z2 = -1.0f;
                 eg egVar2 = chatActivityEnterView.V2;
                 if (egVar2 != null) {
-                    storyItem = egVar2.e1();
+                    storyItem = egVar2.h1();
                 } else {
                     storyItem = null;
                 }
@@ -118,7 +118,7 @@ public final class zf implements Runnable {
                 if (ngVar2 != null) {
                     ngVar2.a(0L);
                 }
-                kg kgVar = chatActivityEnterView.f22775h1;
+                kg kgVar = chatActivityEnterView.f24615h1;
                 if (kgVar != null) {
                     kgVar.h = false;
                 }

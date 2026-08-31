@@ -3,7 +3,7 @@ package hf;
 import android.os.IBinder;
 import android.os.Parcel;
 public final class c implements e {
-    public IBinder f7065a;
+    public IBinder f7382a;
 
     public final boolean E0(b bVar) {
         Parcel obtain = Parcel.obtain();
@@ -12,7 +12,7 @@ public final class c implements e {
             obtain.writeInterfaceToken("android.support.customtabs.ICustomTabsService");
             obtain.writeStrongBinder(bVar);
             boolean z4 = false;
-            this.f7065a.transact(3, obtain, obtain2, 0);
+            this.f7382a.transact(3, obtain, obtain2, 0);
             obtain2.readException();
             if (obtain2.readInt() != 0) {
                 z4 = true;
@@ -31,7 +31,7 @@ public final class c implements e {
             obtain.writeInterfaceToken("android.support.customtabs.ICustomTabsService");
             obtain.writeLong(0L);
             boolean z4 = false;
-            this.f7065a.transact(2, obtain, obtain2, 0);
+            this.f7382a.transact(2, obtain, obtain2, 0);
             obtain2.readException();
             if (obtain2.readInt() != 0) {
                 z4 = true;
@@ -45,6 +45,6 @@ public final class c implements e {
 
     @Override
     public final IBinder asBinder() {
-        return this.f7065a;
+        return this.f7382a;
     }
 }

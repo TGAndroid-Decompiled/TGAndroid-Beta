@@ -9,28 +9,28 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class g5 implements Runnable {
-    public final int f25045a;
-    public final h5 f25046b;
-    public final ArrayList f25047c;
+    public final int f27109a;
+    public final h5 f27110b;
+    public final ArrayList f27111c;
     public final TLObject d;
 
     public g5(h5 h5Var, ArrayList arrayList, TLObject tLObject, int i10) {
-        this.f25045a = i10;
-        this.f25046b = h5Var;
-        this.f25047c = arrayList;
+        this.f27109a = i10;
+        this.f27110b = h5Var;
+        this.f27111c = arrayList;
         this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f25045a) {
+        switch (this.f27109a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new g5(this.f25046b, this.f25047c, this.d, 1));
+                AndroidUtilities.runOnUIThread(new g5(this.f27110b, this.f27111c, this.d, 1));
                 return;
             default:
-                h5 h5Var = this.f25046b;
-                int i10 = h5Var.e;
-                HashSet hashSet = new HashSet(this.f25047c);
+                h5 h5Var = this.f27110b;
+                int i10 = h5Var.f27388e;
+                HashSet hashSet = new HashSet(this.f27111c);
                 TLObject tLObject = this.d;
                 if (tLObject instanceof Vector) {
                     ArrayList arrayList = ((Vector) tLObject).objects;
@@ -38,7 +38,7 @@ public final class g5 implements Runnable {
                     h5Var.d(arrayList);
                     for (int i11 = 0; i11 < arrayList.size(); i11++) {
                         if (arrayList.get(i11) instanceof TLRPC.Document) {
-                            hashSet.remove(Long.valueOf(((TLRPC.Document) arrayList.get(i11)).f19190id));
+                            hashSet.remove(Long.valueOf(((TLRPC.Document) arrayList.get(i11)).f20849id));
                         }
                     }
                     if (!hashSet.isEmpty()) {

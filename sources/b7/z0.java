@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 public final class z0 extends h1 {
-    public final o f1743a;
-    public final int f1744b;
+    public final o f1889a;
+    public final int f1890b;
 
     public z0(a0 a0Var) {
         a0Var.getClass();
-        this.f1743a = a0Var;
+        this.f1889a = a0Var;
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            o oVar = this.f1743a;
+            o oVar = this.f1889a;
             if (i10 >= oVar.size()) {
                 break;
             }
@@ -25,7 +25,7 @@ public final class z0 extends h1 {
             i10++;
         }
         int i12 = i11 + 1;
-        this.f1744b = i12;
+        this.f1890b = i12;
         if (i12 <= 8) {
             return;
         }
@@ -34,7 +34,7 @@ public final class z0 extends h1 {
 
     @Override
     public final int a() {
-        return this.f1744b;
+        return this.f1890b;
     }
 
     @Override
@@ -45,8 +45,8 @@ public final class z0 extends h1 {
         if (c3 != zza) {
             return c3 - h1Var.zza();
         }
-        o oVar = ((z0) h1Var).f1743a;
-        o oVar2 = this.f1743a;
+        o oVar = ((z0) h1Var).f1889a;
+        o oVar2 = this.f1889a;
         if (oVar2.size() != oVar.size()) {
             return oVar2.size() - oVar.size();
         }
@@ -66,15 +66,15 @@ public final class z0 extends h1 {
         if (obj == null || z0.class != obj.getClass()) {
             return false;
         }
-        return this.f1743a.equals(((z0) obj).f1743a);
+        return this.f1889a.equals(((z0) obj).f1889a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(h1.c(Byte.MIN_VALUE)), this.f1743a});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(h1.c(Byte.MIN_VALUE)), this.f1889a});
     }
 
     public final String toString() {
-        o oVar = this.f1743a;
+        o oVar = this.f1889a;
         if (oVar.isEmpty()) {
             return "[]";
         }
@@ -87,16 +87,16 @@ public final class z0 extends h1 {
         Iterator it = arrayList.iterator();
         try {
             if (it.hasNext()) {
-                sb.append(h7.u.H2(it.next()));
+                sb.append(h7.u.M2(it.next()));
                 while (it.hasNext()) {
                     sb.append((CharSequence) ",\n  ");
-                    sb.append(h7.u.H2(it.next()));
+                    sb.append(h7.u.M2(it.next()));
                 }
             }
             sb.append("\n]");
             return sb.toString();
-        } catch (IOException e) {
-            throw new AssertionError(e);
+        } catch (IOException e6) {
+            throw new AssertionError(e6);
         }
     }
 

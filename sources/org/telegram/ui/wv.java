@@ -1,58 +1,44 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class wv implements org.telegram.ui.Components.il0 {
-    public final int f39798a;
-    public final oy f39799b;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+public final class wv implements MessagesStorage.IntCallback {
+    public final int f42893a;
+    public final py f42894b;
 
-    public wv(oy oyVar, int i10) {
-        this.f39798a = i10;
-        this.f39799b = oyVar;
+    public wv(py pyVar, int i10) {
+        this.f42893a = i10;
+        this.f42894b = pyVar;
     }
 
     @Override
-    public final void f(int i10, View view) {
-        tf.e0 e0Var;
-        switch (this.f39798a) {
+    public final void run(int i10) {
+        boolean z4;
+        boolean z10;
+        switch (this.f42893a) {
             case 0:
-                oy oyVar = this.f39799b;
-                Object obj = oyVar.f37129z0.f24334s0.G(i10).G;
-                if (obj instanceof MessageObject) {
-                    MessageObject messageObject = (MessageObject) obj;
-                    Bundle bundle = new Bundle();
-                    if (messageObject.getDialogId() >= 0) {
-                        bundle.putLong("user_id", messageObject.getDialogId());
-                    } else {
-                        bundle.putLong("chat_id", -messageObject.getDialogId());
-                    }
-                    bundle.putInt("message_id", messageObject.getId());
-                    xn xnVar = new xn(bundle);
-                    oy.d4(xnVar, messageObject);
-                    oyVar.presentFragment(xnVar);
-                    return;
-                } else if (obj instanceof nh.f6) {
-                    nh.f6 f6Var = (nh.f6) obj;
-                    Bundle h = android.support.v4.media.a.h(3, "type");
-                    h.putString("hashtag", f6Var.C);
-                    h.putInt("storiesCount", f6Var.J);
-                    oyVar.presentFragment(new org.telegram.ui.Components.da0(h, null));
-                    return;
+                py pyVar = this.f42894b;
+                pyVar.getClass();
+                if (i10 != 0) {
+                    z4 = true;
                 } else {
-                    return;
+                    z4 = false;
                 }
+                pyVar.R1 = z4;
+                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", pyVar.R1).apply();
+                pyVar.k3(false);
+                return;
             default:
-                oy oyVar2 = this.f39799b;
-                oyVar2.Y.I0(true);
-                ArrayList arrayList = oyVar2.Y.U2;
-                if (arrayList.isEmpty()) {
-                    e0Var = tf.g0.Z2[i10];
+                py pyVar2 = this.f42894b;
+                pyVar2.getClass();
+                if (i10 != 0) {
+                    z10 = true;
                 } else {
-                    e0Var = (tf.e0) arrayList.get(i10);
+                    z10 = false;
                 }
-                oyVar2.j3(e0Var);
+                pyVar2.R1 = z10;
+                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", pyVar2.R1).commit();
+                pyVar2.k3(false);
                 return;
         }
     }

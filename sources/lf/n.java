@@ -14,9 +14,9 @@ import org.telegram.messenger.CodeHighlighting;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.o51;
+import org.telegram.ui.Components.bj0;
+import org.telegram.ui.Components.p51;
 import org.telegram.ui.Components.u5;
-import org.telegram.ui.Components.zi0;
 public abstract class n {
     public static SpannableStringBuilder a(String str) {
         Spanned fromHtml;
@@ -63,14 +63,14 @@ public abstract class n {
                     arrayList.add(tL_messageEntityStrike);
                 } else if (obj instanceof m) {
                     m mVar = (m) obj;
-                    int i10 = mVar.f12040a;
+                    int i10 = mVar.f12490a;
                     if (i10 == 0) {
                         TLRPC.TL_messageEntitySpoiler tL_messageEntitySpoiler = new TLRPC.TL_messageEntitySpoiler();
                         tL_messageEntitySpoiler.offset = spanStart;
                         tL_messageEntitySpoiler.length = spanEnd - spanStart;
                         arrayList.add(tL_messageEntitySpoiler);
                     } else if (i10 == 1) {
-                        if (!TextUtils.isEmpty(mVar.f12041b)) {
+                        if (!TextUtils.isEmpty(mVar.f12491b)) {
                             arrayList2.add(mVar);
                         } else {
                             TLRPC.TL_messageEntityPre tL_messageEntityPre = new TLRPC.TL_messageEntityPre();
@@ -102,7 +102,7 @@ public abstract class n {
                     if (charSequence.equals(url)) {
                         spannableStringBuilder.setSpan(new URLSpan(url), spanStart2, spanEnd2, 33);
                     } else {
-                        spannableStringBuilder.setSpan(new o51(url, null), spanStart2, spanEnd2, 33);
+                        spannableStringBuilder.setSpan(new p51(url, null), spanStart2, spanEnd2, 33);
                     }
                 }
             }
@@ -111,22 +111,22 @@ public abstract class n {
                 m mVar2 = (m) arrayList2.get(i11);
                 int spanStart3 = fromHtml.getSpanStart(mVar2);
                 int spanEnd3 = fromHtml.getSpanEnd(mVar2);
-                spannableStringBuilder.setSpan(new CodeHighlighting.Span(true, 0, null, mVar2.f12041b, spannableStringBuilder.subSequence(spanStart3, spanEnd3).toString()), spanStart3, spanEnd3, 33);
+                spannableStringBuilder.setSpan(new CodeHighlighting.Span(true, 0, null, mVar2.f12491b, spannableStringBuilder.subSequence(spanStart3, spanEnd3).toString()), spanStart3, spanEnd3, 33);
             }
             for (int i12 = 0; i12 < arrayList3.size(); i12++) {
                 m mVar3 = (m) arrayList3.get(i12);
                 int spanStart4 = fromHtml.getSpanStart(mVar3);
                 int spanEnd4 = fromHtml.getSpanEnd(mVar3);
-                if (mVar3.f12040a == 3) {
+                if (mVar3.f12490a == 3) {
                     z4 = true;
                 } else {
                     z4 = false;
                 }
-                zi0.c(spannableStringBuilder, spanStart4, spanEnd4, z4);
+                bj0.c(spannableStringBuilder, spanStart4, spanEnd4, z4);
             }
             return spannableStringBuilder;
-        } catch (Exception e) {
-            FileLog.e("Html.fromHtml", e);
+        } catch (Exception e6) {
+            FileLog.e("Html.fromHtml", e6);
             return null;
         }
     }

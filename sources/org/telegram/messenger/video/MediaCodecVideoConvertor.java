@@ -8,7 +8,6 @@ import android.os.Build;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import kh.a2;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
@@ -16,7 +15,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.yh;
-import ph.t6;
+import qh.r6;
 public class MediaCodecVideoConvertor {
     private static final int MEDIACODEC_TIMEOUT_DEFAULT = 2500;
     private static final int MEDIACODEC_TIMEOUT_INCREASED = 22000;
@@ -46,7 +45,7 @@ public class MediaCodecVideoConvertor {
         String blurPath;
         File cacheFile;
         MediaController.VideoConvertorListener callback;
-        ph.r collage;
+        qh.r collage;
         ArrayList<VideoEditedInfo.Part> collageParts;
         MediaController.CropState cropState;
         long duration;
@@ -54,7 +53,7 @@ public class MediaCodecVideoConvertor {
         int framerate;
         Integer gradientBottomColor;
         Integer gradientTopColor;
-        t6 hdrInfo;
+        r6 hdrInfo;
         boolean isDark;
         boolean isPhoto;
         boolean isRound;
@@ -148,8 +147,8 @@ public class MediaCodecVideoConvertor {
                 MixedSoundInfo mixedSoundInfo = arrayList.get(i10);
                 try {
                     nf.c cVar = new nf.c(mixedSoundInfo.audioFile);
-                    AudioDecoder audioDecoder = cVar.f14963b;
-                    cVar.f14960a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
+                    AudioDecoder audioDecoder = cVar.f15983b;
+                    cVar.f15980a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
                     long j10 = mixedSoundInfo.startTime;
                     int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
                     if (i11 > 0) {
@@ -169,8 +168,8 @@ public class MediaCodecVideoConvertor {
                         audioDecoder.setEndTimeUs(j11 + j12);
                     }
                     arrayList2.add(cVar);
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } catch (Exception e6) {
+                    FileLog.e(e6);
                 }
             }
         }
@@ -248,7 +247,7 @@ public class MediaCodecVideoConvertor {
             f17 += 0.01f;
         }
         StringBuilder m9 = e2.c.m("source size ", i10, "x", i11, "    dest size ");
-        a2.w(m9, i12, "x", i13, "   rotated ");
+        l.d.w(m9, i12, "x", i13, "   rotated ");
         m9.append(z10);
         m9.append("   ratio ");
         m9.append(f11);
@@ -281,8 +280,8 @@ public class MediaCodecVideoConvertor {
         sb.append(glslFloat);
         sb.append(";\nconst float offsetY = ");
         sb.append(glslFloat2);
-        yh.x(sb, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
-        yh.x(sb, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
+        yh.w(sb, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
+        yh.w(sb, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
         sb.append(";\nconst float pixelSizeY = ");
         sb.append(glslFloat7);
         sb.append(";\nvoid main() {\n    vec3 accumulation = vec3(0.0);\n    for (int i = 0; i < ");
@@ -332,9 +331,9 @@ public class MediaCodecVideoConvertor {
                     String str = (String) arrayList.remove(0);
                     mediaFormat.setString("mime", str);
                     return MediaCodec.createDecoderByType(str);
-                } catch (Exception e) {
+                } catch (Exception e6) {
                     if (exc == null) {
-                        exc = e;
+                        exc = e6;
                     }
                 }
             }
@@ -370,7 +369,7 @@ public class MediaCodecVideoConvertor {
         return sb.toString();
     }
 
-    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z4, t6 t6Var, int i14, boolean z10) {
+    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z4, r6 r6Var, int i14, boolean z10) {
         int i15;
         int i16;
         String readRes;
@@ -410,7 +409,7 @@ public class MediaCodecVideoConvertor {
             f17 += 0.01f;
         }
         StringBuilder m9 = e2.c.m("HDR source size ", i10, "x", i11, "    dest size ");
-        a2.w(m9, i12, "x", i13, "   rotated ");
+        l.d.w(m9, i12, "x", i13, "   rotated ");
         m9.append(z10);
         m9.append("   ratio ");
         m9.append(f11);
@@ -432,7 +431,7 @@ public class MediaCodecVideoConvertor {
         String glslFloat5 = glslFloat(min * min2);
         String glslFloat6 = glslFloat(1.0f / f10);
         String glslFloat7 = glslFloat(1.0f / f12);
-        if (t6Var.a() == 1) {
+        if (r6Var.a() == 1) {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_hlg);
         } else {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_pq);
@@ -443,8 +442,8 @@ public class MediaCodecVideoConvertor {
         sb.append(glslFloat);
         sb.append(";\nconst float offsetY = ");
         sb.append(glslFloat2);
-        yh.x(sb, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
-        yh.x(sb, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
+        yh.w(sb, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
+        yh.w(sb, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
         sb.append(";\nconst float pixelSizeY = ");
         sb.append(glslFloat7);
         sb.append(";\nvoid main() {\n    vec3 accumulation = vec3(0.0);\n    for (int i = 0; i < ");

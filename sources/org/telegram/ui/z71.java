@@ -1,58 +1,36 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MrzRecognizer;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class z71 implements u9 {
-    public TLObject f40700a = null;
-    public TLRPC.TL_error f40701b = null;
-    public final SessionsActivity f40702c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class z71 implements Runnable {
+    public final int f43863a;
+    public final a81 f43864b;
 
-    public z71(SessionsActivity sessionsActivity) {
-        this.f40702c = sessionsActivity;
+    public z71(a81 a81Var, int i10) {
+        this.f43863a = i10;
+        this.f43864b = a81Var;
     }
 
     @Override
-    public final String G0() {
-        return null;
-    }
-
-    @Override
-    public final void K(String str) {
-        TLObject tLObject = this.f40700a;
-        if (tLObject instanceof TLRPC.TL_authorization) {
-            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
-            boolean z4 = tL_authorization.password_pending;
-            SessionsActivity sessionsActivity = this.f40702c;
-            if (z4) {
-                sessionsActivity.f32284f.add(0, tL_authorization);
-                sessionsActivity.S = 4;
-                sessionsActivity.k0(false);
-            } else {
-                sessionsActivity.e.add(0, tL_authorization);
-            }
-            sessionsActivity.m0();
-            sessionsActivity.f32281a.l();
-            sessionsActivity.f32287s.m(0L, this.f40700a, 11);
-        } else if (this.f40701b != null) {
-            AndroidUtilities.runOnUIThread(new y71(this, 0));
+    public final void run() {
+        String sb;
+        switch (this.f43863a) {
+            case 0:
+                a81 a81Var = this.f43864b;
+                String str = a81Var.f35062b.text;
+                if (str != null && str.equals("AUTH_TOKEN_EXCEPTION")) {
+                    sb = LocaleController.getString(R.string.AccountAlreadyLoggedIn);
+                } else {
+                    StringBuilder sb2 = new StringBuilder();
+                    b.i(R.string.ErrorOccurred, "\n", sb2);
+                    sb2.append(a81Var.f35062b.text);
+                    sb = sb2.toString();
+                }
+                org.telegram.ui.Components.z4.u0(a81Var.f35063c, LocaleController.getString(R.string.AuthAnotherClient), sb, null);
+                return;
+            default:
+                org.telegram.ui.Components.z4.u0(this.f43864b.f35063c, LocaleController.getString(R.string.AuthAnotherClient), LocaleController.getString(R.string.ErrorOccurred), null);
+                return;
         }
-    }
-
-    @Override
-    public final boolean f1(String str, m9 m9Var) {
-        this.f40700a = null;
-        this.f40701b = null;
-        AndroidUtilities.runOnUIThread(new hf0(this, str, m9Var, 29), 750L);
-        return true;
-    }
-
-    @Override
-    public final void S0(MrzRecognizer.Result result) {
-    }
-
-    @Override
-    public final void onDismiss() {
     }
 }

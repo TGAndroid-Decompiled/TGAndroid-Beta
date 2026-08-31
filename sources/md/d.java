@@ -15,22 +15,21 @@ import ld.o0;
 import ld.w1;
 import qd.o;
 import uc.h;
-import vh.v2;
 public final class d extends a0 implements j0 {
-    public final Handler f13922c;
+    public final Handler f13642c;
     public final boolean d;
-    public final d e;
+    public final d f13643e;
 
     public d(Handler handler, boolean z4) {
         d dVar;
-        this.f13922c = handler;
+        this.f13642c = handler;
         this.d = z4;
         if (z4) {
             dVar = this;
         } else {
             dVar = new d(handler, true);
         }
-        this.e = dVar;
+        this.f13643e = dVar;
     }
 
     @Override
@@ -38,16 +37,16 @@ public final class d extends a0 implements j0 {
         if (j10 > 4611686018427387903L) {
             j10 = 4611686018427387903L;
         }
-        if (this.f13922c.postDelayed(e2Var, j10)) {
+        if (this.f13642c.postDelayed(e2Var, j10)) {
             return new o0() {
                 @Override
                 public final void dispose() {
-                    d.this.f13922c.removeCallbacks(e2Var);
+                    d.this.f13642c.removeCallbacks(e2Var);
                 }
             };
         }
         f(hVar, e2Var);
-        return w1.f11935a;
+        return w1.f12374a;
     }
 
     @Override
@@ -56,23 +55,23 @@ public final class d extends a0 implements j0 {
         if (j10 > 4611686018427387903L) {
             j10 = 4611686018427387903L;
         }
-        if (this.f13922c.postDelayed(kVar, j10)) {
+        if (this.f13642c.postDelayed(kVar, j10)) {
             mVar.u(new j(1, this, kVar));
         } else {
-            f(mVar.e, kVar);
+            f(mVar.f12330e, kVar);
         }
     }
 
     @Override
     public final void c(h hVar, Runnable runnable) {
-        if (!this.f13922c.post(runnable)) {
+        if (!this.f13642c.post(runnable)) {
             f(hVar, runnable);
         }
     }
 
     @Override
     public final boolean e() {
-        if (this.d && kotlin.jvm.internal.j.a(Looper.myLooper(), this.f13922c.getLooper())) {
+        if (this.d && kotlin.jvm.internal.j.a(Looper.myLooper(), this.f13642c.getLooper())) {
             return false;
         }
         return true;
@@ -81,7 +80,7 @@ public final class d extends a0 implements j0 {
     public final boolean equals(Object obj) {
         if (obj instanceof d) {
             d dVar = (d) obj;
-            if (dVar.f13922c == this.f13922c && dVar.d == this.d) {
+            if (dVar.f13642c == this.f13642c && dVar.d == this.d) {
                 return true;
             }
             return false;
@@ -91,12 +90,12 @@ public final class d extends a0 implements j0 {
 
     public final void f(h hVar, Runnable runnable) {
         e0.e(hVar, new CancellationException("The task was rejected, the handler underlying the dispatcher '" + this + "' was closed"));
-        m0.f11901b.c(hVar, runnable);
+        m0.f12332b.c(hVar, runnable);
     }
 
     public final int hashCode() {
         int i10;
-        int identityHashCode = System.identityHashCode(this.f13922c);
+        int identityHashCode = System.identityHashCode(this.f13642c);
         if (this.d) {
             i10 = 1231;
         } else {
@@ -109,13 +108,13 @@ public final class d extends a0 implements j0 {
     public final String toString() {
         d dVar;
         String str;
-        sd.e eVar = m0.f11900a;
-        d dVar2 = o.f43039a;
+        sd.e eVar = m0.f12331a;
+        d dVar2 = o.f44818a;
         if (this == dVar2) {
             str = "Dispatchers.Main";
         } else {
             try {
-                dVar = dVar2.e;
+                dVar = dVar2.f13643e;
             } catch (UnsupportedOperationException unused) {
                 dVar = null;
             }
@@ -126,9 +125,9 @@ public final class d extends a0 implements j0 {
             }
         }
         if (str == null) {
-            String handler = this.f13922c.toString();
+            String handler = this.f13642c.toString();
             if (this.d) {
-                return v2.k(handler, ".immediate");
+                return w.c.e(handler, ".immediate");
             }
             return handler;
         }

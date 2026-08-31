@@ -8,44 +8,44 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class pk implements RequestDelegate {
-    public final int f18163a = 0;
-    public final boolean f18164b;
-    public final NotificationCenter.NotificationCenterDelegate f18165c;
+    public final int f19719a = 0;
+    public final boolean f19720b;
+    public final NotificationCenter.NotificationCenterDelegate f19721c;
     public final Serializable d;
-    public final Object e;
-    public final Serializable f18166f;
-    public final Object f18167g;
+    public final Object f19722e;
+    public final Serializable f19723f;
+    public final Object f19724g;
     public final Object h;
 
     public pk(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, SendMessagesHelper.DelayedMessage delayedMessage, SendMessagesHelper sendMessagesHelper, TLObject tLObject, boolean z4) {
-        this.f18165c = sendMessagesHelper;
+        this.f19721c = sendMessagesHelper;
         this.d = arrayList;
-        this.f18167g = tLObject;
-        this.e = arrayList2;
-        this.f18166f = arrayList3;
+        this.f19724g = tLObject;
+        this.f19722e = arrayList2;
+        this.f19723f = arrayList3;
         this.h = delayedMessage;
-        this.f18164b = z4;
+        this.f19720b = z4;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18163a) {
+        switch (this.f19719a) {
             case 0:
-                ((SendMessagesHelper) this.f18165c).lambda$performSendMessageRequestMulti$74((ArrayList) this.d, (TLObject) this.f18167g, (ArrayList) this.e, (ArrayList) this.f18166f, (SendMessagesHelper.DelayedMessage) this.h, this.f18164b, tLObject, tL_error);
+                ((SendMessagesHelper) this.f19721c).lambda$performSendMessageRequestMulti$74((ArrayList) this.d, (TLObject) this.f19724g, (ArrayList) this.f19722e, (ArrayList) this.f19723f, (SendMessagesHelper.DelayedMessage) this.h, this.f19720b, tLObject, tL_error);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new t1((tf.u0) this.f18165c, (String) this.d, this.f18164b, tLObject, (TLRPC.User) this.e, (String) this.f18166f, (MessagesStorage) this.f18167g, (String) this.h));
+                AndroidUtilities.runOnUIThread(new t1((uf.u0) this.f19721c, (String) this.d, this.f19720b, tLObject, (TLRPC.User) this.f19722e, (String) this.f19723f, (MessagesStorage) this.f19724g, (String) this.h));
                 return;
         }
     }
 
-    public pk(tf.u0 u0Var, String str, boolean z4, TLRPC.User user, String str2, MessagesStorage messagesStorage, String str3) {
-        this.f18165c = u0Var;
+    public pk(uf.u0 u0Var, String str, boolean z4, TLRPC.User user, String str2, MessagesStorage messagesStorage, String str3) {
+        this.f19721c = u0Var;
         this.d = str;
-        this.f18164b = z4;
-        this.e = user;
-        this.f18166f = str2;
-        this.f18167g = messagesStorage;
+        this.f19720b = z4;
+        this.f19722e = user;
+        this.f19723f = str2;
+        this.f19724g = messagesStorage;
         this.h = str3;
     }
 }

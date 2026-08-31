@@ -15,8 +15,8 @@ public class o0 extends pa.u {
                 return null;
             }
             return new URI(v);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+        } catch (URISyntaxException e6) {
+            throw new RuntimeException(e6);
         }
     }
 

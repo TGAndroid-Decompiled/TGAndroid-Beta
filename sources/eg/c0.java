@@ -1,48 +1,52 @@
 package eg;
 
-import android.view.View;
-import gg.v2;
-import org.telegram.ui.Components.kl0;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class c0 implements org.telegram.ui.ActionBar.c2, kl0 {
-    public final int f5225a;
-    public final v0 f5226b;
+import android.content.DialogInterface;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.Components.c11;
+import org.telegram.ui.d60;
+public final class c0 implements DialogInterface.OnDismissListener {
+    public final int f5100a;
 
-    public c0(v0 v0Var, int i10) {
-        this.f5225a = i10;
-        this.f5226b = v0Var;
+    public c0(int i10) {
+        this.f5100a = i10;
     }
 
     @Override
-    public boolean f(int i10, View view) {
-        v0 v0Var = this.f5226b;
-        v0Var.d.getOnItemClickListener().f(i10, view);
-        if (v0Var.f5538e0 != 19) {
-            try {
-                view.performHapticFeedback(0);
-            } catch (Exception unused) {
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f5225a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f5100a) {
             case 0:
-                v0 v0Var = this.f5226b;
-                v0Var.H0.presentFragment(new PremiumPreviewFragment(0, null));
-                v0Var.dismiss();
-                d2Var.dismiss();
+                MediaController.forceBroadcastNewPhotos = false;
                 return;
             case 1:
-                d2Var.dismiss();
-                this.f5226b.n1();
+                org.telegram.ui.c.f35632a = false;
+                return;
+            case 2:
+                return;
+            case 3:
+                SharedConfig.BackgroundActivityPrefs.increaseDismissedCount();
+                return;
+            case 4:
+                int i10 = c11.f25752e;
+                return;
+            case 5:
+                d60 d60Var = d60.A3;
+                return;
+            case 6:
                 return;
             default:
-                this.f5226b.dismiss();
-                v2.e0(0, null);
+                int i11 = qh.y1.D;
                 return;
         }
+    }
+
+    public c0(boolean[] zArr) {
+        this.f5100a = 2;
+    }
+
+    private final void a(DialogInterface dialogInterface) {
+    }
+
+    private final void b(DialogInterface dialogInterface) {
     }
 }

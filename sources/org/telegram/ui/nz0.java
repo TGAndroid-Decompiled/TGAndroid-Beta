@@ -1,29 +1,14 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public final class nz0 implements gq {
-    public final oy f36753a;
-    public final oz0 f36754b;
-
-    public nz0(oz0 oz0Var, oy oyVar) {
-        this.f36754b = oz0Var;
-        this.f36753a = oyVar;
-    }
-
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import org.telegram.messenger.AndroidUtilities;
+public final class nz0 extends z00 {
     @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        oz0 oz0Var = this.f36754b;
-        oz0Var.f37135b.K1 = true;
-        this.f36753a.removeSelfFromStack();
-        NotificationCenter notificationCenter = oz0Var.f37135b.getNotificationCenter();
-        ProfileActivity profileActivity = oz0Var.f37135b;
-        int i11 = NotificationCenter.closeChats;
-        notificationCenter.removeObserver(profileActivity, i11);
-        oz0Var.f37135b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i11, new Object[0]);
-    }
-
-    @Override
-    public final void a(TLRPC.User user) {
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
+        canvas.save();
+        canvas.translate(AndroidUtilities.dp(2.0f), 0.0f);
+        super.draw(canvas, charSequence, i10, i11, f10, i12, i13, i14, paint);
+        canvas.restore();
     }
 }

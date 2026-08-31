@@ -72,7 +72,7 @@ public final class k extends x {
     @Override
     public final Object d(int i10) {
         x0 x0Var;
-        switch (j.b(i10)) {
+        switch (j.c(i10)) {
             case 0:
                 return (byte) 1;
             case 1:

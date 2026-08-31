@@ -1,12 +1,13 @@
 package s2;
 
+import androidx.biometric.f0;
 import org.telegram.ui.yh;
 public final class g extends com.googlecode.mp4parser.c {
-    public static final a3.c e;
+    public static final f0 f46859e;
 
     static {
         de.a aVar = new de.a(g.class, "DataEntryUrlBox.java");
-        e = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.DataEntryUrlBox", "", "", "java.lang.String"));
+        f46859e = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.DataEntryUrlBox", "", "", "java.lang.String"));
     }
 
     @Override
@@ -15,7 +16,7 @@ public final class g extends com.googlecode.mp4parser.c {
     }
 
     public final String toString() {
-        yh.v(de.a.b(e, this, this));
+        yh.x(de.a.b(f46859e, this, this));
         return "DataEntryUrlBox[]";
     }
 }

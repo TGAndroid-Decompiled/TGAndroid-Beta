@@ -1,9 +1,9 @@
 package j3;
 public final class x1 {
-    public final h5.g f8883a;
+    public final h5.g f9481a;
 
     public x1(h5.g gVar) {
-        this.f8883a = gVar;
+        this.f9481a = gVar;
     }
 
     public final boolean equals(Object obj) {
@@ -13,10 +13,10 @@ public final class x1 {
         if (!(obj instanceof x1)) {
             return false;
         }
-        return this.f8883a.equals(((x1) obj).f8883a);
+        return this.f9481a.equals(((x1) obj).f9481a);
     }
 
     public final int hashCode() {
-        return this.f8883a.hashCode();
+        return this.f9481a.hashCode();
     }
 }

@@ -1,293 +1,88 @@
 package zf;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.util.DisplayMetrics;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.Window;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.List;
-import k7.n;
-import o1.j;
-import o1.k;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.e5;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Cells.z;
-import org.telegram.ui.Components.nq;
-import org.telegram.ui.Components.sl0;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.c21;
-import org.telegram.ui.yh;
-import ph.z4;
-public final class i extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public ArrayList B;
-    public int C;
-    public z4 f47423a;
-    public nq f47424b;
-    public j f47425c;
-    public j d;
-    public SharedPreferences e;
-    public boolean f47426f;
-    public boolean h;
-    public boolean f47427n;
-    public c f47428r;
-    public boolean f47429s;
-    public int v;
-    public LinearLayout f47430w;
-    public TextView f47431x;
-    public sl0 f47432y;
+import android.view.ViewTreeObserver;
+import org.telegram.messenger.MediaController;
+import org.telegram.ui.Components.Crop.CropAreaView;
+public final class i implements ViewTreeObserver.OnPreDrawListener {
+    public final MediaController.CropState f51145a;
+    public final int f51146b;
+    public final int f51147c;
+    public final n d;
 
-    public static float a(DisplayMetrics displayMetrics, float f10) {
-        return n.a(f10, AndroidUtilities.dp(16.0f), displayMetrics.widthPixels - AndroidUtilities.dp(72.0f));
+    public i(n nVar, MediaController.CropState cropState, int i10, int i11) {
+        this.d = nVar;
+        this.f51145a = cropState;
+        this.f51146b = i10;
+        this.f51147c = i11;
     }
 
-    public static float b(DisplayMetrics displayMetrics, float f10) {
-        return n.a(f10, AndroidUtilities.dp(16.0f), displayMetrics.heightPixels - AndroidUtilities.dp(72.0f));
-    }
-
-    private List<a> getBuiltInDebugItems() {
-        int i10;
-        String str;
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(new a("Theme"));
-        arrayList.add(new a("Draw action bar shadow", new c21(19)));
-        arrayList.add(new a("Show blur settings", new c(this, 0)));
-        arrayList.add(new a(LocaleController.getString(R.string.DebugGeneral)));
-        if (SharedConfig.debugWebView) {
-            i10 = R.string.DebugMenuDisableWebViewDebug;
-        } else {
-            i10 = R.string.DebugMenuEnableWebViewDebug;
-        }
-        arrayList.add(new a(LocaleController.getString(i10), new c(this, 1)));
-        if (j6.I.q()) {
-            str = "Switch to day theme";
-        } else {
-            str = "Switch to dark theme";
-        }
-        arrayList.add(new a(str, new c21(20)));
-        arrayList.add(new a(LocaleController.getString(R.string.DebugSendLogs), new c(this, 2)));
-        return arrayList;
-    }
-
-    public final void c(final boolean z4) {
+    @Override
+    public final boolean onPreDraw() {
         float f10;
-        z4 z4Var = this.f47423a;
-        ArrayList arrayList = this.B;
-        if (this.f47429s == z4) {
-            return;
-        }
-        this.f47429s = z4;
-        if (z4) {
-            this.f47430w.setVisibility(0);
-            arrayList.clear();
-            if (getContext() instanceof LaunchActivity) {
-                e5 O = ((LaunchActivity) getContext()).O();
-                if (O instanceof b) {
-                    arrayList.addAll(((b) O).B());
-                }
-                ActionBarLayout actionBarLayout = ((LaunchActivity) getContext()).f31642p0;
-                if (actionBarLayout != null) {
-                    arrayList.addAll(actionBarLayout.B());
-                }
-                ActionBarLayout actionBarLayout2 = ((LaunchActivity) getContext()).f31640o0;
-                if (actionBarLayout2 != null) {
-                    arrayList.addAll(actionBarLayout2.B());
+        float f11;
+        boolean z4;
+        n nVar = this.d;
+        nVar.l(false);
+        CropAreaView cropAreaView = nVar.f51165a;
+        MediaController.CropState cropState = this.f51145a;
+        if (cropState != null) {
+            float f12 = cropState.lockedAspectRatio;
+            if (f12 > 1.0E-4f) {
+                cropAreaView.setLockedAspectRatio(f12);
+                m mVar = nVar.J;
+                if (mVar != null) {
+                    mVar.F(true);
                 }
             }
-            arrayList.addAll(getBuiltInDebugItems());
-            this.f47432y.getAdapter().l();
-        }
-        final Window window = ((Activity) getContext()).getWindow();
-        if (z4) {
-            this.v = window.getStatusBarColor();
-        }
-        final float translationX = z4Var.getTranslationX();
-        final float translationY = z4Var.getTranslationY();
-        float f11 = 0.0f;
-        if (z4) {
-            f10 = 0.0f;
-        } else {
-            f10 = 1000.0f;
-        }
-        j jVar = new j(new kb.a(f10));
-        k n10 = yh.n(1000.0f, 900.0f, 1.0f);
-        if (z4) {
-            f11 = 1000.0f;
-        }
-        n10.f16204i = f11;
-        jVar.f16198u = n10;
-        jVar.b(new o1.g() {
-            @Override
-            public final void a(o1.h hVar, float f12, float f13) {
-                float f14 = f12 / 1000.0f;
-                i iVar = i.this;
-                LinearLayout linearLayout = iVar.f47430w;
-                linearLayout.setAlpha(f14);
-                float f15 = translationX;
-                linearLayout.setTranslationX(AndroidUtilities.lerp(f15 - AndroidUtilities.dp(8.0f), 0.0f, f14));
-                float f16 = translationY;
-                linearLayout.setTranslationY(AndroidUtilities.lerp(f16 - AndroidUtilities.dp(8.0f), 0.0f, f14));
-                z4 z4Var2 = iVar.f47423a;
-                linearLayout.setPivotX(z4Var2.getTranslationX() + AndroidUtilities.dp(28.0f));
-                linearLayout.setPivotY(z4Var2.getTranslationY() + AndroidUtilities.dp(28.0f));
-                if (linearLayout.getWidth() != 0) {
-                    linearLayout.setScaleX(AndroidUtilities.lerp(z4Var2.getWidth() / linearLayout.getWidth(), 1.0f, f14));
-                }
-                if (linearLayout.getHeight() != 0) {
-                    linearLayout.setScaleY(AndroidUtilities.lerp(z4Var2.getHeight() / linearLayout.getHeight(), 1.0f, f14));
-                }
-                z4Var2.setTranslationX(AndroidUtilities.lerp(f15, (iVar.getWidth() / 2.0f) - AndroidUtilities.dp(28.0f), f14));
-                z4Var2.setTranslationY(AndroidUtilities.lerp(f16, (iVar.getHeight() / 2.0f) - AndroidUtilities.dp(28.0f), f14));
-                z4Var2.setAlpha(1.0f - f14);
-                window.setStatusBarColor(i0.a.d(f14, iVar.v, 2046820352));
-                iVar.invalidate();
+            nVar.setFreeform(cropState.freeform);
+            float aspectRatio = cropAreaView.getAspectRatio();
+            int i10 = cropState.transformRotation;
+            int i11 = this.f51146b;
+            int i12 = this.f51147c;
+            if (i10 != 90 && i10 != 270) {
+                l lVar = nVar.I;
+                f10 = lVar.f51155a;
+                f11 = lVar.f51156b;
+                i12 = i11;
+                i11 = i12;
+            } else {
+                aspectRatio = 1.0f / aspectRatio;
+                l lVar2 = nVar.I;
+                f10 = lVar2.f51156b;
+                f11 = lVar2.f51155a;
             }
-        });
-        jVar.a(new o1.f() {
-            @Override
-            public final void a(o1.h hVar, boolean z10, float f12, float f13) {
-                i iVar = i.this;
-                z4 z4Var2 = iVar.f47423a;
-                z4Var2.setTranslationX(translationX);
-                z4Var2.setTranslationY(translationY);
-                if (!z4) {
-                    iVar.f47430w.setVisibility(8);
+            if (nVar.f51174x && cropAreaView.getLockAspectRatio() > 0.0f) {
+                cropAreaView.setLockedAspectRatio(1.0f / cropAreaView.getLockAspectRatio());
+                cropAreaView.setActualRect(cropAreaView.getLockAspectRatio());
+            } else {
+                int currentWidth = nVar.getCurrentWidth();
+                int currentHeight = nVar.getCurrentHeight();
+                if ((i10 + nVar.I.f51160g) % 180.0f != 0.0f) {
+                    z4 = true;
+                } else {
+                    z4 = false;
                 }
+                cropAreaView.e(currentWidth, currentHeight, z4, nVar.f51174x);
             }
-        });
-        jVar.f();
-    }
-
-    public final void d() {
-        z h02 = j6.h0(AndroidUtilities.dp(56.0f), j6.w0(null, j6.P9, false), j6.w0(null, j6.Q9, false));
-        Drawable mutate = getResources().getDrawable(R.drawable.floating_shadow).mutate();
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        mutate.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
-        nq nqVar = new nq(mutate, h02, 0, 0);
-        int dp = AndroidUtilities.dp(56.0f);
-        int dp2 = AndroidUtilities.dp(56.0f);
-        nqVar.e = dp;
-        nqVar.f27338f = dp2;
-        this.f47424b = nqVar;
-        Drawable drawable = getResources().getDrawable(R.drawable.popup_fixed_alert3);
-        drawable.setColorFilter(new PorterDuffColorFilter(j6.w0(null, j6.f19977h5, false), mode));
-        this.f47430w.setBackground(drawable);
-        this.f47431x.setTextColor(j6.w0(null, j6.f20012j5, false));
-        invalidate();
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.didSetNewTheme) {
-            d();
-            this.f47432y.getAdapter().l();
+            l.d(nVar.I, i10);
+            cropAreaView.setActualRect((aspectRatio * cropState.cropPw) / cropState.cropPh);
+            l lVar3 = nVar.I;
+            lVar3.f51162j = cropState.mirrored;
+            l.e(lVar3, cropState.cropRotate);
+            l lVar4 = nVar.I;
+            float f13 = cropState.cropPx * i11;
+            float f14 = lVar4.f51159f;
+            l.f(lVar4, f13 * f14, cropState.cropPy * i12 * f14);
+            float max = Math.max(cropAreaView.getCropWidth() / f10, cropAreaView.getCropHeight() / f11);
+            l lVar5 = nVar.I;
+            l.g(lVar5, cropState.cropScale * (max / lVar5.f51159f), 0.0f, 0.0f);
+            nVar.r(false);
+            m mVar2 = nVar.J;
+            if (mVar2 != null) {
+                mVar2.N(false);
+            }
         }
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        LinearLayout linearLayout = this.f47430w;
-        if (view == linearLayout) {
-            canvas.drawColor(Color.argb((int) (linearLayout.getAlpha() * 122.0f), 0, 0, 0));
-        }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        float a2;
-        float b10;
-        super.onAttachedToWindow();
-        SharedPreferences sharedPreferences = this.e;
-        float f10 = sharedPreferences.getFloat("x", -1.0f);
-        float f11 = sharedPreferences.getFloat("y", -1.0f);
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        z4 z4Var = this.f47423a;
-        if (f10 != -1.0f && f10 < displayMetrics.widthPixels / 2.0f) {
-            a2 = a(displayMetrics, -2.1474836E9f);
-        } else {
-            a2 = a(displayMetrics, 2.1474836E9f);
-        }
-        z4Var.setTranslationX(a2);
-        if (f11 == -1.0f) {
-            b10 = b(displayMetrics, 2.1474836E9f);
-        } else {
-            b10 = b(displayMetrics, f11);
-        }
-        z4Var.setTranslationY(b10);
-        j jVar = new j(z4Var, o1.h.f16181m, z4Var.getTranslationX());
-        k kVar = new k(z4Var.getTranslationX());
-        kVar.b(650.0f);
-        kVar.a(0.75f);
-        jVar.f16198u = kVar;
-        this.f47425c = jVar;
-        j jVar2 = new j(z4Var, o1.h.f16182n, z4Var.getTranslationY());
-        k kVar2 = new k(z4Var.getTranslationY());
-        kVar2.b(650.0f);
-        kVar2.a(0.75f);
-        jVar2.f16198u = kVar2;
-        this.d = jVar2;
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetNewTheme);
-    }
-
-    @Override
-    public final void onConfigurationChanged(Configuration configuration) {
-        float f10;
-        super.onConfigurationChanged(configuration);
-        this.f47425c.c();
-        this.d.c();
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        z4 z4Var = this.f47423a;
-        if (z4Var.getTranslationX() >= displayMetrics.widthPixels / 2.0f) {
-            f10 = 2.1474836E9f;
-        } else {
-            f10 = -2.1474836E9f;
-        }
-        z4Var.setTranslationX(a(displayMetrics, f10));
-        z4Var.setTranslationY(b(displayMetrics, z4Var.getTranslationY()));
-        this.f47425c.f16198u.f16204i = z4Var.getTranslationX();
-        this.d.f16198u.f16204i = z4Var.getTranslationY();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f47425c.c();
-        this.d.c();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewTheme);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        canvas.save();
-        z4 z4Var = this.f47423a;
-        canvas.translate(z4Var.getTranslationX(), z4Var.getTranslationY());
-        canvas.scale(z4Var.getScaleX(), z4Var.getScaleY(), z4Var.getPivotX(), z4Var.getPivotY());
-        this.f47424b.setAlpha((int) (z4Var.getAlpha() * 255.0f));
-        this.f47424b.setBounds(z4Var.getLeft(), z4Var.getTop(), z4Var.getRight(), z4Var.getBottom());
-        this.f47424b.draw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f47429s;
+        cropAreaView.getViewTreeObserver().removeOnPreDrawListener(this);
+        return false;
     }
 }

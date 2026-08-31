@@ -2,29 +2,29 @@ package ke;
 
 import ne.t;
 public final class d extends pe.a {
-    public final int f10343a;
-    public final ne.a f10344b;
+    public final int f11115a;
+    public final ne.a f11116b;
 
     public d(int i10) {
-        this.f10343a = i10;
+        this.f11115a = i10;
         switch (i10) {
             case 1:
-                this.f10344b = new ne.p();
+                this.f11116b = new ne.p();
                 return;
             default:
-                this.f10344b = new ne.p();
+                this.f11116b = new ne.p();
                 return;
         }
     }
 
     @Override
     public void a(CharSequence charSequence) {
-        int i10 = this.f10343a;
+        int i10 = this.f11115a;
     }
 
     @Override
     public boolean b(ne.a aVar) {
-        switch (this.f10343a) {
+        switch (this.f11115a) {
             case 0:
                 return true;
             default:
@@ -34,17 +34,17 @@ public final class d extends pe.a {
 
     @Override
     public final ne.a e() {
-        switch (this.f10343a) {
+        switch (this.f11115a) {
             case 0:
-                return (ne.f) this.f10344b;
+                return (ne.f) this.f11116b;
             default:
-                return (t) this.f10344b;
+                return (t) this.f11116b;
         }
     }
 
     @Override
     public boolean f() {
-        switch (this.f10343a) {
+        switch (this.f11115a) {
             case 0:
                 return true;
             default:
@@ -54,9 +54,9 @@ public final class d extends pe.a {
 
     @Override
     public final j4.h h(e eVar) {
-        switch (this.f10343a) {
+        switch (this.f11115a) {
             case 0:
-                return j4.h.a(eVar.f10348b);
+                return j4.h.a(eVar.f11120b);
             default:
                 return null;
         }

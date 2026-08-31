@@ -9,27 +9,27 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
-import k7.z6;
+import k7.a7;
 public abstract class y {
-    public static final Pattern f4207a = Pattern.compile("^\\D?(\\d+)$");
-    public static final HashMap f4208b = new HashMap();
-    public static int f4209c = -1;
+    public static final Pattern f4279a = Pattern.compile("^\\D?(\\d+)$");
+    public static final HashMap f4280b = new HashMap();
+    public static int f4281c = -1;
 
     public static void a(String str, ArrayList arrayList) {
         if ("audio/raw".equals(str)) {
-            if (d0.f6937a < 26 && d0.f6938b.equals("R9") && arrayList.size() == 1 && ((n) arrayList.get(0)).f4164a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
+            if (d0.f7237a < 26 && d0.f7238b.equals("R9") && arrayList.size() == 1 && ((n) arrayList.get(0)).f4235a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
                 arrayList.add(n.h("OMX.google.raw.decoder", "audio/raw", "audio/raw", null, false, false));
             }
             Collections.sort(arrayList, new t(new s(2), 0));
         }
-        int i10 = d0.f6937a;
+        int i10 = d0.f7237a;
         if (i10 < 21 && arrayList.size() > 1) {
-            String str2 = ((n) arrayList.get(0)).f4164a;
+            String str2 = ((n) arrayList.get(0)).f4235a;
             if ("OMX.SEC.mp3.dec".equals(str2) || "OMX.SEC.MP3.Decoder".equals(str2) || "OMX.brcm.audio.mp3.decoder".equals(str2)) {
                 Collections.sort(arrayList, new t(new s(3), 0));
             }
         }
-        if (i10 < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((n) arrayList.get(0)).f4164a)) {
+        if (i10 < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((n) arrayList.get(0)).f4235a)) {
             arrayList.add((n) arrayList.remove(0));
         }
     }
@@ -89,14 +89,14 @@ public abstract class y {
         synchronized (y.class) {
             try {
                 u uVar = new u(str, z4, z10);
-                HashMap hashMap = f4208b;
+                HashMap hashMap = f4280b;
                 List list = (List) hashMap.get(uVar);
                 if (list != null) {
                     return list;
                 }
-                int i10 = d0.f6937a;
+                int i10 = d0.f7237a;
                 if (i10 >= 21) {
-                    dVar = new p2.w(z4, z10);
+                    dVar = new p2.v(z4, z10);
                 } else {
                     dVar = new z9.d(4);
                 }
@@ -104,7 +104,7 @@ public abstract class y {
                 if (z4 && f10.isEmpty() && 21 <= i10 && i10 <= 23) {
                     f10 = f(uVar, new z9.d(4));
                     if (!f10.isEmpty()) {
-                        h5.a.K("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((n) f10.get(0)).f4164a);
+                        h5.a.K("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((n) f10.get(0)).f4235a);
                     }
                 }
                 a(str, f10);
@@ -124,12 +124,12 @@ public abstract class y {
     public static boolean g(MediaCodecInfo mediaCodecInfo, String str, boolean z4, String str2) {
         if (!mediaCodecInfo.isEncoder()) {
             if (z4 || !str.endsWith(".secure")) {
-                int i10 = d0.f6937a;
+                int i10 = d0.f7237a;
                 if (i10 >= 21 || (!"CIPAACDecoder".equals(str) && !"CIPMP3Decoder".equals(str) && !"CIPVorbisDecoder".equals(str) && !"CIPAMRNBDecoder".equals(str) && !"AACDecoder".equals(str) && !"MP3Decoder".equals(str))) {
                     if (i10 < 18 && "OMX.MTK.AUDIO.DECODER.AAC".equals(str)) {
-                        String str3 = d0.f6938b;
+                        String str3 = d0.f7238b;
                         if (!"a70".equals(str3)) {
-                            if ("Xiaomi".equals(d0.f6939c) && str3.startsWith("HM")) {
+                            if ("Xiaomi".equals(d0.f7239c) && str3.startsWith("HM")) {
                                 return false;
                             }
                         } else {
@@ -137,30 +137,30 @@ public abstract class y {
                         }
                     }
                     if (i10 == 16 && "OMX.qcom.audio.decoder.mp3".equals(str)) {
-                        String str4 = d0.f6938b;
+                        String str4 = d0.f7238b;
                         if ("dlxu".equals(str4) || "protou".equals(str4) || "ville".equals(str4) || "villeplus".equals(str4) || "villec2".equals(str4) || str4.startsWith("gee") || "C6602".equals(str4) || "C6603".equals(str4) || "C6606".equals(str4) || "C6616".equals(str4) || "L36h".equals(str4) || "SO-02E".equals(str4)) {
                             return false;
                         }
                     }
                     if (i10 == 16 && "OMX.qcom.audio.decoder.aac".equals(str)) {
-                        String str5 = d0.f6938b;
+                        String str5 = d0.f7238b;
                         if ("C1504".equals(str5) || "C1505".equals(str5) || "C1604".equals(str5) || "C1605".equals(str5)) {
                             return false;
                         }
                     }
-                    if (i10 < 24 && (("OMX.SEC.aac.dec".equals(str) || "OMX.Exynos.AAC.Decoder".equals(str)) && "samsung".equals(d0.f6939c))) {
-                        String str6 = d0.f6938b;
+                    if (i10 < 24 && (("OMX.SEC.aac.dec".equals(str) || "OMX.Exynos.AAC.Decoder".equals(str)) && "samsung".equals(d0.f7239c))) {
+                        String str6 = d0.f7238b;
                         if (str6.startsWith("zeroflte") || str6.startsWith("zerolte") || str6.startsWith("zenlte") || "SC-05G".equals(str6) || "marinelteatt".equals(str6) || "404SC".equals(str6) || "SC-04G".equals(str6) || "SCV31".equals(str6)) {
                             return false;
                         }
                     }
-                    if (i10 <= 19 && "OMX.SEC.vp8.dec".equals(str) && "samsung".equals(d0.f6939c)) {
-                        String str7 = d0.f6938b;
+                    if (i10 <= 19 && "OMX.SEC.vp8.dec".equals(str) && "samsung".equals(d0.f7239c)) {
+                        String str7 = d0.f7238b;
                         if (str7.startsWith("d2") || str7.startsWith("serrano") || str7.startsWith("jflte") || str7.startsWith("santos") || str7.startsWith("t0")) {
                             return false;
                         }
                     }
-                    if (i10 > 19 || !d0.f6938b.startsWith("jflte") || !"OMX.qcom.video.decoder.vp8".equals(str)) {
+                    if (i10 > 19 || !d0.f7238b.startsWith("jflte") || !"OMX.qcom.video.decoder.vp8".equals(str)) {
                         if (i10 > 23 || !"audio/eac3-joc".equals(str2) || !"OMX.MTK.AUDIO.DECODER.DSPAC3".equals(str)) {
                             return true;
                         }
@@ -176,18 +176,18 @@ public abstract class y {
     }
 
     public static boolean h(MediaCodecInfo mediaCodecInfo, String str) {
-        if (d0.f6937a >= 29) {
+        if (d0.f7237a >= 29) {
             return mediaCodecInfo.isHardwareAccelerated();
         }
         return !i(mediaCodecInfo, str);
     }
 
     public static boolean i(MediaCodecInfo mediaCodecInfo, String str) {
-        if (d0.f6937a >= 29) {
+        if (d0.f7237a >= 29) {
             return mediaCodecInfo.isSoftwareOnly();
         }
         if (!h5.o.h(str)) {
-            String b10 = z6.b(mediaCodecInfo.getName());
+            String b10 = a7.b(mediaCodecInfo.getName());
             if (!b10.startsWith("arc.")) {
                 if (!b10.startsWith("omx.google.") && !b10.startsWith("omx.ffmpeg.")) {
                     if ((!b10.startsWith("omx.sec.") || !b10.contains(".sw.")) && !b10.equals("omx.qcom.video.decoder.hevcswvdec") && !b10.startsWith("c2.android.") && !b10.startsWith("c2.google.")) {
@@ -210,13 +210,13 @@ public abstract class y {
         MediaCodecInfo.CodecProfileLevel[] codecProfileLevelArr;
         int i10;
         int i11;
-        if (f4209c == -1) {
+        if (f4281c == -1) {
             int i12 = 0;
-            List e = e("video/avc", false, false);
-            if (e.isEmpty()) {
+            List e6 = e("video/avc", false, false);
+            if (e6.isEmpty()) {
                 nVar = null;
             } else {
-                nVar = (n) e.get(0);
+                nVar = (n) e6.get(0);
             }
             if (nVar != null) {
                 MediaCodecInfo.CodecCapabilities codecCapabilities = nVar.d;
@@ -276,15 +276,15 @@ public abstract class y {
                     i13 = Math.max(i11, i13);
                     i12++;
                 }
-                if (d0.f6937a >= 21) {
+                if (d0.f7237a >= 21) {
                     i10 = 345600;
                 } else {
                     i10 = 172800;
                 }
                 i12 = Math.max(i13, i10);
             }
-            f4209c = i12;
+            f4281c = i12;
         }
-        return f4209c;
+        return f4281c;
     }
 }

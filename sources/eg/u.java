@@ -1,29 +1,47 @@
 package eg;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class u extends AnimatorListenerAdapter {
-    public final int f5512a;
-    public final v f5513b;
-    public final w f5514c;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.ui.Components.sv0;
+import qh.b5;
+public final class u implements View.OnTouchListener {
+    public final int f5498a;
+    public final sv0 f5499b;
 
-    public u(w wVar, v vVar, int i10) {
-        this.f5512a = i10;
-        this.f5514c = wVar;
-        this.f5513b = vVar;
+    public u(sv0 sv0Var, int i10) {
+        this.f5498a = i10;
+        this.f5499b = sv0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f5512a) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.p1 p1Var;
+        org.telegram.ui.ActionBar.p1 p1Var2;
+        switch (this.f5498a) {
             case 0:
-                this.f5513b.f5533f = null;
-                w.a(this.f5514c);
-                return;
+                c1 c1Var = (c1) this.f5499b;
+                c1Var.getClass();
+                if (motionEvent.getActionMasked() == 0 && (p1Var = c1Var.O1) != null && p1Var.isShowing()) {
+                    view.getHitRect(c1Var.Q1);
+                    if (!c1Var.Q1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        c1Var.O1.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
             default:
-                this.f5513b.f5533f = null;
-                w.a(this.f5514c);
-                return;
+                b5 b5Var = (b5) this.f5499b;
+                b5Var.getClass();
+                if (motionEvent.getActionMasked() == 0 && (p1Var2 = b5Var.E1) != null && p1Var2.isShowing()) {
+                    view.getHitRect(b5Var.G1);
+                    if (!b5Var.G1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        b5Var.E1.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
         }
     }
 }

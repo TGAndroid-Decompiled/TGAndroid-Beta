@@ -1,43 +1,96 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
 import android.view.View;
-public final class h61 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f25334a;
-    public final View f25335b;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.AndroidUtilities;
+public final class h61 extends pz {
+    public final int X = 1;
+    public final Object Y;
 
-    public h61(int i10, View view) {
-        this.f25334a = i10;
-        this.f25335b = view;
+    public h61() {
+        super(100, false);
+        this.Y = new Object();
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f25334a) {
-            case 0:
-                i61 i61Var = (i61) this.f25335b;
-                i61Var.getClass();
-                i61Var.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                i61Var.invalidate();
-                return;
+    public int A() {
+        switch (this.X) {
             case 1:
-                o61 o61Var = (o61) this.f25335b;
-                o61Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o61Var.f27456b = floatValue;
-                o61Var.setTranslationY(floatValue);
-                return;
+                return 0;
             default:
-                k81 k81Var = (k81) this.f25335b;
-                k81Var.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k81Var.setAnimationIdicatorProgress(floatValue2);
-                j81 j81Var = k81Var.f26229y;
-                if (j81Var != null) {
-                    ((o2.o) j81Var).q(floatValue2);
+                return super.A();
+        }
+    }
+
+    @Override
+    public kv0 D1(int i10) {
+        switch (this.X) {
+            case 1:
+                kv0 kv0Var = (kv0) this.Y;
+                kv0Var.f28464b = 100.0f;
+                kv0Var.f28463a = 100.0f;
+                return kv0Var;
+            default:
+                return super.D1(i10);
+        }
+    }
+
+    @Override
+    public void U(bf.f fVar, f2.j1 j1Var, View view, s0.d dVar) {
+        a3.c cVar;
+        switch (this.X) {
+            case 1:
+                super.U(fVar, j1Var, view, dVar);
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f46850a;
+                AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
+                if (collectionItemInfo != null) {
+                    cVar = new a3.c(collectionItemInfo);
+                } else {
+                    cVar = null;
+                }
+                if (cVar != null) {
+                    Object obj = cVar.f49a;
+                    if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
+                        accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
+                        return;
+                    }
                     return;
                 }
                 return;
+            default:
+                super.U(fVar, j1Var, view, dVar);
+                return;
         }
+    }
+
+    @Override
+    public int W0(f2.j1 j1Var) {
+        switch (this.X) {
+            case 0:
+                if (((i61) this.Y).X2) {
+                    return AndroidUtilities.displaySize.y;
+                }
+                return super.W0(j1Var);
+            default:
+                return super.W0(j1Var);
+        }
+    }
+
+    @Override
+    public void z0(f2.j1 j1Var, int[] iArr) {
+        switch (this.X) {
+            case 1:
+                super.z0(j1Var, iArr);
+                iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.s7.a(1) * 2);
+                return;
+            default:
+                super.z0(j1Var, iArr);
+                return;
+        }
+    }
+
+    public h61(i61 i61Var, int i10) {
+        super(i10, false);
+        this.Y = i61Var;
     }
 }

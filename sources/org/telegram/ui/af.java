@@ -4,61 +4,61 @@ import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 public final class af implements Runnable {
-    public final int f32562a;
-    public final xn f32563b;
-    public final int f32564c;
+    public final int f35147a;
+    public final xn f35148b;
+    public final int f35149c;
 
     public af(xn xnVar, int i10, int i11) {
-        this.f32562a = i11;
-        this.f32563b = xnVar;
-        this.f32564c = i10;
+        this.f35147a = i11;
+        this.f35148b = xnVar;
+        this.f35149c = i10;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.Cells.t1 t1Var;
         MessageObject messageObject;
-        switch (this.f32562a) {
+        switch (this.f35147a) {
             case 0:
-                this.f32563b.getConnectionsManager().cancelRequest(this.f32564c, true);
+                this.f35148b.getConnectionsManager().cancelRequest(this.f35149c, true);
                 return;
             case 1:
-                this.f32563b.j(this.f32564c, 0, false, 0, true, 0);
+                this.f35148b.j(this.f35149c, 0, false, 0, true, 0);
                 return;
             case 2:
-                this.f32563b.getConnectionsManager().cancelRequest(this.f32564c, true);
+                this.f35148b.getConnectionsManager().cancelRequest(this.f35149c, true);
                 return;
             case 3:
-                xn xnVar = this.f32563b;
-                qj qjVar = xnVar.f40193u0;
+                xn xnVar = this.f35148b;
+                qj qjVar = xnVar.f43362u0;
                 if (qjVar != null) {
                     int childCount = qjVar.getChildCount();
                     for (int i10 = 0; i10 < childCount; i10++) {
-                        View childAt = xnVar.f40193u0.getChildAt(i10);
+                        View childAt = xnVar.f43362u0.getChildAt(i10);
                         if ((childAt instanceof org.telegram.ui.Cells.t1) && (messageObject = (t1Var = (org.telegram.ui.Cells.t1) childAt).getMessageObject()) != null && messageObject.equals(xnVar.D3)) {
-                            t1Var.g4(this.f32564c, true, true);
+                            t1Var.g4(this.f35149c, true, true);
                         }
                     }
                 }
                 xnVar.D3 = null;
                 return;
             case 4:
-                this.f32563b.getConnectionsManager().cancelRequest(this.f32564c, true);
+                this.f35148b.getConnectionsManager().cancelRequest(this.f35149c, true);
                 return;
             case 5:
-                xn.V(this.f32563b, this.f32564c);
+                xn.V(this.f35148b, this.f35149c);
                 return;
             case 6:
-                this.f32563b.actionBar.setSubtitle(LocaleController.formatPluralString("messages", this.f32564c, new Object[0]));
+                this.f35148b.actionBar.setSubtitle(LocaleController.formatPluralString("messages", this.f35149c, new Object[0]));
                 return;
             case 7:
-                this.f32563b.getConnectionsManager().cancelRequest(this.f32564c, true);
+                this.f35148b.getConnectionsManager().cancelRequest(this.f35149c, true);
                 return;
             case 8:
-                xn.e0(this.f32563b, this.f32564c);
+                xn.e0(this.f35148b, this.f35149c);
                 return;
             default:
-                xn.e1(this.f32563b, this.f32564c);
+                xn.e1(this.f35148b, this.f35149c);
                 return;
         }
     }

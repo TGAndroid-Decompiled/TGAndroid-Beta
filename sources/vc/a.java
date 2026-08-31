@@ -1,16 +1,16 @@
 package vc;
 
-import k7.o8;
+import k7.p8;
 public final class a {
-    public static final a f45663a;
-    public static final a[] f45664b;
+    public static final a f48962a;
+    public static final a[] f48963b;
 
     static {
         ?? r02 = new Enum("COROUTINE_SUSPENDED", 0);
-        f45663a = r02;
+        f48962a = r02;
         a[] aVarArr = {r02, new Enum("UNDECIDED", 1), new Enum("RESUMED", 2)};
-        f45664b = aVarArr;
-        o8.a(aVarArr);
+        f48963b = aVarArr;
+        p8.a(aVarArr);
     }
 
     public static a valueOf(String str) {
@@ -18,6 +18,6 @@ public final class a {
     }
 
     public static a[] values() {
-        return (a[]) f45664b.clone();
+        return (a[]) f48963b.clone();
     }
 }

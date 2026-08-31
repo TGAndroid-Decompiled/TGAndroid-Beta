@@ -1,53 +1,32 @@
 package ig;
 
-import android.content.Context;
-import org.telegram.messenger.Emoji;
-import org.telegram.ui.ActionBar.k5;
-public final class c extends k5 {
-    public final int J0;
+import hg.d1;
+import org.telegram.messenger.y3;
+import org.telegram.ui.py;
+public final class c implements Runnable {
+    public final int f8075a;
+    public final e f8076b;
 
-    public c(Context context, int i10) {
-        super(context);
-        this.J0 = i10;
+    public c(e eVar, int i10) {
+        this.f8075a = i10;
+        this.f8076b = eVar;
     }
 
     @Override
-    public boolean k(CharSequence charSequence) {
-        switch (this.J0) {
+    public final void run() {
+        switch (this.f8075a) {
             case 0:
-                return l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
-            case 1:
-            case 2:
-            default:
-                return super.k(charSequence);
-            case 3:
-                return l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
-            case 4:
-                return l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
-        }
-    }
-
-    @Override
-    public boolean l(CharSequence charSequence, boolean z4) {
-        switch (this.J0) {
-            case 2:
-                return super.l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), z4);
-            case 5:
-                return super.l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
-            default:
-                return super.l(charSequence, z4);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.J0) {
-            case 1:
-                super.onMeasure(i10, i11);
-                setPivotY(getMeasuredHeight() / 2.0f);
+                this.f8076b.E();
                 return;
             default:
-                super.onMeasure(i10, i11);
+                StringBuilder sb = new StringBuilder("https://t.me/giftcode/");
+                e eVar = this.f8076b;
+                sb.append(eVar.h);
+                String sb2 = sb.toString();
+                py pyVar = new py(y3.e(3, "onlySelect", "dialogsType", true));
+                pyVar.f40308z2 = new c1.b(17, eVar, sb2);
+                eVar.f8081e.presentFragment(pyVar);
+                ((d1) eVar).f7448r.dismiss();
                 return;
         }
     }

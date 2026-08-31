@@ -1,11 +1,10 @@
 package org.telegram.ui.Components;
+public interface lq {
+    int H0(int i10);
 
-import android.text.TextPaint;
-import android.text.style.ForegroundColorSpan;
-public final class lq extends ForegroundColorSpan {
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        textPaint.setUnderlineText(true);
-    }
+    void k(boolean z4);
+
+    void v0(int i10, int i11, boolean z4);
+
+    void x();
 }

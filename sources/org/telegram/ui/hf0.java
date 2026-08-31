@@ -1,29 +1,24 @@
 package org.telegram.ui;
+public final class hf0 implements org.telegram.ui.ActionBar.c2 {
+    public final int f37485a;
+    public final sf0 f37486b;
 
-import android.view.KeyEvent;
-import org.telegram.tgnet.TLObject;
-public final class hf0 implements Runnable {
-    public final int f34852a;
-    public final Object f34853b;
-    public final Object f34854c;
-    public final Object d;
-
-    public hf0(KeyEvent.Callback callback, TLObject tLObject, Object obj, int i10) {
-        this.f34852a = i10;
-        this.f34853b = callback;
-        this.f34854c = tLObject;
-        this.d = obj;
+    public hf0(sf0 sf0Var, int i10) {
+        this.f37485a = i10;
+        this.f37486b = sf0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hf0.run():void");
-    }
-
-    public hf0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f34852a = i10;
-        this.f34853b = obj;
-        this.d = obj2;
-        this.f34854c = obj3;
+    public final void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f37485a) {
+            case 0:
+                sf0 sf0Var = this.f37486b;
+                sf0Var.c(true);
+                sf0Var.f41271p0.u1(0, true, null, true);
+                return;
+            default:
+                this.f37486b.f41271p0.u1(0, true, null, true);
+                return;
+        }
     }
 }

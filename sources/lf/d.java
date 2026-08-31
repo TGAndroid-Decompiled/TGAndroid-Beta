@@ -1,24 +1,23 @@
 package lf;
 
 import java.util.function.ToIntFunction;
-import kh.a2;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.a6;
 public final class d implements ToIntFunction {
-    public final int f11972a;
+    public final int f12414a;
 
     public d(int i10) {
-        this.f11972a = i10;
+        this.f12414a = i10;
     }
 
     @Override
     public final int applyAsInt(Object obj) {
-        switch (this.f11972a) {
+        switch (this.f12414a) {
             case 0:
-                return ((f) obj).f11976a;
+                return ((f) obj).f12418a;
             case 1:
                 return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
             case 2:
@@ -42,22 +41,22 @@ public final class d implements ToIntFunction {
             case 8:
                 return ((TL_stories.StoryItem) obj).date;
             case 9:
-                return -((TL_stories.StoryItem) a2.i(1, ((TL_stories.PeerStories) obj).stories)).date;
+                return -((TL_stories.StoryItem) l.d.i(1, ((TL_stories.PeerStories) obj).stories)).date;
             case 10:
                 return ((MessageObject) obj).getId();
             case 11:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 12:
-                return ((TLRPC.Message) obj).f19205id;
+                return ((TLRPC.Message) obj).f20864id;
             case 13:
-                return ((TLRPC.Message) obj).f19205id;
+                return ((TLRPC.Message) obj).f20864id;
             case 14:
                 return ((a6) obj).d;
             case 15:
-                return ((a6) obj).e;
+                return ((a6) obj).f25167e;
             case 16:
                 mc.c cVar = (mc.c) obj;
-                return cVar.d - cVar.f13912b;
+                return cVar.d - cVar.f13631b;
             case 17:
                 TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) obj;
                 int i10 = messagePeerReaction.date;

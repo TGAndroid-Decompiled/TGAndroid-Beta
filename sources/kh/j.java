@@ -1,41 +1,44 @@
 package kh;
 
-import android.content.DialogInterface;
+import mh.g5;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class j implements DialogInterface.OnShowListener {
-    public final int f10673a;
-    public final EditTextBoldCursor f10674b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class j implements RequestDelegate {
+    public final int f11263a = 0;
+    public final boolean f11264b;
+    public final boolean f11265c;
+    public final Object d;
+    public final Object f11266e;
+    public final Object f11267f;
 
-    public j(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f10673a = i10;
-        this.f10674b = editTextBoldCursor;
+    public j(v vVar, boolean z4, i iVar, String str, boolean z10) {
+        this.d = vVar;
+        this.f11264b = z4;
+        this.f11266e = iVar;
+        this.f11267f = str;
+        this.f11265c = z10;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f10673a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f11263a) {
             case 0:
-                dh.b bVar = (dh.b) this.f10674b;
-                bVar.requestFocus();
-                AndroidUtilities.showKeyboard(bVar);
-                return;
-            case 1:
-                v2 v2Var = (v2) this.f10674b;
-                v2Var.requestFocus();
-                AndroidUtilities.showKeyboard(v2Var);
-                return;
-            case 2:
-                uf.n nVar = (uf.n) this.f10674b;
-                nVar.requestFocus();
-                AndroidUtilities.showKeyboard(nVar);
+                AndroidUtilities.runOnUIThread(new k((v) this.d, this.f11264b, (Runnable) this.f11266e, (String) this.f11267f, tL_error, tLObject, this.f11265c));
                 return;
             default:
-                EditTextBoldCursor editTextBoldCursor = this.f10674b;
-                editTextBoldCursor.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor);
-                editTextBoldCursor.setSelection(0, editTextBoldCursor.length());
+                AndroidUtilities.runOnUIThread(new k((g5) this.d, tLObject, this.f11264b, (TLRPC.Document) this.f11266e, this.f11265c, tL_error, (TL_stars.saveStarGift) this.f11267f));
                 return;
         }
+    }
+
+    public j(g5 g5Var, boolean z4, TLRPC.Document document, boolean z10, TL_stars.saveStarGift savestargift) {
+        this.d = g5Var;
+        this.f11264b = z4;
+        this.f11266e = document;
+        this.f11265c = z10;
+        this.f11267f = savestargift;
     }
 }

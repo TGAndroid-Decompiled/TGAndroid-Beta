@@ -2,38 +2,38 @@ package n7;
 
 import java.util.Map;
 public final class c extends l7.f {
-    public final Object f14304b;
-    public int f14305c;
+    public final Object f15285b;
+    public int f15286c;
     public final d d;
 
     public c(d dVar, int i10) {
         super(1, false);
         this.d = dVar;
-        Object[] objArr = dVar.f14320c;
+        Object[] objArr = dVar.f15303c;
         objArr.getClass();
-        this.f14304b = objArr[i10];
-        this.f14305c = i10;
+        this.f15285b = objArr[i10];
+        this.f15286c = i10;
     }
 
     public final void a() {
-        int i10 = this.f14305c;
-        Object obj = this.f14304b;
+        int i10 = this.f15286c;
+        Object obj = this.f15285b;
         d dVar = this.d;
         if (i10 != -1 && i10 < dVar.size()) {
-            int i11 = this.f14305c;
-            Object[] objArr = dVar.f14320c;
+            int i11 = this.f15286c;
+            Object[] objArr = dVar.f15303c;
             objArr.getClass();
-            if (k7.d0.a(obj, objArr[i11])) {
+            if (k7.e0.a(obj, objArr[i11])) {
                 return;
             }
         }
-        Object obj2 = d.f14317s;
-        this.f14305c = dVar.e(obj);
+        Object obj2 = d.f15300s;
+        this.f15286c = dVar.e(obj);
     }
 
     @Override
     public final Object getKey() {
-        return this.f14304b;
+        return this.f15285b;
     }
 
     @Override
@@ -41,10 +41,10 @@ public final class c extends l7.f {
         d dVar = this.d;
         Map a2 = dVar.a();
         if (a2 != null) {
-            return a2.get(this.f14304b);
+            return a2.get(this.f15285b);
         }
         a();
-        int i10 = this.f14305c;
+        int i10 = this.f15286c;
         if (i10 == -1) {
             return null;
         }
@@ -57,12 +57,12 @@ public final class c extends l7.f {
     public final Object setValue(Object obj) {
         d dVar = this.d;
         Map a2 = dVar.a();
-        Object obj2 = this.f14304b;
+        Object obj2 = this.f15285b;
         if (a2 != null) {
             return a2.put(obj2, obj);
         }
         a();
-        int i10 = this.f14305c;
+        int i10 = this.f15286c;
         if (i10 == -1) {
             dVar.put(obj2, obj);
             return null;

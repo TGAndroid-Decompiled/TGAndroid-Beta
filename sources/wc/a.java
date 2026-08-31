@@ -3,9 +3,9 @@ package wc;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import k7.p7;
+import k7.q7;
 import kotlin.jvm.internal.j;
-import m.y2;
+import m.x2;
 public abstract class a implements uc.c, d, Serializable {
     private final uc.c completion;
 
@@ -69,20 +69,20 @@ public abstract class a implements uc.c, d, Serializable {
             if (i10 >= 0) {
                 i12 = eVar.l()[i10];
             }
-            y2 y2Var = f.f46512b;
-            y2 y2Var2 = f.f46511a;
-            if (y2Var == null) {
+            x2 x2Var = f.f49490b;
+            x2 x2Var2 = f.f49489a;
+            if (x2Var == null) {
                 try {
-                    y2 y2Var3 = new y2(Class.class.getDeclaredMethod("getModule", null), getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
-                    f.f46512b = y2Var3;
-                    y2Var = y2Var3;
+                    x2 x2Var3 = new x2(Class.class.getDeclaredMethod("getModule", null), getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
+                    f.f49490b = x2Var3;
+                    x2Var = x2Var3;
                 } catch (Exception unused2) {
-                    f.f46512b = y2Var2;
-                    y2Var = y2Var2;
+                    f.f49490b = x2Var2;
+                    x2Var = x2Var2;
                 }
             }
-            if (y2Var != y2Var2 && (method = y2Var.f13696a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = y2Var.f13697b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
-                Method method3 = y2Var.f13698c;
+            if (x2Var != x2Var2 && (method = x2Var.f13388a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = x2Var.f13389b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
+                Method method3 = x2Var.f13390c;
                 if (method3 != null) {
                     obj = method3.invoke(invoke2, null);
                 } else {
@@ -113,11 +113,11 @@ public abstract class a implements uc.c, d, Serializable {
             j.b(cVar2);
             try {
                 obj = aVar.invokeSuspend(obj);
-                if (obj == vc.a.f45663a) {
+                if (obj == vc.a.f48962a) {
                     return;
                 }
             } catch (Throwable th2) {
-                obj = p7.a(th2);
+                obj = q7.a(th2);
             }
             aVar.releaseIntercepted();
             if (cVar2 instanceof a) {

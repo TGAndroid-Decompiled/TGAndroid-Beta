@@ -1,0 +1,28 @@
+package uh;
+
+import android.content.Context;
+import android.view.View;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.i61;
+import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.x51;
+public final class h extends i51 {
+    public static final int f48822a = 0;
+
+    static {
+        i51.setup(new i51());
+    }
+
+    @Override
+    public final void bindView(View view, j51 j51Var, boolean z4, x51 x51Var, i61 i61Var) {
+        long j10 = j51Var.B;
+        ((i) view).a((int) j10, (int) (j10 >>> 32), j51Var.f28013k, j51Var.f28014l, j51Var.f28016n, j51Var.f28019q);
+    }
+
+    @Override
+    public final View createView(Context context, tl0 tl0Var, int i10, int i11, g6 g6Var) {
+        return new i(context, g6Var, false);
+    }
+}

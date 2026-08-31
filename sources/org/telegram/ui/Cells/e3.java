@@ -2,37 +2,37 @@ package org.telegram.ui.Cells;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import org.telegram.ui.Components.vt;
+import org.telegram.ui.Components.xt;
 public final class e3 implements TextWatcher {
-    public final int f20998a;
-    public final vt f20999b;
-    public final boolean f21000c;
+    public final int f22737a;
+    public final xt f22738b;
+    public final boolean f22739c;
     public final f3 d;
 
-    public e3(f3 f3Var, int i10, vt vtVar, boolean z4) {
+    public e3(f3 f3Var, int i10, xt xtVar, boolean z4) {
         this.d = f3Var;
-        this.f20998a = i10;
-        this.f20999b = vtVar;
-        this.f21000c = z4;
+        this.f22737a = i10;
+        this.f22738b = xtVar;
+        this.f22739c = z4;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         f3 f3Var = this.d;
-        boolean z4 = f3Var.f21049a;
-        int i10 = this.f20998a;
+        boolean z4 = f3Var.f22792a;
+        int i10 = this.f22737a;
         if (!z4) {
             if (i10 > 0 && editable != null && editable.length() > i10) {
-                f3Var.f21049a = true;
+                f3Var.f22792a = true;
                 CharSequence subSequence = editable.subSequence(0, i10);
-                vt vtVar = this.f20999b;
-                vtVar.setText(subSequence);
-                vtVar.setSelection(vtVar.length());
-                f3Var.f21049a = false;
+                xt xtVar = this.f22738b;
+                xtVar.setText(subSequence);
+                xtVar.setSelection(xtVar.length());
+                f3Var.f22792a = false;
             }
             f3Var.b();
         }
-        if (this.f21000c) {
+        if (this.f22739c) {
             while (true) {
                 int indexOf = editable.toString().indexOf("\n");
                 if (indexOf < 0) {

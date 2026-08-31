@@ -29,9 +29,9 @@ public class VoIPServerConfig {
         try {
             config = new JSONObject(str);
             nativeSetConfig(str);
-        } catch (JSONException e) {
+        } catch (JSONException e6) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("Error parsing VoIP config", e);
+                FileLog.e("Error parsing VoIP config", e6);
             }
         }
     }

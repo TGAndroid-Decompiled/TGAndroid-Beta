@@ -1,70 +1,263 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-public final class z51 extends qv0 {
-    public final int f31249t0;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.DataAutoDownloadActivity;
+import org.telegram.ui.DataSettingsActivity;
+import org.telegram.ui.FiltersSetupActivity;
+import org.telegram.ui.LanguageSelectActivity;
+import org.telegram.ui.NotificationsCustomSettingsActivity;
+import org.telegram.ui.NotificationsSettingsActivity;
+import org.telegram.ui.PasscodeActivity;
+import org.telegram.ui.ha1;
+import org.telegram.ui.vh1;
+public final class z51 extends org.telegram.ui.ActionBar.j {
+    public final int f33768a;
+    public final Object f33769b;
 
-    public z51(Context context, org.telegram.ui.ActionBar.e5 e5Var, int i10) {
-        super(context, e5Var);
-        this.f31249t0 = i10;
+    public z51(Object obj, int i10) {
+        this.f33768a = i10;
+        this.f33769b = obj;
     }
 
     @Override
-    public boolean P() {
-        switch (this.f31249t0) {
-            case 1:
-                return false;
-            case 2:
-                return false;
-            case 3:
-            default:
-                return super.P();
-            case 4:
-                return false;
-        }
-    }
-
-    @Override
-    public void addView(View view) {
-        switch (this.f31249t0) {
-            case 3:
-                if (view instanceof kz) {
-                    ViewGroup.LayoutParams layoutParams = ((kz) view).getLayoutParams();
-                    if (layoutParams == null) {
-                        layoutParams = new FrameLayout.LayoutParams(-1, -2);
-                    }
-                    if (layoutParams instanceof FrameLayout.LayoutParams) {
-                        ((FrameLayout.LayoutParams) layoutParams).gravity = 87;
-                    }
-                    view.setLayoutParams(layoutParams);
-                }
-                super.addView(view);
-                return;
-            default:
-                super.addView(view);
-                return;
-        }
-    }
-
-    @Override
-    public void onLayout(boolean r17, int r18, int r19, int r20, int r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.z51.onLayout(boolean, int, int, int, int):void");
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f31249t0) {
+    public final void b(int i10) {
+        switch (this.f33768a) {
             case 0:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
+                if (i10 == -1) {
+                    ((c61) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 1:
+                if (i10 == -1) {
+                    ((org.telegram.ui.Components.voip.v0) this.f33769b).b(false, false);
+                    return;
+                }
+                return;
+            case 2:
+                if (i10 == -1) {
+                    ((vh1) this.f33769b).a(false, false);
+                    return;
+                }
+                return;
+            case 3:
+                if (i10 == -1) {
+                    ((org.telegram.ui.zt) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 4:
+                if (i10 == -1) {
+                    ((DataAutoDownloadActivity) this.f33769b).finishFragment();
+                    return;
+                }
                 return;
             case 5:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
+                if (i10 == -1) {
+                    ((DataSettingsActivity) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 6:
+                if (i10 == -1) {
+                    ((org.telegram.ui.yu) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 7:
+                if (i10 == -1) {
+                    ((org.telegram.ui.lv) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 8:
+                if (i10 == -1) {
+                    ((org.telegram.ui.iz) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 9:
+                org.telegram.ui.zz zzVar = (org.telegram.ui.zz) this.f33769b;
+                if (i10 == -1) {
+                    if (zzVar.W(true)) {
+                        zzVar.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i10 == 1) {
+                    if (Math.abs(zzVar.Q - 1.0f) < 0.1f) {
+                        zzVar.c0();
+                        return;
+                    } else if (Math.abs(zzVar.Q - 0.5f) < 0.1f) {
+                        for (int i11 = 0; i11 < zzVar.f44019a.getChildCount(); i11++) {
+                            View childAt = zzVar.f44019a.getChildAt(i11);
+                            zzVar.f44019a.getClass();
+                            if (RecyclerView.R(childAt) == zzVar.I && (childAt instanceof a10)) {
+                                int i12 = -zzVar.f44026s;
+                                zzVar.f44026s = i12;
+                                AndroidUtilities.shakeViewSpring(childAt, i12);
+                                return;
+                            }
+                        }
+                        return;
+                    } else {
+                        return;
+                    }
+                } else {
+                    return;
+                }
+            case 10:
+                org.telegram.ui.b10 b10Var = (org.telegram.ui.b10) this.f33769b;
+                if (i10 == -1) {
+                    if (b10Var.h0(true)) {
+                        b10Var.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i10 == 1) {
+                    b10Var.q0();
+                    return;
+                } else {
+                    return;
+                }
+            case 11:
+                if (i10 == -1) {
+                    ((FiltersSetupActivity) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 12:
+                if (i10 == -1) {
+                    ((org.telegram.ui.m20) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 13:
+                org.telegram.ui.z60 z60Var = (org.telegram.ui.z60) this.f33769b;
+                if (i10 == -1) {
+                    if (z60Var.f0(true)) {
+                        z60Var.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i10 == 1) {
+                    z60Var.o0();
+                    return;
+                } else {
+                    return;
+                }
+            case 14:
+                if (i10 == -1) {
+                    ((org.telegram.ui.f70) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 15:
+                if (i10 == -1) {
+                    ((org.telegram.ui.h70) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 16:
+                if (i10 == -1) {
+                    ((org.telegram.ui.n70) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 17:
+                if (i10 == -1) {
+                    ((org.telegram.ui.p70) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 18:
+                if (i10 == -1) {
+                    ((org.telegram.ui.d80) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 19:
+                if (i10 == -1) {
+                    ((LanguageSelectActivity) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 20:
+                org.telegram.ui.ob0 ob0Var = (org.telegram.ui.ob0) this.f33769b;
+                if (i10 == -1) {
+                    ob0Var.finishFragment();
+                    AndroidUtilities.hideKeyboard(ob0Var.C);
+                    return;
+                }
+                return;
+            case 21:
+                if (i10 == -1) {
+                    ((org.telegram.ui.fc0) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 22:
+                org.telegram.ui.og0 og0Var = (org.telegram.ui.og0) this.f33769b;
+                if (i10 == 1) {
+                    og0Var.p1();
+                    return;
+                } else if (i10 == -1 && og0Var.onBackPressed(true)) {
+                    og0Var.finishFragment();
+                    return;
+                } else {
+                    return;
+                }
+            case 23:
+                if (i10 == -1) {
+                    ((org.telegram.ui.qg0) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 24:
+                if (i10 == -1) {
+                    ((org.telegram.ui.qh0) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 25:
+                if (i10 == -1) {
+                    ((org.telegram.ui.rh0) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 26:
+                org.telegram.ui.bj0 bj0Var = (org.telegram.ui.bj0) this.f33769b;
+                if (i10 == -1) {
+                    bj0Var.finishFragment();
+                    return;
+                } else if (i10 == 1) {
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("chat_id", bj0Var.f35538b);
+                    bj0Var.presentFragment(new ha1(bundle));
+                    return;
+                } else {
+                    return;
+                }
+            case 27:
+                if (i10 == -1) {
+                    ((NotificationsCustomSettingsActivity) this.f33769b).finishFragment();
+                    return;
+                }
+                return;
+            case 28:
+                if (i10 == -1) {
+                    ((NotificationsSettingsActivity) this.f33769b).finishFragment();
+                    return;
+                }
                 return;
             default:
-                super.onMeasure(i10, i11);
+                if (i10 == -1) {
+                    ((PasscodeActivity) this.f33769b).finishFragment();
+                    return;
+                }
                 return;
         }
     }

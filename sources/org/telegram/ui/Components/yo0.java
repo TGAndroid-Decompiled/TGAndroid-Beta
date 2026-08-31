@@ -1,44 +1,28 @@
 package org.telegram.ui.Components;
+public final class yo0 implements ib {
+    public final ic f33555a;
+    public final ve f33556b;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class yo0 extends LinearLayout {
-    public final fv0 f31067a;
-    public final TextView f31068b;
-    public final TextView f31069c;
+    public yo0(ve veVar, ic icVar) {
+        this.f33556b = veVar;
+        this.f33555a = icVar;
+    }
 
-    public yo0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        setLayoutParams(new f2.w0(-1, -2));
-        setOrientation(0);
-        setGravity(16);
-        int dp = AndroidUtilities.dp(14.0f);
-        int i10 = dp / 2;
-        setPadding(dp, i10, dp, i10);
-        fv0 fv0Var = new fv0(context);
-        this.f31067a = fv0Var;
-        addView(fv0Var, k7.b6.c(40.0f, 40));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, k7.b6.m(1.0f, 0, -1, 12, 0, 0));
-        TextView textView = new TextView(context);
-        this.f31068b = textView;
-        int i11 = org.telegram.ui.ActionBar.j6.E8;
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-        textView.setTextSize(1, 16.0f);
-        textView.setTag(textView);
-        textView.setMaxLines(1);
-        linearLayout.addView(textView);
-        TextView textView2 = new TextView(context);
-        this.f31069c = textView2;
-        textView2.setTextColor(i0.a.k(org.telegram.ui.ActionBar.j6.v0(i11, f6Var), 102));
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTag(textView2);
-        textView2.setMaxLines(1);
-        textView2.setEllipsize(TextUtils.TruncateAt.END);
-        linearLayout.addView(textView2);
+    @Override
+    public final void c() {
+        this.f33556b.G.remove(this.f33555a);
+    }
+
+    @Override
+    public final void d() {
+        this.f33556b.G.add(this.f33555a);
+    }
+
+    @Override
+    public final void a(ic icVar) {
+    }
+
+    @Override
+    public final void b() {
     }
 }

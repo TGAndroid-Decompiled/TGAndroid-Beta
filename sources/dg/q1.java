@@ -1,338 +1,115 @@
 package dg;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.os.Build;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import k7.b6;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.BubbleActivity;
-import org.telegram.ui.Components.jv0;
-import org.telegram.ui.yh;
-public abstract class q1 extends FrameLayout {
-    public float B;
-    public float C;
-    public boolean D;
-    public float E;
-    public final ArrayList F;
-    public final Rect G;
-    public final int f4727a;
-    public final cg.i2 f4728b;
-    public final DispatchQueue f4729c;
-    public final MediaController.CropState d;
-    public final cg.p1 e;
-    public final Bitmap f4730f;
-    public final int h;
-    public final boolean f4731n;
-    public final FrameLayout f4732r;
-    public final TextView f4733s;
-    public final TextView v;
-    public final t2 f4734w;
-    public jv0 f4735x;
-    public boolean f4736y;
+import j$.util.DesugarCollections;
+import java.util.HashMap;
+import java.util.Map;
+public abstract class q1 {
+    public static final Map f4643a;
 
-    public q1(Context context, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, MediaController.CropState cropState) {
-        super(context);
-        s2 f0Var = new androidx.biometric.f0(this, 9);
-        this.F = new ArrayList();
-        this.G = new Rect();
-        this.f4727a = i10;
-        this.f4731n = context instanceof BubbleActivity;
-        cg.i2 i2Var = new cg.i2();
-        this.f4728b = i2Var;
-        i2Var.f2428a = new Object();
-        DispatchQueue dispatchQueue = new DispatchQueue("MaskPaint");
-        this.f4729c = dispatchQueue;
-        this.d = cropState;
-        this.f4730f = bitmap;
-        this.h = i11;
-        cg.d1 d1Var = new cg.d1(getPaintingSize(), bitmap2, i11, null);
-        d1Var.G = true;
-        cg.p1 p1Var = new cg.p1(context, d1Var, bitmap, null, null);
-        this.e = p1Var;
-        p1Var.setAlpha(0.0f);
-        p1Var.setDelegate(new p1(this));
-        p1Var.setUndoStore(i2Var);
-        p1Var.setQueue(dispatchQueue);
-        p1Var.setVisibility(4);
-        p1Var.setBrush(new Object());
-        p1Var.setBrushSize(f0Var.get());
-        p1Var.setColor(-65536);
-        addView(p1Var, b6.e(-1, -1, 51));
-        t2 t2Var = new t2(context);
-        this.f4734w = t2Var;
-        t2Var.b(0.05f, 1.0f);
-        t2Var.setBrushWeight(f0Var.get());
-        t2Var.setRenderView(p1Var);
-        t2Var.setValueOverride(f0Var);
-        t2Var.setTranslationX(-AndroidUtilities.dp(18.0f));
-        t2Var.setAlpha(0.0f);
-        addView(t2Var, b6.c(-1.0f, -1));
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f4732r = frameLayout;
-        frameLayout.setAlpha(0.0f);
-        frameLayout.setVisibility(8);
-        addView(frameLayout, b6.e(-1, 44, 80));
-        TextView textView = new TextView(context);
-        this.f4733s = textView;
-        textView.setTextSize(1, 15.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setBackground(j6.f0(j6.l1(0.15f, -1), 3, -1));
-        textView.setPadding(AndroidUtilities.dp(28.0f), 0, AndroidUtilities.dp(28.0f), 0);
-        textView.setText(LocaleController.getString(R.string.Cancel).toUpperCase());
-        textView.setTextColor(-1);
-        textView.setGravity(17);
-        TextView i12 = yh.i(frameLayout, textView, b6.d(-2, 44.0f, 3, -8.0f, 0.0f, 0.0f, 0.0f), context);
-        this.v = i12;
-        yh.p(15.0f, 1, i12);
-        int i13 = j6.f20304zf;
-        i12.setBackground(j6.f0(j6.l1(0.15f, j6.w0(null, i13, false)), 3, -1));
-        i12.setPadding(AndroidUtilities.dp(28.0f), 0, AndroidUtilities.dp(28.0f), 0);
-        i12.setText(LocaleController.getString(R.string.Save).toUpperCase());
-        i12.setTextColor(j6.w0(null, i13, false));
-        i12.setGravity(17);
-        frameLayout.addView(i12, b6.d(-2, 44.0f, 5, 0.0f, 0.0f, -8.0f, 0.0f));
-    }
-
-    private jv0 getPaintingSize() {
-        float f10;
-        float f11;
-        jv0 jv0Var = this.f4735x;
-        if (jv0Var != null) {
-            return jv0Var;
-        }
-        Bitmap bitmap = this.f4730f;
-        jv0 jv0Var2 = new jv0(bitmap.getWidth(), bitmap.getHeight());
-        float f12 = 1280;
-        jv0Var2.f26052a = f12;
-        float floor = (float) Math.floor((f12 * f11) / f10);
-        jv0Var2.f26053b = floor;
-        if (floor > f12) {
-            jv0Var2.f26053b = f12;
-            jv0Var2.f26052a = (float) Math.floor((f12 * f10) / f11);
-        }
-        this.f4735x = jv0Var2;
-        return jv0Var2;
-    }
-
-    public final void a(MotionEvent motionEvent) {
-        float x10 = motionEvent.getX();
-        cg.p1 p1Var = this.e;
-        float translationX = ((x10 - p1Var.getTranslationX()) - (getMeasuredWidth() / 2.0f)) / p1Var.getScaleX();
-        float y10 = ((motionEvent.getY() - p1Var.getTranslationY()) - (getMeasuredHeight() / 2.0f)) / p1Var.getScaleY();
-        double d = translationX;
-        double radians = (float) Math.toRadians(-p1Var.getRotation());
-        double d10 = y10;
-        float measuredWidth = (p1Var.getMeasuredWidth() / 2.0f) + ((float) ((Math.cos(radians) * d) - (Math.sin(radians) * d10)));
-        float measuredHeight = (p1Var.getMeasuredHeight() / 2.0f) + ((float) kh.a2.a(radians, d10, Math.sin(radians) * d));
-        MotionEvent obtain = MotionEvent.obtain(motionEvent);
-        obtain.setLocation(measuredWidth, measuredHeight);
-        p1Var.e(obtain);
-        obtain.recycle();
-    }
-
-    public final void b(float f10, float f11, float f12, float f13, float f14, float f15) {
-        float f16;
-        float f17;
-        float f18;
-        float f19;
-        this.B = f11;
-        float f20 = 0.0f + f12;
-        this.C = f20;
-        float f21 = 1.0f;
-        cg.p1 p1Var = this.e;
-        MediaController.CropState cropState = this.d;
-        if (cropState != null) {
-            float f22 = cropState.cropScale * 1.0f;
-            int measuredWidth = p1Var.getMeasuredWidth();
-            int measuredHeight = p1Var.getMeasuredHeight();
-            if (measuredWidth != 0 && measuredHeight != 0) {
-                int i10 = cropState.transformRotation;
-                if (i10 == 90 || i10 == 270) {
-                    measuredHeight = measuredWidth;
-                    measuredWidth = measuredHeight;
-                }
-                float max = Math.max(f14 / ((int) (cropState.cropPw * f18)), f15 / ((int) (cropState.cropPh * f19)));
-                f16 = f22 * max;
-                float z4 = e2.c.z(cropState.cropPx, measuredWidth, f10, max);
-                float f23 = cropState.cropScale;
-                f11 += z4 * f23;
-                f20 += cropState.cropPy * measuredHeight * f10 * max * f23;
-                f17 = cropState.cropRotate + i10 + f13;
-            } else {
-                return;
-            }
-        } else {
-            f16 = this.E * 1.0f;
-            f17 = f13;
-        }
-        float f24 = f10 * f16;
-        if (!Float.isNaN(f24)) {
-            f21 = f24;
-        }
-        p1Var.setScaleX(f21);
-        p1Var.setScaleY(f21);
-        p1Var.setTranslationX(f11);
-        p1Var.setTranslationY(f20);
-        p1Var.setRotation(f17);
-        p1Var.invalidate();
-        invalidate();
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        MediaController.CropState cropState;
-        int i10 = 0;
-        if (view == this.e && (cropState = this.d) != null) {
-            canvas.save();
-            if (!this.f4731n) {
-                i10 = AndroidUtilities.statusBarHeight;
-            }
-            int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10;
-            int measuredWidth = view.getMeasuredWidth();
-            int measuredHeight = view.getMeasuredHeight();
-            int i11 = cropState.transformRotation;
-            if (i11 == 90 || i11 == 270) {
-                measuredHeight = measuredWidth;
-                measuredWidth = measuredHeight;
-            }
-            int scaleX = (int) ((view.getScaleX() * (measuredWidth * cropState.cropPw)) / cropState.cropScale);
-            int scaleY = (int) ((view.getScaleY() * (measuredHeight * cropState.cropPh)) / cropState.cropScale);
-            float ceil = ((float) Math.ceil((getMeasuredWidth() - scaleX) / 2.0f)) + this.B;
-            float additionalBottom = (((getAdditionalBottom() + ((getMeasuredHeight() - currentActionBarHeight) - AndroidUtilities.dp(48.0f))) - scaleY) / 2.0f) + AndroidUtilities.dp(8.0f) + i10 + this.C;
-            canvas.clipRect(Math.max(0.0f, ceil), Math.max(0.0f, additionalBottom), Math.min(ceil + scaleX, getMeasuredWidth()), Math.min(getMeasuredHeight(), additionalBottom + scaleY));
-            i10 = 1;
-        }
-        boolean drawChild = super.drawChild(canvas, view, j10);
-        if (i10 != 0) {
-            canvas.restore();
-        }
-        return drawChild;
-    }
-
-    public int getAdditionalBottom() {
-        return 0;
-    }
-
-    public int getAdditionalTop() {
-        return 0;
-    }
-
-    public Bitmap getBitmap() {
-        Bitmap c3 = this.e.c(false, false);
-        int i10 = this.h;
-        if (i10 != 0) {
-            int width = c3.getWidth();
-            int height = c3.getHeight();
-            if ((i10 / 90) % 2 != 0) {
-                width = c3.getHeight();
-                height = c3.getWidth();
-            }
-            Bitmap createBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(createBitmap);
-            canvas.translate(width / 2.0f, height / 2.0f);
-            canvas.rotate(-i10);
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set((-c3.getWidth()) / 2.0f, (-c3.getHeight()) / 2.0f, c3.getWidth() / 2.0f, c3.getHeight() / 2.0f);
-            canvas.drawBitmap(c3, (Rect) null, rectF, new Paint(3));
-            c3.recycle();
-            return createBitmap;
-        }
-        return c3;
-    }
-
-    public cg.p1 getRenderView() {
-        return this.e;
-    }
-
-    @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        super.onLayout(z4, i10, i11, i12, i13);
-        int i14 = i12 - i10;
-        int i15 = i13 - i11;
-        if (!this.f4731n) {
-            int i16 = AndroidUtilities.REPLACING_TAG_TYPE_LINK;
-        }
-        cg.p1 p1Var = this.e;
-        int ceil = (int) Math.ceil((i14 - p1Var.getMeasuredWidth()) / 2.0f);
-        int measuredHeight = (i15 - p1Var.getMeasuredHeight()) / 2;
-        p1Var.layout(ceil, measuredHeight, p1Var.getMeasuredWidth() + ceil, p1Var.getMeasuredHeight() + measuredHeight);
-        FrameLayout frameLayout = this.f4732r;
-        frameLayout.layout(0, i15 - frameLayout.getMeasuredHeight(), frameLayout.getMeasuredWidth(), i15);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        float f10;
-        float f11;
-        this.D = true;
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        setMeasuredDimension(size, size2);
-        int i12 = AndroidUtilities.displaySize.y;
-        Bitmap bitmap = this.f4730f;
-        if (bitmap != null) {
-            f11 = bitmap.getWidth();
-            f10 = bitmap.getHeight();
-        } else {
-            f10 = size2;
-            f11 = size;
-        }
-        float f12 = size;
-        float floor = (float) Math.floor((f12 * f10) / f11);
-        float f13 = i12;
-        if (floor > f13) {
-            f12 = (float) Math.floor((f11 * f13) / f10);
-            floor = f13;
-        }
-        this.e.measure(View.MeasureSpec.makeMeasureSpec((int) f12, 1073741824), View.MeasureSpec.makeMeasureSpec((int) floor, 1073741824));
-        this.E = 1.0f;
-        measureChild(this.f4734w, i10, i11);
-        measureChild(this.f4732r, i10, i11);
-        this.D = false;
-        if (Build.VERSION.SDK_INT >= 29) {
-            ArrayList arrayList = this.F;
-            arrayList.clear();
-            Rect rect = this.G;
-            arrayList.add(rect);
-            int measuredHeight = (int) (getMeasuredHeight() * 0.3f);
-            rect.set(0, (getMeasuredHeight() - measuredHeight) / 2, AndroidUtilities.dp(20.0f), (getMeasuredHeight() + measuredHeight) / 2);
-            setSystemGestureExclusionRects(arrayList);
-        }
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.D) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    public void setEraser(boolean z4) {
-        ?? r22;
-        if (this.f4736y == z4) {
-            return;
-        }
-        this.f4736y = z4;
-        if (z4) {
-            r22 = new Object();
-        } else {
-            r22 = new Object();
-        }
-        this.e.setBrush(r22);
+    static {
+        HashMap hashMap = new HashMap();
+        HashMap hashMap2 = new HashMap();
+        hashMap2.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;attribute float alpha;varying vec2 varTexcoord;varying float varIntensity;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;   varIntensity = alpha;}");
+        hashMap2.put("fragment", "precision highp float;varying vec2 varTexcoord;varying float varIntensity;uniform sampler2D texture;void main (void) {   gl_FragColor = vec4(1, 1, 1, varIntensity * texture2D(texture, varTexcoord.st, 0.0).r);}");
+        hashMap2.put("attributes", new String[]{"inPosition", "inTexcoord", "alpha"});
+        hashMap2.put("uniforms", new String[]{"mvpMatrix", "texture"});
+        hashMap.put("brush", DesugarCollections.unmodifiableMap(hashMap2));
+        HashMap hashMap3 = new HashMap();
+        hashMap3.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;varying vec2 varTexcoord;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;}");
+        hashMap3.put("fragment", "precision highp float;varying vec2 varTexcoord;uniform sampler2D texture;void main (void) {   gl_FragColor = texture2D(texture, varTexcoord.st, 0.0);   gl_FragColor.rgb *= gl_FragColor.a;}");
+        hashMap3.put("attributes", new String[]{"inPosition", "inTexcoord"});
+        hashMap3.put("uniforms", new String[]{"mvpMatrix", "texture", "alpha"});
+        hashMap.put("blit", DesugarCollections.unmodifiableMap(hashMap3));
+        HashMap hashMap4 = new HashMap();
+        hashMap4.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;varying vec2 varTexcoord;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;}");
+        hashMap4.put("fragment", "precision highp float;varying vec2 varTexcoord;uniform sampler2D texture;uniform sampler2D mask;uniform float preview;void main (void) {   gl_FragColor = texture2D(texture, varTexcoord.st, 0.0) * (preview + (1.0 - preview) * texture2D(mask, varTexcoord.st, 0.0).a);   gl_FragColor.rgb *= gl_FragColor.a;}");
+        hashMap4.put("attributes", new String[]{"inPosition", "inTexcoord"});
+        hashMap4.put("uniforms", new String[]{"mvpMatrix", "texture", "mask", "alpha", "preview"});
+        hashMap.put("maskingBlit", DesugarCollections.unmodifiableMap(hashMap4));
+        HashMap hashMap5 = new HashMap();
+        hashMap5.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;varying vec2 varTexcoord;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;}");
+        hashMap5.put("fragment", "precision highp float;varying vec2 varTexcoord;uniform sampler2D texture;uniform sampler2D otexture;uniform sampler2D mask;uniform vec4 color;void main (void) {   vec4 dst = texture2D(texture, varTexcoord.st, 0.0);   float srcAlpha = color.a * texture2D(mask, varTexcoord.st, 0.0).a;   float outAlpha = srcAlpha + dst.a * (1.0 - srcAlpha);   gl_FragColor.rgb = (color.rgb * srcAlpha + dst.rgb * dst.a * (1.0 - srcAlpha));   gl_FragColor.a = outAlpha;}");
+        hashMap5.put("attributes", new String[]{"inPosition", "inTexcoord"});
+        hashMap5.put("uniforms", new String[]{"mvpMatrix", "texture", "mask", "color"});
+        hashMap.put("blitWithMask", DesugarCollections.unmodifiableMap(hashMap5));
+        HashMap hashMap6 = new HashMap();
+        hashMap6.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;varying vec2 varTexcoord;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;}");
+        hashMap6.put("fragment", "precision highp float;varying vec2 varTexcoord;uniform sampler2D texture;uniform sampler2D otexture;uniform sampler2D mask;uniform vec4 color;uniform float preview;void main (void) {   vec4 dst = texture2D(texture, varTexcoord.st, 0.0);   float srcAlpha = color.a * texture2D(mask, varTexcoord.st, 0.0).a;   float outAlpha = srcAlpha + dst.a * (1.0 - srcAlpha);   gl_FragColor = texture2D(otexture, varTexcoord.st, 0.0) * (preview + (1.0 - preview) * outAlpha);   gl_FragColor.rgb *= gl_FragColor.a;}");
+        hashMap6.put("attributes", new String[]{"inPosition", "inTexcoord"});
+        hashMap6.put("uniforms", new String[]{"mvpMatrix", "otexture", "texture", "mask", "color", "preview"});
+        hashMap.put("blitWithMask_masking", DesugarCollections.unmodifiableMap(hashMap6));
+        HashMap hashMap7 = new HashMap();
+        hashMap7.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;varying vec2 varTexcoord;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;}");
+        hashMap7.put("fragment", "precision highp float;varying vec2 varTexcoord;uniform sampler2D texture;uniform sampler2D mask;uniform vec4 color;void main(void) {   vec4 dst = texture2D(texture, varTexcoord.st, 0.0);   float srcAlpha = color.a * texture2D(mask, varTexcoord.st, 0.0).a;   float outAlpha = srcAlpha + dst.a * (1.0 - srcAlpha);   gl_FragColor.rgb = (color.rgb * srcAlpha + dst.rgb * dst.a * (1.0 - srcAlpha)) / outAlpha;   gl_FragColor.a = outAlpha;}");
+        hashMap7.put("attributes", new String[]{"inPosition", "inTexcoord"});
+        hashMap7.put("uniforms", new String[]{"mvpMatrix", "texture", "mask", "color"});
+        hashMap.put("compositeWithMask", DesugarCollections.unmodifiableMap(hashMap7));
+        HashMap hashMap8 = new HashMap();
+        hashMap8.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;varying vec2 varTexcoord;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;}");
+        hashMap8.put("fragment", "precision highp float;varying vec2 varTexcoord;uniform sampler2D texture;uniform sampler2D mask;uniform sampler2D blured;uniform vec4 color;void main (void) {   vec4 dst = texture2D(texture, varTexcoord.st, 0.0);   float srcAlpha = color.a * texture2D(mask, varTexcoord.st, 0.0).a;   float outAlpha = srcAlpha + dst.a * (1.0 - srcAlpha);   vec4 blurColor = texture2D(blured, varTexcoord.st, 0.0);   gl_FragColor.rgb = (blurColor.rgb * srcAlpha + dst.rgb * dst.a * (1.0 - srcAlpha)) / outAlpha;   gl_FragColor.a = outAlpha;   gl_FragColor.rgb *= gl_FragColor.a;}");
+        hashMap8.put("attributes", new String[]{"inPosition", "inTexcoord"});
+        hashMap8.put("uniforms", new String[]{"mvpMatrix", "texture", "mask", "blured", "color"});
+        hashMap.put("blitWithMaskBlurer", DesugarCollections.unmodifiableMap(hashMap8));
+        HashMap hashMap9 = new HashMap();
+        hashMap9.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;varying vec2 varTexcoord;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;}");
+        hashMap9.put("fragment", "precision highp float;varying vec2 varTexcoord;uniform sampler2D texture;uniform sampler2D mask;uniform sampler2D blured;uniform vec4 color;void main (void) {   vec4 dst = texture2D(texture, varTexcoord.st, 0.0);   float srcAlpha = color.a * texture2D(mask, varTexcoord.st, 0.0).a;   float outAlpha = srcAlpha + dst.a * (1.0 - srcAlpha);   vec4 blurColor = texture2D(blured, varTexcoord.st, 0.0);   gl_FragColor.rgb = (blurColor.rgb * srcAlpha + dst.rgb * dst.a * (1.0 - srcAlpha)) / outAlpha;   gl_FragColor.a = outAlpha;}");
+        hashMap9.put("attributes", new String[]{"inPosition", "inTexcoord"});
+        hashMap9.put("uniforms", new String[]{"mvpMatrix", "texture", "mask", "blured", "color"});
+        hashMap.put("compositeWithMaskBlurer", DesugarCollections.unmodifiableMap(hashMap9));
+        HashMap hashMap10 = new HashMap();
+        hashMap10.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;varying vec2 varTexcoord;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;}");
+        hashMap10.put("fragment", "precision highp float;varying vec2 varTexcoord;uniform sampler2D texture;uniform sampler2D blured;uniform float eraser;uniform float flipy;uniform sampler2D mask;void main (void) {   vec2 uv = vec2(varTexcoord.x, flipy > 0. ? 1. - varTexcoord.y : varTexcoord.y);   vec4 dst = texture2D(texture, uv, 0.0);   vec4 blurColor = texture2D(blured, uv, 0.0);   gl_FragColor = dst.a <= 0. ? vec4(0.) : vec4(blurColor.rgb, 1.) * dst.a;   if (eraser > 0.) {       vec4 maskColor = texture2D(mask, uv, 0.0);       if (maskColor.a > 0.) {           gl_FragColor.rgba *= (1. - maskColor.a);       }   }}");
+        hashMap10.put("attributes", new String[]{"inPosition", "inTexcoord"});
+        hashMap10.put("uniforms", new String[]{"mvpMatrix", "texture", "blured", "eraser", "mask", "flipy"});
+        hashMap.put("videoBlur", DesugarCollections.unmodifiableMap(hashMap10));
+        HashMap hashMap11 = new HashMap();
+        hashMap11.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;attribute float alpha;varying vec2 varTexcoord;varying float varIntensity;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;   varIntensity = alpha;}");
+        hashMap11.put("fragment", "precision highp float;varying vec2 varTexcoord;varying float varIntensity;uniform sampler2D texture;void main (void) {   vec4 f = texture2D(texture, varTexcoord.st, 0.0);   gl_FragColor = vec4(f.r * varIntensity, f.g, f.b, 0.0);}");
+        hashMap11.put("attributes", new String[]{"inPosition", "inTexcoord", "alpha"});
+        hashMap11.put("uniforms", new String[]{"mvpMatrix", "texture"});
+        hashMap.put("brushLight", DesugarCollections.unmodifiableMap(hashMap11));
+        HashMap hashMap12 = new HashMap();
+        hashMap12.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;varying vec2 varTexcoord;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;}");
+        hashMap12.put("fragment", "precision highp float;varying vec2 varTexcoord;uniform sampler2D texture;uniform sampler2D mask;uniform vec4 color;void main (void) {   vec4 dst = texture2D(texture, varTexcoord.st, 0.0);   vec3 maskColor = texture2D(mask, varTexcoord.st, 0.0).rgb;   float srcAlpha = clamp(0.78 * maskColor.r + maskColor.b + maskColor.g, 0.0, 1.0);   vec3 borderColor = mix(color.rgb, vec3(1.0, 1.0, 1.0), 0.86);   vec3 finalColor = mix(color.rgb, borderColor, maskColor.g);   finalColor = mix(finalColor.rgb, vec3(1.0, 1.0, 1.0), maskColor.b);   float outAlpha = srcAlpha + dst.a * (1.0 - srcAlpha);   gl_FragColor.rgb = (finalColor * srcAlpha + dst.rgb * dst.a * (1.0 - srcAlpha)) / outAlpha;   gl_FragColor.a = outAlpha;   gl_FragColor.rgb *= gl_FragColor.a;}");
+        hashMap12.put("attributes", new String[]{"inPosition", "inTexcoord"});
+        hashMap12.put("uniforms", new String[]{"mvpMatrix", "texture", "mask", "color"});
+        hashMap.put("blitWithMaskLight", DesugarCollections.unmodifiableMap(hashMap12));
+        HashMap hashMap13 = new HashMap();
+        hashMap13.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;varying vec2 varTexcoord;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;}");
+        hashMap13.put("fragment", "precision highp float;varying vec2 varTexcoord;uniform sampler2D texture;uniform sampler2D mask;uniform vec4 color;void main(void) {   vec4 dst = texture2D(texture, varTexcoord.st, 0.0);   vec3 maskColor = texture2D(mask, varTexcoord.st, 0.0).rgb;   float srcAlpha = clamp(0.78 * maskColor.r + maskColor.b + maskColor.g, 0.0, 1.0);   vec3 borderColor = mix(color.rgb, vec3(1.0, 1.0, 1.0), 0.86);   vec3 finalColor = mix(color.rgb, borderColor, maskColor.g);   finalColor = mix(finalColor.rgb, vec3(1.0, 1.0, 1.0), maskColor.b);   float outAlpha = srcAlpha + dst.a * (1.0 - srcAlpha);   gl_FragColor.rgb = (finalColor * srcAlpha + dst.rgb * dst.a * (1.0 - srcAlpha)) / outAlpha;   gl_FragColor.a = outAlpha;}");
+        hashMap13.put("attributes", new String[]{"inPosition", "inTexcoord"});
+        hashMap13.put("uniforms", new String[]{"mvpMatrix", "texture", "mask", "color"});
+        hashMap.put("compositeWithMaskLight", DesugarCollections.unmodifiableMap(hashMap13));
+        HashMap hashMap14 = new HashMap();
+        hashMap14.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;varying vec2 varTexcoord;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;}");
+        hashMap14.put("fragment", "precision highp float;varying vec2 varTexcoord;uniform sampler2D texture;uniform sampler2D mask;uniform vec4 color;void main (void) {   vec4 dst = texture2D(texture, varTexcoord.st, 0.0);   float srcAlpha = color.a * texture2D(mask, varTexcoord.st, 0.0).a;   float outAlpha = dst.a * (1. - srcAlpha);   gl_FragColor.rgb = dst.rgb;   gl_FragColor.a = outAlpha;   gl_FragColor.rgb *= gl_FragColor.a;}");
+        hashMap14.put("attributes", new String[]{"inPosition", "inTexcoord"});
+        hashMap14.put("uniforms", new String[]{"mvpMatrix", "texture", "mask", "color"});
+        hashMap.put("blitWithMaskEraser", DesugarCollections.unmodifiableMap(hashMap14));
+        HashMap hashMap15 = new HashMap();
+        hashMap15.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;varying vec2 varTexcoord;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;}");
+        hashMap15.put("fragment", "precision highp float;varying vec2 varTexcoord;uniform sampler2D texture;uniform sampler2D otexture;uniform sampler2D mask;uniform vec4 color;uniform float preview;void main (void) {   vec4 dst = texture2D(texture, varTexcoord.st, 0.0);   float srcAlpha = color.a * texture2D(mask, varTexcoord.st, 0.0).a;   float outAlpha = dst.a * (1. - srcAlpha);   gl_FragColor = texture2D(otexture, varTexcoord.st, 0.0) * (preview + (1.0 - preview) * outAlpha);   gl_FragColor.rgb *= gl_FragColor.a;}");
+        hashMap15.put("attributes", new String[]{"inPosition", "inTexcoord"});
+        hashMap15.put("uniforms", new String[]{"mvpMatrix", "texture", "otexture", "preview", "mask", "color"});
+        hashMap.put("blitWithMaskEraser_masking", DesugarCollections.unmodifiableMap(hashMap15));
+        HashMap hashMap16 = new HashMap();
+        hashMap16.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;varying vec2 varTexcoord;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;}");
+        hashMap16.put("fragment", "precision highp float;varying vec2 varTexcoord;uniform sampler2D texture;uniform sampler2D mask;uniform vec4 color;void main (void) {   vec4 dst = texture2D(texture, varTexcoord.st, 0.0);   float srcAlpha = color.a * texture2D(mask, varTexcoord.st, 0.0).a;   gl_FragColor = vec4(dst.rgb, dst.a * (1.0 - srcAlpha));   if (gl_FragColor.a <= 0.) gl_FragColor.rgb = vec3(0.);}");
+        hashMap16.put("attributes", new String[]{"inPosition", "inTexcoord"});
+        hashMap16.put("uniforms", new String[]{"mvpMatrix", "texture", "mask", "color"});
+        hashMap.put("compositeWithMaskEraser", DesugarCollections.unmodifiableMap(hashMap16));
+        HashMap hashMap17 = new HashMap();
+        hashMap17.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;varying vec2 varTexcoord;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;}");
+        hashMap17.put("fragment", "precision highp float;varying vec2 varTexcoord;uniform sampler2D texture;void main (void) {   gl_FragColor = texture2D(texture, varTexcoord.st, 0.0);}");
+        hashMap17.put("attributes", new String[]{"inPosition", "inTexcoord"});
+        hashMap17.put("uniforms", new String[]{"mvpMatrix", "texture"});
+        hashMap.put("nonPremultipliedBlit", DesugarCollections.unmodifiableMap(hashMap17));
+        HashMap hashMap18 = new HashMap();
+        hashMap18.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;varying vec2 varTexcoord;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;}");
+        hashMap18.put("fragment", "precision highp float;varying vec2 varTexcoord;uniform sampler2D texture;uniform sampler2D mask;uniform bool composite;uniform int type;uniform vec4 color;uniform vec2 resolution;uniform vec2 center;uniform vec2 radius;uniform float thickness;uniform float rounding;uniform float rotation;uniform float arrowTriangleLength;uniform vec2 middle;uniform bool fill;uniform bool clear;float sdTriangle( in vec2 p, in vec2 p0, in vec2 p1, in vec2 p2 ) {   vec2 e0 = p1 - p0, e1 = p2 - p1, e2 = p0 - p2, v0 = p - p0, v1 = p - p1, v2 = p - p2;   vec2 pq0 = v0 - e0*clamp( dot(v0,e0)/dot(e0,e0), 0.0, 1.0 ), pq1 = v1 - e1*clamp( dot(v1,e1)/dot(e1,e1), 0.0, 1.0 ), pq2 = v2 - e2*clamp( dot(v2,e2)/dot(e2,e2), 0.0, 1.0 );   float s = e0.x * e2.y - e0.y * e2.x;   vec2 d = min( min( vec2( dot( pq0, pq0 ), s*(v0.x*e0.y-v0.y*e0.x) ),                      vec2( dot( pq1, pq1 ), s*(v1.x*e1.y-v1.y*e1.x) )),                      vec2( dot( pq2, pq2 ), s*(v2.x*e2.y-v2.y*e2.x) ));   return -sqrt(d.x) * sign(d.y);}float sdBezier(vec2 A, vec2 B, vec2 C, vec2 P) {    vec2 a=B-A,b=A-B*2.+C,c=a*2.,d=A-P;    vec3 k=vec3(3.*dot(a,b),2.*dot(a,a)+dot(d,b),dot(d,a))/dot(b,b);    float p=k.y-k.x*k.x/3., p3=p*p*p, q=k.x*(2.*k.x*k.x-9.*k.y)/27.+k.z, D=q*q+4.*p3/27.;    if (D >= 0.) {        float z=sqrt(D);        vec2 x=(vec2(z,-z)-q)/2., uv=sign(x)*pow(abs(x),vec2(1./3.));        float r=clamp(uv.x+uv.y-k.x/3.,0.,1.);        return length(d+(c+b*r)*r);    } else {        float v=acos(-sqrt(-27./p3)*q/2.)/3., m=cos(v), n=sin(v)*1.73205;        vec3 t=clamp(vec3(m+m,-n-m,n-m)*sqrt(-p/3.)-k.x/3.,0.,1.);        return min(min(length(d+(c+b*t.x)*t.x),length(d+(c+b*t.y)*t.y)),length(d+(c+b*t.z)*t.z));    }}vec4 blendOver(vec4 a, vec4 b) {    float alpha = b.a + a.a * (1. - b.a);    if (alpha <= 0.) return vec4(0.);    return vec4((b.rgb * b.a + a.rgb * a.a * (1. - b.a)) / alpha, alpha);}void main (void) {   vec4 dst = clear ? vec4(0.) : texture2D(texture, varTexcoord.st, 0.0);   vec2 p = varTexcoord.st * resolution - center;   float sdf;   vec2 pp = p;   p *= mat2(cos(rotation), -sin(rotation), sin(rotation), cos(rotation));   if (type == 0) {       sdf = length(p) - min(radius.x, radius.y);   } else if (type == 1 || type == 3) {       vec2 q = abs(p) - abs(radius) + rounding;       sdf = min(max(q.x, q.y), 0.0) + length(max(q, 0.0)) - rounding;   } else if (type == 2) {       float n = 5.;       float an = 3.141593 / float(n);       vec2  acs = vec2(cos(an), sin(an)), ecs = vec2(cos(1.), sin(1.));       float bn = mod(atan(p.x, -p.y), 2.0 * an) - an;       p = length(p) * vec2(cos(bn), abs(sin(bn)));       p -= min(radius.x, radius.y) * acs;       p += ecs*clamp( -dot(p, ecs), 0.0, min(radius.x, radius.y) * acs.y / ecs.y);       sdf = length(p) * sign(p.x);   } else if (type == 4) {       p += center;       sdf = sdBezier(center, middle, radius, p) - thickness;       vec2 ba = center - middle;       float a = atan(ba.y, ba.x), g = 30. / 180. * 3.14, ar = sin(g) * arrowTriangleLength;       vec2 ac = center + vec2(cos(a),sin(a)) * ar / 2.;       sdf = min(sdf, max(0., sdTriangle(p, ac, ac+vec2(cos(a+3.14-g), sin(a+3.14-g))*ar, ac+vec2(cos(a+3.14+g), sin(a+3.14+g))*ar)));       sdf += thickness;   }   if (type == 3) {       vec2 c = middle-center;       float a = atan(c.x, -c.y), r = min(radius.x, radius.y) / 2.;       float k = rounding/2., bsdf = sdTriangle(pp+center, center-vec2(cos(a),sin(a))*r, center-vec2(cos(a-3.14),sin(a-3.14))*r, middle);       float h = max(k-abs(sdf-bsdf), 0.)/k;       sdf = min(sdf,bsdf)-h*h*h*k*(1.0/6.0);   }   if (fill && sdf < 0.) {       sdf = 0.;   }   vec4 c = vec4(color.rgb, color.a * (1. - clamp((abs(sdf) - thickness), 0., 2.) / 2.));   gl_FragColor = blendOver(dst, c);   if (!composite) {       gl_FragColor.rgb *= gl_FragColor.a;   }}");
+        hashMap18.put("attributes", new String[]{"inPosition", "inTexcoord"});
+        hashMap18.put("uniforms", new String[]{"mvpMatrix", "texture", "mask", "clear", "color", "type", "color", "resolution", "center", "radius", "thickness", "rounding", "fill", "rotation", "middle", "arrowTriangleLength", "composite"});
+        hashMap.put("shape", DesugarCollections.unmodifiableMap(hashMap18));
+        f4643a = DesugarCollections.unmodifiableMap(hashMap);
     }
 }

@@ -1,12 +1,12 @@
 package e5;
 public final class e {
-    public final v4.b f5126a;
-    public final long f5127b;
-    public final long f5128c;
+    public final v4.b f4964a;
+    public final long f4965b;
+    public final long f4966c;
 
     public e(v4.b bVar, long j10, long j11) {
-        this.f5126a = bVar;
-        this.f5127b = j10;
-        this.f5128c = j11;
+        this.f4964a = bVar;
+        this.f4965b = j10;
+        this.f4966c = j11;
     }
 }

@@ -1,118 +1,62 @@
 package sh;
 
-import android.view.View;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ed;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.o70;
-import r0.j1;
-import r0.m1;
-public final class s implements Utilities.Callback5, r0.o, Utilities.Callback5Return {
-    public final int f44410a;
-    public final i0 f44411b;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.c5;
+import org.telegram.ui.Components.j6;
+import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.rc;
+import org.telegram.ui.Components.tp;
+import org.telegram.ui.Components.z5;
+public final class s {
+    public final RectF f47657a = new RectF();
+    public final z5 f47658b;
+    public final z5 f47659c;
+    public final z5 d;
+    public final z5 f47660e;
+    public final c5 f47661f;
+    public final c5 f47662g;
+    public final z5 h;
+    public final z5 f47663i;
+    public final rc f47664j;
+    public final Paint f47665k;
+    public final j6 f47666l;
+    public int f47667m;
+    public final org.telegram.ui.Cells.z f47668n;
+    public final tp f47669o;
+    public final org.telegram.ui.Components.voip.h f47670p;
 
-    public s(i0 i0Var, int i10) {
-        this.f44410a = i10;
-        this.f44411b = i0Var;
-    }
-
-    @Override
-    public m1 N0(View view, m1 m1Var) {
-        j1 j1Var = m1Var.f43130a;
-        i0.b f10 = j1Var.f(527);
-        i0 i0Var = this.f44411b;
-        i0Var.Q = f10;
-        i0Var.R = j1Var.f(519);
-        i0Var.C.j(AndroidUtilities.dp(56.0f) + i0Var.Q.f7214b, i0Var.Q.d, false);
-        i0Var.E.invalidate();
-        return m1.f43129b;
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        boolean canRemoveBotFromCommunity;
-        long j10;
-        boolean z4;
-        boolean z10;
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = i0.S;
-        Object obj6 = ((i51) obj).G;
-        boolean z11 = obj6 instanceof TLRPC.Chat;
-        i0 i0Var = this.f44411b;
-        boolean z12 = false;
-        if (z11) {
-            TLRPC.Chat chat = (TLRPC.Chat) obj6;
-            boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
-            canRemoveBotFromCommunity = ChatObject.canRemoveChatFromCommunity(chat, i0Var.f44353f);
-            j10 = -chat.f19184id;
-            z10 = false;
-            z4 = isChannelAndNotMegaGroup;
-        } else {
-            if (obj6 instanceof TLRPC.User) {
-                TLRPC.User user = (TLRPC.User) obj6;
-                long j11 = user.f19331id;
-                boolean isBot = UserObject.isBot(user);
-                canRemoveBotFromCommunity = ChatObject.canRemoveBotFromCommunity(user, i0Var.f44353f);
-                j10 = j11;
-                z4 = false;
-                z10 = isBot;
-            }
-            return Boolean.valueOf(z12);
-        }
-        if (canRemoveBotFromCommunity) {
-            o70 F = o70.F(i0Var.container, null, view);
-            F.c(R.drawable.msg_cancel, LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), new ed(i0Var, z10, z4, j10, 3), true);
-            F.W(i0Var.v.d.V0(view, true));
-            F.Z();
-            z12 = true;
-        }
-        return Boolean.valueOf(z12);
-    }
-
-    @Override
-    public void mo28run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        int i10 = this.f44410a;
-        i0 i0Var = this.f44411b;
-        i51 i51Var = (i51) obj;
-        View view = (View) obj2;
-        Integer num = (Integer) obj3;
-        switch (i10) {
-            case 0:
-                num.getClass();
-                ((Float) obj4).getClass();
-                ((Float) obj5).getClass();
-                i0Var.W(i51Var);
-                return;
-            case 1:
-            default:
-                num.intValue();
-                ((Float) obj4).floatValue();
-                ((Float) obj5).floatValue();
-                int i11 = i0.S;
-                i0Var.T(i51Var);
-                return;
-            case 2:
-                num.getClass();
-                ((Float) obj4).getClass();
-                ((Float) obj5).getClass();
-                int i12 = i0.S;
-                i0Var.W(i51Var);
-                return;
-            case 3:
-                num.getClass();
-                ((Float) obj4).getClass();
-                ((Float) obj5).getClass();
-                i0.y(i0Var, i51Var, view);
-                return;
-        }
+    public s(u uVar) {
+        pr prVar = pr.h;
+        this.f47658b = new z5(uVar, 0L, 320L, prVar);
+        this.f47659c = new z5(uVar, 0L, 320L, prVar);
+        this.d = new z5(uVar, 0L, 320L, prVar);
+        this.f47660e = new z5(uVar, 0L, 320L, prVar);
+        this.f47661f = new c5(uVar, 320L, prVar, 0);
+        this.f47662g = new c5(uVar, 320L, prVar, 0);
+        this.h = new z5(uVar, 0L, 320L, prVar);
+        this.f47663i = new z5(uVar, 0L, 320L, prVar);
+        this.f47664j = new rc(uVar);
+        this.f47665k = new Paint(1);
+        j6 j6Var = new j6(true, false, true, false);
+        this.f47666l = j6Var;
+        org.telegram.ui.Cells.z Y = k6.Y(0, 9, 9);
+        this.f47668n = Y;
+        tp tpVar = new tp(-1);
+        this.f47669o = tpVar;
+        org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
+        this.f47670p = hVar;
+        j6Var.f28029b = 17;
+        j6Var.t(AndroidUtilities.dp(14.0f));
+        j6Var.u(AndroidUtilities.bold());
+        j6Var.G = AndroidUtilities.displaySize.x * 4;
+        j6Var.n(true);
+        j6Var.setCallback(uVar);
+        tpVar.setCallback(uVar);
+        Y.setCallback(uVar);
+        hVar.f32060l = true;
+        hVar.f32061m = 2.0f;
     }
 }

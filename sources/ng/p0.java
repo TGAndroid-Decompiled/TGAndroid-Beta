@@ -1,0 +1,52 @@
+package ng;
+
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class p0 extends o0 {
+    public final r0 f16172h0;
+
+    public p0(r0 r0Var, o0 o0Var, TLRPC.ReactionCount reactionCount, boolean z4, boolean z10) {
+        super(o0Var, r0Var.f16195n, r0Var.f16206z, reactionCount, z4, z10, r0Var.B);
+        this.f16172h0 = r0Var;
+    }
+
+    @Override
+    public final float k() {
+        return this.f16172h0.f16184a;
+    }
+
+    @Override
+    public final ImageReceiver l() {
+        return (ImageReceiver) this.f16172h0.H.get(this.f16165s);
+    }
+
+    @Override
+    public final boolean m() {
+        return this.f16172h0.A.isOutOwner();
+    }
+
+    @Override
+    public final boolean n() {
+        r0 r0Var = this.f16172h0;
+        int id2 = r0Var.A.getId();
+        long groupId = r0Var.A.getGroupId();
+        m0 m0Var = m0.B;
+        if (m0Var != null) {
+            int i10 = m0Var.f16116a;
+            if (i10 == 2 || i10 == 0) {
+                long j10 = m0Var.f16128o;
+                if (((j10 != 0 && groupId == j10) || id2 == m0Var.f16127n) && m0Var.f16129p.equals(this.f16165s)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void o() {
+        this.f16172h0.H.remove(this.f16165s);
+    }
+}

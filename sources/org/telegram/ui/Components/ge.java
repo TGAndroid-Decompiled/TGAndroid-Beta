@@ -10,16 +10,16 @@ import android.widget.ImageView;
 import android.widget.ToggleButton;
 import org.telegram.messenger.voip.VoIPService;
 public final class ge extends ImageView {
-    public final int f25108a;
+    public final int f27168a;
 
     public ge(Context context, int i10) {
         super(context);
-        this.f25108a = i10;
+        this.f27168a = i10;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f25108a) {
+        switch (this.f27168a) {
             case 1:
                 super.dispatchDraw(canvas);
                 return;
@@ -31,7 +31,7 @@ public final class ge extends ImageView {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f25108a) {
+        switch (this.f27168a) {
             case 0:
                 if (getAlpha() < 0.5f) {
                     return false;
@@ -44,7 +44,7 @@ public final class ge extends ImageView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f25108a) {
+        switch (this.f27168a) {
             case 3:
                 super.onDraw(canvas);
                 invalidate();
@@ -57,7 +57,7 @@ public final class ge extends ImageView {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f25108a) {
+        switch (this.f27168a) {
             case 4:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 accessibilityNodeInfo.setClassName(ToggleButton.class.getName());
@@ -78,7 +78,7 @@ public final class ge extends ImageView {
     public void onMeasure(int i10, int i11) {
         float f10;
         float f11;
-        switch (this.f25108a) {
+        switch (this.f27168a) {
             case 2:
                 int size = View.MeasureSpec.getSize(i10);
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
@@ -107,8 +107,8 @@ public final class ge extends ImageView {
         }
     }
 
-    public ge(du duVar, Context context) {
+    public ge(fu fuVar, Context context) {
         super(context);
-        this.f25108a = 1;
+        this.f27168a = 1;
     }
 }

@@ -4,59 +4,62 @@ import android.app.PictureInPictureParams;
 import android.graphics.Rect;
 import android.os.Build;
 import android.view.View;
-import com.google.firebase.messaging.r;
+import com.google.firebase.messaging.s;
 import j3.f0;
 import java.util.HashMap;
-import m.s3;
+import m.r3;
 public final class f {
-    public static int f2293n;
-    public static final Rect f2294o = new Rect();
-    public final s3 f2295a;
-    public final ef.f f2296b;
-    public final String f2297c;
+    public static int f2489n;
+    public static final Rect f2490o = new Rect();
+    public final r3 f2491a;
+    public final ef.e f2492b;
+    public final String f2493c;
     public final int d;
-    public final int e;
-    public final boolean f2298f;
-    public final ef.a f2299g;
+    public final int f2494e;
+    public final boolean f2495f;
+    public final ef.a f2496g;
     public final ff.c h;
-    public final r f2300i;
-    public View f2301j;
-    public View f2302k;
-    public f0 f2303l;
-    public boolean f2304m;
+    public final s f2497i;
+    public View f2498j;
+    public View f2499k;
+    public f0 f2500l;
+    public boolean f2501m;
 
-    public f(s3 s3Var, e eVar) {
-        int i10 = f2293n;
-        f2293n = i10 + 1;
+    public f(r3 r3Var, e eVar) {
+        int i10 = f2489n;
+        f2489n = i10 + 1;
         ff.c cVar = new ff.c();
         this.h = cVar;
-        r rVar = new r(new d(this, 0));
-        this.f2300i = rVar;
+        d dVar = new d(this, 0);
+        ?? obj = new Object();
+        obj.d = new ff.b(obj, 0);
+        obj.f4080a = dVar;
+        this.f2497i = obj;
         StringBuilder sb = new StringBuilder();
-        String str = eVar.f2287c;
+        String str = eVar.f2482c;
         sb.append(str == null ? "pip-source" : str);
         sb.append("-");
         sb.append(i10);
         String sb2 = sb.toString();
-        this.f2297c = sb2;
-        this.f2299g = eVar.f2286b;
-        this.d = eVar.e;
-        this.e = eVar.d;
-        this.f2298f = eVar.f2288f;
-        this.f2295a = s3Var;
-        cVar.c(eVar.h, eVar.f2290i);
-        this.f2303l = eVar.f2289g;
-        this.f2302k = eVar.f2292k;
-        this.f2296b = new ef.f(this);
-        View view = eVar.f2291j;
-        rVar.T(view);
-        this.f2301j = view;
+        this.f2493c = sb2;
+        this.f2496g = eVar.f2481b;
+        this.d = eVar.f2483e;
+        this.f2494e = eVar.d;
+        this.f2495f = eVar.f2484f;
+        this.f2491a = r3Var;
+        cVar.c(eVar.h, eVar.f2486i);
+        this.f2500l = eVar.f2485g;
+        this.f2499k = eVar.f2488k;
+        this.f2492b = new ef.e(this);
+        View view = eVar.f2487j;
+        obj.o(view);
+        this.f2498j = view;
         if (view != null) {
             e(view);
         }
         b(false);
-        ((HashMap) s3Var.f13641a).put(sb2, this);
-        s3Var.g();
+        ((HashMap) r3Var.f13327a).put(sb2, this);
+        r3Var.g();
     }
 
     public final PictureInPictureParams a() {
@@ -77,33 +80,33 @@ public final class f {
 
     public final void b(boolean z4) {
         boolean z10;
-        if (this.h.b() && this.f2299g.g()) {
+        if (this.h.b() && this.f2496g.g()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (this.f2304m != z10) {
-            this.f2304m = z10;
+        if (this.f2501m != z10) {
+            this.f2501m = z10;
             if (z4) {
-                s3 s3Var = this.f2295a;
-                s3Var.g();
-                ((a) s3Var.f13643c).invalidate();
+                r3 r3Var = this.f2491a;
+                r3Var.g();
+                ((a) r3Var.f13329c).invalidate();
             }
         }
     }
 
     public final void c() {
-        this.f2300i.T(null);
-        s3 s3Var = this.f2295a;
-        if (((HashMap) s3Var.f13641a).remove(this.f2297c) != null) {
-            s3Var.g();
+        this.f2497i.o(null);
+        r3 r3Var = this.f2491a;
+        if (((HashMap) r3Var.f13327a).remove(this.f2493c) != null) {
+            r3Var.g();
         }
     }
 
     public final void d(int i10, int i11) {
         if (this.h.c(i10, i11)) {
             b(true);
-            this.f2295a.a(this);
+            this.f2491a.a(this);
         }
     }
 

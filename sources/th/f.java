@@ -1,102 +1,75 @@
 package th;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import f2.w0;
+import k7.c6;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.i51;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.p9;
-import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.w51;
-import org.telegram.ui.Components.z8;
-import org.telegram.ui.c21;
-public final class f extends h51 {
-    public static final int f44946a = 0;
+public final class f extends FrameLayout implements b6 {
+    public final p9 f48111a;
+    public final g6 f48112b;
+    public final TextView f48113c;
+    public final TextView d;
 
-    static {
-        h51.setup(new h51());
+    public f(Context context, g6 g6Var) {
+        super(context);
+        this.f48112b = g6Var;
+        p9 p9Var = new p9(context);
+        this.f48111a = p9Var;
+        p9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
+        addView(p9Var, c6.d(72, 72.0f, 49, 0.0f, 36.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.f48113c = textView;
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 20.0f);
+        textView.setGravity(17);
+        addView(textView, c6.d(-1, -2.0f, 49, 24.0f, 123.0f, 24.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setTextSize(1, 14.0f);
+        textView2.setGravity(17);
+        textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        addView(textView2, c6.d(-1, -2.0f, 49, 32.0f, 157.0f, 32.0f, 0.0f));
+        e();
     }
 
     @Override
-    public final void bindView(View view, i51 i51Var, boolean z4, w51 w51Var, g61 g61Var) {
-        int i10;
-        g gVar = (g) view;
-        e eVar = (e) i51Var.G;
-        TLRPC.User user = eVar.f44944b;
-        long j10 = eVar.f44943a;
-        boolean z10 = eVar.f44945c;
-        boolean z11 = !i51Var.f25563j;
-        p9 p9Var = gVar.f44949c;
-        TextView textView = gVar.f44951n;
-        TextView textView2 = gVar.d;
-        gVar.f44955x = (d) i51Var.H;
-        gVar.f44956y = j10;
-        gVar.B = user.f19331id;
-        int i11 = gVar.f44948b;
-        TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j10));
-        TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(j10));
-        gVar.f44950f.setText(DialogObject.getName(j10));
-        TextView textView3 = gVar.h;
-        if (user2 != null) {
-            i10 = R.string.CommunityPendingRequestSuggestedBot;
-        } else if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-            i10 = R.string.CommunityPendingRequestSuggestedChannel;
-        } else {
-            i10 = R.string.CommunityPendingRequestSuggestedGroup;
-        }
-        textView3.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(i10, DialogObject.getShortName(user)), j6.w0(null, j6.il, false), new c21(17)));
-        if (user2 != null) {
-            textView2.setVisibility(8);
-        } else if (chat != null && chat.participants_count > 0) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("* ");
-            spannableStringBuilder.setSpan(gVar.f44952r, 0, 1, 33);
-            spannableStringBuilder.append((CharSequence) LocaleController.formatNumberWithMillion(chat.participants_count, ','));
-            textView2.setText(spannableStringBuilder);
-            textView2.setVisibility(0);
-        } else {
-            textView2.setVisibility(8);
-        }
-        if (z10) {
-            textView.setVisibility(0);
-        } else {
-            textView.setVisibility(8);
-        }
-        gVar.f44954w = z11;
-        if (user2 != null) {
-            p9Var.e(user2, new z8(0, user2));
-        } else {
-            p9Var.e(chat, new z8(chat));
-        }
-        gVar.e.e(user, new z8(0, user));
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        Drawable drawable = k6.S0;
+        p9 p9Var = this.f48111a;
+        lf.r.a(canvas, drawable, (p9Var.getWidth() / 2.0f) + p9Var.getLeft(), (p9Var.getHeight() / 2.0f) + p9Var.getTop(), p9Var.getHeight());
     }
 
     @Override
-    public final View createView(Context context, sl0 sl0Var, int i10, int i11, f6 f6Var) {
-        g gVar = new g(context, i10, f6Var);
-        gVar.setLayoutParams(new w0(-1, -2));
-        gVar.setClickable(false);
-        return gVar;
+    public final void e() {
+        int i10 = k6.G6;
+        g6 g6Var = this.f48112b;
+        this.f48113c.setTextColor(k6.v0(i10, g6Var));
+        this.d.setTextColor(k6.v0(k6.f22053z6, g6Var));
+    }
+
+    public int[] getColorKeys() {
+        return null;
     }
 
     @Override
-    public final boolean equals(i51 i51Var, i51 i51Var2) {
-        e eVar = (e) i51Var.G;
-        e eVar2 = (e) i51Var2.G;
-        if (eVar.f44943a == eVar2.f44943a && DialogObject.getDialogId(eVar.f44944b) == DialogObject.getDialogId(eVar2.f44944b)) {
-            return true;
-        }
-        return false;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(218.0f), 1073741824));
+    }
+
+    public void setSubtitle(CharSequence charSequence) {
+        this.d.setText(charSequence);
+    }
+
+    public void setTitle(CharSequence charSequence) {
+        this.f48113c.setText(charSequence);
     }
 }

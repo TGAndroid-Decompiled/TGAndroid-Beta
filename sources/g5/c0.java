@@ -3,13 +3,13 @@ package g5;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.SocketTimeoutException;
-import k7.z6;
+import k7.a7;
 public class c0 extends n {
-    public final int f6365c;
+    public final int f6843c;
 
     public c0() {
         super(2008);
-        this.f6365c = 1;
+        this.f6843c = 1;
     }
 
     public static c0 a(IOException iOException, int i10) {
@@ -19,7 +19,7 @@ public class c0 extends n {
             i11 = 2002;
         } else if (iOException instanceof InterruptedIOException) {
             i11 = 1004;
-        } else if (message != null && z6.b(message).matches("cleartext.*not permitted.*")) {
+        } else if (message != null && a7.b(message).matches("cleartext.*not permitted.*")) {
             i11 = 2007;
         } else {
             i11 = 2001;
@@ -32,7 +32,7 @@ public class c0 extends n {
 
     public c0(String str, int i10) {
         super(str, i10 == 2000 ? 2001 : i10);
-        this.f6365c = 1;
+        this.f6843c = 1;
     }
 
     public c0(java.io.IOException r2, int r3, int r4) {
@@ -41,6 +41,6 @@ public class c0 extends n {
 
     public c0(String str, IOException iOException, int i10) {
         super(str, iOException, i10 == 2000 ? 2001 : i10);
-        this.f6365c = 1;
+        this.f6843c = 1;
     }
 }

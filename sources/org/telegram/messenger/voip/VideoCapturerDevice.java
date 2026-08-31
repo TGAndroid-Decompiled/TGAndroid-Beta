@@ -8,8 +8,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.view.Display;
 import android.view.WindowManager;
-import gg.y1;
-import kh.a2;
+import hg.y1;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
@@ -62,7 +61,7 @@ public class VideoCapturerDevice {
     public VideoCapturerDevice(boolean z4) {
         Logging.enableLogToDebugOutput(Logging.Severity.LS_VERBOSE);
         Logging.d("VideoCapturerDevice", "device model = " + Build.MANUFACTURER + Build.MODEL);
-        AndroidUtilities.runOnUIThread(new jh.f(13, this, z4));
+        AndroidUtilities.runOnUIThread(new kh.f(12, this, z4));
     }
 
     public static void checkScreenCapturerSize() {
@@ -76,7 +75,7 @@ public class VideoCapturerDevice {
             }
             videoCapturerDevice.currentWidth = i11;
             videoCapturerDevice.currentHeight = screenCaptureSize.y;
-            videoCapturerDevice.handler.post(new b(1, videoCapturerDevice, screenCaptureSize));
+            videoCapturerDevice.handler.post(new h(0, videoCapturerDevice, screenCaptureSize));
         }
     }
 
@@ -190,11 +189,11 @@ public class VideoCapturerDevice {
                 if (this.videoCapturer == null) {
                     this.videoCapturer = camera1Enumerator.createCapturer(str2, new AnonymousClass2());
                     this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("VideoCapturerThread", eglBase.getEglBaseContext());
-                    this.handler.post(new y1(this, j10, 13));
+                    this.handler.post(new y1(this, j10, 12));
                     return;
                 }
                 FileLog.d("VideoCapturerDevice init(" + j10 + "): videoCapturer.switchCamera CAMERA");
-                this.handler.post(new b(2, this, str2));
+                this.handler.post(new h(1, this, str2));
             }
         }
     }
@@ -221,8 +220,8 @@ public class VideoCapturerDevice {
                 this.videoCapturer.stopCapture();
                 this.videoCapturer.dispose();
                 this.videoCapturer = null;
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            } catch (InterruptedException e6) {
+                throw new RuntimeException(e6);
             }
         }
         SurfaceTextureHelper surfaceTextureHelper = this.videoCapturerSurfaceTextureHelper;
@@ -248,8 +247,8 @@ public class VideoCapturerDevice {
         this.handler.post(new i(this, 0));
         try {
             this.thread.quitSafely();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e6) {
+            FileLog.e(e6);
         }
     }
 
@@ -262,15 +261,15 @@ public class VideoCapturerDevice {
             sb.append(j10);
             sb.append(", ");
             sb.append(i10);
-            yh.w("): videoCapturer.startCapture", sb);
+            yh.v("): videoCapturer.startCapture", sb);
             this.videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, 30);
             return;
         }
         try {
             FileLog.d("VideoCapturerDevice onStateChanged(" + j10 + ", " + i10 + "): videoCapturer.stopCapture");
             this.videoCapturer.stopCapture();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (InterruptedException e6) {
+            throw new RuntimeException(e6);
         }
     }
 
@@ -278,20 +277,20 @@ public class VideoCapturerDevice {
         if (this.nativePtr != j10) {
             return;
         }
-        this.handler.post(new h(this, i10, j10));
+        this.handler.post(new g(this, i10, j10));
     }
 
     private static native CapturerObserver nativeGetJavaVideoCapturerObserver(long j10);
 
     private void onDestroy() {
-        a2.x(new StringBuilder("VideoCapturerDevice onDestroy ptr="), this.nativePtr);
+        l.d.x(new StringBuilder("VideoCapturerDevice onDestroy ptr="), this.nativePtr);
         this.nativePtr = 0L;
         AndroidUtilities.runOnUIThread(new i(this, 1));
     }
 
     private void onStateChanged(long j10, int i10) {
         FileLog.d("VideoCapturerDevice onStateChanged(" + j10 + ", " + i10 + ")");
-        AndroidUtilities.runOnUIThread(new h(this, j10, i10));
+        AndroidUtilities.runOnUIThread(new g(this, j10, i10));
     }
 
     private static Point getScreenCaptureSize(int i10) {

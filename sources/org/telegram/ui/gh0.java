@@ -1,99 +1,47 @@
 package org.telegram.ui;
 
-import android.util.SparseIntArray;
-import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class gh0 extends f2.q {
-    public int f34621b;
-    public int f34622c;
-    public int d;
-    public int e;
-    public int f34623f;
-    public int f34624g;
-    public int h;
-    public final SparseIntArray f34625i = new SparseIntArray();
-    public final SparseIntArray f34626j = new SparseIntArray();
-    public final ArrayList f34627k = new ArrayList();
-    public final ArrayList f34628l = new ArrayList();
-    public final ph0 f34629m;
+public final class gh0 implements nb0 {
+    public final qh0 f37198a;
 
-    public gh0(ph0 ph0Var) {
-        this.f34629m = ph0Var;
-    }
-
-    public static void g(int i10, int i11, SparseIntArray sparseIntArray) {
-        if (i11 >= 0) {
-            sparseIntArray.put(i11, i10);
-        }
+    public gh0(qh0 qh0Var) {
+        this.f37198a = qh0Var;
     }
 
     @Override
-    public final boolean a(int i10, int i11) {
-        return b(i10, i11);
+    public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+        this.f37198a.e0(tL_chatInviteExported);
     }
 
     @Override
-    public final boolean b(int i10, int i11) {
-        int i12;
-        int i13;
-        TLRPC.TL_chatInviteExported tL_chatInviteExported;
-        TLRPC.TL_chatInviteExported tL_chatInviteExported2;
-        int i14 = this.f34622c;
-        ph0 ph0Var = this.f34629m;
-        if (((i10 >= i14 && i10 < this.d) || (i10 >= this.e && i10 < this.f34623f)) && ((i11 >= (i13 = ph0Var.f37342y) && i11 < ph0Var.B) || (i11 >= ph0Var.E && i11 < ph0Var.F))) {
-            if (i11 >= i13 && i11 < ph0Var.B) {
-                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) ph0Var.f37326f0.get(i11 - i13);
-            } else {
-                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) ph0Var.f37327g0.get(i11 - ph0Var.E);
+    public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
+        if (tLObject instanceof TLRPC.TL_messages_exportedChatInvite) {
+            TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject).invite;
+            qh0 qh0Var = this.f37198a;
+            qh0Var.c0(tL_chatInviteExported2);
+            for (int i10 = 0; i10 < qh0Var.f40510f0.size(); i10++) {
+                if (((TLRPC.TL_chatInviteExported) qh0Var.f40510f0.get(i10)).link.equals(tL_chatInviteExported.link)) {
+                    if (tL_chatInviteExported2.revoked) {
+                        hh0 f02 = qh0Var.f0();
+                        qh0Var.f40510f0.remove(i10);
+                        qh0Var.f40511g0.add(0, tL_chatInviteExported2);
+                        qh0Var.h0(f02);
+                        return;
+                    }
+                    qh0Var.f40510f0.set(i10, tL_chatInviteExported2);
+                    qh0Var.i0(true);
+                    return;
+                }
             }
-            int i15 = this.f34622c;
-            if (i10 >= i15 && i10 < this.d) {
-                tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.f34627k.get(i10 - i15);
-            } else {
-                tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.f34628l.get(i10 - this.e);
-            }
-            return tL_chatInviteExported2.link.equals(tL_chatInviteExported.link);
         }
-        int i16 = this.f34624g;
-        if (i10 >= i16 && i10 < this.h && i11 >= (i12 = ph0Var.R) && i11 < ph0Var.S) {
-            if (i10 - i16 != i11 - i12) {
-                return false;
-            }
-            return true;
-        }
-        int i17 = this.f34625i.get(i10, -1);
-        int i18 = this.f34626j.get(i11, -1);
-        if (i17 < 0 || i17 != i18) {
-            return false;
-        }
-        return true;
     }
 
     @Override
-    public final int d() {
-        return this.f34629m.U;
-    }
-
-    @Override
-    public final int e() {
-        return this.f34621b;
-    }
-
-    public final void f(SparseIntArray sparseIntArray) {
-        sparseIntArray.clear();
-        ph0 ph0Var = this.f34629m;
-        g(1, ph0Var.f37338r, sparseIntArray);
-        g(2, ph0Var.f37339s, sparseIntArray);
-        g(3, ph0Var.v, sparseIntArray);
-        g(4, ph0Var.f37340w, sparseIntArray);
-        g(5, ph0Var.f37341x, sparseIntArray);
-        g(6, ph0Var.I, sparseIntArray);
-        g(7, ph0Var.K, sparseIntArray);
-        g(8, ph0Var.L, sparseIntArray);
-        g(9, ph0Var.N, sparseIntArray);
-        g(10, ph0Var.O, sparseIntArray);
-        g(11, ph0Var.P, sparseIntArray);
-        g(12, ph0Var.M, sparseIntArray);
-        g(13, ph0Var.C, sparseIntArray);
+    public final void c(TLObject tLObject) {
+        if (tLObject instanceof TLRPC.TL_chatInviteExported) {
+            AndroidUtilities.runOnUIThread(new he0(10, this, tLObject), 200L);
+        }
     }
 }

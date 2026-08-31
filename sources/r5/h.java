@@ -4,17 +4,17 @@ public interface h {
 
     void f(f fVar, String str);
 
-    void h(f fVar, boolean z4);
+    void g(f fVar, boolean z4);
+
+    void h(f fVar, int i10);
 
     void i(f fVar, int i10);
 
-    void j(f fVar, int i10);
+    void j(f fVar);
 
-    void k(f fVar);
+    void k(f fVar, String str);
 
-    void l(f fVar, String str);
+    void m(f fVar);
 
-    void n(f fVar);
-
-    void q(f fVar, int i10);
+    void o(f fVar, int i10);
 }

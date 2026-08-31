@@ -11,12 +11,11 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import kh.a2;
 import org.telegram.ui.yh;
 public abstract class b {
-    public static volatile a f1665b;
-    public static final Object f1664a = new Object();
-    public static final f1 f1666c = new f1("id");
+    public static volatile a f1803b;
+    public static final Object f1802a = new Object();
+    public static final f1 f1804c = new f1("id");
     public static final f1 d = new f1("type");
 
     public static int a(int i10, int i11) {
@@ -27,7 +26,7 @@ public abstract class b {
             int i13 = i10 - (i11 * i12);
             if (i13 != 0) {
                 int i14 = ((i10 ^ i11) >> 31) | 1;
-                switch (r0.f1724a[roundingMode.ordinal()]) {
+                switch (r0.f1867a[roundingMode.ordinal()]) {
                     case 1:
                         throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
                     case 2:
@@ -154,10 +153,10 @@ public abstract class b {
             } else {
                 try {
                     l10 = obj.toString();
-                } catch (Exception e) {
+                } catch (Exception e6) {
                     String z4 = android.support.v4.media.a.z(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(z4), (Throwable) e);
-                    l10 = yh.l("<", z4, " threw ", e.getClass().getName(), ">");
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(z4), (Throwable) e6);
+                    l10 = yh.l("<", z4, " threw ", e6.getClass().getName(), ">");
                 }
             }
             objArr[i11] = l10;
@@ -195,7 +194,7 @@ public abstract class b {
         }
         if (i10 >= 0) {
             if (i11 < 0) {
-                throw new IllegalArgumentException(a2.j(i11, "negative size: "));
+                throw new IllegalArgumentException(l.d.j(i11, "negative size: "));
             }
             d10 = d("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
         } else {
@@ -217,15 +216,15 @@ public abstract class b {
     public static final void g(StringBuilder sb, Iterator it, h7.u uVar) {
         if (it.hasNext()) {
             Map.Entry entry = (Map.Entry) it.next();
-            sb.append(h7.u.H2(entry.getKey()));
+            sb.append(h7.u.M2(entry.getKey()));
             sb.append(" : ");
-            sb.append(h7.u.H2(entry.getValue()));
+            sb.append(h7.u.M2(entry.getValue()));
             while (it.hasNext()) {
                 sb.append(",\n  ");
                 Map.Entry entry2 = (Map.Entry) it.next();
-                sb.append(h7.u.H2(entry2.getKey()));
+                sb.append(h7.u.M2(entry2.getKey()));
                 sb.append(" : ");
-                sb.append(h7.u.H2(entry2.getValue()));
+                sb.append(h7.u.M2(entry2.getValue()));
             }
         }
     }
@@ -247,7 +246,7 @@ public abstract class b {
         if (collection instanceof SortedSet) {
             obj = ((SortedSet) collection).comparator();
             if (obj == null) {
-                obj = y.f1740b;
+                obj = y.f1886b;
             }
         } else if (collection instanceof f0) {
             obj = ((v) ((f0) collection)).d;
@@ -284,8 +283,8 @@ public abstract class b {
             if (d10 != null) {
                 try {
                     try {
-                        byte b10 = d10.f1685a;
-                        byte b11 = d10.f1686b;
+                        byte b10 = d10.f1824a;
+                        byte b11 = d10.f1825b;
                         int i10 = 0;
                         if (b10 != Byte.MIN_VALUE) {
                             if (b10 != -96) {
@@ -341,8 +340,8 @@ public abstract class b {
                                 TreeMap treeMap = new TreeMap();
                                 while (i10 < i11) {
                                     bf.b bVar = bVarArr[i10];
-                                    if (!treeMap.containsKey((h1) bVar.f1782b)) {
-                                        treeMap.put((h1) bVar.f1782b, (h1) bVar.f1783c);
+                                    if (!treeMap.containsKey((h1) bVar.f1935b)) {
+                                        treeMap.put((h1) bVar.f1935b, (h1) bVar.f1936c);
                                         i10++;
                                     } else {
                                         throw new IOException("Attempted to add duplicate key to canonical CBOR Map.");
@@ -363,18 +362,18 @@ public abstract class b {
                             return new z0(o.u(h1VarArr));
                         }
                         throw new IOException("Parser being asked to read a large CBOR array");
-                    } catch (IOException | RuntimeException e) {
-                        e = e;
+                    } catch (IOException | RuntimeException e6) {
+                        e = e6;
                         throw new c1(e);
                     }
-                } catch (RuntimeException e6) {
-                    e = e6;
+                } catch (RuntimeException e10) {
+                    e = e10;
                     throw new c1(e);
                 }
             }
             throw new IOException("Parser being asked to parse an empty input stream");
-        } catch (IOException e10) {
-            throw new c1(e10);
+        } catch (IOException e11) {
+            throw new c1(e11);
         }
     }
 
@@ -429,6 +428,6 @@ public abstract class b {
         if (i11 >= 0) {
             return d("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
         }
-        throw new IllegalArgumentException(a2.j(i11, "negative size: "));
+        throw new IllegalArgumentException(l.d.j(i11, "negative size: "));
     }
 }

@@ -1,24 +1,28 @@
 package org.telegram.ui.Components;
+public final class eb0 implements Runnable {
+    public final int f26498a;
+    public final sb0 f26499b;
 
-import org.telegram.messenger.MessageObject;
-public final class eb0 extends f2.v {
-    public final qb0 f24548c;
-
-    public eb0(qb0 qb0Var) {
-        this.f24548c = qb0Var;
+    public eb0(sb0 sb0Var, int i10) {
+        this.f26498a = i10;
+        this.f26499b = sb0Var;
     }
 
     @Override
-    public final int i(int i10) {
-        MessageObject messageObject;
-        MessageObject.GroupedMessages a2;
-        if (i10 >= 0) {
-            qb0 qb0Var = this.f24548c;
-            if (i10 < qb0Var.f28107r.previewMessages.size() && (a2 = qb0.a(qb0Var, (messageObject = qb0Var.f28107r.previewMessages.get(i10)))) != null) {
-                return a2.getPosition(messageObject).spanSize;
-            }
-            return 1000;
+    public final void run() {
+        switch (this.f26498a) {
+            case 0:
+                sb0 sb0Var = this.f26499b;
+                kb0 kb0Var = sb0Var.f31031f;
+                if (sb0Var.W.d.webpageTop) {
+                    kb0Var.w0(-kb0Var.computeVerticalScrollOffset(), 250, xh.n.V);
+                    return;
+                }
+                kb0Var.w0(kb0Var.computeVerticalScrollRange() - (kb0Var.computeVerticalScrollExtent() + kb0Var.computeVerticalScrollOffset()), 250, xh.n.V);
+                return;
+            default:
+                this.f26499b.g(true, false);
+                return;
         }
-        return 1000;
     }
 }

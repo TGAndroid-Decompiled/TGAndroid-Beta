@@ -3,46 +3,46 @@ package c0;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 public final class k implements v8.a {
-    public final WeakReference f1860a;
-    public final j f1861b = new j(this);
+    public final WeakReference f2021a;
+    public final j f2022b = new j(this);
 
     public k(i iVar) {
-        this.f1860a = new WeakReference(iVar);
+        this.f2021a = new WeakReference(iVar);
     }
 
     @Override
     public final boolean cancel(boolean z4) {
-        i iVar = (i) this.f1860a.get();
-        boolean cancel = this.f1861b.cancel(z4);
+        i iVar = (i) this.f2021a.get();
+        boolean cancel = this.f2022b.cancel(z4);
         if (cancel && iVar != null) {
-            iVar.f1856a = null;
-            iVar.f1857b = null;
-            iVar.f1858c.k(null);
+            iVar.f2017a = null;
+            iVar.f2018b = null;
+            iVar.f2019c.k(null);
         }
         return cancel;
     }
 
     @Override
     public final Object get() {
-        return this.f1861b.get();
+        return this.f2022b.get();
     }
 
     @Override
     public final boolean isCancelled() {
-        return this.f1861b.f1853a instanceof a;
+        return this.f2022b.f2014a instanceof a;
     }
 
     @Override
     public final boolean isDone() {
-        return this.f1861b.isDone();
+        return this.f2022b.isDone();
     }
 
     public final String toString() {
-        return this.f1861b.toString();
+        return this.f2022b.toString();
     }
 
     @Override
     public final Object get(long j10, TimeUnit timeUnit) {
-        return this.f1861b.get(j10, timeUnit);
+        return this.f2022b.get(j10, timeUnit);
     }
 }

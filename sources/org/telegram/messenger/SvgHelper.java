@@ -38,27 +38,27 @@ public class SvgHelper {
 
     public static class Circle {
         float rad;
-        float f16683x1;
-        float f16684y1;
+        float f18069x1;
+        float f18070y1;
 
         public Circle(float f10, float f11, float f12) {
-            this.f16683x1 = f10;
-            this.f16684y1 = f11;
+            this.f18069x1 = f10;
+            this.f18070y1 = f11;
             this.rad = f12;
         }
     }
 
     public static class Line {
-        float f16685x1;
-        float f16686x2;
-        float f16687y1;
-        float f16688y2;
+        float f18071x1;
+        float f18072x2;
+        float f18073y1;
+        float f18074y2;
 
         public Line(float f10, float f11, float f12, float f13) {
-            this.f16685x1 = f10;
-            this.f16687y1 = f11;
-            this.f16686x2 = f12;
-            this.f16688y2 = f13;
+            this.f18071x1 = f10;
+            this.f18073y1 = f11;
+            this.f18072x2 = f12;
+            this.f18074y2 = f13;
         }
     }
 
@@ -90,20 +90,20 @@ public class SvgHelper {
 
     public static class ParserHelper {
         private char current;
-        private int f16689n;
+        private int f18075n;
         public int pos;
-        private CharSequence f16690s;
+        private CharSequence f18076s;
 
         public ParserHelper(CharSequence charSequence, int i10) {
-            this.f16690s = charSequence;
+            this.f18076s = charSequence;
             this.pos = i10;
-            this.f16689n = charSequence.length();
+            this.f18075n = charSequence.length();
             this.current = charSequence.charAt(i10);
         }
 
         private char read() {
             int i10 = this.pos;
-            int i11 = this.f16689n;
+            int i11 = this.f18075n;
             if (i10 < i11) {
                 this.pos = i10 + 1;
             }
@@ -111,7 +111,7 @@ public class SvgHelper {
             if (i12 == i11) {
                 return (char) 0;
             }
-            return this.f16690s.charAt(i12);
+            return this.f18076s.charAt(i12);
         }
 
         private void reportUnexpectedCharacterError(char c3) {
@@ -163,8 +163,8 @@ public class SvgHelper {
         public void skipNumberSeparator() {
             while (true) {
                 int i10 = this.pos;
-                if (i10 < this.f16689n) {
-                    char charAt = this.f16690s.charAt(i10);
+                if (i10 < this.f18075n) {
+                    char charAt = this.f18076s.charAt(i10);
                     if (charAt == '\t' || charAt == '\n' || charAt == ' ' || charAt == ',') {
                         advance();
                     } else {
@@ -179,7 +179,7 @@ public class SvgHelper {
         public void skipWhitespace() {
             while (true) {
                 int i10 = this.pos;
-                if (i10 < this.f16689n && Character.isWhitespace(this.f16690s.charAt(i10))) {
+                if (i10 < this.f18075n && Character.isWhitespace(this.f18076s.charAt(i10))) {
                     advance();
                 } else {
                     return;
@@ -314,7 +314,7 @@ public class SvgHelper {
         private Paint backgroundPaint;
         private float colorAlpha;
         private int currentColorKey;
-        private org.telegram.ui.ActionBar.f6 currentResourcesProvider;
+        private org.telegram.ui.ActionBar.g6 currentResourcesProvider;
         protected int height;
         private Integer overrideColor;
         private Paint overridePaint;
@@ -475,10 +475,10 @@ public class SvgHelper {
                         canvas.drawRect((RectF) obj, paint);
                     } else if (obj instanceof Line) {
                         Line line = (Line) obj;
-                        canvas.drawLine(line.f16685x1, line.f16687y1, line.f16686x2, line.f16688y2, paint);
+                        canvas.drawLine(line.f18071x1, line.f18073y1, line.f18072x2, line.f18074y2, paint);
                     } else if (obj instanceof Circle) {
                         Circle circle = (Circle) obj;
-                        canvas.drawCircle(circle.f16683x1, circle.f16684y1, circle.rad, paint);
+                        canvas.drawCircle(circle.f18069x1, circle.f18070y1, circle.rad, paint);
                     } else if (obj instanceof Oval) {
                         canvas.drawOval(((Oval) obj).rect, paint);
                     } else if (obj instanceof RoundRect) {
@@ -575,20 +575,20 @@ public class SvgHelper {
             return svgDrawable;
         }
 
-        public void setColorKey(int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        public void setColorKey(int i10, org.telegram.ui.ActionBar.g6 g6Var) {
             this.currentColorKey = i10;
-            this.currentResourcesProvider = f6Var;
+            this.currentResourcesProvider = g6Var;
         }
 
         public void setPaint(Paint paint, int i10) {
             this.overridePaintByPosition.put(i10, paint);
         }
 
-        public void setupGradient(int i10, org.telegram.ui.ActionBar.f6 f6Var, float f10, boolean z4) {
+        public void setupGradient(int i10, org.telegram.ui.ActionBar.g6 g6Var, float f10, boolean z4) {
             BitmapShader bitmapShader;
             Integer num = this.overrideColor;
-            int v02 = num == null ? org.telegram.ui.ActionBar.j6.v0(i10, f6Var) : num.intValue();
-            this.currentResourcesProvider = f6Var;
+            int v02 = num == null ? org.telegram.ui.ActionBar.k6.v0(i10, g6Var) : num.intValue();
+            this.currentResourcesProvider = g6Var;
             int[] iArr = this.currentColor;
             if (iArr[z4 ? 1 : 0] != v02) {
                 this.colorAlpha = f10;
@@ -745,8 +745,8 @@ public class SvgHelper {
             }
             sb.append('z');
             return sb.toString();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e6) {
+            FileLog.e(e6);
             return "";
         }
     }
@@ -1134,8 +1134,8 @@ public class SvgHelper {
             paint.setColor(-1);
             canvas.drawPath(doPath, paint);
             return createBitmap;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e6) {
+            FileLog.e(e6);
             return null;
         }
     }
@@ -1243,8 +1243,8 @@ public class SvgHelper {
             xMLReader.setContentHandler(sVGHandler);
             xMLReader.parse(new InputSource(new StringReader(str)));
             return sVGHandler.getDrawable();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e6) {
+            FileLog.e(e6);
             return null;
         }
     }
@@ -1258,8 +1258,8 @@ public class SvgHelper {
             svgDrawable.width = i10;
             svgDrawable.height = i11;
             return svgDrawable;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e6) {
+            FileLog.e(e6);
             return null;
         }
     }
@@ -1318,8 +1318,8 @@ public class SvgHelper {
             xMLReader.parse(new InputSource(fileInputStream));
             fileInputStream.close();
             return sVGHandler;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e6) {
+            FileLog.e(e6);
             return null;
         }
     }
@@ -1748,8 +1748,8 @@ public class SvgHelper {
                         Matrix parseTransform = SvgHelper.parseTransform(attributes.getValue("transform"));
                         parseTransform.postScale(f10, f10);
                         cVar = new qf.c(rectF, parseTransform);
-                    } catch (Exception e) {
-                        FileLog.e(e);
+                    } catch (Exception e6) {
+                        FileLog.e(e6);
                     }
                     if (cVar != null) {
                         if (this.insideGiftRectPositions == null) {
@@ -2154,8 +2154,8 @@ public class SvgHelper {
                 openRawResource.close();
             }
             return bitmap;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e6) {
+            FileLog.e(e6);
             return null;
         }
     }
@@ -2168,8 +2168,8 @@ public class SvgHelper {
             svgDrawable.width = i10;
             svgDrawable.height = i11;
             return svgDrawable;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e6) {
+            FileLog.e(e6);
             return null;
         }
     }
@@ -2181,8 +2181,8 @@ public class SvgHelper {
             xMLReader.setContentHandler(sVGHandler);
             xMLReader.parse(new InputSource(ApplicationLoader.applicationContext.getResources().openRawResource(i10)));
             return sVGHandler.getDrawable();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e6) {
+            FileLog.e(e6);
             return null;
         }
     }
@@ -2194,8 +2194,8 @@ public class SvgHelper {
             xMLReader.setContentHandler(sVGHandler);
             xMLReader.parse(new InputSource(inputStream));
             return sVGHandler.getBitmap();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e6) {
+            FileLog.e(e6);
             return null;
         }
     }
@@ -2217,8 +2217,8 @@ public class SvgHelper {
             Bitmap bitmap = sVGHandler.getBitmap();
             fileInputStream.close();
             return bitmap;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e6) {
+            FileLog.e(e6);
             return null;
         }
     }
@@ -2230,8 +2230,8 @@ public class SvgHelper {
             xMLReader.setContentHandler(sVGHandler);
             xMLReader.parse(new InputSource(new StringReader(str)));
             return sVGHandler.getBitmap();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e6) {
+            FileLog.e(e6);
             return null;
         }
     }

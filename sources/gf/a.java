@@ -1,10 +1,10 @@
 package gf;
 
 import android.os.Build;
-import cg.h0;
 import d4.t;
-import gg.c2;
-import gg.v2;
+import dg.h0;
+import hg.c2;
+import hg.v2;
 import j$.util.Objects;
 import java.text.Collator;
 import java.util.ArrayList;
@@ -14,16 +14,16 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import lh.eb;
-import lh.l7;
-import lh.n2;
-import lh.q;
-import lh.y;
-import lh.z;
-import nh.f6;
-import nh.h6;
-import nh.n4;
-import nh.n5;
+import mh.eb;
+import mh.l7;
+import mh.m2;
+import mh.p;
+import mh.x;
+import mh.y;
+import oh.f6;
+import oh.h6;
+import oh.t3;
+import oh.z1;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesStorage;
@@ -31,29 +31,31 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.kg1;
-import org.telegram.ui.web.e2;
-import ph.d7;
-import ph.g1;
-import ph.m6;
-import ph.r7;
-import ph.u6;
-import rh.o3;
-import tf.h1;
-import uf.k;
-import uf.m0;
-import uf.p1;
-import uf.v0;
-import uf.x0;
-import vh.u4;
-import vh.v;
+import org.telegram.ui.mg1;
+import org.telegram.ui.web.f2;
+import qh.b7;
+import qh.d6;
+import qh.g1;
+import qh.k6;
+import qh.p7;
+import qh.s6;
+import sh.n3;
+import uf.h1;
+import uf.z;
+import vf.d0;
+import vf.k;
+import vf.n0;
+import vf.p1;
+import vf.x0;
+import wh.u4;
+import wh.w;
 public final class a implements RequestDelegate {
-    public final int f6529a;
-    public final Object f6530b;
+    public final int f7026a;
+    public final Object f7027b;
 
     public a(Object obj, int i10) {
-        this.f6529a = i10;
-        this.f6530b = obj;
+        this.f7026a = i10;
+        this.f7027b = obj;
     }
 
     @Override
@@ -62,8 +64,8 @@ public final class a implements RequestDelegate {
         Locale locale;
         final Comparator fVar2;
         Locale locale2;
-        int i10 = this.f6529a;
-        Object obj = this.f6530b;
+        int i10 = this.f7026a;
+        Object obj = this.f7027b;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new a1.e(29, (e) obj, tLObject));
@@ -188,94 +190,94 @@ public final class a implements RequestDelegate {
                 }
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new c(9, (v2) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new c(11, (v2) obj, tLObject));
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new androidx.car.app.utils.b((q) obj, tLObject, tL_error, 20));
+                AndroidUtilities.runOnUIThread(new androidx.car.app.utils.b((p) obj, tLObject, tL_error, 20));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new c(27, (y) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new c(27, (x) obj, tLObject));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new c(28, (z) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new c(28, (y) obj, tLObject));
                 return;
             case 8:
-                AndroidUtilities.runOnUIThread(new n2(10, tLObject, (h0) obj));
+                AndroidUtilities.runOnUIThread(new m2(10, tLObject, (h0) obj));
                 return;
             case 9:
-                AndroidUtilities.runOnUIThread(new n2(12, (l7) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new m2(12, (l7) obj, tLObject));
                 return;
             case 10:
                 eb ebVar = (eb) obj;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    MessagesStorage.getInstance(ebVar.f12381c).putMessages(new ArrayList<>(Arrays.asList(ebVar.H.messageOwner)), true, true, true, 0, 0, 0L);
+                    MessagesStorage.getInstance(ebVar.f13989c).putMessages(new ArrayList<>(Arrays.asList(ebVar.H.messageOwner)), true, true, true, 0, 0, 0L);
                     return;
                 } else {
                     ebVar.getClass();
                     return;
                 }
             case 11:
-                AndroidUtilities.runOnUIThread(new n5((r7) obj, 1));
+                AndroidUtilities.runOnUIThread(new t3((p7) obj, 4));
                 return;
             case 12:
-                AndroidUtilities.runOnUIThread(new n4(2, (f6) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new z1(5, (f6) obj, tLObject));
                 return;
             case 13:
-                AndroidUtilities.runOnUIThread(new n4(4, (h6) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new z1(7, (h6) obj, tLObject));
                 return;
             case 14:
-                AndroidUtilities.runOnUIThread(new kg1(15, (e2) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new mg1(14, (f2) obj, tLObject));
                 return;
             case 15:
-                AndroidUtilities.runOnUIThread(new kg1(19, (g1) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new mg1(19, (g1) obj, tLObject));
                 return;
             case 16:
-                AndroidUtilities.runOnUIThread(new ph.f6(0, (m6) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new d6(0, (k6) obj, tLObject));
                 return;
             case 17:
-                AndroidUtilities.runOnUIThread(new ph.f6(1, (u6) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new d6(1, (s6) obj, tLObject));
                 return;
             case 18:
-                AndroidUtilities.runOnUIThread(new ph.f6(2, (d7) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new d6(2, (b7) obj, tLObject));
                 return;
             case 19:
-                AndroidUtilities.runOnUIThread(new ph.f6(16, (o3) obj, tL_error));
+                AndroidUtilities.runOnUIThread(new d6(18, (n3) obj, tL_error));
                 return;
             case 20:
-                tf.c cVar = (tf.c) obj;
+                uf.c cVar = (uf.c) obj;
                 if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new ph.f6(20, cVar, tLObject));
+                    AndroidUtilities.runOnUIThread(new d6(23, cVar, tLObject));
                     return;
                 }
                 return;
             case 21:
-                tf.z zVar = (tf.z) obj;
+                z zVar = (z) obj;
                 zVar.getClass();
-                AndroidUtilities.runOnUIThread(new ph.f6(21, zVar, tLObject));
+                AndroidUtilities.runOnUIThread(new d6(24, zVar, tLObject));
                 return;
             case 22:
-                AndroidUtilities.runOnUIThread(new h1((uf.c) obj, tL_error, tLObject, 2));
+                AndroidUtilities.runOnUIThread(new h1((vf.c) obj, tL_error, tLObject, 2));
                 return;
             case 23:
-                AndroidUtilities.runOnUIThread(new ph.f6(27, (uf.f) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new d6(29, (vf.f) obj, tLObject));
                 return;
             case 24:
                 AndroidUtilities.runOnUIThread(new h1((k) obj, tL_error, tLObject, 3));
                 return;
             case 25:
-                AndroidUtilities.runOnUIThread(new h1((m0) obj, tL_error, tLObject, 7));
+                AndroidUtilities.runOnUIThread(new h1((n0) obj, tL_error, tLObject, 7));
                 return;
             case 26:
                 AndroidUtilities.runOnUIThread(new h1((x0) obj, tL_error, tLObject, 8));
                 return;
             case 27:
-                AndroidUtilities.runOnUIThread(new v0(3, (p1) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new d0(5, (p1) obj, tLObject));
                 return;
             case 28:
-                AndroidUtilities.runOnUIThread(new v0(5, (v) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new d0(7, (w) obj, tLObject));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new v0(10, (u4) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new d0(12, (u4) obj, tLObject));
                 return;
         }
     }

@@ -1,58 +1,35 @@
 package cg;
 
-import org.telegram.messenger.R;
-public final class e extends m {
-    @Override
-    public final float a() {
-        return 0.7f;
-    }
+import android.graphics.Canvas;
+import org.telegram.ui.Cells.d8;
+import org.telegram.ui.Components.tl0;
+public abstract class e extends tl0 {
+    public boolean U2;
 
     @Override
-    public final int c() {
-        return -13318311;
-    }
-
-    @Override
-    public final float d() {
-        return 0.5f;
-    }
-
-    @Override
-    public final int e() {
-        return R.raw.photo_neon;
-    }
-
-    @Override
-    public final float g() {
-        return 0.2f;
-    }
-
-    @Override
-    public final float h() {
-        return 1.45f;
-    }
-
-    @Override
-    public final String i(int i10) {
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    return null;
+    public final void dispatchDraw(Canvas canvas) {
+        this.U2 = false;
+        for (int i10 = 0; i10 < getChildCount(); i10++) {
+            if (getChildAt(i10) instanceof d) {
+                d dVar = (d) getChildAt(i10);
+                canvas.save();
+                canvas.translate(dVar.getX(), dVar.getY());
+                d8 d8Var = (d8) dVar;
+                if (d8Var.I) {
+                    d8Var.b(canvas, this);
                 }
-                return "brushLight";
+                canvas.restore();
             }
-            return "compositeWithMaskLight";
         }
-        return "blitWithMaskLight";
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public final float k() {
-        return 0.07f;
-    }
-
-    @Override
-    public final int l() {
-        return R.drawable.paint_neon_brush;
+    public final void invalidate() {
+        if (this.U2) {
+            return;
+        }
+        super.invalidate();
+        this.U2 = true;
     }
 }

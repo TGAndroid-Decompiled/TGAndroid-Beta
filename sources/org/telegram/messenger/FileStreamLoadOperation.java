@@ -39,7 +39,7 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
     }
 
     private int getCurrentPriority() {
-        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(priorityMap, Long.valueOf(this.document.f19190id), null);
+        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(priorityMap, Long.valueOf(this.document.f20849id), null);
         if (num != null) {
             return num.intValue();
         }
@@ -48,7 +48,7 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
 
     public static int getStreamPrioriy(TLRPC.Document document) {
         Integer num;
-        if (document == null || (num = priorityMap.get(Long.valueOf(document.f19190id))) == null) {
+        if (document == null || (num = priorityMap.get(Long.valueOf(document.f20849id))) == null) {
             return 3;
         }
         return num.intValue();
@@ -64,7 +64,7 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
             StringBuilder sb = new StringBuilder("?account=");
             sb.append(i10);
             sb.append("&id=");
-            sb.append(document.f19190id);
+            sb.append(document.f20849id);
             sb.append("&hash=");
             sb.append(document.access_hash);
             sb.append("&dc=");
@@ -85,15 +85,15 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
             sb.append(Utilities.bytesToHex(bArr));
             String sb2 = sb.toString();
             return Uri.parse("tg://" + attachFileName + sb2);
-        } catch (UnsupportedEncodingException e) {
-            FileLog.e(e);
+        } catch (UnsupportedEncodingException e6) {
+            FileLog.e(e6);
             return null;
         }
     }
 
     public static void setPriorityForDocument(TLRPC.Document document, int i10) {
         if (document != null) {
-            priorityMap.put(Long.valueOf(document.f19190id), Integer.valueOf(i10));
+            priorityMap.put(Long.valueOf(document.f20849id), Integer.valueOf(i10));
         }
     }
 
@@ -108,7 +108,7 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
 
     public final void bytesTransferred(int i10) {
         g5.p pVar = this.dataSpec;
-        int i11 = h5.d0.f6937a;
+        int i11 = h5.d0.f7237a;
         for (int i12 = 0; i12 < this.listenerCount; i12++) {
             boolean z4 = this.isNetwork;
             g5.s sVar = (g5.s) this.listeners.get(i12);
@@ -129,7 +129,7 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
 
     @Override
     public void close() {
-        FileLog.e("FileStreamLoadOperation " + this.document.f19190id + " close me=" + this);
+        FileLog.e("FileStreamLoadOperation " + this.document.f20849id + " close me=" + this);
         FileLoadOperation fileLoadOperation = this.loadOperation;
         if (fileLoadOperation != null) {
             fileLoadOperation.removeStreamListener(this);
@@ -138,13 +138,13 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
         if (randomAccessFile != null) {
             try {
                 randomAccessFile.close();
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e6) {
+                FileLog.e(e6);
             }
             this.file = null;
         }
         this.uri = null;
-        allStreams.remove(Long.valueOf(this.document.f19190id));
+        allStreams.remove(Long.valueOf(this.document.f20849id));
         if (this.opened) {
             this.opened = false;
             transferEnded();
@@ -177,8 +177,8 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
 
     @Override
     public long open(g5.p pVar) {
-        Uri uri = pVar.f6401a;
-        long j10 = pVar.e;
+        Uri uri = pVar.f6885a;
+        long j10 = pVar.f6888e;
         this.uri = uri;
         transferInitializing(pVar);
         int intValue = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("account")).intValue();
@@ -187,7 +187,7 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
         TLRPC.TL_document tL_document = new TLRPC.TL_document();
         this.document = tL_document;
         tL_document.access_hash = Utilities.parseLong(this.uri.getQueryParameter("hash")).longValue();
-        this.document.f19190id = Utilities.parseLong(this.uri.getQueryParameter("id")).longValue();
+        this.document.f20849id = Utilities.parseLong(this.uri.getQueryParameter("id")).longValue();
         this.document.size = Utilities.parseLong(this.uri.getQueryParameter("size")).longValue();
         this.document.dc_id = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("dc")).intValue();
         this.document.mime_type = this.uri.getQueryParameter("mime");
@@ -200,9 +200,9 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
         } else if (this.document.mime_type.startsWith("audio")) {
             this.document.attributes.add(new TLRPC.TL_documentAttributeAudio());
         }
-        allStreams.put(Long.valueOf(this.document.f19190id), this);
+        allStreams.put(Long.valueOf(this.document.f20849id), this);
         this.currentOffset = j10;
-        this.requestedLength = pVar.f6404f;
+        this.requestedLength = pVar.f6889f;
         this.loadOperation = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, null, this.parentObject, this.currentOffset, false, getCurrentPriority());
         this.bytesTransferred = 0L;
         long j11 = this.document.size - j10;
@@ -235,8 +235,8 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
                 }
             }
         }
-        FileLog.e("FileStreamLoadOperation " + this.document.f19190id + " open operation=" + this.loadOperation + " currentFile=" + this.currentFile + " file=" + this.file + " bytesRemaining=" + this.bytesRemaining + " me=" + this);
-        FileLog.e("FileStreamLoadOperation " + this.document.f19190id + " " + MessageObject.getVideoWidth(this.document) + "x" + MessageObject.getVideoWidth(this.document) + " mime_type=" + this.document.mime_type + " codec=" + MessageObject.getVideoCodec(this.document) + " size=" + this.document.size);
+        FileLog.e("FileStreamLoadOperation " + this.document.f20849id + " open operation=" + this.loadOperation + " currentFile=" + this.currentFile + " file=" + this.file + " bytesRemaining=" + this.bytesRemaining + " me=" + this);
+        FileLog.e("FileStreamLoadOperation " + this.document.f20849id + " " + MessageObject.getVideoWidth(this.document) + "x" + MessageObject.getVideoWidth(this.document) + " mime_type=" + this.document.mime_type + " codec=" + MessageObject.getVideoCodec(this.document) + " size=" + this.document.size);
         return this.bytesRemaining;
     }
 
@@ -247,7 +247,7 @@ public class FileStreamLoadOperation implements g5.m, FileLoadOperationStream {
 
     public final void transferEnded() {
         g5.p pVar = this.dataSpec;
-        int i10 = h5.d0.f6937a;
+        int i10 = h5.d0.f7237a;
         for (int i11 = 0; i11 < this.listenerCount; i11++) {
             ((g5.s) this.listeners.get(i11)).e(pVar, this.isNetwork);
         }

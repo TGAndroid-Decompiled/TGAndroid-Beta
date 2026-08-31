@@ -22,10 +22,10 @@ public abstract class a {
             } else {
                 try {
                     l10 = obj.toString();
-                } catch (Exception e) {
+                } catch (Exception e6) {
                     String z4 = android.support.v4.media.a.z(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(z4), (Throwable) e);
-                    l10 = yh.l("<", z4, " threw ", e.getClass().getName(), ">");
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(z4), (Throwable) e6);
+                    l10 = yh.l("<", z4, " threw ", e6.getClass().getName(), ">");
                 }
             }
             objArr[i11] = l10;

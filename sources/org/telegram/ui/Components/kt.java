@@ -1,16 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.widget.EdgeEffect;
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-public final class kt extends f2.s0 {
-    public final jt[] f26380a = new jt[4];
-    public final ArrayList f26381b = new ArrayList();
+public final class kt {
+    public final int f28449a;
+    public final Object f28450b;
 
-    @Override
-    public final EdgeEffect a(RecyclerView recyclerView, int i10) {
-        jt jtVar = new jt(recyclerView, i10, new ht(this, 0));
-        this.f26380a[i10] = jtVar;
-        return jtVar;
+    public kt(Object obj, int i10) {
+        this.f28449a = i10;
+        this.f28450b = obj;
+    }
+
+    public final void a(int i10, boolean z4) {
+        switch (this.f28449a) {
+            case 0:
+                ArrayList arrayList = ((mt) this.f28450b).f29246b;
+                int size = arrayList.size();
+                int i11 = 0;
+                while (i11 < size) {
+                    Object obj = arrayList.get(i11);
+                    i11++;
+                    ((kt) obj).a(i10, z4);
+                }
+                return;
+            default:
+                ((Runnable) this.f28450b).run();
+                return;
+        }
     }
 }

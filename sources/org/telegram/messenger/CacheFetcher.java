@@ -124,7 +124,7 @@ public abstract class CacheFetcher<Args, R> {
         if (callback == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new g0(this, pair, callback, 9));
+        AndroidUtilities.runOnUIThread(new g0(this, pair, callback, 10));
     }
 
     private void saveLastRequested(Pair<Integer, Args> pair) {

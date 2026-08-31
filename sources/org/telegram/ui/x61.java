@@ -1,15 +1,13 @@
 package org.telegram.ui;
+public final class x61 extends f2.l {
+    public final c71 F;
 
-import android.view.View;
-public final class x61 implements View.OnLayoutChangeListener {
-    public final b71 f39868a;
-
-    public x61(b71 b71Var) {
-        this.f39868a = b71Var;
+    public x61(c71 c71Var) {
+        this.F = c71Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        b71.S(this.f39868a);
+    public final void P(f2.m1 m1Var) {
+        c71.S(this.F);
     }
 }

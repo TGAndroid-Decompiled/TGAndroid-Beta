@@ -5,7 +5,7 @@ public final class g extends n3.a {
     }
 
     @Override
-    public final n3.a h() {
+    public final n3.a g() {
         return this;
     }
 }

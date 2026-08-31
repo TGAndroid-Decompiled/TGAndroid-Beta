@@ -16,15 +16,15 @@ public abstract class b {
         }
         try {
             InputStream open = ApplicationLoader.applicationContext.getAssets().open("currencies.json");
-            JSONObject jSONObject = new JSONObject(new String(h5.d0.Q(open), r8.d.f43389c));
+            JSONObject jSONObject = new JSONObject(new String(h5.d0.Q(open), r8.d.f46738c));
             Iterator<String> keys = jSONObject.keys();
             while (keys.hasNext()) {
                 String next = keys.next();
                 map.put(next, Integer.valueOf(jSONObject.optJSONObject(next).optInt("exp")));
             }
             open.close();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e6) {
+            FileLog.e(e6);
         }
     }
 
@@ -33,12 +33,12 @@ public abstract class b {
         SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str));
         a a2 = a.a(serializedData, serializedData.readInt32(true));
         serializedData.cleanup();
-        if (a2.f11946c != null) {
+        if (a2.f12385c != null) {
             FileLog.d("BillingUtilities.getPurpose: got purpose from received obfuscated profile id");
-            return a2.f11946c;
+            return a2.f12385c;
         }
         SerializedData serializedData2 = new SerializedData(8);
-        serializedData2.writeInt64(a2.f11945b);
+        serializedData2.writeInt64(a2.f12384b);
         String bytesToHex = Utilities.bytesToHex(serializedData2.toByteArray());
         serializedData2.cleanup();
         FileLog.d("BillingUtilities.getPurpose: searching purpose under " + bytesToHex);
@@ -48,7 +48,7 @@ public abstract class b {
             SerializedData serializedData3 = new SerializedData(Utilities.hexToBytes(string));
             a a10 = a.a(serializedData3, serializedData3.readInt32(true));
             serializedData3.cleanup();
-            return a10.f11946c;
+            return a10.f12385c;
         }
         FileLog.d("BillingUtilities.getPurpose: purpose under " + bytesToHex + " not found");
         throw new RuntimeException(android.support.v4.media.a.o("no purpose under ", bytesToHex, " found :("));

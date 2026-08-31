@@ -1,9 +1,9 @@
 package l7;
 public final class m4 implements u9.d {
-    public static final m4 f11551a = new Object();
+    public static final m4 f11942a = new Object();
 
     static {
-        e2.c.r(kh.a2.o(h0.class, new e0(1)));
+        e2.c.r(l.d.o(h0.class, new e0(1)));
     }
 
     @Override

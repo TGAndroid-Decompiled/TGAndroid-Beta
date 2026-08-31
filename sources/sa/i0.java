@@ -12,10 +12,10 @@ public class i0 extends pa.u {
         try {
             ra.d.d(v);
             return new BigInteger(v);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e6) {
             StringBuilder t6 = android.support.v4.media.a.t("Failed parsing '", v, "' as BigInteger; at path ");
             t6.append(aVar.j());
-            throw new RuntimeException(t6.toString(), e);
+            throw new RuntimeException(t6.toString(), e6);
         }
     }
 

@@ -9,9 +9,9 @@ public final class n extends f2.l {
     }
 
     @Override
-    public final void P(f2.l1 l1Var) {
+    public final void P(f2.m1 m1Var) {
         ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.g3) this.F).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.h3) this.F).containerView;
         viewGroup.invalidate();
     }
 }

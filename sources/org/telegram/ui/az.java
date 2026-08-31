@@ -1,32 +1,42 @@
 package org.telegram.ui;
 
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class az {
-    public float f32727a;
-    public float f32728b;
-    public boolean f32729c;
-    public float d;
-    public float e;
-    public float f32730f;
-    public float f32731g;
-    public boolean h;
-    public boolean f32732i;
-    public mg.d f32733j;
-    public long f32734k;
-    public boolean f32735l;
-    public boolean f32736m;
-    public boolean f32737n;
-    public float f32738o;
-    public int f32739p;
-    public TLRPC.Document f32740q;
-    public final ImageReceiver f32741r;
-    public String f32742s;
+import org.telegram.messenger.MessageObject;
+public final class az implements ImageReceiver.ImageReceiverDelegate {
+    public final bz f35267a;
+    public final boolean f35268b;
+    public final MessageObject f35269c;
+    public final cz d;
 
-    public az() {
-        ImageReceiver imageReceiver = new ImageReceiver();
-        this.f32741r = imageReceiver;
-        imageReceiver.setAllowLoadingOnAttachedOnly(true);
-        imageReceiver.setAllowDrawWhileCacheGenerating(true);
+    public az(cz czVar, bz bzVar, boolean z4, MessageObject messageObject) {
+        this.d = czVar;
+        this.f35267a = bzVar;
+        this.f35268b = z4;
+        this.f35269c = messageObject;
+    }
+
+    @Override
+    public final void didSetImage(ImageReceiver imageReceiver, boolean z4, boolean z10, boolean z11) {
+        bz bzVar = this.f35267a;
+        if (bzVar.f35628r.getLottieAnimation() != null) {
+            bzVar.f35628r.getLottieAnimation().L(0, false, true);
+        }
+    }
+
+    @Override
+    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
+        org.telegram.messenger.j5.a(this, i10, str, drawable);
+    }
+
+    @Override
+    public final void onAnimationReady(ImageReceiver imageReceiver) {
+        MessageObject messageObject;
+        if (this.f35268b && (messageObject = this.f35269c) != null && messageObject.isAnimatedAnimatedEmoji() && imageReceiver.getLottieAnimation() != null && imageReceiver.getLottieAnimation().f27841x == null) {
+            try {
+                this.d.D.performHapticFeedback(3, 1);
+            } catch (Exception unused) {
+            }
+        }
     }
 }

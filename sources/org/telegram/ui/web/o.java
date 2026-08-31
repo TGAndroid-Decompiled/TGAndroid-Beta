@@ -2,13 +2,13 @@ package org.telegram.ui.web;
 
 import android.text.TextUtils;
 import android.widget.EditText;
-import nh.n5;
+import oh.t3;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.h5;
+import org.telegram.ui.ActionBar.i5;
 import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Components.a61;
-public final class o extends h5 {
-    public final n5 f39591f = new n5(this, 29);
+import org.telegram.ui.Components.b61;
+public final class o extends i5 {
+    public final t3 f42652f = new t3(this, 28);
     public final p h;
 
     public o(p pVar) {
@@ -18,17 +18,17 @@ public final class o extends h5 {
     @Override
     public final void m() {
         p pVar = this.h;
-        pVar.f39599s = null;
-        AndroidUtilities.cancelRunOnUIThread(this.f39591f);
-        i iVar = pVar.e;
+        pVar.f42662s = null;
+        AndroidUtilities.cancelRunOnUIThread(this.f42652f);
+        i iVar = pVar.f42658e;
         if (iVar != null) {
             iVar.c();
-            pVar.e = null;
+            pVar.f42658e = null;
         }
-        a61 a61Var = pVar.f23580a;
-        if (a61Var != null) {
-            a61Var.V2.N(true);
-            pVar.f23580a.U2.h1(0, 0);
+        b61 b61Var = pVar.f25815a;
+        if (b61Var != null) {
+            b61Var.V2.N(true);
+            pVar.f25815a.U2.h1(0, 0);
         }
     }
 
@@ -36,27 +36,27 @@ public final class o extends h5 {
     public final void q(EditText editText) {
         int i10;
         p pVar = this.h;
-        boolean z4 = !TextUtils.isEmpty(pVar.f39599s);
+        boolean z4 = !TextUtils.isEmpty(pVar.f42662s);
         String obj = editText.getText().toString();
-        if (!TextUtils.equals(pVar.f39599s, obj)) {
-            pVar.f39599s = obj;
-            i iVar = pVar.e;
+        if (!TextUtils.equals(pVar.f42662s, obj)) {
+            pVar.f42662s = obj;
+            i iVar = pVar.f42658e;
             if (iVar != null) {
                 iVar.c();
             }
             i10 = ((p2) pVar).currentAccount;
             i iVar2 = new i(obj, i10, new l(pVar, 1));
-            pVar.e = iVar2;
+            pVar.f42658e = iVar2;
             iVar2.a();
-            n5 n5Var = this.f39591f;
-            AndroidUtilities.cancelRunOnUIThread(n5Var);
-            AndroidUtilities.runOnUIThread(n5Var, 500L);
+            t3 t3Var = this.f42652f;
+            AndroidUtilities.cancelRunOnUIThread(t3Var);
+            AndroidUtilities.runOnUIThread(t3Var, 500L);
         }
-        a61 a61Var = pVar.f23580a;
-        if (a61Var != null) {
-            a61Var.V2.N(true);
+        b61 b61Var = pVar.f25815a;
+        if (b61Var != null) {
+            b61Var.V2.N(true);
             if (z4 != (!TextUtils.isEmpty(obj))) {
-                pVar.f23580a.U2.h1(0, 0);
+                pVar.f25815a.U2.h1(0, 0);
             }
         }
     }

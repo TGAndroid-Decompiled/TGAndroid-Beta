@@ -1,35 +1,72 @@
 package org.telegram.ui.Components;
 
-import java.util.Arrays;
-import java.util.Comparator;
-public final class og0 implements Comparator {
-    public final vg0 f27565a;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.animation.AnimationUtils;
+import org.telegram.messenger.AndroidUtilities;
+public final class og0 extends Drawable {
+    public final Paint f29752a;
+    public final int f29753b;
+    public boolean f29754c;
+    public float d;
+    public long f29755e;
+    public View f29756f;
+    public int f29757g = 255;
+    public float h = 300.0f;
 
-    public og0(vg0 vg0Var) {
-        this.f27565a = vg0Var;
+    public og0(int i10) {
+        this.f29753b = AndroidUtilities.dp(i10);
+        Paint paint = new Paint(1);
+        this.f29752a = paint;
+        paint.setColor(-1);
     }
 
-    public final int a(ug0 ug0Var) {
-        vg0 vg0Var = this.f27565a;
-        int size = vg0Var.f29465r.answers.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            if (Arrays.equals(vg0Var.f29465r.answers.get(i10).option, ug0Var.d)) {
-                return i10;
+    public final void a(boolean z4, boolean z10) {
+        float f10;
+        if (this.f29754c != z4) {
+            this.f29754c = z4;
+            if (!z10) {
+                if (z4) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                this.d = f10;
             }
+            this.f29755e = AnimationUtils.currentAnimationTimeMillis();
+            invalidateSelf();
         }
-        return 0;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int a2 = a((ug0) obj);
-        int a10 = a((ug0) obj2);
-        if (a2 > a10) {
-            return 1;
-        }
-        if (a2 < a10) {
-            return -1;
-        }
-        return 0;
+    public final void draw(android.graphics.Canvas r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.og0.draw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f29753b;
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f29753b;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f29757g = i10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f29752a.setColorFilter(colorFilter);
     }
 }

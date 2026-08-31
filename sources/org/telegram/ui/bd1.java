@@ -1,6 +1,8 @@
 package org.telegram.ui;
+public final class bd1 {
+    public final cd1 f35488a;
 
-import org.telegram.tgnet.TLRPC;
-public interface bd1 {
-    void a(TLRPC.TL_wallPaper tL_wallPaper);
+    public bd1(cd1 cd1Var) {
+        this.f35488a = cd1Var;
+    }
 }

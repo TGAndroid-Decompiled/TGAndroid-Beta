@@ -20,9 +20,9 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class nb extends FrameLayout {
     public static final o1.i IN_OUT_OFFSET_Y = new hb(0);
-    public static final Property<nb, Float> IN_OUT_OFFSET_Y2 = new hh.g("offsetY", 10);
+    public static final Property<nb, Float> IN_OUT_OFFSET_Y2 = new ih.g("offsetY", 10);
     Drawable background;
-    private hh.b blurVisibilityDrawable;
+    private ih.b blurVisibilityDrawable;
     protected ic bulletin;
     private final List<ib> callbacks;
     private LinearGradient clipGradient;
@@ -32,25 +32,25 @@ public abstract class nb extends FrameLayout {
     private boolean hasCustomBackground;
     public float inOutOffset;
     public View.OnClickListener onClickListener;
-    private final org.telegram.ui.ActionBar.f6 resourcesProvider;
+    private final org.telegram.ui.ActionBar.g6 resourcesProvider;
     public boolean top;
     public boolean transitionRunningEnter;
     public boolean transitionRunningExit;
     private int wideScreenGravity;
     private int wideScreenWidth;
 
-    public nb(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public nb(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
         this.callbacks = new ArrayList();
         this.wideScreenWidth = -2;
         this.wideScreenGravity = 1;
-        this.resourcesProvider = f6Var;
+        this.resourcesProvider = g6Var;
         setMinimumHeight(AndroidUtilities.dp(48.0f));
-        setBackground(getThemedColor(org.telegram.ui.ActionBar.j6.Fi));
+        setBackground(getThemedColor(org.telegram.ui.ActionBar.k6.Fi));
         b();
         setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         setWillNotDraw(false);
-        k7.d6.b(this, 0.02f, 1.5f);
+        k7.e6.b(this, 0.02f, 1.5f);
     }
 
     public static boolean a() {
@@ -105,7 +105,7 @@ public abstract class nb extends FrameLayout {
         this.inOutOffset = f10;
         updatePosition();
         ic icVar = this.bulletin;
-        if (icVar != null && icVar.f25673k) {
+        if (icVar != null && icVar.f27746k) {
             invalidate();
         }
     }
@@ -131,7 +131,7 @@ public abstract class nb extends FrameLayout {
         } else if (this.top) {
             i11 = 48;
         }
-        setLayoutParams(k7.b6.e(i10, -2, i11));
+        setLayoutParams(k7.c6.e(i10, -2, i11));
     }
 
     public mb createTransition() {
@@ -141,15 +141,15 @@ public abstract class nb extends FrameLayout {
     @Override
     public void dispatchDraw(Canvas canvas) {
         ic icVar = this.bulletin;
-        if (icVar != null && icVar.f25673k) {
+        if (icVar != null && icVar.f27746k) {
             if (this.blurVisibilityDrawable == null) {
-                this.blurVisibilityDrawable = new hh.b(new t(this, 16));
+                this.blurVisibilityDrawable = new ih.b(new t(this, 16));
             }
-            hh.b bVar = this.blurVisibilityDrawable;
-            if (bVar.f7110c == null) {
+            ih.b bVar = this.blurVisibilityDrawable;
+            if (bVar.f8108c == null) {
                 bVar.a(getMeasuredWidth(), getMeasuredHeight(), 6.0f, AndroidUtilities.dp(10.0f));
             }
-            this.blurVisibilityDrawable.f7113i = k7.n.b((int) org.telegram.ui.b.c(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
+            this.blurVisibilityDrawable.f8112i = k7.o.b((int) org.telegram.ui.b.c(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
             this.blurVisibilityDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.blurVisibilityDrawable.draw(canvas);
             return;
@@ -166,9 +166,9 @@ public abstract class nb extends FrameLayout {
         if (this.bulletin != null && i10 != 0) {
             this.background.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredBackgroundHeight() - getPaddingBottom());
             if (isTransitionRunning() && (fbVar = this.delegate) != null) {
-                float h = fbVar.h(this.bulletin.f25666a) - getY();
+                float h = fbVar.h(this.bulletin.f27738a) - getY();
                 float measuredHeight = (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY();
-                if (!z4 && this.delegate.g(this.bulletin.f25666a)) {
+                if (!z4 && this.delegate.g(this.bulletin.f27738a)) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -243,14 +243,14 @@ public abstract class nb extends FrameLayout {
         fb fbVar;
         ic icVar;
         o1.j jVar;
-        if (this.bulletin != null && (((fbVar = this.delegate) == null || fbVar.e()) && (jVar = (icVar = this.bulletin).d) != null && jVar.f16192f)) {
-            f10 = icVar.f25677o;
+        if (this.bulletin != null && (((fbVar = this.delegate) == null || fbVar.e()) && (jVar = (icVar = this.bulletin).d) != null && jVar.f16330f)) {
+            f10 = icVar.f27750o;
         } else {
             fb fbVar2 = this.delegate;
             if (fbVar2 != null) {
                 ic icVar2 = this.bulletin;
                 if (icVar2 != null) {
-                    i10 = icVar2.f25666a;
+                    i10 = icVar2.f27738a;
                 } else {
                     i10 = 0;
                 }
@@ -271,7 +271,7 @@ public abstract class nb extends FrameLayout {
     }
 
     public int getThemedColor(int i10) {
-        return org.telegram.ui.ActionBar.j6.v0(i10, this.resourcesProvider);
+        return org.telegram.ui.ActionBar.k6.v0(i10, this.resourcesProvider);
     }
 
     public float getTopOffset() {
@@ -280,7 +280,7 @@ public abstract class nb extends FrameLayout {
         if (fbVar != null) {
             ic icVar = this.bulletin;
             if (icVar != null) {
-                i10 = icVar.f25666a;
+                i10 = icVar.f27738a;
             } else {
                 i10 = 0;
             }
@@ -324,10 +324,10 @@ public abstract class nb extends FrameLayout {
         for (int i10 = 0; i10 < size; i10++) {
             this.callbacks.get(i10).b();
         }
-        hh.b bVar = this.blurVisibilityDrawable;
-        if (bVar != null && (bitmap = bVar.f7110c) != null) {
+        ih.b bVar = this.blurVisibilityDrawable;
+        if (bVar != null && (bitmap = bVar.f8108c) != null) {
             bitmap.recycle();
-            bVar.f7110c = null;
+            bVar.f8108c = null;
         }
     }
 
@@ -407,7 +407,7 @@ public abstract class nb extends FrameLayout {
             if (this.top) {
                 ic icVar = this.bulletin;
                 if (icVar != null) {
-                    i11 = icVar.f25666a;
+                    i11 = icVar.f27738a;
                 } else {
                     i11 = 0;
                 }
@@ -438,6 +438,6 @@ public abstract class nb extends FrameLayout {
         if (this.hasCustomBackground) {
             return;
         }
-        this.background = org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(i11), i10);
+        this.background = org.telegram.ui.ActionBar.k6.b0(AndroidUtilities.dp(i11), i10);
     }
 }

@@ -5,14 +5,14 @@ import android.os.Parcelable;
 import h5.d0;
 public final class e extends j {
     public static final Parcelable.Creator<e> CREATOR = new f8.o(16);
-    public final String f8915b;
-    public final String f8916c;
+    public final String f9519b;
+    public final String f9520c;
     public final String d;
 
     public e(String str, String str2, String str3) {
         super("COMM");
-        this.f8915b = str;
-        this.f8916c = str2;
+        this.f9519b = str;
+        this.f9520c = str2;
         this.d = str3;
     }
 
@@ -22,7 +22,7 @@ public final class e extends j {
         }
         if (obj != null && e.class == obj.getClass()) {
             e eVar = (e) obj;
-            if (d0.a(this.f8916c, eVar.f8916c) && d0.a(this.f8915b, eVar.f8915b) && d0.a(this.d, eVar.d)) {
+            if (d0.a(this.f9520c, eVar.f9520c) && d0.a(this.f9519b, eVar.f9519b) && d0.a(this.d, eVar.d)) {
                 return true;
             }
         }
@@ -33,14 +33,14 @@ public final class e extends j {
         int i10;
         int i11;
         int i12 = 0;
-        String str = this.f8915b;
+        String str = this.f9519b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i13 = (527 + i10) * 31;
-        String str2 = this.f8916c;
+        String str2 = this.f9520c;
         if (str2 != null) {
             i11 = str2.hashCode();
         } else {
@@ -56,22 +56,22 @@ public final class e extends j {
 
     @Override
     public final String toString() {
-        return this.f8924a + ": language=" + this.f8915b + ", description=" + this.f8916c;
+        return this.f9529a + ": language=" + this.f9519b + ", description=" + this.f9520c;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f8924a);
-        parcel.writeString(this.f8915b);
+        parcel.writeString(this.f9529a);
+        parcel.writeString(this.f9519b);
         parcel.writeString(this.d);
     }
 
     public e(Parcel parcel) {
         super("COMM");
         String readString = parcel.readString();
-        int i10 = d0.f6937a;
-        this.f8915b = readString;
-        this.f8916c = parcel.readString();
+        int i10 = d0.f7237a;
+        this.f9519b = readString;
+        this.f9520c = parcel.readString();
         this.d = parcel.readString();
     }
 }

@@ -1,40 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class fn extends f2.j0 {
-    public final ej f24905r;
+import android.content.Intent;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.Utilities;
+public final class fn implements zj {
+    public final Utilities.Callback f26960a;
+    public final bn f26961b;
+    public final org.telegram.ui.ActionBar.p2 f26962c;
 
-    public fn(ej ejVar, Context context) {
-        super(context);
-        this.f24905r = ejVar;
+    public fn(Utilities.Callback callback, org.telegram.ui.ActionBar.p2 p2Var, bn bnVar) {
+        this.f26960a = callback;
+        this.f26961b = bnVar;
+        this.f26962c = p2Var;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        int i11;
-        qn qnVar = (qn) this.f24905r.V;
-        if (qnVar.S0) {
-            i10 = -1;
+    public final void l(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z4, int i10, long j10, boolean z10, long j11) {
+        if (!arrayList.isEmpty()) {
+            this.f26960a.run(new fh.c((String) arrayList.get(0)));
         }
-        int k10 = super.k(i10, view);
-        if (qnVar.S0) {
-            k10 += AndroidUtilities.dp(160.0f);
-        }
-        if (!qnVar.S0) {
-            k10 = org.telegram.messenger.y3.z(7.0f, qnVar.O0 - AndroidUtilities.statusBarHeight, k10);
-        }
-        if (qnVar.S0 && k10 == 0 && (i11 = qnVar.T0) >= 0) {
-            qn.J(qnVar, i11);
-            qnVar.T0 = -1;
-        }
-        qnVar.S0 = false;
-        return k10;
+        this.f26961b.dismiss(true);
     }
 
     @Override
-    public final int m(int i10) {
-        return super.m(i10) * 2;
+    public final void m(long j10, ArrayList arrayList, boolean z4, int i10) {
+        if (!arrayList.isEmpty()) {
+            this.f26960a.run(new fh.d((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)));
+        }
+        this.f26961b.dismiss(true);
+    }
+
+    @Override
+    public final void x() {
+        try {
+            Intent intent = new Intent("android.intent.action.GET_CONTENT");
+            intent.setType("*/*");
+            this.f26962c.getParentActivity().startActivityForResult(intent, 28);
+        } catch (Exception e6) {
+            FileLog.e(e6);
+        }
+    }
+
+    @Override
+    public final void O() {
     }
 }

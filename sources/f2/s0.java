@@ -1,9 +1,3 @@
 package f2;
-
-import android.widget.EdgeEffect;
-import androidx.recyclerview.widget.RecyclerView;
-public class s0 {
-    public EdgeEffect a(RecyclerView recyclerView, int i10) {
-        return new EdgeEffect(recyclerView.getContext());
-    }
+public interface s0 {
 }

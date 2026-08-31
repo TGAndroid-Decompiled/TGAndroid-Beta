@@ -19,8 +19,8 @@ public abstract class u {
             aVar.E = new int[32];
             aVar.L(iVar);
             return read(aVar);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException e6) {
+            throw new RuntimeException(e6);
         }
     }
 
@@ -39,8 +39,8 @@ public abstract class u {
             sa.n nVar = new sa.n();
             write(nVar, obj);
             return nVar.u();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException e6) {
+            throw new RuntimeException(e6);
         }
     }
 
@@ -55,8 +55,8 @@ public abstract class u {
         try {
             toJson(stringWriter, obj);
             return stringWriter.toString();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException e6) {
+            throw new RuntimeException(e6);
         }
     }
 }

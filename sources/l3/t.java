@@ -1,18 +1,18 @@
 package l3;
 public interface t {
-    void G();
-
     void a(long j10);
 
-    void e();
+    void b();
 
-    void k(int i10, long j10, long j11);
+    void e(int i10, long j10, long j11);
+
+    void i();
+
+    void l(Exception exc);
 
     void onSkipSilenceEnabledChanged(boolean z4);
 
-    void q();
-
-    void w(Exception exc);
+    void p();
 
     void y();
 }

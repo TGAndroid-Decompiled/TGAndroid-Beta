@@ -10,14 +10,14 @@ import j$.util.DesugarCollections;
 import java.util.HashSet;
 import java.util.Set;
 public final class h implements ba.b {
-    public final int f2157a;
-    public final Object f2158b;
-    public final Object f2159c;
+    public final int f2346a;
+    public final Object f2347b;
+    public final Object f2348c;
 
     public h(int i10, Object obj, Object obj2) {
-        this.f2157a = i10;
-        this.f2158b = obj;
-        this.f2159c = obj2;
+        this.f2346a = i10;
+        this.f2347b = obj;
+        this.f2348c = obj2;
     }
 
     @Override
@@ -25,28 +25,28 @@ public final class h implements ba.b {
         boolean z4;
         ApplicationInfo applicationInfo;
         Bundle bundle;
-        switch (this.f2157a) {
+        switch (this.f2346a) {
             case 0:
-                i iVar = (i) this.f2158b;
-                b bVar = (b) this.f2159c;
-                e eVar = bVar.f2151f;
+                i iVar = (i) this.f2347b;
+                b bVar = (b) this.f2348c;
+                e eVar = bVar.f2340f;
                 ?? obj = new Object();
                 HashSet hashSet = new HashSet();
                 HashSet hashSet2 = new HashSet();
                 HashSet hashSet3 = new HashSet();
                 HashSet hashSet4 = new HashSet();
                 HashSet hashSet5 = new HashSet();
-                Set<l> set = bVar.f2150c;
-                Set set2 = bVar.f2152g;
+                Set<l> set = bVar.f2338c;
+                Set set2 = bVar.f2341g;
                 for (l lVar : set) {
-                    int i10 = lVar.f2172c;
-                    int i11 = lVar.f2171b;
+                    int i10 = lVar.f2362c;
+                    int i11 = lVar.f2361b;
                     if (i10 == 0) {
                         z4 = true;
                     } else {
                         z4 = false;
                     }
-                    t tVar = lVar.f2170a;
+                    t tVar = lVar.f2360a;
                     if (z4) {
                         if (i11 == 2) {
                             hashSet4.add(tVar);
@@ -64,16 +64,16 @@ public final class h implements ba.b {
                 if (!set2.isEmpty()) {
                     hashSet.add(t.a(y9.a.class));
                 }
-                obj.f2129a = DesugarCollections.unmodifiableSet(hashSet);
-                obj.f2130b = DesugarCollections.unmodifiableSet(hashSet2);
-                obj.f2131c = DesugarCollections.unmodifiableSet(hashSet3);
+                obj.f2315a = DesugarCollections.unmodifiableSet(hashSet);
+                obj.f2316b = DesugarCollections.unmodifiableSet(hashSet2);
+                obj.f2317c = DesugarCollections.unmodifiableSet(hashSet3);
                 obj.d = DesugarCollections.unmodifiableSet(hashSet4);
                 DesugarCollections.unmodifiableSet(hashSet5);
-                obj.e = iVar;
-                return eVar.f0(obj);
+                obj.f2318e = iVar;
+                return eVar.e0(obj);
             case 1:
-                w8.g gVar = (w8.g) this.f2158b;
-                Context context = (Context) this.f2159c;
+                w8.g gVar = (w8.g) this.f2347b;
+                Context context = (Context) this.f2348c;
                 String d = gVar.d();
                 y9.a aVar = (y9.a) gVar.d.a(y9.a.class);
                 ?? obj2 = new Object();
@@ -98,10 +98,10 @@ public final class h implements ba.b {
                     } catch (PackageManager.NameNotFoundException unused) {
                     }
                 }
-                obj2.f6489a = z10;
+                obj2.f6983a = z10;
                 return obj2;
             default:
-                return new z9.g((Context) this.f2158b, (String) this.f2159c);
+                return new z9.g((Context) this.f2347b, (String) this.f2348c);
         }
     }
 }

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 public abstract class r extends s {
-    public final Object f1989a = new Object();
-    public Executor f1990b;
-    public androidx.biometric.f0 f1991c;
+    public final Object f2159a = new Object();
+    public Executor f2160b;
+    public androidx.biometric.f0 f2161c;
     public n d;
-    public ArrayList e;
+    public ArrayList f2162e;
 
     public String j() {
         return null;
@@ -20,15 +20,15 @@ public abstract class r extends s {
 
     public final void l(n nVar, ArrayList arrayList) {
         if (nVar != null) {
-            synchronized (this.f1989a) {
+            synchronized (this.f2159a) {
                 try {
                     try {
-                        Executor executor = this.f1990b;
+                        Executor executor = this.f2160b;
                         if (executor != null) {
-                            executor.execute(new p(this, this.f1991c, nVar, arrayList, 1));
+                            executor.execute(new p(this, this.f2161c, nVar, arrayList, 1));
                         } else {
                             this.d = nVar;
-                            this.e = new ArrayList(arrayList);
+                            this.f2162e = new ArrayList(arrayList);
                         }
                         return;
                     } catch (Throwable th2) {

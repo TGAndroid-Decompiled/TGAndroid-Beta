@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 public interface x61 {
-    void invalidate();
+    void b(xz xzVar);
 }

@@ -4,22 +4,22 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.Switch;
 public final class l71 implements View.OnClickListener {
-    public final n71 f35974a;
-    public final TLRPC.TL_authorization f35975b;
-    public final o71 f35976c;
+    public final o71 f38661a;
+    public final TLRPC.TL_authorization f38662b;
+    public final p71 f38663c;
 
-    public l71(o71 o71Var, n71 n71Var, TLRPC.TL_authorization tL_authorization) {
-        this.f35976c = o71Var;
-        this.f35974a = n71Var;
-        this.f35975b = tL_authorization;
+    public l71(p71 p71Var, o71 o71Var, TLRPC.TL_authorization tL_authorization) {
+        this.f38663c = p71Var;
+        this.f38661a = o71Var;
+        this.f38662b = tL_authorization;
     }
 
     @Override
     public final void onClick(View view) {
-        n71 n71Var = this.f35974a;
-        Switch r02 = n71Var.d;
+        o71 o71Var = this.f38661a;
+        Switch r02 = o71Var.d;
         r02.c(!r02.h, true);
-        this.f35975b.call_requests_disabled = !n71Var.d.h;
-        o71.n(this.f35976c);
+        this.f38662b.encrypted_requests_disabled = !o71Var.d.h;
+        p71.n(this.f38663c);
     }
 }

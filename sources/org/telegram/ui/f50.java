@@ -1,102 +1,118 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.os.Build;
-import android.view.View;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class f50 implements org.telegram.ui.Components.ok0 {
-    public final Path f34167a = new Path();
-    public final Paint f34168b;
-    public final c60 f34169c;
+public final class f50 extends f2.q {
+    public final d60 f36761b;
 
-    public f50(c60 c60Var) {
-        this.f34169c = c60Var;
-        Paint paint = new Paint(1);
-        this.f34168b = paint;
-        paint.setColor(-14603467);
+    public f50(d60 d60Var) {
+        this.f36761b = d60Var;
     }
 
     @Override
-    public final boolean h() {
-        return false;
-    }
-
-    @Override
-    public final void i(View view, mg.q0 q0Var, boolean z4, boolean z10) {
-        TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
-        String str = q0Var.f14107f;
-        if (str == null) {
-            str = "👍";
-        }
-        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
-        tL_textWithEntities.text = str;
-        long j10 = q0Var.f14108g;
-        if (j10 != 0) {
-            tL_messageEntityCustomEmoji.document_id = j10;
-            tL_messageEntityCustomEmoji.offset = 0;
-            tL_messageEntityCustomEmoji.length = str.length();
-            tL_textWithEntities.entities.add(tL_messageEntityCustomEmoji);
-        }
-        c60 c60Var = this.f34169c;
-        c60Var.A1(tL_textWithEntities);
-        d40 d40Var = c60Var.E;
-        if (d40Var.m()) {
-            d40Var.j();
-        } else {
-            d40Var.d();
-        }
-        mg.d0 reactionsWindow = c60Var.H.getReactionsWindow();
-        if (reactionsWindow != null && !reactionsWindow.f13985q) {
-            c60Var.H.getReactionsWindow().e();
-            c60Var.H.n();
-        }
-    }
-
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final void n(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i10, boolean z4) {
-        Paint paint = this.f34168b;
-        int i11 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
-        if (i11 > 0) {
-            canvas.drawRoundRect(rectF, f10, f10, paint);
-        } else {
-            canvas.drawRect(rectF, paint);
-        }
-        if (Build.VERSION.SDK_INT >= 29 && canvas.isHardwareAccelerated()) {
-            c60 c60Var = this.f34169c;
-            if (c60Var.N2 != null) {
-                canvas.save();
-                if (i11 > 0) {
-                    Path path = this.f34167a;
-                    path.rewind();
-                    path.addRoundRect(rectF, f10, f10, Path.Direction.CW);
-                    path.close();
-                    canvas.clipPath(path);
-                } else {
-                    canvas.clipRect(rectF);
-                }
-                canvas.translate(-c60Var.H.getX(), -c60Var.H.getY());
-                float f13 = c60Var.O2;
-                canvas.scale(f13, f13);
-                canvas.drawRenderNode(c60Var.N2);
-                canvas.restore();
-            }
-        }
-    }
-
-    @Override
-    public final boolean s() {
+    public final boolean a(int i10, int i11) {
         return true;
     }
 
     @Override
-    public final void o() {
+    public final boolean b(int i10, int i11) {
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        d60 d60Var = this.f36761b;
+        x50 x50Var = d60Var.M;
+        int i17 = x50Var.f42973w;
+        if (i17 >= 0) {
+            int i18 = d60Var.f36031e3;
+            if (i10 == i18 && i11 == i17) {
+                return true;
+            }
+            if ((i10 == i18 && i11 != i17) || (i10 != i18 && i11 == i17)) {
+                return false;
+            }
+        }
+        int i19 = x50Var.f42974x;
+        if (i19 >= 0) {
+            int i20 = d60Var.f36084r3;
+            if (i10 == i20 && i11 == i19) {
+                return true;
+            }
+            if ((i10 == i20 && i11 != i19) || (i10 != i20 && i11 == i19)) {
+                return false;
+            }
+        }
+        int i21 = x50Var.f42975y;
+        if (i21 >= 0) {
+            int i22 = d60Var.f36089s3;
+            if (i10 == i22 && i11 == i21) {
+                return true;
+            }
+            if ((i10 == i22 && i11 != i21) || (i10 != i22 && i11 == i21)) {
+                return false;
+            }
+        }
+        int i23 = x50Var.H;
+        if (i23 >= 0) {
+            int i24 = d60Var.f36026d3;
+            if (i10 == i24 && i11 == i23) {
+                return true;
+            }
+            if ((i10 == i24 && i11 != i23) || (i10 != i24 && i11 == i23)) {
+                return false;
+            }
+        }
+        int i25 = x50Var.G;
+        if (i25 >= 0) {
+            int i26 = d60Var.f36079q3;
+            if (i10 == i26 && i11 == i25) {
+                return true;
+            }
+            if ((i10 == i26 && i11 != i25) || (i10 != i26 && i11 == i25)) {
+                return false;
+            }
+        }
+        int i27 = x50Var.F;
+        if (i27 >= 0 && i27 == i11 && i10 == d60Var.f36075p3) {
+            return true;
+        }
+        int i28 = d60Var.F0;
+        if (i10 == i28 - 1 && i11 == x50Var.C - 1) {
+            return true;
+        }
+        if (i10 != i28 - 1 && i11 != x50Var.C - 1) {
+            if (i11 >= x50Var.D && i11 < x50Var.E && i10 >= (i16 = d60Var.f36067n3) && i10 < d60Var.f36071o3) {
+                return ((ChatObject.VideoParticipant) d60Var.B0.get(i10 - i16)).equals((ChatObject.VideoParticipant) d60Var.f36064n0.get(i11 - d60Var.M.D));
+            }
+            if (i11 >= x50Var.d && i11 < x50Var.f42968e && i10 >= (i15 = d60Var.f36036f3) && i10 < d60Var.f36040g3) {
+                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) d60Var.A0.get(i10 - i15);
+                if (MessageObject.getPeerId(groupCallParticipant.peer) != MessageObject.getPeerId(d60Var.X0.visibleParticipants.get(i11 - d60Var.M.d).peer) || (i10 != i11 && groupCallParticipant.lastActiveDate != groupCallParticipant.active_date)) {
+                    return false;
+                }
+                return true;
+            } else if (i11 >= x50Var.f42969f && i11 < x50Var.h && i10 >= (i14 = d60Var.f36044h3) && i10 < d60Var.f36048i3) {
+                return ((Long) d60Var.C0.get(i10 - i14)).equals(d60Var.X0.invitedUsers.get(i11 - d60Var.M.f42969f));
+            } else {
+                if (i11 >= x50Var.f42970n && i11 < x50Var.f42971r && i10 >= (i13 = d60Var.f36052j3) && i10 < d60Var.f36056k3) {
+                    return ((Long) d60Var.D0.get(i10 - i13)).equals(d60Var.X0.shadyJoinParticipants.get(i11 - d60Var.M.f42970n));
+                }
+                if (i11 >= x50Var.f42972s && i11 < x50Var.v && i10 >= (i12 = d60Var.f36059l3) && i10 < d60Var.f36062m3) {
+                    return ((Long) d60Var.E0.get(i10 - i12)).equals(d60Var.X0.shadyLeftParticipants.get(i11 - d60Var.M.f42972s));
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f36761b.M.C;
+    }
+
+    @Override
+    public final int e() {
+        return this.f36761b.F0;
     }
 }

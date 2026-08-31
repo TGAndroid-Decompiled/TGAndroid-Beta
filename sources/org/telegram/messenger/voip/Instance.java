@@ -58,7 +58,7 @@ public final class Instance {
         public final String component;
         public final String foundation;
         public final String generation;
-        public final String f18746id;
+        public final String f20371id;
         public final String ip;
         public final String network;
         public final String port;
@@ -74,7 +74,7 @@ public final class Instance {
             this.protocol = str2;
             this.network = str3;
             this.generation = str4;
-            this.f18746id = str5;
+            this.f20371id = str5;
             this.component = str6;
             this.foundation = str7;
             this.priority = str8;
@@ -86,7 +86,7 @@ public final class Instance {
         }
 
         public String toString() {
-            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.f18746id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
+            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.f20371id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
         }
     }
 
@@ -141,7 +141,7 @@ public final class Instance {
     }
 
     public static final class Endpoint {
-        public final long f18747id;
+        public final long f20372id;
         public final String ipv4;
         public final String ipv6;
         public final boolean isRtc;
@@ -157,7 +157,7 @@ public final class Instance {
 
         public Endpoint(boolean z4, long j10, String str, String str2, int i10, int i11, byte[] bArr, boolean z10, boolean z11, String str3, String str4, boolean z12) {
             this.isRtc = z4;
-            this.f18747id = j10;
+            this.f20372id = j10;
             this.ipv4 = str;
             this.ipv6 = str2;
             this.port = i10;
@@ -179,7 +179,7 @@ public final class Instance {
         }
 
         public String toString() {
-            return "Endpoint{id=" + this.f18747id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
+            return "Endpoint{id=" + this.f20372id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
         }
     }
 
@@ -363,9 +363,9 @@ public final class Instance {
             if (nativeInstance != null) {
                 nativeInstance.setGlobalServerConfig(str);
             }
-        } catch (JSONException e) {
+        } catch (JSONException e6) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("failed to parse tgvoip server config", e);
+                FileLog.e("failed to parse tgvoip server config", e6);
             }
         }
     }

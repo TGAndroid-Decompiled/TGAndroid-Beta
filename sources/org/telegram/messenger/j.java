@@ -1,27 +1,36 @@
 package org.telegram.messenger;
 
-import android.view.PixelCopy;
-import java.util.concurrent.CountDownLatch;
-public final class j implements PixelCopy.OnPixelCopyFinishedListener {
-    public final int f17530a;
-    public final Object f17531b;
+import android.content.Intent;
+import org.telegram.messenger.NotificationBadge;
+public final class j implements Runnable {
+    public final int f19009a;
+    public final Intent f19010b;
 
-    public j(Object obj, int i10) {
-        this.f17530a = i10;
-        this.f17531b = obj;
+    public j(Intent intent, int i10) {
+        this.f19009a = i10;
+        this.f19010b = intent;
     }
 
     @Override
-    public final void onPixelCopyFinished(int i10) {
-        switch (this.f17530a) {
+    public final void run() {
+        switch (this.f19009a) {
             case 0:
-                ((CountDownLatch) this.f17531b).countDown();
+                AndroidUtilities.lambda$googleVoiceClientService_performAction$2(this.f19010b);
                 return;
             case 1:
-                ((CountDownLatch) this.f17531b).countDown();
+                NotificationBadge.AdwHomeBadger.a(this.f19010b);
+                return;
+            case 2:
+                NotificationBadge.ApexHomeBadger.a(this.f19010b);
+                return;
+            case 3:
+                NotificationBadge.AsusHomeBadger.a(this.f19010b);
+                return;
+            case 4:
+                NotificationBadge.DefaultBadger.a(this.f19010b);
                 return;
             default:
-                ((Runnable) this.f17531b).run();
+                NotificationBadge.SonyHomeBadger.a(this.f19010b);
                 return;
         }
     }

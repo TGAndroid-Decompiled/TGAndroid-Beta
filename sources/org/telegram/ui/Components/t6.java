@@ -5,80 +5,80 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.R;
-public final class t6 implements org.telegram.ui.ActionBar.k6 {
-    public final int f28906a;
-    public final Object f28907b;
+public final class t6 implements org.telegram.ui.ActionBar.l6 {
+    public final int f31270a;
+    public final Object f31271b;
 
     public t6(Object obj, int i10) {
-        this.f28906a = i10;
-        this.f28907b = obj;
+        this.f31270a = i10;
+        this.f31271b = obj;
     }
 
     @Override
     public final void a(float f10) {
-        int i10 = this.f28906a;
+        int i10 = this.f31270a;
     }
 
     @Override
     public final void b() {
-        switch (this.f28906a) {
+        switch (this.f31270a) {
             case 0:
-                c8 c8Var = (c8) this.f28907b;
-                c8Var.f23896i0.getSearchField().setCursorColor(c8Var.getThemedColor(org.telegram.ui.ActionBar.j6.Oi));
+                c8 c8Var = (c8) this.f31271b;
+                c8Var.f25839i0.getSearchField().setCursorColor(c8Var.getThemedColor(org.telegram.ui.ActionBar.k6.Oi));
                 org.telegram.ui.ActionBar.w0 w0Var = c8Var.Y;
                 w0Var.setIconColor(c8Var.getThemedColor(((Integer) w0Var.getTag()).intValue()));
                 Drawable background = w0Var.getBackground();
-                int i10 = org.telegram.ui.ActionBar.j6.f19996i6;
-                org.telegram.ui.ActionBar.j6.B1(background, c8Var.getThemedColor(i10), true);
+                int i10 = org.telegram.ui.ActionBar.k6.f21750i6;
+                org.telegram.ui.ActionBar.k6.B1(background, c8Var.getThemedColor(i10), true);
                 org.telegram.ui.ActionBar.w0 w0Var2 = c8Var.K;
-                w0Var2.setIconColor(c8Var.getThemedColor(org.telegram.ui.ActionBar.j6.Wi));
-                org.telegram.ui.ActionBar.j6.B1(w0Var2.getBackground(), c8Var.getThemedColor(i10), true);
-                o80 o80Var = c8Var.P;
-                o80Var.setBackgroundColor(c8Var.getThemedColor(org.telegram.ui.ActionBar.j6.Ti));
-                o80Var.setProgressColor(c8Var.getThemedColor(org.telegram.ui.ActionBar.j6.Vi));
+                w0Var2.setIconColor(c8Var.getThemedColor(org.telegram.ui.ActionBar.k6.Wi));
+                org.telegram.ui.ActionBar.k6.B1(w0Var2.getBackground(), c8Var.getThemedColor(i10), true);
+                p80 p80Var = c8Var.P;
+                p80Var.setBackgroundColor(c8Var.getThemedColor(org.telegram.ui.ActionBar.k6.Ti));
+                p80Var.setProgressColor(c8Var.getThemedColor(org.telegram.ui.ActionBar.k6.Vi));
                 c8Var.I0();
-                int i11 = org.telegram.ui.ActionBar.j6.G8;
+                int i11 = org.telegram.ui.ActionBar.k6.G8;
                 w0Var.B(c8Var.getThemedColor(i11));
-                int i12 = org.telegram.ui.ActionBar.j6.E8;
+                int i12 = org.telegram.ui.ActionBar.k6.E8;
                 w0Var2.G(c8Var.getThemedColor(i12), false);
                 w0Var2.G(c8Var.getThemedColor(i12), true);
                 w0Var2.B(c8Var.getThemedColor(i11));
                 return;
             case 1:
-                qj qjVar = (qj) this.f28907b;
-                lh.e1 e1Var = qjVar.f28142s;
-                if (e1Var != null) {
-                    int childCount = e1Var.getChildCount();
+                sj sjVar = (sj) this.f31271b;
+                mh.d1 d1Var = sjVar.f31069s;
+                if (d1Var != null) {
+                    int childCount = d1Var.getChildCount();
                     for (int i13 = 0; i13 < childCount; i13++) {
-                        View childAt = e1Var.getChildAt(i13);
-                        if (childAt instanceof pj) {
-                            ((pj) childAt).b();
+                        View childAt = d1Var.getChildAt(i13);
+                        if (childAt instanceof rj) {
+                            ((rj) childAt).b();
                         }
                     }
                 }
-                hi hiVar = qjVar.F;
-                if (hiVar != null) {
-                    hiVar.e();
+                ii iiVar = sjVar.F;
+                if (iiVar != null) {
+                    iiVar.e();
                     return;
                 }
                 return;
             case 2:
-                al alVar = (al) this.f28907b;
-                alVar.f23435r.setIconColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.ui, alVar.f24277a));
-                alVar.f23435r.B(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G8, alVar.f24277a));
-                alVar.f23435r.G(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.F8, alVar.f24277a), true);
-                alVar.f23435r.G(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.E8, alVar.f24277a), false);
-                if (alVar.E != null) {
-                    if (org.telegram.ui.ActionBar.j6.I.q() || AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19906d6, alVar.f24277a)) < 0.721f) {
-                        if (!alVar.R) {
-                            alVar.R = true;
-                            alVar.E.setMapStyle(ApplicationLoader.getMapsProvider().loadRawResourceStyle(ApplicationLoader.applicationContext, R.raw.mapstyle_night));
+                cl clVar = (cl) this.f31271b;
+                clVar.f26013r.setIconColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.ui, clVar.f26545a));
+                clVar.f26013r.B(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.G8, clVar.f26545a));
+                clVar.f26013r.G(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.F8, clVar.f26545a), true);
+                clVar.f26013r.G(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.E8, clVar.f26545a), false);
+                if (clVar.E != null) {
+                    if (org.telegram.ui.ActionBar.k6.I.q() || AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21659d6, clVar.f26545a)) < 0.721f) {
+                        if (!clVar.R) {
+                            clVar.R = true;
+                            clVar.E.setMapStyle(ApplicationLoader.getMapsProvider().loadRawResourceStyle(ApplicationLoader.applicationContext, R.raw.mapstyle_night));
                             return;
                         }
                         return;
-                    } else if (alVar.R) {
-                        alVar.R = false;
-                        alVar.E.setMapStyle(null);
+                    } else if (clVar.R) {
+                        clVar.R = false;
+                        clVar.E.setMapStyle(null);
                         return;
                     } else {
                         return;
@@ -86,38 +86,38 @@ public final class t6 implements org.telegram.ui.ActionBar.k6 {
                 }
                 return;
             case 3:
-                kq kqVar = (kq) this.f28907b;
-                org.telegram.ui.ActionBar.w0 w0Var3 = kqVar.F;
-                w0Var3.setIconColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, kqVar.f26355a0));
-                org.telegram.ui.ActionBar.j6.w1(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.I5, kqVar.f26355a0), w0Var3.getBackground());
-                w0Var3.G(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.E8, kqVar.f26355a0), false);
-                w0Var3.G(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.F8, kqVar.f26355a0), true);
-                w0Var3.B(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G8, kqVar.f26355a0));
+                mq mqVar = (mq) this.f31271b;
+                org.telegram.ui.ActionBar.w0 w0Var3 = mqVar.F;
+                w0Var3.setIconColor(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.G6, mqVar.f29185a0));
+                org.telegram.ui.ActionBar.k6.w1(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.I5, mqVar.f29185a0), w0Var3.getBackground());
+                w0Var3.G(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.E8, mqVar.f29185a0), false);
+                w0Var3.G(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.F8, mqVar.f29185a0), true);
+                w0Var3.B(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.G8, mqVar.f29185a0));
                 return;
             case 4:
-                ((da0) this.f28907b).Z();
+                ((fa0) this.f31271b).Z();
                 return;
             case 5:
-                ((de0) this.f28907b).q();
+                ((fe0) this.f31271b).q();
                 return;
             case 6:
-                ((vg0) this.f28907b).S();
+                ((xg0) this.f31271b).S();
                 return;
             case 7:
-                NumberTextView numberTextView = ((do0) this.f28907b).f24336u0;
+                NumberTextView numberTextView = ((eo0) this.f31271b).f26616u0;
                 if (numberTextView != null) {
-                    numberTextView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20283y8, false));
+                    numberTextView.setTextColor(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f22038y8, false));
                     return;
                 }
                 return;
             case 8:
-                ((Runnable) this.f28907b).run();
+                ((Runnable) this.f31271b).run();
                 return;
             case 9:
-                ((xx0) this.f28907b).z0(false);
+                ((yx0) this.f31271b).z0(false);
                 return;
             default:
-                ((e51) this.f28907b).d();
+                ((f51) this.f31271b).d();
                 return;
         }
     }

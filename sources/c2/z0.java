@@ -19,41 +19,41 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.concurrent.Executor;
 public final class z0 {
-    public boolean f2046a;
-    public final Object f2047b;
-    public final Object f2048c;
+    public boolean f2223a;
+    public final Object f2224b;
+    public final Object f2225c;
     public final Object d;
-    public final Object e;
-    public final Object f2049f;
-    public Object f2050g;
+    public final Object f2226e;
+    public final Object f2227f;
+    public Object f2228g;
     public Object h;
 
     public z0(Context context, e eVar) {
-        this.f2049f = new ArrayList();
-        this.f2050g = new androidx.mediarouter.app.h(this, 1);
+        this.f2227f = new ArrayList();
+        this.f2228g = new androidx.mediarouter.app.h(this, 1);
         this.h = new androidx.activity.i(this, 8);
-        this.f2047b = context;
-        this.f2048c = eVar;
+        this.f2224b = context;
+        this.f2225c = eVar;
         this.d = new Handler();
-        this.e = context.getPackageManager();
+        this.f2226e = context.getPackageManager();
     }
 
     public static void a(z0 z0Var, l3.g gVar) {
         boolean z4;
-        if (z0Var.f2046a && !gVar.equals((l3.g) z0Var.h)) {
+        if (z0Var.f2223a && !gVar.equals((l3.g) z0Var.h)) {
             z0Var.h = gVar;
-            l3.k0 k0Var = (l3.k0) ((gg.f) z0Var.f2048c).f6618b;
-            if (k0Var.f11175f0 == Looper.myLooper()) {
+            l3.k0 k0Var = (l3.k0) ((hg.f) z0Var.f2225c).f7462b;
+            if (k0Var.f11540f0 == Looper.myLooper()) {
                 z4 = true;
             } else {
                 z4 = false;
             }
             h5.a.i(z4);
             if (!gVar.equals(k0Var.f())) {
-                k0Var.f11190w = gVar;
-                l3.t tVar = k0Var.f11186r;
+                k0Var.f11555w = gVar;
+                l3.t tVar = k0Var.f11551r;
                 if (tVar != null) {
-                    tVar.q();
+                    tVar.i();
                 }
             }
         }
@@ -62,10 +62,10 @@ public final class z0 {
     public FileInputStream b(AssetManager assetManager, String str) {
         try {
             return assetManager.openFd(str).createInputStream();
-        } catch (FileNotFoundException e) {
-            String message = e.getMessage();
+        } catch (FileNotFoundException e6) {
+            String message = e6.getMessage();
             if (message != null && message.contains("compressed")) {
-                ((e2.d) this.f2048c).l();
+                ((e2.d) this.f2225c).p();
                 return null;
             }
             return null;
@@ -73,16 +73,16 @@ public final class z0 {
     }
 
     public void c(int i10, Serializable serializable) {
-        ((Executor) this.f2047b).execute(new ah.a(this, i10, serializable, 3));
+        ((Executor) this.f2224b).execute(new bh.a(this, i10, serializable, 2));
     }
 
     public void d() {
         boolean f10;
         int i10;
-        e eVar = (e) this.f2048c;
-        PackageManager packageManager = (PackageManager) this.e;
-        ArrayList arrayList = (ArrayList) this.f2049f;
-        if (this.f2046a) {
+        e eVar = (e) this.f2225c;
+        PackageManager packageManager = (PackageManager) this.f2226e;
+        ArrayList arrayList = (ArrayList) this.f2227f;
+        if (this.f2223a) {
             ArrayList arrayList2 = new ArrayList();
             if (Build.VERSION.SDK_INT >= 30) {
                 Intent intent = new Intent("android.media.MediaRoute2ProviderService");
@@ -101,7 +101,7 @@ public final class z0 {
                 }
                 ServiceInfo serviceInfo = it.next().serviceInfo;
                 if (serviceInfo != null) {
-                    if (c0.f1905c == null) {
+                    if (c0.f2069c == null) {
                         f10 = false;
                     } else {
                         f10 = c0.c().f();
@@ -123,7 +123,7 @@ public final class z0 {
                     int i13 = 0;
                     while (true) {
                         if (i13 < size2) {
-                            ComponentName componentName = ((y0) arrayList.get(i13)).f2038r;
+                            ComponentName componentName = ((y0) arrayList.get(i13)).f2214r;
                             if (componentName.getPackageName().equals(str) && componentName.getClassName().equals(str2)) {
                                 break;
                             }
@@ -134,10 +134,10 @@ public final class z0 {
                         }
                     }
                     if (i13 < 0) {
-                        y0 y0Var = new y0((Context) this.f2047b, new ComponentName(serviceInfo.packageName, serviceInfo.name));
+                        y0 y0Var = new y0((Context) this.f2224b, new ComponentName(serviceInfo.packageName, serviceInfo.name));
                         y0Var.C = new a1.c(this, y0Var);
-                        if (!y0Var.f2040w) {
-                            y0Var.f2040w = true;
+                        if (!y0Var.f2216w) {
+                            y0Var.f2216w = true;
                             y0Var.r();
                         }
                         i10 = i11 + 1;
@@ -145,12 +145,12 @@ public final class z0 {
                         eVar.a(y0Var, false);
                     } else if (i13 >= i11) {
                         y0 y0Var2 = (y0) arrayList.get(i13);
-                        if (!y0Var2.f2040w) {
-                            y0Var2.f2040w = true;
+                        if (!y0Var2.f2216w) {
+                            y0Var2.f2216w = true;
                             y0Var2.r();
                         }
-                        if (y0Var2.f2042y == null) {
-                            if (!y0Var2.f2040w || (((o) y0Var2.h) == null && y0Var2.v.isEmpty())) {
+                        if (y0Var2.f2218y == null) {
+                            if (!y0Var2.f2216w || (((o) y0Var2.h) == null && y0Var2.v.isEmpty())) {
                                 z4 = false;
                             }
                             if (z4) {
@@ -171,16 +171,16 @@ public final class z0 {
                     if (d != null) {
                         y0Var3.getClass();
                         c0.b();
-                        y0Var3.f2003f = null;
+                        y0Var3.f2176f = null;
                         y0Var3.h(null);
                         eVar.m(d, null);
-                        eVar.f1911a.b(514, d);
-                        eVar.f1919l.remove(d);
+                        eVar.f2076a.b(514, d);
+                        eVar.f2085l.remove(d);
                     }
                     arrayList.remove(y0Var3);
                     y0Var3.C = null;
-                    if (y0Var3.f2040w) {
-                        y0Var3.f2040w = false;
+                    if (y0Var3.f2216w) {
+                        y0Var3.f2216w = false;
                         y0Var3.r();
                     }
                 }
@@ -188,16 +188,16 @@ public final class z0 {
         }
     }
 
-    public z0(android.content.Context r5, gg.f r6) {
-        throw new UnsupportedOperationException("Method not decompiled: c2.z0.<init>(android.content.Context, gg.f):void");
+    public z0(android.content.Context r5, hg.f r6) {
+        throw new UnsupportedOperationException("Method not decompiled: c2.z0.<init>(android.content.Context, hg.f):void");
     }
 
     public z0(AssetManager assetManager, Executor executor, e2.d dVar, String str, File file) {
-        this.f2046a = false;
-        this.f2047b = executor;
-        this.f2048c = dVar;
-        this.f2049f = str;
-        this.e = file;
+        this.f2223a = false;
+        this.f2224b = executor;
+        this.f2225c = dVar;
+        this.f2227f = str;
+        this.f2226e = file;
         int i10 = Build.VERSION.SDK_INT;
         byte[] bArr = null;
         if (i10 >= 24 && i10 <= 34) {
@@ -207,15 +207,15 @@ public final class z0 {
                     bArr = e2.e.h;
                     break;
                 case 26:
-                    bArr = e2.e.f5064g;
+                    bArr = e2.e.f4900g;
                     break;
                 case 27:
-                    bArr = e2.e.f5063f;
+                    bArr = e2.e.f4899f;
                     break;
                 case 28:
                 case 29:
                 case 30:
-                    bArr = e2.e.e;
+                    bArr = e2.e.f4898e;
                     break;
                 case 31:
                 case 32:

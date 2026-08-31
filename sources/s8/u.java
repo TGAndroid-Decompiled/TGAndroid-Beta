@@ -2,22 +2,22 @@ package s8;
 
 import java.util.Iterator;
 import java.util.ListIterator;
-import k7.b7;
+import k7.c7;
 public final class u extends v {
-    public final transient int f44156c;
+    public final transient int f47141c;
     public final transient int d;
-    public final v e;
+    public final v f47142e;
 
     public u(v vVar, int i10, int i11) {
-        this.e = vVar;
-        this.f44156c = i10;
+        this.f47142e = vVar;
+        this.f47141c = i10;
         this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
-        b7.c(i10, this.d);
-        return this.e.get(i10 + this.f44156c);
+        c7.c(i10, this.d);
+        return this.f47142e.get(i10 + this.f47141c);
     }
 
     @Override
@@ -32,17 +32,17 @@ public final class u extends v {
 
     @Override
     public final Object[] o() {
-        return this.e.o();
+        return this.f47142e.o();
     }
 
     @Override
     public final int p() {
-        return this.e.q() + this.f44156c + this.d;
+        return this.f47142e.q() + this.f47141c + this.d;
     }
 
     @Override
     public final int q() {
-        return this.e.q() + this.f44156c;
+        return this.f47142e.q() + this.f47141c;
     }
 
     @Override
@@ -57,9 +57,9 @@ public final class u extends v {
 
     @Override
     public final v subList(int i10, int i11) {
-        b7.e(i10, i11, this.d);
-        int i12 = this.f44156c;
-        return this.e.subList(i10 + i12, i11 + i12);
+        c7.e(i10, i11, this.d);
+        int i12 = this.f47141c;
+        return this.f47142e.subList(i10 + i12, i11 + i12);
     }
 
     @Override

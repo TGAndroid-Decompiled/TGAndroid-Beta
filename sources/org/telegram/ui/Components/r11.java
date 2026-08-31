@@ -1,101 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.ViewPropertyAnimator;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class r11 implements TextWatcher {
-    public final s11 f28361a;
+public final class r11 extends EditTextBoldCursor {
+    public final t11 f30573b;
 
-    public r11(s11 s11Var) {
-        this.f28361a = s11Var;
+    public r11(t11 t11Var, Context context) {
+        super(context);
+        this.f30573b = t11Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z4;
-        boolean z10;
-        float f10;
-        if (this.f28361a.f28592b.length() > 0) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        float f11 = 0.0f;
-        if (this.f28361a.f28591a.getAlpha() != 0.0f) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z4 != z10) {
-            ViewPropertyAnimator animate = this.f28361a.f28591a.animate();
-            float f12 = 1.0f;
-            if (z4) {
-                f11 = 1.0f;
-            }
-            ViewPropertyAnimator duration = animate.alpha(f11).setDuration(150L);
-            if (z4) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.1f;
-            }
-            ViewPropertyAnimator scaleX = duration.scaleX(f10);
-            if (!z4) {
-                f12 = 0.1f;
-            }
-            scaleX.scaleY(f12).start();
-        }
-        String obj = this.f28361a.f28592b.getText().toString();
-        if (obj.length() != 0) {
-            mz mzVar = this.f28361a.f28593c.e;
-            if (mzVar != null) {
-                mzVar.setText(LocaleController.getString(R.string.NoResult));
-            }
-        } else {
-            f2.o0 adapter = this.f28361a.f28593c.f23204c.getAdapter();
-            ThemeEditorView.EditorAlert editorAlert = this.f28361a.f28593c;
-            if (adapter != editorAlert.f23206n) {
-                int I = ThemeEditorView.EditorAlert.I(editorAlert);
-                this.f28361a.f28593c.e.setText(LocaleController.getString(R.string.NoChats));
-                this.f28361a.f28593c.e.c();
-                ThemeEditorView.EditorAlert editorAlert2 = this.f28361a.f28593c;
-                editorAlert2.f23204c.setAdapter(editorAlert2.f23206n);
-                this.f28361a.f28593c.f23206n.l();
-                if (I > 0) {
-                    this.f28361a.f28593c.h.h1(0, -I);
-                }
-            }
-        }
-        o11 o11Var = this.f28361a.f28593c.f23207r;
-        if (o11Var != null && !obj.equals(o11Var.f27429n)) {
-            o11Var.f27429n = obj;
-            if (o11Var.h != null) {
-                Utilities.searchQueue.cancelRunnable(o11Var.h);
-                o11Var.h = null;
-            }
-            if (obj.length() == 0) {
-                o11Var.e.clear();
-                ThemeEditorView.EditorAlert editorAlert3 = o11Var.f27430r;
-                editorAlert3.C = ThemeEditorView.EditorAlert.I(editorAlert3);
-                o11Var.d = -1;
-                o11Var.l();
-                return;
-            }
-            int i10 = o11Var.d + 1;
-            o11Var.d = i10;
-            o11Var.h = new ey(o11Var, obj, i10, 20);
-            Utilities.searchQueue.postRunnable(o11Var.h, 300L);
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        ViewGroup viewGroup;
+        MotionEvent obtain = MotionEvent.obtain(motionEvent);
+        float rawX = obtain.getRawX();
+        float rawY = obtain.getRawY();
+        ThemeEditorView.EditorAlert editorAlert = this.f30573b.f31236c;
+        viewGroup = ((org.telegram.ui.ActionBar.h3) editorAlert).containerView;
+        obtain.setLocation(rawX, rawY - viewGroup.getTranslationY());
+        editorAlert.f25065c.dispatchTouchEvent(obtain);
+        obtain.recycle();
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

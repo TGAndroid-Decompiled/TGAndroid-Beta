@@ -14,7 +14,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 public abstract class yh {
     public static void A(int i10, ArrayList arrayList) {
-        arrayList.add(org.telegram.ui.Components.i51.B(LocaleController.getString(i10)));
+        arrayList.add(org.telegram.ui.Components.j51.B(LocaleController.getString(i10)));
     }
 
     public static String B(int i10) {
@@ -86,39 +86,39 @@ public abstract class yh {
         return f13 - ((f10 - f11) * f12);
     }
 
-    public static int d(int i10, int i11, int i12, int i13) {
-        return Math.max(i13, Math.min(Math.max(i10, i11), i12));
-    }
-
-    public static int e(int i10, int i11, int i12, ArrayList arrayList) {
+    public static int d(int i10, int i11, int i12, ArrayList arrayList) {
         arrayList.add(Integer.valueOf(i10));
         return i11 + i12;
     }
 
-    public static int f(int i10, int i11, ArrayList arrayList) {
+    public static int e(int i10, int i11, ArrayList arrayList) {
         return i11 - (arrayList.size() + i10);
     }
 
-    public static int g(Random random, int i10) {
+    public static int f(Random random, int i10) {
         return Math.abs(random.nextInt() % i10);
     }
 
-    public static int h(org.telegram.ui.Components.t00 t00Var, int i10) {
-        return t00Var.c(t00Var.getMeasuredWidth()) + i10;
+    public static int g(org.telegram.ui.Components.u00 u00Var, int i10) {
+        return u00Var.c(u00Var.getMeasuredWidth()) + i10;
     }
 
-    public static TextView i(FrameLayout frameLayout, TextView textView, FrameLayout.LayoutParams layoutParams, Context context) {
+    public static TextView h(FrameLayout frameLayout, TextView textView, FrameLayout.LayoutParams layoutParams, Context context) {
         frameLayout.addView(textView, layoutParams);
         return new TextView(context);
     }
 
-    public static TextView j(LinearLayout linearLayout, TextView textView, LinearLayout.LayoutParams layoutParams, Context context) {
+    public static TextView i(LinearLayout linearLayout, TextView textView, LinearLayout.LayoutParams layoutParams, Context context) {
         linearLayout.addView(textView, layoutParams);
         return new TextView(context);
     }
 
-    public static Object k(int i10, List list) {
+    public static Object j(int i10, List list) {
         return list.get(list.size() - i10);
+    }
+
+    public static String k(String str, String str2) {
+        return str + str2;
     }
 
     public static String l(String str, String str2, String str3, String str4, String str5) {
@@ -141,9 +141,9 @@ public abstract class yh {
         return kVar;
     }
 
-    public static org.telegram.ui.Components.el0 o(View view, View view2, int i10, int i11) {
-        view.setLayoutParams(new f2.w0(i10, i11));
-        return new f2.l1(view2);
+    public static org.telegram.ui.Components.fl0 o(View view, View view2, int i10, int i11) {
+        view.setLayoutParams(new f2.x0(i10, i11));
+        return new f2.m1(view2);
     }
 
     public static void p(float f10, int i10, TextView textView) {
@@ -157,7 +157,7 @@ public abstract class yh {
     }
 
     public static void r(int i10, ArrayList arrayList) {
-        arrayList.add(org.telegram.ui.Components.i51.t(LocaleController.getString(i10)));
+        arrayList.add(org.telegram.ui.Components.j51.t(LocaleController.getString(i10)));
     }
 
     public static void s(int i10, Object[] objArr, org.telegram.ui.Components.qc qcVar, int i11, int i12) {
@@ -165,33 +165,33 @@ public abstract class yh {
     }
 
     public static void t(int i10, boolean[] zArr, boolean z4, TextView textView, int i11) {
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(zArr, i10, z4));
+        textView.setTextColor(org.telegram.ui.ActionBar.k6.w0(zArr, i10, z4));
         textView.setGravity(i11);
     }
 
-    public static void u(FrameLayout frameLayout, org.telegram.ui.ActionBar.f6 f6Var, TLRPC.TL_error tL_error, boolean z4) {
-        new org.telegram.ui.Components.qc(frameLayout, f6Var).d0(tL_error, z4);
+    public static void u(FrameLayout frameLayout, org.telegram.ui.ActionBar.g6 g6Var, TLRPC.TL_error tL_error, boolean z4) {
+        new org.telegram.ui.Components.qc(frameLayout, g6Var).d0(tL_error, z4);
     }
 
-    public static void v(com.google.firebase.messaging.r rVar) {
-        com.googlecode.mp4parser.g.a().getClass();
-        com.googlecode.mp4parser.g.b(rVar);
-    }
-
-    public static void w(String str, StringBuilder sb) {
+    public static void v(String str, StringBuilder sb) {
         sb.append(str);
         FileLog.d(sb.toString());
     }
 
-    public static void x(StringBuilder sb, String str, String str2, String str3, String str4) {
+    public static void w(StringBuilder sb, String str, String str2, String str3, String str4) {
         sb.append(str);
         sb.append(str2);
         sb.append(str3);
         sb.append(str4);
     }
 
-    public static void y(tf.k kVar, int i10, ArrayList arrayList) {
-        arrayList.add(new tf.i(kVar, i10));
+    public static void x(sf.e eVar) {
+        com.googlecode.mp4parser.g.a().getClass();
+        com.googlecode.mp4parser.g.b(eVar);
+    }
+
+    public static void y(uf.k kVar, int i10, ArrayList arrayList) {
+        arrayList.add(new uf.i(kVar, i10));
     }
 
     public static void z(boolean z4, org.telegram.ui.ActionBar.k kVar) {

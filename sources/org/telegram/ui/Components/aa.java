@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
-public abstract class aa extends sl0 {
+public abstract class aa extends tl0 {
     public int U2;
     public int V2;
     public int W2;

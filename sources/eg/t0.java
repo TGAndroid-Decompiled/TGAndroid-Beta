@@ -1,21 +1,20 @@
 package eg;
 
-import android.content.Context;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.Premium.LimitPreviewView;
-public final class t0 extends LimitPreviewView {
-    public final u0 f5509j0;
+import org.telegram.ui.ht0;
+public final class t0 implements c {
+    public final ht0 f5481a;
 
-    public t0(u0 u0Var, Context context, int i10, int i11, int i12, float f10, f6 f6Var) {
-        super(context, i10, i11, i12, f10, f6Var);
-        this.f5509j0 = u0Var;
+    public t0(ht0 ht0Var) {
+        this.f5481a = ht0Var;
     }
 
     @Override
-    public final void invalidate() {
-        if (this.f5509j0.e.f5536c0) {
-            return;
-        }
-        super.invalidate();
+    public final void a() {
+        this.f5481a.r0(null, true);
+    }
+
+    @Override
+    public final j b() {
+        return this.f5481a.P0;
     }
 }

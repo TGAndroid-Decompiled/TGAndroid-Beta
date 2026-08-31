@@ -2,11 +2,11 @@ package v4;
 
 import java.util.List;
 public interface f {
-    int b(long j10);
+    int d(long j10);
 
-    long g(int i10);
+    long l(int i10);
 
-    List m(long j10);
+    List q(long j10);
 
-    int p();
+    int x();
 }

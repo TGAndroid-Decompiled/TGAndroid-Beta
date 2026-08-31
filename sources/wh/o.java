@@ -1,100 +1,194 @@
 package wh;
 
-import android.content.Context;
-import android.graphics.PointF;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-import f2.g1;
-import f2.h1;
-import f2.i0;
-import f2.v0;
-public class o extends h1 {
-    public final LinearInterpolator f46631i;
-    public final DecelerateInterpolator f46632j;
-    public final float f46633k;
-    public int f46634l;
-    public int f46635m;
-    public final int f46636n;
-    public final float f46637o;
-    public int f46638p;
+import android.text.SpannableString;
+import android.view.KeyEvent;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.f51;
+import org.telegram.ui.Components.my;
+public final class o implements my {
+    public final q f49893a;
 
-    public o(Context context, int i10) {
-        this.f46631i = new LinearInterpolator();
-        this.f46632j = new DecelerateInterpolator(1.5f);
-        this.f46634l = 0;
-        this.f46635m = 0;
-        this.f46637o = 1.0f;
-        this.f46633k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
-        this.f46636n = i10;
+    public o(q qVar) {
+        this.f49893a = qVar;
     }
 
     @Override
-    public final PointF a(int i10) {
-        v0 v0Var = this.f5725c;
-        if (v0Var instanceof i0) {
-            return ((i0) v0Var).E0(i10);
-        }
-        return null;
+    public final boolean A() {
+        return false;
     }
 
     @Override
-    public final void d(int i10, int i11, g1 g1Var) {
-        if (this.f5724b.f1250x.r() == 0) {
-            h();
-            return;
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final void i(int i10) {
+        e1 focusedEditTextOrNull;
+        boolean z4 = false;
+        q qVar = this.f49893a;
+        if (i10 != 0 && (focusedEditTextOrNull = qVar.f49929r.getFocusedEditTextOrNull()) != null) {
+            qVar.C = focusedEditTextOrNull;
+            qVar.D = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
-        int i12 = this.f46634l;
-        int i13 = i12 - i10;
-        int i14 = 0;
-        if (i12 * i13 <= 0) {
-            i13 = 0;
+        if (i10 != 0) {
+            z4 = true;
         }
-        this.f46634l = i13;
-        int i15 = this.f46635m;
-        int i16 = i15 - i11;
-        if (i15 * i16 > 0) {
-            i14 = i16;
+        qVar.f49933y = z4;
+        qVar.S();
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        e1 M = q.M(this.f49893a);
+        if (M == null || M.length() == 0) {
+            return false;
         }
-        this.f46635m = i14;
-        if (i13 == 0 && i14 == 0) {
-            PointF a2 = a(this.f5723a);
-            if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
-                h1.b(a2);
-                this.f46634l = (int) (a2.x * 10000.0f);
-                this.f46635m = (int) (a2.y * 10000.0f);
-                g1Var.b((int) (this.f46634l * 1.2f), (int) (this.f46635m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f46633k)) * 1.2f), this.f46631i);
-                return;
+        M.dispatchKeyEvent(new KeyEvent(0, 67));
+        return true;
+    }
+
+    @Override
+    public final void l(String str) {
+        q qVar = this.f49893a;
+        e1 M = q.M(qVar);
+        if (M != null) {
+            int N = q.N(qVar, M);
+            try {
+                CharSequence replaceEmoji = Emoji.replaceEmoji((CharSequence) str, M.getPaint().getFontMetricsInt(), false, (int[]) null);
+                M.setText(M.getText().insert(N, replaceEmoji));
+                int length = N + replaceEmoji.length();
+                M.setSelection(length, length);
+                if (M == qVar.C) {
+                    qVar.D = length;
+                }
+            } catch (Exception unused) {
             }
-            g1Var.d = this.f5723a;
-            h();
         }
     }
 
     @Override
-    public final void f() {
-        this.f46635m = 0;
-        this.f46634l = 0;
+    public final float p() {
+        return 0.0f;
     }
 
     @Override
-    public final void g(android.view.View r8, f2.g1 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: wh.o.g(android.view.View, f2.g1):void");
-    }
-
-    public o(Context context, int i10, float f10) {
-        this.f46631i = new LinearInterpolator();
-        this.f46632j = new DecelerateInterpolator(1.5f);
-        this.f46634l = 0;
-        this.f46635m = 0;
-        this.f46637o = f10;
-        this.f46633k = (25.0f / context.getResources().getDisplayMetrics().densityDpi) * f10;
-        this.f46636n = i10;
+    public final void x(long j10, TLRPC.Document document, String str, boolean z4) {
+        org.telegram.ui.Components.u5 u5Var;
+        q qVar = this.f49893a;
+        e1 M = q.M(qVar);
+        if (M != null) {
+            int N = q.N(qVar, M);
+            try {
+                if (str == null) {
+                    str = "😀";
+                }
+                SpannableString spannableString = new SpannableString(str);
+                if (document != null) {
+                    u5Var = new org.telegram.ui.Components.u5(document, M.getPaint().getFontMetricsInt());
+                } else {
+                    u5Var = new org.telegram.ui.Components.u5(j10, M.getPaint().getFontMetricsInt());
+                }
+                u5Var.cacheType = org.telegram.ui.Components.l5.g();
+                spannableString.setSpan(u5Var, 0, spannableString.length(), 33);
+                M.setText(M.getText().insert(N, spannableString));
+                int length = N + spannableString.length();
+                M.setSelection(length, length);
+                if (M == qVar.C) {
+                    qVar.D = length;
+                }
+            } catch (Exception unused) {
+            }
+        }
     }
 
     @Override
-    public void e() {
+    public final boolean z() {
+        return this.f49893a.f49933y;
     }
 
-    public void i() {
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void o(f51 f51Var) {
+    }
+
+    @Override
+    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void s(int i10) {
+    }
+
+    @Override
+    public final void t(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void y(long j10) {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z4) {
+    }
+
+    @Override
+    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z4, int i10) {
+    }
+
+    @Override
+    public final void v(View view, Object obj, String str, Object obj2, boolean z4, int i10, int i11) {
     }
 }

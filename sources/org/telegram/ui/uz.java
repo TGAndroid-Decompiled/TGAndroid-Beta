@@ -1,29 +1,33 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
+import android.view.KeyEvent;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class uz implements DialogInterface.OnDismissListener {
-    public final int f39023a;
-    public final EditTextBoldCursor f39024b;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class uz implements TextView.OnEditorActionListener {
+    public final int f42068a;
+    public final AlertDialog$Builder f42069b;
 
-    public uz(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f39023a = i10;
-        this.f39024b = editTextBoldCursor;
+    public uz(AlertDialog$Builder alertDialog$Builder, int i10) {
+        this.f42068a = i10;
+        this.f42069b = alertDialog$Builder;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f39023a) {
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        switch (this.f42068a) {
             case 0:
-                AndroidUtilities.hideKeyboard(this.f39024b);
-                return;
+                AndroidUtilities.hideKeyboard(textView);
+                this.f42069b.f21166a.d(-1).callOnClick();
+                return false;
             case 1:
-                AndroidUtilities.hideKeyboard(this.f39024b);
-                return;
+                AndroidUtilities.hideKeyboard(textView);
+                this.f42069b.f21166a.d(-1).callOnClick();
+                return false;
             default:
-                AndroidUtilities.hideKeyboard(this.f39024b);
-                return;
+                AndroidUtilities.hideKeyboard(textView);
+                this.f42069b.f21166a.d(-1).callOnClick();
+                return false;
         }
     }
 }

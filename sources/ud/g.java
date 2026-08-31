@@ -2,11 +2,11 @@ package ud;
 
 import dd.p;
 public final class g extends kotlin.jvm.internal.i implements p {
-    public static final g f45227a = new kotlin.jvm.internal.i(2, i.class, "createSegment", "createSegment(JLkotlinx/coroutines/sync/SemaphoreSegment;)Lkotlinx/coroutines/sync/SemaphoreSegment;", 1);
+    public static final g f48488a = new kotlin.jvm.internal.i(2, i.class, "createSegment", "createSegment(JLkotlinx/coroutines/sync/SemaphoreSegment;)Lkotlinx/coroutines/sync/SemaphoreSegment;", 1);
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        int i10 = i.f45232a;
+        int i10 = i.f48494a;
         return new j(((Number) obj).longValue(), (j) obj2, 0);
     }
 }

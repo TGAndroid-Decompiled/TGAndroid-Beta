@@ -7,13 +7,13 @@ public final class dk extends FragmentContextView {
     public final int K0;
     public final xn L0;
 
-    public dk(xn xnVar, Context context, xn xnVar2, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, xnVar2, null, true, f6Var);
+    public dk(xn xnVar, Context context, xn xnVar2, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
+        super(context, xnVar2, null, true, g6Var);
         this.K0 = i10;
         switch (i10) {
             case 1:
                 this.L0 = xnVar;
-                super(context, xnVar2, null, false, f6Var);
+                super(context, xnVar2, null, false, g6Var);
                 return;
             default:
                 this.L0 = xnVar;

@@ -1,11 +1,11 @@
 package k9;
 public final class x0 extends x1 {
-    public final String f10268a;
-    public final String f10269b;
+    public final String f11032a;
+    public final String f11033b;
 
     public x0(String str, String str2) {
-        this.f10268a = str;
-        this.f10269b = str2;
+        this.f11032a = str;
+        this.f11033b = str2;
     }
 
     public final boolean equals(Object obj) {
@@ -14,7 +14,7 @@ public final class x0 extends x1 {
         }
         if (obj instanceof x1) {
             x0 x0Var = (x0) ((x1) obj);
-            if (this.f10268a.equals(x0Var.f10268a) && this.f10269b.equals(x0Var.f10269b)) {
+            if (this.f11032a.equals(x0Var.f11032a) && this.f11033b.equals(x0Var.f11033b)) {
                 return true;
             }
         }
@@ -22,13 +22,13 @@ public final class x0 extends x1 {
     }
 
     public final int hashCode() {
-        return ((this.f10268a.hashCode() ^ 1000003) * 1000003) ^ this.f10269b.hashCode();
+        return ((this.f11032a.hashCode() ^ 1000003) * 1000003) ^ this.f11033b.hashCode();
     }
 
     public final String toString() {
         StringBuilder sb = new StringBuilder("RolloutVariant{rolloutId=");
-        sb.append(this.f10268a);
+        sb.append(this.f11032a);
         sb.append(", variantId=");
-        return android.support.v4.media.a.r(sb, this.f10269b, "}");
+        return android.support.v4.media.a.r(sb, this.f11033b, "}");
     }
 }

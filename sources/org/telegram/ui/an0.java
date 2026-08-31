@@ -1,17 +1,23 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-public final class an0 extends View {
-    public Paint f32671a;
-    public Paint f32672b;
-    public float f32673c;
+import java.util.TimerTask;
+import org.telegram.messenger.AndroidUtilities;
+public final class an0 extends TimerTask {
+    public final bn0 f35214a;
+
+    public an0(bn0 bn0Var) {
+        this.f35214a = bn0Var;
+    }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float measuredWidth = (int) (getMeasuredWidth() * this.f32673c);
-        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f32672b);
-        canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f32671a);
+    public final void run() {
+        bn0 bn0Var = this.f35214a;
+        if (bn0Var.v == null) {
+            return;
+        }
+        double currentTimeMillis = System.currentTimeMillis();
+        bn0Var.f35568y = (int) (bn0Var.f35568y - (currentTimeMillis - bn0Var.C));
+        bn0Var.C = currentTimeMillis;
+        AndroidUtilities.runOnUIThread(new gl0(this, 6));
     }
 }

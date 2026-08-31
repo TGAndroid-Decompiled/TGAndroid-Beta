@@ -4,44 +4,44 @@ import android.content.Context;
 import com.google.android.gms.tasks.Task;
 import java.util.HashMap;
 public final class ka {
-    public static ta f9905j;
-    public static final ya f9906k;
-    public final String f9907a;
-    public final String f9908b;
-    public final ja f9909c;
+    public static ta f10634j;
+    public static final ya f10635k;
+    public final String f10636a;
+    public final String f10637b;
+    public final ja f10638c;
     public final cb.l d;
-    public final Task e;
-    public final Task f9910f;
-    public final String f9911g;
+    public final Task f10639e;
+    public final Task f10640f;
+    public final String f10641g;
     public final int h;
-    public final HashMap f9912i = new HashMap();
+    public final HashMap f10642i = new HashMap();
 
     static {
         Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
         objArr[0].getClass();
         objArr[1].getClass();
-        f9906k = new ya(objArr);
+        f10635k = new ya(objArr);
     }
 
     public ka(Context context, cb.l lVar, ja jaVar) {
         int i10;
         new HashMap();
-        this.f9907a = context.getPackageName();
-        this.f9908b = cb.c.a(context);
+        this.f10636a = context.getPackageName();
+        this.f10637b = cb.c.a(context);
         this.d = lVar;
-        this.f9909c = jaVar;
+        this.f10638c = jaVar;
         oa.b();
-        this.f9911g = "vision-common";
+        this.f10641g = "vision-common";
         cb.g a2 = cb.g.a();
         h2.f fVar = new h2.f(this, 5);
         a2.getClass();
-        this.e = cb.g.b(fVar);
+        this.f10639e = cb.g.b(fVar);
         cb.g a10 = cb.g.a();
         lVar.getClass();
         h7.p pVar = new h7.p(lVar, 2);
         a10.getClass();
-        this.f9910f = cb.g.b(pVar);
-        ya yaVar = f9906k;
+        this.f10640f = cb.g.b(pVar);
+        ya yaVar = f10635k;
         if (yaVar.containsKey("vision-common")) {
             i10 = m6.e.d(context, (String) yaVar.get("vision-common"), false);
         } else {

@@ -6,15 +6,14 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Pair;
-import cg.n0;
 import g5.l;
 import g5.m;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
-import mg.w;
-import nh.e1;
-import nh.z0;
+import ng.w;
+import oh.e1;
+import oh.z0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageReceiver;
@@ -35,69 +34,69 @@ import org.telegram.ui.ActionBar.p2;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.FragmentContextView;
 import org.telegram.ui.Components.cf;
-import org.telegram.ui.Components.d71;
-import org.telegram.ui.Components.di;
-import org.telegram.ui.Components.i71;
-import org.telegram.ui.Components.li;
-import org.telegram.ui.Components.w21;
-import org.telegram.ui.Components.wn0;
+import org.telegram.ui.Components.ei;
+import org.telegram.ui.Components.f71;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.mi;
+import org.telegram.ui.Components.x21;
+import org.telegram.ui.Components.xn0;
 import org.telegram.ui.Components.y4;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.oy;
-import org.telegram.ui.re1;
-import org.telegram.ui.t60;
-import org.telegram.ui.ue1;
-import org.telegram.ui.vc0;
+import org.telegram.ui.ay;
+import org.telegram.ui.py;
+import org.telegram.ui.te1;
+import org.telegram.ui.u60;
+import org.telegram.ui.wc0;
+import org.telegram.ui.we1;
 import org.telegram.ui.xn;
-import org.telegram.ui.zx;
-import ph.s7;
-import ph.z7;
-import tf.n;
-import tf.y;
-public final class e implements f, RequestDelegateTimestamp, ImageReceiver.ImageReceiverDelegate, y4, vc0, MessagesStorage.BooleanCallback, l, c2, t60, MessagesStorage.StringCallback {
-    public final int f5880a;
-    public final long f5881b;
-    public final Object f5882c;
+import qh.q7;
+import qh.x7;
+import uf.n;
+import uf.y;
+public final class e implements f, RequestDelegateTimestamp, ImageReceiver.ImageReceiverDelegate, y4, wc0, MessagesStorage.BooleanCallback, l, c2, u60, MessagesStorage.StringCallback {
+    public final int f5976a;
+    public final long f5977b;
+    public final Object f5978c;
 
     public e(long j10, y2.i iVar) {
-        this.f5880a = 0;
-        this.f5881b = j10;
-        this.f5882c = iVar;
+        this.f5976a = 0;
+        this.f5977b = j10;
+        this.f5978c = iVar;
     }
 
     @Override
-    public void J(int i10, int i11, boolean z4) {
+    public void I(int i10, int i11, boolean z4) {
         boolean G1;
-        li liVar = (li) this.f5882c;
-        di diVar = liVar.f26748v0;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = liVar.f26702g0;
-        long j10 = this.f5881b;
-        if (diVar != chatAttachAlertPhotoLayout && diVar != liVar.f26722n0) {
-            if (!diVar.H(i10, z4, i11, liVar.s1(), j10)) {
-                liVar.f26758x2 = true;
-                liVar.dismiss();
+        mi miVar = (mi) this.f5978c;
+        ei eiVar = miVar.f29100v0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = miVar.f29054g0;
+        long j10 = this.f5977b;
+        if (eiVar != chatAttachAlertPhotoLayout && eiVar != miVar.f29074n0) {
+            if (!eiVar.H(i10, z4, i11, miVar.s1(), j10)) {
+                miVar.f29110x2 = true;
+                miVar.dismiss();
             }
             G1 = false;
         } else {
-            G1 = liVar.G1(i10, z4, i11, liVar.s1(), j10);
+            G1 = miVar.G1(i10, z4, i11, miVar.s1(), j10);
         }
-        cf cfVar = liVar.f26695e0;
+        cf cfVar = miVar.f29047e0;
         if (cfVar != null) {
             cfVar.h(!G1);
-            liVar.f26695e0 = null;
+            miVar.f29047e0 = null;
         }
     }
 
     @Override
     public Object apply(Object obj) {
-        y2.i iVar = (y2.i) this.f5882c;
+        y2.i iVar = (y2.i) this.f5978c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
         ContentValues contentValues = new ContentValues();
-        contentValues.put("next_request_ms", Long.valueOf(this.f5881b));
-        String str = iVar.f47014a;
-        v2.d dVar = iVar.f47016c;
+        contentValues.put("next_request_ms", Long.valueOf(this.f5977b));
+        String str = iVar.f50693a;
+        v2.d dVar = iVar.f50695c;
         if (sQLiteDatabase.update("transport_contexts", contentValues, "backend_name = ? and priority = ?", new String[]{str, String.valueOf(i3.a.a(dVar))}) < 1) {
-            contentValues.put("backend_name", iVar.f47014a);
+            contentValues.put("backend_name", iVar.f50693a);
             contentValues.put("priority", Integer.valueOf(i3.a.a(dVar)));
             sQLiteDatabase.insert("transport_contexts", null, contentValues);
         }
@@ -106,28 +105,28 @@ public final class e implements f, RequestDelegateTimestamp, ImageReceiver.Image
 
     @Override
     public m createDataSource() {
-        return new d71(((i71) this.f5882c).h.createDataSource(), this.f5881b);
+        return new f71(((k71) this.f5978c).h.createDataSource(), this.f5977b);
     }
 
     @Override
     public void d(TLRPC.MessageMedia messageMedia, int i10, boolean z4, int i11, long j10) {
-        int i12 = this.f5880a;
-        Object obj = this.f5882c;
+        int i12 = this.f5976a;
+        Object obj = this.f5978c;
         switch (i12) {
             case 4:
                 float[] fArr = FragmentContextView.J0;
-                SendMessagesHelper.getInstance(((LocationController.SharingLocationInfo) obj).messageObject.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, this.f5881b, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0));
+                SendMessagesHelper.getInstance(((LocationController.SharingLocationInfo) obj).messageObject.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, this.f5977b, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0));
                 return;
             default:
-                Pattern pattern = LaunchActivity.f31612y1;
-                SendMessagesHelper.getInstance(((int[]) obj)[0]).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, this.f5881b, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0));
+                Pattern pattern = LaunchActivity.f34134y1;
+                SendMessagesHelper.getInstance(((int[]) obj)[0]).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, this.f5977b, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0));
                 return;
         }
     }
 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z4, boolean z10, boolean z11) {
-        w wVar = (w) this.f5882c;
+        w wVar = (w) this.f5978c;
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (z4 && bitmapSafe != null) {
             Bitmap bitmap = bitmapSafe.bitmap;
@@ -137,7 +136,7 @@ public final class e implements f, RequestDelegateTimestamp, ImageReceiver.Image
                     bitmap = ((BitmapDrawable) drawable).getBitmap();
                 }
             }
-            wVar.onComplete(new Pair(Long.valueOf(this.f5881b), bitmap));
+            wVar.onComplete(new Pair(Long.valueOf(this.f5977b), bitmap));
         }
     }
 
@@ -147,33 +146,9 @@ public final class e implements f, RequestDelegateTimestamp, ImageReceiver.Image
     }
 
     @Override
-    public void i(d2 d2Var, int i10) {
-        switch (this.f5880a) {
-            case 7:
-                wn0 wn0Var = ((oy) this.f5882c).f37129z0.V;
-                a0.h hVar = wn0Var.f44915u0;
-                long j10 = this.f5881b;
-                y yVar = (y) hVar.f(j10);
-                if (yVar != null) {
-                    wn0Var.f44915u0.l(j10);
-                    wn0Var.f44909q0.remove(yVar);
-                    wn0Var.f44913s0.remove(yVar);
-                    wn0Var.f44911r0.remove(yVar);
-                    wn0Var.l();
-                    MessagesStorage.getInstance(wn0Var.f44908p0).getStorageQueue().postRunnable(new n(wn0Var, j10, 0));
-                    return;
-                }
-                return;
-            default:
-                ((zx) this.f5882c).f40873a.getMediaDataController().removePeer(this.f5881b);
-                return;
-        }
-    }
-
-    @Override
-    public void j(int i10, ArrayList arrayList) {
-        ue1 ue1Var = (ue1) this.f5882c;
-        p2 p2Var = ue1Var.f38924b;
+    public void i(int i10, ArrayList arrayList) {
+        we1 we1Var = (we1) this.f5978c;
+        p2 p2Var = we1Var.f42454b;
         int size = arrayList.size();
         int[] iArr = new int[1];
         TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = new TLRPC.TL_messages_invitedUsers();
@@ -181,13 +156,37 @@ public final class e implements f, RequestDelegateTimestamp, ImageReceiver.Image
         int i11 = 0;
         while (i11 < size) {
             MessagesController messagesController = p2Var.getMessagesController();
-            n0 n0Var = new n0(21);
-            long j10 = this.f5881b;
-            messagesController.addUserToChat(j10, (TLRPC.User) arrayList.get(i11), i10, null, p2Var, false, n0Var, null, new re1(ue1Var, tL_messages_invitedUsers, iArr, size, arrayList, j10));
+            ag.f fVar = new ag.f(23);
+            long j10 = this.f5977b;
+            messagesController.addUserToChat(j10, (TLRPC.User) arrayList.get(i11), i10, null, p2Var, false, fVar, null, new te1(we1Var, tL_messages_invitedUsers, iArr, size, arrayList, j10));
             i11++;
             size = size;
             iArr = iArr;
             tL_messages_invitedUsers = tL_messages_invitedUsers;
+        }
+    }
+
+    @Override
+    public void j(d2 d2Var, int i10) {
+        switch (this.f5976a) {
+            case 7:
+                xn0 xn0Var = ((py) this.f5978c).f40306z0.V;
+                a0.h hVar = xn0Var.f48776u0;
+                long j10 = this.f5977b;
+                y yVar = (y) hVar.f(j10);
+                if (yVar != null) {
+                    xn0Var.f48776u0.l(j10);
+                    xn0Var.f48770q0.remove(yVar);
+                    xn0Var.f48774s0.remove(yVar);
+                    xn0Var.f48772r0.remove(yVar);
+                    xn0Var.l();
+                    MessagesStorage.getInstance(xn0Var.f48769p0).getStorageQueue().postRunnable(new n(xn0Var, j10, 0));
+                    return;
+                }
+                return;
+            default:
+                ((ay) this.f5978c).f35264a.getMediaDataController().removePeer(this.f5977b);
+                return;
         }
     }
 
@@ -198,9 +197,9 @@ public final class e implements f, RequestDelegateTimestamp, ImageReceiver.Image
 
     @Override
     public void run(TLObject tLObject, TLRPC.TL_error tL_error, long j10) {
-        e1 e1Var = (e1) this.f5882c;
+        e1 e1Var = (e1) this.f5978c;
         if (tL_error == null) {
-            if (e1Var.B == null || e1Var.f15299w) {
+            if (e1Var.B == null || e1Var.f17010w) {
                 return;
             }
             TL_phone.groupCallStreamChannels groupcallstreamchannels = (TL_phone.groupCallStreamChannels) tLObject;
@@ -212,7 +211,7 @@ public final class e implements f, RequestDelegateTimestamp, ImageReceiver.Image
             if (e1Var.D == null && !groupcallstreamchannels.channels.isEmpty()) {
                 TLRPC.TL_groupCallParticipant tL_groupCallParticipant = new TLRPC.TL_groupCallParticipant();
                 e1Var.D = tL_groupCallParticipant;
-                tL_groupCallParticipant.peer = MessagesController.getInstance(e1Var.e).getPeer(e1Var.f15293b);
+                tL_groupCallParticipant.peer = MessagesController.getInstance(e1Var.f17005e).getPeer(e1Var.f17003b);
                 e1Var.D.video = new TLRPC.TL_groupCallParticipantVideo();
                 TLRPC.TL_groupCallParticipantVideoSourceGroup tL_groupCallParticipantVideoSourceGroup = new TLRPC.TL_groupCallParticipantVideoSourceGroup();
                 tL_groupCallParticipantVideoSourceGroup.semantics = "SIM";
@@ -236,27 +235,27 @@ public final class e implements f, RequestDelegateTimestamp, ImageReceiver.Image
         }
         NativeInstance nativeInstance2 = e1Var.B;
         if (nativeInstance2 != null) {
-            nativeInstance2.onRequestTimeComplete(this.f5881b, r0);
+            nativeInstance2.onRequestTimeComplete(this.f5977b, r0);
         }
     }
 
     public e(Object obj, long j10, int i10) {
-        this.f5880a = i10;
-        this.f5882c = obj;
-        this.f5881b = j10;
+        this.f5976a = i10;
+        this.f5978c = obj;
+        this.f5977b = j10;
     }
 
     @Override
     public void run(String str) {
-        z7 z7Var = (z7) this.f5882c;
-        z7Var.T.i1().r(this.f5881b, str, new s7(z7Var, 2));
+        x7 x7Var = (x7) this.f5978c;
+        x7Var.T.i1().r(this.f5977b, str, new q7(x7Var, 2));
     }
 
     @Override
     public void run(boolean z4) {
-        xn xnVar = ((w21) this.f5882c).h;
+        xn xnVar = ((x21) this.f5978c).h;
         if (e2.c.s(xnVar)) {
-            xnVar.qa(this.f5881b, false);
+            xnVar.qa(this.f5977b, false);
         }
     }
 

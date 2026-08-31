@@ -5,12 +5,12 @@ import ru.noties.jlatexmath.awt.Graphics2D;
 import ru.noties.jlatexmath.awt.geom.AffineTransform;
 public class CharBox extends Box {
     private final char[] arr = new char[1];
-    private final CharFont f16631cf;
+    private final CharFont f18017cf;
     private float italic;
     private final float size;
 
     public CharBox(Char r22) {
-        this.f16631cf = r22.getCharFont();
+        this.f18017cf = r22.getCharFont();
         this.size = r22.getMetrics().getSize();
         this.width = r22.getWidth();
         this.height = r22.getHeight();
@@ -28,7 +28,7 @@ public class CharBox extends Box {
         drawDebug(graphics2D, f10, f11);
         AffineTransform transform = graphics2D.getTransform();
         graphics2D.translate(f10, f11);
-        Font font = FontInfo.getFont(this.f16631cf.fontId);
+        Font font = FontInfo.getFont(this.f18017cf.fontId);
         if (Math.abs(this.size - TeXFormula.FONT_SCALE_FACTOR) > 1.0E-7f) {
             float f12 = this.size;
             float f13 = TeXFormula.FONT_SCALE_FACTOR;
@@ -38,17 +38,17 @@ public class CharBox extends Box {
             graphics2D.setFont(font);
         }
         char[] cArr = this.arr;
-        cArr[0] = this.f16631cf.f16632c;
+        cArr[0] = this.f18017cf.f18018c;
         graphics2D.drawChars(cArr, 0, 1, 0, 0);
         graphics2D.setTransform(transform);
     }
 
     @Override
     public int getLastFontId() {
-        return this.f16631cf.fontId;
+        return this.f18017cf.fontId;
     }
 
     public String toString() {
-        return super.toString() + "=" + this.f16631cf.f16632c;
+        return super.toString() + "=" + this.f18017cf.f18018c;
     }
 }

@@ -2,8 +2,8 @@ package gf;
 
 import org.telegram.tgnet.TLRPC;
 public final class d {
-    public TLRPC.Document f6536a;
-    public String f6537b;
-    public int f6538c;
+    public TLRPC.Document f7033a;
+    public String f7034b;
+    public int f7035c;
     public boolean d;
 }

@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class a0 implements Parcelable {
     a0 EF5;
-    public static final a0[] f42885a = {new Enum("PUBLIC_KEY", 0)};
+    public static final a0[] f44645a = {new Enum("PUBLIC_KEY", 0)};
     public static final Parcelable.Creator<a0> CREATOR = new r0(2);
 
     public static a0 a(String str) {
@@ -23,7 +23,7 @@ public final class a0 implements Parcelable {
     }
 
     public static a0[] values() {
-        return (a0[]) f42885a.clone();
+        return (a0[]) f44645a.clone();
     }
 
     @Override

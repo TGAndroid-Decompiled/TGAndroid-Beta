@@ -2,20 +2,20 @@ package org.telegram.ui.Components;
 
 import j$.util.Objects;
 public final class s8 {
-    public int f28665a;
-    public boolean f28666b;
-    public int f28667c;
+    public int f31004a;
+    public boolean f31005b;
+    public int f31006c;
     public int d;
-    public int e;
-    public int f28668f;
+    public int f31007e;
+    public int f31008f;
 
     public final s8 a() {
         ?? obj = new Object();
-        obj.f28667c = this.f28667c;
+        obj.f31006c = this.f31006c;
         obj.d = this.d;
-        obj.e = this.e;
-        obj.f28668f = this.f28668f;
-        obj.f28666b = this.f28666b;
+        obj.f31007e = this.f31007e;
+        obj.f31008f = this.f31008f;
+        obj.f31005b = this.f31005b;
         return obj;
     }
 
@@ -27,13 +27,13 @@ public final class s8 {
             return false;
         }
         s8 s8Var = (s8) obj;
-        if (this.f28667c == s8Var.f28667c && this.d == s8Var.d && this.e == s8Var.e && this.f28668f == s8Var.f28668f) {
+        if (this.f31006c == s8Var.f31006c && this.d == s8Var.d && this.f31007e == s8Var.f31007e && this.f31008f == s8Var.f31008f) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f28665a), Integer.valueOf(this.f28667c), Integer.valueOf(this.d), Integer.valueOf(this.e), Integer.valueOf(this.f28668f));
+        return Objects.hash(Integer.valueOf(this.f31004a), Integer.valueOf(this.f31006c), Integer.valueOf(this.d), Integer.valueOf(this.f31007e), Integer.valueOf(this.f31008f));
     }
 }

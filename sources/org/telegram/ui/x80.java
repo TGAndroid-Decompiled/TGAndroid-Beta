@@ -1,120 +1,36 @@
 package org.telegram.ui;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class x80 implements Runnable {
-    public final int f39875a;
-    public final LaunchActivity f39876b;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.tgnet.tl.TL_stories;
+public final class x80 implements h5.d {
+    public final int f42995a = 0;
+    public final LaunchActivity f42996b;
+    public final af.f f42997c;
+    public final Runnable d;
+    public final Long f42998e;
+    public final org.telegram.ui.Cells.t1 f42999f;
+    public final Object f43000g;
 
-    public x80(LaunchActivity launchActivity, int i10) {
-        this.f39875a = i10;
-        this.f39876b = launchActivity;
+    public x80(LaunchActivity launchActivity, af.f fVar, Long l10, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.Cells.t1 t1Var, Runnable runnable) {
+        this.f42996b = launchActivity;
+        this.f42997c = fVar;
+        this.f42998e = l10;
+        this.f43000g = tL_premium_boostsStatus;
+        this.f42999f = t1Var;
+        this.d = runnable;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f39875a;
-        org.telegram.ui.ActionBar.p2 p2Var = null;
-        LaunchActivity launchActivity = this.f39876b;
-        switch (i10) {
-            case 0:
-                Pattern pattern = LaunchActivity.f31612y1;
-                org.telegram.ui.Components.qb qbVar = new org.telegram.ui.Components.qb(launchActivity, null);
-                qbVar.d(R.raw.email_check_inbox, new String[0]);
-                qbVar.f28100b.setText(launchActivity.getString(R.string.YourLoginEmailChangedSuccess));
-                org.telegram.ui.ActionBar.p2 R = LaunchActivity.R();
-                if (R != null) {
-                    org.telegram.ui.Components.ic.g(R, qbVar, 1500).j();
-                    try {
-                        R.fragmentView.performHapticFeedback(3, 2);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
-                }
-                return;
-            case 1:
-                if (launchActivity.T0) {
-                    launchActivity.T0 = false;
-                    launchActivity.H(false, false, true);
-                    return;
-                }
-                return;
-            case 2:
-                Pattern pattern2 = LaunchActivity.f31612y1;
-                launchActivity.H(false, true, false);
-                if (LaunchActivity.R() != null && LaunchActivity.R().getLastStoryViewer() != null) {
-                    LaunchActivity.R().getLastStoryViewer().P();
-                    return;
-                }
-                return;
-            case 3:
-                if (!launchActivity.f31638n0.getFragmentStack().isEmpty()) {
-                    launchActivity.f31638n0.getFragmentStack().get(0).showDialog(new org.telegram.ui.Components.xx0(launchActivity, launchActivity.f31626g0, launchActivity.f31622e0, launchActivity.f31624f0));
-                    return;
-                }
-                return;
-            case 4:
-                Pattern pattern3 = LaunchActivity.f31612y1;
-                launchActivity.getClass();
-                org.telegram.ui.Components.a30.f23278b0 = false;
-                org.telegram.ui.Components.a30.j(launchActivity);
-                return;
-            case 5:
-                ArrayList arrayList = launchActivity.f31614a0;
-                ArrayList arrayList2 = launchActivity.f31616b0;
-                if (AndroidUtilities.isTablet()) {
-                    if (!arrayList2.isEmpty()) {
-                        p2Var = (org.telegram.ui.ActionBar.p2) kh.a2.i(1, arrayList2);
-                    }
-                } else if (!arrayList.isEmpty()) {
-                    p2Var = (org.telegram.ui.ActionBar.p2) kh.a2.i(1, arrayList);
-                }
-                if (!(p2Var instanceof ProxyListActivity) && !(p2Var instanceof w11)) {
-                    launchActivity.p0(new ProxyListActivity());
-                    return;
-                }
-                return;
-            case 6:
-                if (!launchActivity.f31649s1) {
-                    try {
-                        org.telegram.ui.ActionBar.d2 C = org.telegram.ui.Components.z4.C(launchActivity);
-                        C.setOnDismissListener(new y80(launchActivity, 0));
-                        launchActivity.f31649s1 = true;
-                        C.show();
-                    } catch (Throwable unused2) {
-                        return;
-                    }
-                }
-                return;
-            case 7:
-                if (launchActivity.Q0 != null) {
-                    File file = new File(ApplicationLoader.getFilesDirFixed(), android.support.v4.media.a.q(new StringBuilder("remote"), launchActivity.Q0.f19321id, ".attheme"));
-                    TLRPC.TL_theme tL_theme = launchActivity.Q0;
-                    org.telegram.ui.ActionBar.i6 u10 = org.telegram.ui.ActionBar.j6.u(file, tL_theme.title, tL_theme, true);
-                    if (u10 != null) {
-                        launchActivity.p0(new cd1(u10, true, 0, false, false));
-                    }
-                    launchActivity.h0();
-                    return;
-                }
-                return;
-            case 8:
-                Pattern pattern4 = LaunchActivity.f31612y1;
-                launchActivity.getClass();
-                launchActivity.p0(new ec0());
-                return;
-            case 9:
-                launchActivity.f31645q1 = null;
-                return;
-            default:
-                launchActivity.f31647r1 = null;
-                return;
-        }
+    public final void accept(java.lang.Object r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.x80.accept(java.lang.Object):void");
+    }
+
+    public x80(LaunchActivity launchActivity, af.f fVar, Runnable runnable, ChannelBoostsController channelBoostsController, Long l10, org.telegram.ui.Cells.t1 t1Var) {
+        this.f42996b = launchActivity;
+        this.f42997c = fVar;
+        this.d = runnable;
+        this.f43000g = channelBoostsController;
+        this.f42998e = l10;
+        this.f42999f = t1Var;
     }
 }

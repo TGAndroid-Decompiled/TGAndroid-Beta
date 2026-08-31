@@ -5,12 +5,12 @@ import android.os.Parcelable;
 import h5.w;
 public final class k extends b {
     public static final Parcelable.Creator<k> CREATOR = new j(0);
-    public final long f11333a;
-    public final long f11334b;
+    public final long f11708a;
+    public final long f11709b;
 
     public k(long j10, long j11) {
-        this.f11333a = j10;
-        this.f11334b = j11;
+        this.f11708a = j10;
+        this.f11709b = j11;
     }
 
     public static long a(long j10, w wVar) {
@@ -24,14 +24,14 @@ public final class k extends b {
     @Override
     public final String toString() {
         StringBuilder sb = new StringBuilder("SCTE-35 TimeSignalCommand { ptsTime=");
-        sb.append(this.f11333a);
+        sb.append(this.f11708a);
         sb.append(", playbackPositionUs= ");
-        return android.support.v4.media.a.q(sb, this.f11334b, " }");
+        return android.support.v4.media.a.q(sb, this.f11709b, " }");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeLong(this.f11333a);
-        parcel.writeLong(this.f11334b);
+        parcel.writeLong(this.f11708a);
+        parcel.writeLong(this.f11709b);
     }
 }

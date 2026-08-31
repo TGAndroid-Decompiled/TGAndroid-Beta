@@ -1,55 +1,149 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.LinearGradient;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Shader;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
-import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class p60 extends FrameLayout {
-    public final TextView f27759a;
-    public final TextView f27760b;
-    public final s60 f27761c;
+import org.telegram.messenger.UserConfig;
+public final class p60 extends sl0 {
+    public final u60 f29975c;
 
-    public p60(s60 s60Var, Context context) {
-        super(context);
-        this.f27761c = s60Var;
-        ImageView imageView = new ImageView(context);
-        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.R7, false);
-        int w03 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Y7, false);
-        OvalShape ovalShape = new OvalShape();
-        float f10 = 46;
-        ovalShape.resize(f10, f10);
-        ShapeDrawable shapeDrawable = new ShapeDrawable(ovalShape);
-        shapeDrawable.setIntrinsicWidth(46);
-        shapeDrawable.setIntrinsicHeight(46);
-        shapeDrawable.getPaint().setShader(new LinearGradient(0.0f, 0.0f, 0.0f, f10, w02, w03, Shader.TileMode.CLAMP));
-        imageView.setBackground(shapeDrawable);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        imageView.setImageResource(R.drawable.large_income);
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        addView(imageView, k7.b6.d(46, 46.0f, 19, 13.0f, 0.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.f27759a = textView;
-        org.telegram.ui.yh.p(16.0f, 1, textView);
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
-        addView(textView, k7.b6.d(-1, -2.0f, 51, 72.0f, 9.0f, 0.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.f27760b = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20281y6, false));
-        addView(textView2, k7.b6.d(-1, -2.0f, 51, 72.0f, 32.0f, 0.0f, 0.0f));
+    public p60(u60 u60Var) {
+        this.f29975c = u60Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
+    public final boolean D(f2.m1 m1Var) {
+        int i10;
+        int b10 = m1Var.b();
+        u60 u60Var = this.f29975c;
+        if (b10 == u60Var.f31570n) {
+            long j10 = u60Var.f31558b.admin_id;
+            i10 = ((org.telegram.ui.ActionBar.h3) u60Var).currentAccount;
+            if (j10 != UserConfig.getInstance(i10).clientUserId) {
+                return true;
+            }
+            return false;
+        } else if (b10 < u60Var.f31574x || b10 >= u60Var.f31575y) {
+            if (b10 >= u60Var.L && b10 < u60Var.M) {
+                return true;
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public final int h() {
+        return this.f29975c.P;
+    }
+
+    @Override
+    public final int j(int i10) {
+        u60 u60Var = this.f29975c;
+        if (i10 == u60Var.h || i10 == u60Var.K || i10 == u60Var.f31573w || i10 == u60Var.f31563e) {
+            return 0;
+        }
+        if (i10 != u60Var.f31570n) {
+            if (i10 < u60Var.L || i10 >= u60Var.M) {
+                if (i10 < u60Var.f31574x || i10 >= u60Var.f31575y) {
+                    if (i10 != u60Var.f31571r && i10 != u60Var.f31572s) {
+                        if (i10 == u60Var.E) {
+                            return 3;
+                        }
+                        if (i10 == u60Var.F) {
+                            return 4;
+                        }
+                        if (i10 == u60Var.G) {
+                            return 5;
+                        }
+                        u60Var.getClass();
+                        if (i10 != 0 && i10 != u60Var.H && i10 != u60Var.I) {
+                            if (i10 == u60Var.v) {
+                                return 7;
+                            }
+                            if (i10 == u60Var.J) {
+                                return 8;
+                            }
+                            if (i10 != u60Var.f31565f) {
+                                return 0;
+                            }
+                            return 9;
+                        }
+                        return 6;
+                    }
+                    return 2;
+                }
+                return 1;
+            }
+            return 1;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(f2.m1 r25, int r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.p60.v(f2.m1, int):void");
+    }
+
+    @Override
+    public final f2.m1 x(ViewGroup viewGroup, int i10) {
+        u00 u00Var;
+        u00 u00Var2;
+        org.telegram.ui.ActionBar.g6 g6Var;
+        Context context = viewGroup.getContext();
+        u60 u60Var = this.f29975c;
+        switch (i10) {
+            case 1:
+                u00Var2 = new s60(context);
+                break;
+            case 2:
+                u00Var2 = new org.telegram.ui.Cells.z6(context, org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21605a7, false), 0);
+                break;
+            case 3:
+                l60 l60Var = new l60(this, context, u60Var.R, u60Var, u60Var.f31564e0);
+                l60Var.setDelegate(new o60(this));
+                l60Var.setLayoutParams(new f2.x0(-1, -2));
+                u00Var2 = l60Var;
+                break;
+            case 4:
+                u00Var2 = new t60(u60Var, context);
+                break;
+            case 5:
+                u00 u00Var3 = new u00(context, null);
+                u00Var3.setIsSingleCell(true);
+                u00Var3.setViewType(10);
+                u00Var3.f31509w = false;
+                u00Var3.setPaddingLeft(AndroidUtilities.dp(10.0f));
+                u00Var = u00Var3;
+                u00Var2 = u00Var;
+                break;
+            case 6:
+                u00Var2 = new jn(context, 9);
+                break;
+            case 7:
+                u00Var2 = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.b) null);
+                break;
+            case 8:
+                ?? frameLayout = new FrameLayout(context);
+                TextView textView = new TextView(context);
+                frameLayout.f30290a = textView;
+                textView.setTextSize(1, 14.0f);
+                org.telegram.ui.yh.t(org.telegram.ui.ActionBar.k6.f22036y6, null, false, textView, 1);
+                frameLayout.addView(textView, k7.c6.d(-1, -2.0f, 16, 60.0f, 0.0f, 60.0f, 0.0f));
+                u00Var = frameLayout;
+                u00Var2 = u00Var;
+                break;
+            case 9:
+                u00Var2 = new r60(u60Var, context);
+                break;
+            default:
+                g6Var = ((org.telegram.ui.ActionBar.h3) u60Var).resourcesProvider;
+                u00Var2 = new org.telegram.ui.Cells.u3(context, g6Var);
+                break;
+        }
+        return org.telegram.ui.yh.o(u00Var2, u00Var2, -1, -2);
     }
 }

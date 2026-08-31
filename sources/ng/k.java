@@ -1,74 +1,83 @@
 package ng;
 
-import android.graphics.Canvas;
-import android.graphics.PointF;
-import android.graphics.RectF;
-import android.os.SystemClock;
-import android.view.View;
-import android.view.ViewGroup;
-import g.x;
-public final class k implements og.a {
-    public final ViewGroup f15033c;
-    public final j d;
-    public final ViewGroup e;
-    public boolean h;
-    public final RectF f15031a = new RectF();
-    public final PointF f15032b = new PointF();
-    public final RectF f15034f = new RectF();
+import android.text.SpannableStringBuilder;
+import android.view.KeyEvent;
+import mh.m2;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Cells.s8;
+import org.telegram.ui.Components.u5;
+public final class k implements Utilities.Callback {
+    public final int f16100a;
+    public final s f16101b;
 
-    public k(ViewGroup viewGroup, ViewGroup viewGroup2, j jVar) {
-        this.f15033c = viewGroup;
-        this.d = jVar;
-        this.e = viewGroup2;
+    public k(s sVar, int i10) {
+        this.f16100a = i10;
+        this.f16101b = sVar;
     }
 
     @Override
-    public final void e(Canvas canvas, RectF rectF) {
-        long uptimeMillis = SystemClock.uptimeMillis();
-        ViewGroup viewGroup = this.f15033c;
-        ViewGroup viewGroup2 = this.e;
-        PointF pointF = this.f15032b;
-        if (!ug.i.b(viewGroup, viewGroup2, pointF)) {
-            return;
-        }
-        canvas.save();
-        canvas.clipRect(rectF);
-        canvas.translate(pointF.x, pointF.y);
-        if ((viewGroup instanceof og.a) && !this.h) {
-            RectF rectF2 = this.f15034f;
-            rectF2.set(rectF);
-            rectF.offset(-pointF.x, -pointF.y);
-            ((og.a) viewGroup).e(canvas, rectF);
-            rectF.set(rectF2);
-        } else {
-            for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
-                View childAt = viewGroup.getChildAt(i10);
-                RectF rectF3 = this.f15031a;
-                if (ug.i.c(childAt, viewGroup2, rectF3) && rectF3.intersect(rectF)) {
-                    this.d.a(canvas, childAt, uptimeMillis);
+    public final void run(Object obj) {
+        u5[] u5VarArr;
+        s8 s8Var;
+        long j10;
+        switch (this.f16100a) {
+            case 0:
+                Boolean bool = (Boolean) obj;
+                s sVar = this.f16101b;
+                h hVar = sVar.R;
+                if (!sVar.a0()) {
+                    int editTextSelectionEnd = sVar.f16212n.getEditTextSelectionEnd();
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(sVar.f16212n.getText());
+                    for (u5 u5Var : (u5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), u5.class)) {
+                        if (spannableStringBuilder.getSpanEnd(u5Var) == editTextSelectionEnd) {
+                            sVar.B.remove(Long.valueOf(u5Var.documentId));
+                            sVar.C.remove(Long.valueOf(u5Var.documentId));
+                            sVar.f16208b.A(Long.valueOf(u5Var.documentId));
+                            if (u5Var.documentId == -1 && (s8Var = sVar.f16214s) != null) {
+                                s8Var.setChecked(false);
+                                sVar.f16212n.setMaxLength(sVar.G);
+                            }
+                            if (bool.booleanValue()) {
+                                sVar.f16212n.dispatchKeyEvent(new KeyEvent(0, 67));
+                                AndroidUtilities.cancelRunOnUIThread(hVar);
+                                AndroidUtilities.runOnUIThread(hVar, 350L);
+                                return;
+                            }
+                            u5Var.setRemoved(new bh.a(sVar, u5Var, editTextSelectionEnd, 11));
+                            sVar.W(u5Var);
+                            sVar.Y(false);
+                            return;
+                        }
+                    }
+                    return;
                 }
-            }
-        }
-        canvas.restore();
-    }
-
-    @Override
-    public final void g(x xVar, RectF rectF) {
-        ViewGroup viewGroup = this.f15033c;
-        ViewGroup viewGroup2 = this.e;
-        PointF pointF = this.f15032b;
-        if (!ug.i.b(viewGroup, viewGroup2, pointF)) {
-            xVar.f6327b = true;
-        } else if ((viewGroup instanceof og.a) && !this.h) {
-            xVar.c(pointF.x);
-            xVar.c(pointF.y);
-            RectF rectF2 = this.f15034f;
-            rectF2.set(rectF);
-            rectF.offset(-pointF.x, -pointF.y);
-            ((og.a) viewGroup).g(xVar, rectF);
-            rectF.set(rectF2);
-        } else {
-            xVar.f6327b = true;
+                return;
+            case 1:
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
+                s sVar2 = this.f16101b;
+                if (!sVar2.isFinishing()) {
+                    sVar2.v.setLoading(false);
+                    if (tL_error.text.equals("CHAT_NOT_MODIFIED")) {
+                        sVar2.finishFragment();
+                        return;
+                    }
+                    m2 m2Var = new m2(17, sVar2, tL_error);
+                    if (sVar2.N == null) {
+                        j10 = 200;
+                    } else {
+                        j10 = 0;
+                    }
+                    AndroidUtilities.runOnUIThread(m2Var, j10);
+                    return;
+                }
+                return;
+            default:
+                s sVar3 = this.f16101b;
+                sVar3.getClass();
+                sVar3.L = ((Integer) obj).intValue();
+                return;
         }
     }
 }

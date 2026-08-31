@@ -1,373 +1,219 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
-import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.SurfaceTexture;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.text.SpannableStringBuilder;
-import android.text.style.ImageSpan;
-import android.view.TextureView;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
+import android.opengl.GLES20;
+import android.opengl.GLUtils;
+import javax.microedition.khronos.egl.EGL10;
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.egl.EGLContext;
+import javax.microedition.khronos.egl.EGLDisplay;
+import javax.microedition.khronos.egl.EGLSurface;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.EmuDetector;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.Intro;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class u70 extends org.telegram.ui.ActionBar.p2 implements NotificationCenter.NotificationCenterDelegate {
-    public Drawable B;
-    public CharSequence[] C;
-    public String[] D;
-    public int E;
-    public t70 F;
-    public long G;
-    public boolean H;
-    public LocaleController.LocaleInfo I;
-    public boolean J;
-    public boolean K;
-    public final Object f38861a;
-    public final Object f38862b;
-    public final int f38863c;
-    public m2.h d;
-    public org.telegram.ui.Components.ka e;
-    public TextView f38864f;
-    public GradientDrawable h;
-    public eg.s0 f38865n;
-    public FrameLayout f38866r;
-    public ah.d f38867s;
-    public org.telegram.ui.Components.gj0 v;
-    public int f38868w;
-    public boolean f38869x;
-    public boolean f38870y;
+public final class u70 extends DispatchQueue {
+    public static final int f41808y = 0;
+    public final SurfaceTexture f41809a;
+    public EGL10 f41810b;
+    public EGLDisplay f41811c;
+    public EGLConfig d;
+    public EGLContext f41812e;
+    public EGLSurface f41813f;
+    public boolean h;
+    public final int[] f41814n;
+    public float f41815r;
+    public long f41816s;
+    public final org.telegram.ui.Components.mh0 v;
+    public final z5 f41817w;
+    public final v70 f41818x;
 
-    public u70() {
-        super(null);
-        this.f38861a = new Object();
-        this.f38862b = new Object();
-        this.f38863c = UserConfig.selectedAccount;
-        this.f38868w = 0;
-        this.f38869x = false;
-        this.f38870y = false;
+    public u70(v70 v70Var, SurfaceTexture surfaceTexture) {
+        super("EGLThread");
+        this.f41818x = v70Var;
+        this.f41814n = new int[24];
+        this.v = new org.telegram.ui.Components.mh0(24);
+        this.f41817w = new z5(this, 7);
+        this.f41809a = surfaceTexture;
     }
 
-    public final void U() {
-        String str;
-        LocaleController.LocaleInfo currentLocaleInfo = LocaleController.getInstance().getCurrentLocaleInfo();
-        int i10 = this.f38863c;
-        String str2 = MessagesController.getInstance(i10).suggestedLangCode;
-        if ((str2 == null || (str2.equals("en") && LocaleController.getInstance().getSystemDefaultLocale().getLanguage() != null && !LocaleController.getInstance().getSystemDefaultLocale().getLanguage().equals("en"))) && (str2 = LocaleController.getInstance().getSystemDefaultLocale().getLanguage()) == null) {
-            str2 = "en";
-        }
-        if (str2.contains("-")) {
-            str = str2.split("-")[0];
-        } else {
-            str = str2;
-        }
-        String localeAlias = LocaleController.getLocaleAlias(str);
-        LocaleController.LocaleInfo localeInfo = null;
-        LocaleController.LocaleInfo localeInfo2 = null;
-        for (int i11 = 0; i11 < LocaleController.getInstance().languages.size(); i11++) {
-            LocaleController.LocaleInfo localeInfo3 = LocaleController.getInstance().languages.get(i11);
-            if (localeInfo3.shortName.equals("en")) {
-                localeInfo = localeInfo3;
+    public final void b(int i10, int i11, int i12, boolean z4) {
+        Drawable drawable = this.f41818x.getParentActivity().getResources().getDrawable(i10);
+        if (drawable instanceof BitmapDrawable) {
+            int[] iArr = this.f41814n;
+            if (z4) {
+                GLES20.glDeleteTextures(1, iArr, i11);
+                GLES20.glGenTextures(1, iArr, i11);
             }
-            if (localeInfo3.shortName.replace("_", "-").equals(str2) || localeInfo3.shortName.equals(str) || localeInfo3.shortName.equals(localeAlias)) {
-                localeInfo2 = localeInfo3;
+            Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+            GLES20.glBindTexture(3553, iArr[i11]);
+            GLES20.glTexParameteri(3553, 10241, 9729);
+            GLES20.glTexParameteri(3553, 10240, 9729);
+            GLES20.glTexParameteri(3553, 10242, 33071);
+            GLES20.glTexParameteri(3553, 10243, 33071);
+            if (i12 != 0) {
+                Bitmap createBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(createBitmap);
+                Paint paint = new Paint(5);
+                paint.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
+                canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
+                GLUtils.texImage2D(3553, 0, createBitmap, 0);
+                createBitmap.recycle();
+                return;
             }
-            if (localeInfo != null && localeInfo2 != null) {
-                break;
-            }
-        }
-        if (localeInfo != null && localeInfo2 != null && localeInfo != localeInfo2) {
-            TLRPC.TL_langpack_getStrings tL_langpack_getStrings = new TLRPC.TL_langpack_getStrings();
-            if (localeInfo2 != currentLocaleInfo) {
-                tL_langpack_getStrings.lang_code = localeInfo2.getLangCode();
-                this.I = localeInfo2;
-            } else {
-                tL_langpack_getStrings.lang_code = localeInfo.getLangCode();
-                this.I = localeInfo;
-            }
-            tL_langpack_getStrings.keys.add("ContinueOnThisLanguage");
-            ConnectionsManager.getInstance(i10).sendRequest(tL_langpack_getStrings, new lo(25, this, str2), 8);
+            GLUtils.texImage2D(3553, 0, bitmap, 0);
         }
     }
 
-    public final void V(boolean z4) {
-        GradientDrawable gradientDrawable = this.h;
-        int i10 = org.telegram.ui.ActionBar.j6.Oh;
-        gradientDrawable.setColors(new int[]{getThemedColor(i10), getThemedColor(org.telegram.ui.ActionBar.j6.Ph)});
-        this.B.setColorFilter(org.telegram.ui.ActionBar.j6.l1(0.9f, getThemedColor(org.telegram.ui.ActionBar.j6.A8)), PorterDuff.Mode.MULTIPLY);
-        View view = this.fragmentView;
-        int i11 = org.telegram.ui.ActionBar.j6.f19906d6;
-        view.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
-        this.f38864f.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20140q6, false));
-        this.f38865n.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Sh, false));
-        eg.s0 s0Var = this.f38865n;
-        int dp = AndroidUtilities.dp(24.0f);
-        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Qh, false);
-        s0Var.setBackground(org.telegram.ui.ActionBar.j6.i0(dp, dp, dp, dp, 0, w02, w02));
-        this.v.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, i10, false), PorterDuff.Mode.SRC_IN));
-        this.e.invalidate();
+    public final void c(GenericProvider genericProvider, int i10, boolean z4) {
+        int[] iArr = this.f41814n;
         if (z4) {
-            t70 t70Var = this.F;
-            if (t70Var != null) {
-                t70Var.postRunnable(new c10(this, 10));
-            }
-            for (int i12 = 0; i12 < this.d.getChildCount(); i12++) {
-                View childAt = this.d.getChildAt(i12);
-                int i13 = org.telegram.ui.ActionBar.j6.G6;
-                ((TextView) childAt.findViewWithTag(this.f38861a)).setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i13, false));
-                ((TextView) childAt.findViewWithTag(this.f38862b)).setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i13, false));
-            }
-            return;
+            GLES20.glDeleteTextures(1, iArr, i10);
+            GLES20.glGenTextures(1, iArr, i10);
         }
-        Intro.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
+        Bitmap bitmap = (Bitmap) genericProvider.provide(null);
+        GLES20.glBindTexture(3553, iArr[i10]);
+        GLES20.glTexParameteri(3553, 10241, 9729);
+        GLES20.glTexParameteri(3553, 10240, 9729);
+        GLES20.glTexParameteri(3553, 10242, 33071);
+        GLES20.glTexParameteri(3553, 10243, 33071);
+        GLUtils.texImage2D(3553, 0, bitmap, 0);
+        bitmap.recycle();
+    }
+
+    public final void finish() {
+        if (this.f41813f != null) {
+            EGL10 egl10 = this.f41810b;
+            EGLDisplay eGLDisplay = this.f41811c;
+            EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
+            egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL10.EGL_NO_CONTEXT);
+            this.f41810b.eglDestroySurface(this.f41811c, this.f41813f);
+            this.f41813f = null;
+        }
+        EGLContext eGLContext = this.f41812e;
+        if (eGLContext != null) {
+            this.f41810b.eglDestroyContext(this.f41811c, eGLContext);
+            this.f41812e = null;
+        }
+        EGLDisplay eGLDisplay2 = this.f41811c;
+        if (eGLDisplay2 != null) {
+            this.f41810b.eglTerminate(eGLDisplay2);
+            this.f41811c = null;
+        }
     }
 
     @Override
-    public final View createView(Context context) {
-        int i10;
-        int i11;
-        int i12;
-        Drawable mutate = context.getResources().getDrawable(R.drawable.telegram_logo).mutate();
-        this.B = mutate;
-        mutate.setBounds(0, AndroidUtilities.dp(8.666f), AndroidUtilities.dp(115.0f), AndroidUtilities.dp(35.0f));
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.Page1Title));
-        spannableStringBuilder.setSpan(new ImageSpan(this.B), 0, spannableStringBuilder.length(), 33);
-        this.C[0] = spannableStringBuilder;
-        this.actionBar.setAddToContainer(false);
-        ScrollView scrollView = new ScrollView(context);
-        scrollView.setFillViewport(true);
-        ?? imageView = new ImageView(context);
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.addView((View) imageView, k7.b6.e(28, 28, 17));
-        ah.d dVar = new ah.d(this, context, frameLayout, 20);
-        this.f38867s = dVar;
-        scrollView.addView(dVar, k7.b6.x(-1, -2, 51));
-        int i13 = R.raw.sun;
-        org.telegram.ui.Components.gj0 gj0Var = new org.telegram.ui.Components.gj0(i13, String.valueOf(i13), AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-        this.v = gj0Var;
-        gj0Var.h = true;
-        gj0Var.X = true;
-        gj0Var.m();
-        org.telegram.ui.Components.gj0 gj0Var2 = this.v;
-        if (org.telegram.ui.ActionBar.j6.A0().q()) {
-            i10 = this.v.e[0] - 1;
-        } else {
-            i10 = 0;
-        }
-        gj0Var2.N(i10);
-        org.telegram.ui.Components.gj0 gj0Var3 = this.v;
-        if (org.telegram.ui.ActionBar.j6.A0().q()) {
-            i11 = this.v.e[0] - 1;
-        } else {
-            i11 = 0;
-        }
-        gj0Var3.L(i11, false, false);
-        if (org.telegram.ui.ActionBar.j6.A0().q()) {
-            i12 = R.string.AccDescrSwitchToDayTheme;
-        } else {
-            i12 = R.string.AccDescrSwitchToNightTheme;
-        }
-        imageView.setContentDescription(LocaleController.getString(i12));
-        imageView.setAnimation(this.v);
-        frameLayout.setOnClickListener(new org.telegram.ui.Components.rx0(26, this, imageView));
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f38866r = frameLayout2;
-        this.f38867s.addView(frameLayout2, k7.b6.d(-1, -2.0f, 51, 0.0f, 78.0f, 0.0f, 0.0f));
-        TextureView textureView = new TextureView(context);
-        this.f38866r.addView(textureView, k7.b6.e(200, 150, 17));
-        textureView.setSurfaceTextureListener(new r70(this, 0));
-        m2.h hVar = new m2.h(context);
-        this.d = hVar;
-        hVar.setAdapter(new eg.j1(this, 1));
-        this.d.setPageMargin(0);
-        this.d.setOffscreenPageLimit(1);
-        this.f38867s.addView(this.d, k7.b6.c(-1.0f, -1));
-        this.d.b(new o2(this, 1));
-        this.h = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, null);
-        eg.s0 s0Var = new eg.s0(this, context);
-        this.f38865n = s0Var;
-        k7.d6.b(s0Var, 0.02f, 1.2f);
-        this.f38865n.setText(LocaleController.getString(R.string.StartMessaging));
-        this.f38865n.setGravity(17);
-        this.f38865n.setTypeface(AndroidUtilities.bold());
-        this.f38865n.setTextSize(1, 15.0f);
-        this.f38865n.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        this.f38867s.addView(this.f38865n, k7.b6.d(-1, 48.0f, 81, 16.0f, 0.0f, 16.0f, 76.0f));
-        this.f38865n.setOnClickListener(new View.OnClickListener(this) {
-            public final u70 f37658b;
-
-            {
-                this.f37658b = this;
+    public final void run() {
+        EGL10 egl10 = (EGL10) EGLContext.getEGL();
+        this.f41810b = egl10;
+        EGLDisplay eglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
+        this.f41811c = eglGetDisplay;
+        boolean z4 = false;
+        if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
+            if (BuildVars.LOGS_ENABLED) {
+                org.telegram.messenger.y3.u(this.f41810b, new StringBuilder("eglGetDisplay failed "));
             }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        u70 u70Var = this.f37658b;
-                        if (!u70Var.f38870y) {
-                            u70Var.f38870y = true;
-                            u70Var.presentFragment(new ng0(), true);
-                            u70Var.J = true;
-                            return;
-                        }
-                        return;
-                    default:
-                        u70 u70Var2 = this.f37658b;
-                        if (!u70Var2.f38870y && u70Var2.I != null) {
-                            u70Var2.f38870y = true;
-                            org.telegram.ui.ActionBar.d2 d2Var = new org.telegram.ui.ActionBar.d2(view.getContext(), 3, null);
-                            d2Var.f19590d0 = false;
-                            d2Var.q(1000L);
-                            NotificationCenter.getGlobalInstance().addObserver(new s70(u70Var2, d2Var), NotificationCenter.reloadInterface);
-                            LocaleController.getInstance().applyLanguage(u70Var2.I, true, false, u70Var2.f38863c);
-                            return;
-                        }
-                        return;
+            finish();
+        } else if (!this.f41810b.eglInitialize(eglGetDisplay, new int[2])) {
+            if (BuildVars.LOGS_ENABLED) {
+                org.telegram.messenger.y3.u(this.f41810b, new StringBuilder("eglInitialize failed "));
+            }
+            finish();
+        } else {
+            int[] iArr = new int[1];
+            EGLConfig[] eGLConfigArr = new EGLConfig[1];
+            v70 v70Var = this.f41818x;
+            if (!this.f41810b.eglChooseConfig(this.f41811c, EmuDetector.with(v70Var.getParentActivity()).detect() ? new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 24, 12344} : new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 24, 12326, 0, 12338, 1, 12337, 2, 12344}, eGLConfigArr, 1, iArr)) {
+                if (BuildVars.LOGS_ENABLED) {
+                    org.telegram.messenger.y3.u(this.f41810b, new StringBuilder("eglChooseConfig failed "));
                 }
-            }
-        });
-        org.telegram.ui.Components.ka kaVar = new org.telegram.ui.Components.ka(context, this.d, 6);
-        this.e = kaVar;
-        this.f38867s.addView(kaVar, k7.b6.d(66, 5.0f, 49, 0.0f, 350.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.f38864f = textView;
-        textView.setGravity(17);
-        this.f38864f.setTextSize(1, 16.0f);
-        this.f38867s.addView(this.f38864f, k7.b6.d(-2, 30.0f, 81, 0.0f, 0.0f, 0.0f, 20.0f));
-        this.f38864f.setOnClickListener(new View.OnClickListener(this) {
-            public final u70 f37658b;
-
-            {
-                this.f37658b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        u70 u70Var = this.f37658b;
-                        if (!u70Var.f38870y) {
-                            u70Var.f38870y = true;
-                            u70Var.presentFragment(new ng0(), true);
-                            u70Var.J = true;
-                            return;
+                finish();
+            } else if (iArr[0] > 0) {
+                EGLConfig eGLConfig = eGLConfigArr[0];
+                this.d = eGLConfig;
+                EGLContext eglCreateContext = this.f41810b.eglCreateContext(this.f41811c, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
+                this.f41812e = eglCreateContext;
+                if (eglCreateContext == null) {
+                    if (BuildVars.LOGS_ENABLED) {
+                        org.telegram.messenger.y3.u(this.f41810b, new StringBuilder("eglCreateContext failed "));
+                    }
+                    finish();
+                } else {
+                    SurfaceTexture surfaceTexture = this.f41809a;
+                    if (surfaceTexture != null) {
+                        EGLSurface eglCreateWindowSurface = this.f41810b.eglCreateWindowSurface(this.f41811c, this.d, surfaceTexture, null);
+                        this.f41813f = eglCreateWindowSurface;
+                        if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
+                            if (!this.f41810b.eglMakeCurrent(this.f41811c, eglCreateWindowSurface, eglCreateWindowSurface, this.f41812e)) {
+                                if (BuildVars.LOGS_ENABLED) {
+                                    org.telegram.messenger.y3.u(this.f41810b, new StringBuilder("eglMakeCurrent failed "));
+                                }
+                                finish();
+                            } else {
+                                int[] iArr2 = this.f41814n;
+                                GLES20.glGenTextures(23, iArr2, 0);
+                                b(R.drawable.intro_fast_arrow_shadow, 0, 0, false);
+                                b(R.drawable.intro_fast_arrow, 1, 0, false);
+                                b(R.drawable.intro_fast_body, 2, 0, false);
+                                b(R.drawable.intro_fast_spiral, 3, 0, false);
+                                b(R.drawable.intro_ic_bubble_dot, 4, 0, false);
+                                b(R.drawable.intro_ic_bubble, 5, 0, false);
+                                b(R.drawable.intro_ic_cam_lens, 6, 0, false);
+                                b(R.drawable.intro_ic_cam, 7, 0, false);
+                                b(R.drawable.intro_ic_pencil, 8, 0, false);
+                                b(R.drawable.intro_ic_pin, 9, 0, false);
+                                b(R.drawable.intro_ic_smile_eye, 10, 0, false);
+                                b(R.drawable.intro_ic_smile, 11, 0, false);
+                                b(R.drawable.intro_ic_videocam, 12, 0, false);
+                                b(R.drawable.intro_knot_down, 13, 0, false);
+                                b(R.drawable.intro_knot_up, 14, 0, false);
+                                b(R.drawable.intro_powerful_infinity_white, 15, 0, false);
+                                b(R.drawable.intro_powerful_infinity, 16, 0, false);
+                                b(R.drawable.intro_powerful_mask, 17, org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21659d6, false), false);
+                                b(R.drawable.intro_powerful_star, 18, 0, false);
+                                b(R.drawable.intro_private_door, 19, 0, false);
+                                b(R.drawable.intro_private_screw, 20, 0, false);
+                                b(R.drawable.intro_tg_plane, 21, 0, false);
+                                c(new org.telegram.ui.Components.mh0(25), 22, false);
+                                c(this.v, 23, false);
+                                Intro.setTelegramTextures(iArr2[22], iArr2[21], iArr2[23]);
+                                Intro.setPowerfulTextures(iArr2[17], iArr2[18], iArr2[16], iArr2[15]);
+                                Intro.setPrivateTextures(iArr2[19], iArr2[20]);
+                                Intro.setFreeTextures(iArr2[14], iArr2[13]);
+                                Intro.setFastTextures(iArr2[2], iArr2[3], iArr2[1], iArr2[0]);
+                                Intro.setIcTextures(iArr2[4], iArr2[5], iArr2[6], iArr2[7], iArr2[8], iArr2[9], iArr2[10], iArr2[11], iArr2[12]);
+                                Intro.onSurfaceCreated();
+                                v70Var.G = System.currentTimeMillis() - 1000;
+                                z4 = true;
+                            }
+                        } else {
+                            if (BuildVars.LOGS_ENABLED) {
+                                org.telegram.messenger.y3.u(this.f41810b, new StringBuilder("createWindowSurface failed "));
+                            }
+                            finish();
                         }
-                        return;
-                    default:
-                        u70 u70Var2 = this.f37658b;
-                        if (!u70Var2.f38870y && u70Var2.I != null) {
-                            u70Var2.f38870y = true;
-                            org.telegram.ui.ActionBar.d2 d2Var = new org.telegram.ui.ActionBar.d2(view.getContext(), 3, null);
-                            d2Var.f19590d0 = false;
-                            d2Var.q(1000L);
-                            NotificationCenter.getGlobalInstance().addObserver(new s70(u70Var2, d2Var), NotificationCenter.reloadInterface);
-                            LocaleController.getInstance().applyLanguage(u70Var2.I, true, false, u70Var2.f38863c);
-                            return;
-                        }
-                        return;
+                    } else {
+                        finish();
+                    }
                 }
-            }
-        });
-        float f10 = 4;
-        this.f38867s.addView(frameLayout, k7.b6.d(64, 64.0f, 53, 0.0f, f10, f10, 0.0f));
-        this.fragmentView = scrollView;
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.suggestedLangpack);
-        int i14 = this.f38863c;
-        NotificationCenter.getInstance(i14).addObserver(this, NotificationCenter.configLoaded);
-        ConnectionsManager.getInstance(i14).updateDcSettings();
-        LocaleController.getInstance().loadRemoteLanguages(i14);
-        U();
-        this.f38869x = true;
-        V(false);
-        return this.fragmentView;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 != NotificationCenter.suggestedLangpack && i10 != NotificationCenter.configLoaded) {
-            return;
-        }
-        U();
-    }
-
-    @Override
-    public final ArrayList getThemeDescriptions() {
-        return k7.e6.a(new f(this, 18), org.telegram.ui.ActionBar.j6.f19906d6, org.telegram.ui.ActionBar.j6.f20140q6, org.telegram.ui.ActionBar.j6.P9, org.telegram.ui.ActionBar.j6.Q9, org.telegram.ui.ActionBar.j6.Sh, org.telegram.ui.ActionBar.j6.G6);
-    }
-
-    @Override
-    public final boolean hasForceLightStatusBar() {
-        return true;
-    }
-
-    @Override
-    public final boolean isLightStatusBar() {
-        if (i0.a.f(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19906d6, true)) > 0.699999988079071d) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final AnimatorSet onCustomTransitionAnimation(boolean z4, Runnable runnable) {
-        if (this.K) {
-            AnimatorSet duration = new AnimatorSet().setDuration(50L);
-            duration.playTogether(ValueAnimator.ofFloat(new float[0]));
-            return duration;
-        }
-        return null;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        MessagesController.getGlobalMainSettings().edit().putLong("intro_crashed_time", System.currentTimeMillis()).apply();
-        this.C = new CharSequence[]{null, LocaleController.getString(R.string.Page2Title), LocaleController.getString(R.string.Page3Title), LocaleController.getString(R.string.Page5Title), LocaleController.getString(R.string.Page4Title), LocaleController.getString(R.string.Page6Title)};
-        this.D = new String[]{LocaleController.getString(R.string.Page1Message), LocaleController.getString(R.string.Page2Message), LocaleController.getString(R.string.Page3Message), LocaleController.getString(R.string.Page5Message), LocaleController.getString(R.string.Page4Message), LocaleController.getString(R.string.Page6Message)};
-        return true;
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        this.J = true;
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.suggestedLangpack);
-        NotificationCenter.getInstance(this.f38863c).removeObserver(this, NotificationCenter.configLoaded);
-        MessagesController.getGlobalMainSettings().edit().putLong("intro_crashed_time", 0L).apply();
-    }
-
-    @Override
-    public final void onPause() {
-        super.onPause();
-        AndroidUtilities.unlockOrientation(getParentActivity());
-    }
-
-    @Override
-    public final void onResume() {
-        super.onResume();
-        if (this.f38869x) {
-            if (LocaleController.isRTL) {
-                this.d.setCurrentItem(6);
-                this.f38868w = 6;
             } else {
-                this.d.setCurrentItem(0);
-                this.f38868w = 0;
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.e("eglConfig not initialized");
+                }
+                finish();
             }
-            this.f38869x = false;
         }
-        AndroidUtilities.lockOrientation(getParentActivity(), 1);
+        this.h = z4;
+        super.run();
     }
 }

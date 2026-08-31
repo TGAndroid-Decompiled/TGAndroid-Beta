@@ -2,44 +2,44 @@ package sa;
 
 import org.telegram.messenger.FileLog;
 public final class x0 implements pa.v {
-    public final int f44234a;
-    public final Object f44235b;
-    public final pa.u f44236c;
+    public final int f47224a;
+    public final Object f47225b;
+    public final pa.u f47226c;
 
     public x0(Object obj, pa.u uVar, int i10) {
-        this.f44234a = i10;
-        this.f44235b = obj;
-        this.f44236c = uVar;
+        this.f47224a = i10;
+        this.f47225b = obj;
+        this.f47226c = uVar;
     }
 
     @Override
     public final pa.u create(pa.g gVar, wa.a aVar) {
-        switch (this.f44234a) {
+        switch (this.f47224a) {
             case 0:
-                if (aVar.f46505a == ((Class) this.f44235b)) {
-                    return this.f44236c;
+                if (aVar.f49483a == ((Class) this.f47225b)) {
+                    return this.f47226c;
                 }
                 return null;
             case 1:
-                Class<?> cls = aVar.f46505a;
-                if (!((Class) this.f44235b).isAssignableFrom(cls)) {
+                Class<?> cls = aVar.f49483a;
+                if (!((Class) this.f47225b).isAssignableFrom(cls)) {
                     return null;
                 }
                 return new c(this, cls);
             default:
-                if (aVar.equals((wa.a) this.f44235b)) {
-                    return (FileLog.ByteArrayHexAdapter) this.f44236c;
+                if (aVar.equals((wa.a) this.f47225b)) {
+                    return (FileLog.ByteArrayHexAdapter) this.f47226c;
                 }
                 return null;
         }
     }
 
     public String toString() {
-        switch (this.f44234a) {
+        switch (this.f47224a) {
             case 0:
-                return "Factory[type=" + ((Class) this.f44235b).getName() + ",adapter=" + this.f44236c + "]";
+                return "Factory[type=" + ((Class) this.f47225b).getName() + ",adapter=" + this.f47226c + "]";
             case 1:
-                return "Factory[typeHierarchy=" + ((Class) this.f44235b).getName() + ",adapter=" + this.f44236c + "]";
+                return "Factory[typeHierarchy=" + ((Class) this.f47225b).getName() + ",adapter=" + this.f47226c + "]";
             default:
                 return super.toString();
         }

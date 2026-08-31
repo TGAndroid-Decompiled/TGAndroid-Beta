@@ -9,34 +9,34 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.TranslateController;
 public final class ng implements Runnable {
-    public final int f36619a;
-    public final xn f36620b;
+    public final int f39425a;
+    public final xn f39426b;
 
     public ng(xn xnVar, int i10) {
-        this.f36619a = i10;
-        this.f36620b = xnVar;
+        this.f39425a = i10;
+        this.f39426b = xnVar;
     }
 
     @Override
     public final void run() {
         boolean z4;
         boolean z10;
-        ph.f3 f3Var;
-        int i10 = this.f36619a;
+        qh.f3 f3Var;
+        int i10 = this.f39425a;
         boolean z11 = true;
-        xn xnVar = this.f36620b;
+        xn xnVar = this.f39426b;
         switch (i10) {
             case 0:
                 AndroidUtilities.removeFromParent(xnVar.G0);
                 return;
             case 1:
-                ArrayList arrayList = xnVar.f40164r6;
+                ArrayList arrayList = xnVar.f43333r6;
                 xnVar.Eb = System.currentTimeMillis();
-                if (xnVar.f40193u0 != null && xnVar.f40234x0 != null) {
+                if (xnVar.f43362u0 != null && xnVar.f43403x0 != null) {
                     int i11 = Integer.MAX_VALUE;
                     int i12 = Integer.MIN_VALUE;
-                    for (int i13 = 0; i13 < xnVar.f40193u0.getChildCount(); i13++) {
-                        View childAt = xnVar.f40193u0.getChildAt(i13);
+                    for (int i13 = 0; i13 < xnVar.f43362u0.getChildCount(); i13++) {
+                        View childAt = xnVar.f43362u0.getChildAt(i13);
                         if (childAt instanceof org.telegram.ui.Cells.t1) {
                             org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) childAt;
                             if (t1Var.getCurrentMessagesGroup() != null) {
@@ -56,7 +56,7 @@ public final class ng implements Runnable {
                         ArrayList arrayList2 = new ArrayList();
                         for (int i15 = 0; i15 < arrayList.size(); i15++) {
                             MessageObject messageObject = (MessageObject) arrayList.get(i15);
-                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) xnVar.f40199u6.f(messageObject.getGroupId());
+                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) xnVar.f43368u6.f(messageObject.getGroupId());
                             if (groupedMessages != null) {
                                 if (!arrayList2.contains(Long.valueOf(groupedMessages.groupId))) {
                                     for (int i16 = 0; i16 < groupedMessages.messages.size(); i16++) {
@@ -94,16 +94,16 @@ public final class ng implements Runnable {
                 return;
             case 2:
                 jk jkVar = xnVar.V;
-                if (jkVar != null && xnVar.f40270zc != null) {
+                if (jkVar != null && xnVar.f43439zc != null) {
                     if (jkVar.t0()) {
                         xnVar.V.m0(false);
-                        AndroidUtilities.showKeyboard(xnVar.f40270zc.f4891a);
-                        xnVar.f40270zc.f4892b.f4888a.a(false, true);
+                        AndroidUtilities.showKeyboard(xnVar.f43439zc.f5623a);
+                        xnVar.f43439zc.f5624b.f5620a.a(false, true);
                         return;
                     }
                     xnVar.V.V0(false, false, false);
                     xnVar.V.s1();
-                    xnVar.f40270zc.f4892b.f4888a.a(true, true);
+                    xnVar.f43439zc.f5624b.f5620a.a(true, true);
                     return;
                 }
                 return;
@@ -139,28 +139,28 @@ public final class ng implements Runnable {
                 xnVar.g8(false, true, 0.0f);
                 return;
             case 13:
-                org.telegram.ui.ActionBar.d2 d2Var = new org.telegram.ui.ActionBar.d2(xnVar.getParentActivity(), 3, xnVar.f39968ba);
-                xnVar.f40105mb = d2Var;
+                org.telegram.ui.ActionBar.d2 d2Var = new org.telegram.ui.ActionBar.d2(xnVar.getParentActivity(), 3, xnVar.f43136ba);
+                xnVar.f43274mb = d2Var;
                 d2Var.setOnShowListener(new jf(xnVar, 1));
-                xnVar.f40105mb.setOnCancelListener(xnVar.f40069ja);
-                xnVar.f40105mb.q(500L);
+                xnVar.f43274mb.setOnCancelListener(xnVar.f43238ja);
+                xnVar.f43274mb.q(500L);
                 return;
             case 14:
                 xnVar.N6();
                 return;
             case 15:
-                xnVar.f39944a = (xnVar.f39944a + 1) % 3;
+                xnVar.f43112a = (xnVar.f43112a + 1) % 3;
                 return;
             case 16:
-                xnVar.f39957b = !xnVar.f39957b;
+                xnVar.f43125b = !xnVar.f43125b;
                 return;
             case 17:
                 xnVar.A7(true);
-                kh.a2.v(R.string.TranscriptionReportSent, org.telegram.ui.Components.qc.a0(xnVar), R.raw.chats_infotip, 36);
+                l.d.v(R.string.TranscriptionReportSent, org.telegram.ui.Components.qc.a0(xnVar), R.raw.chats_infotip, 36);
                 return;
             case 18:
-                xnVar.f40234x0.J.clear();
-                jm jmVar = xnVar.f40234x0;
+                xnVar.f43403x0.J.clear();
+                jm jmVar = xnVar.f43403x0;
                 jmVar.I = false;
                 jmVar.O(true);
                 xnVar.Pb(false);
@@ -172,9 +172,9 @@ public final class ng implements Runnable {
                 xnVar.t7();
                 return;
             case 20:
-                xnVar.f40021fc = 0;
-                xnVar.f40034gc = false;
-                xnVar.f40193u0.f1();
+                xnVar.f43190fc = 0;
+                xnVar.f43203gc = false;
+                xnVar.f43362u0.f1();
                 return;
             case 21:
                 xnVar.q9(5);
@@ -184,7 +184,7 @@ public final class ng implements Runnable {
                 return;
             case 23:
                 nk nkVar = xnVar.O2;
-                if ((nkVar == null || nkVar.getVisibility() != 0) && (f3Var = xnVar.f40183t1) != null) {
+                if ((nkVar == null || nkVar.getVisibility() != 0) && (f3Var = xnVar.f43352t1) != null) {
                     f3Var.v();
                     return;
                 }
@@ -199,12 +199,12 @@ public final class ng implements Runnable {
                 xnVar.a7(false);
                 return;
             case 27:
-                FrameLayout.LayoutParams e = k7.b6.e(-1, -2, 87);
-                e.bottomMargin = xnVar.V.getMeasuredHeight();
-                xnVar.U0.addView(xnVar.f40207v1, e);
-                xnVar.f40207v1.setTranslationY(-AndroidUtilities.navigationBarHeight);
-                xnVar.f40207v1.n(0.0f, xnVar.V.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
-                xnVar.f40207v1.v();
+                FrameLayout.LayoutParams e6 = k7.c6.e(-1, -2, 87);
+                e6.bottomMargin = xnVar.V.getMeasuredHeight();
+                xnVar.U0.addView(xnVar.f43376v1, e6);
+                xnVar.f43376v1.setTranslationY(-AndroidUtilities.navigationBarHeight);
+                xnVar.f43376v1.n(0.0f, xnVar.V.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
+                xnVar.f43376v1.v();
                 return;
             case 28:
                 int i17 = xn.Ec;

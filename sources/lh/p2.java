@@ -1,45 +1,53 @@
 package lh;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.o70;
-import org.telegram.ui.Components.w21;
-public final class p2 implements org.telegram.ui.ActionBar.c2, MessagesController.IsInChatCheckedCallback {
-    public final long f12911a;
-    public final Object f12912b;
-    public final Object f12913c;
-    public final Object d;
-    public final TLObject e;
-    public final Object f12914f;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.BirthdayController;
+import org.telegram.ui.Components.pr0;
+import org.telegram.ui.Components.zu0;
+import qh.ca;
+public final class p2 implements View.OnClickListener {
+    public final int f12888a;
+    public final boolean f12889b;
+    public final int f12890c;
+    public final FrameLayout d;
 
-    public p2(g5 g5Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, TLRPC.PaymentForm paymentForm, TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails tL_inputInvoiceStarGiftDropOriginalDetails, long j10, CharSequence charSequence) {
-        this.f12912b = g5Var;
-        this.f12913c = tL_starGiftUnique;
-        this.d = paymentForm;
-        this.e = tL_inputInvoiceStarGiftDropOriginalDetails;
-        this.f12911a = j10;
-        this.f12914f = charSequence;
+    public p2(FrameLayout frameLayout, boolean z4, int i10, int i11) {
+        this.f12888a = i11;
+        this.d = frameLayout;
+        this.f12889b = z4;
+        this.f12890c = i10;
     }
 
     @Override
-    public void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        g5.L0((g5) this.f12912b, (TL_stars.TL_starGiftUnique) this.f12913c, (TLRPC.PaymentForm) this.d, (TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails) this.e, this.f12911a, (CharSequence) this.f12914f, d2Var);
-    }
-
-    @Override
-    public void run(boolean z4, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        AndroidUtilities.runOnUIThread(new g((w21) this.f12912b, z4, (org.telegram.ui.ActionBar.g1) this.f12913c, (o70) this.d, this.f12911a, (TLRPC.User) this.e, (TLRPC.Chat) this.f12914f));
-    }
-
-    public p2(w21 w21Var, org.telegram.ui.ActionBar.g1 g1Var, o70 o70Var, long j10, TLRPC.User user, TLRPC.Chat chat) {
-        this.f12912b = w21Var;
-        this.f12913c = g1Var;
-        this.d = o70Var;
-        this.f12911a = j10;
-        this.e = user;
-        this.f12914f = chat;
+    public final void onClick(View view) {
+        switch (this.f12888a) {
+            case 0:
+                pr0 pr0Var = (pr0) this.d;
+                if (pr0Var.f13101e.h() && pr0Var.h.getCurrentPosition() != 0) {
+                    pr0Var.a();
+                    return;
+                }
+                boolean z4 = this.f12889b;
+                int i10 = this.f12890c;
+                if (z4) {
+                    g2 g2Var = new g2(pr0Var.getContext(), i10, pr0Var.f13100c, null, null);
+                    g2Var.V(BirthdayController.getInstance(i10).isToday(pr0Var.f13100c));
+                    g2Var.show();
+                    return;
+                }
+                hg.v2.e0(2, BirthdayController.getInstance(i10).getState());
+                return;
+            default:
+                zu0 zu0Var = (zu0) this.d;
+                org.telegram.ui.ActionBar.p2 p2Var = zu0Var.f34004s1;
+                if (this.f12889b) {
+                    zu0Var.O0(p2Var, zu0Var.f33979g1, this.f12890c);
+                    return;
+                }
+                p2Var.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
+                ca.E(p2Var.getParentActivity(), p2Var.getCurrentAccount()).R(null);
+                return;
+        }
     }
 }

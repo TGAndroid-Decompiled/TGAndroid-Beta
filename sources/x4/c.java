@@ -1,14 +1,14 @@
 package x4;
 public final class c {
-    public final int f46773a;
-    public final boolean f46774b;
-    public final byte[] f46775c;
+    public final int f50373a;
+    public final boolean f50374b;
+    public final byte[] f50375c;
     public final byte[] d;
 
     public c(byte[] bArr, byte[] bArr2, boolean z4, int i10) {
-        this.f46773a = i10;
-        this.f46774b = z4;
-        this.f46775c = bArr;
+        this.f50373a = i10;
+        this.f50374b = z4;
+        this.f50375c = bArr;
         this.d = bArr2;
     }
 }

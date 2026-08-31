@@ -2,21 +2,21 @@ package org.telegram.ui;
 
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class kt extends org.telegram.ui.ActionBar.p1 {
-    public final lt f35807o;
+    public final mt f38512o;
 
-    public kt(lt ltVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+    public kt(mt mtVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
         super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f35807o = ltVar;
+        this.f38512o = mtVar;
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        pt ptVar = this.f35807o.f36133a;
-        ptVar.f37523k = null;
-        ptVar.K = false;
-        if (ptVar.R) {
-            ptVar.n();
+        qt qtVar = this.f38512o.f39219a;
+        qtVar.f40682k = null;
+        qtVar.K = false;
+        if (qtVar.R) {
+            qtVar.n();
         }
     }
 }

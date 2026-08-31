@@ -7,60 +7,60 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class fc extends eb {
-    public final jj0 f24845a;
-    public final e90 f24846b;
-    public final e90 f24847c;
+    public final lj0 f26861a;
+    public final g90 f26862b;
+    public final g90 f26863c;
     public final LinearLayout d;
-    public final int e;
+    public final int f26864e;
 
-    public fc(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
-        int i10 = org.telegram.ui.ActionBar.j6.Hi;
-        this.e = getThemedColor(i10);
-        setBackground(getThemedColor(org.telegram.ui.ActionBar.j6.Fi));
+    public fc(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var);
+        int i10 = org.telegram.ui.ActionBar.k6.Hi;
+        this.f26864e = getThemedColor(i10);
+        setBackground(getThemedColor(org.telegram.ui.ActionBar.k6.Fi));
         ?? imageView = new ImageView(context);
-        this.f24845a = imageView;
+        this.f26861a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView((View) imageView, k7.b6.h(56.0f, 48.0f, 8388627));
+        addView((View) imageView, k7.c6.h(56.0f, 48.0f, 8388627));
         int themedColor = getThemedColor(i10);
-        int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.j6.Gi);
+        int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.k6.Gi);
         LinearLayout linearLayout = new LinearLayout(context);
         this.d = linearLayout;
         linearLayout.setOrientation(1);
-        addView(linearLayout, k7.b6.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
-        e90 e90Var = new e90(context, null);
-        this.f24846b = e90Var;
-        e90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        e90Var.setTextColor(themedColor);
-        e90Var.setTextSize(1, 14.0f);
-        e90Var.setTypeface(AndroidUtilities.bold());
-        linearLayout.addView(e90Var);
-        e90 e90Var2 = new e90(context, null);
-        this.f24847c = e90Var2;
-        e90Var2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        e90Var2.setTextColor(themedColor);
-        e90Var2.setLinkTextColor(themedColor2);
-        e90Var2.setTypeface(Typeface.SANS_SERIF);
-        e90Var2.setTextSize(1, 13.0f);
-        linearLayout.addView(e90Var2);
+        addView(linearLayout, k7.c6.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
+        g90 g90Var = new g90(context, null);
+        this.f26862b = g90Var;
+        g90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        g90Var.setTextColor(themedColor);
+        g90Var.setTextSize(1, 14.0f);
+        g90Var.setTypeface(AndroidUtilities.bold());
+        linearLayout.addView(g90Var);
+        g90 g90Var2 = new g90(context, null);
+        this.f26863c = g90Var2;
+        g90Var2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        g90Var2.setTextColor(themedColor);
+        g90Var2.setLinkTextColor(themedColor2);
+        g90Var2.setTypeface(Typeface.SANS_SERIF);
+        g90Var2.setTextSize(1, 13.0f);
+        linearLayout.addView(g90Var2);
     }
 
     public final void c(int i10, int i11, int i12, String... strArr) {
-        jj0 jj0Var = this.f24845a;
-        jj0Var.f(i10, i11, i12, null);
+        lj0 lj0Var = this.f26861a;
+        lj0Var.f(i10, i11, i12, null);
         for (String str : strArr) {
-            jj0Var.h(this.e, str);
+            lj0Var.h(this.f26864e, str);
         }
     }
 
     @Override
     public CharSequence getAccessibilityText() {
-        return ((Object) this.f24846b.getText()) + ".\n" + ((Object) this.f24847c.getText());
+        return ((Object) this.f26862b.getText()) + ".\n" + ((Object) this.f26863c.getText());
     }
 
     @Override
     public final void onShow() {
         super.onShow();
-        this.f24845a.d();
+        this.f26861a.d();
     }
 }

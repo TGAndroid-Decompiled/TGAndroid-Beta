@@ -11,7 +11,7 @@ public abstract class y7 {
         } else {
             z4 = false;
         }
-        b7.b(j10, "Out of range: %s", z4);
+        c7.b(j10, "Out of range: %s", z4);
         return i10;
     }
 
@@ -38,7 +38,7 @@ public abstract class y7 {
     public static int[] d(Collection collection) {
         if (collection instanceof u8.a) {
             u8.a aVar = (u8.a) collection;
-            return Arrays.copyOfRange(aVar.f45196a, aVar.f45197b, aVar.f45198c);
+            return Arrays.copyOfRange(aVar.f48455a, aVar.f48456b, aVar.f48457c);
         }
         Object[] array = collection.toArray();
         int length = array.length;

@@ -3,16 +3,16 @@ package s5;
 import android.util.LruCache;
 import java.util.ArrayList;
 public final class r extends LruCache {
-    public final c f44097a;
+    public final c f47071a;
 
     public r(c cVar) {
         super(20);
-        this.f44097a = cVar;
+        this.f47071a = cVar;
     }
 
     @Override
     public final void entryRemoved(boolean z4, Object obj, Object obj2, Object obj3) {
-        ArrayList arrayList = this.f44097a.f44052g;
+        ArrayList arrayList = this.f47071a.f47024g;
         Integer num = (Integer) obj;
         q5.o oVar = (q5.o) obj2;
         q5.o oVar2 = (q5.o) obj3;

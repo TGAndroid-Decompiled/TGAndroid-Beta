@@ -4,7 +4,7 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 import java.util.Collections;
 public abstract class l0 {
-    public static final e5.f f12039a = new e5.f(16);
+    public static final e5.f f12489a = new e5.f(16);
 
     public static int a(ArrayList arrayList, int i10, ArrayList arrayList2) {
         boolean z4;
@@ -82,12 +82,12 @@ public abstract class l0 {
             rectF5.top = Float.MAX_VALUE;
             rectF5.left = Float.MAX_VALUE;
         }
-        Collections.sort(arrayList2, f12039a);
+        Collections.sort(arrayList2, f12489a);
         return i10;
     }
 
     public static float b(float f10) {
-        return 1.0f - k7.n.a(f10, 0.0f, 1.0f);
+        return 1.0f - k7.o.a(f10, 0.0f, 1.0f);
     }
 
     public static boolean c(float[] fArr) {

@@ -1,28 +1,28 @@
 package n7;
 public final class xe {
-    public final String f14798a;
-    public final String f14799b;
-    public final String f14800c;
+    public final String f15802a;
+    public final String f15803b;
+    public final String f15804c;
     public final String d;
-    public final m e;
-    public final String f14801f;
-    public final Boolean f14802g;
+    public final m f15805e;
+    public final String f15806f;
+    public final Boolean f15807g;
     public final Boolean h;
-    public final Boolean f14803i;
-    public final Integer f14804j;
-    public final Integer f14805k;
+    public final Boolean f15808i;
+    public final Integer f15809j;
+    public final Integer f15810k;
 
-    public xe(j7.f8 f8Var) {
-        this.f14798a = f8Var.f8996a;
-        this.f14799b = f8Var.f8997b;
-        this.f14800c = f8Var.f8998c;
-        this.d = f8Var.d;
-        this.e = (m) f8Var.f9003k;
-        this.f14801f = f8Var.e;
-        this.f14802g = (Boolean) f8Var.f8999f;
-        this.h = (Boolean) f8Var.f9000g;
-        this.f14803i = (Boolean) f8Var.h;
-        this.f14804j = f8Var.f9001i;
-        this.f14805k = (Integer) f8Var.f9002j;
+    public xe(j7.g8 g8Var) {
+        this.f15802a = g8Var.f9615a;
+        this.f15803b = g8Var.f9616b;
+        this.f15804c = g8Var.f9617c;
+        this.d = g8Var.d;
+        this.f15805e = (m) g8Var.f9623k;
+        this.f15806f = g8Var.f9618e;
+        this.f15807g = (Boolean) g8Var.f9619f;
+        this.h = (Boolean) g8Var.f9620g;
+        this.f15808i = (Boolean) g8Var.h;
+        this.f15809j = g8Var.f9621i;
+        this.f15810k = (Integer) g8Var.f9622j;
     }
 }

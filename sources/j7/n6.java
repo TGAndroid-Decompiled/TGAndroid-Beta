@@ -1,14 +1,14 @@
 package j7;
 public final class n6 {
-    public final g8 f9093a;
-    public final m6 f9094b;
-    public final k6 f9095c;
+    public final h8 f9712a;
+    public final m6 f9713b;
+    public final k6 f9714c;
     public final j7 d;
 
-    public n6(com.google.firebase.messaging.r rVar) {
-        this.f9093a = (g8) rVar.f4028b;
-        this.f9094b = (m6) rVar.f4029c;
-        this.f9095c = (k6) rVar.d;
-        this.d = (j7) rVar.e;
+    public n6(com.google.firebase.messaging.s sVar) {
+        this.f9712a = (h8) sVar.f4080a;
+        this.f9713b = (m6) sVar.f4081b;
+        this.f9714c = (k6) sVar.f4082c;
+        this.d = (j7) sVar.d;
     }
 }

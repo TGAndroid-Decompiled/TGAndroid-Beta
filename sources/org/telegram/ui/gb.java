@@ -8,26 +8,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class gb extends pb {
-    public final ug.j f34562u0;
-    public final sb f34563v0;
+    public final vg.j f37146u0;
+    public final sb f37147v0;
 
     public gb(sb sbVar, Context context) {
         super(sbVar, context);
-        this.f34563v0 = sbVar;
-        this.f34562u0 = new ug.j();
+        this.f37147v0 = sbVar;
+        this.f37146u0 = new vg.j();
     }
 
     @Override
     public final void U(Drawable drawable) {
-        if (drawable instanceof org.telegram.ui.Components.dc0) {
-            ((org.telegram.ui.Components.dc0) drawable).p();
+        if (drawable instanceof org.telegram.ui.Components.fc0) {
+            ((org.telegram.ui.Components.fc0) drawable).p();
         }
-        ug.j jVar = this.f34562u0;
-        sg.a c3 = jVar.c(drawable);
+        vg.j jVar = this.f37146u0;
+        tg.a c3 = jVar.c(drawable);
         AndroidUtilities.computePerceivedBrightness(jVar.a(c3));
-        sb sbVar = this.f34563v0;
-        sbVar.f38250a.f44317a = c3;
-        wg.f fVar = sbVar.X;
+        sb sbVar = this.f37147v0;
+        sbVar.f41184a.f48095a = c3;
+        xg.f fVar = sbVar.X;
         if (fVar != null) {
             fVar.invalidate();
         }
@@ -35,8 +35,8 @@ public final class gb extends pb {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        cb.m mVar = cb.m.e;
-        if (mVar != null && mVar.f2232a) {
+        cb.m mVar = cb.m.f2423e;
+        if (mVar != null && mVar.f2424a) {
             u4 u4Var = (u4) cb.m.l().d;
             if (u4Var != null) {
                 u4Var.onTouchEvent(motionEvent);
@@ -53,9 +53,9 @@ public final class gb extends pb {
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject != null && playingMessageObject.isRoundVideo() && playingMessageObject.eventId != 0) {
             long dialogId = playingMessageObject.getDialogId();
-            sb sbVar = this.f34563v0;
-            if (dialogId == (-sbVar.f38273s.f19184id)) {
-                MediaController.getInstance().setTextureView(sbVar.Q0(false), sbVar.f38259f0, sbVar.f38257e0, true);
+            sb sbVar = this.f37147v0;
+            if (dialogId == (-sbVar.f41208s.f20843id)) {
+                MediaController.getInstance().setTextureView(sbVar.Q0(false), sbVar.f41194f0, sbVar.f41192e0, true);
             }
         }
     }
@@ -71,13 +71,13 @@ public final class gb extends pb {
         org.telegram.ui.ActionBar.k kVar2;
         org.telegram.ui.ActionBar.k kVar3;
         org.telegram.ui.ActionBar.k kVar4;
-        sb sbVar = this.f34563v0;
+        sb sbVar = this.f37147v0;
         sbVar.Q0.a();
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        sg.a aVar = sbVar.f38250a.f44317a;
-        if (aVar instanceof sg.b) {
-            ((sg.b) aVar).b(size, size2);
+        tg.a aVar = sbVar.f41184a.f48095a;
+        if (aVar instanceof tg.b) {
+            ((tg.b) aVar).c(size, size2);
         }
         setMeasuredDimension(size, size2);
         int paddingTop = size2 - getPaddingTop();
@@ -95,14 +95,14 @@ public final class gb extends pb {
             if (childAt != null && childAt.getVisibility() != 8) {
                 kVar4 = ((org.telegram.ui.ActionBar.p2) sbVar).actionBar;
                 if (childAt != kVar4) {
-                    if (childAt != sbVar.B && childAt != sbVar.f38278w) {
+                    if (childAt != sbVar.B && childAt != sbVar.f41213w) {
                         if (childAt == sbVar.I) {
                             childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
                         } else {
                             measureChildWithMargins(childAt, i10, 0, i11, 0);
                         }
                     } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10.0f), View.MeasureSpec.getSize(i11)) + (sbVar.f38271r * 2), 1073741824));
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10.0f), View.MeasureSpec.getSize(i11)) + (sbVar.f41206r * 2), 1073741824));
                     }
                 }
             }

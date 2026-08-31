@@ -1,3 +1,3 @@
 package org.telegram.ui;
-public final class be extends ph.d {
+public final class be extends qh.d {
 }

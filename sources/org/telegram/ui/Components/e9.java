@@ -4,19 +4,19 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public final class e9 implements xd.f, ae.a {
-    public final ImageReceiver f24496a;
-    public final z8 f24497b;
-    public long f24498c;
+    public final ImageReceiver f26483a;
+    public final z8 f26484b;
+    public long f26485c;
     public boolean d;
-    public final f9 e;
+    public final f9 f26486e;
 
     public e9(f9 f9Var, ViewGroup viewGroup) {
-        this.e = f9Var;
+        this.f26486e = f9Var;
         ImageReceiver imageReceiver = new ImageReceiver(viewGroup);
-        this.f24496a = imageReceiver;
-        imageReceiver.setRoundRadius(f9Var.e / 2);
-        z8 z8Var = new z8((org.telegram.ui.ActionBar.f6) null);
-        this.f24497b = z8Var;
+        this.f26483a = imageReceiver;
+        imageReceiver.setRoundRadius(f9Var.f26793e / 2);
+        z8 z8Var = new z8((org.telegram.ui.ActionBar.g6) null);
+        this.f26484b = z8Var;
         z8Var.u(AndroidUtilities.dp(22.0f));
     }
 
@@ -24,9 +24,9 @@ public final class e9 implements xd.f, ae.a {
     public final void a() {
         if (this.d) {
             this.d = false;
-            this.f24496a.onDetachedFromWindow();
+            this.f26483a.onDetachedFromWindow();
         }
-        this.f24498c = 0L;
+        this.f26485c = 0L;
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class e9 implements xd.f, ae.a {
         if (z4) {
             return 0;
         }
-        return -this.e.f24806f;
+        return -this.f26486e.f26794f;
     }
 
     public final boolean equals(Object obj) {
-        if (!(obj instanceof e9) || this.f24498c != ((e9) obj).f24498c) {
+        if (!(obj instanceof e9) || this.f26485c != ((e9) obj).f26485c) {
             return false;
         }
         return true;
@@ -46,11 +46,11 @@ public final class e9 implements xd.f, ae.a {
 
     @Override
     public final int getHeight() {
-        return this.e.e;
+        return this.f26486e.f26793e;
     }
 
     @Override
     public final int getWidth() {
-        return this.e.e;
+        return this.f26486e.f26793e;
     }
 }

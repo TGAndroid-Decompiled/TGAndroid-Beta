@@ -95,11 +95,11 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                         FileLog.d("apply channel{else} " + stringExtra + " state");
                                     }
                                     SharedPreferences.Editor edit4 = notificationsSettings.edit();
-                                    String e = vh.v2.e("notify2_", sharedPrefKey);
+                                    String k10 = org.telegram.ui.yh.k("notify2_", sharedPrefKey);
                                     if (booleanExtra) {
                                         i10 = 2;
                                     }
-                                    edit4.putInt(e, i10);
+                                    edit4.putInt(k10, i10);
                                     if (!booleanExtra) {
                                         edit4.remove("notifyuntil_" + sharedPrefKey);
                                     }

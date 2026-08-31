@@ -5,15 +5,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import v4.e;
 public final class a extends e {
-    public static final Pattern f1554p = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d+))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d+))?)\\s*");
-    public static final Pattern f1555q = Pattern.compile("\\{\\\\.*?\\}");
-    public final StringBuilder f1556n;
-    public final ArrayList f1557o;
+    public static final Pattern f1681p = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d+))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d+))?)\\s*");
+    public static final Pattern f1682q = Pattern.compile("\\{\\\\.*?\\}");
+    public final StringBuilder f1683n;
+    public final ArrayList f1684o;
 
     public a() {
         super("SubripDecoder");
-        this.f1556n = new StringBuilder();
-        this.f1557o = new ArrayList();
+        this.f1683n = new StringBuilder();
+        this.f1684o = new ArrayList();
     }
 
     public static long l(Matcher matcher, int i10) {

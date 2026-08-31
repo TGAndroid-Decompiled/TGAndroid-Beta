@@ -2,26 +2,26 @@ package m8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import j7.f5;
+import j7.g5;
 import java.util.Arrays;
 import org.telegram.ui.yh;
 public final class d1 extends c6.a {
     public static final Parcelable.Creator<d1> CREATOR = new o0(10);
-    public final String f13795a;
-    public final String f13796b;
-    public final b1 f13797c;
+    public final String f13508a;
+    public final String f13509b;
+    public final b1 f13510c;
     public final String d;
-    public final String e;
-    public final Float f13798f;
+    public final String f13511e;
+    public final Float f13512f;
     public final f1 h;
 
     public d1(String str, String str2, b1 b1Var, String str3, String str4, Float f10, f1 f1Var) {
-        this.f13795a = str;
-        this.f13796b = str2;
-        this.f13797c = b1Var;
+        this.f13508a = str;
+        this.f13509b = str2;
+        this.f13510c = b1Var;
         this.d = str3;
-        this.e = str4;
-        this.f13798f = f10;
+        this.f13511e = str4;
+        this.f13512f = f10;
         this.h = f1Var;
     }
 
@@ -31,7 +31,7 @@ public final class d1 extends c6.a {
         }
         if (obj != null && d1.class == obj.getClass()) {
             d1 d1Var = (d1) obj;
-            if (k7.p.a(this.f13795a, d1Var.f13795a) && k7.p.a(this.f13796b, d1Var.f13796b) && k7.p.a(this.f13797c, d1Var.f13797c) && k7.p.a(this.d, d1Var.d) && k7.p.a(this.e, d1Var.e) && k7.p.a(this.f13798f, d1Var.f13798f) && k7.p.a(this.h, d1Var.h)) {
+            if (k7.q.a(this.f13508a, d1Var.f13508a) && k7.q.a(this.f13509b, d1Var.f13509b) && k7.q.a(this.f13510c, d1Var.f13510c) && k7.q.a(this.d, d1Var.d) && k7.q.a(this.f13511e, d1Var.f13511e) && k7.q.a(this.f13512f, d1Var.f13512f) && k7.q.a(this.h, d1Var.h)) {
                 return true;
             }
         }
@@ -39,31 +39,31 @@ public final class d1 extends c6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f13795a, this.f13796b, this.f13797c, this.d, this.e, this.f13798f, this.h});
+        return Arrays.hashCode(new Object[]{this.f13508a, this.f13509b, this.f13510c, this.d, this.f13511e, this.f13512f, this.h});
     }
 
     public final String toString() {
         String valueOf = String.valueOf(this.h);
-        String valueOf2 = String.valueOf(this.f13797c);
-        StringBuilder m9 = yh.m("AppParcelable{title='", this.f13796b, "', developerName='", this.d, "', formattedPrice='");
-        m9.append(this.e);
+        String valueOf2 = String.valueOf(this.f13510c);
+        StringBuilder m9 = yh.m("AppParcelable{title='", this.f13509b, "', developerName='", this.d, "', formattedPrice='");
+        m9.append(this.f13511e);
         m9.append("', starRating=");
-        m9.append(this.f13798f);
+        m9.append(this.f13512f);
         m9.append(", wearDetails=");
-        yh.x(m9, valueOf, ", deepLinkUri='", this.f13795a, "', icon=");
+        yh.w(m9, valueOf, ", deepLinkUri='", this.f13508a, "', icon=");
         return android.support.v4.media.a.r(m9, valueOf2, "}");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q10 = f5.q(parcel, 20293);
-        f5.l(parcel, 1, this.f13795a);
-        f5.l(parcel, 2, this.f13796b);
-        f5.k(parcel, 3, this.f13797c, i10);
-        f5.l(parcel, 4, this.d);
-        f5.l(parcel, 5, this.e);
-        f5.e(parcel, 6, this.f13798f);
-        f5.k(parcel, 7, this.h, i10);
-        f5.r(parcel, q10);
+        int q10 = g5.q(parcel, 20293);
+        g5.l(parcel, 1, this.f13508a);
+        g5.l(parcel, 2, this.f13509b);
+        g5.k(parcel, 3, this.f13510c, i10);
+        g5.l(parcel, 4, this.d);
+        g5.l(parcel, 5, this.f13511e);
+        g5.e(parcel, 6, this.f13512f);
+        g5.k(parcel, 7, this.h, i10);
+        g5.r(parcel, q10);
     }
 }

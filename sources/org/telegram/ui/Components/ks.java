@@ -1,39 +1,41 @@
 package org.telegram.ui.Components;
-public final class ks implements Runnable {
-    public final int f26378a;
-    public final org.telegram.ui.ActionBar.d2[] f26379b;
 
-    public ks(org.telegram.ui.ActionBar.d2[] d2VarArr, int i10) {
-        this.f26378a = i10;
-        this.f26379b = d2VarArr;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Shader;
+import android.view.View;
+public final class ks extends View {
+    public final Paint f28444a;
+    public final Matrix f28445b;
+    public LinearGradient f28446c;
+    public int d;
+    public float f28447e;
+    public float f28448f;
+
+    public ks(Context context) {
+        super(context);
+        this.f28444a = new Paint(1);
+        this.f28445b = new Matrix();
     }
 
     @Override
-    public final void run() {
-        switch (this.f26378a) {
-            case 0:
-                org.telegram.ui.ActionBar.d2 d2Var = this.f26379b[0];
-                if (d2Var != null) {
-                    d2Var.dismiss();
-                    return;
-                }
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.d2[] d2VarArr = this.f26379b;
-                try {
-                    d2VarArr[0].dismiss();
-                } catch (Throwable unused) {
-                }
-                d2VarArr[0] = null;
-                return;
-            default:
-                org.telegram.ui.ActionBar.d2[] d2VarArr2 = this.f26379b;
-                try {
-                    d2VarArr2[0].dismiss();
-                } catch (Throwable unused2) {
-                }
-                d2VarArr2[0] = null;
-                return;
+    public final void onDraw(Canvas canvas) {
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.f28447e + this.f28448f, this.f28444a);
+    }
+
+    public void setColor(int i10) {
+        if (this.d != i10) {
+            this.d = i10;
+            int alpha = Color.alpha(i10);
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{i0.a.k(i10, (alpha * 232) / 255), i0.a.k(i10, (alpha * 192) / 255), i0.a.k(i10, (alpha * 144) / 255), i0.a.k(i10, 0)}, (float[]) null, Shader.TileMode.CLAMP);
+            this.f28446c = linearGradient;
+            this.f28444a.setShader(linearGradient);
+            this.f28446c.setLocalMatrix(this.f28445b);
+            invalidate();
         }
     }
 }

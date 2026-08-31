@@ -1,16 +1,16 @@
 package u4;
 public final class h {
-    public final long f45031a;
-    public final boolean f45032b;
-    public final long f45033c;
+    public final long f48277a;
+    public final boolean f48278b;
+    public final long f48279c;
     public final long d;
-    public final boolean e;
+    public final boolean f48280e;
 
     public h(long j10, boolean z4, long j11, long j12, boolean z10) {
-        this.f45031a = j10;
-        this.f45032b = z4;
-        this.f45033c = j11;
+        this.f48277a = j10;
+        this.f48278b = z4;
+        this.f48279c = j11;
         this.d = j12;
-        this.e = z10;
+        this.f48280e = z10;
     }
 }

@@ -1,37 +1,42 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-public final class q4 extends ArrayAdapter {
-    public final w4 f20538a;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
+public final class q4 extends Animation {
+    public final int f22241a;
+    public final float f22242b;
+    public final float f22243c;
+    public final int d;
+    public final x4 f22244e;
 
-    public q4(w4 w4Var, Context context) {
-        super(context, 0);
-        this.f20538a = w4Var;
+    public q4(x4 x4Var, float f10, float f11, int i10, int i11) {
+        this.f22241a = i11;
+        this.f22244e = x4Var;
+        this.f22242b = f10;
+        this.f22243c = f11;
+        this.d = i10;
     }
 
     @Override
-    public final View getView(int i10, View view, ViewGroup viewGroup) {
-        w4 w4Var = this.f20538a;
-        com.google.firebase.messaging.n nVar = w4Var.f20709q;
-        MenuItem menuItem = (MenuItem) getItem(i10);
-        int width = w4Var.I.getWidth();
-        boolean z4 = false;
-        if (view != null) {
-            int i11 = nVar.f4020a;
-            if (((w4) nVar.e).Q.f20763j != null) {
-                z4 = true;
-            }
-            y4.e(view, menuItem, z4);
-        } else {
-            view = y4.b(((w4) nVar.e).Q, nVar.f4022c, menuItem, true, false, false);
-            int i12 = nVar.f4021b;
-            view.setPadding(i12, 0, i12, 0);
+    public final void applyTransformation(float f10, Transformation transformation) {
+        switch (this.f22241a) {
+            case 0:
+                float f11 = this.f22242b;
+                float w10 = e2.c.w(this.f22243c, f11, f10, f11);
+                x4 x4Var = this.f22244e;
+                x4Var.f22429i.setX(w10 + (x4Var.f22427f.getWidth() - this.d));
+                float f12 = 1.0f - f10;
+                x4Var.f22432l.setAlpha(f12);
+                x4Var.f22430j.setAlpha(f12);
+                return;
+            default:
+                float f13 = this.f22242b;
+                float w11 = e2.c.w(this.f22243c, f13, f10, f13);
+                x4 x4Var2 = this.f22244e;
+                x4Var2.f22429i.setX(w11 + (x4Var2.f22427f.getWidth() - this.d));
+                x4Var2.f22432l.setAlpha(f10);
+                x4Var2.f22430j.setAlpha(f10);
+                return;
         }
-        view.setMinimumWidth(width);
-        return view;
     }
 }

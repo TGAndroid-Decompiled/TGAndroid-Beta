@@ -3,21 +3,21 @@ package org.telegram.ui;
 import android.animation.ValueAnimator;
 import android.view.View;
 public final class on implements ValueAnimator.AnimatorUpdateListener {
-    public final int f36940a;
-    public final pn f36941b;
+    public final int f39807a;
+    public final pn f39808b;
 
     public on(pn pnVar, int i10) {
-        this.f36940a = i10;
-        this.f36941b = pnVar;
+        this.f39807a = i10;
+        this.f39808b = pnVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f36940a) {
+        switch (this.f39807a) {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                pn pnVar = this.f36941b;
-                pnVar.f37378f = floatValue;
+                pn pnVar = this.f39808b;
+                pnVar.f40090f = floatValue;
                 View view = pnVar.h.fragmentView;
                 if (view != null) {
                     view.invalidate();
@@ -26,8 +26,8 @@ public final class on implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 1:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                pn pnVar2 = this.f36941b;
-                pnVar2.f37378f = floatValue2;
+                pn pnVar2 = this.f39808b;
+                pnVar2.f40090f = floatValue2;
                 View view2 = pnVar2.h.fragmentView;
                 if (view2 != null) {
                     view2.invalidate();
@@ -36,8 +36,8 @@ public final class on implements ValueAnimator.AnimatorUpdateListener {
                 return;
             default:
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                pn pnVar3 = this.f36941b;
-                pnVar3.f37378f = floatValue3;
+                pn pnVar3 = this.f39808b;
+                pnVar3.f40090f = floatValue3;
                 View view3 = pnVar3.h.fragmentView;
                 if (view3 != null) {
                     view3.invalidate();

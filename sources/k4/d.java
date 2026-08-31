@@ -8,22 +8,22 @@ import j8.t;
 import java.util.ArrayList;
 public final class d implements e4.b {
     public static final Parcelable.Creator<d> CREATOR = new t(13);
-    public final ArrayList f9745a;
+    public final ArrayList f10466a;
 
     public d(ArrayList arrayList) {
-        this.f9745a = arrayList;
+        this.f10466a = arrayList;
         boolean z4 = false;
         if (!arrayList.isEmpty()) {
-            long j10 = ((c) arrayList.get(0)).f9743b;
+            long j10 = ((c) arrayList.get(0)).f10464b;
             int i10 = 1;
             while (true) {
                 if (i10 >= arrayList.size()) {
                     break;
-                } else if (((c) arrayList.get(i10)).f9742a < j10) {
+                } else if (((c) arrayList.get(i10)).f10463a < j10) {
                     z4 = true;
                     break;
                 } else {
-                    j10 = ((c) arrayList.get(i10)).f9743b;
+                    j10 = ((c) arrayList.get(i10)).f10464b;
                     i10++;
                 }
             }
@@ -51,22 +51,22 @@ public final class d implements e4.b {
             return true;
         }
         if (obj != null && d.class == obj.getClass()) {
-            return this.f9745a.equals(((d) obj).f9745a);
+            return this.f10466a.equals(((d) obj).f10466a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f9745a.hashCode();
+        return this.f10466a.hashCode();
     }
 
     public final String toString() {
-        return "SlowMotion: segments=" + this.f9745a;
+        return "SlowMotion: segments=" + this.f10466a;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeList(this.f9745a);
+        parcel.writeList(this.f10466a);
     }
 
     @Override

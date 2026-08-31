@@ -1,12 +1,12 @@
 package i9;
 public final class c {
-    public final String f7377a;
-    public final String f7378b;
+    public final String f7940a;
+    public final String f7941b;
 
     public c(String str, String str2) {
         if (str != null) {
-            this.f7377a = str;
-            this.f7378b = str2;
+            this.f7940a = str;
+            this.f7941b = str2;
             return;
         }
         throw new NullPointerException("Null crashlyticsInstallId");
@@ -19,8 +19,8 @@ public final class c {
         }
         if (obj instanceof c) {
             c cVar = (c) obj;
-            String str2 = cVar.f7378b;
-            if (this.f7377a.equals(cVar.f7377a) && ((str = this.f7378b) != null ? str.equals(str2) : str2 == null)) {
+            String str2 = cVar.f7941b;
+            if (this.f7940a.equals(cVar.f7940a) && ((str = this.f7941b) != null ? str.equals(str2) : str2 == null)) {
                 return true;
             }
         }
@@ -29,8 +29,8 @@ public final class c {
 
     public final int hashCode() {
         int hashCode;
-        int hashCode2 = (this.f7377a.hashCode() ^ 1000003) * 1000003;
-        String str = this.f7378b;
+        int hashCode2 = (this.f7940a.hashCode() ^ 1000003) * 1000003;
+        String str = this.f7941b;
         if (str == null) {
             hashCode = 0;
         } else {
@@ -41,8 +41,8 @@ public final class c {
 
     public final String toString() {
         StringBuilder sb = new StringBuilder("InstallIds{crashlyticsInstallId=");
-        sb.append(this.f7377a);
+        sb.append(this.f7940a);
         sb.append(", firebaseInstallationId=");
-        return android.support.v4.media.a.r(sb, this.f7378b, "}");
+        return android.support.v4.media.a.r(sb, this.f7941b, "}");
     }
 }

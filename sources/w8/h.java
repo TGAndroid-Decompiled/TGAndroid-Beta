@@ -6,21 +6,21 @@ import java.util.concurrent.Executor;
 import l8.j;
 import ld.y0;
 public final class h implements c9.e, t {
-    public static final h f46485b = new h(0);
-    public static final h f46486c = new h(1);
+    public static final h f49459b = new h(0);
+    public static final h f49460c = new h(1);
     public static final h d = new h(2);
-    public static final h e = new h(3);
-    public final int f46487a;
+    public static final h f49461e = new h(3);
+    public final int f49462a;
 
     public h(int i10) {
-        this.f46487a = i10;
+        this.f49462a = i10;
     }
 
     @Override
     public Exception a(Status status) {
-        int i10 = status.f2718a;
-        int i11 = status.f2718a;
-        String str = status.f2719b;
+        int i10 = status.f2646a;
+        int i11 = status.f2646a;
+        String str = status.f2647b;
         if (i10 == 8) {
             if (str == null) {
                 str = j.a(i11);
@@ -34,8 +34,8 @@ public final class h implements c9.e, t {
     }
 
     @Override
-    public Object f0(c5.j jVar) {
-        switch (this.f46487a) {
+    public Object e0(c5.j jVar) {
+        switch (this.f49462a) {
             case 0:
                 Object f10 = jVar.f(new c9.t(y8.a.class, Executor.class));
                 kotlin.jvm.internal.j.d(f10, "c.get(Qualified.qualifie…a, Executor::class.java))");

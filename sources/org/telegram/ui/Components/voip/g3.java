@@ -1,41 +1,31 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-public final class g3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29651a;
-    public final j3 f29652b;
+import org.telegram.messenger.AndroidUtilities;
+public final class g3 implements Runnable {
+    public final int f32048a;
+    public final l3 f32049b;
+    public final int f32050c;
 
-    public g3(j3 j3Var, int i10) {
-        this.f29651a = i10;
-        this.f29652b = j3Var;
+    public g3(l3 l3Var, int i10, int i11) {
+        this.f32048a = i11;
+        this.f32049b = l3Var;
+        this.f32050c = i10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f29651a) {
+    public final void run() {
+        switch (this.f32048a) {
             case 0:
-                j3 j3Var = this.f29652b;
-                j3Var.getClass();
-                j3Var.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                j3Var.invalidate();
+                AndroidUtilities.runOnUIThread(new g3(this.f32049b, this.f32050c, 2));
                 return;
             case 1:
-                j3 j3Var2 = this.f29652b;
-                j3Var2.getClass();
-                j3Var2.f29705w = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                j3Var2.invalidate();
+                AndroidUtilities.runOnUIThread(new g3(this.f32049b, this.f32050c, 3));
                 return;
             case 2:
-                j3 j3Var3 = this.f29652b;
-                j3Var3.getClass();
-                j3Var3.f29704s = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                j3Var3.invalidate();
+                this.f32049b.c(this.f32050c);
                 return;
             default:
-                j3 j3Var4 = this.f29652b;
-                j3Var4.getClass();
-                j3Var4.f29703r = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                j3Var4.invalidate();
+                this.f32049b.a(this.f32050c);
                 return;
         }
     }

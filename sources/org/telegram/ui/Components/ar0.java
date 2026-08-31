@@ -1,80 +1,63 @@
 package org.telegram.ui.Components;
 
-import java.util.Collections;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ar0 implements Runnable {
-    public final int f23498a;
-    public final yu0 f23499b;
-    public final TLRPC.TL_error f23500c;
-    public final int d;
-    public final int e;
-    public final TLObject f23501f;
+    public final int f25329a = 0;
+    public final zu0 f25330b;
+    public final org.telegram.ui.ActionBar.g6 f25331c;
+    public final MessageObject d;
+    public final int f25332e;
 
-    public ar0(yu0 yu0Var, TLRPC.TL_error tL_error, int i10, int i11, TLObject tLObject, int i12) {
-        this.f23498a = i12;
-        this.f23499b = yu0Var;
-        this.f23500c = tL_error;
-        this.d = i10;
-        this.e = i11;
-        this.f23501f = tLObject;
+    public ar0(zu0 zu0Var, org.telegram.ui.ActionBar.g6 g6Var, int i10, MessageObject messageObject) {
+        this.f25330b = zu0Var;
+        this.f25331c = g6Var;
+        this.f25332e = i10;
+        this.d = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f23498a) {
+        switch (this.f25329a) {
             case 0:
-                yu0 yu0Var = this.f23499b;
-                NotificationCenter.getInstance(yu0Var.f31144s1.getCurrentAccount()).doOnIdle(new ar0(yu0Var, this.f23500c, this.d, this.e, this.f23501f, 1));
-                return;
-            default:
-                yu0 yu0Var2 = this.f23499b;
-                nu0[] nu0VarArr = yu0Var2.f31138q1;
-                if (this.f23500c == null) {
-                    int i10 = this.e;
-                    nu0 nu0Var = nu0VarArr[i10];
-                    if (this.d == nu0Var.f27376p) {
-                        TLRPC.TL_messages_searchResultsPositions tL_messages_searchResultsPositions = (TLRPC.TL_messages_searchResultsPositions) this.f23501f;
-                        nu0Var.e.clear();
-                        int size = tL_messages_searchResultsPositions.positions.size();
-                        int i11 = 0;
-                        for (int i12 = 0; i12 < size; i12++) {
-                            TLRPC.TL_searchResultPosition tL_searchResultPosition = tL_messages_searchResultsPositions.positions.get(i12);
-                            int i13 = tL_searchResultPosition.date;
-                            if (i13 != 0) {
-                                ?? obj = new Object();
-                                obj.f30087c = i13;
-                                obj.d = tL_searchResultPosition.msg_id;
-                                obj.f30086b = tL_searchResultPosition.offset;
-                                obj.f30085a = LocaleController.formatYearMont(i13, true);
-                                nu0VarArr[i10].e.add(obj);
-                            }
-                        }
-                        Collections.sort(nu0VarArr[i10].e, new nh.e4(28));
-                        nu0 nu0Var2 = nu0VarArr[i10];
-                        nu0Var2.f27367f[0] = tL_messages_searchResultsPositions.count;
-                        nu0Var2.h = true;
-                        if (!nu0Var2.e.isEmpty()) {
-                            while (true) {
-                                qt0[] qt0VarArr = yu0Var2.f31120h0;
-                                if (i11 < qt0VarArr.length) {
-                                    qt0 qt0Var = qt0VarArr[i11];
-                                    if (qt0Var.C == i10) {
-                                        qt0Var.f28238b = true;
-                                        yu0Var2.o1(qt0Var, true);
-                                    }
-                                    i11++;
-                                }
-                            }
-                        }
-                        yu0Var2.E.l();
-                        return;
-                    }
+                org.telegram.ui.ActionBar.d2[] d2VarArr = {new org.telegram.ui.ActionBar.d2(this.f25330b.getContext(), 3, this.f25331c)};
+                int i10 = this.f25332e;
+                int sendVote = SendMessagesHelper.getInstance(i10).sendVote(this.d, null, new ms(d2VarArr, 1));
+                if (sendVote != 0) {
+                    AndroidUtilities.runOnUIThread(new er0(d2VarArr, i10, sendVote, 0), 500L);
                     return;
                 }
                 return;
+            default:
+                zu0 zu0Var = this.f25330b;
+                Context context = zu0Var.getContext();
+                org.telegram.ui.ActionBar.g6 g6Var = this.f25331c;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, g6Var);
+                org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f21166a;
+                d2Var.M0 = false;
+                MessageObject messageObject = this.d;
+                if (messageObject.isQuiz()) {
+                    d2Var.O = LocaleController.getString(R.string.StopQuizAlertTitle);
+                    d2Var.Q = LocaleController.getString(R.string.StopQuizAlertText);
+                } else {
+                    d2Var.O = LocaleController.getString(R.string.StopPollAlertTitle);
+                    d2Var.Q = LocaleController.getString(R.string.StopPollAlertText);
+                }
+                alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new hg.a0(zu0Var, g6Var, messageObject, this.f25332e, 6));
+                l.d.u(R.string.Cancel, alertDialog$Builder, null);
+                return;
         }
+    }
+
+    public ar0(zu0 zu0Var, org.telegram.ui.ActionBar.g6 g6Var, MessageObject messageObject, int i10) {
+        this.f25330b = zu0Var;
+        this.f25331c = g6Var;
+        this.d = messageObject;
+        this.f25332e = i10;
     }
 }

@@ -1,56 +1,71 @@
 package ug;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.RectF;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class c {
-    public final int f45497a;
-    public final long f45498b;
-    public long e;
-    public long f45500f;
-    public long f45501g;
-    public long h;
-    public boolean f45502i;
-    public final RectF f45499c = new RectF();
-    public float f45503j = 0.0f;
-    public float f45504k = 0.0f;
-    public float f45505l = Float.MAX_VALUE;
-    public float f45506m = 0.0f;
-    public final long d = Utilities.random.nextLong();
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.ui.ActionBar.w5;
+import vg.i;
+public abstract class c {
+    public static final Matrix f48791a = new Matrix();
+    public static final RectF f48792b = new RectF();
+    public static final RectF f48793c = new RectF();
 
-    public c(int i10, long j10) {
-        this.f45497a = i10;
-        this.f45498b = j10;
-    }
-
-    public final TLRPC.TL_inputMessageReadMetric a() {
-        int round;
-        TLRPC.TL_inputMessageReadMetric tL_inputMessageReadMetric = new TLRPC.TL_inputMessageReadMetric();
-        tL_inputMessageReadMetric.msg_id = this.f45497a;
-        tL_inputMessageReadMetric.view_id = this.d;
-        tL_inputMessageReadMetric.time_in_view_ms = (int) this.f45501g;
-        tL_inputMessageReadMetric.active_time_in_view_ms = (int) this.h;
-        float f10 = this.f45504k;
-        if (f10 == 0.0f) {
-            round = 1000;
-        } else {
-            round = Math.round((this.f45503j / f10) * 1000.0f);
-        }
-        tL_inputMessageReadMetric.height_to_viewport_ratio_permille = round;
-        tL_inputMessageReadMetric.seen_range_ratio_permille = b();
-        return tL_inputMessageReadMetric;
-    }
-
-    public final int b() {
-        float f10 = this.f45503j;
-        if (f10 != 0.0f) {
-            float f11 = this.f45505l;
-            float f12 = this.f45506m;
-            if (f11 <= f12) {
-                return Math.round(((f12 - f11) / f10) * 1000.0f);
+    public static void a(pg.a aVar, Canvas canvas, RectF rectF, View view, ViewGroup viewGroup, int i10) {
+        boolean z4;
+        if (i10 > 0) {
+            RectF rectF2 = f48793c;
+            if (i.c(view, viewGroup, rectF2)) {
+                float f10 = rectF2.left;
+                float f11 = rectF2.top;
+                RectF rectF3 = f48792b;
+                rectF3.set(rectF);
+                rectF3.offset(-f10, -f11);
+                boolean z10 = true;
+                if (f10 == 0.0f && f11 == 0.0f) {
+                    z4 = false;
+                } else {
+                    z4 = true;
+                }
+                if (i10 == 255) {
+                    z10 = false;
+                }
+                if (z4) {
+                    canvas.save();
+                    canvas.translate(f10, f11);
+                }
+                if (z10) {
+                    canvas.saveLayerAlpha(rectF3, i10);
+                }
+                aVar.e(canvas, rectF3);
+                if (z10) {
+                    canvas.restore();
+                }
+                if (z4) {
+                    canvas.restore();
+                }
             }
-            return 0;
         }
-        return 0;
+    }
+
+    public static void b(pg.a aVar, Canvas canvas, RectF rectF, View view, FrameLayout frameLayout) {
+        a(aVar, canvas, rectF, view, frameLayout, 255);
+    }
+
+    public static void c(tg.b bVar, View view) {
+        Bitmap bitmap;
+        if (bVar != null && view != null && view.getWidth() != 0 && view.getHeight() != 0 && (bitmap = bVar.d) != null && !bitmap.isRecycled() && bitmap.getWidth() != 0 && bitmap.getHeight() != 0) {
+            Matrix matrix = f48791a;
+            matrix.reset();
+            matrix.setScale(view.getWidth() / bitmap.getWidth(), view.getHeight() / bitmap.getHeight());
+            bVar.f48081b.set(matrix);
+        }
+    }
+
+    public static w5 d(qg.b bVar, int i10, int i11) {
+        return new w5(i10, i11, bVar);
     }
 }

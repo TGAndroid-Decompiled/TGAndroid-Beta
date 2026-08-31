@@ -1,48 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
-public final class st implements ActionMode.Callback {
-    public final ActionMode.Callback f28814a;
-    public final vt f28815b;
+import android.text.Editable;
+import org.telegram.messenger.Utilities;
+public final class st implements Utilities.Callback {
+    public final xt f31167a;
+    public final int f31168b;
+    public final int f31169c;
 
-    public st(vt vtVar, ActionMode.Callback callback) {
-        this.f28815b = vtVar;
-        this.f28814a = callback;
+    public st(xt xtVar, int i10, int i11) {
+        this.f31167a = xtVar;
+        this.f31168b = i10;
+        this.f31169c = i11;
     }
 
     @Override
-    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        if (this.f28815b.performMenuAction(menuItem.getItemId())) {
-            actionMode.finish();
-            return true;
-        }
-        try {
-            return this.f28814a.onActionItemClicked(actionMode, menuItem);
-        } catch (Exception unused) {
-            return true;
-        }
-    }
-
-    @Override
-    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        vt vtVar = this.f28815b;
-        vtVar.copyPasteShowed = true;
-        vtVar.onContextMenuOpen();
-        return this.f28814a.onCreateActionMode(actionMode, menu);
-    }
-
-    @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
-        vt vtVar = this.f28815b;
-        vtVar.copyPasteShowed = false;
-        vtVar.onContextMenuClose();
-        this.f28814a.onDestroyActionMode(actionMode);
-    }
-
-    @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        return this.f28814a.onPrepareActionMode(actionMode, menu);
+    public final void run(Object obj) {
+        CharSequence charSequence = (CharSequence) obj;
+        xt xtVar = this.f31167a;
+        Editable text = xtVar.getText();
+        int i10 = this.f31168b;
+        text.replace(i10, this.f31169c, charSequence);
+        xtVar.setSelection(i10, charSequence.length() + i10);
     }
 }

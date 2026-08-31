@@ -1,87 +1,112 @@
 package lh;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.pq;
-public final class d5 extends pq {
-    public final View f12301b;
-    public final Paint f12302c;
-    public final Path d;
-    public final long e;
-    public float f12303f;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.q70;
+public final class d5 implements Utilities.Callback5 {
+    public final int f12672a;
+    public final p5 f12673b;
+    public final q70 f12674c;
 
-    public d5(ph.d dVar, int i10) {
-        super(dVar);
-        Paint paint = new Paint(1);
-        this.f12302c = paint;
-        Path path = new Path();
-        this.d = path;
-        this.e = System.currentTimeMillis();
-        this.f12303f = 1.0f;
-        this.f12301b = dVar;
-        this.f27967a.setColor(-1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setColor(i10);
-        path.rewind();
-        path.moveTo(-AndroidUtilities.dpf2(2.91f), AndroidUtilities.dpf2(1.08f));
-        path.lineTo(0.0f, -AndroidUtilities.dpf2(1.08f));
-        path.lineTo(AndroidUtilities.dpf2(2.91f), AndroidUtilities.dpf2(1.08f));
+    public d5(p5 p5Var, q70 q70Var, int i10) {
+        this.f12672a = i10;
+        this.f12673b = p5Var;
+        this.f12674c = q70Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        float f10;
-        Paint paint = this.f27967a;
-        paint.setAlpha((int) (this.f12303f * 255.0f));
-        canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, paint);
-        float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.e) % 400)) / 400.0f;
-        Paint paint2 = this.f12302c;
-        int alpha = paint2.getAlpha();
-        paint2.setAlpha((int) (alpha * this.f12303f));
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(1.33f));
-        canvas.save();
-        canvas.translate(getBounds().centerX(), getBounds().centerY() - (((AndroidUtilities.dpf2(1.166f) * 2.0f) + (AndroidUtilities.dpf2(2.16f) * 3.0f)) / 2.0f));
-        for (int i10 = 0; i10 < 4; i10++) {
-            if (i10 == 0) {
-                f10 = 1.0f - currentTimeMillis;
-            } else if (i10 == 3) {
-                f10 = currentTimeMillis;
-            } else {
-                f10 = 1.0f;
-            }
-            paint2.setAlpha((int) (f10 * 255.0f * this.f12303f));
-            canvas.save();
-            float lerp = AndroidUtilities.lerp(0.5f, 1.0f, f10);
-            canvas.scale(lerp, lerp);
-            canvas.drawPath(this.d, paint2);
-            canvas.restore();
-            canvas.translate(0.0f, AndroidUtilities.dpf2(3.3260002f) * f10);
+    public final void mo27run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        j51 j51Var = (j51) obj;
+        View view = (View) obj2;
+        Integer num = (Integer) obj3;
+        Float f10 = (Float) obj4;
+        Float f11 = (Float) obj5;
+        switch (this.f12672a) {
+            case 0:
+                long j10 = ((TL_stars.starGiftAttributeModel) j51Var.G).document.f20849id;
+                b5 b5Var = this.f12673b.f12896c;
+                HashSet hashSet = b5Var.f12625j;
+                HashSet hashSet2 = b5Var.f12625j;
+                if (!hashSet.contains(Long.valueOf(j10))) {
+                    if (hashSet2.isEmpty()) {
+                        ArrayList arrayList = b5Var.f12622f;
+                        int size = arrayList.size();
+                        int i10 = 0;
+                        while (i10 < size) {
+                            Object obj6 = arrayList.get(i10);
+                            i10++;
+                            long j11 = ((TL_stars.starGiftAttributeModel) obj6).document.f20849id;
+                            if (j11 != j10) {
+                                hashSet2.add(Long.valueOf(j11));
+                            }
+                        }
+                    } else {
+                        hashSet2.add(Long.valueOf(j10));
+                    }
+                } else {
+                    hashSet2.remove(Long.valueOf(j10));
+                }
+                b5Var.h();
+                this.f12674c.u();
+                return;
+            case 1:
+                int i11 = ((TL_stars.starGiftAttributeBackdrop) j51Var.G).backdrop_id;
+                b5 b5Var2 = this.f12673b.f12896c;
+                HashSet hashSet3 = b5Var2.f12626k;
+                HashSet hashSet4 = b5Var2.f12626k;
+                if (!hashSet3.contains(Integer.valueOf(i11))) {
+                    if (hashSet4.isEmpty()) {
+                        ArrayList arrayList2 = b5Var2.f12623g;
+                        int size2 = arrayList2.size();
+                        int i12 = 0;
+                        while (i12 < size2) {
+                            Object obj7 = arrayList2.get(i12);
+                            i12++;
+                            int i13 = ((TL_stars.starGiftAttributeBackdrop) obj7).backdrop_id;
+                            if (i13 != i11) {
+                                hashSet4.add(Integer.valueOf(i13));
+                            }
+                        }
+                    } else {
+                        hashSet4.add(Integer.valueOf(i11));
+                    }
+                } else {
+                    hashSet4.remove(Integer.valueOf(i11));
+                }
+                b5Var2.h();
+                this.f12674c.u();
+                return;
+            default:
+                long j12 = ((TL_stars.starGiftAttributePattern) j51Var.G).document.f20849id;
+                b5 b5Var3 = this.f12673b.f12896c;
+                HashSet hashSet5 = b5Var3.f12627l;
+                HashSet hashSet6 = b5Var3.f12627l;
+                if (!hashSet5.contains(Long.valueOf(j12))) {
+                    if (hashSet6.isEmpty()) {
+                        ArrayList arrayList3 = b5Var3.h;
+                        int size3 = arrayList3.size();
+                        int i14 = 0;
+                        while (i14 < size3) {
+                            Object obj8 = arrayList3.get(i14);
+                            i14++;
+                            long j13 = ((TL_stars.starGiftAttributePattern) obj8).document.f20849id;
+                            if (j13 != j12) {
+                                hashSet6.add(Long.valueOf(j13));
+                            }
+                        }
+                    } else {
+                        hashSet6.add(Long.valueOf(j12));
+                    }
+                } else {
+                    hashSet6.remove(Long.valueOf(j12));
+                }
+                b5Var3.h();
+                this.f12674c.u();
+                return;
         }
-        canvas.restore();
-        paint2.setAlpha(alpha);
-        View view = this.f12301b;
-        if (view != null) {
-            view.invalidate();
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f12303f = i10 / 255.0f;
     }
 }

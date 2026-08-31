@@ -1,146 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseIntArray;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-public final class i00 extends f2.b0 {
-    public final vp d = new vp(this, 17);
-    public final j00 e;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.MessageObject;
+public final class i00 {
+    public int f27634a;
+    public CharSequence f27635b;
+    public int f27636c;
+    public int d;
+    public boolean f27637e;
+    public boolean f27638f;
+    public boolean f27639g;
+    public final l00 h;
 
-    public i00(j00 j00Var) {
-        this.e = j00Var;
+    public i00(l00 l00Var, int i10, Spannable spannable, boolean z4) {
+        this.h = l00Var;
+        this.f27634a = i10;
+        this.f27635b = spannable;
+        this.f27639g = z4;
     }
 
-    @Override
-    public final void a(RecyclerView recyclerView, f2.l1 l1Var) {
-        super.a(recyclerView, l1Var);
-        View view = l1Var.f5785a;
-        view.setPressed(false);
-        view.setBackground(null);
-        view.setTag(R.id.dragging, null);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, f2.l1 l1Var) {
-        if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
-            j00 j00Var = this.e;
-            if (!j00Var.f25830n || (l1Var.b() == 0 && ((g00) j00Var.h.get(0)).e && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
-                return f2.b0.l(0, 0);
+    public final int a(boolean z4) {
+        int i10;
+        int i11;
+        CharSequence charSequence = this.f27635b;
+        l00 l00Var = this.h;
+        int ceil = (int) Math.ceil(qh.f3.g(charSequence, l00Var.f28488b));
+        this.f27636c = ceil;
+        int i12 = 0;
+        if (z4) {
+            i10 = ((org.telegram.ui.pw) l00Var.G).a(this.f27634a);
+            if (i10 < 0) {
+                i10 = 0;
             }
-        }
-        return f2.b0.l(12, 0);
-    }
-
-    @Override
-    public final boolean k() {
-        return this.e.f25830n;
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, f2.l1 l1Var, f2.l1 l1Var2) {
-        int i10 = 0;
-        if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked() && ((l1Var.b() == 0 || l1Var2.b() == 0) && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
-            return false;
-        }
-        f00 f00Var = this.e.F;
-        int b10 = l1Var.b();
-        int b11 = l1Var2.b();
-        j00 j00Var = f00Var.d;
-        ArrayList arrayList = j00Var.h;
-        SparseIntArray sparseIntArray = j00Var.f25825h0;
-        int size = arrayList.size();
-        if (b10 >= 0 && b11 >= 0 && b10 < size && b11 < size) {
-            ArrayList<MessagesController.DialogFilter> dialogFilters = MessagesController.getInstance(UserConfig.selectedAccount).getDialogFilters();
-            MessagesController.DialogFilter dialogFilter = dialogFilters.get(b10);
-            MessagesController.DialogFilter dialogFilter2 = dialogFilters.get(b11);
-            int i11 = dialogFilter.order;
-            dialogFilter.order = dialogFilter2.order;
-            dialogFilter2.order = i11;
-            dialogFilters.set(b10, dialogFilter2);
-            dialogFilters.set(b11, dialogFilter);
-            g00 g00Var = (g00) arrayList.get(b10);
-            g00 g00Var2 = (g00) arrayList.get(b11);
-            int i12 = g00Var.f25005a;
-            g00Var.f25005a = g00Var2.f25005a;
-            g00Var2.f25005a = i12;
-            int i13 = sparseIntArray.get(b10);
-            sparseIntArray.put(b10, sparseIntArray.get(b11));
-            sparseIntArray.put(b11, i13);
-            e00 e00Var = j00Var.G;
-            int i14 = g00Var2.f25005a;
-            int i15 = g00Var.f25005a;
-            org.telegram.ui.ow owVar = (org.telegram.ui.ow) e00Var;
-            while (true) {
-                org.telegram.ui.ny[] nyVarArr = owVar.f36989b.f37009b0;
-                if (i10 >= nyVarArr.length) {
-                    break;
-                }
-                org.telegram.ui.ny nyVar = nyVarArr[i10];
-                int i16 = nyVar.h;
-                if (i16 == i14) {
-                    nyVar.h = i15;
-                } else if (i16 == i15) {
-                    nyVar.h = i14;
-                }
-                i10++;
+            if (z4) {
+                this.d = i10;
             }
-            int i17 = j00Var.H;
-            if (i17 == b10) {
-                j00Var.H = b11;
-                j00Var.I = g00Var.f25005a;
-            } else if (i17 == b11) {
-                j00Var.H = b10;
-                j00Var.I = g00Var2.f25005a;
-            }
-            int i18 = j00Var.f25831n0;
-            if (i18 == b10) {
-                j00Var.f25831n0 = b11;
-                j00Var.f25832o0 = g00Var.f25005a;
-            } else if (i18 == b11) {
-                j00Var.f25831n0 = b10;
-                j00Var.f25832o0 = g00Var2.f25005a;
-            }
-            arrayList.set(b10, g00Var2);
-            arrayList.set(b11, g00Var);
-            j00Var.j();
-            j00Var.f25845y = true;
-            j00Var.C.setItemAnimator(j00Var.f25833p0);
-            f00Var.p(b10, b11);
-        }
-        return true;
-    }
-
-    @Override
-    public final void p(f2.l1 l1Var, int i10) {
-        Boolean bool;
-        if (i10 != 0) {
-            j00 j00Var = this.e;
-            j00Var.C.I0(false);
-            l1Var.f5785a.setPressed(true);
-            l1Var.f5785a.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(j00Var.V, j00Var.f25814a));
         } else {
-            vp vpVar = this.d;
-            AndroidUtilities.cancelRunOnUIThread(vpVar);
-            AndroidUtilities.runOnUIThread(vpVar, 320L);
+            i10 = this.d;
         }
-        if (l1Var != null) {
-            View view = l1Var.f5785a;
-            int i11 = R.id.dragging;
-            if (i10 == 2) {
-                bool = Boolean.TRUE;
-            } else {
-                bool = null;
+        if (i10 > 0) {
+            i11 = AndroidUtilities.dp(-2.0f) + AndroidUtilities.dp(10.0f) + Math.max(AndroidUtilities.dp(7.333f), (int) Math.ceil(l00Var.f28490c.measureText(String.format("%d", Integer.valueOf(i10)))));
+        } else {
+            if (!this.f27637e && l00Var.f28503n) {
+                i12 = AndroidUtilities.dp(12.333f);
             }
-            view.setTag(i11, bool);
+            i11 = i12;
         }
+        return Math.max(AndroidUtilities.dp(16.0f), ceil + i11);
     }
 
-    @Override
-    public final void q(f2.l1 l1Var) {
+    public final void b(String str) {
+        TextPaint textPaint = this.h.f28488b;
+        if (TextUtils.equals(this.f27635b, str)) {
+            return;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+        this.f27635b = spannableStringBuilder;
+        CharSequence replaceEmoji = Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false);
+        this.f27635b = replaceEmoji;
+        this.f27635b = MessageObject.replaceAnimatedEmoji(replaceEmoji, null, textPaint.getFontMetricsInt());
+        this.f27639g = false;
     }
 }

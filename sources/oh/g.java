@@ -1,22 +1,13 @@
 package oh;
-public final class g extends f2.v {
-    public final int f16587c;
-    public final r d;
 
-    public g(r rVar, int i10) {
-        this.f16587c = i10;
-        this.d = rVar;
-    }
-
+import android.graphics.Canvas;
+import org.telegram.messenger.AndroidUtilities;
+public final class g extends org.telegram.ui.Components.k5 {
     @Override
-    public final int i(int i10) {
-        switch (this.f16587c) {
-            case 0:
-                this.d.v.getClass();
-                return 1;
-            default:
-                this.d.v.getClass();
-                return 1;
-        }
+    public final void draw(Canvas canvas) {
+        canvas.save();
+        canvas.translate(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(1.0f));
+        super.draw(canvas);
+        canvas.restore();
     }
 }

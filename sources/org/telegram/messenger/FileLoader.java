@@ -238,8 +238,8 @@ public class FileLoader extends BaseController {
         public void saveFilePath(FilePathDatabase.PathData pathData, File file) {
             String str;
             FilePathDatabase fileDatabase = FileLoader.this.getFileDatabase();
-            long j10 = pathData.f16660id;
-            int i10 = pathData.f16659dc;
+            long j10 = pathData.f18046id;
+            int i10 = pathData.f18045dc;
             int i11 = pathData.type;
             if (file != null) {
                 str = file.toString();
@@ -305,7 +305,7 @@ public class FileLoader extends BaseController {
                 int i12 = i11 + 1;
                 sb.append(i12);
                 fileLoaderPriorityQueueArr[i11] = new FileLoaderPriorityQueue(i10, sb.toString(), 0, fileLoaderQueue);
-                this.largeFilesQueue[i11] = new FileLoaderPriorityQueue(i10, kh.a2.j(i12, "largeFilesQueue dc"), 1, fileLoaderQueue);
+                this.largeFilesQueue[i11] = new FileLoaderPriorityQueue(i10, l.d.j(i12, "largeFilesQueue dc"), 1, fileLoaderQueue);
                 i11 = i12;
             } else {
                 dumpFilesQueue();
@@ -363,8 +363,8 @@ public class FileLoader extends BaseController {
     private void awaitFileLoadOperation(CountDownLatch countDownLatch, boolean z4) {
         try {
             countDownLatch.await();
-        } catch (Exception e) {
-            FileLog.e((Throwable) e, false);
+        } catch (Exception e6) {
+            FileLog.e((Throwable) e6, false);
             if (z4) {
                 awaitFileLoadOperation(countDownLatch, false);
             }
@@ -593,8 +593,8 @@ public class FileLoader extends BaseController {
                         return fileMeta;
                     }
                     return null;
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } catch (Exception e6) {
+                    FileLog.e(e6);
                     return null;
                 }
             }
@@ -705,7 +705,7 @@ public class FileLoader extends BaseController {
 
     public static long getPhotoId(TLObject tLObject) {
         if (tLObject instanceof TLRPC.Photo) {
-            return ((TLRPC.Photo) tLObject).f19208id;
+            return ((TLRPC.Photo) tLObject).f20867id;
         }
         if (tLObject instanceof TLRPC.ChatPhoto) {
             return ((TLRPC.ChatPhoto) tLObject).photo_id;
@@ -845,7 +845,7 @@ public class FileLoader extends BaseController {
             sb.append(" position in queue ");
             sb.append(fileLoadOperation.getPositionInQueue());
             sb.append(" account=");
-            kh.a2.t(this.currentAccount, sb);
+            l.d.t(this.currentAccount, sb);
         }
     }
 
@@ -885,8 +885,8 @@ public class FileLoader extends BaseController {
                     if (!file2.delete()) {
                         file2.deleteOnExit();
                     }
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } catch (Exception e6) {
+                    FileLog.e(e6);
                 }
                 try {
                     File internalCacheDir = getInternalCacheDir();
@@ -894,16 +894,16 @@ public class FileLoader extends BaseController {
                     if (!file3.delete()) {
                         file3.deleteOnExit();
                     }
-                } catch (Exception e6) {
-                    FileLog.e(e6);
+                } catch (Exception e10) {
+                    FileLog.e(e10);
                 }
             } else if (file.exists()) {
                 try {
                     if (!file.delete()) {
                         file.deleteOnExit();
                     }
-                } catch (Exception e10) {
-                    FileLog.e(e10);
+                } catch (Exception e11) {
+                    FileLog.e(e11);
                 }
             }
             try {
@@ -912,8 +912,8 @@ public class FileLoader extends BaseController {
                 if (file4.exists() && !file4.delete()) {
                     file4.deleteOnExit();
                 }
-            } catch (Exception e11) {
-                FileLog.e(e11);
+            } catch (Exception e12) {
+                FileLog.e(e12);
             }
         }
         if (i10 == 2) {
@@ -1170,7 +1170,7 @@ public class FileLoader extends BaseController {
             }
         }
         if (!arrayList.isEmpty()) {
-            AndroidUtilities.runOnUIThread(new d2(7, this, arrayList));
+            AndroidUtilities.runOnUIThread(new d2(6, this, arrayList));
         }
     }
 
@@ -1380,7 +1380,7 @@ public class FileLoader extends BaseController {
     }
 
     public void onNetworkChanged(boolean z4) {
-        fileLoaderQueue.postRunnable(new jh.f(7, this, z4));
+        fileLoaderQueue.postRunnable(new kh.f(6, this, z4));
     }
 
     public void removeLoadingVideo(TLRPC.Document document, boolean z4, boolean z10) {
@@ -1402,7 +1402,7 @@ public class FileLoader extends BaseController {
         if (fileLocation == null) {
             return;
         }
-        fileLoaderQueue.postRunnable(new g0(this, fileLocation, str, 21));
+        fileLoaderQueue.postRunnable(new g0(this, fileLocation, str, 22));
     }
 
     public void setLoadingVideo(TLRPC.Document document, boolean z4, boolean z10) {
@@ -1470,7 +1470,7 @@ public class FileLoader extends BaseController {
             } else {
                 i11 = 3;
             }
-            this.filePathDatabase.putPath(document.f19190id, document.dc_id, i11, 1, str);
+            this.filePathDatabase.putPath(document.f20849id, document.dc_id, i11, 1, str);
         } else if (tLObject instanceof TLRPC.PhotoSize) {
             TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) tLObject;
             if (!(photoSize instanceof TLRPC.TL_photoStrippedSize) && !(photoSize instanceof TLRPC.TL_photoPathSize)) {
@@ -1490,7 +1490,7 @@ public class FileLoader extends BaseController {
     }
 
     public void checkDownloadQueue(FileLoadOperation fileLoadOperation, FileLoaderPriorityQueue fileLoaderPriorityQueue, long j10) {
-        fileLoaderQueue.postRunnable(new g0(this, fileLoaderPriorityQueue, fileLoadOperation, 22), j10);
+        fileLoaderQueue.postRunnable(new g0(this, fileLoaderPriorityQueue, fileLoadOperation, 23), j10);
     }
 
     public static boolean copyFile(InputStream inputStream, File file, int i10) {
@@ -1531,7 +1531,7 @@ public class FileLoader extends BaseController {
     }
 
     public void checkUploadNewDataAvailable(String str, boolean z4, long j10, long j11, Float f10) {
-        fileLoaderQueue.postRunnable(new nh.y5(this, z4, str, j10, j11, f10));
+        fileLoaderQueue.postRunnable(new oh.y5(this, z4, str, j10, j11, f10));
     }
 
     public File getPathToAttach(TLObject tLObject, boolean z4) {
@@ -1580,21 +1580,21 @@ public class FileLoader extends BaseController {
                 StringBuilder sb = new StringBuilder();
                 sb.append(document.dc_id);
                 sb.append("_");
-                return android.support.v4.media.a.q(sb, document.f19190id, substring);
+                return android.support.v4.media.a.q(sb, document.f20849id, substring);
             }
-            return document.dc_id + "_" + document.f19190id;
+            return document.dc_id + "_" + document.f20849id;
         } else if (tLObject instanceof SecureDocument) {
             SecureDocument secureDocument = (SecureDocument) tLObject;
             StringBuilder sb2 = new StringBuilder();
             sb2.append(secureDocument.secureFile.dc_id);
             sb2.append("_");
-            return android.support.v4.media.a.q(sb2, secureDocument.secureFile.f19319id, ".jpg");
+            return android.support.v4.media.a.q(sb2, secureDocument.secureFile.f20978id, ".jpg");
         } else if (tLObject instanceof TLRPC.TL_secureFile) {
             TLRPC.TL_secureFile tL_secureFile = (TLRPC.TL_secureFile) tLObject;
             StringBuilder sb3 = new StringBuilder();
             sb3.append(tL_secureFile.dc_id);
             sb3.append("_");
-            return android.support.v4.media.a.q(sb3, tL_secureFile.f19319id, ".jpg");
+            return android.support.v4.media.a.q(sb3, tL_secureFile.f20978id, ".jpg");
         } else if (tLObject instanceof WebFile) {
             WebFile webFile = (WebFile) tLObject;
             return Utilities.MD5(webFile.url) + "." + ImageLoader.getHttpUrlExtension(webFile.url, getMimeTypePart(webFile.mime_type));
@@ -1754,7 +1754,7 @@ public class FileLoader extends BaseController {
     }
 
     public void uploadFile(final String str, final Utilities.Callback<TLRPC.InputFile> callback) {
-        final d2 d2Var = new d2(6, this, r0);
+        final d2 d2Var = new d2(5, this, r0);
         NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new NotificationCenter.NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
@@ -1879,7 +1879,7 @@ public class FileLoader extends BaseController {
                     return true;
                 }
             }
-            if ((-fileLocation.volume_id) == photo.f19208id) {
+            if ((-fileLocation.volume_id) == photo.f20867id) {
                 return true;
             }
         }

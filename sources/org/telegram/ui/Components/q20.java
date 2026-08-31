@@ -1,68 +1,134 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class q20 extends f2.q {
-    public final ArrayList f28043b;
-    public final ArrayList f28044c;
-    public final t20 d;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public class q20 {
+    public boolean f30252a;
+    public boolean f30253b;
+    public int d;
+    public int f30255e;
+    public int f30256f;
+    public int f30257g;
+    public Shader f30258i;
+    public boolean f30262m;
+    public final Paint f30254c = new Paint(1);
+    public final RectF h = new RectF();
+    public final Matrix f30259j = new Matrix();
+    public Bitmap f30260k = null;
+    public final int[] f30261l = new int[4];
 
-    public q20(t20 t20Var, ArrayList arrayList, ArrayList arrayList2) {
-        this.d = t20Var;
-        this.f28043b = arrayList;
-        this.f28044c = arrayList2;
-    }
-
-    @Override
-    public final boolean a(int i10, int i11) {
-        return true;
-    }
-
-    @Override
-    public final boolean b(int i10, int i11) {
-        TLRPC.GroupCallParticipant groupCallParticipant;
-        TLRPC.GroupCallParticipant groupCallParticipant2;
-        ArrayList arrayList = this.f28043b;
-        int size = arrayList.size();
-        t20 t20Var = this.d;
-        if (i10 < size && i11 < t20Var.e.size()) {
-            return ((ChatObject.VideoParticipant) arrayList.get(i10)).equals(t20Var.e.get(i11));
+    public final int a() {
+        int i10 = this.d;
+        int i11 = this.f30255e;
+        if (i11 != 0) {
+            i10 = i0.a.d(0.5f, i10, i11);
         }
-        int size2 = i10 - arrayList.size();
-        int size3 = i11 - t20Var.e.size();
-        ArrayList arrayList2 = this.f28044c;
-        if (size3 >= 0 && size3 < t20Var.f28872f.size() && size2 >= 0 && size2 < arrayList2.size()) {
-            if (MessageObject.getPeerId(((TLRPC.GroupCallParticipant) arrayList2.get(size2)).peer) != MessageObject.getPeerId(((TLRPC.GroupCallParticipant) t20Var.f28872f.get(size3)).peer)) {
-                return false;
+        int i12 = this.f30256f;
+        if (i12 != 0) {
+            i10 = i0.a.d(0.5f, i10, i12);
+        }
+        int i13 = this.f30257g;
+        if (i13 != 0) {
+            return i0.a.d(0.5f, i10, i13);
+        }
+        return i10;
+    }
+
+    public final void b(float f10, float f11, float f12, float f13) {
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(f10, f11, f12, f13);
+        c(rectF);
+    }
+
+    public final void c(RectF rectF) {
+        RectF rectF2 = this.h;
+        if (rectF2.top == rectF.top && rectF2.bottom == rectF.bottom && rectF2.left == rectF.left && rectF2.right == rectF.right) {
+            return;
+        }
+        rectF2.set(rectF);
+        e();
+    }
+
+    public final void d(int i10, int i11, int i12, int i13) {
+        float f10;
+        float f11;
+        if (this.f30258i != null && this.d == i10 && this.f30255e == i11 && this.f30256f == i12 && this.f30257g == i13) {
+            return;
+        }
+        this.d = i10;
+        int[] iArr = this.f30261l;
+        iArr[0] = i10;
+        this.f30255e = i11;
+        iArr[1] = i11;
+        this.f30256f = i12;
+        iArr[2] = i12;
+        this.f30257g = i13;
+        iArr[3] = i13;
+        Paint paint = this.f30254c;
+        if (i11 == 0) {
+            this.f30258i = null;
+            paint.setShader(null);
+            paint.setColor(i10);
+        } else if (i12 == 0) {
+            if (this.f30252a && this.f30253b) {
+                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i10, i11}, (float[]) null, Shader.TileMode.CLAMP);
+                this.f30258i = linearGradient;
+                paint.setShader(linearGradient);
+            } else {
+                if (this.f30252a) {
+                    f11 = 80.0f;
+                } else {
+                    f11 = 0.0f;
+                }
+                LinearGradient linearGradient2 = new LinearGradient(f11, 0.0f, 0.0f, 80.0f, new int[]{i10, i11}, (float[]) null, Shader.TileMode.CLAMP);
+                this.f30258i = linearGradient2;
+                paint.setShader(linearGradient2);
             }
-            return true;
-        }
-        if (i10 < arrayList.size()) {
-            groupCallParticipant = ((ChatObject.VideoParticipant) arrayList.get(i10)).participant;
+        } else if (this.f30262m) {
+            if (this.f30252a && this.f30253b) {
+                LinearGradient linearGradient3 = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i10, i11, i12}, (float[]) null, Shader.TileMode.CLAMP);
+                this.f30258i = linearGradient3;
+                paint.setShader(linearGradient3);
+            } else {
+                if (this.f30252a) {
+                    f10 = 80.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                LinearGradient linearGradient4 = new LinearGradient(f10, 0.0f, 0.0f, 80.0f, new int[]{i10, i11, i12}, (float[]) null, Shader.TileMode.CLAMP);
+                this.f30258i = linearGradient4;
+                paint.setShader(linearGradient4);
+            }
         } else {
-            groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(size2);
+            if (this.f30260k == null) {
+                this.f30260k = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
+            }
+            Utilities.generateGradient(this.f30260k, 0, 0.0f, iArr);
+            Bitmap bitmap = this.f30260k;
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+            this.f30258i = bitmapShader;
+            paint.setShader(bitmapShader);
         }
-        if (i11 < t20Var.e.size()) {
-            groupCallParticipant2 = ((ChatObject.VideoParticipant) t20Var.e.get(i11)).participant;
-        } else {
-            groupCallParticipant2 = (TLRPC.GroupCallParticipant) t20Var.f28872f.get(size3);
-        }
-        if (MessageObject.getPeerId(groupCallParticipant.peer) != MessageObject.getPeerId(groupCallParticipant2.peer)) {
-            return false;
-        }
-        return true;
+        e();
     }
 
-    @Override
-    public final int d() {
-        t20 t20Var = this.d;
-        return t20Var.f28872f.size() + t20Var.e.size();
-    }
-
-    @Override
-    public final int e() {
-        return this.f28044c.size() + this.f28043b.size();
+    public void e() {
+        if (this.f30258i == null) {
+            return;
+        }
+        RectF rectF = this.h;
+        Matrix matrix = this.f30259j;
+        matrix.reset();
+        matrix.postTranslate(rectF.left, rectF.top);
+        matrix.preScale(rectF.width() / 60.0f, rectF.height() / 80.0f);
+        this.f30258i.setLocalMatrix(matrix);
     }
 }

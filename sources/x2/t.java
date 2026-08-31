@@ -2,8 +2,8 @@ package x2;
 
 import android.util.SparseArray;
 public final class t {
-    public static final SparseArray f46698a;
-    public static final t[] f46699b;
+    public static final SparseArray f50294a;
+    public static final t[] f50295b;
     t EF0;
 
     static {
@@ -27,9 +27,9 @@ public final class t {
         Enum r43 = new Enum("TD_SCDMA", 17);
         Enum r23 = new Enum("IWLAN", 18);
         Enum r64 = new Enum("LTE_CA", 19);
-        f46699b = new t[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r14, r122, r10, r82, r62, r42, r22, r63, r43, r23, r64, new Enum("COMBINED", 20)};
+        f50295b = new t[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r14, r122, r10, r82, r62, r42, r22, r63, r43, r23, r64, new Enum("COMBINED", 20)};
         SparseArray sparseArray = new SparseArray();
-        f46698a = sparseArray;
+        f50294a = sparseArray;
         sparseArray.put(0, r02);
         sparseArray.put(1, r12);
         sparseArray.put(2, r32);
@@ -57,6 +57,6 @@ public final class t {
     }
 
     public static t[] values() {
-        return (t[]) f46699b.clone();
+        return (t[]) f50295b.clone();
     }
 }

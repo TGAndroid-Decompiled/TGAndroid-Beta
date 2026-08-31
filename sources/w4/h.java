@@ -2,11 +2,11 @@ package w4;
 
 import v4.k;
 public final class h extends k {
-    public rh.e h;
+    public sf.g h;
 
     @Override
-    public final void j() {
-        c();
-        ((i) this.h.f43495b).f46443b.add(this);
+    public final void i() {
+        b();
+        ((i) this.h.f47321b).f49413b.add(this);
     }
 }

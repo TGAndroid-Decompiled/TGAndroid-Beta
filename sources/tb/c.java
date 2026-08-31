@@ -1,14 +1,14 @@
 package tb;
 public final class c {
-    public static final int[][] f44625c = {new int[]{21522, 0}, new int[]{20773, 1}, new int[]{24188, 2}, new int[]{23371, 3}, new int[]{17913, 4}, new int[]{16590, 5}, new int[]{20375, 6}, new int[]{19104, 7}, new int[]{30660, 8}, new int[]{29427, 9}, new int[]{32170, 10}, new int[]{30877, 11}, new int[]{26159, 12}, new int[]{25368, 13}, new int[]{27713, 14}, new int[]{26998, 15}, new int[]{5769, 16}, new int[]{5054, 17}, new int[]{7399, 18}, new int[]{6608, 19}, new int[]{1890, 20}, new int[]{597, 21}, new int[]{3340, 22}, new int[]{2107, 23}, new int[]{13663, 24}, new int[]{12392, 25}, new int[]{16177, 26}, new int[]{14854, 27}, new int[]{9396, 28}, new int[]{8579, 29}, new int[]{11994, 30}, new int[]{11245, 31}};
-    public final b f44626a;
-    public final byte f44627b;
+    public static final int[][] f48037c = {new int[]{21522, 0}, new int[]{20773, 1}, new int[]{24188, 2}, new int[]{23371, 3}, new int[]{17913, 4}, new int[]{16590, 5}, new int[]{20375, 6}, new int[]{19104, 7}, new int[]{30660, 8}, new int[]{29427, 9}, new int[]{32170, 10}, new int[]{30877, 11}, new int[]{26159, 12}, new int[]{25368, 13}, new int[]{27713, 14}, new int[]{26998, 15}, new int[]{5769, 16}, new int[]{5054, 17}, new int[]{7399, 18}, new int[]{6608, 19}, new int[]{1890, 20}, new int[]{597, 21}, new int[]{3340, 22}, new int[]{2107, 23}, new int[]{13663, 24}, new int[]{12392, 25}, new int[]{16177, 26}, new int[]{14854, 27}, new int[]{9396, 28}, new int[]{8579, 29}, new int[]{11994, 30}, new int[]{11245, 31}};
+    public final b f48038a;
+    public final byte f48039b;
 
     public c(int i10) {
         int i11 = (i10 >> 3) & 3;
         if (i11 >= 0 && i11 < 4) {
-            this.f44626a = b.d[i11];
-            this.f44627b = (byte) (i10 & 7);
+            this.f48038a = b.d[i11];
+            this.f48039b = (byte) (i10 & 7);
             return;
         }
         throw new IllegalArgumentException();
@@ -19,7 +19,7 @@ public final class c {
         int i12 = Integer.MAX_VALUE;
         int i13 = 0;
         for (int i14 = 0; i14 < 32; i14++) {
-            int[] iArr = f44625c[i14];
+            int[] iArr = f48037c[i14];
             int i15 = iArr[0];
             if (i15 != i10 && i15 != i11) {
                 int bitCount2 = Integer.bitCount(i10 ^ i15);
@@ -46,13 +46,13 @@ public final class c {
             return false;
         }
         c cVar = (c) obj;
-        if (this.f44626a != cVar.f44626a || this.f44627b != cVar.f44627b) {
+        if (this.f48038a != cVar.f48038a || this.f48039b != cVar.f48039b) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return (this.f44626a.ordinal() << 3) | this.f44627b;
+        return (this.f48038a.ordinal() << 3) | this.f48039b;
     }
 }

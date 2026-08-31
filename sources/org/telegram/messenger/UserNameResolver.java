@@ -66,7 +66,7 @@ public class UserNameResolver {
     }
 
     public void lambda$resolve$1(String str, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new fj(str, this, tLObject, tL_error), 2L);
+        AndroidUtilities.runOnUIThread(new ci(str, this, tLObject, tL_error), 2L);
     }
 
     public void lambda$resolve$2(String str, int i10) {
@@ -86,7 +86,7 @@ public class UserNameResolver {
         this.resolvedCache.remove(user.username);
         String str2 = user2.username;
         if (str2 != null) {
-            this.resolvedCache.put(str2, new CachedPeer(user2.f19331id));
+            this.resolvedCache.put(str2, new CachedPeer(user2.f20990id));
         }
     }
 
@@ -103,7 +103,7 @@ public class UserNameResolver {
                 StringBuilder sb = new StringBuilder("resolve username from cache ");
                 sb.append(str);
                 sb.append(" ");
-                kh.a2.x(sb, cachedPeer.peerId);
+                l.d.x(sb, cachedPeer.peerId);
                 return null;
             }
             this.resolvedCache.remove(str);
@@ -140,7 +140,7 @@ public class UserNameResolver {
         this.resolvedCache.remove(chat.username);
         String str2 = chat2.username;
         if (str2 != null) {
-            this.resolvedCache.put(str2, new CachedPeer(-chat2.f19184id));
+            this.resolvedCache.put(str2, new CachedPeer(-chat2.f20843id));
         }
     }
 }

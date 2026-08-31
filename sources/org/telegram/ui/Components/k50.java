@@ -1,33 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class k50 implements ValueAnimator.AnimatorUpdateListener {
-    public final boolean[] f26161a;
-    public final f50 f26162b;
-    public final x50 f26163c;
+import android.graphics.Paint;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.ProfileActivity;
+public final class k50 extends Paint {
+    public final int f28271a;
+    public final NotificationCenter.NotificationCenterDelegate f28272b;
 
-    public k50(x50 x50Var, boolean[] zArr, f50 f50Var) {
-        this.f26163c = x50Var;
-        this.f26161a = zArr;
-        this.f26162b = f50Var;
+    public k50(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
+        super(1);
+        this.f28271a = i10;
+        this.f28272b = notificationCenterDelegate;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        if (floatValue > 0.5f) {
-            boolean[] zArr = this.f26161a;
-            if (!zArr[0]) {
-                zArr[0] = true;
-                this.f26162b.run();
-            }
+    public final void setAlpha(int i10) {
+        switch (this.f28271a) {
+            case 0:
+                super.setAlpha(i10);
+                ((z50) this.f28272b).invalidate();
+                return;
+            default:
+                super.setAlpha(i10);
+                ((ProfileActivity) this.f28272b).fragmentView.invalidate();
+                return;
         }
-        if (floatValue >= 0.5f) {
-            floatValue -= 1.0f;
-        }
-        float f10 = floatValue * 180.0f;
-        x50 x50Var = this.f26163c;
-        x50Var.f30548b.setRotationY(f10);
-        x50Var.f30559j0.setRotationY(f10);
     }
 }

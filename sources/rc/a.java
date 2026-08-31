@@ -1,4 +1,4 @@
 package rc;
 public interface a {
-    Object mo0get();
+    Object mo38get();
 }

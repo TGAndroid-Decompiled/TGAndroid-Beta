@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class n1 implements a1 {
-    public static final AtomicIntegerFieldUpdater f11906b = AtomicIntegerFieldUpdater.newUpdater(n1.class, "_isCompleting$volatile");
-    public static final AtomicReferenceFieldUpdater f11907c = AtomicReferenceFieldUpdater.newUpdater(n1.class, Object.class, "_rootCause$volatile");
+    public static final AtomicIntegerFieldUpdater f12338b = AtomicIntegerFieldUpdater.newUpdater(n1.class, "_isCompleting$volatile");
+    public static final AtomicReferenceFieldUpdater f12339c = AtomicReferenceFieldUpdater.newUpdater(n1.class, Object.class, "_rootCause$volatile");
     public static final AtomicReferenceFieldUpdater d = AtomicReferenceFieldUpdater.newUpdater(n1.class, Object.class, "_exceptionsHolder$volatile");
     private volatile Object _exceptionsHolder$volatile;
     private volatile int _isCompleting$volatile = 0;
     private volatile Object _rootCause$volatile;
-    public final v1 f11908a;
+    public final v1 f12340a;
 
     public n1(v1 v1Var, Throwable th2) {
-        this.f11908a = v1Var;
+        this.f12340a = v1Var;
         this._rootCause$volatile = th2;
     }
 
     public final void a(Throwable th2) {
         Throwable b10 = b();
         if (b10 == null) {
-            f11907c.set(this, th2);
+            f12339c.set(this, th2);
         } else if (th2 != b10) {
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d;
             Object obj = atomicReferenceFieldUpdater.get(this);
@@ -43,12 +43,12 @@ public final class n1 implements a1 {
     }
 
     public final Throwable b() {
-        return (Throwable) f11907c.get(this);
+        return (Throwable) f12339c.get(this);
     }
 
     @Override
     public final v1 c() {
-        return this.f11908a;
+        return this.f12340a;
     }
 
     public final boolean d() {
@@ -59,7 +59,7 @@ public final class n1 implements a1 {
     }
 
     public final boolean e() {
-        if (f11906b.get(this) != 0) {
+        if (f12338b.get(this) != 0) {
             return true;
         }
         return false;
@@ -100,6 +100,6 @@ public final class n1 implements a1 {
     }
 
     public final String toString() {
-        return "Finishing[cancelling=" + d() + ", completing=" + e() + ", rootCause=" + b() + ", exceptions=" + d.get(this) + ", list=" + this.f11908a + ']';
+        return "Finishing[cancelling=" + d() + ", completing=" + e() + ", rootCause=" + b() + ", exceptions=" + d.get(this) + ", list=" + this.f12340a + ']';
     }
 }

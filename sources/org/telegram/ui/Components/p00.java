@@ -1,10 +1,18 @@
 package org.telegram.ui.Components;
-
-import android.graphics.Paint;
-import java.util.ArrayList;
 public final class p00 {
-    public Paint f27703a;
-    public long f27704b;
-    public ArrayList f27705c;
-    public ArrayList d;
+    public float f29911a;
+    public float f29912b;
+    public float f29913c;
+    public float d;
+    public float f29914e;
+    public float f29915f;
+    public float f29916g;
+    public float h;
+    public float f29917i;
+    public int f29918j;
+    public final q00 f29919k;
+
+    public p00(q00 q00Var) {
+        this.f29919k = q00Var;
+    }
 }

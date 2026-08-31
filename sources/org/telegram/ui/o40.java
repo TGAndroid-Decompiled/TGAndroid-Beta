@@ -1,35 +1,46 @@
 package org.telegram.ui;
 
-import android.view.TextureView;
+import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class o40 implements ru0 {
-    public final c60 f36789a;
+public final class o40 extends xu0 {
+    public final d60 T;
 
-    public o40(c60 c60Var) {
-        this.f36789a = c60Var;
+    public o40(d60 d60Var, ViewGroup viewGroup, ViewGroup viewGroup2) {
+        super(viewGroup, viewGroup2);
+        this.T = d60Var;
     }
 
     @Override
-    public final void H(MessageObject messageObject) {
+    public final void c(Canvas canvas, float f10, float f11, float f12, float f13, float f14) {
         ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.g3) this.f36789a).containerView;
-        viewGroup.invalidate();
+        ViewGroup viewGroup2;
+        d60 d60Var = this.T;
+        y30 y30Var = d60Var.f36014b;
+        z30 z30Var = d60Var.f36119z2;
+        if (f10 > 0.0f) {
+            float x10 = z30Var.getX();
+            viewGroup = ((org.telegram.ui.ActionBar.h3) d60Var).containerView;
+            float x11 = viewGroup.getX() + x10;
+            float y10 = z30Var.getY();
+            viewGroup2 = ((org.telegram.ui.ActionBar.h3) d60Var).containerView;
+            float y11 = viewGroup2.getY() + y10;
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(x11, y11, y30Var.getMeasuredWidth() + x11, y30Var.getMeasuredHeight() + y11);
+            canvas.saveLayerAlpha(rectF, (int) (f10 * 255.0f), 31);
+            canvas.translate(x11, y11);
+            z30Var.draw(canvas);
+            canvas.restore();
+        }
     }
 
     @Override
-    public final TextureView f0() {
-        return null;
-    }
-
-    @Override
-    public final void w0(MessageObject messageObject) {
-        ViewGroup viewGroup;
-        c60 c60Var = this.f36789a;
-        c60Var.N.I0(true);
-        c60Var.Z1.f39252f.setRoundRadius(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0, 0);
-        viewGroup = ((org.telegram.ui.ActionBar.g3) c60Var).containerView;
-        viewGroup.invalidate();
+    public final void e() {
+        y30 y30Var = this.T.f36014b;
+        super.e();
+        for (int i10 = 0; i10 < y30Var.getChildCount(); i10++) {
+            y30Var.getChildAt(i10).invalidate();
+        }
     }
 }

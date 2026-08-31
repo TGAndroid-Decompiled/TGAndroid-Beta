@@ -5,36 +5,36 @@ import android.app.Application;
 import android.os.Bundle;
 import android.util.Log;
 public final class f implements Application.ActivityLifecycleCallbacks {
-    public Object f4958a;
-    public Activity f4959b;
-    public final int f4960c;
+    public Object f4778a;
+    public Activity f4779b;
+    public final int f4780c;
     public boolean d = false;
-    public boolean e = false;
-    public boolean f4961f = false;
+    public boolean f4781e = false;
+    public boolean f4782f = false;
 
     public f(Activity activity) {
-        this.f4959b = activity;
-        this.f4960c = activity.hashCode();
+        this.f4779b = activity;
+        this.f4780c = activity.hashCode();
     }
 
     @Override
     public final void onActivityDestroyed(Activity activity) {
-        if (this.f4959b == activity) {
-            this.f4959b = null;
-            this.e = true;
+        if (this.f4779b == activity) {
+            this.f4779b = null;
+            this.f4781e = true;
         }
     }
 
     @Override
     public final void onActivityPaused(Activity activity) {
-        if (this.e && !this.f4961f && !this.d) {
-            Object obj = this.f4958a;
+        if (this.f4781e && !this.f4782f && !this.d) {
+            Object obj = this.f4778a;
             try {
-                Object obj2 = g.f4964c.get(activity);
-                if (obj2 == obj && activity.hashCode() == this.f4960c) {
-                    g.f4966g.postAtFrontOfQueue(new androidx.biometric.k(g.f4963b.get(activity), obj2, false, 9));
-                    this.f4961f = true;
-                    this.f4958a = null;
+                Object obj2 = g.f4785c.get(activity);
+                if (obj2 == obj && activity.hashCode() == this.f4780c) {
+                    g.f4788g.postAtFrontOfQueue(new androidx.biometric.k(g.f4784b.get(activity), obj2, false, 9));
+                    this.f4782f = true;
+                    this.f4778a = null;
                 }
             } catch (Throwable th2) {
                 Log.e("ActivityRecreator", "Exception while fetching field values", th2);
@@ -44,7 +44,7 @@ public final class f implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public final void onActivityStarted(Activity activity) {
-        if (this.f4959b == activity) {
+        if (this.f4779b == activity) {
             this.d = true;
         }
     }

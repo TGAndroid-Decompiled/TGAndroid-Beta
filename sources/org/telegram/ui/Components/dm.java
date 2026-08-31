@@ -1,18 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.graphics.Outline;
 import android.view.View;
-public final class dm extends y8 {
-    public final em B;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+public final class dm extends ViewOutlineProvider {
+    public final fm f26295a;
 
-    public dm(em emVar, Context context) {
-        super(context);
-        this.B = emVar;
+    public dm(fm fmVar) {
+        this.f26295a = fmVar;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        em emVar = this.B;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(emVar.v.H0, 1073741824), View.MeasureSpec.makeMeasureSpec(emVar.v.H0, 1073741824));
+    public final void getOutline(View view, Outline outline) {
+        org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
+        if (t5Var.getTag() == null) {
+            return;
+        }
+        int intValue = ((Integer) t5Var.getTag()).intValue();
+        fm fmVar = this.f26295a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = fmVar.v;
+        if (fmVar.d && chatAttachAlertPhotoLayout.Q0 == chatAttachAlertPhotoLayout.R0 && !chatAttachAlertPhotoLayout.L0) {
+            intValue++;
+        }
+        if (chatAttachAlertPhotoLayout.f24748d1) {
+            intValue++;
+        }
+        if (intValue == 0) {
+            int dp = AndroidUtilities.dp(16.0f);
+            outline.setRoundRect(0, 0, view.getMeasuredWidth() + dp, view.getMeasuredHeight() + dp, dp);
+        } else if (intValue == chatAttachAlertPhotoLayout.J0 - 1) {
+            int dp2 = AndroidUtilities.dp(16.0f);
+            outline.setRoundRect(-dp2, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + dp2, dp2);
+        } else {
+            outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        }
     }
 }

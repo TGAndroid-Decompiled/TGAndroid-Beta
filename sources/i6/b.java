@@ -11,11 +11,11 @@ import java.io.Closeable;
 import java.io.IOException;
 import y5.h;
 public abstract class b {
-    public static final char[] f7346a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-    public static Boolean f7347b;
-    public static Boolean f7348c;
+    public static final char[] f7903a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    public static Boolean f7904b;
+    public static Boolean f7905c;
     public static Boolean d;
-    public static Boolean e;
+    public static Boolean f7906e;
 
     public static void a(Closeable closeable) {
         if (closeable != null) {
@@ -51,12 +51,12 @@ public abstract class b {
         if (g(context, "com.google.android.gms", i10)) {
             try {
                 PackageInfo packageInfo = context.getPackageManager().getPackageInfo("com.google.android.gms", 64);
-                h d10 = h.d(context);
-                d10.getClass();
+                h m9 = h.m(context);
+                m9.getClass();
                 if (packageInfo != null) {
-                    if (!h.f(packageInfo, false)) {
-                        if (h.f(packageInfo, true)) {
-                            if (!y5.g.a(d10.f47088a)) {
+                    if (!h.w(packageInfo, false)) {
+                        if (h.w(packageInfo, true)) {
+                            if (!y5.g.a((Context) m9.f50776b)) {
                                 Log.w("GoogleSignatureVerifier", "Test-keys aren't accepted on this build.");
                             }
                         }
@@ -75,14 +75,14 @@ public abstract class b {
 
     public static boolean f(Context context) {
         PackageManager packageManager = context.getPackageManager();
-        if (f7347b == null) {
-            f7347b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+        if (f7904b == null) {
+            f7904b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
         }
-        if (!f7347b.booleanValue() || Build.VERSION.SDK_INT >= 24) {
-            if (f7348c == null) {
-                f7348c = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
+        if (!f7904b.booleanValue() || Build.VERSION.SDK_INT >= 24) {
+            if (f7905c == null) {
+                f7905c = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
             }
-            if (f7348c.booleanValue()) {
+            if (f7905c.booleanValue()) {
                 if (!d() || Build.VERSION.SDK_INT >= 30) {
                     return true;
                 }
@@ -97,7 +97,7 @@ public abstract class b {
         k6.b a2 = k6.c.a(context);
         a2.getClass();
         try {
-            AppOpsManager appOpsManager = (AppOpsManager) a2.f9754a.getSystemService("appops");
+            AppOpsManager appOpsManager = (AppOpsManager) a2.f10475a.getSystemService("appops");
             if (appOpsManager != null) {
                 appOpsManager.checkPackage(i10, str);
                 return true;

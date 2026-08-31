@@ -1,208 +1,98 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewConfiguration;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class sr extends ViewGroup {
-    public static final int f28801s = 0;
-    public final pr f28802a;
-    public EditText f28803b;
-    public final View[] f28804c;
-    public View d;
-    public boolean e;
-    public boolean f28805f;
-    public final or h;
-    public boolean f28806n;
-    public final or f28807r;
+public final class sr extends GestureDetector.SimpleOnGestureListener {
+    public final int f31157a;
+    public final int f31158b;
+    public final ViewGroup f31159c;
 
-    public sr(Context context) {
-        super(context);
-        String str;
-        int i10;
-        this.f28804c = new View[12];
-        this.h = new or(this, 0);
-        this.f28807r = new or(this, 1);
-        int i11 = 0;
-        for (int i12 = 0; i12 < 11; i12++) {
-            if (i12 != 9) {
-                switch (i12) {
-                    case 1:
-                        str = "ABC";
-                        break;
-                    case 2:
-                        str = "DEF";
-                        break;
-                    case 3:
-                        str = "GHI";
-                        break;
-                    case 4:
-                        str = "JKL";
-                        break;
-                    case 5:
-                        str = "MNO";
-                        break;
-                    case 6:
-                        str = "PQRS";
-                        break;
-                    case 7:
-                        str = "TUV";
-                        break;
-                    case 8:
-                        str = "WXYZ";
-                        break;
-                    case 9:
-                    default:
-                        str = "";
-                        break;
-                    case 10:
-                        str = "+";
-                        break;
+    public sr(ViewGroup viewGroup, int i10, int i11) {
+        this.f31157a = i11;
+        this.f31159c = viewGroup;
+        this.f31158b = i10;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent motionEvent) {
+        switch (this.f31157a) {
+            case 0:
+                ur urVar = (ur) this.f31159c;
+                qr qrVar = urVar.f31720r;
+                if (urVar.f31719n) {
+                    urVar.removeCallbacks(qrVar);
                 }
-                if (i12 != 10) {
-                    i10 = i12 + 1;
+                urVar.f31719n = true;
+                urVar.postDelayed(qrVar, 200L);
+                urVar.h.run();
+                return true;
+            case 1:
+                return true;
+            default:
+                return super.onDown(motionEvent);
+        }
+    }
+
+    @Override
+    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
+        org.telegram.ui.web.x0 x0Var;
+        switch (this.f31157a) {
+            case 1:
+                ch0 ch0Var = (ch0) this.f31159c;
+                if (!ch0Var.f25967f && !ch0Var.h && f10 >= 600.0f) {
+                    ch0Var.f25966e = false;
+                    ch0Var.h = false;
+                    ch0Var.a(0.0f, f10 / 6000.0f);
+                }
+                return false;
+            case 2:
+                sh.m3 m3Var = (sh.m3) this.f31159c;
+                if (m3Var.d || !m3Var.J) {
+                    return false;
+                }
+                if (m3Var.G && !m3Var.I) {
+                    return false;
+                }
+                if (m3Var.K && !m3Var.b(false)) {
+                    return false;
+                }
+                float distance = AndroidUtilities.distance(motionEvent.getX(), motionEvent.getY(), motionEvent2.getX(), motionEvent2.getY());
+                float eventTime = (float) (motionEvent2.getEventTime() - motionEvent.getEventTime());
+                if (f11 >= AndroidUtilities.dp(650.0f) && ((distance > AndroidUtilities.dp(200.0f) || eventTime > 250.0f) && ((x0Var = m3Var.f47536x) == null || x0Var.getScrollY() == 0))) {
+                    m3Var.f47535w = true;
+                    float f12 = m3Var.f47533r;
+                    int i10 = m3Var.E;
+                    if (f12 < i10 && !m3Var.G) {
+                        m3Var.e(0.0f);
+                    } else if (m3Var.G && m3Var.I && (m3Var.N == (-m3Var.f47531f) + m3Var.f47530e || (f12 <= (-i10) && f11 < AndroidUtilities.dp(1200.0f)))) {
+                        m3Var.e((-m3Var.f47531f) + m3Var.f47530e);
+                    } else {
+                        sh.l3 l3Var = m3Var.C;
+                        if (l3Var != null) {
+                            l3Var.g(false);
+                        }
+                    }
+                } else if (f11 > -700.0f) {
+                    return false;
                 } else {
-                    i10 = 0;
+                    float f13 = m3Var.f47533r;
+                    float f14 = (-m3Var.f47531f) + m3Var.f47530e;
+                    if (f13 <= f14) {
+                        return false;
+                    }
+                    m3Var.f47535w = true;
+                    m3Var.e(f14);
                 }
-                String valueOf = String.valueOf(i10);
-                this.f28804c[i12] = new rr(context, valueOf, str);
-                this.f28804c[i12].setOnClickListener(new w2(12, this, valueOf));
-                addView(this.f28804c[i12]);
-            }
-        }
-        pr prVar = new pr(this, context, new org.telegram.ui.Cells.f1(context, new qr(this, ViewConfiguration.get(context).getScaledTouchSlop(), 0)));
-        this.f28802a = prVar;
-        prVar.setImageResource(R.drawable.msg_clear_input);
-        prVar.setColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
-        int dp = AndroidUtilities.dp(11.0f);
-        prVar.setPadding(dp, dp, dp, dp);
-        prVar.setOnClickListener(new dg.m(12));
-        this.f28804c[11] = prVar;
-        addView(prVar);
-        while (true) {
-            View[] viewArr = this.f28804c;
-            if (i11 < viewArr.length) {
-                View view = viewArr[i11];
-                if (view != null) {
-                    k7.d6.b(view, 0.02f, 1.2f);
-                    view.setBackground(a(i11));
-                }
-                i11++;
-            } else {
-                return;
-            }
-        }
-    }
-
-    public static org.telegram.ui.Cells.z a(int i10) {
-        boolean z4;
-        boolean z10;
-        boolean z11;
-        float f10;
-        float f11;
-        float f12;
-        boolean z12 = true;
-        if (i10 < 3) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        int i11 = i10 % 3;
-        if (i11 == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (i11 == 2) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (i10 <= 8) {
-            z12 = false;
-        }
-        int i12 = org.telegram.ui.ActionBar.j6.f19996i6;
-        int w02 = org.telegram.ui.ActionBar.j6.w0(null, i12, false);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.j6.w0(null, i12, false), 30);
-        float f13 = 12.0f;
-        if (z10 && z4) {
-            f10 = 24.0f;
-        } else {
-            f10 = 12.0f;
-        }
-        int dp = AndroidUtilities.dp(f10);
-        if (z11 && z4) {
-            f11 = 24.0f;
-        } else {
-            f11 = 12.0f;
-        }
-        int dp2 = AndroidUtilities.dp(f11);
-        if (z11 && z12) {
-            f12 = 24.0f;
-        } else {
-            f12 = 12.0f;
-        }
-        int dp3 = AndroidUtilities.dp(f12);
-        if (z10 && z12) {
-            f13 = 24.0f;
-        }
-        return org.telegram.ui.ActionBar.j6.i0(dp, dp2, dp3, AndroidUtilities.dp(f13), w02, k10, k10);
-    }
-
-    @Override
-    public final boolean canScrollHorizontally(int i10) {
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        int x10 = org.telegram.ui.b.x(32.0f, getWidth(), 3);
-        int x11 = org.telegram.ui.b.x(42.0f, getHeight(), 4);
-        int i14 = 0;
-        while (true) {
-            View[] viewArr = this.f28804c;
-            if (i14 < viewArr.length) {
-                int dp = AndroidUtilities.dp(6.0f) + x10;
-                int dp2 = AndroidUtilities.dp(10.0f) + (dp * (i14 % 3));
-                int dp3 = AndroidUtilities.dp(6.0f) + x11;
-                int dp4 = AndroidUtilities.dp(10.0f) + (dp3 * (i14 / 3));
-                View view = viewArr[i14];
-                if (view != null) {
-                    view.layout(dp2, dp4, dp2 + x10, dp4 + x11);
-                }
-                i14++;
-            } else {
-                return;
-            }
+                return true;
+            default:
+                return super.onFling(motionEvent, motionEvent2, f10, f11);
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        View[] viewArr;
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        int x10 = org.telegram.ui.b.x(32.0f, getWidth(), 3);
-        int x11 = org.telegram.ui.b.x(42.0f, getHeight(), 4);
-        for (View view : this.f28804c) {
-            if (view != null) {
-                view.measure(View.MeasureSpec.makeMeasureSpec(x10, 1073741824), View.MeasureSpec.makeMeasureSpec(x11, 1073741824));
-            }
-        }
-    }
-
-    public void setDispatchBackWhenEmpty(boolean z4) {
-        this.e = z4;
-    }
-
-    public void setEditText(EditText editText) {
-        this.f28803b = editText;
-        this.e = false;
-    }
-
-    public void setViewToFindFocus(View view) {
-        this.d = view;
+    public final boolean onScroll(android.view.MotionEvent r18, android.view.MotionEvent r19, float r20, float r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.sr.onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float):boolean");
     }
 }

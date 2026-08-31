@@ -1,12 +1,9 @@
 package j7;
-
-import java.util.Date;
 public abstract class l5 {
-    public static long a(Date date) {
-        return (date.getTime() / 1000) + 2082844800;
-    }
-
-    public static Date b(long j10) {
-        return new Date((j10 - 2082844800) * 1000);
+    public static int a(long j10) {
+        if (j10 <= 2147483647L && j10 >= -2147483648L) {
+            return (int) j10;
+        }
+        throw new RuntimeException(e2.c.i(j10, "A cast to int has gone wrong. Please contact the mp4parser discussion group (", ")"));
     }
 }

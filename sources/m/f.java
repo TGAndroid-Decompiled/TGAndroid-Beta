@@ -2,27 +2,27 @@ package m;
 
 import android.view.View;
 public final class f implements Runnable {
-    public final d f13501a;
-    public final h f13502b;
+    public final d f13185a;
+    public final h f13186b;
 
     public f(h hVar, d dVar) {
-        this.f13502b = hVar;
-        this.f13501a = dVar;
+        this.f13186b = hVar;
+        this.f13185a = dVar;
     }
 
     @Override
     public final void run() {
-        l.i iVar;
-        h hVar = this.f13502b;
-        l.k kVar = hVar.f13508c;
-        if (kVar != null && (iVar = kVar.e) != null) {
-            iVar.i(kVar);
+        l.j jVar;
+        h hVar = this.f13186b;
+        l.l lVar = hVar.f13202c;
+        if (lVar != null && (jVar = lVar.f11398e) != null) {
+            jVar.j(lVar);
         }
-        View view = (View) hVar.f13510n;
+        View view = (View) hVar.f13205n;
         if (view != null && view.getWindowToken() != null) {
-            d dVar = this.f13501a;
+            d dVar = this.f13185a;
             if (!dVar.b()) {
-                if (dVar.e != null) {
+                if (dVar.f11455e != null) {
                     dVar.d(0, 0, false, false);
                 }
             }

@@ -8,25 +8,25 @@ import android.text.style.URLSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.f90;
-import org.telegram.ui.Components.m51;
+import org.telegram.ui.Components.h90;
+import org.telegram.ui.Components.n51;
 import org.telegram.ui.Components.qc;
 public final class f implements Runnable {
-    public final j f21043a;
+    public final j f22786a;
 
     public f(j jVar) {
-        this.f21043a = jVar;
+        this.f22786a = jVar;
     }
 
     @Override
     public final void run() {
         String obj;
-        j jVar = this.f21043a;
-        f90 f90Var = jVar.f21237w;
-        if (f90Var != null) {
-            CharacterStyle characterStyle = f90Var.f24815i;
-            if (characterStyle instanceof m51) {
-                obj = ((m51) characterStyle).getURL();
+        j jVar = this.f22786a;
+        h90 h90Var = jVar.f22997w;
+        if (h90Var != null) {
+            CharacterStyle characterStyle = h90Var.f27417i;
+            if (characterStyle instanceof n51) {
+                obj = ((n51) characterStyle).getURL();
             } else if (characterStyle instanceof URLSpan) {
                 obj = ((URLSpan) characterStyle).getURL();
             } else {
@@ -37,18 +37,18 @@ public final class f implements Runnable {
                 jVar.performHapticFeedback(0, 2);
             } catch (Exception unused) {
             }
-            final StaticLayout staticLayout = jVar.f21239y;
-            final float f10 = jVar.f21238x;
+            final StaticLayout staticLayout = jVar.f22999y;
+            final float f10 = jVar.f22998x;
             if (jVar.getContext() != null) {
-                final ClickableSpan clickableSpan = (ClickableSpan) jVar.f21237w.f24815i;
-                org.telegram.ui.ActionBar.g3 g3Var = new org.telegram.ui.ActionBar.g3(jVar.getContext(), null, false, false);
-                g3Var.fixNavigationBar();
-                g3Var.title = str;
-                g3Var.bigTitle = false;
+                final ClickableSpan clickableSpan = (ClickableSpan) jVar.f22997w.f27417i;
+                org.telegram.ui.ActionBar.h3 h3Var = new org.telegram.ui.ActionBar.h3(jVar.getContext(), null, false, false);
+                h3Var.fixNavigationBar();
+                h3Var.title = str;
+                h3Var.bigTitle = false;
                 DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i10) {
-                        j jVar2 = f.this.f21043a;
+                        j jVar2 = f.this.f22786a;
                         org.telegram.ui.ActionBar.p2 p2Var = jVar2.E;
                         if (i10 == 0) {
                             jVar2.d(clickableSpan, staticLayout, f10);
@@ -57,27 +57,27 @@ public final class f implements Runnable {
                             AndroidUtilities.addToClipboard(str2);
                             if (AndroidUtilities.shouldShowClipboardToast()) {
                                 if (str2.startsWith("@")) {
-                                    kh.a2.v(R.string.UsernameCopied, qc.a0(p2Var), R.raw.copy, 36);
+                                    l.d.v(R.string.UsernameCopied, qc.a0(p2Var), R.raw.copy, 36);
                                 } else if (!str2.startsWith("#") && !str2.startsWith("$")) {
-                                    kh.a2.v(R.string.LinkCopied, qc.a0(p2Var), R.raw.copy, 36);
+                                    l.d.v(R.string.LinkCopied, qc.a0(p2Var), R.raw.copy, 36);
                                 } else {
-                                    kh.a2.v(R.string.HashtagCopied, qc.a0(p2Var), R.raw.copy, 36);
+                                    l.d.v(R.string.HashtagCopied, qc.a0(p2Var), R.raw.copy, 36);
                                 }
                             }
                         }
                     }
                 };
-                g3Var.items = new CharSequence[]{LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)};
-                g3Var.onClickListener = onClickListener;
-                g3Var.setOnHideListener(new DialogInterface.OnDismissListener() {
+                h3Var.items = new CharSequence[]{LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)};
+                h3Var.onClickListener = onClickListener;
+                h3Var.setOnHideListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {
-                        f.this.f21043a.e();
+                        f.this.f22786a.e();
                     }
                 });
-                g3Var.show();
+                h3Var.show();
             }
-            jVar.f21237w = null;
+            jVar.f22997w = null;
         }
     }
 }

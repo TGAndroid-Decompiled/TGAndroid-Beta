@@ -2,18 +2,18 @@ package i;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import j7.x7;
+import j7.y7;
 public final class e extends g implements j0.b {
     public boolean B;
     public b C;
-    public x7 D;
+    public y7 D;
     public int E;
     public int F;
     public boolean G;
-    public b f7200y;
+    public b f7742y;
 
     public e(b bVar, Resources resources) {
-        this.e = 255;
+        this.f7749e = 255;
         this.h = -1;
         this.E = -1;
         this.F = -1;
@@ -34,24 +34,24 @@ public final class e extends g implements j0.b {
 
     @Override
     public final void d(b bVar) {
-        this.f7204a = bVar;
+        this.f7746a = bVar;
         int i10 = this.h;
         if (i10 >= 0) {
             Drawable d = bVar.d(i10);
-            this.f7206c = d;
+            this.f7748c = d;
             if (d != null) {
                 b(d);
             }
         }
         this.d = null;
-        this.f7200y = bVar;
+        this.f7742y = bVar;
         this.C = bVar;
     }
 
     public final Drawable f() {
         if (!this.B) {
             super.mutate();
-            b bVar = this.f7200y;
+            b bVar = this.f7742y;
             bVar.I = bVar.I.clone();
             bVar.J = bVar.J.clone();
             this.B = true;
@@ -67,9 +67,9 @@ public final class e extends g implements j0.b {
     @Override
     public final void jumpToCurrentState() {
         super.jumpToCurrentState();
-        x7 x7Var = this.D;
-        if (x7Var != null) {
-            x7Var.d();
+        y7 y7Var = this.D;
+        if (y7Var != null) {
+            y7Var.d();
             this.D = null;
             c(this.E);
             this.E = -1;
@@ -97,10 +97,10 @@ public final class e extends g implements j0.b {
     @Override
     public final boolean setVisible(boolean z4, boolean z10) {
         boolean visible = super.setVisible(z4, z10);
-        x7 x7Var = this.D;
-        if (x7Var != null && (visible || z10)) {
+        y7 y7Var = this.D;
+        if (y7Var != null && (visible || z10)) {
             if (z4) {
-                x7Var.c();
+                y7Var.c();
                 return visible;
             }
             jumpToCurrentState();

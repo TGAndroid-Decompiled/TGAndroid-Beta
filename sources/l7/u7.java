@@ -183,14 +183,14 @@ public enum u7 implements f0 {
     OPTIONAL_MODULE_SMART_REPLY_INFERENCE(523),
     OPTIONAL_MODULE_SMART_REPLY_RELEASE(524);
     
-    public final int f11659a;
+    public final int f12061a;
 
     u7(int i10) {
-        this.f11659a = i10;
+        this.f12061a = i10;
     }
 
     @Override
     public final int zza() {
-        return this.f11659a;
+        return this.f12061a;
     }
 }

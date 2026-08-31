@@ -17,37 +17,37 @@ public final class y0 extends t implements ServiceConnection {
     public static final int D = 0;
     public boolean B;
     public a1.c C;
-    public final ComponentName f2038r;
-    public final a7.e f2039s;
+    public final ComponentName f2214r;
+    public final a7.e f2215s;
     public final ArrayList v;
-    public boolean f2040w;
-    public boolean f2041x;
-    public s0 f2042y;
+    public boolean f2216w;
+    public boolean f2217x;
+    public s0 f2218y;
 
     static {
         Log.isLoggable("MediaRouteProviderProxy", 3);
     }
 
     public y0(Context context, ComponentName componentName) {
-        super(context, new o5.i(componentName, 7));
+        super(context, new y5.h(componentName, 7));
         this.v = new ArrayList();
-        this.f2038r = componentName;
-        this.f2039s = new Handler();
+        this.f2214r = componentName;
+        this.f2215s = new Handler();
     }
 
     @Override
     public final r c(String str) {
         if (str != null) {
-            u uVar = (u) this.f2004n;
+            u uVar = (u) this.f2177n;
             if (uVar != null) {
-                List list = (List) uVar.f2007c;
+                List list = (List) uVar.f2180c;
                 int size = list.size();
                 for (int i10 = 0; i10 < size; i10++) {
                     if (((n) list.get(i10)).d().equals(str)) {
                         w0 w0Var = new w0(this, str);
                         this.v.add(w0Var);
                         if (this.B) {
-                            w0Var.a(this.f2042y);
+                            w0Var.a(this.f2218y);
                         }
                         r();
                         return w0Var;
@@ -83,11 +83,11 @@ public final class y0 extends t implements ServiceConnection {
     public final void f(o oVar) {
         Bundle bundle;
         if (this.B) {
-            s0 s0Var = this.f2042y;
+            s0 s0Var = this.f2218y;
             int i10 = s0Var.d;
             s0Var.d = i10 + 1;
             if (oVar != null) {
-                bundle = oVar.f1974a;
+                bundle = oVar.f2142a;
             } else {
                 bundle = null;
             }
@@ -98,32 +98,32 @@ public final class y0 extends t implements ServiceConnection {
 
     public final void n() {
         int i10;
-        if (!this.f2041x) {
+        if (!this.f2217x) {
             Intent intent = new Intent("android.media.MediaRouteProviderService");
-            intent.setComponent(this.f2038r);
+            intent.setComponent(this.f2214r);
             try {
                 if (Build.VERSION.SDK_INT >= 29) {
                     i10 = 4097;
                 } else {
                     i10 = 1;
                 }
-                this.f2041x = this.f2000a.bindService(intent, this, i10);
+                this.f2217x = this.f2172a.bindService(intent, this, i10);
             } catch (SecurityException unused) {
             }
         }
     }
 
     public final x0 o(String str, String str2) {
-        u uVar = (u) this.f2004n;
+        u uVar = (u) this.f2177n;
         if (uVar != null) {
-            List list = (List) uVar.f2007c;
+            List list = (List) uVar.f2180c;
             int size = list.size();
             for (int i10 = 0; i10 < size; i10++) {
                 if (((n) list.get(i10)).d().equals(str)) {
                     x0 x0Var = new x0(this, str, str2);
                     this.v.add(x0Var);
                     if (this.B) {
-                        x0Var.a(this.f2042y);
+                        x0Var.a(this.f2218y);
                     }
                     r();
                     return x0Var;
@@ -137,7 +137,7 @@ public final class y0 extends t implements ServiceConnection {
     @Override
     public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         Messenger messenger;
-        if (this.f2041x) {
+        if (this.f2217x) {
             p();
             if (iBinder != null) {
                 messenger = new Messenger(iBinder);
@@ -150,11 +150,11 @@ public final class y0 extends t implements ServiceConnection {
                         s0 s0Var = new s0(this, messenger);
                         int i10 = s0Var.d;
                         s0Var.d = i10 + 1;
-                        s0Var.f1998g = i10;
+                        s0Var.f2170g = i10;
                         if (s0Var.b(1, i10, 4, null, null)) {
                             try {
-                                s0Var.f1994a.getBinder().linkToDeath(s0Var, 0);
-                                this.f2042y = s0Var;
+                                s0Var.f2165a.getBinder().linkToDeath(s0Var, 0);
+                                this.f2218y = s0Var;
                                 return;
                             } catch (RemoteException unused) {
                                 s0Var.binderDied();
@@ -176,7 +176,7 @@ public final class y0 extends t implements ServiceConnection {
     }
 
     public final void p() {
-        if (this.f2042y != null) {
+        if (this.f2218y != null) {
             g(null);
             this.B = false;
             ArrayList arrayList = this.v;
@@ -184,29 +184,29 @@ public final class y0 extends t implements ServiceConnection {
             for (int i10 = 0; i10 < size; i10++) {
                 ((t0) arrayList.get(i10)).c();
             }
-            s0 s0Var = this.f2042y;
+            s0 s0Var = this.f2218y;
             s0Var.b(2, 0, 0, null, null);
-            s0Var.f1995b.f2009b.clear();
-            s0Var.f1994a.getBinder().unlinkToDeath(s0Var, 0);
-            s0Var.f1999i.f2039s.post(new r0(s0Var, 0));
-            this.f2042y = null;
+            s0Var.f2166b.f2182b.clear();
+            s0Var.f2165a.getBinder().unlinkToDeath(s0Var, 0);
+            s0Var.f2171i.f2215s.post(new r0(s0Var, 0));
+            this.f2218y = null;
         }
     }
 
     public final void q() {
-        if (this.f2041x) {
-            this.f2041x = false;
+        if (this.f2217x) {
+            this.f2217x = false;
             p();
             try {
-                this.f2000a.unbindService(this);
-            } catch (IllegalArgumentException e) {
-                Log.e("MediaRouteProviderProxy", this + ": unbindService failed", e);
+                this.f2172a.unbindService(this);
+            } catch (IllegalArgumentException e6) {
+                Log.e("MediaRouteProviderProxy", this + ": unbindService failed", e6);
             }
         }
     }
 
     public final void r() {
-        if (this.f2040w && (((o) this.h) != null || !this.v.isEmpty())) {
+        if (this.f2216w && (((o) this.h) != null || !this.v.isEmpty())) {
             n();
         } else {
             q();
@@ -214,6 +214,6 @@ public final class y0 extends t implements ServiceConnection {
     }
 
     public final String toString() {
-        return "Service connection " + this.f2038r.flattenToShortString();
+        return "Service connection " + this.f2214r.flattenToShortString();
     }
 }

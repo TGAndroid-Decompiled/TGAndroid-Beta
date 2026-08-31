@@ -1,52 +1,159 @@
 package ng;
 
 import android.graphics.Rect;
-import android.graphics.RenderNode;
-import android.support.v4.media.session.y;
-import lf.m0;
+import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.ij0;
+import org.telegram.ui.Components.l5;
+import org.telegram.ui.cz;
 public final class d {
-    public final c f14995b;
-    public final c f14996c;
-    public long e;
-    public final RenderNode f14994a = y.c();
-    public final Rect d = new Rect();
+    public static int f16022m;
+    public l5 f16023a;
+    public Rect f16024b;
+    public ArrayList f16025c;
+    public View d;
+    public long f16026e;
+    public boolean f16027f;
+    public boolean f16028g;
+    public int h;
+    public boolean f16029i;
+    public ImageReceiver f16030j;
+    public int f16031k;
+    public long f16032l;
 
-    public d(e eVar) {
-        int i10;
-        if (eVar.f14997a) {
-            c cVar = new c(eVar, "glass", 0, true);
-            this.f14996c = cVar;
-            cVar.e = 4;
-            cVar.f14990f = 4;
-            cVar.d(AndroidUtilities.dpf2(6.0f), m0.b());
-            c cVar2 = new c(eVar, "blur", 0, false);
-            this.f14995b = cVar2;
-            cVar2.e = 8;
-            cVar2.f14990f = 8;
-            cVar2.c(AndroidUtilities.dpf2(38.34f));
-        } else if (eVar.f14999c) {
-            c cVar3 = new c(eVar, "blur", 0, false);
-            this.f14995b = cVar3;
-            boolean z4 = eVar.f14998b;
+    public static d a(l5 l5Var, boolean z4, boolean z10) {
+        int i10 = UserConfig.selectedAccount;
+        ?? obj = new Object();
+        obj.f16024b = new Rect();
+        obj.f16025c = new ArrayList();
+        obj.f16028g = true;
+        obj.f16031k = -1;
+        obj.f16023a = l5Var;
+        obj.f16027f = z4;
+        obj.h = i10;
+        obj.f16029i = z10;
+        obj.f16026e = System.currentTimeMillis();
+        if (z10 && LiteMode.isEnabled(4112)) {
+            ImageReceiver imageReceiver = new ImageReceiver();
+            obj.f16030j = imageReceiver;
             if (z4) {
-                i10 = 16;
-            } else {
-                i10 = 8;
+                imageReceiver.setAllowDrawWhileCacheGenerating(true);
             }
-            int i11 = z4 ? 16 : 8;
-            cVar3.e = i10;
-            cVar3.f14990f = i11;
-            cVar3.d(AndroidUtilities.dpf2(40.0f), m0.b());
-            this.f14996c = null;
-        } else {
-            c cVar4 = new c(eVar, "blur", 1, false);
-            this.f14995b = cVar4;
-            cVar4.e = 8;
-            cVar4.f14990f = 8;
-            cVar4.c(AndroidUtilities.dpf2(40.0f));
-            cVar4.e(m0.b());
-            this.f14996c = null;
+        }
+        return obj;
+    }
+
+    public final void b(android.graphics.Canvas r18) {
+        throw new UnsupportedOperationException("Method not decompiled: ng.d.b(android.graphics.Canvas):void");
+    }
+
+    public final boolean c() {
+        if (System.currentTimeMillis() - this.f16026e > 2500) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void d(View view) {
+        this.f16023a.o(view);
+        ImageReceiver imageReceiver = this.f16030j;
+        if (imageReceiver != null) {
+            imageReceiver.onDetachedFromWindow();
+            imageReceiver.clearImage();
+        }
+    }
+
+    public final void e(int i10, int i11, int i12, int i13) {
+        Rect rect = this.f16024b;
+        rect.set(i10, i11, i12, i13);
+        ImageReceiver imageReceiver = this.f16030j;
+        if (imageReceiver != null) {
+            imageReceiver.setImageCoords(rect);
+        }
+    }
+
+    public final void f(View view) {
+        boolean z4;
+        boolean z10;
+        TLRPC.TL_availableReaction tL_availableReaction;
+        TLRPC.Document document;
+        boolean z11 = this.f16027f;
+        int i10 = this.h;
+        l5 l5Var = this.f16023a;
+        l5Var.a(view);
+        this.d = view;
+        ImageReceiver imageReceiver = this.f16030j;
+        if (imageReceiver != null && this.f16029i) {
+            imageReceiver.onAttachedToWindow();
+            TLRPC.Document document2 = l5Var.f28599e;
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
+            String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document2, null);
+            if (findAnimatedEmojiEmoticon != null && (tL_availableReaction = MediaDataController.getInstance(i10).getReactionsMap().get(findAnimatedEmojiEmoticon)) != null && (document = tL_availableReaction.around_animation) != null) {
+                if (z11) {
+                    StringBuilder sb = new StringBuilder();
+                    int i11 = f16022m;
+                    f16022m = i11 + 1;
+                    sb.append(i11);
+                    sb.append(" ");
+                    imageReceiver.setUniqKeyPrefix(sb.toString());
+                    int f10 = cz.f();
+                    TLRPC.Document document3 = tL_availableReaction.around_animation;
+                    z4 = true;
+                    imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), f10 + "_" + f10 + "_pcache_compress", null, null, document3, 0);
+                } else {
+                    ImageLocation forDocument = ImageLocation.getForDocument(document);
+                    String a2 = m0.a();
+                    TLRPC.Document document4 = tL_availableReaction.around_animation;
+                    z4 = true;
+                    imageReceiver.setImage(forDocument, a2, null, null, document4, 0);
+                }
+                z10 = true;
+            } else {
+                z4 = true;
+                z10 = false;
+            }
+            if (!z10) {
+                String str = UserConfig.getInstance(i10).genericAnimationsStickerPack;
+                if (str != null && (tL_messages_stickerSet = MediaDataController.getInstance(i10).getStickerSetByName(str)) == null) {
+                    tL_messages_stickerSet = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName(str);
+                }
+                if (tL_messages_stickerSet != null) {
+                    if (this.f16031k < 0) {
+                        this.f16031k = Math.abs(Utilities.fastRandom.nextInt() % tL_messages_stickerSet.documents.size());
+                    }
+                    if (z11) {
+                        StringBuilder sb2 = new StringBuilder();
+                        int i12 = f16022m;
+                        f16022m = i12 + 1;
+                        sb2.append(i12);
+                        sb2.append(" ");
+                        imageReceiver.setUniqKeyPrefix(sb2.toString());
+                        int f11 = cz.f();
+                        imageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.f16031k)), f11 + "_" + f11 + "_pcache_compress", null, null, tL_messages_stickerSet.documents.get(this.f16031k), 0);
+                    } else {
+                        imageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.f16031k)), "60_60", null, null, tL_messages_stickerSet.documents.get(this.f16031k), 0);
+                    }
+                    z10 = true;
+                }
+            }
+            if (z10) {
+                if (imageReceiver.getLottieAnimation() != null) {
+                    imageReceiver.getLottieAnimation().L(0, false, z4);
+                }
+                imageReceiver.setAutoRepeat(0);
+                return;
+            }
+            imageReceiver.setImageBitmap(new ij0(R.raw.custom_emoji_reaction, "" + R.raw.custom_emoji_reaction, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
         }
     }
 }

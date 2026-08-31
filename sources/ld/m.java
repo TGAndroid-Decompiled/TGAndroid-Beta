@@ -4,21 +4,21 @@ import java.util.concurrent.CancellationException;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public class m extends l0 implements l, wc.d, i2 {
-    public static final AtomicIntegerFieldUpdater f11898f = AtomicIntegerFieldUpdater.newUpdater(m.class, "_decisionAndIndex$volatile");
+    public static final AtomicIntegerFieldUpdater f12328f = AtomicIntegerFieldUpdater.newUpdater(m.class, "_decisionAndIndex$volatile");
     public static final AtomicReferenceFieldUpdater h = AtomicReferenceFieldUpdater.newUpdater(m.class, Object.class, "_state$volatile");
-    public static final AtomicReferenceFieldUpdater f11899n = AtomicReferenceFieldUpdater.newUpdater(m.class, Object.class, "_parentHandle$volatile");
+    public static final AtomicReferenceFieldUpdater f12329n = AtomicReferenceFieldUpdater.newUpdater(m.class, Object.class, "_parentHandle$volatile");
     private volatile int _decisionAndIndex$volatile;
     private volatile Object _parentHandle$volatile;
     private volatile Object _state$volatile;
     public final uc.c d;
-    public final uc.h e;
+    public final uc.h f12330e;
 
     public m(int i10, uc.c cVar) {
         super(i10);
         this.d = cVar;
-        this.e = cVar.getContext();
+        this.f12330e = cVar.getContext();
         this._decisionAndIndex$volatile = 536870911;
-        this._state$volatile = b.f11859a;
+        this._state$volatile = b.f12281a;
     }
 
     public static Object E(x1 x1Var, Object obj, int i10, dd.l lVar) {
@@ -54,13 +54,13 @@ public class m extends l0 implements l, wc.d, i2 {
             hVar = null;
         }
         if (hVar != null) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = qd.h.f43024n;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = qd.h.f44800n;
             loop0: while (true) {
                 Object obj = atomicReferenceFieldUpdater.get(hVar);
-                i5.c cVar2 = qd.a.d;
-                if (obj == cVar2) {
-                    while (!atomicReferenceFieldUpdater.compareAndSet(hVar, cVar2, this)) {
-                        if (atomicReferenceFieldUpdater.get(hVar) != cVar2) {
+                com.google.android.gms.internal.clearcut.e eVar = qd.a.d;
+                if (obj == eVar) {
+                    while (!atomicReferenceFieldUpdater.compareAndSet(hVar, eVar, this)) {
+                        if (atomicReferenceFieldUpdater.get(hVar) != eVar) {
                             break;
                         }
                     }
@@ -84,7 +84,7 @@ public class m extends l0 implements l, wc.d, i2 {
     }
 
     public final void B(dd.l lVar, Object obj) {
-        C(obj, this.f11896c, lVar);
+        C(obj, this.f12326c, lVar);
     }
 
     public final void C(Object obj, int i10, dd.l lVar) {
@@ -106,9 +106,9 @@ public class m extends l0 implements l, wc.d, i2 {
             }
             if (obj2 instanceof n) {
                 n nVar = (n) obj2;
-                if (n.f11904c.compareAndSet(nVar, 0, 1)) {
+                if (n.f12336c.compareAndSet(nVar, 0, 1)) {
                     if (lVar != null) {
-                        l(lVar, nVar.f11930a);
+                        l(lVar, nVar.f12368a);
                         return;
                     }
                     return;
@@ -136,18 +136,18 @@ public class m extends l0 implements l, wc.d, i2 {
         if (a0Var2 == a0Var) {
             i10 = 4;
         } else {
-            i10 = this.f11896c;
+            i10 = this.f12326c;
         }
-        C(sc.i.f44253a, i10, null);
+        C(sc.i.f47243a, i10, null);
     }
 
-    public final i5.c F(dd.l lVar, Object obj) {
-        i5.c cVar = e0.f11873a;
+    public final com.google.android.gms.internal.clearcut.e F(dd.l lVar, Object obj) {
+        com.google.android.gms.internal.clearcut.e eVar = e0.f12296a;
         while (true) {
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = h;
             Object obj2 = atomicReferenceFieldUpdater.get(this);
             if (obj2 instanceof x1) {
-                Object E = E((x1) obj2, obj, this.f11896c, lVar);
+                Object E = E((x1) obj2, obj, this.f12326c, lVar);
                 while (!atomicReferenceFieldUpdater.compareAndSet(this, obj2, E)) {
                     if (atomicReferenceFieldUpdater.get(this) != obj2) {
                         break;
@@ -156,7 +156,7 @@ public class m extends l0 implements l, wc.d, i2 {
                 if (!x()) {
                     o();
                 }
-                return cVar;
+                return eVar;
             }
             return null;
         }
@@ -167,7 +167,7 @@ public class m extends l0 implements l, wc.d, i2 {
         AtomicIntegerFieldUpdater atomicIntegerFieldUpdater;
         int i11;
         do {
-            atomicIntegerFieldUpdater = f11898f;
+            atomicIntegerFieldUpdater = f12328f;
             i11 = atomicIntegerFieldUpdater.get(this);
             if ((i11 & 536870911) != 536870911) {
                 throw new IllegalStateException("invokeOnCancellation should be called at most once");
@@ -177,7 +177,7 @@ public class m extends l0 implements l, wc.d, i2 {
     }
 
     @Override
-    public final i5.c b(dd.l lVar, Object obj) {
+    public final com.google.android.gms.internal.clearcut.e b(dd.l lVar, Object obj) {
         return F(lVar, obj);
     }
 
@@ -191,18 +191,18 @@ public class m extends l0 implements l, wc.d, i2 {
                 if (!(obj2 instanceof v)) {
                     if (obj2 instanceof u) {
                         u uVar = (u) obj2;
-                        if (uVar.e == null) {
+                        if (uVar.f12363e == null) {
                             u a2 = u.a(uVar, null, cancellationException, 15);
                             while (!atomicReferenceFieldUpdater.compareAndSet(this, obj2, a2)) {
                                 if (atomicReferenceFieldUpdater.get(this) != obj2) {
                                     cancellationException2 = cancellationException;
                                 }
                             }
-                            k kVar = uVar.f11924b;
+                            k kVar = uVar.f12361b;
                             if (kVar != null) {
                                 k(kVar, cancellationException);
                             }
-                            dd.l lVar = uVar.f11925c;
+                            dd.l lVar = uVar.f12362c;
                             if (lVar != null) {
                                 l(lVar, cancellationException);
                                 return;
@@ -231,7 +231,7 @@ public class m extends l0 implements l, wc.d, i2 {
 
     @Override
     public final void e(Object obj) {
-        p(this.f11896c);
+        p(this.f12326c);
     }
 
     @Override
@@ -259,13 +259,13 @@ public class m extends l0 implements l, wc.d, i2 {
 
     @Override
     public final uc.h getContext() {
-        return this.e;
+        return this.f12330e;
     }
 
     @Override
     public final Object h(Object obj) {
         if (obj instanceof u) {
-            return ((u) obj).f11923a;
+            return ((u) obj).f12360a;
         }
         return obj;
     }
@@ -279,7 +279,7 @@ public class m extends l0 implements l, wc.d, i2 {
         try {
             kVar.a(th2);
         } catch (Throwable th3) {
-            e0.m(new RuntimeException("Exception in invokeOnCancellation handler for " + this, th3), this.e);
+            e0.m(new RuntimeException("Exception in invokeOnCancellation handler for " + this, th3), this.f12330e);
         }
     }
 
@@ -287,13 +287,13 @@ public class m extends l0 implements l, wc.d, i2 {
         try {
             lVar.invoke(th2);
         } catch (Throwable th3) {
-            e0.m(new RuntimeException("Exception in resume onCancellation handler for " + this, th3), this.e);
+            e0.m(new RuntimeException("Exception in resume onCancellation handler for " + this, th3), this.f12330e);
         }
     }
 
     public final void m(qd.t tVar, Throwable th2) {
-        uc.h hVar = this.e;
-        int i10 = f11898f.get(this) & 536870911;
+        uc.h hVar = this.f12330e;
+        int i10 = f12328f.get(this) & 536870911;
         if (i10 != 536870911) {
             try {
                 tVar.h(i10, hVar);
@@ -329,19 +329,19 @@ public class m extends l0 implements l, wc.d, i2 {
             if (!x()) {
                 o();
             }
-            p(this.f11896c);
+            p(this.f12326c);
             return true;
         }
     }
 
     public final void o() {
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f11899n;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f12329n;
         o0 o0Var = (o0) atomicReferenceFieldUpdater.get(this);
         if (o0Var == null) {
             return;
         }
         o0Var.dispose();
-        atomicReferenceFieldUpdater.set(this, w1.f11935a);
+        atomicReferenceFieldUpdater.set(this, w1.f12374a);
     }
 
     public final void p(int i10) {
@@ -350,7 +350,7 @@ public class m extends l0 implements l, wc.d, i2 {
         boolean z4;
         boolean z10;
         do {
-            atomicIntegerFieldUpdater = f11898f;
+            atomicIntegerFieldUpdater = f12328f;
             i11 = atomicIntegerFieldUpdater.get(this);
             int i12 = i11 >> 29;
             if (i12 != 0) {
@@ -368,21 +368,21 @@ public class m extends l0 implements l, wc.d, i2 {
                         } else {
                             z10 = true;
                         }
-                        int i13 = this.f11896c;
+                        int i13 = this.f12326c;
                         if (z10 == ((i13 == 1 || i13 == 2) ? true : true)) {
                             qd.h hVar = (qd.h) cVar;
                             a0 a0Var = hVar.d;
-                            uc.h context = hVar.e.getContext();
+                            uc.h context = hVar.f44801e.getContext();
                             if (a0Var.e()) {
                                 a0Var.c(context, this);
                                 return;
                             }
                             w0 a2 = c2.a();
-                            if (a2.f11934c >= 4294967296L) {
-                                tc.e eVar = a2.e;
+                            if (a2.f12372c >= 4294967296L) {
+                                tc.e eVar = a2.f12373e;
                                 if (eVar == null) {
                                     eVar = new tc.e();
-                                    a2.e = eVar;
+                                    a2.f12373e = eVar;
                                 }
                                 eVar.addLast(this);
                                 return;
@@ -419,7 +419,7 @@ public class m extends l0 implements l, wc.d, i2 {
         f1 f1Var;
         boolean x10 = x();
         do {
-            atomicIntegerFieldUpdater = f11898f;
+            atomicIntegerFieldUpdater = f12328f;
             i10 = atomicIntegerFieldUpdater.get(this);
             int i11 = i10 >> 29;
             if (i11 != 0) {
@@ -429,26 +429,26 @@ public class m extends l0 implements l, wc.d, i2 {
                     }
                     Object obj = h.get(this);
                     if (!(obj instanceof v)) {
-                        int i12 = this.f11896c;
-                        if ((i12 == 1 || i12 == 2) && (f1Var = (f1) this.e.get(b0.f11861b)) != null && !f1Var.isActive()) {
+                        int i12 = this.f12326c;
+                        if ((i12 == 1 || i12 == 2) && (f1Var = (f1) this.f12330e.get(b0.f12283b)) != null && !f1Var.isActive()) {
                             CancellationException cancellationException = f1Var.getCancellationException();
                             c(obj, cancellationException);
                             throw cancellationException;
                         }
                         return h(obj);
                     }
-                    throw ((v) obj).f11930a;
+                    throw ((v) obj).f12368a;
                 }
                 throw new IllegalStateException("Already suspended");
             }
         } while (!atomicIntegerFieldUpdater.compareAndSet(this, i10, 536870912 + (536870911 & i10)));
-        if (((o0) f11899n.get(this)) == null) {
+        if (((o0) f12329n.get(this)) == null) {
             t();
         }
         if (x10) {
             A();
         }
-        return vc.a.f45663a;
+        return vc.a.f48962a;
     }
 
     @Override
@@ -457,26 +457,26 @@ public class m extends l0 implements l, wc.d, i2 {
         if (a2 != null) {
             obj = new v(a2, false);
         }
-        C(obj, this.f11896c, null);
+        C(obj, this.f12326c, null);
     }
 
     public final void s() {
         o0 t6 = t();
         if (t6 != null && !(h.get(this) instanceof x1)) {
             t6.dispose();
-            f11899n.set(this, w1.f11935a);
+            f12329n.set(this, w1.f12374a);
         }
     }
 
     public final o0 t() {
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater;
-        f1 f1Var = (f1) this.e.get(b0.f11861b);
+        f1 f1Var = (f1) this.f12330e.get(b0.f12283b);
         if (f1Var == null) {
             return null;
         }
         o0 n10 = e0.n(f1Var, true, new o(this), 2);
         do {
-            atomicReferenceFieldUpdater = f11899n;
+            atomicReferenceFieldUpdater = f12329n;
             if (atomicReferenceFieldUpdater.compareAndSet(this, null, n10)) {
                 break;
             }
@@ -532,9 +532,9 @@ public class m extends l0 implements l, wc.d, i2 {
             if (!z4) {
                 if (obj instanceof v) {
                     v vVar = (v) obj;
-                    if (v.f11929b.compareAndSet(vVar, 0, 1)) {
+                    if (v.f12367b.compareAndSet(vVar, 0, 1)) {
                         if (obj instanceof n) {
-                            Throwable th2 = vVar.f11930a;
+                            Throwable th2 = vVar.f12368a;
                             if (x1Var instanceof k) {
                                 k((k) x1Var, th2);
                                 return;
@@ -549,10 +549,10 @@ public class m extends l0 implements l, wc.d, i2 {
                     throw null;
                 } else if (obj instanceof u) {
                     u uVar = (u) obj;
-                    if (uVar.f11924b == null) {
+                    if (uVar.f12361b == null) {
                         if (!(x1Var instanceof qd.t)) {
                             k kVar = (k) x1Var;
-                            Throwable th3 = uVar.e;
+                            Throwable th3 = uVar.f12363e;
                             if (th3 != null) {
                                 z10 = true;
                             } else {
@@ -613,10 +613,10 @@ public class m extends l0 implements l, wc.d, i2 {
     }
 
     public final boolean x() {
-        if (this.f11896c == 2) {
+        if (this.f12326c == 2) {
             uc.c cVar = this.d;
             kotlin.jvm.internal.j.c(cVar, "null cannot be cast to non-null type kotlinx.coroutines.internal.DispatchedContinuation<*>");
-            if (qd.h.f43024n.get((qd.h) cVar) != null) {
+            if (qd.h.f44800n.get((qd.h) cVar) != null) {
                 return true;
             }
             return false;

@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class r00 extends FrameLayout {
-    public org.telegram.ui.Components.jj0 f37892a;
+    public org.telegram.ui.Components.lj0 f40736a;
 
     @Override
     public final void onMeasure(int i10, int i11) {

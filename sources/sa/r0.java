@@ -7,10 +7,10 @@ public class r0 extends pa.u {
         String v = aVar.v();
         try {
             return Currency.getInstance(v);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e6) {
             StringBuilder t6 = android.support.v4.media.a.t("Failed parsing '", v, "' as Currency; at path ");
             t6.append(aVar.j());
-            throw new RuntimeException(t6.toString(), e);
+            throw new RuntimeException(t6.toString(), e6);
         }
     }
 

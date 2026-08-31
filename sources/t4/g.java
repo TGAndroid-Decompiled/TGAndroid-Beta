@@ -3,11 +3,11 @@ package t4;
 import android.os.SystemClock;
 import java.util.List;
 public final class g extends f5.c {
-    public int f44482g;
+    public int f47885g;
 
     @Override
     public final int h() {
-        return this.f44482g;
+        return this.f47885g;
     }
 
     @Override
@@ -23,12 +23,12 @@ public final class g extends f5.c {
     @Override
     public final void v(long j10, long j11, long j12, List list, q4.l[] lVarArr) {
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (!o(this.f44482g, elapsedRealtime)) {
+        if (!o(this.f47885g, elapsedRealtime)) {
             return;
         }
-        for (int i10 = this.f5913b - 1; i10 >= 0; i10--) {
+        for (int i10 = this.f6011b - 1; i10 >= 0; i10--) {
             if (!o(i10, elapsedRealtime)) {
-                this.f44482g = i10;
+                this.f47885g = i10;
                 return;
             }
         }

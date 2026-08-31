@@ -1,8 +1,8 @@
 package m2;
 public final class d {
-    public Object f13715a;
-    public int f13716b;
-    public boolean f13717c;
+    public Object f13422a;
+    public int f13423b;
+    public boolean f13424c;
     public float d;
-    public float e;
+    public float f13425e;
 }

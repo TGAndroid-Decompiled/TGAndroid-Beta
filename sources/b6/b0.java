@@ -6,19 +6,18 @@ import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
-import kh.a2;
 public final class b0 extends a7.e {
-    public final g f1560a;
+    public final g f1687a;
 
     public b0(g gVar, Looper looper) {
         super(looper, 0);
-        this.f1560a = gVar;
+        this.f1687a = gVar;
     }
 
     @Override
     public final void handleMessage(Message message) {
         Boolean bool;
-        if (this.f1560a.O.get() != message.arg1) {
+        if (this.f1687a.O.get() != message.arg1) {
             int i10 = message.what;
             if (i10 != 2 && i10 != 1 && i10 != 7) {
                 return;
@@ -29,16 +28,16 @@ public final class b0 extends a7.e {
             return;
         }
         int i11 = message.what;
-        if ((i11 != 1 && i11 != 7 && i11 != 4 && i11 != 5) || this.f1560a.e()) {
+        if ((i11 != 1 && i11 != 7 && i11 != 4 && i11 != 5) || this.f1687a.e()) {
             int i12 = message.what;
             PendingIntent pendingIntent = null;
             if (i12 == 4) {
-                g gVar = this.f1560a;
+                g gVar = this.f1687a;
                 gVar.L = new y5.a(message.arg2);
                 if (!gVar.M && !TextUtils.isEmpty(gVar.v()) && !TextUtils.isEmpty(null)) {
                     try {
                         Class.forName(gVar.v());
-                        g gVar2 = this.f1560a;
+                        g gVar2 = this.f1687a;
                         if (!gVar2.M) {
                             gVar2.F(3, null);
                             return;
@@ -46,22 +45,22 @@ public final class b0 extends a7.e {
                     } catch (ClassNotFoundException unused) {
                     }
                 }
-                g gVar3 = this.f1560a;
+                g gVar3 = this.f1687a;
                 y5.a aVar = gVar3.L;
                 if (aVar == null) {
                     aVar = new y5.a(8);
                 }
                 gVar3.B.a(aVar);
-                this.f1560a.z(aVar);
+                this.f1687a.z(aVar);
                 return;
             } else if (i12 == 5) {
-                g gVar4 = this.f1560a;
+                g gVar4 = this.f1687a;
                 y5.a aVar2 = gVar4.L;
                 if (aVar2 == null) {
                     aVar2 = new y5.a(8);
                 }
                 gVar4.B.a(aVar2);
-                this.f1560a.z(aVar2);
+                this.f1687a.z(aVar2);
                 return;
             } else if (i12 == 3) {
                 Object obj = message.obj;
@@ -69,19 +68,19 @@ public final class b0 extends a7.e {
                     pendingIntent = (PendingIntent) obj;
                 }
                 y5.a aVar3 = new y5.a(message.arg2, pendingIntent);
-                this.f1560a.B.a(aVar3);
-                this.f1560a.z(aVar3);
+                this.f1687a.B.a(aVar3);
+                this.f1687a.z(aVar3);
                 return;
             } else if (i12 == 6) {
-                this.f1560a.F(5, null);
-                n nVar = this.f1560a.G;
+                this.f1687a.F(5, null);
+                n nVar = this.f1687a.G;
                 if (nVar != null) {
-                    ((com.google.android.gms.common.api.k) nVar.f1629a).onConnectionSuspended(message.arg2);
+                    ((com.google.android.gms.common.api.k) nVar.f1762a).onConnectionSuspended(message.arg2);
                 }
-                this.f1560a.A(message.arg2);
-                g.E(this.f1560a, 5, 1, null);
+                this.f1687a.A(message.arg2);
+                g.E(this.f1687a, 5, 1, null);
                 return;
-            } else if (i12 == 2 && !this.f1560a.h()) {
+            } else if (i12 == 2 && !this.f1687a.h()) {
                 x xVar2 = (x) message.obj;
                 xVar2.getClass();
                 xVar2.d();
@@ -89,14 +88,14 @@ public final class b0 extends a7.e {
             } else {
                 int i13 = message.what;
                 if (i13 != 2 && i13 != 1 && i13 != 7) {
-                    Log.wtf("GmsClient", a2.j(i13, "Don't know how to handle message: "), new Exception());
+                    Log.wtf("GmsClient", l.d.j(i13, "Don't know how to handle message: "), new Exception());
                     return;
                 }
                 x xVar3 = (x) message.obj;
                 synchronized (xVar3) {
                     try {
-                        bool = xVar3.f1657a;
-                        if (xVar3.f1658b) {
+                        bool = xVar3.f1793a;
+                        if (xVar3.f1794b) {
                             String obj2 = xVar3.toString();
                             Log.w("GmsClient", "Callback proxy " + obj2 + " being reused. This is not safe.");
                         }
@@ -105,7 +104,7 @@ public final class b0 extends a7.e {
                     }
                 }
                 if (bool != null) {
-                    g gVar5 = xVar3.f1660f;
+                    g gVar5 = xVar3.f1797f;
                     int i14 = xVar3.d;
                     if (i14 == 0) {
                         if (!xVar3.b()) {
@@ -114,7 +113,7 @@ public final class b0 extends a7.e {
                         }
                     } else {
                         gVar5.F(1, null);
-                        Bundle bundle = xVar3.e;
+                        Bundle bundle = xVar3.f1796e;
                         if (bundle != null) {
                             pendingIntent = (PendingIntent) bundle.getParcelable("pendingIntent");
                         }
@@ -122,7 +121,7 @@ public final class b0 extends a7.e {
                     }
                 }
                 synchronized (xVar3) {
-                    xVar3.f1658b = true;
+                    xVar3.f1794b = true;
                 }
                 xVar3.d();
                 return;

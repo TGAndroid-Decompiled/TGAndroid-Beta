@@ -2,19 +2,19 @@ package org.telegram.ui.web;
 
 import android.webkit.JavascriptInterface;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.m71;
+import org.telegram.ui.Components.o71;
 public class BotWebViewContainer$WebViewProxy {
-    public a1 f39411a;
-    public final w0 f39412b;
+    public a1 f42456a;
+    public final x0 f42457b;
 
-    public BotWebViewContainer$WebViewProxy(w0 w0Var, a1 a1Var) {
-        this.f39412b = w0Var;
-        this.f39411a = a1Var;
+    public BotWebViewContainer$WebViewProxy(x0 x0Var, a1 a1Var) {
+        this.f42457b = x0Var;
+        this.f42456a = a1Var;
     }
 
     @JavascriptInterface
     public void postEvent(String str, String str2) {
-        AndroidUtilities.runOnUIThread(new m71(this, str, str2, 6));
+        AndroidUtilities.runOnUIThread(new o71(this, str, str2, 6));
     }
 
     @JavascriptInterface

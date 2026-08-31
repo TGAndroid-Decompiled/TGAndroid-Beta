@@ -2,45 +2,45 @@ package ra;
 
 import pa.u;
 public final class e extends u {
-    public volatile u f43403a;
-    public final boolean f43404b;
-    public final boolean f43405c;
+    public volatile u f46754a;
+    public final boolean f46755b;
+    public final boolean f46756c;
     public final pa.g d;
-    public final wa.a e;
-    public final f f43406f;
+    public final wa.a f46757e;
+    public final f f46758f;
 
     public e(f fVar, boolean z4, boolean z10, pa.g gVar, wa.a aVar) {
-        this.f43406f = fVar;
-        this.f43404b = z4;
-        this.f43405c = z10;
+        this.f46758f = fVar;
+        this.f46755b = z4;
+        this.f46756c = z10;
         this.d = gVar;
-        this.e = aVar;
+        this.f46757e = aVar;
     }
 
     @Override
     public final Object read(xa.a aVar) {
-        if (this.f43404b) {
+        if (this.f46755b) {
             aVar.C();
             return null;
         }
-        u uVar = this.f43403a;
+        u uVar = this.f46754a;
         if (uVar == null) {
-            uVar = this.d.c(this.f43406f, this.e);
-            this.f43403a = uVar;
+            uVar = this.d.c(this.f46758f, this.f46757e);
+            this.f46754a = uVar;
         }
         return uVar.read(aVar);
     }
 
     @Override
     public final void write(xa.b bVar, Object obj) {
-        if (this.f43405c) {
+        if (this.f46756c) {
             bVar.i();
             return;
         }
-        u uVar = this.f43403a;
+        u uVar = this.f46754a;
         if (uVar == null) {
-            uVar = this.d.c(this.f43406f, this.e);
-            this.f43403a = uVar;
+            uVar = this.d.c(this.f46758f, this.f46757e);
+            this.f46754a = uVar;
         }
         uVar.write(bVar, obj);
     }

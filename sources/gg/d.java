@@ -1,142 +1,89 @@
 package gg;
 
-import android.util.SparseIntArray;
-import java.util.Calendar;
-import nh.b8;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.uc0;
-import org.telegram.ui.Components.wc0;
-import org.telegram.ui.Components.wj0;
-import org.telegram.ui.Components.yj0;
-public final class d implements uc0, wj0, org.telegram.ui.ActionBar.c2 {
-    public final int f6598a;
-    public final int f6599b;
-    public final Object f6600c;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+import android.view.View;
+import dg.l0;
+import f2.y;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.tl0;
+public final class d implements Runnable {
+    public final int f7075a;
+    public final float f7076b;
+    public final float f7077c;
     public final Object d;
-    public final Object e;
-    public final Object f6601f;
 
-    public d(int i10, boolean[] zArr, TLRPC.Document document, int i11, boolean[] zArr2, Utilities.Callback callback) {
-        this.f6598a = i10;
-        this.f6600c = zArr;
-        this.d = document;
-        this.f6599b = i11;
-        this.e = zArr2;
-        this.f6601f = callback;
+    public d(Object obj, float f10, float f11, int i10) {
+        this.f7075a = i10;
+        this.d = obj;
+        this.f7076b = f10;
+        this.f7077c = f11;
     }
 
     @Override
-    public void a(yj0 yj0Var, int i10) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.e;
-        int[] iArr = (int[]) this.f6601f;
-        int i11 = this.f6599b + i10;
-        int i12 = this.f6598a;
-        ((SparseIntArray) this.f6600c).put(i12, i11);
-        if (((m2.h) this.d).getCurrentItem() == i12) {
-            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f(iArr[0], i11, true);
-        }
-    }
-
-    @Override
-    public void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        boolean[] zArr = (boolean[]) this.f6600c;
-        TLRPC.Document document = (TLRPC.Document) this.d;
-        boolean[] zArr2 = (boolean[]) this.e;
-        Utilities.Callback callback = (Utilities.Callback) this.f6601f;
-        int i11 = this.f6598a;
-        if (!UserConfig.getInstance(i11).isPremium()) {
-            new eg.o1(new org.telegram.ui.ActionBar.p2(null), 12, false).show();
-            return;
-        }
-        zArr[0] = true;
-        TL_account.updateEmojiStatus updateemojistatus = new TL_account.updateEmojiStatus();
-        TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-        tL_emojiStatus.document_id = document.f19190id;
-        int i12 = this.f6599b;
-        if (i12 > 0) {
-            tL_emojiStatus.flags = 1 | tL_emojiStatus.flags;
-            tL_emojiStatus.until = ConnectionsManager.getInstance(i11).getCurrentTime() + i12;
-        }
-        updateemojistatus.emoji_status = tL_emojiStatus;
-        ConnectionsManager.getInstance(i11).sendRequest(updateemojistatus, new b8(zArr2, callback, i11, updateemojistatus, 8));
-    }
-
-    @Override
-    public void q(wc0 wc0Var, int i10) {
-        p pVar = (p) this.f6600c;
-        n nVar = (n) this.d;
-        o oVar = (o) this.e;
-        wc0 wc0Var2 = (wc0) this.f6601f;
-        try {
-            pVar.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
-        if (wc0Var.getTag() != null && wc0Var.getTag().equals("DAY")) {
-            if (wc0Var.getValue() == wc0Var.getMinValue()) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(System.currentTimeMillis());
-                int i11 = calendar.get(11);
-                int i12 = (calendar.get(12) / 5) + 1;
-                if (i12 > 11) {
-                    if (i11 == 23) {
-                        wc0Var.setMinValue(wc0Var.getMinValue() + 1);
-                        nVar.setMinValue(0);
-                    } else {
-                        nVar.setMinValue(i11 + 1);
-                    }
-                    oVar.setMinValue(0);
-                } else {
-                    nVar.setMinValue(i11);
-                    oVar.setMinValue(i12);
+    public final void run() {
+        View view;
+        int i10 = this.f7075a;
+        float f10 = this.f7077c;
+        float f11 = this.f7076b;
+        Object obj = this.d;
+        switch (i10) {
+            case 0:
+                e eVar = (e) obj;
+                i iVar = (i) eVar.f7079b;
+                ValueAnimator valueAnimator = iVar.P;
+                b bVar = iVar.U;
+                b bVar2 = iVar.T;
+                if (valueAnimator != null) {
+                    valueAnimator.removeAllListeners();
+                    iVar.P.cancel();
+                    iVar.P = null;
                 }
-            } else if (wc0Var.getValue() == wc0Var.getMaxValue()) {
-                nVar.setMaxValue(this.f6598a);
-                oVar.setMaxValue(Math.min(this.f6599b / 5, 11));
-            } else {
-                nVar.setMinValue(0);
-                oVar.setMinValue(0);
-                nVar.setMaxValue(23);
-                oVar.setMaxValue(11);
-            }
-        }
-        if (wc0Var.getTag() != null && wc0Var.getTag().equals("HOUR") && wc0Var2.getValue() == wc0Var2.getMinValue()) {
-            if (wc0Var.getValue() == wc0Var.getMinValue()) {
-                Calendar calendar2 = Calendar.getInstance();
-                calendar2.setTimeInMillis(System.currentTimeMillis());
-                int i13 = (calendar2.get(12) / 5) + 1;
-                if (i13 > 11) {
-                    oVar.setMinValue(0);
-                    return;
-                } else {
-                    oVar.setMinValue(i13);
+                AnimatorSet animatorSet = iVar.Q;
+                if (animatorSet != null) {
+                    animatorSet.removeAllListeners();
+                    iVar.Q.cancel();
+                    iVar.Q = null;
+                }
+                if (Math.abs(iVar.f7087b.d) > 10.0f) {
+                    iVar.i();
                     return;
                 }
-            }
-            oVar.setMinValue(0);
-            oVar.setMaxValue(11);
+                AndroidUtilities.cancelRunOnUIThread(iVar.R);
+                iVar.Q = new AnimatorSet();
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(iVar.f7087b.d, f11);
+                ofFloat.addUpdateListener(bVar2);
+                long j10 = 220;
+                ofFloat.setDuration(j10);
+                pr prVar = pr.h;
+                ofFloat.setInterpolator(prVar);
+                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f11, 0.0f);
+                ofFloat2.addUpdateListener(bVar2);
+                ofFloat2.setStartDelay(j10);
+                ofFloat2.setDuration(600L);
+                ofFloat2.setInterpolator(AndroidUtilities.overshootInterpolator);
+                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(iVar.f7087b.f7051g, f10);
+                ofFloat3.addUpdateListener(bVar);
+                ofFloat3.setDuration(j10);
+                ofFloat3.setInterpolator(prVar);
+                ValueAnimator ofFloat4 = ValueAnimator.ofFloat(f10, 0.0f);
+                ofFloat4.addUpdateListener(bVar);
+                ofFloat4.setStartDelay(j10);
+                ofFloat4.setDuration(600L);
+                ofFloat4.setInterpolator(AndroidUtilities.overshootInterpolator);
+                iVar.Q.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
+                iVar.Q.addListener(new l0(eVar, 5));
+                iVar.Q.start();
+                return;
+            default:
+                tl0 tl0Var = (tl0) ((y) obj).f5956b;
+                if (tl0Var.f31361b1 != null && (view = tl0Var.K1) != null) {
+                    tl0Var.h1(view, f11, f10, true);
+                    tl0Var.f31361b1 = null;
+                    return;
+                }
+                return;
         }
-    }
-
-    public d(SparseIntArray sparseIntArray, int i10, int i11, m2.h hVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
-        this.f6600c = sparseIntArray;
-        this.f6598a = i10;
-        this.f6599b = i11;
-        this.d = hVar;
-        this.e = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f6601f = iArr;
-    }
-
-    public d(p pVar, n nVar, o oVar, int i10, int i11, wc0 wc0Var) {
-        this.f6600c = pVar;
-        this.d = nVar;
-        this.e = oVar;
-        this.f6598a = i10;
-        this.f6599b = i11;
-        this.f6601f = wc0Var;
     }
 }

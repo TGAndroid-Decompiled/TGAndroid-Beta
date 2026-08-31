@@ -1,86 +1,72 @@
 package j7;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
+import android.graphics.Matrix;
 public abstract class z6 {
-    public static void a(String str, Bundle bundle) {
-        String str2;
-        try {
-            w8.g.c();
-            if (bundle == null) {
-                bundle = new Bundle();
-            }
-            Bundle bundle2 = new Bundle();
-            String string = bundle.getString("google.c.a.c_id");
-            if (string != null) {
-                bundle2.putString("_nmid", string);
-            }
-            String string2 = bundle.getString("google.c.a.c_l");
-            if (string2 != null) {
-                bundle2.putString("_nmn", string2);
-            }
-            String string3 = bundle.getString("google.c.a.m_l");
-            if (!TextUtils.isEmpty(string3)) {
-                bundle2.putString("label", string3);
-            }
-            String string4 = bundle.getString("google.c.a.m_c");
-            if (!TextUtils.isEmpty(string4)) {
-                bundle2.putString("message_channel", string4);
-            }
-            String string5 = bundle.getString("from");
-            String str3 = null;
-            if (string5 == null || !string5.startsWith("/topics/")) {
-                string5 = null;
-            }
-            if (string5 != null) {
-                bundle2.putString("_nt", string5);
-            }
-            String string6 = bundle.getString("google.c.a.ts");
-            if (string6 != null) {
-                try {
-                    bundle2.putInt("_nmt", Integer.parseInt(string6));
-                } catch (NumberFormatException e) {
-                    Log.w("FirebaseMessaging", "Error while parsing timestamp in GCM event", e);
-                }
-            }
-            if (bundle.containsKey("google.c.a.udt")) {
-                str3 = bundle.getString("google.c.a.udt");
-            }
-            if (str3 != null) {
-                try {
-                    bundle2.putInt("_ndt", Integer.parseInt(str3));
-                } catch (NumberFormatException e6) {
-                    Log.w("FirebaseMessaging", "Error while parsing use_device_time in GCM event", e6);
-                }
-            }
-            if (a3.c.N(bundle)) {
-                str2 = "display";
-            } else {
-                str2 = "data";
-            }
-            if ("_nr".equals(str) || "_nf".equals(str)) {
-                bundle2.putString("_nmc", str2);
-            }
-            if (Log.isLoggable("FirebaseMessaging", 3)) {
-                Log.d("FirebaseMessaging", "Logging to scion event=" + str + " scionPayload=" + bundle2);
-            }
-            if (w8.g.c().b(x8.a.class) == null) {
-                Log.w("FirebaseMessaging", "Unable to log event: analytics library is missing");
-                return;
-            }
-            throw new ClassCastException();
-        } catch (IllegalStateException unused) {
-            Log.e("FirebaseMessaging", "Default FirebaseApp has not been initialized. Skip logging event to GA.");
-        }
+    public static float[] a(Matrix matrix) {
+        float[] fArr = new float[9];
+        matrix.getValues(fArr);
+        return new float[]{fArr[0], fArr[1], 0.0f, 0.0f, fArr[3], fArr[4], 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, fArr[2], fArr[5], 0.0f, 1.0f};
     }
 
-    public static boolean b(Intent intent) {
-        Bundle extras;
-        if (intent == null || "com.google.firebase.messaging.RECEIVE_DIRECT_BOOT".equals(intent.getAction()) || (extras = intent.getExtras()) == null) {
-            return false;
-        }
-        return "1".equals(extras.getString("google.c.a.e"));
+    public static float[] b(float f10, float f11) {
+        float f12 = f10 - 0.0f;
+        float f13 = f11 - 0.0f;
+        return new float[]{2.0f / f12, 0.0f, 0.0f, 0.0f, 0.0f, 2.0f / f13, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, (-(f10 + 0.0f)) / f12, (-(f11 + 0.0f)) / f13, -0.0f, 1.0f};
+    }
+
+    public static float[] c(float[] fArr, float[] fArr2) {
+        float f10 = fArr[0];
+        float f11 = fArr2[0];
+        float f12 = fArr[4];
+        float f13 = fArr2[1];
+        float f14 = fArr[8];
+        float f15 = fArr2[2];
+        float f16 = fArr[12];
+        float f17 = fArr2[3];
+        float f18 = f16 * f17;
+        float f19 = f18 + (f14 * f15) + (f12 * f13) + (f10 * f11);
+        float f20 = fArr[1];
+        float f21 = fArr[5];
+        float f22 = fArr[9];
+        float f23 = fArr[13];
+        float f24 = f23 * f17;
+        float f25 = f24 + (f22 * f15) + (f21 * f13) + (f20 * f11);
+        float f26 = fArr[2];
+        float f27 = fArr[6];
+        float f28 = fArr[10];
+        float f29 = fArr[14];
+        float f30 = f29 * f17;
+        float f31 = f30 + (f28 * f15) + (f27 * f13) + (f26 * f11);
+        float f32 = fArr[3];
+        float f33 = fArr[7];
+        float f34 = fArr[11];
+        float f35 = fArr[15];
+        float f36 = f17 * f35;
+        float f37 = f36 + (f15 * f34) + (f13 * f33) + (f11 * f32);
+        float f38 = fArr2[4];
+        float f39 = fArr2[5];
+        float f40 = fArr2[6];
+        float f41 = fArr2[7];
+        float f42 = (f16 * f41) + (f14 * f40) + (f12 * f39) + (f10 * f38);
+        float f43 = (f23 * f41) + (f22 * f40) + (f21 * f39) + (f20 * f38);
+        float f44 = (f29 * f41) + (f28 * f40) + (f27 * f39) + (f26 * f38);
+        float f45 = f41 * f35;
+        float f46 = f45 + (f40 * f34) + (f39 * f33) + (f38 * f32);
+        float f47 = fArr2[8];
+        float f48 = fArr2[9];
+        float f49 = fArr2[10];
+        float f50 = fArr2[11];
+        float f51 = (f16 * f50) + (f14 * f49) + (f12 * f48) + (f10 * f47);
+        float f52 = (f23 * f50) + (f22 * f49) + (f21 * f48) + (f20 * f47);
+        float f53 = (f28 * f49) + (f27 * f48) + (f26 * f47);
+        float f54 = f50 * f35;
+        float f55 = f54 + (f49 * f34) + (f48 * f33) + (f47 * f32);
+        float f56 = fArr2[12];
+        float f57 = fArr2[13];
+        float f58 = (f12 * f57) + (f10 * f56);
+        float f59 = fArr2[14];
+        float f60 = (f14 * f59) + f58;
+        float f61 = fArr2[15];
+        return new float[]{f19, f25, f31, f37, f42, f43, f44, f46, f51, f52, (f29 * f50) + f53, f55, (f16 * f61) + f60, (f23 * f61) + (f22 * f59) + (f21 * f57) + (f20 * f56), (f29 * f61) + (f28 * f59) + (f27 * f57) + (f26 * f56), (f35 * f61) + (f34 * f59) + (f33 * f57) + (f32 * f56)};
     }
 }

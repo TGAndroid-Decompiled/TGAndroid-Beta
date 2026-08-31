@@ -34,13 +34,13 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.atomic.AtomicMarkableReference;
 import java.util.concurrent.atomic.AtomicReference;
-import m.s3;
-import nh.g3;
+import m.r3;
 import o3.b0;
+import oh.h3;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.fu;
-import org.telegram.ui.Components.nr;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.hu;
+import org.telegram.ui.Components.pr;
 import org.telegram.ui.a1;
 import org.telegram.ui.e5;
 import org.telegram.ui.u4;
@@ -50,25 +50,25 @@ import org.telegram.ui.z4;
 import r0.j0;
 import s8.n0;
 public final class m {
-    public static m e;
-    public boolean f2232a;
-    public Object f2233b;
-    public Object f2234c;
+    public static m f2423e;
+    public boolean f2424a;
+    public Object f2425b;
+    public Object f2426c;
     public Object d;
 
     public m(View view) {
-        fu[] fuVarArr = {new fu(), new fu(), new fu()};
-        this.f2233b = fuVarArr;
+        hu[] huVarArr = {new hu(), new hu(), new hu()};
+        this.f2425b = huVarArr;
         this.d = new ArrayList();
         AnimatorSet animatorSet = new AnimatorSet();
-        this.f2234c = animatorSet;
-        animatorSet.playTogether(g(fuVarArr[0], 0, 255, 0, 300), g(fuVarArr[1], 0, 255, 150, 300), g(fuVarArr[2], 0, 255, 300, 300), g(fuVarArr[0], 255, 0, 1000, 400), g(fuVarArr[1], 255, 0, 1000, 400), g(fuVarArr[2], 255, 0, 1000, 400));
-        animatorSet.addListener(new g3(this, view));
+        this.f2426c = animatorSet;
+        animatorSet.playTogether(g(huVarArr[0], 0, 255, 0, 300), g(huVarArr[1], 0, 255, 150, 300), g(huVarArr[2], 0, 255, 300, 300), g(huVarArr[0], 255, 0, 1000, 400), g(huVarArr[1], 255, 0, 1000, 400), g(huVarArr[2], 255, 0, 1000, 400));
+        animatorSet.addListener(new h3(this, view));
     }
 
     public static void a(vb.e[][][] eVarArr, int i10, vb.e eVar) {
-        vb.e[] eVarArr2 = eVarArr[i10 + eVar.d][eVar.f45658c];
-        tb.d dVar = eVar.f45656a;
+        vb.e[] eVarArr2 = eVarArr[i10 + eVar.d][eVar.f48955c];
+        tb.d dVar = eVar.f48953a;
         int ordinal = dVar.ordinal();
         char c3 = 2;
         if (ordinal != 1) {
@@ -87,7 +87,7 @@ public final class m {
             }
         }
         vb.e eVar2 = eVarArr2[c3];
-        if (eVar2 != null && eVar2.f45659f <= eVar.f45659f) {
+        if (eVar2 != null && eVar2.f48957f <= eVar.f48957f) {
             return;
         }
         eVarArr2[c3] = eVar;
@@ -105,7 +105,7 @@ public final class m {
                     return false;
                 }
             } else {
-                int[] iArr = vb.c.f45651a;
+                int[] iArr = vb.c.f48948a;
                 if (c3 < '`') {
                     i10 = iArr[c3];
                 } else {
@@ -122,7 +122,7 @@ public final class m {
     }
 
     public static boolean e(z4 z4Var) {
-        if (z4Var.f40663a == null && z4Var.f40664b == null) {
+        if (z4Var.f43806a == null && z4Var.f43807b == null) {
             return false;
         }
         return true;
@@ -152,15 +152,15 @@ public final class m {
                 } catch (e0 e6) {
                     int i12 = e6.d;
                     String str2 = null;
-                    if ((i12 == 307 || i12 == 308) && i11 < 5 && (map2 = e6.e) != null && (list = (List) map2.get("Location")) != null && !list.isEmpty()) {
+                    if ((i12 == 307 || i12 == 308) && i11 < 5 && (map2 = e6.f6851e) != null && (list = (List) map2.get("Location")) != null && !list.isEmpty()) {
                         str2 = (String) list.get(i10);
                     }
                     if (str2 != null) {
                         i11++;
                         c4.c a2 = pVar2.a();
-                        a2.e = Uri.parse(str2);
+                        a2.f2244e = Uri.parse(str2);
                         pVar2 = a2.d();
-                        int i13 = d0.f6937a;
+                        int i13 = d0.f7237a;
                         try {
                             oVar.close();
                         } catch (IOException unused2) {
@@ -170,24 +170,24 @@ public final class m {
                     }
                 }
             } catch (Exception e10) {
-                Uri uri = u0Var.f6458c;
+                Uri uri = u0Var.f6950c;
                 uri.getClass();
-                throw new b0(pVar, uri, u0Var.f6456a.getResponseHeaders(), u0Var.f6457b, e10);
+                throw new b0(pVar, uri, u0Var.f6948a.getResponseHeaders(), u0Var.f6949b, e10);
             }
         }
     }
 
     public static m l() {
-        if (e == null) {
-            e = new Object();
+        if (f2423e == null) {
+            f2423e = new Object();
         }
-        return e;
+        return f2423e;
     }
 
     public static tb.e m(int i10) {
-        int b10 = m1.j.b(i10);
-        if (b10 != 0) {
-            if (b10 != 1) {
+        int c3 = m1.j.c(i10);
+        if (c3 != 0) {
+            if (c3 != 1) {
                 return tb.e.c(40);
             }
             return tb.e.c(26);
@@ -202,7 +202,7 @@ public final class m {
     public void c(View view) {
         ArrayList arrayList = (ArrayList) this.d;
         if (arrayList.isEmpty()) {
-            ((AnimatorSet) this.f2234c).start();
+            ((AnimatorSet) this.f2426c).start();
         }
         if (!arrayList.contains(view)) {
             arrayList.add(view);
@@ -211,8 +211,8 @@ public final class m {
 
     public int f(int i10, int i11, int i12) {
         boolean b10;
-        pb.b bVar = (pb.b) this.f2233b;
-        if (this.f2232a) {
+        pb.b bVar = (pb.b) this.f2425b;
+        if (this.f2424a) {
             b10 = bVar.b(i11, i10);
         } else {
             b10 = bVar.b(i10, i11);
@@ -223,22 +223,22 @@ public final class m {
         return i12 << 1;
     }
 
-    public ValueAnimator g(fu fuVar, int i10, int i11, int i12, int i13) {
+    public ValueAnimator g(hu huVar, int i10, int i11, int i12, int i13) {
         ValueAnimator ofInt = ValueAnimator.ofInt(i10, i11);
-        ofInt.addUpdateListener(new ag.a(14, this, fuVar));
+        ofInt.addUpdateListener(new bg.a(14, this, huVar));
         ofInt.setDuration(i13);
         ofInt.setStartDelay(i12);
-        ofInt.setInterpolator(nr.f27346f);
+        ofInt.setInterpolator(pr.f30183f);
         return ofInt;
     }
 
     public s5.m h(tb.e eVar) {
         int i10;
-        String str = (String) this.f2233b;
+        String str = (String) this.f2425b;
         int length = str.length();
-        pb.e eVar2 = (pb.e) this.f2234c;
-        CharsetEncoder[] charsetEncoderArr = eVar2.f41108a;
-        CharsetEncoder[] charsetEncoderArr2 = eVar2.f41108a;
+        pb.e eVar2 = (pb.e) this.f2426c;
+        CharsetEncoder[] charsetEncoderArr = eVar2.f44269a;
+        CharsetEncoder[] charsetEncoderArr2 = eVar2.f44269a;
         vb.e[][][] eVarArr = (vb.e[][][]) Array.newInstance(vb.e.class, length + 1, charsetEncoderArr.length, 4);
         b(eVar, eVarArr, 0, null);
         for (int i11 = 1; i11 <= length; i11++) {
@@ -257,7 +257,7 @@ public final class m {
         for (int i17 = 0; i17 < charsetEncoderArr2.length; i17++) {
             for (int i18 = 0; i18 < 4; i18++) {
                 vb.e eVar4 = eVarArr[length][i17][i18];
-                if (eVar4 != null && (i10 = eVar4.f45659f) < i16) {
+                if (eVar4 != null && (i10 = eVar4.f48957f) < i16) {
                     i14 = i17;
                     i15 = i18;
                     i16 = i10;
@@ -272,16 +272,16 @@ public final class m {
 
     public byte[] i(UUID uuid, o3.t tVar) {
         String str;
-        String str2 = tVar.f16276b;
-        if (this.f2232a || TextUtils.isEmpty(str2)) {
-            str2 = (String) this.f2234c;
+        String str2 = tVar.f16417b;
+        if (this.f2424a || TextUtils.isEmpty(str2)) {
+            str2 = (String) this.f2426c;
         }
         if (!TextUtils.isEmpty(str2)) {
             HashMap hashMap = new HashMap();
-            UUID uuid2 = j3.h.e;
+            UUID uuid2 = j3.h.f9165e;
             if (uuid2.equals(uuid)) {
                 str = "text/xml";
-            } else if (j3.h.f8595c.equals(uuid)) {
+            } else if (j3.h.f9164c.equals(uuid)) {
                 str = "application/json";
             } else {
                 str = "application/octet-stream";
@@ -293,7 +293,7 @@ public final class m {
             synchronized (((HashMap) this.d)) {
                 hashMap.putAll((HashMap) this.d);
             }
-            return j((g5.u) this.f2233b, str2, tVar.f16275a, hashMap);
+            return j((g5.u) this.f2425b, str2, tVar.f16416a, hashMap);
         }
         Map map = Collections.EMPTY_MAP;
         Uri uri = Uri.EMPTY;
@@ -302,20 +302,20 @@ public final class m {
     }
 
     public byte[] k(o3.u uVar) {
-        return j((g5.u) this.f2233b, uVar.f16278b + "&signedRequest=" + d0.m(uVar.f16277a), null, Collections.EMPTY_MAP);
+        return j((g5.u) this.f2425b, uVar.f16419b + "&signedRequest=" + d0.m(uVar.f16418a), null, Collections.EMPTY_MAP);
     }
 
     public synchronized void n() {
         try {
-            if (this.f2232a) {
+            if (this.f2424a) {
                 return;
             }
             Boolean p10 = p();
-            this.f2234c = p10;
+            this.f2426c = p10;
             if (p10 == null) {
-                ((c9.n) ((y9.b) this.f2233b)).a(new w(18));
+                ((c9.n) ((y9.b) this.f2425b)).a(new w(12));
             }
-            this.f2232a = true;
+            this.f2424a = true;
         } catch (Throwable th2) {
             throw th2;
         }
@@ -325,11 +325,11 @@ public final class m {
         boolean h;
         try {
             n();
-            Boolean bool = (Boolean) this.f2234c;
+            Boolean bool = (Boolean) this.f2426c;
             if (bool != null) {
                 h = bool.booleanValue();
             } else {
-                h = ((FirebaseMessaging) this.d).f3962a.h();
+                h = ((FirebaseMessaging) this.d).f4009a.h();
             }
         } catch (Throwable th2) {
             throw th2;
@@ -340,9 +340,9 @@ public final class m {
     public Boolean p() {
         ApplicationInfo applicationInfo;
         Bundle bundle;
-        w8.g gVar = ((FirebaseMessaging) this.d).f3962a;
+        w8.g gVar = ((FirebaseMessaging) this.d).f4009a;
         gVar.a();
-        Context context = gVar.f46478a;
+        Context context = gVar.f49451a;
         SharedPreferences sharedPreferences = context.getSharedPreferences("com.google.firebase.messaging", 0);
         if (sharedPreferences.contains("auto_init")) {
             return Boolean.valueOf(sharedPreferences.getBoolean("auto_init", false));
@@ -372,7 +372,7 @@ public final class m {
         for (int i13 = 5; i13 >= 0; i13--) {
             f10 = f(8, i13, f10);
         }
-        int i14 = ((pb.b) this.f2233b).f41097b;
+        int i14 = ((pb.b) this.f2425b).f44256b;
         int i15 = i14 - 7;
         for (int i16 = i14 - 1; i16 >= i15; i16--) {
             i10 = f(8, i16, i10);
@@ -392,11 +392,11 @@ public final class m {
     }
 
     public tb.e r() {
-        tb.e eVar = (tb.e) this.f2234c;
+        tb.e eVar = (tb.e) this.f2426c;
         if (eVar != null) {
             return eVar;
         }
-        int i10 = ((pb.b) this.f2233b).f41097b;
+        int i10 = ((pb.b) this.f2425b).f44256b;
         int i11 = (i10 - 17) / 4;
         if (i11 <= 6) {
             return tb.e.c(i11);
@@ -410,8 +410,8 @@ public final class m {
             }
         }
         tb.e b10 = tb.e.b(i14);
-        if (b10 != null && (b10.f44638a * 4) + 17 == i10) {
-            this.f2234c = b10;
+        if (b10 != null && (b10.f48052a * 4) + 17 == i10) {
+            this.f2426c = b10;
             return b10;
         }
         for (int i17 = 5; i17 >= 0; i17--) {
@@ -420,8 +420,8 @@ public final class m {
             }
         }
         tb.e b11 = tb.e.b(i13);
-        if (b11 != null && (b11.f44638a * 4) + 17 == i10) {
-            this.f2234c = b11;
+        if (b11 != null && (b11.f48052a * 4) + 17 == i10) {
+            this.f2426c = b11;
             return b11;
         }
         throw ob.c.a();
@@ -429,9 +429,9 @@ public final class m {
 
     public void s() {
         if (((tb.c) this.d) != null) {
-            int i10 = m1.j.c(8)[((tb.c) this.d).f44627b];
-            pb.b bVar = (pb.b) this.f2233b;
-            int i11 = bVar.f41097b;
+            int i10 = m1.j.d(8)[((tb.c) this.d).f48039b];
+            pb.b bVar = (pb.b) this.f2425b;
+            int i11 = bVar.f44256b;
             for (int i12 = 0; i12 < i11; i12++) {
                 for (int i13 = 0; i13 < i11; i13++) {
                     if (yh.b(i10, i12, i13)) {
@@ -446,17 +446,17 @@ public final class m {
         ArrayList arrayList = (ArrayList) this.d;
         arrayList.remove(view);
         if (arrayList.isEmpty()) {
-            ((AnimatorSet) this.f2234c).cancel();
+            ((AnimatorSet) this.f2426c).cancel();
         }
     }
 
     public boolean u(String str, String str2) {
         synchronized (this) {
             try {
-                if (!((j9.d) ((AtomicMarkableReference) this.f2233b).getReference()).c(str, str2)) {
+                if (!((j9.d) ((AtomicMarkableReference) this.f2425b).getReference()).c(str, str2)) {
                     return false;
                 }
-                AtomicMarkableReference atomicMarkableReference = (AtomicMarkableReference) this.f2233b;
+                AtomicMarkableReference atomicMarkableReference = (AtomicMarkableReference) this.f2425b;
                 atomicMarkableReference.set((j9.d) atomicMarkableReference.getReference(), true);
                 j9.o oVar = new j9.o(this, 1);
                 AtomicReference atomicReference = (AtomicReference) this.d;
@@ -465,7 +465,7 @@ public final class m {
                         return true;
                     }
                 }
-                ((com.google.firebase.messaging.r) ((s3) this.f2234c).f13642b).V(oVar);
+                ((sf.e) ((r3) this.f2426c).f13328b).H(oVar);
                 return true;
             } catch (Throwable th2) {
                 throw th2;
@@ -473,46 +473,46 @@ public final class m {
         }
     }
 
-    public void v(ViewGroup viewGroup, f6 f6Var, z4 z4Var, x4 x4Var) {
+    public void v(ViewGroup viewGroup, g6 g6Var, z4 z4Var, x4 x4Var) {
         Objects.requireNonNull(viewGroup);
         Context context = viewGroup.getContext();
-        if (((ViewGroup) this.f2233b) != viewGroup) {
-            if (this.f2232a) {
+        if (((ViewGroup) this.f2425b) != viewGroup) {
+            if (this.f2424a) {
                 int i10 = e5.C;
                 ((u4) this.d).b(false);
             }
-            this.f2233b = viewGroup;
-            this.f2234c = (WindowManager) f0.f.f(context, WindowManager.class);
-            u4 u4Var = new u4(this, context, f6Var, x4Var);
+            this.f2425b = viewGroup;
+            this.f2426c = (WindowManager) f0.e.f(context, WindowManager.class);
+            u4 u4Var = new u4(this, context, g6Var, x4Var);
             this.d = u4Var;
             a1 a1Var = new a1(this, 3);
-            WeakHashMap weakHashMap = j0.f43118a;
+            WeakHashMap weakHashMap = j0.f46438a;
             r0.b0.j(u4Var, a1Var);
         }
         ((u4) this.d).a(z4Var);
-        if (!this.f2232a) {
+        if (!this.f2424a) {
             if (((u4) this.d).getParent() != null) {
-                ((WindowManager) this.f2234c).removeView((u4) this.d);
+                ((WindowManager) this.f2426c).removeView((u4) this.d);
             }
             WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(-1, -1, 1000, 0, -3);
             layoutParams.softInputMode = 16;
             layoutParams.flags |= -1945959040;
             AndroidUtilities.applyEdgeToEdgeLayoutParams(layoutParams);
-            AndroidUtilities.setPreferredMaxRefreshRate((WindowManager) this.f2234c, (u4) this.d, layoutParams);
-            ((WindowManager) this.f2234c).addView((u4) this.d, layoutParams);
+            AndroidUtilities.setPreferredMaxRefreshRate((WindowManager) this.f2426c, (u4) this.d, layoutParams);
+            ((WindowManager) this.f2426c).addView((u4) this.d, layoutParams);
             viewGroup.requestDisallowInterceptTouchEvent(true);
-            this.f2232a = true;
+            this.f2424a = true;
         }
     }
 
     public void w(Runnable runnable, Executor executor) {
-        synchronized (this.f2233b) {
+        synchronized (this.f2425b) {
             try {
-                if (this.f2232a) {
-                    ((ArrayDeque) this.f2234c).add(new u(runnable, executor));
+                if (this.f2424a) {
+                    ((ArrayDeque) this.f2426c).add(new u(runnable, executor));
                     return;
                 }
-                this.f2232a = true;
+                this.f2424a = true;
                 z(runnable, executor);
             } catch (Throwable th2) {
                 throw th2;
@@ -521,23 +521,23 @@ public final class m {
     }
 
     public void x(SpannableString spannableString, int i10) {
-        fu[] fuVarArr = (fu[]) this.f2233b;
+        hu[] huVarArr = (hu[]) this.f2425b;
         int i11 = i10 + 1;
-        spannableString.setSpan(fuVarArr[0], i10, i11, 0);
+        spannableString.setSpan(huVarArr[0], i10, i11, 0);
         int i12 = i10 + 2;
-        spannableString.setSpan(fuVarArr[1], i11, i12, 0);
-        spannableString.setSpan(fuVarArr[2], i12, i10 + 3, 0);
+        spannableString.setSpan(huVarArr[1], i11, i12, 0);
+        spannableString.setSpan(huVarArr[2], i12, i10 + 3, 0);
     }
 
     public void y() {
-        synchronized (this.f2233b) {
+        synchronized (this.f2425b) {
             try {
-                if (((ArrayDeque) this.f2234c).isEmpty()) {
-                    this.f2232a = false;
+                if (((ArrayDeque) this.f2426c).isEmpty()) {
+                    this.f2424a = false;
                     return;
                 }
-                u uVar = (u) ((ArrayDeque) this.f2234c).remove();
-                z(uVar.f2251b, uVar.f2250a);
+                u uVar = (u) ((ArrayDeque) this.f2426c).remove();
+                z(uVar.f2444b, uVar.f2443a);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -552,10 +552,10 @@ public final class m {
         }
     }
 
-    public m(s3 s3Var, boolean z4) {
-        this.f2234c = s3Var;
+    public m(r3 r3Var, boolean z4) {
+        this.f2426c = r3Var;
         this.d = new AtomicReference(null);
-        this.f2232a = z4;
-        this.f2233b = new AtomicMarkableReference(new j9.d(z4 ? 8192 : 1024), false);
+        this.f2424a = z4;
+        this.f2425b = new AtomicMarkableReference(new j9.d(z4 ? 8192 : 1024), false);
     }
 }

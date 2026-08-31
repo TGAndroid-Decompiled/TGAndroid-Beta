@@ -3,7 +3,7 @@ package tc;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 public final class n implements ListIterator {
-    public static final n f44649a = new Object();
+    public static final n f48063a = new Object();
 
     @Override
     public final void add(Object obj) {

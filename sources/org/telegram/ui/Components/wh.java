@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
-public final class wh implements gj {
-    public final li f30350a;
+public final class wh implements ij {
+    public final mi f32749a;
 
-    public wh(li liVar) {
-        this.f30350a = liVar;
+    public wh(mi miVar) {
+        this.f32749a = miVar;
     }
 
     @Override
     public final void a(TLRPC.User user, boolean z4, int i10, long j10) {
-        org.telegram.ui.xn xnVar = (org.telegram.ui.xn) this.f30350a.f26689c0;
+        org.telegram.ui.xn xnVar = (org.telegram.ui.xn) this.f32749a.f29040c0;
         if (xnVar.f7()) {
-            SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(user, xnVar.Q5, xnVar.f40076k5, xnVar.U3, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z4, i10, 0);
+            SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(user, xnVar.Q5, xnVar.f43245k5, xnVar.U3, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z4, i10, 0);
             of2.sendMessageChatArguments = xnVar.C8();
             of2.effect_id = 0L;
             of2.invert_media = false;
             of2.payStars = j10;
             of2.monoForumPeer = xnVar.N8();
-            of2.suggestionParams = xnVar.f39989d5;
+            of2.suggestionParams = xnVar.f43157d5;
             xnVar.getSendMessagesHelper().sendMessage(of2);
             xnVar.y6();
         }
@@ -29,6 +29,6 @@ public final class wh implements gj {
 
     @Override
     public final void b(ArrayList arrayList, String str, boolean z4, int i10, long j10, boolean z10) {
-        ((org.telegram.ui.xn) this.f30350a.f26689c0).db(arrayList, str, z4, i10, j10, z10);
+        ((org.telegram.ui.xn) this.f32749a.f29040c0).db(arrayList, str, z4, i10, j10, z10);
     }
 }

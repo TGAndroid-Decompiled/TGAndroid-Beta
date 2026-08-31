@@ -1,4 +1,4 @@
 package ra;
 public interface m {
-    Object s2();
+    Object y2();
 }

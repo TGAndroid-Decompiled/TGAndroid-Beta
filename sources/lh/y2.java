@@ -1,79 +1,61 @@
 package lh;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class y2 implements Utilities.Callback {
-    public final int f13380a;
-    public final g5 f13381b;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.Components.q70;
+import org.telegram.ui.PhotoViewer;
+public final class y2 implements Runnable {
+    public final int f13118a;
+    public final q70 f13119b;
+    public final q70 f13120c;
 
-    public y2(g5 g5Var, int i10) {
-        this.f13380a = i10;
-        this.f13381b = g5Var;
+    public y2(q70 q70Var, q70 q70Var2, int i10) {
+        this.f13118a = i10;
+        this.f13119b = q70Var;
+        this.f13120c = q70Var2;
     }
 
     @Override
-    public final void run(Object obj) {
-        TLRPC.Message message;
-        switch (this.f13380a) {
+    public final void run() {
+        int i10 = this.f13118a;
+        q70 q70Var = this.f13120c;
+        q70 q70Var2 = this.f13119b;
+        switch (i10) {
             case 0:
-                g5 g5Var = this.f13381b;
-                g5Var.getClass();
-                if (((Boolean) obj).booleanValue()) {
-                    g5Var.skipDismissAnimation();
-                }
-                g5Var.dismiss();
+                q70Var2.K(q70Var);
                 return;
             case 1:
-                TL_stars.starGiftUpgradePreview stargiftupgradepreview = (TL_stars.starGiftUpgradePreview) obj;
-                g5 g5Var2 = this.f13381b;
-                g5Var2.getClass();
-                if (stargiftupgradepreview != null) {
-                    g5Var2.f12475e1 = stargiftupgradepreview.sample_attributes;
-                    g5Var2.f12477f1 = stargiftupgradepreview.prices;
-                    g5Var2.f12479g1 = stargiftupgradepreview.next_prices;
-                    g5Var2.b2();
-                    return;
-                }
+                q70Var2.K(q70Var);
                 return;
             case 2:
-                this.f13381b.dismiss(((Boolean) obj).booleanValue());
+                q70Var2.K(q70Var);
+                return;
+            case 3:
+                q70Var2.K(q70Var);
+                return;
+            case 4:
+                q70Var2.K(q70Var);
+                return;
+            case 5:
+                q70Var2.K(q70Var);
+                return;
+            case 6:
+                q70Var2.K(q70Var);
+                return;
+            case 7:
+                q70Var2.K(q70Var);
+                return;
+            case 8:
+                Drawable[] drawableArr = PhotoViewer.Q8;
+                q70Var2.K(q70Var);
+                return;
+            case 9:
+                q70Var2.K(q70Var);
+                return;
+            case 10:
+                q70Var2.K(q70Var);
                 return;
             default:
-                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                g5 g5Var3 = this.f13381b;
-                g5Var3.H0 = false;
-                g5Var3.I0 = true;
-                if (savedStarGift != null) {
-                    g5Var3.f12471c1 = Boolean.valueOf(savedStarGift.unsaved);
-                    MessageObject messageObject = g5Var3.B0;
-                    if (messageObject != null && (message = messageObject.messageOwner) != null) {
-                        TLRPC.MessageAction messageAction = message.action;
-                        if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
-                            TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique = (TLRPC.TL_messageActionStarGiftUnique) messageAction;
-                            boolean z4 = tL_messageActionStarGiftUnique.saved;
-                            boolean z10 = !savedStarGift.unsaved;
-                            if (z4 != z10) {
-                                tL_messageActionStarGiftUnique.saved = z10;
-                            } else {
-                                return;
-                            }
-                        } else if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
-                            TLRPC.TL_messageActionStarGift tL_messageActionStarGift = (TLRPC.TL_messageActionStarGift) messageAction;
-                            boolean z11 = tL_messageActionStarGift.saved;
-                            boolean z12 = !savedStarGift.unsaved;
-                            if (z11 != z12) {
-                                tL_messageActionStarGift.saved = z12;
-                            } else {
-                                return;
-                            }
-                        }
-                        g5Var3.i2(messageObject, null);
-                        return;
-                    }
-                    return;
-                }
+                q70Var2.K(q70Var);
                 return;
         }
     }

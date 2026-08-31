@@ -1,27 +1,35 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-public final class ab0 implements h5.d {
-    public final int f23339a;
-    public final ViewGroup f23340b;
+public final class ab0 extends e81 {
+    public final Context f25216a;
+    public final yb0 f25217b;
 
-    public ab0(ViewGroup viewGroup, int i10) {
-        this.f23339a = i10;
-        this.f23340b = viewGroup;
+    public ab0(yb0 yb0Var, Context context) {
+        this.f25217b = yb0Var;
+        this.f25216a = context;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f23339a) {
-            case 0:
-                qb0 qb0Var = (qb0) this.f23340b;
-                qb0Var.f28106n.y(qb0Var.f28105f.T((View) obj));
-                return;
-            default:
-                g61 g61Var = (g61) this.f23340b;
-                g61Var.V2.Q(g61Var.T((View) obj), g61Var.Z2);
-                return;
-        }
+    public final void b(View view, int i10, int i11) {
+        sb0 sb0Var = (sb0) view;
+        sb0Var.h();
+        sb0Var.k(false);
+    }
+
+    @Override
+    public final View d(int i10) {
+        return new sb0(this.f25217b, this.f25216a, i10);
+    }
+
+    @Override
+    public final int e() {
+        return this.f25217b.f33435e.f32714a.size();
+    }
+
+    @Override
+    public final int h(int i10) {
+        return ((vb0) this.f25217b.f33435e.f32714a.get(i10)).f31877a;
     }
 }

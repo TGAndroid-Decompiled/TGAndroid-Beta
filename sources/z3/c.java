@@ -1,52 +1,52 @@
 package z3;
 
 import h5.w;
-import k7.t6;
+import k7.u6;
 public final class c {
-    public final int f47280a;
-    public int f47281b;
-    public int f47282c;
+    public final int f50969a;
+    public int f50970b;
+    public int f50971c;
     public long d;
-    public final boolean e;
-    public final w f47283f;
-    public final w f47284g;
+    public final boolean f50972e;
+    public final w f50973f;
+    public final w f50974g;
     public int h;
-    public int f47285i;
+    public int f50975i;
 
     public c(w wVar, w wVar2, boolean z4) {
-        this.f47284g = wVar;
-        this.f47283f = wVar2;
-        this.e = z4;
+        this.f50974g = wVar;
+        this.f50973f = wVar2;
+        this.f50972e = z4;
         wVar2.F(12);
-        this.f47280a = wVar2.x();
+        this.f50969a = wVar2.x();
         wVar.F(12);
-        this.f47285i = wVar.x();
-        t6.a("first_chunk must be 1", wVar.g() == 1);
-        this.f47281b = -1;
+        this.f50975i = wVar.x();
+        u6.a("first_chunk must be 1", wVar.g() == 1);
+        this.f50970b = -1;
     }
 
     public final boolean a() {
         long v;
         int i10;
-        int i11 = this.f47281b + 1;
-        this.f47281b = i11;
-        if (i11 == this.f47280a) {
+        int i11 = this.f50970b + 1;
+        this.f50970b = i11;
+        if (i11 == this.f50969a) {
             return false;
         }
-        boolean z4 = this.e;
-        w wVar = this.f47283f;
+        boolean z4 = this.f50972e;
+        w wVar = this.f50973f;
         if (z4) {
             v = wVar.y();
         } else {
             v = wVar.v();
         }
         this.d = v;
-        if (this.f47281b == this.h) {
-            w wVar2 = this.f47284g;
-            this.f47282c = wVar2.x();
+        if (this.f50970b == this.h) {
+            w wVar2 = this.f50974g;
+            this.f50971c = wVar2.x();
             wVar2.G(4);
-            int i12 = this.f47285i - 1;
-            this.f47285i = i12;
+            int i12 = this.f50975i - 1;
+            this.f50975i = i12;
             if (i12 > 0) {
                 i10 = wVar2.x() - 1;
             } else {

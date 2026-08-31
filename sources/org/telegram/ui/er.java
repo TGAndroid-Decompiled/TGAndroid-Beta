@@ -1,61 +1,56 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class er implements ir {
-    public final pr f34071a;
+public final class er implements jr {
+    public final qr f36665a;
 
-    public er(pr prVar) {
-        this.f34071a = prVar;
-    }
-
-    @Override
-    public final void a(TLRPC.User user) {
-        pr.c0(this.f34071a, user);
-    }
-
-    @Override
-    public final void b(long j10) {
-        pr prVar = this.f34071a;
-        ArrayList arrayList = prVar.C;
-        a0.h hVar = prVar.H;
-        TLRPC.User user = prVar.getMessagesController().getUser(Long.valueOf(j10));
-        if (user != null) {
-            AndroidUtilities.runOnUIThread(new hp(6, this, user), 200L);
-        }
-        if (hVar.f(j10) == null) {
-            jr w02 = prVar.w0();
-            TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
-            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-            tL_channelParticipantAdmin.peer = tL_peerUser;
-            tL_peerUser.user_id = user.f19331id;
-            tL_channelParticipantAdmin.date = prVar.getConnectionsManager().getCurrentTime();
-            tL_channelParticipantAdmin.promoted_by = prVar.getAccountInstance().getUserConfig().clientUserId;
-            arrayList.add(tL_channelParticipantAdmin);
-            hVar.k(tL_channelParticipantAdmin, user.f19331id);
-            Collections.sort(arrayList, new nh.e4(15));
-            prVar.A0(w02);
-        }
+    public er(qr qrVar) {
+        this.f36665a = qrVar;
     }
 
     @Override
     public final void c(long j10, TLObject tLObject) {
-        pr prVar = this.f34071a;
-        ArrayList arrayList = prVar.C;
-        a0.h hVar = prVar.H;
-        if (tLObject != null && hVar.f(j10) == null) {
-            jr w02 = prVar.w0();
-            arrayList.add(tLObject);
-            hVar.k(tLObject, j10);
-            Collections.sort(arrayList, new nh.e4(15));
-            prVar.A0(w02);
+        qr qrVar = this.f36665a;
+        if (qrVar.H.f(j10) == null) {
+            kr w02 = qrVar.w0();
+            qrVar.C.add(tLObject);
+            qrVar.H.k(tLObject, j10);
+            qrVar.z0(qrVar.C);
+            qrVar.A0(w02);
         }
     }
 
     @Override
     public final void d(long j10) {
+        qr qrVar = this.f36665a;
+        if (qrVar.H.f(j10) == null) {
+            kr w02 = qrVar.w0();
+            TLRPC.TL_channelParticipantBanned tL_channelParticipantBanned = new TLRPC.TL_channelParticipantBanned();
+            if (j10 > 0) {
+                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                tL_channelParticipantBanned.peer = tL_peerUser;
+                tL_peerUser.user_id = j10;
+            } else {
+                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
+                tL_channelParticipantBanned.peer = tL_peerChannel;
+                tL_peerChannel.channel_id = -j10;
+            }
+            tL_channelParticipantBanned.date = qrVar.getConnectionsManager().getCurrentTime();
+            tL_channelParticipantBanned.kicked_by = qrVar.getAccountInstance().getUserConfig().clientUserId;
+            qrVar.f40640s.kicked_count++;
+            qrVar.C.add(tL_channelParticipantBanned);
+            qrVar.H.k(tL_channelParticipantBanned, j10);
+            qrVar.z0(qrVar.C);
+            qrVar.A0(w02);
+        }
+    }
+
+    @Override
+    public final void a(TLRPC.User user) {
+    }
+
+    @Override
+    public final void b(long j10) {
     }
 }

@@ -1,44 +1,44 @@
 package org.telegram.messenger;
 public final class m0 implements Runnable {
-    public final int f17802a;
-    public final long f17803b;
-    public final long f17804c;
+    public final int f19317a;
+    public final long f19318b;
+    public final long f19319c;
     public final long d;
-    public final Object e;
+    public final Object f19320e;
 
     public m0(long j10, long j11, long j12, org.telegram.ui.d5 d5Var) {
-        this.f17802a = 2;
-        this.f17803b = j10;
-        this.f17804c = j11;
+        this.f19317a = 2;
+        this.f19318b = j10;
+        this.f19319c = j11;
         this.d = j12;
-        this.e = d5Var;
+        this.f19320e = d5Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f17802a) {
+        switch (this.f19317a) {
             case 0:
-                ((BotGuardHelper) this.e).lambda$openGuardBotWebApp$0(this.f17803b, this.f17804c, this.d);
+                ((BotGuardHelper) this.f19320e).lambda$openGuardBotWebApp$0(this.f19318b, this.f19319c, this.d);
                 return;
             case 1:
-                ((MediaDataController) this.e).lambda$loadMusic$142(this.f17803b, this.f17804c, this.d);
+                ((MediaDataController) this.f19320e).lambda$loadMusic$142(this.f19318b, this.f19319c, this.d);
                 return;
             default:
-                long j10 = this.f17803b;
-                long j11 = this.f17804c;
-                org.telegram.ui.b7.f32809k0 = Long.valueOf(j10 * j11);
+                long j10 = this.f19318b;
+                long j11 = this.f19319c;
+                org.telegram.ui.b7.f35350k0 = Long.valueOf(j10 * j11);
                 Long valueOf = Long.valueOf(this.d * j11);
-                org.telegram.ui.b7.f32810l0 = valueOf;
-                ((org.telegram.ui.d5) this.e).run(org.telegram.ui.b7.f32809k0, valueOf);
+                org.telegram.ui.b7.f35351l0 = valueOf;
+                ((org.telegram.ui.d5) this.f19320e).run(org.telegram.ui.b7.f35350k0, valueOf);
                 return;
         }
     }
 
     public m0(BaseController baseController, long j10, long j11, long j12, int i10) {
-        this.f17802a = i10;
-        this.e = baseController;
-        this.f17803b = j10;
-        this.f17804c = j11;
+        this.f19317a = i10;
+        this.f19320e = baseController;
+        this.f19318b = j10;
+        this.f19319c = j11;
         this.d = j12;
     }
 }

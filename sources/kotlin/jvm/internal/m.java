@@ -10,7 +10,7 @@ public final class m extends n implements hd.f {
 
     @Override
     public final hd.b computeReflected() {
-        r.f10991a.getClass();
+        r.f11341a.getClass();
         return this;
     }
 

@@ -2,15 +2,14 @@ package e3;
 
 import android.content.Context;
 import android.text.TextUtils;
-import gg.m2;
 import h5.j;
+import hg.m2;
 import j3.y1;
 import j3.z1;
 import java.util.ArrayList;
 import java.util.HashMap;
-import kh.a2;
 import lf.i0;
-import mg.q0;
+import ng.q0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MediaDataController;
@@ -30,64 +29,72 @@ import org.telegram.ui.ActionBar.p2;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.in0;
+import org.telegram.ui.Components.jn0;
 import org.telegram.ui.Components.nb;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.wc0;
+import org.telegram.ui.Components.yc0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PasscodeActivity;
 import org.telegram.ui.SessionsActivity;
 import org.telegram.ui.StickersActivity;
-import org.telegram.ui.ad0;
+import org.telegram.ui.bd0;
 import org.telegram.ui.bh;
-import org.telegram.ui.c50;
-import org.telegram.ui.g50;
+import org.telegram.ui.d50;
+import org.telegram.ui.h50;
 import org.telegram.ui.xn;
-import tf.l1;
-import tf.m1;
-import uf.n;
-import uf.t;
+import uf.l1;
+import uf.m1;
+import vf.n;
+import vf.t;
 import y2.i;
 public final class d implements g3.b, j, NativeInstance.PayloadCallback, c2, Utilities.Callback3Return, MediaDataController.KeywordResultCallback {
-    public final int f5086a;
-    public final int f5087b;
-    public final Object f5088c;
+    public final int f4922a;
+    public final int f4923b;
+    public final Object f4924c;
     public final Object d;
 
     public d(int i10, Object obj, Object obj2, int i11) {
-        this.f5086a = i11;
-        this.f5087b = i10;
-        this.f5088c = obj;
+        this.f4922a = i11;
+        this.f4923b = i10;
+        this.f4924c = obj;
         this.d = obj2;
     }
 
     @Override
     public Object g() {
-        ((androidx.biometric.e) ((g) this.f5088c).d).A((i) this.d, this.f5087b + 1, false);
+        ((androidx.biometric.e) ((g) this.f4924c).d).A((i) this.d, this.f4923b + 1, false);
         return null;
     }
 
     @Override
-    public void i(d2 d2Var, int i10) {
+    public void invoke(Object obj) {
+        y1 y1Var = (y1) obj;
+        int i10 = this.f4923b;
+        y1Var.onPositionDiscontinuity(i10);
+        y1Var.onPositionDiscontinuity((z1) this.f4924c, (z1) this.d, i10);
+    }
+
+    @Override
+    public void j(d2 d2Var, int i10) {
         int i11;
-        switch (this.f5086a) {
+        switch (this.f4922a) {
             case 3:
-                xn xnVar = (xn) this.f5088c;
+                xn xnVar = (xn) this.f4924c;
                 boolean[] zArr = (boolean[]) this.d;
-                xnVar.getMessagesController().pinMessage(xnVar.e, xnVar.f40009f, this.f5087b, false, !zArr[1], zArr[0]);
-                ic B = qc.B(xnVar, true, null, null, xnVar.f39968ba);
+                xnVar.getMessagesController().pinMessage(xnVar.f43165e, xnVar.f43178f, this.f4923b, false, !zArr[1], zArr[0]);
+                ic B = qc.B(xnVar, true, null, null, xnVar.f43136ba);
                 B.j();
-                nb nbVar = B.e;
+                nb nbVar = B.f27741e;
                 nbVar.postDelayed(new bh(0, nbVar), 550L);
                 return;
             case 4:
-                xn.Q0((xn) this.f5088c, this.f5087b, (MessageObject) this.d);
+                xn.Q0((xn) this.f4924c, this.f4923b, (MessageObject) this.d);
                 return;
             case 5:
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f5088c;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f4924c;
                 MessagesStorage.StringCallback stringCallback = (MessagesStorage.StringCallback) this.d;
                 String trim = editTextBoldCursor.getText().toString().trim();
-                if (trim.length() <= this.f5087b && !trim.isEmpty()) {
+                if (trim.length() <= this.f4923b && !trim.isEmpty()) {
                     stringCallback.run(trim);
                     d2Var.dismiss();
                     return;
@@ -95,27 +102,27 @@ public final class d implements g3.b, j, NativeInstance.PayloadCallback, c2, Uti
                 AndroidUtilities.shakeView(editTextBoldCursor);
                 return;
             case 6:
-                in0 in0Var = (in0) this.f5088c;
+                jn0 jn0Var = (jn0) this.f4924c;
                 TLRPC.Reaction reaction = (TLRPC.Reaction) this.d;
-                String obj = in0Var.getText().toString();
+                String obj = jn0Var.getText().toString();
                 if (obj.length() > 12) {
-                    AndroidUtilities.shakeView(in0Var);
+                    AndroidUtilities.shakeView(jn0Var);
                     return;
                 }
-                MessagesController.getInstance(this.f5087b).renameSavedReactionTag(q0.d(reaction), obj);
+                MessagesController.getInstance(this.f4923b).renameSavedReactionTag(q0.d(reaction), obj);
                 d2Var.dismiss();
                 return;
             case 7:
             case 12:
             default:
-                n nVar = (n) this.f5088c;
+                n nVar = (n) this.f4924c;
                 TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.d;
                 String obj2 = nVar.getText().toString();
                 if (obj2.length() > 32) {
                     AndroidUtilities.shakeView(nVar);
                     return;
                 }
-                t d = t.d(this.f5087b);
+                t d = t.d(this.f4923b);
                 TL_account.TL_businessChatLink c3 = d.c(tL_businessChatLink.link);
                 if (c3 != null) {
                     TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
@@ -128,13 +135,13 @@ public final class d implements g3.b, j, NativeInstance.PayloadCallback, c2, Uti
                 return;
             case 8:
                 EditTextBoldCursor editTextBoldCursor2 = (EditTextBoldCursor) this.d;
-                g50 g50Var = ((c50) this.f5088c).f33096n;
-                ChatObject.Call call = g50Var.f34449b.X0;
+                h50 h50Var = ((d50) this.f4924c).f36006n;
+                ChatObject.Call call = h50Var.f37329b.X0;
                 String obj3 = editTextBoldCursor2.getText().toString();
-                int i12 = this.f5087b;
+                int i12 = this.f4923b;
                 call.toggleRecord(obj3, i12);
                 AndroidUtilities.hideKeyboard(editTextBoldCursor2);
-                UndoView k12 = g50Var.f34449b.k1();
+                UndoView k12 = h50Var.f37329b.k1();
                 if (i12 == 0) {
                     i11 = 39;
                 } else {
@@ -147,59 +154,51 @@ public final class d implements g3.b, j, NativeInstance.PayloadCallback, c2, Uti
                 }
                 return;
             case 9:
-                LaunchActivity launchActivity = (LaunchActivity) this.f5088c;
+                LaunchActivity launchActivity = (LaunchActivity) this.f4924c;
                 HashMap hashMap = (HashMap) this.d;
-                ArrayList arrayList = launchActivity.f31614a0;
-                if (!arrayList.isEmpty() && AndroidUtilities.isMapsInstalled((p2) a2.i(1, arrayList))) {
-                    ad0 ad0Var = new ad0(0);
-                    ad0Var.C0 = new m2(hashMap, this.f5087b, 11);
-                    launchActivity.p0(ad0Var);
+                ArrayList arrayList = launchActivity.f34136a0;
+                if (!arrayList.isEmpty() && AndroidUtilities.isMapsInstalled((p2) l.d.i(1, arrayList))) {
+                    bd0 bd0Var = new bd0(0);
+                    bd0Var.C0 = new m2(hashMap, this.f4923b, 11);
+                    launchActivity.p0(bd0Var);
                     return;
                 }
                 return;
             case 10:
-                ((ad0) this.f5088c).w0(900, (TLRPC.User) this.d, this.f5087b);
+                ((bd0) this.f4924c).w0(900, (TLRPC.User) this.d, this.f4923b);
                 return;
             case 11:
-                PasscodeActivity.U((PasscodeActivity) this.f5088c, (wc0) this.d, this.f5087b);
+                PasscodeActivity.U((PasscodeActivity) this.f4924c, (yc0) this.d, this.f4923b);
                 return;
             case 13:
-                SessionsActivity.X((SessionsActivity) this.f5088c, this.f5087b, (boolean[]) this.d);
+                SessionsActivity.X((SessionsActivity) this.f4924c, this.f4923b, (boolean[]) this.d);
                 return;
             case 14:
-                StickersActivity.a0((StickersActivity) this.f5088c, (ArrayList) this.d, this.f5087b);
+                StickersActivity.a0((StickersActivity) this.f4924c, (ArrayList) this.d, this.f4923b);
                 return;
         }
     }
 
     @Override
-    public void invoke(Object obj) {
-        y1 y1Var = (y1) obj;
-        int i10 = this.f5087b;
-        y1Var.onPositionDiscontinuity(i10);
-        y1Var.onPositionDiscontinuity((z1) this.f5088c, (z1) this.d, i10);
-    }
-
-    @Override
     public void run(int i10, String str) {
-        ((VoIPService) this.f5088c).lambda$createGroupInstance$66(this.f5087b, (boolean[]) this.d, i10, str);
+        ((VoIPService) this.f4924c).lambda$createGroupInstance$66(this.f4923b, (boolean[]) this.d, i10, str);
     }
 
     public d(Object obj, int i10, Object obj2, int i11) {
-        this.f5086a = i11;
-        this.f5088c = obj;
-        this.f5087b = i10;
+        this.f4922a = i11;
+        this.f4924c = obj;
+        this.f4923b = i10;
         this.d = obj2;
     }
 
     @Override
     public void run(ArrayList arrayList, String str) {
-        l1 l1Var = (l1) this.f5088c;
+        l1 l1Var = (l1) this.f4924c;
         HashMap hashMap = (HashMap) this.d;
-        m1 m1Var = l1Var.f44788a;
+        m1 m1Var = l1Var.f48638a;
         int i10 = m1Var.M;
         HashMap hashMap2 = m1Var.F;
-        if (this.f5087b != i10) {
+        if (this.f4923b != i10) {
             return;
         }
         int size = arrayList.size();
@@ -222,19 +221,19 @@ public final class d implements g3.b, j, NativeInstance.PayloadCallback, c2, Uti
     }
 
     public d(Object obj, Object obj2, int i10, int i11) {
-        this.f5086a = i11;
-        this.f5088c = obj;
+        this.f4922a = i11;
+        this.f4924c = obj;
         this.d = obj2;
-        this.f5087b = i10;
+        this.f4923b = i10;
     }
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3) {
-        Context context = (Context) this.f5088c;
+        Context context = (Context) this.f4924c;
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) this.d;
         TLRPC.Document document = (TLRPC.Document) obj2;
         Boolean bool = (Boolean) obj3;
-        int i10 = this.f5087b;
+        int i10 = this.f4923b;
         String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document, "😀", Integer.valueOf(i10));
         String str = TextUtils.isEmpty(findAnimatedEmojiEmoticon) ? "😀" : findAnimatedEmojiEmoticon;
         d2 d2Var = new d2(context, 3, null);

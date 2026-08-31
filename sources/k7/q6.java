@@ -1,36 +1,68 @@
 package k7;
+
+import android.os.Build;
+import android.util.SparseArray;
+import android.view.KeyEvent;
+import android.view.View;
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.WeakHashMap;
 public abstract class q6 {
-    public static int a(int i10) {
-        if (i10 != 1) {
-            if (i10 == 2) {
-                return 1;
+    public static boolean f10704a = false;
+    public static Method f10705b = null;
+    public static boolean f10706c = false;
+    public static Field d;
+
+    public static boolean a(View view, KeyEvent keyEvent) {
+        ArrayList arrayList;
+        int size;
+        int indexOfKey;
+        WeakHashMap weakHashMap = r0.j0.f46438a;
+        if (Build.VERSION.SDK_INT < 28) {
+            ArrayList arrayList2 = r0.i0.d;
+            r0.i0 i0Var = (r0.i0) view.getTag(2131296694);
+            WeakReference weakReference = null;
+            r0.i0 i0Var2 = i0Var;
+            if (i0Var == null) {
+                ?? obj = new Object();
+                obj.f46433a = null;
+                obj.f46434b = null;
+                obj.f46435c = null;
+                view.setTag(2131296694, obj);
+                i0Var2 = obj;
             }
-            if (i10 == 4) {
-                return 2;
-            }
-            if (i10 != 8) {
-                if (i10 == 16) {
-                    return 4;
+            WeakReference weakReference2 = i0Var2.f46435c;
+            if (weakReference2 == null || weakReference2.get() != keyEvent) {
+                i0Var2.f46435c = new WeakReference(keyEvent);
+                if (i0Var2.f46434b == null) {
+                    i0Var2.f46434b = new SparseArray();
                 }
-                if (i10 != 32) {
-                    if (i10 != 64) {
-                        if (i10 != 128) {
-                            if (i10 == 256) {
-                                return 8;
-                            }
-                            if (i10 == 512) {
-                                return 9;
-                            }
-                            throw new IllegalArgumentException(kh.a2.j(i10, "type needs to be >= FIRST and <= LAST, type="));
-                        }
-                        return 7;
+                SparseArray sparseArray = i0Var2.f46434b;
+                if (keyEvent.getAction() == 1 && (indexOfKey = sparseArray.indexOfKey(keyEvent.getKeyCode())) >= 0) {
+                    weakReference = (WeakReference) sparseArray.valueAt(indexOfKey);
+                    sparseArray.removeAt(indexOfKey);
+                }
+                if (weakReference == null) {
+                    weakReference = (WeakReference) sparseArray.get(keyEvent.getKeyCode());
+                }
+                if (weakReference != null) {
+                    View view2 = (View) weakReference.get();
+                    if (view2 == null || !view2.isAttachedToWindow() || (arrayList = (ArrayList) view2.getTag(2131296695)) == null || (size = arrayList.size() - 1) < 0) {
+                        return true;
                     }
-                    return 6;
+                    arrayList.get(size).getClass();
+                    throw new ClassCastException();
                 }
-                return 5;
+                return false;
             }
-            return 3;
+            return false;
         }
-        return 0;
+        return false;
+    }
+
+    public static boolean b(r0.k r7, android.view.View r8, android.view.Window.Callback r9, android.view.KeyEvent r10) {
+        throw new UnsupportedOperationException("Method not decompiled: k7.q6.b(r0.k, android.view.View, android.view.Window$Callback, android.view.KeyEvent):boolean");
     }
 }

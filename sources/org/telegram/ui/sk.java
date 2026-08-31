@@ -5,7 +5,7 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class sk extends vu0 {
+public final class sk extends xu0 {
     public sk(ViewGroup viewGroup, ViewGroup viewGroup2) {
         super(viewGroup, viewGroup2);
     }
@@ -13,7 +13,7 @@ public final class sk extends vu0 {
     @Override
     public final void c(Canvas canvas, float f10, float f11, float f12, float f13, float f14) {
         if (f10 > 0.0f) {
-            View view = this.e;
+            View view = this.f43463e;
             if (view instanceof org.telegram.ui.Cells.t1) {
                 org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view;
                 RectF rectF = AndroidUtilities.rectTmp;

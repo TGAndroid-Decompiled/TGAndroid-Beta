@@ -1,224 +1,105 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.NotificationCenter;
-public class qy0 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public boolean B;
-    public nq0 C;
-    public int D;
-    public String E;
-    public int F;
-    public String[] G;
-    public Runnable H;
-    public long I;
-    public Path J;
-    public Path K;
-    public Paint L;
-    public z5 M;
-    public z5 N;
-    public z5 O;
-    public z5 P;
-    public Emoji.EmojiSpan Q;
-    public float R;
-    public Integer S;
-    public Integer T;
-    public float U;
-    public z5 V;
-    public z5 W;
-    public final int f28303a;
-    public z5 f28304a0;
-    public final org.telegram.ui.ActionBar.f6 f28305b;
-    public oy0 f28306c;
-    public dg.u2 d;
-    public my0 e;
-    public ny0 f28307f;
-    public int h;
-    public int f28308n;
-    public ly0 f28309r;
-    public boolean f28310s;
-    public boolean v;
-    public ArrayList f28311w;
-    public boolean f28312x;
-    public boolean f28313y;
+public final class qy0 extends View {
+    public String f30529a;
+    public Drawable f30530b;
+    public boolean f30531c;
+    public int d;
+    public final z5 f30532e;
+    public final ry0 f30533f;
 
-    public qy0(Context context, int i10, org.telegram.ui.jk jkVar, org.telegram.ui.ActionBar.f6 f6Var) {
+    public qy0(ry0 ry0Var, Context context) {
         super(context);
-        this.h = 0;
-        this.f28308n = AndroidUtilities.dp(10.0f);
-        this.I = 0L;
-        this.f28303a = i10;
-        this.f28306c = jkVar;
-        this.f28305b = f6Var;
-        postDelayed(new org.telegram.messenger.e6(i10, 9), 260L);
-    }
-
-    public static boolean a(qy0 qy0Var, k kVar, MotionEvent motionEvent) {
-        return org.telegram.ui.pt.q().s(motionEvent, qy0Var.e, kVar, qy0Var.getPreviewDelegate(), qy0Var.f28305b);
-    }
-
-    public org.telegram.ui.nt getPreviewDelegate() {
-        if (this.f28309r == null) {
-            this.f28309r = new ly0(this);
-        }
-        return this.f28309r;
-    }
-
-    public final void c() {
-        if (this.e == null) {
-            this.J = new Path();
-            this.K = new Path();
-            dg.u2 u2Var = new dg.u2(this, getContext(), 27);
-            this.d = u2Var;
-            nr nrVar = nr.h;
-            this.M = new z5(u2Var, 120L, 350L, nrVar);
-            this.N = new z5(this.d, 150L, 600L, nrVar);
-            new OvershootInterpolator(0.4f);
-            this.O = new z5(this.d, 300L, nrVar);
-            this.P = new z5(this.d, 300L, nrVar);
-            this.V = new z5(this.d, 200L, nrVar);
-            this.W = new z5(this.d, 350L, nrVar);
-            this.f28304a0 = new z5(this.d, 350L, nrVar);
-            my0 my0Var = new my0(this, getContext());
-            this.e = my0Var;
-            ny0 ny0Var = new ny0(this, this);
-            this.f28307f = ny0Var;
-            my0Var.setAdapter(ny0Var);
-            getContext();
-            f2.i0 i0Var = new f2.i0();
-            i0Var.j1(0);
-            this.e.setLayoutManager(i0Var);
-            f2.l lVar = new f2.l();
-            lVar.n(45L);
-            lVar.f5773o = nrVar;
-            this.e.setItemAnimator(lVar);
-            this.e.setSelectorDrawableColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19996i6, this.f28305b));
-            my0 my0Var2 = this.e;
-            k kVar = new k(this, 17);
-            my0Var2.setOnItemClickListener(kVar);
-            this.e.setOnTouchListener(new org.telegram.ui.ActionBar.i1(3, this, kVar));
-            this.d.addView(this.e, k7.b6.c(52.0f, -1));
-            addView(this.d, k7.b6.a(-1.0f, 66.66f, 80));
-            oy0 oy0Var = this.f28306c;
-            if (oy0Var != null) {
-                oy0Var.a(new dh.c(this, 13));
-            }
-        }
-    }
-
-    public int d() {
-        return 2;
+        this.f30533f = ry0Var;
+        this.d = 0;
+        this.f30532e = new z5(this, 350L, new OvershootInterpolator(5.0f));
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.newEmojiSuggestionsAvailable) {
-            ArrayList arrayList = this.f28311w;
-            if (arrayList != null && !arrayList.isEmpty()) {
-                e();
+    public final void dispatchDraw(Canvas canvas) {
+        float f10;
+        if (isPressed()) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        float d = ((1.0f - this.f30532e.d(f10, false)) * 0.2f) + 0.8f;
+        if (this.f30530b != null) {
+            int height = getHeight() - getPaddingBottom();
+            this.f30530b.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
+            canvas.scale(d, d, getWidth() / 2, (getPaddingTop() + height) / 2);
+            Drawable drawable = this.f30530b;
+            if (drawable instanceof l5) {
+                ((l5) drawable).q(System.currentTimeMillis());
             }
-        } else if (i10 == NotificationCenter.emojiLoaded && this.e != null) {
-            for (int i12 = 0; i12 < this.e.getChildCount(); i12++) {
-                this.e.getChildAt(i12).invalidate();
-            }
+            this.f30530b.draw(canvas);
         }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        my0 my0Var = this.e;
-        if (my0Var == null) {
-            return super.dispatchTouchEvent(motionEvent);
-        }
-        float f10 = this.f28304a0.f31241c;
-        float f11 = this.W.f31241c;
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f12 = f10 / 2.0f;
-        rectF.set(this.e.getTranslationX() + (f11 - f12) + my0Var.getPaddingLeft(), this.e.getPaddingTop() + this.e.getTop(), Math.min(this.e.getTranslationX() + f11 + f12 + this.e.getPaddingLeft(), getWidth() - this.d.getPaddingRight()), this.e.getBottom());
-        rectF.offset(this.d.getX(), this.d.getY());
-        if (this.f28310s && rectF.contains(motionEvent.getX(), motionEvent.getY())) {
-            return super.dispatchTouchEvent(motionEvent);
-        }
-        if (motionEvent.getAction() == 0) {
-            return false;
-        }
-        if (motionEvent.getAction() == 0) {
-            motionEvent.setAction(3);
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    public final void e() {
-        nq0 nq0Var = this.C;
-        if (nq0Var != null) {
-            AndroidUtilities.cancelRunOnUIThread(nq0Var);
-        }
-        nq0 nq0Var2 = new nq0(this, 11);
-        this.C = nq0Var2;
-        AndroidUtilities.runOnUIThread(nq0Var2, 16L);
-    }
-
-    public final void f() {
-        nq0 nq0Var = this.C;
-        if (nq0Var != null) {
-            AndroidUtilities.cancelRunOnUIThread(nq0Var);
-            this.C = null;
-        }
-        this.f28310s = false;
-        this.v = true;
-        dg.u2 u2Var = this.d;
-        if (u2Var != null) {
-            u2Var.invalidate();
-        }
-    }
-
-    public oy0 getDelegate() {
-        return this.f28306c;
-    }
-
-    public int getDirection() {
-        return this.h;
-    }
-
-    @Override
-    public final boolean isShown() {
-        return this.f28310s;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
-        NotificationCenter.getInstance(this.f28303a).addObserver(this, NotificationCenter.newEmojiSuggestionsAvailable);
+        Drawable drawable = this.f30530b;
+        if (drawable instanceof l5) {
+            ((l5) drawable).a(this);
+        }
+        this.f30531c = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
-        NotificationCenter.getInstance(this.f28303a).removeObserver(this, NotificationCenter.newEmojiSuggestionsAvailable);
+        Drawable drawable = this.f30530b;
+        if (drawable instanceof l5) {
+            ((l5) drawable).o(this);
+        }
+        this.f30531c = false;
     }
 
-    public void setDelegate(oy0 oy0Var) {
-        this.f28306c = oy0Var;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f10;
+        int dp = AndroidUtilities.dp(3.0f);
+        float f11 = 6.66f;
+        if (this.d == 0) {
+            f10 = 0.0f;
+        } else {
+            f10 = 6.66f;
+        }
+        int dp2 = AndroidUtilities.dp(f10 + 3.0f);
+        int dp3 = AndroidUtilities.dp(3.0f);
+        if (this.d != 0) {
+            f11 = 0.0f;
+        }
+        setPadding(dp, dp2, dp3, AndroidUtilities.dp(f11 + 3.0f));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
     }
 
     public void setDirection(int i10) {
-        if (this.h != i10) {
-            this.h = i10;
-            requestLayout();
+        this.d = i10;
+        invalidate();
+    }
+
+    public void setImageDrawable(Drawable drawable) {
+        Drawable drawable2 = this.f30530b;
+        if (drawable2 instanceof l5) {
+            ((l5) drawable2).o(this);
+        }
+        this.f30530b = drawable;
+        if ((drawable instanceof l5) && this.f30531c) {
+            ((l5) drawable).a(this);
         }
     }
 
-    public void setHorizontalPadding(int i10) {
-        this.f28308n = i10;
+    @Override
+    public void setPressed(boolean z4) {
+        super.setPressed(z4);
+        invalidate();
     }
 }

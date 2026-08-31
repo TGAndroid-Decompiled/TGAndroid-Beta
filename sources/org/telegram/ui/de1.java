@@ -1,54 +1,28 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
-import org.telegram.messenger.Utilities;
-public final class de1 extends FrameLayout {
-    public ValueAnimator f33614a;
-    public boolean f33615b;
-    public float f33616c;
+import org.telegram.messenger.AndroidUtilities;
+public final class de1 implements Runnable {
+    public final int f36210a;
+    public final ie1 f36211b;
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f10 = ((1.0f - this.f33616c) * 0.2f) + 0.8f;
-        canvas.save();
-        canvas.scale(f10, f10, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-        if (isPressed()) {
-            float f11 = this.f33616c;
-            if (f11 != 1.0f) {
-                this.f33616c = Utilities.clamp(f11 + 0.16f, 1.0f, 0.0f);
-                invalidate();
-            }
-        }
+    public de1(ie1 ie1Var, int i10) {
+        this.f36210a = i10;
+        this.f36211b = ie1Var;
     }
 
     @Override
-    public final void setPressed(boolean z4) {
-        ValueAnimator valueAnimator;
-        super.setPressed(z4);
-        if (this.f33615b != z4) {
-            this.f33615b = z4;
-            invalidate();
-            if (z4 && (valueAnimator = this.f33614a) != null) {
-                valueAnimator.removeAllListeners();
-                this.f33614a.cancel();
-            }
-            if (!z4) {
-                float f10 = this.f33616c;
-                if (f10 != 0.0f) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
-                    this.f33614a = ofFloat;
-                    ofFloat.addUpdateListener(new h11(this, 16));
-                    this.f33614a.addListener(new ls0(this, 22));
-                    this.f33614a.setInterpolator(new OvershootInterpolator(5.0f));
-                    this.f33614a.setDuration(350L);
-                    this.f33614a.start();
-                }
-            }
+    public final void run() {
+        switch (this.f36210a) {
+            case 0:
+                ie1 ie1Var = this.f36211b;
+                ie1Var.getClass();
+                new fg.n1((org.telegram.ui.ActionBar.p2) ie1Var, 11, false).show();
+                return;
+            default:
+                ie1 ie1Var2 = this.f36211b;
+                ie1Var2.f37823e.requestFocus();
+                AndroidUtilities.showKeyboard(ie1Var2.f37823e);
+                return;
         }
     }
 }

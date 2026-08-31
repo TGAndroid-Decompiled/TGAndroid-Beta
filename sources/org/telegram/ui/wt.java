@@ -1,64 +1,44 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Timer;
-import org.telegram.messenger.Emoji;
-public final class wt extends org.telegram.ui.Components.rl0 {
-    public final Context f39790c;
-    public Timer d;
-    public ArrayList e;
-    public final ArrayList f39791f = new ArrayList();
-    public final yt h;
+import java.util.TimerTask;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.Utilities;
+public final class wt extends TimerTask {
+    public final int f42880a;
+    public final String f42881b;
+    public final org.telegram.ui.Components.sl0 f42882c;
 
-    public wt(yt ytVar, Context context, HashMap hashMap) {
-        this.h = ytVar;
-        this.f39790c = context;
-        for (List<st> list : hashMap.values()) {
-            for (st stVar : list) {
-                this.f39791f.add(stVar);
-            }
+    public wt(org.telegram.ui.Components.sl0 sl0Var, String str, int i10) {
+        this.f42880a = i10;
+        this.f42882c = sl0Var;
+        this.f42881b = str;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f42880a) {
+            case 0:
+                try {
+                    ((xt) this.f42882c).d.cancel();
+                    ((xt) this.f42882c).d = null;
+                } catch (Exception e6) {
+                    FileLog.e(e6);
+                }
+                Utilities.searchQueue.postRunnable(new org.telegram.ui.Components.l41(11, (xt) this.f42882c, this.f42881b));
+                return;
+            default:
+                uf.c1 c1Var = (uf.c1) this.f42882c;
+                try {
+                    c1Var.f48522n.cancel();
+                    c1Var.f48522n = null;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                }
+                String str = this.f42881b;
+                c1Var.getClass();
+                AndroidUtilities.runOnUIThread(new qh.d6(27, c1Var, str));
+                return;
         }
-    }
-
-    @Override
-    public final boolean D(f2.l1 l1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        ArrayList arrayList = this.e;
-        if (arrayList == null) {
-            return 0;
-        }
-        return arrayList.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        return 0;
-    }
-
-    @Override
-    public final void v(f2.l1 l1Var, int i10) {
-        String str;
-        st stVar = (st) this.e.get(i10);
-        org.telegram.ui.Cells.aa aaVar = (org.telegram.ui.Cells.aa) l1Var.f5785a;
-        CharSequence replaceEmoji = Emoji.replaceEmoji(yt.V(stVar), aaVar.getTextView().getPaint().getFontMetricsInt(), false);
-        if (this.h.h) {
-            str = "+" + stVar.f38437c;
-        } else {
-            str = null;
-        }
-        aaVar.c(replaceEmoji, str, false, false);
-    }
-
-    @Override
-    public final f2.l1 x(ViewGroup viewGroup, int i10) {
-        return new f2.l1(yt.U(this.f39790c));
     }
 }

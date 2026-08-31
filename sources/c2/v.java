@@ -6,13 +6,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 public final class v {
-    public static final v f2010c = new v(new Bundle(), null);
-    public final Bundle f2011a;
-    public List f2012b;
+    public static final v f2183c = new v(new Bundle(), null);
+    public final Bundle f2184a;
+    public List f2185b;
 
     public v(Bundle bundle, ArrayList arrayList) {
-        this.f2011a = bundle;
-        this.f2012b = arrayList;
+        this.f2184a = bundle;
+        this.f2185b = arrayList;
     }
 
     public static v b(Bundle bundle) {
@@ -23,23 +23,23 @@ public final class v {
     }
 
     public final void a() {
-        if (this.f2012b == null) {
-            ArrayList<String> stringArrayList = this.f2011a.getStringArrayList("controlCategories");
-            this.f2012b = stringArrayList;
+        if (this.f2185b == null) {
+            ArrayList<String> stringArrayList = this.f2184a.getStringArrayList("controlCategories");
+            this.f2185b = stringArrayList;
             if (stringArrayList == null || stringArrayList.isEmpty()) {
-                this.f2012b = Collections.EMPTY_LIST;
+                this.f2185b = Collections.EMPTY_LIST;
             }
         }
     }
 
     public final ArrayList c() {
         a();
-        return new ArrayList(this.f2012b);
+        return new ArrayList(this.f2185b);
     }
 
     public final boolean d() {
         a();
-        return this.f2012b.isEmpty();
+        return this.f2185b.isEmpty();
     }
 
     public final boolean equals(Object obj) {
@@ -47,14 +47,14 @@ public final class v {
             v vVar = (v) obj;
             a();
             vVar.a();
-            return this.f2012b.equals(vVar.f2012b);
+            return this.f2185b.equals(vVar.f2185b);
         }
         return false;
     }
 
     public final int hashCode() {
         a();
-        return this.f2012b.hashCode();
+        return this.f2185b.hashCode();
     }
 
     public final String toString() {

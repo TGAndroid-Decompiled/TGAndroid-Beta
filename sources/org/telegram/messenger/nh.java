@@ -2,30 +2,30 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.ConnectionsManager;
 public final class nh implements Runnable {
-    public final int f17950a;
-    public final int f17951b;
-    public final int f17952c;
+    public final int f19482a;
+    public final int f19483b;
+    public final int f19484c;
 
     public nh(int i10, int i11, int i12) {
-        this.f17950a = i12;
-        this.f17951b = i10;
-        this.f17952c = i11;
+        this.f19482a = i12;
+        this.f19483b = i10;
+        this.f19484c = i11;
     }
 
     @Override
     public final void run() {
-        switch (this.f17950a) {
+        switch (this.f19482a) {
             case 0:
-                PasskeysController.f(this.f17951b, this.f17952c);
+                PasskeysController.f(this.f19483b, this.f19484c);
                 return;
             case 1:
-                ConnectionsManager.A(this.f17951b, this.f17952c);
+                ConnectionsManager.A(this.f19483b, this.f19484c);
                 return;
             case 2:
-                ConnectionsManager.s(this.f17951b, this.f17952c);
+                ConnectionsManager.s(this.f19483b, this.f19484c);
                 return;
             default:
-                ConnectionsManager.getInstance(this.f17951b).cancelRequest(this.f17952c, true);
+                ConnectionsManager.getInstance(this.f19483b).cancelRequest(this.f19484c, true);
                 return;
         }
     }

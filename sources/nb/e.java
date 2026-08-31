@@ -16,7 +16,7 @@ import cb.h;
 import cb.k;
 import cb.o;
 import j7.d9;
-import j7.e8;
+import j7.f8;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import k.j;
 import l7.ja;
 import l7.w0;
-import m.s3;
+import m.r3;
 import n7.bg;
 import n7.eg;
 import n7.fg;
@@ -42,23 +42,23 @@ import n7.kg;
 import n7.wf;
 import n7.xf;
 public final class e extends f {
-    public static final y5.c[] f14906k = {k.f2229c};
-    public static final ib.a f14907l = ib.a.f7472a;
+    public static final y5.c[] f15921k = {k.f2420c};
+    public static final ib.a f15922l = ib.a.f8044a;
     public final Context d;
-    public final mb.e e;
-    public final xf f14908f;
-    public final d9 f14909g;
+    public final mb.e f15923e;
+    public final xf f15924f;
+    public final d9 f15925g;
     public boolean h = true;
-    public boolean f14910i;
-    public eg f14911j;
+    public boolean f15926i;
+    public eg f15927j;
 
     public e(h hVar, mb.e eVar, xf xfVar, d9 d9Var) {
         m.i(hVar, "MlKitContext can not be null");
         m.i(eVar, "SubjectSegmenterOptions can not be null");
         this.d = hVar.b();
-        this.e = eVar;
-        this.f14908f = xfVar;
-        this.f14909g = d9Var;
+        this.f15923e = eVar;
+        this.f15924f = xfVar;
+        this.f15925g = d9Var;
     }
 
     @Override
@@ -67,19 +67,19 @@ public final class e extends f {
         try {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             Context context = this.d;
-            y5.c[] cVarArr = f14906k;
+            y5.c[] cVarArr = f15921k;
             if (!k.a(context, cVarArr)) {
-                if (!this.f14910i) {
+                if (!this.f15926i) {
                     k.c(this.d, cVarArr);
-                    this.f14910i = true;
+                    this.f15926i = true;
                 }
                 f(hb.OPTIONAL_MODULE_NOT_AVAILABLE, elapsedRealtime);
                 throw new ya.a("Waiting for the subject segmentation optional module to be downloaded. Please wait.", 14);
             }
             try {
-                if (this.f14911j == null) {
-                    IBinder b10 = m6.e.c(this.d, m6.e.f13755b, "com.google.android.gms.mlkit_subject_segmentation").b("com.google.android.gms.mlkit.segmentation.subject.SubjectSegmenterCreator");
-                    int i10 = gg.f14447a;
+                if (this.f15927j == null) {
+                    IBinder b10 = m6.e.c(this.d, m6.e.f13466b, "com.google.android.gms.mlkit_subject_segmentation").b("com.google.android.gms.mlkit.segmentation.subject.SubjectSegmenterCreator");
+                    int i10 = gg.f15433a;
                     if (b10 == null) {
                         aVar = null;
                     } else {
@@ -91,24 +91,24 @@ public final class e extends f {
                         }
                     }
                     l6.b bVar = new l6.b(this.d);
-                    this.e.getClass();
-                    mb.e eVar = this.e;
-                    this.f14911j = ((fg) aVar).U0(bVar, new kg(false, eVar.f13907a, eVar.f13908b, false, eVar.f13909c));
+                    this.f15923e.getClass();
+                    mb.e eVar = this.f15923e;
+                    this.f15927j = ((fg) aVar).U0(bVar, new kg(false, eVar.f13625a, eVar.f13626b, false, eVar.f13627c));
                 }
                 try {
-                    eg egVar = this.f14911j;
+                    eg egVar = this.f15927j;
                     egVar.getClass();
                     Parcel obtain = Parcel.obtain();
-                    obtain.writeInterfaceToken(egVar.f125c);
+                    obtain.writeInterfaceToken(egVar.f136c);
                     egVar.Q0(obtain, 1);
                     f(hb.NO_ERROR, elapsedRealtime);
-                } catch (RemoteException e) {
+                } catch (RemoteException e6) {
                     f(hb.OPTIONAL_MODULE_INIT_ERROR, elapsedRealtime);
-                    throw new ya.a("Failed to init module subject segmenter", e);
+                    throw new ya.a("Failed to init module subject segmenter", e6);
                 }
-            } catch (Exception e6) {
+            } catch (Exception e10) {
                 f(hb.OPTIONAL_MODULE_CREATE_ERROR, elapsedRealtime);
-                throw new ya.a("Failed to load subject segmentation module", e6);
+                throw new ya.a("Failed to load subject segmentation module", e10);
             }
         } catch (Throwable th2) {
             throw th2;
@@ -118,27 +118,27 @@ public final class e extends f {
     @Override
     public final synchronized void c() {
         try {
-            eg egVar = this.f14911j;
+            eg egVar = this.f15927j;
             if (egVar != null) {
                 Parcel obtain = Parcel.obtain();
-                obtain.writeInterfaceToken(egVar.f125c);
+                obtain.writeInterfaceToken(egVar.f136c);
                 egVar.Q0(obtain, 2);
             }
-            this.f14911j = null;
+            this.f15927j = null;
         } catch (RemoteException unused) {
             Log.e("SubjectSegmenterTask", "Failed to release subject segmenter");
-            this.f14911j = null;
+            this.f15927j = null;
         }
         this.h = true;
-        xf xfVar = this.f14908f;
+        xf xfVar = this.f15924f;
         ib ibVar = ib.ON_DEVICE_SUBJECT_SEGMENTATION_CLOSE;
         xfVar.getClass();
         long elapsedRealtime = SystemClock.elapsedRealtime();
         if (xfVar.d(ibVar, elapsedRealtime)) {
-            xfVar.f14813i.put(ibVar, Long.valueOf(elapsedRealtime));
+            xfVar.f15819i.put(ibVar, Long.valueOf(elapsedRealtime));
             ?? obj = new Object();
-            obj.f13643c = gb.TYPE_THIN;
-            o.f2237a.execute(new p(xfVar, new e0((s3) obj, 0), ibVar, xfVar.c(), false, 7));
+            obj.f13329c = gb.TYPE_THIN;
+            o.f2429a.execute(new p(xfVar, new e0((r3) obj, 0), ibVar, xfVar.c(), false, 7));
         }
     }
 
@@ -152,16 +152,16 @@ public final class e extends f {
             try {
                 try {
                     long elapsedRealtime = SystemClock.elapsedRealtime();
-                    eg egVar = this.f14911j;
+                    eg egVar = this.f15927j;
                     m.h(egVar);
-                    bg bgVar = new bg(aVar.e, aVar.f7052b, aVar.f7053c, SystemClock.elapsedRealtime(), e8.a(aVar.d));
-                    int i10 = aVar.e;
+                    bg bgVar = new bg(aVar.f7369e, aVar.f7367b, aVar.f7368c, SystemClock.elapsedRealtime(), f8.a(aVar.d));
+                    int i10 = aVar.f7369e;
                     try {
                         if (i10 != -1) {
                             if (i10 != 17) {
                                 if (i10 != 35) {
                                     if (i10 != 842094169) {
-                                        int i11 = aVar.e;
+                                        int i11 = aVar.f7369e;
                                         throw new ya.a("Unsupported image format: " + i11, 3);
                                     }
                                 } else {
@@ -171,21 +171,21 @@ public final class e extends f {
                             m.h(null);
                             throw null;
                         }
-                        Bitmap bitmap = aVar.f7051a;
+                        Bitmap bitmap = aVar.f7366a;
                         m.h(bitmap);
                         bVar = new l6.b(bitmap);
                         try {
                             jg U0 = egVar.U0(bVar, bgVar);
                             ArrayList arrayList = new ArrayList();
-                            if (this.e.f13908b) {
-                                for (ig igVar : U0.f14627a) {
-                                    float[] fArr = igVar.f14607a;
+                            if (this.f15923e.f13626b) {
+                                for (ig igVar : U0.f15618a) {
+                                    float[] fArr = igVar.f15596a;
                                     if (fArr != null) {
                                         FloatBuffer allocate = FloatBuffer.allocate(fArr.length);
                                         allocate.put(fArr);
                                         allocate.rewind();
                                     }
-                                    arrayList.add(new mb.a(igVar.f14608b, igVar.f14609c, igVar.d, igVar.e, igVar.f14610f));
+                                    arrayList.add(new mb.a(igVar.f15597b, igVar.f15598c, igVar.d, igVar.f15599e, igVar.f15600f));
                                 }
                             }
                             eVar = this;
@@ -193,28 +193,28 @@ public final class e extends f {
                             try {
                                 eVar.g(hb.NO_ERROR, elapsedRealtime, this.h, aVar2, U0);
                                 eVar.h = false;
-                                float[] fArr2 = U0.f14628b;
+                                float[] fArr2 = U0.f15619b;
                                 if (fArr2 != null) {
                                     try {
                                         try {
                                             FloatBuffer allocate2 = FloatBuffer.allocate(fArr2.length);
                                             allocate2.put(fArr2);
                                             allocate2.rewind();
-                                        } catch (RemoteException e) {
-                                            e = e;
+                                        } catch (RemoteException e6) {
+                                            e = e6;
                                             eVar.g(hb.OPTIONAL_MODULE_INFERENCE_ERROR, elapsedRealtime, eVar.h, aVar2, null);
                                             throw new ya.a("Failed to run thin subject segmenter.", e);
                                         }
-                                    } catch (RemoteException e6) {
-                                        e = e6;
+                                    } catch (RemoteException e10) {
+                                        e = e10;
                                     }
                                 }
                                 return new mb.b(arrayList);
-                            } catch (RemoteException e10) {
-                                e = e10;
+                            } catch (RemoteException e11) {
+                                e = e11;
                             }
-                        } catch (RemoteException e11) {
-                            e = e11;
+                        } catch (RemoteException e12) {
+                            e = e12;
                             eVar = this;
                             aVar2 = aVar;
                         }
@@ -234,40 +234,40 @@ public final class e extends f {
     }
 
     public final void f(final hb hbVar, final long j10) {
-        this.f14908f.b(new wf() {
+        this.f15924f.b(new wf() {
             @Override
             public final e0 zza() {
                 ?? obj = new Object();
-                obj.f13643c = gb.TYPE_THIN;
+                obj.f13329c = gb.TYPE_THIN;
                 w0 w0Var = new w0(11, false);
-                w0Var.d = e.this.e.a();
-                w0Var.f11676b = hbVar;
-                w0Var.f11677c = Long.valueOf((SystemClock.elapsedRealtime() - j10) & Long.MAX_VALUE);
-                obj.e = new ge(w0Var);
-                return new e0((s3) obj, 0);
+                w0Var.d = e.this.f15923e.a();
+                w0Var.f12080b = hbVar;
+                w0Var.f12081c = Long.valueOf((SystemClock.elapsedRealtime() - j10) & Long.MAX_VALUE);
+                obj.f13330e = new ge(w0Var);
+                return new e0((r3) obj, 0);
             }
         }, ib.ON_DEVICE_SUBJECT_SEGMENTATION_LOAD);
     }
 
     public final void g(hb hbVar, long j10, boolean z4, hb.a aVar, jg jgVar) {
         long elapsedRealtime = SystemClock.elapsedRealtime() - j10;
-        this.f14908f.b(new j(this, elapsedRealtime, hbVar, z4, aVar, jgVar), ib.ON_DEVICE_SUBJECT_SEGMENTATION_INFERENCE);
+        this.f15924f.b(new j(this, elapsedRealtime, hbVar, z4, aVar, jgVar), ib.ON_DEVICE_SUBJECT_SEGMENTATION_INFERENCE);
         w0 w0Var = new w0(9, false);
-        w0Var.d = this.e.a();
-        w0Var.f11676b = hbVar;
-        w0Var.f11677c = Boolean.valueOf(z4);
-        o.f2237a.execute(new ja(this.f14908f, new i1(w0Var), elapsedRealtime));
+        w0Var.d = this.f15923e.a();
+        w0Var.f12080b = hbVar;
+        w0Var.f12081c = Boolean.valueOf(z4);
+        o.f2429a.execute(new ja(this.f15924f, new i1(w0Var), elapsedRealtime));
         long currentTimeMillis = System.currentTimeMillis();
         long j11 = currentTimeMillis - elapsedRealtime;
-        d9 d9Var = this.f14909g;
-        int i10 = hbVar.f14460a;
+        d9 d9Var = this.f15925g;
+        int i10 = hbVar.f15448a;
         synchronized (d9Var) {
-            AtomicLong atomicLong = d9Var.f8977b;
+            AtomicLong atomicLong = d9Var.f9589b;
             long elapsedRealtime2 = SystemClock.elapsedRealtime();
-            if (atomicLong.get() != -1 && elapsedRealtime2 - d9Var.f8977b.get() <= TimeUnit.MINUTES.toMillis(30L)) {
+            if (atomicLong.get() != -1 && elapsedRealtime2 - d9Var.f9589b.get() <= TimeUnit.MINUTES.toMillis(30L)) {
                 return;
             }
-            d9Var.f8976a.f(new b6.p(0, Arrays.asList(new b6.k(24336, i10, 0, j11, currentTimeMillis, null, null, 0, -1)))).addOnFailureListener(new f2.c(d9Var, elapsedRealtime2, 5));
+            d9Var.f9588a.f(new b6.p(0, Arrays.asList(new b6.k(24336, i10, 0, j11, currentTimeMillis, null, null, 0, -1)))).addOnFailureListener(new f2.c(d9Var, elapsedRealtime2, 5));
         }
     }
 }

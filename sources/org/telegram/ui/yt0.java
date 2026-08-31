@@ -1,261 +1,84 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public class yt0 implements hu0 {
-    @Override
-    public boolean A() {
-        return false;
+import android.content.Context;
+import android.widget.FrameLayout;
+import androidx.core.widget.NestedScrollView;
+public final class yt0 extends org.telegram.ui.Components.v01 {
+    public boolean f43704a;
+    public float f43705b;
+    public NestedScrollView f43706c;
+    public FrameLayout d;
+
+    public yt0(Context context) {
+        super(context);
+        this.f43704a = false;
+        this.f43705b = 1.0f;
+    }
+
+    public final void b(int i10, boolean z4) {
+        super.setVisibility(i10);
+        if (this.f43704a && z4) {
+            this.f43706c.setVisibility(i10);
+        }
     }
 
     @Override
-    public CharSequence C(int i10) {
-        return null;
+    public float getAlpha() {
+        if (this.f43704a) {
+            return this.f43705b;
+        }
+        return super.getAlpha();
     }
 
     @Override
-    public ju0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z4, boolean z10) {
-        return null;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.d != null && getParent() == this.d) {
+            this.f43704a = true;
+            this.f43706c.setVisibility(getVisibility());
+            this.f43706c.setAlpha(this.f43705b);
+            super.setAlpha(1.0f);
+        }
     }
 
     @Override
-    public int H() {
-        return 0;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.f43704a) {
+            this.f43704a = false;
+            this.f43706c.setVisibility(8);
+            super.setAlpha(this.f43705b);
+        }
     }
 
     @Override
-    public boolean J() {
-        return false;
+    public void setAlpha(float f10) {
+        this.f43705b = f10;
+        if (this.f43704a) {
+            this.f43706c.setAlpha(f10);
+        } else {
+            super.setAlpha(f10);
+        }
+    }
+
+    public void setContainer(FrameLayout frameLayout) {
+        this.d = frameLayout;
+    }
+
+    public void setScrollView(NestedScrollView nestedScrollView) {
+        this.f43706c = nestedScrollView;
     }
 
     @Override
-    public boolean K() {
-        return false;
+    public void setTranslationY(float f10) {
+        super.setTranslationY(f10);
+        if (this.f43704a) {
+            this.f43706c.invalidate();
+        }
     }
 
     @Override
-    public boolean M() {
-        return true;
-    }
-
-    @Override
-    public boolean N() {
-        return false;
-    }
-
-    @Override
-    public boolean O() {
-        return false;
-    }
-
-    @Override
-    public boolean P() {
-        return false;
-    }
-
-    @Override
-    public int Q(Object obj) {
-        return -1;
-    }
-
-    @Override
-    public int R(int i10) {
-        return -1;
-    }
-
-    @Override
-    public boolean S() {
-        return !(this instanceof rl);
-    }
-
-    @Override
-    public boolean T() {
-        return !(this instanceof tl);
-    }
-
-    @Override
-    public MessageObject U() {
-        return null;
-    }
-
-    @Override
-    public boolean Y() {
-        return false;
-    }
-
-    @Override
-    public long a() {
-        return 0L;
-    }
-
-    @Override
-    public String a0() {
-        return null;
-    }
-
-    @Override
-    public boolean b() {
-        return false;
-    }
-
-    @Override
-    public CharSequence b0(int i10) {
-        return null;
-    }
-
-    @Override
-    public ArrayList c() {
-        return null;
-    }
-
-    @Override
-    public boolean g() {
-        return !(this instanceof rl);
-    }
-
-    @Override
-    public boolean h() {
-        return false;
-    }
-
-    @Override
-    public ImageReceiver.BitmapHolder j(int i10) {
-        return null;
-    }
-
-    @Override
-    public int k(int i10, VideoEditedInfo videoEditedInfo) {
-        return -1;
-    }
-
-    @Override
-    public boolean l() {
-        return false;
-    }
-
-    @Override
-    public boolean p() {
-        return false;
-    }
-
-    @Override
-    public boolean q() {
-        return false;
-    }
-
-    @Override
-    public boolean r() {
-        return false;
-    }
-
-    @Override
-    public boolean t() {
-        return true;
-    }
-
-    @Override
-    public boolean u() {
-        return !(this instanceof org.telegram.ui.Components.ul);
-    }
-
-    @Override
-    public HashMap v() {
-        return null;
-    }
-
-    @Override
-    public boolean w() {
-        return false;
-    }
-
-    @Override
-    public boolean x(int i10) {
-        return false;
-    }
-
-    @Override
-    public int y() {
-        return -1;
-    }
-
-    @Override
-    public boolean z() {
-        return !(this instanceof org.telegram.ui.Components.lh);
-    }
-
-    @Override
-    public void B(int i10) {
-    }
-
-    @Override
-    public void D() {
-    }
-
-    @Override
-    public void F(boolean z4) {
-    }
-
-    @Override
-    public void G() {
-    }
-
-    @Override
-    public void I() {
-    }
-
-    @Override
-    public void L(VideoEditedInfo videoEditedInfo) {
-    }
-
-    @Override
-    public void V() {
-    }
-
-    @Override
-    public void W(int i10) {
-    }
-
-    @Override
-    public void X(int i10) {
-    }
-
-    @Override
-    public void Z(int i10) {
-    }
-
-    @Override
-    public void d() {
-    }
-
-    @Override
-    public void e(CharSequence charSequence) {
-    }
-
-    @Override
-    public void i() {
-    }
-
-    @Override
-    public void m() {
-    }
-
-    @Override
-    public void n() {
-    }
-
-    @Override
-    public void s() {
-    }
-
-    @Override
-    public void f(String str, String str2, boolean z4) {
-    }
-
-    @Override
-    public void o(int i10, VideoEditedInfo videoEditedInfo, boolean z4, int i11, int i12, boolean z10) {
+    public void setVisibility(int i10) {
+        b(i10, true);
     }
 }

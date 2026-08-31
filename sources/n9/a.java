@@ -22,19 +22,19 @@ import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 import k9.a2;
 public final class a {
-    public static final Charset e = Charset.forName("UTF-8");
-    public static final int f14855f = 15;
-    public static final l9.a f14856g = new Object();
-    public static final f h = new f(23);
-    public static final i f14857i = new i(2);
-    public final AtomicInteger f14858a = new AtomicInteger(0);
-    public final b f14859b;
-    public final g f14860c;
+    public static final Charset f15864e = Charset.forName("UTF-8");
+    public static final int f15865f = 15;
+    public static final l9.a f15866g = new Object();
+    public static final f h = new f(21);
+    public static final i f15867i = new i(2);
+    public final AtomicInteger f15868a = new AtomicInteger(0);
+    public final b f15869b;
+    public final g f15870c;
     public final k d;
 
     public a(b bVar, g gVar, k kVar) {
-        this.f14859b = bVar;
-        this.f14860c = gVar;
+        this.f15869b = bVar;
+        this.f15870c = gVar;
         this.d = kVar;
     }
 
@@ -55,7 +55,7 @@ public final class a {
                 if (read > 0) {
                     byteArrayOutputStream.write(bArr, 0, read);
                 } else {
-                    String str = new String(byteArrayOutputStream.toByteArray(), e);
+                    String str = new String(byteArrayOutputStream.toByteArray(), f15864e);
                     fileInputStream.close();
                     return str;
                 }
@@ -71,7 +71,7 @@ public final class a {
     }
 
     public static void f(File file, String str) {
-        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file), e);
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file), f15864e);
         try {
             outputStreamWriter.write(str);
             outputStreamWriter.close();
@@ -87,9 +87,9 @@ public final class a {
 
     public final ArrayList b() {
         ArrayList arrayList = new ArrayList();
-        b bVar = this.f14859b;
-        arrayList.addAll(b.e(bVar.e.listFiles()));
-        arrayList.addAll(b.e(bVar.f14864f.listFiles()));
+        b bVar = this.f15869b;
+        arrayList.addAll(b.e(bVar.f15874e.listFiles()));
+        arrayList.addAll(b.e(bVar.f15875f.listFiles()));
         f fVar = h;
         Collections.sort(arrayList, fVar);
         List e6 = b.e(bVar.d.listFiles());
@@ -99,34 +99,34 @@ public final class a {
     }
 
     public final NavigableSet c() {
-        return new TreeSet(b.e(this.f14859b.f14863c.list())).descendingSet();
+        return new TreeSet(b.e(this.f15869b.f15873c.list())).descendingSet();
     }
 
     public final void d(a2 a2Var, String str, boolean z4) {
         String str2;
-        b bVar = this.f14859b;
-        int i10 = this.f14860c.d().f41061a.f2081a;
-        f14856g.getClass();
-        String e6 = l9.a.f11729a.e(a2Var);
-        String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f14858a.getAndIncrement()));
+        b bVar = this.f15869b;
+        int i10 = this.f15870c.d().f44217a.f2264a;
+        f15866g.getClass();
+        String d = l9.a.f12136a.d(a2Var);
+        String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f15868a.getAndIncrement()));
         if (z4) {
             str2 = "_";
         } else {
             str2 = "";
         }
         try {
-            f(bVar.b(str, android.support.v4.media.a.o("event", format, str2)), e6);
-        } catch (IOException e10) {
-            Log.w("FirebaseCrashlytics", "Could not persist event for session " + str, e10);
+            f(bVar.b(str, android.support.v4.media.a.o("event", format, str2)), d);
+        } catch (IOException e6) {
+            Log.w("FirebaseCrashlytics", "Could not persist event for session " + str, e6);
         }
         i iVar = new i(3);
         bVar.getClass();
-        File file = new File(bVar.f14863c, str);
+        File file = new File(bVar.f15873c, str);
         file.mkdirs();
-        List<File> e11 = b.e(file.listFiles(iVar));
-        Collections.sort(e11, new f(24));
-        int size = e11.size();
-        for (File file2 : e11) {
+        List<File> e10 = b.e(file.listFiles(iVar));
+        Collections.sort(e10, new f(22));
+        int size = e10.size();
+        for (File file2 : e10) {
             if (size > i10) {
                 b.d(file2);
                 size--;

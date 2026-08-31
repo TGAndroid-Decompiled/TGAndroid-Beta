@@ -1,59 +1,26 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class d91 implements og.a {
-    public final RectF f33560a = new RectF();
-    public final kh.j4 f33561b;
-    public final ga1 f33562c;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class d91 implements RequestDelegate {
+    public final int f36147a;
+    public final ha1 f36148b;
 
-    public d91(ga1 ga1Var, kh.j4 j4Var) {
-        this.f33562c = ga1Var;
-        this.f33561b = j4Var;
+    public d91(ha1 ha1Var, int i10) {
+        this.f36147a = i10;
+        this.f36148b = ha1Var;
     }
 
     @Override
-    public final void e(Canvas canvas, RectF rectF) {
-        ng.k kVar;
-        bc bcVar;
-        bc bcVar2;
-        ga1 ga1Var = this.f33562c;
-        ga1Var.fragmentView.getMeasuredWidth();
-        ga1Var.fragmentView.getMeasuredHeight();
-        canvas.drawColor(ga1Var.getThemedColor(org.telegram.ui.ActionBar.j6.f19906d6));
-        for (int i10 = 0; i10 < 3; i10++) {
-            if (i10 == 0) {
-                kVar = ga1Var.Q;
-                bcVar = ga1Var.P;
-            } else if (i10 == 1 && (bcVar2 = ga1Var.f34537g0) != null) {
-                kVar = bcVar2.D;
-                bcVar = bcVar2;
-            } else {
-                ke keVar = ga1Var.f34538h0;
-                if (keVar != null) {
-                    kVar = keVar.Y0;
-                    bcVar = keVar;
-                } else {
-                    kVar = null;
-                    bcVar = null;
-                }
-            }
-            if (kVar != null && bcVar != null) {
-                kh.j4 j4Var = this.f33561b;
-                RectF rectF2 = this.f33560a;
-                ug.i.c(bcVar, j4Var, rectF2);
-                if (rectF2.right > 0.0f) {
-                    ga1Var.fragmentView.getMeasuredWidth();
-                }
-                canvas.save();
-                kVar.e(canvas, rectF);
-                canvas.restore();
-            }
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f36147a) {
+            case 0:
+                ha1.U(this.f36148b, tLObject);
+                return;
+            default:
+                ha1.V(this.f36148b, tLObject);
+                return;
         }
-    }
-
-    @Override
-    public final void g(g.x xVar, RectF rectF) {
-        xVar.f6327b = true;
     }
 }

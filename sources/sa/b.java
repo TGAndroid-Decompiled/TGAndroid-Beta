@@ -3,13 +3,13 @@ package sa;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 public final class b extends pa.u {
-    public static final a f44171c = new a();
-    public final Class f44172a;
-    public final o f44173b;
+    public static final a f47158c = new a();
+    public final Class f47159a;
+    public final o f47160b;
 
     public b(pa.g gVar, pa.u uVar, Class cls) {
-        this.f44173b = new o(gVar, uVar, cls);
-        this.f44172a = cls;
+        this.f47160b = new o(gVar, uVar, cls);
+        this.f47159a = cls;
     }
 
     @Override
@@ -21,11 +21,11 @@ public final class b extends pa.u {
         ArrayList arrayList = new ArrayList();
         aVar.a();
         while (aVar.k()) {
-            arrayList.add(((pa.u) this.f44173b.f44211c).read(aVar));
+            arrayList.add(((pa.u) this.f47160b.f47199c).read(aVar));
         }
         aVar.e();
         int size = arrayList.size();
-        Class cls = this.f44172a;
+        Class cls = this.f47159a;
         if (cls.isPrimitive()) {
             Object newInstance = Array.newInstance(cls, size);
             for (int i10 = 0; i10 < size; i10++) {
@@ -45,7 +45,7 @@ public final class b extends pa.u {
         bVar.b();
         int length = Array.getLength(obj);
         for (int i10 = 0; i10 < length; i10++) {
-            this.f44173b.write(bVar, Array.get(obj, i10));
+            this.f47160b.write(bVar, Array.get(obj, i10));
         }
         bVar.e();
     }

@@ -3,17 +3,17 @@ package j3;
 import android.net.Uri;
 import java.util.UUID;
 public final class v0 {
-    public UUID f8851a;
-    public Uri f8852b;
-    public s8.x f8853c = s8.n0.h;
+    public UUID f9446a;
+    public Uri f9447b;
+    public s8.x f9448c = s8.n0.h;
     public boolean d;
-    public boolean e;
-    public boolean f8854f;
-    public s8.v f8855g;
+    public boolean f9449e;
+    public boolean f9450f;
+    public s8.v f9451g;
     public byte[] h;
 
     public v0() {
-        s8.t tVar = s8.v.f44157b;
-        this.f8855g = s8.i0.e;
+        s8.t tVar = s8.v.f47143b;
+        this.f9451g = s8.i0.f47108e;
     }
 }

@@ -1,41 +1,32 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-public final class kj implements Runnable {
-    public final int f26280a;
-    public final mj f26281b;
-    public final String f26282c;
-    public final int d;
+import org.telegram.tgnet.TLRPC;
+public final class kj implements qj {
+    public final int f28400a;
+    public final TLRPC.User f28401b;
 
-    public kj(mj mjVar, String str, int i10, int i11) {
-        this.f26280a = i11;
-        this.f26281b = mjVar;
-        this.f26282c = str;
-        this.d = i10;
+    public kj(int i10, TLRPC.User user) {
+        this.f28400a = i10;
+        this.f28401b = user;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26280a) {
+    public final String run() {
+        se.b c3;
+        StringBuilder sb;
+        String str;
+        switch (this.f28400a) {
             case 0:
-                mj mjVar = this.f26281b;
-                String str = this.f26282c;
-                int i10 = this.d;
-                mjVar.getClass();
-                AndroidUtilities.runOnUIThread(new kj(mjVar, str, i10, 1));
-                return;
+                c3 = se.b.c();
+                sb = new StringBuilder("+");
+                str = this.f28401b.phone;
+                break;
             default:
-                mj mjVar2 = this.f26281b;
-                String str2 = this.f26282c;
-                int i11 = this.d;
-                mjVar2.getClass();
-                int i12 = UserConfig.selectedAccount;
-                Utilities.searchQueue.postRunnable(new lj(mjVar2, str2, new ArrayList(ContactsController.getInstance(i12).contactsBook.values()), new ArrayList(ContactsController.getInstance(i12).contacts), i12, i11));
-                return;
+                c3 = se.b.c();
+                sb = new StringBuilder("+");
+                str = this.f28401b.phone;
+                break;
         }
+        return org.telegram.messenger.y3.j(sb, str, c3);
     }
 }

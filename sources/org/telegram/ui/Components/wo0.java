@@ -1,34 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class wo0 extends FrameLayout {
-    public final ve f30398a;
+import android.view.ViewPropertyAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+public final class wo0 extends f2.a1 {
+    public final ve f32834a;
 
-    public wo0(ve veVar, Context context) {
-        super(context);
-        this.f30398a = veVar;
+    public wo0(ve veVar) {
+        this.f32834a = veVar;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ve veVar = this.f30398a;
-        View contentView = veVar.getContentView();
-        contentView.getLocationInWindow(r3);
-        int[] iArr = {iArr[0] + veVar.E, iArr[1] + veVar.F};
-        int[] iArr2 = new int[2];
-        getLocationInWindow(iArr2);
-        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
-            motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
-            return contentView.dispatchTouchEvent(motionEvent);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        boolean z4;
+        float f10;
+        ve veVar = this.f32834a;
+        View view = veVar.f25312u;
+        if (veVar.f25313w.I0() != 0) {
+            z4 = true;
+        } else {
+            z4 = false;
         }
-        if (!veVar.A && !veVar.D) {
-            veVar.D = true;
-            veVar.l(new o1.j[0]);
+        Boolean bool = veVar.f25314x;
+        if (bool != null && z4 == bool.booleanValue()) {
+            return;
         }
-        return true;
+        view.animate().cancel();
+        ViewPropertyAnimator animate = view.animate();
+        if (z4) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        animate.alpha(f10).setDuration(150L).start();
+        veVar.f25314x = Boolean.valueOf(z4);
     }
 }

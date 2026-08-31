@@ -1,14 +1,14 @@
 package nd;
 public final class e extends f {
-    public final Throwable f14936a;
+    public final Throwable f15954a;
 
     public e(Throwable th2) {
-        this.f14936a = th2;
+        this.f15954a = th2;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof e) {
-            if (kotlin.jvm.internal.j.a(this.f14936a, ((e) obj).f14936a)) {
+            if (kotlin.jvm.internal.j.a(this.f15954a, ((e) obj).f15954a)) {
                 return true;
             }
             return false;
@@ -17,7 +17,7 @@ public final class e extends f {
     }
 
     public final int hashCode() {
-        Throwable th2 = this.f14936a;
+        Throwable th2 = this.f15954a;
         if (th2 != null) {
             return th2.hashCode();
         }
@@ -26,6 +26,6 @@ public final class e extends f {
 
     @Override
     public final String toString() {
-        return "Closed(" + this.f14936a + ')';
+        return "Closed(" + this.f15954a + ')';
     }
 }

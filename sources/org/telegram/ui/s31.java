@@ -1,46 +1,35 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.NotificationCenter;
-public final class s31 extends AnimatorListenerAdapter {
-    public final int f38186a;
-    public final t31 f38187b;
+import android.animation.ValueAnimator;
+public final class s31 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f41125a;
+    public final v31 f41126b;
 
-    public s31(t31 t31Var, int i10) {
-        this.f38186a = i10;
-        this.f38187b = t31Var;
+    public s31(v31 v31Var, int i10) {
+        this.f41125a = i10;
+        this.f41126b = v31Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f38186a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f41125a) {
             case 0:
-                t31 t31Var = this.f38187b;
-                if (t31Var.h != null) {
-                    t31Var.h = null;
-                    t31Var.e = 0.0f;
-                    t31Var.g();
-                    t31Var.f38532n.unlock();
-                    qx qxVar = t31Var.f38528a;
-                    if (qxVar != null) {
-                        qxVar.onPause();
-                        t31Var.f38528a.onFragmentDestroy();
-                        t31Var.removeAllViews();
-                        t31Var.f38528a = null;
-                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
-                    }
-                    t31Var.d(false);
-                    return;
-                }
+                v31 v31Var = this.f41126b;
+                v31Var.getClass();
+                v31Var.f42113e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                v31Var.g();
+                return;
+            case 1:
+                v31 v31Var2 = this.f41126b;
+                v31Var2.getClass();
+                v31Var2.f42113e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                v31Var2.g();
                 return;
             default:
-                t31 t31Var2 = this.f38187b;
-                if (t31Var2.h != null) {
-                    t31Var2.h = null;
-                    t31Var2.d(true);
-                    return;
-                }
+                v31 v31Var3 = this.f41126b;
+                v31Var3.getClass();
+                v31Var3.f42113e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                v31Var3.g();
                 return;
         }
     }

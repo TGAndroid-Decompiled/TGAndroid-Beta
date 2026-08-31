@@ -4,7 +4,6 @@ import android.media.MediaDrmException;
 import android.os.SystemClock;
 import android.text.style.CharacterStyle;
 import android.view.View;
-import androidx.biometric.f0;
 import h5.d0;
 import j$.util.Objects;
 import java.nio.ShortBuffer;
@@ -13,7 +12,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import l.w;
+import l.x;
 import o3.v;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.MessageObject;
@@ -29,20 +28,22 @@ import org.telegram.ui.Cells.t0;
 import org.telegram.ui.Cells.t1;
 import org.telegram.ui.Cells.v0;
 import org.telegram.ui.Components.eg;
+import org.telegram.ui.Components.ki;
 import org.telegram.ui.Components.u5;
+import org.telegram.ui.Components.wg;
 import org.telegram.ui.nn;
-import org.telegram.ui.vu0;
-public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, w, v, of.a, eg, k1, t0, pf.a, q9.a, r3.m, ra.m, qg.a, c9.e {
-    public static u f7035b;
-    public static u f7036c;
+import org.telegram.ui.xu0;
+public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, x, v, of.a, eg, k1, t0, pf.a, q9.a, r3.m, ra.m, ki, c9.e {
+    public static u f7348b;
+    public static u f7349c;
     public static u d;
-    public final int f7037a;
+    public final int f7350a;
 
     public u(int i10) {
-        this.f7037a = i10;
+        this.f7350a = i10;
     }
 
-    public static Calendar F2() {
+    public static Calendar K2() {
         if (d == null) {
             d = new u(9);
         }
@@ -50,8 +51,8 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
         return Calendar.getInstance();
     }
 
-    public static String G2(mc.c cVar) {
-        String str = cVar.f13911a;
+    public static String L2(mc.c cVar) {
+        String str = cVar.f13630a;
         if ("br".equals(str)) {
             return "\n";
         }
@@ -68,7 +69,7 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
         }
     }
 
-    public static final CharSequence H2(Object obj) {
+    public static final CharSequence M2(Object obj) {
         Objects.requireNonNull(obj);
         if (obj instanceof CharSequence) {
             return (CharSequence) obj;
@@ -82,12 +83,28 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public n9 C2() {
-        return null;
+    public d4.k A1(d4.i iVar) {
+        int i10 = d0.f7237a;
+        if (i10 >= 23 && i10 >= 31) {
+            int g10 = h5.o.g(iVar.f4232c.C);
+            h5.a.v("DMCodecAdapterFactory", "Creating an asynchronous MediaCodec adapter for track type " + d0.B(g10));
+            return new bf.b(g10).A1(iVar);
+        }
+        return new ab.a(5).A1(iVar);
     }
 
     @Override
-    public n3.b D0(byte[] bArr) {
+    public boolean A2(v0 v0Var, float f10, float f11) {
+        return false;
+    }
+
+    @Override
+    public void B0(wg wgVar) {
+        wgVar.run();
+    }
+
+    @Override
+    public boolean C2(String str, byte[] bArr) {
         throw new IllegalStateException();
     }
 
@@ -97,163 +114,158 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public int D2() {
-        return 1711276032;
-    }
-
-    @Override
-    public byte[] F1(byte[] bArr, byte[] bArr2) {
+    public n3.b E0(byte[] bArr) {
         throw new IllegalStateException();
     }
 
     @Override
-    public TLRPC.TL_channels_sendAsPeers G() {
+    public boolean E2(int i10) {
+        return false;
+    }
+
+    @Override
+    public TLRPC.TL_channels_sendAsPeers F() {
         return null;
     }
 
     @Override
-    public boolean G0() {
+    public boolean H0() {
         return true;
     }
 
     @Override
-    public boolean I1(t1 t1Var, TLRPC.Chat chat) {
+    public boolean H1() {
         return false;
     }
 
     @Override
-    public o3.u K() {
+    public n9 I2() {
+        return null;
+    }
+
+    @Override
+    public o3.u J() {
         throw new IllegalStateException();
     }
 
     @Override
-    public boolean K1() {
+    public byte[] K1(byte[] bArr, byte[] bArr2) {
+        throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean N(t1 t1Var, TLRPC.TodoItem todoItem, boolean z4) {
         return false;
     }
 
     @Override
-    public byte[] M0() {
+    public boolean N1(t1 t1Var, TLRPC.Chat chat) {
+        return false;
+    }
+
+    @Override
+    public boolean O() {
+        return false;
+    }
+
+    @Override
+    public byte[] O0() {
         throw new MediaDrmException("Attempting to open a session using a dummy ExoMediaDrm.");
     }
 
     @Override
-    public int N1(int i10, int i11, int i12) {
+    public boolean P(t1 t1Var) {
+        return false;
+    }
+
+    @Override
+    public boolean P1() {
+        return false;
+    }
+
+    @Override
+    public boolean R() {
+        return false;
+    }
+
+    @Override
+    public boolean R0(long j10) {
+        return false;
+    }
+
+    @Override
+    public int S1(int i10, int i11, int i12) {
         of.a aVar;
         if (i11 == 6) {
-            aVar = of.a.f16578p;
+            aVar = of.a.f16750p;
         } else if (i11 > i12) {
-            aVar = of.a.f16575l;
+            aVar = of.a.f16747l;
         } else if (i11 < i12) {
-            aVar = of.a.f16576m;
+            aVar = of.a.f16748m;
         } else {
-            aVar = of.a.f16577o;
+            aVar = of.a.f16749o;
         }
-        return aVar.N1(i10, i11, i12);
+        return aVar.S1(i10, i11, i12);
     }
 
     @Override
-    public boolean O0(long j10) {
-        return false;
+    public p2 T0() {
+        return null;
     }
 
     @Override
-    public boolean P(t1 t1Var, TLRPC.TodoItem todoItem, boolean z4) {
-        return false;
-    }
-
-    @Override
-    public void P1(t1 t1Var, TLRPC.WebPage webPage, String str, boolean z4) {
+    public void U1(t1 t1Var, TLRPC.WebPage webPage, String str, boolean z4) {
         af.g.s(t1Var.getContext(), str);
     }
 
     @Override
-    public boolean Q() {
-        return false;
-    }
-
-    @Override
-    public p2 Q0() {
-        return null;
-    }
-
-    @Override
-    public void Q1(byte[] bArr) {
-        throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean R(t1 t1Var) {
-        return false;
-    }
-
-    @Override
-    public CharacterStyle R1(t1 t1Var) {
-        return null;
-    }
-
-    @Override
-    public boolean S() {
-        return false;
-    }
-
-    @Override
-    public boolean T1(t1 t1Var, MessageObject messageObject) {
-        return false;
-    }
-
-    @Override
-    public void U0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11) {
-        of.a aVar;
-        if (i10 == 6) {
-            aVar = of.a.f16578p;
-        } else if (i10 > i11) {
-            aVar = of.a.f16575l;
-        } else if (i10 < i11) {
-            aVar = of.a.f16576m;
-        } else {
-            aVar = of.a.f16577o;
-        }
-        aVar.U0(shortBuffer, i10, shortBuffer2, i11);
-    }
-
-    @Override
-    public o3.t U1(byte[] bArr, List list, int i10, HashMap hashMap) {
-        throw new IllegalStateException();
-    }
-
-    @Override
-    public int W() {
+    public int V() {
         return 0;
     }
 
     @Override
-    public int W1() {
-        return 0;
+    public void V1(byte[] bArr) {
+        throw new IllegalStateException();
     }
 
     @Override
-    public long X() {
+    public long W() {
         return SystemClock.elapsedRealtime();
     }
 
     @Override
-    public int X0() {
-        return 352321535;
-    }
-
-    @Override
-    public boolean Y0(t1 t1Var, boolean z4) {
-        return false;
-    }
-
-    @Override
-    public ug.a Z() {
+    public CharacterStyle W1(t1 t1Var) {
         return null;
     }
 
     @Override
-    public boolean Z1(t1 t1Var, TLRPC.PollAnswer pollAnswer) {
+    public void X0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11) {
+        of.a aVar;
+        if (i10 == 6) {
+            aVar = of.a.f16750p;
+        } else if (i10 > i11) {
+            aVar = of.a.f16747l;
+        } else if (i10 < i11) {
+            aVar = of.a.f16748m;
+        } else {
+            aVar = of.a.f16749o;
+        }
+        aVar.X0(shortBuffer, i10, shortBuffer2, i11);
+    }
+
+    @Override
+    public boolean Y1(t1 t1Var, MessageObject messageObject) {
         return false;
+    }
+
+    @Override
+    public vg.a Z() {
+        return null;
+    }
+
+    @Override
+    public o3.t Z1(byte[] bArr, List list, int i10, HashMap hashMap) {
+        throw new IllegalStateException();
     }
 
     @Override
@@ -267,28 +279,23 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public vu0 a2() {
-        return null;
-    }
-
-    @Override
     public long b() {
         return 0L;
     }
 
     @Override
-    public int b2() {
-        return 1;
+    public boolean b1(t1 t1Var, boolean z4) {
+        return false;
     }
 
     @Override
-    public int c1() {
-        return 0;
+    public boolean b2() {
+        return false;
     }
 
     @Override
-    public r3.v c2(int i10, int i11) {
-        throw new UnsupportedOperationException();
+    public boolean c0(t1 t1Var, TLRPC.User user) {
+        return false;
     }
 
     @Override
@@ -297,23 +304,13 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public boolean d0(t1 t1Var, TLRPC.User user) {
-        return false;
-    }
-
-    @Override
-    public boolean d1(int i10, t1 t1Var) {
-        return false;
-    }
-
-    @Override
-    public boolean d2(long j10) {
+    public boolean d0(l.l lVar) {
         return false;
     }
 
     @Override
     public boolean e() {
-        switch (this.f7037a) {
+        switch (this.f7350a) {
             case 16:
                 return true;
             default:
@@ -322,33 +319,23 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public boolean e0(l.k kVar) {
-        return false;
-    }
-
-    @Override
-    public TL_stories.StoryItem e1() {
-        return null;
-    }
-
-    @Override
-    public Object f0(c5.j jVar) {
-        switch (this.f7037a) {
+    public Object e0(c5.j jVar) {
+        switch (this.f7350a) {
             case 26:
-                return new bb.b(jVar.x(bb.a.class));
+                return new bb.c(jVar.w(bb.b.class));
             default:
-                return new bb.a(jVar.d(ab.a.class));
+                return new bb.b(jVar.c(ab.a.class));
         }
     }
 
     @Override
-    public void f1() {
-        throw new UnsupportedOperationException();
+    public boolean e2(t1 t1Var, TLRPC.PollAnswer pollAnswer) {
+        return false;
     }
 
     @Override
-    public boolean f2(t1 t1Var, TLRPC.TodoItem todoItem) {
-        return false;
+    public int f1() {
+        return 0;
     }
 
     @Override
@@ -357,13 +344,18 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public boolean g1(long j10) {
+    public boolean g0() {
         return false;
     }
 
     @Override
-    public void g2(r3.s sVar) {
-        throw new UnsupportedOperationException();
+    public boolean g1(int i10, t1 t1Var) {
+        return false;
+    }
+
+    @Override
+    public xu0 g2() {
+        return null;
     }
 
     @Override
@@ -372,13 +364,33 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public void h1(byte[] bArr, byte[] bArr2) {
-        throw new IllegalStateException();
+    public TL_stories.StoryItem h1() {
+        return null;
     }
 
     @Override
-    public boolean j1(MessageObject messageObject) {
-        return org.telegram.ui.b.a(messageObject);
+    public int h2() {
+        return 1;
+    }
+
+    @Override
+    public void i1() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public r3.v i2(int i10, int i11) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean j1(long j10) {
+        return false;
+    }
+
+    @Override
+    public boolean j2(long j10) {
+        return false;
     }
 
     @Override
@@ -392,8 +404,8 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public boolean k1() {
-        return false;
+    public void k1(byte[] bArr, byte[] bArr2) {
+        throw new IllegalStateException();
     }
 
     @Override
@@ -402,7 +414,27 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
+    public boolean l2(t1 t1Var, TLRPC.TodoItem todoItem) {
+        return false;
+    }
+
+    @Override
+    public boolean m1(MessageObject messageObject) {
+        return org.telegram.ui.b.a(messageObject);
+    }
+
+    @Override
+    public void m2(r3.s sVar) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public boolean n0() {
+        return false;
+    }
+
+    @Override
+    public boolean n1() {
         return false;
     }
 
@@ -412,33 +444,13 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public boolean p2(t1 t1Var, TL_iv.PageBlock pageBlock) {
-        return false;
-    }
-
-    @Override
     public boolean q0(u5 u5Var) {
-        return false;
-    }
-
-    @Override
-    public boolean q1() {
         return false;
     }
 
     @Override
     public nn r0() {
         return null;
-    }
-
-    @Override
-    public Object s2() {
-        switch (this.f7037a) {
-            case 22:
-                return new ArrayList();
-            default:
-                return new ra.l(true);
-        }
     }
 
     @Override
@@ -451,13 +463,13 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public boolean u2(v0 v0Var, float f10, float f11) {
+    public boolean u1() {
         return false;
     }
 
     @Override
-    public Map v(byte[] bArr) {
-        throw new IllegalStateException();
+    public String v(long j10) {
+        return null;
     }
 
     @Override
@@ -472,83 +484,75 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public String w(long j10) {
-        return null;
+    public boolean v2(t1 t1Var, TL_iv.PageBlock pageBlock) {
+        return false;
     }
 
     @Override
-    public d4.k w1(d4.i iVar) {
-        int i10 = d0.f6937a;
-        if (i10 >= 23 && i10 >= 31) {
-            int g10 = h5.o.g(iVar.f4162c.C);
-            h5.a.v("DMCodecAdapterFactory", "Creating an asynchronous MediaCodec adapter for track type " + d0.B(g10));
-            return new bf.b(g10).w1(iVar);
-        }
-        return new ab.a(5).w1(iVar);
-    }
-
-    @Override
-    public boolean w2(String str, byte[] bArr) {
+    public Map w(byte[] bArr) {
         throw new IllegalStateException();
     }
 
     @Override
-    public int x0() {
-        return 872415231;
+    public Object y2() {
+        switch (this.f7350a) {
+            case 22:
+                return new ArrayList();
+            default:
+                return new ra.l(true);
+        }
     }
 
     @Override
-    public boolean y2(int i10) {
-        return false;
+    public void B() {
     }
 
     @Override
-    public boolean z1() {
-        return false;
+    public void D0() {
     }
 
     @Override
-    public void A2() {
+    public void F2() {
     }
 
     @Override
-    public void C() {
+    public void G1() {
     }
 
     @Override
-    public void C0() {
+    public void G2() {
     }
 
     @Override
-    public void C1() {
+    public void J2() {
     }
 
     @Override
-    public void E2() {
+    public void L0() {
     }
 
     @Override
-    public void H1() {
+    public void M1() {
     }
 
     @Override
-    public void K0() {
+    public void P0() {
     }
 
     @Override
-    public void N0() {
+    public void Q0() {
     }
 
     @Override
-    public void V0() {
+    public void X() {
     }
 
     @Override
-    public void V1() {
+    public void Y0() {
     }
 
     @Override
-    public void Y() {
+    public void a2() {
     }
 
     @Override
@@ -560,19 +564,11 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public void h2() {
-    }
-
-    @Override
     public void j() {
     }
 
     @Override
-    public void l1() {
-    }
-
-    @Override
-    public void m2() {
+    public void n2() {
     }
 
     @Override
@@ -592,19 +588,11 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public void r2() {
-    }
-
-    @Override
     public void release() {
     }
 
     @Override
-    public void s() {
-    }
-
-    @Override
-    public void s1() {
+    public void s2() {
     }
 
     @Override
@@ -612,11 +600,7 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public void t2() {
-    }
-
-    @Override
-    public void u1() {
+    public void u() {
     }
 
     @Override
@@ -624,111 +608,131 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
+    public void w1() {
+    }
+
+    @Override
+    public void x1() {
+    }
+
+    @Override
+    public void x2() {
+    }
+
+    @Override
+    public void y0() {
+    }
+
+    @Override
+    public void y1() {
+    }
+
+    @Override
     public void z2() {
     }
 
     @Override
-    public void A(t1 t1Var) {
+    public void A(boolean z4) {
     }
 
     @Override
-    public void A1(long j10) {
+    public void C0(t1 t1Var) {
     }
 
     @Override
-    public void B(f0 f0Var) {
+    public void C1(CharSequence charSequence) {
     }
 
     @Override
-    public void B0(t1 t1Var) {
+    public void E(t1 t1Var) {
     }
 
     @Override
-    public void B1(v0 v0Var) {
+    public void E1(long j10) {
     }
 
     @Override
-    public void E1(t1 t1Var) {
+    public void F1(v0 v0Var) {
     }
 
     @Override
-    public void F(t1 t1Var) {
+    public void H(MessageObject.TextLayoutBlock textLayoutBlock) {
     }
 
     @Override
-    public void H0(t1 t1Var) {
+    public void I0(t1 t1Var) {
     }
 
     @Override
-    public void I(MessageObject.TextLayoutBlock textLayoutBlock) {
+    public void J1(t1 t1Var) {
     }
 
     @Override
-    public void J0(t1 t1Var) {
+    public void K(t1 t1Var) {
     }
 
     @Override
-    public void L(t1 t1Var) {
+    public void K0(t1 t1Var) {
     }
 
     @Override
-    public void L0(t1 t1Var) {
+    public void M(MessageObject messageObject) {
     }
 
     @Override
-    public void M1(t1 t1Var) {
+    public void M0(ja.c cVar) {
     }
 
     @Override
-    public void O(MessageObject messageObject) {
+    public void N0(t1 t1Var) {
     }
 
     @Override
-    public void O1(MessageObject messageObject) {
+    public void R1(t1 t1Var) {
     }
 
     @Override
-    public void P0(t1 t1Var) {
+    public void S0(t1 t1Var) {
     }
 
     @Override
-    public void S0(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    public void T(t1 t1Var) {
     }
 
     @Override
-    public void U(t1 t1Var) {
+    public void T1(MessageObject messageObject) {
     }
 
     @Override
-    public void Z0(t1 t1Var) {
+    public void V0(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
     }
 
     @Override
-    public void a1(t1 t1Var) {
+    public void Y(boolean z4) {
     }
 
     @Override
-    public void b0(boolean z4) {
+    public void Z0(Object obj) {
     }
 
     @Override
-    public void b1(int i10) {
+    public void b0(v0 v0Var) {
     }
 
     @Override
-    public void c0(v0 v0Var) {
+    public void c1(t1 t1Var) {
     }
 
     @Override
-    public void g0(int i10) {
+    public void d1(t1 t1Var) {
     }
 
     @Override
-    public void i2(t1 t1Var) {
+    public void e1(int i10) {
     }
 
     @Override
-    public void j2(int i10) {
+    public void f0(int i10) {
     }
 
     @Override
@@ -740,15 +744,15 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public void m1(byte[] bArr) {
-    }
-
-    @Override
     public void n(t1 t1Var) {
     }
 
     @Override
-    public void n2(boolean z4) {
+    public void o1(TLRPC.User user) {
+    }
+
+    @Override
+    public void o2(t1 t1Var) {
     }
 
     @Override
@@ -756,11 +760,19 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
+    public void p2(int i10) {
+    }
+
+    @Override
     public void q(t1 t1Var) {
     }
 
     @Override
-    public void q2(t1 t1Var) {
+    public void q1(byte[] bArr) {
+    }
+
+    @Override
+    public void s(t1 t1Var) {
     }
 
     @Override
@@ -772,7 +784,11 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public void u(t1 t1Var) {
+    public void t2(boolean z4) {
+    }
+
+    @Override
+    public void w2(t1 t1Var) {
     }
 
     @Override
@@ -784,99 +800,99 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public void y1(CharSequence charSequence) {
+    public void z(t1 t1Var) {
     }
 
     @Override
-    public void z(boolean z4) {
+    public void D(t1 t1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
     }
 
     @Override
-    public void E(t1 t1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
+    public void G(float f10, int i10) {
     }
 
     @Override
-    public void G1(t1 t1Var, boolean z4) {
+    public void I(v0 v0Var, int i10) {
     }
 
     @Override
-    public void H(float f10, int i10) {
+    public void J0(int i10, int i11) {
     }
 
     @Override
-    public void I0(int i10, int i11) {
+    public void L(int i10, t1 t1Var) {
     }
 
     @Override
-    public void J(v0 v0Var, int i10) {
+    public void L1(t1 t1Var, boolean z4) {
     }
 
     @Override
-    public void J1(t1 t1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    public void O1(t1 t1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
-    public void M(t1 t1Var, jh.f fVar) {
+    public void Q(t1 t1Var, kh.f fVar) {
     }
 
     @Override
-    public void N(int i10, t1 t1Var) {
+    public void U(byte[] bArr, k3.k kVar) {
     }
 
     @Override
-    public void R0(int i10, t1 t1Var) {
+    public void U0(int i10, t1 t1Var) {
     }
 
     @Override
-    public void T0(t1 t1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+    public void W0(t1 t1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
     }
 
     @Override
-    public void V(byte[] bArr, k3.k kVar) {
+    public void c(l.l lVar, boolean z4) {
     }
 
     @Override
-    public void X1(t1 t1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+    public void c2(t1 t1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
     }
 
     @Override
-    public void c(l.k kVar, boolean z4) {
+    public void q2(t1 t1Var, long j10) {
     }
 
     @Override
-    public void k2(t1 t1Var, long j10) {
+    public void r2(v0 v0Var, String str) {
     }
 
     @Override
-    public void l2(v0 v0Var, String str) {
+    public void s1(t1 t1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
-    public void o1(t1 t1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    public void v1(t1 t1Var, TLRPC.Document document) {
     }
 
     @Override
-    public void r1(t1 t1Var, TLRPC.Document document) {
+    public void B1(t1 t1Var, float f10, float f11) {
     }
 
     @Override
-    public void B2(t1 t1Var, int i10, int i11) {
+    public void F0(t1 t1Var, TLObject tLObject, boolean z4) {
     }
 
     @Override
-    public void E0(t1 t1Var, TLObject tLObject, boolean z4) {
+    public void G0(t1 t1Var, float f10, float f11) {
     }
 
     @Override
-    public void F0(t1 t1Var, float f10, float f11) {
+    public void H2(t1 t1Var, int i10, int i11) {
     }
 
     @Override
-    public void L1(v0 v0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
+    public void Q1(v0 v0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
     }
 
     @Override
-    public void W0(t1 t1Var, CharacterStyle characterStyle, boolean z4) {
+    public void a1(t1 t1Var, CharacterStyle characterStyle, boolean z4) {
     }
 
     @Override
@@ -884,15 +900,15 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public void i1(v0 v0Var, TLRPC.Document document, TLRPC.VideoSize videoSize) {
-    }
-
-    @Override
     public void j0(v0 v0Var, int i10, int i11) {
     }
 
     @Override
-    public void n1(CharSequence charSequence, boolean z4, boolean z10) {
+    public void l1(v0 v0Var, TLRPC.Document document, TLRPC.VideoSize videoSize) {
+    }
+
+    @Override
+    public void r1(CharSequence charSequence, boolean z4, boolean z10) {
     }
 
     @Override
@@ -900,15 +916,11 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public void v1(View view, CharSequence charSequence, boolean z4) {
+    public void z1(View view, CharSequence charSequence, boolean z4) {
     }
 
     @Override
-    public void x1(t1 t1Var, float f10, float f11) {
-    }
-
-    @Override
-    public void Y1(t1 t1Var, TLRPC.User user, TLRPC.Document document, String str) {
+    public void d2(t1 t1Var, TLRPC.User user, TLRPC.Document document, String str) {
     }
 
     @Override
@@ -916,7 +928,7 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public void y0(t1 t1Var, TLRPC.User user, float f10, float f11) {
+    public void x0(t1 t1Var, TLRPC.User user, float f10, float f11) {
     }
 
     @Override
@@ -924,11 +936,15 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public void D(CharSequence charSequence, boolean z4, int i10, int i11, long j10) {
+    public void B2(t1 t1Var, TLRPC.ReactionCount reactionCount, boolean z4, float f10, float f11) {
     }
 
     @Override
-    public void e2(t1 t1Var, int i10, float f10, float f11, boolean z4) {
+    public void C(CharSequence charSequence, boolean z4, int i10, int i11, long j10) {
+    }
+
+    @Override
+    public void D2(v0 v0Var, TLRPC.ReactionCount reactionCount, boolean z4, float f10, float f11) {
     }
 
     @Override
@@ -936,22 +952,26 @@ public final class u implements androidx.car.app.messaging.model.b, d4.j, h3.a, 
     }
 
     @Override
-    public void v2(t1 t1Var, TLRPC.ReactionCount reactionCount, boolean z4, float f10, float f11) {
+    public void k2(t1 t1Var, int i10, float f10, float f11, boolean z4) {
     }
 
     @Override
-    public void x2(v0 v0Var, TLRPC.ReactionCount reactionCount, boolean z4, float f10, float f11) {
+    public void S(t1 t1Var, TLRPC.Chat chat, int i10, float f10, float f11, boolean z4) {
     }
 
     @Override
-    public void T(t1 t1Var, TLRPC.Chat chat, int i10, float f10, float f11, boolean z4) {
+    public void u2(int i10, int i11, int i12, long j10, long j11, boolean z4) {
     }
 
     @Override
-    public void o2(int i10, int i11, int i12, long j10, long j11, boolean z4) {
+    public void X1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
     }
 
     @Override
-    public void S1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
+    public void f2(ArrayList arrayList, CharSequence charSequence, boolean z4, int i10, int i11, long j10, boolean z10, long j11) {
+    }
+
+    @Override
+    public void I1(int i10, boolean z4, boolean z10, int i11, int i12, long j10, boolean z11, boolean z12, long j11) {
     }
 }

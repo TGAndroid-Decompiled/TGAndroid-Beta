@@ -1,58 +1,68 @@
 package lh;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.vk;
-import org.telegram.ui.gp0;
-public final class u2 implements Utilities.Callback2 {
-    public final int f13191a;
-    public final TL_stars.TL_starGiftUnique f13192b;
-    public final long f13193c;
-    public final NotificationCenter.NotificationCenterDelegate d;
-    public final Object e;
-    public final Object f13194f;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.j6;
+import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.xt;
+public final class u2 extends xt {
+    public final org.telegram.ui.Components.c5 f13015c;
+    public int d;
+    public final j6 f13016e;
+    public final x3 f13017f;
 
-    public u2(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, Object obj2, int i10) {
-        this.f13191a = i10;
-        this.d = notificationCenterDelegate;
-        this.e = obj;
-        this.f13192b = tL_starGiftUnique;
-        this.f13193c = j10;
-        this.f13194f = obj2;
+    public u2(x3 x3Var, Context context, g6 g6Var) {
+        super(context, g6Var);
+        this.f13017f = x3Var;
+        this.f13015c = new org.telegram.ui.Components.c5(this);
+        j6 j6Var = new j6(false, true, true, false);
+        this.f13016e = j6Var;
+        j6Var.k(0.2f, 160L, pr.h);
+        j6Var.t(AndroidUtilities.dp(15.33f));
+        j6Var.setCallback(this);
+        j6Var.f28029b = 5;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        boolean z4;
-        switch (this.f13191a) {
-            case 0:
-                g5 g5Var = (g5) this.d;
-                kh.u0 u0Var = (kh.u0) this.f13194f;
-                String str = (String) obj2;
-                ((af.f) this.e).b();
-                if (((Boolean) obj).booleanValue()) {
-                    r3 r3Var = g5Var.L0;
-                    if (r3Var != null) {
-                        if (u0Var != null) {
-                            z4 = true;
-                        } else {
-                            z4 = false;
-                        }
-                        r3Var.b(this.f13192b, this.f13193c, z4);
-                    }
-                    if (u0Var != null) {
-                        AndroidUtilities.runOnUIThread(new kh.n0(u0Var, 2));
-                        g5Var.skipDismissAnimation();
-                    }
-                    g5Var.dismiss();
-                    return;
-                }
-                return;
-            default:
-                gp0.V((gp0) this.d, (boolean[]) this.e, this.f13192b, this.f13193c, (vk) this.f13194f, (i4) obj, (af.f) obj2);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        int i10;
+        super.dispatchDraw(canvas);
+        if (this.d < 0) {
+            i10 = k6.f21876p7;
+        } else {
+            i10 = k6.P5;
         }
+        int a2 = this.f13015c.a(k6.v0(i10, this.f13017f.f13102f), false);
+        j6 j6Var = this.f13016e;
+        j6Var.r(a2);
+        j6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
+        j6Var.draw(canvas);
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        super.onTextChanged(charSequence, i10, i11, i12);
+        j6 j6Var = this.f13016e;
+        if (j6Var != null) {
+            this.d = 12 - charSequence.length();
+            j6Var.b();
+            String str = "";
+            if (this.d <= 4) {
+                str = "" + this.d;
+            }
+            j6Var.q(str, true, true);
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.f13016e && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

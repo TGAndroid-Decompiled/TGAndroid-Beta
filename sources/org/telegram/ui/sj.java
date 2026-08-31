@@ -3,12 +3,12 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-public final class sj extends wh.n {
+public final class sj extends xh.n {
     public Runnable W;
     public final xn X;
 
-    public sj(xn xnVar, xn xnVar2, qj qjVar, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(xnVar2, qjVar, f6Var);
+    public sj(xn xnVar, xn xnVar2, qj qjVar, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(xnVar2, qjVar, g6Var);
         this.X = xnVar;
     }
 
@@ -45,9 +45,9 @@ public final class sj extends wh.n {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("chatItemAnimator disable notifications");
         }
-        org.telegram.ui.ActionBar.w2 w2Var = xnVar.V.getAdjustPanLayoutHelper().h;
-        AndroidUtilities.cancelRunOnUIThread(w2Var);
-        w2Var.run();
+        org.telegram.ui.ActionBar.x2 x2Var = xnVar.V.getAdjustPanLayoutHelper().h;
+        AndroidUtilities.cancelRunOnUIThread(x2Var);
+        x2Var.run();
         org.telegram.ui.Components.re reVar = xnVar.V.U3;
         AndroidUtilities.cancelRunOnUIThread(reVar);
         reVar.run();

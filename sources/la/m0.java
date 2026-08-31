@@ -9,28 +9,28 @@ import android.os.Messenger;
 import android.util.Log;
 import java.util.ArrayList;
 public final class m0 extends Handler {
-    public boolean f11804a;
-    public long f11805b;
-    public final ArrayList f11806c;
+    public boolean f12221a;
+    public long f12222b;
+    public final ArrayList f12223c;
 
     public m0(Looper looper) {
         super(looper);
-        this.f11806c = new ArrayList();
+        this.f12223c = new ArrayList();
     }
 
     public final void a(Messenger messenger) {
         String str;
-        if (this.f11804a) {
+        if (this.f12221a) {
             Object b10 = w8.g.c().b(j0.class);
             kotlin.jvm.internal.j.d(b10, "Firebase.app[SessionGenerator::class.java]");
-            c(messenger, ((j0) b10).b().f11733a);
+            c(messenger, ((j0) b10).b().f12141a);
             return;
         }
         Object b11 = w8.g.c().b(s.class);
         kotlin.jvm.internal.j.d(b11, "Firebase.app[SessionDatastore::class.java]");
-        m mVar = (m) ((z) ((s) b11)).f11836c.get();
+        m mVar = (m) ((z) ((s) b11)).f12254c.get();
         if (mVar != null) {
-            str = mVar.f11803a;
+            str = mVar.f12220a;
         } else {
             str = null;
         }
@@ -48,20 +48,20 @@ public final class m0 extends Handler {
         int i10 = j0Var.d + 1;
         j0Var.d = i10;
         if (i10 == 0) {
-            a2 = j0Var.f11793c;
+            a2 = j0Var.f12208c;
         } else {
             a2 = j0Var.a();
         }
         String str = a2;
-        String str2 = j0Var.f11793c;
+        String str2 = j0Var.f12208c;
         int i11 = j0Var.d;
-        j0Var.f11791a.getClass();
-        j0Var.e = new a0(i11, System.currentTimeMillis() * 1000, str, str2);
+        j0Var.f12206a.getClass();
+        j0Var.f12209e = new a0(i11, System.currentTimeMillis() * 1000, str, str2);
         j0Var.b();
         StringBuilder sb = new StringBuilder("Generated new session ");
         Object b11 = w8.g.c().b(j0.class);
         kotlin.jvm.internal.j.d(b11, "Firebase.app[SessionGenerator::class.java]");
-        sb.append(((j0) b11).b().f11733a);
+        sb.append(((j0) b11).b().f12141a);
         Log.d("SessionLifecycleService", sb.toString());
         StringBuilder sb2 = new StringBuilder("Broadcasting new session: ");
         Object b12 = w8.g.c().b(j0.class);
@@ -73,8 +73,8 @@ public final class m0 extends Handler {
         Object b14 = w8.g.c().b(j0.class);
         kotlin.jvm.internal.j.d(b14, "Firebase.app[SessionGenerator::class.java]");
         h0 h0Var = (h0) ((d0) b13);
-        ld.e0.q(ld.e0.b(h0Var.e), new f0(h0Var, ((j0) b14).b(), null));
-        ArrayList arrayList = new ArrayList(this.f11806c);
+        ld.e0.q(ld.e0.b(h0Var.f12197e), new f0(h0Var, ((j0) b14).b(), null));
+        ArrayList arrayList = new ArrayList(this.f12223c);
         int size = arrayList.size();
         int i12 = 0;
         while (i12 < size) {
@@ -88,10 +88,10 @@ public final class m0 extends Handler {
         kotlin.jvm.internal.j.d(b15, "Firebase.app[SessionDatastore::class.java]");
         Object b16 = w8.g.c().b(j0.class);
         kotlin.jvm.internal.j.d(b16, "Firebase.app[SessionGenerator::class.java]");
-        String sessionId = ((j0) b16).b().f11733a;
+        String sessionId = ((j0) b16).b().f12141a;
         z zVar = (z) ((s) b15);
         kotlin.jvm.internal.j.e(sessionId, "sessionId");
-        ld.e0.q(ld.e0.b(zVar.f11835b), new k1.c(zVar, sessionId, null, 4));
+        ld.e0.q(ld.e0.b(zVar.f12253b), new k1.c(zVar, sessionId, null, 4));
     }
 
     public final void c(Messenger messenger, String str) {
@@ -103,9 +103,9 @@ public final class m0 extends Handler {
             messenger.send(obtain);
         } catch (DeadObjectException unused) {
             Log.d("SessionLifecycleService", "Removing dead client from list: " + messenger);
-            this.f11806c.remove(messenger);
-        } catch (Exception e) {
-            Log.w("SessionLifecycleService", "Unable to push new session to " + messenger + '.', e);
+            this.f12223c.remove(messenger);
+        } catch (Exception e6) {
+            Log.w("SessionLifecycleService", "Unable to push new session to " + messenger + '.', e6);
         }
     }
 

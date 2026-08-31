@@ -1,39 +1,150 @@
 package uf;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.c2;
-import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.Components.i51;
-public final class i0 implements c2, Utilities.Callback5 {
-    public final int f45317a;
-    public final k0 f45318b;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Cells.u3;
+import org.telegram.ui.Cells.u4;
+import org.telegram.ui.Components.u00;
+public abstract class i0 extends c {
+    public final Context H;
+    public final g6 I;
+    public boolean J;
 
-    public i0(k0 k0Var, int i10) {
-        this.f45317a = i10;
-        this.f45318b = k0Var;
+    public i0(Context context, g6 g6Var, boolean z4, boolean z10) {
+        super(z4, z10);
+        this.J = false;
+        this.H = context;
+        this.I = g6Var;
+        new u00(context, null).setIsSingleCell(true);
     }
 
     @Override
-    public void i(d2 d2Var, int i10) {
-        switch (this.f45317a) {
-            case 0:
-                this.f45318b.a0();
-                return;
-            case 1:
-                this.f45318b.finishFragment();
-                return;
-            default:
-                this.f45318b.a0();
-                return;
+    public final boolean D(f2.m1 m1Var) {
+        return true;
+    }
+
+    public final TLRPC.TL_messageMediaVenue I(int i10) {
+        ArrayList arrayList = this.f48511r;
+        if (!arrayList.isEmpty()) {
+            i10--;
+        }
+        if (i10 >= 0 && i10 < arrayList.size()) {
+            return (TLRPC.TL_messageMediaVenue) arrayList.get(i10);
+        }
+        if (!this.G) {
+            int size = i10 - arrayList.size();
+            if (!arrayList.isEmpty()) {
+                size--;
+            }
+            if (size >= 0) {
+                ArrayList arrayList2 = this.f48512s;
+                if (size < arrayList2.size()) {
+                    return (TLRPC.TL_messageMediaVenue) arrayList2.get(size);
+                }
+                return null;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public final int h() {
+        int i10;
+        ArrayList arrayList = this.f48511r;
+        if (!arrayList.isEmpty()) {
+            i10 = arrayList.size() + 1;
+        } else {
+            i10 = 0;
+        }
+        if (!this.J) {
+            if (this.G) {
+                return i10 + 3;
+            }
+            boolean isEmpty = arrayList.isEmpty();
+            ArrayList arrayList2 = this.f48512s;
+            if (!isEmpty && !arrayList2.isEmpty()) {
+                i10++;
+            }
+            return arrayList2.size() + i10;
+        }
+        return i10;
+    }
+
+    @Override
+    public final int j(int i10) {
+        ArrayList arrayList = this.f48511r;
+        if ((i10 == 0 || i10 == arrayList.size() + 1) && !arrayList.isEmpty()) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(f2.m1 m1Var, int i10) {
+        int i11;
+        TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
+        int i12;
+        int i13 = m1Var.f5879f;
+        View view = m1Var.f5875a;
+        boolean z4 = true;
+        ArrayList arrayList = this.f48511r;
+        if (i13 == 0) {
+            if (!arrayList.isEmpty()) {
+                i11 = i10 - 1;
+            } else {
+                i11 = i10;
+            }
+            if (i11 >= 0 && i11 < arrayList.size()) {
+                tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList.get(i11);
+                i12 = 2;
+            } else {
+                if (!this.G) {
+                    int size = i11 - arrayList.size();
+                    if (!this.f48510n && !arrayList.isEmpty()) {
+                        size--;
+                    }
+                    i12 = size;
+                    if (i12 >= 0) {
+                        ArrayList arrayList2 = this.f48512s;
+                        if (i12 < arrayList2.size()) {
+                            tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList2.get(i12);
+                        }
+                    }
+                }
+                tL_messageMediaVenue = null;
+                i12 = i10;
+            }
+            u4 u4Var = (u4) view;
+            if (i10 == h() - 1 || (!this.f48510n && !arrayList.isEmpty() && i10 == arrayList.size())) {
+                z4 = false;
+            }
+            u4Var.b(tL_messageMediaVenue, i12, z4, false);
+        } else if (i13 == 1) {
+            if (i10 == 0 && !arrayList.isEmpty()) {
+                ((u3) view).setText(LocaleController.getString(R.string.LocationOnMap));
+            } else {
+                ((u3) view).setText(LocaleController.getString(R.string.NearbyVenue));
+            }
         }
     }
 
     @Override
-    public void mo28run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        k0.W(this.f45318b, (i51) obj, (View) obj2);
+    public final f2.m1 x(ViewGroup viewGroup, int i10) {
+        View u3Var;
+        g6 g6Var = this.I;
+        Context context = this.H;
+        if (i10 == 0) {
+            u3Var = new u4(context, g6Var);
+        } else {
+            u3Var = new u3(context, g6Var);
+        }
+        return new f2.m1(u3Var);
     }
 }

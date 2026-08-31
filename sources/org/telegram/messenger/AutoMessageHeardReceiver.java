@@ -12,7 +12,7 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
     }
 
     public static void lambda$onReceive$1(AccountInstance accountInstance, long j10, int i10, int i11) {
-        AndroidUtilities.runOnUIThread(new u(accountInstance, accountInstance.getMessagesStorage().getUserSync(j10), i10, j10, i11, 0));
+        AndroidUtilities.runOnUIThread(new t(accountInstance, accountInstance.getMessagesStorage().getUserSync(j10), i10, j10, i11, 0));
     }
 
     public static void lambda$onReceive$2(AccountInstance accountInstance, TLRPC.Chat chat, int i10, long j10, int i11) {
@@ -22,7 +22,7 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
     }
 
     public static void lambda$onReceive$3(AccountInstance accountInstance, long j10, int i10, int i11) {
-        AndroidUtilities.runOnUIThread(new u(accountInstance, accountInstance.getMessagesStorage().getChatSync(-j10), i10, j10, i11, 1));
+        AndroidUtilities.runOnUIThread(new t(accountInstance, accountInstance.getMessagesStorage().getChatSync(-j10), i10, j10, i11, 1));
     }
 
     @Override

@@ -1,6 +1,9 @@
 package org.telegram.ui;
 
 import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 public interface u60 {
-    void b(ArrayList arrayList, boolean z4, boolean z10);
+    void h(TLRPC.User user);
+
+    void i(int i10, ArrayList arrayList);
 }

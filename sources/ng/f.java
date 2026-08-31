@@ -1,99 +1,66 @@
 package ng;
 
-import android.graphics.Color;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.RuntimeShader;
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import k7.c6;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class f {
-    public final RenderNode f15006a;
-    public final RuntimeShader f15007b;
-    public float f15008c;
-    public float d;
-    public float e;
-    public float f15009f;
-    public float f15010g;
-    public float h;
-    public float f15011i;
-    public float f15012j;
-    public float f15013k;
-    public float f15014l;
-    public float f15015m;
-    public float f15016n;
-    public float f15017o;
-    public int f15018p;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+public final class f extends FrameLayout {
+    public static final int f16058e = 0;
+    public final e f16059a;
+    public boolean f16060b;
+    public boolean f16061c;
+    public Utilities.Callback d;
 
-    public f(RenderNode renderNode) {
-        this.f15006a = renderNode;
-        RuntimeShader runtimeShader = new RuntimeShader(AndroidUtilities.readRes(R.raw.liquid_glass_shader));
-        this.f15007b = runtimeShader;
-        renderNode.setRenderEffect(RenderEffect.createRuntimeShaderEffect(runtimeShader, "img"));
+    public f(Activity activity, g6 g6Var) {
+        super(activity);
+        int w02;
+        int w03;
+        e eVar = new e(this, activity);
+        this.f16059a = eVar;
+        eVar.setHapticFeedbackEnabled(true);
+        eVar.setImageResource(R.drawable.smiles_tab_clear);
+        int i10 = k6.Re;
+        if (g6Var != null) {
+            w02 = g6Var.B0(i10);
+        } else {
+            w02 = k6.w0(null, i10, false);
+        }
+        eVar.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
+        eVar.setScaleType(ImageView.ScaleType.CENTER);
+        eVar.setContentDescription(LocaleController.getString(R.string.AccDescrBackspace));
+        eVar.setFocusable(true);
+        eVar.setOnClickListener(new eg.m(6));
+        addView(eVar, c6.e(36, 36, 17));
+        int w04 = k6.w0(null, k6.f21750i6, false);
+        int dp = AndroidUtilities.dp(36.0f);
+        int i11 = k6.f21659d6;
+        if (g6Var != null) {
+            w03 = g6Var.B0(i11);
+        } else {
+            w03 = k6.w0(null, i11, false);
+        }
+        eVar.setBackground(k6.h0(dp, w03, w04));
+        eVar.setOutlineProvider(new lf.o0(18));
+        eVar.setElevation(AndroidUtilities.dp(1.0f));
+        eVar.setClipToOutline(true);
+        setClickable(true);
     }
 
-    public final void a(float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17, float f18, int i10) {
-        float f19;
-        float f20;
-        float f21;
-        float f22;
-        float width = this.f15006a.getWidth();
-        float height = this.f15006a.getHeight();
-        float f23 = (0.0f + f10) / 2.0f;
-        float f24 = (0.0f + f11) / 2.0f;
-        float f25 = f11 - 0.0f;
-        float f26 = (f10 - 0.0f) / 2.0f;
-        float f27 = f25 / 2.0f;
-        float f28 = f12 + f15;
-        if (f28 > f25) {
-            float f29 = f12 / f28;
-            f19 = f25 * f29;
-            f20 = (1.0f - f29) * f25;
-        } else {
-            f19 = f12;
-            f20 = f15;
-        }
-        float f30 = f13 + f14;
-        if (f30 > f25) {
-            float f31 = f13 / f30;
-            f22 = f25 * (1.0f - f31);
-            f21 = f25 * f31;
-        } else {
-            f21 = f13;
-            f22 = f14;
-        }
-        if (Math.abs(this.f15008c - width) <= 0.1f && Math.abs(this.d - height) <= 0.1f && Math.abs(this.e - f23) <= 0.1f && Math.abs(this.f15009f - f24) <= 0.1f && Math.abs(this.f15010g - f26) <= 0.1f && Math.abs(this.h - f27) <= 0.1f && Math.abs(this.f15011i - f19) <= 0.1f && Math.abs(this.f15012j - f21) <= 0.1f && Math.abs(this.f15013k - f22) <= 0.1f && Math.abs(this.f15014l - f20) <= 0.1f && Math.abs(this.f15015m - f16) <= 0.1f && Math.abs(this.f15016n - f17) <= 0.1f && Math.abs(this.f15017o - f18) <= 0.1f && this.f15018p == i10) {
-            return;
-        }
-        this.f15018p = i10;
-        float alpha = Color.alpha(i10) / 255.0f;
-        RuntimeShader runtimeShader = this.f15007b;
-        this.f15008c = width;
-        this.d = height;
-        runtimeShader.setFloatUniform("resolution", width, height);
-        RuntimeShader runtimeShader2 = this.f15007b;
-        this.e = f23;
-        this.f15009f = f24;
-        runtimeShader2.setFloatUniform("center", f23, f24);
-        RuntimeShader runtimeShader3 = this.f15007b;
-        this.f15010g = f26;
-        this.h = f27;
-        runtimeShader3.setFloatUniform("size", f26, f27);
-        RuntimeShader runtimeShader4 = this.f15007b;
-        this.f15013k = f22;
-        this.f15012j = f21;
-        this.f15014l = f20;
-        this.f15011i = f19;
-        runtimeShader4.setFloatUniform("radius", f22, f21, f20, f19);
-        RuntimeShader runtimeShader5 = this.f15007b;
-        this.f15015m = f16;
-        runtimeShader5.setFloatUniform("thickness", f16);
-        RuntimeShader runtimeShader6 = this.f15007b;
-        this.f15016n = f17;
-        runtimeShader6.setFloatUniform("refract_intensity", f17);
-        RuntimeShader runtimeShader7 = this.f15007b;
-        this.f15017o = f18;
-        runtimeShader7.setFloatUniform("refract_index", f18);
-        this.f15007b.setFloatUniform("foreground_color_premultiplied", (Color.red(i10) / 255.0f) * alpha, (Color.green(i10) / 255.0f) * alpha, (Color.blue(i10) / 255.0f) * alpha, alpha);
-        this.f15006a.setRenderEffect(RenderEffect.createRuntimeShaderEffect(this.f15007b, "img"));
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
+    }
+
+    public void setOnBackspace(Utilities.Callback<Boolean> callback) {
+        this.d = callback;
     }
 }

@@ -1,55 +1,59 @@
 package k7;
 
-import android.os.Bundle;
-import org.json.JSONObject;
+import android.graphics.Bitmap;
+import android.graphics.Rect;
+import android.graphics.drawable.NinePatchDrawable;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import org.telegram.messenger.ApplicationLoader;
 public abstract class c8 {
-    public static v0.c a(String type, Bundle data) {
-        kotlin.jvm.internal.j.e(type, "type");
-        kotlin.jvm.internal.j.e(data, "data");
-        try {
-            int hashCode = type.hashCode();
-            if (hashCode != -1678407252) {
-                if (hashCode != -543568185) {
-                    if (hashCode == -95037569 && type.equals("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL")) {
-                        try {
-                            String string = data.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON");
-                            kotlin.jvm.internal.j.b(string);
-                            return new v0.f(string, data);
-                        } catch (Exception unused) {
-                            throw new Exception();
-                        }
-                    }
-                } else if (type.equals("android.credentials.TYPE_PASSWORD_CREDENTIAL")) {
-                    return new v0.c("android.credentials.TYPE_PASSWORD_CREDENTIAL", data);
+    public static NinePatchDrawable a(Bitmap bitmap, Rect rect, int i10, int i11) {
+        if (bitmap != null) {
+            if (!bitmap.isRecycled()) {
+                if (i10 >= 0 && i10 < bitmap.getWidth() && i11 >= 0 && i11 < bitmap.getHeight()) {
+                    return new NinePatchDrawable(ApplicationLoader.applicationContext.getResources(), bitmap, c(i10, i10 + 1, i11, i11 + 1, rect.left, rect.top, rect.right, rect.bottom, bitmap.getPixel(i10, i11)).array(), rect, null);
                 }
-                throw new Exception();
+                StringBuilder m9 = e2.c.m("center pixel is outside bitmap: (", i10, ", ", i11, ") for ");
+                m9.append(bitmap.getWidth());
+                m9.append("x");
+                m9.append(bitmap.getHeight());
+                throw new IllegalArgumentException(m9.toString());
             }
-            if (type.equals("androidx.credentials.TYPE_DIGITAL_CREDENTIAL")) {
-                try {
-                    String string2 = data.getString("androidx.credentials.BUNDLE_KEY_RESPONSE_JSON");
-                    kotlin.jvm.internal.j.b(string2);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("androidx.credentials.BUNDLE_KEY_RESPONSE_JSON", string2);
-                    v0.c cVar = new v0.c("androidx.credentials.TYPE_DIGITAL_CREDENTIAL", bundle);
-                    if (string2.length() != 0) {
-                        try {
-                            new JSONObject(string2);
-                            return cVar;
-                        } catch (Exception unused2) {
-                        }
-                    }
-                    throw new IllegalArgumentException("responseJson must not be empty, and must be a valid JSON");
-                } catch (Exception unused3) {
-                    throw new Exception();
-                }
-            }
-            throw new Exception();
-        } catch (z0.a unused4) {
-            v0.c cVar2 = new v0.c(type, data);
-            if (type.length() > 0) {
-                return cVar2;
-            }
-            throw new IllegalArgumentException("type should not be empty");
+            throw new IllegalArgumentException("bitmap is recycled");
         }
+        throw new IllegalArgumentException("bitmap == null");
+    }
+
+    public static android.graphics.drawable.NinePatchDrawable b(android.graphics.Bitmap[] r37, float[] r38, float r39, float r40, int r41, ug.e r42) {
+        throw new UnsupportedOperationException("Method not decompiled: k7.c8.b(android.graphics.Bitmap[], float[], float, float, int, ug.e):android.graphics.drawable.NinePatchDrawable");
+    }
+
+    public static ByteBuffer c(int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18) {
+        ByteBuffer order = ByteBuffer.allocate(84).order(ByteOrder.nativeOrder());
+        order.put((byte) 1);
+        order.put((byte) 2);
+        order.put((byte) 2);
+        order.put((byte) 9);
+        order.putInt(0);
+        order.putInt(0);
+        order.putInt(i14);
+        order.putInt(i16);
+        order.putInt(i15);
+        order.putInt(i17);
+        order.putInt(0);
+        order.putInt(i10);
+        order.putInt(i11);
+        order.putInt(i12);
+        order.putInt(i13);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(i18);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        return order;
     }
 }

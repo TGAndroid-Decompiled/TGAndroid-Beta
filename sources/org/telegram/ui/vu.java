@@ -1,49 +1,57 @@
 package org.telegram.ui;
 
-import android.content.res.Configuration;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class vu extends View {
-    public Path f39246a;
-    public Paint f39247b;
-    public boolean f39248c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class vu extends org.telegram.ui.Components.e81 {
+    public final yu f42301a;
 
-    @Override
-    public final void onConfigurationChanged(Configuration configuration) {
-        super.onConfigurationChanged(configuration);
-        requestLayout();
+    public vu(yu yuVar) {
+        this.f42301a = yuVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        canvas.drawPath(this.f39246a, this.f39247b);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(13.0f), 1073741824));
-        setTop(this.f39248c);
-    }
-
-    public void setTop(boolean z4) {
-        Path path = this.f39246a;
-        path.rewind();
-        this.f39248c = z4;
-        if (z4) {
-            float dp = AndroidUtilities.dp(14.0f);
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, AndroidUtilities.dp(4.0f), getMeasuredWidth(), (getMeasuredHeight() * 2) + AndroidUtilities.dp(4.0f));
-            path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
-            return;
+    public final void b(View view, int i10, int i11) {
+        boolean z4;
+        uu uuVar = (uu) view;
+        uuVar.V2 = i10;
+        uuVar.c3.clear();
+        if (uuVar.w1(6) + uuVar.y1(6) <= 0) {
+            z4 = true;
+        } else {
+            z4 = false;
         }
-        float dp2 = AndroidUtilities.dp(8.0f);
-        RectF rectF2 = AndroidUtilities.rectTmp;
-        rectF2.set(0.0f, ((-getMeasuredHeight()) * 2) - AndroidUtilities.dp(4.0f), getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(4.0f));
-        path.addRoundRect(rectF2, dp2, dp2, Path.Direction.CW);
+        uuVar.f42046j3 = z4;
+        uuVar.z1();
+        uuVar.A1(false);
+        uuVar.u0(0);
+    }
+
+    @Override
+    public final View d(int i10) {
+        yu yuVar = this.f42301a;
+        return new uu(yuVar, yuVar.getParentActivity());
+    }
+
+    @Override
+    public final int e() {
+        return 4;
+    }
+
+    @Override
+    public final CharSequence g(int i10) {
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        return "";
+                    }
+                    return LocaleController.getString(R.string.NetworkUsageRoamingTab);
+                }
+                return LocaleController.getString(R.string.NetworkUsageWiFiTab);
+            }
+            return LocaleController.getString(R.string.NetworkUsageMobileTab);
+        }
+        return LocaleController.getString(R.string.NetworkUsageAllTab);
     }
 }

@@ -1,32 +1,26 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class wx implements ValueAnimator.AnimatorUpdateListener {
-    public int f39807a;
-    public final float f39808b;
-    public final float f39809c;
-    public final oy d;
+import java.util.ArrayList;
+import org.telegram.messenger.MessagesStorage;
+public final class wx implements org.telegram.ui.Components.y4 {
+    public final py f42902a;
 
-    public wx(oy oyVar, float f10, boolean z4, float f11) {
-        this.d = oyVar;
-        this.f39808b = f10;
-        this.f39809c = f11;
-        this.f39807a = (int) f10;
+    public wx(py pyVar) {
+        this.f42902a = pyVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        ((Float) valueAnimator.getAnimatedValue()).getClass();
-        int lerp = (int) AndroidUtilities.lerp(this.f39808b, this.f39809c, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-        int i10 = lerp - this.f39807a;
-        this.f39807a = lerp;
-        oy oyVar = this.d;
-        oyVar.f37009b0[0].f36741a.scrollBy(0, i10);
-        View view = oyVar.fragmentView;
-        if (view != null) {
-            view.invalidate();
+    public final void I(int i10, int i11, boolean z4) {
+        py pyVar = this.f42902a;
+        ArrayList arrayList = pyVar.F2;
+        pyVar.H2 = i10;
+        pyVar.I2 = i11;
+        if (pyVar.f40308z2 != null && !arrayList.isEmpty()) {
+            ArrayList arrayList2 = new ArrayList();
+            for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                arrayList2.add(MessagesStorage.TopicKey.of(((Long) arrayList.get(i12)).longValue(), 0L));
+            }
+            pyVar.f40308z2.v(pyVar, arrayList2, pyVar.f40303y1.getFieldText(), false, z4, i10, i11, null);
         }
     }
 }

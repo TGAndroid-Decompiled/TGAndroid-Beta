@@ -8,8 +8,8 @@ public final class z8 extends FragmentContextView {
     public final int K0;
     public final NotificationCenter.NotificationCenterDelegate L0;
 
-    public z8(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, org.telegram.ui.ActionBar.p2 p2Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, p2Var, frameLayout, false, f6Var);
+    public z8(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, org.telegram.ui.ActionBar.p2 p2Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
+        super(context, p2Var, frameLayout, false, g6Var);
         this.K0 = i10;
         this.L0 = notificationCenterDelegate;
     }
@@ -22,43 +22,43 @@ public final class z8 extends FragmentContextView {
         switch (this.K0) {
             case 0:
                 l9 l9Var = (l9) this.L0;
-                org.telegram.ui.Components.js jsVar = l9Var.J;
+                org.telegram.ui.Components.ls lsVar = l9Var.J;
                 FrameLayout frameLayout = l9Var.K;
                 if (i10 == 0) {
                     z4 = true;
                 } else {
                     z4 = false;
                 }
-                jsVar.i(frameLayout, z4, true);
+                lsVar.i(frameLayout, z4, true);
                 return;
             case 1:
-                org.telegram.ui.Components.wi wiVar = (org.telegram.ui.Components.wi) this.L0;
-                org.telegram.ui.Components.js jsVar2 = wiVar.f30372x;
-                FrameLayout frameLayout2 = wiVar.f30373y;
+                org.telegram.ui.Components.xi xiVar = (org.telegram.ui.Components.xi) this.L0;
+                org.telegram.ui.Components.ls lsVar2 = xiVar.f33118x;
+                FrameLayout frameLayout2 = xiVar.f33119y;
                 if (i10 == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                jsVar2.i(frameLayout2, z10, true);
+                lsVar2.i(frameLayout2, z10, true);
                 return;
             default:
-                kf1 kf1Var = (kf1) this.L0;
-                org.telegram.ui.Components.js jsVar3 = kf1Var.R0;
-                FrameLayout frameLayout3 = kf1Var.C0;
+                mf1 mf1Var = (mf1) this.L0;
+                org.telegram.ui.Components.ls lsVar3 = mf1Var.R0;
+                FrameLayout frameLayout3 = mf1Var.C0;
                 if (i10 == 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                jsVar3.i(frameLayout3, z11, true);
+                lsVar3.i(frameLayout3, z11, true);
                 return;
         }
     }
 
-    public z8(kf1 kf1Var, Context context, kf1 kf1Var2) {
-        super(context, kf1Var2, null, false, null);
+    public z8(mf1 mf1Var, Context context, mf1 mf1Var2) {
+        super(context, mf1Var2, null, false, null);
         this.K0 = 2;
-        this.L0 = kf1Var;
+        this.L0 = mf1Var;
     }
 }

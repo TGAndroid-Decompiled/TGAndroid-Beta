@@ -1,6 +1,4 @@
 package jd;
-
-import kh.a2;
 public abstract class j extends i {
     public static boolean b(String str, String str2) {
         kotlin.jvm.internal.j.e(str, "<this>");
@@ -37,8 +35,8 @@ public abstract class j extends i {
         }
         gd.d dVar = new gd.d(i10, length, 1);
         boolean z12 = charSequence instanceof String;
-        int i11 = dVar.f6527c;
-        int i12 = dVar.f6526b;
+        int i11 = dVar.f7024c;
+        int i12 = dVar.f7023b;
         if (z12 && e2.c.s(string)) {
             if ((i11 > 0 && i10 <= i12) || (i11 < 0 && i12 <= i10)) {
                 int i13 = i10;
@@ -131,7 +129,7 @@ public abstract class j extends i {
             }
             return charSequence.toString();
         }
-        throw new IllegalArgumentException(a2.k(i10, "Desired length ", " is less than zero."));
+        throw new IllegalArgumentException(l.d.k(i10, "Desired length ", " is less than zero."));
     }
 
     public static String g(String str, String str2, String newValue) {

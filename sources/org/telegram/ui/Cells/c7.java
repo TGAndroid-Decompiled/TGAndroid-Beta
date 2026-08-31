@@ -5,8 +5,8 @@ public final class c7 extends org.telegram.ui.Components.z8 {
     public final int D;
     public final FrameLayout E;
 
-    public c7(FrameLayout frameLayout, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(f6Var);
+    public c7(FrameLayout frameLayout, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
+        super(g6Var);
         this.D = i10;
         this.E = frameLayout;
     }
@@ -16,11 +16,11 @@ public final class c7 extends org.telegram.ui.Components.z8 {
         switch (this.D) {
             case 0:
                 super.invalidateSelf();
-                ((e7) this.E).f21020a.invalidate();
+                ((e7) this.E).f22761a.invalidate();
                 return;
             default:
                 super.invalidateSelf();
-                ((f7) this.E).f21064a.invalidate();
+                ((f7) this.E).f22809a.invalidate();
                 return;
         }
     }

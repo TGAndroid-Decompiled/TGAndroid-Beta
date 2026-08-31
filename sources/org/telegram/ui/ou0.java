@@ -1,13 +1,16 @@
 package org.telegram.ui;
-public final class ou0 extends f2.l {
-    public final pu0 F;
 
-    public ou0(pu0 pu0Var) {
-        this.F = pu0Var;
-    }
+import java.util.ArrayList;
+public final class ou0 {
+    public final int f39843a;
+    public final ArrayList f39844b;
+    public final ju0 f39845c;
+    public final PhotoViewer d;
 
-    @Override
-    public final void P(f2.l1 l1Var) {
-        this.F.invalidate();
+    public ou0(PhotoViewer photoViewer, int i10, ArrayList arrayList, ju0 ju0Var) {
+        this.d = photoViewer;
+        this.f39844b = arrayList;
+        this.f39843a = i10;
+        this.f39845c = ju0Var;
     }
 }

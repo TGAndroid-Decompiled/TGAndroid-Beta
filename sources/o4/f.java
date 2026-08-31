@@ -1,12 +1,12 @@
 package o4;
 public final class f {
-    public final a f16327a;
-    public final e f16328b;
-    public final com.google.firebase.messaging.r f16329c;
+    public final a f16472a;
+    public final e f16473b;
+    public final sf.e f16474c;
 
-    public f(a aVar, e eVar, com.google.firebase.messaging.r rVar) {
-        this.f16327a = aVar;
-        this.f16328b = eVar;
-        this.f16329c = rVar;
+    public f(a aVar, e eVar, sf.e eVar2) {
+        this.f16472a = aVar;
+        this.f16473b = eVar;
+        this.f16474c = eVar2;
     }
 }

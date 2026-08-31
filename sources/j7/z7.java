@@ -1,89 +1,55 @@
 package j7;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Typeface;
-import j$.util.concurrent.ConcurrentHashMap;
-import java.io.File;
-import java.io.InputStream;
-import java.util.List;
+import android.graphics.Path;
 public abstract class z7 {
-    public z7() {
-        new ConcurrentHashMap();
-    }
-
-    public abstract Typeface a(Context context, h0.e eVar, Resources resources, int i10);
-
-    public abstract Typeface b(Context context, o0.i[] iVarArr, int i10);
-
-    public Typeface c(Context context, List list, int i10) {
-        throw new IllegalStateException("createFromFontInfoWithFallback must only be called on API 29+");
-    }
-
-    public Typeface d(Context context, InputStream inputStream) {
-        File d = a8.d(context);
-        if (d == null) {
-            return null;
+    public static boolean a(i0.d[] dVarArr, i0.d[] dVarArr2) {
+        if (dVarArr == null || dVarArr2 == null || dVarArr.length != dVarArr2.length) {
+            return false;
         }
+        for (int i10 = 0; i10 < dVarArr.length; i10++) {
+            i0.d dVar = dVarArr[i10];
+            char c3 = dVar.f7761a;
+            i0.d dVar2 = dVarArr2[i10];
+            if (c3 != dVar2.f7761a || dVar.f7762b.length != dVar2.f7762b.length) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static float[] b(float[] fArr, int i10) {
+        if (i10 >= 0) {
+            int length = fArr.length;
+            if (length >= 0) {
+                int min = Math.min(i10, length);
+                float[] fArr2 = new float[i10];
+                System.arraycopy(fArr, 0, fArr2, 0, min);
+                return fArr2;
+            }
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public static i0.d[] c(java.lang.String r17) {
+        throw new UnsupportedOperationException("Method not decompiled: j7.z7.c(java.lang.String):i0.d[]");
+    }
+
+    public static Path d(String str) {
+        Path path = new Path();
         try {
-            if (!a8.c(inputStream, d)) {
-                return null;
-            }
-            return Typeface.createFromFile(d.getPath());
-        } catch (RuntimeException unused) {
-            return null;
-        } finally {
-            d.delete();
+            i0.d.b(c(str), path);
+            return path;
+        } catch (RuntimeException e6) {
+            throw new RuntimeException("Error in parsing ".concat(str), e6);
         }
     }
 
-    public Typeface e(Context context, Resources resources, int i10, String str, int i11) {
-        File d = a8.d(context);
-        if (d == null) {
-            return null;
+    public static i0.d[] e(i0.d[] dVarArr) {
+        i0.d[] dVarArr2 = new i0.d[dVarArr.length];
+        for (int i10 = 0; i10 < dVarArr.length; i10++) {
+            dVarArr2[i10] = new i0.d(dVarArr[i10]);
         }
-        try {
-            if (!a8.b(d, resources, i10)) {
-                return null;
-            }
-            return Typeface.createFromFile(d.getPath());
-        } catch (RuntimeException unused) {
-            return null;
-        } finally {
-            d.delete();
-        }
-    }
-
-    public o0.i f(o0.i[] iVarArr, int i10) {
-        int i11;
-        boolean z4;
-        int i12;
-        new z9.d(8);
-        if ((i10 & 1) == 0) {
-            i11 = 400;
-        } else {
-            i11 = 700;
-        }
-        if ((i10 & 2) != 0) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        o0.i iVar = null;
-        int i13 = Integer.MAX_VALUE;
-        for (o0.i iVar2 : iVarArr) {
-            int abs = Math.abs(iVar2.f16168c - i11) * 2;
-            if (iVar2.d == z4) {
-                i12 = 0;
-            } else {
-                i12 = 1;
-            }
-            int i14 = abs + i12;
-            if (iVar == null || i13 > i14) {
-                iVar = iVar2;
-                i13 = i14;
-            }
-        }
-        return iVar;
+        return dVarArr2;
     }
 }

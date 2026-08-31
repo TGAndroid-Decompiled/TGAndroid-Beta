@@ -3,10 +3,9 @@ package b7;
 import j$.util.Objects;
 import java.util.Arrays;
 import java.util.Set;
-import kh.a2;
 public abstract class q extends j implements Set, j$.util.Set {
-    public static final int f1718c = 0;
-    public transient o f1719b;
+    public static final int f1861c = 0;
+    public transient o f1862b;
 
     public static q r(int i10, Object... objArr) {
         if (i10 != 0) {
@@ -35,7 +34,7 @@ public abstract class q extends j implements Set, j$.util.Set {
                             }
                         }
                     } else {
-                        throw new NullPointerException(a2.j(i14, "at index "));
+                        throw new NullPointerException(l.d.j(i14, "at index "));
                     }
                 }
                 Arrays.fill(objArr, i13, i10, (Object) null);
@@ -56,7 +55,7 @@ public abstract class q extends j implements Set, j$.util.Set {
             Objects.requireNonNull(obj4);
             return new e0(obj4);
         }
-        return b0.f1668s;
+        return b0.f1806s;
     }
 
     public static int s(int i10) {
@@ -77,7 +76,7 @@ public abstract class q extends j implements Set, j$.util.Set {
     @Override
     public boolean equals(Object obj) {
         if (obj != this) {
-            if (!(obj instanceof q) || !(this instanceof b0) || !(((q) obj) instanceof b0) || ((b0) this).e == obj.hashCode()) {
+            if (!(obj instanceof q) || !(this instanceof b0) || !(((q) obj) instanceof b0) || ((b0) this).f1807e == obj.hashCode()) {
                 if (obj != this) {
                     if (obj instanceof Set) {
                         Set set = (Set) obj;
@@ -108,18 +107,18 @@ public abstract class q extends j implements Set, j$.util.Set {
     }
 
     public o t() {
-        o oVar = this.f1719b;
+        o oVar = this.f1862b;
         if (oVar == null) {
             o u10 = u();
-            this.f1719b = u10;
+            this.f1862b = u10;
             return u10;
         }
         return oVar;
     }
 
     public o u() {
-        Object[] array = toArray(j.f1687a);
-        k kVar = o.f1714b;
+        Object[] array = toArray(j.f1826a);
+        k kVar = o.f1856b;
         return o.t(array.length, array);
     }
 }

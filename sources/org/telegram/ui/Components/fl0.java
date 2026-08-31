@@ -1,4 +1,3 @@
 package org.telegram.ui.Components;
-public interface fl0 {
-    int run();
+public final class fl0 extends f2.m1 {
 }

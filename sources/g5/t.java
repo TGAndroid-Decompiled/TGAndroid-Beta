@@ -7,26 +7,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 public final class t implements m {
-    public final Context f6439a;
-    public final ArrayList f6440b;
-    public final m f6441c;
+    public final Context f6928a;
+    public final ArrayList f6929b;
+    public final m f6930c;
     public a0 d;
-    public c e;
-    public i f6442f;
+    public c f6931e;
+    public i f6932f;
     public m h;
-    public x0 f6443n;
-    public k f6444r;
-    public r0 f6445s;
+    public x0 f6933n;
+    public k f6934r;
+    public r0 f6935s;
     public m v;
 
     public t(Context context, m mVar) {
-        this.f6439a = context.getApplicationContext();
+        this.f6928a = context.getApplicationContext();
         mVar.getClass();
-        this.f6441c = mVar;
-        this.f6440b = new ArrayList();
+        this.f6930c = mVar;
+        this.f6929b = new ArrayList();
     }
 
-    public static void b(m mVar, v0 v0Var) {
+    public static void d(m mVar, v0 v0Var) {
         if (mVar != null) {
             mVar.addTransferListener(v0Var);
         }
@@ -35,7 +35,7 @@ public final class t implements m {
     public final void a(m mVar) {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f6440b;
+            ArrayList arrayList = this.f6929b;
             if (i10 < arrayList.size()) {
                 mVar.addTransferListener((v0) arrayList.get(i10));
                 i10++;
@@ -48,15 +48,15 @@ public final class t implements m {
     @Override
     public final void addTransferListener(v0 v0Var) {
         v0Var.getClass();
-        this.f6441c.addTransferListener(v0Var);
-        this.f6440b.add(v0Var);
-        b(this.d, v0Var);
-        b(this.e, v0Var);
-        b(this.f6442f, v0Var);
-        b(this.h, v0Var);
-        b(this.f6443n, v0Var);
-        b(this.f6444r, v0Var);
-        b(this.f6445s, v0Var);
+        this.f6930c.addTransferListener(v0Var);
+        this.f6929b.add(v0Var);
+        d(this.d, v0Var);
+        d(this.f6931e, v0Var);
+        d(this.f6932f, v0Var);
+        d(this.h, v0Var);
+        d(this.f6933n, v0Var);
+        d(this.f6934r, v0Var);
+        d(this.f6935s, v0Var);
     }
 
     @Override
@@ -98,30 +98,30 @@ public final class t implements m {
             z4 = false;
         }
         h5.a.i(z4);
-        Uri uri = pVar.f6401a;
+        Uri uri = pVar.f6885a;
         String scheme = uri.getScheme();
-        int i10 = h5.d0.f6937a;
+        int i10 = h5.d0.f7237a;
         String scheme2 = uri.getScheme();
         boolean isEmpty = TextUtils.isEmpty(scheme2);
-        Context context = this.f6439a;
+        Context context = this.f6928a;
         if (!isEmpty && !"file".equals(scheme2)) {
             if ("asset".equals(scheme)) {
-                if (this.e == null) {
+                if (this.f6931e == null) {
                     c cVar = new c(context);
-                    this.e = cVar;
+                    this.f6931e = cVar;
                     a(cVar);
                 }
-                this.v = this.e;
+                this.v = this.f6931e;
             } else if ("content".equals(scheme)) {
-                if (this.f6442f == null) {
+                if (this.f6932f == null) {
                     i iVar = new i(context);
-                    this.f6442f = iVar;
+                    this.f6932f = iVar;
                     a(iVar);
                 }
-                this.v = this.f6442f;
+                this.v = this.f6932f;
             } else {
                 boolean equals = "rtmp".equals(scheme);
-                m mVar = this.f6441c;
+                m mVar = this.f6930c;
                 if (equals) {
                     if (this.h == null) {
                         try {
@@ -130,8 +130,8 @@ public final class t implements m {
                             a(mVar2);
                         } catch (ClassNotFoundException unused) {
                             h5.a.K("DefaultDataSource", "Attempting to play RTMP stream without depending on the RTMP extension");
-                        } catch (Exception e) {
-                            throw new RuntimeException("Error instantiating RTMP extension", e);
+                        } catch (Exception e6) {
+                            throw new RuntimeException("Error instantiating RTMP extension", e6);
                         }
                         if (this.h == null) {
                             this.h = mVar;
@@ -139,39 +139,39 @@ public final class t implements m {
                     }
                     this.v = this.h;
                 } else if ("udp".equals(scheme)) {
-                    if (this.f6443n == null) {
+                    if (this.f6933n == null) {
                         x0 x0Var = new x0();
-                        this.f6443n = x0Var;
+                        this.f6933n = x0Var;
                         a(x0Var);
                     }
-                    this.v = this.f6443n;
+                    this.v = this.f6933n;
                 } else if ("data".equals(scheme)) {
-                    if (this.f6444r == null) {
+                    if (this.f6934r == null) {
                         ?? gVar = new g(false);
-                        this.f6444r = gVar;
+                        this.f6934r = gVar;
                         a(gVar);
                     }
-                    this.v = this.f6444r;
+                    this.v = this.f6934r;
                 } else if (!"rawresource".equals(scheme) && !"android.resource".equals(scheme)) {
                     this.v = mVar;
                 } else {
-                    if (this.f6445s == null) {
+                    if (this.f6935s == null) {
                         r0 r0Var = new r0(context);
-                        this.f6445s = r0Var;
+                        this.f6935s = r0Var;
                         a(r0Var);
                     }
-                    this.v = this.f6445s;
+                    this.v = this.f6935s;
                 }
             }
         } else {
             String path = uri.getPath();
             if (path != null && path.startsWith("/android_asset/")) {
-                if (this.e == null) {
+                if (this.f6931e == null) {
                     c cVar2 = new c(context);
-                    this.e = cVar2;
+                    this.f6931e = cVar2;
                     a(cVar2);
                 }
-                this.v = this.e;
+                this.v = this.f6931e;
             } else {
                 if (this.d == null) {
                     ?? gVar2 = new g(false);

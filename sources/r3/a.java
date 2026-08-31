@@ -1,19 +1,19 @@
 package r3;
 public final class a implements s {
-    public final c f43199a;
-    public final long f43200b;
-    public final long f43201c;
+    public final c f46529a;
+    public final long f46530b;
+    public final long f46531c;
     public final long d;
-    public final long e;
-    public final long f43202f;
+    public final long f46532e;
+    public final long f46533f;
 
     public a(c cVar, long j10, long j11, long j12, long j13, long j14) {
-        this.f43199a = cVar;
-        this.f43200b = j10;
-        this.f43201c = j11;
+        this.f46529a = cVar;
+        this.f46530b = j10;
+        this.f46531c = j11;
         this.d = j12;
-        this.e = j13;
-        this.f43202f = j14;
+        this.f46532e = j13;
+        this.f46533f = j14;
     }
 
     @Override
@@ -23,12 +23,12 @@ public final class a implements s {
 
     @Override
     public final r f(long j10) {
-        t tVar = new t(j10, b.a(this.f43199a.f(j10), 0L, this.f43201c, this.d, this.e, this.f43202f));
+        t tVar = new t(j10, b.a(this.f46529a.f(j10), 0L, this.f46531c, this.d, this.f46532e, this.f46533f));
         return new r(tVar, tVar);
     }
 
     @Override
     public final long g() {
-        return this.f43200b;
+        return this.f46530b;
     }
 }

@@ -1,12 +1,12 @@
 package e2;
 public final class l {
-    public final int f5075a;
-    public final byte[] f5076b;
-    public final boolean f5077c;
+    public final int f4911a;
+    public final byte[] f4912b;
+    public final boolean f4913c;
 
     public l(int i10, boolean z4, byte[] bArr) {
-        this.f5075a = i10;
-        this.f5076b = bArr;
-        this.f5077c = z4;
+        this.f4911a = i10;
+        this.f4912b = bArr;
+        this.f4913c = z4;
     }
 }

@@ -5,7 +5,6 @@ import android.opengl.GLES20;
 import android.os.Handler;
 import android.os.HandlerThread;
 import java.util.concurrent.Callable;
-import kh.a2;
 import org.webrtc.EglBase;
 import org.webrtc.TextureBufferImpl;
 import org.webrtc.VideoFrame;
@@ -48,8 +47,8 @@ public class SurfaceTextureHelper {
             public SurfaceTextureHelper call() {
                 try {
                     return new SurfaceTextureHelper(context, handler, z4, yuvConverter, frameRefMonitor);
-                } catch (RuntimeException e) {
-                    Logging.e("SurfaceTextureHelper", str + " create failure", e);
+                } catch (RuntimeException e6) {
+                    Logging.e("SurfaceTextureHelper", str + " create failure", e6);
                     return null;
                 }
             }
@@ -201,9 +200,9 @@ public class SurfaceTextureHelper {
                 this.handler.post(new j3.v(this, i10, i11, 11));
                 return;
             }
-            throw new IllegalArgumentException(a2.j(i11, "Texture height must be positive, but was "));
+            throw new IllegalArgumentException(l.d.j(i11, "Texture height must be positive, but was "));
         }
-        throw new IllegalArgumentException(a2.j(i10, "Texture width must be positive, but was "));
+        throw new IllegalArgumentException(l.d.j(i10, "Texture width must be positive, but was "));
     }
 
     public void startListening(VideoSink videoSink) {
@@ -292,10 +291,10 @@ public class SurfaceTextureHelper {
                     }
                 }, handler);
                 return;
-            } catch (RuntimeException e) {
+            } catch (RuntimeException e6) {
                 this.eglBase.release();
                 handler.getLooper().quit();
-                throw e;
+                throw e6;
             }
         }
         throw new IllegalStateException("SurfaceTextureHelper must be created on the handler thread");

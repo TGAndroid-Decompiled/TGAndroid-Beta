@@ -3,11 +3,11 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class ej extends org.telegram.ui.Components.k40 {
+public final class ej extends org.telegram.ui.Components.m40 {
     public final int F;
 
-    public ej(int i10, int i11, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z4) {
-        super(i10, context, f6Var, z4);
+    public ej(int i10, int i11, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z4) {
+        super(i10, context, g6Var, z4);
         this.F = i11;
     }
 

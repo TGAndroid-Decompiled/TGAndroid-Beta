@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class qg implements Runnable {
-    public final int f37750a;
-    public final org.telegram.ui.ActionBar.d2[] f37751b;
+    public final int f40470a;
+    public final org.telegram.ui.ActionBar.d2[] f40471b;
 
     public qg(org.telegram.ui.ActionBar.d2[] d2VarArr, int i10) {
-        this.f37750a = i10;
-        this.f37751b = d2VarArr;
+        this.f40470a = i10;
+        this.f40471b = d2VarArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f37750a) {
+        switch (this.f40470a) {
             case 0:
-                org.telegram.ui.ActionBar.d2[] d2VarArr = this.f37751b;
+                org.telegram.ui.ActionBar.d2[] d2VarArr = this.f40471b;
                 try {
                     d2VarArr[0].dismiss();
                 } catch (Throwable unused) {
@@ -22,7 +22,7 @@ public final class qg implements Runnable {
                 d2VarArr[0] = null;
                 return;
             case 1:
-                org.telegram.ui.ActionBar.d2[] d2VarArr2 = this.f37751b;
+                org.telegram.ui.ActionBar.d2[] d2VarArr2 = this.f40471b;
                 try {
                     d2VarArr2[0].dismiss();
                 } catch (Throwable unused2) {
@@ -30,16 +30,16 @@ public final class qg implements Runnable {
                 d2VarArr2[0] = null;
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new qg(this.f37751b, 4));
+                AndroidUtilities.runOnUIThread(new qg(this.f40471b, 4));
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new qg(this.f37751b, 5));
+                AndroidUtilities.runOnUIThread(new qg(this.f40471b, 5));
                 return;
             case 4:
-                this.f37751b[0].dismiss();
+                this.f40471b[0].dismiss();
                 return;
             default:
-                this.f37751b[0].dismiss();
+                this.f40471b[0].dismiss();
                 return;
         }
     }

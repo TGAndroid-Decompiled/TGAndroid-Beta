@@ -2,9 +2,9 @@ package s8;
 
 import l7.xa;
 public abstract class k {
-    public transient c f44131a;
-    public transient l7.m f44132b;
-    public transient xa f44133c;
+    public transient c f47111a;
+    public transient l7.m f47112b;
+    public transient xa f47113c;
 
     public abstract xa a();
 
@@ -19,10 +19,10 @@ public abstract class k {
     }
 
     public final int hashCode() {
-        return a().f11694b.hashCode();
+        return a().f12098b.hashCode();
     }
 
     public final String toString() {
-        return a().f11694b.toString();
+        return a().f12098b.toString();
     }
 }

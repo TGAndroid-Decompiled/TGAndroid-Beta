@@ -1,94 +1,130 @@
 package fg;
 
-import n3.l;
+import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class h extends Thread {
-    public final int f6153a = 0;
-    public final Object f6154b;
+import org.telegram.ui.ActionBar.k6;
+public final class h extends p2 {
+    public final int f6320n;
 
-    public h(l lVar) {
-        super("ExoPlayer:SimpleDecoder");
-        this.f6154b = lVar;
+    public h(Context context, int i10) {
+        super(context);
+        this.f6320n = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f6153a) {
+    public final void a() {
+        switch (this.f6320n) {
             case 0:
-                i iVar = (i) this.f6154b;
-                iVar.f6163x = true;
-                try {
-                    i.a(iVar);
-                    int glGetError = ((i) this.f6154b).f6160r.glGetError();
-                    if (glGetError != 0) {
-                        FileLog.e("GL error = 0x" + Integer.toHexString(glGetError));
-                    }
-                    long currentTimeMillis = System.currentTimeMillis();
-                    while (((i) this.f6154b).f6163x) {
-                        while (true) {
-                            i iVar2 = (i) this.f6154b;
-                            a aVar = iVar2.f6156b;
-                            if (aVar == null) {
-                                try {
-                                    Thread.sleep(100L);
-                                } catch (InterruptedException unused) {
-                                }
-                            } else {
-                                if (iVar2.B) {
-                                    synchronized (iVar2) {
-                                        if (iVar2.f6163x) {
-                                            aVar.onSurfaceCreated(iVar2.f6160r, iVar2.f6159n);
-                                            aVar.onSurfaceChanged(iVar2.f6160r, iVar2.f6162w, iVar2.v);
-                                        }
-                                    }
-                                    ((i) this.f6154b).B = false;
-                                }
-                                try {
-                                    if (!i.b((i) this.f6154b)) {
-                                        long currentTimeMillis2 = System.currentTimeMillis();
-                                        i.c((i) this.f6154b, ((float) (currentTimeMillis2 - currentTimeMillis)) / 1000.0f);
-                                        if (!((i) this.f6154b).M) {
-                                            ((i) this.f6154b).M = true;
-                                            AndroidUtilities.runOnUIThread(((i) this.f6154b).N);
-                                            ((i) this.f6154b).N = null;
-                                        }
-                                        currentTimeMillis = currentTimeMillis2;
-                                    }
-                                    try {
-                                        if (i.b((i) this.f6154b)) {
-                                            Thread.sleep(100L);
-                                        } else {
-                                            for (long currentTimeMillis3 = System.currentTimeMillis(); currentTimeMillis3 - currentTimeMillis < ((i) this.f6154b).f6161s; currentTimeMillis3 = System.currentTimeMillis()) {
-                                            }
-                                        }
-                                    } catch (InterruptedException unused2) {
-                                    }
-                                } catch (Exception e) {
-                                    FileLog.e(e);
-                                    return;
-                                }
-                            }
-                        }
-                    }
-                    return;
-                } catch (Exception e6) {
-                    FileLog.e(e6);
-                    ((i) this.f6154b).f6163x = false;
-                    return;
-                }
+                o2 o2Var = this.f6501a;
+                o2Var.f6465q = true;
+                o2Var.K = false;
+                o2Var.H = true;
+                o2Var.J = true;
+                o2Var.f6459k = AndroidUtilities.dp(-14.0f);
+                o2 o2Var2 = this.f6501a;
+                o2Var2.f6471x = 2000L;
+                o2Var2.f6472y = 3000;
+                o2Var2.f6466r = 16;
+                o2Var2.G = false;
+                o2Var2.N = 28;
+                o2Var2.P = k6.Mj;
+                o2Var2.c();
+                return;
+            case 1:
+                super.a();
+                o2 o2Var3 = this.f6501a;
+                o2Var3.f6465q = true;
+                o2Var3.K = false;
+                o2Var3.L = true;
+                o2Var3.H = true;
+                o2Var3.c();
+                return;
+            case 2:
+                o2 o2Var4 = new o2(50);
+                this.f6501a = o2Var4;
+                o2Var4.N = 100;
+                o2Var4.M = false;
+                o2Var4.G = false;
+                o2Var4.K = true;
+                o2Var4.H = true;
+                o2Var4.J = false;
+                o2Var4.f6466r = 4;
+                o2Var4.f6470w = 0.98f;
+                o2Var4.v = 0.98f;
+                o2Var4.f6469u = 0.98f;
+                o2Var4.c();
+                return;
+            case 3:
+                o2 o2Var5 = this.f6501a;
+                o2Var5.f6465q = true;
+                o2Var5.K = false;
+                o2Var5.H = true;
+                o2Var5.J = true;
+                o2Var5.f6459k = AndroidUtilities.dp(-14.0f);
+                o2 o2Var6 = this.f6501a;
+                o2Var6.f6471x = 2000L;
+                o2Var6.f6472y = 3000;
+                o2Var6.f6466r = 16;
+                o2Var6.G = false;
+                o2Var6.N = 28;
+                o2Var6.P = k6.Mj;
+                o2Var6.c();
+                return;
+            case 4:
+                super.a();
+                o2 o2Var7 = this.f6501a;
+                o2Var7.f6465q = true;
+                o2Var7.K = false;
+                o2Var7.L = true;
+                o2Var7.H = true;
+                o2Var7.c();
+                return;
             default:
-                do {
-                    try {
-                    } catch (InterruptedException e10) {
-                        throw new IllegalStateException(e10);
-                    }
-                } while (((l) this.f6154b).i());
+                super.a();
+                o2 o2Var8 = this.f6501a;
+                o2Var8.f6465q = true;
+                o2Var8.K = false;
+                o2Var8.L = true;
+                o2Var8.H = true;
+                o2Var8.c();
                 return;
         }
     }
 
-    public h(i iVar) {
-        this.f6154b = iVar;
+    @Override
+    public int getStarsRectWidth() {
+        switch (this.f6320n) {
+            case 2:
+                return getMeasuredWidth();
+            case 3:
+            default:
+                return super.getStarsRectWidth();
+            case 4:
+                return getMeasuredWidth();
+            case 5:
+                return getMeasuredWidth();
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f6320n) {
+            case 0:
+                super.onMeasure(i10, i11);
+                this.f6501a.f6452b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                return;
+            case 1:
+                super.onMeasure(i10, i11);
+                this.f6501a.f6452b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                return;
+            case 2:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 3:
+                super.onMeasure(i10, i11);
+                this.f6501a.f6452b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                return;
+        }
     }
 }

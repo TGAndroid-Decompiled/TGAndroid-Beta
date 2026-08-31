@@ -7,24 +7,24 @@ import h5.d0;
 import j3.n0;
 import org.telegram.ui.yh;
 public final class n {
-    public final String f4164a;
-    public final String f4165b;
-    public final String f4166c;
+    public final String f4235a;
+    public final String f4236b;
+    public final String f4237c;
     public final MediaCodecInfo.CodecCapabilities d;
-    public final boolean e;
-    public final boolean f4167f;
-    public final boolean f4168g;
+    public final boolean f4238e;
+    public final boolean f4239f;
+    public final boolean f4240g;
     public final boolean h;
 
     public n(String str, String str2, String str3, MediaCodecInfo.CodecCapabilities codecCapabilities, boolean z4, boolean z10, boolean z11) {
         str.getClass();
-        this.f4164a = str;
-        this.f4165b = str2;
-        this.f4166c = str3;
+        this.f4235a = str;
+        this.f4236b = str2;
+        this.f4237c = str3;
         this.d = codecCapabilities;
-        this.f4168g = z4;
-        this.e = z10;
-        this.f4167f = z11;
+        this.f4240g = z4;
+        this.f4238e = z10;
+        this.f4239f = z11;
         this.h = h5.o.j(str2);
     }
 
@@ -58,13 +58,13 @@ public final class n {
             if (n0Var.K != n0Var2.K) {
                 i10 |= 1024;
             }
-            if (!this.e && (n0Var.H != n0Var2.H || n0Var.I != n0Var2.I)) {
+            if (!this.f4238e && (n0Var.H != n0Var2.H || n0Var.I != n0Var2.I)) {
                 i10 |= 512;
             }
             if (!d0.a(n0Var.O, n0Var2.O)) {
                 i10 |= 2048;
             }
-            if (d0.d.startsWith("SM-T230") && "OMX.MARVELL.VIDEO.HW.CODA7542DECODER".equals(this.f4164a) && !n0Var.b(n0Var2)) {
+            if (d0.d.startsWith("SM-T230") && "OMX.MARVELL.VIDEO.HW.CODA7542DECODER".equals(this.f4235a) && !n0Var.b(n0Var2)) {
                 i10 |= 2;
             }
             if (i10 == 0) {
@@ -73,7 +73,7 @@ public final class n {
                 } else {
                     i11 = 2;
                 }
-                return new n3.k(this.f4164a, n0Var, n0Var2, i11, 0);
+                return new n3.k(this.f4235a, n0Var, n0Var2, i11, 0);
             }
             n0Var3 = n0Var;
             n0Var4 = n0Var2;
@@ -89,7 +89,7 @@ public final class n {
             if (n0Var3.R != n0Var4.R) {
                 i10 |= 16384;
             }
-            String str = this.f4165b;
+            String str = this.f4236b;
             if (i10 == 0 && "audio/mp4a-latm".equals(str)) {
                 Pair d = y.d(n0Var3);
                 Pair d10 = y.d(n0Var4);
@@ -97,7 +97,7 @@ public final class n {
                     int intValue = ((Integer) d.first).intValue();
                     int intValue2 = ((Integer) d10.first).intValue();
                     if (intValue == 42 && intValue2 == 42) {
-                        return new n3.k(this.f4164a, n0Var3, n0Var4, 3, 0);
+                        return new n3.k(this.f4235a, n0Var3, n0Var4, 3, 0);
                     }
                 }
             }
@@ -108,10 +108,10 @@ public final class n {
                 i10 |= 2;
             }
             if (i10 == 0) {
-                return new n3.k(this.f4164a, n0Var3, n0Var4, 1, 0);
+                return new n3.k(this.f4235a, n0Var3, n0Var4, 1, 0);
             }
         }
-        return new n3.k(this.f4164a, n0Var3, n0Var4, 0, i10);
+        return new n3.k(this.f4235a, n0Var3, n0Var4, 0, i10);
     }
 
     public final boolean c(n0 n0Var, boolean z4) {
@@ -124,7 +124,7 @@ public final class n {
             int intValue2 = ((Integer) d.second).intValue();
             boolean equals = "video/dolby-vision".equals(n0Var.C);
             int i11 = 8;
-            String str = this.f4165b;
+            String str = this.f4236b;
             if (equals) {
                 if ("video/avc".equals(str)) {
                     intValue2 = 0;
@@ -139,7 +139,7 @@ public final class n {
                 if (codecCapabilities == null || (codecProfileLevelArr = codecCapabilities.profileLevels) == null) {
                     codecProfileLevelArr = new MediaCodecInfo.CodecProfileLevel[0];
                 }
-                if (d0.f6937a <= 23 && "video/x-vnd.on2.vp9".equals(str) && codecProfileLevelArr.length == 0) {
+                if (d0.f7237a <= 23 && "video/x-vnd.on2.vp9".equals(str) && codecProfileLevelArr.length == 0) {
                     if (codecCapabilities != null && (videoCapabilities = codecCapabilities.getVideoCapabilities()) != null) {
                         i10 = videoCapabilities.getBitrateRange().getUpper().intValue();
                     } else {
@@ -176,13 +176,13 @@ public final class n {
                 for (MediaCodecInfo.CodecProfileLevel codecProfileLevel2 : codecProfileLevelArr) {
                     if (codecProfileLevel2.profile == intValue && (codecProfileLevel2.level >= intValue2 || !z4)) {
                         if ("video/hevc".equals(str) && 2 == intValue) {
-                            String str2 = d0.f6938b;
+                            String str2 = d0.f7238b;
                             if (!"sailfish".equals(str2) && !"marlin".equals(str2)) {
                             }
                         }
                     }
                 }
-                g("codec.profileLevel, " + n0Var.f8740r + ", " + this.f4166c);
+                g("codec.profileLevel, " + n0Var.f9324r + ", " + this.f4237c);
                 return false;
             }
         }
@@ -193,7 +193,7 @@ public final class n {
         boolean z4;
         int i10;
         String str = n0Var.C;
-        String str2 = this.f4165b;
+        String str2 = this.f4236b;
         boolean z10 = false;
         if (!str2.equals(str) && !str2.equals(y.b(n0Var))) {
             z4 = false;
@@ -207,7 +207,7 @@ public final class n {
         }
         if (this.h) {
             if (i12 > 0 && i11 > 0) {
-                if (d0.f6937a >= 21) {
+                if (d0.f7237a >= 21) {
                     return f(i12, i11, n0Var.J);
                 }
                 if (i12 * i11 <= y.j()) {
@@ -219,7 +219,7 @@ public final class n {
                 return z10;
             }
         } else {
-            int i13 = d0.f6937a;
+            int i13 = d0.f7237a;
             if (i13 >= 21) {
                 int i14 = n0Var.Q;
                 MediaCodecInfo.CodecCapabilities codecCapabilities = this.d;
@@ -257,7 +257,7 @@ public final class n {
                         } else {
                             i10 = 30;
                         }
-                        h5.a.K("MediaCodecInfo", "AssumedMaxChannelAdjustment: " + this.f4164a + ", [" + maxInputChannelCount + " to " + i10 + "]");
+                        h5.a.K("MediaCodecInfo", "AssumedMaxChannelAdjustment: " + this.f4235a + ", [" + maxInputChannelCount + " to " + i10 + "]");
                         maxInputChannelCount = i10;
                     }
                     if (maxInputChannelCount < i15) {
@@ -272,7 +272,7 @@ public final class n {
 
     public final boolean e(n0 n0Var) {
         if (this.h) {
-            return this.e;
+            return this.f4238e;
         }
         Pair d = y.d(n0Var);
         if (d != null && ((Integer) d.first).intValue() == 42) {
@@ -292,7 +292,7 @@ public final class n {
             g("sizeAndRate.vCaps");
             return false;
         }
-        if (d0.f6937a >= 29) {
+        if (d0.f7237a >= 29) {
             int a2 = m.a(videoCapabilities, i10, i11, d);
             if (a2 == 2) {
                 return true;
@@ -306,14 +306,14 @@ public final class n {
         }
         if (!a(videoCapabilities, i10, i11, d)) {
             if (i10 < i11) {
-                String str = this.f4164a;
-                if ((!"OMX.MTK.VIDEO.DECODER.HEVC".equals(str) || !"mcv5a".equals(d0.f6938b)) && a(videoCapabilities, i11, i10, d)) {
+                String str = this.f4235a;
+                if ((!"OMX.MTK.VIDEO.DECODER.HEVC".equals(str) || !"mcv5a".equals(d0.f7238b)) && a(videoCapabilities, i11, i10, d)) {
                     StringBuilder m10 = e2.c.m("sizeAndRate.rotated, ", i10, "x", i11, "@");
                     m10.append(d);
                     StringBuilder m11 = yh.m("AssumedSupport [", m10.toString(), "] [", str, ", ");
-                    m11.append(this.f4165b);
+                    m11.append(this.f4236b);
                     m11.append("] [");
-                    m11.append(d0.e);
+                    m11.append(d0.f7240e);
                     m11.append("]");
                     h5.a.n("MediaCodecInfo", m11.toString());
                 }
@@ -328,16 +328,16 @@ public final class n {
 
     public final void g(String str) {
         StringBuilder t6 = android.support.v4.media.a.t("NoSupport [", str, "] [");
-        t6.append(this.f4164a);
+        t6.append(this.f4235a);
         t6.append(", ");
-        t6.append(this.f4165b);
+        t6.append(this.f4236b);
         t6.append("] [");
-        t6.append(d0.e);
+        t6.append(d0.f7240e);
         t6.append("]");
         h5.a.n("MediaCodecInfo", t6.toString());
     }
 
     public final String toString() {
-        return this.f4164a;
+        return this.f4235a;
     }
 }

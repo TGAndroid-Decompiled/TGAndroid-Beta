@@ -6,12 +6,12 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.KeyEvent;
-public final class zh extends pa0 {
+public final class zh extends ra0 {
     public final int S;
     public final KeyEvent.Callback T;
 
-    public zh(KeyEvent.Callback callback, Context context, long j10, org.telegram.ui.ActionBar.p2 p2Var, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, j10, 0L, p2Var, f6Var);
+    public zh(KeyEvent.Callback callback, Context context, long j10, org.telegram.ui.ActionBar.p2 p2Var, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
+        super(context, j10, 0L, p2Var, g6Var);
         this.S = i10;
         this.T = callback;
     }
@@ -20,12 +20,12 @@ public final class zh extends pa0 {
     public void f(Canvas canvas, Rect rect, float f10) {
         switch (this.S) {
             case 1:
-                ph.k kVar = (ph.k) this.T;
-                Paint paint = kVar.e;
-                RectF rectF = kVar.f41830w0;
+                qh.k kVar = (qh.k) this.T;
+                Paint paint = kVar.f45515e;
+                RectF rectF = kVar.f45538w0;
                 rectF.set(rect);
                 if (kVar.g()) {
-                    kVar.h(kVar.Q, canvas, kVar.f41830w0, f10, false, -kVar.J.getX(), -kVar.J.getY(), false);
+                    kVar.h(kVar.Q, canvas, kVar.f45538w0, f10, false, -kVar.J.getX(), -kVar.J.getY(), false);
                     return;
                 }
                 Paint c3 = kVar.Q.c(1.0f);
@@ -58,7 +58,7 @@ public final class zh extends pa0 {
     public void i() {
         switch (this.S) {
             case 0:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((li) this.T).f26702g0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((mi) this.T).f29054g0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;
@@ -73,7 +73,7 @@ public final class zh extends pa0 {
     public void n(boolean z4) {
         switch (this.S) {
             case 0:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((li) this.T).f26702g0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((mi) this.T).f29054g0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;

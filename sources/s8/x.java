@@ -10,9 +10,9 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 public abstract class x implements Map, Serializable, j$.util.Map {
-    public transient k0 f44161a;
-    public transient l0 f44162b;
-    public transient m0 f44163c;
+    public transient k0 f47147a;
+    public transient l0 f47148b;
+    public transient m0 f47149c;
 
     public static x a(Map map) {
         boolean z4;
@@ -34,24 +34,24 @@ public abstract class x implements Map, Serializable, j$.util.Map {
         b4.e0 e0Var = new b4.e0(i10, 22);
         if (z4) {
             int size = entrySet.size() * 2;
-            Object[] objArr = (Object[]) e0Var.f1368c;
+            Object[] objArr = (Object[]) e0Var.f1475c;
             if (size > objArr.length) {
-                e0Var.f1368c = Arrays.copyOf(objArr, com.google.android.gms.common.api.internal.w.g(objArr.length, size));
+                e0Var.f1475c = Arrays.copyOf(objArr, com.google.android.gms.common.api.internal.w.g(objArr.length, size));
             }
         }
         for (Map.Entry entry : entrySet) {
-            e0Var.w(entry.getKey(), entry.getValue());
+            e0Var.x(entry.getKey(), entry.getValue());
         }
-        return e0Var.c();
+        return e0Var.d();
     }
 
     @Override
     public final z entrySet() {
-        k0 k0Var = this.f44161a;
+        k0 k0Var = this.f47147a;
         if (k0Var == null) {
             n0 n0Var = (n0) this;
-            k0 k0Var2 = new k0(n0Var, n0Var.e, n0Var.f44137f);
-            this.f44161a = k0Var2;
+            k0 k0Var2 = new k0(n0Var, n0Var.f47120e, n0Var.f47121f);
+            this.f47147a = k0Var2;
             return k0Var2;
         }
         return k0Var;
@@ -59,11 +59,11 @@ public abstract class x implements Map, Serializable, j$.util.Map {
 
     @Override
     public final q values() {
-        m0 m0Var = this.f44163c;
+        m0 m0Var = this.f47149c;
         if (m0Var == null) {
             n0 n0Var = (n0) this;
-            m0 m0Var2 = new m0(1, n0Var.f44137f, n0Var.e);
-            this.f44163c = m0Var2;
+            m0 m0Var2 = new m0(1, n0Var.f47121f, n0Var.f47120e);
+            this.f47149c = m0Var2;
             return m0Var2;
         }
         return m0Var;
@@ -139,11 +139,11 @@ public abstract class x implements Map, Serializable, j$.util.Map {
 
     @Override
     public final Set keySet() {
-        l0 l0Var = this.f44162b;
+        l0 l0Var = this.f47148b;
         if (l0Var == null) {
             n0 n0Var = (n0) this;
-            l0 l0Var2 = new l0(n0Var, new m0(0, n0Var.f44137f, n0Var.e));
-            this.f44162b = l0Var2;
+            l0 l0Var2 = new l0(n0Var, new m0(0, n0Var.f47121f, n0Var.f47120e));
+            this.f47148b = l0Var2;
             return l0Var2;
         }
         return l0Var;
@@ -185,7 +185,7 @@ public abstract class x implements Map, Serializable, j$.util.Map {
     }
 
     public final String toString() {
-        int i10 = ((n0) this).f44137f;
+        int i10 = ((n0) this).f47121f;
         l.c(i10, "size");
         StringBuilder sb = new StringBuilder((int) Math.min(i10 * 8, 1073741824L));
         sb.append('{');

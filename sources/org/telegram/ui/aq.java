@@ -1,33 +1,27 @@
 package org.telegram.ui;
+public final class aq implements Runnable {
+    public final int f35226a;
+    public final kq f35227b;
+    public final long f35228c;
 
-import android.animation.ValueAnimator;
-import android.widget.FrameLayout;
-public final class aq implements ValueAnimator.AnimatorUpdateListener {
-    public final int f32688a;
-    public final jq f32689b;
-
-    public aq(jq jqVar, int i10) {
-        this.f32688a = i10;
-        this.f32689b = jqVar;
+    public aq(kq kqVar, long j10, int i10) {
+        this.f35226a = i10;
+        this.f35227b = kqVar;
+        this.f35228c = j10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f32688a) {
+    public final void run() {
+        switch (this.f35226a) {
             case 0:
-                jq jqVar = this.f32689b;
-                jqVar.h.b(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                jqVar.h.invalidateSelf();
+                long j10 = this.f35228c;
+                kq kqVar = this.f35227b;
+                kqVar.f38472n = j10;
+                kqVar.f38477r = true;
+                kqVar.n0();
                 return;
             default:
-                jq jqVar2 = this.f32689b;
-                jqVar2.getClass();
-                jqVar2.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                FrameLayout frameLayout = jqVar2.e;
-                if (frameLayout != null) {
-                    frameLayout.invalidate();
-                    return;
-                }
+                kq.Z(this.f35227b, this.f35228c);
                 return;
         }
     }

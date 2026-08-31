@@ -1,57 +1,49 @@
 package gh;
 
-import android.content.Context;
-import android.view.View;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.g20;
-import org.telegram.ui.Components.il0;
-import org.telegram.ui.Components.n30;
-import org.telegram.ui.Components.qc;
-public final class c implements il0 {
-    public final f6 f6831a;
-    public final Context f6832b;
-    public final f f6833c;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Cells.z;
+public abstract class c extends Drawable {
+    public final z f7140a;
+    public int f7141b;
+    public int f7142c = 255;
 
-    public c(Context context, f fVar, f6 f6Var) {
-        this.f6833c = fVar;
-        this.f6831a = f6Var;
-        this.f6832b = context;
+    public c(g6 g6Var) {
+        int v02 = k6.v0(k6.f21750i6, g6Var);
+        this.f7141b = v02;
+        this.f7140a = k6.Y(v02, 0, 0);
+    }
+
+    public abstract void a(int i10);
+
+    @Override
+    public final int getAlpha() {
+        return this.f7142c;
     }
 
     @Override
-    public final void f(int i10, View view) {
-        TLRPC.TL_help_country tL_help_country;
-        f fVar = this.f6833c;
-        g20 g20Var = fVar.f6843e0;
-        HashMap hashMap = fVar.f6845g0;
-        if (i10 == 0 || (tL_help_country = (TLRPC.TL_help_country) fVar.f6839a0.G(i10 - 1).G) == null) {
-            return;
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        this.f7140a.setBounds(rect);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        if (this.f7142c != i10) {
+            this.f7142c = i10;
+            a(i10);
         }
-        boolean z4 = false;
-        if (hashMap.containsKey(tL_help_country.iso2)) {
-            g20Var.c((n30) hashMap.remove(tL_help_country.iso2));
-        } else {
-            int size = hashMap.size();
-            int i11 = fVar.f6848j0;
-            if (size >= i11) {
-                new qc(fVar.f6849k0, this.f6831a).Q(R.raw.info, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.PollV2YouCanAddXCountriesOnly, Integer.valueOf(i11)))).j();
-                return;
-            }
-            n30 n30Var = new n30(this.f6832b, tL_help_country);
-            n30Var.setOnClickListener(new a(fVar, 4));
-            g20Var.a(n30Var);
-            hashMap.put(tL_help_country.iso2, n30Var);
-            z4 = true;
-        }
-        if (view instanceof kg.c) {
-            ((kg.c) view).c(z4, true);
-        }
-        fVar.f6839a0.N(true);
-        fVar.f6840b0.c(hashMap.size(), true);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

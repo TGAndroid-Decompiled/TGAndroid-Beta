@@ -2,11 +2,11 @@ package qd;
 
 import ld.b2;
 public final class y {
-    public final Object[] f43048a;
-    public final b2[] f43049b;
+    public final Object[] f44828a;
+    public final b2[] f44829b;
 
     public y(int i10, uc.h hVar) {
-        this.f43048a = new Object[i10];
-        this.f43049b = new b2[i10];
+        this.f44828a = new Object[i10];
+        this.f44829b = new b2[i10];
     }
 }

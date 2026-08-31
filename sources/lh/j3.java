@@ -1,71 +1,155 @@
 package lh;
 
-import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.lq0;
-import org.telegram.ui.Components.qc;
-public final class j3 extends lq0 {
-    public final g5 Y0;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.HashMap;
+import mh.l7;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.pr0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+public final class j3 extends f2.b0 {
+    public final pr0 d;
+    public final n3 f12821e;
 
-    public j3(g5 g5Var, Context context, String str, String str2, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, null, null, str, null, false, str2, null, false, false, true, null, f6Var);
-        this.Y0 = g5Var;
-        this.X = true;
+    public j3(n3 n3Var, pr0 pr0Var) {
+        this.f12821e = n3Var;
+        this.d = pr0Var;
     }
 
     @Override
-    public final void R0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z4) {
-        qc bulletinFactory;
-        String str;
-        if (z4 && (bulletinFactory = getBulletinFactory()) != null) {
-            if (hVar.m() == 1) {
-                long j10 = hVar.j(0);
-                if (j10 == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                    ic G = bulletinFactory.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedToSavedMessages, new Object[0])));
-                    G.f25680r = false;
-                    G.f25682t = true;
-                    G.j();
-                } else if (j10 < 0) {
-                    TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
-                    int i11 = R.raw.forward;
-                    int i12 = R.string.LinkSharedTo;
-                    if (tL_forumTopic != null) {
-                        str = tL_forumTopic.title;
-                    } else {
-                        str = chat.title;
-                    }
-                    ic G2 = bulletinFactory.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f25680r = false;
-                    G2.f25682t = true;
-                    G2.j();
-                } else {
-                    ic G3 = bulletinFactory.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j10)).first_name)));
-                    G3.f25680r = false;
-                    G3.f25682t = true;
-                    G3.j();
-                }
+    public final void a(RecyclerView recyclerView, f2.m1 m1Var) {
+        super.a(recyclerView, m1Var);
+        m1Var.f5875a.setPressed(false);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, f2.m1 m1Var) {
+        TL_stars.SavedStarGift savedStarGift;
+        View view = m1Var.f5875a;
+        if (view instanceof x1) {
+            savedStarGift = ((x1) view).getSavedGift();
+        } else {
+            savedStarGift = null;
+        }
+        if (r(savedStarGift)) {
+            return f2.b0.l(15, 0);
+        }
+        return f2.b0.l(0, 0);
+    }
+
+    @Override
+    public final boolean j() {
+        return this.f12821e.f12865n;
+    }
+
+    @Override
+    public final boolean k() {
+        return this.f12821e.f12865n;
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, f2.m1 m1Var, f2.m1 m1Var2) {
+        TL_stars.SavedStarGift savedStarGift;
+        mh.t0 t0Var;
+        n3 n3Var = this.f12821e;
+        h3 h3Var = n3Var.f12864f;
+        if (n3Var.f12863e != null && n3Var.f12865n) {
+            View view = m1Var.f5875a;
+            TL_stars.SavedStarGift savedStarGift2 = null;
+            if (view instanceof x1) {
+                savedStarGift = ((x1) view).getSavedGift();
             } else {
-                ic Q = bulletinFactory.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("LinkSharedToManyChats", hVar.m(), Integer.valueOf(hVar.m()))));
-                Q.f25680r = false;
-                Q.f25682t = true;
-                Q.j();
+                savedStarGift = null;
             }
-            try {
-                this.container.performHapticFeedback(3);
-            } catch (Exception unused) {
+            if (r(savedStarGift)) {
+                View view2 = m1Var2.f5875a;
+                if (view2 instanceof x1) {
+                    savedStarGift2 = ((x1) view2).getSavedGift();
+                }
+                if (r(savedStarGift2)) {
+                    int b10 = m1Var.b();
+                    int b11 = m1Var2.b();
+                    boolean z4 = n3Var.d;
+                    pr0 pr0Var = this.d;
+                    if (z4) {
+                        n3Var.f12863e.k(b10, b11);
+                        pr0Var.f13101e.n(n3Var.f12863e.d);
+                    } else {
+                        l7 l7Var = n3Var.f12863e;
+                        if (l7Var.f14410q == null) {
+                            l7Var.f14410q = l7Var.h();
+                        }
+                        l7Var.k(b10, b11);
+                    }
+                    h3Var.V2.p(b10, b11);
+                    h3Var.V2.S();
+                    if (n3Var.d) {
+                        HashMap hashMap = x3.Q;
+                        pr0Var.f(true);
+                    }
+                    org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
+                    if ((U instanceof ProfileActivity) && (t0Var = ((ProfileActivity) U).f34689s0) != null) {
+                        t0Var.a();
+                    }
+                    return true;
+                }
+                return false;
             }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void p(f2.m1 m1Var, int i10) {
+        n3 n3Var = this.f12821e;
+        if (i10 == 0) {
+            l7 l7Var = n3Var.f12863e;
+            if (l7Var != null) {
+                ArrayList arrayList = l7Var.f14410q;
+                if (arrayList != null) {
+                    ArrayList h = l7Var.h();
+                    if (arrayList.size() == h.size()) {
+                        for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                            if (arrayList.get(i11) == h.get(i11)) {
+                            }
+                        }
+                    }
+                    l7Var.l();
+                    l7Var.f14410q = null;
+                    return;
+                }
+                l7Var.f14410q = null;
+                return;
+            }
+            return;
+        }
+        h3 h3Var = n3Var.f12864f;
+        if (h3Var != null) {
+            h3Var.I0(false);
+        }
+        if (m1Var != null) {
+            m1Var.f5875a.setPressed(true);
         }
     }
 
+    public final boolean r(TL_stars.SavedStarGift savedStarGift) {
+        n3 n3Var = this.f12821e;
+        if (n3Var.f12865n) {
+            if (n3Var.f12863e == this.d.d) {
+                if (savedStarGift == null || !savedStarGift.pinned_to_top) {
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        }
+        return false;
+    }
+
     @Override
-    public final void S0(View view) {
-        g5.k1(this.Y0, view);
+    public final void q(f2.m1 m1Var) {
     }
 }

@@ -1,256 +1,424 @@
 package eg;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import k7.b6;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.g3;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.e90;
-import org.telegram.ui.cd1;
-import org.telegram.ui.pw0;
-import org.telegram.ui.u70;
-import ph.f3;
-public final class j1 extends m2.a {
-    public final int f5318c;
-    public final NotificationCenter.NotificationCenterDelegate d;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.z5;
+public class j1 extends View {
+    public float B;
+    public StaticLayout C;
+    public float D;
+    public float E;
+    public final int F;
+    public final int G;
+    public boolean H;
+    public boolean I;
+    public float J;
+    public float K;
+    public final RectF L;
+    public final z5 M;
+    public int f5295a;
+    public String f5296b;
+    public boolean f5297c;
+    public final RectF d;
+    public final TextPaint f5298e;
+    public final Paint f5299f;
+    public final Drawable h;
+    public boolean f5300n;
+    public final ImageReceiver f5301r;
+    public final ImageReceiver f5302s;
+    public TLRPC.Document v;
+    public TLRPC.Document f5303w;
+    public boolean f5304x;
+    public final float f5305y;
 
-    public j1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f5318c = i10;
-        this.d = notificationCenterDelegate;
+    public j1(Context context, float f10) {
+        super(context);
+        this.f5296b = "";
+        this.d = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
+        TextPaint textPaint = new TextPaint(1);
+        this.f5298e = textPaint;
+        this.f5299f = new Paint(1);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f5301r = imageReceiver;
+        ImageReceiver imageReceiver2 = new ImageReceiver(this);
+        this.f5302s = imageReceiver2;
+        this.B = 1.0f;
+        this.L = new RectF();
+        new Path();
+        this.M = new z5(this, 350L, pr.h);
+        this.f5305y = f10;
+        imageReceiver.setCrossfadeWithOldImage(true);
+        imageReceiver.setInvalidateAll(true);
+        imageReceiver2.setCrossfadeWithOldImage(true);
+        imageReceiver2.setInvalidateAll(true);
+        int i10 = (int) (3.0f * f10);
+        this.F = i10;
+        int i11 = (int) (1.0f * f10);
+        this.G = i11;
+        setPadding(i10, i11, i10, i11);
+        this.h = context.getResources().getDrawable(R.drawable.map_pin3).mutate();
+        textPaint.setTextSize(f10 * 24.0f);
+        textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
+        NotificationCenter.listenEmojiLoading(this);
     }
 
-    @Override
-    public final void a(m2.h hVar, Object obj) {
-        switch (this.f5318c) {
-            case 0:
-                hVar.removeView((View) obj);
-                return;
-            case 1:
-                hVar.removeView((View) obj);
-                return;
-            default:
-                hVar.removeView((View) obj);
-                return;
+    public static org.telegram.tgnet.TLRPC.Document b(java.lang.String r8, org.telegram.tgnet.TLRPC.TL_messages_stickerSet r9) {
+        throw new UnsupportedOperationException("Method not decompiled: eg.j1.b(java.lang.String, org.telegram.tgnet.TLRPC$TL_messages_stickerSet):org.telegram.tgnet.TLRPC$Document");
+    }
+
+    public static i1 c(String str) {
+        Drawable emojiBigDrawable = Emoji.getEmojiBigDrawable(str);
+        if (emojiBigDrawable instanceof Emoji.SimpleEmojiDrawable) {
+            ((Emoji.SimpleEmojiDrawable) emojiBigDrawable).fullSize = false;
         }
-    }
-
-    @Override
-    public final int b() {
-        switch (this.f5318c) {
-            case 0:
-                return ((o1) this.d).d.size();
-            case 1:
-                return ((u70) this.d).C.length;
-            default:
-                if (((cd1) this.d).f33290b != 0) {
-                    return 1;
-                }
-                return 2;
+        if (emojiBigDrawable == null) {
+            return null;
         }
+        return new i1(emojiBigDrawable, 0);
     }
 
-    @Override
-    public int c(Object obj) {
-        switch (this.f5318c) {
-            case 2:
-                return -1;
-            default:
-                return super.c(obj);
-        }
-    }
-
-    @Override
-    public final Object e(m2.h hVar, int i10) {
-        boolean z4;
+    public final void a(Canvas canvas) {
         float f10;
-        f6 f6Var;
-        f6 f6Var2;
-        f6 f6Var3;
-        int i11;
-        View view;
-        switch (this.f5318c) {
-            case 0:
-                o1 o1Var = (o1) this.d;
-                n1 n1Var = new n1(o1Var, o1Var.getContext(), i10);
-                hVar.addView(n1Var);
-                n1Var.f5368a = i10;
-                pw0 pw0Var = (pw0) o1Var.d.get(i10);
-                int i12 = pw0Var.f37545a;
-                String str = pw0Var.d;
-                CharSequence charSequence = pw0Var.f37547c;
-                int i13 = 8;
-                TextView textView = n1Var.f5369b;
-                e90 e90Var = n1Var.f5370c;
-                if (i12 != 0 && i12 != 14 && i12 != 28) {
-                    if (o1Var.B) {
-                        int i14 = o1Var.f5399y;
-                        if (i14 == 4) {
-                            textView.setText(LocaleController.getString(R.string.AdditionalReactions));
-                            i11 = R.string.AdditionalReactionsDescription;
-                        } else if (i14 == 3) {
-                            textView.setText(LocaleController.getString(R.string.PremiumPreviewNoAds));
-                            i11 = R.string.PremiumPreviewNoAdsDescription2;
-                        } else if (i14 == 24) {
-                            textView.setText(LocaleController.getString(R.string.PremiumPreviewTags));
-                            i11 = R.string.PremiumPreviewTagsDescription;
-                        } else if (i14 == 10) {
-                            textView.setText(LocaleController.getString(R.string.PremiumPreviewAppIcon));
-                            i11 = R.string.PremiumPreviewAppIconDescription2;
-                        } else if (i14 == 2) {
-                            textView.setText(LocaleController.getString(R.string.PremiumPreviewDownloadSpeed));
-                            i11 = R.string.PremiumPreviewDownloadSpeedDescription2;
-                        } else if (i14 == 9) {
-                            textView.setText(LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagement));
-                            i11 = R.string.PremiumPreviewAdvancedChatManagementDescription2;
-                        } else if (i14 == 8) {
-                            textView.setText(LocaleController.getString(R.string.PremiumPreviewVoiceToText));
-                            i11 = R.string.PremiumPreviewVoiceToTextDescription2;
-                        } else if (i14 == 13) {
-                            textView.setText(LocaleController.getString(R.string.PremiumPreviewTranslations));
-                            i11 = R.string.PremiumPreviewTranslationsDescription;
-                        } else if (i14 == 38) {
-                            textView.setText(LocaleController.getString(R.string.PremiumPreviewEffects));
-                            i11 = R.string.PremiumPreviewEffectsDescription;
-                        } else if (i14 == 22) {
-                            textView.setText(LocaleController.getString(R.string.PremiumPreviewWallpaper));
-                            i11 = R.string.PremiumPreviewWallpaperDescription;
-                        } else if (i14 == 23) {
-                            textView.setText(LocaleController.getString(R.string.PremiumPreviewProfileColor));
-                            i11 = R.string.PremiumPreviewProfileColorDescription;
-                        } else if (i14 == 41) {
-                            textView.setText(LocaleController.getString(R.string.PremiumPreviewSharingDisable));
-                            i11 = R.string.PremiumPreviewSharingDisableDescription;
-                        } else {
-                            textView.setText(charSequence);
-                            e90Var.setText(AndroidUtilities.replaceTags(str));
-                            n1Var.h = false;
-                        }
-                        org.telegram.ui.b.n(i11, e90Var);
-                        n1Var.h = false;
-                    } else {
-                        textView.setText(charSequence);
-                        e90Var.setText(AndroidUtilities.replaceTags(str));
-                        n1Var.h = false;
+        f();
+        if (this.C == null) {
+            return;
+        }
+        int i10 = this.F;
+        float f11 = i10;
+        int i11 = this.G;
+        float f12 = i11;
+        RectF rectF = this.L;
+        rectF.set(f11, f12, this.J + f11, this.K + f12);
+        float f13 = this.K * 0.2f;
+        canvas.drawRoundRect(rectF, f13, f13, this.f5299f);
+        boolean z4 = this.f5300n;
+        float f14 = this.f5305y;
+        RectF rectF2 = this.d;
+        if (z4) {
+            float e6 = this.M.e(this.I);
+            if (e6 > 0.0f) {
+                float f15 = f14 * 21.33f;
+                float x10 = e2.c.x(this.K, f15, 2.0f, f12);
+                ImageReceiver imageReceiver = this.f5302s;
+                imageReceiver.setImageCoords(((rectF2.left + 2.25f) * f14) + f11, x10, f15, f15);
+                canvas.save();
+                canvas.scale(1.2f, 1.2f, imageReceiver.getCenterX(), imageReceiver.getCenterY());
+                imageReceiver.setAlpha(e6);
+                imageReceiver.draw(canvas);
+                canvas.restore();
+            }
+            if (e6 < 1.0f) {
+                float f16 = f14 * 21.33f;
+                float x11 = e2.c.x(this.K, f16, 2.0f, f12);
+                ImageReceiver imageReceiver2 = this.f5301r;
+                imageReceiver2.setImageCoords(((rectF2.left + 2.25f) * f14) + f11, x11, f16, f16);
+                canvas.save();
+                canvas.scale(1.2f, 1.2f, imageReceiver2.getCenterX(), imageReceiver2.getCenterY());
+                imageReceiver2.setAlpha(1.0f - e6);
+                imageReceiver2.draw(canvas);
+                canvas.restore();
+            }
+        } else if (!this.f5304x) {
+            float f17 = rectF2.left;
+            float f18 = this.K;
+            float f19 = f14 * 21.33f;
+            Drawable drawable = this.h;
+            drawable.setBounds(((int) (f17 * f14)) + i10, ((int) ((f18 - f19) / 2.0f)) + i11, i10 + ((int) ((f17 + 21.33f) * f14)), i11 + ((int) ((f19 + f18) / 2.0f)));
+            drawable.draw(canvas);
+        }
+        canvas.save();
+        float f20 = rectF2.left;
+        if (!this.f5300n && !this.f5304x) {
+            f10 = 0.0f;
+        } else {
+            f10 = 2.25f;
+        }
+        canvas.translate(((f20 + f10 + 21.33f + 3.25f) * f14) + f11, (this.K / 2.0f) + f12);
+        float f21 = this.B;
+        canvas.scale(f21, f21);
+        canvas.translate(-this.E, (-this.C.getHeight()) / 2.0f);
+        this.C.draw(canvas);
+        canvas.restore();
+    }
+
+    public final void d(int i10, final String str) {
+        boolean isEmpty = TextUtils.isEmpty(str);
+        ImageReceiver imageReceiver = this.f5302s;
+        ImageReceiver imageReceiver2 = this.f5301r;
+        if (isEmpty) {
+            this.f5300n = false;
+            this.v = null;
+            this.f5303w = null;
+            imageReceiver2.clearImage();
+            imageReceiver.clearImage();
+        } else {
+            this.f5300n = true;
+            this.v = null;
+            this.f5303w = null;
+            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
+            tL_inputStickerSetShortName.short_name = "StaticEmoji";
+            MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName, 0, false, new Utilities.Callback(this) {
+                public final j1 f5232b;
+
+                {
+                    this.f5232b = this;
+                }
+
+                @Override
+                public final void run(Object obj) {
+                    switch (r3) {
+                        case 0:
+                            j1 j1Var = this.f5232b;
+                            j1Var.getClass();
+                            String str2 = str;
+                            TLRPC.Document b10 = j1.b(str2, (TLRPC.TL_messages_stickerSet) obj);
+                            j1Var.v = b10;
+                            j1Var.f5301r.setImage(ImageLocation.getForDocument(b10), "80_80", j1.c(str2), null, null, 0);
+                            j1Var.f5302s.setImage(ImageLocation.getForDocument(j1Var.f5303w), "80_80", ImageLocation.getForDocument(j1Var.v), "80_80", null, null, j1.c(str2), 0L, null, null, 0);
+                            return;
+                        default:
+                            j1 j1Var2 = this.f5232b;
+                            j1Var2.getClass();
+                            String str3 = str;
+                            TLRPC.Document b11 = j1.b(str3, (TLRPC.TL_messages_stickerSet) obj);
+                            j1Var2.f5303w = b11;
+                            if (b11 != null) {
+                                j1Var2.f5302s.setImage(ImageLocation.getForDocument(b11), "80_80", ImageLocation.getForDocument(j1Var2.v), "80_80", null, null, j1.c(str3), 0L, null, null, 0);
+                                return;
+                            }
+                            return;
                     }
-                } else {
-                    textView.setText("");
-                    e90Var.setText("");
-                    n1Var.h = true;
                 }
-                e90Var.setMaxWidth(f3.a(e90Var.getText(), e90Var.getPaint()));
-                n1Var.requestLayout();
-                if (pw0Var.f37545a == 40) {
-                    z4 = true;
-                } else {
-                    z4 = false;
+            });
+            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
+            tL_inputStickerSetShortName2.short_name = "RestrictedEmoji";
+            MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName2, 0, false, new Utilities.Callback(this) {
+                public final j1 f5232b;
+
+                {
+                    this.f5232b = this;
                 }
-                if (z4 && n1Var.d == null) {
-                    LinearLayout linearLayout = new LinearLayout(n1Var.getContext());
-                    n1Var.d = linearLayout;
-                    linearLayout.setOrientation(1);
-                    Context context = n1Var.getContext();
-                    f6Var = ((g3) o1Var).resourcesProvider;
-                    rh.j jVar = new rh.j(context, f6Var, true);
-                    jVar.a(LocaleController.getString(R.string.GiftsFeature1Title), LocaleController.getString(R.string.GiftsFeature1Text), R.drawable.menu_feature_unique);
-                    n1Var.d.addView(r2[0], b6.n(-1, -2));
-                    Context context2 = n1Var.getContext();
-                    f6Var2 = ((g3) o1Var).resourcesProvider;
-                    rh.j jVar2 = new rh.j(context2, f6Var2, true);
-                    jVar2.a(LocaleController.getString(R.string.GiftsFeature2Title), LocaleController.getString(R.string.GiftsFeature2Text), R.drawable.menu_feature_tradable);
-                    n1Var.d.addView(r2[1], b6.n(-1, -2));
-                    Context context3 = n1Var.getContext();
-                    f6Var3 = ((g3) o1Var).resourcesProvider;
-                    rh.j jVar3 = new rh.j(context3, f6Var3, true);
-                    rh.j[] jVarArr = {jVar, jVar2, jVar3};
-                    jVar3.a(LocaleController.getString(R.string.GiftsFeature3Title), LocaleController.getString(R.string.GiftsFeature3Text), R.drawable.menu_wear);
-                    n1Var.d.addView(jVarArr[2], b6.n(-1, -2));
-                    n1Var.addView(n1Var.d, b6.k(0.0f, -4.0f, 0.0f, 0.0f, -1, -2));
-                }
-                LinearLayout linearLayout2 = n1Var.d;
-                if (linearLayout2 != null) {
-                    if (z4) {
-                        i13 = 0;
+
+                @Override
+                public final void run(Object obj) {
+                    switch (r3) {
+                        case 0:
+                            j1 j1Var = this.f5232b;
+                            j1Var.getClass();
+                            String str2 = str;
+                            TLRPC.Document b10 = j1.b(str2, (TLRPC.TL_messages_stickerSet) obj);
+                            j1Var.v = b10;
+                            j1Var.f5301r.setImage(ImageLocation.getForDocument(b10), "80_80", j1.c(str2), null, null, 0);
+                            j1Var.f5302s.setImage(ImageLocation.getForDocument(j1Var.f5303w), "80_80", ImageLocation.getForDocument(j1Var.v), "80_80", null, null, j1.c(str2), 0L, null, null, 0);
+                            return;
+                        default:
+                            j1 j1Var2 = this.f5232b;
+                            j1Var2.getClass();
+                            String str3 = str;
+                            TLRPC.Document b11 = j1.b(str3, (TLRPC.TL_messages_stickerSet) obj);
+                            j1Var2.f5303w = b11;
+                            if (b11 != null) {
+                                j1Var2.f5302s.setImage(ImageLocation.getForDocument(b11), "80_80", ImageLocation.getForDocument(j1Var2.v), "80_80", null, null, j1.c(str3), 0L, null, null, 0);
+                                return;
+                            }
+                            return;
                     }
-                    linearLayout2.setVisibility(i13);
                 }
-                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) e90Var.getLayoutParams();
-                if (z4) {
-                    f10 = 6.0f;
-                } else {
-                    f10 = 10.0f;
-                }
-                marginLayoutParams.topMargin = AndroidUtilities.dp(f10);
-                return n1Var;
-            case 1:
-                TextView textView2 = new TextView(hVar.getContext());
-                u70 u70Var = (u70) this.d;
-                textView2.setTag(u70Var.f38861a);
-                TextView textView3 = new TextView(hVar.getContext());
-                textView3.setTag(u70Var.f38862b);
-                ah.d dVar = new ah.d(hVar.getContext(), textView2, textView3);
-                int i15 = j6.G6;
-                textView2.setTextColor(j6.w0(null, i15, false));
-                textView2.setTextSize(1, 26.0f);
-                textView2.setTypeface(AndroidUtilities.bold());
-                textView2.setGravity(17);
-                dVar.addView(textView2, b6.d(-1, -2.0f, 51, 18.0f, 244.0f, 18.0f, 0.0f));
-                textView3.setTextColor(j6.w0(null, i15, false));
-                textView3.setTextSize(1, 15.0f);
-                textView3.setLineSpacing(AndroidUtilities.dpf2(2.33f), 1.0f);
-                textView3.setGravity(17);
-                dVar.addView(textView3, b6.d(-1, -2.0f, 51, 16.0f, 286.0f, 16.0f, 0.0f));
-                hVar.addView(dVar, 0);
-                textView2.setText(u70Var.C[i10]);
-                textView3.setText(AndroidUtilities.replaceTags(u70Var.D[i10]));
-                return dVar;
-            default:
-                cd1 cd1Var = (cd1) this.d;
-                if (i10 == 0) {
-                    view = cd1Var.f33328q0;
-                } else {
-                    view = cd1Var.f33315j0;
-                }
-                hVar.addView(view);
-                return view;
+            });
+            imageReceiver2.setImage(ImageLocation.getForDocument(this.v), "80_80", c(str), null, null, 0);
+            imageReceiver.setImage(ImageLocation.getForDocument(this.f5303w), "80_80", ImageLocation.getForDocument(this.v), "80_80", null, null, c(str), 0L, null, null, 0);
+        }
+        this.f5297c = true;
+        requestLayout();
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        a(canvas);
+    }
+
+    public final void e(int i10, int i11) {
+        int i12 = -16777216;
+        Drawable drawable = this.h;
+        TextPaint textPaint = this.f5298e;
+        Paint paint = this.f5299f;
+        if (i10 == 0) {
+            paint.setColor(-16777216);
+            textPaint.setColor(-1);
+            drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        } else if (i10 == 1) {
+            paint.setColor(1275068416);
+            textPaint.setColor(-1);
+            drawable.setColorFilter(null);
+        } else if (i10 == 2) {
+            paint.setColor(-1);
+            textPaint.setColor(-16777216);
+            drawable.setColorFilter(null);
+        } else {
+            paint.setColor(i11);
+            if (AndroidUtilities.computePerceivedBrightness(i11) < 0.721f) {
+                i12 = -1;
+            }
+            textPaint.setColor(i12);
+            drawable.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
+        }
+        invalidate();
+    }
+
+    public final void f() {
+        float f10;
+        float f11;
+        if (!this.f5297c) {
+            return;
+        }
+        String str = this.f5296b;
+        TextPaint textPaint = this.f5298e;
+        float measureText = textPaint.measureText(str);
+        int i10 = this.f5295a;
+        int i11 = this.F;
+        float f12 = (i10 - i11) - i11;
+        RectF rectF = this.d;
+        float f13 = rectF.left;
+        float f14 = 2.25f;
+        if (!this.f5300n && !this.f5304x) {
+            f10 = 0.0f;
+        } else {
+            f10 = 2.25f;
+        }
+        float f15 = this.f5305y;
+        float f16 = f12 - (((((f13 + f10) + 21.33f) + 3.25f) + rectF.right) * f15);
+        float min = Math.min(1.0f, f16 / measureText);
+        this.B = min;
+        if (min < 0.4f) {
+            f11 = 1.0f;
+            String str2 = this.f5296b;
+            this.C = new StaticLayout(str2, textPaint, qh.f3.a(str2, textPaint), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        } else {
+            f11 = 1.0f;
+            this.C = new StaticLayout(this.f5296b, textPaint, (int) Math.ceil(measureText), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        }
+        this.D = 0.0f;
+        this.E = Float.MAX_VALUE;
+        for (int i12 = 0; i12 < this.C.getLineCount(); i12++) {
+            this.D = Math.max(this.D, this.C.getLineWidth(i12));
+            this.E = Math.min(this.E, this.C.getLineLeft(i12));
+        }
+        if (this.C.getLineCount() > 2) {
+            this.B = 0.3f;
+        } else {
+            this.B = Math.min(f11, f16 / this.D);
+        }
+        float f17 = rectF.left;
+        if (!this.f5300n && !this.f5304x) {
+            f14 = 0.0f;
+        }
+        this.J = (this.D * this.B) + ((f17 + f14 + 21.33f + 3.25f + rectF.right) * f15);
+        this.K = Math.max(f15 * 21.33f, this.C.getHeight() * this.B) + ((rectF.top + rectF.bottom) * f15);
+        this.f5297c = false;
+    }
+
+    public TLRPC.Document getCodeEmojiDocument() {
+        TLRPC.Document document;
+        if (this.I && (document = this.f5303w) != null) {
+            return document;
+        }
+        return this.v;
+    }
+
+    public int getHeightInternal() {
+        int round = Math.round(this.K);
+        int i10 = this.G;
+        return round + i10 + i10;
+    }
+
+    public float getRadius() {
+        return this.K * 0.2f;
+    }
+
+    public String getText() {
+        return this.f5296b;
+    }
+
+    public int getTypesCount() {
+        return 4;
+    }
+
+    public int getWidthInternal() {
+        int round = Math.round(this.J);
+        int i10 = this.F;
+        return round + i10 + i10;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.H = true;
+        if (this.I) {
+            this.f5302s.onAttachedToWindow();
+        } else {
+            this.f5301r.onAttachedToWindow();
         }
     }
 
     @Override
-    public final boolean f(View view, Object obj) {
-        switch (this.f5318c) {
-            case 0:
-                if (view == obj) {
-                    return true;
-                }
-                return false;
-            case 1:
-                return view.equals(obj);
-            default:
-                if (obj == view) {
-                    return true;
-                }
-                return false;
-        }
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.H = false;
+        this.f5301r.onDetachedFromWindow();
+        this.f5302s.onDetachedFromWindow();
     }
 
     @Override
-    public void h(int i10) {
-        switch (this.f5318c) {
-            case 1:
-                u70 u70Var = (u70) this.d;
-                u70Var.e.setCurrentPage(i10);
-                u70Var.E = i10;
-                return;
-            default:
-                return;
+    public final void onMeasure(int i10, int i11) {
+        f();
+        setMeasuredDimension(getWidthInternal(), getHeightInternal());
+    }
+
+    public void setIsVideo(boolean z4) {
+        if (this.I != z4 && this.H) {
+            ImageReceiver imageReceiver = this.f5302s;
+            ImageReceiver imageReceiver2 = this.f5301r;
+            if (z4) {
+                imageReceiver2.onDetachedFromWindow();
+                imageReceiver.onAttachedToWindow();
+            } else {
+                imageReceiver2.onAttachedToWindow();
+                imageReceiver.onDetachedFromWindow();
+            }
         }
+        this.I = z4;
+        invalidate();
+    }
+
+    public void setMaxWidth(int i10) {
+        this.f5295a = i10;
+        this.f5297c = true;
+    }
+
+    public void setText(String str) {
+        this.f5296b = str;
+        this.f5297c = true;
+        requestLayout();
     }
 }

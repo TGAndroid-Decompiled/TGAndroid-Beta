@@ -1,451 +1,1192 @@
 package uf;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.text.InputFilter;
+import android.location.Location;
+import android.os.Build;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import k7.b6;
-import nh.y3;
+import android.widget.TextView;
+import fg.r1;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import k7.c6;
+import oh.h4;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.WebFile;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.f9;
+import org.telegram.messenger.pk;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Components.cq;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.mr;
-import org.telegram.ui.Components.rp;
-import org.telegram.ui.Components.w51;
-import ph.d4;
-public final class u0 extends p2 implements NotificationCenter.NotificationCenterDelegate {
-    public boolean B;
-    public int C;
-    public boolean D;
-    public g61 f45445a;
-    public mr f45446b;
-    public org.telegram.ui.ActionBar.w0 f45447c;
-    public boolean d;
-    public FrameLayout e;
-    public r0 f45448f;
-    public FrameLayout h;
-    public t0 f45449n;
-    public cq f45450r;
-    public y3 f45451s;
-    public boolean v;
-    public TLRPC.TL_businessLocation f45452w;
-    public TLRPC.GeoPoint f45453x;
-    public String f45454y;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Cells.b8;
+import org.telegram.ui.Cells.e2;
+import org.telegram.ui.Cells.h5;
+import org.telegram.ui.Components.bx;
+import org.telegram.ui.Components.ma0;
+import org.telegram.ui.Components.o71;
+import org.telegram.ui.Components.oq;
+import org.telegram.ui.Components.p9;
+import org.telegram.ui.Components.pq;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.z8;
+import org.telegram.ui.xn;
+import vf.o1;
+public final class u0 extends sl0 implements NotificationCenter.NotificationCenterDelegate {
+    public String A0;
+    public p0 B;
+    public int B0;
+    public String C;
+    public f9 C0;
+    public s0 D;
+    public xn D0;
+    public s0 E;
+    public final g6 E0;
+    public ArrayList F;
+    public ArrayList G;
+    public Object[] G0;
+    public ArrayList H;
+    public String I;
+    public ArrayList J;
+    public ArrayList K;
+    public String[] L;
+    public ArrayList M;
+    public ArrayList N;
+    public ArrayList O;
+    public long P;
+    public TLRPC.TL_inlineBotSwitchPM Q;
+    public TLRPC.TL_inlineBotWebView R;
+    public final ma0 S;
+    public a0.h T;
+    public int U;
+    public int V;
+    public String W;
+    public boolean X;
+    public boolean Y;
+    public int Z;
+    public ArrayList f48693a0;
+    public int f48697d0;
+    public int f48701f0;
+    public int f48702g0;
+    public final Context h;
+    public boolean f48703h0;
+    public TLRPC.Chat f48704i0;
+    public bx f48706k0;
+    public boolean f48707l0;
+    public o71 m0;
+    public long f48708n;
+    public String f48709n0;
+    public String f48710o0;
+    public String f48711p0;
+    public int f48712q0;
+    public final long f48713r;
+    public int f48714r0;
+    public final boolean f48715s;
+    public boolean f48716s0;
+    public TLRPC.User f48717t0;
+    public boolean f48718u0;
+    public TLRPC.ChatFull v;
+    public m0 f48719v0;
+    public final k1 f48720w;
+    public Location f48721w0;
+    public ArrayList f48722x;
+    public ArrayList f48723x0;
+    public a0.h f48724y;
+    public HashMap f48725y0;
+    public boolean f48695c = true;
+    public boolean d = true;
+    public boolean f48698e = true;
+    public int f48700f = UserConfig.selectedAccount;
+    public boolean f48694b0 = true;
+    public boolean f48696c0 = true;
+    public boolean f48699e0 = true;
+    public boolean f48705j0 = false;
+    public final ArrayList f48726z0 = new ArrayList();
+    public final l0 F0 = new l0(this, new k0(this));
+    public boolean H0 = false;
+    public int I0 = -1;
 
-    public u0() {
-        super(null);
-        this.C = -4;
+    public u0(Context context, long j10, long j11, ma0 ma0Var, g6 g6Var, boolean z4) {
+        this.E0 = g6Var;
+        this.h = context;
+        this.S = ma0Var;
+        this.f48708n = j10;
+        this.f48715s = z4;
+        this.f48713r = j11;
+        k1 k1Var = new k1(true);
+        this.f48720w = k1Var;
+        k1Var.f48618a = new h4(this, 21);
+        NotificationCenter.getInstance(this.f48700f).addObserver(this, NotificationCenter.fileLoaded);
+        NotificationCenter.getInstance(this.f48700f).addObserver(this, NotificationCenter.fileLoadFailed);
+        NotificationCenter.getInstance(this.f48700f).addObserver(this, NotificationCenter.recentDocumentsDidLoad);
+        NotificationCenter.getInstance(this.f48700f).addObserver(this, NotificationCenter.stickersDidLoad);
     }
 
-    public final void U(boolean z4) {
-        float f10;
-        float f11;
-        boolean z10;
-        float f12;
-        float f13;
-        if (this.f45447c != null) {
-            boolean V = V();
-            this.f45447c.setEnabled(V);
-            float f14 = 0.0f;
-            if (z4) {
-                ViewPropertyAnimator animate = this.f45447c.animate();
-                if (V) {
-                    f12 = 1.0f;
-                } else {
-                    f12 = 0.0f;
-                }
-                ViewPropertyAnimator alpha = animate.alpha(f12);
-                if (V) {
-                    f13 = 1.0f;
-                } else {
-                    f13 = 0.0f;
-                }
-                ViewPropertyAnimator scaleX = alpha.scaleX(f13);
-                if (V) {
-                    f14 = 1.0f;
-                }
-                scaleX.scaleY(f14).setDuration(180L).start();
-            } else {
-                org.telegram.ui.ActionBar.w0 w0Var = this.f45447c;
-                if (V) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                w0Var.setAlpha(f10);
-                org.telegram.ui.ActionBar.w0 w0Var2 = this.f45447c;
-                if (V) {
-                    f11 = 1.0f;
-                } else {
-                    f11 = 0.0f;
-                }
-                w0Var2.setScaleX(f11);
-                org.telegram.ui.ActionBar.w0 w0Var3 = this.f45447c;
-                if (V) {
-                    f14 = 1.0f;
-                }
-                w0Var3.setScaleY(f14);
+    public static boolean O(TLRPC.Document document, String str) {
+        int size = document.attributes.size();
+        int i10 = 0;
+        while (true) {
+            if (i10 >= size) {
+                break;
             }
-            g61 g61Var = this.f45445a;
-            if (g61Var != null && g61Var.V2 != null) {
-                boolean z11 = this.D;
-                if (this.f45452w != null && (this.f45453x != null || !TextUtils.isEmpty(this.f45454y))) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i10);
+            if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
+                String str2 = documentAttribute.alt;
+                if (str2 == null || !str2.contains(str)) {
+                    break;
                 }
-                if (z11 != z10) {
-                    this.f45445a.V2.N(true);
-                }
+                return true;
             }
+            i10++;
         }
-    }
-
-    public final boolean V() {
-        boolean z4;
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        String str;
-        boolean z13;
-        boolean z14;
-        TLRPC.GeoPoint geoPoint;
-        if (this.f45453x == null && TextUtils.isEmpty(this.f45454y)) {
-            z4 = false;
-        } else {
-            z4 = true;
-        }
-        if (this.f45452w != null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z4 != z10) {
-            return true;
-        }
-        if (this.f45453x == null && TextUtils.isEmpty(this.f45454y)) {
-            z11 = false;
-        } else {
-            z11 = true;
-        }
-        TLRPC.TL_businessLocation tL_businessLocation = this.f45452w;
-        if (tL_businessLocation != null && !(tL_businessLocation.geo_point instanceof TLRPC.TL_geoPointEmpty)) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        if (z11 != z12) {
-            return true;
-        }
-        String str2 = this.f45454y;
-        if (tL_businessLocation != null) {
-            str = tL_businessLocation.address;
-        } else {
-            str = "";
-        }
-        if (!TextUtils.equals(str2, str)) {
-            return true;
-        }
-        TLRPC.GeoPoint geoPoint2 = this.f45453x;
-        if (geoPoint2 != null) {
-            z13 = true;
-        } else {
-            z13 = false;
-        }
-        TLRPC.TL_businessLocation tL_businessLocation2 = this.f45452w;
-        if (tL_businessLocation2 != null && tL_businessLocation2.geo_point != null) {
-            z14 = true;
-        } else {
-            z14 = false;
-        }
-        if (z13 != z14) {
-            return true;
-        }
-        if (geoPoint2 == null || (tL_businessLocation2 != null && (geoPoint = tL_businessLocation2.geo_point) != null && ((geoPoint instanceof TLRPC.TL_geoPointEmpty) || (geoPoint2.lat == geoPoint.lat && geoPoint2._long == geoPoint._long)))) {
-            return false;
-        }
-        return true;
-    }
-
-    public final void W() {
-        boolean z4;
-        String trim;
-        if (this.f45446b.f27111c > 0.0f) {
-            return;
-        }
-        if (this.f45453x == null && TextUtils.isEmpty(this.f45454y)) {
-            z4 = true;
-        } else {
-            z4 = false;
-        }
-        if (!z4) {
-            if (!V()) {
-                finishFragment();
-                return;
-            }
-            String str = this.f45454y;
-            if (str == null) {
-                trim = "";
-            } else {
-                trim = str.trim();
-            }
-            if (TextUtils.isEmpty(trim) || trim.length() > 96) {
-                BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                r0 r0Var = this.f45448f;
-                int i10 = -this.C;
-                this.C = i10;
-                AndroidUtilities.shakeViewSpring(r0Var, i10);
-                return;
-            }
-        }
-        this.f45446b.a(1.0f);
-        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-        TL_account.updateBusinessLocation updatebusinesslocation = new TL_account.updateBusinessLocation();
-        if (!z4) {
-            if (this.f45453x != null) {
-                updatebusinesslocation.flags |= 2;
-                TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
-                updatebusinesslocation.geo_point = tL_inputGeoPoint;
-                TLRPC.GeoPoint geoPoint = this.f45453x;
-                tL_inputGeoPoint.lat = geoPoint.lat;
-                tL_inputGeoPoint._long = geoPoint._long;
-            }
-            updatebusinesslocation.flags |= 1;
-            updatebusinesslocation.address = this.f45454y;
-            if (userFull != null) {
-                userFull.flags2 |= 2;
-                TLRPC.TL_businessLocation tL_businessLocation = new TLRPC.TL_businessLocation();
-                userFull.business_location = tL_businessLocation;
-                tL_businessLocation.address = this.f45454y;
-                if (this.f45453x != null) {
-                    tL_businessLocation.flags = 1 | tL_businessLocation.flags;
-                    tL_businessLocation.geo_point = new TLRPC.TL_geoPoint();
-                    TLRPC.GeoPoint geoPoint2 = userFull.business_location.geo_point;
-                    TLRPC.GeoPoint geoPoint3 = this.f45453x;
-                    geoPoint2.lat = geoPoint3.lat;
-                    geoPoint2._long = geoPoint3._long;
-                }
-            }
-        } else if (userFull != null) {
-            userFull.flags2 &= -3;
-            userFull.business_location = null;
-        }
-        getConnectionsManager().sendRequest(updatebusinesslocation, new q0(this, 0));
-        getMessagesStorage().updateUserInfo(userFull, false);
-    }
-
-    public final void X() {
-        w51 w51Var;
-        if (this.v) {
-            return;
-        }
-        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-        if (userFull == null) {
-            getMessagesController().loadUserInfo(getUserConfig().getCurrentUser(), true, getClassGuid());
-            return;
-        }
-        TLRPC.TL_businessLocation tL_businessLocation = userFull.business_location;
-        this.f45452w = tL_businessLocation;
-        if (tL_businessLocation != null) {
-            this.f45453x = tL_businessLocation.geo_point;
-            this.f45454y = tL_businessLocation.address;
-        } else {
-            this.f45453x = null;
-            this.f45454y = "";
-        }
-        r0 r0Var = this.f45448f;
-        if (r0Var != null) {
-            this.d = true;
-            r0Var.setText(this.f45454y);
-            r0 r0Var2 = this.f45448f;
-            r0Var2.setSelection(r0Var2.getText().length());
-            this.d = false;
-        }
-        Y();
-        g61 g61Var = this.f45445a;
-        if (g61Var != null && (w51Var = g61Var.V2) != null) {
-            w51Var.N(true);
-        }
-        this.v = true;
-    }
-
-    public final void Y() {
-        y3 y3Var;
-        int measuredWidth;
-        t0 t0Var = this.f45449n;
-        if (t0Var != null && (y3Var = this.f45451s) != null) {
-            if (this.f45453x != null) {
-                t0Var.setAlpha(0.0f);
-                this.f45449n.setTranslationY(-AndroidUtilities.dp(12.0f));
-                if (this.f45451s.getMeasuredWidth() <= 0) {
-                    measuredWidth = AndroidUtilities.displaySize.x;
-                } else {
-                    measuredWidth = this.f45451s.getMeasuredWidth();
-                }
-                float f10 = AndroidUtilities.density;
-                int i10 = (int) (measuredWidth / f10);
-                int min = Math.min(2, (int) Math.ceil(f10));
-                y3 y3Var2 = this.f45451s;
-                TLRPC.GeoPoint geoPoint = this.f45453x;
-                y3Var2.n(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(geoPoint.lat, geoPoint._long, 0L, min * i10, min * 240, 15, min)), android.support.v4.media.a.l(i10, "_240"), this.f45450r, null);
-                return;
-            }
-            y3Var.setImageBitmap(null);
-        }
+        return false;
     }
 
     @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.BusinessLocation));
-        this.actionBar.setActionBarMenuOnItemClick(new sh.e(this, 10));
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i10 = j6.f20227v8;
-        mutate.setColorFilter(new PorterDuffColorFilter(j6.w0(null, i10, false), PorterDuff.Mode.MULTIPLY));
-        this.f45446b = new mr(mutate, new rp(j6.w0(null, i10, false)));
-        this.f45447c = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f45446b);
-        U(false);
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(j6.w0(null, j6.f19852a7, false));
-        r0 r0Var = new r0(this, getParentActivity());
-        this.f45448f = r0Var;
-        r0Var.setTextSize(1, 17.0f);
-        this.f45448f.setHintTextColor(j6.w0(null, j6.H6, false));
-        r0 r0Var2 = this.f45448f;
-        int i11 = j6.G6;
-        r0Var2.setTextColor(j6.w0(null, i11, false));
-        this.f45448f.setBackgroundDrawable(null);
-        int i12 = 5;
-        this.f45448f.setMaxLines(5);
-        this.f45448f.setSingleLine(false);
-        this.f45448f.setPadding(0, 0, AndroidUtilities.dp(42.0f), 0);
-        r0 r0Var3 = this.f45448f;
-        if (!LocaleController.isRTL) {
-            i12 = 3;
+    public final boolean D(f2.m1 m1Var) {
+        if ((this.f48717t0 == null || this.f48699e0) && this.f48723x0 == null) {
+            return true;
         }
-        r0Var3.setGravity(i12 | 48);
-        this.f45448f.setInputType(180225);
-        this.f45448f.setHint(LocaleController.getString(R.string.BusinessLocationAddress));
-        this.f45448f.setCursorColor(j6.w0(null, i11, false));
-        this.f45448f.setCursorSize(AndroidUtilities.dp(19.0f));
-        this.f45448f.setCursorWidth(1.5f);
-        this.f45448f.addTextChangedListener(new dh.c(this, 19));
-        this.f45448f.setFilters(new InputFilter[]{new Object()});
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.e = frameLayout2;
-        frameLayout2.addView(this.f45448f, b6.d(-1, -1.0f, 48, 21.0f, 15.0f, 21.0f, 15.0f));
-        FrameLayout frameLayout3 = this.e;
-        int i13 = j6.f19906d6;
-        frameLayout3.setBackgroundColor(getThemedColor(i13));
-        r0 r0Var4 = this.f45448f;
-        if (r0Var4 != null) {
-            this.d = true;
-            r0Var4.setText(this.f45454y);
-            r0 r0Var5 = this.f45448f;
-            r0Var5.setSelection(r0Var5.getText().length());
-            this.d = false;
+        return false;
+    }
+
+    public final void E(TLRPC.Document document, String str) {
+        String str2 = document.dc_id + "_" + document.f20849id;
+        HashMap hashMap = this.f48725y0;
+        if (hashMap == null || !hashMap.containsKey(str2)) {
+            if (UserConfig.getInstance(this.f48700f).isPremium() || !MessageObject.isPremiumSticker(document)) {
+                if (this.f48723x0 == null) {
+                    this.f48723x0 = new ArrayList();
+                    this.f48725y0 = new HashMap();
+                }
+                this.f48723x0.add(new t0(document, str));
+                this.f48725y0.put(str2, document);
+                bx bxVar = this.f48706k0;
+                if (bxVar != null) {
+                    bxVar.a();
+                }
+            }
         }
-        this.f45451s = new y3(this, context, 11);
-        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(R.raw.map_placeholder, j6.Pb, 0.2f);
-        svgThumb.setColorKey(i11, getResourceProvider());
-        svgThumb.setAspectCenter(true);
-        svgThumb.setParent(this.f45451s.getImageReceiver());
-        cq cqVar = new cq(svgThumb);
-        this.f45450r = cqVar;
-        cqVar.setCallback(this.f45451s);
-        this.f45451s.setBackgroundColor(getThemedColor(i13));
-        this.f45449n = new t0(this, context);
-        FrameLayout frameLayout4 = new FrameLayout(context);
-        this.h = frameLayout4;
-        frameLayout4.addView(this.f45451s, b6.c(-1.0f, -1));
-        this.h.addView(this.f45449n, b6.d(-2, -2.0f, 17, 0.0f, -31.0f, 0.0f, 0.0f));
-        Y();
-        g61 g61Var = new g61(this, new d4(this, 21), new p0(this, 0), null);
-        this.f45445a = g61Var;
-        g61Var.p1();
-        g61 g61Var2 = this.f45445a;
-        g61Var2.V2.f30240r = false;
-        frameLayout.addView(g61Var2, b6.c(-1.0f, -1));
-        this.actionBar.A(this.f45445a, true);
-        X();
-        this.fragmentView = frameLayout;
-        return frameLayout;
+    }
+
+    public final void F(String str, ArrayList arrayList) {
+        if (arrayList != null && !arrayList.isEmpty()) {
+            int size = arrayList.size();
+            int i10 = 0;
+            Object obj = str;
+            while (i10 < size) {
+                TLRPC.Document document = (TLRPC.Document) arrayList.get(i10);
+                String str2 = document.dc_id + "_" + document.f20849id;
+                HashMap hashMap = this.f48725y0;
+                if ((hashMap == null || !hashMap.containsKey(str2)) && (UserConfig.getInstance(this.f48700f).isPremium() || !MessageObject.isPremiumSticker(document))) {
+                    int size2 = document.attributes.size();
+                    int i11 = 0;
+                    while (true) {
+                        if (i11 >= size2) {
+                            break;
+                        }
+                        TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i11);
+                        if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
+                            obj = documentAttribute.stickerset;
+                            break;
+                        }
+                        i11++;
+                    }
+                    if (this.f48723x0 == null) {
+                        this.f48723x0 = new ArrayList();
+                        this.f48725y0 = new HashMap();
+                    }
+                    this.f48723x0.add(new t0(document, obj));
+                    this.f48725y0.put(str2, document);
+                }
+                i10++;
+                obj = obj;
+            }
+        }
+    }
+
+    public final void G() {
+        xn xnVar = this.D0;
+        if (xnVar != null && xnVar.getParentActivity() != null) {
+            if (Build.VERSION.SDK_INT >= 23 && this.D0.getParentActivity().checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
+                this.D0.getParentActivity().requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);
+                return;
+            }
+            TLRPC.User user = this.f48717t0;
+            if (user != null && user.bot_inline_geo) {
+                this.F0.start();
+            }
+        }
+    }
+
+    public final void H() {
+        if (this.f48723x0 == null) {
+            return;
+        }
+        ArrayList arrayList = this.f48726z0;
+        arrayList.clear();
+        int min = Math.min(6, this.f48723x0.size());
+        for (int i10 = 0; i10 < min; i10++) {
+            t0 t0Var = (t0) this.f48723x0.get(i10);
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(t0Var.f48688a.thumbs, 90);
+            if (((closestPhotoSizeWithSize instanceof TLRPC.TL_photoSize) || (closestPhotoSizeWithSize instanceof TLRPC.TL_photoSizeProgressive)) && !FileLoader.getInstance(this.f48700f).getPathToAttach(closestPhotoSizeWithSize, "webp", true).exists()) {
+                arrayList.add(FileLoader.getAttachFileName(closestPhotoSizeWithSize, "webp"));
+                FileLoader.getInstance(this.f48700f).loadFile(ImageLocation.getForDocument(closestPhotoSizeWithSize, t0Var.f48688a), t0Var.f48689b, "webp", 1, 1);
+            }
+        }
+        arrayList.isEmpty();
+    }
+
+    public final TLRPC.TL_inlineBotSwitchPM I() {
+        TLRPC.User user = this.f48717t0;
+        if (user != null && user.f20990id != this.P) {
+            return null;
+        }
+        return this.Q;
+    }
+
+    public final Object J(int i10) {
+        String str;
+        long j10;
+        String str2;
+        TLRPC.User user = null;
+        if (this.C != null) {
+            if (i10 >= 2) {
+                i10 -= 2;
+            }
+            return null;
+        }
+        ArrayList arrayList = this.f48723x0;
+        if (arrayList != null) {
+            if (i10 >= 0 && i10 < arrayList.size()) {
+                return ((t0) this.f48723x0.get(i10)).f48688a;
+            }
+        } else {
+            ArrayList arrayList2 = this.O;
+            if (arrayList2 != null) {
+                TLRPC.TL_inlineBotWebView tL_inlineBotWebView = this.R;
+                if (tL_inlineBotWebView != null) {
+                    if (i10 == 0) {
+                        return tL_inlineBotWebView;
+                    }
+                } else {
+                    TLRPC.TL_inlineBotSwitchPM tL_inlineBotSwitchPM = this.Q;
+                    if (tL_inlineBotSwitchPM != null) {
+                        if (i10 == 0) {
+                            return tL_inlineBotSwitchPM;
+                        }
+                    }
+                    if (i10 >= 0 && i10 < arrayList2.size()) {
+                        return this.O.get(i10);
+                    }
+                }
+                i10--;
+                if (i10 >= 0) {
+                    return this.O.get(i10);
+                }
+            } else {
+                ArrayList arrayList3 = this.f48722x;
+                if (arrayList3 != null) {
+                    if (i10 >= 0 && i10 < arrayList3.size()) {
+                        return this.f48722x.get(i10);
+                    }
+                } else {
+                    ArrayList arrayList4 = this.F;
+                    if (arrayList4 != null) {
+                        if (i10 >= 0 && i10 < arrayList4.size()) {
+                            return this.F.get(i10);
+                        }
+                    } else {
+                        ArrayList arrayList5 = this.K;
+                        if (arrayList5 != null) {
+                            if (i10 >= 0 && i10 < arrayList5.size()) {
+                                return this.K.get(i10);
+                            }
+                        } else {
+                            ArrayList arrayList6 = this.J;
+                            if (arrayList6 != null || this.G != null) {
+                                if (arrayList6 != null) {
+                                    if (i10 >= 0 && i10 < arrayList6.size()) {
+                                        return this.J.get(i10);
+                                    }
+                                    ArrayList arrayList7 = this.J;
+                                    if (arrayList7 != null) {
+                                        i10 -= arrayList7.size();
+                                    }
+                                }
+                                ArrayList arrayList8 = this.G;
+                                if (arrayList8 != null && i10 >= 0 && i10 < arrayList8.size()) {
+                                    ArrayList arrayList9 = this.M;
+                                    if (arrayList9 != null && (this.f48697d0 != 1 || (this.v instanceof TLRPC.TL_channelFull))) {
+                                        if (arrayList9.get(i10) != null) {
+                                            user = (TLRPC.User) this.M.get(i10);
+                                            Object obj = this.G.get(i10);
+                                            if (user != null) {
+                                                str2 = UserObject.getPublicUsername(user);
+                                            } else {
+                                                str2 = "";
+                                            }
+                                            str = String.format("%s@%s", obj, str2);
+                                        } else {
+                                            str = String.format("%s", this.G.get(i10));
+                                        }
+                                    } else {
+                                        str = (String) this.G.get(i10);
+                                    }
+                                    ArrayList arrayList10 = this.N;
+                                    if (arrayList10 != null && ((Boolean) arrayList10.get(i10)).booleanValue()) {
+                                        if (user != null) {
+                                            j10 = user.f20990id;
+                                        } else {
+                                            j10 = 0;
+                                        }
+                                        return new r0(str, j10);
+                                    }
+                                    return str;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public final int K() {
+        int i10;
+        int size;
+        int i11;
+        int i12 = 1;
+        if (this.f48717t0 != null && !this.f48699e0) {
+            return 1;
+        }
+        int i13 = 0;
+        if (this.C != null) {
+            i10 = 2;
+        } else {
+            i10 = 0;
+        }
+        ArrayList arrayList = this.f48723x0;
+        if (arrayList != null) {
+            i11 = arrayList.size();
+        } else {
+            ArrayList arrayList2 = this.O;
+            if (arrayList2 != null) {
+                int size2 = arrayList2.size();
+                if (this.Q == null && this.R == null) {
+                    i12 = 0;
+                }
+                return size2 + i12 + i10;
+            }
+            ArrayList arrayList3 = this.f48722x;
+            if (arrayList3 != null) {
+                i11 = arrayList3.size();
+            } else {
+                ArrayList arrayList4 = this.F;
+                if (arrayList4 != null) {
+                    i11 = arrayList4.size();
+                } else if (this.G == null && this.J == null) {
+                    ArrayList arrayList5 = this.K;
+                    if (arrayList5 != null) {
+                        i11 = arrayList5.size();
+                    } else {
+                        return i10;
+                    }
+                } else {
+                    ArrayList arrayList6 = this.J;
+                    if (arrayList6 == null) {
+                        size = 0;
+                    } else {
+                        size = arrayList6.size();
+                    }
+                    ArrayList arrayList7 = this.G;
+                    if (arrayList7 != null) {
+                        i13 = arrayList7.size();
+                    }
+                    i11 = size + i13;
+                }
+            }
+        }
+        return i11 + i10;
+    }
+
+    public final Object L(int i10) {
+        if (this.C != null) {
+            if (i10 < 2) {
+                return null;
+            }
+            i10 -= 2;
+        }
+        ArrayList arrayList = this.f48723x0;
+        if (arrayList == null || i10 < 0 || i10 >= arrayList.size()) {
+            return null;
+        }
+        return ((t0) this.f48723x0.get(i10)).f48689b;
+    }
+
+    public final int M(int i10) {
+        if (this.C != null) {
+            if (i10 < 2) {
+                return 0;
+            }
+            i10 -= 2;
+        }
+        if (this.O != null) {
+            if (this.Q != null || this.R != null) {
+                return i10 - 1;
+            }
+            return i10;
+        }
+        return i10;
+    }
+
+    public final boolean N() {
+        if (this.f48723x0 != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void P() {
+        l0 l0Var = this.F0;
+        if (l0Var != null) {
+            l0Var.stop();
+        }
+        m0 m0Var = this.f48719v0;
+        if (m0Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(m0Var);
+            this.f48719v0 = null;
+        }
+        if (this.f48712q0 != 0) {
+            ConnectionsManager.getInstance(this.f48700f).cancelRequest(this.f48712q0, true);
+            this.f48712q0 = 0;
+        }
+        if (this.f48714r0 != 0) {
+            ConnectionsManager.getInstance(this.f48700f).cancelRequest(this.f48714r0, true);
+            this.f48714r0 = 0;
+        }
+        this.f48717t0 = null;
+        this.Q = null;
+        this.f48699e0 = true;
+        this.f48709n0 = null;
+        this.f48710o0 = null;
+        this.f48716s0 = false;
+        NotificationCenter.getInstance(this.f48700f).removeObserver(this, NotificationCenter.fileLoaded);
+        NotificationCenter.getInstance(this.f48700f).removeObserver(this, NotificationCenter.fileLoadFailed);
+        NotificationCenter.getInstance(this.f48700f).removeObserver(this, NotificationCenter.recentDocumentsDidLoad);
+        NotificationCenter.getInstance(this.f48700f).removeObserver(this, NotificationCenter.stickersDidLoad);
+    }
+
+    public final void Q() {
+        TLRPC.User user = this.f48717t0;
+        if (user != null && user.bot_inline_geo) {
+            Location location = new Location("network");
+            this.f48721w0 = location;
+            location.setLatitude(-1000.0d);
+            this.f48721w0.setLongitude(-1000.0d);
+            T(true, this.f48717t0, this.f48710o0, "");
+        }
+    }
+
+    public final void R(TLRPC.User user) {
+        xn xnVar;
+        TLRPC.Chat chat;
+        this.f48712q0 = 0;
+        this.F0.stop();
+        ma0 ma0Var = this.S;
+        if (user != null && user.bot && user.bot_inline_placeholder != null) {
+            this.f48717t0 = user;
+            long j10 = user.f20990id;
+            if (j10 != this.P) {
+                this.Q = null;
+                this.P = j10;
+            }
+            xn xnVar2 = this.D0;
+            if (xnVar2 != null && (chat = xnVar2.f43165e) != null) {
+                boolean canSendStickers = ChatObject.canSendStickers(chat);
+                this.f48699e0 = canSendStickers;
+                if (!canSendStickers) {
+                    l();
+                    ma0Var.a(true);
+                    return;
+                }
+            }
+            if (this.f48717t0.bot_inline_geo) {
+                SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.f48700f);
+                if (!notificationsSettings.getBoolean("inlinegeo_" + this.f48717t0.f20990id, false) && (xnVar = this.D0) != null && xnVar.getParentActivity() != null) {
+                    TLRPC.User user2 = this.f48717t0;
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.D0.getParentActivity());
+                    alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.ShareYouLocationTitle);
+                    alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.ShareYouLocationInline);
+                    boolean[] zArr = new boolean[1];
+                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new qh.m1(this, zArr, user2, 4));
+                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new org.telegram.ui.web.m(6, this, zArr));
+                    this.D0.showDialog(alertDialog$Builder.f21166a, new hg.g(17, this, zArr));
+                } else {
+                    G();
+                }
+            }
+        } else {
+            this.f48717t0 = null;
+            this.Q = null;
+            this.f48699e0 = true;
+        }
+        if (this.f48717t0 == null) {
+            this.f48716s0 = true;
+            this.Q = null;
+            return;
+        }
+        if (ma0Var != null) {
+            ma0Var.b(true);
+        }
+        T(true, this.f48717t0, this.f48710o0, "");
+    }
+
+    public final void S(java.lang.String r8, java.lang.String r9) {
+        throw new UnsupportedOperationException("Method not decompiled: uf.u0.S(java.lang.String, java.lang.String):void");
+    }
+
+    public final void T(boolean z4, TLRPC.User user, String str, String str2) {
+        Object obj;
+        Location location;
+        if (this.f48714r0 != 0) {
+            ConnectionsManager.getInstance(this.f48700f).cancelRequest(this.f48714r0, true);
+            this.f48714r0 = 0;
+        }
+        if (this.f48699e0 && this.d) {
+            if (str != null && user != null) {
+                if (!user.bot_inline_geo || this.f48721w0 != null) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(this.f48708n);
+                    sb.append("_");
+                    sb.append(str);
+                    sb.append("_");
+                    sb.append(str2);
+                    sb.append("_");
+                    sb.append(this.f48708n);
+                    sb.append("_");
+                    sb.append(user.f20990id);
+                    sb.append("_");
+                    if (user.bot_inline_geo && this.f48721w0.getLatitude() != -1000.0d) {
+                        obj = Double.valueOf(this.f48721w0.getLongitude() + this.f48721w0.getLatitude());
+                    } else {
+                        obj = "";
+                    }
+                    sb.append(obj);
+                    String sb2 = sb.toString();
+                    MessagesStorage messagesStorage = MessagesStorage.getInstance(this.f48700f);
+                    pk pkVar = new pk(this, str, z4, user, str2, messagesStorage, sb2);
+                    long j10 = user.f20990id;
+                    if (j10 != this.P) {
+                        this.Q = null;
+                        this.P = j10;
+                    }
+                    if (z4) {
+                        messagesStorage.getBotCache(sb2, pkVar);
+                        return;
+                    }
+                    TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
+                    tL_messages_getInlineBotResults.bot = MessagesController.getInstance(this.f48700f).getInputUser(user);
+                    tL_messages_getInlineBotResults.query = str;
+                    tL_messages_getInlineBotResults.offset = str2;
+                    if (user.bot_inline_geo && (location = this.f48721w0) != null && location.getLatitude() != -1000.0d) {
+                        tL_messages_getInlineBotResults.flags |= 1;
+                        TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
+                        tL_messages_getInlineBotResults.geo_point = tL_inputGeoPoint;
+                        tL_inputGeoPoint.lat = AndroidUtilities.fixLocationCoord(this.f48721w0.getLatitude());
+                        tL_messages_getInlineBotResults.geo_point._long = AndroidUtilities.fixLocationCoord(this.f48721w0.getLongitude());
+                    }
+                    if (DialogObject.isEncryptedDialog(this.f48708n)) {
+                        tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
+                    } else {
+                        tL_messages_getInlineBotResults.peer = MessagesController.getInstance(this.f48700f).getInputPeer(this.f48708n);
+                    }
+                    this.f48714r0 = ConnectionsManager.getInstance(this.f48700f).sendRequest(tL_messages_getInlineBotResults, pkVar, 2);
+                    return;
+                }
+                return;
+            }
+            this.f48710o0 = null;
+            return;
+        }
+        ma0 ma0Var = this.S;
+        if (ma0Var != null) {
+            ma0Var.b(false);
+        }
+    }
+
+    public final void U(java.lang.CharSequence r30, int r31, java.util.ArrayList r32, boolean r33, boolean r34) {
+        throw new UnsupportedOperationException("Method not decompiled: uf.u0.U(java.lang.CharSequence, int, java.util.ArrayList, boolean, boolean):void");
+    }
+
+    public final void V(boolean z4) {
+        this.f48695c = z4;
+    }
+
+    public final void W(TLRPC.ChatFull chatFull) {
+        xn xnVar;
+        TLRPC.Chat chat;
+        this.f48700f = UserConfig.selectedAccount;
+        this.v = chatFull;
+        if (!this.f48699e0 && this.f48717t0 != null && (xnVar = this.D0) != null && (chat = xnVar.f43165e) != null) {
+            boolean canSendStickers = ChatObject.canSendStickers(chat);
+            this.f48699e0 = canSendStickers;
+            if (canSendStickers) {
+                this.f48722x = null;
+                l();
+                this.S.a(false);
+                R(this.f48717t0);
+            }
+        }
+        String str = this.W;
+        if (str != null) {
+            U(str, this.Z, this.f48693a0, this.Y, this.X);
+        }
+    }
+
+    public final void X(xn xnVar) {
+        this.D0 = xnVar;
+    }
+
+    public final void Y(a0.h hVar, ArrayList arrayList, boolean z4) {
+        this.f48722x = arrayList;
+        if (!this.d || !this.f48698e) {
+            Iterator it = arrayList.iterator();
+            while (it.hasNext()) {
+                TLObject tLObject = (TLObject) it.next();
+                if ((tLObject instanceof TLRPC.Chat) && !this.f48698e) {
+                    it.remove();
+                } else if (tLObject instanceof TLRPC.User) {
+                    TLRPC.User user = (TLRPC.User) tLObject;
+                    if (user.bot || UserObject.isService(user.f20990id)) {
+                        it.remove();
+                    }
+                }
+            }
+        }
+        this.f48724y = hVar;
+        o71 o71Var = this.m0;
+        if (o71Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(o71Var);
+            this.m0 = null;
+        }
+        this.O = null;
+        this.f48723x0 = null;
+        if (z4) {
+            l();
+            this.S.a(!this.f48722x.isEmpty());
+        }
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.userInfoDidLoad) {
-            X();
-        }
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return !V();
-    }
-
-    @Override
-    public final boolean onBackPressed(boolean z4) {
-        boolean z10;
-        if (this.f45453x == null && TextUtils.isEmpty(this.f45454y)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (V() && !z10) {
-            if (z4) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder.f19503a.O = LocaleController.getString(R.string.UnsavedChanges);
-                alertDialog$Builder.f19503a.Q = LocaleController.getString(R.string.BusinessLocationUnsavedChanges);
-                alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new p0(this, 1));
-                alertDialog$Builder.h(LocaleController.getString(R.string.PassportDiscard), new p0(this, 2));
-                showDialog(alertDialog$Builder.f19503a);
+        f9 f9Var;
+        boolean z4 = false;
+        if (i10 != NotificationCenter.fileLoaded && i10 != NotificationCenter.fileLoadFailed) {
+            if (i10 == NotificationCenter.recentDocumentsDidLoad) {
+                f9 f9Var2 = this.C0;
+                if (f9Var2 != null) {
+                    AndroidUtilities.runOnUIThread(f9Var2);
+                    this.C0 = null;
+                    return;
+                }
+                return;
+            } else if (i10 == NotificationCenter.stickersDidLoad && ((Integer) objArr[0]).intValue() == 0 && (f9Var = this.C0) != null) {
+                AndroidUtilities.runOnUIThread(f9Var);
+                this.C0 = null;
+                return;
+            } else {
+                return;
             }
-            return false;
         }
-        return super.onBackPressed(z4);
+        ArrayList arrayList = this.f48723x0;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            ArrayList arrayList2 = this.f48726z0;
+            if (!arrayList2.isEmpty() && this.f48707l0) {
+                arrayList2.remove((String) objArr[0]);
+                if (arrayList2.isEmpty()) {
+                    if (K() > 0) {
+                        z4 = true;
+                    }
+                    this.S.a(z4);
+                }
+            }
+        }
     }
 
     @Override
-    public final boolean onFragmentCreate() {
-        getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
-        return super.onFragmentCreate();
+    public final int h() {
+        int K = K();
+        this.I0 = K;
+        return K;
     }
 
     @Override
-    public final void onFragmentDestroy() {
-        getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
-        super.onFragmentDestroy();
+    public final int j(int i10) {
+        if (this.C != null) {
+            if (i10 < 2) {
+                return 6;
+            }
+            i10 -= 2;
+        }
+        if (this.f48723x0 != null) {
+            return 4;
+        }
+        if (this.f48717t0 != null && !this.f48699e0) {
+            return 3;
+        }
+        if (this.O != null) {
+            if (i10 == 0) {
+                if (this.Q != null || this.R != null) {
+                    return 2;
+                }
+                return 1;
+            }
+            return 1;
+        }
+        ArrayList arrayList = this.J;
+        if (arrayList != null && i10 >= 0 && i10 < arrayList.size()) {
+            return 5;
+        }
+        return 0;
     }
 
     @Override
-    public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f45445a.setPadding(0, 0, 0, i13);
-        this.f45445a.setClipToPadding(false);
+    public final void l() {
+        boolean z4;
+        MediaDataController.KeywordResult keywordResult;
+        String str;
+        String str2;
+        int i10 = this.I0;
+        ma0 ma0Var = this.S;
+        int i11 = 0;
+        if (i10 != -1 && this.G0 != null) {
+            int K = K();
+            this.I0 = K;
+            if (i10 != K) {
+                z4 = true;
+            } else {
+                z4 = false;
+            }
+            int min = Math.min(i10, K);
+            Object[] objArr = new Object[K];
+            for (int i12 = 0; i12 < K; i12++) {
+                objArr[i12] = J(i12);
+            }
+            while (i11 < min) {
+                if (i11 >= 0) {
+                    Object[] objArr2 = this.G0;
+                    if (i11 < objArr2.length && i11 < K) {
+                        Object obj = objArr2[i11];
+                        Object obj2 = objArr[i11];
+                        if (!(obj instanceof o1)) {
+                            if (obj != obj2 && ((!(obj instanceof t0) || !(obj2 instanceof t0) || ((t0) obj).f48688a != ((t0) obj2).f48688a) && ((!(obj instanceof TLRPC.User) || !(obj2 instanceof TLRPC.User) || ((TLRPC.User) obj).f20990id != ((TLRPC.User) obj2).f20990id) && ((!(obj instanceof TLRPC.Chat) || !(obj2 instanceof TLRPC.Chat) || ((TLRPC.Chat) obj).f20843id != ((TLRPC.Chat) obj2).f20843id) && (!(obj instanceof String) || !(obj2 instanceof String) || !obj.equals(obj2)))))) {
+                                if ((obj instanceof MediaDataController.KeywordResult) && (obj2 instanceof MediaDataController.KeywordResult) && (str = (keywordResult = (MediaDataController.KeywordResult) obj).keyword) != null) {
+                                    MediaDataController.KeywordResult keywordResult2 = (MediaDataController.KeywordResult) obj2;
+                                    if (str.equals(keywordResult2.keyword) && (str2 = keywordResult.emoji) != null && str2.equals(keywordResult2.emoji)) {
+                                    }
+                                }
+                            }
+                            i11++;
+                        }
+                    }
+                }
+                m(i11);
+                z4 = true;
+                i11++;
+            }
+            t(min, i10 - min);
+            s(min, K - min);
+            if (z4 && ma0Var != null) {
+                ma0Var.c();
+            }
+            this.G0 = objArr;
+            return;
+        }
+        if (ma0Var != null) {
+            this.I0 = K();
+            ma0Var.c();
+        }
+        super.l();
+        int K2 = K();
+        this.I0 = K2;
+        this.G0 = new Object[K2];
+        while (true) {
+            Object[] objArr3 = this.G0;
+            if (i11 < objArr3.length) {
+                objArr3[i11] = J(i11);
+                i11++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void v(f2.m1 m1Var, int i10) {
+        int i11;
+        String str;
+        TLRPC.User user;
+        xn xnVar;
+        boolean z4;
+        boolean z10;
+        boolean z11;
+        String str2;
+        TLRPC.TL_chatBannedRights tL_chatBannedRights;
+        float f10;
+        String str3 = this.C;
+        if (str3 != null) {
+            i11 = i10 - 2;
+        } else {
+            i11 = i10;
+        }
+        int i12 = m1Var.f5879f;
+        View view = m1Var.f5875a;
+        Boolean bool = null;
+        if (i12 == 4) {
+            b8 b8Var = (b8) view;
+            if (i11 >= 0 && i11 < this.f48723x0.size()) {
+                t0 t0Var = (t0) this.f48723x0.get(i11);
+                TLRPC.Document document = t0Var.f48688a;
+                Object obj = t0Var.f48689b;
+                r1 r1Var = b8Var.f22615n;
+                p9 p9Var = b8Var.f22610a;
+                b8Var.f22612c = obj;
+                boolean isPremiumSticker = MessageObject.isPremiumSticker(document);
+                b8Var.f22617s = isPremiumSticker;
+                if (isPremiumSticker) {
+                    r1Var.setColor(k6.w0(null, k6.f21659d6, false));
+                    r1Var.E = true;
+                    r1Var.F = false;
+                    r1Var.invalidate();
+                }
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
+                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, k6.f21605a7, 1.0f, 1.0f, b8Var.v);
+                if (MessageObject.canAutoplayAnimatedSticker(document)) {
+                    if (svgThumb != null) {
+                        p9Var.i(ImageLocation.getForDocument(document), "80_80", null, svgThumb, b8Var.f22612c);
+                        f10 = 1.0f;
+                    } else if (closestPhotoSizeWithSize != null) {
+                        f10 = 1.0f;
+                        p9Var.j(ImageLocation.getForDocument(document), "80_80", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), null, 0, b8Var.f22612c);
+                    } else {
+                        f10 = 1.0f;
+                        p9Var.i(ImageLocation.getForDocument(document), "80_80", null, null, b8Var.f22612c);
+                    }
+                } else {
+                    f10 = 1.0f;
+                    if (svgThumb != null) {
+                        if (closestPhotoSizeWithSize != null) {
+                            p9Var.i(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), null, "webp", svgThumb, b8Var.f22612c);
+                        } else {
+                            p9Var.i(ImageLocation.getForDocument(document), null, "webp", svgThumb, b8Var.f22612c);
+                        }
+                    } else {
+                        p9Var.i(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), null, "webp", null, b8Var.f22612c);
+                    }
+                }
+                b8Var.f22611b = document;
+                Drawable background = b8Var.getBackground();
+                if (background != null) {
+                    background.setAlpha(230);
+                    background.setColorFilter(new PorterDuffColorFilter(k6.w0(null, k6.Be, false), PorterDuff.Mode.MULTIPLY));
+                }
+                if (b8Var.f22617s) {
+                    b8Var.f22616r = true;
+                } else {
+                    b8Var.f22616r = false;
+                }
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) r1Var.getLayoutParams();
+                if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
+                    int dp = AndroidUtilities.dp(24.0f);
+                    layoutParams.width = dp;
+                    layoutParams.height = dp;
+                    layoutParams.gravity = 81;
+                    layoutParams.rightMargin = 0;
+                    layoutParams.bottomMargin = 0;
+                    r1Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+                } else {
+                    int dp2 = AndroidUtilities.dp(16.0f);
+                    layoutParams.width = dp2;
+                    layoutParams.height = dp2;
+                    layoutParams.gravity = 85;
+                    layoutParams.bottomMargin = AndroidUtilities.dp(8.0f);
+                    layoutParams.rightMargin = AndroidUtilities.dp(8.0f);
+                    r1Var.setPadding(AndroidUtilities.dp(f10), AndroidUtilities.dp(f10), AndroidUtilities.dp(f10), AndroidUtilities.dp(f10));
+                }
+                r1Var.setLocked(!UserConfig.getInstance(UserConfig.selectedAccount).isPremium());
+                AndroidUtilities.updateViewVisibilityAnimated(r1Var, b8Var.f22616r, 0.9f, false);
+                b8Var.invalidate();
+                b8Var.setClearsInputField(true);
+            }
+        } else if (i12 == 3) {
+            TextView textView = (TextView) view;
+            TLRPC.Chat chat = this.D0.f43165e;
+            if (chat != null) {
+                if (!ChatObject.hasAdminRights(chat) && (tL_chatBannedRights = chat.default_banned_rights) != null && tL_chatBannedRights.send_inline) {
+                    textView.setText(LocaleController.getString(R.string.GlobalAttachInlineRestricted));
+                } else if (AndroidUtilities.isBannedForever(chat.banned_rights)) {
+                    textView.setText(LocaleController.getString(R.string.AttachInlineRestrictedForever));
+                } else {
+                    textView.setText(LocaleController.formatString("AttachInlineRestricted", R.string.AttachInlineRestricted, LocaleController.formatDateForBan(chat.banned_rights.until_date)));
+                }
+            }
+        } else if (i12 == 5) {
+            vf.l1 l1Var = (vf.l1) view;
+            ArrayList arrayList = this.J;
+            if (arrayList != null && i11 >= 0 && i11 < arrayList.size()) {
+                l1Var.a((o1) this.J.get(i11), this.I, false);
+            }
+        } else {
+            ArrayList arrayList2 = this.O;
+            if (arrayList2 != null) {
+                TLRPC.TL_inlineBotSwitchPM tL_inlineBotSwitchPM = this.Q;
+                if (tL_inlineBotSwitchPM == null && this.R == null) {
+                    z4 = false;
+                } else {
+                    z4 = true;
+                }
+                if (i12 == 2) {
+                    if (z4) {
+                        org.telegram.ui.Cells.i0 i0Var = (org.telegram.ui.Cells.i0) view;
+                        if (tL_inlineBotSwitchPM != null) {
+                            str2 = tL_inlineBotSwitchPM.text;
+                        } else {
+                            str2 = this.R.text;
+                        }
+                        i0Var.setText(str2);
+                        return;
+                    }
+                    return;
+                }
+                if (z4) {
+                    i11--;
+                }
+                if (i11 >= 0 && i11 < arrayList2.size()) {
+                    e2 e2Var = (e2) view;
+                    TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) this.O.get(i11);
+                    TLRPC.User user2 = this.f48717t0;
+                    boolean z12 = this.f48718u0;
+                    if (i11 != this.O.size() - 1) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (z4 && i11 == 0) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    e2Var.e(botInlineResult, user2, z12, z10, z11, "gif".equals(this.f48709n0));
+                }
+            } else if (i12 == 6) {
+                s0 s0Var = (s0) view;
+                int i13 = i11 + 2;
+                if (i13 == 0) {
+                    this.D = s0Var;
+                } else {
+                    this.E = s0Var;
+                }
+                TLRPC.Chat chat2 = this.f48704i0;
+                if (chat2 == null && (xnVar = this.D0) != null) {
+                    chat2 = xnVar.f43165e;
+                }
+                s0Var.a(i13, str3, chat2);
+            } else if (i12 == 7) {
+            } else {
+                h5 h5Var = (h5) view;
+                ArrayList arrayList3 = this.f48722x;
+                if (arrayList3 != null) {
+                    TLObject tLObject = (TLObject) arrayList3.get(i11);
+                    if (tLObject instanceof TLRPC.User) {
+                        h5Var.setUser((TLRPC.User) tLObject);
+                    } else if (tLObject instanceof TLRPC.Chat) {
+                        h5Var.setChat((TLRPC.Chat) tLObject);
+                    }
+                } else {
+                    ArrayList arrayList4 = this.F;
+                    if (arrayList4 != null && i11 >= 0 && i11 < arrayList4.size()) {
+                        h5Var.setText((String) this.F.get(i11));
+                    } else {
+                        ArrayList arrayList5 = this.K;
+                        if (arrayList5 != null && i11 >= 0 && i11 < arrayList5.size()) {
+                            h5Var.setEmojiSuggestion((MediaDataController.KeywordResult) this.K.get(i11));
+                        } else {
+                            ArrayList arrayList6 = this.G;
+                            if (arrayList6 != null && i11 >= 0 && i11 < arrayList6.size()) {
+                                ArrayList arrayList7 = this.H;
+                                if (arrayList7 != null && i11 >= 0 && i11 < arrayList7.size()) {
+                                    str = (String) this.H.get(i11);
+                                } else {
+                                    str = null;
+                                }
+                                ArrayList arrayList8 = this.M;
+                                if (arrayList8 != null && i11 >= 0 && i11 < arrayList8.size()) {
+                                    user = (TLRPC.User) this.M.get(i11);
+                                } else {
+                                    user = null;
+                                }
+                                ArrayList arrayList9 = this.N;
+                                if (arrayList9 != null && i11 >= 0 && i11 < arrayList9.size()) {
+                                    bool = (Boolean) this.N.get(i11);
+                                }
+                                boolean booleanValue = bool.booleanValue();
+                                String str4 = (String) this.G.get(i11);
+                                hg.q qVar = h5Var.f22886b;
+                                TextView textView2 = h5Var.f22887c;
+                                z8 z8Var = h5Var.d;
+                                p9 p9Var2 = h5Var.f22885a;
+                                h5Var.a();
+                                if (user != null) {
+                                    p9Var2.setVisibility(0);
+                                    z8Var.r(user);
+                                    TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
+                                    if (userProfilePhoto != null && userProfilePhoto.photo_small != null) {
+                                        p9Var2.e(user, z8Var);
+                                    } else {
+                                        p9Var2.setImageDrawable(z8Var);
+                                    }
+                                } else {
+                                    p9Var2.setVisibility(4);
+                                }
+                                textView2.setVisibility(0);
+                                if (booleanValue) {
+                                    oq oqVar = new oq(R.drawable.mini_ephemeral_hidden_14, 0);
+                                    oqVar.setColorKey(k6.A6);
+                                    oqVar.setTopOffset(1);
+                                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str4);
+                                    spannableStringBuilder.append((CharSequence) " *");
+                                    spannableStringBuilder.setSpan(oqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+                                    qVar.setText(spannableStringBuilder);
+                                } else {
+                                    qVar.setText(str4);
+                                }
+                                textView2.setText(Emoji.replaceEmoji(str, textView2.getPaint().getFontMetricsInt(), false));
+                            }
+                        }
+                    }
+                }
+                h5Var.setDivider(false);
+            }
+        }
+    }
+
+    @Override
+    public final f2.m1 x(ViewGroup viewGroup, int i10) {
+        View view;
+        TextView textView;
+        int i11;
+        int v02;
+        g6 g6Var = this.E0;
+        Context context = this.h;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                int i12 = 5;
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        if (i10 != 5) {
+                            boolean z4 = this.f48715s;
+                            if (i10 != 6) {
+                                if (i10 != 7) {
+                                    ?? frameLayout = new FrameLayout(context);
+                                    frameLayout.v = g6Var;
+                                    p9 p9Var = new p9(context);
+                                    frameLayout.f22610a = p9Var;
+                                    p9Var.setAspectFit(true);
+                                    p9Var.setLayerNum(1);
+                                    frameLayout.addView(p9Var, c6.d(66, 66.0f, 1, 0.0f, 5.0f, 0.0f, 0.0f));
+                                    frameLayout.setFocusable(true);
+                                    r1 r1Var = new r1(context, 1, null);
+                                    frameLayout.f22615n = r1Var;
+                                    r1Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+                                    r1Var.setImageReceiver(p9Var.getImageReceiver());
+                                    frameLayout.addView(r1Var, c6.d(24, 24.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
+                                    textView = frameLayout;
+                                } else {
+                                    View q0Var = new q0(context, 0);
+                                    if (z4) {
+                                        v02 = k6.l1(0.15f, -1);
+                                    } else {
+                                        v02 = k6.v0(k6.f21605a7, g6Var);
+                                    }
+                                    pq pqVar = new pq(new ColorDrawable(v02), k6.U0(context, R.drawable.greydivider, k6.v0(k6.f21624b7, g6Var)), 0, 0);
+                                    pqVar.f30173w = true;
+                                    q0Var.setBackground(pqVar);
+                                    view = q0Var;
+                                }
+                            } else {
+                                textView = new s0(context, g6Var, z4);
+                            }
+                        } else {
+                            view = new vf.l1(context, g6Var, false);
+                        }
+                    } else {
+                        TextView textView2 = new TextView(context);
+                        textView2.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+                        textView2.setTextSize(1, 14.0f);
+                        textView2.setTextColor(k6.v0(k6.f22053z6, g6Var));
+                        textView = textView2;
+                    }
+                } else {
+                    ?? frameLayout2 = new FrameLayout(context);
+                    TextView textView3 = new TextView(context);
+                    frameLayout2.f22951a = textView3;
+                    textView3.setTextSize(1, 15.0f);
+                    textView3.setTextColor(k6.w0(null, k6.Ce, false));
+                    textView3.setTypeface(AndroidUtilities.bold());
+                    textView3.setSingleLine(true);
+                    textView3.setEllipsize(TextUtils.TruncateAt.END);
+                    textView3.setMaxLines(1);
+                    if (LocaleController.isRTL) {
+                        i11 = 5;
+                    } else {
+                        i11 = 3;
+                    }
+                    textView3.setGravity(i11);
+                    if (!LocaleController.isRTL) {
+                        i12 = 3;
+                    }
+                    frameLayout2.addView(textView3, c6.d(-2, -2.0f, i12 | 16, 14.0f, 0.0f, 14.0f, 0.0f));
+                    view = frameLayout2;
+                }
+            } else {
+                e2 e2Var = new e2(context);
+                e2Var.setDelegate(new j0(this));
+                textView = e2Var;
+            }
+            return new f2.m1(textView);
+        }
+        h5 h5Var = new h5(context, g6Var);
+        h5Var.setIsDarkTheme(false);
+        view = h5Var;
+        textView = view;
+        return new f2.m1(textView);
     }
 }

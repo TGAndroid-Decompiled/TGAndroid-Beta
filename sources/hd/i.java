@@ -1,13 +1,13 @@
 package hd;
 
-import k7.o8;
+import k7.p8;
 public final class i {
-    public static final i[] f7060a;
+    public static final i[] f7377a;
 
     static {
         i[] iVarArr = {new Enum("PUBLIC", 0), new Enum("PROTECTED", 1), new Enum("INTERNAL", 2), new Enum("PRIVATE", 3)};
-        f7060a = iVarArr;
-        o8.a(iVarArr);
+        f7377a = iVarArr;
+        p8.a(iVarArr);
     }
 
     public static i valueOf(String str) {
@@ -15,6 +15,6 @@ public final class i {
     }
 
     public static i[] values() {
-        return (i[]) f7060a.clone();
+        return (i[]) f7377a.clone();
     }
 }

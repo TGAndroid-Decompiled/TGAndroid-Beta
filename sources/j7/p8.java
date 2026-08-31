@@ -1,68 +1,32 @@
 package j7;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 public abstract class p8 {
-    public static String a(String str) {
-        if (d(str)) {
-            return null;
-        }
-        if ("American Express".equalsIgnoreCase(str)) {
-            return "American Express";
-        }
-        if ("MasterCard".equalsIgnoreCase(str)) {
-            return "MasterCard";
-        }
-        if ("Diners Club".equalsIgnoreCase(str)) {
-            return "Diners Club";
-        }
-        if ("Discover".equalsIgnoreCase(str)) {
-            return "Discover";
-        }
-        if ("JCB".equalsIgnoreCase(str)) {
-            return "JCB";
-        }
-        if ("Visa".equalsIgnoreCase(str)) {
-            return "Visa";
-        }
-        return "Unknown";
-    }
-
-    public static String b(String str) {
-        if (d(str)) {
-            return null;
-        }
-        if ("credit".equalsIgnoreCase(str)) {
-            return "credit";
-        }
-        if ("debit".equalsIgnoreCase(str)) {
-            return "debit";
-        }
-        if ("prepaid".equalsIgnoreCase(str)) {
-            return "prepaid";
-        }
-        return "unknown";
-    }
-
-    public static boolean c(String str, String... strArr) {
-        if (str != null) {
-            for (String str2 : strArr) {
-                if (str.startsWith(str2)) {
-                    return true;
-                }
+    public static HashMap a(gc.a aVar) {
+        HashMap hashMap = new HashMap();
+        HashMap hashMap2 = new HashMap();
+        hashMap2.put("number", q8.e(aVar.f7003a));
+        hashMap2.put("cvc", q8.e(aVar.f7004b));
+        hashMap2.put("exp_month", aVar.f7005c);
+        hashMap2.put("exp_year", aVar.d);
+        hashMap2.put("name", q8.e(aVar.f7006e));
+        hashMap2.put("currency", q8.e(aVar.f7014n));
+        hashMap2.put("address_line1", q8.e(aVar.f7007f));
+        hashMap2.put("address_line2", q8.e(aVar.f7008g));
+        hashMap2.put("address_city", q8.e(aVar.h));
+        hashMap2.put("address_zip", q8.e(aVar.f7010j));
+        hashMap2.put("address_state", q8.e(aVar.f7009i));
+        hashMap2.put("address_country", q8.e(aVar.f7011k));
+        Iterator it = new HashSet(hashMap2.keySet()).iterator();
+        while (it.hasNext()) {
+            String str = (String) it.next();
+            if (hashMap2.get(str) == null) {
+                hashMap2.remove(str);
             }
         }
-        return false;
-    }
-
-    public static boolean d(String str) {
-        if (str != null && str.trim().length() != 0) {
-            return false;
-        }
-        return true;
-    }
-
-    public static String e(String str) {
-        if (d(str)) {
-            return null;
-        }
-        return str;
+        hashMap.put("card", hashMap2);
+        return hashMap;
     }
 }

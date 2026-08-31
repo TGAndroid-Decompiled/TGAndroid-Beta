@@ -6,18 +6,18 @@ import android.os.IInterface;
 import b9.c;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class b extends Binder implements IInterface {
-    public final int f41052a;
-    public final Object f41053b;
+    public final int f44208a;
+    public final Object f44209b;
 
     public b(int i10, TaskCompletionSource taskCompletionSource) {
-        this.f41052a = i10;
+        this.f44208a = i10;
         switch (i10) {
             case 1:
-                this.f41053b = taskCompletionSource;
+                this.f44209b = taskCompletionSource;
                 attachInterface(this, "com.google.android.gms.auth.api.phone.internal.ISmsRetrieverResultCallback");
                 return;
             default:
-                this.f41053b = taskCompletionSource;
+                this.f44209b = taskCompletionSource;
                 attachInterface(this, "com.google.android.gms.fido.fido2.internal.regular.IFido2AppCallbacks");
                 return;
         }
@@ -25,7 +25,7 @@ public final class b extends Binder implements IInterface {
 
     @Override
     public final IBinder asBinder() {
-        int i10 = this.f41052a;
+        int i10 = this.f44208a;
         return this;
     }
 
@@ -35,8 +35,8 @@ public final class b extends Binder implements IInterface {
     }
 
     public b(c cVar) {
-        this.f41052a = 2;
+        this.f44208a = 2;
         attachInterface(this, "com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearchCallbacks");
-        this.f41053b = cVar;
+        this.f44209b = cVar;
     }
 }

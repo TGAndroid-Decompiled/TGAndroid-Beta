@@ -1,21 +1,28 @@
 package org.telegram.ui;
-public final class c00 implements Runnable {
-    public final int f33061a;
-    public final b10 f33062b;
+
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class c00 implements Utilities.Callback {
+    public final int f35635a;
+    public final b10 f35636b;
 
     public c00(b10 b10Var, int i10) {
-        this.f33061a = i10;
-        this.f33062b = b10Var;
+        this.f35635a = i10;
+        this.f35636b = b10Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33061a) {
+    public final void run(Object obj) {
+        switch (this.f35635a) {
             case 0:
-                b10.V(this.f33062b);
+                Boolean bool = (Boolean) obj;
+                this.f35636b.finishFragment();
+                return;
+            case 1:
+                this.f35636b.m0((TL_chatlists.TL_exportedChatlistInvite) obj);
                 return;
             default:
-                b10.W(this.f33062b);
+                this.f35636b.l0((TL_chatlists.TL_exportedChatlistInvite) obj);
                 return;
         }
     }

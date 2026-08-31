@@ -1,22 +1,68 @@
 package j7;
 public abstract class q8 {
-    public static void a(StringBuilder sb, Object obj, dd.l lVar) {
-        boolean z4;
-        if (lVar != null) {
-            sb.append((CharSequence) lVar.invoke(obj));
-            return;
+    public static String a(String str) {
+        if (d(str)) {
+            return null;
         }
-        if (obj == null) {
-            z4 = true;
-        } else {
-            z4 = obj instanceof CharSequence;
+        if ("American Express".equalsIgnoreCase(str)) {
+            return "American Express";
         }
-        if (z4) {
-            sb.append((CharSequence) obj);
-        } else if (obj instanceof Character) {
-            sb.append(((Character) obj).charValue());
-        } else {
-            sb.append((CharSequence) obj.toString());
+        if ("MasterCard".equalsIgnoreCase(str)) {
+            return "MasterCard";
         }
+        if ("Diners Club".equalsIgnoreCase(str)) {
+            return "Diners Club";
+        }
+        if ("Discover".equalsIgnoreCase(str)) {
+            return "Discover";
+        }
+        if ("JCB".equalsIgnoreCase(str)) {
+            return "JCB";
+        }
+        if ("Visa".equalsIgnoreCase(str)) {
+            return "Visa";
+        }
+        return "Unknown";
+    }
+
+    public static String b(String str) {
+        if (d(str)) {
+            return null;
+        }
+        if ("credit".equalsIgnoreCase(str)) {
+            return "credit";
+        }
+        if ("debit".equalsIgnoreCase(str)) {
+            return "debit";
+        }
+        if ("prepaid".equalsIgnoreCase(str)) {
+            return "prepaid";
+        }
+        return "unknown";
+    }
+
+    public static boolean c(String str, String... strArr) {
+        if (str != null) {
+            for (String str2 : strArr) {
+                if (str.startsWith(str2)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean d(String str) {
+        if (str != null && str.trim().length() != 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public static String e(String str) {
+        if (d(str)) {
+            return null;
+        }
+        return str;
     }
 }

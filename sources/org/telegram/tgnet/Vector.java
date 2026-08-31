@@ -112,22 +112,22 @@ public class Vector<T extends TLObject> extends TLObject {
 
     public static ArrayList<byte[]> deserializeByteArray(InputSerializedData inputSerializedData, boolean z4) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new t(inputSerializedData, 3), z4);
+        return deserialize(inputSerializedData, new t(3, inputSerializedData), z4);
     }
 
     public static ArrayList<Integer> deserializeInt(InputSerializedData inputSerializedData, boolean z4) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new t(inputSerializedData, 1), z4);
+        return deserialize(inputSerializedData, new t(1, inputSerializedData), z4);
     }
 
     public static ArrayList<java.lang.Long> deserializeLong(InputSerializedData inputSerializedData, boolean z4) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new t(inputSerializedData, 0), z4);
+        return deserialize(inputSerializedData, new t(0, inputSerializedData), z4);
     }
 
     public static ArrayList<String> deserializeString(InputSerializedData inputSerializedData, boolean z4) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new t(inputSerializedData, 2), z4);
+        return deserialize(inputSerializedData, new t(2, inputSerializedData), z4);
     }
 
     public static <T extends TLObject> void serialize(OutputSerializedData outputSerializedData, ArrayList<T> arrayList) {

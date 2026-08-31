@@ -15,10 +15,10 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_ephemeral;
 public final class b implements OnSuccessListener, GenericProvider, org.telegram.ui.ActionBar.c2, Vector.TLDeserializer {
-    public final int f16798a;
+    public final int f18204a;
 
     public b(int i10) {
-        this.f16798a = i10;
+        this.f18204a = i10;
     }
 
     public static Bitmap.CompressFormat a() {
@@ -43,7 +43,7 @@ public final class b implements OnSuccessListener, GenericProvider, org.telegram
 
     @Override
     public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z4) {
-        switch (this.f16798a) {
+        switch (this.f18204a) {
             case 26:
                 return TLRPC.Peer.TLdeserialize(inputSerializedData, i10, z4);
             case 27:
@@ -56,7 +56,7 @@ public final class b implements OnSuccessListener, GenericProvider, org.telegram
     }
 
     @Override
-    public void i(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+    public void j(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
         d2Var.dismiss();
     }
 
@@ -73,7 +73,7 @@ public final class b implements OnSuccessListener, GenericProvider, org.telegram
         TLRPC.MessageEntity lambda$getEntities$182;
         TLRPC.MessageEntity lambda$getEntities$183;
         TLRPC.MessageEntity lambda$getEntities$184;
-        switch (this.f16798a) {
+        switch (this.f18204a) {
             case 3:
                 lambda$formatSpannableSimple$15 = AndroidUtilities.lambda$formatSpannableSimple$15((Integer) obj);
                 return lambda$formatSpannableSimple$15;

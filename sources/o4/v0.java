@@ -7,54 +7,54 @@ import java.util.HashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 public abstract class v0 extends a {
     public final HashMap h = new HashMap();
-    public Handler f16427i;
-    public g5.v0 f16428j;
-    public final a f16429k;
+    public Handler f16583i;
+    public g5.v0 f16584j;
+    public final a f16585k;
 
     public v0(a aVar) {
-        this.f16429k = aVar;
+        this.f16585k = aVar;
     }
 
     @Override
     public final void d() {
         for (f fVar : this.h.values()) {
-            fVar.f16327a.c(fVar.f16328b);
+            fVar.f16472a.c(fVar.f16473b);
         }
     }
 
     @Override
     public final void f() {
         for (f fVar : this.h.values()) {
-            fVar.f16327a.e(fVar.f16328b);
+            fVar.f16472a.e(fVar.f16473b);
         }
     }
 
     @Override
     public o2 g() {
-        return this.f16429k.g();
+        return this.f16585k.g();
     }
 
     @Override
     public final c1 h() {
-        return this.f16429k.h();
+        return this.f16585k.h();
     }
 
     @Override
     public boolean i() {
-        return this.f16429k.i();
+        return this.f16585k.i();
     }
 
     @Override
     public void j() {
         for (f fVar : this.h.values()) {
-            fVar.f16327a.j();
+            fVar.f16472a.j();
         }
     }
 
     @Override
     public final void l(g5.v0 v0Var) {
-        this.f16428j = v0Var;
-        this.f16427i = h5.d0.l(null);
+        this.f16584j = v0Var;
+        this.f16583i = h5.d0.l(null);
         w();
     }
 
@@ -62,11 +62,11 @@ public abstract class v0 extends a {
     public void p() {
         HashMap hashMap = this.h;
         for (f fVar : hashMap.values()) {
-            a aVar = fVar.f16327a;
-            com.google.firebase.messaging.r rVar = fVar.f16329c;
-            aVar.o(fVar.f16328b);
-            aVar.r(rVar);
-            aVar.q(rVar);
+            a aVar = fVar.f16472a;
+            sf.e eVar = fVar.f16474c;
+            aVar.o(fVar.f16473b);
+            aVar.r(eVar);
+            aVar.q(eVar);
         }
         hashMap.clear();
     }
@@ -92,36 +92,36 @@ public abstract class v0 extends a {
                 v0Var.u(o2Var);
             }
         };
-        com.google.firebase.messaging.r rVar = new com.google.firebase.messaging.r(this, num);
-        hashMap.put(num, new f(aVar, r12, rVar));
-        Handler handler = this.f16427i;
+        sf.e eVar = new sf.e(this, num);
+        hashMap.put(num, new f(aVar, r12, eVar));
+        Handler handler = this.f16583i;
         handler.getClass();
         aVar.getClass();
-        b4.e0 e0Var = aVar.f16289c;
+        b4.e0 e0Var = aVar.f16430c;
         e0Var.getClass();
         ?? obj = new Object();
-        obj.f16433a = handler;
-        obj.f16434b = rVar;
+        obj.f16590a = handler;
+        obj.f16591b = eVar;
         ((CopyOnWriteArrayList) e0Var.d).add(obj);
-        Handler handler2 = this.f16427i;
+        Handler handler2 = this.f16583i;
         handler2.getClass();
         o3.l lVar = aVar.d;
         lVar.getClass();
-        CopyOnWriteArrayList copyOnWriteArrayList = lVar.f16271c;
+        CopyOnWriteArrayList copyOnWriteArrayList = lVar.f16412c;
         ?? obj2 = new Object();
-        obj2.f16267a = handler2;
-        obj2.f16268b = rVar;
+        obj2.f16408a = handler2;
+        obj2.f16409b = eVar;
         copyOnWriteArrayList.add(obj2);
-        g5.v0 v0Var = this.f16428j;
-        k3.k kVar = this.f16291g;
+        g5.v0 v0Var = this.f16584j;
+        k3.k kVar = this.f16433g;
         h5.a.j(kVar);
         aVar.k(r12, v0Var, kVar);
-        if (this.f16288b.isEmpty()) {
+        if (this.f16429b.isEmpty()) {
             aVar.c(r12);
         }
     }
 
     public void w() {
-        v(null, this.f16429k);
+        v(null, this.f16585k);
     }
 }

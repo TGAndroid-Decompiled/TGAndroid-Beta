@@ -1,51 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.graphics.Point;
-import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class ii0 extends LinearLayout {
-    public boolean f25728a;
-    public final li0 f25729b;
+import java.util.Locale;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ii0 implements uc0, wc0 {
+    public final int f27808a;
+    public final ni0 f27809b;
 
-    public ii0(li0 li0Var, Activity activity) {
-        super(activity);
-        this.f25729b = li0Var;
-        this.f25728a = false;
+    public ii0(ni0 ni0Var, int i10) {
+        this.f27808a = i10;
+        this.f27809b = ni0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        li0 li0Var = this.f25729b;
-        wc0 wc0Var = li0Var.E;
-        wc0 wc0Var2 = li0Var.D;
-        this.f25728a = true;
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            i12 = 3;
-        } else {
-            i12 = 5;
+    public String e(int i10) {
+        int i11 = this.f27808a;
+        ni0 ni0Var = this.f27809b;
+        switch (i11) {
+            case 0:
+                if (ni0Var.L) {
+                    return LocaleController.formatString("MilesShort", R.string.MilesShort, Integer.valueOf(i10));
+                }
+                return LocaleController.formatString("KMetersShort", R.string.KMetersShort, Integer.valueOf(i10));
+            default:
+                if (ni0Var.L) {
+                    if (i10 == 1) {
+                        return LocaleController.formatString("FootsShort", R.string.FootsShort, 250);
+                    }
+                    if (i10 > 1) {
+                        i10--;
+                    }
+                    Locale locale = Locale.US;
+                    return l.d.j(i10, ".");
+                } else if (i10 == 1) {
+                    return LocaleController.formatString("MetersShort", R.string.MetersShort, 50);
+                } else {
+                    if (i10 > 1) {
+                        i10--;
+                    }
+                    return LocaleController.formatString("MetersShort", R.string.MetersShort, Integer.valueOf(i10 * 100));
+                }
         }
-        wc0Var2.setItemCount(i12);
-        wc0Var.setItemCount(i12);
-        wc0Var2.getLayoutParams().height = AndroidUtilities.dp(54.0f) * i12;
-        wc0Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * i12;
-        this.f25728a = false;
-        int size = View.MeasureSpec.getSize(i10);
-        li0Var.K = size;
-        if (size != 0) {
-            li0Var.c(false);
-        }
-        super.onMeasure(i10, i11);
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.f25728a) {
-            return;
+    public void q(yc0 yc0Var, int i10) {
+        ni0 ni0Var = this.f27809b;
+        try {
+            ni0Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
         }
-        super.requestLayout();
+        ni0Var.c(true);
     }
 }

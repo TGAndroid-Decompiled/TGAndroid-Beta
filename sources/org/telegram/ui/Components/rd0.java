@@ -1,319 +1,220 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.animation.ValueAnimator;
+import android.graphics.Point;
 import android.util.Property;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.ViewTreeObserver;
+import android.view.animation.DecelerateInterpolator;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-public final class rd0 extends FrameLayout {
-    public final int f28453a = 1;
-    public final Object f28454b;
-    public final Object f28455c;
-    public final Object d;
-    public Object e;
-    public Object f28456f;
-    public Object h;
+import org.telegram.messenger.SharedConfig;
+public final class rd0 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final int f30687a;
+    public final int f30688b;
+    public final Runnable f30689c;
+    public final xd0 d;
 
-    public rd0(vd0 vd0Var, Context context) {
-        super(context);
-        this.h = vd0Var;
-        this.f28454b = new ArrayList(4);
-        this.f28455c = new ArrayList(4);
-        this.d = new StringBuilder(4);
-        for (int i10 = 0; i10 < 4; i10++) {
-            TextView textView = new TextView(context);
-            textView.setTextColor(-1);
-            textView.setTypeface(AndroidUtilities.bold());
-            textView.setTextSize(1, 36.0f);
-            textView.setGravity(17);
-            textView.setAlpha(0.0f);
-            textView.setPivotX(AndroidUtilities.dp(25.0f));
-            textView.setPivotY(AndroidUtilities.dp(25.0f));
-            addView(textView, k7.b6.e(50, 50, 51));
-            ((ArrayList) this.f28454b).add(textView);
-            TextView textView2 = new TextView(context);
-            textView2.setTextColor(-1);
-            textView2.setTypeface(AndroidUtilities.bold());
-            textView2.setTextSize(1, 36.0f);
-            textView2.setGravity(17);
-            textView2.setAlpha(0.0f);
-            textView2.setText("•");
-            textView2.setPivotX(AndroidUtilities.dp(25.0f));
-            textView2.setPivotY(AndroidUtilities.dp(25.0f));
-            addView(textView2, k7.b6.e(50, 50, 51));
-            ((ArrayList) this.f28455c).add(textView2);
-        }
+    public rd0(xd0 xd0Var, int i10, int i11, Runnable runnable) {
+        this.d = xd0Var;
+        this.f30687a = i10;
+        this.f30688b = i11;
+        this.f30689c = runnable;
     }
 
-    public static void a(rd0 rd0Var, boolean z4) {
-        ArrayList arrayList = (ArrayList) rd0Var.f28455c;
-        ArrayList arrayList2 = (ArrayList) rd0Var.f28454b;
-        StringBuilder sb = (StringBuilder) rd0Var.d;
-        if (sb.length() == 0) {
-            return;
-        }
-        ye yeVar = (ye) rd0Var.f28456f;
-        if (yeVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(yeVar);
-            rd0Var.f28456f = null;
-        }
-        AnimatorSet animatorSet = (AnimatorSet) rd0Var.e;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            rd0Var.e = null;
-        }
-        sb.delete(0, sb.length());
-        if (z4) {
-            ArrayList arrayList3 = new ArrayList();
-            for (int i10 = 0; i10 < 4; i10++) {
-                TextView textView = (TextView) arrayList2.get(i10);
-                float alpha = textView.getAlpha();
-                Property property = View.ALPHA;
-                Property property2 = View.SCALE_Y;
-                Property property3 = View.SCALE_X;
-                if (alpha != 0.0f) {
-                    arrayList3.add(ObjectAnimator.ofFloat(textView, property3, 0.0f));
-                    arrayList3.add(ObjectAnimator.ofFloat(textView, property2, 0.0f));
-                    arrayList3.add(ObjectAnimator.ofFloat(textView, property, 0.0f));
-                }
-                TextView textView2 = (TextView) arrayList.get(i10);
-                if (textView2.getAlpha() != 0.0f) {
-                    arrayList3.add(ObjectAnimator.ofFloat(textView2, property3, 0.0f));
-                    arrayList3.add(ObjectAnimator.ofFloat(textView2, property2, 0.0f));
-                    arrayList3.add(ObjectAnimator.ofFloat(textView2, property, 0.0f));
-                }
-            }
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            rd0Var.e = animatorSet2;
-            animatorSet2.setDuration(150L);
-            ((AnimatorSet) rd0Var.e).playTogether(arrayList3);
-            ((AnimatorSet) rd0Var.e).addListener(new qd0(rd0Var, 2));
-            ((AnimatorSet) rd0Var.e).start();
-        } else {
-            for (int i11 = 0; i11 < 4; i11++) {
-                ((TextView) arrayList2.get(i11)).setAlpha(0.0f);
-                ((TextView) arrayList.get(i11)).setAlpha(0.0f);
-            }
-        }
-        vd0.a((vd0) rd0Var.h);
-    }
-
-    public void b(String str) {
-        ArrayList arrayList = (ArrayList) this.f28455c;
-        ArrayList arrayList2 = (ArrayList) this.f28454b;
-        StringBuilder sb = (StringBuilder) this.d;
-        if (sb.length() == 4) {
-            return;
-        }
-        try {
-            performHapticFeedback(3);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        ArrayList arrayList3 = new ArrayList();
-        int length = sb.length();
-        sb.append(str);
-        TextView textView = (TextView) arrayList2.get(length);
-        textView.setText(str);
-        textView.setTranslationX(c(length));
-        Property property = View.SCALE_X;
-        arrayList3.add(ObjectAnimator.ofFloat(textView, property, 0.0f, 1.0f));
-        Property property2 = View.SCALE_Y;
-        arrayList3.add(ObjectAnimator.ofFloat(textView, property2, 0.0f, 1.0f));
-        Property property3 = View.ALPHA;
-        arrayList3.add(ObjectAnimator.ofFloat(textView, property3, 0.0f, 1.0f));
-        float[] fArr = {AndroidUtilities.dp(20.0f), 0.0f};
-        Property property4 = View.TRANSLATION_Y;
-        arrayList3.add(ObjectAnimator.ofFloat(textView, property4, fArr));
-        TextView textView2 = (TextView) arrayList.get(length);
-        textView2.setTranslationX(c(length));
-        textView2.setAlpha(0.0f);
-        arrayList3.add(ObjectAnimator.ofFloat(textView2, property, 0.0f, 1.0f));
-        arrayList3.add(ObjectAnimator.ofFloat(textView2, property2, 0.0f, 1.0f));
-        arrayList3.add(ObjectAnimator.ofFloat(textView2, property4, AndroidUtilities.dp(20.0f), 0.0f));
-        for (int i10 = length + 1; i10 < 4; i10++) {
-            TextView textView3 = (TextView) arrayList2.get(i10);
-            if (textView3.getAlpha() != 0.0f) {
-                arrayList3.add(ObjectAnimator.ofFloat(textView3, property, 0.0f));
-                arrayList3.add(ObjectAnimator.ofFloat(textView3, property2, 0.0f));
-                arrayList3.add(ObjectAnimator.ofFloat(textView3, property3, 0.0f));
-            }
-            TextView textView4 = (TextView) arrayList.get(i10);
-            if (textView4.getAlpha() != 0.0f) {
-                arrayList3.add(ObjectAnimator.ofFloat(textView4, property, 0.0f));
-                arrayList3.add(ObjectAnimator.ofFloat(textView4, property2, 0.0f));
-                arrayList3.add(ObjectAnimator.ofFloat(textView4, property3, 0.0f));
-            }
-        }
-        ye yeVar = (ye) this.f28456f;
-        if (yeVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(yeVar);
-        }
-        ye yeVar2 = new ye(this, length, 2);
-        this.f28456f = yeVar2;
-        AndroidUtilities.runOnUIThread(yeVar2, 1500L);
-        for (int i11 = 0; i11 < length; i11++) {
-            TextView textView5 = (TextView) arrayList2.get(i11);
-            float[] fArr2 = {c(i11)};
-            Property property5 = View.TRANSLATION_X;
-            arrayList3.add(ObjectAnimator.ofFloat(textView5, property5, fArr2));
-            arrayList3.add(ObjectAnimator.ofFloat(textView5, property, 0.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView5, property2, 0.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView5, property3, 0.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView5, property4, 0.0f));
-            TextView textView6 = (TextView) arrayList.get(i11);
-            arrayList3.add(ObjectAnimator.ofFloat(textView6, property5, c(i11)));
-            arrayList3.add(ObjectAnimator.ofFloat(textView6, property, 1.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView6, property2, 1.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView6, property3, 1.0f));
-            arrayList3.add(ObjectAnimator.ofFloat(textView6, property4, 0.0f));
-        }
-        AnimatorSet animatorSet = (AnimatorSet) this.e;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.e = animatorSet2;
-        animatorSet2.setDuration(150L);
-        ((AnimatorSet) this.e).playTogether(arrayList3);
-        ((AnimatorSet) this.e).addListener(new qd0(this, 0));
-        ((AnimatorSet) this.e).start();
-        vd0.a((vd0) this.h);
-    }
-
-    public int c(int i10) {
-        return org.telegram.messenger.y3.D(30.0f, i10, (getMeasuredWidth() - (AndroidUtilities.dp(30.0f) * ((StringBuilder) this.d).length())) / 2) - AndroidUtilities.dp(10.0f);
-    }
-
-    public void d(boolean z4) {
-        int i10;
+    @Override
+    public final void onGlobalLayout() {
         float f10;
+        int dp;
         float f11;
-        ImageView imageView = (ImageView) this.f28455c;
-        if (z4) {
-            i10 = 0;
-        } else {
-            i10 = 8;
+        int[] iArr;
+        ud0 ud0Var;
+        int i10;
+        AnimatorSet animatorSet;
+        float f12;
+        float f13;
+        long j10;
+        xd0 xd0Var = this.d;
+        int[] iArr2 = xd0Var.T;
+        xd0Var.setAlpha(1.0f);
+        xd0Var.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        lj0 lj0Var = xd0Var.F;
+        lj0Var.getAnimatedDrawable().L(0, false, false);
+        lj0Var.getAnimatedDrawable().N(37);
+        lj0Var.d();
+        xd0Var.m(true);
+        AndroidUtilities.runOnUIThread(new ec0(this, 4), 350L);
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        ArrayList arrayList = new ArrayList();
+        Point point = AndroidUtilities.displaySize;
+        int i11 = point.x;
+        int i12 = point.y + AndroidUtilities.statusBarHeight;
+        int i13 = this.f30687a;
+        int i14 = i11 - i13;
+        int i15 = i14 * i14;
+        int i16 = this.f30688b;
+        int i17 = i12 - i16;
+        int i18 = i17 * i17;
+        double sqrt = Math.sqrt(i18 + i15);
+        int i19 = i13 * i13;
+        double sqrt2 = Math.sqrt(i18 + i19);
+        int i20 = i16 * i16;
+        char c3 = 0;
+        final double max = Math.max(Math.max(Math.max(sqrt, sqrt2), Math.sqrt(i19 + i20)), Math.sqrt(i20 + i15));
+        ArrayList arrayList2 = xd0Var.L;
+        arrayList2.clear();
+        eh.d dVar = xd0Var.f33045e;
+        int childCount = dVar.getChildCount();
+        int i21 = 0;
+        while (i21 < childCount) {
+            View childAt = dVar.getChildAt(i21);
+            childAt.setScaleX(0.7f);
+            childAt.setScaleY(0.7f);
+            childAt.setAlpha(0.0f);
+            ?? obj = new Object();
+            childAt.getLocationInWindow(iArr2);
+            int measuredWidth = i13 - ((childAt.getMeasuredWidth() / 2) + iArr2[c3]);
+            int measuredHeight = i16 - ((childAt.getMeasuredHeight() / 2) + iArr2[1]);
+            int i22 = (measuredHeight * measuredHeight) + (measuredWidth * measuredWidth);
+            int i23 = i11;
+            obj.f31660b = ((float) Math.sqrt(i22)) - AndroidUtilities.dp(40.0f);
+            if (i21 != -1) {
+                animatorSet = new AnimatorSet();
+                Property property = View.SCALE_X;
+                iArr = iArr2;
+                float[] fArr = new float[1];
+                fArr[c3] = 1.0f;
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, property, fArr);
+                Property property2 = View.SCALE_Y;
+                float[] fArr2 = new float[1];
+                fArr2[c3] = 1.0f;
+                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(childAt, property2, fArr2);
+                Animator[] animatorArr = new Animator[2];
+                animatorArr[c3] = ofFloat;
+                animatorArr[1] = ofFloat2;
+                ud0Var = obj;
+                animatorSet.playTogether(animatorArr);
+                i10 = i16;
+                animatorSet.setDuration(140L);
+                animatorSet.setInterpolator(new DecelerateInterpolator());
+            } else {
+                iArr = iArr2;
+                ud0Var = obj;
+                i10 = i16;
+                animatorSet = null;
+            }
+            AnimatorSet animatorSet3 = new AnimatorSet();
+            ud0Var.f31659a = animatorSet3;
+            Property property3 = View.SCALE_X;
+            float f14 = 0.9f;
+            if (i21 == -1) {
+                f12 = 0.9f;
+            } else {
+                f12 = 0.6f;
+            }
+            float f15 = 1.04f;
+            if (i21 == -1) {
+                f13 = 1.0f;
+            } else {
+                f13 = 1.04f;
+            }
+            eh.d dVar2 = dVar;
+            float[] fArr3 = new float[2];
+            fArr3[c3] = f12;
+            fArr3[1] = f13;
+            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(childAt, property3, fArr3);
+            Property property4 = View.SCALE_Y;
+            if (i21 != -1) {
+                f14 = 0.6f;
+            }
+            if (i21 == -1) {
+                f15 = 1.0f;
+            }
+            float[] fArr4 = new float[2];
+            fArr4[c3] = f14;
+            fArr4[1] = f15;
+            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(childAt, property4, fArr4);
+            ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
+            Animator[] animatorArr2 = new Animator[3];
+            animatorArr2[c3] = ofFloat3;
+            animatorArr2[1] = ofFloat4;
+            animatorArr2[2] = ofFloat5;
+            animatorSet3.playTogether(animatorArr2);
+            ud0Var.f31659a.addListener(new pd0(animatorSet, 0));
+            AnimatorSet animatorSet4 = ud0Var.f31659a;
+            if (i21 == -1) {
+                j10 = 232;
+            } else {
+                j10 = 200;
+            }
+            animatorSet4.setDuration(j10);
+            ud0Var.f31659a.setInterpolator(new DecelerateInterpolator());
+            arrayList2.add(ud0Var);
+            i21++;
+            i16 = i10;
+            iArr2 = iArr;
+            i11 = i23;
+            dVar = dVar2;
+            c3 = 0;
         }
-        imageView.setVisibility(i10);
-        TextView textView = (TextView) this.d;
-        boolean z10 = LocaleController.isRTL;
-        if (!z10 && z4) {
-            f10 = 53.0f;
-        } else {
-            f10 = 22.0f;
-        }
-        if (z10 && z4) {
-            f11 = 53.0f;
-        } else {
-            f11 = 22.0f;
-        }
-        textView.setLayoutParams(k7.b6.d(-1, -2.0f, 23, f10, 0.0f, f11, 0.0f));
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f28453a) {
-            case 1:
-                super.dispatchDraw(canvas);
-                Paint paint = (Paint) this.f28456f;
-                paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19907d7, (org.telegram.ui.ActionBar.f6) this.f28454b));
-                canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    public void e(String str) {
-        ((TextView) this.d).setText(str);
-    }
-
-    @Override
-    public void onLayout(boolean z4, int i10, int i11, int i12, int i13) {
-        switch (this.f28453a) {
-            case 0:
-                ArrayList arrayList = (ArrayList) this.f28455c;
-                ArrayList arrayList2 = (ArrayList) this.f28454b;
-                ye yeVar = (ye) this.f28456f;
-                if (yeVar != null) {
-                    AndroidUtilities.cancelRunOnUIThread(yeVar);
-                    this.f28456f = null;
-                }
-                AnimatorSet animatorSet = (AnimatorSet) this.e;
-                if (animatorSet != null) {
-                    animatorSet.cancel();
-                    this.e = null;
-                }
-                for (int i14 = 0; i14 < 4; i14++) {
-                    if (i14 < ((StringBuilder) this.d).length()) {
-                        TextView textView = (TextView) arrayList2.get(i14);
-                        textView.setAlpha(0.0f);
-                        textView.setScaleX(1.0f);
-                        textView.setScaleY(1.0f);
-                        textView.setTranslationY(0.0f);
-                        textView.setTranslationX(c(i14));
-                        TextView textView2 = (TextView) arrayList.get(i14);
-                        textView2.setAlpha(1.0f);
-                        textView2.setScaleX(1.0f);
-                        textView2.setScaleY(1.0f);
-                        textView2.setTranslationY(0.0f);
-                        textView2.setTranslationX(c(i14));
+        int i24 = i11;
+        int i25 = i16;
+        arrayList.add(ObjectAnimator.ofFloat(xd0Var.v, View.ALPHA, 0.0f, 1.0f));
+        ValueAnimator ofFloat6 = ValueAnimator.ofFloat(0.0f, 1.0f);
+        arrayList.add(ofFloat6);
+        ofFloat6.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                xd0 xd0Var2 = rd0.this.d;
+                double animatedFraction = max * valueAnimator.getAnimatedFraction();
+                int i26 = 0;
+                while (true) {
+                    ArrayList arrayList3 = xd0Var2.L;
+                    if (i26 < arrayList3.size()) {
+                        ud0 ud0Var2 = (ud0) arrayList3.get(i26);
+                        if (ud0Var2.f31660b <= animatedFraction) {
+                            ud0Var2.f31659a.start();
+                            arrayList3.remove(i26);
+                            i26--;
+                        }
+                        i26++;
                     } else {
-                        ((TextView) arrayList2.get(i14)).setAlpha(0.0f);
-                        ((TextView) arrayList.get(i14)).setAlpha(0.0f);
+                        return;
                     }
                 }
-                super.onLayout(z4, i10, i11, i12, i13);
-                return;
-            default:
-                super.onLayout(z4, i10, i11, i12, i13);
-                return;
+            }
+        });
+        pr prVar = pr.h;
+        animatorSet2.setInterpolator(prVar);
+        animatorSet2.setDuration(500L);
+        ValueAnimator ofFloat7 = ValueAnimator.ofFloat(xd0Var.M, 1.0f);
+        ofFloat7.addUpdateListener(new k70(this, 2));
+        ofFloat7.addListener(new qd0(this, 0));
+        ofFloat7.setDuration(420L);
+        ofFloat7.setInterpolator(prVar);
+        arrayList.add(ofFloat7);
+        animatorSet2.playTogether(arrayList);
+        animatorSet2.addListener(new qd0(this, 1));
+        animatorSet2.start();
+        AnimatorSet animatorSet5 = new AnimatorSet();
+        animatorSet5.setDuration(332L);
+        if (!AndroidUtilities.isTablet() && xd0Var.getContext().getResources().getConfiguration().orientation == 2) {
+            if (SharedConfig.passcodeType == 0) {
+                f11 = i24 / 2.0f;
+            } else {
+                f11 = i24;
+            }
+            f10 = f11 / 2.0f;
+            dp = AndroidUtilities.dp(30.0f);
+        } else {
+            f10 = i24 / 2.0f;
+            dp = AndroidUtilities.dp(29.0f);
         }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f28453a) {
-            case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    public rd0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        this.f28456f = new Paint(1);
-        this.f28454b = f6Var;
-        TextView textView = new TextView(context);
-        this.d = textView;
-        org.telegram.ui.b.g(20.0f, 1, textView);
-        textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20012j5, f6Var));
-        boolean z4 = LocaleController.isRTL;
-        addView(textView, k7.b6.d(-1, -2.0f, 23, z4 ? 16.0f : 53.0f, 0.0f, z4 ? 53.0f : 16.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.f28455c = imageView;
-        org.telegram.ui.ActionBar.i2 i2Var = new org.telegram.ui.ActionBar.i2(false);
-        this.e = i2Var;
-        imageView.setImageDrawable(i2Var);
-        i2Var.a(-1);
-        i2Var.b(-1);
-        i2Var.f19795k = 220.0f;
-        addView(imageView, k7.b6.d(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        imageView.setOnClickListener(new oh.n(this, 11));
+        animatorSet5.playTogether(ObjectAnimator.ofFloat(lj0Var, View.TRANSLATION_X, i13 - AndroidUtilities.dp(29.0f), f10 - dp), ObjectAnimator.ofFloat(lj0Var, View.TRANSLATION_Y, i25 - AndroidUtilities.dp(29.0f), xd0Var.E), ObjectAnimator.ofFloat(lj0Var, View.SCALE_X, 0.5f, 1.0f), ObjectAnimator.ofFloat(lj0Var, View.SCALE_Y, 0.5f, 1.0f));
+        animatorSet5.setInterpolator(pr.f30184g);
+        animatorSet5.start();
     }
 }

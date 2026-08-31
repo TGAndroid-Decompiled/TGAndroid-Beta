@@ -1,18 +1,18 @@
 package s4;
 public final class g {
-    public final g4.a[] f44007a;
-    public final long[] f44008b;
-    public final String f44009c;
+    public final g4.a[] f46972a;
+    public final long[] f46973b;
+    public final String f46974c;
     public final String d;
 
     public g(String str, String str2, long[] jArr, g4.a[] aVarArr) {
-        this.f44009c = str;
+        this.f46974c = str;
         this.d = str2;
-        this.f44008b = jArr;
-        this.f44007a = aVarArr;
+        this.f46973b = jArr;
+        this.f46972a = aVarArr;
     }
 
     public final String a() {
-        return this.f44009c + "/" + this.d;
+        return this.f46974c + "/" + this.d;
     }
 }

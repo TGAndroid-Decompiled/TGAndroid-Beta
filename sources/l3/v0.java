@@ -7,13 +7,13 @@ public final class v0 extends a0 {
 
     @Override
     public final l f(l lVar) {
-        int i10 = lVar.f11196c;
+        int i10 = lVar.f11562c;
         if (i10 != 3 && i10 != 2 && i10 != 268435456 && i10 != 536870912 && i10 != 805306368 && i10 != 4) {
             throw new m(lVar);
         }
         if (i10 != 2) {
-            return new l(lVar.f11194a, lVar.f11195b, 2);
+            return new l(lVar.f11560a, lVar.f11561b, 2);
         }
-        return l.e;
+        return l.f11559e;
     }
 }

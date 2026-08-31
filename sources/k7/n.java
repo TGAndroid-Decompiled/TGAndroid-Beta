@@ -1,22 +1,28 @@
 package k7;
-public abstract class n {
-    public static float a(float f10, float f11, float f12) {
-        if (f10 < f11) {
-            return f11;
-        }
-        if (f10 > f12) {
-            return f12;
-        }
-        return f10;
-    }
 
-    public static int b(int i10, int i11, int i12) {
-        if (i10 < i11) {
-            return i11;
+import android.os.Build;
+import android.text.TextUtils;
+import android.view.View;
+public abstract class n {
+    public static void a(View view, CharSequence charSequence) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            m.o3.a(view, charSequence);
+            return;
         }
-        if (i10 > i12) {
-            return i12;
+        m.q3 q3Var = m.q3.v;
+        if (q3Var != null && q3Var.f13307a == view) {
+            m.q3.b(null);
         }
-        return i10;
+        if (TextUtils.isEmpty(charSequence)) {
+            m.q3 q3Var2 = m.q3.f13306w;
+            if (q3Var2 != null && q3Var2.f13307a == view) {
+                q3Var2.a();
+            }
+            view.setOnLongClickListener(null);
+            view.setLongClickable(false);
+            view.setOnHoverListener(null);
+            return;
+        }
+        new m.q3(view, charSequence);
     }
 }

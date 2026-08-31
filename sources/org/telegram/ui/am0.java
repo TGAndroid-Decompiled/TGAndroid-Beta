@@ -1,79 +1,56 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import java.util.Locale;
+import android.text.Editable;
+import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MrzRecognizer;
 import org.telegram.messenger.R;
-public final class am0 implements u9 {
-    public final dn0 f32670a;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class am0 implements TextWatcher {
+    public boolean f35211a;
+    public final EditTextBoldCursor f35212b;
+    public final String f35213c;
+    public final fn0 d;
 
-    public am0(dn0 dn0Var) {
-        this.f32670a = dn0Var;
+    public am0(fn0 fn0Var, EditTextBoldCursor editTextBoldCursor, String str) {
+        this.d = fn0Var;
+        this.f35212b = editTextBoldCursor;
+        this.f35213c = str;
     }
 
     @Override
-    public final String G0() {
-        return null;
-    }
-
-    @Override
-    public final void S0(MrzRecognizer.Result result) {
-        boolean isEmpty = TextUtils.isEmpty(result.firstName);
-        dn0 dn0Var = this.f32670a;
-        if (!isEmpty) {
-            dn0Var.V[0].setText(result.firstName);
+    public final void afterTextChanged(Editable editable) {
+        if (this.f35211a) {
+            return;
         }
-        if (!TextUtils.isEmpty(result.middleName)) {
-            dn0Var.V[1].setText(result.middleName);
-        }
-        if (!TextUtils.isEmpty(result.lastName)) {
-            dn0Var.V[2].setText(result.lastName);
-        }
-        int i10 = result.gender;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 == 2) {
-                    dn0Var.f33731w = "female";
-                    dn0Var.V[4].setText(LocaleController.getString(R.string.PassportFemale));
+        boolean z4 = true;
+        this.f35211a = true;
+        int i10 = 0;
+        while (true) {
+            if (i10 < editable.length()) {
+                char charAt = editable.charAt(i10);
+                if ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && !((charAt >= '0' && charAt <= '9') || charAt == '-' || charAt == ' '))) {
+                    break;
                 }
+                i10++;
             } else {
-                dn0Var.f33731w = "male";
-                dn0Var.V[4].setText(LocaleController.getString(R.string.PassportMale));
+                z4 = false;
+                break;
             }
         }
-        if (!TextUtils.isEmpty(result.nationality)) {
-            String str = result.nationality;
-            dn0Var.f33722s = str;
-            String str2 = (String) dn0Var.V0.get(str);
-            if (str2 != null) {
-                dn0Var.V[5].setText(str2);
-            }
-        }
-        if (!TextUtils.isEmpty(result.issuingCountry)) {
-            String str3 = result.issuingCountry;
-            dn0Var.v = str3;
-            String str4 = (String) dn0Var.V0.get(str3);
-            if (str4 != null) {
-                dn0Var.V[6].setText(str4);
-            }
-        }
-        int i11 = result.birthDay;
-        if (i11 > 0 && result.birthMonth > 0 && result.birthYear > 0) {
-            dn0Var.V[3].setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(i11), Integer.valueOf(result.birthMonth), Integer.valueOf(result.birthYear)));
+        this.f35211a = false;
+        EditTextBoldCursor editTextBoldCursor = this.f35212b;
+        if (z4) {
+            editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
+        } else {
+            fn0.J0(this.d, editTextBoldCursor, this.f35213c, editable, false);
         }
     }
 
     @Override
-    public final boolean f1(String str, m9 m9Var) {
-        return false;
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
     @Override
-    public final void K(String str) {
-    }
-
-    @Override
-    public final void onDismiss() {
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

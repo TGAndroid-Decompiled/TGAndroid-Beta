@@ -1,7 +1,7 @@
 package od;
 public abstract class n {
-    public static final i5.c f16572a = new i5.c("NONE", 3);
-    public static final i5.c f16573b = new i5.c("PENDING", 3);
+    public static final com.google.android.gms.internal.clearcut.e f16744a = new com.google.android.gms.internal.clearcut.e("NONE", 2);
+    public static final com.google.android.gms.internal.clearcut.e f16745b = new com.google.android.gms.internal.clearcut.e("PENDING", 2);
 
     public static final java.io.Serializable a(od.b r4, od.c r5, wc.c r6) {
         throw new UnsupportedOperationException("Method not decompiled: od.n.a(od.b, od.c, wc.c):java.io.Serializable");

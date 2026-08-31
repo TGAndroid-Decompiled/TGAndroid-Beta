@@ -41,8 +41,8 @@ public class VoIPPermissionActivity extends Activity {
                     i10 = 101;
                 }
                 requestPermissions(strArr, i10);
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e6) {
+                FileLog.e(e6);
             }
         }
     }
@@ -79,7 +79,7 @@ public class VoIPPermissionActivity extends Activity {
             } else {
                 VoIPPreNotificationService.decline(this, 1);
             }
-            org.telegram.ui.Components.voip.f2.i(this, new vy0(this, 27), i10);
+            org.telegram.ui.Components.voip.g2.i(this, new xy0(this, 26), i10);
         } else {
             finish();
         }

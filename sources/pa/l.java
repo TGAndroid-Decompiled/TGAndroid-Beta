@@ -1,10 +1,10 @@
 package pa;
 public final class l extends i {
-    public final ra.l f41088a = new ra.l(false);
+    public final ra.l f44247a = new ra.l(false);
 
     public final boolean equals(Object obj) {
         if (obj != this) {
-            if (!(obj instanceof l) || !((l) obj).f41088a.equals(this.f41088a)) {
+            if (!(obj instanceof l) || !((l) obj).f44247a.equals(this.f44247a)) {
                 return false;
             }
             return true;
@@ -13,13 +13,13 @@ public final class l extends i {
     }
 
     public final int hashCode() {
-        return this.f41088a.hashCode();
+        return this.f44247a.hashCode();
     }
 
     public final void o(String str, i iVar) {
         if (iVar == null) {
-            iVar = k.f41087a;
+            iVar = k.f44246a;
         }
-        this.f41088a.put(str, iVar);
+        this.f44247a.put(str, iVar);
     }
 }

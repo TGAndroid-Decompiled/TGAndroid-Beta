@@ -4,44 +4,44 @@ import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.jo0;
-public final class v7 implements jo0 {
-    public final x7 f22505a;
+import org.telegram.ui.Components.ko0;
+public final class v7 implements ko0 {
+    public final x7 f24319a;
 
     public v7(x7 x7Var) {
-        this.f22505a = x7Var;
+        this.f24319a = x7Var;
     }
 
     @Override
-    public final void Y(float f10, boolean z4) {
+    public final void X(float f10, boolean z4) {
         int[] iArr;
         int round;
-        x7 x7Var = this.f22505a;
-        w7 w7Var = x7Var.f22585r;
-        if (w7Var != null && x7Var.f22584n != null) {
-            if (w7Var.f22548c != null) {
+        x7 x7Var = this.f24319a;
+        w7 w7Var = x7Var.f24408r;
+        if (w7Var != null && x7Var.f24407n != null) {
+            if (w7Var.f24367c != null) {
                 double length = f10 * (iArr.length - 1);
-                int clamp = Utilities.clamp((int) Math.floor(length), x7Var.f22585r.f22548c.length - 1, 0);
-                int clamp2 = Utilities.clamp((int) Math.ceil(length), x7Var.f22585r.f22548c.length - 1, 0);
-                int[] iArr2 = x7Var.f22585r.f22548c;
-                round = Math.round(AndroidUtilities.lerp(iArr2[clamp], iArr2[clamp2], Math.round(((float) (length - Math.floor(length))) * x7Var.f22585r.d) / x7Var.f22585r.d));
+                int clamp = Utilities.clamp((int) Math.floor(length), x7Var.f24408r.f24367c.length - 1, 0);
+                int clamp2 = Utilities.clamp((int) Math.ceil(length), x7Var.f24408r.f24367c.length - 1, 0);
+                int[] iArr2 = x7Var.f24408r.f24367c;
+                round = Math.round(AndroidUtilities.lerp(iArr2[clamp], iArr2[clamp2], Math.round(((float) (length - Math.floor(length))) * x7Var.f24408r.d) / x7Var.f24408r.d));
             } else {
-                round = Math.round(((x7Var.f22585r.a() - x7Var.f22585r.b()) * f10) + w7Var.b());
+                round = Math.round(((x7Var.f24408r.a() - x7Var.f24408r.b()) * f10) + w7Var.b());
             }
             int i10 = x7Var.h;
             if (i10 != Integer.MIN_VALUE) {
                 round = Math.max(round, i10);
             }
-            int i11 = x7Var.f22583f;
+            int i11 = x7Var.f24406f;
             if (i11 != round) {
                 if (x7Var.c(i11) != x7Var.c(round)) {
-                    AndroidUtilities.vibrateCursor(x7Var.e);
+                    AndroidUtilities.vibrateCursor(x7Var.f24405e);
                 }
-                x7Var.f22583f = round;
+                x7Var.f24406f = round;
                 x7Var.e(round, true);
-                Utilities.Callback callback = x7Var.f22584n;
+                Utilities.Callback callback = x7Var.f24407n;
                 if (callback != null) {
-                    callback.run(Integer.valueOf(x7Var.f22583f));
+                    callback.run(Integer.valueOf(x7Var.f24406f));
                 }
             }
         }
@@ -50,23 +50,23 @@ public final class v7 implements jo0 {
     @Override
     public final CharSequence getContentDescription() {
         Utilities.Callback2Return callback2Return;
-        x7 x7Var = this.f22505a;
+        x7 x7Var = this.f24319a;
         try {
             StringBuilder sb = new StringBuilder();
-            if (!TextUtils.isEmpty(x7Var.f22586s)) {
-                sb.append(x7Var.f22586s);
+            if (!TextUtils.isEmpty(x7Var.f24409s)) {
+                sb.append(x7Var.f24409s);
             }
-            w7 w7Var = x7Var.f22585r;
-            if (w7Var != null && (callback2Return = w7Var.e) != null) {
-                CharSequence charSequence = (CharSequence) callback2Return.run(0, Integer.valueOf(x7Var.f22583f));
+            w7 w7Var = x7Var.f24408r;
+            if (w7Var != null && (callback2Return = w7Var.f24368e) != null) {
+                CharSequence charSequence = (CharSequence) callback2Return.run(0, Integer.valueOf(x7Var.f24406f));
                 if (!TextUtils.isEmpty(charSequence)) {
                     if (sb.length() > 0) {
                         sb.append(", ");
                     }
                     sb.append(charSequence);
                 }
-                CharSequence charSequence2 = (CharSequence) x7Var.f22585r.e.run(-1, Integer.valueOf(x7Var.f22585r.b()));
-                CharSequence charSequence3 = (CharSequence) x7Var.f22585r.e.run(1, Integer.valueOf(x7Var.f22585r.a()));
+                CharSequence charSequence2 = (CharSequence) x7Var.f24408r.f24368e.run(-1, Integer.valueOf(x7Var.f24408r.b()));
+                CharSequence charSequence3 = (CharSequence) x7Var.f24408r.f24368e.run(1, Integer.valueOf(x7Var.f24408r.a()));
                 if (!TextUtils.isEmpty(charSequence2) && !TextUtils.isEmpty(charSequence3)) {
                     if (sb.length() > 0) {
                         sb.append(", ");
@@ -82,17 +82,17 @@ public final class v7 implements jo0 {
             return null;
         } catch (Throwable th2) {
             FileLog.e(th2);
-            return x7Var.f22586s;
+            return x7Var.f24409s;
         }
     }
 
     @Override
-    public final int j0() {
-        w7 w7Var = this.f22505a.f22585r;
+    public final int m0() {
+        w7 w7Var = this.f24319a.f24408r;
         if (w7Var == null) {
             return 0;
         }
-        int[] iArr = w7Var.f22548c;
+        int[] iArr = w7Var.f24367c;
         if (iArr != null) {
             return (iArr.length - 1) * w7Var.d;
         }
@@ -100,6 +100,6 @@ public final class v7 implements jo0 {
     }
 
     @Override
-    public final void B() {
+    public final void A() {
     }
 }

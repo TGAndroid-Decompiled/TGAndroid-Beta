@@ -1,137 +1,147 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorMatrixColorFilter;
+import android.content.Context;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotchInfoUtils;
-import org.telegram.messenger.Utilities;
-public final class wh0 implements yh0 {
-    public Bitmap f30351a;
-    public Canvas f30352b;
-    public final Paint f30353c;
-    public final Paint d;
-    public int e;
-    public int f30354f;
-    public int f30355g;
-    public int h;
-    public final zh0 f30356i;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.MessagesController;
+public final class wh0 extends vp {
+    public final ArrayList f32750c = new ArrayList();
+    public final ArrayList d = new ArrayList();
+    public final Context f32751e;
+    public final Paint f32752f;
+    public p9 f32753g;
+    public final xh0 h;
 
-    public wh0(zh0 zh0Var) {
-        this.f30356i = zh0Var;
-        Paint paint = new Paint();
-        this.f30353c = paint;
-        Paint paint2 = new Paint();
-        this.d = paint2;
-        paint.setFlags(7);
-        paint.setFilterBitmap(true);
-        paint2.setFlags(7);
-        paint2.setFilterBitmap(true);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
-        paint.setColorFilter(new ColorMatrixColorFilter(new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 60.0f, -7500.0f}));
+    public wh0(xh0 xh0Var, Context context, org.telegram.ui.vz0 vz0Var) {
+        this.h = xh0Var;
+        this.f32751e = context;
+        this.f32753g = vz0Var;
+        Paint paint = new Paint(1);
+        this.f32752f = paint;
+        paint.setColor(-16777216);
     }
 
     @Override
-    public final void c(fv fvVar, Canvas canvas) {
-        Canvas canvas2;
-        int i10;
-        int i11;
-        zh0 zh0Var = (zh0) fvVar.f24962b;
-        zh0 zh0Var2 = this.f30356i;
-        Paint paint = zh0Var2.f31342a;
-        Bitmap bitmap = this.f30351a;
-        if (bitmap != null && !bitmap.isRecycled()) {
-            int a2 = (int) ((1.0f - ((k7.n.a(zh0Var2.f31345f, 0.2f, 0.3f) - 0.2f) / 0.10000001f)) * 255.0f);
-            float width = (zh0Var2.getWidth() - this.f30354f) / 2.0f;
-            canvas.save();
-            canvas.translate(0.0f, -AndroidUtilities.dp(32.0f));
-            if (a2 != 255) {
-                this.f30351a.eraseColor(0);
-                this.f30352b.save();
-                this.f30352b.scale(this.f30351a.getWidth() / this.f30355g, this.f30351a.getHeight() / this.h);
-                float f10 = -width;
-                this.f30352b.translate(f10, 0.0f);
-                zh0.a(zh0Var, this.f30352b);
-                this.f30352b.restore();
-                this.f30352b.save();
-                this.f30352b.scale(this.f30351a.getWidth() / this.f30355g, this.f30351a.getHeight() / this.h);
-                if (zh0Var2.f31346n != null) {
-                    this.f30352b.save();
-                    this.f30352b.translate(f10, AndroidUtilities.dp(32.0f));
-                    NotchInfoUtils.NotchInfo notchInfo = zh0Var2.f31346n;
-                    if (notchInfo.isLikelyCircle) {
-                        Canvas canvas3 = this.f30352b;
-                        float centerX = zh0Var2.f31346n.bounds.centerX();
-                        RectF rectF = zh0Var2.f31346n.bounds;
-                        canvas3.drawCircle(centerX, rectF.bottom - (rectF.width() / 2.0f), Math.min(notchInfo.bounds.width(), zh0Var2.f31346n.bounds.height()) / 2.0f, paint);
-                    } else if (notchInfo.isAccurate) {
-                        this.f30352b.drawPath(notchInfo.path, paint);
-                    } else {
-                        float max = Math.max(notchInfo.bounds.width(), zh0Var2.f31346n.bounds.height()) / 2.0f;
-                        this.f30352b.drawRoundRect(zh0Var2.f31346n.bounds, max, max, paint);
-                    }
-                    this.f30352b.restore();
-                } else {
-                    this.f30352b.drawRect(0.0f, 0.0f, this.f30354f, AndroidUtilities.dp(32.0f), paint);
-                }
-                this.f30352b.restore();
-                Utilities.stackBlurBitmap(this.f30351a, (int) ((zh0Var2.d * 2.0f) / 6.0f));
-                canvas.save();
-                canvas.translate(width, 0.0f);
-                i10 = 255;
-                canvas2 = canvas;
-                canvas2.saveLayer(0.0f, 0.0f, this.f30355g, this.h, null);
-                canvas2.scale(this.f30355g / this.f30351a.getWidth(), this.h / this.f30351a.getHeight());
-                canvas2.drawBitmap(this.f30351a, 0.0f, 0.0f, this.f30353c);
-                canvas2.drawBitmap(this.f30351a, 0.0f, 0.0f, this.d);
-                canvas2.restore();
-                canvas2.restore();
-            } else {
-                canvas2 = canvas;
-                i10 = 255;
+    public final void a(m2.h hVar, Object obj) {
+        th0 th0Var = (th0) obj;
+        View view = th0Var.f31341b;
+        if (view != null) {
+            hVar.removeView(view);
+        }
+        if (th0Var.f31340a) {
+            return;
+        }
+        rh0 rh0Var = th0Var.f31342c;
+        if (rh0Var.getImageReceiver().hasStaticThumb()) {
+            Drawable drawable = rh0Var.getImageReceiver().getDrawable();
+            if (drawable instanceof y5) {
+                ((y5) drawable).w(rh0Var);
             }
-            if (a2 != 0) {
-                if (a2 != i10) {
-                    i11 = a2;
-                    canvas2.saveLayerAlpha(width, 0.0f, width + this.f30354f, this.e, i11);
-                } else {
-                    i11 = a2;
-                }
-                zh0.a(zh0Var, canvas2);
-                if (i11 != i10) {
-                    canvas2.restore();
-                }
+        }
+        rh0Var.setRoundRadius(0);
+        hVar.removeView(rh0Var);
+        rh0Var.getImageReceiver().cancelLoadImage();
+    }
+
+    @Override
+    public final int b() {
+        return this.f32750c.size();
+    }
+
+    @Override
+    public final int c(Object obj) {
+        int indexOf = this.f32750c.indexOf((th0) obj);
+        if (indexOf == -1) {
+            return -2;
+        }
+        return indexOf;
+    }
+
+    @Override
+    public final CharSequence d(int i10) {
+        int count;
+        StringBuilder sb = new StringBuilder();
+        sb.append(k(i10) + 1);
+        sb.append("/");
+        MessagesController.DialogPhotos dialogPhotos = this.h.P0;
+        if (dialogPhotos == null) {
+            count = 0;
+        } else {
+            count = dialogPhotos.getCount();
+        }
+        sb.append(count);
+        return sb.toString();
+    }
+
+    @Override
+    public final java.lang.Object e(m2.h r42, int r43) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.wh0.e(m2.h, int):java.lang.Object");
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        th0 th0Var = (th0) obj;
+        if (th0Var.f31340a) {
+            if (view == th0Var.f31341b) {
+                return true;
             }
-            canvas2.restore();
+            return false;
+        } else if (view == th0Var.f31342c) {
+            return true;
+        } else {
+            return false;
         }
     }
 
     @Override
-    public final void d(int i10, int i11) {
-        Bitmap bitmap = this.f30351a;
-        if (bitmap != null) {
-            bitmap.recycle();
-            this.f30351a = null;
+    public final void g() {
+        ArrayList arrayList;
+        int count;
+        int i10 = 0;
+        while (true) {
+            arrayList = this.d;
+            if (i10 >= arrayList.size()) {
+                break;
+            }
+            if (arrayList.get(i10) != null) {
+                ((p9) arrayList.get(i10)).getImageReceiver().cancelLoadImage();
+            }
+            i10++;
         }
-        this.f30354f = Math.min(AndroidUtilities.dp(120.0f), i10);
-        int min = Math.min(AndroidUtilities.dp(220.0f), i11);
-        this.e = min;
-        this.f30355g = this.f30354f;
-        int dp = AndroidUtilities.dp(32.0f) + min;
-        this.h = dp;
-        this.f30351a = Bitmap.createBitmap((int) (this.f30355g / 6.0f), (int) (dp / 6.0f), Bitmap.Config.ARGB_8888);
-        this.f30352b = new Canvas(this.f30351a);
+        ArrayList arrayList2 = this.f32750c;
+        arrayList2.clear();
+        arrayList.clear();
+        xh0 xh0Var = this.h;
+        int size = xh0Var.U0.size();
+        if (xh0Var.f33088f1) {
+            size++;
+        }
+        MessagesController.DialogPhotos dialogPhotos = xh0Var.P0;
+        if (dialogPhotos == null) {
+            count = 0;
+        } else {
+            count = dialogPhotos.getCount();
+        }
+        int j10 = (j() * 2) + Math.max(count, size);
+        for (int i11 = 0; i11 < j10; i11++) {
+            arrayList2.add(new Object());
+            arrayList.add(null);
+        }
+        super.g();
     }
 
     @Override
-    public final void a(float f10) {
-    }
-
-    @Override
-    public final void b(float f10) {
+    public final int j() {
+        xh0 xh0Var = this.h;
+        int size = xh0Var.U0.size();
+        if (xh0Var.f33088f1) {
+            size++;
+        }
+        if (size >= 2) {
+            return xh0Var.getOffscreenPageLimit();
+        }
+        return 0;
     }
 }

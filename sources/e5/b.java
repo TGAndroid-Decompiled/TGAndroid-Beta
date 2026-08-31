@@ -5,34 +5,33 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public final class b implements v4.f {
-    public final int f5107a = 0;
-    public final List f5108b;
+    public final int f4944a;
+    public final List f4945b;
 
-    public b(ArrayList arrayList) {
-        this.f5108b = DesugarCollections.unmodifiableList(arrayList);
+    public b(int i10, List list) {
+        this.f4944a = i10;
+        this.f4945b = list;
     }
 
     @Override
-    public final int b(long j10) {
-        switch (this.f5107a) {
+    public final int d(long j10) {
+        switch (this.f4944a) {
             case 0:
                 if (j10 < 0) {
                     return 0;
                 }
                 return -1;
+            case 1:
+                return -1;
             default:
-                if (j10 < 0) {
-                    return 0;
-                }
                 return -1;
         }
     }
 
     @Override
-    public final long g(int i10) {
+    public final long l(int i10) {
         boolean z4;
-        boolean z10;
-        switch (this.f5107a) {
+        switch (this.f4944a) {
             case 0:
                 if (i10 == 0) {
                     z4 = true;
@@ -41,44 +40,42 @@ public final class b implements v4.f {
                 }
                 h5.a.f(z4);
                 return 0L;
+            case 1:
+                return 0L;
             default:
-                if (i10 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                h5.a.f(z10);
                 return 0L;
         }
     }
 
     @Override
-    public final List m(long j10) {
-        switch (this.f5107a) {
+    public final List q(long j10) {
+        switch (this.f4944a) {
             case 0:
                 if (j10 >= 0) {
-                    return this.f5108b;
+                    return this.f4945b;
                 }
                 return Collections.EMPTY_LIST;
+            case 1:
+                return this.f4945b;
             default:
-                if (j10 >= 0) {
-                    return this.f5108b;
-                }
-                return Collections.EMPTY_LIST;
+                return this.f4945b;
         }
     }
 
     @Override
-    public final int p() {
-        switch (this.f5107a) {
+    public final int x() {
+        switch (this.f4944a) {
             case 0:
+                return 1;
+            case 1:
                 return 1;
             default:
                 return 1;
         }
     }
 
-    public b(List list) {
-        this.f5108b = list;
+    public b(ArrayList arrayList) {
+        this.f4944a = 0;
+        this.f4945b = DesugarCollections.unmodifiableList(arrayList);
     }
 }

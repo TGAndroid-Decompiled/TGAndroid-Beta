@@ -1,203 +1,121 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
-import android.text.TextUtils;
+import android.content.Context;
 import android.view.View;
-import java.util.ArrayList;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.PhotoViewer;
-public final class z70 implements View.OnClickListener {
-    public final int f31260a;
-    public final Object f31261b;
+public final class z70 extends sl0 {
+    public final Context f33778c;
+    public final a80 d;
 
-    public z70(Object obj, int i10) {
-        this.f31260a = i10;
-        this.f31261b = obj;
+    public z70(a80 a80Var, Context context) {
+        this.d = a80Var;
+        this.f33778c = context;
     }
 
     @Override
-    public final void onClick(View view) {
-        TLRPC.Chat chat;
-        int i10;
-        switch (this.f31260a) {
-            case 0:
-                b80 b80Var = (b80) this.f31261b;
-                b80Var.f23592b = true;
-                b80Var.dismiss();
-                return;
-            case 1:
-                ((h80) this.f31261b).dismiss();
-                return;
-            case 2:
-                ((org.telegram.ui.ActionBar.z) this.f31261b).o(2);
-                return;
-            case 3:
-                ac0 ac0Var = (ac0) this.f31261b;
-                ac0.b(ac0Var.getContext(), ac0Var.f23343a, ac0Var.f23347n, false, ac0Var.f23351x, new vp(ac0Var, 29), ac0Var.f23345c);
-                return;
-            case 4:
-                ((bd0) this.f31261b).onBackPressed();
-                return;
-            case 5:
-                de0.m((de0) this.f31261b);
-                return;
-            case 6:
-                mf0 mf0Var = (mf0) this.f31261b;
-                mf0Var.getClass();
-                org.telegram.ui.Cells.u5 u5Var = (org.telegram.ui.Cells.u5) view;
-                int intValue = ((Integer) u5Var.getTag()).intValue();
-                nf0 nf0Var = mf0Var.d;
-                if (intValue == nf0Var.f27268y) {
-                    nf0Var.K = u5Var.getCurrentColor();
-                } else {
-                    nf0Var.L = u5Var.getCurrentColor();
-                }
-                vz vzVar = nf0Var.f27248i0;
-                if (vzVar != null) {
-                    vzVar.e(false, false, false);
-                }
-                nf0Var.g();
-                return;
-            case 7:
-                view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse(((uf0) this.f31261b).f29212a.f29457y.url)));
-                return;
-            case 8:
-                lg0 lg0Var = (lg0) this.f31261b;
-                PhotoViewer photoViewer = lg0Var.S;
-                if (photoViewer != null) {
-                    vf0 vf0Var = lg0Var.f26673r;
-                    if (vf0Var != null) {
-                        if (vf0Var.D) {
-                            vf0Var.f();
-                        } else {
-                            vf0Var.g();
-                        }
-                    } else {
-                        i71 i71Var = photoViewer.C2;
-                        if (i71Var != null) {
-                            if (i71Var.y()) {
-                                i71Var.B();
-                            } else {
-                                i71Var.C();
-                            }
-                        } else {
-                            return;
-                        }
-                    }
-                    lg0.m0.z();
-                    return;
-                }
-                return;
-            case 9:
-                tg0 tg0Var = (tg0) this.f31261b;
-                tg0Var.getClass();
-                qg0 qg0Var = (qg0) tg0Var;
-                rg0 rg0Var = qg0Var.e;
-                ug0 ug0Var = (ug0) qg0Var.getTag(R.id.object_tag);
-                if (ug0Var.f29216b.size() > 15) {
-                    boolean z4 = ug0Var.e;
-                    ug0Var.e = !z4;
-                    if (!z4) {
-                        ug0Var.f29218f = 10;
-                    }
-                    rg0Var.f28463s.O(qg0Var);
-                    rg0Var.f28463s.f29462c.X(true);
-                    return;
-                }
-                return;
-            case 10:
-                ((im0) this.f31261b).onBackPressed();
-                return;
-            case 11:
-                dn0 dn0Var = ((cn0) this.f31261b).f24027c;
-                bt.n(dn0Var.C, dn0Var.D);
-                return;
-            case 12:
-                kg.f fVar = ((en0) this.f31261b).e;
-                fVar.setText("");
-                AndroidUtilities.showKeyboard(fVar);
-                return;
-            case 13:
-                on0 on0Var = (on0) this.f31261b;
-                on0Var.getClass();
-                new eg.o1(on0Var.f27601b, 24, true).show();
-                return;
-            case 14:
-                ((do0) this.f31261b).Q(false);
-                return;
-            case 15:
-                qq0 qq0Var = ((oq0) this.f31261b).f27651s;
-                ArrayList arrayList = qq0Var.f28221s;
-                if (!arrayList.isEmpty()) {
-                    qq0Var.f28220r = TextUtils.join(" ", arrayList).toString();
-                    qq0Var.f28219n = false;
-                    qq0Var.d();
-                    qq0Var.f28222w = null;
-                    if (qq0Var.f28216b != 0) {
-                        qq0Var.f28216b = 0;
-                        pq0 pq0Var = qq0Var.E;
-                        if (pq0Var != null) {
-                            ((org.telegram.ui.sv) pq0Var).g(0);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 16:
-                yu0 yu0Var = ((gt0) this.f31261b).f25249f;
-                org.telegram.ui.ActionBar.p2 p2Var = yu0Var.f31144s1;
-                if (p2Var != null && p2Var.getParentLayout() != null) {
-                    ((ActionBarLayout) yu0Var.f31144s1.getParentLayout()).r();
-                    return;
-                }
-                return;
-            case 17:
-                ((nq0) this.f31261b).run();
-                return;
-            case 18:
-                ((zw0) this.f31261b).f31455b.getImageReceiver().startAnimation();
-                return;
-            case 19:
-                AndroidUtilities.runOnUIThread((nh.v4) this.f31261b, 100L);
-                return;
-            case 20:
-                ((EditTextBoldCursor) this.f31261b).setText("");
-                return;
-            case 21:
-                q11 q11Var = ((s11) this.f31261b).f28592b;
-                q11Var.setText("");
-                AndroidUtilities.showKeyboard(q11Var);
-                return;
-            case 22:
-                ((b21) this.f31261b).f23544b.getImageReceiver().startAnimation();
-                return;
-            case 23:
-                ((v31) this.f31261b).dismiss();
-                return;
-            case 24:
-                org.telegram.ui.xn xnVar = ((org.telegram.ui.wk) this.f31261b).f39757s;
-                if (!xnVar.getUserConfig().isPremium() && ((chat = xnVar.e) == null || !chat.autotranslation)) {
-                    i10 = ((org.telegram.ui.ActionBar.p2) xnVar).currentAccount;
-                    SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(i10).edit();
-                    edit.putInt("dialog_show_translate_count" + xnVar.a(), 14).commit();
-                    xnVar.showDialog(new eg.o1((org.telegram.ui.ActionBar.p2) xnVar, 13, false));
-                } else {
-                    xnVar.getMessagesController().getTranslateController().toggleTranslatingDialog(xnVar.a());
-                }
-                xnVar.Qc(true);
-                return;
-            default:
-                ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f31261b).getSwipeBack().b(true);
-                return;
+    public final boolean D(f2.m1 m1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.h.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final void v(f2.m1 m1Var, int i10) {
+        int i11;
+        TLObject chat;
+        String str;
+        int i12;
+        View view = m1Var.f5875a;
+        a80 a80Var = this.d;
+        long peerId = MessageObject.getPeerId((TLRPC.Peer) a80Var.h.get(i10));
+        if (peerId > 0) {
+            i12 = ((org.telegram.ui.ActionBar.h3) a80Var).currentAccount;
+            chat = MessagesController.getInstance(i12).getUser(Long.valueOf(peerId));
+            str = LocaleController.getString(R.string.VoipGroupPersonalAccount);
+        } else {
+            i11 = ((org.telegram.ui.ActionBar.h3) a80Var).currentAccount;
+            chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-peerId));
+            str = null;
         }
+        boolean z4 = false;
+        if (a80Var.f25201s == 0) {
+            org.telegram.ui.Cells.e7 e7Var = (org.telegram.ui.Cells.e7) view;
+            if (peerId == MessageObject.getPeerId(a80Var.v)) {
+                z4 = true;
+            }
+            e7Var.c(peerId, z4, null);
+            return;
+        }
+        org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) view;
+        if (i10 != h() - 1) {
+            z4 = true;
+        }
+        g4Var.e(chat, null, str, z4);
+    }
+
+    @Override
+    public final f2.m1 x(ViewGroup viewGroup, int i10) {
+        boolean z4;
+        View g4Var;
+        a80 a80Var = this.d;
+        if (a80Var.f25201s == 0) {
+            g4Var = new org.telegram.ui.Cells.e7(this.f33778c, 2, null);
+            g4Var.setLayoutParams(new f2.x0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(100.0f)));
+        } else {
+            if (a80Var.f25201s == 2) {
+                z4 = true;
+            } else {
+                z4 = false;
+            }
+            g4Var = new org.telegram.ui.Cells.g4(2, 0, this.f33778c, null, false, z4);
+        }
+        return new f2.m1(g4Var);
+    }
+
+    @Override
+    public final void y(f2.m1 m1Var) {
+        long j10;
+        m1Var.b();
+        long peerId = MessageObject.getPeerId(this.d.v);
+        View view = m1Var.f5875a;
+        boolean z4 = true;
+        if (view instanceof org.telegram.ui.Cells.g4) {
+            org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) view;
+            Object object = g4Var.getObject();
+            if (object != null) {
+                if (object instanceof TLRPC.Chat) {
+                    j10 = -((TLRPC.Chat) object).f20843id;
+                } else {
+                    j10 = ((TLRPC.User) object).f20990id;
+                }
+            } else {
+                j10 = 0;
+            }
+            if (peerId != j10) {
+                z4 = false;
+            }
+            g4Var.c(z4, false);
+            return;
+        }
+        org.telegram.ui.Cells.e7 e7Var = (org.telegram.ui.Cells.e7) view;
+        if (peerId != e7Var.getCurrentDialog()) {
+            z4 = false;
+        }
+        e7Var.b(z4, false);
     }
 }

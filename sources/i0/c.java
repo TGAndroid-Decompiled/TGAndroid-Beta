@@ -1,4 +1,4 @@
 package i0;
 public abstract class c {
-    public static final ThreadLocal f7216a = new ThreadLocal();
+    public static final ThreadLocal f7760a = new ThreadLocal();
 }

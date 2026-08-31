@@ -1,62 +1,24 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.ObjectAnimator;
-import android.transition.Fade;
-import android.transition.TransitionValues;
-import android.view.View;
-import android.view.ViewGroup;
-public final class ht0 extends Fade {
-    public final int f34949a;
-    public final boolean f34950b;
-    public final boolean f34951c;
-    public final PhotoViewer d;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+public final class ht0 extends eg.c1 {
+    public final PhotoViewer f37617l2;
 
-    public ht0(PhotoViewer photoViewer, boolean z4, boolean z10, int i10) {
-        super(1);
-        this.f34949a = i10;
-        switch (i10) {
-            case 1:
-                this.d = photoViewer;
-                this.f34950b = z4;
-                this.f34951c = z10;
-                super(2);
-                return;
-            default:
-                this.d = photoViewer;
-                this.f34950b = z4;
-                this.f34951c = z10;
-                return;
-        }
+    public ht0(PhotoViewer photoViewer, Context context, Activity activity, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, ArrayList arrayList, MediaController.CropState cropState, oq0 oq0Var, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, activity, i10, bitmap, bitmap2, i11, arrayList, cropState, oq0Var, g6Var);
+        this.f37617l2 = photoViewer;
     }
 
     @Override
-    public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f34949a) {
-            case 0:
-                Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
-                if (this.f34950b && !this.f34951c && view == this.d.N1) {
-                    onAppear.addListener(new ls0(this, 4));
-                    ((ObjectAnimator) onAppear).addUpdateListener(new e3(this, 20));
-                }
-                return onAppear;
-            default:
-                return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+    public final int getPKeyboardHeight() {
+        qh.i3 i3Var = this.f37617l2.H1;
+        if (i3Var != null) {
+            return i3Var.f45418l;
         }
-    }
-
-    @Override
-    public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f34949a) {
-            case 1:
-                Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
-                if (!this.f34950b && this.f34951c && view == this.d.N1) {
-                    onDisappear.addListener(new ls0(this, 5));
-                    ((ObjectAnimator) onDisappear).addUpdateListener(new e3(this, 21));
-                }
-                return onDisappear;
-            default:
-                return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
-        }
+        return 0;
     }
 }

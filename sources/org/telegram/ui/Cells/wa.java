@@ -2,16 +2,16 @@ package org.telegram.ui.Cells;
 
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.k01;
+import org.telegram.ui.Components.l01;
 public final class wa {
-    public final k01 f22552a;
-    public k01 f22553b;
-    public final boolean f22554c;
+    public final l01 f24372a;
+    public l01 f24373b;
+    public final boolean f24374c;
     public final RectF d = new RectF();
 
     public wa(CharSequence charSequence, CharSequence charSequence2, boolean z4) {
-        this.f22552a = new k01(charSequence, 12.0f, null);
-        this.f22553b = new k01(charSequence2, 12.0f, AndroidUtilities.bold());
-        this.f22554c = z4;
+        this.f24372a = new l01(charSequence, 12.0f, null);
+        this.f24373b = new l01(charSequence2, 12.0f, AndroidUtilities.bold());
+        this.f24374c = z4;
     }
 }

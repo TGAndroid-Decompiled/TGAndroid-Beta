@@ -2,10 +2,10 @@ package i;
 
 import android.animation.ObjectAnimator;
 import android.graphics.drawable.AnimationDrawable;
-import j7.x7;
-public final class c extends x7 {
-    public final ObjectAnimator f7195a;
-    public final boolean f7196b;
+import j7.y7;
+public final class c extends y7 {
+    public final ObjectAnimator f7737a;
+    public final boolean f7738b;
 
     public c(AnimationDrawable animationDrawable, boolean z4, boolean z10) {
         int i10;
@@ -19,12 +19,12 @@ public final class c extends x7 {
         }
         ?? obj = new Object();
         int numberOfFrames2 = animationDrawable.getNumberOfFrames();
-        obj.f7198b = numberOfFrames2;
-        int[] iArr = obj.f7197a;
+        obj.f7740b = numberOfFrames2;
+        int[] iArr = obj.f7739a;
         if (iArr == null || iArr.length < numberOfFrames2) {
-            obj.f7197a = new int[numberOfFrames2];
+            obj.f7739a = new int[numberOfFrames2];
         }
-        int[] iArr2 = obj.f7197a;
+        int[] iArr2 = obj.f7739a;
         int i13 = 0;
         for (int i14 = 0; i14 < numberOfFrames2; i14++) {
             if (z4) {
@@ -36,32 +36,32 @@ public final class c extends x7 {
             iArr2[i14] = duration;
             i13 += duration;
         }
-        obj.f7199c = i13;
+        obj.f7741c = i13;
         ObjectAnimator ofInt = ObjectAnimator.ofInt(animationDrawable, "currentIndex", i12, i10);
         j.a.a(ofInt, true);
-        ofInt.setDuration(obj.f7199c);
+        ofInt.setDuration(obj.f7741c);
         ofInt.setInterpolator(obj);
-        this.f7196b = z10;
-        this.f7195a = ofInt;
+        this.f7738b = z10;
+        this.f7737a = ofInt;
     }
 
     @Override
     public final boolean a() {
-        return this.f7196b;
+        return this.f7738b;
     }
 
     @Override
     public final void b() {
-        this.f7195a.reverse();
+        this.f7737a.reverse();
     }
 
     @Override
     public final void c() {
-        this.f7195a.start();
+        this.f7737a.start();
     }
 
     @Override
     public final void d() {
-        this.f7195a.cancel();
+        this.f7737a.cancel();
     }
 }

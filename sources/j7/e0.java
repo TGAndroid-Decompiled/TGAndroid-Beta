@@ -1,14 +1,16 @@
 package j7;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
+import android.util.Log;
 public abstract class e0 {
-    public static void a(InputStream inputStream, ByteArrayOutputStream byteArrayOutputStream) {
-        byte[] bArr = new byte[8192];
-        int read = inputStream.read(bArr);
-        while (read >= 0) {
-            byteArrayOutputStream.write(bArr, 0, read);
-            read = inputStream.read(bArr);
+    public static void a(String str) {
+        boolean isLoggable;
+        if (Log.isLoggable("FirebaseAppIndex", 3)) {
+            isLoggable = true;
+        } else {
+            isLoggable = Log.isLoggable("FirebaseAppIndex", 3);
+        }
+        if (isLoggable) {
+            Log.d("FirebaseAppIndex", str);
         }
     }
 }

@@ -8,32 +8,19 @@ import g5.m0;
 import g5.p0;
 import java.io.IOException;
 public final class d implements h0 {
-    public final g f43276a;
+    public final g f46616a;
 
     public d(g gVar) {
-        this.f43276a = gVar;
-    }
-
-    @Override
-    public void A(j0 j0Var, long j10, long j11) {
-        p0 p0Var = (p0) j0Var;
-        g gVar = this.f43276a;
-        long j12 = p0Var.f6406a;
-        Uri uri = p0Var.d.f6458c;
-        ?? obj = new Object();
-        gVar.f43289n.getClass();
-        gVar.f43293r.n(obj, p0Var.f6408c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        gVar.M = ((Long) p0Var.f6409f).longValue() - j10;
-        gVar.u(true);
+        this.f46616a = gVar;
     }
 
     public void a() {
         long j10;
-        g gVar = this.f43276a;
-        synchronized (h5.a.f6922i) {
+        g gVar = this.f46616a;
+        synchronized (h5.a.f7222i) {
             try {
-                if (h5.a.f6923j) {
-                    j10 = h5.a.f6924k;
+                if (h5.a.f7223j) {
+                    j10 = h5.a.f7224k;
                 } else {
                     j10 = -9223372036854775807L;
                 }
@@ -46,27 +33,40 @@ public final class d implements h0 {
     }
 
     @Override
-    public c4.e m(j0 j0Var, IOException iOException, int i10) {
+    public c4.e q(j0 j0Var, IOException iOException, int i10) {
         p0 p0Var = (p0) j0Var;
-        g gVar = this.f43276a;
-        e0 e0Var = gVar.f43293r;
-        long j10 = p0Var.f6406a;
-        Uri uri = p0Var.d.f6458c;
-        e0Var.r(new Object(), p0Var.f6408c, iOException, true);
-        gVar.f43289n.getClass();
+        g gVar = this.f46616a;
+        e0 e0Var = gVar.f46634r;
+        long j10 = p0Var.f6891a;
+        Uri uri = p0Var.d.f6950c;
+        e0Var.s(new Object(), p0Var.f6893c, iOException, true);
+        gVar.f46630n.getClass();
         h5.a.p("DashMediaSource", "Failed to resolve time offset.", iOException);
         gVar.u(true);
-        return m0.e;
+        return m0.f6873e;
     }
 
     @Override
-    public void s(j0 j0Var, long j10, long j11, boolean z4) {
+    public void u(j0 j0Var, long j10, long j11, boolean z4) {
         p0 p0Var = (p0) j0Var;
-        long j12 = p0Var.f6406a;
-        Uri uri = p0Var.d.f6458c;
+        long j12 = p0Var.f6891a;
+        Uri uri = p0Var.d.f6950c;
         ?? obj = new Object();
-        g gVar = this.f43276a;
-        gVar.f43289n.getClass();
-        gVar.f43293r.l(obj, p0Var.f6408c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        g gVar = this.f46616a;
+        gVar.f46630n.getClass();
+        gVar.f46634r.m(obj, p0Var.f6893c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+    }
+
+    @Override
+    public void x(j0 j0Var, long j10, long j11) {
+        p0 p0Var = (p0) j0Var;
+        g gVar = this.f46616a;
+        long j12 = p0Var.f6891a;
+        Uri uri = p0Var.d.f6950c;
+        ?? obj = new Object();
+        gVar.f46630n.getClass();
+        gVar.f46634r.p(obj, p0Var.f6893c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        gVar.M = ((Long) p0Var.f6895f).longValue() - j10;
+        gVar.u(true);
     }
 }

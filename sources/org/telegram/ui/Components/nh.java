@@ -9,14 +9,14 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class nh extends sl0 {
+public final class nh extends tl0 {
     public final int U2;
     public final Paint V2;
     public final Paint W2;
     public boolean X2;
     public boolean Y2;
     public final Object Z2;
-    public final Object f27287a3;
+    public final Object f29506a3;
 
     public nh(Context context, int i10) {
         super(context, null);
@@ -29,15 +29,15 @@ public final class nh extends sl0 {
                 Paint paint2 = new Paint(1);
                 this.W2 = paint2;
                 this.Z2 = new z5(this);
-                this.f27287a3 = new z5(this);
+                this.f29506a3 = new z5(this);
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode));
                 paint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode));
                 return;
             default:
-                nr nrVar = nr.h;
-                this.Z2 = new xd.a(this, nrVar, 320L);
-                this.f27287a3 = new xd.a(this, nrVar, 320L);
+                pr prVar = pr.h;
+                this.Z2 = new xd.a(this, prVar, 320L);
+                this.f29506a3 = new xd.a(this, prVar, 320L);
                 Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
                 LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{0, -16777216}, (float[]) null, tileMode2);
                 LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{-16777216, 0}, (float[]) null, tileMode2);
@@ -63,7 +63,7 @@ public final class nh extends sl0 {
                 this.X2 = false;
                 super.dispatchDraw(canvas);
                 ((xd.a) this.Z2).a(this.X2, true);
-                ((xd.a) this.f27287a3).a(this.Y2, true);
+                ((xd.a) this.f29506a3).a(this.Y2, true);
                 return;
             default:
                 super.dispatchDraw(canvas);
@@ -77,7 +77,7 @@ public final class nh extends sl0 {
                 Paint paint = this.V2;
                 paint.setAlpha((int) (z5Var.d(f10, false) * 255.0f));
                 canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(8.0f), paint);
-                z5 z5Var2 = (z5) this.f27287a3;
+                z5 z5Var2 = (z5) this.f29506a3;
                 if (!this.Y2) {
                     f11 = 0.0f;
                 }
@@ -127,7 +127,7 @@ public final class nh extends sl0 {
                     canvas.saveLayer(dp, getPaddingTop(), AndroidUtilities.dp(19.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j10);
                     canvas.save();
-                    canvas.translate(org.telegram.ui.yh.c(1.0f, ((xd.a) this.Z2).e, AndroidUtilities.dp(8.0f), dp), 0.0f);
+                    canvas.translate(org.telegram.ui.yh.c(1.0f, ((xd.a) this.Z2).f50504e, AndroidUtilities.dp(8.0f), dp), 0.0f);
                     canvas.drawPaint(this.V2);
                     canvas.restore();
                     canvas.restore();
@@ -137,7 +137,7 @@ public final class nh extends sl0 {
                     canvas.saveLayer(measuredWidth, getPaddingTop(), getMeasuredWidth() - AndroidUtilities.dp(11.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j10);
                     canvas.save();
-                    canvas.translate(e2.c.w(1.0f, ((xd.a) this.f27287a3).e, AndroidUtilities.dp(8.0f), measuredWidth), 0.0f);
+                    canvas.translate(e2.c.w(1.0f, ((xd.a) this.f29506a3).f50504e, AndroidUtilities.dp(8.0f), measuredWidth), 0.0f);
                     canvas.drawPaint(this.W2);
                     canvas.restore();
                     canvas.restore();
@@ -177,8 +177,8 @@ public final class nh extends sl0 {
                 float f11 = 0.0f;
                 for (int i13 = 0; i13 < childCount; i13++) {
                     View childAt = getChildAt(i13);
-                    if (childAt instanceof gi) {
-                        f11 = ((gi) childAt).f25143a.c() + f11;
+                    if (childAt instanceof hi) {
+                        f11 = ((hi) childAt).f27492a.c() + f11;
                     }
                 }
                 if (size > f11 && childCount > 0) {
@@ -188,8 +188,8 @@ public final class nh extends sl0 {
                 }
                 for (int i14 = 0; i14 < childCount; i14++) {
                     View childAt2 = getChildAt(i14);
-                    if (childAt2 instanceof gi) {
-                        ((gi) childAt2).f25143a.setAdditionalWidth(i12);
+                    if (childAt2 instanceof hi) {
+                        ((hi) childAt2).f27492a.setAdditionalWidth(i12);
                     }
                 }
                 super.onMeasure(i10, i11);

@@ -36,8 +36,8 @@ public class URLAlphabetRegistration implements AlphabetRegistration {
             return alphabetRegistration;
         } catch (ClassNotFoundException unused) {
             throw new AlphabetRegistrationException("Class at " + this.url + " cannot be got.");
-        } catch (Exception e) {
-            throw new AlphabetRegistrationException("Problem in loading the class at " + this.url + " :\n" + e.getMessage());
+        } catch (Exception e6) {
+            throw new AlphabetRegistrationException("Problem in loading the class at " + this.url + " :\n" + e6.getMessage());
         }
     }
 

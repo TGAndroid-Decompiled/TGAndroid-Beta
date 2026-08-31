@@ -10,10 +10,10 @@ public abstract class o {
         return null;
     }
 
-    public static void b(Parcel parcel, Parcelable parcelable) {
+    public static void b(Parcel parcel, Parcelable parcelable, int i10) {
         if (parcelable != null) {
             parcel.writeInt(1);
-            parcelable.writeToParcel(parcel, 0);
+            parcelable.writeToParcel(parcel, i10);
             return;
         }
         parcel.writeInt(0);

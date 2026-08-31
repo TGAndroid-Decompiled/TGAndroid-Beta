@@ -5,35 +5,35 @@ import g5.p;
 import java.io.IOException;
 import java.io.InputStream;
 public final class c extends InputStream {
-    public final m f1784a;
-    public final byte[] f1785b = new byte[1];
-    public long f1786c;
+    public final m f1937a;
+    public final byte[] f1938b = new byte[1];
+    public long f1939c;
 
     public c(m mVar, p pVar) {
-        this.f1784a = mVar;
+        this.f1937a = mVar;
         try {
-            this.f1786c = mVar.open(pVar);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            this.f1939c = mVar.open(pVar);
+        } catch (IOException e6) {
+            throw new RuntimeException(e6);
         }
     }
 
     @Override
     public final int available() {
-        return (int) this.f1786c;
+        return (int) this.f1939c;
     }
 
     @Override
     public final void close() {
-        this.f1784a.close();
+        this.f1937a.close();
     }
 
     @Override
     public final int read() {
-        m mVar = this.f1784a;
-        byte[] bArr = this.f1785b;
+        m mVar = this.f1937a;
+        byte[] bArr = this.f1938b;
         int read = mVar.read(bArr, 0, 1);
-        this.f1786c--;
+        this.f1939c--;
         if (read == -1) {
             return -1;
         }
@@ -45,8 +45,8 @@ public final class c extends InputStream {
         if (i11 == 0) {
             return 0;
         }
-        int read = this.f1784a.read(bArr, i10, i11);
-        this.f1786c -= read;
+        int read = this.f1937a.read(bArr, i10, i11);
+        this.f1939c -= read;
         return read;
     }
 }

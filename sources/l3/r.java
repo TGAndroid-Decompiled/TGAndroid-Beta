@@ -1,14 +1,14 @@
 package l3;
 public final class r extends Exception {
-    public final j3.n0 f11228a;
+    public final j3.n0 f11596a;
 
     public r(m mVar, j3.n0 n0Var) {
         super(mVar);
-        this.f11228a = n0Var;
+        this.f11596a = n0Var;
     }
 
     public r(String str, j3.n0 n0Var) {
         super(str);
-        this.f11228a = n0Var;
+        this.f11596a = n0Var;
     }
 }

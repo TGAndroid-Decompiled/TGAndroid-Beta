@@ -3,9 +3,7 @@ package o3;
 import android.os.Looper;
 import j3.n0;
 public interface o {
-    public static final db.a f16273k = new db.a(13);
-
-    i J(l lVar, n0 n0Var);
+    public static final db.a f16414k = new db.a(13);
 
     void a();
 
@@ -16,4 +14,6 @@ public interface o {
     void h(Looper looper, k3.k kVar);
 
     void release();
+
+    i x(l lVar, n0 n0Var);
 }

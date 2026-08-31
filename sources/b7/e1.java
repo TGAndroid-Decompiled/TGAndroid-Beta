@@ -5,12 +5,12 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 public final class e1 extends h1 {
-    public final int f1677a;
-    public final u f1678b;
+    public final int f1816a;
+    public final u f1817b;
 
     public e1(u uVar) {
         uVar.getClass();
-        this.f1678b = uVar;
+        this.f1817b = uVar;
         g0 p10 = uVar.entrySet().p();
         int i10 = 0;
         while (p10.hasNext()) {
@@ -23,7 +23,7 @@ public final class e1 extends h1 {
             }
         }
         int i11 = i10 + 1;
-        this.f1677a = i11;
+        this.f1816a = i11;
         if (i11 <= 8) {
             return;
         }
@@ -32,7 +32,7 @@ public final class e1 extends h1 {
 
     @Override
     public final int a() {
-        return this.f1677a;
+        return this.f1816a;
     }
 
     @Override
@@ -44,8 +44,8 @@ public final class e1 extends h1 {
         if (c3 != zza) {
             return c3 - h1Var.zza();
         }
-        u uVar = ((e1) h1Var).f1678b;
-        u uVar2 = this.f1678b;
+        u uVar = ((e1) h1Var).f1817b;
+        u uVar2 = this.f1817b;
         if (uVar2.d.size() != uVar.d.size()) {
             return uVar2.d.size() - uVar.d.size();
         }
@@ -73,15 +73,15 @@ public final class e1 extends h1 {
         if (obj == null || e1.class != obj.getClass()) {
             return false;
         }
-        return this.f1678b.equals(((e1) obj).f1678b);
+        return this.f1817b.equals(((e1) obj).f1817b);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(h1.c((byte) -96)), this.f1678b});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(h1.c((byte) -96)), this.f1817b});
     }
 
     public final String toString() {
-        u uVar = this.f1678b;
+        u uVar = this.f1817b;
         if (uVar.isEmpty()) {
             return "{}";
         }
@@ -97,8 +97,8 @@ public final class e1 extends h1 {
             b.g(sb, linkedHashMap.entrySet().iterator(), uVar2);
             sb.append("\n}");
             return sb.toString();
-        } catch (IOException e) {
-            throw new AssertionError(e);
+        } catch (IOException e6) {
+            throw new AssertionError(e6);
         }
     }
 

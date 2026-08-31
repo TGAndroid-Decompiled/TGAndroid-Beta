@@ -1,30 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class im implements ValueAnimator.AnimatorUpdateListener {
-    public final int f25744a;
-    public final nm f25745b;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class im {
+    public final ArrayList f27855a = new ArrayList();
+    public final HashMap f27856b = new HashMap();
+    public int f27857c;
+    public int d;
+    public int f27858e;
+    public float f27859f;
+    public final ArrayList f27860g;
+    public final qm h;
 
-    public im(nm nmVar, int i10) {
-        this.f25744a = i10;
-        this.f25745b = nmVar;
+    public im(qm qmVar, ArrayList arrayList) {
+        this.h = qmVar;
+        this.f27860g = arrayList;
+        a();
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f25744a) {
-            case 0:
-                nm nmVar = this.f25745b;
-                nmVar.getClass();
-                nmVar.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                nmVar.invalidate();
-                return;
-            default:
-                nm nmVar2 = this.f25745b;
-                nmVar2.getClass();
-                nmVar2.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                nmVar2.invalidate();
-                return;
+    public static float b(float[] fArr, int i10, int i11) {
+        float f10 = 0.0f;
+        while (i10 < i11) {
+            f10 += fArr[i10];
+            i10++;
         }
+        return 1000.0f / f10;
+    }
+
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.im.a():void");
     }
 }

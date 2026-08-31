@@ -62,7 +62,7 @@ public class NotchInfoUtils {
                 trim = trim.split("@bottom", 2)[0].trim();
             }
             try {
-                i0.d[] c3 = j7.y7.c(trim);
+                i0.d[] c3 = j7.z7.c(trim);
                 Path path = new Path();
                 i0.d.b(c3, path);
                 Matrix matrix = new Matrix();

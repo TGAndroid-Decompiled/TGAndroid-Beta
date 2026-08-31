@@ -1,59 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-public final class c40 extends AnimatorListenerAdapter {
-    public final int f23833a;
-    public final boolean f23834b;
-    public final d40 f23835c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.util.SparseArray;
+public final class c40 extends zu0 {
+    public final f40 f25784c2;
 
-    public c40(d40 d40Var, boolean z4, int i10) {
-        this.f23833a = i10;
-        this.f23835c = d40Var;
-        this.f23834b = z4;
+    public c40(f40 f40Var, Context context, ru0 ru0Var, f40 f40Var2, b40 b40Var, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, 0L, ru0Var, 0, null, null, null, 8, 0, f40Var2, b40Var, 0, g6Var, null);
+        this.f25784c2 = f40Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f10;
-        float f11;
-        org.telegram.ui.yn ynVar;
-        lh.e1 e1Var;
-        switch (this.f23833a) {
-            case 0:
-                if (this.f23834b) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                d40 d40Var = this.f23835c;
-                d40Var.f24153w = f10;
-                d40Var.e.setTranslationY(f10 * AndroidUtilities.dp(48.0f));
-                d40Var.e.setPadding(0, 0, 0, (int) (d40Var.f24153w * AndroidUtilities.dp(48.0f)));
-                return;
-            default:
-                boolean z4 = this.f23834b;
-                if (z4) {
-                    f11 = 1.0f;
-                } else {
-                    f11 = 0.0f;
-                }
-                d40 d40Var2 = this.f23835c;
-                d40Var2.B = f11;
-                d40Var2.f24150n.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, f11));
-                d40Var2.f24150n.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, d40Var2.B));
-                org.telegram.ui.fk fkVar = d40Var2.f24149f;
-                if (fkVar != null && (ynVar = fkVar.f40837a) != null && (e1Var = ynVar.I3) != null) {
-                    e1Var.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, d40Var2.B));
-                    d40Var2.f24149f.f40837a.I3.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, d40Var2.B));
-                }
-                d40Var2.h.setAlpha(d40Var2.B);
-                if (!z4) {
-                    d40Var2.h.setVisibility(8);
-                    return;
-                }
-                return;
-        }
+    public final int getInitialTab() {
+        return 8;
+    }
+
+    @Override
+    public final String getStoriesHashtag() {
+        return this.f25784c2.f26735b;
+    }
+
+    @Override
+    public final String getStoriesHashtagUsername() {
+        return this.f25784c2.f26736c;
+    }
+
+    @Override
+    public final boolean t0() {
+        return true;
+    }
+
+    @Override
+    public final void D0(SparseArray sparseArray) {
+    }
+
+    @Override
+    public final void K0(boolean z4) {
+    }
+
+    @Override
+    public final void M0(float f10) {
+    }
+
+    @Override
+    public final void N0(boolean z4) {
+    }
+
+    @Override
+    public final void b1(boolean z4) {
+    }
+
+    @Override
+    public final void o0() {
+    }
+
+    @Override
+    public final void P(Canvas canvas, float f10, Rect rect, Paint paint) {
     }
 }
