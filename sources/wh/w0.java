@@ -15,7 +15,7 @@ import org.telegram.ui.Components.j51;
 import org.telegram.ui.Components.tl0;
 import org.telegram.ui.Components.x51;
 public final class w0 extends i51 {
-    public static final int f50126a = 0;
+    public static final int f50127a = 0;
 
     static {
         i51.setup(new i51());
@@ -27,7 +27,7 @@ public final class w0 extends i51 {
         t tVar;
         x0 x0Var = (x0) view;
         a aVar = (a) j51Var.G;
-        x0Var.f50174a = aVar;
+        x0Var.f50175a = aVar;
         x0Var.P = (m3) j51Var.H;
         x0Var.J = LocaleController.isRTL;
         x0Var.c(aVar);
@@ -45,7 +45,7 @@ public final class w0 extends i51 {
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 tL_message.from_id = tL_peerUser;
                 TLRPC.Peer peer = tL_message.peer_id;
-                int i11 = x0Var.f50141n;
+                int i11 = x0Var.f50142n;
                 long clientUserId = UserConfig.getInstance(i11).getClientUserId();
                 peer.user_id = clientUserId;
                 tL_peerUser.user_id = clientUserId;
@@ -56,9 +56,9 @@ public final class w0 extends i51 {
                 tL_messageMediaDocument.flags |= 3;
                 tL_messageMediaDocument.document = i10;
                 tL_message.flags |= 768;
-                a aVar2 = x0Var.f50174a;
-                if (aVar2 != null && (tVar = aVar2.f49620g) != null && !TextUtils.isEmpty(tVar.f50032e)) {
-                    tL_message.attachPath = x0Var.f50174a.f49620g.f50032e;
+                a aVar2 = x0Var.f50175a;
+                if (aVar2 != null && (tVar = aVar2.f49621g) != null && !TextUtils.isEmpty(tVar.f50033e)) {
+                    tL_message.attachPath = x0Var.f50175a.f49621g.f50033e;
                 }
                 messageObject = new MessageObject(i11, tL_message, false, true);
             }

@@ -22,32 +22,32 @@ public final class i implements r3.k {
     public int B;
     public boolean C;
     public boolean G;
-    public final int f50993a;
-    public final List f50994b;
-    public final byte[] f50998g;
+    public final int f50994a;
+    public final List f50995b;
+    public final byte[] f50999g;
     public final w h;
-    public final c0 f50999i;
-    public final v f51004n;
-    public int f51005o;
-    public int f51006p;
-    public long f51007q;
-    public int f51008r;
-    public w f51009s;
-    public long f51010t;
-    public int f51011u;
-    public h f51014y;
-    public int f51015z;
-    public final f7.b f51000j = new f7.b(3, (byte) 0);
-    public final w f51001k = new w(16);
+    public final c0 f51000i;
+    public final v f51005n;
+    public int f51006o;
+    public int f51007p;
+    public long f51008q;
+    public int f51009r;
+    public w f51010s;
+    public long f51011t;
+    public int f51012u;
+    public h f51015y;
+    public int f51016z;
+    public final f7.b f51001j = new f7.b(3, (byte) 0);
+    public final w f51002k = new w(16);
     public final w d = new w(h5.a.d);
-    public final w f50996e = new w(5);
-    public final w f50997f = new w();
-    public final ArrayDeque f51002l = new ArrayDeque();
-    public final ArrayDeque f51003m = new ArrayDeque();
-    public final SparseArray f50995c = new SparseArray();
-    public long f51012w = -9223372036854775807L;
+    public final w f50997e = new w(5);
+    public final w f50998f = new w();
+    public final ArrayDeque f51003l = new ArrayDeque();
+    public final ArrayDeque f51004m = new ArrayDeque();
+    public final SparseArray f50996c = new SparseArray();
+    public long f51013w = -9223372036854775807L;
     public long v = -9223372036854775807L;
-    public long f51013x = -9223372036854775807L;
+    public long f51014x = -9223372036854775807L;
     public r3.m D = r3.m.A;
     public v[] E = new v[0];
     public v[] F = new v[0];
@@ -59,12 +59,12 @@ public final class i implements r3.k {
     }
 
     public i(int i10, c0 c0Var, List list, r4.n nVar) {
-        this.f50993a = i10;
-        this.f50999i = c0Var;
-        this.f50994b = DesugarCollections.unmodifiableList(list);
-        this.f51004n = nVar;
+        this.f50994a = i10;
+        this.f51000i = c0Var;
+        this.f50995b = DesugarCollections.unmodifiableList(list);
+        this.f51005n = nVar;
         byte[] bArr = new byte[16];
-        this.f50998g = bArr;
+        this.f50999g = bArr;
         this.h = new w(bArr);
     }
 
@@ -78,7 +78,7 @@ public final class i implements r3.k {
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
-                byte[] bArr = bVar.f50968c.f7308a;
+                byte[] bArr = bVar.f50969c.f7308a;
                 e0 e6 = j.e(bArr);
                 if (e6 == null) {
                     uuid = null;
@@ -110,23 +110,23 @@ public final class i implements r3.k {
             }
             int x10 = wVar.x();
             if (x10 == 0) {
-                Arrays.fill(rVar.f51070l, 0, rVar.f51064e, false);
+                Arrays.fill(rVar.f51071l, 0, rVar.f51065e, false);
                 return;
             }
-            int i11 = rVar.f51064e;
-            w wVar2 = rVar.f51072n;
+            int i11 = rVar.f51065e;
+            w wVar2 = rVar.f51073n;
             if (x10 == i11) {
-                Arrays.fill(rVar.f51070l, 0, x10, z4);
+                Arrays.fill(rVar.f51071l, 0, x10, z4);
                 wVar2.C(wVar.a());
-                rVar.f51069k = true;
-                rVar.f51073o = true;
+                rVar.f51070k = true;
+                rVar.f51074o = true;
                 wVar.e(0, wVar2.f7310c, wVar2.f7308a);
                 wVar2.F(0);
-                rVar.f51073o = false;
+                rVar.f51074o = false;
                 return;
             }
             StringBuilder m9 = l.d.m(x10, "Senc sample count ", " is different from fragment sample count");
-            m9.append(rVar.f51064e);
+            m9.append(rVar.f51065e);
             throw r1.a(m9.toString(), null);
         }
         throw r1.c("Overriding TrackEncryptionBox parameters is unsupported.");
@@ -138,17 +138,17 @@ public final class i implements r3.k {
 
     @Override
     public final void d(long j10, long j11) {
-        SparseArray sparseArray = this.f50995c;
+        SparseArray sparseArray = this.f50996c;
         int size = sparseArray.size();
         for (int i10 = 0; i10 < size; i10++) {
             ((h) sparseArray.valueAt(i10)).d();
         }
-        this.f51003m.clear();
-        this.f51011u = 0;
+        this.f51004m.clear();
+        this.f51012u = 0;
         this.v = j11;
-        this.f51002l.clear();
-        this.f51005o = 0;
-        this.f51008r = 0;
+        this.f51003l.clear();
+        this.f51006o = 0;
+        this.f51009r = 0;
     }
 
     @Override
@@ -156,11 +156,11 @@ public final class i implements r3.k {
         int i10;
         this.D = mVar;
         int i11 = 0;
-        this.f51005o = 0;
-        this.f51008r = 0;
+        this.f51006o = 0;
+        this.f51009r = 0;
         v[] vVarArr = new v[2];
         this.E = vVarArr;
-        v vVar = this.f51004n;
+        v vVar = this.f51005n;
         if (vVar != null) {
             vVarArr[0] = vVar;
             i10 = 1;
@@ -168,7 +168,7 @@ public final class i implements r3.k {
             i10 = 0;
         }
         int i12 = 100;
-        if ((this.f50993a & 4) != 0) {
+        if ((this.f50994a & 4) != 0) {
             vVarArr[i10] = mVar.i2(100, 5);
             i12 = 101;
             i10++;
@@ -178,7 +178,7 @@ public final class i implements r3.k {
         for (v vVar2 : vVarArr2) {
             vVar2.b(I);
         }
-        List list = this.f50994b;
+        List list = this.f50995b;
         this.F = new v[list.size()];
         while (i11 < this.F.length) {
             v i22 = this.D.i2(i12, 3);

@@ -6,22 +6,22 @@ import android.view.View;
 import f2.m1;
 import java.util.ArrayList;
 public final class g extends AnimatorListenerAdapter {
-    public final int f50618a = 1;
-    public final View f50619b;
-    public final m1 f50620c;
+    public final int f50619a = 1;
+    public final View f50620b;
+    public final m1 f50621c;
     public final n d;
 
     public g(n nVar, m1 m1Var, View view) {
         this.d = nVar;
-        this.f50620c = m1Var;
-        this.f50619b = view;
+        this.f50621c = m1Var;
+        this.f50620b = view;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f50618a) {
+        switch (this.f50619a) {
             case 0:
-                this.f50619b.setAlpha(1.0f);
+                this.f50620b.setAlpha(1.0f);
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -31,10 +31,10 @@ public final class g extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f50618a) {
+        switch (this.f50619a) {
             case 0:
                 animator.removeAllListeners();
-                View view = this.f50619b;
+                View view = this.f50620b;
                 view.setAlpha(1.0f);
                 view.setScaleX(1.0f);
                 view.setScaleY(1.0f);
@@ -42,7 +42,7 @@ public final class g extends AnimatorListenerAdapter {
                 view.setTranslationY(0.0f);
                 n nVar = this.d;
                 ArrayList arrayList = nVar.f5861y;
-                m1 m1Var = this.f50620c;
+                m1 m1Var = this.f50621c;
                 if (arrayList.remove(m1Var)) {
                     nVar.u(m1Var);
                     nVar.G();
@@ -51,7 +51,7 @@ public final class g extends AnimatorListenerAdapter {
                 return;
             default:
                 animator.removeAllListeners();
-                View view2 = this.f50619b;
+                View view2 = this.f50620b;
                 view2.setAlpha(1.0f);
                 view2.setScaleX(1.0f);
                 view2.setScaleY(1.0f);
@@ -59,7 +59,7 @@ public final class g extends AnimatorListenerAdapter {
                 view2.setTranslationY(0.0f);
                 n nVar2 = this.d;
                 ArrayList arrayList2 = nVar2.A;
-                m1 m1Var2 = this.f50620c;
+                m1 m1Var2 = this.f50621c;
                 if (arrayList2.remove(m1Var2)) {
                     nVar2.d(m1Var2);
                     nVar2.G();
@@ -71,7 +71,7 @@ public final class g extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f50618a) {
+        switch (this.f50619a) {
             case 0:
                 this.d.getClass();
                 return;
@@ -83,7 +83,7 @@ public final class g extends AnimatorListenerAdapter {
 
     public g(n nVar, View view, m1 m1Var) {
         this.d = nVar;
-        this.f50619b = view;
-        this.f50620c = m1Var;
+        this.f50620b = view;
+        this.f50621c = m1Var;
     }
 }

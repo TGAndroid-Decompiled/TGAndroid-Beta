@@ -212,7 +212,7 @@ public final class f extends sa implements xd.b {
 
     public final void Q() {
         boolean z4;
-        int dp = AndroidUtilities.dp(56.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + ((int) this.U.f50509e);
+        int dp = AndroidUtilities.dp(56.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + ((int) this.U.f50510e);
         int measuredHeight = (this.containerView.getMeasuredHeight() - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(34.0f);
         Rect rect = this.m0;
         if (rect.top == dp && rect.bottom == measuredHeight) {

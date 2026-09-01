@@ -589,7 +589,7 @@ public final class pq0 implements View.OnClickListener {
                 if (photoViewer28.f34379r4 == 1) {
                     zf.n nVar = photoViewer28.f34450z1.f25248b;
                     zf.b bVar = nVar.D;
-                    if (bVar.f51103a.isInProgress() || bVar.h || nVar.f51165a.f24846b0) {
+                    if (bVar.f51104a.isInProgress() || bVar.h || nVar.f51166a.f24846b0) {
                         return;
                     }
                 }

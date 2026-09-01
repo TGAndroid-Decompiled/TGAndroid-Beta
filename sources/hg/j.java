@@ -530,14 +530,14 @@ public final class j implements Runnable {
                 return;
             case 22:
                 vf.t tVar = (vf.t) obj4;
-                ArrayList arrayList6 = tVar.f49202b;
+                ArrayList arrayList6 = tVar.f49203b;
                 arrayList6.clear();
                 arrayList6.addAll((ArrayList) obj3);
-                int i27 = tVar.f49201a;
+                int i27 = tVar.f49202a;
                 MessagesController.getInstance(i27).putUsers((ArrayList) obj2, true);
                 MessagesController.getInstance(i27).putChats((ArrayList) obj5, true);
                 NotificationCenter.getInstance(i27).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
-                tVar.f49203c = false;
+                tVar.f49204c = false;
                 tVar.e(false, z11);
                 return;
             default:

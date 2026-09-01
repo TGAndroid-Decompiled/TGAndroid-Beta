@@ -21,12 +21,12 @@ public final class a extends FingerprintManager.AuthenticationCallback {
 
     @Override
     public final void onAuthenticationError(int i10, CharSequence charSequence) {
-        ((y) ((e) this.f10246a.f50776b).d).a(i10, charSequence);
+        ((y) ((e) this.f10246a.f50777b).d).a(i10, charSequence);
     }
 
     @Override
     public final void onAuthenticationFailed() {
-        WeakReference weakReference = ((y) ((e) this.f10246a.f50776b).d).f560a;
+        WeakReference weakReference = ((y) ((e) this.f10246a.f50777b).d).f560a;
         if (weakReference.get() != null && ((a0) weakReference.get()).f513n) {
             a0 a0Var = (a0) weakReference.get();
             if (a0Var.f520u == null) {
@@ -38,7 +38,7 @@ public final class a extends FingerprintManager.AuthenticationCallback {
 
     @Override
     public final void onAuthenticationHelp(int i10, CharSequence charSequence) {
-        WeakReference weakReference = ((y) ((e) this.f10246a.f50776b).d).f560a;
+        WeakReference weakReference = ((y) ((e) this.f10246a.f50777b).d).f560a;
         if (weakReference.get() != null) {
             a0 a0Var = (a0) weakReference.get();
             if (a0Var.f519t == null) {
@@ -70,6 +70,6 @@ public final class a extends FingerprintManager.AuthenticationCallback {
                 }
             }
         }
-        ((y) ((e) hVar.f50776b).d).b(new v(wVar, 2));
+        ((y) ((e) hVar.f50777b).d).b(new v(wVar, 2));
     }
 }

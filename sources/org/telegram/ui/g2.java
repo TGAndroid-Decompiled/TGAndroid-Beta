@@ -57,7 +57,7 @@ public final class g2 extends HorizontalScrollView {
             case 2:
                 super.onScrollChanged(i10, i11, i12, i13);
                 wh.y2 y2Var = ((wh.i5) this.f37068b).B;
-                if (y2Var != null && (textSelectionHelper = y2Var.f50170a.getTextSelectionHelper()) != null && textSelectionHelper.y()) {
+                if (y2Var != null && (textSelectionHelper = y2Var.f50171a.getTextSelectionHelper()) != null && textSelectionHelper.y()) {
                     textSelectionHelper.x();
                 }
                 invalidate();

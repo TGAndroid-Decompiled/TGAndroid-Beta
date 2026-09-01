@@ -123,22 +123,22 @@ public final class jg0 implements ScaleGestureDetector.OnScaleGestureListener {
                 if (Float.isNaN(scaleFactor) || Float.isInfinite(scaleFactor)) {
                     return false;
                 }
-                zf.n nVar = ((zf.b) this.f28111b).f51104b;
+                zf.n nVar = ((zf.b) this.f28111b).f51105b;
                 float focusX3 = scaleGestureDetector.getFocusX();
                 float focusY = scaleGestureDetector.getFocusY();
-                CropAreaView cropAreaView = nVar.f51165a;
-                ImageView imageView = nVar.f51166b;
+                CropAreaView cropAreaView = nVar.f51166a;
+                ImageView imageView = nVar.f51167b;
                 if (!nVar.C) {
-                    float f10 = nVar.I.f51158e;
+                    float f10 = nVar.I.f51159e;
                     if (f10 * scaleFactor > 30.0f) {
                         scaleFactor = 30.0f / f10;
                     }
-                    if (!nVar.f51171r) {
+                    if (!nVar.f51172r) {
                         i10 = AndroidUtilities.statusBarHeight;
                     } else {
                         i10 = 0;
                     }
-                    zf.l.g(nVar.I, scaleFactor, zf.l.a(nVar.I) * ((focusX3 - (imageView.getWidth() / 2)) / cropAreaView.getCropWidth()), zf.l.b(nVar.I) * (org.telegram.messenger.y3.a((imageView.getHeight() - nVar.f51175y) - i10, nVar.B, 2.0f, focusY) / cropAreaView.getCropHeight()));
+                    zf.l.g(nVar.I, scaleFactor, zf.l.a(nVar.I) * ((focusX3 - (imageView.getWidth() / 2)) / cropAreaView.getCropWidth()), zf.l.b(nVar.I) * (org.telegram.messenger.y3.a((imageView.getHeight() - nVar.f51176y) - i10, nVar.B, 2.0f, focusY) / cropAreaView.getCropHeight()));
                     nVar.r(false);
                 }
                 return true;

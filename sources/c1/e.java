@@ -319,7 +319,7 @@ public final class e extends ResultReceiver {
                                 if (i17 >= 34) {
                                     a2 = g1.a.a(intent3);
                                 } else {
-                                    int i19 = w0.d.f49316a;
+                                    int i19 = w0.d.f49317a;
                                     Bundle bundleExtra2 = intent3.getBundleExtra("android.service.credentials.extra.CREATE_CREDENTIAL_EXCEPTION");
                                     if (bundleExtra2 == null) {
                                         a2 = null;
@@ -421,7 +421,7 @@ public final class e extends ResultReceiver {
                                         if (i21 >= 34) {
                                             b10 = g1.a.c(intent4);
                                         } else {
-                                            int i23 = i.f49317a;
+                                            int i23 = i.f49318a;
                                             Bundle bundleExtra4 = intent4.getBundleExtra("android.service.credentials.extra.GET_CREDENTIAL_EXCEPTION");
                                             if (bundleExtra4 == null) {
                                                 b10 = null;

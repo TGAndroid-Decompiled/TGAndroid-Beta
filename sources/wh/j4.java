@@ -9,7 +9,7 @@ import org.telegram.ui.Components.j51;
 import org.telegram.ui.Components.tl0;
 import org.telegram.ui.Components.x51;
 public final class j4 extends i51 {
-    public static final int f49812a = 0;
+    public static final int f49813a = 0;
 
     static {
         i51.setup(new i51());

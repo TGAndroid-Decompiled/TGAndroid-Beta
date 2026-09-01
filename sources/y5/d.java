@@ -21,7 +21,7 @@ import b6.s;
 import com.google.android.gms.common.api.GoogleApiActivity;
 import e0.t;
 public final class d extends e {
-    public static final Object f50766c = new Object();
+    public static final Object f50767c = new Object();
     public static final d d = new Object();
 
     public static AlertDialog f(Activity activity, int i10, s sVar, DialogInterface.OnCancelListener onCancelListener) {
@@ -59,8 +59,8 @@ public final class d extends e {
                 b6.m.i(alertDialog, "Cannot display null dialog");
                 alertDialog.setOnCancelListener(null);
                 alertDialog.setOnDismissListener(null);
-                iVar.f50777x0 = alertDialog;
-                iVar.f50778y0 = onCancelListener;
+                iVar.f50778x0 = alertDialog;
+                iVar.f50779y0 = onCancelListener;
                 iVar.f993u0 = false;
                 iVar.f994v0 = true;
                 s6.getClass();
@@ -77,14 +77,14 @@ public final class d extends e {
         b6.m.i(alertDialog, "Cannot display null dialog");
         alertDialog.setOnCancelListener(null);
         alertDialog.setOnDismissListener(null);
-        dialogFragment.f50760a = alertDialog;
-        dialogFragment.f50761b = onCancelListener;
+        dialogFragment.f50761a = alertDialog;
+        dialogFragment.f50762b = onCancelListener;
         dialogFragment.show(fragmentManager, str);
     }
 
     @Override
     public final int c(Context context) {
-        return d(context, e.f50767a);
+        return d(context, e.f50768a);
     }
 
     public final void e(GoogleApiActivity googleApiActivity, int i10, GoogleApiActivity googleApiActivity2) {
@@ -113,7 +113,7 @@ public final class d extends e {
                 d10 = r.d(context, i10);
             }
             if (d10 == null) {
-                d10 = context.getResources().getString(2131701330);
+                d10 = context.getResources().getString(2131689567);
             }
             if (i10 != 6 && i10 != 19) {
                 e6 = r.c(context, i10);
@@ -139,23 +139,23 @@ public final class d extends e {
                 tVar.E.icon = context.getApplicationInfo().icon;
                 tVar.f4854j = 2;
                 if (i6.b.f(context)) {
-                    tVar.a(2131230970, resources.getString(2131701338), pendingIntent);
+                    tVar.a(2131230970, resources.getString(2131689575), pendingIntent);
                 } else {
                     tVar.f4852g = pendingIntent;
                 }
             } else {
                 tVar.E.icon = 17301642;
-                tVar.p(resources.getString(2131701330));
+                tVar.p(resources.getString(2131689567));
                 tVar.E.when = System.currentTimeMillis();
                 tVar.f4852g = pendingIntent;
                 tVar.f(e6);
             }
             if (i6.b.d()) {
                 b6.m.k(i6.b.d());
-                synchronized (f50766c) {
+                synchronized (f50767c) {
                 }
                 NotificationChannel notificationChannel = notificationManager.getNotificationChannel("com.google.android.gms.availability");
-                String string = context.getResources().getString(2131701329);
+                String string = context.getResources().getString(2131689566);
                 if (notificationChannel == null) {
                     notificationManager.createNotificationChannel(new NotificationChannel("com.google.android.gms.availability", string, 4));
                 } else if (!string.contentEquals(notificationChannel.getName())) {
@@ -168,7 +168,7 @@ public final class d extends e {
             if (i10 != 1 && i10 != 2 && i10 != 3) {
                 i11 = 39789;
             } else {
-                g.f50770a.set(false);
+                g.f50771a.set(false);
                 i11 = 10436;
             }
             notificationManager.notify(i11, b10);

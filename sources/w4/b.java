@@ -8,50 +8,50 @@ import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
 import java.util.ArrayList;
 public final class b {
-    public final ArrayList f49353a;
-    public final ArrayList f49354b;
-    public final StringBuilder f49355c;
+    public final ArrayList f49354a;
+    public final ArrayList f49355b;
+    public final StringBuilder f49356c;
     public int d;
-    public int f49356e;
-    public int f49357f;
-    public int f49358g;
+    public int f49357e;
+    public int f49358f;
+    public int f49359g;
     public int h;
 
     public b(int i10, int i11) {
         ArrayList arrayList = new ArrayList();
-        this.f49353a = arrayList;
+        this.f49354a = arrayList;
         ArrayList arrayList2 = new ArrayList();
-        this.f49354b = arrayList2;
+        this.f49355b = arrayList2;
         StringBuilder sb = new StringBuilder();
-        this.f49355c = sb;
-        this.f49358g = i10;
+        this.f49356c = sb;
+        this.f49359g = i10;
         arrayList.clear();
         arrayList2.clear();
         sb.setLength(0);
         this.d = 15;
-        this.f49356e = 0;
-        this.f49357f = 0;
+        this.f49357e = 0;
+        this.f49358f = 0;
         this.h = i11;
     }
 
     public final void a(char c3) {
-        StringBuilder sb = this.f49355c;
+        StringBuilder sb = this.f49356c;
         if (sb.length() < 32) {
             sb.append(c3);
         }
     }
 
     public final void b() {
-        StringBuilder sb = this.f49355c;
+        StringBuilder sb = this.f49356c;
         int length = sb.length();
         if (length > 0) {
             sb.delete(length - 1, length);
-            ArrayList arrayList = this.f49353a;
+            ArrayList arrayList = this.f49354a;
             for (int size = arrayList.size() - 1; size >= 0; size--) {
                 a aVar = (a) arrayList.get(size);
-                int i10 = aVar.f49352c;
+                int i10 = aVar.f49353c;
                 if (i10 == length) {
-                    aVar.f49352c = i10 - 1;
+                    aVar.f49353c = i10 - 1;
                 } else {
                     return;
                 }
@@ -66,7 +66,7 @@ public final class b {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         int i12 = 0;
         while (true) {
-            ArrayList arrayList = this.f49354b;
+            ArrayList arrayList = this.f49355b;
             if (i12 >= arrayList.size()) {
                 break;
             }
@@ -78,14 +78,14 @@ public final class b {
         if (spannableStringBuilder.length() == 0) {
             return null;
         }
-        int i13 = this.f49356e + this.f49357f;
+        int i13 = this.f49357e + this.f49358f;
         int length = (32 - i13) - spannableStringBuilder.length();
         int i14 = i13 - length;
         if (i10 != Integer.MIN_VALUE) {
             i11 = i10;
-        } else if (this.f49358g == 2 && (Math.abs(i14) < 3 || length < 0)) {
+        } else if (this.f49359g == 2 && (Math.abs(i14) < 3 || length < 0)) {
             i11 = 1;
-        } else if (this.f49358g == 2 && i14 > 0) {
+        } else if (this.f49359g == 2 && i14 > 0) {
             i11 = 2;
         } else {
             i11 = 0;
@@ -103,7 +103,7 @@ public final class b {
         int i15 = this.d;
         if (i15 > 7) {
             i15 -= 17;
-        } else if (this.f49358g == 1) {
+        } else if (this.f49359g == 1) {
             i15 -= this.h - 1;
         }
         return new v4.b(spannableStringBuilder, Layout.Alignment.ALIGN_NORMAL, null, null, i15, 1, Integer.MIN_VALUE, f10, i11, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, false, -16777216, Integer.MIN_VALUE, 0.0f);
@@ -112,7 +112,7 @@ public final class b {
     public final SpannableString d() {
         int i10;
         boolean z4;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f49355c);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f49356c);
         int length = spannableStringBuilder.length();
         int i11 = 0;
         int i12 = -1;
@@ -122,13 +122,13 @@ public final class b {
         int i16 = -1;
         boolean z10 = false;
         while (true) {
-            ArrayList arrayList = this.f49353a;
+            ArrayList arrayList = this.f49354a;
             if (i11 >= arrayList.size()) {
                 break;
             }
             a aVar = (a) arrayList.get(i11);
-            boolean z11 = aVar.f49351b;
-            int i17 = aVar.f49350a;
+            boolean z11 = aVar.f49352b;
+            int i17 = aVar.f49351a;
             if (i17 != 8) {
                 if (i17 == 7) {
                     z4 = true;
@@ -140,10 +140,10 @@ public final class b {
                 }
                 z10 = z4;
             }
-            int i18 = aVar.f49352c;
+            int i18 = aVar.f49353c;
             i11++;
             if (i11 < arrayList.size()) {
-                i10 = ((a) arrayList.get(i11)).f49352c;
+                i10 = ((a) arrayList.get(i11)).f49353c;
             } else {
                 i10 = length;
             }
@@ -182,7 +182,7 @@ public final class b {
     }
 
     public final boolean e() {
-        if (this.f49353a.isEmpty() && this.f49354b.isEmpty() && this.f49355c.length() == 0) {
+        if (this.f49354a.isEmpty() && this.f49355b.isEmpty() && this.f49356c.length() == 0) {
             return true;
         }
         return false;

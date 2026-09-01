@@ -889,7 +889,7 @@ public final class x7 extends FrameLayout implements View.OnClickListener, Notif
             if (z10 && c3 + Math.min(AndroidUtilities.dp(150.0f), this.f46298x.G) > tl0Var.getPaddingTop()) {
                 xh.o oVar = new xh.o(getContext(), 2, 0.7f);
                 oVar.f5805a = 1;
-                oVar.f50658p = -AndroidUtilities.dp(56.0f);
+                oVar.f50659p = -AndroidUtilities.dp(56.0f);
                 this.h.w0(oVar);
             }
             int i17 = this.f46289a;

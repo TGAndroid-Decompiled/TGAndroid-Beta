@@ -28,12 +28,12 @@ public final class g40 extends FrameLayout {
         float y10 = h40Var.getY() + h40Var.getMeasuredHeight();
         xd.c cVar = d60Var.f36116y3;
         RectF rectF = this.f37079a;
-        rectF.set(0.0f, y10 - cVar.f50509e, getMeasuredWidth(), getMeasuredHeight());
+        rectF.set(0.0f, y10 - cVar.f50510e, getMeasuredWidth(), getMeasuredHeight());
         RectF rectF2 = this.f37080b;
         rectF2.set(0.0f, h40Var.getY() + h40Var.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
         float y11 = h40Var.getY() + h40Var.getMeasuredHeight();
         RectF rectF3 = this.f37081c;
-        rectF3.set(0.0f, (h40Var.getY() + h40Var.getMeasuredHeight()) - cVar.f50509e, getMeasuredWidth(), y11);
+        rectF3.set(0.0f, (h40Var.getY() + h40Var.getMeasuredHeight()) - cVar.f50510e, getMeasuredWidth(), y11);
         int i10 = Build.VERSION.SDK_INT;
         Paint paint = this.d;
         if (i10 >= 29 && d60Var.N2 != null && canvas.isHardwareAccelerated()) {

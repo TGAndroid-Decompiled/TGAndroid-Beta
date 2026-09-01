@@ -189,6 +189,11 @@ public class h3 extends Dialog implements l2 {
         return i10;
     }
 
+    public static boolean access$2102(h3 h3Var, boolean z4) {
+        h3Var.multipleLinesTitle = z4;
+        return z4;
+    }
+
     public static View access$2202(h3 h3Var, View view) {
         h3Var.customView = view;
         return view;

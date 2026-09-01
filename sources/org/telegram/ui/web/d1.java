@@ -250,7 +250,7 @@ public final class d1 implements Utilities.Callback {
                 return;
             case 18:
                 Object[] objArr = (Object[]) obj;
-                AndroidUtilities.forEachViews((RecyclerView) ((vf.c0) this.f42522b).f49009s, (h5.d) new ag.d(18));
+                AndroidUtilities.forEachViews((RecyclerView) ((vf.c0) this.f42522b).f49010s, (h5.d) new ag.d(18));
                 return;
             case 19:
                 vf.l0 l0Var = (vf.l0) this.f42522b;
@@ -290,7 +290,7 @@ public final class d1 implements Utilities.Callback {
                     }
                     vVar.i(tL_businessBotRecipients);
                 }
-                i61 i61Var3 = l0Var.f49111c;
+                i61 i61Var3 = l0Var.f49112c;
                 if (i61Var3 != null && (x51Var3 = i61Var3.V2) != null) {
                     x51Var3.N(true);
                 }
@@ -299,7 +299,7 @@ public final class d1 implements Utilities.Callback {
                 return;
             case 20:
                 vf.n0 n0Var = (vf.n0) this.f42522b;
-                n0Var.f49147w = n0Var.f49142e[((Integer) obj).intValue()];
+                n0Var.f49148w = n0Var.f49143e[((Integer) obj).intValue()];
                 n0Var.V(true);
                 return;
             case 21:
@@ -320,33 +320,33 @@ public final class d1 implements Utilities.Callback {
             case 23:
                 i3 i3Var = (i3) this.f42522b;
                 TL_iv.RichMessage richMessage = (TL_iv.RichMessage) obj;
-                int i12 = i3Var.f49787b;
-                int i13 = i3Var.f49786a;
-                r3 r3Var = i3Var.f49789e;
+                int i12 = i3Var.f49788b;
+                int i13 = i3Var.f49787a;
+                r3 r3Var = i3Var.f49790e;
                 if (richMessage != null) {
-                    ArrayList arrayList6 = r3Var.f49987i3;
-                    ArrayList arrayList7 = r3Var.f49987i3;
+                    ArrayList arrayList6 = r3Var.f49988i3;
+                    ArrayList arrayList7 = r3Var.f49988i3;
                     if (i13 < arrayList6.size() && i12 < arrayList7.size()) {
                         wh.d2 d2Var2 = r3Var.G3;
                         if (d2Var2 != null) {
                             d2Var2.d();
                         }
-                        f3 f3Var = r3Var.f49991k3;
+                        f3 f3Var = r3Var.f49992k3;
                         if (f3Var != null) {
                             f3Var.f(false);
                         }
                         wh.a aVar2 = (wh.a) arrayList7.get(i13);
                         wh.a aVar3 = (wh.a) arrayList7.get(i12);
                         CharSequence charSequence = "";
-                        if (!r3.A3(aVar2.f49616b)) {
+                        if (!r3.A3(aVar2.f49617b)) {
                             editable = "";
                         } else {
                             editable = r3Var.M4(aVar2);
                         }
-                        if (r3.A3(aVar3.f49616b)) {
+                        if (r3.A3(aVar3.f49617b)) {
                             charSequence = r3Var.M4(aVar3);
                         }
-                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(editable.subSequence(0, Math.max(0, Math.min(i3Var.f49788c, editable.length()))));
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(editable.subSequence(0, Math.max(0, Math.min(i3Var.f49789c, editable.length()))));
                         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(charSequence.subSequence(Math.max(0, Math.min(i3Var.d, charSequence.length())), charSequence.length()));
                         ArrayList arrayList8 = new ArrayList();
                         r3.W2(arrayList8, richMessage.blocks, null);
@@ -355,36 +355,36 @@ public final class d1 implements Utilities.Callback {
                             spannableStringBuilder3.append((CharSequence) spannableStringBuilder2);
                             TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
                             v5.d(pageblockparagraph, spannableStringBuilder3);
-                            arrayList8.add(new wh.a(pageblockparagraph, aVar2.f49617c, aVar2.d));
+                            arrayList8.add(new wh.a(pageblockparagraph, aVar2.f49618c, aVar2.d));
                         } else {
                             if (spannableStringBuilder.length() > 0) {
                                 wh.a aVar4 = (wh.a) arrayList8.get(0);
-                                if (r3.A3(aVar4.f49616b)) {
+                                if (r3.A3(aVar4.f49617b)) {
                                     SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(spannableStringBuilder);
-                                    spannableStringBuilder4.append((CharSequence) v5.A(aVar4.f49616b));
-                                    v5.d(aVar4.f49616b, spannableStringBuilder4);
+                                    spannableStringBuilder4.append((CharSequence) v5.A(aVar4.f49617b));
+                                    v5.d(aVar4.f49617b, spannableStringBuilder4);
                                 } else {
                                     TL_iv.pageBlockParagraph pageblockparagraph2 = new TL_iv.pageBlockParagraph();
                                     v5.d(pageblockparagraph2, spannableStringBuilder);
-                                    arrayList8.add(0, new wh.a(pageblockparagraph2, aVar2.f49617c, aVar2.d));
+                                    arrayList8.add(0, new wh.a(pageblockparagraph2, aVar2.f49618c, aVar2.d));
                                 }
                             }
                             if (spannableStringBuilder2.length() > 0) {
                                 wh.a aVar5 = (wh.a) l.d.i(1, arrayList8);
-                                if (r3.A3(aVar5.f49616b)) {
-                                    SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder(v5.A(aVar5.f49616b));
+                                if (r3.A3(aVar5.f49617b)) {
+                                    SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder(v5.A(aVar5.f49617b));
                                     spannableStringBuilder5.append((CharSequence) spannableStringBuilder2);
-                                    v5.d(aVar5.f49616b, spannableStringBuilder5);
+                                    v5.d(aVar5.f49617b, spannableStringBuilder5);
                                 } else {
                                     TL_iv.pageBlockParagraph pageblockparagraph3 = new TL_iv.pageBlockParagraph();
                                     v5.d(pageblockparagraph3, spannableStringBuilder2);
-                                    arrayList8.add(new wh.a(pageblockparagraph3, aVar3.f49617c, aVar3.d));
+                                    arrayList8.add(new wh.a(pageblockparagraph3, aVar3.f49618c, aVar3.d));
                                 }
                             }
                         }
-                        TL_iv.RichMessage richMessage2 = r3Var.f49985h3;
+                        TL_iv.RichMessage richMessage2 = r3Var.f49986h3;
                         if (richMessage2 == null) {
-                            r3Var.f49985h3 = richMessage;
+                            r3Var.f49986h3 = richMessage;
                         } else {
                             ArrayList<TLRPC.Photo> arrayList9 = richMessage.photos;
                             if (arrayList9 != null) {
@@ -392,7 +392,7 @@ public final class d1 implements Utilities.Callback {
                             }
                             ArrayList<TLRPC.Document> arrayList10 = richMessage.documents;
                             if (arrayList10 != null) {
-                                r3Var.f49985h3.documents.addAll(arrayList10);
+                                r3Var.f49986h3.documents.addAll(arrayList10);
                             }
                         }
                         for (int i14 = 0; i14 < arrayList8.size(); i14++) {
@@ -409,7 +409,7 @@ public final class d1 implements Utilities.Callback {
                         if (d2Var3 != null) {
                             d2Var3.h();
                         }
-                        r3Var.f49979e3.onContentChanged();
+                        r3Var.f49980e3.onContentChanged();
                         if (arrayList8.isEmpty()) {
                             aVar = null;
                         } else {
@@ -422,7 +422,7 @@ public final class d1 implements Utilities.Callback {
                 }
                 return;
             case 24:
-                ((wh.l) this.f42522b).f49845a.f49929r.U1((TL_iv.RichMessage) obj);
+                ((wh.l) this.f42522b).f49846a.f49930r.U1((TL_iv.RichMessage) obj);
                 return;
             case 25:
                 ((wh.z1) this.f42522b).M.U1((TL_iv.RichMessage) obj);

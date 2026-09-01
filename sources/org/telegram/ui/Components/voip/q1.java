@@ -17,12 +17,12 @@ public final class q1 extends AnimatorListenerAdapter {
 
     public void a() {
         xd.c cVar = (xd.c) this.d;
-        if (cVar.f50511g) {
+        if (cVar.f50512g) {
             cVar.d(this.f32289b + this.f32290c, 1.0f);
-            if (cVar.f50511g) {
-                cVar.f50511g = false;
+            if (cVar.f50512g) {
+                cVar.f50512g = false;
             }
-            cVar.f50507b.z(cVar.f50509e, cVar.f50506a);
+            cVar.f50508b.z(cVar.f50510e, cVar.f50507a);
         }
     }
 

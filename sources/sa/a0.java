@@ -53,7 +53,7 @@ public final class a0 extends y {
         } else if (this.f47156f && obj == null) {
             bVar.i();
         } else {
-            ra.d.l(oVar.serialize(obj, this.f47154c.f49484b, this.f47155e), bVar);
+            ra.d.l(oVar.serialize(obj, this.f47154c.f49485b, this.f47155e), bVar);
         }
     }
 }

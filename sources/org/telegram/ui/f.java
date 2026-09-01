@@ -205,14 +205,14 @@ public final class f implements org.telegram.ui.ActionBar.l6 {
                 }
                 vg.f fVar = xnVar.P;
                 if (fVar != null) {
-                    fVar.f49287f.u();
+                    fVar.f49288f.u();
                     fVar.h.u();
                     fVar.invalidate();
                 }
                 xg.g gVar = xnVar.f43192g1;
                 if (gVar != null) {
-                    for (s5.m mVar : gVar.f50585e) {
-                        if (mVar != null && (aVar = (bVar = (wg.b) mVar.f47062b).f49612b) != null) {
+                    for (s5.m mVar : gVar.f50586e) {
+                        if (mVar != null && (aVar = (bVar = (wg.b) mVar.f47062b).f49613b) != null) {
                             aVar.g();
                             bVar.invalidate();
                         }
@@ -220,7 +220,7 @@ public final class f implements org.telegram.ui.ActionBar.l6 {
                 }
                 ok okVar = xnVar.L0;
                 if (okVar != null) {
-                    for (androidx.activity.o oVar : okVar.f50565a) {
+                    for (androidx.activity.o oVar : okVar.f50566a) {
                         if (oVar != null) {
                             ((wg.a) oVar.f356b).g();
                         }
@@ -508,7 +508,7 @@ public final class f implements org.telegram.ui.ActionBar.l6 {
                 }
                 wf.f fVar2 = bj0Var.Z;
                 if (fVar2 != null) {
-                    fVar2.f49522g = true;
+                    fVar2.f49523g = true;
                 }
                 View subtitleTextView = bj0Var.Y.getSubtitleTextView();
                 if (subtitleTextView instanceof org.telegram.ui.ActionBar.l5) {

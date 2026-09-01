@@ -206,7 +206,7 @@ public final class yx0 implements Runnable {
                     if (m9 instanceof s91) {
                         s91Var.f40873r.f41545e = bVar;
                         s91 s91Var2 = (s91) m9;
-                        s91Var2.f40868b.f49569q0.d(false, false);
+                        s91Var2.f40868b.f49570q0.d(false, false);
                         s91Var2.g(false);
                     }
                 }
@@ -878,13 +878,13 @@ public final class yx0 implements Runnable {
                 TLObject tLObject6 = (TLObject) obj2;
                 TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) obj3;
                 Runnable runnable2 = (Runnable) obj;
-                ArrayList arrayList11 = tVar.f49202b;
+                ArrayList arrayList11 = tVar.f49203b;
                 if (tLObject6 instanceof TL_account.TL_businessChatLink) {
                     TL_account.TL_businessChatLink tL_businessChatLink2 = (TL_account.TL_businessChatLink) tLObject6;
                     int indexOf2 = arrayList11.indexOf(tL_businessChatLink);
                     if (indexOf2 != -1) {
                         arrayList11.set(indexOf2, tL_businessChatLink2);
-                        NotificationCenter.getInstance(tVar.f49201a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                        NotificationCenter.getInstance(tVar.f49202a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
                         if (runnable2 != null) {
                             runnable2.run();
                         }
@@ -902,7 +902,7 @@ public final class yx0 implements Runnable {
                 ArrayList<Integer> arrayList12 = (ArrayList) obj3;
                 vf.o1 o1Var = (vf.o1) obj2;
                 TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages = (TLRPC.TL_messages_sendQuickReplyMessages) obj;
-                int i22 = p1Var.f49170a;
+                int i22 = p1Var.f49171a;
                 if (!arrayList12.isEmpty() && arrayList12.size() >= o1Var.a()) {
                     tL_messages_sendQuickReplyMessages.f20958id = arrayList12;
                     while (i13 < arrayList12.size()) {
@@ -913,11 +913,11 @@ public final class yx0 implements Runnable {
                     return;
                 }
                 TLRPC.TL_messages_getQuickReplyMessages tL_messages_getQuickReplyMessages = new TLRPC.TL_messages_getQuickReplyMessages();
-                tL_messages_getQuickReplyMessages.shortcut_id = o1Var.f49159a;
+                tL_messages_getQuickReplyMessages.shortcut_id = o1Var.f49160a;
                 ConnectionsManager.getInstance(i22).sendRequest(tL_messages_getQuickReplyMessages, new hg.y(p1Var, arrayList12, tL_messages_sendQuickReplyMessages, 27));
                 return;
             default:
-                ((wh.q) obj4).f49929r.V4((wh.a) obj3, (TL_iv.PageBlock) obj2);
+                ((wh.q) obj4).f49930r.V4((wh.a) obj3, (TL_iv.PageBlock) obj2);
                 ((org.telegram.ui.Components.q70) obj).u();
                 return;
         }

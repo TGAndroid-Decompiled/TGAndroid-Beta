@@ -11,10 +11,10 @@ import org.telegram.ui.Components.f51;
 import org.telegram.ui.Components.my;
 import org.telegram.ui.StickersActivity;
 public final class q1 implements my {
-    public final z1 f49935a;
+    public final z1 f49936a;
 
     public q1(z1 z1Var) {
-        this.f49935a = z1Var;
+        this.f49936a = z1Var;
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class q1 implements my {
     public final void i(int i10) {
         e1 focusedEditTextOrNull;
         boolean z4 = false;
-        z1 z1Var = this.f49935a;
+        z1 z1Var = this.f49936a;
         if (i10 != 0 && (focusedEditTextOrNull = z1Var.M.getFocusedEditTextOrNull()) != null) {
             z1Var.O0 = focusedEditTextOrNull;
             z1Var.P0 = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
@@ -59,7 +59,7 @@ public final class q1 implements my {
         if (i10 != 0) {
             z4 = true;
         }
-        z1Var.f50216z0 = z4;
+        z1Var.f50217z0 = z4;
         z1Var.e0(z4);
     }
 
@@ -70,7 +70,7 @@ public final class q1 implements my {
 
     @Override
     public final boolean k() {
-        e1 a02 = z1.a0(this.f49935a);
+        e1 a02 = z1.a0(this.f49936a);
         if (a02 == null || a02.length() == 0) {
             return false;
         }
@@ -80,7 +80,7 @@ public final class q1 implements my {
 
     @Override
     public final void l(String str) {
-        z1 z1Var = this.f49935a;
+        z1 z1Var = this.f49936a;
         e1 a02 = z1.a0(z1Var);
         if (a02 != null) {
             int b02 = z1.b0(z1Var, a02);
@@ -104,18 +104,18 @@ public final class q1 implements my {
 
     @Override
     public final void t(ArrayList arrayList) {
-        this.f49935a.presentFragment(new StickersActivity(5, arrayList));
+        this.f49936a.presentFragment(new StickersActivity(5, arrayList));
     }
 
     @Override
     public final void w() {
-        this.f49935a.presentFragment(new StickersActivity(0, null));
+        this.f49936a.presentFragment(new StickersActivity(0, null));
     }
 
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z4) {
         org.telegram.ui.Components.u5 u5Var;
-        z1 z1Var = this.f49935a;
+        z1 z1Var = this.f49936a;
         e1 a02 = z1.a0(z1Var);
         if (a02 != null) {
             int b02 = z1.b0(z1Var, a02);
@@ -144,7 +144,7 @@ public final class q1 implements my {
 
     @Override
     public final boolean z() {
-        return this.f49935a.f50216z0;
+        return this.f49936a.f50217z0;
     }
 
     @Override

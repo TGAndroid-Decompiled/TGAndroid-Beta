@@ -2441,7 +2441,7 @@ public final class jn implements org.telegram.ui.Cells.k1 {
     public final int k0(org.telegram.ui.Cells.t1 t1Var) {
         eh.f fVar;
         xn xnVar = this.f38188a;
-        if (xnVar.f43361tc.f50505f && (fVar = xnVar.f43439zc) != null && fVar.f5628n == t1Var && fVar.f5623a.getWidth() > 0) {
+        if (xnVar.f43361tc.f50506f && (fVar = xnVar.f43439zc) != null && fVar.f5628n == t1Var && fVar.f5623a.getWidth() > 0) {
             return xnVar.f43439zc.f5623a.getHeight();
         }
         return 0;

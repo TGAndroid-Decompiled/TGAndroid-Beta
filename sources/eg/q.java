@@ -131,15 +131,15 @@ public final class q implements ValueAnimator.AnimatorUpdateListener {
                 org.telegram.ui.Cells.s1 s1Var = (org.telegram.ui.Cells.s1) this.f5442c;
                 org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.d;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (mVar.f50640l) {
-                    s1Var.f23639g0 = (-mVar.f50647s) * floatValue2;
-                    s1Var.f23643h0 = (-mVar.f50648t) * floatValue2;
-                    s1Var.f23653j0 = (-mVar.f50649u) * floatValue2;
+                if (mVar.f50641l) {
+                    s1Var.f23639g0 = (-mVar.f50648s) * floatValue2;
+                    s1Var.f23643h0 = (-mVar.f50649t) * floatValue2;
+                    s1Var.f23653j0 = (-mVar.f50650u) * floatValue2;
                     s1Var.f23648i0 = (-mVar.v) * floatValue2;
                 } else {
-                    s1Var.f23639g0 = ((-mVar.f50647s) * floatValue2) - t1Var.getAnimationOffsetX();
-                    s1Var.f23643h0 = ((-mVar.f50648t) * floatValue2) - t1Var.getAnimationOffsetX();
-                    s1Var.f23653j0 = ((-mVar.f50649u) * floatValue2) - t1Var.getTranslationY();
+                    s1Var.f23639g0 = ((-mVar.f50648s) * floatValue2) - t1Var.getAnimationOffsetX();
+                    s1Var.f23643h0 = ((-mVar.f50649t) * floatValue2) - t1Var.getAnimationOffsetX();
+                    s1Var.f23653j0 = ((-mVar.f50650u) * floatValue2) - t1Var.getTranslationY();
                     s1Var.f23648i0 = ((-mVar.v) * floatValue2) - t1Var.getTranslationY();
                 }
                 t1Var.invalidate();

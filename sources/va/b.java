@@ -15,7 +15,7 @@ public final class b extends u {
     public class a implements v {
         @Override
         public final u create(g gVar, wa.a aVar) {
-            if (aVar.f49483a == Time.class) {
+            if (aVar.f49484a == Time.class) {
                 return new b(0);
             }
             return null;

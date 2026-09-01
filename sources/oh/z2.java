@@ -78,7 +78,7 @@ public final class z2 extends ImageReceiver {
                 return imageBitmapByKey4;
             case 6:
                 if (drawable != null && i10 != 1) {
-                    org.telegram.ui.b.p(((vf.v0) ((a4) obj).E).f49223n.animate().alpha(1.0f).translationY(0.0f), pr.f30187k, 250L);
+                    org.telegram.ui.b.p(((vf.v0) ((a4) obj).E).f49224n.animate().alpha(1.0f).translationY(0.0f), pr.f30187k, 250L);
                 }
                 return super.setImageBitmapByKey(drawable, str, i10, z4, i11);
         }

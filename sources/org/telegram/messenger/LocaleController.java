@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.icu.text.RelativeDateTimeFormatter;
 import android.os.Build;
 import android.telephony.TelephonyManager;
@@ -16,10 +15,8 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.text.format.DateUtils;
-import android.util.SparseArray;
 import android.util.Xml;
 import j$.util.DesugarTimeZone;
-import j$.util.Objects;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -44,6 +41,7 @@ import org.telegram.ui.Components.g51;
 import org.telegram.ui.p31;
 import org.xmlpull.v1.XmlPullParser;
 public class LocaleController {
+    private static volatile LocaleController Instance = null;
     static final int QUANTITY_FEW = 8;
     static final int QUANTITY_MANY = 16;
     static final int QUANTITY_ONE = 2;
@@ -94,8 +92,6 @@ public class LocaleController {
     private HashMap<String, String> ruTranslitChars;
     private Locale systemDefaultLocale;
     private HashMap<String, String> translitChars;
-    private static HashMap<Integer, String> resourcesCacheMap = new HashMap<>();
-    private static volatile LocaleController Instance = null;
     private static char[] defaultNumbers = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     private static char[][] otherNumbers = {new char[]{1632, 1633, 1634, 1635, 1636, 1637, 1638, 1639, 1640, 1641}, new char[]{1776, 1777, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 1785}, new char[]{2406, 2407, 2408, 2409, 2410, 2411, 2412, 2413, 2414, 2415}, new char[]{2790, 2791, 2792, 2793, 2794, 2795, 2796, 2797, 2798, 2799}, new char[]{2662, 2663, 2664, 2665, 2666, 2667, 2668, 2669, 2670, 2671}, new char[]{2534, 2535, 2536, 2537, 2538, 2539, 2540, 2541, 2542, 2543}, new char[]{3302, 3303, 3304, 3305, 3306, 3307, 3308, 3309, 3310, 3311}, new char[]{2918, 2919, 2920, 2921, 2922, 2923, 2924, 2925, 2926, 2927}, new char[]{3430, 3431, 3432, 3433, 3434, 3435, 3436, 3437, 3438, 3439}, new char[]{3046, 3047, 3048, 3049, 3050, 3051, 3052, 3053, 3054, 3055}, new char[]{3174, 3175, 3176, 3177, 3178, 3179, 3180, 3181, 3182, 3183}, new char[]{4160, 4161, 4162, 4163, 4164, 4165, 4166, 4167, 4168, 4169}, new char[]{3872, 3873, 3874, 3875, 3876, 3877, 3878, 3879, 3880, 3881}, new char[]{6160, 6161, 6162, 6163, 6164, 6165, 6166, 6167, 6168, 6169}, new char[]{6112, 6113, 6114, 6115, 6116, 6117, 6118, 6119, 6120, 6121}, new char[]{3664, 3665, 3666, 3667, 3668, 3669, 3670, 3671, 3672, 3673}, new char[]{3792, 3793, 3794, 3795, 3796, 3797, 3798, 3799, 3800, 3801}, new char[]{43472, 43473, 43474, 43475, 43476, 43477, 43478, 43479, 43480, 43481}};
     private final FastDateFormat[] formatterScheduleSend = new FastDateFormat[18];
@@ -633,7 +629,7 @@ public class LocaleController {
     public LocaleController() {
         LocaleInfo localeInfo;
         boolean z4 = false;
-        ve.a aVar = ve.a.f48971b;
+        ve.a aVar = ve.a.f48972c;
         this.localizationInternal = aVar;
         this.localizationExternal = aVar;
         addRules(new String[]{"bem", "brx", "da", "de", "el", "en", "eo", "es", "et", "fi", "fo", "gl", "he", "iw", "it", "nb", "nl", "nn", "no", "sv", "af", "bg", "bn", "ca", "eu", "fur", "fy", "gu", "ha", "is", "ku", "lb", "ml", "mr", "nah", "ne", "om", "or", "pa", "pap", "ps", "so", "sq", "sw", "ta", "te", "tk", "ur", "zu", "mn", "gsw", "chr", "rm", "pt", "an", "ast"}, new PluralRules_One());
@@ -1028,52 +1024,7 @@ public class LocaleController {
     }
 
     private void checkLocalizationInternal() {
-        if (Objects.equals(this.localizationInternalLastLocale, this.currentLocale) && this.localizationInternal != null && !this.localizationInternalPending) {
-            return;
-        }
-        this.localizationInternalPending = true;
-        synchronized (this) {
-            try {
-                Locale locale = this.currentLocale;
-                if (Objects.equals(this.localizationInternalLastLocale, locale)) {
-                    if (this.localizationInternal == null) {
-                    }
-                }
-                if (this.localizationInternalDefault == null) {
-                    oh.h4 h4Var = new oh.h4(23, false);
-                    try {
-                        h4Var.f17180b = ve.a.a(ApplicationLoader.applicationContext, R.raw.localization_en, (SparseArray) h4Var.f17180b);
-                    } catch (Exception unused) {
-                    }
-                    this.localizationInternalDefault = new ve.a(h4Var);
-                }
-                int a2 = ue.a.a(locale);
-                if (a2 != 0 && a2 != R.raw.localization_en) {
-                    oh.h4 h4Var2 = new oh.h4(23, false);
-                    ve.a aVar = this.localizationInternalDefault;
-                    if (((SparseArray) h4Var2.f17180b) == null) {
-                        h4Var2.f17180b = aVar.f48972a.clone();
-                    } else {
-                        SparseArray sparseArray = aVar.f48972a;
-                        int size = sparseArray.size();
-                        for (int i10 = 0; i10 < size; i10++) {
-                            ((SparseArray) h4Var2.f17180b).put(sparseArray.keyAt(i10), (String) sparseArray.valueAt(i10));
-                        }
-                    }
-                    try {
-                        h4Var2.f17180b = ve.a.a(ApplicationLoader.applicationContext, a2, (SparseArray) h4Var2.f17180b);
-                    } catch (Exception unused2) {
-                    }
-                    this.localizationInternal = new ve.a(h4Var2);
-                    this.localizationInternalLastLocale = locale;
-                }
-                this.localizationInternal = this.localizationInternalDefault;
-                this.localizationInternalLastLocale = locale;
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        this.localizationInternalPending = false;
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LocaleController.checkLocalizationInternal():void");
     }
 
     private FastDateFormat createFormatter(Locale locale, String str, String str2) {
@@ -1816,15 +1767,7 @@ public class LocaleController {
     }
 
     public static CharSequence formatSpannable(int i10, Object... objArr) {
-        String str = resourcesCacheMap.get(Integer.valueOf(i10));
-        if (str == null) {
-            HashMap<Integer, String> hashMap = resourcesCacheMap;
-            Integer valueOf = Integer.valueOf(i10);
-            String resourceEntryName = ApplicationLoader.applicationContext.getResources().getResourceEntryName(i10);
-            hashMap.put(valueOf, resourceEntryName);
-            str = resourceEntryName;
-        }
-        return formatSpannable(str, i10, objArr);
+        return formatSpannable(null, i10, objArr);
     }
 
     public static String formatStartsTime(long j10, int i10) {
@@ -1888,15 +1831,7 @@ public class LocaleController {
     }
 
     public static String formatString(int i10, Object... objArr) {
-        String str = resourcesCacheMap.get(Integer.valueOf(i10));
-        if (str == null) {
-            HashMap<Integer, String> hashMap = resourcesCacheMap;
-            Integer valueOf = Integer.valueOf(i10);
-            String resourceEntryName = ApplicationLoader.applicationContext.getResources().getResourceEntryName(i10);
-            hashMap.put(valueOf, resourceEntryName);
-            str = resourceEntryName;
-        }
-        return formatString(str, i10, objArr);
+        return formatString(null, i10, objArr);
     }
 
     public static String formatStringSimple(String str, Object... objArr) {
@@ -2439,17 +2374,7 @@ public class LocaleController {
 
     private String getLocalizedString(int i10) {
         checkLocalizationInternal();
-        ve.a aVar = this.localizationInternal;
-        Context context = ApplicationLoader.applicationContext;
-        aVar.getClass();
-        if (context != null && i10 != 0) {
-            try {
-                return aVar.b(context.getResources().getResourceEntryName(i10));
-            } catch (Resources.NotFoundException unused) {
-                return null;
-            }
-        }
-        return null;
+        return this.localizationInternal.b(ApplicationLoader.applicationContext, i10);
     }
 
     private static int getLocalizedStringByName(String str) {
@@ -2466,24 +2391,23 @@ public class LocaleController {
     }
 
     public static String getServerString(String str) {
+        String str2;
         int localizedStringByName;
-        String b10 = getInstance().localizationExternal.b(str);
-        if (b10 == null && (localizedStringByName = getLocalizedStringByName(str)) != 0) {
+        ve.a aVar = getInstance().localizationExternal;
+        aVar.getClass();
+        if (str != null) {
+            str2 = (String) aVar.f48973a.get(str.hashCode());
+        } else {
+            str2 = null;
+        }
+        if (str2 == null && (localizedStringByName = getLocalizedStringByName(str)) != 0) {
             return getInstance().getLocalizedString(localizedStringByName);
         }
-        return b10;
+        return str2;
     }
 
     public static String getString(int i10) {
-        String str = resourcesCacheMap.get(Integer.valueOf(i10));
-        if (str == null) {
-            HashMap<Integer, String> hashMap = resourcesCacheMap;
-            Integer valueOf = Integer.valueOf(i10);
-            String resourceEntryName = ApplicationLoader.applicationContext.getResources().getResourceEntryName(i10);
-            hashMap.put(valueOf, resourceEntryName);
-            str = resourceEntryName;
-        }
-        return getString(str, i10);
+        return getString(null, i10);
     }
 
     private String getStringInternal(String str, int i10) {
@@ -4306,6 +4230,10 @@ public class LocaleController {
         }
     }
 
+    public static CharSequence formatSpannable(String str, int i10, Object... objArr) {
+        return formatSpannable(str, null, i10, 0, objArr);
+    }
+
     public static String formatStartsTime(long j10, int i10, boolean z4) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
@@ -4323,6 +4251,11 @@ public class LocaleController {
             i13 += 12;
         }
         return getInstance().getFormatterScheduleSend(i13).format(calendar.getTimeInMillis());
+    }
+
+    @Deprecated
+    public static String formatString(String str, int i10, Object... objArr) {
+        return formatString(str, null, i10, 0, objArr);
     }
 
     public static String formatUserStatus(int i10, TLRPC.User user, boolean[] zArr) {
@@ -4454,19 +4387,24 @@ public class LocaleController {
         }
     }
 
+    @Deprecated
+    public static String getString(String str, int i10) {
+        return getInstance().getStringInternal(str, i10);
+    }
+
     private String getStringInternal(String str, String str2, int i10, int i11) {
-        String b10 = BuildVars.USE_CLOUD_STRINGS ? this.localizationExternal.b(str) : null;
-        if (b10 == null) {
+        String c3 = BuildVars.USE_CLOUD_STRINGS ? this.localizationExternal.c(ApplicationLoader.applicationContext, str, i11) : null;
+        if (c3 == null) {
             if (BuildVars.USE_CLOUD_STRINGS && str2 != null) {
-                b10 = this.localizationExternal.b(str2);
+                c3 = this.localizationExternal.c(ApplicationLoader.applicationContext, str2, i10);
             }
-            if (b10 == null) {
+            if (c3 == null) {
                 try {
-                    b10 = getLocalizedString(i11);
+                    c3 = getLocalizedString(i11);
                 } catch (Exception e6) {
                     if (i10 != 0) {
                         try {
-                            b10 = getLocalizedString(i10);
+                            c3 = getLocalizedString(i10);
                         } catch (Exception unused) {
                         }
                     }
@@ -4474,7 +4412,7 @@ public class LocaleController {
                 }
             }
         }
-        return b10 == null ? org.telegram.ui.yh.k("LOC_ERR:", str) : b10;
+        return c3 == null ? org.telegram.ui.yh.k("LOC_ERR:", str) : c3;
     }
 
     public int applyLanguage(org.telegram.messenger.LocaleController.LocaleInfo r22, boolean r23, boolean r24, boolean r25, boolean r26, int r27, java.lang.Runnable r28) {
@@ -4830,6 +4768,107 @@ public class LocaleController {
         return formatPluralStringComma(str, i10, c3, new Object[0]);
     }
 
+    private static CharSequence formatSpannable(String str, String str2, int i10, int i11, Object... objArr) {
+        String str3;
+        try {
+            String c3 = BuildVars.USE_CLOUD_STRINGS ? getInstance().localizationExternal.c(ApplicationLoader.applicationContext, str, i10) : null;
+            if (c3 == null) {
+                if (BuildVars.USE_CLOUD_STRINGS && str2 != null) {
+                    c3 = getInstance().localizationExternal.c(ApplicationLoader.applicationContext, str2, i11);
+                }
+                if (c3 == null) {
+                    try {
+                        if (i10 != 0) {
+                            try {
+                                c3 = getInstance().getLocalizedString(i10);
+                            } catch (Exception unused) {
+                                if (i11 != 0) {
+                                    c3 = getInstance().getLocalizedString(i11);
+                                }
+                            }
+                        } else if (i11 != 0) {
+                            c3 = getInstance().getLocalizedString(i11);
+                        }
+                    } catch (Exception unused2) {
+                    }
+                }
+            }
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(c3);
+            int i12 = 0;
+            while (i12 < objArr.length) {
+                String str4 = "s";
+                Object obj = objArr[i12];
+                if (obj instanceof CharSequence) {
+                    str3 = (CharSequence) obj;
+                } else {
+                    if (obj instanceof Integer) {
+                        str3 = "" + ((Integer) objArr[i12]);
+                    } else if (obj instanceof Long) {
+                        str3 = "" + ((Long) objArr[i12]);
+                    } else {
+                        str3 = obj == null ? "null" : "";
+                    }
+                    str4 = "d";
+                }
+                StringBuilder sb = new StringBuilder();
+                sb.append("%");
+                i12++;
+                sb.append(i12);
+                sb.append("$");
+                sb.append(str4);
+                String sb2 = sb.toString();
+                int indexOf = spannableStringBuilder.toString().indexOf(sb2);
+                if (indexOf != -1) {
+                    spannableStringBuilder.replace(indexOf, sb2.length() + indexOf, str3);
+                } else {
+                    String str5 = "%" + str4;
+                    int indexOf2 = spannableStringBuilder.toString().indexOf(str5);
+                    if (indexOf2 != -1) {
+                        spannableStringBuilder.replace(indexOf2, str5.length() + indexOf2, str3);
+                    }
+                }
+            }
+            return spannableStringBuilder;
+        } catch (Exception e6) {
+            FileLog.e(e6);
+            return "LOC_ERR: " + str;
+        }
+    }
+
+    private static String formatString(String str, String str2, int i10, int i11, Object... objArr) {
+        try {
+            String c3 = BuildVars.USE_CLOUD_STRINGS ? getInstance().localizationExternal.c(ApplicationLoader.applicationContext, str, i10) : null;
+            if (c3 == null) {
+                if (BuildVars.USE_CLOUD_STRINGS && str2 != null) {
+                    c3 = getInstance().localizationExternal.c(ApplicationLoader.applicationContext, str2, i11);
+                }
+                if (c3 == null) {
+                    try {
+                        if (i10 != 0) {
+                            try {
+                                c3 = getInstance().getLocalizedString(i10);
+                            } catch (Exception unused) {
+                                if (i11 != 0) {
+                                    c3 = getInstance().getLocalizedString(i11);
+                                }
+                            }
+                        } else if (i11 != 0) {
+                            c3 = getInstance().getLocalizedString(i11);
+                        }
+                    } catch (Exception unused2) {
+                    }
+                }
+            }
+            if (getInstance().currentLocale != null) {
+                return String.format(getInstance().currentLocale, c3, objArr);
+            }
+            return String.format(c3, objArr);
+        } catch (Exception e6) {
+            FileLog.e(e6);
+            return "LOC_ERR: " + str;
+        }
+    }
+
     public static String formatUserStatus(int i10, TLRPC.User user, boolean[] zArr, boolean[] zArr2) {
         TLRPC.UserStatus userStatus;
         TLRPC.UserStatus userStatus2;
@@ -4873,6 +4912,18 @@ public class LocaleController {
         } else {
             return getString("ALongTimeAgo", R.string.ALongTimeAgo);
         }
+    }
+
+    @Deprecated
+    public static String getString(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return org.telegram.ui.yh.k("LOC_ERR:", str);
+        }
+        int stringResId = getStringResId(str);
+        if (stringResId != 0) {
+            return getString(str, stringResId);
+        }
+        return getServerString(str);
     }
 
     public String getTranslitString(String str, boolean z4, boolean z10) {
@@ -5487,173 +5538,7 @@ public class LocaleController {
         return sb.toString();
     }
 
-    public static String formatPluralStringComma(String str, int i10, char c3, Object... objArr) {
-        if (str != null) {
-            try {
-                if (str.length() != 0 && getInstance().currentPluralRules != null) {
-                    String str2 = str + "_" + getInstance().stringForQuantity(getInstance().currentPluralRules.quantityForNumber(i10));
-                    int i11 = 0;
-                    StringBuilder sb = new StringBuilder(String.format("%d", Integer.valueOf(i10)));
-                    for (int length = sb.length() - 3; length > 0; length -= 3) {
-                        sb.insert(length, c3);
-                    }
-                    String b10 = BuildVars.USE_CLOUD_STRINGS ? getInstance().localizationExternal.b(str2) : null;
-                    if (b10 == null) {
-                        b10 = BuildVars.USE_CLOUD_STRINGS ? getInstance().localizationExternal.b(str + "_other") : null;
-                    }
-                    if (b10 == null) {
-                        try {
-                            b10 = getInstance().getLocalizedString(getLocalizedStringByName(str2));
-                        } catch (Exception unused) {
-                        }
-                    }
-                    if (b10 == null) {
-                        b10 = getInstance().getLocalizedString(getLocalizedStringByName(str + "_other"));
-                    }
-                    String replace = b10.replace("%d", "%1$s").replace("%1$d", "%1$s");
-                    int length2 = (objArr == null ? 0 : objArr.length) + 1;
-                    Object[] objArr2 = new Object[length2];
-                    while (i11 < length2) {
-                        objArr2[i11] = i11 == 0 ? sb : objArr[i11 - 1];
-                        i11++;
-                    }
-                    if (getInstance().currentLocale != null) {
-                        return String.format(getInstance().currentLocale, replace, objArr2);
-                    }
-                    return String.format(replace, objArr2);
-                }
-            } catch (Exception e6) {
-                FileLog.e(e6);
-                return "LOC_ERR: " + str;
-            }
-        }
-        return "LOC_ERR:" + str;
-    }
-
-    public static CharSequence formatSpannable(String str, int i10, Object... objArr) {
-        return formatSpannable(str, null, i10, 0, objArr);
-    }
-
-    @Deprecated
-    public static String formatString(String str, int i10, Object... objArr) {
-        return formatString(str, null, i10, 0, objArr);
-    }
-
-    @Deprecated
-    public static String getString(String str, int i10) {
-        return getInstance().getStringInternal(str, i10);
-    }
-
-    private static CharSequence formatSpannable(String str, String str2, int i10, int i11, Object... objArr) {
-        String str3;
-        try {
-            String b10 = BuildVars.USE_CLOUD_STRINGS ? getInstance().localizationExternal.b(str) : null;
-            if (b10 == null) {
-                if (BuildVars.USE_CLOUD_STRINGS && str2 != null) {
-                    b10 = getInstance().localizationExternal.b(str2);
-                }
-                if (b10 == null) {
-                    try {
-                        if (i10 != 0) {
-                            try {
-                                b10 = getInstance().getLocalizedString(i10);
-                            } catch (Exception unused) {
-                                if (i11 != 0) {
-                                    b10 = getInstance().getLocalizedString(i11);
-                                }
-                            }
-                        } else if (i11 != 0) {
-                            b10 = getInstance().getLocalizedString(i11);
-                        }
-                    } catch (Exception unused2) {
-                    }
-                }
-            }
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(b10);
-            int i12 = 0;
-            while (i12 < objArr.length) {
-                String str4 = "s";
-                Object obj = objArr[i12];
-                if (obj instanceof CharSequence) {
-                    str3 = (CharSequence) obj;
-                } else {
-                    if (obj instanceof Integer) {
-                        str3 = "" + ((Integer) objArr[i12]);
-                    } else if (obj instanceof Long) {
-                        str3 = "" + ((Long) objArr[i12]);
-                    } else {
-                        str3 = obj == null ? "null" : "";
-                    }
-                    str4 = "d";
-                }
-                StringBuilder sb = new StringBuilder();
-                sb.append("%");
-                i12++;
-                sb.append(i12);
-                sb.append("$");
-                sb.append(str4);
-                String sb2 = sb.toString();
-                int indexOf = spannableStringBuilder.toString().indexOf(sb2);
-                if (indexOf != -1) {
-                    spannableStringBuilder.replace(indexOf, sb2.length() + indexOf, str3);
-                } else {
-                    String str5 = "%" + str4;
-                    int indexOf2 = spannableStringBuilder.toString().indexOf(str5);
-                    if (indexOf2 != -1) {
-                        spannableStringBuilder.replace(indexOf2, str5.length() + indexOf2, str3);
-                    }
-                }
-            }
-            return spannableStringBuilder;
-        } catch (Exception e6) {
-            FileLog.e(e6);
-            return "LOC_ERR: " + str;
-        }
-    }
-
-    private static String formatString(String str, String str2, int i10, int i11, Object... objArr) {
-        try {
-            String b10 = BuildVars.USE_CLOUD_STRINGS ? getInstance().localizationExternal.b(str) : null;
-            if (b10 == null) {
-                if (BuildVars.USE_CLOUD_STRINGS && str2 != null) {
-                    b10 = getInstance().localizationExternal.b(str2);
-                }
-                if (b10 == null) {
-                    try {
-                        if (i10 != 0) {
-                            try {
-                                b10 = getInstance().getLocalizedString(i10);
-                            } catch (Exception unused) {
-                                if (i11 != 0) {
-                                    b10 = getInstance().getLocalizedString(i11);
-                                }
-                            }
-                        } else if (i11 != 0) {
-                            b10 = getInstance().getLocalizedString(i11);
-                        }
-                    } catch (Exception unused2) {
-                    }
-                }
-            }
-            if (getInstance().currentLocale != null) {
-                return String.format(getInstance().currentLocale, b10, objArr);
-            }
-            return String.format(b10, objArr);
-        } catch (Exception e6) {
-            FileLog.e(e6);
-            return "LOC_ERR: " + str;
-        }
-    }
-
-    @Deprecated
-    public static String getString(String str) {
-        if (TextUtils.isEmpty(str)) {
-            return org.telegram.ui.yh.k("LOC_ERR:", str);
-        }
-        int stringResId = getStringResId(str);
-        if (stringResId != 0) {
-            return getString(str, stringResId);
-        }
-        return getServerString(str);
+    public static java.lang.String formatPluralStringComma(java.lang.String r8, int r9, char r10, java.lang.Object... r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LocaleController.formatPluralStringComma(java.lang.String, int, char, java.lang.Object[]):java.lang.String");
     }
 }

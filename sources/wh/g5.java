@@ -16,7 +16,7 @@ import org.telegram.ui.Components.j51;
 import org.telegram.ui.Components.tl0;
 import org.telegram.ui.Components.x51;
 public final class g5 extends i51 {
-    public static final int f49761a = 0;
+    public static final int f49762a = 0;
 
     static {
         i51.setup(new i51());
@@ -30,16 +30,16 @@ public final class g5 extends i51 {
         y2 y2Var = (y2) j51Var.H;
         k5 k5Var = i5Var.v;
         boolean z11 = true;
-        if (i5Var.f50174a != aVar) {
+        if (i5Var.f50175a != aVar) {
             z10 = true;
         } else {
             z10 = false;
         }
-        i5Var.f50174a = aVar;
+        i5Var.f50175a = aVar;
         i5Var.B = y2Var;
-        i5Var.f49801y = LocaleController.isRTL;
+        i5Var.f49802y = LocaleController.isRTL;
         i5Var.c(aVar);
-        TL_iv.PageBlock pageBlock = aVar.f49616b;
+        TL_iv.PageBlock pageBlock = aVar.f49617b;
         if (!(pageBlock instanceof TL_iv.pageBlockTable)) {
             return;
         }
@@ -50,10 +50,10 @@ public final class g5 extends i51 {
         Objects.requireNonNull(linkedHashSet);
         k5Var.setSelectionProvider(new sf.g(linkedHashSet, 20));
         i5Var.y();
-        e1 e1Var = i5Var.f49797r;
-        a aVar2 = i5Var.f50174a;
+        e1 e1Var = i5Var.f49798r;
+        a aVar2 = i5Var.f50175a;
         if (aVar2 != null) {
-            TL_iv.PageBlock pageBlock2 = aVar2.f49616b;
+            TL_iv.PageBlock pageBlock2 = aVar2.f49617b;
             if (pageBlock2 instanceof TL_iv.pageBlockTable) {
                 TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock2;
                 if (pageblocktable.title == null) {
@@ -61,15 +61,15 @@ public final class g5 extends i51 {
                 }
                 String l10 = x5.l(pageblocktable.title);
                 SpannableStringBuilder r10 = x5.r(pageblocktable.title, null, true);
-                a aVar3 = i5Var.f50174a;
-                if (!aVar3.f49631s) {
-                    aVar3.f49631s = true;
+                a aVar3 = i5Var.f50175a;
+                if (!aVar3.f49632s) {
+                    aVar3.f49632s = true;
                     if (r10.length() != 0 && (x5.q(0, r10.length(), r10) & 1) == 0) {
                         z11 = false;
                     }
-                    aVar3.f49630r = z11;
+                    aVar3.f49631r = z11;
                 }
-                e1Var.setAutoBold(i5Var.f50174a.f49630r);
+                e1Var.setAutoBold(i5Var.f50175a.f49631r);
                 if (z10 || !String.valueOf(e1Var.getText()).equals(l10)) {
                     e1Var.setTextSilently(Emoji.replaceEmoji(r10, e1Var.getPaint().getFontMetricsInt(), false));
                     e1Var.invalidateEffects();
@@ -77,7 +77,7 @@ public final class g5 extends i51 {
             }
         }
         i5Var.e();
-        i5Var.f49799w.requestLayout();
+        i5Var.f49800w.requestLayout();
     }
 
     @Override

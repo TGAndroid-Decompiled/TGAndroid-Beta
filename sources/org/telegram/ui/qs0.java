@@ -29,7 +29,7 @@ public final class qs0 extends AnimatorListenerAdapter {
         photoViewer.f34236b6 = r22;
         photoViewer.X5 = r22;
         photoViewer.f34230b0.invalidate();
-        CropAreaView cropAreaView = photoViewer.f34450z1.f25248b.f51165a;
+        CropAreaView cropAreaView = photoViewer.f34450z1.f25248b.f51166a;
         float r23 = photoViewer.r2(false);
         cropAreaView.f24858k0 = 0.0f;
         cropAreaView.f24859l0 = r23;

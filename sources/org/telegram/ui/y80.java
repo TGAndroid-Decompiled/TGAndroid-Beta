@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class y80 implements Runnable {
@@ -26,7 +27,7 @@ public final class y80 implements Runnable {
                 Pattern pattern = LaunchActivity.f34134y1;
                 org.telegram.ui.Components.qb qbVar = new org.telegram.ui.Components.qb(launchActivity, null);
                 qbVar.d(R.raw.email_check_inbox, new String[0]);
-                qbVar.f30359b.setText(launchActivity.getString(R.string.YourLoginEmailChangedSuccess));
+                qbVar.f30359b.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
                 org.telegram.ui.ActionBar.p2 R = LaunchActivity.R();
                 if (R != null) {
                     org.telegram.ui.Components.ic.g(R, qbVar, 1500).j();

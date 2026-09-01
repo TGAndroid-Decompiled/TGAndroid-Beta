@@ -17,16 +17,16 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.np;
 import org.telegram.ui.Components.z8;
 public final class k1 extends FrameLayout {
-    public final z8 f49086a;
-    public final ImageReceiver f49087b;
-    public final TextView f49088c;
+    public final z8 f49087a;
+    public final ImageReceiver f49088b;
+    public final TextView f49089c;
     public final TextView d;
-    public final np f49089e;
-    public final Path f49090f;
+    public final np f49090e;
+    public final Path f49091f;
     public final Paint h;
-    public final g6 f49091n;
-    public final int[] f49092r;
-    public boolean f49093s;
+    public final g6 f49092n;
+    public final int[] f49093r;
+    public boolean f49094s;
 
     public k1(Context context, g6 g6Var) {
         super(context);
@@ -34,15 +34,15 @@ public final class k1 extends FrameLayout {
         float f11;
         float f12;
         float f13;
-        this.f49086a = new z8((g6) null);
-        this.f49087b = new ImageReceiver(this);
-        this.f49090f = new Path();
+        this.f49087a = new z8((g6) null);
+        this.f49088b = new ImageReceiver(this);
+        this.f49091f = new Path();
         this.h = new Paint(1);
-        this.f49092r = new int[1];
-        this.f49091n = g6Var;
+        this.f49093r = new int[1];
+        this.f49092n = g6Var;
         setWillNotDraw(false);
         TextView textView = new TextView(context);
-        this.f49088c = textView;
+        this.f49089c = textView;
         textView.setSingleLine();
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
@@ -79,7 +79,7 @@ public final class k1 extends FrameLayout {
         }
         addView(textView2, c6.d(-1, -2.0f, 7, f12, 32.0f, f13, 0.0f));
         np npVar = new np(getContext(), 21, g6Var);
-        this.f49089e = npVar;
+        this.f49090e = npVar;
         npVar.b(-1, k6.f21659d6, k6.f21786k7);
         npVar.setDrawUnchecked(false);
         npVar.setDrawBackgroundAsArc(3);
@@ -96,13 +96,13 @@ public final class k1 extends FrameLayout {
             dp = AndroidUtilities.dp(9.0f);
         }
         float f11 = dp;
-        ImageReceiver imageReceiver = this.f49087b;
+        ImageReceiver imageReceiver = this.f49088b;
         imageReceiver.setImageCoords(f11, AndroidUtilities.dp(11.33f), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
         imageReceiver.draw(canvas);
         super.onDraw(canvas);
-        canvas.drawPath(this.f49090f, this.h);
-        if (this.f49093s) {
-            Paint T0 = k6.T0("paintDivider", this.f49091n);
+        canvas.drawPath(this.f49091f, this.h);
+        if (this.f49094s) {
+            Paint T0 = k6.T0("paintDivider", this.f49092n);
             if (T0 == null) {
                 T0 = k6.f21779k0;
             }
@@ -127,15 +127,15 @@ public final class k1 extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         float measuredWidth;
         int i12;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f) + (this.f49093s ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f) + (this.f49094s ? 1 : 0), 1073741824));
         Paint.Style style = Paint.Style.STROKE;
         Paint paint = this.h;
         paint.setStyle(style);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
-        paint.setColor(k6.l1(0.85f, k6.v0(k6.f22053z6, this.f49091n)));
-        Path path = this.f49090f;
+        paint.setColor(k6.l1(0.85f, k6.v0(k6.f22053z6, this.f49092n)));
+        Path path = this.f49091f;
         path.rewind();
         float measuredHeight = getMeasuredHeight() / 2.0f;
         if (LocaleController.isRTL) {

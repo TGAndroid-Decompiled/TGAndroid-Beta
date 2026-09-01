@@ -111,7 +111,7 @@ public final class a20 extends FrameLayout implements xd.b {
             this.f25130f = new ArrayList();
         }
         this.f25130f.add(view);
-        d(view, 1.0f - this.f25127b.f50504e);
+        d(view, 1.0f - this.f25127b.f50505e);
     }
 
     @Override
@@ -157,11 +157,11 @@ public final class a20 extends FrameLayout implements xd.b {
     }
 
     public boolean getButtonVisible() {
-        return this.f25126a.f50505f;
+        return this.f25126a.f50506f;
     }
 
     public boolean getProgressVisible() {
-        return this.f25127b.f50505f;
+        return this.f25127b.f50506f;
     }
 
     @Override

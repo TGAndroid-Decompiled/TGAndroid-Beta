@@ -4,13 +4,13 @@ import j3.u1;
 import java.io.EOFException;
 import org.telegram.ui.Components.ai;
 public final class f {
-    public final int f50865a = 1;
-    public boolean f50866b;
-    public int f50867c;
+    public final int f50866a = 1;
+    public boolean f50867b;
+    public int f50868c;
     public boolean d;
-    public int f50868e;
-    public boolean f50869f;
-    public int f50870g;
+    public int f50869e;
+    public boolean f50870f;
+    public int f50871g;
     public Object h;
 
     public f(s5.m mVar) {
@@ -20,8 +20,8 @@ public final class f {
         long j10 = aVar.f4045b;
         ai aiVar = (ai) mVar.d;
         h hVar = (h) mVar.f47063c;
-        int i10 = hVar.f50873a;
-        int i11 = hVar.f50873a;
+        int i10 = hVar.f50874a;
+        int i11 = hVar.f50874a;
         byte b12 = 2;
         if (i10 == 2) {
             aiVar.getClass();
@@ -50,11 +50,11 @@ public final class f {
         }
         byte b13 = 8;
         if (i11 == 2) {
-            this.f50868e = ((aiVar.S() & 255) << 16) | ((aiVar.S() & 255) << 8) | (aiVar.S() & 255);
+            this.f50869e = ((aiVar.S() & 255) << 16) | ((aiVar.S() & 255) << 8) | (aiVar.S() & 255);
         } else if (i11 == 3) {
-            this.f50868e = aiVar.Y();
+            this.f50869e = aiVar.Y();
         } else {
-            this.f50868e = aiVar.Z();
+            this.f50869e = aiVar.Z();
         }
         if (i11 > 2) {
             aiVar.S();
@@ -72,56 +72,56 @@ public final class f {
             }
             boolean z4 = (b13 & S) != 0;
             this.d = z4;
-            this.f50866b = (b12 & S) != 0;
+            this.f50867b = (b12 & S) != 0;
             boolean z10 = (S & b14) != 0;
-            this.f50869f = z10;
+            this.f50870f = z10;
             if (i11 == 3) {
                 if (z4) {
-                    this.f50870g = aiVar.Y();
-                    this.f50868e -= 4;
+                    this.f50871g = aiVar.Y();
+                    this.f50869e -= 4;
                 }
                 if (z10) {
                     aiVar.S();
-                    this.f50868e--;
+                    this.f50869e--;
                 }
                 if ((S & b10) != 0) {
                     aiVar.S();
-                    this.f50868e--;
+                    this.f50869e--;
                 }
             } else {
                 if ((S & b10) != 0) {
                     aiVar.S();
-                    this.f50868e--;
+                    this.f50869e--;
                 }
                 if (z10) {
                     aiVar.S();
-                    this.f50868e--;
+                    this.f50869e--;
                 }
                 if ((S & b11) != 0) {
-                    this.f50870g = aiVar.Z();
-                    this.f50868e -= 4;
+                    this.f50871g = aiVar.Z();
+                    this.f50869e -= 4;
                 }
             }
         }
-        this.f50867c = (int) (aVar.f4045b - j10);
+        this.f50868c = (int) (aVar.f4045b - j10);
     }
 
     public void a(int i10) {
         boolean z4;
-        boolean z10 = this.f50866b;
+        boolean z10 = this.f50867b;
         if (i10 > 0) {
             z4 = true;
         } else {
             z4 = false;
         }
-        this.f50866b = z10 | z4;
-        this.f50867c += i10;
+        this.f50867b = z10 | z4;
+        this.f50868c += i10;
     }
 
     public String toString() {
-        switch (this.f50865a) {
+        switch (this.f50866a) {
             case 0:
-                return String.format("%s[id=%s, bodysize=%d]", f.class.getSimpleName(), (String) this.h, Integer.valueOf(this.f50868e));
+                return String.format("%s[id=%s, bodysize=%d]", f.class.getSimpleName(), (String) this.h, Integer.valueOf(this.f50869e));
             default:
                 return super.toString();
         }

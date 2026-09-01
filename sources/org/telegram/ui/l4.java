@@ -518,10 +518,10 @@ public final class l4 extends o70 implements NotificationCenter.NotificationCent
                                 textmath.tried = true;
                                 wh.r a10 = wh.r.a(textmath.source, AndroidUtilities.dp(20.0f), true);
                                 if (a10 != null) {
-                                    textmath.f21068w = a10.f49958b;
-                                    textmath.h = a10.f49959c;
+                                    textmath.f21068w = a10.f49959b;
+                                    textmath.h = a10.f49960c;
                                     textmath.depth = a10.d;
-                                    textmath.bitmap = a10.f49957a;
+                                    textmath.bitmap = a10.f49958a;
                                 }
                             }
                             if (textmath.bitmap == null) {

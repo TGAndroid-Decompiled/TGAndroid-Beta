@@ -150,7 +150,7 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
                     break;
                 }
                 View childAt3 = yg0Var.getChildAt(i12);
-                if (childAt3.getVisibility() == 0 && (childAt3 instanceof ch.b) && ((ch.b) childAt3).h.f50505f) {
+                if (childAt3.getVisibility() == 0 && (childAt3 instanceof ch.b) && ((ch.b) childAt3).h.f50506f) {
                     view2 = childAt3;
                     break;
                 }
@@ -318,7 +318,7 @@ public final class yg0 extends org.telegram.ui.Components.b6 {
         int entriesCount = getEntriesCount();
         for (int i10 = 0; i10 < entriesCount; i10++) {
             xd.e n10 = this.f25499c.n(i10);
-            ((ch.b) ((org.telegram.ui.Components.a6) n10.f50512a).f25164a).setVisualWidth(n10.b().width());
+            ((ch.b) ((org.telegram.ui.Components.a6) n10.f50513a).f25164a).setVisualWidth(n10.b().width());
         }
     }
 

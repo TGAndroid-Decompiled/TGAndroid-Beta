@@ -2,14 +2,14 @@ package y2;
 
 import java.util.Arrays;
 public final class l {
-    public final v2.c f50701a;
-    public final byte[] f50702b;
+    public final v2.c f50702a;
+    public final byte[] f50703b;
 
     public l(v2.c cVar, byte[] bArr) {
         if (cVar != null) {
             if (bArr != null) {
-                this.f50701a = cVar;
-                this.f50702b = bArr;
+                this.f50702a = cVar;
+                this.f50703b = bArr;
                 return;
             }
             throw new NullPointerException("bytes is null");
@@ -25,17 +25,17 @@ public final class l {
             return false;
         }
         l lVar = (l) obj;
-        if (!this.f50701a.equals(lVar.f50701a)) {
+        if (!this.f50702a.equals(lVar.f50702a)) {
             return false;
         }
-        return Arrays.equals(this.f50702b, lVar.f50702b);
+        return Arrays.equals(this.f50703b, lVar.f50703b);
     }
 
     public final int hashCode() {
-        return ((this.f50701a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f50702b);
+        return ((this.f50702a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f50703b);
     }
 
     public final String toString() {
-        return "EncodedPayload{encoding=" + this.f50701a + ", bytes=[...]}";
+        return "EncodedPayload{encoding=" + this.f50702a + ", bytes=[...]}";
     }
 }

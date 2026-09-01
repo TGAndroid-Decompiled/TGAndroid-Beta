@@ -41,10 +41,10 @@ public final class ay0 implements h5.d {
                     ((org.telegram.ui.Cells.j5) view).getCheckBox().invalidate();
                 } else if (view instanceof vf.a1) {
                     vf.a1 a1Var = (vf.a1) view;
-                    org.telegram.ui.Components.dq dqVar = a1Var.f48984r;
+                    org.telegram.ui.Components.dq dqVar = a1Var.f48985r;
                     int dp = AndroidUtilities.dp(8.0f);
                     int i10 = org.telegram.ui.ActionBar.k6.f21857o6;
-                    org.telegram.ui.ActionBar.g6 g6Var = a1Var.f48978a;
+                    org.telegram.ui.ActionBar.g6 g6Var = a1Var.f48979a;
                     int v02 = org.telegram.ui.ActionBar.k6.v0(i10, g6Var);
                     a1Var.a(v02);
                     int l1 = org.telegram.ui.ActionBar.k6.l1(0.1f, v02);

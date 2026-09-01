@@ -1,13 +1,13 @@
 package vf;
 public final class d0 implements Runnable {
-    public final int f49017a;
-    public final Object f49018b;
-    public final Object f49019c;
+    public final int f49018a;
+    public final Object f49019b;
+    public final Object f49020c;
 
     public d0(int i10, Object obj, Object obj2) {
-        this.f49017a = i10;
-        this.f49018b = obj;
-        this.f49019c = obj2;
+        this.f49018a = i10;
+        this.f49019b = obj;
+        this.f49020c = obj2;
     }
 
     @Override

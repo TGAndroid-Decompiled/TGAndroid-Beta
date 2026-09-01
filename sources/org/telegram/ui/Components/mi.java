@@ -2473,7 +2473,7 @@ public class mi extends org.telegram.ui.ActionBar.h3 implements NotificationCent
             return true;
         }
         Y0();
-        if (this.h.f50505f) {
+        if (this.h.f50506f) {
             this.F1 = true;
             this.W1.I1(7, true, z4, i10, i11, j10, z10, false, 0L);
             return true;
@@ -4024,16 +4024,16 @@ public class mi extends org.telegram.ui.ActionBar.h3 implements NotificationCent
     }
 
     public final void e1() {
-        float f10 = this.f29039c.f50504e;
-        float f11 = (1.0f - this.f29035b.f50504e) * f10;
-        this.f29095t1.setTranslationY(AndroidUtilities.dp(48.0f) * Math.min(Math.min(1.0f, 1.0f - ((1.0f - f10) * (1.0f - this.d.f50504e))), 1.0f - f11));
+        float f10 = this.f29039c.f50505e;
+        float f11 = (1.0f - this.f29035b.f50505e) * f10;
+        this.f29095t1.setTranslationY(AndroidUtilities.dp(48.0f) * Math.min(Math.min(1.0f, 1.0f - ((1.0f - f10) * (1.0f - this.d.f50505e))), 1.0f - f11));
     }
 
     public final void f1() {
         float f10;
-        float f11 = this.f29046e.f50504e;
-        float f12 = this.f29050f.f50504e;
-        float b10 = lf.l0.b(this.h.f50504e);
+        float f11 = this.f29046e.f50505e;
+        float f12 = this.f29050f.f50505e;
+        float b10 = lf.l0.b(this.h.f50505e);
         if (this.O1) {
             f10 = 0.0f;
         } else {
@@ -4052,7 +4052,7 @@ public class mi extends org.telegram.ui.ActionBar.h3 implements NotificationCent
         mh mhVar = this.E0;
         ag.l lVar = this.L0;
         if (lVar != null && lVar.getVisibility() == 0 && lVar.getAlpha() != 0.0f) {
-            float f10 = this.f29035b.f50504e;
+            float f10 = this.f29035b.f50505e;
             float abs = Math.abs(AndroidUtilities.lerp(-1.0f, 1.0f, f10));
             vhVar.setAlpha(abs * abs * abs * abs);
             mhVar.setTranslationY(AndroidUtilities.lerp(this.f29045d2, ((lVar.getTranslationY() + lVar.getTop()) - mhVar.getTop()) + AndroidUtilities.dp(8.0f), pr.f30186j.getInterpolation(f10)));
@@ -4502,7 +4502,7 @@ public class mi extends org.telegram.ui.ActionBar.h3 implements NotificationCent
         float f10 = 0.0f;
         while (it.hasNext()) {
             xd.e eVar = (xd.e) it.next();
-            long longValue = ((Long) eVar.f50512a).longValue();
+            long longValue = ((Long) eVar.f50513a).longValue();
             if (longValue == 1 || longValue == 3 || longValue == 4 || longValue == 5 || longValue == 6 || longValue == 9 || longValue == 11 || longValue == 12) {
                 f10 += eVar.c();
             }

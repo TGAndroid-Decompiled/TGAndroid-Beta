@@ -1291,21 +1291,21 @@ public final class p81 extends org.telegram.ui.ActionBar.p2 implements Notificat
 
     @Override
     public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return !this.f39947a.f50505f;
+        return !this.f39947a.f50506f;
     }
 
     public final void j0() {
         float f10;
         org.telegram.ui.ActionBar.w0 w0Var = this.f39951f;
         xd.a aVar = this.f39947a;
-        org.telegram.ui.Components.a20.d(w0Var, 1.0f - aVar.f50504e);
+        org.telegram.ui.Components.a20.d(w0Var, 1.0f - aVar.f50505e);
         ImageView backButton = this.actionBar.getBackButton();
         if (this.J) {
             f10 = 0.0f;
         } else {
             f10 = 1.0f;
         }
-        org.telegram.ui.Components.a20.d(backButton, AndroidUtilities.lerp(f10, 1.0f, aVar.f50504e));
+        org.telegram.ui.Components.a20.d(backButton, AndroidUtilities.lerp(f10, 1.0f, aVar.f50505e));
     }
 
     public final void l0(org.telegram.ui.ActionBar.p2 p2Var) {

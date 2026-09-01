@@ -48,7 +48,7 @@ public final class f implements v, Cloneable {
 
     @Override
     public final u create(pa.g gVar, wa.a aVar) {
-        Class cls = aVar.f49483a;
+        Class cls = aVar.f49484a;
         boolean b10 = b(cls, true);
         boolean b11 = b(cls, false);
         if (!b10 && !b11) {

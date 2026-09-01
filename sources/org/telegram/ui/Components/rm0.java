@@ -34,7 +34,7 @@ public final class rm0 implements View.OnLongClickListener {
                 }
                 return false;
             default:
-                xg.b bVar = ((xg.g) this.f30803c).f50587n;
+                xg.b bVar = ((xg.g) this.f30803c).f50588n;
                 if (bVar != null) {
                     org.telegram.ui.xn xnVar = ((org.telegram.ui.te) bVar).f41585b;
                     int i10 = this.f30802b;

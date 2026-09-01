@@ -82,7 +82,7 @@ public final class f extends cb.f {
                 f(t7.NO_ERROR, aVar, elapsedRealtime);
                 this.d = false;
             } catch (ya.a e6) {
-                if (e6.f50800a == 14) {
+                if (e6.f50801a == 14) {
                     t7Var = t7.MODEL_NOT_DOWNLOADED;
                 } else {
                     t7Var = t7.UNKNOWN_ERROR;

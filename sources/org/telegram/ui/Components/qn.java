@@ -378,7 +378,7 @@ public final class qn extends sl0 {
                 if (npVar != null) {
                     npVar.getCheckBoxBase().i(AndroidUtilities.dp(6.0f));
                     CheckBoxBase checkBoxBase = npVar.getCheckBoxBase();
-                    float f10 = pnVar.f22647a.f50504e;
+                    float f10 = pnVar.f22647a.f50505e;
                     if (checkBoxBase.f24814w != f10) {
                         checkBoxBase.f24814w = f10;
                         checkBoxBase.b();

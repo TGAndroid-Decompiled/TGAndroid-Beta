@@ -23,27 +23,27 @@ import m.l1;
 import m.q;
 import r0.j0;
 public final class k {
-    public static k f50427e;
-    public int f50428a;
-    public final Object f50429b;
-    public Object f50430c;
+    public static k f50428e;
+    public int f50429a;
+    public final Object f50430b;
+    public Object f50431c;
     public Object d;
 
     public k(int i10, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f50428a = i10;
+        this.f50429a = i10;
         this.d = str;
-        this.f50429b = arrayList;
-        this.f50430c = arrayList2;
+        this.f50430b = arrayList;
+        this.f50431c = arrayList2;
     }
 
     public static synchronized k d(Context context) {
         k kVar;
         synchronized (k.class) {
             try {
-                if (f50427e == null) {
-                    f50427e = new k(context, Executors.unconfigurableScheduledExecutorService(Executors.newScheduledThreadPool(1, new u("MessengerIpcClient"))));
+                if (f50428e == null) {
+                    f50428e = new k(context, Executors.unconfigurableScheduledExecutorService(Executors.newScheduledThreadPool(1, new u("MessengerIpcClient"))));
                 }
-                kVar = f50427e;
+                kVar = f50428e;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -52,7 +52,7 @@ public final class k {
     }
 
     public void a() {
-        ImageView imageView = (ImageView) this.f50429b;
+        ImageView imageView = (ImageView) this.f50430b;
         Drawable drawable = imageView.getDrawable();
         if (drawable != null) {
             l1.a(drawable);
@@ -83,7 +83,7 @@ public final class k {
                     return;
                 }
             }
-            e3 e3Var2 = (e3) this.f50430c;
+            e3 e3Var2 = (e3) this.f50431c;
             if (e3Var2 != null) {
                 q.d(drawable, e3Var2, imageView.getDrawableState());
             }
@@ -91,15 +91,15 @@ public final class k {
     }
 
     public String b(int i10, String str, long j10, long j11) {
-        String[] strArr = (String[]) this.f50429b;
+        String[] strArr = (String[]) this.f50430b;
         String[] strArr2 = (String[]) this.d;
         StringBuilder sb = new StringBuilder();
         int i11 = 0;
         while (true) {
-            int i12 = this.f50428a;
+            int i12 = this.f50429a;
             if (i11 < i12) {
                 sb.append(strArr[i11]);
-                int i13 = ((int[]) this.f50430c)[i11];
+                int i13 = ((int[]) this.f50431c)[i11];
                 if (i13 == 1) {
                     sb.append(str);
                 } else if (i13 == 2) {
@@ -121,7 +121,7 @@ public final class k {
         Drawable drawable;
         Drawable drawable2;
         int resourceId;
-        ImageView imageView = (ImageView) this.f50429b;
+        ImageView imageView = (ImageView) this.f50430b;
         Context context = imageView.getContext();
         int[] iArr = f.a.f5692f;
         w0 y10 = w0.y(context, attributeSet, iArr, i10);
@@ -177,25 +177,25 @@ public final class k {
         } catch (Throwable th2) {
             throw th2;
         }
-        return jVar.f50424b.getTask();
+        return jVar.f50425b.getTask();
     }
 
     public k(Serializable serializable, Serializable serializable2, Serializable serializable3, int i10) {
-        this.f50429b = serializable;
-        this.f50430c = serializable2;
+        this.f50430b = serializable;
+        this.f50431c = serializable2;
         this.d = serializable3;
-        this.f50428a = i10;
+        this.f50429a = i10;
     }
 
     public k(Context context, ScheduledExecutorService scheduledExecutorService) {
         this.d = new i(this);
-        this.f50428a = 1;
-        this.f50430c = scheduledExecutorService;
-        this.f50429b = context.getApplicationContext();
+        this.f50429a = 1;
+        this.f50431c = scheduledExecutorService;
+        this.f50430b = context.getApplicationContext();
     }
 
     public k(ImageView imageView) {
-        this.f50428a = 0;
-        this.f50429b = imageView;
+        this.f50429a = 0;
+        this.f50430b = imageView;
     }
 }

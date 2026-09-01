@@ -819,10 +819,10 @@ public class k extends FrameLayout implements xd.b, b6 {
         int min = Math.min(getMeasuredWidth() - AndroidUtilities.dp(116.0f), this.O0.getVisualWidth());
         xd.c cVar = this.Y0;
         if (z4) {
-            if (cVar.f50511g) {
-                f10 = cVar.f50510f;
+            if (cVar.f50512g) {
+                f10 = cVar.f50511f;
             } else {
-                f10 = cVar.f50509e;
+                f10 = cVar.f50510e;
             }
             float f11 = min;
             if (f10 != f11) {
@@ -852,7 +852,7 @@ public class k extends FrameLayout implements xd.b, b6 {
         if (this.f21534e1) {
             i10 = this.f21529c1;
         } else {
-            i10 = (int) this.f21523a1.f50509e;
+            i10 = (int) this.f21523a1.f50510e;
         }
         if (this.f21537f1) {
             i10 = Math.max((int) ((1.0f - this.X0) * this.f21531d1), i10);
@@ -878,7 +878,7 @@ public class k extends FrameLayout implements xd.b, b6 {
                 }
             } else {
                 f10 = 1.0f;
-                i13 = (int) (dp * aVar.f50504e);
+                i13 = (int) (dp * aVar.f50505e);
             }
             int i17 = i13 + i10;
             int i18 = dp + dp2;
@@ -888,7 +888,7 @@ public class k extends FrameLayout implements xd.b, b6 {
             if (boVar2 == null) {
                 f11 = 0.0f;
             } else {
-                f11 = f10 - aVar2.f50504e;
+                f11 = f10 - aVar2.f50505e;
             }
             int lerp = AndroidUtilities.lerp(i17, max, f11);
             if (z4) {
@@ -899,13 +899,13 @@ public class k extends FrameLayout implements xd.b, b6 {
             if (this.O0 == null) {
                 f12 = 0.0f;
             } else {
-                f12 = f10 - aVar2.f50504e;
+                f12 = f10 - aVar2.f50505e;
             }
             int lerp2 = AndroidUtilities.lerp(i14, i18, f12);
             int width = getWidth() - lerp;
             int i19 = width - lerp2;
             if (this.O0 != null) {
-                int lerp3 = AndroidUtilities.lerp(Math.min(i19, ((int) this.Y0.f50509e) + i15), i19, Math.max(this.X0, actionModeFactor));
+                int lerp3 = AndroidUtilities.lerp(Math.min(i19, ((int) this.Y0.f50510e) + i15), i19, Math.max(this.X0, actionModeFactor));
                 lerp2 = ((width + lerp2) - lerp3) / 2;
                 width = lerp2 + lerp3;
                 float dp3 = AndroidUtilities.dp(3.0f) + ((lerp2 - ((ViewGroup.MarginLayoutParams) this.O0.getLayoutParams()).leftMargin) - this.O0.getLeftPadding()) + dp;
@@ -929,7 +929,7 @@ public class k extends FrameLayout implements xd.b, b6 {
             if (this.f21534e1) {
                 i12 = 255;
             } else {
-                i12 = (int) (aVar.f50504e * 255.0f);
+                i12 = (int) (aVar.f50505e * 255.0f);
             }
             bVar4.setAlpha(i12);
             this.f21527c.draw(canvas);
@@ -1070,10 +1070,10 @@ public class k extends FrameLayout implements xd.b, b6 {
         }
         this.f21526b1.a(z4, this.f21539g1);
         xd.c cVar = this.f21523a1;
-        if (cVar.f50511g) {
-            f10 = cVar.f50510f;
+        if (cVar.f50512g) {
+            f10 = cVar.f50511f;
         } else {
-            f10 = cVar.f50509e;
+            f10 = cVar.f50510e;
         }
         float f11 = max;
         if (f10 != f11) {

@@ -180,7 +180,7 @@ public final class qa implements Utilities.Callback {
                 }
                 return;
             default:
-                vf.m1 m1Var = ((vf.f1) obj2).f49048a;
+                vf.m1 m1Var = ((vf.f1) obj2).f49049a;
                 vf.m1.X(m1Var);
                 i10 = ((org.telegram.ui.ActionBar.p2) m1Var).currentAccount;
                 vf.p1.f(i10).k(i12, (String) obj);

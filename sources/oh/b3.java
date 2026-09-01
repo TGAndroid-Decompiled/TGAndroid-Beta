@@ -104,7 +104,7 @@ public final class b3 extends View {
                 super.dispatchDraw(canvas);
                 int dp = AndroidUtilities.dp(48.0f);
                 z60 z60Var = (z60) this.d;
-                int i10 = dp + ((int) z60Var.f43826b.f50509e);
+                int i10 = dp + ((int) z60Var.f43826b.f50510e);
                 Paint paint = (Paint) this.f16885c;
                 paint.setColor(z60Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21930s8));
                 RectF rectF2 = (RectF) this.f16884b;

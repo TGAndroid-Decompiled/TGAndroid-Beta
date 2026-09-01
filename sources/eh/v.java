@@ -52,7 +52,7 @@ public final class v extends FrameLayout {
         super.dispatchDraw(canvas);
         int width = getWidth() - AndroidUtilities.dp(11.0f);
         f9 f9Var = this.f5679a;
-        f9Var.setBounds(width - ((int) f9Var.f26792c.d.f50521f.f50529a), AndroidUtilities.dp(12.0f), getWidth() - AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f) + AndroidUtilities.dp(12.0f));
+        f9Var.setBounds(width - ((int) f9Var.f26792c.d.f50522f.f50530a), AndroidUtilities.dp(12.0f), getWidth() - AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f) + AndroidUtilities.dp(12.0f));
         f9Var.c(canvas);
     }
 

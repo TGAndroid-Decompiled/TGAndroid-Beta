@@ -410,7 +410,7 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.p2 implements xd
                 i11++;
             }
         }
-        contactsActivity.W.setTranslationY(AndroidUtilities.lerp(y10, contactsActivity.f34060f.getY() + contactsActivity.f34060f.getPaddingTop(), contactsActivity.f34055c.f50504e) - AndroidUtilities.dp(48.0f));
+        contactsActivity.W.setTranslationY(AndroidUtilities.lerp(y10, contactsActivity.f34060f.getY() + contactsActivity.f34060f.getPaddingTop(), contactsActivity.f34055c.f50505e) - AndroidUtilities.dp(48.0f));
         xd.a aVar = contactsActivity.f34053b;
         if (y10 > (contactsActivity.f34060f.getY() + contactsActivity.f34060f.getPaddingTop()) - AndroidUtilities.dp(12.0f)) {
             z4 = true;
@@ -874,7 +874,7 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.p2 implements xd
     }
 
     public final void k0() {
-        org.telegram.ui.Components.a20.d(this.f34057d0, (1.0f - this.f34055c.f50504e) * (1.0f - this.f34053b.f50504e));
+        org.telegram.ui.Components.a20.d(this.f34057d0, (1.0f - this.f34055c.f50505e) * (1.0f - this.f34053b.f50505e));
     }
 
     public final void l0() {
@@ -909,7 +909,7 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.p2 implements xd
 
     public final void m0() {
         float f10 = 1.0f;
-        float f11 = 1.0f - this.f34055c.f50504e;
+        float f11 = 1.0f - this.f34055c.f50505e;
         xs xsVar = this.d;
         org.telegram.ui.Components.a20.d(this.f34075s, f11 * ((xsVar == null || xsVar.F) ? 0.0f : 0.0f));
     }
@@ -1035,7 +1035,7 @@ public class ContactsActivity extends org.telegram.ui.ActionBar.p2 implements xd
                 o0();
                 return false;
             }
-        } else if (this.f34055c.f50505f) {
+        } else if (this.f34055c.f50506f) {
             if (z4) {
                 this.W.f26172r.getText().clear();
             }

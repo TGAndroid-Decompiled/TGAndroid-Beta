@@ -37,7 +37,7 @@ public final class ct0 extends AnimatorListenerAdapter {
             nVar.G = false;
             photoViewer.R0.setVisibility(8);
             photoViewer.f34450z1.setVisibility(8);
-            CropAreaView cropAreaView = photoViewer.f34450z1.f25248b.f51165a;
+            CropAreaView cropAreaView = photoViewer.f34450z1.f25248b.f51166a;
             cropAreaView.f24858k0 = 0.0f;
             cropAreaView.f24859l0 = 1.0f;
             cropAreaView.m0 = 0.0f;

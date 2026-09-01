@@ -16,7 +16,7 @@ import org.telegram.ui.Components.i10;
 import org.telegram.ui.Components.p51;
 import org.telegram.ui.Components.u01;
 public abstract class x5 {
-    public static final int[] f50157a = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
+    public static final int[] f50158a = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
 
     public static void a(SpannableStringBuilder spannableStringBuilder, TL_iv.RichText richText, int i10, TL_iv.PageBlock pageBlock, boolean z4) {
         String str;
@@ -426,7 +426,7 @@ public abstract class x5 {
     public static int q(int i10, int i11, CharSequence charSequence) {
         int i12 = 0;
         for (int i13 = 0; i13 < 9; i13++) {
-            int i14 = f50157a[i13];
+            int i14 = f50158a[i13];
             if (i(i10, i11, i14, charSequence)) {
                 i12 |= i14;
             }
@@ -442,13 +442,13 @@ public abstract class x5 {
 
     public static TL_iv.RichText s(String str, w5 w5Var) {
         TL_iv.textCustomEmoji textcustomemoji;
-        e4 e4Var = w5Var.f50139f;
+        e4 e4Var = w5Var.f50140f;
         if (e4Var != null) {
-            return e4Var.f49725a;
+            return e4Var.f49726a;
         }
-        if (w5Var.f50138e != null) {
+        if (w5Var.f50139e != null) {
             TL_iv.textMath textmath = new TL_iv.textMath();
-            textmath.source = w5Var.f50138e;
+            textmath.source = w5Var.f50139e;
             return textmath;
         }
         long j10 = w5Var.d;
@@ -465,7 +465,7 @@ public abstract class x5 {
             textplain.text = str;
             textcustomemoji = textplain;
         }
-        int i10 = w5Var.f50135a;
+        int i10 = w5Var.f50136a;
         TL_iv.RichText richText = textcustomemoji;
         if ((i10 & 1) != 0) {
             TL_iv.RichText textbold = new TL_iv.textBold();
@@ -521,13 +521,13 @@ public abstract class x5 {
             richText9 = textmarked;
         }
         TL_iv.RichText richText10 = richText9;
-        if (w5Var.f50136b != null) {
+        if (w5Var.f50137b != null) {
             TL_iv.RichText texturl = new TL_iv.textUrl();
             texturl.text = richText9;
-            texturl.url = w5Var.f50136b;
+            texturl.url = w5Var.f50137b;
             richText10 = texturl;
         }
-        i10 i10Var = w5Var.f50137c;
+        i10 i10Var = w5Var.f50138c;
         if (i10Var != null) {
             TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = i10Var.f27646b;
             TL_iv.textDate textdate = new TL_iv.textDate();

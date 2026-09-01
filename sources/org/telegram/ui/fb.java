@@ -240,9 +240,9 @@ public final class fb extends org.telegram.ui.ActionBar.i5 {
             case 19:
                 vf.r1 r1Var = (vf.r1) this.h;
                 r1Var.d = false;
-                r1Var.f49186e = null;
-                r1Var.f49183a.V2.N(true);
-                r1Var.f49183a.u0(0);
+                r1Var.f49187e = null;
+                r1Var.f49184a.V2.N(true);
+                r1Var.f49184a.u0(0);
                 return;
         }
     }
@@ -358,8 +358,8 @@ public final class fb extends org.telegram.ui.ActionBar.i5 {
             case 19:
                 vf.r1 r1Var = (vf.r1) this.h;
                 r1Var.d = true;
-                r1Var.f49183a.V2.N(true);
-                r1Var.f49183a.u0(0);
+                r1Var.f49184a.V2.N(true);
+                r1Var.f49184a.u0(0);
                 return;
         }
     }
@@ -722,9 +722,9 @@ public final class fb extends org.telegram.ui.ActionBar.i5 {
                 return;
             case 19:
                 vf.r1 r1Var = (vf.r1) this.h;
-                r1Var.f49186e = editText.getText().toString();
-                r1Var.f49183a.V2.N(true);
-                r1Var.f49183a.u0(0);
+                r1Var.f49187e = editText.getText().toString();
+                r1Var.f49184a.V2.N(true);
+                r1Var.f49184a.u0(0);
                 return;
             default:
                 return;

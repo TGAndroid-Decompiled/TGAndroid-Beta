@@ -302,7 +302,7 @@ public abstract class r61 extends FrameLayout implements NotificationCenter.Noti
         }
         org.telegram.ui.Components.fx fxVar = new org.telegram.ui.Components.fx(r61Var, r61Var.f40791e0.getContext(), 3);
         fxVar.f5805a = i10;
-        fxVar.f50658p = i11;
+        fxVar.f50659p = i11;
         e51Var.w0(fxVar);
     }
 

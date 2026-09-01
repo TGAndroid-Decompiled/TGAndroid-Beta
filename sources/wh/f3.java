@@ -14,7 +14,7 @@ public final class f3 extends m9 {
     @Override
     public final boolean D() {
         r3 r3Var = this.L0;
-        CharSequence s6 = r3Var.f49991k3.s();
+        CharSequence s6 = r3Var.f49992k3.s();
         if (s6 != null && s6.length() != 0) {
             r3Var.b5(s6);
             return true;
@@ -25,7 +25,7 @@ public final class f3 extends m9 {
     @Override
     public final void E() {
         r3 r3Var = this.L0;
-        CharSequence s6 = r3Var.f49991k3.s();
+        CharSequence s6 = r3Var.f49992k3.s();
         if (s6 != null && s6.length() > 0) {
             r3Var.b5(s6);
         }
@@ -54,9 +54,9 @@ public final class f3 extends m9 {
     @Override
     public final void L(float f10, float f11) {
         r3 r3Var = this.L0;
-        r3Var.f50001p3 = true;
-        r3Var.f50002q3 = f10;
-        r3Var.f50003r3 = f11;
+        r3Var.f50002p3 = true;
+        r3Var.f50003q3 = f10;
+        r3Var.f50004r3 = f11;
     }
 
     @Override
@@ -66,12 +66,12 @@ public final class f3 extends m9 {
         String str;
         int length;
         r3 r3Var = this.L0;
-        f3 f3Var = r3Var.f49991k3;
-        ArrayList arrayList = r3Var.f49987i3;
+        f3 f3Var = r3Var.f49992k3;
+        ArrayList arrayList = r3Var.f49988i3;
         if (!arrayList.isEmpty() && f3Var.y() && f3Var.f23175u0 == 0 && f3Var.f23176v0 == 0 && f3Var.f23177w0 <= 0 && f3Var.f23178x0 == (size = arrayList.size() - 1)) {
             a aVar = (a) arrayList.get(size);
-            if (v5.p(aVar.f49616b)) {
-                str = x5.l(v5.k(aVar.f49616b));
+            if (v5.p(aVar.f49617b)) {
+                str = x5.l(v5.k(aVar.f49617b));
             } else {
                 str = "";
             }
@@ -80,7 +80,7 @@ public final class f3 extends m9 {
                 if (i10 == 1) {
                     length = str.length();
                 } else {
-                    length = v5.z(aVar.f49616b).length();
+                    length = v5.z(aVar.f49617b).length();
                 }
                 if (f3Var.f23180z0 >= length) {
                     z4 = true;

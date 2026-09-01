@@ -25,7 +25,7 @@ public final class fj0 extends lg.k {
                 org.telegram.ui.Components.tl0 tl0Var = ij0Var.d;
                 xh.o oVar = new xh.o(ij0Var.getContext(), 2, 0.6f);
                 oVar.f5805a = 1;
-                oVar.f50658p = AndroidUtilities.dp(36.0f);
+                oVar.f50659p = AndroidUtilities.dp(36.0f);
                 tl0Var.getLayoutManager().w0(oVar);
             }
         }

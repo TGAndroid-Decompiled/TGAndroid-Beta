@@ -155,7 +155,7 @@ public final class a4 extends org.telegram.ui.Components.p9 {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.D) {
             case 11:
-                if (drawable != ((vf.v0) this.E).f49224r && !super.verifyDrawable(drawable)) {
+                if (drawable != ((vf.v0) this.E).f49225r && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;

@@ -529,7 +529,7 @@ public final class s extends sa implements GiftAuctionController.OnAuctionUpdate
     }
 
     public final void a0() {
-        int d = i0.a.d(this.f12952q0.f50504e, i0.a.d(this.f12953r0.f50504e, getThemedColor(org.telegram.ui.ActionBar.k6.L6), getThemedColor(org.telegram.ui.ActionBar.k6.f21895q7)), getThemedColor(org.telegram.ui.ActionBar.k6.uj));
+        int d = i0.a.d(this.f12952q0.f50505e, i0.a.d(this.f12953r0.f50505e, getThemedColor(org.telegram.ui.ActionBar.k6.L6), getThemedColor(org.telegram.ui.ActionBar.k6.f21895q7)), getThemedColor(org.telegram.ui.ActionBar.k6.uj));
         this.f12940d0.setTextColor(d);
         k6 k6Var = this.f12941e0;
         k6Var.setTextColor(d);

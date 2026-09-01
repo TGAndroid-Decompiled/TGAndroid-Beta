@@ -310,7 +310,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
             np npVar = this.f22653r;
             if (npVar != null) {
                 CheckBoxBase checkBoxBase = npVar.getCheckBoxBase();
-                float f12 = this.f22647a.f50504e;
+                float f12 = this.f22647a.f50505e;
                 if (checkBoxBase.f24814w != f12) {
                     checkBoxBase.f24814w = f12;
                     checkBoxBase.b();
@@ -318,7 +318,7 @@ public class c6 extends FrameLayout implements py0, xd.b {
                 npVar.invalidate();
             }
         } else if (i10 == 1 && (qgVar = this.f22657y) != null) {
-            float f13 = this.f22648b.f50504e;
+            float f13 = this.f22648b.f50505e;
             float f14 = 0.85f * f13;
             qgVar.setScaleX(f14);
             qgVar.setScaleY(f14);

@@ -162,11 +162,11 @@ public final class xj extends f2.a1 {
                     xnVar.vc();
                 }
             } else {
-                s5.m[] mVarArr = xnVar.f43192g1.f50585e;
+                s5.m[] mVarArr = xnVar.f43192g1.f50586e;
                 if (1 < mVarArr.length) {
                     mVar = mVarArr[1];
                 }
-                if (mVar != null && ((xd.a) mVar.f47063c).f50505f) {
+                if (mVar != null && ((xd.a) mVar.f47063c).f50506f) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -247,12 +247,12 @@ public final class xj extends f2.a1 {
             l5Var.invalidate();
         }
         vg.a aVar = xnVar.Nb;
-        if (aVar != null && aVar.f49255b > 0) {
-            int childCount = aVar.f49254a.getChildCount();
+        if (aVar != null && aVar.f49256b > 0) {
+            int childCount = aVar.f49255a.getChildCount();
             int i14 = 0;
             while (true) {
                 if (i14 < childCount) {
-                    View childAt = aVar.f49254a.getChildAt(i14);
+                    View childAt = aVar.f49255a.getChildAt(i14);
                     if (childAt instanceof org.telegram.ui.Cells.t1) {
                         z10 = aVar.a(((org.telegram.ui.Cells.t1) childAt).getMessageObject());
                     } else if (childAt instanceof org.telegram.ui.Cells.v0) {

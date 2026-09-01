@@ -872,7 +872,7 @@ public final class p extends org.telegram.ui.ActionBar.p2 implements Notificatio
             if (f02 != null && (bVar = f02.d) != null && (arrayList = bVar.d) != null && !arrayList.isEmpty() && this.f14569n.d.d.get(0) != null) {
                 t91 t91Var = this.f14569n;
                 t91Var.h = true;
-                ((xf.a) t91Var.d.d.get(0)).f50544g = org.telegram.ui.ActionBar.k6.yj;
+                ((xf.a) t91Var.d.d.get(0)).f50545g = org.telegram.ui.ActionBar.k6.yj;
                 this.f14569n.d.h = (float) ((1.0d / this.W) / 100.0d);
             }
             TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus3 = h.status;

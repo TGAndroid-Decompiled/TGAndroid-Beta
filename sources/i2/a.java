@@ -35,7 +35,7 @@ public final class a {
 
     public final void a(Bundle bundle) {
         HashSet hashSet;
-        String string = this.f7783c.getString(2131701265);
+        String string = this.f7783c.getString(2131689505);
         if (bundle != null) {
             try {
                 HashSet hashSet2 = new HashSet();

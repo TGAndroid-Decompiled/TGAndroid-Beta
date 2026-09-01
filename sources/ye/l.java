@@ -2,7 +2,7 @@ package ye;
 
 import java.util.logging.Logger;
 public final class l extends we.a {
-    public static final Logger f50889r = Logger.getLogger(l.class.getName());
+    public static final Logger f50890r = Logger.getLogger(l.class.getName());
 
     public l(java.io.BufferedInputStream r25, long r26) {
         throw new UnsupportedOperationException("Method not decompiled: ye.l.<init>(java.io.BufferedInputStream, long):void");

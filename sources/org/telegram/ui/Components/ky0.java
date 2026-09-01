@@ -257,7 +257,7 @@ public final class ky0 implements Runnable {
                     }
                 } else if (tL_error3 != null) {
                     if ("URL_EXPIRED".equalsIgnoreCase(tL_error3.text)) {
-                        org.telegram.ui.zk0.a().M(launchActivity3.getString(R.string.BotAuthLoggedInFailTitle), launchActivity3.getString(R.string.BotAuthLoggedInFailNoDomain), R.raw.error).j();
+                        org.telegram.ui.zk0.a().M(LocaleController.getString(R.string.BotAuthLoggedInFailTitle), LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain), R.raw.error).j();
                         return;
                     } else {
                         org.telegram.ui.zk0.a().d0(tL_error3, false);
@@ -779,9 +779,9 @@ public final class ky0 implements Runnable {
                     photoViewer.F1();
                     photoViewer.f34324l4 = 0L;
                     photoViewer.D1 = null;
-                    photoViewer.B1.f51123a = false;
+                    photoViewer.B1.f51124a = false;
                     photoViewer.E1 = null;
-                    photoViewer.C1.f51123a = false;
+                    photoViewer.C1.f51124a = false;
                     photoViewer.D2();
                     photoViewer.z2();
                     photoViewer.f34230b0.invalidate();

@@ -99,7 +99,7 @@ public final class j11 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 r91Var.f40870e.setAlpha(1.0f - floatValue3);
                 wf.g gVar = r91Var.f40868b;
-                gVar.f49578w0.f50942f = floatValue3;
+                gVar.f49579w0.f50943f = floatValue3;
                 r91Var.f40869c.invalidate();
                 gVar.invalidate();
                 return;

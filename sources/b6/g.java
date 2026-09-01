@@ -65,12 +65,12 @@ public abstract class g implements com.google.android.gms.common.api.c {
             }
         }
         k0 k0Var = k0.h;
-        Object obj = y5.d.f50766c;
+        Object obj = y5.d.f50767c;
         m.h(kVar);
         m.h(lVar);
         n nVar = new n(kVar);
         n nVar2 = new n(lVar);
-        Object obj2 = y5.d.f50766c;
+        Object obj2 = y5.d.f50767c;
         this.f1717f = null;
         this.f1721w = new Object();
         this.f1722x = new Object();
@@ -215,13 +215,13 @@ public abstract class g implements com.google.android.gms.common.api.c {
                         if (!b10.f()) {
                             androidx.activity.o oVar2 = this.h;
                             Log.w("GmsClient", "unable to connect to service: " + ((String) oVar2.f356b) + " on " + ((String) oVar2.f357c));
-                            int i11 = b10.f50758b;
+                            int i11 = b10.f50759b;
                             if (i11 == -1) {
                                 i11 = 16;
                             }
-                            if (b10.f50759c != null) {
+                            if (b10.f50760c != null) {
                                 bundle = new Bundle();
-                                bundle.putParcelable("pendingIntent", b10.f50759c);
+                                bundle.putParcelable("pendingIntent", b10.f50760c);
                             }
                             int i12 = this.O.get();
                             f0 f0Var = new f0(this, i11, bundle);
@@ -421,7 +421,7 @@ public abstract class g implements com.google.android.gms.common.api.c {
         }
         String str2 = str;
         int i10 = this.I;
-        int i11 = y5.e.f50767a;
+        int i11 = y5.e.f50768a;
         Scope[] scopeArr = f.B;
         Bundle bundle = new Bundle();
         y5.c[] cVarArr = f.C;
@@ -565,7 +565,7 @@ public abstract class g implements com.google.android.gms.common.api.c {
     }
 
     public void z(y5.a aVar) {
-        this.d = aVar.f50758b;
+        this.d = aVar.f50759b;
         this.f1716e = System.currentTimeMillis();
     }
 }

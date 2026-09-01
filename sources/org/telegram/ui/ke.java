@@ -700,7 +700,7 @@ public final class ke extends org.telegram.ui.Components.qv0 implements r0.n {
         t91 f02 = ha1.f0(tL_payments_starsRevenueStats.revenue_graph, LocaleController.getString(R.string.MonetizationGraphStarsRevenue), 2, false);
         this.f38370n1 = f02;
         if (f02 != null && (bVar = f02.d) != null && (arrayList = bVar.d) != null && !arrayList.isEmpty() && this.f38370n1.d.d.get(0) != null) {
-            ((xf.a) this.f38370n1.d.d.get(0)).f50544g = org.telegram.ui.ActionBar.k6.kj;
+            ((xf.a) this.f38370n1.d.d.get(0)).f50545g = org.telegram.ui.ActionBar.k6.kj;
             this.f38370n1.d.h = (float) ((1.0d / this.f38365h1) / 100.0d);
         }
         g0(false, tL_payments_starsRevenueStats.status);

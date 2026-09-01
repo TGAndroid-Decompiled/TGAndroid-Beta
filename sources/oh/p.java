@@ -352,7 +352,7 @@ public abstract class p extends FrameLayout implements NotificationCenter.Notifi
         int i11;
         int i12;
         float a2 = k7.o.a(Math.min(this.K, this.f17575a0), 0.0f, 1.0f);
-        float f10 = this.f17574a.f50504e;
+        float f10 = this.f17574a.f50505e;
         float f11 = 1.0f - f10;
         float f12 = f10 * a2;
         float f13 = f11 * a2;

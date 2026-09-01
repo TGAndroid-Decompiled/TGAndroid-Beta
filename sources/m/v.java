@@ -60,7 +60,7 @@ public class v extends ImageView {
     public ColorStateList getSupportImageTintList() {
         e3 e3Var;
         x5.k kVar = this.f13359b;
-        if (kVar == null || (e3Var = (e3) kVar.f50430c) == null) {
+        if (kVar == null || (e3Var = (e3) kVar.f50431c) == null) {
             return null;
         }
         return (ColorStateList) e3Var.f13184c;
@@ -69,7 +69,7 @@ public class v extends ImageView {
     public PorterDuff.Mode getSupportImageTintMode() {
         e3 e3Var;
         x5.k kVar = this.f13359b;
-        if (kVar == null || (e3Var = (e3) kVar.f50430c) == null) {
+        if (kVar == null || (e3Var = (e3) kVar.f50431c) == null) {
             return null;
         }
         return (PorterDuff.Mode) e3Var.d;
@@ -77,7 +77,7 @@ public class v extends ImageView {
 
     @Override
     public final boolean hasOverlappingRendering() {
-        if (!(((ImageView) this.f13359b.f50429b).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
+        if (!(((ImageView) this.f13359b.f50430b).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
             return true;
         }
         return false;
@@ -114,15 +114,15 @@ public class v extends ImageView {
     public void setImageDrawable(Drawable drawable) {
         x5.k kVar = this.f13359b;
         if (kVar != null && drawable != null && !this.f13360c) {
-            kVar.f50428a = drawable.getLevel();
+            kVar.f50429a = drawable.getLevel();
         }
         super.setImageDrawable(drawable);
         if (kVar != null) {
             kVar.a();
             if (!this.f13360c) {
-                ImageView imageView = (ImageView) kVar.f50429b;
+                ImageView imageView = (ImageView) kVar.f50430b;
                 if (imageView.getDrawable() != null) {
-                    imageView.getDrawable().setLevel(kVar.f50428a);
+                    imageView.getDrawable().setLevel(kVar.f50429a);
                 }
             }
         }
@@ -138,7 +138,7 @@ public class v extends ImageView {
     public void setImageResource(int i10) {
         x5.k kVar = this.f13359b;
         if (kVar != null) {
-            ImageView imageView = (ImageView) kVar.f50429b;
+            ImageView imageView = (ImageView) kVar.f50430b;
             if (i10 != 0) {
                 Drawable b10 = s7.b(imageView.getContext(), i10);
                 if (b10 != null) {
@@ -178,10 +178,10 @@ public class v extends ImageView {
     public void setSupportImageTintList(ColorStateList colorStateList) {
         x5.k kVar = this.f13359b;
         if (kVar != null) {
-            if (((e3) kVar.f50430c) == null) {
-                kVar.f50430c = new Object();
+            if (((e3) kVar.f50431c) == null) {
+                kVar.f50431c = new Object();
             }
-            e3 e3Var = (e3) kVar.f50430c;
+            e3 e3Var = (e3) kVar.f50431c;
             e3Var.f13184c = colorStateList;
             e3Var.f13183b = true;
             kVar.a();
@@ -191,10 +191,10 @@ public class v extends ImageView {
     public void setSupportImageTintMode(PorterDuff.Mode mode) {
         x5.k kVar = this.f13359b;
         if (kVar != null) {
-            if (((e3) kVar.f50430c) == null) {
-                kVar.f50430c = new Object();
+            if (((e3) kVar.f50431c) == null) {
+                kVar.f50431c = new Object();
             }
-            e3 e3Var = (e3) kVar.f50430c;
+            e3 e3Var = (e3) kVar.f50431c;
             e3Var.d = mode;
             e3Var.f13182a = true;
             kVar.a();

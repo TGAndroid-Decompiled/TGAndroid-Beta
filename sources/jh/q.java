@@ -79,11 +79,11 @@ public final class q implements o, b7, c2, lf.o, MessagesController.ErrorDelegat
                 return;
             default:
                 v vVar = (v) this.f10182c;
-                ArrayList arrayList3 = vVar.f49214k;
-                ArrayList arrayList4 = vVar.f49213j;
+                ArrayList arrayList3 = vVar.f49215k;
+                ArrayList arrayList4 = vVar.f49214j;
                 int i15 = 0;
                 if (this.f10181b) {
-                    vVar.f49210f = i10;
+                    vVar.f49211f = i10;
                     arrayList4.clear();
                     arrayList4.addAll(arrayList);
                     while (i15 < arrayList4.size()) {
@@ -91,7 +91,7 @@ public final class q implements o, b7, c2, lf.o, MessagesController.ErrorDelegat
                         i15++;
                     }
                 } else {
-                    vVar.f49211g = i10;
+                    vVar.f49212g = i10;
                     arrayList3.clear();
                     arrayList3.addAll(arrayList);
                     while (i15 < arrayList3.size()) {
@@ -99,7 +99,7 @@ public final class q implements o, b7, c2, lf.o, MessagesController.ErrorDelegat
                         i15++;
                     }
                 }
-                vVar.f49209e.run();
+                vVar.f49210e.run();
                 return;
         }
     }

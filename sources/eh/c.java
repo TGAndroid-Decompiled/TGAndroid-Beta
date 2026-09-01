@@ -403,24 +403,24 @@ public final class c implements TextWatcher {
                 return;
             case 18:
                 l0 l0Var = (l0) this.f5618b;
-                l0Var.f49118x = false;
+                l0Var.f49119x = false;
                 h0 h0Var = l0Var.C;
                 AndroidUtilities.cancelRunOnUIThread(h0Var);
-                if (TextUtils.isEmpty(l0Var.f49113f.getText())) {
-                    l0Var.f49119y = null;
+                if (TextUtils.isEmpty(l0Var.f49114f.getText())) {
+                    l0Var.f49120y = null;
                     l0Var.d.b();
                 } else {
-                    l0Var.f49118x = true;
+                    l0Var.f49119x = true;
                     AndroidUtilities.runOnUIThread(h0Var, 800L);
                 }
-                l0Var.f49111c.V2.N(true);
+                l0Var.f49112c.V2.N(true);
                 l0Var.b0();
                 return;
             default:
                 v0 v0Var = (v0) this.f5618b;
                 if (!v0Var.d) {
                     v0Var.B = false;
-                    v0Var.f49228y = editable.toString();
+                    v0Var.f49229y = editable.toString();
                     v0Var.U(true);
                     return;
                 }

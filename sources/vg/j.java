@@ -10,12 +10,12 @@ import org.telegram.ui.Components.fc0;
 import org.telegram.ui.ao;
 import s5.m;
 public final class j {
-    public static final Rect f49303f = new Rect();
-    public final tg.c f49304a = new tg.c();
-    public final tg.b f49305b = new tg.b();
-    public final m f49306c = new m(new sg.a(20));
+    public static final Rect f49304f = new Rect();
+    public final tg.c f49305a = new tg.c();
+    public final tg.b f49306b = new tg.b();
+    public final m f49307c = new m(new sg.a(20));
     public final m d = new m(new sg.a(21));
-    public final m f49307e = new m(new sg.a(22));
+    public final m f49308e = new m(new sg.a(22));
 
     public final int a(tg.a aVar) {
         if (aVar instanceof tg.c) {
@@ -35,7 +35,7 @@ public final class j {
             return ((tg.c) aVar).f48086a.getColor();
         }
         if (aVar instanceof tg.b) {
-            return ((Integer) this.f49307e.i(((tg.b) aVar).d)).intValue();
+            return ((Integer) this.f49308e.i(((tg.b) aVar).d)).intValue();
         } else if (aVar instanceof tg.e) {
             return b(((tg.e) aVar).f48095a);
         } else {
@@ -45,13 +45,13 @@ public final class j {
 
     public final tg.a c(Drawable drawable) {
         boolean z4 = drawable instanceof ColorDrawable;
-        tg.c cVar = this.f49304a;
+        tg.c cVar = this.f49305a;
         if (z4) {
             cVar.a(((ColorDrawable) drawable).getColor());
             return cVar;
         }
         boolean z10 = drawable instanceof fc0;
-        tg.b bVar = this.f49305b;
+        tg.b bVar = this.f49306b;
         if (z10) {
             fc0 fc0Var = (fc0) drawable;
             if (fc0Var.f26885q < 0) {
@@ -62,7 +62,7 @@ public final class j {
             return bVar;
         }
         boolean z11 = drawable instanceof BitmapDrawable;
-        m mVar = this.f49306c;
+        m mVar = this.f49307c;
         if (z11) {
             bVar.a((Bitmap) mVar.i(((BitmapDrawable) drawable).getBitmap()));
             return bVar;
@@ -84,7 +84,7 @@ public final class j {
                 Canvas canvas = new Canvas(bVar.f48084f);
                 canvas.scale(f10 / round, 160 / round2);
                 Rect bounds = drawable.getBounds();
-                Rect rect = f49303f;
+                Rect rect = f49304f;
                 rect.set(bounds);
                 drawable.setBounds(0, 0, 120, 160);
                 drawable.draw(canvas);

@@ -1628,7 +1628,7 @@ public class mz extends FrameLayout implements xd.b, NotificationCenter.Notifica
         this.G0 = true;
         fx fxVar = new fx(this, this.M.getContext(), 0);
         fxVar.f5805a = i10;
-        fxVar.f50658p = i11;
+        fxVar.f50659p = i11;
         lxVar.w0(fxVar);
     }
 
@@ -1751,7 +1751,7 @@ public class mz extends FrameLayout implements xd.b, NotificationCenter.Notifica
         int i15 = 4;
         if (i10 == 0) {
             q(false);
-            float f12 = 1.0f - this.f29263a.f50504e;
+            float f12 = 1.0f - this.f29263a.f50505e;
             uw uwVar = this.D0;
             uwVar.setAlpha(f12);
             if (f12 > 0.0f) {
@@ -1782,7 +1782,7 @@ public class mz extends FrameLayout implements xd.b, NotificationCenter.Notifica
             this.f29328u0.invalidate();
         } else if (i10 == 1) {
             l(false);
-            float f14 = 1.0f - this.f29266b.f50504e;
+            float f14 = 1.0f - this.f29266b.f50505e;
             iw iwVar = this.S;
             iwVar.setAlpha(f14);
             if (f14 > 0.0f) {
@@ -2205,7 +2205,7 @@ public class mz extends FrameLayout implements xd.b, NotificationCenter.Notifica
             } else {
                 f10 = 50.0f;
             }
-            float lerp = f14 + AndroidUtilities.lerp(AndroidUtilities.dp(f10), -this.f29307n2, this.D2.f50504e);
+            float lerp = f14 + AndroidUtilities.lerp(AndroidUtilities.dp(f10), -this.f29307n2, this.D2.f50505e);
             frameLayout.setTranslationY(lerp);
             if (z4) {
                 this.f29317r.setTranslationY(lerp);
@@ -3474,7 +3474,7 @@ public class mz extends FrameLayout implements xd.b, NotificationCenter.Notifica
                 yy.a(iwVar, z10, !z4);
             }
             P(false, !z4);
-            iwVar.setTranslationY(aVar.f50504e * AndroidUtilities.dp(15.0f));
+            iwVar.setTranslationY(aVar.f50505e * AndroidUtilities.dp(15.0f));
         } else if (iwVar != null && kxVar != null) {
             f2.m1 K2 = kxVar.K(0);
             if (K2 != null) {
@@ -3482,7 +3482,7 @@ public class mz extends FrameLayout implements xd.b, NotificationCenter.Notifica
             } else {
                 i10 = -this.Y0;
             }
-            iwVar.setTranslationY((aVar.f50504e * AndroidUtilities.dp(15.0f)) + i10);
+            iwVar.setTranslationY((aVar.f50505e * AndroidUtilities.dp(15.0f)) + i10);
             iwVar.f33640a.a(false, !z4);
             m(Math.round(this.F.getTranslationY()));
         }
@@ -3681,7 +3681,7 @@ public class mz extends FrameLayout implements xd.b, NotificationCenter.Notifica
                 }
                 yy.a(uwVar, z10, !z4);
             }
-            uwVar.setTranslationY(aVar.f50504e * AndroidUtilities.dp(15.0f));
+            uwVar.setTranslationY(aVar.f50505e * AndroidUtilities.dp(15.0f));
         } else if (uwVar != null && rwVar != null) {
             f2.m1 K2 = rwVar.K(0);
             if (K2 != null) {
@@ -3689,7 +3689,7 @@ public class mz extends FrameLayout implements xd.b, NotificationCenter.Notifica
             } else {
                 i10 = -this.Y0;
             }
-            uwVar.setTranslationY((aVar.f50504e * AndroidUtilities.dp(15.0f)) + i10);
+            uwVar.setTranslationY((aVar.f50505e * AndroidUtilities.dp(15.0f)) + i10);
             uwVar.f33640a.a(false, !z4);
         }
     }

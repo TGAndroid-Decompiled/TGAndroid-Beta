@@ -55,7 +55,7 @@ public final class x implements pa.v {
 
     @Override
     public final pa.u create(pa.g gVar, wa.a aVar) {
-        Class cls = aVar.f49483a;
+        Class cls = aVar.f49484a;
         if (!Object.class.isAssignableFrom(cls)) {
             return null;
         }

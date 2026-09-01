@@ -19,11 +19,11 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.k90;
 public final class b1 extends LinearLayout {
-    public final g6 f48992a;
-    public final k90 f48993b;
-    public final ImageReceiver f48994c;
+    public final g6 f48993a;
+    public final k90 f48994b;
+    public final ImageReceiver f48995c;
     public final TextView d;
-    public boolean f48995e;
+    public boolean f48996e;
 
     public b1(Context context, g6 g6Var) {
         super(context);
@@ -33,11 +33,11 @@ public final class b1 extends LinearLayout {
         int i13;
         int i14;
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f48994c = imageReceiver;
-        this.f48992a = g6Var;
+        this.f48995c = imageReceiver;
+        this.f48993a = g6Var;
         setOrientation(1);
         k90 k90Var = new k90();
-        this.f48993b = k90Var;
+        this.f48994b = k90Var;
         int i15 = k6.G6;
         int v02 = k6.v0(i15, g6Var);
         k90Var.f(k6.l1(0.05f, v02), k6.l1(0.15f, v02), k6.l1(0.1f, v02), k6.l1(0.3f, v02));
@@ -90,12 +90,12 @@ public final class b1 extends LinearLayout {
         if (tL_businessLocation != null) {
             this.d.setText(tL_businessLocation.address);
             if (tL_businessLocation.geo_point != null) {
-                this.f48994c.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.f48993b, 0L, (String) null, (Object) null, 0);
+                this.f48995c.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.f48994b, 0L, (String) null, (Object) null, 0);
             } else {
-                this.f48994c.setImageBitmap((Drawable) null);
+                this.f48995c.setImageBitmap((Drawable) null);
             }
         }
-        this.f48995e = z4;
+        this.f48996e = z4;
         setPadding(0, 0, 0, z4 ? 1 : 0);
         invalidate();
     }
@@ -110,12 +110,12 @@ public final class b1 extends LinearLayout {
             width = getWidth() - AndroidUtilities.dp(60.0f);
         }
         float f11 = width;
-        ImageReceiver imageReceiver = this.f48994c;
+        ImageReceiver imageReceiver = this.f48995c;
         imageReceiver.setImageCoords(f11, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f));
         imageReceiver.draw(canvas);
         super.onDraw(canvas);
-        if (this.f48995e) {
-            Paint T0 = k6.T0("paintDivider", this.f48992a);
+        if (this.f48996e) {
+            Paint T0 = k6.T0("paintDivider", this.f48993a);
             if (T0 == null) {
                 T0 = k6.f21779k0;
             }
@@ -143,7 +143,7 @@ public final class b1 extends LinearLayout {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f48993b && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f48994b && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

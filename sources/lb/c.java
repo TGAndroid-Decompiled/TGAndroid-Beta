@@ -32,7 +32,7 @@ public final class c implements b {
         this.f12259a = context;
         Locale.getDefault().getLanguage().equals(Locale.ENGLISH.getLanguage());
         this.f12260b = new t6(1, -1, bVar.f9992a, 1);
-        y5.e.f50768b.getClass();
+        y5.e.f50769b.getClass();
         if (y5.e.a(context) >= 200400000) {
             str = "com.google.android.gms.vision.ica";
         } else {

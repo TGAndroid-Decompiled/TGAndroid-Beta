@@ -9,22 +9,22 @@ import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.jg0;
 public final class b {
-    public final ScaleGestureDetector f51103a;
-    public n f51104b;
-    public float f51105c;
+    public final ScaleGestureDetector f51104a;
+    public n f51105b;
+    public float f51106c;
     public float d;
-    public final float f51107f;
-    public VelocityTracker f51108g;
+    public final float f51108f;
+    public VelocityTracker f51109g;
     public boolean h;
-    public long f51111k;
-    public boolean f51112l;
-    public final float f51106e = AndroidUtilities.dp(1.0f);
-    public int f51109i = -1;
-    public int f51110j = 0;
+    public long f51112k;
+    public boolean f51113l;
+    public final float f51107e = AndroidUtilities.dp(1.0f);
+    public int f51110i = -1;
+    public int f51111j = 0;
 
     public b(Context context) {
-        this.f51107f = ViewConfiguration.get(context).getScaledMinimumFlingVelocity();
-        this.f51103a = new ScaleGestureDetector(context, new jg0(this, 2));
+        this.f51108f = ViewConfiguration.get(context).getScaledMinimumFlingVelocity();
+        this.f51104a = new ScaleGestureDetector(context, new jg0(this, 2));
     }
 
     public final void a(MotionEvent motionEvent) {
@@ -36,50 +36,50 @@ public final class b {
         float y12;
         m mVar;
         int i10;
-        this.f51103a.onTouchEvent(motionEvent);
+        this.f51104a.onTouchEvent(motionEvent);
         int action = motionEvent.getAction() & 255;
         boolean z4 = true;
         if (action != 0) {
             if (action != 1 && action != 3) {
                 if (action == 6) {
                     int action2 = (65280 & motionEvent.getAction()) >> 8;
-                    if (motionEvent.getPointerId(action2) == this.f51109i) {
+                    if (motionEvent.getPointerId(action2) == this.f51110i) {
                         if (action2 == 0) {
                             i10 = 1;
                         } else {
                             i10 = 0;
                         }
-                        this.f51109i = motionEvent.getPointerId(i10);
-                        this.f51105c = motionEvent.getX(i10);
+                        this.f51110i = motionEvent.getPointerId(i10);
+                        this.f51106c = motionEvent.getX(i10);
                         this.d = motionEvent.getY(i10);
                     }
                 }
             } else {
-                if (!this.h && SystemClock.elapsedRealtime() - this.f51111k < 800 && (mVar = this.f51104b.J) != null) {
+                if (!this.h && SystemClock.elapsedRealtime() - this.f51112k < 800 && (mVar = this.f51105b.J) != null) {
                     mVar.S();
                 }
-                this.f51109i = -1;
+                this.f51110i = -1;
             }
         } else {
-            this.f51109i = motionEvent.getPointerId(0);
-            this.f51111k = SystemClock.elapsedRealtime();
+            this.f51110i = motionEvent.getPointerId(0);
+            this.f51112k = SystemClock.elapsedRealtime();
         }
-        int i11 = this.f51109i;
+        int i11 = this.f51110i;
         if (i11 == -1) {
             i11 = 0;
         }
-        this.f51110j = motionEvent.findPointerIndex(i11);
+        this.f51111j = motionEvent.findPointerIndex(i11);
         int action3 = motionEvent.getAction();
         if (action3 != 0) {
             if (action3 != 1) {
                 if (action3 != 2) {
                     if (action3 == 3) {
-                        VelocityTracker velocityTracker = this.f51108g;
+                        VelocityTracker velocityTracker = this.f51109g;
                         if (velocityTracker != null) {
                             velocityTracker.recycle();
-                            this.f51108g = null;
+                            this.f51109g = null;
                         }
-                        this.f51112l = false;
+                        this.f51113l = false;
                         this.h = false;
                         return;
                     }
@@ -87,85 +87,85 @@ public final class b {
                 }
             } else {
                 if (this.h) {
-                    if (this.f51108g != null) {
+                    if (this.f51109g != null) {
                         try {
-                            x12 = motionEvent.getX(this.f51110j);
+                            x12 = motionEvent.getX(this.f51111j);
                         } catch (Exception unused) {
                             x12 = motionEvent.getX();
                         }
-                        this.f51105c = x12;
+                        this.f51106c = x12;
                         try {
-                            y12 = motionEvent.getY(this.f51110j);
+                            y12 = motionEvent.getY(this.f51111j);
                         } catch (Exception unused2) {
                             y12 = motionEvent.getY();
                         }
                         this.d = y12;
-                        this.f51108g.addMovement(motionEvent);
-                        this.f51108g.computeCurrentVelocity(1000);
-                        if (Math.max(Math.abs(this.f51108g.getXVelocity()), Math.abs(this.f51108g.getYVelocity())) >= this.f51107f) {
-                            this.f51104b.getClass();
+                        this.f51109g.addMovement(motionEvent);
+                        this.f51109g.computeCurrentVelocity(1000);
+                        if (Math.max(Math.abs(this.f51109g.getXVelocity()), Math.abs(this.f51109g.getYVelocity())) >= this.f51108f) {
+                            this.f51105b.getClass();
                         }
                     }
                     this.h = false;
                 }
-                VelocityTracker velocityTracker2 = this.f51108g;
+                VelocityTracker velocityTracker2 = this.f51109g;
                 if (velocityTracker2 != null) {
                     velocityTracker2.recycle();
-                    this.f51108g = null;
+                    this.f51109g = null;
                 }
-                this.f51112l = false;
+                this.f51113l = false;
                 return;
             }
         }
-        if (!this.f51112l) {
+        if (!this.f51113l) {
             VelocityTracker obtain = VelocityTracker.obtain();
-            this.f51108g = obtain;
+            this.f51109g = obtain;
             if (obtain != null) {
                 obtain.addMovement(motionEvent);
             }
             try {
-                x11 = motionEvent.getX(this.f51110j);
+                x11 = motionEvent.getX(this.f51111j);
             } catch (Exception unused3) {
                 x11 = motionEvent.getX();
             }
-            this.f51105c = x11;
+            this.f51106c = x11;
             try {
-                y11 = motionEvent.getY(this.f51110j);
+                y11 = motionEvent.getY(this.f51111j);
             } catch (Exception unused4) {
                 y11 = motionEvent.getY();
             }
             this.d = y11;
             this.h = false;
-            this.f51112l = true;
+            this.f51113l = true;
             return;
         }
         try {
-            x10 = motionEvent.getX(this.f51110j);
+            x10 = motionEvent.getX(this.f51111j);
         } catch (Exception unused5) {
             x10 = motionEvent.getX();
         }
         try {
-            y10 = motionEvent.getY(this.f51110j);
+            y10 = motionEvent.getY(this.f51111j);
         } catch (Exception unused6) {
             y10 = motionEvent.getY();
         }
-        float f10 = x10 - this.f51105c;
+        float f10 = x10 - this.f51106c;
         float f11 = y10 - this.d;
         if (!this.h) {
-            if (((float) Math.sqrt((f11 * f11) + (f10 * f10))) < this.f51106e) {
+            if (((float) Math.sqrt((f11 * f11) + (f10 * f10))) < this.f51107e) {
                 z4 = false;
             }
             this.h = z4;
         }
         if (this.h) {
-            n nVar = this.f51104b;
+            n nVar = this.f51105b;
             if (!nVar.C) {
                 l.f(nVar.I, f10, f11);
                 nVar.r(false);
             }
-            this.f51105c = x10;
+            this.f51106c = x10;
             this.d = y10;
-            VelocityTracker velocityTracker3 = this.f51108g;
+            VelocityTracker velocityTracker3 = this.f51109g;
             if (velocityTracker3 != null) {
                 velocityTracker3.addMovement(motionEvent);
             }

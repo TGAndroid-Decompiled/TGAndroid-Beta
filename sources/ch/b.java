@@ -71,7 +71,7 @@ public final class b extends FrameLayout implements xg0, xd.b {
     public b(Context context) {
         super(context);
         this.f2522e = new Paint(1);
-        this.h = new xd.a(0, this, wd.a.f49492a, 320L, false);
+        this.h = new xd.a(0, this, wd.a.f49493a, 320L, false);
         pr prVar = pr.h;
         this.f2524n = new xd.a(1, this, prVar, 380L, false);
         this.f2525r = new xd.a(2, this, prVar, 380L, false);
@@ -125,7 +125,7 @@ public final class b extends FrameLayout implements xg0, xd.b {
         int i10;
         boolean z10;
         TLRPC.Document document;
-        boolean z11 = this.h.f50505f;
+        boolean z11 = this.h.f50506f;
         TLRPC.TL_attachMenuBot tL_attachMenuBot = this.B;
         SvgHelper.SvgDrawable svgDrawable = null;
         boolean z12 = true;
@@ -272,13 +272,13 @@ public final class b extends FrameLayout implements xg0, xd.b {
         if (this.F) {
             f10 = this.G;
         } else {
-            f10 = this.h.f50504e;
+            f10 = this.h.f50505e;
         }
         RectF rectF = S;
         float f12 = 1.0f;
         Paint paint = this.f2522e;
         if (f10 > 0.0f && !this.H) {
-            paint.setColor(k6.l1(wd.a.f49492a.getInterpolation(f10) * 0.09f, this.f2526s));
+            paint.setColor(k6.l1(wd.a.f49493a.getInterpolation(f10) * 0.09f, this.f2526s));
             rectF.set(0.0f, 0.0f, f11, getHeight());
             float min = Math.min(rectF.width(), rectF.height()) / 2.0f;
             float a2 = o.a(this.P, 0.0f, 1.0f) * AndroidUtilities.lerp(0.6f, 1.0f, f10);
@@ -288,7 +288,7 @@ public final class b extends FrameLayout implements xg0, xd.b {
             canvas.restore();
         }
         if (!this.f2528x) {
-            f12 = this.f2524n.f50504e;
+            f12 = this.f2524n.f50505e;
         }
         float f13 = f12 * this.P;
         int i10 = (f13 > 0.0f ? 1 : (f13 == 0.0f ? 0 : -1));
@@ -328,7 +328,7 @@ public final class b extends FrameLayout implements xg0, xd.b {
                 this.I.setBounds(dpf27, dpf28, AndroidUtilities.dp(14.0f) + dpf27, AndroidUtilities.dp(14.0f) + dpf28);
                 this.I.draw(canvas);
             } else {
-                paint.setColor(i0.a.d(this.f2525r.f50504e, k6.w0(null, k6.hl, false), k6.w0(null, k6.f21913r7, false)));
+                paint.setColor(i0.a.d(this.f2525r.f50505e, k6.w0(null, k6.hl, false), k6.w0(null, k6.f21913r7, false)));
                 canvas.drawRoundRect(rectF, dpf26, dpf26, paint);
                 j6Var.m(rectF);
                 j6Var.draw(canvas);
@@ -356,8 +356,8 @@ public final class b extends FrameLayout implements xg0, xd.b {
         int i10 = this.f2527w;
         int i11 = this.f2526s;
         xd.a aVar = this.h;
-        int d = i0.a.d(aVar.f50504e, i10, i11);
-        int d10 = i0.a.d(aVar.f50504e, this.f2527w, this.v);
+        int d = i0.a.d(aVar.f50505e, i10, i11);
+        int d10 = i0.a.d(aVar.f50505e, this.f2527w, this.v);
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(d, PorterDuff.Mode.SRC_IN);
         p9 p9Var = this.f2521c;
         if (p9Var != null && this.J) {

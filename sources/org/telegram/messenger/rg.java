@@ -49,12 +49,12 @@ public final class rg implements Runnable {
                 wh.r3 r3Var = (wh.r3) this.f19898e;
                 View A4 = r3Var.A4(this.f19896b);
                 if (A4 instanceof org.telegram.ui.Cells.l9) {
-                    r3Var.f49991k3.c0(this.f19897c, this.d, (org.telegram.ui.Cells.l9) A4);
+                    r3Var.f49992k3.c0(this.f19897c, this.d, (org.telegram.ui.Cells.l9) A4);
                     return;
                 }
                 return;
             default:
-                wh.r3.K1(((wh.h3) this.f19898e).f49771b, this.f19896b, this.f19897c, this.d);
+                wh.r3.K1(((wh.h3) this.f19898e).f49772b, this.f19896b, this.f19897c, this.d);
                 return;
         }
     }

@@ -430,7 +430,7 @@ public final class x0 implements View.OnClickListener {
                 ((wh.z1) obj).M.Y3(i12);
                 return;
             case 26:
-                View.OnClickListener onClickListener = ((xg.e) obj).f50566b[i12];
+                View.OnClickListener onClickListener = ((xg.e) obj).f50567b[i12];
                 if (onClickListener != null) {
                     onClickListener.onClick(view);
                     return;

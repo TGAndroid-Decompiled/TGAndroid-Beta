@@ -296,13 +296,13 @@ public final class bu0 implements Runnable {
                 return;
             case 18:
                 vf.t tVar = (vf.t) this.f35592b;
-                tVar.f49202b.add(this.f35593c, (TL_account.TL_businessChatLink) this.d);
-                NotificationCenter.getInstance(tVar.f49201a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                tVar.f49203b.add(this.f35593c, (TL_account.TL_businessChatLink) this.d);
+                NotificationCenter.getInstance(tVar.f49202a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
                 return;
             case 19:
                 wh.l5 m9 = ((wh.i5) this.f35592b).getGrid().m((TL_iv.pageTableCell) this.d);
                 if (m9 != null) {
-                    wh.e1 e1Var = m9.f49866a;
+                    wh.e1 e1Var = m9.f49867a;
                     e1Var.r();
                     e1Var.setSelection(Math.max(0, Math.min(this.f35593c, e1Var.length())));
                     return;
@@ -310,10 +310,10 @@ public final class bu0 implements Runnable {
                 return;
             default:
                 wh.a aVar = (wh.a) this.d;
-                wh.v5 v5Var = ((wh.q5) this.f35592b).f49955a;
-                if (v5Var.f50119y != null) {
-                    wh.v5.f(aVar.f49616b, "");
-                    ((wh.a3) v5Var.f50119y).c(aVar, this.f35593c);
+                wh.v5 v5Var = ((wh.q5) this.f35592b).f49956a;
+                if (v5Var.f50120y != null) {
+                    wh.v5.f(aVar.f49617b, "");
+                    ((wh.a3) v5Var.f50120y).c(aVar, this.f35593c);
                     return;
                 }
                 return;

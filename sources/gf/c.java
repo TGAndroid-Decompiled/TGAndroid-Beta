@@ -186,14 +186,14 @@ public final class c implements Runnable {
             case 16:
                 f0 f0Var2 = (f0) this.f7031b;
                 ye.f fVar3 = (ye.f) this.f7032c;
-                int i16 = f0Var2.F - fVar3.f50867c;
+                int i16 = f0Var2.F - fVar3.f50868c;
                 f0Var2.F = i16;
                 if (fVar3.d) {
-                    f0Var2.G = fVar3.f50868e;
+                    f0Var2.G = fVar3.f50869e;
                     f0Var2.H = true;
                 }
-                if (fVar3.f50869f) {
-                    f0Var2.I = fVar3.f50870g;
+                if (fVar3.f50870f) {
+                    f0Var2.I = fVar3.f50871g;
                 }
                 if (i16 == 0) {
                     o2 o2Var = ((u1) fVar3.h).f9426a;

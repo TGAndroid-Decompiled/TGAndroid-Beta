@@ -28,7 +28,7 @@ public abstract class s91 extends r91 {
         if (this.f40873r.f41544c <= 0) {
             performClick();
             wf.g gVar = this.f40868b;
-            if (gVar.f49569q0.D) {
+            if (gVar.f49570q0.D) {
                 long selectedDate = gVar.getSelectedDate();
                 if (this.f40874s == 4) {
                     t91 t91Var = this.f40873r;
@@ -55,7 +55,7 @@ public abstract class s91 extends r91 {
                     ha1Var.W = obj;
                     ha1Var.P.getClass();
                     obj.f37144a = RecyclerView.R(this);
-                    gVar.f49569q0.d(true, false);
+                    gVar.f49570q0.d(true, false);
                     int i11 = this.v;
                     int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(tL_loadAsyncGraph, new tr0(this, str, obj, 10), null, null, 0, ha1Var.f37416a.stats_dc, 1, true);
                     ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i11);

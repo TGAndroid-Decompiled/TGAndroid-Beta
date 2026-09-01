@@ -2556,7 +2556,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.p2 implements Not
             if (z4) {
                 xh.o oVar = new xh.o(getParentActivity(), 2, 0.6f);
                 oVar.f5805a = this.G4;
-                oVar.f50658p = -this.f34560a.getPaddingTop();
+                oVar.f50659p = -this.f34560a.getPaddingTop();
                 this.f34575c.w0(oVar);
                 return;
             }
@@ -3995,7 +3995,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.p2 implements Not
             }
             xd.a aVar = this.f34726x5;
             aVar.a(z4, true);
-            float f10 = aVar.f50504e;
+            float f10 = aVar.f50505e;
             this.f34671p5.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dp(60.0f), 0, f10));
             this.f34671p5.setAlpha(f10);
             FrameLayout frameLayout = this.f34671p5;

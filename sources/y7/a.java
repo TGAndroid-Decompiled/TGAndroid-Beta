@@ -13,24 +13,24 @@ import org.telegram.ui.yh;
 import u6.p;
 public final class a extends c6.a {
     public static final Parcelable.Creator<a> CREATOR = new p(22);
-    public final String f50794a;
-    public final byte[] f50795b;
-    public final byte[][] f50796c;
+    public final String f50795a;
+    public final byte[] f50796b;
+    public final byte[][] f50797c;
     public final byte[][] d;
-    public final byte[][] f50797e;
-    public final byte[][] f50798f;
+    public final byte[][] f50798e;
+    public final byte[][] f50799f;
     public final int[] h;
-    public final byte[][] f50799n;
+    public final byte[][] f50800n;
 
     public a(String str, byte[] bArr, byte[][] bArr2, byte[][] bArr3, byte[][] bArr4, byte[][] bArr5, int[] iArr, byte[][] bArr6) {
-        this.f50794a = str;
-        this.f50795b = bArr;
-        this.f50796c = bArr2;
+        this.f50795a = str;
+        this.f50796b = bArr;
+        this.f50797c = bArr2;
         this.d = bArr3;
-        this.f50797e = bArr4;
-        this.f50798f = bArr5;
+        this.f50798e = bArr4;
+        this.f50799f = bArr5;
         this.h = iArr;
-        this.f50799n = bArr6;
+        this.f50800n = bArr6;
     }
 
     public static List e(int[] iArr) {
@@ -89,7 +89,7 @@ public final class a extends c6.a {
     public final boolean equals(Object obj) {
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (t8.a(this.f50794a, aVar.f50794a) && Arrays.equals(this.f50795b, aVar.f50795b) && t8.a(f(this.f50796c), f(aVar.f50796c)) && t8.a(f(this.d), f(aVar.d)) && t8.a(f(this.f50797e), f(aVar.f50797e)) && t8.a(f(this.f50798f), f(aVar.f50798f)) && t8.a(e(this.h), e(aVar.h)) && t8.a(f(this.f50799n), f(aVar.f50799n))) {
+            if (t8.a(this.f50795a, aVar.f50795a) && Arrays.equals(this.f50796b, aVar.f50796b) && t8.a(f(this.f50797c), f(aVar.f50797c)) && t8.a(f(this.d), f(aVar.d)) && t8.a(f(this.f50798e), f(aVar.f50798e)) && t8.a(f(this.f50799f), f(aVar.f50799f)) && t8.a(e(this.h), e(aVar.h)) && t8.a(f(this.f50800n), f(aVar.f50800n))) {
                 return true;
             }
         }
@@ -100,7 +100,7 @@ public final class a extends c6.a {
         String sb;
         StringBuilder sb2 = new StringBuilder("ExperimentTokens");
         sb2.append("(");
-        String str = this.f50794a;
+        String str = this.f50795a;
         if (str == null) {
             sb = "null";
         } else {
@@ -112,7 +112,7 @@ public final class a extends c6.a {
         }
         sb2.append(sb);
         sb2.append(", direct=");
-        byte[] bArr = this.f50795b;
+        byte[] bArr = this.f50796b;
         if (bArr == null) {
             sb2.append("null");
         } else {
@@ -121,13 +121,13 @@ public final class a extends c6.a {
             sb2.append("'");
         }
         sb2.append(", ");
-        g(sb2, "GAIA", this.f50796c);
+        g(sb2, "GAIA", this.f50797c);
         sb2.append(", ");
         g(sb2, "PSEUDO", this.d);
         sb2.append(", ");
-        g(sb2, "ALWAYS", this.f50797e);
+        g(sb2, "ALWAYS", this.f50798e);
         sb2.append(", ");
-        g(sb2, "OTHER", this.f50798f);
+        g(sb2, "OTHER", this.f50799f);
         sb2.append(", ");
         sb2.append("weak");
         sb2.append("=");
@@ -151,7 +151,7 @@ public final class a extends c6.a {
             sb2.append(")");
         }
         sb2.append(", ");
-        g(sb2, "directs", this.f50799n);
+        g(sb2, "directs", this.f50800n);
         sb2.append(")");
         return sb2.toString();
     }
@@ -159,14 +159,14 @@ public final class a extends c6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q10 = g5.q(parcel, 20293);
-        g5.l(parcel, 2, this.f50794a);
-        g5.c(parcel, 3, this.f50795b);
-        g5.d(parcel, 4, this.f50796c);
+        g5.l(parcel, 2, this.f50795a);
+        g5.c(parcel, 3, this.f50796b);
+        g5.d(parcel, 4, this.f50797c);
         g5.d(parcel, 5, this.d);
-        g5.d(parcel, 6, this.f50797e);
-        g5.d(parcel, 7, this.f50798f);
+        g5.d(parcel, 6, this.f50798e);
+        g5.d(parcel, 7, this.f50799f);
         g5.g(parcel, 8, this.h);
-        g5.d(parcel, 9, this.f50799n);
+        g5.d(parcel, 9, this.f50800n);
         g5.r(parcel, q10);
     }
 }

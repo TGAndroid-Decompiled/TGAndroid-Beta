@@ -44,7 +44,6 @@ public final class gc extends db {
             if (!z4) {
                 imageView.setBackground(org.telegram.ui.ActionBar.k6.f0((w02 & 16777215) | 419430400, 1, -1));
             }
-            boolean z12 = LocaleController.isRTL;
             k7.i6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
             addView(imageView, k7.c6.h(56.0f, 48.0f, 16));
         }

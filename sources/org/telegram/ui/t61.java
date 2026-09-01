@@ -117,11 +117,11 @@ public final class t61 implements Runnable {
             case 4:
                 vf.p1 p1Var = (vf.p1) this.d;
                 Runnable runnable = (Runnable) this.f41509f;
-                p1Var.f49173e = false;
-                int i11 = p1Var.f49170a;
+                p1Var.f49174e = false;
+                int i11 = p1Var.f49171a;
                 MessagesController.getInstance(i11).putUsers((ArrayList) this.f41507c, true);
                 MessagesController.getInstance(i11).putChats((ArrayList) this.f41506b, true);
-                ArrayList arrayList2 = p1Var.f49171b;
+                ArrayList arrayList2 = p1Var.f49172b;
                 arrayList2.clear();
                 arrayList2.addAll((ArrayList) this.f41508e);
                 if (runnable != null) {
@@ -135,12 +135,12 @@ public final class t61 implements Runnable {
                 vf.p1 p1Var2 = (vf.p1) this.d;
                 vf.o1 o1Var = (vf.o1) this.f41508e;
                 MessageObject messageObject = (MessageObject) this.f41509f;
-                int i12 = p1Var2.f49170a;
+                int i12 = p1Var2.f49171a;
                 MessagesController.getInstance(i12).putUsers((ArrayList) this.f41507c, true);
                 MessagesController.getInstance(i12).putChats((ArrayList) this.f41506b, true);
-                o1Var.f49162e = messageObject;
+                o1Var.f49163e = messageObject;
                 if (messageObject != null) {
-                    messageObject.applyQuickReply(o1Var.f49160b, o1Var.f49159a);
+                    messageObject.applyQuickReply(o1Var.f49161b, o1Var.f49160a);
                 }
                 p1Var2.l();
                 NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
@@ -166,7 +166,7 @@ public final class t61 implements Runnable {
                     for (int i14 = 0; i14 < arrayList3.size(); i14++) {
                         tL_messages_sendQuickReplyMessages.random_id.add(Long.valueOf(Utilities.random.nextLong()));
                     }
-                    ConnectionsManager.getInstance(p1Var3.f49170a).sendRequest(tL_messages_sendQuickReplyMessages, null);
+                    ConnectionsManager.getInstance(p1Var3.f49171a).sendRequest(tL_messages_sendQuickReplyMessages, null);
                     return;
                 }
                 FileLog.e("received " + tLObject4 + " " + tL_error3 + " on getQuickReplyMessages when trying to send quick reply");

@@ -36,7 +36,7 @@ import org.telegram.ui.Cells.m9;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.pr;
 public final class o4 extends z implements b6, l9, j0 {
-    public static Paint f49901h0;
+    public static Paint f49902h0;
     public final ArrayList B;
     public final ArrayList C;
     public final ArrayList D;
@@ -59,27 +59,27 @@ public final class o4 extends z implements b6, l9, j0 {
     public float U;
     public boolean V;
     public float W;
-    public float f49902a0;
-    public int f49903b0;
-    public int f49904c0;
-    public int f49905d0;
-    public VelocityTracker f49906e0;
-    public ValueAnimator f49907f0;
-    public final Path f49908g0;
-    public final g6 f49909n;
-    public final Paint f49910r;
-    public final Paint f49911s;
+    public float f49903a0;
+    public int f49904b0;
+    public int f49905c0;
+    public int f49906d0;
+    public VelocityTracker f49907e0;
+    public ValueAnimator f49908f0;
+    public final Path f49909g0;
+    public final g6 f49910n;
+    public final Paint f49911r;
+    public final Paint f49912s;
     public final i0 v;
-    public final ImageView f49912w;
-    public final ImageView f49913x;
-    public final ArrayList f49914y;
+    public final ImageView f49913w;
+    public final ImageView f49914x;
+    public final ArrayList f49915y;
 
     public o4(Context context, g6 g6Var) {
         super(context);
         boolean z4;
-        this.f49910r = new Paint(1);
-        this.f49911s = new Paint(1);
-        this.f49914y = new ArrayList();
+        this.f49911r = new Paint(1);
+        this.f49912s = new Paint(1);
+        this.f49915y = new ArrayList();
         this.B = new ArrayList();
         this.C = new ArrayList();
         this.D = new ArrayList();
@@ -94,13 +94,13 @@ public final class o4 extends z implements b6, l9, j0 {
         this.I = new HashMap();
         this.Q = -1;
         this.R = new org.telegram.ui.Components.z5(this, 0L, 320L, pr.h);
-        this.f49908g0 = new Path();
-        this.f49909n = g6Var;
+        this.f49909g0 = new Path();
+        this.f49910n = g6Var;
         setWillNotDraw(false);
         g(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(4.0f));
         i0 i0Var = new i0(context, g6Var, new org.telegram.ui.Cells.f1(this, 28));
         this.v = i0Var;
-        addView(i0Var.f49777a, c6.e(-2, -2, 51));
+        addView(i0Var.f49778a, c6.e(-2, -2, 51));
         setClipChildren(false);
         setClipToPadding(false);
         if (z4 && i10 >= 31) {
@@ -110,12 +110,12 @@ public final class o4 extends z implements b6, l9, j0 {
             this.G = new z9.d(24);
         }
         ImageView h = h();
-        this.f49912w = h;
+        this.f49913w = h;
         h.setImageResource(R.drawable.iv_media_add);
         addView(h, c6.d(32, 32.0f, 53, 12.0f, 12.0f, 12.0f, 12.0f));
         h.setOnClickListener(new l4(this, 1));
         ImageView h9 = h();
-        this.f49913x = h9;
+        this.f49914x = h9;
         h9.setVisibility(8);
         addView(h9, c6.d(32, 32.0f, 53, 12.0f, 12.0f, 66.0f, 12.0f));
         h9.setOnClickListener(new l4(this, 2));
@@ -138,7 +138,7 @@ public final class o4 extends z implements b6, l9, j0 {
 
     private void settle(float f10) {
         int i10;
-        int size = this.f49914y.size();
+        int size = this.f49915y.size();
         if (f10 >= 0.0f || this.T >= size - 1) {
             i10 = -1;
             if (f10 <= 0.0f || this.T <= 0) {
@@ -152,23 +152,23 @@ public final class o4 extends z implements b6, l9, j0 {
             int i11 = this.T;
             int i12 = i10 + i11;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.U, i12 - i11);
-            this.f49907f0 = ofFloat;
+            this.f49908f0 = ofFloat;
             ofFloat.setDuration(220L);
-            this.f49907f0.setInterpolator(pr.h);
-            this.f49907f0.addUpdateListener(new oh.f5(this, 26));
-            this.f49907f0.addListener(new org.telegram.ui.Cells.b4(this, i12, 11));
-            this.f49907f0.start();
+            this.f49908f0.setInterpolator(pr.h);
+            this.f49908f0.addUpdateListener(new oh.f5(this, 26));
+            this.f49908f0.addListener(new org.telegram.ui.Cells.b4(this, i12, 11));
+            this.f49908f0.start();
         }
         i10 = 1;
         int i112 = this.T;
         int i122 = i10 + i112;
         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.U, i122 - i112);
-        this.f49907f0 = ofFloat2;
+        this.f49908f0 = ofFloat2;
         ofFloat2.setDuration(220L);
-        this.f49907f0.setInterpolator(pr.h);
-        this.f49907f0.addUpdateListener(new oh.f5(this, 26));
-        this.f49907f0.addListener(new org.telegram.ui.Cells.b4(this, i122, 11));
-        this.f49907f0.start();
+        this.f49908f0.setInterpolator(pr.h);
+        this.f49908f0.addUpdateListener(new oh.f5(this, 26));
+        this.f49908f0.addListener(new org.telegram.ui.Cells.b4(this, i122, 11));
+        this.f49908f0.start();
     }
 
     @Override
@@ -196,15 +196,15 @@ public final class o4 extends z implements b6, l9, j0 {
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         int size;
         if (this.B.contains(view)) {
-            a aVar = this.f50174a;
+            a aVar = this.f50175a;
             if (aVar == null) {
                 size = 0;
             } else {
-                size = aVar.f49623k.size();
+                size = aVar.f49624k.size();
             }
             if (size > 0) {
                 canvas.save();
-                Path path = this.f49908g0;
+                Path path = this.f49909g0;
                 path.rewind();
                 path.addRoundRect(getPaddingLeft(), getPaddingTop(), Math.max(0, (getWidth() - getPaddingLeft()) - getPaddingRight()) + getPaddingLeft(), getPaddingTop() + this.M, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
                 canvas.clipPath(path);
@@ -219,9 +219,9 @@ public final class o4 extends z implements b6, l9, j0 {
     @Override
     public final void e() {
         int i10 = k6.Gd;
-        g6 g6Var = this.f49909n;
-        this.f49910r.setColor(k6.v0(i10, g6Var));
-        this.f49911s.setColor(k6.v0(k6.f21970uf, g6Var));
+        g6 g6Var = this.f49910n;
+        this.f49911r.setColor(k6.v0(i10, g6Var));
+        this.f49912s.setColor(k6.v0(k6.f21970uf, g6Var));
         i0 i0Var = this.v;
         if (i0Var != null) {
             i0Var.a();
@@ -235,7 +235,7 @@ public final class o4 extends z implements b6, l9, j0 {
 
     @Override
     public e1 getCaptionEditText() {
-        return this.v.f49777a;
+        return this.v.f49778a;
     }
 
     public int[] getColorKeys() {
@@ -244,7 +244,7 @@ public final class o4 extends z implements b6, l9, j0 {
 
     @Override
     public a getRow() {
-        return this.f50174a;
+        return this.f50175a;
     }
 
     public final ImageView h() {
@@ -258,7 +258,7 @@ public final class o4 extends z implements b6, l9, j0 {
             this.I.put(imageView, cVar);
         } else {
             int i10 = k6.G6;
-            g6 g6Var = this.f49909n;
+            g6 g6Var = this.f49910n;
             imageView.setColorFilter(new PorterDuffColorFilter(k6.v0(i10, g6Var), PorterDuff.Mode.SRC_IN));
             int i11 = k6.f21659d6;
             imageView.setBackground(new y1(k6.Z(k6.v0(i11, g6Var), k6.v(k6.v0(i11, g6Var), k6.v0(k6.f21750i6, g6Var)), 20, 20)));
@@ -297,14 +297,14 @@ public final class o4 extends z implements b6, l9, j0 {
         int max = Math.max(0, (o4Var.getWidth() - paddingLeft) - o4Var.getPaddingRight());
         canvas2.save();
         canvas2.translate(paddingLeft, 0.0f);
-        a aVar = o4Var.f50174a;
+        a aVar = o4Var.f50175a;
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f49623k.size();
+            size = aVar.f49624k.size();
         }
         if (size > 0) {
-            Path path = o4Var.f49908g0;
+            Path path = o4Var.f49909g0;
             path.rewind();
             path.addRoundRect(0.0f, paddingTop, max, o4Var.M + paddingTop, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
             canvas2.clipPath(path);
@@ -313,24 +313,24 @@ public final class o4 extends z implements b6, l9, j0 {
         }
         boolean l10 = o4Var.l();
         int i17 = 1;
-        ArrayList arrayList = o4Var.f49914y;
+        ArrayList arrayList = o4Var.f49915y;
         if (l10 && arrayList.size() >= 2) {
             z4 = true;
         } else {
             z4 = false;
         }
-        a aVar2 = o4Var.f50174a;
+        a aVar2 = o4Var.f50175a;
         if (aVar2 == null) {
             size2 = 0;
         } else {
-            size2 = aVar2.f49623k.size();
+            size2 = aVar2.f49624k.size();
         }
         if (size2 > 0) {
             i10 = AndroidUtilities.dp(8.0f);
         } else {
             i10 = 0;
         }
-        Paint paint = o4Var.f49910r;
+        Paint paint = o4Var.f49911r;
         if (z4 && (((i15 = o4Var.T) == 0 && o4Var.U < 0.0f) || (i15 == arrayList.size() - 1 && o4Var.U > 0.0f))) {
             canvas2.drawRect(0.0f, paddingTop, max, o4Var.M + paddingTop, paint);
         }
@@ -342,10 +342,10 @@ public final class o4 extends z implements b6, l9, j0 {
                 RectF rectF2 = AndroidUtilities.rectTmp;
                 rectF2.set(0.0f, paddingTop, max, paddingTop + o4Var.M);
                 r4 r4Var = (r4) arrayList.get(0);
-                ImageReceiver imageReceiver = r4Var.f50014b;
+                ImageReceiver imageReceiver = r4Var.f50015b;
                 if (r4Var.b()) {
                     imageReceiver.setImageCoords(rectF2);
-                    imageReceiver.setAlpha(r4Var.f50013a.getCurrentAlpha());
+                    imageReceiver.setAlpha(r4Var.f50014a.getCurrentAlpha());
                     imageReceiver.draw(canvas2);
                 }
             }
@@ -375,14 +375,14 @@ public final class o4 extends z implements b6, l9, j0 {
                 } else {
                     i14 = 0;
                 }
-                r4Var2.f50013a.setRoundRadius(i11, i12, i13, i14);
-                r4Var2.f50014b.setRoundRadius(i11, i12, i13, i14);
+                r4Var2.f50014a.setRoundRadius(i11, i12, i13, i14);
+                r4Var2.f50015b.setRoundRadius(i11, i12, i13, i14);
             } else {
-                r4Var2.f50013a.setRoundRadius(i16, i16, i16, i16);
-                r4Var2.f50014b.setRoundRadius(i16, i16, i16, i16);
+                r4Var2.f50014a.setRoundRadius(i16, i16, i16, i16);
+                r4Var2.f50015b.setRoundRadius(i16, i16, i16, i16);
             }
             boolean c3 = r4Var2.c();
-            ImageReceiver imageReceiver2 = r4Var2.f50013a;
+            ImageReceiver imageReceiver2 = r4Var2.f50014a;
             if (!c3) {
                 canvas2.drawRect(rectF3, paint);
             }
@@ -391,20 +391,20 @@ public final class o4 extends z implements b6, l9, j0 {
                 imageReceiver2.draw(canvas2);
             }
             RadialProgress2 radialProgress2 = r4Var2.d;
-            t tVar = r4Var2.f50016e;
+            t tVar = r4Var2.f50017e;
             if (tVar != null && tVar.a()) {
                 int dp = AndroidUtilities.dp(48.0f);
                 int round = Math.round(rectF3.centerX());
                 int round2 = Math.round(rectF3.centerY());
                 int i19 = dp / 2;
                 radialProgress2.q(round - i19, round2 - i19, round + i19, round2 + i19);
-                radialProgress2.o(r4Var2.f50016e.f50033f, true);
+                radialProgress2.o(r4Var2.f50017e.f50034f, true);
                 radialProgress2.draw(canvas2);
             }
-            t tVar2 = r4Var2.f50016e;
-            if (tVar2 != null && tVar2.f50040n && r4Var2.c()) {
+            t tVar2 = r4Var2.f50017e;
+            if (tVar2 != null && tVar2.f50041n && r4Var2.c()) {
                 jh.j spoilerEffect = o4Var.getSpoilerEffect();
-                ImageReceiver imageReceiver3 = r4Var2.f50014b;
+                ImageReceiver imageReceiver3 = r4Var2.f50015b;
                 canvas2.save();
                 canvas2.clipRect(rectF3);
                 if (r4Var2.b()) {
@@ -428,38 +428,38 @@ public final class o4 extends z implements b6, l9, j0 {
     }
 
     public final void k(int i10) {
-        if (this.K != null && this.f50174a != null) {
+        if (this.K != null && this.f50175a != null) {
             List m9 = m();
-            if (!m9.isEmpty() && (m9.size() != 1 || ((t) m9.get(0)).f50029a != 0)) {
+            if (!m9.isEmpty() && (m9.size() != 1 || ((t) m9.get(0)).f50030a != 0)) {
                 if (i10 >= 0 && i10 < m9.size() && ((t) m9.get(i10)).a()) {
-                    r3.N1(this.f50174a, (t) m9.get(i10), this.K.f49827a);
+                    r3.N1(this.f50175a, (t) m9.get(i10), this.K.f49828a);
                     return;
                 }
                 return;
             }
             k3 k3Var = this.K;
-            a aVar = this.f50174a;
-            r3 r3Var = k3Var.f49827a;
+            a aVar = this.f50175a;
+            r3 r3Var = k3Var.f49828a;
             r3Var.Y3 = aVar;
-            r3Var.f49979e3.p(0);
+            r3Var.f49980e3.p(0);
         }
     }
 
     public final boolean l() {
-        a aVar = this.f50174a;
-        if (aVar != null && (aVar.f49616b instanceof TL_iv.pageBlockSlideshow)) {
+        a aVar = this.f50175a;
+        if (aVar != null && (aVar.f49617b instanceof TL_iv.pageBlockSlideshow)) {
             return true;
         }
         return false;
     }
 
     public final List m() {
-        a aVar = this.f50174a;
+        a aVar = this.f50175a;
         if (aVar == null) {
             return Collections.EMPTY_LIST;
         }
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f49616b;
+            TL_iv.PageBlock pageBlock = aVar.f49617b;
             if ((pageBlock instanceof TL_iv.pageBlockCollage) || (pageBlock instanceof TL_iv.pageBlockSlideshow)) {
                 ArrayList arrayList = aVar.h;
                 if (arrayList != null) {
@@ -468,7 +468,7 @@ public final class o4 extends z implements b6, l9, j0 {
                 return Collections.EMPTY_LIST;
             }
         }
-        t tVar = aVar.f49620g;
+        t tVar = aVar.f49621g;
         if (tVar != null) {
             return Collections.singletonList(tVar);
         }
@@ -480,27 +480,27 @@ public final class o4 extends z implements b6, l9, j0 {
         ArrayList arrayList2;
         List m9 = m();
         while (true) {
-            arrayList = this.f49914y;
+            arrayList = this.f49915y;
             if (arrayList.size() >= m9.size()) {
                 break;
             }
-            r4 r4Var = new r4(this, this.f49909n);
+            r4 r4Var = new r4(this, this.f49910n);
             if (this.L) {
-                r4Var.f50013a.onAttachedToWindow();
-                r4Var.f50014b.onAttachedToWindow();
+                r4Var.f50014a.onAttachedToWindow();
+                r4Var.f50015b.onAttachedToWindow();
                 r4Var.a();
             }
             arrayList.add(r4Var);
         }
         while (arrayList.size() > m9.size()) {
             r4 r4Var2 = (r4) e2.c.g(1, arrayList);
-            r4Var2.f50013a.onDetachedFromWindow();
-            r4Var2.f50014b.onDetachedFromWindow();
-            r4Var2.f50015c = null;
+            r4Var2.f50014a.onDetachedFromWindow();
+            r4Var2.f50015b.onDetachedFromWindow();
+            r4Var2.f50016c = null;
         }
         for (int i10 = 0; i10 < m9.size(); i10++) {
             r4 r4Var3 = (r4) arrayList.get(i10);
-            r4Var3.f50016e = (t) m9.get(i10);
+            r4Var3.f50017e = (t) m9.get(i10);
             r4Var3.a();
         }
         while (true) {
@@ -514,8 +514,8 @@ public final class o4 extends z implements b6, l9, j0 {
             addView(h, c6.e(32, 32, 51));
             arrayList2.add(h);
         }
-        this.f49912w.bringToFront();
-        this.f49913x.bringToFront();
+        this.f49913w.bringToFront();
+        this.f49914x.bringToFront();
         while (arrayList2.size() > m9.size()) {
             View view = (ImageView) e2.c.g(1, arrayList2);
             removeView(view);
@@ -524,8 +524,8 @@ public final class o4 extends z implements b6, l9, j0 {
         }
         if (this.J != null) {
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                t tVar = ((r4) arrayList.get(i11)).f50016e;
-                if (tVar != null && tVar.f50040n) {
+                t tVar = ((r4) arrayList.get(i11)).f50017e;
+                if (tVar != null && tVar.f50041n) {
                     return;
                 }
             }
@@ -538,7 +538,7 @@ public final class o4 extends z implements b6, l9, j0 {
         boolean z10;
         int i10;
         int i11 = 0;
-        if (this.f49914y.size() >= 2) {
+        if (this.f49915y.size() >= 2) {
             z10 = true;
         } else {
             z10 = false;
@@ -546,7 +546,7 @@ public final class o4 extends z implements b6, l9, j0 {
         if (!z10) {
             i11 = 8;
         }
-        ImageView imageView = this.f49913x;
+        ImageView imageView = this.f49914x;
         imageView.setVisibility(i11);
         if (z10) {
             if (l()) {
@@ -572,11 +572,11 @@ public final class o4 extends z implements b6, l9, j0 {
         this.L = true;
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f49914y;
+            ArrayList arrayList = this.f49915y;
             if (i10 < arrayList.size()) {
                 r4 r4Var = (r4) arrayList.get(i10);
-                r4Var.f50013a.onAttachedToWindow();
-                r4Var.f50014b.onAttachedToWindow();
+                r4Var.f50014a.onAttachedToWindow();
+                r4Var.f50015b.onAttachedToWindow();
                 r4Var.a();
                 i10++;
             } else {
@@ -593,21 +593,21 @@ public final class o4 extends z implements b6, l9, j0 {
         if (getParent() != null) {
             getParent().requestDisallowInterceptTouchEvent(false);
         }
-        VelocityTracker velocityTracker = this.f49906e0;
+        VelocityTracker velocityTracker = this.f49907e0;
         if (velocityTracker != null) {
             velocityTracker.recycle();
-            this.f49906e0 = null;
+            this.f49907e0 = null;
         }
         this.V = false;
         while (true) {
-            ArrayList arrayList = this.f49914y;
+            ArrayList arrayList = this.f49915y;
             if (i10 >= arrayList.size()) {
                 break;
             }
             r4 r4Var = (r4) arrayList.get(i10);
-            r4Var.f50013a.onDetachedFromWindow();
-            r4Var.f50014b.onDetachedFromWindow();
-            r4Var.f50015c = null;
+            r4Var.f50014a.onDetachedFromWindow();
+            r4Var.f50015b.onDetachedFromWindow();
+            r4Var.f50016c = null;
             i10++;
         }
         jh.j jVar = this.J;
@@ -615,10 +615,10 @@ public final class o4 extends z implements b6, l9, j0 {
             jVar.b(this);
             this.J = null;
         }
-        ValueAnimator valueAnimator = this.f49907f0;
+        ValueAnimator valueAnimator = this.f49908f0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f49907f0 = null;
+            this.f49908f0 = null;
         }
     }
 
@@ -637,13 +637,13 @@ public final class o4 extends z implements b6, l9, j0 {
         j(canvas);
         org.telegram.ui.Components.z5 z5Var = this.R;
         float f13 = z5Var.f33725c;
-        ArrayList arrayList = this.f49914y;
+        ArrayList arrayList = this.f49915y;
         if (arrayList.size() >= 2 && f13 > 0.001f) {
-            if (f49901h0 == null) {
+            if (f49902h0 == null) {
                 Paint paint = new Paint(1);
-                f49901h0 = paint;
+                f49902h0 = paint;
                 paint.setColor(-1);
-                f49901h0.setShadowLayer(AndroidUtilities.dpf2(3.0f), 0.0f, AndroidUtilities.dpf2(1.0f), Integer.MIN_VALUE);
+                f49902h0.setShadowLayer(AndroidUtilities.dpf2(3.0f), 0.0f, AndroidUtilities.dpf2(1.0f), Integer.MIN_VALUE);
             }
             int size = arrayList.size();
             float dp3 = AndroidUtilities.dp(5.0f) + ((getPaddingTop() + this.M) - AndroidUtilities.dp(23.0f));
@@ -667,17 +667,17 @@ public final class o4 extends z implements b6, l9, j0 {
             canvas.clipRect(paddingLeft, (getPaddingTop() + this.M) - AndroidUtilities.dp(f11), max + paddingLeft, getPaddingTop() + this.M);
             for (int i10 = 0; i10 < size; i10++) {
                 float max2 = Math.max(0.0f, 1.0f - Math.abs(i10 - f14));
-                f49901h0.setAlpha((int) e2.c.y(max2, 95.0f, 160.0f, f13));
-                canvas.drawCircle(AndroidUtilities.dp(f12) + dp2 + (AndroidUtilities.dp(f10) * i10), dp3, (AndroidUtilities.dp(1.0f) * max2) + AndroidUtilities.dp(2.0f), f49901h0);
+                f49902h0.setAlpha((int) e2.c.y(max2, 95.0f, 160.0f, f13));
+                canvas.drawCircle(AndroidUtilities.dp(f12) + dp2 + (AndroidUtilities.dp(f10) * i10), dp3, (AndroidUtilities.dp(1.0f) * max2) + AndroidUtilities.dp(2.0f), f49902h0);
             }
             canvas.restore();
         }
         k3 k3Var = this.K;
-        if (k3Var != null && (textSelectionHelper = k3Var.f49827a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
+        if (k3Var != null && (textSelectionHelper = k3Var.f49828a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
             if (R >= 0 && R > textSelectionHelper.f23175u0 && R <= textSelectionHelper.f23178x0) {
-                canvas.drawRect(getPaddingLeft(), paddingTop, getWidth() - getPaddingRight(), paddingTop + this.M, this.f49911s);
+                canvas.drawRect(getPaddingLeft(), paddingTop, getWidth() - getPaddingRight(), paddingTop + this.M, this.f49912s);
             }
         }
         if (this.E && (dVar = this.F) != null && Build.VERSION.SDK_INT >= 31) {
@@ -695,8 +695,8 @@ public final class o4 extends z implements b6, l9, j0 {
                 while (true) {
                     ArrayList arrayList2 = this.H;
                     int size2 = arrayList2.size();
-                    imageView = this.f49913x;
-                    imageView2 = this.f49912w;
+                    imageView = this.f49914x;
+                    imageView2 = this.f49913w;
                     if (i11 >= size2) {
                         break;
                     }
@@ -724,7 +724,7 @@ public final class o4 extends z implements b6, l9, j0 {
         int i15 = i12 - i10;
         int max = Math.max(0, (i15 - paddingLeft) - paddingRight);
         int i16 = i15 - paddingRight;
-        if (l8.b(this.f50174a) > 0) {
+        if (l8.b(this.f50175a) > 0) {
             i14 = AndroidUtilities.dp(16.0f);
         } else {
             i14 = 0;
@@ -732,10 +732,10 @@ public final class o4 extends z implements b6, l9, j0 {
         this.v.g(paddingLeft - i14, paddingRight - i14, i15, getPaddingTop() + this.M);
         int dp = AndroidUtilities.dp(6.0f);
         int i17 = i16 - dp;
-        ImageView imageView = this.f49912w;
+        ImageView imageView = this.f49913w;
         imageView.layout(i17 - imageView.getMeasuredWidth(), getPaddingTop() + dp, i17, imageView.getMeasuredHeight() + getPaddingTop() + dp);
         int i18 = i17 - dp;
-        ImageView imageView2 = this.f49913x;
+        ImageView imageView2 = this.f49914x;
         imageView2.layout((i18 - imageView.getMeasuredWidth()) - imageView2.getMeasuredWidth(), getPaddingTop() + dp, i18 - imageView.getMeasuredWidth(), imageView.getMeasuredHeight() + getPaddingTop() + dp);
         List m9 = m();
         int i19 = 0;
@@ -744,7 +744,7 @@ public final class o4 extends z implements b6, l9, j0 {
             if (i19 < arrayList.size()) {
                 ImageView imageView3 = (ImageView) arrayList.get(i19);
                 int i20 = 8;
-                if (i19 < m9.size() && ((t) m9.get(i19)).f50029a != 0) {
+                if (i19 < m9.size() && ((t) m9.get(i19)).f50030a != 0) {
                     ArrayList arrayList2 = this.D;
                     if (i19 < arrayList2.size()) {
                         RectF rectF = (RectF) arrayList2.get(i19);
@@ -805,48 +805,48 @@ public final class o4 extends z implements b6, l9, j0 {
         }
         int i11 = -1;
         if (l() && !this.R.f33729i) {
-            ArrayList arrayList = this.f49914y;
+            ArrayList arrayList = this.f49915y;
             if (arrayList.size() >= 2) {
                 if (actionMasked == 0) {
                     if (!z4) {
                         return super.onTouchEvent(motionEvent);
                     }
-                    if (this.f49903b0 == 0) {
+                    if (this.f49904b0 == 0) {
                         ViewConfiguration viewConfiguration = ViewConfiguration.get(getContext());
-                        this.f49903b0 = viewConfiguration.getScaledTouchSlop();
-                        this.f49904c0 = viewConfiguration.getScaledMinimumFlingVelocity();
-                        this.f49905d0 = viewConfiguration.getScaledMaximumFlingVelocity();
+                        this.f49904b0 = viewConfiguration.getScaledTouchSlop();
+                        this.f49905c0 = viewConfiguration.getScaledMinimumFlingVelocity();
+                        this.f49906d0 = viewConfiguration.getScaledMaximumFlingVelocity();
                     }
                     this.W = x10;
-                    this.f49902a0 = y10;
+                    this.f49903a0 = y10;
                     this.V = false;
-                    VelocityTracker velocityTracker2 = this.f49906e0;
+                    VelocityTracker velocityTracker2 = this.f49907e0;
                     if (velocityTracker2 == null) {
-                        this.f49906e0 = VelocityTracker.obtain();
+                        this.f49907e0 = VelocityTracker.obtain();
                     } else {
                         velocityTracker2.clear();
                     }
-                    this.f49906e0.addMovement(motionEvent);
+                    this.f49907e0.addMovement(motionEvent);
                     if (getParent() != null) {
                         getParent().requestDisallowInterceptTouchEvent(true);
                     }
-                    ValueAnimator valueAnimator = this.f49907f0;
+                    ValueAnimator valueAnimator = this.f49908f0;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
-                        this.f49907f0 = null;
+                        this.f49908f0 = null;
                     }
                     this.Q = this.T;
                     return true;
                 }
                 float f10 = 0.0f;
                 if (actionMasked == 2) {
-                    VelocityTracker velocityTracker3 = this.f49906e0;
+                    VelocityTracker velocityTracker3 = this.f49907e0;
                     if (velocityTracker3 != null) {
                         velocityTracker3.addMovement(motionEvent);
                     }
                     float f11 = x10 - this.W;
-                    float f12 = y10 - this.f49902a0;
-                    if (!this.V && Math.abs(f11) > this.f49903b0 && Math.abs(f11) > Math.abs(f12)) {
+                    float f12 = y10 - this.f49903a0;
+                    if (!this.V && Math.abs(f11) > this.f49904b0 && Math.abs(f11) > Math.abs(f12)) {
                         this.V = true;
                         this.Q = -1;
                     }
@@ -865,19 +865,19 @@ public final class o4 extends z implements b6, l9, j0 {
                         return true;
                     }
                 } else if (actionMasked == 1 || actionMasked == 3) {
-                    if (actionMasked == 1 && (velocityTracker = this.f49906e0) != null) {
+                    if (actionMasked == 1 && (velocityTracker = this.f49907e0) != null) {
                         velocityTracker.addMovement(motionEvent);
-                        this.f49906e0.computeCurrentVelocity(1000, this.f49905d0);
-                        float xVelocity = this.f49906e0.getXVelocity();
-                        float yVelocity = this.f49906e0.getYVelocity();
-                        if (Math.abs(xVelocity) >= this.f49904c0 && Math.abs(xVelocity) > Math.abs(yVelocity)) {
+                        this.f49907e0.computeCurrentVelocity(1000, this.f49906d0);
+                        float xVelocity = this.f49907e0.getXVelocity();
+                        float yVelocity = this.f49907e0.getYVelocity();
+                        if (Math.abs(xVelocity) >= this.f49905c0 && Math.abs(xVelocity) > Math.abs(yVelocity)) {
                             f10 = xVelocity;
                         }
                     }
-                    VelocityTracker velocityTracker4 = this.f49906e0;
+                    VelocityTracker velocityTracker4 = this.f49907e0;
                     if (velocityTracker4 != null) {
                         velocityTracker4.recycle();
-                        this.f49906e0 = null;
+                        this.f49907e0 = null;
                     }
                     if (getParent() != null) {
                         getParent().requestDisallowInterceptTouchEvent(false);

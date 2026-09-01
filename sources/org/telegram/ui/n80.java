@@ -57,10 +57,10 @@ public final class n80 implements jy, org.telegram.ui.ActionBar.c2 {
             if (o1Var == null) {
                 i11 = -1;
             } else {
-                i11 = o1Var.f49159a;
+                i11 = o1Var.f49160a;
             }
             vf.o1 d = f10.d(obj);
-            if (d != null && d.f49159a != i11) {
+            if (d != null && d.f49160a != i11) {
                 AndroidUtilities.shakeView(g1Var);
                 textView.setText(LocaleController.getString(R.string.BusinessRepliesNameBusy));
                 c1Var.run(Boolean.TRUE);

@@ -210,7 +210,7 @@ public final class w2 implements View.OnClickListener {
                 if (xnVar2.getParentActivity() != null) {
                     TLRPC.Chat chat = xnVar2.f43165e;
                     if (chat != null && !ChatObject.canUserDoAdminAction(chat, 13)) {
-                        if (boVar.f25661a.f50505f && xnVar2.getParentActivity() != null && xnVar2.fragmentView != null && xnVar2.W7 != null) {
+                        if (boVar.f25661a.f50506f && xnVar2.getParentActivity() != null && xnVar2.fragmentView != null && xnVar2.W7 != null) {
                             if (xnVar2.f43254l2 == null) {
                                 m40 m40Var = new m40(7, xnVar2.getParentActivity(), xnVar2.f43136ba, true);
                                 xnVar2.f43254l2 = m40Var;
@@ -435,7 +435,7 @@ public final class w2 implements View.OnClickListener {
                     d20Var.f();
                     return;
                 } else if (v0Var.getFilter().h) {
-                    if (!v0Var.f22318a.f50505f) {
+                    if (!v0Var.f22318a.f50506f) {
                         v0Var.setSelectedForDelete(true);
                         return;
                     }

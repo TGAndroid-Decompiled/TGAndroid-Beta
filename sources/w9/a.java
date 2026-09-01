@@ -2,18 +2,18 @@ package w9;
 
 import java.util.Map;
 public final class a implements u9.d {
-    public final int f49469a;
+    public final int f49470a;
 
     @Override
     public final void a(Object obj, Object obj2) {
-        switch (this.f49469a) {
+        switch (this.f49470a) {
             case 0:
                 u9.e eVar = (u9.e) obj2;
                 throw new RuntimeException("Couldn't find encoder for type " + obj.getClass().getCanonicalName());
             case 1:
                 Map.Entry entry = (Map.Entry) obj;
                 u9.e eVar2 = (u9.e) obj2;
-                eVar2.e(x9.e.f50467g, entry.getKey());
+                eVar2.e(x9.e.f50468g, entry.getKey());
                 eVar2.e(x9.e.h, entry.getValue());
                 return;
             default:

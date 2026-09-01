@@ -73,10 +73,10 @@ public abstract class u90 {
         textmath.tried = true;
         wh.r a2 = wh.r.a(trim, AndroidUtilities.dp(20.0f), true);
         if (a2 != null) {
-            textmath.f21068w = a2.f49958b;
-            textmath.h = a2.f49959c;
+            textmath.f21068w = a2.f49959b;
+            textmath.h = a2.f49960c;
             textmath.depth = a2.d;
-            textmath.bitmap = a2.f49957a;
+            textmath.bitmap = a2.f49958a;
         }
         return textmath;
     }

@@ -96,10 +96,10 @@ public final class f6 extends View {
         i5Var.h(tL_starGiftUnique, j10, tL_textWithEntities, str);
         xd.c cVar = i5Var.Q;
         if (z4) {
-            if (cVar.f50511g) {
-                f10 = cVar.f50510f;
+            if (cVar.f50512g) {
+                f10 = cVar.f50511f;
             } else {
-                f10 = cVar.f50509e;
+                f10 = cVar.f50510e;
             }
             int round = Math.round(f10);
             int i10 = i5Var.L;
@@ -157,8 +157,8 @@ public final class f6 extends View {
             k6.q(0.0f, getY(), getMeasuredWidth(), i10);
         }
         mh.i5 i5Var = this.f12745a;
-        this.f12747c = (getWidth() - ((int) i5Var.Q.f50509e)) / 2.0f;
-        float dp = i5Var.Q.f50509e + AndroidUtilities.dp(8.0f);
+        this.f12747c = (getWidth() - ((int) i5Var.Q.f50510e)) / 2.0f;
+        float dp = i5Var.Q.f50510e + AndroidUtilities.dp(8.0f);
         float width = (getWidth() - dp) / 2.0f;
         float dp2 = this.d - AndroidUtilities.dp(4.0f);
         RectF rectF = AndroidUtilities.rectTmp;
@@ -178,7 +178,7 @@ public final class f6 extends View {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         mh.i5 i5Var = this.f12745a;
-        this.f12747c = (size - ((int) i5Var.Q.f50509e)) / 2.0f;
+        this.f12747c = (size - ((int) i5Var.Q.f50510e)) / 2.0f;
         float paddingTop = getPaddingTop();
         this.d = paddingTop;
         setMeasuredDimension(size, getPaddingBottom() + ((int) paddingTop) + i5Var.M);

@@ -3,26 +3,26 @@ package zf;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class k extends AnimatorListenerAdapter {
-    public final boolean f51151a;
-    public final boolean f51152b;
-    public final boolean f51153c;
+    public final boolean f51152a;
+    public final boolean f51153b;
+    public final boolean f51154c;
     public final boolean d;
-    public final n f51154e;
+    public final n f51155e;
 
     public k(n nVar, boolean z4, boolean z10, boolean z11, boolean z12) {
-        this.f51154e = nVar;
-        this.f51151a = z4;
-        this.f51152b = z10;
-        this.f51153c = z11;
+        this.f51155e = nVar;
+        this.f51152a = z4;
+        this.f51153b = z10;
+        this.f51154c = z11;
         this.d = z12;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        n nVar = this.f51154e;
+        n nVar = this.f51155e;
         nVar.C = false;
-        if (!this.f51151a) {
-            nVar.e(this.f51152b, this.f51153c, this.d, true);
+        if (!this.f51152a) {
+            nVar.e(this.f51153b, this.f51154c, this.d, true);
         }
     }
 }

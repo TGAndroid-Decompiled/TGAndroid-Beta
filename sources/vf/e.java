@@ -21,31 +21,31 @@ import org.telegram.ui.Components.r31;
 import org.telegram.ui.Components.z8;
 import org.telegram.ui.xn;
 public final class e extends FrameLayout {
-    public final int f49021a;
-    public final z8 f49022b;
-    public final p9 f49023c;
+    public final int f49022a;
+    public final z8 f49023b;
+    public final p9 f49024c;
     public final LinearLayout d;
-    public final k6 f49024e;
-    public final k6 f49025f;
+    public final k6 f49025e;
+    public final k6 f49026f;
     public final dq h;
-    public final ImageView f49026n;
-    public boolean f49027r;
-    public long f49028s;
+    public final ImageView f49027n;
+    public boolean f49028r;
+    public long f49029s;
     public long v;
-    public int f49029w;
-    public String f49030x;
-    public float f49031y;
+    public int f49030w;
+    public String f49031x;
+    public float f49032y;
 
     public e(Activity activity, g6 g6Var, xn xnVar) {
         super(activity);
         int i10;
-        this.f49021a = xnVar.getCurrentAccount();
-        this.f49027r = false;
+        this.f49022a = xnVar.getCurrentAccount();
+        this.f49028r = false;
         p9 p9Var = new p9(activity);
-        this.f49023c = p9Var;
+        this.f49024c = p9Var;
         TLRPC.User user = xnVar.getMessagesController().getUser(Long.valueOf(this.v));
         z8 z8Var = new z8((g6) null);
-        this.f49022b = z8Var;
+        this.f49023b = z8Var;
         z8Var.r(user);
         p9Var.setRoundRadius(AndroidUtilities.dp(16.0f));
         p9Var.e(user, z8Var);
@@ -54,7 +54,7 @@ public final class e extends FrameLayout {
         this.d = linearLayout;
         linearLayout.setOrientation(1);
         k6 k6Var = new k6(activity, false, false, false);
-        this.f49024e = k6Var;
+        this.f49025e = k6Var;
         k6Var.f28280n = false;
         k6Var.getDrawable().o(true, false, false);
         k6Var.setTypeface(AndroidUtilities.bold());
@@ -64,7 +64,7 @@ public final class e extends FrameLayout {
         k6Var.setEllipsizeByGradient(true);
         linearLayout.addView(k6Var, c6.k(0.0f, 0.0f, 0.0f, 1.0f, -1, 17));
         k6 k6Var2 = new k6(activity, false, false, false);
-        this.f49025f = k6Var2;
+        this.f49026f = k6Var2;
         k6Var2.f28280n = false;
         k6Var2.getDrawable().o(true, false, false);
         k6Var2.setTextSize(AndroidUtilities.dp(13.0f));
@@ -90,7 +90,7 @@ public final class e extends FrameLayout {
         dqVar.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), 0);
         dqVar.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 23));
         dqVar.setOnWidthUpdatedListener(new d(this, 0));
-        if (this.f49027r) {
+        if (this.f49028r) {
             i10 = R.string.BizBotStart;
         } else {
             i10 = R.string.BizBotStop;
@@ -98,7 +98,7 @@ public final class e extends FrameLayout {
         dqVar.setText(LocaleController.getString(i10));
         addView(dqVar, c6.d(64, 28.0f, 21, 0.0f, 0.0f, 46.0f, 0.0f));
         ImageView imageView = new ImageView(activity);
-        this.f49026n = imageView;
+        this.f49027n = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.msg_mini_customize);
         imageView.setBackground(org.telegram.ui.ActionBar.k6.M(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.f21750i6, g6Var), 0, 0));
@@ -108,16 +108,16 @@ public final class e extends FrameLayout {
     }
 
     public final void a() {
-        float f10 = this.f49031y;
+        float f10 = this.f49032y;
         dq dqVar = this.h;
         float d = dqVar.getDrawable().d() + f10 + dqVar.getPaddingLeft() + dqVar.getPaddingRight() + AndroidUtilities.dp(12.0f);
-        this.f49024e.setRightPadding(d);
-        this.f49025f.setRightPadding(d);
+        this.f49025e.setRightPadding(d);
+        this.f49026f.setRightPadding(d);
     }
 
     public void setLeftMargin(float f10) {
-        this.f49031y = f10;
-        this.f49023c.setTranslationX(f10);
+        this.f49032y = f10;
+        this.f49024c.setTranslationX(f10);
         this.d.setTranslationX(f10);
         a();
     }

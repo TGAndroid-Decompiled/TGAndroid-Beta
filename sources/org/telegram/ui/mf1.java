@@ -460,7 +460,7 @@ public class mf1 extends org.telegram.ui.ActionBar.p2 implements NotificationCen
                 float dp2 = AndroidUtilities.dp(7.0f);
                 org.telegram.ui.Components.ls lsVar3 = this.J0.G1;
                 if (lsVar3 != null) {
-                    f11 = lsVar3.getMetadata().f50519c.f50529a;
+                    f11 = lsVar3.getMetadata().f50520c.f50530a;
                 } else {
                     f11 = 0.0f;
                 }
@@ -470,7 +470,7 @@ public class mf1 extends org.telegram.ui.ActionBar.p2 implements NotificationCen
                 int dp4 = AndroidUtilities.dp(7.0f);
                 org.telegram.ui.Components.ls lsVar5 = this.J0.G1;
                 if (lsVar5 != null) {
-                    f12 = lsVar5.getMetadata().f50519c.f50529a;
+                    f12 = lsVar5.getMetadata().f50520c.f50530a;
                 }
                 f12 = lsVar4.c(AndroidUtilities.lerp(dp3, dp4, f12)) + f13;
             } else {

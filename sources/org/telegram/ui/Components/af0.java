@@ -61,8 +61,8 @@ public final class af0 extends FrameLayout {
 
     public final void a() {
         zf.n nVar = this.f25248b;
-        nVar.f51166b.setVisibility(4);
-        CropAreaView cropAreaView = nVar.f51165a;
+        nVar.f51167b.setVisibility(4);
+        CropAreaView cropAreaView = nVar.f51166a;
         cropAreaView.setDimVisibility(false);
         cropAreaView.f(false, false);
         cropAreaView.invalidate();
@@ -76,13 +76,13 @@ public final class af0 extends FrameLayout {
         Bitmap bitmap2 = null;
         this.f25250e.setImageBitmap((Drawable) null);
         zf.n nVar = this.f25248b;
-        ImageView imageView = nVar.f51166b;
-        nVar.f51174x = z4;
+        ImageView imageView = nVar.f51167b;
+        nVar.f51175x = z4;
         nVar.d = y61Var;
-        nVar.f51168e = fVar;
+        nVar.f51169e = fVar;
         nVar.H = i10;
-        nVar.f51173w = bitmap;
-        CropAreaView cropAreaView = nVar.f51165a;
+        nVar.f51174w = bitmap;
+        CropAreaView cropAreaView = nVar.f51166a;
         boolean z12 = true;
         if (y61Var != null) {
             z11 = true;
@@ -99,15 +99,15 @@ public final class af0 extends FrameLayout {
             zf.l lVar = nVar.I;
             if (lVar != null && z10) {
                 float f10 = currentWidth;
-                lVar.f51158e *= lVar.f51155a / f10;
-                lVar.f51155a = f10;
-                lVar.f51156b = currentHeight;
+                lVar.f51159e *= lVar.f51156a / f10;
+                lVar.f51156a = f10;
+                lVar.f51157b = currentHeight;
                 lVar.h();
-                Matrix matrix = lVar.f51163k;
-                zf.n nVar2 = lVar.f51164l;
+                Matrix matrix = lVar.f51164k;
+                zf.n nVar2 = lVar.f51165l;
                 matrix.getValues(nVar2.E);
                 matrix.reset();
-                float f11 = lVar.f51158e;
+                float f11 = lVar.f51159e;
                 matrix.postScale(f11, f11);
                 float[] fArr = nVar2.E;
                 matrix.postTranslate(fArr[2], fArr[5]);
@@ -117,7 +117,7 @@ public final class af0 extends FrameLayout {
                 cropAreaView.getViewTreeObserver().addOnPreDrawListener(new zf.j(nVar, cropState, currentHeight, currentWidth));
             }
             if (y61Var == null) {
-                bitmap2 = nVar.f51173w;
+                bitmap2 = nVar.f51174w;
             }
             imageView.setImageBitmap(bitmap2);
         }
@@ -236,12 +236,12 @@ public final class af0 extends FrameLayout {
         zf.l lVar;
         super.onLayout(z4, i10, i11, i12, i13);
         zf.n nVar = this.f25248b;
-        CropAreaView cropAreaView = nVar.f51165a;
+        CropAreaView cropAreaView = nVar.f51166a;
         float cropWidth = cropAreaView.getCropWidth();
         if (cropWidth != 0.0f && (lVar = nVar.I) != null) {
-            cropAreaView.a(nVar.h, lVar.f51155a / lVar.f51156b);
+            cropAreaView.a(nVar.h, lVar.f51156a / lVar.f51157b);
             cropAreaView.setActualRect(cropAreaView.getAspectRatio());
-            cropAreaView.d(nVar.f51169f);
+            cropAreaView.d(nVar.f51170f);
             zf.l.g(nVar.I, cropAreaView.getCropWidth() / cropWidth, 0.0f, 0.0f);
             nVar.r(false);
         }

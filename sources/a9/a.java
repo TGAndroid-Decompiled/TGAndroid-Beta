@@ -357,20 +357,20 @@ public final class a implements g6 {
         try {
             y(str, str2, bundle);
             x5.a aVar = (x5.a) this.f157c;
-            l lVar = l.f50431a;
-            p2.g gVar = aVar.f50407c;
+            l lVar = l.f50432a;
+            p2.g gVar = aVar.f50408c;
             if (gVar.g() < 12000000) {
                 if (gVar.h() != 0) {
                     return aVar.a(bundle).continueWithTask(lVar, new g0(16, aVar, bundle));
                 }
                 return Tasks.forException(new IOException("MISSING_INSTANCEID_SERVICE"));
             }
-            x5.k d = x5.k.d(aVar.f50406b);
+            x5.k d = x5.k.d(aVar.f50407b);
             synchronized (d) {
-                i10 = d.f50428a;
-                d.f50428a = i10 + 1;
+                i10 = d.f50429a;
+                d.f50429a = i10 + 1;
             }
-            return d.e(new j(i10, 1, bundle, 1)).continueWith(lVar, x5.b.f50411a);
+            return d.e(new j(i10, 1, bundle, 1)).continueWith(lVar, x5.b.f50412a);
         } catch (InterruptedException | ExecutionException e6) {
             return Tasks.forException(e6);
         }

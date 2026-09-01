@@ -78,7 +78,7 @@ public final class f {
         int dimensionPixelSize = resources.getDimensionPixelSize(fVar.E);
         this.f47993i = new j(context.getApplicationContext(), new s5.b(1, dimensionPixelSize, dimensionPixelSize));
         if (i6.b.d() && notificationManager != null) {
-            NotificationChannel notificationChannel = new NotificationChannel("cast_media_notification", context.getResources().getString(2131701405), 2);
+            NotificationChannel notificationChannel = new NotificationChannel("cast_media_notification", context.getResources().getString(2131689613), 2);
             notificationChannel.setShowBadge(false);
             notificationManager.createNotificationChannel(notificationChannel);
         }
@@ -351,14 +351,14 @@ public final class f {
                 }
             }
             ?? b0Var = new b0();
-            b0Var.f50955e = null;
+            b0Var.f50956e = null;
             int[] iArr3 = this.f47992g;
             if (iArr3 != null) {
-                b0Var.f50955e = iArr3;
+                b0Var.f50956e = iArr3;
             }
             MediaSessionCompat$Token mediaSessionCompat$Token = (MediaSessionCompat$Token) this.f47995k.f11106e;
             if (mediaSessionCompat$Token != null) {
-                b0Var.f50956f = mediaSessionCompat$Token;
+                b0Var.f50957f = mediaSessionCompat$Token;
             }
             tVar.n(b0Var);
             notificationManager.notify("castMediaNotification", 1, tVar.b());

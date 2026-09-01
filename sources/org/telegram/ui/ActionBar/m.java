@@ -25,7 +25,7 @@ public abstract class m extends FrameLayout implements xd.i {
         boolean isEmpty = TextUtils.isEmpty(charSequence);
         xd.j jVar = this.f22126c;
         if (isEmpty) {
-            jVar.f50528a.r(null, true);
+            jVar.f50529a.r(null, true);
             return;
         }
         int indexOf = TextUtils.indexOf(charSequence, "...");
@@ -60,8 +60,8 @@ public abstract class m extends FrameLayout implements xd.i {
             xd.e eVar = (xd.e) it.next();
             int i10 = k6.gl;
             g6 g6Var = this.f22124a;
-            ((l) eVar.f50512a).setTextColor(k6.v0(i10, g6Var));
-            ((l) eVar.f50512a).setLinkTextColor(k6.v0(i10, g6Var));
+            ((l) eVar.f50513a).setTextColor(k6.v0(i10, g6Var));
+            ((l) eVar.f50513a).setLinkTextColor(k6.v0(i10, g6Var));
         }
     }
 
@@ -71,7 +71,7 @@ public abstract class m extends FrameLayout implements xd.i {
         while (it.hasNext()) {
             xd.e eVar = (xd.e) it.next();
             float c3 = eVar.c();
-            Object obj = eVar.f50512a;
+            Object obj = eVar.f50513a;
             float lerp = AndroidUtilities.lerp(0.85f, 1.0f, c3);
             l lVar = (l) obj;
             lVar.setAlpha(c3);
@@ -87,7 +87,7 @@ public abstract class m extends FrameLayout implements xd.i {
     }
 
     public float getTotalVisibility() {
-        return this.f22126c.f50528a.d.f50519c.f50529a;
+        return this.f22126c.f50529a.d.f50520c.f50530a;
     }
 
     @Override

@@ -8,22 +8,22 @@ import org.telegram.ui.ActionBar.d2;
 import org.telegram.ui.Components.j51;
 import org.telegram.ui.xn;
 public final class m0 implements c2, Utilities.Callback5 {
-    public final int f49129a;
-    public final n0 f49130b;
+    public final int f49130a;
+    public final n0 f49131b;
 
     public m0(n0 n0Var, int i10) {
-        this.f49129a = i10;
-        this.f49130b = n0Var;
+        this.f49130a = i10;
+        this.f49131b = n0Var;
     }
 
     @Override
     public void j(d2 d2Var, int i10) {
-        switch (this.f49129a) {
+        switch (this.f49130a) {
             case 0:
-                this.f49130b.X();
+                this.f49131b.X();
                 return;
             default:
-                this.f49130b.finishFragment();
+                this.f49131b.finishFragment();
                 return;
         }
     }
@@ -35,27 +35,27 @@ public final class m0 implements c2, Utilities.Callback5 {
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        n0 n0Var = this.f49130b;
+        n0 n0Var = this.f49131b;
         if (!n0Var.d.h(j51Var)) {
             int i10 = j51Var.d;
             if (i10 != 2 && j51Var.f2505a != 17) {
                 if (i10 == 1) {
-                    n0Var.f49146s = !n0Var.f49146s;
-                    n0Var.f49141c.V2.N(true);
+                    n0Var.f49147s = !n0Var.f49147s;
+                    n0Var.f49142c.V2.N(true);
                     n0Var.V(true);
                     return;
                 } else if (i10 == 3) {
                     v vVar = n0Var.d;
                     n0Var.v = true;
                     vVar.h = true;
-                    n0Var.f49141c.V2.N(true);
+                    n0Var.f49142c.V2.N(true);
                     n0Var.V(true);
                     return;
                 } else if (i10 == 4) {
                     v vVar2 = n0Var.d;
                     n0Var.v = false;
                     vVar2.h = false;
-                    n0Var.f49141c.V2.N(true);
+                    n0Var.f49142c.V2.N(true);
                     n0Var.V(true);
                     return;
                 } else {

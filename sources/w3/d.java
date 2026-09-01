@@ -8,9 +8,9 @@ import s8.l;
 import s8.t;
 import s8.v;
 public abstract class d {
-    public static final String[] f49347a = {"Camera:MotionPhoto", "GCamera:MotionPhoto", "Camera:MicroVideo", "GCamera:MicroVideo"};
-    public static final String[] f49348b = {"Camera:MotionPhotoPresentationTimestampUs", "GCamera:MotionPhotoPresentationTimestampUs", "Camera:MicroVideoPresentationTimestampUs", "GCamera:MicroVideoPresentationTimestampUs"};
-    public static final String[] f49349c = {"Camera:MicroVideoOffset", "GCamera:MicroVideoOffset"};
+    public static final String[] f49348a = {"Camera:MotionPhoto", "GCamera:MotionPhoto", "Camera:MicroVideo", "GCamera:MicroVideo"};
+    public static final String[] f49349b = {"Camera:MotionPhotoPresentationTimestampUs", "GCamera:MotionPhotoPresentationTimestampUs", "Camera:MicroVideoPresentationTimestampUs", "GCamera:MicroVideoPresentationTimestampUs"};
+    public static final String[] f49350c = {"Camera:MicroVideoOffset", "GCamera:MicroVideoOffset"};
 
     public static f2.c a(java.lang.String r23) {
         throw new UnsupportedOperationException("Method not decompiled: w3.d.a(java.lang.String):f2.c");

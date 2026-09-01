@@ -12,13 +12,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.ui.ke;
 public final class d {
-    public final long[] f50904a;
-    public final CharSequence[] f50905b;
-    public final CharSequence[] f50906c;
+    public final long[] f50905a;
+    public final CharSequence[] f50906b;
+    public final CharSequence[] f50907c;
     public final StaticLayout[] d;
-    public final StaticLayout[] f50907e;
-    public int f50908f;
-    public int f50909g;
+    public final StaticLayout[] f50908e;
+    public int f50909f;
+    public int f50910g;
     public DecimalFormat h;
 
     public d(long r25, long r27, boolean r29, float r30, int r31, android.text.TextPaint r32, android.text.TextPaint r33) {
@@ -28,7 +28,7 @@ public final class d {
     public final void a(Canvas canvas, int i10, int i11, float f10, float f11, TextPaint textPaint) {
         StaticLayout[] staticLayoutArr;
         CharSequence[] charSequenceArr;
-        StaticLayout[] staticLayoutArr2 = this.f50907e;
+        StaticLayout[] staticLayoutArr2 = this.f50908e;
         StaticLayout[] staticLayoutArr3 = this.d;
         if (i10 == 0) {
             staticLayoutArr = staticLayoutArr3;
@@ -38,9 +38,9 @@ public final class d {
         StaticLayout staticLayout = staticLayoutArr[i11];
         if (staticLayout == null) {
             if (i10 == 0) {
-                charSequenceArr = this.f50905b;
+                charSequenceArr = this.f50906b;
             } else {
-                charSequenceArr = this.f50906c;
+                charSequenceArr = this.f50907c;
             }
             CharSequence charSequence = charSequenceArr[i11];
             if (i10 == 0) {

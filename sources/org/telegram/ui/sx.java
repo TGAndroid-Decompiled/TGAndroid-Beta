@@ -46,7 +46,7 @@ public final class sx extends AnimatorListenerAdapter {
                     } else {
                         pyVar.fragmentView.requestLayout();
                         fy fyVar = pyVar.U;
-                        if (fyVar != null && pyVar.f40184b.f50505f) {
+                        if (fyVar != null && pyVar.f40184b.f50506f) {
                             fyVar.f26172r.requestFocus();
                             AndroidUtilities.showKeyboard(pyVar.U.f26172r);
                             return;

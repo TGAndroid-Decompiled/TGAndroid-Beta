@@ -7,6 +7,6 @@ public final class h extends k {
     @Override
     public final void i() {
         b();
-        ((i) this.h.f47321b).f49413b.add(this);
+        ((i) this.h.f47321b).f49414b.add(this);
     }
 }

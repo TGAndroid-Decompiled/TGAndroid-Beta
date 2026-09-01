@@ -99,16 +99,16 @@ public final class g1 extends FrameLayout implements xd.b {
         xd.a aVar = this.f14072r;
         TextView textView = this.f14070f;
         if (num != null) {
-            d = org.telegram.ui.ActionBar.k6.v(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21659d6, false), org.telegram.ui.ActionBar.k6.l1(AndroidUtilities.lerp(0.15f, 1.0f, aVar.f50504e), this.h.intValue()));
+            d = org.telegram.ui.ActionBar.k6.v(org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.f21659d6, false), org.telegram.ui.ActionBar.k6.l1(AndroidUtilities.lerp(0.15f, 1.0f, aVar.f50505e), this.h.intValue()));
             u1Var.f13012x = this.h;
             this.f14067b.invalidate();
-            textView.setTextColor(i0.a.d(aVar.f50504e, this.h.intValue(), -1));
+            textView.setTextColor(i0.a.d(aVar.f50505e, this.h.intValue(), -1));
         } else if (this.f14073s) {
             int i10 = org.telegram.ui.ActionBar.k6.f21659d6;
             int w02 = org.telegram.ui.ActionBar.k6.w0(null, i10, false);
             int i11 = org.telegram.ui.ActionBar.k6.G6;
-            int d10 = i0.a.d(aVar.f50504e, i0.a.d(0.05f, w02, org.telegram.ui.ActionBar.k6.w0(null, i11, false)), org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.Oh, false));
-            textView.setTextColor(i0.a.d(aVar.f50504e, i0.a.d(0.5f, org.telegram.ui.ActionBar.k6.w0(null, i10, false), org.telegram.ui.ActionBar.k6.w0(null, i11, false)), -1));
+            int d10 = i0.a.d(aVar.f50505e, i0.a.d(0.05f, w02, org.telegram.ui.ActionBar.k6.w0(null, i11, false)), org.telegram.ui.ActionBar.k6.w0(null, org.telegram.ui.ActionBar.k6.Oh, false));
+            textView.setTextColor(i0.a.d(aVar.f50505e, i0.a.d(0.5f, org.telegram.ui.ActionBar.k6.w0(null, i10, false), org.telegram.ui.ActionBar.k6.w0(null, i11, false)), -1));
             d = d10;
         } else {
             d = i0.a.d(0.5f, i0.a.k(this.v.f13930a.center_color, 255), i0.a.k(this.v.f13930a.pattern_color, 255));

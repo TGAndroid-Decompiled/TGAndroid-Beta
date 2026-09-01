@@ -12,7 +12,7 @@ import org.telegram.ui.Components.j51;
 import org.telegram.ui.Components.tl0;
 import org.telegram.ui.Components.x51;
 public final class q0 extends i51 {
-    public static final int f49934a = 0;
+    public static final int f49935a = 0;
 
     static {
         i51.setup(new i51());
@@ -27,17 +27,17 @@ public final class q0 extends i51 {
         z2 z2Var = (z2) j51Var.H;
         e1 e1Var = r0Var.d;
         boolean z11 = false;
-        if (r0Var.f49964f != aVar) {
+        if (r0Var.f49965f != aVar) {
             z10 = true;
         } else {
             z10 = false;
         }
-        r0Var.f49964f = aVar;
+        r0Var.f49965f = aVar;
         r0Var.h = z2Var;
-        TL_iv.PageBlock pageBlock = aVar.f49616b;
+        TL_iv.PageBlock pageBlock = aVar.f49617b;
         if (pageBlock instanceof TL_iv.pageBlockDetails) {
             TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) pageBlock;
-            AnimatedArrowDrawable animatedArrowDrawable = r0Var.f49962c;
+            AnimatedArrowDrawable animatedArrowDrawable = r0Var.f49963c;
             if (pageblockdetails.open) {
                 f10 = 0.0f;
             } else {
@@ -45,11 +45,11 @@ public final class q0 extends i51 {
             }
             animatedArrowDrawable.a(f10);
             SpannableStringBuilder r10 = x5.r(pageblockdetails.title, null, true);
-            if (!aVar.f49631s) {
-                aVar.f49631s = true;
-                aVar.f49630r = (r10.length() == 0 || (x5.q(0, r10.length(), r10) & 1) != 0) ? true : true;
+            if (!aVar.f49632s) {
+                aVar.f49632s = true;
+                aVar.f49631r = (r10.length() == 0 || (x5.q(0, r10.length(), r10) & 1) != 0) ? true : true;
             }
-            e1Var.setAutoBold(aVar.f49630r);
+            e1Var.setAutoBold(aVar.f49631r);
             if (!z10 && String.valueOf(e1Var.getText()).equals(x5.l(pageblockdetails.title))) {
                 return;
             }

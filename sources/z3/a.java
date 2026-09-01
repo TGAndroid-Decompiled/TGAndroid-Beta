@@ -3,19 +3,19 @@ package z3;
 import java.util.ArrayList;
 import java.util.Arrays;
 public final class a extends n3.a {
-    public final long f50966c;
+    public final long f50967c;
     public final ArrayList d;
-    public final ArrayList f50967e;
+    public final ArrayList f50968e;
 
     public a(int i10, long j10) {
         super(i10, 2);
-        this.f50966c = j10;
+        this.f50967c = j10;
         this.d = new ArrayList();
-        this.f50967e = new ArrayList();
+        this.f50968e = new ArrayList();
     }
 
     public final a i(int i10) {
-        ArrayList arrayList = this.f50967e;
+        ArrayList arrayList = this.f50968e;
         int size = arrayList.size();
         for (int i11 = 0; i11 < size; i11++) {
             a aVar = (a) arrayList.get(i11);
@@ -40,6 +40,6 @@ public final class a extends n3.a {
 
     @Override
     public final String toString() {
-        return n3.a.c(this.f15193b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.f50967e.toArray());
+        return n3.a.c(this.f15193b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.f50968e.toArray());
     }
 }

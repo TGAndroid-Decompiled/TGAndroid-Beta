@@ -91,7 +91,7 @@ public final class d0 extends f0 {
 
     @Override
     public final float b() {
-        return lf.l0.b(this.f48108r.f48132b.f50504e) * super.b();
+        return lf.l0.b(this.f48108r.f48132b.f50505e) * super.b();
     }
 
     @Override

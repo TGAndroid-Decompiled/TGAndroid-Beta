@@ -220,7 +220,7 @@ public final class ji extends sl0 {
                 this.F = i34 + 1;
                 this.f28132w = i34;
             }
-            if ((p2Var instanceof org.telegram.ui.xn) && ((org.telegram.ui.xn) p2Var).O3 == 0 && i27 != null && !z4 && !i27.bot && !vf.p1.f(i11).f49171b.isEmpty()) {
+            if ((p2Var instanceof org.telegram.ui.xn) && ((org.telegram.ui.xn) p2Var).O3 == 0 && i27 != null && !z4 && !i27.bot && !vf.p1.f(i11).f49172b.isEmpty()) {
                 int i35 = this.F;
                 this.F = i35 + 1;
                 this.f28133x = i35;

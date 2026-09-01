@@ -1,6 +1,6 @@
 package zc;
 public abstract class a {
-    public static final Integer f51102a;
+    public static final Integer f51103a;
 
     static {
         Integer num;
@@ -15,12 +15,12 @@ public abstract class a {
             if (num != null && num.intValue() > 0) {
                 num2 = num;
             }
-            f51102a = num2;
+            f51103a = num2;
         }
         num = null;
         if (num != null) {
             num2 = num;
         }
-        f51102a = num2;
+        f51103a = num2;
     }
 }

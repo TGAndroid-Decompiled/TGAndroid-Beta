@@ -22,7 +22,7 @@ public final class yi0 extends r91 {
         if (this.f40873r.f41544c <= 0) {
             performClick();
             wf.g gVar = this.f40868b;
-            if (gVar.f49569q0.D) {
+            if (gVar.f49570q0.D) {
                 long selectedDate = gVar.getSelectedDate();
                 if (this.f40874s == 4) {
                     t91 t91Var = this.f40873r;
@@ -48,7 +48,7 @@ public final class yi0 extends r91 {
                     bj0Var.f35546w = obj;
                     bj0Var.f35542f.getClass();
                     obj.f37144a = RecyclerView.R(this);
-                    gVar.f49569q0.d(true, false);
+                    gVar.f49570q0.d(true, false);
                     i10 = ((org.telegram.ui.ActionBar.p2) bj0Var).currentAccount;
                     int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new ba(this, str, (Object) obj, 25), null, null, 0, bj0Var.f35536a.stats_dc, 1, true);
                     i11 = ((org.telegram.ui.ActionBar.p2) bj0Var).currentAccount;
@@ -72,7 +72,7 @@ public final class yi0 extends r91 {
         for (int i10 = 0; i10 < childCount; i10++) {
             View childAt = zi0Var.d.f35542f.getChildAt(i10);
             if (childAt instanceof r91) {
-                ((r91) childAt).f40868b.f49569q0.d(false, true);
+                ((r91) childAt).f40868b.f49570q0.d(false, true);
             }
         }
     }

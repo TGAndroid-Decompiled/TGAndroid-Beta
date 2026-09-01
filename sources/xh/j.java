@@ -7,29 +7,29 @@ import f2.m1;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Cells.t1;
 public final class j extends AnimatorListenerAdapter {
-    public final m1 f50625a;
-    public final int f50626b;
-    public final View f50627c;
+    public final m1 f50626a;
+    public final int f50627b;
+    public final View f50628c;
     public final n d;
 
     public j(n nVar, m1 m1Var, int i10, View view) {
         this.d = nVar;
-        this.f50625a = m1Var;
-        this.f50626b = i10;
-        this.f50627c = view;
+        this.f50626a = m1Var;
+        this.f50627b = i10;
+        this.f50628c = view;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        if (this.f50626b != 0) {
-            this.f50627c.setTranslationY(0.0f);
+        if (this.f50627b != 0) {
+            this.f50628c.setTranslationY(0.0f);
         }
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         animator.removeAllListeners();
-        m1 m1Var = this.f50625a;
+        m1 m1Var = this.f50626a;
         View view = m1Var.f5875a;
         n nVar = this.d;
         nVar.X(view);

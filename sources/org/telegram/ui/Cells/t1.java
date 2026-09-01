@@ -3706,7 +3706,7 @@ public class t1 extends a0 implements go0, ImageReceiver.ImageReceiverDelegate, 
             int z22 = (int) z2(motionEvent);
             eh.j jVar3 = this.Y5;
             if (jVar3 != null) {
-                if (jVar3.U && jVar3.f5639a.f50505f && jVar3.H.f(x10 - jVar3.I, z22 - jVar3.J, action)) {
+                if (jVar3.U && jVar3.f5639a.f50506f && jVar3.H.f(x10 - jVar3.I, z22 - jVar3.J, action)) {
                     if (action == 0) {
                         getParent().requestDisallowInterceptTouchEvent(true);
                     }
@@ -3722,7 +3722,7 @@ public class t1 extends a0 implements go0, ImageReceiver.ImageReceiverDelegate, 
                 }
             }
             if (this.f24073v7.expandedExplanation && (jVar2 = this.Z5) != null) {
-                if (jVar2.U && jVar2.f5639a.f50505f && jVar2.H.f(x10 - jVar2.I, z22 - jVar2.J, action)) {
+                if (jVar2.U && jVar2.f5639a.f50506f && jVar2.H.f(x10 - jVar2.I, z22 - jVar2.J, action)) {
                     if (action == 0) {
                         getParent().requestDisallowInterceptTouchEvent(true);
                     }
@@ -3825,7 +3825,7 @@ public class t1 extends a0 implements go0, ImageReceiver.ImageReceiverDelegate, 
                 z11 = true;
             }
             xd.a aVar = dVar.f7144f;
-            if (aVar.f50505f != z11) {
+            if (aVar.f50506f != z11) {
                 aVar.a(z11, z4);
             }
         }
@@ -7103,7 +7103,7 @@ public class t1 extends a0 implements go0, ImageReceiver.ImageReceiverDelegate, 
                         this.f24035sa = false;
                         return;
                     }
-                    int i11 = (int) ((1.0f - this.f24113y.f50504e) * 255.0f);
+                    int i11 = (int) ((1.0f - this.f24113y.f50505e) * 255.0f);
                     if (i11 != 255) {
                         float f21 = this.Da;
                         f11 = 2.0f;
@@ -9375,12 +9375,12 @@ public class t1 extends a0 implements go0, ImageReceiver.ImageReceiverDelegate, 
         int i13 = t1Var.S + t1Var.f23796c0 + t1Var.f23825e0 + t1Var.f23982p0 + t1Var.f24012r0 + t1Var.f23767a0;
         vg.a draftMessageMeasureController = getDraftMessageMeasureController();
         if (draftMessageMeasureController != null && draftMessageMeasureController.a(t1Var.f24073v7)) {
-            int max = Math.max(0, (((draftMessageMeasureController.f49254a.getHeight() - draftMessageMeasureController.f49254a.getPaddingTop()) - draftMessageMeasureController.f49254a.getPaddingBottom()) - draftMessageMeasureController.d) - i13);
+            int max = Math.max(0, (((draftMessageMeasureController.f49255a.getHeight() - draftMessageMeasureController.f49255a.getPaddingTop()) - draftMessageMeasureController.f49255a.getPaddingBottom()) - draftMessageMeasureController.d) - i13);
             if (max <= 0) {
                 z4 = false;
             }
-            draftMessageMeasureController.f49257e = z4;
-            if (draftMessageMeasureController.f49255b > 0 && !z4) {
+            draftMessageMeasureController.f49258e = z4;
+            if (draftMessageMeasureController.f49256b > 0 && !z4) {
                 draftMessageMeasureController.c(0, 0L);
             }
             i12 = max + i13;

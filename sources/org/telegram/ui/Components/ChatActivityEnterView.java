@@ -2394,7 +2394,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             z10 = false;
         }
         xd.a aVar = this.f24600e5;
-        if (aVar.f50505f != z10) {
+        if (aVar.f50506f != z10) {
             z11 = true;
         }
         aVar.a(z10, z4);
@@ -3016,10 +3016,10 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         if (this.B0 != null && (xnVar = this.L2) != null && MessagesController.getInstance(this.N).richEditorAvailable()) {
             wh.z1 z1Var = new wh.z1(str);
             z1Var.h = charSequence;
-            z1Var.f50198n = charSequence2;
+            z1Var.f50199n = charSequence2;
             z1Var.setResourceProvider(this.S3);
             z1Var.G = xnVar;
-            z1Var.f50205s = xnVar.P;
+            z1Var.f50206s = xnVar.P;
             z1Var.v = xnVar.V;
             z1Var.I = new yd(this, 1);
             z1Var.H = new yd(this, 2);
@@ -3987,9 +3987,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         int i10;
         int i11;
         int i12;
-        float f10 = this.f24587c5.f50504e;
+        float f10 = this.f24587c5.f50505e;
         if (this.C1 != null) {
-            float measuredHeight = getMeasuredHeight() - this.f24581b5.f50509e;
+            float measuredHeight = getMeasuredHeight() - this.f24581b5.f50510e;
             View view = this.C1;
             view.setTranslationY(measuredHeight - (view.getMeasuredHeight() * f10));
             View view2 = this.C1;
@@ -6075,7 +6075,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             z4 = true;
         }
         if (z4) {
-            float measuredHeight = getMeasuredHeight() - this.f24581b5.f50509e;
+            float measuredHeight = getMeasuredHeight() - this.f24581b5.f50510e;
             canvas.save();
             if (view == aeVar) {
                 canvas.clipRect(0.0f, measuredHeight, getMeasuredWidth(), getMeasuredHeight());
@@ -6547,7 +6547,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     }
 
     public float getTopViewEnterProgress() {
-        return this.f24587c5.f50504e;
+        return this.f24587c5.f50505e;
     }
 
     public float getTopViewHeight() {
@@ -8527,19 +8527,19 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         int i10;
         xd.c cVar = this.f24581b5;
         if (z4) {
-            if (cVar.f50511g) {
-                f10 = cVar.f50510f;
+            if (cVar.f50512g) {
+                f10 = cVar.f50511f;
             } else {
-                f10 = cVar.f50509e;
+                f10 = cVar.f50510e;
             }
         } else {
-            f10 = cVar.f50509e;
+            f10 = cVar.f50510e;
         }
         xd.a aVar = this.f24587c5;
         if (z4) {
-            f11 = aVar.f50505f ? 1.0f : 0.0f;
+            f11 = aVar.f50506f ? 1.0f : 0.0f;
         } else {
-            f11 = aVar.f50504e;
+            f11 = aVar.f50505e;
         }
         View view = this.C1;
         if (view != null) {

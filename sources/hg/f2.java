@@ -540,7 +540,7 @@ public final class f2 extends sa {
         if (z4) {
             xh.o oVar = new xh.o(getContext(), 2, 0.6f);
             oVar.f5805a = 1;
-            oVar.f50658p = AndroidUtilities.dp(38.0f);
+            oVar.f50659p = AndroidUtilities.dp(38.0f);
             tl0Var.getLayoutManager().w0(oVar);
             return;
         }

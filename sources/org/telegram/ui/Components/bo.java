@@ -694,7 +694,7 @@ public class bo extends FrameLayout implements xd.b, NotificationCenter.Notifica
         if (xnVar != null) {
             if (xnVar.O3 == 6) {
                 String str2 = xnVar.M3.link;
-                vf.t[] tVarArr = vf.t.f49199e;
+                vf.t[] tVarArr = vf.t.f49200e;
                 if (str2.startsWith("https://")) {
                     str2 = str2.substring(8);
                 }

@@ -30,7 +30,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                         while (true) {
                             if (i10 < length) {
                                 cVar = l10[i10];
-                                if ("location_updates_with_callback".equals(cVar.f50763a)) {
+                                if ("location_updates_with_callback".equals(cVar.f50764a)) {
                                     break;
                                 }
                                 i10++;
@@ -76,7 +76,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
             while (true) {
                 if (i10 < length) {
                     cVar = l10[i10];
-                    if ("get_last_location_with_request".equals(cVar.f50763a)) {
+                    if ("get_last_location_with_request".equals(cVar.f50764a)) {
                         break;
                     }
                     i10++;

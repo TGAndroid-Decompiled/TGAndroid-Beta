@@ -2,33 +2,33 @@ package x2;
 
 import java.util.ArrayList;
 public final class l extends s {
-    public final long f50284a;
-    public final long f50285b;
-    public final j f50286c;
+    public final long f50285a;
+    public final long f50286b;
+    public final j f50287c;
     public final Integer d;
-    public final String f50287e;
-    public final ArrayList f50288f;
+    public final String f50288e;
+    public final ArrayList f50289f;
 
     public l(long j10, long j11, j jVar, Integer num, String str, ArrayList arrayList) {
-        w wVar = w.f50298a;
-        this.f50284a = j10;
-        this.f50285b = j11;
-        this.f50286c = jVar;
+        w wVar = w.f50299a;
+        this.f50285a = j10;
+        this.f50286b = j11;
+        this.f50287c = jVar;
         this.d = num;
-        this.f50287e = str;
-        this.f50288f = arrayList;
+        this.f50288e = str;
+        this.f50289f = arrayList;
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
             if (obj instanceof s) {
                 l lVar = (l) ((s) obj);
-                Object obj2 = w.f50298a;
-                ArrayList arrayList = lVar.f50288f;
-                String str = lVar.f50287e;
+                Object obj2 = w.f50299a;
+                ArrayList arrayList = lVar.f50289f;
+                String str = lVar.f50288e;
                 Integer num = lVar.d;
-                j jVar = lVar.f50286c;
-                if (this.f50284a == lVar.f50284a && this.f50285b == lVar.f50285b && this.f50286c.equals(jVar)) {
+                j jVar = lVar.f50287c;
+                if (this.f50285a == lVar.f50285a && this.f50286b == lVar.f50286b && this.f50287c.equals(jVar)) {
                     Integer num2 = this.d;
                     if (num2 == null) {
                         if (num != null) {
@@ -37,7 +37,7 @@ public final class l extends s {
                     } else if (!num2.equals(num)) {
                         return false;
                     }
-                    String str2 = this.f50287e;
+                    String str2 = this.f50288e;
                     if (str2 == null) {
                         if (str != null) {
                             return false;
@@ -45,7 +45,7 @@ public final class l extends s {
                     } else if (!str2.equals(str)) {
                         return false;
                     }
-                    if (this.f50288f.equals(arrayList) && obj2.equals(obj2)) {
+                    if (this.f50289f.equals(arrayList) && obj2.equals(obj2)) {
                         return true;
                     }
                     return false;
@@ -59,9 +59,9 @@ public final class l extends s {
 
     public final int hashCode() {
         int hashCode;
-        long j10 = this.f50284a;
-        long j11 = this.f50285b;
-        int hashCode2 = (((((((int) (j10 ^ (j10 >>> 32))) ^ 1000003) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ this.f50286c.hashCode()) * 1000003;
+        long j10 = this.f50285a;
+        long j11 = this.f50286b;
+        int hashCode2 = (((((((int) (j10 ^ (j10 >>> 32))) ^ 1000003) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ this.f50287c.hashCode()) * 1000003;
         int i10 = 0;
         Integer num = this.d;
         if (num == null) {
@@ -70,14 +70,14 @@ public final class l extends s {
             hashCode = num.hashCode();
         }
         int i11 = (hashCode2 ^ hashCode) * 1000003;
-        String str = this.f50287e;
+        String str = this.f50288e;
         if (str != null) {
             i10 = str.hashCode();
         }
-        return w.f50298a.hashCode() ^ ((((i11 ^ i10) * 1000003) ^ this.f50288f.hashCode()) * 1000003);
+        return w.f50299a.hashCode() ^ ((((i11 ^ i10) * 1000003) ^ this.f50289f.hashCode()) * 1000003);
     }
 
     public final String toString() {
-        return "LogRequest{requestTimeMs=" + this.f50284a + ", requestUptimeMs=" + this.f50285b + ", clientInfo=" + this.f50286c + ", logSource=" + this.d + ", logSourceName=" + this.f50287e + ", logEvents=" + this.f50288f + ", qosTier=" + w.f50298a + "}";
+        return "LogRequest{requestTimeMs=" + this.f50285a + ", requestUptimeMs=" + this.f50286b + ", clientInfo=" + this.f50287c + ", logSource=" + this.d + ", logSourceName=" + this.f50288e + ", logEvents=" + this.f50289f + ", qosTier=" + w.f50299a + "}";
     }
 }

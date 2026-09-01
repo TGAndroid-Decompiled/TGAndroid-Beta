@@ -10,19 +10,19 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import o5.d;
 import org.telegram.ui.zy;
 public final class a implements Runnable {
-    public static Handler f50229f;
-    public final d f50233e;
-    public volatile int f50231b = 1;
-    public final AtomicBoolean f50232c = new AtomicBoolean();
+    public static Handler f50230f;
+    public final d f50234e;
+    public volatile int f50232b = 1;
+    public final AtomicBoolean f50233c = new AtomicBoolean();
     public final AtomicBoolean d = new AtomicBoolean();
-    public final b f50230a = new b(this, new f(this, 10));
+    public final b f50231a = new b(this, new f(this, 10));
 
     public a(d dVar) {
-        this.f50233e = dVar;
+        this.f50234e = dVar;
     }
 
     public final void a() {
-        d dVar = this.f50233e;
+        d dVar = this.f50234e;
         int i10 = 0;
         for (m mVar : dVar.f16608j) {
             if (mVar.d(dVar)) {
@@ -41,10 +41,10 @@ public final class a implements Runnable {
         Handler handler;
         synchronized (a.class) {
             try {
-                if (f50229f == null) {
-                    f50229f = new Handler(Looper.getMainLooper());
+                if (f50230f == null) {
+                    f50230f = new Handler(Looper.getMainLooper());
                 }
-                handler = f50229f;
+                handler = f50230f;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -54,6 +54,6 @@ public final class a implements Runnable {
 
     @Override
     public final void run() {
-        this.f50233e.b();
+        this.f50234e.b();
     }
 }

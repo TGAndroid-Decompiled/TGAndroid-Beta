@@ -1,6 +1,6 @@
 package wc;
 public final class b implements uc.c {
-    public static final b f49488a = new Object();
+    public static final b f49489a = new Object();
 
     @Override
     public final uc.h getContext() {

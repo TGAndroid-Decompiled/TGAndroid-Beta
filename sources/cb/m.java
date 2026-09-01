@@ -342,7 +342,7 @@ public final class m {
         Bundle bundle;
         w8.g gVar = ((FirebaseMessaging) this.d).f4009a;
         gVar.a();
-        Context context = gVar.f49451a;
+        Context context = gVar.f49452a;
         SharedPreferences sharedPreferences = context.getSharedPreferences("com.google.firebase.messaging", 0);
         if (sharedPreferences.contains("auto_init")) {
             return Boolean.valueOf(sharedPreferences.getBoolean("auto_init", false));

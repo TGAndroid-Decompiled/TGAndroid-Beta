@@ -149,7 +149,7 @@ public final class u implements OnSuccessListener, xd.i {
         Iterator it = ((xd.j) this.d).iterator();
         while (it.hasNext()) {
             xd.e eVar = (xd.e) it.next();
-            fArr[((Integer) eVar.f50512a).intValue()] = eVar.c();
+            fArr[((Integer) eVar.f50513a).intValue()] = eVar.c();
         }
         ((ng) this.f7301c).run();
     }

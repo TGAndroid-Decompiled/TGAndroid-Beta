@@ -69,7 +69,7 @@ public final class b0 implements g5.j0 {
                 if (this.f16445x.E != null) {
                     r3.k kVar = (r3.k) this.f16438c.f12081c;
                     if (kVar instanceof y3.d) {
-                        ((y3.d) kVar).f50734r = true;
+                        ((y3.d) kVar).f50735r = true;
                     }
                 }
                 if (this.f16441n) {

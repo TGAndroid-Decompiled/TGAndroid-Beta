@@ -198,7 +198,7 @@ public class FileLog {
             if (!pa.i.class.isAssignableFrom(byte[].class)) {
                 if (z10) {
                     wa.a aVar2 = new wa.a(byte[].class);
-                    if (aVar2.f49484b == aVar2.f49483a) {
+                    if (aVar2.f49485b == aVar2.f49484a) {
                         z4 = true;
                     } else {
                         z4 = false;

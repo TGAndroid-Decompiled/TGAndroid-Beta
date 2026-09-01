@@ -946,7 +946,7 @@ public class ij0 extends BitmapDrawable implements Animatable, lf.e {
         this.f27836t0 = obj;
         obj.d = str;
         obj.f27503e = iArr == null ? 0 : (int[]) iArr.clone();
-        long[] jArr = ue.b.f48500a;
+        long[] jArr = ue.a.f48500a;
         int length = jArr.length - 1;
         int i13 = 0;
         while (true) {

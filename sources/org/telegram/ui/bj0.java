@@ -111,12 +111,12 @@ public class bj0 extends org.telegram.ui.ActionBar.p2 implements NotificationCen
         bj0Var.f35544r = ha1.f0(statsGraph, LocaleController.getString(R.string.ViewsAndSharesChartTitle), 1, false);
         bj0Var.f35545s = ha1.f0(statsGraph2, LocaleController.getString(R.string.ReactionsByEmotionChartTitle), 2, false);
         t91 t91Var = bj0Var.f35544r;
-        if (t91Var != null && t91Var.d.f50546a.length <= 5) {
+        if (t91Var != null && t91Var.d.f50547a.length <= 5) {
             bj0Var.f35548y = false;
             TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
             t91 t91Var2 = bj0Var.f35544r;
             tL_loadAsyncGraph.token = t91Var2.f41547g;
-            long[] jArr = t91Var2.d.f50546a;
+            long[] jArr = t91Var2.d.f50547a;
             tL_loadAsyncGraph.f21074x = jArr[jArr.length - 1];
             tL_loadAsyncGraph.flags |= 1;
             ConnectionsManager.getInstance(bj0Var.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(bj0Var.currentAccount).sendRequest(tL_loadAsyncGraph, new ba(bj0Var, bj0Var.f35544r.f41547g + "_" + tL_loadAsyncGraph.f21074x, tL_loadAsyncGraph, 24), null, null, 0, bj0Var.f35536a.stats_dc, 1, true), bj0Var.classGuid);

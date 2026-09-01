@@ -19,7 +19,7 @@ public abstract class l8 {
             return 0;
         }
         int c3 = c(aVar);
-        int max = Math.max(0, aVar.f49617c);
+        int max = Math.max(0, aVar.f49618c);
         if (max > 0) {
             i10 = AndroidUtilities.dp(e2.c.e(max, 1, 24, 28));
         }
@@ -31,7 +31,7 @@ public abstract class l8 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f49623k.size();
+            size = aVar.f49624k.size();
         }
         if (size <= 0) {
             return 0;
@@ -44,7 +44,7 @@ public abstract class l8 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f49623k.size();
+            size = aVar.f49624k.size();
         }
         if (size <= 0) {
             return 0;

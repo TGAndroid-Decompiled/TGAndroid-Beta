@@ -133,7 +133,7 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
         }
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         httpURLConnection.setConnectTimeout(30000);
-        httpURLConnection.setReadTimeout(bVar.f49333g);
+        httpURLConnection.setReadTimeout(bVar.f49334g);
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setInstanceFollowRedirects(false);
         httpURLConnection.setRequestMethod("POST");
@@ -149,13 +149,13 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
             OutputStream outputStream = httpURLConnection.getOutputStream();
             try {
                 GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(outputStream);
-                ai aiVar = bVar.f49328a;
+                ai aiVar = bVar.f49329a;
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(gZIPOutputStream));
                 w9.d dVar = (w9.d) aiVar.f25265b;
-                w9.e eVar = new w9.e(bufferedWriter, dVar.f49475a, dVar.f49476b, dVar.f49477c, dVar.d);
+                w9.e eVar = new w9.e(bufferedWriter, dVar.f49476a, dVar.f49477b, dVar.f49478c, dVar.d);
                 eVar.h((x2.i) mVar.f47063c);
                 eVar.j();
-                eVar.f49479b.flush();
+                eVar.f49480b.flush();
                 gZIPOutputStream.close();
                 if (outputStream != null) {
                     outputStream.close();
@@ -179,7 +179,7 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                         } else {
                             inputStream = inputStream2;
                         }
-                        h0 h0Var = new h0(responseCode, null, x2.m.a(new BufferedReader(new InputStreamReader(inputStream))).f50289a);
+                        h0 h0Var = new h0(responseCode, null, x2.m.a(new BufferedReader(new InputStreamReader(inputStream))).f50290a);
                         if (inputStream != null) {
                             inputStream.close();
                         }
@@ -234,20 +234,20 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
             case 13:
                 r0 r0Var = (r0) this.f47321b;
                 e1 e1Var = r0Var.d;
-                wh.a aVar = r0Var.f49964f;
+                wh.a aVar = r0Var.f49965f;
                 if (aVar != null) {
-                    aVar.f49631s = true;
-                    aVar.f49630r = e1Var.B;
+                    aVar.f49632s = true;
+                    aVar.f49631r = e1Var.B;
                 }
                 if (aVar != null) {
-                    TL_iv.PageBlock pageBlock = aVar.f49616b;
+                    TL_iv.PageBlock pageBlock = aVar.f49617b;
                     if (pageBlock instanceof TL_iv.pageBlockDetails) {
                         ((TL_iv.pageBlockDetails) pageBlock).title = x5.f(e1Var.getText());
                     }
                 }
                 z2 z2Var = r0Var.h;
-                if (z2Var != null && r0Var.f49964f != null) {
-                    r3.O1(z2Var.f50217a);
+                if (z2Var != null && r0Var.f49965f != null) {
+                    r3.O1(z2Var.f50218a);
                     return;
                 }
                 return;
@@ -256,15 +256,15 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                 return;
             default:
                 i5 i5Var = (i5) this.f47321b;
-                wh.a aVar2 = i5Var.f50174a;
+                wh.a aVar2 = i5Var.f50175a;
                 if (aVar2 != null) {
-                    aVar2.f49631s = true;
-                    aVar2.f49630r = i5Var.f49797r.B;
+                    aVar2.f49632s = true;
+                    aVar2.f49631r = i5Var.f49798r.B;
                 }
                 i5Var.u();
                 y2 y2Var = i5Var.B;
-                if (y2Var != null && i5Var.f50174a != null) {
-                    r3.O1(y2Var.f50170a);
+                if (y2Var != null && i5Var.f50175a != null) {
+                    r3.O1(y2Var.f50171a);
                     return;
                 }
                 return;
@@ -273,7 +273,7 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
 
     public void c(int i10) {
         z zVar = (z) this.f47321b;
-        zVar.f50176c = i10;
+        zVar.f50177c = i10;
         zVar.f(i10);
     }
 
@@ -342,10 +342,10 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                 jVar.getConnectionsManager().sendRequest(updatestarrefprogram, new sh.b(jVar, d2Var2, 0));
                 return;
             case 8:
-                m1 m1Var = ((vf.f1) this.f47321b).f49048a;
+                m1 m1Var = ((vf.f1) this.f47321b).f49049a;
                 p1 f10 = p1.f(m1.b0(m1Var));
-                ArrayList arrayList = m1Var.f49132b;
-                int i11 = f10.f49170a;
+                ArrayList arrayList = m1Var.f49133b;
+                int i11 = f10.f49171a;
                 int i12 = 0;
                 while (i12 < arrayList.size()) {
                     if (f10.c(((Integer) arrayList.get(i12)).intValue()) == null) {
@@ -357,12 +357,12 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                 if (!arrayList.isEmpty()) {
                     for (int i13 = 0; i13 < arrayList.size(); i13++) {
                         o1 c3 = f10.c(((Integer) arrayList.get(i13)).intValue());
-                        f10.f49171b.remove(c3);
-                        f10.a(c3.f49160b);
+                        f10.f49172b.remove(c3);
+                        f10.a(c3.f49161b);
                         TLRPC.TL_messages_deleteQuickReplyShortcut tL_messages_deleteQuickReplyShortcut = new TLRPC.TL_messages_deleteQuickReplyShortcut();
-                        tL_messages_deleteQuickReplyShortcut.shortcut_id = c3.f49159a;
+                        tL_messages_deleteQuickReplyShortcut.shortcut_id = c3.f49160a;
                         ConnectionsManager.getInstance(i11).sendRequest(tL_messages_deleteQuickReplyShortcut, new p5(20));
-                        if ("hello".equals(c3.f49160b)) {
+                        if ("hello".equals(c3.f49161b)) {
                             ConnectionsManager.getInstance(i11).sendRequest(new TL_account.updateBusinessGreetingMessage(), null);
                             TLRPC.UserFull userFull = MessagesController.getInstance(i11).getUserFull(UserConfig.getInstance(i11).getClientUserId());
                             if (userFull != null) {
@@ -370,7 +370,7 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                                 userFull.business_greeting_message = null;
                                 MessagesStorage.getInstance(i11).updateUserInfo(userFull, true);
                             }
-                        } else if ("away".equals(c3.f49160b)) {
+                        } else if ("away".equals(c3.f49161b)) {
                             ConnectionsManager.getInstance(i11).sendRequest(new TL_account.updateBusinessAwayMessage(), null);
                             TLRPC.UserFull userFull2 = MessagesController.getInstance(i11).getUserFull(UserConfig.getInstance(i11).getClientUserId());
                             if (userFull2 != null) {
@@ -436,16 +436,16 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                 ((Float) obj5).getClass();
                 int i12 = j51Var2.d;
                 if (i12 == -1) {
-                    boolean z4 = !x0Var.f49236e;
-                    x0Var.f49236e = z4;
+                    boolean z4 = !x0Var.f49237e;
+                    x0Var.f49237e = z4;
                     ((s8) view3).setChecked(z4);
-                    x0Var.f49233a.V2.N(true);
+                    x0Var.f49234a.V2.N(true);
                     x0Var.Y(true);
                     return;
                 } else if (i12 == -2) {
                     ?? p2Var = new p2(null);
-                    p2Var.f49188n = x0Var.f49239r;
-                    p2Var.f49185c = new v1(19, x0Var, view3);
+                    p2Var.f49189n = x0Var.f49240r;
+                    p2Var.f49186c = new v1(19, x0Var, view3);
                     x0Var.presentFragment((p2) p2Var);
                     return;
                 } else if (j51Var2.f2505a == 5 && i12 >= 0 && i12 < x0Var.h.length) {
@@ -465,16 +465,16 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                     int i13 = (j51Var2.d + 6) % 7;
                     int i14 = 0;
                     for (int i15 = 0; i15 < x0Var.h[i13].size(); i15++) {
-                        if (((w0) x0Var.h[i13].get(i15)).f49231b > i14) {
-                            i14 = ((w0) x0Var.h[i13].get(i15)).f49231b;
+                        if (((w0) x0Var.h[i13].get(i15)).f49232b > i14) {
+                            i14 = ((w0) x0Var.h[i13].get(i15)).f49232b;
                         }
                     }
                     int max = Math.max(0, i14 - 1439);
                     int i16 = (j51Var2.d + 1) % 7;
                     int i17 = 1440;
                     for (int i18 = 0; i18 < x0Var.h[i16].size(); i18++) {
-                        if (((w0) x0Var.h[i16].get(i18)).f49230a < i17) {
-                            i17 = ((w0) x0Var.h[i16].get(i18)).f49230a;
+                        if (((w0) x0Var.h[i16].get(i18)).f49231a < i17) {
+                            i17 = ((w0) x0Var.h[i16].get(i18)).f49231a;
                         }
                     }
                     int i19 = i17 + 1439;
@@ -488,7 +488,7 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                         }
                     }
                     z0 z0Var = new z0(charSequence, arrayList, max, i19, 28 - i20);
-                    z0Var.f49251f = new v9(x0Var, 23);
+                    z0Var.f49252f = new v9(x0Var, 23);
                     z0Var.h = new vf.d0(2, x0Var, j51Var2);
                     x0Var.presentFragment(z0Var);
                     return;
@@ -502,29 +502,29 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                int i22 = z0Var2.f49249c;
+                int i22 = z0Var2.f49250c;
                 int i23 = z0Var2.d;
-                ArrayList arrayList3 = z0Var2.f49248b;
+                ArrayList arrayList3 = z0Var2.f49249b;
                 int i24 = j51Var3.d;
                 if (i24 == -1) {
-                    z0Var2.f49253r = !z0Var2.f49253r;
+                    z0Var2.f49254r = !z0Var2.f49254r;
                     arrayList3.clear();
-                    if (z0Var2.f49253r) {
+                    if (z0Var2.f49254r) {
                         arrayList3.add(new w0(0, 1439));
                     }
                     s8 s8Var = (s8) view4;
-                    boolean z10 = z0Var2.f49253r;
+                    boolean z10 = z0Var2.f49254r;
                     j51Var3.f28008e = z10;
                     s8Var.setChecked(z10);
-                    boolean z11 = z0Var2.f49253r;
+                    boolean z11 = z0Var2.f49254r;
                     if (z11) {
                         i11 = k6.f21696f6;
                     } else {
                         i11 = k6.e6;
                     }
                     s8Var.b(k6.w0(null, i11, false), z11);
-                    z0Var2.f49252n.V2.N(true);
-                    v9 v9Var = z0Var2.f49251f;
+                    z0Var2.f49253n.V2.N(true);
+                    v9 v9Var = z0Var2.f49252f;
                     if (v9Var != null) {
                         v9Var.run();
                         return;
@@ -532,7 +532,7 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                     return;
                 } else if (i24 == -2) {
                     if (!arrayList3.isEmpty() && !z0Var2.U()) {
-                        int i25 = ((w0) l.d.i(1, arrayList3)).f49231b;
+                        int i25 = ((w0) l.d.i(1, arrayList3)).f49232b;
                         int clamp = Utilities.clamp(i25 + 30, i23 - 1, i22);
                         arrayList3.add(new w0(clamp, Utilities.clamp((i25 + 1560) / 2, i23, clamp + 1)));
                     } else {
@@ -542,11 +542,11 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                         int clamp2 = Utilities.clamp(480, i23 - 1, i22);
                         arrayList3.add(new w0(clamp2, Utilities.clamp(1200, i23, clamp2 + 1)));
                     }
-                    v9 v9Var2 = z0Var2.f49251f;
+                    v9 v9Var2 = z0Var2.f49252f;
                     if (v9Var2 != null) {
                         v9Var2.run();
                     }
-                    z0Var2.f49252n.V2.N(true);
+                    z0Var2.f49253n.V2.N(true);
                     return;
                 } else if (j51Var3.f2505a == 3 && (i10 = i24 / 3) >= 0 && i10 < arrayList3.size()) {
                     int i26 = i10 - 1;
@@ -566,11 +566,11 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                     if (i28 == 0) {
                         Activity parentActivity = z0Var2.getParentActivity();
                         String string = LocaleController.getString(R.string.BusinessHoursDayOpenHourPicker);
-                        int i29 = w0Var3.f49230a;
+                        int i29 = w0Var3.f49231a;
                         if (w0Var != null) {
-                            i22 = w0Var.f49231b + 1;
+                            i22 = w0Var.f49232b + 1;
                         }
-                        z4.X(parentActivity, string, i29, i22, w0Var3.f49231b - 1, new Utilities.Callback() {
+                        z4.X(parentActivity, string, i29, i22, w0Var3.f49232b - 1, new Utilities.Callback() {
                             @Override
                             public final void run(Object obj6) {
                                 Integer num2 = (Integer) obj6;
@@ -579,12 +579,12 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                                         z0 z0Var3 = z0Var2;
                                         boolean V = z0Var3.V();
                                         int intValue = num2.intValue();
-                                        w0Var3.f49230a = intValue;
+                                        w0Var3.f49231a = intValue;
                                         ((o8) view4).u(w0.a(intValue), true);
                                         if (V != z0Var3.V()) {
-                                            z0Var3.f49252n.V2.N(true);
+                                            z0Var3.f49253n.V2.N(true);
                                         }
-                                        v9 v9Var3 = z0Var3.f49251f;
+                                        v9 v9Var3 = z0Var3.f49252f;
                                         if (v9Var3 != null) {
                                             v9Var3.run();
                                             return;
@@ -594,12 +594,12 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                                         z0 z0Var4 = z0Var2;
                                         boolean V2 = z0Var4.V();
                                         int intValue2 = num2.intValue();
-                                        w0Var3.f49231b = intValue2;
+                                        w0Var3.f49232b = intValue2;
                                         ((o8) view4).u(w0.a(intValue2), true);
                                         if (V2 != z0Var4.V()) {
-                                            z0Var4.f49252n.V2.N(true);
+                                            z0Var4.f49253n.V2.N(true);
                                         }
-                                        v9 v9Var4 = z0Var4.f49251f;
+                                        v9 v9Var4 = z0Var4.f49252f;
                                         if (v9Var4 != null) {
                                             v9Var4.run();
                                             return;
@@ -612,10 +612,10 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                     } else if (i28 == 1) {
                         Activity parentActivity2 = z0Var2.getParentActivity();
                         String string2 = LocaleController.getString(R.string.BusinessHoursDayCloseHourPicker);
-                        int i30 = w0Var3.f49231b;
-                        int i31 = w0Var3.f49230a + 1;
+                        int i30 = w0Var3.f49232b;
+                        int i31 = w0Var3.f49231a + 1;
                         if (w0Var2 != null) {
-                            i23 = w0Var2.f49230a - 1;
+                            i23 = w0Var2.f49231a - 1;
                         }
                         z4.X(parentActivity2, string2, i30, i31, i23, new Utilities.Callback() {
                             @Override
@@ -626,12 +626,12 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                                         z0 z0Var3 = z0Var2;
                                         boolean V = z0Var3.V();
                                         int intValue = num2.intValue();
-                                        w0Var3.f49230a = intValue;
+                                        w0Var3.f49231a = intValue;
                                         ((o8) view4).u(w0.a(intValue), true);
                                         if (V != z0Var3.V()) {
-                                            z0Var3.f49252n.V2.N(true);
+                                            z0Var3.f49253n.V2.N(true);
                                         }
-                                        v9 v9Var3 = z0Var3.f49251f;
+                                        v9 v9Var3 = z0Var3.f49252f;
                                         if (v9Var3 != null) {
                                             v9Var3.run();
                                             return;
@@ -641,12 +641,12 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                                         z0 z0Var4 = z0Var2;
                                         boolean V2 = z0Var4.V();
                                         int intValue2 = num2.intValue();
-                                        w0Var3.f49231b = intValue2;
+                                        w0Var3.f49232b = intValue2;
                                         ((o8) view4).u(w0.a(intValue2), true);
                                         if (V2 != z0Var4.V()) {
-                                            z0Var4.f49252n.V2.N(true);
+                                            z0Var4.f49253n.V2.N(true);
                                         }
-                                        v9 v9Var4 = z0Var4.f49251f;
+                                        v9 v9Var4 = z0Var4.f49252f;
                                         if (v9Var4 != null) {
                                             v9Var4.run();
                                             return;
@@ -661,8 +661,8 @@ public final class g implements c2, Utilities.Callback5, t0.e, r3.c, vt, m0, jy,
                         if (arrayList3.isEmpty()) {
                             arrayList3.add(new w0(0, 1439));
                         }
-                        z0Var2.f49252n.V2.N(true);
-                        v9 v9Var3 = z0Var2.f49251f;
+                        z0Var2.f49253n.V2.N(true);
+                        v9 v9Var3 = z0Var2.f49252f;
                         if (v9Var3 != null) {
                             v9Var3.run();
                             return;

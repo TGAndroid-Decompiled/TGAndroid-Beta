@@ -819,7 +819,7 @@ public final class j implements v4.f, c9.c, a3.b, qk0, xd.b {
 
     @Override
     public void L(int i10, float f10, float f11, xd.c cVar) {
-        ((TextView) this.f2316b).setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, ((xd.a) this.d).f50504e));
+        ((TextView) this.f2316b).setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, ((xd.a) this.d).f50505e));
         ((xg.c) this.f2318e).b(this);
     }
 

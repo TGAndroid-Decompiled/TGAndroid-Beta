@@ -33,7 +33,7 @@ public abstract class f0 extends FrameLayout {
         view.setFadeZoneBottom(AndroidUtilities.dp(72.0f) + AndroidUtilities.navigationBarHeight);
         view.setFadeHeightBottom(AndroidUtilities.dp(24.0f));
         view.setFadeZoneTop(AndroidUtilities.dp(64.0f) + AndroidUtilities.statusBarHeight);
-        view.f50576a.b(-AndroidUtilities.dp(20.0f), false);
+        view.f50577a.b(-AndroidUtilities.dp(20.0f), false);
         frameLayout.addView((View) view, c6.g());
     }
 

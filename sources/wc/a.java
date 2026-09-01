@@ -69,15 +69,15 @@ public abstract class a implements uc.c, d, Serializable {
             if (i10 >= 0) {
                 i12 = eVar.l()[i10];
             }
-            x2 x2Var = f.f49490b;
-            x2 x2Var2 = f.f49489a;
+            x2 x2Var = f.f49491b;
+            x2 x2Var2 = f.f49490a;
             if (x2Var == null) {
                 try {
                     x2 x2Var3 = new x2(Class.class.getDeclaredMethod("getModule", null), getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
-                    f.f49490b = x2Var3;
+                    f.f49491b = x2Var3;
                     x2Var = x2Var3;
                 } catch (Exception unused2) {
-                    f.f49490b = x2Var2;
+                    f.f49491b = x2Var2;
                     x2Var = x2Var2;
                 }
             }

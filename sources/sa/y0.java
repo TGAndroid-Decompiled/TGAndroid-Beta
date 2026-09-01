@@ -12,7 +12,7 @@ public final class y0 implements pa.v {
 
     @Override
     public final pa.u create(pa.g gVar, wa.a aVar) {
-        Class cls = aVar.f49483a;
+        Class cls = aVar.f49484a;
         if (cls != this.f47227a && cls != this.f47228b) {
             return null;
         }

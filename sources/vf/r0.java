@@ -8,26 +8,26 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.qc;
 public final class r0 implements RequestDelegate {
-    public final int f49181a;
-    public final v0 f49182b;
+    public final int f49182a;
+    public final v0 f49183b;
 
     public r0(v0 v0Var, int i10) {
-        this.f49181a = i10;
-        this.f49182b = v0Var;
+        this.f49182a = i10;
+        this.f49183b = v0Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f49181a) {
+        switch (this.f49182a) {
             case 0:
-                final v0 v0Var = this.f49182b;
+                final v0 v0Var = this.f49183b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r4) {
                             case 0:
                                 v0 v0Var2 = v0Var;
-                                v0Var2.f49219b.a(0.0f);
+                                v0Var2.f49220b.a(0.0f);
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 if (tL_error2 != null) {
                                     qc.b0(tL_error2);
@@ -43,11 +43,11 @@ public final class r0 implements RequestDelegate {
                                 v0 v0Var3 = v0Var;
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 != null) {
-                                    v0Var3.f49219b.a(0.0f);
+                                    v0Var3.f49220b.a(0.0f);
                                     qc.b0(tL_error3);
                                     return;
                                 } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    v0Var3.f49219b.a(0.0f);
+                                    v0Var3.f49220b.a(0.0f);
                                     y3.s(R.string.UnknownError, qc.a0(v0Var3), null);
                                     return;
                                 } else {
@@ -59,14 +59,14 @@ public final class r0 implements RequestDelegate {
                 });
                 return;
             default:
-                final v0 v0Var2 = this.f49182b;
+                final v0 v0Var2 = this.f49183b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r4) {
                             case 0:
                                 v0 v0Var22 = v0Var2;
-                                v0Var22.f49219b.a(0.0f);
+                                v0Var22.f49220b.a(0.0f);
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 if (tL_error2 != null) {
                                     qc.b0(tL_error2);
@@ -82,11 +82,11 @@ public final class r0 implements RequestDelegate {
                                 v0 v0Var3 = v0Var2;
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 != null) {
-                                    v0Var3.f49219b.a(0.0f);
+                                    v0Var3.f49220b.a(0.0f);
                                     qc.b0(tL_error3);
                                     return;
                                 } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    v0Var3.f49219b.a(0.0f);
+                                    v0Var3.f49220b.a(0.0f);
                                     y3.s(R.string.UnknownError, qc.a0(v0Var3), null);
                                     return;
                                 } else {

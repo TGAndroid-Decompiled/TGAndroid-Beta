@@ -16,12 +16,12 @@ public final class x0 implements pa.v {
     public final pa.u create(pa.g gVar, wa.a aVar) {
         switch (this.f47224a) {
             case 0:
-                if (aVar.f49483a == ((Class) this.f47225b)) {
+                if (aVar.f49484a == ((Class) this.f47225b)) {
                     return this.f47226c;
                 }
                 return null;
             case 1:
-                Class<?> cls = aVar.f49483a;
+                Class<?> cls = aVar.f49484a;
                 if (!((Class) this.f47225b).isAssignableFrom(cls)) {
                     return null;
                 }

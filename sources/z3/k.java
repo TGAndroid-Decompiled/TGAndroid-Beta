@@ -5,16 +5,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Base64;
 import java.util.ArrayList;
 public final class k implements r8.e, f3.f {
-    public final int f51018a;
+    public final int f51019a;
 
     public k(int i10) {
-        this.f51018a = i10;
+        this.f51019a = i10;
     }
 
     @Override
     public final Object apply(Object obj) {
         byte[] decode;
-        switch (this.f51018a) {
+        switch (this.f51019a) {
             case 0:
                 return (p) obj;
             default:

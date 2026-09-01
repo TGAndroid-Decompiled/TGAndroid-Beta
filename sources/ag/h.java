@@ -383,10 +383,10 @@ public final class h implements jl0 {
                 return;
             case 22:
                 c0 c0Var = (c0) this.f201b;
-                vf.z zVar2 = c0Var.f49011x;
+                vf.z zVar2 = c0Var.f49012x;
                 mi miVar = c0Var.f26546b;
-                p0 adapter = c0Var.f49009s.getAdapter();
-                a0 a0Var = c0Var.f49012y;
+                p0 adapter = c0Var.f49010s.getAdapter();
+                a0 a0Var = c0Var.f49013y;
                 if (adapter == a0Var) {
                     ArrayList arrayList3 = a0Var.d;
                     int i15 = i10 - 1;
@@ -419,24 +419,24 @@ public final class h implements jl0 {
                 return;
             case 23:
                 f0 f0Var = (f0) this.f201b;
-                j51 G2 = f0Var.f49045a0.G(i10 - 1);
+                j51 G2 = f0Var.f49046a0.G(i10 - 1);
                 if (G2 != null) {
                     vf.v vVar = f0Var.W;
                     if (!vVar.h(G2)) {
                         int i16 = G2.d;
-                        int i17 = f0.f49043d0;
+                        int i17 = f0.f49044d0;
                         if (i16 == -1) {
-                            f0Var.f49046b0 = true;
+                            f0Var.f49047b0 = true;
                             vVar.h = true;
-                            f0Var.f49045a0.N(true);
+                            f0Var.f49046a0.N(true);
                             f0Var.T(true);
                             return;
                         }
-                        int i18 = f0.f49044e0;
+                        int i18 = f0.f49045e0;
                         if (i16 == -2) {
-                            f0Var.f49046b0 = false;
+                            f0Var.f49047b0 = false;
                             vVar.h = false;
-                            f0Var.f49045a0.N(true);
+                            f0Var.f49046a0.N(true);
                             f0Var.T(true);
                             return;
                         }

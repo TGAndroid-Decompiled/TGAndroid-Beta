@@ -291,7 +291,7 @@ public class v0 extends a0 implements DownloadController.FileDownloadProgressLis
         float f14 = 4.0f;
         if (i5Var.d()) {
             canvas2.save();
-            float width = (getWidth() - i5Var.Q.f50509e) / 2.0f;
+            float width = (getWidth() - i5Var.Q.f50510e) / 2.0f;
             if (i5Var.f14247p) {
                 dp = AndroidUtilities.dp(4.0f);
             } else {
@@ -894,7 +894,7 @@ public class v0 extends a0 implements DownloadController.FileDownloadProgressLis
     public int getBoundsLeft() {
         mh.i5 i5Var = this.C0;
         if (i5Var.d()) {
-            int width = ((int) (getWidth() - (i5Var.Q.f50509e + AndroidUtilities.dp(8.0f)))) / 2;
+            int width = ((int) (getWidth() - (i5Var.Q.f50510e + AndroidUtilities.dp(8.0f)))) / 2;
             if (i5Var.f14247p) {
                 return width;
             }
@@ -917,7 +917,7 @@ public class v0 extends a0 implements DownloadController.FileDownloadProgressLis
         int i11;
         mh.i5 i5Var = this.C0;
         if (i5Var.d()) {
-            int dp = ((int) ((i5Var.Q.f50509e + AndroidUtilities.dp(8.0f)) + getWidth())) / 2;
+            int dp = ((int) ((i5Var.Q.f50510e + AndroidUtilities.dp(8.0f)) + getWidth())) / 2;
             if (i5Var.f14247p) {
                 return dp;
             }
@@ -1988,7 +1988,7 @@ public class v0 extends a0 implements DownloadController.FileDownloadProgressLis
             MessageObject messageObject2 = v0Var.E0;
             mh.i5 i5Var = v0Var.C0;
             if (i5Var.d()) {
-                float dp7 = i5Var.Q.f50509e + AndroidUtilities.dp(f11);
+                float dp7 = i5Var.Q.f50510e + AndroidUtilities.dp(f11);
                 float width = (v0Var.getWidth() - dp7) / f12;
                 if (i5Var.f14247p) {
                     dp = 0.0f;

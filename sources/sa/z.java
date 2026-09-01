@@ -30,13 +30,13 @@ public final class z implements pa.v {
         boolean isAssignableFrom;
         wa.a aVar2 = this.f47230a;
         if (aVar2 != null) {
-            if (!aVar2.equals(aVar) && (!this.f47231b || aVar2.f49484b != aVar.f49483a)) {
+            if (!aVar2.equals(aVar) && (!this.f47231b || aVar2.f49485b != aVar.f49484a)) {
                 isAssignableFrom = false;
             } else {
                 isAssignableFrom = true;
             }
         } else {
-            isAssignableFrom = this.f47232c.isAssignableFrom(aVar.f49483a);
+            isAssignableFrom = this.f47232c.isAssignableFrom(aVar.f49484a);
         }
         if (isAssignableFrom) {
             return new a0(this.d, gVar, aVar, this, true);

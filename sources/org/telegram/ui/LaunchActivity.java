@@ -2005,10 +2005,9 @@ public class LaunchActivity extends j5 implements org.telegram.ui.ActionBar.c5, 
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this);
             alertDialog$Builder.f21166a.O = valueOf;
-            alertDialog$Builder.f21166a.Q = getString(R.string.EmailLoginChangeMessage);
-            alertDialog$Builder.k(getString(R.string.ChangeEmail), new rs(15, this, og0Var));
-            alertDialog$Builder.h(getString(R.string.Cancel), null);
-            alertDialog$Builder.o();
+            alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.EmailLoginChangeMessage);
+            alertDialog$Builder.k(LocaleController.getString(R.string.ChangeEmail), new rs(15, this, og0Var));
+            l.d.u(R.string.Cancel, alertDialog$Builder, null);
             return;
         }
         p0(og0Var);

@@ -132,17 +132,17 @@ public final class g2 implements View.OnLongClickListener {
                     int size = arrayList.size();
                     for (int i10 = 0; i10 < size; i10++) {
                         ((q91) arrayList.get(i10)).f40414a.setChecked(false);
-                        ((q91) arrayList.get(i10)).f40415b.f50932n = false;
+                        ((q91) arrayList.get(i10)).f40415b.f50933n = false;
                         if (r91Var.f40873r.f41544c > 0 && i10 < gVar.d.size()) {
-                            ((yf.f) gVar.d.get(i10)).f50932n = false;
+                            ((yf.f) gVar.d.get(i10)).f50933n = false;
                         }
                     }
                     z4 = true;
                     t00Var.setChecked(true);
-                    fVar.f50932n = true;
+                    fVar.f50933n = true;
                     r91Var.f40868b.z();
                     if (r91Var.f40873r.f41544c > 0) {
-                        ((yf.f) gVar.d.get(q91Var.f40416c)).f50932n = true;
+                        ((yf.f) gVar.d.get(q91Var.f40416c)).f50933n = true;
                         gVar.z();
                     }
                 }

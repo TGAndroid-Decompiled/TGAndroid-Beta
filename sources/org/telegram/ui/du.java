@@ -245,9 +245,9 @@ public final class du implements Comparator {
             case 22:
                 return ((TL_account.TL_businessWeeklyOpen) obj).start_minute - ((TL_account.TL_businessWeeklyOpen) obj2).start_minute;
             case 23:
-                return ((vf.o1) obj).f49161c - ((vf.o1) obj2).f49161c;
+                return ((vf.o1) obj).f49162c - ((vf.o1) obj2).f49162c;
             case 24:
-                return Integer.compare(((w4.d) obj2).f49379b, ((w4.d) obj).f49379b);
+                return Integer.compare(((w4.d) obj2).f49380b, ((w4.d) obj).f49380b);
             default:
                 return ((f2.m1) obj2).f5875a.getTop() - ((f2.m1) obj).f5875a.getTop();
         }

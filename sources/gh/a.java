@@ -56,12 +56,12 @@ public final class a extends c implements xd.b {
 
     public final void b() {
         Drawable drawable = this.f7125f;
-        drawable.setAlpha((int) ((1.0f - this.d.f50504e) * this.f7142c));
+        drawable.setAlpha((int) ((1.0f - this.d.f50505e) * this.f7142c));
     }
 
     public final void c() {
         TextPaint textPaint = this.h;
-        textPaint.setAlpha((int) ((1.0f - this.d.f50504e) * this.f7142c));
+        textPaint.setAlpha((int) ((1.0f - this.d.f50505e) * this.f7142c));
     }
 
     public final void d(boolean z4, boolean z10) {
@@ -72,7 +72,7 @@ public final class a extends c implements xd.b {
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
         this.f7140a.draw(canvas);
-        r.b(canvas, this.f7125f, 1.0f - this.d.f50504e);
+        r.b(canvas, this.f7125f, 1.0f - this.d.f50505e);
         if (this.f7126n != null) {
             canvas.save();
             canvas.translate(AndroidUtilities.dp(44.0f) + bounds.left, AndroidUtilities.dp(13.66f) + bounds.top);

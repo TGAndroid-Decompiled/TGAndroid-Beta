@@ -44,7 +44,7 @@ public final class d extends c {
     }
 
     public final float b() {
-        return this.f7144f.f50504e;
+        return this.f7144f.f50505e;
     }
 
     public final void c(int i10) {
@@ -63,7 +63,7 @@ public final class d extends c {
 
     @Override
     public final void draw(Canvas canvas) {
-        float f10 = this.f7144f.f50504e;
+        float f10 = this.f7144f.f50505e;
         if (f10 < 1.0f) {
             r.b(canvas, this.d, 1.0f - f10);
         }

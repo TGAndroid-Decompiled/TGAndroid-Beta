@@ -5426,7 +5426,7 @@ public class MessageObject {
         }
         vf.o1 c3 = vf.p1.f(this.currentAccount).c(getQuickReplyId());
         if (c3 != null) {
-            return c3.f49160b;
+            return c3.f49161b;
         }
         return "";
     }
@@ -9803,7 +9803,7 @@ public class MessageObject {
         if (quickReplyName == null || (d = vf.p1.f(i10).d(quickReplyName)) == null) {
             return 0;
         }
-        return d.f49159a;
+        return d.f49160a;
     }
 
     public static boolean isPremiumEmojiPack(TLRPC.StickerSetCovered stickerSetCovered) {

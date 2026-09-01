@@ -130,7 +130,7 @@ public final class g implements View.OnClickListener {
                     w0Var.y();
                     return;
                 } else if (v0Var.getFilter().h) {
-                    if (!v0Var.f22318a.f50505f) {
+                    if (!v0Var.f22318a.f50506f) {
                         v0Var.setSelectedForDelete(true);
                         return;
                     }

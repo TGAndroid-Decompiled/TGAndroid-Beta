@@ -16,7 +16,7 @@ public final class h6 implements View.OnFocusChangeListener {
             k6Var.f45572f0 = true;
             xh.o oVar = new xh.o(k6Var.getContext(), 2);
             oVar.f5805a = 1;
-            oVar.f50658p = (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(1.0f);
+            oVar.f50659p = (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(1.0f);
             ((f2.j0) k6Var.d.getLayoutManager()).w0(oVar);
         }
     }

@@ -213,7 +213,7 @@ public final class a1 implements Utilities.Callback {
                 ((Utilities.Callback2) obj3).run((mf.a) obj, new c3((mh.v0[]) obj2, 15));
                 return;
             case 9:
-                ((VoIPDebugToSend) obj3).lambda$done$0((TL_phone.saveCallDebug) obj2, (TLRPC.InputFile) obj);
+                VoIPDebugToSend.b((VoIPDebugToSend) obj3, (TL_phone.saveCallDebug) obj2, (TLRPC.InputFile) obj);
                 return;
             case 10:
                 org.telegram.ui.ActionBar.o3 o3Var = (org.telegram.ui.ActionBar.o3) obj3;
@@ -714,7 +714,7 @@ public final class a1 implements Utilities.Callback {
                 Long l11 = (Long) obj;
                 TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages = new TLRPC.TL_messages_sendQuickReplyMessages();
                 tL_messages_sendQuickReplyMessages.peer = xnVar2.getMessagesController().getInputPeer(xnVar2.Q5);
-                tL_messages_sendQuickReplyMessages.shortcut_id = ((vf.o1) obj2).f49159a;
+                tL_messages_sendQuickReplyMessages.shortcut_id = ((vf.o1) obj2).f49160a;
                 xnVar2.getConnectionsManager().sendRequest(tL_messages_sendQuickReplyMessages, null);
                 jk jkVar2 = xnVar2.V;
                 if (jkVar2 != null) {
@@ -782,7 +782,7 @@ public final class a1 implements Utilities.Callback {
                 xn xnVar7 = ((jj) obj3).f38171b;
                 if (o1Var != null) {
                     i19 = ((org.telegram.ui.ActionBar.p2) xnVar7).currentAccount;
-                    vf.p1.f(i19).k(o1Var.f49159a, str13);
+                    vf.p1.f(i19).k(o1Var.f49160a, str13);
                 }
                 xnVar7.N3 = str13;
                 xnVar7.X0.setTitle(str13);

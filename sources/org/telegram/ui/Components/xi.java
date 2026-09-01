@@ -190,9 +190,9 @@ public final class xi extends ei implements NotificationCenter.NotificationCente
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
                                 audioEntry.messageObject = new MessageObject(xiVar.f26546b.G1, tL_message, false, true);
                                 we.a a2 = we.a.a(file);
-                                if (a2 != null && a2.f49505o != null) {
+                                if (a2 != null && a2.f49506o != null) {
                                     int dp = AndroidUtilities.dp(44.0f);
-                                    Bitmap bitmap = a2.f49505o;
+                                    Bitmap bitmap = a2.f49506o;
                                     if (bitmap.getWidth() <= dp && bitmap.getHeight() <= dp) {
                                         audioEntry.messageObject.audioCover = bitmap;
                                     }
@@ -320,9 +320,9 @@ public final class xi extends ei implements NotificationCenter.NotificationCente
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
                                 audioEntry.messageObject = new MessageObject(xiVar.f26546b.G1, tL_message, false, true);
                                 we.a a2 = we.a.a(file);
-                                if (a2 != null && a2.f49505o != null) {
+                                if (a2 != null && a2.f49506o != null) {
                                     int dp = AndroidUtilities.dp(44.0f);
-                                    Bitmap bitmap = a2.f49505o;
+                                    Bitmap bitmap = a2.f49506o;
                                     if (bitmap.getWidth() <= dp && bitmap.getHeight() <= dp) {
                                         audioEntry.messageObject.audioCover = bitmap;
                                     }
@@ -450,9 +450,9 @@ public final class xi extends ei implements NotificationCenter.NotificationCente
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
                                 audioEntry.messageObject = new MessageObject(xiVar.f26546b.G1, tL_message, false, true);
                                 we.a a2 = we.a.a(file);
-                                if (a2 != null && a2.f49505o != null) {
+                                if (a2 != null && a2.f49506o != null) {
                                     int dp = AndroidUtilities.dp(44.0f);
-                                    Bitmap bitmap = a2.f49505o;
+                                    Bitmap bitmap = a2.f49506o;
                                     if (bitmap.getWidth() <= dp && bitmap.getHeight() <= dp) {
                                         audioEntry.messageObject.audioCover = bitmap;
                                     }
@@ -585,9 +585,9 @@ public final class xi extends ei implements NotificationCenter.NotificationCente
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
                                 audioEntry.messageObject = new MessageObject(xiVar.f26546b.G1, tL_message, false, true);
                                 we.a a2 = we.a.a(file);
-                                if (a2 != null && a2.f49505o != null) {
+                                if (a2 != null && a2.f49506o != null) {
                                     int dp = AndroidUtilities.dp(44.0f);
-                                    Bitmap bitmap = a2.f49505o;
+                                    Bitmap bitmap = a2.f49506o;
                                     if (bitmap.getWidth() <= dp && bitmap.getHeight() <= dp) {
                                         audioEntry.messageObject.audioCover = bitmap;
                                     }

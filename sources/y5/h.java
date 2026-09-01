@@ -54,12 +54,12 @@ import l3.t;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ht0;
 public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, com.google.android.gms.common.api.internal.o, x, s, t, l.j, k1.g, o0.a {
-    public static h f50774c;
-    public final int f50775a;
-    public Object f50776b;
+    public static h f50775c;
+    public final int f50776a;
+    public Object f50777b;
 
     public h(int i10, boolean z4) {
-        this.f50775a = i10;
+        this.f50776a = i10;
     }
 
     public static p h(Looper looper, Object obj, String str) {
@@ -72,15 +72,15 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
         b6.m.h(context);
         synchronized (h.class) {
             try {
-                if (f50774c == null) {
+                if (f50775c == null) {
                     o.a(context);
-                    f50774c = new h(context);
+                    f50775c = new h(context);
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return f50774c;
+        return f50775c;
     }
 
     public static final l u(PackageInfo packageInfo, l... lVarArr) {
@@ -106,7 +106,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
 
     @Override
     public void B(a aVar) {
-        com.google.android.gms.common.api.internal.x xVar = (com.google.android.gms.common.api.internal.x) this.f50776b;
+        com.google.android.gms.common.api.internal.x xVar = (com.google.android.gms.common.api.internal.x) this.f50777b;
         xVar.f2839o.lock();
         try {
             xVar.f2836l = aVar;
@@ -118,7 +118,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
 
     @Override
     public void H(float f10) {
-        ht0 ht0Var = (ht0) this.f50776b;
+        ht0 ht0Var = (ht0) this.f50777b;
         e1.e(ht0Var.M1).k(String.valueOf(dg.m.f4581a.indexOf(ht0Var.T0.getCurrentBrush())), f10);
         e2 e2Var = ht0Var.H1;
         e2Var.f4526c = f10;
@@ -127,12 +127,12 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
 
     @Override
     public void W(Object obj) {
-        switch (this.f50775a) {
+        switch (this.f50776a) {
             case 2:
-                r rVar = (r) this.f50776b;
+                r rVar = (r) this.f50777b;
                 if (((Boolean) obj).booleanValue()) {
                     if (rVar.R()) {
-                        rVar.W(rVar.q(2131701363));
+                        rVar.W(rVar.q(2131689600));
                     }
                     androidx.biometric.a0 a0Var = rVar.f553i0;
                     if (!a0Var.f513n) {
@@ -154,7 +154,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
                 return;
             default:
                 androidx.lifecycle.t tVar = (androidx.lifecycle.t) obj;
-                androidx.fragment.app.p pVar = (androidx.fragment.app.p) this.f50776b;
+                androidx.fragment.app.p pVar = (androidx.fragment.app.p) this.f50777b;
                 if (tVar != null && pVar.f987o0) {
                     pVar.getClass();
                     throw new IllegalStateException("Fragment " + pVar + " did not return a View from onCreateView() or this was called before onCreateView().");
@@ -165,7 +165,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
 
     @Override
     public void a(long j10) {
-        f7.b bVar = ((com.google.android.exoplayer2.ext.ffmpeg.b) this.f50776b).B;
+        f7.b bVar = ((com.google.android.exoplayer2.ext.ffmpeg.b) this.f50777b).B;
         Handler handler = (Handler) bVar.f6120b;
         if (handler != null) {
             handler.post(new y1(bVar, j10, 1));
@@ -174,17 +174,17 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f50775a) {
+        switch (this.f50776a) {
             case 18:
                 g6.f fVar = new g6.f(0, (TaskCompletionSource) obj2);
                 g6.e eVar = (g6.e) ((g6.h) obj).u();
                 Parcel G0 = eVar.G0();
                 y6.a.d(G0, fVar);
-                y6.a.c(G0, (g6.a) this.f50776b);
+                y6.a.c(G0, (g6.a) this.f50777b);
                 eVar.H0(G0, 1);
                 return;
             default:
-                j8.j jVar = (j8.j) this.f50776b;
+                j8.j jVar = (j8.j) this.f50777b;
                 s7.b bVar = (s7.b) obj;
                 Bundle G = bVar.G();
                 G.putBoolean("com.google.android.gms.wallet.EXTRA_USING_AUTO_RESOLVABLE_RESULT", true);
@@ -213,15 +213,15 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
 
     @Override
     public void c(l.l lVar, boolean z4) {
-        switch (this.f50775a) {
+        switch (this.f50776a) {
             case 17:
-                ((q) this.f50776b).g(lVar);
+                ((q) this.f50777b).g(lVar);
                 return;
             default:
                 if (lVar instanceof e0) {
                     ((e0) lVar).f11371z.k().c(false);
                 }
-                x xVar = ((m.h) this.f50776b).f13203e;
+                x xVar = ((m.h) this.f50777b).f13203e;
                 if (xVar != null) {
                     xVar.c(lVar, z4);
                     return;
@@ -232,7 +232,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
 
     @Override
     public void close() {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f50776b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f50777b;
         if (contentProviderClient != null) {
             contentProviderClient.release();
         }
@@ -240,21 +240,21 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
 
     @Override
     public Object d(dd.p pVar, wc.c cVar) {
-        return ((d0) this.f50776b).d(new n1.c(pVar, null, 0), cVar);
+        return ((d0) this.f50777b).d(new n1.c(pVar, null, 0), cVar);
     }
 
     @Override
     public boolean d0(l.l lVar) {
-        switch (this.f50775a) {
+        switch (this.f50776a) {
             case 17:
-                Window.Callback callback = ((q) this.f50776b).f6771f.getCallback();
+                Window.Callback callback = ((q) this.f50777b).f6771f.getCallback();
                 if (callback != null) {
                     callback.onMenuOpened(108, lVar);
                     return true;
                 }
                 return true;
             default:
-                m.h hVar = (m.h) this.f50776b;
+                m.h hVar = (m.h) this.f50777b;
                 if (lVar == hVar.f13202c) {
                     return false;
                 }
@@ -270,7 +270,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
 
     @Override
     public void e(int i10, long j10, long j11) {
-        f7.b bVar = ((com.google.android.exoplayer2.ext.ffmpeg.b) this.f50776b).B;
+        f7.b bVar = ((com.google.android.exoplayer2.ext.ffmpeg.b) this.f50777b).B;
         Handler handler = (Handler) bVar.f6120b;
         if (handler != null) {
             handler.post(new g5.d(bVar, i10, j10, j11, 1));
@@ -281,7 +281,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
     public void f(Object obj) {
         com.google.android.gms.common.api.internal.n nVar;
         u7.c cVar = (u7.c) obj;
-        androidx.activity.o oVar = ((f7.j) this.f50776b).f6132b;
+        androidx.activity.o oVar = ((f7.j) this.f50777b).f6132b;
         synchronized (oVar) {
             oVar.f355a = false;
             nVar = ((p) oVar.f356b).f2779c;
@@ -292,13 +292,13 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
     }
 
     public void g(x5.k kVar, w wVar) {
-        k0 k0Var = (k0) this.f50776b;
+        k0 k0Var = (k0) this.f50777b;
         if (k0Var == null) {
             Log.e("BiometricPromptCompat", "Unable to start authentication. Client fragment manager was null.");
         } else if (k0Var.P()) {
             Log.e("BiometricPromptCompat", "Unable to start authentication. Called after onSaveInstanceState().");
         } else {
-            k0 k0Var2 = (k0) this.f50776b;
+            k0 k0Var2 = (k0) this.f50777b;
             r rVar = (r) k0Var2.D("androidx.biometric.BiometricFragment");
             if (rVar == null) {
                 rVar = new r();
@@ -315,7 +315,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
             }
             androidx.biometric.a0 a0Var = rVar.f553i0;
             a0Var.f506f = kVar;
-            int i10 = kVar.f50428a;
+            int i10 = kVar.f50429a;
             if (i10 == 0) {
                 if (wVar != null) {
                     i10 = 15;
@@ -330,7 +330,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
                 a0Var.f507g = wVar;
             }
             if (rVar.Q()) {
-                rVar.f553i0.f510k = rVar.q(2131701341);
+                rVar.f553i0.f510k = rVar.q(2131689578);
             } else {
                 rVar.f553i0.f510k = null;
             }
@@ -347,17 +347,17 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
 
     @Override
     public Object mo38get() {
-        return new f3.j((Context) ((rc.a) this.f50776b).mo38get(), "com.google.android.datatransport.events", Integer.valueOf(f3.j.d).intValue());
+        return new f3.j((Context) ((rc.a) this.f50777b).mo38get(), "com.google.android.datatransport.events", Integer.valueOf(f3.j.d).intValue());
     }
 
     @Override
     public od.b getData() {
-        return ((d0) this.f50776b).f10274c;
+        return ((d0) this.f50777b).f10274c;
     }
 
     @Override
     public void j(l.l lVar) {
-        Toolbar toolbar = (Toolbar) this.f50776b;
+        Toolbar toolbar = (Toolbar) this.f50777b;
         m.h hVar = toolbar.f480a.G;
         if (hVar != null && hVar.g()) {
             return;
@@ -371,7 +371,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
     @Override
     public void k(Object obj) {
         androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
-        j0 j0Var = (j0) this.f50776b;
+        j0 j0Var = (j0) this.f50777b;
         f0 f0Var = (f0) j0Var.F.pollFirst();
         if (f0Var == null) {
             Log.w("FragmentManager", "No IntentSenders were started for " + this);
@@ -390,7 +390,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
     @Override
     public void l(Exception exc) {
         h5.a.p("DecoderAudioRenderer", "Audio sink error", exc);
-        f7.b bVar = ((com.google.android.exoplayer2.ext.ffmpeg.b) this.f50776b).B;
+        f7.b bVar = ((com.google.android.exoplayer2.ext.ffmpeg.b) this.f50777b).B;
         Handler handler = (Handler) bVar.f6120b;
         if (handler != null) {
             handler.post(new l3.o(bVar, exc, 1));
@@ -398,7 +398,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
     }
 
     public StringBuilder n() {
-        pe.a aVar = (pe.a) this.f50776b;
+        pe.a aVar = (pe.a) this.f50777b;
         if (aVar instanceof ke.o) {
             StringBuilder sb = ((ke.o) aVar).f11179b.f11164b;
             if (sb.length() != 0) {
@@ -412,7 +412,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
     @Override
     public void o(int i10) {
         a aVar;
-        com.google.android.gms.common.api.internal.x xVar = (com.google.android.gms.common.api.internal.x) this.f50776b;
+        com.google.android.gms.common.api.internal.x xVar = (com.google.android.gms.common.api.internal.x) this.f50777b;
         Lock lock = xVar.f2839o;
         lock.lock();
         try {
@@ -432,7 +432,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
 
     @Override
     public void onSkipSilenceEnabledChanged(boolean z4) {
-        f7.b bVar = ((com.google.android.exoplayer2.ext.ffmpeg.b) this.f50776b).B;
+        f7.b bVar = ((com.google.android.exoplayer2.ext.ffmpeg.b) this.f50777b).B;
         Handler handler = (Handler) bVar.f6120b;
         if (handler != null) {
             handler.post(new kh.f(1, bVar, z4));
@@ -441,12 +441,12 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
 
     @Override
     public void p() {
-        ((com.google.android.exoplayer2.ext.ffmpeg.b) this.f50776b).T = true;
+        ((com.google.android.exoplayer2.ext.ffmpeg.b) this.f50777b).T = true;
     }
 
     @Override
     public void q(Bundle bundle) {
-        com.google.android.gms.common.api.internal.x xVar = (com.google.android.gms.common.api.internal.x) this.f50776b;
+        com.google.android.gms.common.api.internal.x xVar = (com.google.android.gms.common.api.internal.x) this.f50777b;
         xVar.f2839o.lock();
         try {
             Bundle bundle2 = xVar.f2835k;
@@ -455,7 +455,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
             } else if (bundle != null) {
                 bundle2.putAll(bundle);
             }
-            xVar.f2836l = a.f50756e;
+            xVar.f2836l = a.f50757e;
             com.google.android.gms.common.api.internal.x.l(xVar);
         } finally {
             xVar.f2839o.unlock();
@@ -464,7 +464,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
 
     @Override
     public Cursor r(Uri uri, String[] strArr, String[] strArr2) {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f50776b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f50777b;
         if (contentProviderClient == null) {
             return null;
         }
@@ -478,12 +478,12 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
 
     @Override
     public boolean s(l.l lVar, MenuItem menuItem) {
-        ((Toolbar) this.f50776b).getClass();
+        ((Toolbar) this.f50777b).getClass();
         return false;
     }
 
     public void t(e3.g gVar, Thread thread, Throwable th2) {
-        i9.n nVar = (i9.n) this.f50776b;
+        i9.n nVar = (i9.n) this.f50777b;
         synchronized (nVar) {
             String str = "Handling uncaught exception \"" + th2 + "\" from thread " + thread.getName();
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
@@ -502,16 +502,16 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
     }
 
     public String toString() {
-        switch (this.f50775a) {
+        switch (this.f50776a) {
             case 7:
-                return "ProviderMetadata{ componentName=" + ((ComponentName) this.f50776b).flattenToShortString() + " }";
+                return "ProviderMetadata{ componentName=" + ((ComponentName) this.f50777b).flattenToShortString() + " }";
             default:
                 return super.toString();
         }
     }
 
     public void v() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f50776b;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f50777b;
         if (arrayDeque.isEmpty()) {
             return;
         }
@@ -537,7 +537,7 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
     }
 
     public long z() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f50776b;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f50777b;
         if (arrayDeque.isEmpty()) {
             return 0L;
         }
@@ -545,35 +545,35 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
     }
 
     public h(g6.g gVar, g6.a aVar) {
-        this.f50775a = 18;
-        this.f50776b = aVar;
+        this.f50776a = 18;
+        this.f50777b = aVar;
     }
 
     public h(Object obj, int i10) {
-        this.f50775a = i10;
-        this.f50776b = obj;
+        this.f50776a = i10;
+        this.f50777b = obj;
     }
 
     public h(int i10) {
-        this.f50775a = i10;
+        this.f50776a = i10;
         switch (i10) {
             case 8:
-                this.f50776b = Collections.newSetFromMap(new WeakHashMap());
+                this.f50777b = Collections.newSetFromMap(new WeakHashMap());
                 return;
             default:
-                this.f50776b = new ArrayDeque(16);
+                this.f50777b = new ArrayDeque(16);
                 return;
         }
     }
 
     public h(Context context) {
-        this.f50775a = 0;
-        this.f50776b = context.getApplicationContext();
+        this.f50776a = 0;
+        this.f50777b = context.getApplicationContext();
     }
 
     @Override
     public float get() {
-        ht0 ht0Var = (ht0) this.f50776b;
+        ht0 ht0Var = (ht0) this.f50777b;
         int i10 = ht0Var.M1;
         dg.m currentBrush = ht0Var.T0.getCurrentBrush();
         if (currentBrush == null) {
@@ -583,19 +583,19 @@ public final class h implements a0, androidx.activity.result.b, v0, q2, a3.b, co
     }
 
     public h(Context context, Uri uri) {
-        this.f50775a = 27;
-        this.f50776b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
+        this.f50776a = 27;
+        this.f50777b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
     }
 
     public h(LaunchActivity launchActivity, Executor executor, ee.b bVar) {
-        this.f50775a = 3;
+        this.f50776a = 3;
         if (launchActivity == null) {
             throw new IllegalArgumentException("FragmentActivity must not be null.");
         }
         if (executor != null) {
             k0 s6 = launchActivity.s();
             androidx.biometric.a0 a0Var = (androidx.biometric.a0) new androidx.biometric.e(launchActivity).m(androidx.biometric.a0.class);
-            this.f50776b = s6;
+            this.f50777b = s6;
             a0Var.d = executor;
             a0Var.f505e = bVar;
             return;

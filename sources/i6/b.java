@@ -56,7 +56,7 @@ public abstract class b {
                 if (packageInfo != null) {
                     if (!h.w(packageInfo, false)) {
                         if (h.w(packageInfo, true)) {
-                            if (!y5.g.a((Context) m9.f50776b)) {
+                            if (!y5.g.a((Context) m9.f50777b)) {
                                 Log.w("GoogleSignatureVerifier", "Test-keys aren't accepted on this build.");
                             }
                         }

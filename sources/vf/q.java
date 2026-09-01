@@ -166,12 +166,12 @@ public final class q extends c61 implements NotificationCenter.NotificationCente
         arrayList.add(j51Var);
         x51Var.U();
         t d10 = t.d(this.currentAccount);
-        if (d10.f49202b.size() < MessagesController.getInstance(d10.f49201a).businessChatLinksLimit) {
+        if (d10.f49203b.size() < MessagesController.getInstance(d10.f49202a).businessChatLinksLimit) {
             j51 c3 = j51.c(1, R.drawable.menu_link_create, LocaleController.getString(R.string.BusinessLinksAdd));
             c3.f28019q = true;
             arrayList.add(c3);
         }
-        ArrayList arrayList2 = t.d(this.currentAccount).f49202b;
+        ArrayList arrayList2 = t.d(this.currentAccount).f49203b;
         int size = arrayList2.size();
         int i11 = 0;
         int i12 = 0;
@@ -179,7 +179,7 @@ public final class q extends c61 implements NotificationCenter.NotificationCente
             Object obj = arrayList2.get(i12);
             i12++;
             ?? obj2 = new Object();
-            obj2.f49165a = (TL_account.TL_businessChatLink) obj;
+            obj2.f49166a = (TL_account.TL_businessChatLink) obj;
             j51 j51Var2 = new j51(29);
             j51Var2.G = obj2;
             arrayList.add(j51Var2);
@@ -235,12 +235,12 @@ public final class q extends c61 implements NotificationCenter.NotificationCente
             TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
             createbusinesschatlink.link = tL_inputBusinessChatLink;
             tL_inputBusinessChatLink.message = "";
-            ConnectionsManager.getInstance(d10.f49201a).sendRequest(createbusinesschatlink, new s(d10, 1));
+            ConnectionsManager.getInstance(d10.f49202a).sendRequest(createbusinesschatlink, new s(d10, 1));
         } else if (j51Var.f2505a == 29) {
             Object obj = j51Var.G;
             if (obj instanceof p) {
                 Bundle h = android.support.v4.media.a.h(6, "chatMode");
-                h.putString("business_link", ((p) obj).f49165a.link);
+                h.putString("business_link", ((p) obj).f49166a.link);
                 presentFragment(new xn(h));
             }
         }
@@ -251,21 +251,21 @@ public final class q extends c61 implements NotificationCenter.NotificationCente
         if (j51Var.f2505a == 29) {
             Object obj = j51Var.G;
             if (obj instanceof p) {
-                final TL_account.TL_businessChatLink tL_businessChatLink = ((p) obj).f49165a;
+                final TL_account.TL_businessChatLink tL_businessChatLink = ((p) obj).f49166a;
                 q70 H = q70.H(this, view);
                 H.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new v9(tL_businessChatLink, 19), false);
                 H.c(R.drawable.msg_share, LocaleController.getString(R.string.LinkActionShare), new Runnable(this) {
-                    public final q f49095b;
+                    public final q f49096b;
 
                     {
-                        this.f49095b = this;
+                        this.f49096b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
-                                q qVar = this.f49095b;
+                                q qVar = this.f49096b;
                                 qVar.getClass();
                                 Intent intent = new Intent(qVar.getParentActivity(), LaunchActivity.class);
                                 intent.setAction("android.intent.action.SEND");
@@ -274,10 +274,10 @@ public final class q extends c61 implements NotificationCenter.NotificationCente
                                 qVar.startActivityForResult(intent, 500);
                                 return;
                             case 1:
-                                q.Y(this.f49095b, tL_businessChatLink);
+                                q.Y(this.f49096b, tL_businessChatLink);
                                 return;
                             default:
-                                q qVar2 = this.f49095b;
+                                q qVar2 = this.f49096b;
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qVar2.getParentActivity(), 0, qVar2.getResourceProvider());
                                 alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.BusinessLinksDeleteTitle);
                                 alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.BusinessLinksDeleteMessage);
@@ -295,17 +295,17 @@ public final class q extends c61 implements NotificationCenter.NotificationCente
                     }
                 }, false);
                 H.c(R.drawable.msg_edit, LocaleController.getString(R.string.Rename), new Runnable(this) {
-                    public final q f49095b;
+                    public final q f49096b;
 
                     {
-                        this.f49095b = this;
+                        this.f49096b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
-                                q qVar = this.f49095b;
+                                q qVar = this.f49096b;
                                 qVar.getClass();
                                 Intent intent = new Intent(qVar.getParentActivity(), LaunchActivity.class);
                                 intent.setAction("android.intent.action.SEND");
@@ -314,10 +314,10 @@ public final class q extends c61 implements NotificationCenter.NotificationCente
                                 qVar.startActivityForResult(intent, 500);
                                 return;
                             case 1:
-                                q.Y(this.f49095b, tL_businessChatLink);
+                                q.Y(this.f49096b, tL_businessChatLink);
                                 return;
                             default:
-                                q qVar2 = this.f49095b;
+                                q qVar2 = this.f49096b;
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qVar2.getParentActivity(), 0, qVar2.getResourceProvider());
                                 alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.BusinessLinksDeleteTitle);
                                 alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.BusinessLinksDeleteMessage);
@@ -335,17 +335,17 @@ public final class q extends c61 implements NotificationCenter.NotificationCente
                     }
                 }, false);
                 H.c(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new Runnable(this) {
-                    public final q f49095b;
+                    public final q f49096b;
 
                     {
-                        this.f49095b = this;
+                        this.f49096b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
-                                q qVar = this.f49095b;
+                                q qVar = this.f49096b;
                                 qVar.getClass();
                                 Intent intent = new Intent(qVar.getParentActivity(), LaunchActivity.class);
                                 intent.setAction("android.intent.action.SEND");
@@ -354,10 +354,10 @@ public final class q extends c61 implements NotificationCenter.NotificationCente
                                 qVar.startActivityForResult(intent, 500);
                                 return;
                             case 1:
-                                q.Y(this.f49095b, tL_businessChatLink);
+                                q.Y(this.f49096b, tL_businessChatLink);
                                 return;
                             default:
-                                q qVar2 = this.f49095b;
+                                q qVar2 = this.f49096b;
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qVar2.getParentActivity(), 0, qVar2.getResourceProvider());
                                 alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.BusinessLinksDeleteTitle);
                                 alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.BusinessLinksDeleteMessage);

@@ -56,7 +56,7 @@ public final class ce extends FrameLayout {
         int max = Math.max(AndroidUtilities.dp(44.0f), getMeasuredHeight());
         ChatActivityEnterView chatActivityEnterView = this.f25935a;
         xd.c cVar = chatActivityEnterView.f24581b5;
-        if (cVar.f50509e > 0.0f) {
+        if (cVar.f50510e > 0.0f) {
             cVar.a(max);
         } else {
             cVar.c(max);

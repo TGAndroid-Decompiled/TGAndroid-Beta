@@ -517,7 +517,7 @@ public final class q1 extends FrameLayout {
                 lf.b0 b0Var2 = (lf.b0) this.f5444b;
                 boolean drawChild2 = super.drawChild(canvas, view, j10);
                 hh.f fVar = (hh.f) this.f5446e;
-                int i12 = (int) fVar.U.f50509e;
+                int i12 = (int) fVar.U.f50510e;
                 if (view == fVar.f7703e0 && i12 > 0) {
                     b0Var2.setBounds(0, AndroidUtilities.dp(40.0f), getWidth(), AndroidUtilities.dp(48.0f));
                     int i13 = k6.f21731h5;

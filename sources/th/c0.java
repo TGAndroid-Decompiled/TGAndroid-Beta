@@ -75,7 +75,7 @@ public final class c0 extends f0 {
 
     @Override
     public final float b() {
-        return lf.l0.b(this.h.f48133c.f50504e) * super.b();
+        return lf.l0.b(this.h.f48133c.f50505e) * super.b();
     }
 
     @Override

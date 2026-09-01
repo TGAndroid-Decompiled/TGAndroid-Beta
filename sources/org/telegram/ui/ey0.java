@@ -104,7 +104,7 @@ public final class ey0 implements org.telegram.ui.ActionBar.l6 {
                 }
                 wf.f fVar = ha1Var.X;
                 if (fVar != null) {
-                    fVar.f49522g = true;
+                    fVar.f49523g = true;
                     return;
                 }
                 return;

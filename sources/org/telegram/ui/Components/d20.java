@@ -51,7 +51,7 @@ public class d20 extends FrameLayout implements xd.b, org.telegram.ui.ActionBar.
         pr prVar = pr.h;
         this.f26166a = new xd.a(0, this, prVar, 380L, false);
         this.f26167b = new xd.a(1, this, prVar, 380L, true);
-        this.f26168c = new xd.c(2, this, wd.a.f49492a, 280L);
+        this.f26168c = new xd.c(2, this, wd.a.f49493a, 280L);
         this.B = new AnimationNotificationsLocker();
         this.C = new ArrayList();
         this.d = g6Var;
@@ -139,7 +139,7 @@ public class d20 extends FrameLayout implements xd.b, org.telegram.ui.ActionBar.
 
     public final void b() {
         int i10;
-        int max = Math.max(AndroidUtilities.dp(6.0f) + ((int) this.f26168c.f50509e), AndroidUtilities.dp(48.0f));
+        int max = Math.max(AndroidUtilities.dp(6.0f) + ((int) this.f26168c.f50510e), AndroidUtilities.dp(48.0f));
         int measuredWidth = this.h.getMeasuredWidth() + AndroidUtilities.dp(48.0f);
         boolean z4 = LocaleController.isRTL;
         if (z4) {

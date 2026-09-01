@@ -53,7 +53,7 @@ public final class ns0 extends AnimatorListenerAdapter {
                 PhotoViewer photoViewer2 = dt0Var.f36304b;
                 zf.n nVar = photoViewer2.f34450z1.f25248b;
                 nVar.q();
-                CropAreaView cropAreaView = nVar.f51165a;
+                CropAreaView cropAreaView = nVar.f51166a;
                 cropAreaView.setDimVisibility(true);
                 cropAreaView.f(true, true);
                 cropAreaView.invalidate();

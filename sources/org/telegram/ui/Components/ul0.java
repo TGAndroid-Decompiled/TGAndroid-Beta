@@ -200,7 +200,7 @@ public final class ul0 implements Runnable {
                 return;
             default:
                 yf.e eVar = (yf.e) this.f31690b;
-                eVar.f50914f.animate().setDuration(120L).alpha(0.0f);
+                eVar.f50915f.animate().setDuration(120L).alpha(0.0f);
                 eVar.h.animate().setListener(null).start();
                 if (eVar.h.getVisibility() != 0) {
                     eVar.h.setVisibility(0);

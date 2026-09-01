@@ -28,7 +28,7 @@ public final class yf implements pg.a {
                     pmVar = xnVar.U0;
                 }
                 pm pmVar3 = pmVar;
-                float f10 = xnVar.f43387vc.f50504e;
+                float f10 = xnVar.f43387vc.f50505e;
                 int i10 = (int) ((1.0f - f10) * 255.0f);
                 int i11 = (int) (255.0f * f10);
                 if (f10 > 0.0f) {

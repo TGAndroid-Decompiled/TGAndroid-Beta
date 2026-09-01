@@ -121,20 +121,20 @@ public final class b extends Drawable implements DownloadController.FileDownload
             f10 = 19.0f;
         }
         int dp = AndroidUtilities.dp(f10);
-        if (this.f7139y.f50504e > 0.0f) {
+        if (this.f7139y.f50505e > 0.0f) {
             g gVar = this.f7130b.f26792c.d;
-            float f11 = gVar.f50519c.f50529a;
-            int i12 = (int) gVar.f50521f.f50529a;
+            float f11 = gVar.f50520c.f50530a;
+            int i12 = (int) gVar.f50522f.f50530a;
             int lerp = (bounds.right - dp) - AndroidUtilities.lerp(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f) + i12, f11);
             if (f11 > 0.0f) {
                 f9 f9Var = this.f7130b;
-                f9Var.f26796i = (int) (this.f7139y.f50504e * 255.0f);
+                f9Var.f26796i = (int) (this.f7139y.f50505e * 255.0f);
                 f9Var.setBounds((bounds.right - dp) - i12, bounds.bottom - AndroidUtilities.dp(31.33f), bounds.right - dp, bounds.bottom);
                 this.f7130b.c(canvas);
             }
             int dp2 = bounds.bottom - AndroidUtilities.dp(21.33f);
             j6 j6Var = this.f7129a;
-            j6Var.f28047w = (int) (this.f7139y.f50504e * 255.0f);
+            j6Var.f28047w = (int) (this.f7139y.f50505e * 255.0f);
             j6Var.setBounds(bounds.left, AndroidUtilities.dp(15.0f) + dp2, lerp, dp2 - AndroidUtilities.dp(15.0f));
             this.f7129a.draw(canvas);
         }
@@ -200,9 +200,9 @@ public final class b extends Drawable implements DownloadController.FileDownload
 
     public final float d(float f10) {
         f9 f9Var = this.f7130b;
-        float d = this.f7129a.d() + f9Var.f26792c.d.f50521f.f50529a;
-        float dp = f9Var.f26792c.d.f50519c.f50529a * AndroidUtilities.dp(4.0f);
-        float f11 = this.f7139y.f50504e;
+        float d = this.f7129a.d() + f9Var.f26792c.d.f50522f.f50530a;
+        float dp = f9Var.f26792c.d.f50520c.f50530a * AndroidUtilities.dp(4.0f);
+        float f11 = this.f7139y.f50505e;
         return (f10 * f11) + (dp * f11) + d;
     }
 

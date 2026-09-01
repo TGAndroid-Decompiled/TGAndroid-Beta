@@ -43,7 +43,7 @@ public abstract class u0 {
     public final void d(m1 m1Var) {
         y5.h hVar = this.f5928a;
         if (hVar != null) {
-            RecyclerView recyclerView = (RecyclerView) hVar.f50776b;
+            RecyclerView recyclerView = (RecyclerView) hVar.f50777b;
             boolean z4 = true;
             m1Var.q(true);
             View view = m1Var.f5875a;

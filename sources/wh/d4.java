@@ -47,7 +47,7 @@ public abstract class d4 {
         TL_keyboard.InlineButtonType inlineButtonType;
         TL_iv.textButton textbutton;
         e4 e4Var = q3Var.d;
-        if (e4Var != null && (textbutton = e4Var.f49725a) != null) {
+        if (e4Var != null && (textbutton = e4Var.f49726a) != null) {
             inlineButtonType = textbutton.type;
         } else {
             inlineButtonType = null;
@@ -58,7 +58,7 @@ public abstract class d4 {
             } else if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeCopy) {
                 h(q3Var, z4);
             } else if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
-                q3Var.f49948f.o3(true);
+                q3Var.f49949f.o3(true);
                 k(p2Var, z4, new a4(q3Var, 2));
             }
             return null;
@@ -97,7 +97,7 @@ public abstract class d4 {
     public static q70 c(q70 q70Var, org.telegram.ui.ActionBar.p2 p2Var, final Context context, final g6 g6Var, final o3 o3Var, final boolean z4) {
         TL_keyboard.PageButton pageButton;
         TL_keyboard.InlineButtonType inlineButtonType;
-        int i10 = o3Var.f49899b;
+        int i10 = o3Var.f49900b;
         TL_iv.pageBlockButtonRow d = o3Var.d();
         if (d != null && i10 >= 0 && i10 < d.buttons.size()) {
             pageButton = d.buttons.get(i10);
@@ -155,7 +155,7 @@ public abstract class d4 {
         String str;
         int i10;
         boolean c3 = o3Var.c();
-        int i11 = o3Var.f49899b;
+        int i11 = o3Var.f49900b;
         TL_iv.pageBlockButtonRow d = o3Var.d();
         TL_keyboard.InlineButtonType inlineButtonType = null;
         if (d != null && i11 >= 0 && i11 < d.buttons.size()) {
@@ -185,7 +185,7 @@ public abstract class d4 {
         String str;
         int i10;
         boolean c3 = o3Var.c();
-        int i11 = o3Var.f49899b;
+        int i11 = o3Var.f49900b;
         TL_iv.pageBlockButtonRow d = o3Var.d();
         TL_keyboard.InlineButtonType inlineButtonType = null;
         if (d != null && i11 >= 0 && i11 < d.buttons.size()) {
@@ -220,7 +220,7 @@ public abstract class d4 {
         int i11 = 0;
         f10.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
         String string = LocaleController.getString(R.string.RichEditorButtonText);
-        int i12 = o3Var.f49899b;
+        int i12 = o3Var.f49900b;
         TL_iv.pageBlockButtonRow d = o3Var.d();
         if (d != null && i12 >= 0 && i12 < d.buttons.size()) {
             pageButton = d.buttons.get(i12);
@@ -273,7 +273,7 @@ public abstract class d4 {
         int i10 = 0;
         f10.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
         String string = LocaleController.getString(R.string.RichEditorButtonText);
-        int i11 = o3Var.f49899b;
+        int i11 = o3Var.f49900b;
         TL_iv.pageBlockButtonRow d = o3Var.d();
         if (d != null && i11 >= 0 && i11 < d.buttons.size()) {
             pageButton = d.buttons.get(i11);
@@ -318,7 +318,7 @@ public abstract class d4 {
         int i10;
         TL_iv.textButton textbutton;
         e4 e4Var = q3Var.d;
-        if (e4Var != null && (textbutton = e4Var.f49725a) != null) {
+        if (e4Var != null && (textbutton = e4Var.f49726a) != null) {
             inlineButtonType = textbutton.type;
         } else {
             inlineButtonType = null;
@@ -327,16 +327,16 @@ public abstract class d4 {
         if (z10) {
             l10 = ((TL_keyboard.TL_inlineButtonTypeCopy) inlineButtonType).copy_text;
         } else {
-            l10 = x5.l(q3Var.f49947e);
+            l10 = x5.l(q3Var.f49948e);
         }
         String str = l10;
-        q3Var.f49948f.o3(false);
+        q3Var.f49949f.o3(false);
         if (z10) {
             i10 = R.string.RichEditorEditCopyButton;
         } else {
             i10 = R.string.RichEditorCreateCopyButton;
         }
-        q3Var.f49944a.showInputDialog(LocaleController.getString(i10), LocaleController.getString(R.string.RichEditorButtonCopyText), str, false, !z4, new a4(q3Var, 1));
+        q3Var.f49945a.showInputDialog(LocaleController.getString(i10), LocaleController.getString(R.string.RichEditorButtonCopyText), str, false, !z4, new a4(q3Var, 1));
     }
 
     public static void i(q3 q3Var, boolean z4) {
@@ -345,7 +345,7 @@ public abstract class d4 {
         int i10;
         TL_iv.textButton textbutton;
         e4 e4Var = q3Var.d;
-        if (e4Var != null && (textbutton = e4Var.f49725a) != null) {
+        if (e4Var != null && (textbutton = e4Var.f49726a) != null) {
             inlineButtonType = textbutton.type;
         } else {
             inlineButtonType = null;
@@ -357,13 +357,13 @@ public abstract class d4 {
             str = "http://";
         }
         String str2 = str;
-        q3Var.f49948f.o3(false);
+        q3Var.f49949f.o3(false);
         if (z10) {
             i10 = R.string.RichEditorEditLinkButton;
         } else {
             i10 = R.string.RichEditorCreateLinkButton;
         }
-        q3Var.f49944a.showInputDialog(LocaleController.getString(i10), LocaleController.getString(R.string.RichEditorButtonURL), str2, true, !z4, new a4(q3Var, 0));
+        q3Var.f49945a.showInputDialog(LocaleController.getString(i10), LocaleController.getString(R.string.RichEditorButtonURL), str2, true, !z4, new a4(q3Var, 0));
     }
 
     public static void j(AlertDialog$Builder alertDialog$Builder, EditTextBoldCursor editTextBoldCursor, int i10, g6 g6Var) {

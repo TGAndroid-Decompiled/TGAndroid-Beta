@@ -29,12 +29,15 @@ public final class s80 implements Runnable {
     @Override
     public final void run() {
         String str;
-        int i10 = this.f41155a;
+        org.telegram.ui.Components.qc a02;
+        int i10;
+        int i11;
+        int i12 = this.f41155a;
         v10 v10Var = this.h;
         String str2 = this.f41159f;
         TLObject tLObject = this.d;
         TLRPC.TL_error tL_error = this.f41157c;
-        switch (i10) {
+        switch (i12) {
             case 0:
                 Pattern pattern = LaunchActivity.f34134y1;
                 boolean z4 = tLObject instanceof TLRPC.User;
@@ -65,20 +68,25 @@ public final class s80 implements Runnable {
                 }
             default:
                 Pattern pattern2 = LaunchActivity.f34134y1;
-                LaunchActivity launchActivity2 = this.f41156b;
                 if (tL_error != null) {
                     org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
                     if (U != null) {
                         if ("STARGIFT_ALREADY_BURNED".equalsIgnoreCase(tL_error.text)) {
-                            org.telegram.ui.Components.qc.a0(U).Q(R.raw.fire_on, 36, launchActivity2.getString(R.string.UniqueGiftNotFoundBurned)).j();
+                            a02 = org.telegram.ui.Components.qc.a0(U);
+                            i10 = R.raw.fire_on;
+                            i11 = R.string.UniqueGiftNotFoundBurned;
                         } else {
-                            org.telegram.ui.Components.qc.a0(U).Q(R.raw.error, 36, launchActivity2.getString(R.string.UniqueGiftNotFound)).j();
+                            a02 = org.telegram.ui.Components.qc.a0(U);
+                            i10 = R.raw.error;
+                            i11 = R.string.UniqueGiftNotFound;
                         }
+                        l.d.v(i11, a02, i10, 36);
                     } else {
                         return;
                     }
                 } else if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
                     TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
+                    LaunchActivity launchActivity2 = this.f41156b;
                     MessagesController.getInstance(launchActivity2.L).putUsers(tL_payments_uniqueStarGift.users, false);
                     MessagesController.getInstance(launchActivity2.L).putChats(tL_payments_uniqueStarGift.chats, false);
                     org.telegram.ui.ActionBar.p2 U2 = LaunchActivity.U();

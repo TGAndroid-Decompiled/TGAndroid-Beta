@@ -10,35 +10,35 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d2;
 import org.telegram.ui.bd0;
 public final class o0 implements Runnable {
-    public final int f49156a = 0;
-    public final v0 f49157b;
-    public final bd0 f49158c;
+    public final int f49157a = 0;
+    public final v0 f49158b;
+    public final bd0 f49159c;
     public final d2 d;
 
     public o0(v0 v0Var, d2 d2Var, bd0 bd0Var) {
-        this.f49157b = v0Var;
+        this.f49158b = v0Var;
         this.d = d2Var;
-        this.f49158c = bd0Var;
+        this.f49159c = bd0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f49156a) {
+        switch (this.f49157a) {
             case 0:
-                v0 v0Var = this.f49157b;
+                v0 v0Var = this.f49158b;
                 v0Var.getClass();
                 this.d.dismiss();
-                v0Var.presentFragment(this.f49158c);
+                v0Var.presentFragment(this.f49159c);
                 return;
             default:
-                v0 v0Var2 = this.f49157b;
-                bd0 bd0Var = this.f49158c;
+                v0 v0Var2 = this.f49158b;
+                bd0 bd0Var = this.f49159c;
                 try {
-                    List<Address> fromLocationName = new Geocoder(v0Var2.getParentActivity(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(v0Var2.f49228y, 1);
+                    List<Address> fromLocationName = new Geocoder(v0Var2.getParentActivity(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(v0Var2.f49229y, 1);
                     if (!fromLocationName.isEmpty()) {
                         Address address = fromLocationName.get(0);
                         TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
-                        tL_channelLocation.address = v0Var2.f49228y;
+                        tL_channelLocation.address = v0Var2.f49229y;
                         TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
                         tL_channelLocation.geo_point = tL_geoPoint;
                         tL_geoPoint.lat = address.getLatitude();
@@ -54,8 +54,8 @@ public final class o0 implements Runnable {
     }
 
     public o0(v0 v0Var, bd0 bd0Var, d2 d2Var) {
-        this.f49157b = v0Var;
-        this.f49158c = bd0Var;
+        this.f49158b = v0Var;
+        this.f49159c = bd0Var;
         this.d = d2Var;
     }
 }

@@ -46,7 +46,7 @@ public final class pv implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 2:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                CropAreaView cropAreaView = photoViewer.f34450z1.f25248b.f51165a;
+                CropAreaView cropAreaView = photoViewer.f34450z1.f25248b.f51166a;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue() * f11;
                 float f13 = photoViewer.X5;
                 cropAreaView.f24858k0 = floatValue2;
@@ -65,8 +65,8 @@ public final class pv implements ValueAnimator.AnimatorUpdateListener {
                 return;
             default:
                 xd.c cVar = (xd.c) obj;
-                if (cVar.f50511g) {
-                    DecelerateInterpolator decelerateInterpolator = wd.a.f49492a;
+                if (cVar.f50512g) {
+                    DecelerateInterpolator decelerateInterpolator = wd.a.f49493a;
                     float animatedFraction = valueAnimator.getAnimatedFraction();
                     cVar.d((f10 * animatedFraction) + f11, animatedFraction);
                     return;

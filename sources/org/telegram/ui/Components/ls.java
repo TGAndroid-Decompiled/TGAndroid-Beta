@@ -36,7 +36,7 @@ public final class ls extends b6 {
         int currentStyle;
         FragmentContextView fragmentContextView;
         Canvas canvas2 = canvas;
-        if (getMetadata().f50519c.f50529a != 0.0f) {
+        if (getMetadata().f50520c.f50530a != 0.0f) {
             qg.b bVar = this.f28813s;
             if (bVar != null) {
                 bVar.draw(canvas2);
@@ -49,7 +49,7 @@ public final class ls extends b6 {
                 for (int i10 = 0; i10 < entriesCount; i10++) {
                     xd.e n10 = hVar.n(i10);
                     float paddingTop = getPaddingTop() + n10.b().top;
-                    View view2 = ((a6) n10.f50512a).f25164a;
+                    View view2 = ((a6) n10.f50513a).f25164a;
                     float c3 = n10.c();
                     if (c3 > 0.0f && (fragmentContextView = this.f28816y) != null && (fragmentContextView == view2 || fragmentContextView.getParent() == view2)) {
                         zc capsuleBlobDrawable = this.f28816y.getCapsuleBlobDrawable();
@@ -73,8 +73,8 @@ public final class ls extends b6 {
             while (i12 < entriesCount2) {
                 xd.e n11 = hVar.n(i12);
                 float paddingTop2 = getPaddingTop() + n11.b().top;
-                View view4 = ((a6) n11.f50512a).f25164a;
-                float min = Math.min(1.0f, n11.f50514c.f50529a) * n11.c();
+                View view4 = ((a6) n11.f50513a).f25164a;
+                float min = Math.min(1.0f, n11.f50515c.f50530a) * n11.c();
                 if (min > 0.0f && view3 != view4) {
                     int alpha = org.telegram.ui.ActionBar.k6.f21779k0.getAlpha();
                     org.telegram.ui.ActionBar.k6.f21779k0.setAlpha((int) (alpha * min));
@@ -136,8 +136,8 @@ public final class ls extends b6 {
     }
 
     public final void j() {
-        float f10 = getMetadata().f50522g.f50529a;
-        float f11 = getMetadata().f50519c.f50529a;
+        float f10 = getMetadata().f50523g.f50530a;
+        float f11 = getMetadata().f50520c.f50530a;
         RectF rectF = this.f28814w;
         rectF.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getPaddingTop() + f10);
         float min = Math.min(AndroidUtilities.dp(this.f28815x), Math.min(rectF.width(), rectF.height()) / 2.0f);

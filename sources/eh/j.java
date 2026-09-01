@@ -80,7 +80,7 @@ public final class j extends Drawable implements DownloadController.FileDownload
         ho0 ho0Var = new ho0(t1Var);
         this.H = ho0Var;
         ho0Var.h = this;
-        this.f5639a = new xd.a(t1Var, wd.a.f49492a, 180L);
+        this.f5639a = new xd.a(t1Var, wd.a.f49493a, 180L);
         this.f5640a0 = DownloadController.getInstance(i10).generateObserverTag();
     }
 
@@ -211,7 +211,7 @@ public final class j extends Drawable implements DownloadController.FileDownload
                     l01Var.e(canvas, AndroidUtilities.dp(56.0f) + i14, AndroidUtilities.dp(15.0f) + i16 + i11);
                 }
                 if (this.U) {
-                    float f10 = this.f5639a.f50504e;
+                    float f10 = this.f5639a.f50505e;
                     if (this.f5649r != null && f10 < 1.0f) {
                         canvas.save();
                         float f11 = 1.0f - f10;
@@ -339,7 +339,7 @@ public final class j extends Drawable implements DownloadController.FileDownload
 
     public final int g() {
         boolean z4 = this.U;
-        if (z4 && this.f5639a.f50505f) {
+        if (z4 && this.f5639a.f50506f) {
             return !MediaController.getInstance().isMessagePaused();
         }
         if (!this.D && !z4) {

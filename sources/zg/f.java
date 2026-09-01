@@ -33,10 +33,10 @@ public final class f extends l {
         h hVar = this.F;
         e eVar = hVar.R0;
         int b10 = m1Var.b();
-        List list = eVar.f51187c;
+        List list = eVar.f51188c;
         GroupCallMessage groupCallMessage = null;
         if (list != null && b10 >= 0 && b10 < list.size()) {
-            groupCallMessage = (GroupCallMessage) eVar.f51187c.get(b10);
+            groupCallMessage = (GroupCallMessage) eVar.f51188c.get(b10);
         }
         if (groupCallMessage != null && (q0Var = groupCallMessage.visibleReaction) != null) {
             View view = m1Var.f5875a;

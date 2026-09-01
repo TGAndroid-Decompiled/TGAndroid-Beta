@@ -54,7 +54,7 @@ public final class f implements Drawable.Callback {
                 ((d31) this.f7744b).invalidateSelf();
                 return;
             default:
-                ((r0) this.f7744b).f49961b.invalidate();
+                ((r0) this.f7744b).f49962b.invalidate();
                 return;
         }
     }

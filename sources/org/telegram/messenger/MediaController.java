@@ -2057,7 +2057,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             w3.b bVar2 = null;
                             for (int i10 = 0; i10 < i0Var.d; i10++) {
                                 w3.b bVar3 = (w3.b) i0Var.get(i10);
-                                String str = bVar3.f49343b;
+                                String str = bVar3.f49344b;
                                 if ("Primary".equalsIgnoreCase(str)) {
                                     bVar = bVar3;
                                 } else if ("MotionPhoto".equalsIgnoreCase(str)) {
@@ -2065,7 +2065,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                 }
                             }
                             if (bVar != null && bVar2 != null) {
-                                long j10 = bVar2.f49344c;
+                                long j10 = bVar2.f49345c;
                                 if (j10 > 0) {
                                     try {
                                         this.isVideo = true;

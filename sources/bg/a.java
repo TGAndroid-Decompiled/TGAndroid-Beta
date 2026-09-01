@@ -374,15 +374,15 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
                 g gVar = (g) this.f1963b;
                 yf.d dVar = (yf.d) this.f1964c;
                 gVar.getClass();
-                dVar.f50908f = (int) ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ArrayList arrayList3 = gVar.f49544b;
+                dVar.f50909f = (int) ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ArrayList arrayList3 = gVar.f49545b;
                 int size = arrayList3.size();
                 while (i10 < size) {
                     Object obj = arrayList3.get(i10);
                     i10++;
                     yf.d dVar2 = (yf.d) obj;
                     if (dVar2 != dVar) {
-                        dVar2.f50908f = (int) ((dVar2.f50909g / 255.0f) * (255 - dVar.f50908f));
+                        dVar2.f50909f = (int) ((dVar2.f50910g / 255.0f) * (255 - dVar.f50909f));
                     }
                 }
                 gVar.invalidate();
@@ -392,7 +392,7 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
                 yf.b bVar2 = (yf.b) this.f1964c;
                 gVar2.getClass();
                 float floatValue12 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ArrayList arrayList4 = gVar2.f49547c;
+                ArrayList arrayList4 = gVar2.f49548c;
                 int size2 = arrayList4.size();
                 while (i10 < size2) {
                     Object obj2 = arrayList4.get(i10);
@@ -401,7 +401,7 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
                     if (bVar3 == bVar2) {
                         bVar2.d = (int) (floatValue12 * 255.0f);
                     } else {
-                        bVar3.d = (int) ((1.0f - floatValue12) * bVar3.f50896e);
+                        bVar3.d = (int) ((1.0f - floatValue12) * bVar3.f50897e);
                     }
                 }
                 gVar2.invalidate();
@@ -409,7 +409,7 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
             default:
                 n nVar = (n) this.f1963b;
                 nVar.getClass();
-                ((wf.o) this.f1964c).f49603r = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((wf.o) this.f1964c).f49604r = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 nVar.invalidate();
                 return;
         }

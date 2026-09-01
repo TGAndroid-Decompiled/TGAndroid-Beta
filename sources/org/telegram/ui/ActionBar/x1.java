@@ -28,7 +28,7 @@ public final class x1 extends ScrollView {
         switch (this.f22401a) {
             case 3:
                 int action = motionEvent.getAction();
-                float f10 = ((d80) this.f22402b).f36133b.f50509e;
+                float f10 = ((d80) this.f22402b).f36133b.f50510e;
                 float y10 = motionEvent.getY();
                 if (action == 0 && y10 > f10) {
                     return false;

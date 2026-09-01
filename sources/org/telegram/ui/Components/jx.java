@@ -27,7 +27,7 @@ public final class jx extends FrameLayout {
         if (view == kxVar && iwVar != null) {
             y10 = Math.max(y10, iwVar.getY() + iwVar.getMeasuredHeight() + 1.0f);
         }
-        canvas.clipRect(0.0f, y10 - (AndroidUtilities.dp(16.0f) * mzVar.f29266b.f50504e), getMeasuredWidth(), getMeasuredHeight());
+        canvas.clipRect(0.0f, y10 - (AndroidUtilities.dp(16.0f) * mzVar.f29266b.f50505e), getMeasuredWidth(), getMeasuredHeight());
         boolean drawChild = super.drawChild(canvas, view, j10);
         canvas.restore();
         return drawChild;

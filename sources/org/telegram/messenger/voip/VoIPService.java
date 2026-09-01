@@ -2566,7 +2566,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         } else if ("GROUPCALL_INVALID".equals(tL_error.text)) {
             p2 U = LaunchActivity.U();
             if (U != null) {
-                qc.a0(U).Q(R.raw.linkbroken, 36, getString(R.string.ConferenceClosed)).j().f27753r = false;
+                qc.a0(U).Q(R.raw.linkbroken, 36, LocaleController.getString(R.string.ConferenceClosed)).j().f27753r = false;
             }
             hangUp(0);
         } else {

@@ -1417,11 +1417,11 @@ public final class sb extends org.telegram.ui.ActionBar.p2 implements Notificati
         this.H.setTranslationY(-AndroidUtilities.navigationBarHeight);
         this.H.c(4, true, false);
         xg.e eVar2 = this.H;
-        qg.b c3 = eVar2.f50570n.c(eVar2, null, false);
-        c3.n(eVar2.f50571r);
+        qg.b c3 = eVar2.f50571n.c(eVar2, null, false);
+        c3.n(eVar2.f50572r);
         c3.p(AndroidUtilities.dp(22.0f));
         c3.o(AndroidUtilities.dp(6.0f));
-        eVar2.f50572s = c3;
+        eVar2.f50573s = c3;
         this.Y.addView(this.H, k7.c6.d(-1, 56.0f, 80, 54.0f, 0.0f, 0.0f, 3.0f));
         TextView textView = new TextView(context);
         this.G = textView;
@@ -1477,10 +1477,10 @@ public final class sb extends org.telegram.ui.ActionBar.p2 implements Notificati
         this.G.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
         this.H.getContainer().addView(this.G, k7.c6.e(-2, -2, 17));
         xg.e eVar3 = this.H;
-        eVar3.f50569f.add(this.G);
+        eVar3.f50570f.add(this.G);
         this.H.d(false);
         xg.e eVar4 = this.H;
-        eVar4.f50566b[4] = new View.OnClickListener(this) {
+        eVar4.f50567b[4] = new View.OnClickListener(this) {
             public final sb f43591b;
 
             {

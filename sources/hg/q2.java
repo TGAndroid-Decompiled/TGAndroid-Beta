@@ -27,7 +27,7 @@ public final class q2 extends lg.k {
                 tl0 tl0Var = v2Var.d;
                 xh.o oVar = new xh.o(v2Var.getContext(), 2, 0.6f);
                 oVar.f5805a = 1;
-                oVar.f50658p = AndroidUtilities.dp(36.0f);
+                oVar.f50659p = AndroidUtilities.dp(36.0f);
                 tl0Var.getLayoutManager().w0(oVar);
             }
         }

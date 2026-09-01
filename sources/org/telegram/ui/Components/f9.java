@@ -75,12 +75,12 @@ public final class f9 extends Drawable {
             float f10 = bounds.left;
             float f11 = bounds.top;
             xd.h hVar = this.f26792c;
-            canvas.saveLayer(f10, f11, f10 + hVar.d.f50521f.f50529a, f11 + this.f26793e, null);
-            for (int size = hVar.f50524b.size() - 1; size >= 0; size--) {
+            canvas.saveLayer(f10, f11, f10 + hVar.d.f50522f.f50530a, f11 + this.f26793e, null);
+            for (int size = hVar.f50525b.size() - 1; size >= 0; size--) {
                 xd.e n10 = hVar.n(size);
                 RectF b10 = n10.b();
-                Object obj = n10.f50512a;
-                float f12 = n10.f50516f.f50529a;
+                Object obj = n10.f50513a;
+                float f12 = n10.f50517f.f50530a;
                 float c3 = n10.c();
                 float width = b10.width() - f12;
                 float f13 = f10 + b10.left + f12;

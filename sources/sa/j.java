@@ -22,7 +22,7 @@ public final class j implements pa.v {
         } else if (y22 instanceof pa.v) {
             pa.v vVar = (pa.v) y22;
             if (z4) {
-                pa.v vVar2 = (pa.v) this.f47196b.putIfAbsent(aVar.f49483a, vVar);
+                pa.v vVar2 = (pa.v) this.f47196b.putIfAbsent(aVar.f49484a, vVar);
                 if (vVar2 != null) {
                     vVar = vVar2;
                 }
@@ -46,7 +46,7 @@ public final class j implements pa.v {
                 nullSafe = false;
                 uVar = a0Var;
             } else {
-                throw new IllegalArgumentException("Invalid attempt to bind an instance of " + y22.getClass().getName() + " as a @JsonAdapter for " + ra.d.k(aVar.f49484b) + ". @JsonAdapter value must be a TypeAdapter, TypeAdapterFactory, JsonSerializer or JsonDeserializer.");
+                throw new IllegalArgumentException("Invalid attempt to bind an instance of " + y22.getClass().getName() + " as a @JsonAdapter for " + ra.d.k(aVar.f49485b) + ". @JsonAdapter value must be a TypeAdapter, TypeAdapterFactory, JsonSerializer or JsonDeserializer.");
             }
         }
         if (uVar != null && nullSafe) {
@@ -57,7 +57,7 @@ public final class j implements pa.v {
 
     @Override
     public final pa.u create(pa.g gVar, wa.a aVar) {
-        qa.a aVar2 = (qa.a) aVar.f49483a.getAnnotation(qa.a.class);
+        qa.a aVar2 = (qa.a) aVar.f49484a.getAnnotation(qa.a.class);
         if (aVar2 == null) {
             return null;
         }

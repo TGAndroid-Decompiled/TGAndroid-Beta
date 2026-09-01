@@ -27,8 +27,8 @@ public final class RuntimeClassNameTypeAdapterFactory<T> implements pa.v {
     @Override
     public <R> pa.u create(final pa.g gVar, final wa.a<R> aVar) {
         pa.a aVar2 = this.exclusionStrategy;
-        Class cls = aVar.f49483a;
-        Class cls2 = aVar.f49483a;
+        Class cls = aVar.f49484a;
+        Class cls2 = aVar.f49484a;
         if (aVar2.shouldSkipClass(cls.getClass())) {
             return null;
         }

@@ -127,7 +127,7 @@ public final class nh extends tl0 {
                     canvas.saveLayer(dp, getPaddingTop(), AndroidUtilities.dp(19.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j10);
                     canvas.save();
-                    canvas.translate(org.telegram.ui.yh.c(1.0f, ((xd.a) this.Z2).f50504e, AndroidUtilities.dp(8.0f), dp), 0.0f);
+                    canvas.translate(org.telegram.ui.yh.c(1.0f, ((xd.a) this.Z2).f50505e, AndroidUtilities.dp(8.0f), dp), 0.0f);
                     canvas.drawPaint(this.V2);
                     canvas.restore();
                     canvas.restore();
@@ -137,7 +137,7 @@ public final class nh extends tl0 {
                     canvas.saveLayer(measuredWidth, getPaddingTop(), getMeasuredWidth() - AndroidUtilities.dp(11.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j10);
                     canvas.save();
-                    canvas.translate(e2.c.w(1.0f, ((xd.a) this.f29506a3).f50504e, AndroidUtilities.dp(8.0f), measuredWidth), 0.0f);
+                    canvas.translate(e2.c.w(1.0f, ((xd.a) this.f29506a3).f50505e, AndroidUtilities.dp(8.0f), measuredWidth), 0.0f);
                     canvas.drawPaint(this.W2);
                     canvas.restore();
                     canvas.restore();

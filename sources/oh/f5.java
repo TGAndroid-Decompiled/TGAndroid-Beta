@@ -192,8 +192,8 @@ public final class f5 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 25:
                 wf.h hVar = (wf.h) this.f17136b;
-                hVar.f49588f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                hVar.f49589g.f49590a.invalidate();
+                hVar.f49589f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hVar.f49590g.f49591a.invalidate();
                 return;
             case 26:
                 wh.o4 o4Var = (wh.o4) this.f17136b;

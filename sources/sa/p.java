@@ -15,17 +15,17 @@ public final class p implements pa.v {
     public final pa.u create(pa.g gVar, wa.a aVar) {
         switch (this.f47200a) {
             case 0:
-                if (aVar.f49483a == Number.class) {
+                if (aVar.f49484a == Number.class) {
                     return (q) this.f47201b;
                 }
                 return null;
             case 1:
-                if (aVar.f49483a == Object.class) {
+                if (aVar.f49484a == Object.class) {
                     return new r(gVar, (pa.t) this.f47201b);
                 }
                 return null;
             default:
-                Class cls = aVar.f49483a;
+                Class cls = aVar.f49484a;
                 if (cls != Calendar.class && cls != GregorianCalendar.class) {
                     return null;
                 }

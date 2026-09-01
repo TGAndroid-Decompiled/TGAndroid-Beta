@@ -439,7 +439,7 @@ public abstract class x3 extends FrameLayout implements NotificationCenter.Notif
             }
             xd.a aVar = this.L;
             aVar.a(z4, true);
-            float f12 = aVar.f50504e;
+            float f12 = aVar.f50505e;
             float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(60.0f) + B, B, f12);
             this.D.setTranslationY(lerp - AndroidUtilities.dp(200.0f));
             frameLayout.setTranslationY(lerp - this.M);

@@ -5,14 +5,14 @@ import h5.d0;
 import r3.r;
 import r3.t;
 public final class c implements f {
-    public final long[] f50716a;
-    public final long[] f50717b;
-    public final long f50718c;
+    public final long[] f50717a;
+    public final long[] f50718b;
+    public final long f50719c;
 
     public c(long j10, long[] jArr, long[] jArr2) {
-        this.f50716a = jArr;
-        this.f50717b = jArr2;
-        this.f50718c = j10 == -9223372036854775807L ? d0.G(jArr2[jArr2.length - 1]) : j10;
+        this.f50717a = jArr;
+        this.f50718b = jArr2;
+        this.f50719c = j10 == -9223372036854775807L ? d0.G(jArr2[jArr2.length - 1]) : j10;
     }
 
     public static Pair d(long j10, long[] jArr, long[] jArr2) {
@@ -36,7 +36,7 @@ public final class c implements f {
 
     @Override
     public final long a(long j10) {
-        return d0.G(((Long) d(j10, this.f50716a, this.f50717b).second).longValue());
+        return d0.G(((Long) d(j10, this.f50717a, this.f50718b).second).longValue());
     }
 
     @Override
@@ -51,13 +51,13 @@ public final class c implements f {
 
     @Override
     public final r f(long j10) {
-        Pair d = d(d0.S(d0.i(j10, 0L, this.f50718c)), this.f50717b, this.f50716a);
+        Pair d = d(d0.S(d0.i(j10, 0L, this.f50719c)), this.f50718b, this.f50717a);
         t tVar = new t(d0.G(((Long) d.first).longValue()), ((Long) d.second).longValue());
         return new r(tVar, tVar);
     }
 
     @Override
     public final long g() {
-        return this.f50718c;
+        return this.f50719c;
     }
 }

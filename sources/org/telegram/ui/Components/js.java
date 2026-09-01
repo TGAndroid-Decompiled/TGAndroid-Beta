@@ -41,7 +41,7 @@ public final class js extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float f10 = this.f28190a.f50504e;
+        float f10 = this.f28190a.f50505e;
         RectF rectF = this.d;
         RectF rectF2 = this.f28192c;
         RectF rectF3 = this.f28193e;

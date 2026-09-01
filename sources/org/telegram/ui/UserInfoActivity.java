@@ -619,7 +619,7 @@ public class UserInfoActivity extends org.telegram.ui.Components.c61 implements 
                 b61Var2.V2.N(true);
             }
         } else if (i10 == NotificationCenter.updatedChatbot) {
-            TL_account.connectedBots connectedbots = vf.f.a(this.currentAccount).f49040c;
+            TL_account.connectedBots connectedbots = vf.f.a(this.currentAccount).f49041c;
             if (connectedbots == null || (arrayList = connectedbots.connected_bots) == null) {
                 arrayList = new ArrayList<>();
             }

@@ -125,14 +125,14 @@ public final class d0 implements View.OnLongClickListener {
             case 4:
                 return wh.z1.W((wh.z1) this.f5149b, view);
             case 5:
-                wh.q qVar = ((wh.l) this.f5149b).f49845a;
-                wh.v3 v3Var = qVar.f49930s;
+                wh.q qVar = ((wh.l) this.f5149b).f49846a;
+                wh.v3 v3Var = qVar.f49931s;
                 g6 g6Var = qVar.f26545a;
                 mi miVar = qVar.f26546b;
-                wh.r3 r3Var = qVar.f49929r;
-                int i15 = qVar.f49928n;
+                wh.r3 r3Var = qVar.f49930r;
+                int i15 = qVar.f49929n;
                 if (!UserConfig.getInstance(i15).isPremium()) {
-                    new fg.n1(miVar.f29040c0, qVar.getContext(), qVar.f49928n, 43, true).show();
+                    new fg.n1(miVar.f29040c0, qVar.getContext(), qVar.f49929n, 43, true).show();
                     return true;
                 }
                 if (r3Var.k3() && !r3Var.m3()) {
@@ -234,7 +234,7 @@ public final class d0 implements View.OnLongClickListener {
                 }
                 return false;
             default:
-                ((zf.e) this.f5149b).f51117c.callOnClick();
+                ((zf.e) this.f5149b).f51118c.callOnClick();
                 return true;
         }
     }

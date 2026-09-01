@@ -63,7 +63,7 @@ public final class jj extends org.telegram.ui.ActionBar.j {
         SparseArray[] sparseArrayArr3 = xnVar.T5;
         long j10 = 0;
         if (i10 == -1) {
-            if (!xnVar.f43361tc.f50505f) {
+            if (!xnVar.f43361tc.f50506f) {
                 kVar = ((org.telegram.ui.ActionBar.p2) xnVar).actionBar;
                 if (kVar.s()) {
                     xnVar.z7(false);

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.h3;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.k90;
 import org.telegram.ui.Components.mi;
@@ -52,19 +53,22 @@ public final class s0 extends TextView {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
+        g6 g6Var;
         switch (this.f6546a) {
             case 0:
                 Paint paint = (Paint) this.f6547b;
-                paint.setColor(k6.l1(0.8f, k6.v0(k6.f22053z6, v0.U0(((u0) this.f6548c).f6574e))));
+                int i10 = k6.f22053z6;
+                g6Var = ((h3) ((u0) this.f6548c).f6574e).resourcesProvider;
+                paint.setColor(k6.l1(0.8f, k6.v0(i10, g6Var)));
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setStrokeWidth(1.0f);
                 float height = getHeight() / 2.0f;
                 Layout layout = getLayout();
-                int i10 = 0;
-                for (int i11 = 0; i11 < layout.getLineCount(); i11++) {
-                    i10 = Math.max(i10, (int) layout.getLineWidth(i11));
+                int i11 = 0;
+                for (int i12 = 0; i12 < layout.getLineCount(); i12++) {
+                    i11 = Math.max(i11, (int) layout.getLineWidth(i12));
                 }
-                float f10 = i10 / 2.0f;
+                float f10 = i11 / 2.0f;
                 canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - f10) - AndroidUtilities.dp(8.0f), height, paint);
                 canvas.drawLine((getWidth() / 2.0f) + f10 + AndroidUtilities.dp(8.0f), height, getWidth(), height, paint);
                 super.dispatchDraw(canvas);
@@ -210,8 +214,8 @@ public final class s0 extends TextView {
                 return;
             case 11:
                 Paint paint4 = (Paint) this.f6547b;
-                wh.a aVar = ((v5) this.f6548c).f50118x;
-                if (aVar != null && aVar.f49617c > 0 && aVar.d == 0 && !aVar.f49618e) {
+                wh.a aVar = ((v5) this.f6548c).f50119x;
+                if (aVar != null && aVar.f49618c > 0 && aVar.d == 0 && !aVar.f49619e) {
                     paint4.setColor(getCurrentTextColor());
                     float baseline = getBaseline() - (getTextSize() * 0.35f);
                     canvas.drawCircle(getWidth() / 2.0f, baseline, AndroidUtilities.dpf2(4.3f) / 2.0f, paint4);

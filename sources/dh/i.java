@@ -46,7 +46,7 @@ public final class i implements g, f, d {
     }
 
     public final void a() {
-        boolean z4 = this.f4757a.f50511g;
+        boolean z4 = this.f4757a.f50512g;
         boolean z10 = this.f4762n;
         AnimationNotificationsLocker animationNotificationsLocker = this.f4760e;
         if (!z10 && z4) {
@@ -63,18 +63,18 @@ public final class i implements g, f, d {
         e eVar = this.f4767y;
         l lVar = this.d;
         if (eVar != null && this.D > 0) {
-            return Math.max(this.C, lVar.d.f50529a);
+            return Math.max(this.C, lVar.d.f50530a);
         }
-        return lVar.d.f50529a;
+        return lVar.d.f50530a;
     }
 
     public final float c() {
         e eVar = this.f4767y;
         l lVar = this.f4759c;
         if (eVar != null && this.D > 0) {
-            return Math.max(this.C, lVar.d.f50529a);
+            return Math.max(this.C, lVar.d.f50530a);
         }
-        return lVar.d.f50529a;
+        return lVar.d.f50530a;
     }
 
     public final int d() {
@@ -227,7 +227,7 @@ public final class i implements g, f, d {
             } else {
                 f11 = 0.0f;
             }
-            kVar.f50531c = f11;
+            kVar.f50532c = f11;
             lVar2.e(i19, i18, i10, i16);
             lVar.e(i14, i13, i12, i15);
             xd.c cVar4 = cVar;

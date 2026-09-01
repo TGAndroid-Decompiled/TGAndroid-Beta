@@ -474,25 +474,25 @@ public final class ib1 extends LinearLayout {
                 int size4 = View.MeasureSpec.getSize(i10);
                 int paddingRight = getPaddingRight() + getPaddingLeft();
                 wh.z1 z1Var = (wh.z1) this.f37793b;
-                LinearLayout linearLayout = z1Var.f50195j0;
+                LinearLayout linearLayout = z1Var.f50196j0;
                 if (linearLayout != null) {
                     linearLayout.measure(View.MeasureSpec.makeMeasureSpec(size4, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
-                    ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) z1Var.f50195j0.getLayoutParams();
-                    paddingRight += z1Var.f50195j0.getMeasuredWidth() + marginLayoutParams2.leftMargin + marginLayoutParams2.rightMargin;
+                    ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) z1Var.f50196j0.getLayoutParams();
+                    paddingRight += z1Var.f50196j0.getMeasuredWidth() + marginLayoutParams2.leftMargin + marginLayoutParams2.rightMargin;
                 }
-                LinearLayout linearLayout2 = z1Var.f50196k0;
+                LinearLayout linearLayout2 = z1Var.f50197k0;
                 if (linearLayout2 != null) {
                     linearLayout2.measure(View.MeasureSpec.makeMeasureSpec(size4, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
-                    ViewGroup.MarginLayoutParams marginLayoutParams3 = (ViewGroup.MarginLayoutParams) z1Var.f50196k0.getLayoutParams();
-                    paddingRight += z1Var.f50196k0.getMeasuredWidth() + marginLayoutParams3.leftMargin + marginLayoutParams3.rightMargin;
+                    ViewGroup.MarginLayoutParams marginLayoutParams3 = (ViewGroup.MarginLayoutParams) z1Var.f50197k0.getLayoutParams();
+                    paddingRight += z1Var.f50197k0.getMeasuredWidth() + marginLayoutParams3.leftMargin + marginLayoutParams3.rightMargin;
                 }
-                LinearLayout linearLayout3 = z1Var.f50197l0;
+                LinearLayout linearLayout3 = z1Var.f50198l0;
                 if (linearLayout3 != null) {
                     linearLayout3.measure(View.MeasureSpec.makeMeasureSpec(size4, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
-                    ViewGroup.MarginLayoutParams marginLayoutParams4 = (ViewGroup.MarginLayoutParams) z1Var.f50197l0.getLayoutParams();
-                    paddingRight += z1Var.f50197l0.getMeasuredWidth() + marginLayoutParams4.leftMargin + marginLayoutParams4.rightMargin;
+                    ViewGroup.MarginLayoutParams marginLayoutParams4 = (ViewGroup.MarginLayoutParams) z1Var.f50198l0.getLayoutParams();
+                    paddingRight += z1Var.f50198l0.getMeasuredWidth() + marginLayoutParams4.leftMargin + marginLayoutParams4.rightMargin;
                 }
-                z1Var.f50193h0 = Math.max(0, size4 - paddingRight);
+                z1Var.f50194h0 = Math.max(0, size4 - paddingRight);
                 super.onMeasure(i10, i11);
                 return;
             case 20:

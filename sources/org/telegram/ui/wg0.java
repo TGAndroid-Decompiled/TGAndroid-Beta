@@ -695,7 +695,7 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
         ih1 ih1Var = this.f38158c;
         if (ih1Var != null && this.E != null) {
             float a2 = 1.0f - k7.o.a(Math.abs(3.0f - ih1Var.getPositionAnimated()), 0.0f, 1.0f);
-            float navigationBarThirdButtonsFactor = (1.0f - ((1.0f - AndroidUtilities.getNavigationBarThirdButtonsFactor(0.0f, 1.0f, this.I)) * a2)) * this.v.f50504e;
+            float navigationBarThirdButtonsFactor = (1.0f - ((1.0f - AndroidUtilities.getNavigationBarThirdButtonsFactor(0.0f, 1.0f, this.I)) * a2)) * this.v.f50505e;
             this.E.setAlpha(navigationBarThirdButtonsFactor);
             this.E.setTranslationY(a2 * AndroidUtilities.dp(48.0f));
             View view = this.E;
@@ -719,7 +719,7 @@ public final class wg0 extends jh1 implements NotificationCenter.NotificationCen
             i10 = 0;
         }
         int i12 = -i10;
-        float f10 = this.v.f50504e;
+        float f10 = this.v.f50505e;
         AndroidUtilities.lerp(0.85f, 1.0f, f10);
         this.B.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dp(40.0f) + i12, i12, f10));
         yg0 yg0Var = this.C;

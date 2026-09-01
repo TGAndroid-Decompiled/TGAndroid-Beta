@@ -201,10 +201,6 @@ public final class i0 extends h3 implements NotificationCenter.NotificationCente
         }
     }
 
-    public static ViewGroup M(i0 i0Var) {
-        return i0Var.containerView;
-    }
-
     public static void m(i0 i0Var, boolean z4, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             if (TextUtils.equals("COMMUNITY_REQUEST_CREATED", tL_error.text)) {
@@ -577,7 +573,7 @@ public final class i0 extends h3 implements NotificationCenter.NotificationCente
 
     @Override
     public final boolean canDismissWithSwipe() {
-        if (!this.f48132b.f50505f && !this.f48133c.f50505f) {
+        if (!this.f48132b.f50506f && !this.f48133c.f50506f) {
             View currentView = this.d.getCurrentView();
             if (currentView instanceof f0) {
                 return ((f0) currentView).f48117e;
@@ -641,7 +637,7 @@ public final class i0 extends h3 implements NotificationCenter.NotificationCente
         if (this.d.getCurrentPosition() > 0) {
             if (this.d.getCurrentPosition() == 2) {
                 xd.a aVar = this.f48133c;
-                if (aVar.f50505f) {
+                if (aVar.f50506f) {
                     this.f48140x.d.U2.h1(1, this.R.f7758b);
                     aVar.a(false, true);
                     setAllowNestedScroll(true);

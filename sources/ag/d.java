@@ -82,7 +82,7 @@ public final class d implements h5.d {
                     h5Var.f22887c.invalidate();
                     return;
                 } else if (view5 instanceof l1) {
-                    ((l1) view5).f49122c.invalidate();
+                    ((l1) view5).f49123c.invalidate();
                     return;
                 } else {
                     view5.invalidate();
@@ -139,7 +139,7 @@ public final class d implements h5.d {
             case 18:
                 View view11 = (View) obj;
                 if (view11 instanceof l1) {
-                    ((l1) view11).f49122c.invalidate();
+                    ((l1) view11).f49123c.invalidate();
                     return;
                 }
                 return;

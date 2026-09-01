@@ -76,7 +76,7 @@ public final class a0 {
         a0 a0Var = c0.c().v;
         if (a0Var != null) {
             if (a0Var != this && this.f2049n != 3) {
-                if (TextUtils.equals(((ComponentName) ((y5.h) c().d).f50776b).getPackageName(), "android") && m("android.media.intent.category.LIVE_AUDIO") && !m("android.media.intent.category.LIVE_VIDEO")) {
+                if (TextUtils.equals(((ComponentName) ((y5.h) c().d).f50777b).getPackageName(), "android") && m("android.media.intent.category.LIVE_AUDIO") && !m("android.media.intent.category.LIVE_VIDEO")) {
                     return true;
                 }
                 return false;
@@ -247,7 +247,7 @@ public final class a0 {
         sb.append(", settingsIntent=");
         sb.append(this.f2055t);
         sb.append(", providerPackageName=");
-        sb.append(((ComponentName) this.f2038a.d.f50776b).getPackageName());
+        sb.append(((ComponentName) this.f2038a.d.f50777b).getPackageName());
         if (e()) {
             sb.append(", members=[");
             int size = this.v.size();

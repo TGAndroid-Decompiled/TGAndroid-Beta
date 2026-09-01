@@ -681,7 +681,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
     public static void O2(py pyVar, Canvas canvas, int i10) {
         org.telegram.ui.ActionBar.f5 f5Var;
         if (pyVar.parentLayout != null && pyVar.actionBar != null) {
-            float max = Math.max(pyVar.f40200e.f50504e, pyVar.V3());
+            float max = Math.max(pyVar.f40200e.f50505e, pyVar.V3());
             float f10 = 1.0f;
             float f11 = 1.0f - pyVar.f40284u1;
             float f12 = max * f11 * f11;
@@ -1510,7 +1510,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
     }
 
     public final void A3() {
-        org.telegram.ui.Components.a20.d(this.f40222i0, e2.c.z(this.f40184b.f50504e, 1.0f - V3(), 1.0f - this.f40190c.f50504e, this.d.f50504e));
+        org.telegram.ui.Components.a20.d(this.f40222i0, e2.c.z(this.f40184b.f50505e, 1.0f - V3(), 1.0f - this.f40190c.f50505e, this.d.f50505e));
     }
 
     public final void A4(boolean z4, boolean z10) {
@@ -1610,7 +1610,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
 
     public final void C3() {
         w3();
-        org.telegram.ui.Components.a20.d(this.f40217h0, (1.0f - this.f40184b.f50504e) * (1.0f - V3()) * (1.0f - this.f40190c.f50504e));
+        org.telegram.ui.Components.a20.d(this.f40217h0, (1.0f - this.f40184b.f50505e) * (1.0f - V3()) * (1.0f - this.f40190c.f50505e));
         x3();
         A3();
         y3();
@@ -1709,14 +1709,14 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
             return;
         }
         float a2 = 1.0f - k7.o.a(((-this.K) - U3()) / AndroidUtilities.dp(48.0f), 0.0f, 1.0f);
-        float max = Math.max(this.f40264q3, this.h.f50504e);
-        float f11 = this.f40184b.f50504e;
+        float max = Math.max(this.f40264q3, this.h.f50505e);
+        float f11 = this.f40184b.f50505e;
         if (this.O0 != 2) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
         }
-        float max2 = f10 * (1.0f - this.f40190c.f50504e) * (1.0f - max) * Math.max(f11, (1.0f - V3()) * a2);
+        float max2 = f10 * (1.0f - this.f40190c.f50505e) * (1.0f - max) * Math.max(f11, (1.0f - V3()) * a2);
         this.U.setAlpha(max2);
         fy fyVar = this.U;
         boolean z4 = false;
@@ -1760,7 +1760,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
             } else {
                 f10 = 0.0f;
             }
-            float f11 = f10 * this.f40184b.f50504e;
+            float f11 = f10 * this.f40184b.f50505e;
             float lerp = AndroidUtilities.lerp(0.98f, 1.0f, f11);
             this.W.setScaleX(lerp);
             this.W.setScaleY(lerp);
@@ -1776,7 +1776,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
         org.telegram.ui.Components.l81 l81Var = this.X;
         xd.a aVar = this.f40272s;
         if (l81Var != null) {
-            float f12 = 1.0f - aVar.f50504e;
+            float f12 = 1.0f - aVar.f50505e;
             l81Var.setAlpha(f12);
             org.telegram.ui.Components.l81 l81Var2 = this.X;
             if (f12 > 0.0f) {
@@ -1788,7 +1788,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
         }
         uf.g0 g0Var = this.Y;
         if (g0Var != null) {
-            float f13 = aVar.f50504e;
+            float f13 = aVar.f50505e;
             g0Var.setAlpha(f13);
             uf.g0 g0Var2 = this.Y;
             if (f13 > 0.0f) {
@@ -2254,8 +2254,8 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
             F3();
             fy fyVar = this.U;
             xd.a aVar = this.f40184b;
-            fyVar.setBlurredBackgroundVisibility(aVar.f50504e);
-            float b10 = lf.l0.b(aVar.f50504e);
+            fyVar.setBlurredBackgroundVisibility(aVar.f50505e);
+            float b10 = lf.l0.b(aVar.f50505e);
             org.telegram.ui.Components.p9 p9Var = this.X2;
             if (p9Var != null) {
                 p9Var.setScaleX(b10);
@@ -2911,11 +2911,11 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
     public final float S3(boolean z4) {
         float f10;
         if (z4) {
-            f10 = 1.0f - this.f40184b.f50504e;
+            f10 = 1.0f - this.f40184b.f50505e;
         } else {
             f10 = 1.0f;
         }
-        return f10 * (1.0f - V3()) * this.f40266r.f50504e;
+        return f10 * (1.0f - V3()) * this.f40266r.f50505e;
     }
 
     public final void S4() {
@@ -2978,8 +2978,8 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
             } else {
                 i10 = 0;
             }
-            lsVar.setTranslationY(AndroidUtilities.lerp(f23, i11 - i10, this.f40184b.f50504e));
-            f18 = this.G1.getMetadata().f50519c.f50529a;
+            lsVar.setTranslationY(AndroidUtilities.lerp(f23, i11 - i10, this.f40184b.f50505e));
+            f18 = this.G1.getMetadata().f50520c.f50530a;
             f19 = this.G1.c(0.0f);
         } else {
             f18 = 0.0f;
@@ -3043,7 +3043,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
     }
 
     public final float W3() {
-        return -AndroidUtilities.lerp(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(48.0f), this.f40184b.f50504e);
+        return -AndroidUtilities.lerp(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(48.0f), this.f40184b.f50505e);
     }
 
     public final void W4(boolean r11, java.util.ArrayList r12, java.util.ArrayList r13, boolean r14, boolean r15) {
@@ -4262,7 +4262,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
                             b4(true);
                             return false;
                         }
-                    } else if (this.f40184b.f50505f) {
+                    } else if (this.f40184b.f50506f) {
                         if (z4) {
                             this.U.f26172r.getText().clear();
                             this.V.b(false);
@@ -4326,7 +4326,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
             }
             this.S1 = false;
         }
-        if (!this.H && (owVar = this.f40292w0) != null && owVar.getVisibility() == 0 && this.f40266r.f50505f) {
+        if (!this.H && (owVar = this.f40292w0) != null && owVar.getVisibility() == 0 && this.f40266r.f50506f) {
             int i10 = (int) (-this.K);
             int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
             if (i10 != 0 && i10 != currentActionBarHeight && i10 >= currentActionBarHeight / 2) {
@@ -5106,7 +5106,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
         boolean z10;
         org.telegram.ui.Components.ls lsVar = this.G1;
         if (lsVar != null && (iVar = this.N1) != null && (chatFull = this.W2) != null) {
-            if (this.U2 != 0 && chatFull.requests_pending > 0 && !this.f40184b.f50505f) {
+            if (this.U2 != 0 && chatFull.requests_pending > 0 && !this.f40184b.f50506f) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -5964,7 +5964,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
     public final void v3() {
         int i10;
         int i11;
-        float f10 = this.f40245n.f50504e;
+        float f10 = this.f40245n.f50505e;
         float lerp = AndroidUtilities.lerp(0.2f, 1.0f, f10);
         org.telegram.ui.Components.rp0 rp0Var = this.f40307z1;
         int i12 = 8;
@@ -6019,7 +6019,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
         if (this.actionBar == null) {
             return;
         }
-        org.telegram.ui.Components.a20.d(this.actionBar.getBackButton(), Math.max(this.f40264q3, (1.0f - this.f40184b.f50504e) * (1.0f - V3()) * (1.0f - this.f40190c.f50504e)));
+        org.telegram.ui.Components.a20.d(this.actionBar.getBackButton(), Math.max(this.f40264q3, (1.0f - this.f40184b.f50505e) * (1.0f - V3()) * (1.0f - this.f40190c.f50505e)));
     }
 
     public final void w4(int r7) {
@@ -6033,7 +6033,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
         } else {
             f10 = 0.0f;
         }
-        org.telegram.ui.Components.a20.d(this.f40195d0, e2.c.z(f10, 1.0f - this.f40184b.f50504e, 1.0f - V3(), 1.0f - this.f40190c.f50504e));
+        org.telegram.ui.Components.a20.d(this.f40195d0, e2.c.z(f10, 1.0f - this.f40184b.f50505e, 1.0f - V3(), 1.0f - this.f40190c.f50505e));
     }
 
     public final void x4(boolean z4, boolean z10) {
@@ -6076,7 +6076,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
         } else {
             f10 = 1.0f;
         }
-        org.telegram.ui.Components.a20.d(this.f40191c0, e2.c.z(f10, 1.0f - this.f40184b.f50504e, 1.0f - V3(), 1.0f - this.f40190c.f50504e));
+        org.telegram.ui.Components.a20.d(this.f40191c0, e2.c.z(f10, 1.0f - this.f40184b.f50505e, 1.0f - V3(), 1.0f - this.f40190c.f50505e));
     }
 
     public final void y4(String str, boolean z4) {
@@ -6093,7 +6093,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
         org.telegram.ui.ActionBar.w0 w0Var;
         if (i10 == 3 && (w0Var = this.f40222i0) != null) {
             AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) w0Var.getIconView().getDrawable();
-            if (this.d.f50505f) {
+            if (this.d.f50506f) {
                 animatedVectorDrawable.start();
                 if (SharedConfig.getDevicePerformanceClass() != 0) {
                     TLRPC.TL_help_premiumPromo premiumPromo = MediaDataController.getInstance(this.currentAccount).getPremiumPromo();
@@ -6131,7 +6131,7 @@ public class py extends org.telegram.ui.ActionBar.p2 implements NotificationCent
         } else {
             f10 = 0.0f;
         }
-        org.telegram.ui.Components.a20.d(this.f40212g0, e2.c.z(f10, this.f40206f.f50504e, 1.0f - V3(), 1.0f - this.f40190c.f50504e));
+        org.telegram.ui.Components.a20.d(this.f40212g0, e2.c.z(f10, this.f40206f.f50505e, 1.0f - V3(), 1.0f - this.f40190c.f50505e));
         hx hxVar = this.B0;
         if (hxVar != null) {
             hxVar.invalidate();

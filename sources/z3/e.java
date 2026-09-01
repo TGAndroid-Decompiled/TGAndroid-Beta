@@ -5,11 +5,11 @@ import h5.d0;
 import h5.w;
 import k7.u6;
 public abstract class e {
-    public static final byte[] f50976a;
+    public static final byte[] f50977a;
 
     static {
         int i10 = d0.f7237a;
-        f50976a = "OpusHead".getBytes(r8.d.f46738c);
+        f50977a = "OpusHead".getBytes(r8.d.f46738c);
     }
 
     public static a4.c a(int i10, w wVar) {

@@ -204,10 +204,10 @@ public final class o implements View.OnClickListener {
                 return;
             case 23:
                 vf.e eVar2 = (vf.e) this.f32215b;
-                k6 k6Var = eVar2.f49025f;
-                int i12 = eVar2.f49021a;
-                boolean z4 = eVar2.f49027r;
-                eVar2.f49027r = !z4;
+                k6 k6Var = eVar2.f49026f;
+                int i12 = eVar2.f49022a;
+                boolean z4 = eVar2.f49028r;
+                eVar2.f49028r = !z4;
                 dq dqVar = eVar2.h;
                 if (!z4) {
                     i10 = R.string.BizBotStart;
@@ -216,25 +216,25 @@ public final class o implements View.OnClickListener {
                 }
                 dqVar.c(LocaleController.getString(i10), true, true);
                 k6Var.a();
-                if (eVar2.f49027r) {
+                if (eVar2.f49028r) {
                     i11 = R.string.BizBotStatusStopped;
                 } else {
                     i11 = R.string.BizBotStatusManages;
                 }
                 k6Var.c(LocaleController.getString(i11), true, true);
-                if (eVar2.f49027r) {
-                    eVar2.f49029w |= 1;
+                if (eVar2.f49028r) {
+                    eVar2.f49030w |= 1;
                 } else {
-                    eVar2.f49029w &= -2;
+                    eVar2.f49030w &= -2;
                 }
-                MessagesController.getNotificationsSettings(i12).edit().putInt("dialog_botflags" + eVar2.f49028s, eVar2.f49029w).apply();
+                MessagesController.getNotificationsSettings(i12).edit().putInt("dialog_botflags" + eVar2.f49029s, eVar2.f49030w).apply();
                 TL_account.toggleConnectedBotPaused toggleconnectedbotpaused = new TL_account.toggleConnectedBotPaused();
-                toggleconnectedbotpaused.peer = MessagesController.getInstance(i12).getInputPeer(eVar2.f49028s);
-                toggleconnectedbotpaused.paused = eVar2.f49027r;
+                toggleconnectedbotpaused.peer = MessagesController.getInstance(i12).getInputPeer(eVar2.f49029s);
+                toggleconnectedbotpaused.paused = eVar2.f49028r;
                 ConnectionsManager.getInstance(i12).sendRequest(toggleconnectedbotpaused, null);
                 return;
             case 24:
-                TL_account.TL_businessChatLink tL_businessChatLink = ((vf.o) this.f32215b).f49155f;
+                TL_account.TL_businessChatLink tL_businessChatLink = ((vf.o) this.f32215b).f49156f;
                 if (tL_businessChatLink != null) {
                     AndroidUtilities.addToClipboard(tL_businessChatLink.link);
                     qc.a0(LaunchActivity.R()).k(false).j();
@@ -257,11 +257,11 @@ public final class o implements View.OnClickListener {
             case 27:
                 wh.r0 r0Var = (wh.r0) this.f32215b;
                 wh.z2 z2Var = r0Var.h;
-                if (z2Var != null && (aVar = r0Var.f49964f) != null) {
-                    wh.r3 r3Var2 = z2Var.f50217a;
+                if (z2Var != null && (aVar = r0Var.f49965f) != null) {
+                    wh.r3 r3Var2 = z2Var.f50218a;
                     r3Var2.getClass();
                     if (wh.r3.x3(aVar)) {
-                        TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f49616b;
+                        TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f49617b;
                         wh.d2 d2Var = r3Var2.G3;
                         if (d2Var != null) {
                             d2Var.d();
@@ -280,9 +280,9 @@ public final class o implements View.OnClickListener {
                 return;
             default:
                 i4 i4Var = (i4) this.f32215b;
-                wh.a aVar2 = i4Var.f50174a;
+                wh.a aVar2 = i4Var.f50175a;
                 if (aVar2 != null && (g4Var = i4Var.D) != null) {
-                    ((wh.n3) g4Var).f49889a.f49979e3.n(aVar2);
+                    ((wh.n3) g4Var).f49890a.f49980e3.n(aVar2);
                     return;
                 }
                 return;

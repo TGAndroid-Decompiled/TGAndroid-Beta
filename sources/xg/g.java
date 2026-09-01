@@ -16,32 +16,32 @@ import org.telegram.ui.Components.rm0;
 import org.telegram.ui.Components.wq;
 import s5.m;
 public final class g extends FrameLayout implements xd.b {
-    public static final int[] f50581s;
-    public final String[] f50582a;
-    public final g6 f50583b;
-    public final rg.a f50584c;
+    public static final int[] f50582s;
+    public final String[] f50583a;
+    public final g6 f50584b;
+    public final rg.a f50585c;
     public final og.a d;
-    public final m[] f50585e;
-    public final i[] f50586f;
+    public final m[] f50586e;
+    public final i[] f50587f;
     public a h;
-    public b f50587n;
-    public int f50588r;
+    public b f50588n;
+    public int f50589r;
 
     static {
         int i10 = R.drawable.msg_input_attach2;
         int i11 = R.drawable.pagedown;
-        f50581s = new int[]{i10, i11, R.drawable.mentionbutton, R.drawable.reactionbutton, R.drawable.menu_poll_notify, i11, i11};
+        f50582s = new int[]{i10, i11, R.drawable.mentionbutton, R.drawable.reactionbutton, R.drawable.menu_poll_notify, i11, i11};
     }
 
     public g(Context context, g6 g6Var, rg.b bVar, og.a aVar) {
         super(context);
-        this.f50582a = new String[]{LocaleController.getString(R.string.AttachMenu), LocaleController.getString(R.string.AccDescrPageDown), LocaleController.getString(R.string.AccDescrMentionDown), LocaleController.getString(R.string.AccDescrReactionMentionDown), LocaleController.getString(R.string.AccDescrPollVotesMentionDown), LocaleController.getString(R.string.AccDescrSearchPrev), LocaleController.getString(R.string.AccDescrSearchNext)};
-        this.f50585e = new m[7];
-        this.f50586f = new i[7];
-        this.f50588r = 83;
+        this.f50583a = new String[]{LocaleController.getString(R.string.AttachMenu), LocaleController.getString(R.string.AccDescrPageDown), LocaleController.getString(R.string.AccDescrMentionDown), LocaleController.getString(R.string.AccDescrReactionMentionDown), LocaleController.getString(R.string.AccDescrPollVotesMentionDown), LocaleController.getString(R.string.AccDescrSearchPrev), LocaleController.getString(R.string.AccDescrSearchNext)};
+        this.f50586e = new m[7];
+        this.f50587f = new i[7];
+        this.f50589r = 83;
         this.d = aVar;
-        this.f50584c = bVar;
-        this.f50583b = g6Var;
+        this.f50585c = bVar;
+        this.f50584b = g6Var;
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class g extends FrameLayout implements xd.b {
         int i11 = i10 >> 16;
         int i12 = i10 & 65535;
         if (i11 >= 0) {
-            m[] mVarArr = this.f50585e;
+            m[] mVarArr = this.f50586e;
             if (i11 < mVarArr.length && mVarArr[i11] != null) {
                 if (i12 == 1 || i12 == 2) {
                     a();
@@ -63,13 +63,13 @@ public final class g extends FrameLayout implements xd.b {
         int i11 = 0;
         float f10 = 0.0f;
         while (true) {
-            m[] mVarArr = this.f50585e;
+            m[] mVarArr = this.f50586e;
             if (i11 < mVarArr.length) {
                 m mVar = mVarArr[i11];
                 if (mVar != null) {
                     wg.b bVar = (wg.b) mVar.f47062b;
-                    float f11 = ((xd.a) mVar.f47063c).f50504e;
-                    float f12 = ((xd.a) mVar.d).f50504e;
+                    float f11 = ((xd.a) mVar.f47063c).f50505e;
+                    float f12 = ((xd.a) mVar.d).f50505e;
                     if (f11 > 0.0f) {
                         i10 = 0;
                     } else {
@@ -92,7 +92,7 @@ public final class g extends FrameLayout implements xd.b {
     }
 
     public final i b(int i10) {
-        i[] iVarArr = this.f50586f;
+        i[] iVarArr = this.f50587f;
         if (iVarArr[i10] == 0) {
             ?? obj = new Object();
             obj.f11142a = 0;
@@ -106,7 +106,7 @@ public final class g extends FrameLayout implements xd.b {
     public final void c(int i10, int i11, boolean z4) {
         boolean z10;
         b(i10).f11142a = i11;
-        m mVar = this.f50585e[i10];
+        m mVar = this.f50586e[i10];
         if (mVar != null) {
             ((wg.b) mVar.f47062b).a(i11, z4);
             xd.a aVar = (xd.a) mVar.d;
@@ -121,7 +121,7 @@ public final class g extends FrameLayout implements xd.b {
 
     public final void d(boolean z4) {
         b(1).f11143b = z4;
-        m mVar = this.f50585e[1];
+        m mVar = this.f50586e[1];
         if (mVar != null) {
             ((wg.b) mVar.f47062b).c(z4, true);
         }
@@ -134,7 +134,7 @@ public final class g extends FrameLayout implements xd.b {
         long j11;
         int i11;
         int i12;
-        m[] mVarArr = this.f50585e;
+        m[] mVarArr = this.f50586e;
         m mVar = mVarArr[i10];
         if (mVar == null && !z4) {
             return;
@@ -145,7 +145,7 @@ public final class g extends FrameLayout implements xd.b {
             if (i10 == 0) {
                 interpolator = pr.h;
             } else {
-                interpolator = wd.a.f49492a;
+                interpolator = wd.a.f49493a;
             }
             if (i10 == 0) {
                 j10 = 300;
@@ -157,7 +157,7 @@ public final class g extends FrameLayout implements xd.b {
             if (i10 == 0) {
                 interpolator2 = pr.h;
             } else {
-                interpolator2 = wd.a.f49492a;
+                interpolator2 = wd.a.f49493a;
             }
             Interpolator interpolator3 = interpolator2;
             if (i10 == 0) {
@@ -174,11 +174,11 @@ public final class g extends FrameLayout implements xd.b {
                 i12 = 48;
             }
             Context context = getContext();
-            int i16 = f50581s[i10];
-            g6 g6Var = this.f50583b;
+            int i16 = f50582s[i10];
+            g6 g6Var = this.f50584b;
             wg.b bVar = new wg.b(context, g6Var);
-            wg.a d = wg.a.d(context, this.d, this.f50584c, g6Var, i16, i12);
-            bVar.f49612b = d;
+            wg.a d = wg.a.d(context, this.d, this.f50585c, g6Var, i16, i12);
+            bVar.f49613b = d;
             bVar.addView(d, c6.e(i11, i11, 80));
             d.setIconPadding(AndroidUtilities.dp(2.0f));
             e6.b(bVar, 0.13f, 2.0f);
@@ -186,25 +186,25 @@ public final class g extends FrameLayout implements xd.b {
             bVar.setPivotX(AndroidUtilities.dp(f10));
             bVar.setPivotY(AndroidUtilities.dp(f10 + 8.0f));
             bVar.setVisibility(8);
-            bVar.setContentDescription(this.f50582a[i10]);
+            bVar.setContentDescription(this.f50583a[i10]);
             bVar.setOnClickListener(new x0(this, i10, 27));
             bVar.setOnLongClickListener(new rm0(this, i10, 1));
             if (i10 == 6) {
-                wg.a aVar3 = bVar.f49612b;
+                wg.a aVar3 = bVar.f49613b;
                 aVar3.h = -1.0f;
                 aVar3.a();
             }
             boolean z11 = true;
             if (i10 == 1) {
                 bVar.d = true;
-                wq wqVar = bVar.f49613c;
+                wq wqVar = bVar.f49614c;
                 if (wqVar != null) {
                     wqVar.setReverse(true);
                 }
             }
-            addView(bVar, c6.e(i11, i11 + 8, this.f50588r));
+            addView(bVar, c6.e(i11, i11 + 8, this.f50589r));
             mVarArr[i10] = new m(bVar, aVar, aVar2, 9);
-            i iVar = this.f50586f[i10];
+            i iVar = this.f50587f[i10];
             if (iVar != null) {
                 bVar.a(iVar.f11142a, false);
                 aVar.a(false, false);
@@ -226,7 +226,7 @@ public final class g extends FrameLayout implements xd.b {
     }
 
     public void setGravity(int i10) {
-        this.f50588r = i10;
+        this.f50589r = i10;
     }
 
     public void setOnClickListener(a aVar) {
@@ -234,7 +234,7 @@ public final class g extends FrameLayout implements xd.b {
     }
 
     public void setOnLongClickListener(b bVar) {
-        this.f50587n = bVar;
+        this.f50588n = bVar;
     }
 
     @Override

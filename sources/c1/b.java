@@ -148,7 +148,7 @@ public final class b implements OnFailureListener, ba.a, OnCompleteListener, Con
         f3.a aVar = hVar.d;
         ArrayList d = hVar.d(sQLiteDatabase, iVar, aVar.f5970b);
         for (v2.d dVar : v2.d.values()) {
-            if (dVar != iVar.f50695c) {
+            if (dVar != iVar.f50696c) {
                 int size = aVar.f5970b - d.size();
                 if (size <= 0) {
                     break;

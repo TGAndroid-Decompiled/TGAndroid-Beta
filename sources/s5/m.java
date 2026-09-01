@@ -90,9 +90,9 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
 
     public ye.e h(ye.f fVar) {
         InflaterInputStream inflaterInputStream;
-        int i10 = fVar.f50868e;
+        int i10 = fVar.f50869e;
         InputStream inputStream = (ze.a) this.f47062b;
-        if (fVar.f50866b) {
+        if (fVar.f50867b) {
             ai aiVar = (ai) this.d;
             aiVar.getClass();
             byte[] bArr = new byte[i10];
@@ -122,14 +122,14 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
             inputStream = new ByteArrayInputStream(bArr, 0, i12);
             i10 = i12;
         }
-        if (!fVar.f50869f) {
+        if (!fVar.f50870f) {
             if (fVar.d) {
-                i10 = fVar.f50870g;
+                i10 = fVar.f50871g;
                 inflaterInputStream = new InflaterInputStream(inputStream);
             } else {
                 inflaterInputStream = inputStream;
             }
-            return new ye.e(inflaterInputStream, fVar.f50867c, i10, (ye.h) this.f47063c, fVar);
+            return new ye.e(inflaterInputStream, fVar.f50868c, i10, (ye.h) this.f47063c, fVar);
         }
         throw new Exception("Frame encryption is not supported");
     }
@@ -255,8 +255,8 @@ public final class m implements t0.h, OnCompleteListener, a3.b {
         x5.a aVar = (x5.a) this.f47062b;
         String str = (String) this.f47063c;
         ScheduledFuture scheduledFuture = (ScheduledFuture) this.d;
-        synchronized (aVar.f50405a) {
-            aVar.f50405a.remove(str);
+        synchronized (aVar.f50406a) {
+            aVar.f50406a.remove(str);
         }
         scheduledFuture.cancel(false);
     }

@@ -453,10 +453,10 @@ public abstract class n extends f2.l {
             obj.f2268a = l10.f2268a;
             obj.f2269b = l10.f2269b;
             s1 transitionParams = ((t1) view).getTransitionParams();
-            obj.f50632c = transitionParams.f23611a;
+            obj.f50633c = transitionParams.f23611a;
             obj.d = transitionParams.f23615b;
-            obj.f50633e = transitionParams.f23620c;
-            obj.f50634f = transitionParams.d;
+            obj.f50634e = transitionParams.f23620c;
+            obj.f50635f = transitionParams.d;
             return obj;
         }
         return l10;
@@ -614,12 +614,12 @@ public abstract class n extends f2.l {
                 view = view2;
                 l lVar = (l) eVar;
                 i15 = i20;
-                if (transitionParams.f23702v0 && lVar.f50634f != f10 && lVar.f50633e != f10) {
+                if (transitionParams.f23702v0 && lVar.f50635f != f10 && lVar.f50634e != f10) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
-                kVar.f50642n = z12;
+                kVar.f50643n = z12;
                 if (z12) {
                     tl0Var.setClipChildren(false);
                     tl0Var.invalidate();
@@ -650,15 +650,15 @@ public abstract class n extends f2.l {
                         }
                     }
                     float f20 = transitionParams.m0;
-                    float f21 = lVar.f50632c;
-                    if (f20 == f21 && transitionParams.f23671n0 == lVar.d && transitionParams.f23679p0 == lVar.f50634f && transitionParams.f23675o0 == lVar.f50633e && !transitionParams.B0) {
+                    float f21 = lVar.f50633c;
+                    if (f20 == f21 && transitionParams.f23671n0 == lVar.d && transitionParams.f23679p0 == lVar.f50635f && transitionParams.f23675o0 == lVar.f50634e && !transitionParams.B0) {
                         transitionParams.f23634f0 = false;
-                        kVar.f50642n = false;
+                        kVar.f50643n = false;
                     } else {
-                        kVar.f50643o = f21;
-                        kVar.f50644p = lVar.d;
-                        kVar.f50645q = lVar.f50633e;
-                        kVar.f50646r = lVar.f50634f;
+                        kVar.f50644o = f21;
+                        kVar.f50645p = lVar.d;
+                        kVar.f50646q = lVar.f50634e;
+                        kVar.f50647r = lVar.f50635f;
                         if (currentMessagesGroup != null) {
                             boolean z14 = currentMessagesGroup.hasCaption;
                             MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup.transitionParams;
@@ -681,25 +681,25 @@ public abstract class n extends f2.l {
                             }
                             photoImage.setRoundRadius(iArr2);
                         }
-                        t1Var.U3(kVar.f50643o, kVar.f50644p, kVar.f50645q, kVar.f50646r);
+                        t1Var.U3(kVar.f50644o, kVar.f50645p, kVar.f50646q, kVar.f50647r);
                     }
                 }
                 if (currentMessagesGroup == null && transitionParams.f23702v0 && (((isOutOwner = t1Var.getMessageObject().isOutOwner()) && rect.left != t1Var.getBackgroundDrawableLeft()) || ((!isOutOwner && rect.right != t1Var.getBackgroundDrawableRight()) || rect.top != t1Var.getBackgroundDrawableTop() || rect.bottom != t1Var.getBackgroundDrawableBottom()))) {
                     kVar.v = t1Var.getBackgroundDrawableBottom() - rect.bottom;
-                    kVar.f50649u = t1Var.getBackgroundDrawableTop() - rect.top;
+                    kVar.f50650u = t1Var.getBackgroundDrawableTop() - rect.top;
                     if (t1Var.D8 != transitionParams.E0) {
-                        kVar.f50647s = t1Var.getBackgroundDrawableLeft() - rect.left;
-                        kVar.f50648t = t1Var.getBackgroundDrawableRight() - rect.right;
+                        kVar.f50648s = t1Var.getBackgroundDrawableLeft() - rect.left;
+                        kVar.f50649t = t1Var.getBackgroundDrawableRight() - rect.right;
                     } else if (isOutOwner) {
-                        kVar.f50647s = t1Var.getBackgroundDrawableLeft() - rect.left;
+                        kVar.f50648s = t1Var.getBackgroundDrawableLeft() - rect.left;
                     } else {
-                        kVar.f50648t = t1Var.getBackgroundDrawableRight() - rect.right;
+                        kVar.f50649t = t1Var.getBackgroundDrawableRight() - rect.right;
                     }
-                    kVar.f50640l = true;
+                    kVar.f50641l = true;
                     transitionParams.f23706w0 = true;
-                    transitionParams.f23639g0 = -kVar.f50647s;
-                    transitionParams.f23643h0 = -kVar.f50648t;
-                    transitionParams.f23653j0 = -kVar.f50649u;
+                    transitionParams.f23639g0 = -kVar.f50648s;
+                    transitionParams.f23643h0 = -kVar.f50649t;
+                    transitionParams.f23653j0 = -kVar.f50650u;
                     transitionParams.f23648i0 = -kVar.v;
                     tl0Var.setClipChildren(false);
                     tl0Var.invalidate();
@@ -757,18 +757,18 @@ public abstract class n extends f2.l {
                     }
                     transitionParams3.isNewGroup = false;
                     if (i25 == 0 && i26 == 0 && i27 == 0 && i28 == 0) {
-                        kVar.f50638j = false;
+                        kVar.f50639j = false;
                         transitionParams3.backgroundChangeBounds = false;
                     } else {
                         int i29 = (-i25) + transitionParams3.top;
-                        kVar.f50635f = i29;
+                        kVar.f50636f = i29;
                         int i30 = (-i26) + transitionParams3.bottom;
-                        kVar.f50636g = i30;
+                        kVar.f50637g = i30;
                         int i31 = (-i27) + transitionParams3.left;
                         kVar.h = i31;
                         int i32 = (-i28) + transitionParams3.right;
-                        kVar.f50637i = i32;
-                        kVar.f50638j = true;
+                        kVar.f50638i = i32;
+                        kVar.f50639j = true;
                         transitionParams3.backgroundChangeBounds = true;
                         transitionParams3.offsetTop = i29;
                         transitionParams3.offsetBottom = i30;
@@ -797,16 +797,16 @@ public abstract class n extends f2.l {
                     int backgroundDrawableRight2 = t1Var.getBackgroundDrawableRight() + t1Var.getLeft();
                     int backgroundDrawableTop2 = t1Var.getBackgroundDrawableTop() + t1Var.getPaddingTop() + t1Var.getTop();
                     int backgroundDrawableBottom2 = t1Var.getBackgroundDrawableBottom() + t1Var.getPaddingTop() + t1Var.getTop();
-                    kVar.f50650w = true;
+                    kVar.f50651w = true;
                     transitionParams.f23706w0 = true;
-                    kVar.f50647s = backgroundDrawableLeft2 - transitionParams4.left;
-                    kVar.f50648t = backgroundDrawableRight2 - transitionParams4.right;
-                    kVar.f50649u = backgroundDrawableTop2 - transitionParams4.top;
+                    kVar.f50648s = backgroundDrawableLeft2 - transitionParams4.left;
+                    kVar.f50649t = backgroundDrawableRight2 - transitionParams4.right;
+                    kVar.f50650u = backgroundDrawableTop2 - transitionParams4.top;
                     kVar.v = backgroundDrawableBottom2 - transitionParams4.bottom;
-                    kVar.f50640l = false;
+                    kVar.f50641l = false;
                     transitionParams.f23639g0 = (int) ((-i16) - t1Var.getAnimationOffsetX());
-                    transitionParams.f23643h0 = (int) ((-kVar.f50648t) - t1Var.getAnimationOffsetX());
-                    transitionParams.f23653j0 = (int) ((-kVar.f50649u) - t1Var.getTranslationY());
+                    transitionParams.f23643h0 = (int) ((-kVar.f50649t) - t1Var.getAnimationOffsetX());
+                    transitionParams.f23653j0 = (int) ((-kVar.f50650u) - t1Var.getTranslationY());
                     transitionParams.f23648i0 = (int) ((-kVar.v) - t1Var.getTranslationY());
                     transitionParams.C0 = true;
                     tl0Var.setClipChildren(false);
@@ -828,7 +828,7 @@ public abstract class n extends f2.l {
             }
             if (transitionParams.f23714y0 != z10) {
                 z11 = true;
-                kVar.f50639k = true;
+                kVar.f50640k = true;
                 f15 = 0.0f;
                 transitionParams.f23718z0 = 0.0f;
             } else {
@@ -836,12 +836,12 @@ public abstract class n extends f2.l {
                 z11 = true;
             }
             boolean f22 = transitionParams.f();
-            kVar.f50641m = f22;
+            kVar.f50642m = f22;
             if (f22) {
                 transitionParams.f23638g = z11;
                 transitionParams.K1 = f15;
             }
-            if (i15 == 0 && i21 == 0 && !kVar.f50642n && !kVar.f50650w && !kVar.f50638j && !kVar.f50639k && !kVar.f50640l && !f22) {
+            if (i15 == 0 && i21 == 0 && !kVar.f50643n && !kVar.f50651w && !kVar.f50639j && !kVar.f50640k && !kVar.f50641l && !f22) {
                 v(m1Var);
                 return false;
             }
@@ -856,7 +856,7 @@ public abstract class n extends f2.l {
             } else {
                 a2 = transitionParams5.d.f24298z0.a();
             }
-            kVar.f50641m = a2;
+            kVar.f50642m = a2;
             if (a2) {
                 transitionParams5.f24184b = true;
                 transitionParams5.f24185c = 0.0f;
@@ -902,7 +902,7 @@ public abstract class n extends f2.l {
                 }
                 if (eVar instanceof l) {
                     l lVar = (l) eVar;
-                    t1Var.U3(lVar.f50632c, lVar.d, lVar.f50633e, lVar.f50634f);
+                    t1Var.U3(lVar.f50633c, lVar.d, lVar.f50634e, lVar.f50635f);
                 }
             } else if (left != 0) {
                 view.setTranslationX(-left);

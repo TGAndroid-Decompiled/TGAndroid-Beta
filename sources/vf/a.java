@@ -14,22 +14,22 @@ import org.telegram.ui.Components.y4;
 import org.telegram.ui.Components.z4;
 import org.telegram.ui.xn;
 public final class a implements Utilities.Callback5, c2 {
-    public final int f48973a;
-    public final c f48974b;
+    public final int f48974a;
+    public final c f48975b;
 
     public a(c cVar, int i10) {
-        this.f48973a = i10;
-        this.f48974b = cVar;
+        this.f48974a = i10;
+        this.f48975b = cVar;
     }
 
     @Override
     public void j(d2 d2Var, int i10) {
-        switch (this.f48973a) {
+        switch (this.f48974a) {
             case 1:
-                this.f48974b.X();
+                this.f48975b.X();
                 return;
             default:
-                this.f48974b.finishFragment();
+                this.f48975b.finishFragment();
                 return;
         }
     }
@@ -41,42 +41,42 @@ public final class a implements Utilities.Callback5, c2 {
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        final c cVar = this.f48974b;
+        final c cVar = this.f48975b;
         if (!cVar.d.h(j51Var)) {
             int i10 = j51Var.d;
             if (i10 != 2 && j51Var.f2505a != 17) {
                 if (i10 == 1) {
-                    cVar.f49003s = !cVar.f49003s;
-                    cVar.f48998c.V2.N(true);
+                    cVar.f49004s = !cVar.f49004s;
+                    cVar.f48999c.V2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 6) {
                     v vVar = cVar.d;
                     cVar.v = true;
                     vVar.h = true;
-                    cVar.f48998c.V2.N(true);
+                    cVar.f48999c.V2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 7) {
                     v vVar2 = cVar.d;
                     cVar.v = false;
                     vVar2.h = false;
-                    cVar.f48998c.V2.N(true);
+                    cVar.f48999c.V2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 3) {
-                    cVar.f49005x = 0;
-                    cVar.f48998c.V2.N(true);
+                    cVar.f49006x = 0;
+                    cVar.f48999c.V2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 4) {
-                    cVar.f49005x = 1;
-                    cVar.f48998c.V2.N(true);
+                    cVar.f49006x = 1;
+                    cVar.f48999c.V2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 5) {
-                    cVar.f49005x = 2;
-                    cVar.f48998c.V2.N(true);
+                    cVar.f49006x = 2;
+                    cVar.f48999c.V2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 8) {
@@ -126,8 +126,8 @@ public final class a implements Utilities.Callback5, c2 {
                     });
                     return;
                 } else if (i10 == 10) {
-                    boolean z4 = !cVar.f49004w;
-                    cVar.f49004w = z4;
+                    boolean z4 = !cVar.f49005w;
+                    cVar.f49005w = z4;
                     ((s8) view).setChecked(z4);
                     cVar.V(true);
                     return;

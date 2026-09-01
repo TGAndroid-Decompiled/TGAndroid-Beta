@@ -240,7 +240,7 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
                 if (l3Var != null) {
                     l3Var.getClass();
                     if (charSequence != null && charSequence.length() > 0) {
-                        l3Var.f49863a.t4(charSequence.toString());
+                        l3Var.f49864a.t4(charSequence.toString());
                         return;
                     }
                     return;
@@ -251,7 +251,7 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
                 if (k3Var != null) {
                     k3Var.getClass();
                     if (charSequence != null && charSequence.length() > 0) {
-                        k3Var.f49827a.t4(charSequence.toString());
+                        k3Var.f49828a.t4(charSequence.toString());
                         return;
                     }
                     return;
@@ -277,19 +277,19 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
     @Override
     public void F(wh.v5 v5Var, String str) {
         wh.z1 z1Var = (wh.z1) this.f22788b;
-        if (z1Var.f50211w0 == null) {
-            z1Var.f50211w0 = new m.r3(new sf.g(this, 14), z1Var.getResourceProvider());
+        if (z1Var.f50212w0 == null) {
+            z1Var.f50212w0 = new m.r3(new sf.g(this, 14), z1Var.getResourceProvider());
         }
-        z1Var.f50211w0.f(v5Var, str);
+        z1Var.f50212w0.f(v5Var, str);
     }
 
     @Override
     public wh.a G() {
         switch (this.f22787a) {
             case 26:
-                return ((wh.y) this.f22788b).f50174a;
+                return ((wh.y) this.f22788b).f50175a;
             default:
-                return ((wh.o4) this.f22788b).f50174a;
+                return ((wh.o4) this.f22788b).f50175a;
         }
     }
 
@@ -331,8 +331,8 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
                 wh.y yVar = (wh.y) this.f22788b;
                 wh.l3 l3Var = yVar.L;
                 if (l3Var != null) {
-                    wh.a aVar = yVar.f50174a;
-                    if (l3Var.f49863a.S4()) {
+                    wh.a aVar = yVar.f50175a;
+                    if (l3Var.f49864a.S4()) {
                         return true;
                     }
                 }
@@ -341,8 +341,8 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
                 wh.o4 o4Var = (wh.o4) this.f22788b;
                 wh.k3 k3Var = o4Var.K;
                 if (k3Var != null) {
-                    wh.a aVar2 = o4Var.f50174a;
-                    if (k3Var.f49827a.S4()) {
+                    wh.a aVar2 = o4Var.f50175a;
+                    if (k3Var.f49828a.S4()) {
                         return true;
                     }
                 }
@@ -357,8 +357,8 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
                 wh.y yVar = (wh.y) this.f22788b;
                 wh.l3 l3Var = yVar.L;
                 if (l3Var != null) {
-                    wh.a aVar = yVar.f50174a;
-                    wh.d2 d2Var = l3Var.f49863a.G3;
+                    wh.a aVar = yVar.f50175a;
+                    wh.d2 d2Var = l3Var.f49864a.G3;
                     if (d2Var != null) {
                         d2Var.f(i10, i11);
                         return;
@@ -370,8 +370,8 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
                 wh.o4 o4Var = (wh.o4) this.f22788b;
                 wh.k3 k3Var = o4Var.K;
                 if (k3Var != null) {
-                    wh.a aVar2 = o4Var.f50174a;
-                    wh.d2 d2Var2 = k3Var.f49827a.G3;
+                    wh.a aVar2 = o4Var.f50175a;
+                    wh.d2 d2Var2 = k3Var.f49828a.G3;
                     if (d2Var2 != null) {
                         d2Var2.f(i10, i11);
                         return;
@@ -448,13 +448,13 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
                 wh.y yVar = (wh.y) this.f22788b;
                 wh.l3 l3Var = yVar.L;
                 if (l3Var != null) {
-                    wh.a aVar = yVar.f50174a;
-                    wh.r3 r3Var = l3Var.f49863a;
+                    wh.a aVar = yVar.f50175a;
+                    wh.r3 r3Var = l3Var.f49864a;
                     wh.d2 d2Var = r3Var.G3;
                     if (d2Var != null) {
                         d2Var.g();
                     }
-                    r3Var.f49979e3.onContentChanged();
+                    r3Var.f49980e3.onContentChanged();
                     return;
                 }
                 return;
@@ -462,13 +462,13 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
                 wh.o4 o4Var = (wh.o4) this.f22788b;
                 wh.k3 k3Var = o4Var.K;
                 if (k3Var != null) {
-                    wh.a aVar2 = o4Var.f50174a;
-                    wh.r3 r3Var2 = k3Var.f49827a;
+                    wh.a aVar2 = o4Var.f50175a;
+                    wh.r3 r3Var2 = k3Var.f49828a;
                     wh.d2 d2Var2 = r3Var2.G3;
                     if (d2Var2 != null) {
                         d2Var2.g();
                     }
-                    r3Var2.f49979e3.onContentChanged();
+                    r3Var2.f49980e3.onContentChanged();
                     return;
                 }
                 return;
@@ -525,8 +525,8 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
                 wh.y yVar = (wh.y) this.f22788b;
                 wh.l3 l3Var = yVar.L;
                 if (l3Var != null) {
-                    wh.a aVar = yVar.f50174a;
-                    wh.r3.O1(l3Var.f49863a);
+                    wh.a aVar = yVar.f50175a;
+                    wh.r3.O1(l3Var.f49864a);
                     return;
                 }
                 return;
@@ -534,8 +534,8 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
                 wh.o4 o4Var = (wh.o4) this.f22788b;
                 wh.k3 k3Var = o4Var.K;
                 if (k3Var != null) {
-                    wh.a aVar2 = o4Var.f50174a;
-                    wh.r3.O1(k3Var.f49827a);
+                    wh.a aVar2 = o4Var.f50175a;
+                    wh.r3.O1(k3Var.f49828a);
                     return;
                 }
                 return;
@@ -683,7 +683,7 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
                 o5.l lVar = new o5.l((TaskCompletionSource) obj2);
                 w6.i iVar = (w6.i) ((w6.c) obj).u();
                 Parcel I0 = iVar.I0();
-                int i11 = w6.f.f49441a;
+                int i11 = w6.f.f49442a;
                 I0.writeStrongBinder(lVar);
                 w6.f.c(I0, (l5.e) this.f22788b);
                 iVar.J0(I0, 1);
@@ -695,7 +695,7 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
     public boolean b(float f10) {
         boolean z4;
         wh.z1 z1Var = (wh.z1) this.f22788b;
-        FrameLayout frameLayout = z1Var.f50206s0;
+        FrameLayout frameLayout = z1Var.f50207s0;
         if (frameLayout != null) {
             int[] iArr = new int[2];
             frameLayout.getLocationOnScreen(iArr);
@@ -716,18 +716,18 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
             case 26:
                 wh.l3 l3Var = ((wh.y) this.f22788b).L;
                 if (l3Var != null) {
-                    wh.r3 r3Var = l3Var.f49863a;
+                    wh.r3 r3Var = l3Var.f49864a;
                     wh.r3.M1(r3Var, e1Var);
-                    r3Var.f49979e3.h(e1Var, true);
+                    r3Var.f49980e3.h(e1Var, true);
                     return;
                 }
                 return;
             default:
                 wh.k3 k3Var = ((wh.o4) this.f22788b).K;
                 if (k3Var != null) {
-                    wh.r3 r3Var2 = k3Var.f49827a;
+                    wh.r3 r3Var2 = k3Var.f49828a;
                     wh.r3.M1(r3Var2, e1Var);
-                    r3Var2.f49979e3.h(e1Var, true);
+                    r3Var2.f49980e3.h(e1Var, true);
                     return;
                 }
                 return;
@@ -739,7 +739,7 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
         wh.z1 z1Var = (wh.z1) this.f22788b;
         q70 H = q70.H(z1Var, view);
         H.Q = true;
-        z1Var.f50208u0 = wh.d4.c(H, z1Var, z1Var.getParentActivity(), z1Var.getResourceProvider(), o3Var, false);
+        z1Var.f50209u0 = wh.d4.c(H, z1Var, z1Var.getParentActivity(), z1Var.getResourceProvider(), o3Var, false);
     }
 
     public float e(ub.c cVar, ub.c cVar2) {
@@ -763,7 +763,7 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
                 wh.y yVar = (wh.y) this.f22788b;
                 wh.l3 l3Var = yVar.L;
                 if (l3Var != null) {
-                    wh.r3.P1(l3Var.f49863a, yVar.f50174a);
+                    wh.r3.P1(l3Var.f49864a, yVar.f50175a);
                     return;
                 }
                 return;
@@ -771,7 +771,7 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
                 wh.o4 o4Var = (wh.o4) this.f22788b;
                 wh.k3 k3Var = o4Var.K;
                 if (k3Var != null) {
-                    wh.r3.P1(k3Var.f49827a, o4Var.f50174a);
+                    wh.r3.P1(k3Var.f49828a, o4Var.f50175a);
                     return;
                 }
                 return;
@@ -916,7 +916,7 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
     @Override
     public void n(wh.a aVar) {
         wh.z1 z1Var = (wh.z1) this.f22788b;
-        if (aVar != null && (aVar.f49616b instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(z1Var)) {
+        if (aVar != null && (aVar.f49617b instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(z1Var)) {
             mi miVar = new mi(z1Var.getParentActivity(), z1Var, false, false, false, z1Var.getResourceProvider());
             miVar.W1 = new h7.u(24);
             miVar.M = true;
@@ -939,11 +939,11 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
     @Override
     public void onContentChanged() {
         wh.z1 z1Var = (wh.z1) this.f22788b;
-        if (z1Var.f50209v0 != null) {
+        if (z1Var.f50210v0 != null) {
             boolean m32 = z1Var.M.m3();
             z1Var.I0 = m32;
-            z1Var.f50209v0.h(m32);
-            z1Var.f50209v0.invalidate();
+            z1Var.f50210v0.h(m32);
+            z1Var.f50210v0.invalidate();
         }
         z1Var.C0();
         Runnable runnable = z1Var.J0;
@@ -960,7 +960,7 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
     public void q() {
         int i10;
         wh.z1 z1Var = (wh.z1) this.f22788b;
-        wh.f3 f3Var = z1Var.M.f49991k3;
+        wh.f3 f3Var = z1Var.M.f49992k3;
         if (f3Var != null && f3Var.y() && z1Var.M.C4()) {
             i10 = 1;
         } else {
@@ -1029,7 +1029,7 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
         H.Q = true;
         z1Var.getParentActivity();
         z1Var.getResourceProvider();
-        z1Var.f50208u0 = wh.d4.b(H, z1Var, q3Var, false);
+        z1Var.f50209u0 = wh.d4.b(H, z1Var, q3Var, false);
     }
 
     @Override
@@ -1053,13 +1053,13 @@ public class f1 implements z61, org.telegram.ui.Components.y4, oa0, r0.o, androi
             case 26:
                 wh.l3 l3Var = ((wh.y) this.f22788b).L;
                 if (l3Var != null) {
-                    return l3Var.f49863a.getTextSelectionHelper();
+                    return l3Var.f49864a.getTextSelectionHelper();
                 }
                 return null;
             default:
                 wh.k3 k3Var = ((wh.o4) this.f22788b).K;
                 if (k3Var != null) {
-                    return k3Var.f49827a.getTextSelectionHelper();
+                    return k3Var.f49828a.getTextSelectionHelper();
                 }
                 return null;
         }

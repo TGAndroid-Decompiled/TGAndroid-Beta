@@ -13,38 +13,38 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.qv0;
 public final class r1 extends qv0 {
-    public boolean f49966t0;
-    public final Paint f49967u0;
-    public final RectF f49968v0;
-    public final z1 f49969w0;
+    public boolean f49967t0;
+    public final Paint f49968u0;
+    public final RectF f49969v0;
+    public final z1 f49970w0;
 
     public r1(z1 z1Var, Context context) {
         super(context, null);
-        this.f49969w0 = z1Var;
-        this.f49967u0 = new Paint(1);
+        this.f49970w0 = z1Var;
+        this.f49968u0 = new Paint(1);
         new Path();
-        this.f49968v0 = new RectF();
+        this.f49969v0 = new RectF();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        z1 z1Var = this.f49969w0;
-        Rect rect = z1Var.f50210w;
+        z1 z1Var = this.f49970w0;
+        Rect rect = z1Var.f50211w;
         int l1 = k6.l1(z1Var.F, z1Var.getThemedColor(k6.f21659d6));
-        Paint paint = this.f49967u0;
+        Paint paint = this.f49968u0;
         paint.setColor(l1);
-        if (z1Var.B && z1Var.f50212x != null) {
-            RectF rectF = this.f49968v0;
+        if (z1Var.B && z1Var.f50213x != null) {
+            RectF rectF = this.f49969v0;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
             rectF.inset(-AndroidUtilities.dp(7.0f), -AndroidUtilities.dp(7.0f));
             float lerp = AndroidUtilities.lerp(AndroidUtilities.dpf2(22.0f), 0.0f, z1Var.F);
-            AndroidUtilities.lerp(z1Var.f50214y, rectF, z1Var.F, rectF);
-            rect.set(z1Var.f50212x.getBounds());
-            z1Var.f50212x.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            z1Var.f50212x.p(lerp);
-            z1Var.f50212x.setAlpha((int) ((1.0f - z1Var.F) * 255.0f));
-            z1Var.f50212x.draw(canvas);
-            z1Var.f50212x.setBounds(rect);
+            AndroidUtilities.lerp(z1Var.f50215y, rectF, z1Var.F, rectF);
+            rect.set(z1Var.f50213x.getBounds());
+            z1Var.f50213x.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            z1Var.f50213x.p(lerp);
+            z1Var.f50213x.setAlpha((int) ((1.0f - z1Var.F) * 255.0f));
+            z1Var.f50213x.draw(canvas);
+            z1Var.f50213x.setBounds(rect);
             rectF.inset(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
             canvas.drawRoundRect(rectF, lerp, lerp, paint);
             if (z1Var.v != null) {
@@ -55,7 +55,7 @@ public final class r1 extends qv0 {
                 canvas.restore();
                 canvas.restore();
                 canvas.save();
-                canvas.translate(AndroidUtilities.lerp(rectF.right, (z1Var.f50209v0.getX() + (z1Var.X.getX() + (z1Var.W.getX() + z1Var.V.getX()))) + z1Var.f50209v0.getWidth(), z1Var.F) - z1Var.v.f24694w1.getWidth(), AndroidUtilities.lerp(rectF.bottom, (z1Var.f50209v0.getY() + (z1Var.X.getY() + (z1Var.W.getY() + z1Var.V.getY()))) + z1Var.f50209v0.getHeight(), z1Var.F) - z1Var.v.f24694w1.getHeight());
+                canvas.translate(AndroidUtilities.lerp(rectF.right, (z1Var.f50210v0.getX() + (z1Var.X.getX() + (z1Var.W.getX() + z1Var.V.getX()))) + z1Var.f50210v0.getWidth(), z1Var.F) - z1Var.v.f24694w1.getWidth(), AndroidUtilities.lerp(rectF.bottom, (z1Var.f50210v0.getY() + (z1Var.X.getY() + (z1Var.W.getY() + z1Var.V.getY()))) + z1Var.f50210v0.getHeight(), z1Var.F) - z1Var.v.f24694w1.getHeight());
                 canvas.saveLayerAlpha(-AndroidUtilities.dp(6.0f), -AndroidUtilities.dp(6.0f), z1Var.v.f24694w1.getWidth(), z1Var.v.f24694w1.getHeight(), (int) ((1.0f - z1Var.F) * 255.0f), 31);
                 z1Var.v.f24694w1.draw(canvas);
                 canvas.restore();
@@ -73,7 +73,7 @@ public final class r1 extends qv0 {
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
         int action = keyEvent.getAction();
-        z1 z1Var = this.f49969w0;
+        z1 z1Var = this.f49970w0;
         if (action == 0 && keyEvent.getKeyCode() == 47 && keyEvent.isCtrlPressed()) {
             if (z1Var.q0()) {
                 l.d.v(R.string.RichEditorDraftSaved, new qc(z1Var.U, z1Var.getResourceProvider()), R.raw.contact_check, 36);

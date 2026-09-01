@@ -93,10 +93,10 @@ public final class e implements f, RequestDelegateTimestamp, ImageReceiver.Image
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
         ContentValues contentValues = new ContentValues();
         contentValues.put("next_request_ms", Long.valueOf(this.f5977b));
-        String str = iVar.f50693a;
-        v2.d dVar = iVar.f50695c;
+        String str = iVar.f50694a;
+        v2.d dVar = iVar.f50696c;
         if (sQLiteDatabase.update("transport_contexts", contentValues, "backend_name = ? and priority = ?", new String[]{str, String.valueOf(i3.a.a(dVar))}) < 1) {
-            contentValues.put("backend_name", iVar.f50693a);
+            contentValues.put("backend_name", iVar.f50694a);
             contentValues.put("priority", Integer.valueOf(i3.a.a(dVar)));
             sQLiteDatabase.insert("transport_contexts", null, contentValues);
         }

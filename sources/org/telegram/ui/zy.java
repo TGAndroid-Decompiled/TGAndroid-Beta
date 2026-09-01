@@ -21,12 +21,12 @@ public final class zy implements Runnable {
 
     private final void a() {
         x5.i iVar = (x5.i) this.f44016b;
-        int i10 = ((x5.j) this.f44017c).f50423a;
+        int i10 = ((x5.j) this.f44017c).f50424a;
         synchronized (iVar) {
-            x5.j jVar = (x5.j) iVar.f50421e.get(i10);
+            x5.j jVar = (x5.j) iVar.f50422e.get(i10);
             if (jVar != 0) {
                 Log.w("MessengerIpcClient", "Timing out request: " + i10);
-                iVar.f50421e.remove(i10);
+                iVar.f50422e.remove(i10);
                 jVar.b(new Exception("Timed out waiting for response", null));
                 iVar.c();
             }
@@ -258,15 +258,15 @@ public final class zy implements Runnable {
             case 10:
                 x1.a aVar = (x1.a) this.f44017c;
                 Object obj = this.f44016b;
-                if (aVar.f50232c.get()) {
-                    o5.d dVar7 = aVar.f50233e;
+                if (aVar.f50233c.get()) {
+                    o5.d dVar7 = aVar.f50234e;
                     if (dVar7.h == aVar) {
                         SystemClock.uptimeMillis();
                         dVar7.h = null;
                         dVar7.b();
                     }
                 } else {
-                    o5.d dVar8 = aVar.f50233e;
+                    o5.d dVar8 = aVar.f50234e;
                     if (dVar8.f16606g != aVar) {
                         if (dVar8.h == aVar) {
                             SystemClock.uptimeMillis();
@@ -286,7 +286,7 @@ public final class zy implements Runnable {
                         }
                     }
                 }
-                aVar.f50231b = 3;
+                aVar.f50232b = 3;
                 return;
             case 11:
                 x5.i iVar2 = (x5.i) this.f44016b;
@@ -297,9 +297,9 @@ public final class zy implements Runnable {
                         return;
                     }
                     try {
-                        iVar2.f50420c = new q5.g0(iBinder);
-                        iVar2.f50418a = 2;
-                        ((ScheduledExecutorService) iVar2.f50422f.f50430c).execute(new x5.g(iVar2, 0));
+                        iVar2.f50421c = new q5.g0(iBinder);
+                        iVar2.f50419a = 2;
+                        ((ScheduledExecutorService) iVar2.f50423f.f50431c).execute(new x5.g(iVar2, 0));
                         return;
                     } catch (RemoteException e6) {
                         iVar2.a(e6.getMessage());

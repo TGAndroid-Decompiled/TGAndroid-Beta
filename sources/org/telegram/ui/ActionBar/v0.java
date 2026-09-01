@@ -64,7 +64,7 @@ public class v0 extends FrameLayout implements xd.b {
 
     public final void a() {
         int v02;
-        float f10 = this.f22318a.f50504e;
+        float f10 = this.f22318a.f50505e;
         boolean z4 = this.f22324r;
         g6 g6Var = this.f22323n;
         if (z4) {
@@ -194,7 +194,7 @@ public class v0 extends FrameLayout implements xd.b {
 
     public void setSelectedForDelete(boolean z4) {
         xd.a aVar = this.f22318a;
-        if (aVar.f50505f != z4) {
+        if (aVar.f50506f != z4) {
             p pVar = this.h;
             AndroidUtilities.cancelRunOnUIThread(pVar);
             aVar.a(z4, true);

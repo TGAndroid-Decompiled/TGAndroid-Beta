@@ -90,7 +90,7 @@ public final class k1 extends org.telegram.ui.ActionBar.k {
             case 4:
                 py pyVar = (py) this.f6373r1;
                 fy fyVar = pyVar.U;
-                if (fyVar != null && fyVar.getAlpha() > 0.0f && pyVar.f40184b.f50505f) {
+                if (fyVar != null && fyVar.getAlpha() > 0.0f && pyVar.f40184b.f50506f) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);

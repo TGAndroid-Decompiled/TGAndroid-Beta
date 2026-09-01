@@ -2230,7 +2230,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             if (this.Z1 != 1) {
                 return;
             }
-            CropAreaView cropAreaView = this.f34450z1.f25248b.f51165a;
+            CropAreaView cropAreaView = this.f34450z1.f25248b.f51166a;
             cropAreaView.f(true, false);
             cropAreaView.setDimVisibility(true);
             cropAreaView.invalidate();
@@ -2238,7 +2238,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.f34450z1.setAlpha(1.0f);
             zf.n nVar = this.f34450z1.f25248b;
             nVar.q();
-            CropAreaView cropAreaView2 = nVar.f51165a;
+            CropAreaView cropAreaView2 = nVar.f51166a;
             cropAreaView2.setDimVisibility(true);
             cropAreaView2.f(true, true);
             cropAreaView2.invalidate();
@@ -2677,7 +2677,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         cropState2 = cropState;
                         z12 = z13;
                         imageReceiver2 = imageReceiver;
-                        fVar.f51123a = false;
+                        fVar.f51124a = false;
                     }
                 } else {
                     cropState2 = cropState;
@@ -3316,7 +3316,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
         if (this.Z1 == 1) {
             cropState = new MediaController.CropState();
-            cropState.transformRotation = this.A1.f51129i;
+            cropState.transformRotation = this.A1.f51130i;
         } else {
             cropState = this.U4.f43995c;
         }
@@ -3426,7 +3426,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             boolean z4 = true;
             if (i10 == 1) {
                 cropState = new MediaController.CropState();
-                cropState.transformRotation = this.A1.f51129i;
+                cropState.transformRotation = this.A1.f51130i;
             } else {
                 cropState = zt0Var.f43995c;
             }
@@ -4414,7 +4414,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.f34334m6.start();
         zf.l lVar = this.f34450z1.f25248b.I;
         if (lVar != null) {
-            z4 = lVar.f51162j;
+            z4 = lVar.f51163j;
         }
         return !z4;
     }
@@ -6140,7 +6140,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (this.I1 != null) {
                     this.f34226a6 = (ht0Var2.getAdditionalTop() / 2.0f) + dp;
                 }
-                int i13 = this.A1.f51129i;
+                int i13 = this.A1.f51130i;
                 if (i13 == 90 || i13 == 270) {
                     i11 = bitmapWidth;
                     bitmapWidth = bitmapHeight;
@@ -6945,13 +6945,13 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         float f23 = f21 / f22;
         float min = Math.min(f20, f23);
         zf.f fVar = this.A1;
-        int i10 = fVar.f51129i;
+        int i10 = fVar.f51130i;
         if (i10 != 90 && i10 != 270) {
             bitmapHeight = bitmapWidth;
             bitmapWidth = bitmapHeight;
         }
-        float f24 = fVar.f51130j;
-        float f25 = fVar.f51131k;
+        float f24 = fVar.f51131j;
+        float f25 = fVar.f51132k;
         float f26 = bitmapHeight;
         float f27 = bitmapWidth;
         float f28 = f10;
@@ -6974,7 +6974,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             float w11 = e2.c.w((f22 * f20) / f28, f34, 0.0f, f34);
             canvas.clipRect((-w10) / 2.0f, (-w11) / 2.0f, w10 / 2.0f, w11 / 2.0f);
         }
-        if (this.Z1 == 1 || fVar.f51123a) {
+        if (this.Z1 == 1 || fVar.f51124a) {
             TextureView textureView = this.f34442y2;
             if (textureView != null) {
                 MediaController.CropState cropState2 = zt0Var.f43995c;
@@ -6996,10 +6996,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 f15 = 1.0f;
             }
             float w12 = ((f32 / min) / e2.c.w(f15, 1.0f, 0.0f, 1.0f)) * f15;
-            canvas.translate(fVar.d * 1.0f, fVar.f51126e * 1.0f);
+            canvas.translate(fVar.d * 1.0f, fVar.f51127e * 1.0f);
             canvas.scale(w12, w12);
-            canvas.translate(e2.c.z(fVar.f51124b, f26, min, 1.0f), e2.c.z(fVar.f51125c, f27, min, 1.0f));
-            float f35 = fVar.f51128g + i10;
+            canvas.translate(e2.c.z(fVar.f51125b, f26, min, 1.0f), e2.c.z(fVar.f51126c, f27, min, 1.0f));
+            float f35 = fVar.f51129g + i10;
             if (f35 > 180.0f) {
                 f35 -= 360.0f;
             }
@@ -8453,13 +8453,13 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             float f20 = i14;
                             float min = Math.min(f19 / bitmapWidth, f20 / bitmapHeight);
                             zf.f fVar = this.A1;
-                            int i15 = fVar.f51129i;
+                            int i15 = fVar.f51130i;
                             if (i15 != 90 && i15 != 270) {
                                 bitmapHeight = bitmapWidth;
                                 bitmapWidth = bitmapHeight;
                             }
-                            float f21 = fVar.f51130j;
-                            float f22 = fVar.f51131k;
+                            float f21 = fVar.f51131j;
+                            float f22 = fVar.f51132k;
                             float f23 = bitmapHeight;
                             float f24 = bitmapWidth;
                             float f25 = f19 / ((int) ((((1.0f - f21) * 0.0f) + f21) * f23));
@@ -8469,7 +8469,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             }
                             int i16 = this.Z1;
                             zt0 zt0Var = this.U4;
-                            if (i16 == 1 || fVar.f51123a) {
+                            if (i16 == 1 || fVar.f51124a) {
                                 TextureView textureView2 = this.f34442y2;
                                 if (textureView2 != null) {
                                     MediaController.CropState cropState3 = zt0Var.f43995c;
@@ -8491,10 +8491,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                     f16 = 1.0f;
                                 }
                                 float w10 = ((f25 / min) / e2.c.w(f16, 1.0f, 0.0f, 1.0f)) * f16;
-                                matrix.preTranslate(fVar.d * 1.0f, fVar.f51126e * 1.0f);
+                                matrix.preTranslate(fVar.d * 1.0f, fVar.f51127e * 1.0f);
                                 matrix.preScale(w10, w10);
-                                matrix.preTranslate(e2.c.z(fVar.f51124b, f23, min, 1.0f), e2.c.z(fVar.f51125c, f24, min, 1.0f));
-                                float f27 = fVar.f51128g + i15;
+                                matrix.preTranslate(e2.c.z(fVar.f51125b, f23, min, 1.0f), e2.c.z(fVar.f51126c, f24, min, 1.0f));
+                                float f27 = fVar.f51129g + i15;
                                 if (f27 > 180.0f) {
                                     f27 -= 360.0f;
                                 }

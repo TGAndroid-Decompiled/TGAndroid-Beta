@@ -12,7 +12,7 @@ import org.telegram.ui.Components.j51;
 import org.telegram.ui.Components.tl0;
 import org.telegram.ui.Components.x51;
 public final class z4 extends i51 {
-    public static final int f50221a = 0;
+    public static final int f50222a = 0;
 
     static {
         i51.setup(new i51());
@@ -24,13 +24,13 @@ public final class z4 extends i51 {
         a5 a5Var = (a5) view;
         a aVar = (a) j51Var.G;
         y4 y4Var = (y4) j51Var.H;
-        e1 e1Var = a5Var.f49644r;
-        a5Var.f50174a = aVar;
-        a5Var.f49645s = y4Var;
+        e1 e1Var = a5Var.f49645r;
+        a5Var.f50175a = aVar;
+        a5Var.f49646s = y4Var;
         a5Var.g(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         a5Var.c(aVar);
         if (y4Var != null) {
-            richText = (TL_iv.RichText) ((x2) y4Var).f50153a.f49989j3.get(Long.valueOf(aVar.f49632t));
+            richText = (TL_iv.RichText) ((x2) y4Var).f50154a.f49990j3.get(Long.valueOf(aVar.f49633t));
         } else {
             richText = null;
         }

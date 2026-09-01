@@ -3754,9 +3754,9 @@ public class RichMessageLayout {
                 rVar = null;
             }
             if (rVar != null) {
-                this.bitmap = rVar.f49957a;
-                this.contentW = rVar.f49958b;
-                this.contentH = rVar.f49959c;
+                this.bitmap = rVar.f49958a;
+                this.contentW = rVar.f49959b;
+                this.contentH = rVar.f49960c;
             }
             int D = y3.D(0.0f, 2, this.contentW);
             this.contentWidth = D;
@@ -10839,10 +10839,10 @@ public class RichMessageLayout {
                     textmath.tried = true;
                     wh.r a2 = wh.r.a(textmath.source, AndroidUtilities.dp(this.fontSize + 4), true);
                     if (a2 != null) {
-                        textmath.f21068w = a2.f49958b;
-                        textmath.h = a2.f49959c;
+                        textmath.f21068w = a2.f49959b;
+                        textmath.h = a2.f49960c;
                         textmath.depth = a2.d;
-                        textmath.bitmap = a2.f49957a;
+                        textmath.bitmap = a2.f49958a;
                     }
                 }
                 if (textmath.bitmap == null) {

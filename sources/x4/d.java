@@ -1,10 +1,10 @@
 package x4;
 public final class d {
-    public final int f50376a;
-    public final int f50377b;
+    public final int f50377a;
+    public final int f50378b;
 
     public d(int i10, int i11) {
-        this.f50376a = i10;
-        this.f50377b = i11;
+        this.f50377a = i10;
+        this.f50378b = i11;
     }
 }

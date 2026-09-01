@@ -422,8 +422,8 @@ public class CropAreaView extends ViewGroup {
                 a aVar = this.f24844a0;
                 if (aVar != null) {
                     n nVar = (n) aVar;
-                    nVar.f51165a.d(nVar.f51169f);
-                    nVar.f51170n = 0.0f;
+                    nVar.f51166a.d(nVar.f51170f);
+                    nVar.f51171n = 0.0f;
                     m mVar = nVar.J;
                     if (mVar != null) {
                         mVar.N(false);
@@ -596,9 +596,9 @@ public class CropAreaView extends ViewGroup {
                 a aVar2 = this.f24844a0;
                 if (aVar2 != null) {
                     n nVar2 = (n) aVar2;
-                    CropAreaView cropAreaView = nVar2.f51165a;
+                    CropAreaView cropAreaView = nVar2.f51166a;
                     cropAreaView.g(3, false);
-                    RectF rectF2 = nVar2.f51169f;
+                    RectF rectF2 = nVar2.f51170f;
                     float centerX = rectF2.centerX() - cropAreaView.getCropCenterX();
                     float centerY = rectF2.centerY() - cropAreaView.getCropCenterY();
                     l lVar = nVar2.I;
@@ -620,7 +620,7 @@ public class CropAreaView extends ViewGroup {
                 a aVar3 = this.f24844a0;
                 if (aVar3 != null) {
                     n nVar3 = (n) aVar3;
-                    CropAreaView cropAreaView2 = nVar3.f51165a;
+                    CropAreaView cropAreaView2 = nVar3.f51166a;
                     cropAreaView2.g(1, true);
                     nVar3.d(cropAreaView2.getTargetRectToFill());
                 }

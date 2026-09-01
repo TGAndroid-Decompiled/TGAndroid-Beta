@@ -4,16 +4,16 @@ import java.util.ArrayDeque;
 import org.telegram.ui.web.e0;
 import r3.l;
 public final class b {
-    public final byte[] f50302a = new byte[8];
-    public final ArrayDeque f50303b = new ArrayDeque();
-    public final e f50304c = new e();
+    public final byte[] f50303a = new byte[8];
+    public final ArrayDeque f50304b = new ArrayDeque();
+    public final e f50305c = new e();
     public e0 d;
-    public int f50305e;
-    public int f50306f;
-    public long f50307g;
+    public int f50306e;
+    public int f50307f;
+    public long f50308g;
 
     public final long a(l lVar, int i10) {
-        byte[] bArr = this.f50302a;
+        byte[] bArr = this.f50303a;
         lVar.readFully(bArr, 0, i10);
         long j10 = 0;
         for (int i11 = 0; i11 < i10; i11++) {

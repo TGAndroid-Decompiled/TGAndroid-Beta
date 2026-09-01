@@ -31,7 +31,7 @@ public final class qa1 extends View {
         path.addCircle(dp, measuredHeight, AndroidUtilities.dp(30.0f), Path.Direction.CW);
         imageReceiver.draw(canvas);
         if (this.f40425c != null) {
-            CropAreaView cropAreaView = this.d.f25248b.f51165a;
+            CropAreaView cropAreaView = this.d.f25248b.f51166a;
             float dp2 = AndroidUtilities.dp(60.0f) / cropAreaView.f24843a;
             float left = (0.0f - this.d.getLeft()) - cropAreaView.f24845b;
             canvas.save();

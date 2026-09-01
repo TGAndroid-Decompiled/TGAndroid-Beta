@@ -27177,7 +27177,7 @@ public class MessagesController extends BaseController implements NotificationCe
                             i15++;
                             Integer num3 = num2;
                             num3.getClass();
-                            ArrayList arrayList6 = f10.f49172c;
+                            ArrayList arrayList6 = f10.f49173c;
                             int i16 = 0;
                             while (true) {
                                 if (i16 < arrayList6.size()) {
@@ -27187,7 +27187,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                         if (o1Var.a() <= 0) {
                                             arrayList6.remove(o1Var);
                                         }
-                                        NotificationCenter.getInstance(f10.f49170a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
+                                        NotificationCenter.getInstance(f10.f49171a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                                     } else {
                                         i16++;
                                     }

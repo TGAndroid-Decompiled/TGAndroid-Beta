@@ -386,7 +386,7 @@ public final class b implements r5.h, v4.f, r3.e, b0, OnCompleteListener, com.go
                     if (((File) this.f1935b) == null) {
                         w8.g gVar = (w8.g) this.f1936c;
                         gVar.a();
-                        File filesDir = gVar.f49451a.getFilesDir();
+                        File filesDir = gVar.f49452a.getFilesDir();
                         this.f1935b = new File(filesDir, "PersistedInstallation." + ((w8.g) this.f1936c).d() + ".json");
                     }
                 } finally {
@@ -453,7 +453,7 @@ public final class b implements r5.h, v4.f, r3.e, b0, OnCompleteListener, com.go
             jSONObject.put("FisError", bVar.f4392g);
             w8.g gVar = (w8.g) this.f1936c;
             gVar.a();
-            File createTempFile = File.createTempFile("PersistedInstallation", "tmp", gVar.f49451a.getFilesDir());
+            File createTempFile = File.createTempFile("PersistedInstallation", "tmp", gVar.f49452a.getFilesDir());
             FileOutputStream fileOutputStream = new FileOutputStream(createTempFile);
             fileOutputStream.write(jSONObject.toString().getBytes("UTF-8"));
             fileOutputStream.close();
@@ -1318,7 +1318,7 @@ public final class b implements r5.h, v4.f, r3.e, b0, OnCompleteListener, com.go
         m.h(context);
         Resources resources = context.getResources();
         this.f1935b = resources;
-        this.f1936c = resources.getResourcePackageName(2131701331);
+        this.f1936c = resources.getResourcePackageName(2131689568);
     }
 
     public b(Object obj) {

@@ -91,13 +91,13 @@ public final class m implements org.telegram.ui.ActionBar.c2, kl0, ll0, androidx
             default:
                 i5 i5Var = (i5) this.f42633b;
                 l5 l5Var = (l5) this.f42634c;
-                TL_iv.pageTableCell pagetablecell = l5Var.f49867b;
+                TL_iv.pageTableCell pagetablecell = l5Var.f49868b;
                 if (pagetablecell != null) {
-                    z5.d(pagetablecell, l5Var.f49866a.getText());
+                    z5.d(pagetablecell, l5Var.f49867a.getText());
                 }
                 y2 y2Var = i5Var.B;
-                if (y2Var != null && i5Var.f50174a != null) {
-                    r3.O1(y2Var.f50170a);
+                if (y2Var != null && i5Var.f50175a != null) {
+                    r3.O1(y2Var.f50171a);
                     return;
                 }
                 return;
@@ -446,7 +446,7 @@ public final class m implements org.telegram.ui.ActionBar.c2, kl0, ll0, androidx
             case 3:
             case 5:
             default:
-                vf.q.Z((vf.q) this.f42633b, (TL_account.TL_businessChatLink) this.f42634c);
+                vf.t.d(r6.currentAccount).a((vf.q) this.f42633b, ((TL_account.TL_businessChatLink) this.f42634c).link);
                 return;
             case 4:
                 d3.y0((d3) this.f42633b, (TL_payments.connectedBotStarRef) this.f42634c);
@@ -472,10 +472,10 @@ public final class m implements org.telegram.ui.ActionBar.c2, kl0, ll0, androidx
         vf.k kVar = (vf.k) this.f42633b;
         TLRPC.Document document = (TLRPC.Document) obj2;
         Boolean bool = (Boolean) obj3;
-        kVar.f49080w = false;
+        kVar.f49081w = false;
         AndroidUtilities.cancelRunOnUIThread(kVar.d);
-        vf.i iVar = kVar.f49077n;
-        kVar.f49081x = document;
+        vf.i iVar = kVar.f49078n;
+        kVar.f49082x = document;
         iVar.setSticker(document);
         ((o8) ((View) this.f42634c)).setValueSticker(document);
         kVar.e0(true);

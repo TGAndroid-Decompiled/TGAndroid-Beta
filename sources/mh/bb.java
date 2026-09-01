@@ -433,7 +433,7 @@ public abstract class bb extends View {
         waVar2.a(canvas2, -1);
         canvas2.restore();
         canvas2.save();
-        float f28 = 1.0f - (this.f13770c0.f50504e * 0.15f);
+        float f28 = 1.0f - (this.f13770c0.f50505e * 0.15f);
         canvas2.scale(f28, f28, rectF5.centerX(), rectF5.top - (rectF5.height() * f11));
         this.D.setBounds((int) ((rectF5.centerX() - (j6Var2.d() / 2.0f)) + AndroidUtilities.dp(-12.0f)), (int) (rectF5.centerY() - AndroidUtilities.dp(10.0f)), (int) ((rectF5.centerX() - (j6Var2.d() / 2.0f)) + AndroidUtilities.dp(8.0f)), (int) (rectF5.centerY() + AndroidUtilities.dp(10.0f)));
         if (this.C) {
@@ -443,7 +443,7 @@ public abstract class bb extends View {
         j6Var2.draw(canvas2);
         canvas2.restore();
         j6Var.l(rectF5.left, rectF5.top + AndroidUtilities.dp(10.0f), rectF5.right, rectF5.bottom + AndroidUtilities.dp(10.0f));
-        j6Var.f28047w = (int) (this.f13770c0.f50504e * 255.0f);
+        j6Var.f28047w = (int) (this.f13770c0.f50505e * 255.0f);
         j6Var.draw(canvas2);
         canvas2.restore();
     }

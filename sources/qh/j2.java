@@ -86,12 +86,12 @@ public final class j2 extends AnimatorListenerAdapter {
             case 11:
                 super.onAnimationEnd(animator);
                 wf.g gVar = (wf.g) this.f45456b;
-                if (!gVar.f49557f1) {
-                    gVar.f49571r0 = false;
-                    gVar.f49569q0.setVisibility(8);
+                if (!gVar.f49558f1) {
+                    gVar.f49572r0 = false;
+                    gVar.f49570q0.setVisibility(8);
                     gVar.invalidate();
                 }
-                gVar.f49548c0 = false;
+                gVar.f49549c0 = false;
                 return;
             case 12:
                 ((yf.e) this.f45456b).h.setVisibility(8);

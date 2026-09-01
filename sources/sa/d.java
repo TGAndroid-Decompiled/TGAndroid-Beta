@@ -25,8 +25,8 @@ public final class d implements pa.v {
         Type type = Object.class;
         switch (i10) {
             case 0:
-                Type type2 = aVar.f49484b;
-                Class cls = aVar.f49483a;
+                Type type2 = aVar.f49485b;
+                Class cls = aVar.f49484a;
                 if (!Collection.class.isAssignableFrom(cls)) {
                     return null;
                 }
@@ -40,8 +40,8 @@ public final class d implements pa.v {
                 }
                 return new c(gVar, type, gVar.b(new wa.a(type)), g0Var.z(aVar));
             default:
-                Type type3 = aVar.f49484b;
-                Class cls2 = aVar.f49483a;
+                Type type3 = aVar.f49485b;
+                Class cls2 = aVar.f49484a;
                 if (!Map.class.isAssignableFrom(cls2)) {
                     return null;
                 }

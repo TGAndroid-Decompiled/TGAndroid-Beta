@@ -1,18 +1,18 @@
 package wh;
 public final class z0 implements Runnable {
-    public final int f50179a;
-    public final e1 f50180b;
+    public final int f50180a;
+    public final e1 f50181b;
 
     public z0(e1 e1Var, int i10) {
-        this.f50179a = i10;
-        this.f50180b = e1Var;
+        this.f50180a = i10;
+        this.f50181b = e1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f50179a) {
+        switch (this.f50180a) {
             case 0:
-                e1 e1Var = this.f50180b;
+                e1 e1Var = this.f50181b;
                 e4 e4Var = e1Var.O;
                 if (e4Var != null && e1Var.d != null) {
                     e1Var.P = true;
@@ -26,10 +26,10 @@ public final class z0 implements Runnable {
                 }
                 return;
             case 1:
-                this.f50180b.n();
+                this.f50181b.n();
                 return;
             default:
-                this.f50180b.s();
+                this.f50181b.s();
                 return;
         }
     }

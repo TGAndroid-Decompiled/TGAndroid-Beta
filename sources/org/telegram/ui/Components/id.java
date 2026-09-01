@@ -202,10 +202,10 @@ public final class id implements Runnable {
                         return;
                     }
                     wh.z1 z1Var = new wh.z1(richMessage);
-                    z1Var.f50188e = true;
+                    z1Var.f50189e = true;
                     z1Var.setResourceProvider(chatActivityEnterView.S3);
                     z1Var.G = xnVar3;
-                    z1Var.f50205s = xnVar3.P;
+                    z1Var.f50206s = xnVar3.P;
                     z1Var.v = xnVar3.V;
                     z1Var.I = new id(chatActivityEnterView, 24);
                     z1Var.H = new id(chatActivityEnterView, 25);

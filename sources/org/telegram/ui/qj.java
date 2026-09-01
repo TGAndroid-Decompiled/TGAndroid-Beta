@@ -609,10 +609,10 @@ public final class qj extends tm {
             return;
         }
         vg.a aVar = this.f40555v3.Nb;
-        if (aVar.f49255b != 0) {
-            int childCount = aVar.f49254a.getChildCount();
+        if (aVar.f49256b != 0) {
+            int childCount = aVar.f49255a.getChildCount();
             for (int i10 = 0; i10 < childCount; i10++) {
-                aVar.f49254a.getChildAt(i10).forceLayout();
+                aVar.f49255a.getChildAt(i10).forceLayout();
             }
         }
         super.requestLayout();

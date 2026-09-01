@@ -19,9 +19,9 @@ public final class g3 implements View.OnLayoutChangeListener {
                 return;
             default:
                 yf.c cVar = (yf.c) this.f45357b;
-                TextView textView = cVar.f50899c;
+                TextView textView = cVar.f50900c;
                 textView.setPivotX(textView.getMeasuredWidth() * 0.7f);
-                TextView textView2 = cVar.f50898b;
+                TextView textView2 = cVar.f50899b;
                 textView2.setPivotX(textView2.getMeasuredWidth() * 0.7f);
                 return;
         }

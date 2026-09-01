@@ -112,8 +112,8 @@ public final class e8 implements Utilities.Callback {
                 wh.a aVar = (wh.a) this.d;
                 String str2 = (String) this.f13974e;
                 SpannableString spannableString = (SpannableString) obj;
-                if (this.f13972b == v5Var.F && v5Var.f50118x == aVar) {
-                    Editable text = v5Var.f50113f.getText();
+                if (this.f13972b == v5Var.F && v5Var.f50119x == aVar) {
+                    Editable text = v5Var.f50114f.getText();
                     if (TextUtils.equals(str2, text)) {
                         for (CodeHighlighting.ColorSpan colorSpan : (CodeHighlighting.ColorSpan[]) text.getSpans(0, text.length(), CodeHighlighting.ColorSpan.class)) {
                             text.removeSpan(colorSpan);

@@ -80,13 +80,13 @@ public final class b80 extends FrameLayout implements org.telegram.ui.ActionBar.
         d80 d80Var = this.f35386f;
         paint.setColor(d80Var.getThemedColor(i10));
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f), getWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f) + d80Var.f36133b.f50509e + AndroidUtilities.dp(3.0f));
+        rectF.set(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f), getWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f) + d80Var.f36133b.f50510e + AndroidUtilities.dp(3.0f));
         Path path = this.f35383b;
         path.rewind();
         path.addRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), Path.Direction.CW);
         GradientDrawable gradientDrawable = this.f35385e;
         if (gradientDrawable != null) {
-            gradientDrawable.setBounds(0, 0, getWidth(), Math.min(getHeight(), AndroidUtilities.dp(24.0f) + ((int) d80Var.f36133b.f50509e)));
+            gradientDrawable.setBounds(0, 0, getWidth(), Math.min(getHeight(), AndroidUtilities.dp(24.0f) + ((int) d80Var.f36133b.f50510e)));
             this.f35385e.draw(canvas);
         }
         canvas.save();

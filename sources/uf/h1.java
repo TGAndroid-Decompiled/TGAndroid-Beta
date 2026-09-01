@@ -75,11 +75,11 @@ public final class h1 implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f48592c;
                 TLObject tLObject = (TLObject) this.d;
                 if (tL_error != null) {
-                    cVar.f48996a.a(0.0f);
+                    cVar.f48997a.a(0.0f);
                     qc.b0(tL_error);
                     return;
                 } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                    cVar.f48996a.a(0.0f);
+                    cVar.f48997a.a(0.0f);
                     y3.s(R.string.UnknownError, qc.a0(cVar), null);
                     return;
                 } else {
@@ -91,11 +91,11 @@ public final class h1 implements Runnable {
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f48592c;
                 TLObject tLObject2 = (TLObject) this.d;
                 if (tL_error2 != null) {
-                    kVar.f49075e.a(0.0f);
+                    kVar.f49076e.a(0.0f);
                     qc.b0(tL_error2);
                     return;
                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                    kVar.f49075e.a(0.0f);
+                    kVar.f49076e.a(0.0f);
                     y3.s(R.string.UnknownError, qc.a0(kVar), null);
                     return;
                 } else {
@@ -108,11 +108,11 @@ public final class h1 implements Runnable {
             case 4:
                 vf.t tVar = (vf.t) this.f48591b;
                 TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.d;
-                ArrayList arrayList2 = tVar.f49202b;
+                ArrayList arrayList2 = tVar.f49203b;
                 if (((TLObject) this.f48592c) instanceof TLRPC.TL_boolTrue) {
                     if (arrayList2.contains(tL_businessChatLink)) {
                         arrayList2.remove(tL_businessChatLink);
-                        NotificationCenter.getInstance(tVar.f49201a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                        NotificationCenter.getInstance(tVar.f49202a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
                     }
                     tVar.f();
                     return;
@@ -123,7 +123,7 @@ public final class h1 implements Runnable {
                 vf.t tVar2 = (vf.t) this.f48591b;
                 TL_account.deleteBusinessChatLink deletebusinesschatlink = new TL_account.deleteBusinessChatLink();
                 deletebusinesschatlink.slug = (String) this.f48592c;
-                ConnectionsManager.getInstance(tVar2.f49201a).sendRequest(deletebusinesschatlink, new li1(9, tVar2, (TL_account.TL_businessChatLink) this.d));
+                ConnectionsManager.getInstance(tVar2.f49202a).sendRequest(deletebusinesschatlink, new li1(9, tVar2, (TL_account.TL_businessChatLink) this.d));
                 return;
             case 6:
                 vf.f0.P((vf.f0) this.f48591b, (TL_account.TL_connectedBot) this.f48592c, (TL_account.TL_businessBotRecipients) this.d);
@@ -133,11 +133,11 @@ public final class h1 implements Runnable {
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f48592c;
                 TLObject tLObject3 = (TLObject) this.d;
                 if (tL_error3 != null) {
-                    n0Var.f49139a.a(0.0f);
+                    n0Var.f49140a.a(0.0f);
                     qc.b0(tL_error3);
                     return;
                 } else if (tLObject3 instanceof TLRPC.TL_boolFalse) {
-                    n0Var.f49139a.a(0.0f);
+                    n0Var.f49140a.a(0.0f);
                     y3.s(R.string.UnknownError, qc.a0(n0Var), null);
                     return;
                 } else {
@@ -158,18 +158,18 @@ public final class h1 implements Runnable {
                     SerializedData serializedData = new SerializedData(tLObject4.getObjectSize());
                     tLObject4.serializeToStream(serializedData);
                     sharedPreferences.edit().putString("timezones", Utilities.bytesToHex(serializedData.toByteArray())).apply();
-                    NotificationCenter.getInstance(s1Var.f49196a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.timezonesUpdated, new Object[0]);
+                    NotificationCenter.getInstance(s1Var.f49197a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.timezonesUpdated, new Object[0]);
                 }
-                s1Var.f49198c = true;
-                s1Var.f49197b = false;
+                s1Var.f49199c = true;
+                s1Var.f49198b = false;
                 return;
             case 10:
                 r3 r3Var = (r3) this.f48591b;
                 q70 q70Var = (q70) this.f48592c;
                 i5 i5Var = (i5) this.d;
-                if (r3Var.f49984g4 == q70Var) {
-                    r3Var.f49984g4 = null;
-                    if (r3Var.f50011z3 && r3Var.f49982f4 == i5Var && !i5Var.E.isEmpty()) {
+                if (r3Var.f49985g4 == q70Var) {
+                    r3Var.f49985g4 = null;
+                    if (r3Var.f50012z3 && r3Var.f49983f4 == i5Var && !i5Var.E.isEmpty()) {
                         r3Var.M2();
                         return;
                     }
@@ -180,19 +180,19 @@ public final class h1 implements Runnable {
                 r3 r3Var2 = (r3) this.f48591b;
                 wh.a aVar = (wh.a) this.f48592c;
                 wh.a aVar2 = (wh.a) this.d;
-                ArrayList arrayList4 = r3Var2.f49996m4;
-                f3 f3Var = r3Var2.f49991k3;
+                ArrayList arrayList4 = r3Var2.f49997m4;
+                f3 f3Var = r3Var2.f49992k3;
                 if (f3Var != null && aVar != null && aVar2 != null) {
                     int indexOf = arrayList4.indexOf(aVar);
                     int indexOf2 = arrayList4.indexOf(aVar2);
                     if (indexOf >= 0 && indexOf2 >= 0) {
                         for (int i10 = 0; i10 < arrayList4.size(); i10++) {
                             wh.a aVar3 = (wh.a) arrayList4.get(i10);
-                            long j10 = aVar3.f49632t;
+                            long j10 = aVar3.f49633t;
                             if (j10 != 0) {
-                                f3Var.Y(i10, x5.l((TL_iv.RichText) r3Var2.f49989j3.get(Long.valueOf(j10))));
+                                f3Var.Y(i10, x5.l((TL_iv.RichText) r3Var2.f49990j3.get(Long.valueOf(j10))));
                             } else {
-                                f3Var.Y(i10, v5.z(aVar3.f49616b));
+                                f3Var.Y(i10, v5.z(aVar3.f49617b));
                             }
                         }
                         f3Var.j0(Math.min(indexOf, indexOf2), Math.max(indexOf, indexOf2));
@@ -207,9 +207,9 @@ public final class h1 implements Runnable {
             case 13:
                 wh.a aVar4 = (wh.a) this.f48592c;
                 u5 u5Var = (u5) this.d;
-                s5 s5Var = ((q5) this.f48591b).f49955a.f50119y;
+                s5 s5Var = ((q5) this.f48591b).f49956a.f50120y;
                 if (s5Var != null) {
-                    ((a3) s5Var).d(aVar4, u5Var.f50084a, u5Var.f50085b, u5Var.f50086c, u5Var.d, u5Var.f50087e);
+                    ((a3) s5Var).d(aVar4, u5Var.f50085a, u5Var.f50086b, u5Var.f50087c, u5Var.d, u5Var.f50088e);
                     return;
                 }
                 return;

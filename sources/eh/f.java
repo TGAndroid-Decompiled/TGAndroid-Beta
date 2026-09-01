@@ -96,10 +96,10 @@ public final class f extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
 
     public static void a(f fVar) {
         l5 l5Var = fVar.f5627f;
-        a20.d(l5Var, fVar.E.f50504e);
+        a20.d(l5Var, fVar.E.f50505e);
         int i10 = k6.A6;
         xn xnVar = fVar.d;
-        l5Var.setTextColor(i0.a.d(fVar.F.f50504e, k6.v0(i10, xnVar.getResourceProvider()), k6.v0(k6.f21876p7, xnVar.getResourceProvider())));
+        l5Var.setTextColor(i0.a.d(fVar.F.f50505e, k6.v0(i10, xnVar.getResourceProvider()), k6.v0(k6.f21876p7, xnVar.getResourceProvider())));
     }
 
     public h getAttachedMedia() {

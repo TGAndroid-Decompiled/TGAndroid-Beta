@@ -2731,7 +2731,7 @@ public final class d60 extends org.telegram.ui.ActionBar.h3 implements Notificat
             Y0();
             W0();
             X0();
-            float f12 = 1.0f - this.f36106w3.f50504e;
+            float f12 = 1.0f - this.f36106w3.f50505e;
             j30 j30Var = this.f36027e;
             j30Var.setAlpha(f12);
             this.X1.setProgressToHideUi(f10);
@@ -2834,7 +2834,7 @@ public final class d60 extends org.telegram.ui.ActionBar.h3 implements Notificat
             j30 j30Var = this.f36027e;
             boolean z13 = false;
             if (sharedInstance != null && !r1()) {
-                yg.a aVar = (yg.a) j30Var.f50954c.get(w2Var);
+                yg.a aVar = (yg.a) j30Var.f50955c.get(w2Var);
                 if (aVar != null) {
                     aVar.d.a(true, z4);
                     w2Var.setEnabled(true);
@@ -2887,7 +2887,7 @@ public final class d60 extends org.telegram.ui.ActionBar.h3 implements Notificat
             } else {
                 z10 = true;
             }
-            yg.a aVar2 = (yg.a) j30Var.f50954c.get(w2Var);
+            yg.a aVar2 = (yg.a) j30Var.f50955c.get(w2Var);
             if (aVar2 != null) {
                 aVar2.d.a(z10, z4);
                 w2Var.setEnabled(z10);
@@ -3151,14 +3151,14 @@ public final class d60 extends org.telegram.ui.ActionBar.h3 implements Notificat
         W0();
         X0();
         a1();
-        this.f36027e.setAlpha(1.0f - this.f36106w3.f50504e);
+        this.f36027e.setAlpha(1.0f - this.f36106w3.f50505e);
         U0();
         V0();
     }
 
     public final void U0() {
         int i10;
-        float f10 = this.f36118z1.f4758b.f50529a;
+        float f10 = this.f36118z1.f4758b.f50530a;
         if (f10 > 0.0f) {
             i10 = 0;
         } else {
@@ -3184,7 +3184,7 @@ public final class d60 extends org.telegram.ui.ActionBar.h3 implements Notificat
         int i10;
         org.telegram.ui.Components.rk0 rk0Var = this.H;
         if (rk0Var != null) {
-            float f10 = this.f36118z1.f4758b.f50529a * this.f36111x3.f50504e;
+            float f10 = this.f36118z1.f4758b.f50530a * this.f36111x3.f50505e;
             rk0Var.setAlpha(f10);
             if (f10 > 0.0f) {
                 i10 = 0;
@@ -3215,12 +3215,12 @@ public final class d60 extends org.telegram.ui.ActionBar.h3 implements Notificat
         boolean z10 = C3;
         xd.a aVar = this.f36106w3;
         if (z10) {
-            j30Var.setTranslationX(aVar.f50504e * AndroidUtilities.dp(94.0f));
+            j30Var.setTranslationX(aVar.f50505e * AndroidUtilities.dp(94.0f));
             j30Var.setTranslationY(0.0f);
             return;
         }
         j30Var.setTranslationX(0.0f);
-        j30Var.setTranslationY(aVar.f50504e * AndroidUtilities.dp(94.0f));
+        j30Var.setTranslationY(aVar.f50505e * AndroidUtilities.dp(94.0f));
     }
 
     public final void X0() {
@@ -3234,27 +3234,27 @@ public final class d60 extends org.telegram.ui.ActionBar.h3 implements Notificat
         boolean z10 = C3;
         xd.a aVar = this.f36106w3;
         if (z10) {
-            s30Var.setTranslationX(aVar.f50504e * AndroidUtilities.dp(94.0f));
+            s30Var.setTranslationX(aVar.f50505e * AndroidUtilities.dp(94.0f));
             s30Var.setTranslationY(0.0f);
             return;
         }
         s30Var.setTranslationX(0.0f);
-        s30Var.setTranslationY(aVar.f50504e * AndroidUtilities.dp(94.0f));
+        s30Var.setTranslationY(aVar.f50505e * AndroidUtilities.dp(94.0f));
     }
 
     public final void Y0() {
         float dp;
-        float f10 = this.f36116y3.f50509e;
+        float f10 = this.f36116y3.f50510e;
         dh.i iVar = this.f36118z1;
-        float f11 = -((iVar.c() - this.containerView.getPaddingBottom()) + f10 + (AndroidUtilities.dp(68.0f) * this.f36111x3.f50504e) + AndroidUtilities.dp(10.0f));
+        float f11 = -((iVar.c() - this.containerView.getPaddingBottom()) + f10 + (AndroidUtilities.dp(68.0f) * this.f36111x3.f50505e) + AndroidUtilities.dp(10.0f));
         if (D3) {
-            dp = (1.0f - this.f36120z3.f50504e) * AndroidUtilities.dp(-91.0f);
+            dp = (1.0f - this.f36120z3.f50505e) * AndroidUtilities.dp(-91.0f);
         } else if (C3) {
             dp = 0.0f;
         } else {
-            dp = ((this.f36106w3.f50504e * AndroidUtilities.dp(94.0f)) - (AndroidUtilities.dp(104.0f) * this.X1.f32142c)) - AndroidUtilities.dp(91.0f);
+            dp = ((this.f36106w3.f50505e * AndroidUtilities.dp(94.0f)) - (AndroidUtilities.dp(104.0f) * this.X1.f32142c)) - AndroidUtilities.dp(91.0f);
         }
-        float lerp = AndroidUtilities.lerp(dp, f11, iVar.f4758b.f50529a);
+        float lerp = AndroidUtilities.lerp(dp, f11, iVar.f4758b.f50530a);
         float measuredHeight = ((this.containerView.getMeasuredHeight() - this.f36098v0) + lerp) - this.backgroundPaddingTop;
         float max = Math.max((measuredHeight / 3.0f) * 2.0f, measuredHeight - AndroidUtilities.dp(250.0f));
         zg.h hVar = this.Z;
@@ -3264,13 +3264,13 @@ public final class d60 extends org.telegram.ui.ActionBar.h3 implements Notificat
 
     public final void Z0() {
         if (this.H != null) {
-            this.H.setTranslationY((-this.f36118z1.c()) + this.containerView.getPaddingBottom() + ((-this.f36111x3.f50504e) * AndroidUtilities.dp(64.0f)));
+            this.H.setTranslationY((-this.f36118z1.c()) + this.containerView.getPaddingBottom() + ((-this.f36111x3.f50505e) * AndroidUtilities.dp(64.0f)));
         }
     }
 
     public final void a1() {
         boolean z4;
-        float f10 = this.f36111x3.f50504e;
+        float f10 = this.f36111x3.f50505e;
         float lerp = AndroidUtilities.lerp(0.25f, 1.0f, f10);
         ImageView imageView = this.G;
         imageView.setScaleX(lerp);

@@ -10,24 +10,24 @@ import org.telegram.ui.Components.ki;
 import org.telegram.ui.Components.mi;
 import org.telegram.ui.Components.wg;
 public final class o1 implements ki {
-    public final mi f49895a;
-    public final z1 f49896b;
+    public final mi f49896a;
+    public final z1 f49897b;
 
     public o1(z1 z1Var, mi miVar) {
-        this.f49896b = z1Var;
-        this.f49895a = miVar;
+        this.f49897b = z1Var;
+        this.f49896a = miVar;
     }
 
     @Override
     public final void B0(wg wgVar) {
-        NotificationCenter.getInstance(this.f49896b.getCurrentAccount()).doOnIdle(wgVar);
+        NotificationCenter.getInstance(this.f49897b.getCurrentAccount()).doOnIdle(wgVar);
     }
 
     @Override
     public final void I1(int i10, boolean z4, boolean z10, int i11, int i12, long j10, boolean z11, boolean z12, long j11) {
-        mi miVar = this.f49895a;
+        mi miVar = this.f49896a;
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = miVar.f29054g0;
-        z1 z1Var = this.f49896b;
+        z1 z1Var = this.f49897b;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();

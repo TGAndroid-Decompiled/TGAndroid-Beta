@@ -15,7 +15,7 @@ public final class h {
 
     public h(w8.g gVar, uc.h hVar, uc.h hVar2, ca.d dVar) {
         gVar.a();
-        Context context = gVar.f49451a;
+        Context context = gVar.f49452a;
         kotlin.jvm.internal.j.d(context, "firebaseApp.applicationContext");
         c0 c0Var = c0.f12154a;
         la.b a2 = c0.a(gVar);

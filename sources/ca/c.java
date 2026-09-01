@@ -44,7 +44,7 @@ public final class c implements d {
 
     public c(w8.g gVar, ba.b bVar, ExecutorService executorService, k kVar) {
         gVar.a();
-        ea.c cVar = new ea.c(gVar.f49451a, bVar);
+        ea.c cVar = new ea.c(gVar.f49452a, bVar);
         bf.b bVar2 = new bf.b(gVar);
         if (u.f7349c == null) {
             u.f7349c = new u(6);
@@ -85,10 +85,10 @@ public final class c implements d {
         ea.b f10;
         w8.g gVar = this.f2382a;
         gVar.a();
-        String str = gVar.f49453c.f49463a;
+        String str = gVar.f49454c.f49464a;
         String str2 = bVar.f4387a;
         gVar.a();
-        String str3 = gVar.f49453c.f49468g;
+        String str3 = gVar.f49454c.f49469g;
         String str4 = bVar.d;
         ea.c cVar = this.f2383b;
         ea.d dVar = cVar.f5016c;
@@ -204,7 +204,7 @@ public final class c implements d {
             try {
                 w8.g gVar = this.f2382a;
                 gVar.a();
-                bf.b p10 = bf.b.p(gVar.f49451a);
+                bf.b p10 = bf.b.p(gVar.f49452a);
                 this.f2384c.T(bVar);
                 if (p10 != null) {
                     p10.Z();
@@ -218,17 +218,17 @@ public final class c implements d {
     public final void g() {
         w8.g gVar = this.f2382a;
         gVar.a();
-        m.g(gVar.f49453c.f49464b, "Please set your Application ID. A valid Firebase App ID is required to communicate with Firebase server APIs: It identifies your application with Firebase.Please refer to https://firebase.google.com/support/privacy/init-options.");
+        m.g(gVar.f49454c.f49465b, "Please set your Application ID. A valid Firebase App ID is required to communicate with Firebase server APIs: It identifies your application with Firebase.Please refer to https://firebase.google.com/support/privacy/init-options.");
         gVar.a();
-        m.g(gVar.f49453c.f49468g, "Please set your Project ID. A valid Firebase Project ID is required to communicate with Firebase server APIs: It identifies your application with Firebase.Please refer to https://firebase.google.com/support/privacy/init-options.");
+        m.g(gVar.f49454c.f49469g, "Please set your Project ID. A valid Firebase Project ID is required to communicate with Firebase server APIs: It identifies your application with Firebase.Please refer to https://firebase.google.com/support/privacy/init-options.");
         gVar.a();
-        m.g(gVar.f49453c.f49463a, "Please set a valid API key. A Firebase API key is required to communicate with Firebase server APIs: It authenticates your project with Google.Please refer to https://firebase.google.com/support/privacy/init-options.");
+        m.g(gVar.f49454c.f49464a, "Please set a valid API key. A Firebase API key is required to communicate with Firebase server APIs: It authenticates your project with Google.Please refer to https://firebase.google.com/support/privacy/init-options.");
         gVar.a();
-        String str = gVar.f49453c.f49464b;
+        String str = gVar.f49454c.f49465b;
         Pattern pattern = j.f2398c;
         m.a("Please set your Application ID. A valid Firebase App ID is required to communicate with Firebase server APIs: It identifies your application with Firebase.Please refer to https://firebase.google.com/support/privacy/init-options.", str.contains(":"));
         gVar.a();
-        m.a("Please set a valid API key. A Firebase API key is required to communicate with Firebase server APIs: It authenticates your project with Google.Please refer to https://firebase.google.com/support/privacy/init-options.", j.f2398c.matcher(gVar.f49453c.f49463a).matches());
+        m.a("Please set a valid API key. A Firebase API key is required to communicate with Firebase server APIs: It authenticates your project with Google.Please refer to https://firebase.google.com/support/privacy/init-options.", j.f2398c.matcher(gVar.f49454c.f49464a).matches());
     }
 
     public final java.lang.String h(da.b r3) {
@@ -272,14 +272,14 @@ public final class c implements d {
         ea.c cVar2 = this.f2383b;
         w8.g gVar = this.f2382a;
         gVar.a();
-        String str5 = gVar.f49453c.f49463a;
+        String str5 = gVar.f49454c.f49464a;
         String str6 = bVar.f4387a;
         w8.g gVar2 = this.f2382a;
         gVar2.a();
-        String str7 = gVar2.f49453c.f49468g;
+        String str7 = gVar2.f49454c.f49469g;
         w8.g gVar3 = this.f2382a;
         gVar3.a();
-        String str8 = gVar3.f49453c.f49464b;
+        String str8 = gVar3.f49454c.f49465b;
         ea.d dVar = cVar2.f5016c;
         if (dVar.b()) {
             URL a2 = ea.c.a("projects/" + str7 + "/installations");

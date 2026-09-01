@@ -131,13 +131,13 @@ public final class d0 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 12:
                 wf.k kVar = (wf.k) this.f5748b;
-                kVar.f49558g0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kVar.f49559g0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 kVar.E = true;
                 kVar.invalidate();
                 return;
             default:
                 wf.p pVar = (wf.p) this.f5748b;
-                pVar.f49558g0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                pVar.f49559g0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 pVar.E = true;
                 pVar.invalidate();
                 return;

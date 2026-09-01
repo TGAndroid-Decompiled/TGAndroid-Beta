@@ -61,17 +61,17 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
     public long F;
     public boolean G;
     public u2 I;
-    public or f49075e;
-    public org.telegram.ui.ActionBar.w0 f49076f;
+    public or f49076e;
+    public org.telegram.ui.ActionBar.w0 f49077f;
     public ph h;
-    public i f49077n;
-    public x5 f49078r;
-    public j f49079s;
+    public i f49078n;
+    public x5 f49079r;
+    public j f49080s;
     public j v;
-    public String f49082y;
+    public String f49083y;
     public final g d = new g(this, 1);
-    public boolean f49080w = true;
-    public TLRPC.Document f49081x = getMediaDataController().getGreetingsSticker();
+    public boolean f49081w = true;
+    public TLRPC.Document f49082x = getMediaDataController().getGreetingsSticker();
     public boolean H = g0();
 
     public static void Y(k kVar) {
@@ -104,9 +104,9 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
     }
 
     public static void Z(k kVar) {
-        i iVar = kVar.f49077n;
-        if (iVar != null && iVar.isAttachedToWindow() && kVar.f49080w) {
-            i iVar2 = kVar.f49077n;
+        i iVar = kVar.f49078n;
+        if (iVar != null && iVar.isAttachedToWindow() && kVar.f49081w) {
+            i iVar2 = kVar.f49078n;
             TLRPC.Document greetingsSticker = MediaDataController.getInstance(kVar.currentAccount).getGreetingsSticker();
             g gVar = new g(kVar, 2);
             if (greetingsSticker == null) {
@@ -135,9 +135,9 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
         int top = ((View) kVar.h.getParent()).getTop();
         int measuredHeight = kVar.h.getMeasuredHeight() - AndroidUtilities.dp(36.0f);
         float clamp = Utilities.clamp((top + measuredHeight) / measuredHeight, 1.0f, 0.65f);
-        kVar.f49077n.setScaleX(clamp);
-        kVar.f49077n.setScaleY(clamp);
-        kVar.f49077n.setAlpha(Utilities.clamp(clamp * 2.0f, 1.0f, 0.0f));
+        kVar.f49078n.setScaleX(clamp);
+        kVar.f49078n.setScaleY(clamp);
+        kVar.f49078n.setAlpha(Utilities.clamp(clamp * 2.0f, 1.0f, 0.0f));
         kVar.h.invalidate();
     }
 
@@ -145,13 +145,13 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
     public final void U(ArrayList arrayList, x51 x51Var) {
         arrayList.add(j51.k(this.h));
         yh.r(R.string.BusinessIntroHeader, arrayList);
-        arrayList.add(j51.k(this.f49079s));
+        arrayList.add(j51.k(this.f49080s));
         arrayList.add(j51.k(this.v));
-        if (this.f49080w) {
+        if (this.f49081w) {
             arrayList.add(j51.f(LocaleController.getString(R.string.BusinessIntroSticker), LocaleController.getString(R.string.BusinessIntroStickerRandom), 1));
-        } else if (this.f49082y != null) {
+        } else if (this.f49083y != null) {
             String string = LocaleController.getString(R.string.BusinessIntroSticker);
-            String str = this.f49082y;
+            String str = this.f49083y;
             j51 j51Var = new j51(3);
             j51Var.d = 1;
             j51Var.f28014l = string;
@@ -159,7 +159,7 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
             arrayList.add(j51Var);
         } else {
             String string2 = LocaleController.getString(R.string.BusinessIntroSticker);
-            TLRPC.Document document = this.f49081x;
+            TLRPC.Document document = this.f49082x;
             j51 j51Var2 = new j51(3);
             j51Var2.d = 1;
             j51Var2.f28014l = string2;
@@ -203,15 +203,15 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
             }
             showDialog(y1Var);
         } else if (i10 == 2) {
-            this.f49079s.setText("");
+            this.f49080s.setText("");
             this.v.setText("");
-            AndroidUtilities.hideKeyboard(this.f49079s.f22955b);
+            AndroidUtilities.hideKeyboard(this.f49080s.f22955b);
             AndroidUtilities.hideKeyboard(this.v.f22955b);
-            this.f49080w = true;
-            this.f49077n.d("", "");
-            i iVar = this.f49077n;
+            this.f49081w = true;
+            this.f49078n.d("", "");
+            i iVar = this.f49078n;
             TLRPC.Document greetingsSticker = MediaDataController.getInstance(this.currentAccount).getGreetingsSticker();
-            this.f49081x = greetingsSticker;
+            this.f49082x = greetingsSticker;
             iVar.setSticker(greetingsSticker);
             g gVar = this.d;
             AndroidUtilities.cancelRunOnUIThread(gVar);
@@ -229,26 +229,26 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
     public final View createView(Context context) {
         AndroidUtilities.requestAdjustResize(getParentActivity(), this.classGuid);
         getUserConfig().getCurrentUser();
-        this.f49077n = new ho(context, this.currentAccount, this.f49081x, getResourceProvider());
+        this.f49078n = new ho(context, this.currentAccount, this.f49082x, getResourceProvider());
         ph phVar = new ph(this, context);
         this.h = phVar;
         phVar.setWillNotDraw(false);
-        this.f49078r = new x5(this.f49077n, this.h, AndroidUtilities.dp(16.0f), getThemedPaint("paintChatActionBackground"));
-        this.f49077n.setBackground(new ColorDrawable(0));
+        this.f49079r = new x5(this.f49078n, this.h, AndroidUtilities.dp(16.0f), getThemedPaint("paintChatActionBackground"));
+        this.f49078n.setBackground(new ColorDrawable(0));
         ge geVar = new ge(context, 5);
         geVar.setScaleType(ImageView.ScaleType.MATRIX);
         geVar.setImageDrawable(j5.e(null, this.currentAccount, getUserConfig().getClientUserId(), k6.I.q()));
         this.h.addView(geVar, c6.e(-1, -1, 119));
-        this.h.addView(this.f49077n, c6.d(-2, -2.0f, 17, 42.0f, 18.0f, 42.0f, 18.0f));
+        this.h.addView(this.f49078n, c6.d(-2, -2.0f, 17, 42.0f, 18.0f, 42.0f, 18.0f));
         j jVar = new j(this, context, LocaleController.getString(R.string.BusinessIntroTitleHint), getMessagesController().introTitleLengthLimit, this.resourceProvider, 0);
-        this.f49079s = jVar;
+        this.f49080s = jVar;
         jVar.h = true;
         jVar.setShowLimitOnFocus(true);
-        j jVar2 = this.f49079s;
+        j jVar2 = this.f49080s;
         int i10 = k6.f21659d6;
         jVar2.setBackgroundColor(getThemedColor(i10));
-        this.f49079s.setDivider(true);
-        j jVar3 = this.f49079s;
+        this.f49080s.setDivider(true);
+        j jVar3 = this.f49080s;
         jVar3.getClass();
         org.telegram.ui.Cells.g gVar = new org.telegram.ui.Cells.g(jVar3, 4);
         g3 g3Var = jVar3.f22955b;
@@ -265,7 +265,7 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
         g3 g3Var2 = jVar5.f22955b;
         g3Var2.setImeOptions(6);
         g3Var2.setOnEditorActionListener(new t2(gVar2, 2));
-        this.f49077n.d("", "");
+        this.f49078n.d("", "");
         super.createView(context);
         this.f25815a.p1();
         b61 b61Var = this.f25815a;
@@ -275,8 +275,8 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
         Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i11 = k6.f21981v8;
         mutate.setColorFilter(new PorterDuffColorFilter(k6.w0(null, i11, false), PorterDuff.Mode.MULTIPLY));
-        this.f49075e = new or(mutate, new tp(k6.w0(null, i11, false)));
-        this.f49076f = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f49075e);
+        this.f49076e = new or(mutate, new tp(k6.w0(null, i11, false)));
+        this.f49077f = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f49076e);
         e0(false);
         this.f25815a.addOnLayoutChangeListener(new s2(this, 2));
         this.f25815a.j(new nb0(this, 19));
@@ -304,12 +304,12 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
         float f11;
         float f12;
         float f13;
-        if (this.f49076f != null) {
+        if (this.f49077f != null) {
             boolean f02 = f0();
-            this.f49076f.setEnabled(f02);
+            this.f49077f.setEnabled(f02);
             float f14 = 0.0f;
             if (z4) {
-                ViewPropertyAnimator animate = this.f49076f.animate();
+                ViewPropertyAnimator animate = this.f49077f.animate();
                 if (f02) {
                     f12 = 1.0f;
                 } else {
@@ -327,21 +327,21 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
                 }
                 scaleX.scaleY(f14).setDuration(180L).start();
             } else {
-                org.telegram.ui.ActionBar.w0 w0Var = this.f49076f;
+                org.telegram.ui.ActionBar.w0 w0Var = this.f49077f;
                 if (f02) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.0f;
                 }
                 w0Var.setAlpha(f10);
-                org.telegram.ui.ActionBar.w0 w0Var2 = this.f49076f;
+                org.telegram.ui.ActionBar.w0 w0Var2 = this.f49077f;
                 if (f02) {
                     f11 = 1.0f;
                 } else {
                     f11 = 0.0f;
                 }
                 w0Var2.setScaleX(f11);
-                org.telegram.ui.ActionBar.w0 w0Var3 = this.f49076f;
+                org.telegram.ui.ActionBar.w0 w0Var3 = this.f49077f;
                 if (f02) {
                     f14 = 1.0f;
                 }
@@ -386,7 +386,7 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
     public final boolean f0() {
         long j10;
         TLRPC.Document document;
-        String charSequence = this.f49079s.getText().toString();
+        String charSequence = this.f49080s.getText().toString();
         String str = this.D;
         String str2 = "";
         if (str == null) {
@@ -399,8 +399,8 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
                 str2 = str3;
             }
             if (TextUtils.equals(charSequence2, str2)) {
-                boolean z4 = this.f49080w;
-                if (!z4 && (document = this.f49081x) != null) {
+                boolean z4 = this.f49081w;
+                if (!z4 && (document = this.f49082x) != null) {
                     j10 = document.f20849id;
                 } else {
                     j10 = 0;
@@ -419,9 +419,9 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
     }
 
     public final boolean g0() {
-        j jVar = this.f49079s;
+        j jVar = this.f49080s;
         if (jVar != null && this.v != null) {
-            if (!TextUtils.isEmpty(jVar.getText()) || !TextUtils.isEmpty(this.v.getText()) || !this.f49080w) {
+            if (!TextUtils.isEmpty(jVar.getText()) || !TextUtils.isEmpty(this.v.getText()) || !this.f49081w) {
                 return false;
             }
             return true;
@@ -431,7 +431,7 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
 
     public final void h0() {
         TLRPC.Document document;
-        or orVar = this.f49075e;
+        or orVar = this.f49076e;
         if (orVar.f29840c > 0.0f) {
             return;
         }
@@ -442,16 +442,16 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
             updatebusinessintro.flags |= 1;
             TL_account.TL_inputBusinessIntro tL_inputBusinessIntro = new TL_account.TL_inputBusinessIntro();
             updatebusinessintro.intro = tL_inputBusinessIntro;
-            tL_inputBusinessIntro.title = this.f49079s.getText().toString();
+            tL_inputBusinessIntro.title = this.f49080s.getText().toString();
             updatebusinessintro.intro.description = this.v.getText().toString();
-            if (!this.f49080w && (this.f49081x != null || this.B != null)) {
+            if (!this.f49081w && (this.f49082x != null || this.B != null)) {
                 TL_account.TL_inputBusinessIntro tL_inputBusinessIntro2 = updatebusinessintro.intro;
                 tL_inputBusinessIntro2.flags |= 1;
                 TLRPC.InputDocument inputDocument = this.B;
                 if (inputDocument != null) {
                     tL_inputBusinessIntro2.sticker = inputDocument;
                 } else {
-                    tL_inputBusinessIntro2.sticker = getMessagesController().getInputDocument(this.f49081x);
+                    tL_inputBusinessIntro2.sticker = getMessagesController().getInputDocument(this.f49082x);
                 }
             }
             if (userFull != null) {
@@ -461,7 +461,7 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
                 TL_account.TL_inputBusinessIntro tL_inputBusinessIntro3 = updatebusinessintro.intro;
                 tL_businessIntro.title = tL_inputBusinessIntro3.title;
                 tL_businessIntro.description = tL_inputBusinessIntro3.description;
-                if (!this.f49080w && (document = this.f49081x) != null) {
+                if (!this.f49081w && (document = this.f49082x) != null) {
                     tL_businessIntro.flags |= 1;
                     tL_businessIntro.sticker = document;
                 }
@@ -488,7 +488,7 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
         }
         TL_account.TL_businessIntro tL_businessIntro = userFull.business_intro;
         if (tL_businessIntro != null) {
-            j jVar = this.f49079s;
+            j jVar = this.f49080s;
             String str = tL_businessIntro.title;
             this.D = str;
             jVar.setText(str);
@@ -496,18 +496,18 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
             String str2 = userFull.business_intro.description;
             this.E = str2;
             jVar2.setText(str2);
-            this.f49081x = userFull.business_intro.sticker;
+            this.f49082x = userFull.business_intro.sticker;
         } else {
-            j jVar3 = this.f49079s;
+            j jVar3 = this.f49080s;
             this.D = "";
             jVar3.setText("");
             j jVar4 = this.v;
             this.E = "";
             jVar4.setText("");
             this.B = null;
-            this.f49081x = null;
+            this.f49082x = null;
         }
-        TLRPC.Document document = this.f49081x;
+        TLRPC.Document document = this.f49082x;
         if (document == null) {
             j10 = 0;
         } else {
@@ -519,18 +519,18 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
         } else {
             z4 = false;
         }
-        this.f49080w = z4;
-        i iVar = this.f49077n;
+        this.f49081w = z4;
+        i iVar = this.f49078n;
         if (iVar != null) {
-            iVar.d(this.f49079s.getText().toString(), this.v.getText().toString());
-            i iVar2 = this.f49077n;
-            TLRPC.Document document2 = this.f49081x;
-            if (document2 == null || this.f49080w) {
+            iVar.d(this.f49080s.getText().toString(), this.v.getText().toString());
+            i iVar2 = this.f49078n;
+            TLRPC.Document document2 = this.f49082x;
+            if (document2 == null || this.f49081w) {
                 document2 = MediaDataController.getInstance(this.currentAccount).getGreetingsSticker();
             }
             iVar2.setSticker(document2);
         }
-        if (this.f49080w) {
+        if (this.f49081w) {
             g gVar = this.d;
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -555,39 +555,39 @@ public final class k extends c61 implements NotificationCenter.NotificationCente
                 alertDialog$Builder.f21166a.O = LocaleController.getString(R.string.UnsavedChanges);
                 alertDialog$Builder.f21166a.Q = LocaleController.getString(R.string.BusinessIntroUnsavedChanges);
                 alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new c2(this) {
-                    public final k f49058b;
+                    public final k f49059b;
 
                     {
-                        this.f49058b = this;
+                        this.f49059b = this;
                     }
 
                     @Override
                     public final void j(d2 d2Var, int i10) {
                         switch (r2) {
                             case 0:
-                                this.f49058b.h0();
+                                this.f49059b.h0();
                                 return;
                             default:
-                                this.f49058b.finishFragment();
+                                this.f49059b.finishFragment();
                                 return;
                         }
                     }
                 });
                 alertDialog$Builder.h(LocaleController.getString(R.string.PassportDiscard), new c2(this) {
-                    public final k f49058b;
+                    public final k f49059b;
 
                     {
-                        this.f49058b = this;
+                        this.f49059b = this;
                     }
 
                     @Override
                     public final void j(d2 d2Var, int i10) {
                         switch (r2) {
                             case 0:
-                                this.f49058b.h0();
+                                this.f49059b.h0();
                                 return;
                             default:
-                                this.f49058b.finishFragment();
+                                this.f49059b.finishFragment();
                                 return;
                         }
                     }

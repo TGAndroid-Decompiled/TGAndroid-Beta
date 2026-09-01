@@ -54,7 +54,7 @@ public final class h1 extends ch.c implements xd.b {
     }
 
     public final void b() {
-        float f10 = this.f14152f.f50509e;
+        float f10 = this.f14152f.f50510e;
         int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(8.0f);
         Rect rect = this.f2532c;
         rect.set(AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), getMeasuredWidth() - AndroidUtilities.dp(8.0f), f10 / 3.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), getMeasuredWidth() - AndroidUtilities.dp(8.0f), (f10 + 1.0f) / 3.0f), measuredHeight);

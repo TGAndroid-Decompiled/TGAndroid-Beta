@@ -9,10 +9,10 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.p2;
 import org.telegram.ui.Cells.qa;
 public final class f1 extends org.telegram.ui.ActionBar.j {
-    public final m1 f49048a;
+    public final m1 f49049a;
 
     public f1(m1 m1Var) {
-        this.f49048a = m1Var;
+        this.f49049a = m1Var;
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class f1 extends org.telegram.ui.ActionBar.j {
         int i11;
         int i12;
         g6 g6Var;
-        m1 m1Var = this.f49048a;
-        ArrayList arrayList = m1Var.f49132b;
+        m1 m1Var = this.f49049a;
+        ArrayList arrayList = m1Var.f49133b;
         if (i10 == -1) {
             if (arrayList.isEmpty()) {
                 m1Var.finishFragment();

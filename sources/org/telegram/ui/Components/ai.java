@@ -57,7 +57,7 @@ public final class ai implements og.g, yd.a, androidx.activity.result.b, oa0, h7
         if (m3Var != null) {
             m3Var.getClass();
             if (charSequence != null && charSequence.length() > 0) {
-                m3Var.f49876a.t4(charSequence.toString());
+                m3Var.f49877a.t4(charSequence.toString());
             }
         }
     }
@@ -84,7 +84,7 @@ public final class ai implements og.g, yd.a, androidx.activity.result.b, oa0, h7
 
     @Override
     public wh.a G() {
-        return ((wh.x0) this.f25265b).f50174a;
+        return ((wh.x0) this.f25265b).f50175a;
     }
 
     @Override
@@ -106,8 +106,8 @@ public final class ai implements og.g, yd.a, androidx.activity.result.b, oa0, h7
         wh.x0 x0Var = (wh.x0) this.f25265b;
         wh.m3 m3Var = x0Var.P;
         if (m3Var != null) {
-            wh.a aVar = x0Var.f50174a;
-            if (m3Var.f49876a.S4()) {
+            wh.a aVar = x0Var.f50175a;
+            if (m3Var.f49877a.S4()) {
                 return true;
             }
             return false;
@@ -120,8 +120,8 @@ public final class ai implements og.g, yd.a, androidx.activity.result.b, oa0, h7
         wh.x0 x0Var = (wh.x0) this.f25265b;
         wh.m3 m3Var = x0Var.P;
         if (m3Var != null) {
-            wh.a aVar = x0Var.f50174a;
-            wh.d2 d2Var = m3Var.f49876a.G3;
+            wh.a aVar = x0Var.f50175a;
+            wh.d2 d2Var = m3Var.f49877a.G3;
             if (d2Var != null) {
                 d2Var.f(i10, i11);
             }
@@ -152,13 +152,13 @@ public final class ai implements og.g, yd.a, androidx.activity.result.b, oa0, h7
         wh.x0 x0Var = (wh.x0) this.f25265b;
         wh.m3 m3Var = x0Var.P;
         if (m3Var != null) {
-            wh.a aVar = x0Var.f50174a;
-            wh.r3 r3Var = m3Var.f49876a;
+            wh.a aVar = x0Var.f50175a;
+            wh.r3 r3Var = m3Var.f49877a;
             wh.d2 d2Var = r3Var.G3;
             if (d2Var != null) {
                 d2Var.g();
             }
-            r3Var.f49979e3.onContentChanged();
+            r3Var.f49980e3.onContentChanged();
         }
     }
 
@@ -226,8 +226,8 @@ public final class ai implements og.g, yd.a, androidx.activity.result.b, oa0, h7
         wh.x0 x0Var = (wh.x0) this.f25265b;
         wh.m3 m3Var = x0Var.P;
         if (m3Var != null) {
-            wh.a aVar = x0Var.f50174a;
-            wh.r3.O1(m3Var.f49876a);
+            wh.a aVar = x0Var.f50175a;
+            wh.r3.O1(m3Var.f49877a);
         }
     }
 
@@ -276,18 +276,18 @@ public final class ai implements og.g, yd.a, androidx.activity.result.b, oa0, h7
             case 20:
                 wh.m3 m3Var = ((wh.x0) this.f25265b).P;
                 if (m3Var != null) {
-                    wh.r3 r3Var = m3Var.f49876a;
+                    wh.r3 r3Var = m3Var.f49877a;
                     wh.r3.M1(r3Var, e1Var);
-                    r3Var.f49979e3.h(e1Var, true);
+                    r3Var.f49980e3.h(e1Var, true);
                     return;
                 }
                 return;
             default:
-                wh.y4 y4Var = ((wh.a5) this.f25265b).f49645s;
+                wh.y4 y4Var = ((wh.a5) this.f25265b).f49646s;
                 if (y4Var != null) {
-                    wh.r3 r3Var2 = ((wh.x2) y4Var).f50153a;
+                    wh.r3 r3Var2 = ((wh.x2) y4Var).f50154a;
                     wh.r3.M1(r3Var2, e1Var);
-                    r3Var2.f49979e3.h(e1Var, true);
+                    r3Var2.f49980e3.h(e1Var, true);
                     return;
                 }
                 return;
@@ -298,10 +298,10 @@ public final class ai implements og.g, yd.a, androidx.activity.result.b, oa0, h7
         StringWriter stringWriter = new StringWriter();
         try {
             w9.d dVar = (w9.d) this.f25265b;
-            w9.e eVar = new w9.e(stringWriter, dVar.f49475a, dVar.f49476b, dVar.f49477c, dVar.d);
+            w9.e eVar = new w9.e(stringWriter, dVar.f49476a, dVar.f49477b, dVar.f49478c, dVar.d);
             eVar.h(obj);
             eVar.j();
-            eVar.f49479b.flush();
+            eVar.f49480b.flush();
         } catch (IOException unused) {
         }
         return stringWriter.toString();
@@ -317,7 +317,7 @@ public final class ai implements og.g, yd.a, androidx.activity.result.b, oa0, h7
         wh.x0 x0Var = (wh.x0) this.f25265b;
         wh.m3 m3Var = x0Var.P;
         if (m3Var != null) {
-            wh.r3.P1(m3Var.f49876a, x0Var.f50174a);
+            wh.r3.P1(m3Var.f49877a, x0Var.f50175a);
         }
     }
 
@@ -447,15 +447,15 @@ public final class ai implements og.g, yd.a, androidx.activity.result.b, oa0, h7
     public void o(wh.e1 e1Var) {
         wh.a aVar;
         wh.a5 a5Var = (wh.a5) this.f25265b;
-        wh.y4 y4Var = a5Var.f49645s;
-        if (y4Var != null && (aVar = a5Var.f50174a) != null) {
-            wh.r3 r3Var = ((wh.x2) y4Var).f50153a;
-            ArrayList arrayList = r3Var.f49987i3;
-            long j10 = aVar.f49632t;
+        wh.y4 y4Var = a5Var.f49646s;
+        if (y4Var != null && (aVar = a5Var.f50175a) != null) {
+            wh.r3 r3Var = ((wh.x2) y4Var).f50154a;
+            ArrayList arrayList = r3Var.f49988i3;
+            long j10 = aVar.f49633t;
             if (j10 != 0) {
                 int i10 = -1;
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                    if (((wh.a) arrayList.get(i11)).f49623k.contains(Long.valueOf(j10))) {
+                    if (((wh.a) arrayList.get(i11)).f49624k.contains(Long.valueOf(j10))) {
                         i10 = i11;
                     }
                 }
@@ -465,8 +465,8 @@ public final class ai implements og.g, yd.a, androidx.activity.result.b, oa0, h7
                         d2Var.d();
                     }
                     wh.a aVar2 = new wh.a(new TL_iv.pageBlockParagraph(), 0, 0);
-                    ArrayList arrayList2 = aVar.f49623k;
-                    ArrayList arrayList3 = aVar2.f49623k;
+                    ArrayList arrayList2 = aVar.f49624k;
+                    ArrayList arrayList3 = aVar2.f49624k;
                     arrayList3.addAll(arrayList2);
                     if (!arrayList3.isEmpty()) {
                         android.support.v4.media.a.u(1, arrayList3);
@@ -576,7 +576,7 @@ public final class ai implements og.g, yd.a, androidx.activity.result.b, oa0, h7
             }
             n0Var.h = i11;
             y2.q.b(context);
-            n0Var.f3069g = y2.q.a().c(w2.a.f49324e).a("CAST_SENDER_SDK", new v2.c("proto"), com.google.android.gms.internal.cast.y.f3180a);
+            n0Var.f3069g = y2.q.a().c(w2.a.f49325e).a("CAST_SENDER_SDK", new v2.c("proto"), com.google.android.gms.internal.cast.y.f3180a);
             if (bundle.containsKey("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE")) {
                 n0Var.f3067e = Long.valueOf(bundle.getLong("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE"));
             }
@@ -688,7 +688,7 @@ public final class ai implements og.g, yd.a, androidx.activity.result.b, oa0, h7
         wh.y4 y4Var;
         org.telegram.ui.Cells.m9 textSelectionHelper;
         wh.a5 a5Var = (wh.a5) this.f25265b;
-        if (!a5Var.f49646w && i10 != i11 && (y4Var = a5Var.f49645s) != null && (textSelectionHelper = ((wh.x2) y4Var).f50153a.getTextSelectionHelper()) != null) {
+        if (!a5Var.f49647w && i10 != i11 && (y4Var = a5Var.f49646s) != null && (textSelectionHelper = ((wh.x2) y4Var).f50154a.getTextSelectionHelper()) != null) {
             e1Var.post(new org.telegram.messenger.p6(this, e1Var, i11, textSelectionHelper, i10, 5));
         }
     }
@@ -846,7 +846,7 @@ public final class ai implements og.g, yd.a, androidx.activity.result.b, oa0, h7
         if (m3Var == null) {
             return null;
         }
-        return m3Var.f49876a.getTextSelectionHelper();
+        return m3Var.f49877a.getTextSelectionHelper();
     }
 
     public ai(u5.s sVar, String[] strArr) {

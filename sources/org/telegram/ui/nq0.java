@@ -24,7 +24,7 @@ public final class nq0 implements ValueAnimator.AnimatorUpdateListener {
                 photoViewer.f34270f3.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                CropAreaView cropAreaView = photoViewer.f34450z1.f25248b.f51165a;
+                CropAreaView cropAreaView = photoViewer.f34450z1.f25248b.f51166a;
                 float lerp = AndroidUtilities.lerp(photoViewer.X5, photoViewer.f34236b6, photoViewer.f34300i6);
                 float lerp2 = AndroidUtilities.lerp(photoViewer.U5, photoViewer.Z5, photoViewer.f34300i6);
                 float lerp3 = AndroidUtilities.lerp(photoViewer.V5, photoViewer.f34226a6, photoViewer.f34300i6);

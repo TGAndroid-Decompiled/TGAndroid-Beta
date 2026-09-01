@@ -10,7 +10,7 @@ import org.telegram.ui.Components.j51;
 import org.telegram.ui.Components.tl0;
 import org.telegram.ui.Components.x51;
 public final class u0 extends i51 {
-    public static final int f50058a = 0;
+    public static final int f50059a = 0;
 
     static {
         i51.setup(new i51());
@@ -20,9 +20,9 @@ public final class u0 extends i51 {
     public final void bindView(View view, j51 j51Var, boolean z4, x51 x51Var, i61 i61Var) {
         v0 v0Var = (v0) view;
         a aVar = (a) j51Var.G;
-        v0Var.f50174a = aVar;
+        v0Var.f50175a = aVar;
         v0Var.v = (n2) j51Var.H;
-        v0Var.f50092w = LocaleController.isRTL;
+        v0Var.f50093w = LocaleController.isRTL;
         v0Var.c(aVar);
     }
 

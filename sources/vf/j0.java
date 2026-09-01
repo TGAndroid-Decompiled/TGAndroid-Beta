@@ -6,25 +6,25 @@ import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.d2;
 import org.telegram.ui.Components.j51;
 public final class j0 implements c2, Utilities.Callback5 {
-    public final int f49067a;
-    public final l0 f49068b;
+    public final int f49068a;
+    public final l0 f49069b;
 
     public j0(l0 l0Var, int i10) {
-        this.f49067a = i10;
-        this.f49068b = l0Var;
+        this.f49068a = i10;
+        this.f49069b = l0Var;
     }
 
     @Override
     public void j(d2 d2Var, int i10) {
-        switch (this.f49067a) {
+        switch (this.f49068a) {
             case 0:
-                this.f49068b.a0();
+                this.f49069b.a0();
                 return;
             case 1:
-                this.f49068b.finishFragment();
+                this.f49069b.finishFragment();
                 return;
             default:
-                this.f49068b.a0();
+                this.f49069b.a0();
                 return;
         }
     }
@@ -34,6 +34,6 @@ public final class j0 implements c2, Utilities.Callback5 {
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        l0.W(this.f49068b, (j51) obj, (View) obj2);
+        l0.W(this.f49069b, (j51) obj, (View) obj2);
     }
 }

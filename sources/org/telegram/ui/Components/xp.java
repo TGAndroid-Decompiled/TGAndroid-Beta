@@ -84,7 +84,7 @@ public final class xp implements Runnable {
                 return;
             case 5:
                 js jsVar = (js) obj;
-                jsVar.f28190a.a(!aVar.f50505f, true);
+                jsVar.f28190a.a(!aVar.f50506f, true);
                 AndroidUtilities.runOnUIThread(jsVar.f28194f, 3000L);
                 return;
             case 6:

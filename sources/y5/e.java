@@ -9,17 +9,17 @@ import android.util.Log;
 import b6.l0;
 import java.util.concurrent.atomic.AtomicBoolean;
 public class e {
-    public static final int f50767a;
-    public static final e f50768b;
+    public static final int f50768a;
+    public static final e f50769b;
 
     static {
-        AtomicBoolean atomicBoolean = g.f50770a;
-        f50767a = 12451000;
-        f50768b = new Object();
+        AtomicBoolean atomicBoolean = g.f50771a;
+        f50768a = 12451000;
+        f50769b = new Object();
     }
 
     public static int a(Context context) {
-        AtomicBoolean atomicBoolean = g.f50770a;
+        AtomicBoolean atomicBoolean = g.f50771a;
         try {
             return context.getPackageManager().getPackageInfo("com.google.android.gms", 0).versionCode;
         } catch (PackageManager.NameNotFoundException unused) {
@@ -45,7 +45,7 @@ public class e {
             return intent2;
         } else {
             StringBuilder sb = new StringBuilder("gcore_");
-            sb.append(f50767a);
+            sb.append(f50768a);
             sb.append("-");
             if (!TextUtils.isEmpty(str)) {
                 sb.append(str);
@@ -76,7 +76,7 @@ public class e {
     }
 
     public int c(Context context) {
-        return d(context, f50767a);
+        return d(context, f50768a);
     }
 
     public int d(Context context, int i10) {

@@ -3,26 +3,26 @@ package wh;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 public final class h1 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f49765a;
-    public final z1 f49766b;
+    public final int f49766a;
+    public final z1 f49767b;
 
     public h1(z1 z1Var, int i10) {
-        this.f49765a = i10;
-        this.f49766b = z1Var;
+        this.f49766a = i10;
+        this.f49767b = z1Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f49765a) {
+        switch (this.f49766a) {
             case 0:
-                z1 z1Var = this.f49766b;
+                z1 z1Var = this.f49767b;
                 z1Var.getClass();
                 z1Var.N0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 z1Var.f0();
                 return;
             default:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                z1 z1Var2 = this.f49766b;
+                z1 z1Var2 = this.f49767b;
                 z1Var2.F = floatValue;
                 z1Var2.v0();
                 z1Var2.M.setTranslationX(AndroidUtilities.lerp(z1Var2.D[0] - z1Var2.E[0], 0, z1Var2.F));

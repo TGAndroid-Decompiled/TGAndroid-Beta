@@ -42,11 +42,11 @@ public final class u5 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 float f13 = this.f46159c;
                 float f14 = this.f46158b;
-                jVar.f49598k = e2.c.w(f13, f14, floatValue2, f14);
+                jVar.f49599k = e2.c.w(f13, f14, floatValue2, f14);
                 float f15 = this.f46160e;
                 float f16 = this.d;
-                jVar.f49599l = e2.c.w(f15, f16, floatValue2, f16);
-                jVar.f49590a.a(f13, f15, false);
+                jVar.f49600l = e2.c.w(f15, f16, floatValue2, f16);
+                jVar.f49591a.a(f13, f15, false);
                 return;
         }
     }

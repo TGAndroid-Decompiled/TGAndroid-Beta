@@ -291,24 +291,24 @@ public final class fx0 extends AnimatorListenerAdapter {
                 return;
             case 20:
                 wf.g gVar = (wf.g) obj2;
-                gVar.f49544b.clear();
-                gVar.f49544b.add((yf.d) obj);
+                gVar.f49545b.clear();
+                gVar.f49545b.add((yf.d) obj);
                 return;
             case 21:
                 super.onAnimationEnd(animator);
                 wf.g gVar2 = (wf.g) obj2;
-                gVar2.f49547c.clear();
-                gVar2.f49547c.add((yf.b) obj);
+                gVar2.f49548c.clear();
+                gVar2.f49548c.add((yf.b) obj);
                 return;
             case 22:
                 wh.z1 z1Var = (wh.z1) obj2;
                 z1Var.B = false;
                 z1Var.v.setAlpha(1.0f);
                 z1Var.v.f24694w1.setVisibility(0);
-                z1Var.f50212x.p(AndroidUtilities.dp(22.0f));
-                z1Var.f50212x.setAlpha(255);
-                vg.f fVar = z1Var.f50205s;
-                fVar.f49286e = true;
+                z1Var.f50213x.p(AndroidUtilities.dp(22.0f));
+                z1Var.f50213x.setAlpha(255);
+                vg.f fVar = z1Var.f50206s;
+                fVar.f49287e = true;
                 fVar.invalidate();
                 ((Runnable) obj).run();
                 return;

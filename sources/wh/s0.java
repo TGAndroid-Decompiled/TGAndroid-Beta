@@ -9,7 +9,7 @@ import org.telegram.ui.Components.j51;
 import org.telegram.ui.Components.tl0;
 import org.telegram.ui.Components.x51;
 public final class s0 extends i51 {
-    public static final int f50023a = 0;
+    public static final int f50024a = 0;
 
     static {
         i51.setup(new i51());
@@ -17,7 +17,7 @@ public final class s0 extends i51 {
 
     @Override
     public final void bindView(View view, j51 j51Var, boolean z4, x51 x51Var, i61 i61Var) {
-        ((t0) view).f50043c = (a) j51Var.G;
+        ((t0) view).f50044c = (a) j51Var.G;
     }
 
     @Override

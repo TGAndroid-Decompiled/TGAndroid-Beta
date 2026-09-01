@@ -610,11 +610,11 @@ public final class d4 implements Utilities.Callback2 {
             case 17:
                 vf.k kVar = (vf.k) this.f45203b;
                 kVar.I.dismiss();
-                kVar.f49082y = (String) obj;
+                kVar.f49083y = (String) obj;
                 kVar.B = (TLRPC.InputDocument) obj2;
-                kVar.f49080w = false;
+                kVar.f49081w = false;
                 AndroidUtilities.cancelRunOnUIThread(kVar.d);
-                kVar.f49077n.setSticker(kVar.f49082y);
+                kVar.f49078n.setSticker(kVar.f49083y);
                 kVar.e0(true);
                 b61 b61Var = kVar.f25815a;
                 if (b61Var != null && (x51Var = b61Var.V2) != null) {
@@ -653,13 +653,13 @@ public final class d4 implements Utilities.Callback2 {
                     }
                     x51Var7.U();
                     yh.r(R.string.BusinessBotChats2, arrayList4);
-                    int i17 = vf.f0.f49043d0;
+                    int i17 = vf.f0.f49044d0;
                     j51 w10 = j51.w(-1, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2));
-                    w10.K(f0Var.f49046b0);
+                    w10.K(f0Var.f49047b0);
                     arrayList4.add(w10);
-                    int i18 = vf.f0.f49044e0;
+                    int i18 = vf.f0.f49045e0;
                     j51 w11 = j51.w(-2, LocaleController.getString(R.string.BusinessChatsOnlySelected2));
-                    w11.K(!f0Var.f49046b0);
+                    w11.K(!f0Var.f49047b0);
                     arrayList4.add(w11);
                     x51Var7.T();
                     arrayList4.add(j51.B(null));
@@ -698,7 +698,7 @@ public final class d4 implements Utilities.Callback2 {
                                 case 0:
                                     l0 l0Var2 = l0Var;
                                     l0Var2.J = null;
-                                    l0Var2.f49111c.V2.N(true);
+                                    l0Var2.f49112c.V2.N(true);
                                     l0Var2.Y(true);
                                     return;
                                 case 1:
@@ -715,7 +715,7 @@ public final class d4 implements Utilities.Callback2 {
                                         tL_businessBotRights.read_messages = true;
                                         tL_businessBotRights.reply = true;
                                     }
-                                    l0Var3.f49111c.V2.N(true);
+                                    l0Var3.f49112c.V2.N(true);
                                     l0Var3.Y(true);
                                     return;
                                 case 2:
@@ -726,7 +726,7 @@ public final class d4 implements Utilities.Callback2 {
                                         tL_businessBotRights2.edit_profile_photo = false;
                                         tL_businessBotRights2.edit_bio = false;
                                         tL_businessBotRights2.edit_name = false;
-                                        l0Var4.f49111c.V2.N(true);
+                                        l0Var4.f49112c.V2.N(true);
                                         l0Var4.Y(true);
                                         return;
                                     }
@@ -741,7 +741,7 @@ public final class d4 implements Utilities.Callback2 {
                                         tL_businessBotRights3.change_gift_settings = false;
                                         tL_businessBotRights3.sell_gifts = false;
                                         tL_businessBotRights3.view_gifts = false;
-                                        l0Var5.f49111c.V2.N(true);
+                                        l0Var5.f49112c.V2.N(true);
                                         l0Var5.Y(true);
                                         return;
                                     }
@@ -751,7 +751,7 @@ public final class d4 implements Utilities.Callback2 {
                                     l0 l0Var6 = l0Var;
                                     TL_account.TL_businessBotRights tL_businessBotRights4 = l0Var6.G;
                                     tL_businessBotRights4.manage_stories = !tL_businessBotRights4.manage_stories;
-                                    l0Var6.f49111c.V2.N(true);
+                                    l0Var6.f49112c.V2.N(true);
                                     l0Var6.Y(true);
                                     return;
                             }
@@ -761,7 +761,7 @@ public final class d4 implements Utilities.Callback2 {
                     x51Var8.T();
                 } else {
                     x51Var8.U();
-                    arrayList5.add(j51.k(l0Var.f49112e));
+                    arrayList5.add(j51.k(l0Var.f49113e));
                     longSparseArray.clear();
                     boolean z19 = false;
                     for (int i19 = 0; i19 < l0Var.d.d.size(); i19++) {
@@ -770,7 +770,7 @@ public final class d4 implements Utilities.Callback2 {
                             TLRPC.User user = (TLRPC.User) tLObject;
                             if (user.bot) {
                                 long j13 = user.f20990id;
-                                String str3 = l0Var.f49119y;
+                                String str3 = l0Var.f49120y;
                                 j51 j51Var4 = new j51(13);
                                 j51Var4.f28025x = j13;
                                 j51Var4.f28016n = str3;
@@ -786,7 +786,7 @@ public final class d4 implements Utilities.Callback2 {
                             TLRPC.User user2 = (TLRPC.User) tLObject2;
                             if (user2.bot) {
                                 long j14 = user2.f20990id;
-                                String str4 = l0Var.f49119y;
+                                String str4 = l0Var.f49120y;
                                 j51 j51Var5 = new j51(13);
                                 j51Var5.f28025x = j14;
                                 j51Var5.f28016n = str4;
@@ -796,8 +796,8 @@ public final class d4 implements Utilities.Callback2 {
                             }
                         }
                     }
-                    if (longSparseArray.size() <= 0 && (!TextUtils.isEmpty(l0Var.f49113f.getText().toString()) || l0Var.d.e() || l0Var.f49118x)) {
-                        arrayList5.add(j51.k(l0Var.f49114n));
+                    if (longSparseArray.size() <= 0 && (!TextUtils.isEmpty(l0Var.f49114f.getText().toString()) || l0Var.d.e() || l0Var.f49119x)) {
+                        arrayList5.add(j51.k(l0Var.f49115n));
                         z19 = true;
                     }
                     View view = l0Var.h;
@@ -871,7 +871,7 @@ public final class d4 implements Utilities.Callback2 {
                                 case 0:
                                     l0 l0Var2 = l0Var;
                                     l0Var2.J = null;
-                                    l0Var2.f49111c.V2.N(true);
+                                    l0Var2.f49112c.V2.N(true);
                                     l0Var2.Y(true);
                                     return;
                                 case 1:
@@ -888,7 +888,7 @@ public final class d4 implements Utilities.Callback2 {
                                         tL_businessBotRights3.read_messages = true;
                                         tL_businessBotRights3.reply = true;
                                     }
-                                    l0Var3.f49111c.V2.N(true);
+                                    l0Var3.f49112c.V2.N(true);
                                     l0Var3.Y(true);
                                     return;
                                 case 2:
@@ -899,7 +899,7 @@ public final class d4 implements Utilities.Callback2 {
                                         tL_businessBotRights22.edit_profile_photo = false;
                                         tL_businessBotRights22.edit_bio = false;
                                         tL_businessBotRights22.edit_name = false;
-                                        l0Var4.f49111c.V2.N(true);
+                                        l0Var4.f49112c.V2.N(true);
                                         l0Var4.Y(true);
                                         return;
                                     }
@@ -914,7 +914,7 @@ public final class d4 implements Utilities.Callback2 {
                                         tL_businessBotRights32.change_gift_settings = false;
                                         tL_businessBotRights32.sell_gifts = false;
                                         tL_businessBotRights32.view_gifts = false;
-                                        l0Var5.f49111c.V2.N(true);
+                                        l0Var5.f49112c.V2.N(true);
                                         l0Var5.Y(true);
                                         return;
                                     }
@@ -924,7 +924,7 @@ public final class d4 implements Utilities.Callback2 {
                                     l0 l0Var6 = l0Var;
                                     TL_account.TL_businessBotRights tL_businessBotRights4 = l0Var6.G;
                                     tL_businessBotRights4.manage_stories = !tL_businessBotRights4.manage_stories;
-                                    l0Var6.f49111c.V2.N(true);
+                                    l0Var6.f49112c.V2.N(true);
                                     l0Var6.Y(true);
                                     return;
                             }
@@ -975,7 +975,7 @@ public final class d4 implements Utilities.Callback2 {
                                 case 0:
                                     l0 l0Var2 = l0Var;
                                     l0Var2.J = null;
-                                    l0Var2.f49111c.V2.N(true);
+                                    l0Var2.f49112c.V2.N(true);
                                     l0Var2.Y(true);
                                     return;
                                 case 1:
@@ -992,7 +992,7 @@ public final class d4 implements Utilities.Callback2 {
                                         tL_businessBotRights32.read_messages = true;
                                         tL_businessBotRights32.reply = true;
                                     }
-                                    l0Var3.f49111c.V2.N(true);
+                                    l0Var3.f49112c.V2.N(true);
                                     l0Var3.Y(true);
                                     return;
                                 case 2:
@@ -1003,7 +1003,7 @@ public final class d4 implements Utilities.Callback2 {
                                         tL_businessBotRights22.edit_profile_photo = false;
                                         tL_businessBotRights22.edit_bio = false;
                                         tL_businessBotRights22.edit_name = false;
-                                        l0Var4.f49111c.V2.N(true);
+                                        l0Var4.f49112c.V2.N(true);
                                         l0Var4.Y(true);
                                         return;
                                     }
@@ -1018,7 +1018,7 @@ public final class d4 implements Utilities.Callback2 {
                                         tL_businessBotRights322.change_gift_settings = false;
                                         tL_businessBotRights322.sell_gifts = false;
                                         tL_businessBotRights322.view_gifts = false;
-                                        l0Var5.f49111c.V2.N(true);
+                                        l0Var5.f49112c.V2.N(true);
                                         l0Var5.Y(true);
                                         return;
                                     }
@@ -1028,7 +1028,7 @@ public final class d4 implements Utilities.Callback2 {
                                     l0 l0Var6 = l0Var;
                                     TL_account.TL_businessBotRights tL_businessBotRights42 = l0Var6.G;
                                     tL_businessBotRights42.manage_stories = !tL_businessBotRights42.manage_stories;
-                                    l0Var6.f49111c.V2.N(true);
+                                    l0Var6.f49112c.V2.N(true);
                                     l0Var6.Y(true);
                                     return;
                             }
@@ -1074,7 +1074,7 @@ public final class d4 implements Utilities.Callback2 {
                                 case 0:
                                     l0 l0Var2 = l0Var;
                                     l0Var2.J = null;
-                                    l0Var2.f49111c.V2.N(true);
+                                    l0Var2.f49112c.V2.N(true);
                                     l0Var2.Y(true);
                                     return;
                                 case 1:
@@ -1091,7 +1091,7 @@ public final class d4 implements Utilities.Callback2 {
                                         tL_businessBotRights32.read_messages = true;
                                         tL_businessBotRights32.reply = true;
                                     }
-                                    l0Var3.f49111c.V2.N(true);
+                                    l0Var3.f49112c.V2.N(true);
                                     l0Var3.Y(true);
                                     return;
                                 case 2:
@@ -1102,7 +1102,7 @@ public final class d4 implements Utilities.Callback2 {
                                         tL_businessBotRights22.edit_profile_photo = false;
                                         tL_businessBotRights22.edit_bio = false;
                                         tL_businessBotRights22.edit_name = false;
-                                        l0Var4.f49111c.V2.N(true);
+                                        l0Var4.f49112c.V2.N(true);
                                         l0Var4.Y(true);
                                         return;
                                     }
@@ -1117,7 +1117,7 @@ public final class d4 implements Utilities.Callback2 {
                                         tL_businessBotRights322.change_gift_settings = false;
                                         tL_businessBotRights322.sell_gifts = false;
                                         tL_businessBotRights322.view_gifts = false;
-                                        l0Var5.f49111c.V2.N(true);
+                                        l0Var5.f49112c.V2.N(true);
                                         l0Var5.Y(true);
                                         return;
                                     }
@@ -1127,7 +1127,7 @@ public final class d4 implements Utilities.Callback2 {
                                     l0 l0Var6 = l0Var;
                                     TL_account.TL_businessBotRights tL_businessBotRights42 = l0Var6.G;
                                     tL_businessBotRights42.manage_stories = !tL_businessBotRights42.manage_stories;
-                                    l0Var6.f49111c.V2.N(true);
+                                    l0Var6.f49112c.V2.N(true);
                                     l0Var6.Y(true);
                                     return;
                             }
@@ -1165,7 +1165,7 @@ public final class d4 implements Utilities.Callback2 {
                                 case 0:
                                     l0 l0Var2 = l0Var;
                                     l0Var2.J = null;
-                                    l0Var2.f49111c.V2.N(true);
+                                    l0Var2.f49112c.V2.N(true);
                                     l0Var2.Y(true);
                                     return;
                                 case 1:
@@ -1182,7 +1182,7 @@ public final class d4 implements Utilities.Callback2 {
                                         tL_businessBotRights32.read_messages = true;
                                         tL_businessBotRights32.reply = true;
                                     }
-                                    l0Var3.f49111c.V2.N(true);
+                                    l0Var3.f49112c.V2.N(true);
                                     l0Var3.Y(true);
                                     return;
                                 case 2:
@@ -1193,7 +1193,7 @@ public final class d4 implements Utilities.Callback2 {
                                         tL_businessBotRights22.edit_profile_photo = false;
                                         tL_businessBotRights22.edit_bio = false;
                                         tL_businessBotRights22.edit_name = false;
-                                        l0Var4.f49111c.V2.N(true);
+                                        l0Var4.f49112c.V2.N(true);
                                         l0Var4.Y(true);
                                         return;
                                     }
@@ -1208,7 +1208,7 @@ public final class d4 implements Utilities.Callback2 {
                                         tL_businessBotRights322.change_gift_settings = false;
                                         tL_businessBotRights322.sell_gifts = false;
                                         tL_businessBotRights322.view_gifts = false;
-                                        l0Var5.f49111c.V2.N(true);
+                                        l0Var5.f49112c.V2.N(true);
                                         l0Var5.Y(true);
                                         return;
                                     }
@@ -1218,7 +1218,7 @@ public final class d4 implements Utilities.Callback2 {
                                     l0 l0Var6 = l0Var;
                                     TL_account.TL_businessBotRights tL_businessBotRights42 = l0Var6.G;
                                     tL_businessBotRights42.manage_stories = !tL_businessBotRights42.manage_stories;
-                                    l0Var6.f49111c.V2.N(true);
+                                    l0Var6.f49112c.V2.N(true);
                                     l0Var6.Y(true);
                                     return;
                             }
@@ -1248,21 +1248,21 @@ public final class d4 implements Utilities.Callback2 {
                 j51Var6.f28017o = string7;
                 j51Var6.f28013k = i21;
                 arrayList6.add(j51Var6);
-                arrayList6.add(j51.k(v0Var.f49221e));
+                arrayList6.add(j51.k(v0Var.f49222e));
                 arrayList6.add(j51.B(null));
                 j51 i22 = j51.i(1, LocaleController.getString(R.string.BusinessLocationMap));
-                if (v0Var.f49227x != null) {
+                if (v0Var.f49228x != null) {
                     z17 = true;
                 } else {
                     z17 = false;
                 }
                 i22.K(z17);
                 arrayList6.add(i22);
-                if (v0Var.f49227x != null) {
+                if (v0Var.f49228x != null) {
                     arrayList6.add(j51.k(v0Var.h));
                 }
                 arrayList6.add(j51.B(null));
-                if (v0Var.f49226w != null && (v0Var.f49227x != null || !TextUtils.isEmpty(v0Var.f49228y))) {
+                if (v0Var.f49227w != null && (v0Var.f49228x != null || !TextUtils.isEmpty(v0Var.f49229y))) {
                     z18 = true;
                 }
                 v0Var.D = z18;
@@ -1282,15 +1282,15 @@ public final class d4 implements Utilities.Callback2 {
                 vf.z0 z0Var = (vf.z0) this.f45203b;
                 ArrayList arrayList7 = (ArrayList) obj;
                 x51 x51Var11 = (x51) obj2;
-                ArrayList arrayList8 = z0Var.f49248b;
+                ArrayList arrayList8 = z0Var.f49249b;
                 String string8 = LocaleController.getString(R.string.BusinessHoursDayOpen);
                 j51 j51Var7 = new j51(9);
                 j51Var7.d = -1;
                 j51Var7.f28014l = string8;
-                j51Var7.K(z0Var.f49253r);
+                j51Var7.K(z0Var.f49254r);
                 arrayList7.add(j51Var7);
                 arrayList7.add(j51.B(null));
-                if (z0Var.f49253r) {
+                if (z0Var.f49254r) {
                     for (int i23 = 0; i23 < arrayList8.size(); i23++) {
                         if (i23 > 0) {
                             arrayList7.add(j51.B(null));
@@ -1298,8 +1298,8 @@ public final class d4 implements Utilities.Callback2 {
                         vf.w0 w0Var = (vf.w0) arrayList8.get(i23);
                         if (!z0Var.U()) {
                             int i24 = i23 * 3;
-                            arrayList7.add(j51.f(LocaleController.getString(R.string.BusinessHoursDayOpenHour), vf.w0.a(w0Var.f49230a), i24));
-                            arrayList7.add(j51.f(LocaleController.getString(R.string.BusinessHoursDayCloseHour), vf.w0.a(w0Var.f49231b), i24 + 1));
+                            arrayList7.add(j51.f(LocaleController.getString(R.string.BusinessHoursDayOpenHour), vf.w0.a(w0Var.f49231a), i24));
+                            arrayList7.add(j51.f(LocaleController.getString(R.string.BusinessHoursDayCloseHour), vf.w0.a(w0Var.f49232b), i24 + 1));
                             j51 e10 = j51.e(i24 + 2, LocaleController.getString(R.string.Remove));
                             e10.f28020r = true;
                             arrayList7.add(e10);
@@ -1361,8 +1361,8 @@ public final class d4 implements Utilities.Callback2 {
                 ArrayList arrayList10 = (ArrayList) obj;
                 x51 x51Var14 = (x51) obj2;
                 arrayList10.add(j51.j(1, wVar.X));
-                arrayList10.add(j51.j(3, wVar.f50120a0));
-                if (wVar.f50125f0 != null) {
+                arrayList10.add(j51.j(3, wVar.f50121a0));
+                if (wVar.f50126f0 != null) {
                     arrayList10.add(j51.j(2, wVar.Y));
                     return;
                 }

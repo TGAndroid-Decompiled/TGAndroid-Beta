@@ -337,12 +337,12 @@ public class z60 extends org.telegram.ui.ActionBar.p2 implements NotificationCen
             j0();
             org.telegram.ui.Components.d20 d20Var = this.f43833f;
             xd.c cVar2 = this.f43826b;
-            d20Var.setTranslationY(cVar2.f50509e);
+            d20Var.setTranslationY(cVar2.f50510e);
             i0();
-            this.f43831e.setTranslationY(AndroidUtilities.dp(48.0f) + cVar2.f50509e);
+            this.f43831e.setTranslationY(AndroidUtilities.dp(48.0f) + cVar2.f50510e);
             this.d.invalidate();
             int paddingTop2 = this.f43841n.getPaddingTop();
-            if (paddingTop2 != paddingTop && !((xd.a) this.f43831e.f6337c).f50505f) {
+            if (paddingTop2 != paddingTop && !((xd.a) this.f43831e.f6337c).f50506f) {
                 this.f43841n.scrollBy(0, paddingTop - paddingTop2);
             }
         } else if (i10 == 4) {
@@ -605,7 +605,7 @@ public class z60 extends org.telegram.ui.ActionBar.p2 implements NotificationCen
                 rectF2.set(0.0f, this.fragmentView.getMeasuredHeight() - this.C.getMeasuredHeight(), this.fragmentView.getMeasuredWidth(), this.fragmentView.getMeasuredHeight());
                 rectF2.inset(0.0f, f10);
             }
-            if (this.C != null && this.f43828c.f50504e > 0.0f) {
+            if (this.C != null && this.f43828c.f50505e > 0.0f) {
                 i10 = 2;
             } else {
                 i10 = 1;
@@ -625,7 +625,7 @@ public class z60 extends org.telegram.ui.ActionBar.p2 implements NotificationCen
         if (t3Var == null) {
             return;
         }
-        float f10 = this.f43828c.f50504e;
+        float f10 = this.f43828c.f50505e;
         t3Var.setTranslationY((1.0f - f10) * AndroidUtilities.dp(12.0f));
         this.C.setAlpha(f10);
         eg.t3 t3Var2 = this.C;
@@ -706,9 +706,9 @@ public class z60 extends org.telegram.ui.ActionBar.p2 implements NotificationCen
         }
         int i10 = this.f43838j0;
         int i11 = this.f43824a;
-        int measuredHeight = this.actionBar.getMeasuredHeight() + AndroidUtilities.dp(i11 + 48) + ((int) this.f43826b.f50509e);
+        int measuredHeight = this.actionBar.getMeasuredHeight() + AndroidUtilities.dp(i11 + 48) + ((int) this.f43826b.f50510e);
         int measuredWidth = this.f43841n.getMeasuredWidth();
-        int B = org.telegram.messenger.y3.B(i11, this.f43841n.getMeasuredHeight(), (int) ((AndroidUtilities.dp(76.0f) + i10) * this.f43828c.f50504e));
+        int B = org.telegram.messenger.y3.B(i11, this.f43841n.getMeasuredHeight(), (int) ((AndroidUtilities.dp(76.0f) + i10) * this.f43828c.f50505e));
         Rect rect = this.f43840l0;
         rect.set(0, measuredHeight, measuredWidth, B);
         this.f43841n.setClipBounds(rect);
@@ -728,7 +728,7 @@ public class z60 extends org.telegram.ui.ActionBar.p2 implements NotificationCen
         }
         org.telegram.ui.Components.tl0 tl0Var = this.f43841n;
         int i11 = this.f43824a;
-        tl0Var.setPadding(0, this.actionBar.getMeasuredHeight() + AndroidUtilities.dp(i11 + 48) + ((int) this.f43826b.f50509e), 0, AndroidUtilities.dp(i11) + this.f43838j0 + i10);
+        tl0Var.setPadding(0, this.actionBar.getMeasuredHeight() + AndroidUtilities.dp(i11 + 48) + ((int) this.f43826b.f50510e), 0, AndroidUtilities.dp(i11) + this.f43838j0 + i10);
         this.f43848s.setPadding(0, 0, 0, this.f43838j0);
     }
 

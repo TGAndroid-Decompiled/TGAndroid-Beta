@@ -4,40 +4,40 @@ import h5.d0;
 import h5.w;
 import r3.v;
 public final class h {
-    public final v f50983a;
+    public final v f50984a;
     public s d;
-    public f f50986e;
-    public int f50987f;
-    public int f50988g;
+    public f f50987e;
+    public int f50988f;
+    public int f50989g;
     public int h;
-    public int f50989i;
-    public boolean f50992l;
-    public final r f50984b = new r();
-    public final w f50985c = new w();
-    public final w f50990j = new w(1);
-    public final w f50991k = new w();
+    public int f50990i;
+    public boolean f50993l;
+    public final r f50985b = new r();
+    public final w f50986c = new w();
+    public final w f50991j = new w(1);
+    public final w f50992k = new w();
 
     public h(v vVar, s sVar, f fVar) {
-        this.f50983a = vVar;
+        this.f50984a = vVar;
         this.d = sVar;
-        this.f50986e = fVar;
+        this.f50987e = fVar;
         this.d = sVar;
-        this.f50986e = fVar;
-        vVar.b(sVar.f51076a.f51052f);
+        this.f50987e = fVar;
+        vVar.b(sVar.f51077a.f51053f);
         d();
     }
 
     public final q a() {
-        if (this.f50992l) {
-            r rVar = this.f50984b;
-            f fVar = rVar.f51061a;
+        if (this.f50993l) {
+            r rVar = this.f50985b;
+            f fVar = rVar.f51062a;
             int i10 = d0.f7237a;
-            int i11 = fVar.f50977a;
-            q qVar = rVar.f51071m;
+            int i11 = fVar.f50978a;
+            q qVar = rVar.f51072m;
             if (qVar == null) {
-                qVar = this.d.f51076a.f51056k[i11];
+                qVar = this.d.f51077a.f51057k[i11];
             }
-            if (qVar != null && qVar.f51057a) {
+            if (qVar != null && qVar.f51058a) {
                 return qVar;
             }
             return null;
@@ -46,19 +46,19 @@ public final class h {
     }
 
     public final boolean b() {
-        this.f50987f++;
-        if (!this.f50992l) {
+        this.f50988f++;
+        if (!this.f50993l) {
             return false;
         }
-        int i10 = this.f50988g + 1;
-        this.f50988g = i10;
-        int[] iArr = this.f50984b.f51066g;
+        int i10 = this.f50989g + 1;
+        this.f50989g = i10;
+        int[] iArr = this.f50985b.f51067g;
         int i11 = this.h;
         if (i10 != iArr[i11]) {
             return true;
         }
         this.h = i11 + 1;
-        this.f50988g = 0;
+        this.f50989g = 0;
         return false;
     }
 
@@ -72,20 +72,20 @@ public final class h {
             return 0;
         }
         int i13 = a2.d;
-        r rVar = this.f50984b;
+        r rVar = this.f50985b;
         if (i13 != 0) {
-            wVar = rVar.f51072n;
+            wVar = rVar.f51073n;
         } else {
-            byte[] bArr = a2.f51060e;
+            byte[] bArr = a2.f51061e;
             int i14 = d0.f7237a;
             int length = bArr.length;
-            w wVar2 = this.f50991k;
+            w wVar2 = this.f50992k;
             wVar2.D(length, bArr);
             i13 = bArr.length;
             wVar = wVar2;
         }
-        int i15 = this.f50987f;
-        if (rVar.f51069k && rVar.f51070l[i15]) {
+        int i15 = this.f50988f;
+        if (rVar.f51070k && rVar.f51071l[i15]) {
             z4 = true;
         } else {
             z4 = false;
@@ -95,7 +95,7 @@ public final class h {
         } else {
             z10 = true;
         }
-        w wVar3 = this.f50990j;
+        w wVar3 = this.f50991j;
         byte[] bArr2 = wVar3.f7308a;
         if (z10) {
             i12 = 128;
@@ -104,13 +104,13 @@ public final class h {
         }
         bArr2[0] = (byte) (i12 | i13);
         wVar3.F(0);
-        v vVar = this.f50983a;
+        v vVar = this.f50984a;
         vVar.a(1, wVar3);
         vVar.a(i13, wVar);
         if (!z10) {
             return i13 + 1;
         }
-        w wVar4 = this.f50985c;
+        w wVar4 = this.f50986c;
         if (!z4) {
             wVar4.C(8);
             byte[] bArr3 = wVar4.f7308a;
@@ -125,7 +125,7 @@ public final class h {
             vVar.a(8, wVar4);
             return i13 + 9;
         }
-        w wVar5 = rVar.f51072n;
+        w wVar5 = rVar.f51073n;
         int z11 = wVar5.z();
         wVar5.G(-2);
         int i16 = (z11 * 6) + 2;
@@ -144,17 +144,17 @@ public final class h {
     }
 
     public final void d() {
-        r rVar = this.f50984b;
+        r rVar = this.f50985b;
         rVar.d = 0;
-        rVar.f51074p = 0L;
-        rVar.f51075q = false;
-        rVar.f51069k = false;
-        rVar.f51073o = false;
-        rVar.f51071m = null;
-        this.f50987f = 0;
+        rVar.f51075p = 0L;
+        rVar.f51076q = false;
+        rVar.f51070k = false;
+        rVar.f51074o = false;
+        rVar.f51072m = null;
+        this.f50988f = 0;
         this.h = 0;
-        this.f50988g = 0;
-        this.f50989i = 0;
-        this.f50992l = false;
+        this.f50989g = 0;
+        this.f50990i = 0;
+        this.f50993l = false;
     }
 }

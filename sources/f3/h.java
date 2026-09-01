@@ -28,8 +28,8 @@ public final class h implements d, g3.c, c {
     public static Long b(SQLiteDatabase sQLiteDatabase, y2.i iVar) {
         Long valueOf;
         StringBuilder sb = new StringBuilder("backend_name = ? and priority = ?");
-        ArrayList arrayList = new ArrayList(Arrays.asList(iVar.f50693a, String.valueOf(i3.a.a(iVar.f50695c))));
-        byte[] bArr = iVar.f50694b;
+        ArrayList arrayList = new ArrayList(Arrays.asList(iVar.f50694a, String.valueOf(i3.a.a(iVar.f50696c))));
+        byte[] bArr = iVar.f50695b;
         if (bArr != null) {
             sb.append(" and extras = ?");
             arrayList.add(Base64.encodeToString(bArr, 0));

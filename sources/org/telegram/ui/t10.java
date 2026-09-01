@@ -167,7 +167,7 @@ public final class t10 extends FrameLayout implements NotificationCenter.Notific
             if (messageObject.isQuickReply()) {
                 vf.o1 c3 = vf.p1.f(messageObject.currentAccount).c(messageObject.getQuickReplyId());
                 if (c3 != null) {
-                    return c3.f49160b;
+                    return c3.f49161b;
                 }
                 return "";
             } else if (messageObject.isSponsored()) {
@@ -311,7 +311,7 @@ public final class t10 extends FrameLayout implements NotificationCenter.Notific
 
     public final void b() {
         int i10;
-        float f10 = this.f41425a.f50504e;
+        float f10 = this.f41425a.f50505e;
         float f11 = (1.0f - f10) * (-AndroidUtilities.dp(24.0f));
         oh.b3 b3Var = this.f41439j0;
         b3Var.setTranslationY(f11);

@@ -12,25 +12,25 @@ public final class m implements Runnable {
     public final void run() {
         switch (this.f18378a) {
             case 0:
-                CameraView.k(this.f18379b);
+                this.f18379b.lambda$resetCamera$4();
                 return;
             case 1:
-                CameraView.b(this.f18379b);
+                this.f18379b.lambda$new$7();
                 return;
             case 2:
-                CameraView.a(this.f18379b);
+                this.f18379b.lambda$toggleDual$2();
                 return;
             case 3:
-                CameraView.m(this.f18379b);
+                this.f18379b.lambda$switchCamera$3();
                 return;
             case 4:
-                CameraView.e(this.f18379b);
+                this.f18379b.lambda$onSurfaceTextureDestroyed$5();
                 return;
             case 5:
-                CameraView.o(this.f18379b);
+                this.f18379b.onSurfaceTextureUpdatedInternal();
                 return;
             default:
-                CameraView.g(this.f18379b);
+                this.f18379b.lambda$enableDualInternal$0();
                 return;
         }
     }

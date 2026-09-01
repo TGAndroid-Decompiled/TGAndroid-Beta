@@ -57,13 +57,13 @@ public final class m1 implements MediaDataController.KeywordResultCallback, org.
                 wh.q qVar = (wh.q) this.f45658b;
                 wh.a aVar = (wh.a) this.f45659c;
                 mi miVar = (mi) this.d;
-                wh.r3 r3Var = qVar.f49929r;
+                wh.r3 r3Var = qVar.f49930r;
                 if (messageMedia != null && messageMedia.geo != null) {
                     wh.d2 d2Var = r3Var.G3;
                     if (d2Var != null) {
                         d2Var.d();
                     }
-                    TL_iv.pageBlockMap pageblockmap = (TL_iv.pageBlockMap) aVar.f49616b;
+                    TL_iv.pageBlockMap pageblockmap = (TL_iv.pageBlockMap) aVar.f49617b;
                     pageblockmap.geo = messageMedia.geo;
                     pageblockmap.zoom = 15;
                     if (pageblockmap.f21066w <= 0 || pageblockmap.h <= 0) {
@@ -89,7 +89,7 @@ public final class m1 implements MediaDataController.KeywordResultCallback, org.
                     if (d2Var3 != null) {
                         d2Var3.d();
                     }
-                    TL_iv.pageBlockMap pageblockmap2 = (TL_iv.pageBlockMap) aVar2.f49616b;
+                    TL_iv.pageBlockMap pageblockmap2 = (TL_iv.pageBlockMap) aVar2.f49617b;
                     pageblockmap2.geo = messageMedia.geo;
                     pageblockmap2.zoom = 15;
                     if (pageblockmap2.f21066w <= 0 || pageblockmap2.h <= 0) {
@@ -135,8 +135,8 @@ public final class m1 implements MediaDataController.KeywordResultCallback, org.
                 String trim = ((EditTextBoldCursor) this.f45658b).getText().toString().trim();
                 String trim2 = ((EditTextBoldCursor) this.f45659c).getText().toString().trim();
                 if (!TextUtils.isEmpty(trim) && !TextUtils.isEmpty(trim2)) {
-                    int i11 = y3Var.f50171a;
-                    wh.o3 o3Var = y3Var.f50172b;
+                    int i11 = y3Var.f50172a;
+                    wh.o3 o3Var = y3Var.f50173b;
                     switch (i11) {
                         case 1:
                             TL_keyboard.TL_inlineButtonTypeUrl tL_inlineButtonTypeUrl = new TL_keyboard.TL_inlineButtonTypeUrl();

@@ -67,12 +67,12 @@ public final class ph extends FrameLayout {
             case 1:
                 float width = getWidth() / 2.0f;
                 vf.k kVar = (vf.k) this.f30085e;
-                float d = ((z5) this.d).d(kVar.f49077n.getWidth(), false);
+                float d = ((z5) this.d).d(kVar.f49078n.getWidth(), false);
                 Rect rect = (Rect) this.f30084c;
                 float f10 = d / 2.0f;
-                rect.set((int) (width - (kVar.f49077n.getScaleX() * f10)), (int) (((1.0f - kVar.f49077n.getScaleY()) * kVar.f49077n.getHeight()) + kVar.f49077n.getY()), (int) ((kVar.f49077n.getScaleX() * f10) + width), (int) (kVar.f49077n.getY() + kVar.f49077n.getHeight()));
-                kVar.f49078r.setBounds(rect);
-                kVar.f49078r.draw(canvas);
+                rect.set((int) (width - (kVar.f49078n.getScaleX() * f10)), (int) (((1.0f - kVar.f49078n.getScaleY()) * kVar.f49078n.getHeight()) + kVar.f49078n.getY()), (int) ((kVar.f49078n.getScaleX() * f10) + width), (int) (kVar.f49078n.getY() + kVar.f49078n.getHeight()));
+                kVar.f49079r.setBounds(rect);
+                kVar.f49079r.draw(canvas);
                 return super.drawChild(canvas, view, j10);
             default:
                 return super.drawChild(canvas, view, j10);
@@ -105,9 +105,9 @@ public final class ph extends FrameLayout {
         switch (this.f30082a) {
             case 1:
                 vf.k kVar = (vf.k) this.f30085e;
-                kVar.f49077n.measure(i10, i11);
+                kVar.f49078n.measure(i10, i11);
                 invalidate();
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(this.f30083b, AndroidUtilities.dp(36.0f) + kVar.f49077n.getMeasuredHeight()), 1073741824));
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(this.f30083b, AndroidUtilities.dp(36.0f) + kVar.f49078n.getMeasuredHeight()), 1073741824));
                 if (this.f30083b < 0) {
                     this.f30083b = getMeasuredHeight();
                     return;

@@ -18,19 +18,19 @@ import org.telegram.ui.Cells.m9;
 import org.telegram.ui.Cells.x9;
 import org.telegram.ui.Components.ai;
 public final class a5 extends z implements b6, l9 {
-    public final g6 f49643n;
-    public final e1 f49644r;
-    public y4 f49645s;
+    public final g6 f49644n;
+    public final e1 f49645r;
+    public y4 f49646s;
     public final ArrayList v;
-    public boolean f49646w;
+    public boolean f49647w;
 
     public a5(Context context, g6 g6Var) {
         super(context);
         this.v = new ArrayList();
-        this.f49643n = g6Var;
+        this.f49644n = g6Var;
         g(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         e1 e1Var = new e1(context, g6Var);
-        this.f49644r = e1Var;
+        this.f49645r = e1Var;
         e1Var.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f));
         e1Var.setAllowNewlines(false);
         e1Var.setInputType(147457);
@@ -49,9 +49,9 @@ public final class a5 extends z implements b6, l9 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         m9 m9Var;
-        y4 y4Var = this.f49645s;
+        y4 y4Var = this.f49646s;
         if (y4Var != null) {
-            m9Var = ((x2) y4Var).f50153a.getTextSelectionHelper();
+            m9Var = ((x2) y4Var).f50154a.getTextSelectionHelper();
         } else {
             m9Var = null;
         }
@@ -72,17 +72,17 @@ public final class a5 extends z implements b6, l9 {
 
     @Override
     public final void e() {
-        e1 e1Var = this.f49644r;
+        e1 e1Var = this.f49645r;
         e1Var.t();
         int i10 = k6.Oh;
-        g6 g6Var = this.f49643n;
+        g6 g6Var = this.f49644n;
         e1Var.setTextColor(k6.v0(i10, g6Var));
         e1Var.setHintTextColor(k6.l1(0.5f, k6.v0(i10, g6Var)));
     }
 
     @Override
     public final void fillTextLayoutBlocks(ArrayList arrayList) {
-        e1 e1Var = this.f49644r;
+        e1 e1Var = this.f49645r;
         Layout layout = e1Var.getLayout();
         if (layout == null) {
             return;
@@ -95,20 +95,20 @@ public final class a5 extends z implements b6, l9 {
     }
 
     public a getRow() {
-        return this.f50174a;
+        return this.f50175a;
     }
 
     public final void h() {
         a aVar;
-        y4 y4Var = this.f49645s;
-        if (y4Var != null && (aVar = this.f50174a) != null) {
-            long j10 = aVar.f49632t;
-            TL_iv.RichText f10 = x5.f(this.f49644r.getText());
-            r3 r3Var = ((x2) y4Var).f50153a;
+        y4 y4Var = this.f49646s;
+        if (y4Var != null && (aVar = this.f50175a) != null) {
+            long j10 = aVar.f49633t;
+            TL_iv.RichText f10 = x5.f(this.f49645r.getText());
+            r3 r3Var = ((x2) y4Var).f50154a;
             if (f10 != null && !(f10 instanceof TL_iv.textEmpty)) {
-                r3Var.f49989j3.put(Long.valueOf(j10), f10);
+                r3Var.f49990j3.put(Long.valueOf(j10), f10);
             } else {
-                r3Var.f49989j3.remove(Long.valueOf(j10));
+                r3Var.f49990j3.remove(Long.valueOf(j10));
             }
         }
     }

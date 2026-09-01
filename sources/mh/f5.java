@@ -106,7 +106,7 @@ public final class f5 extends View {
                 Paint paint = this.f14036b;
                 paint.setColor(v02);
                 canvas.drawCircle(width2, height2, AndroidUtilities.dp(19.0f), paint);
-                float f11 = ((xd.a) this.f14037c).f50504e;
+                float f11 = ((xd.a) this.f14037c).f50505e;
                 float f12 = 1.0f - f11;
                 if (f12 > 0.0f) {
                     lf.r.b(canvas, (h51) this.f14038e, f12 * 1.35f);
@@ -151,7 +151,7 @@ public final class f5 extends View {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f14035a) {
             case 2:
-                if (!super.verifyDrawable(drawable) && (drawable != ((h51) this.f14038e) || ((xd.a) this.f14037c).f50505f)) {
+                if (!super.verifyDrawable(drawable) && (drawable != ((h51) this.f14038e) || ((xd.a) this.f14037c).f50506f)) {
                     return false;
                 }
                 return true;

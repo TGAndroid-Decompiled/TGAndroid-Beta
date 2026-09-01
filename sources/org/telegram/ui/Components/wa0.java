@@ -28,7 +28,7 @@ public final class wa0 extends CharacterStyle {
                 textPaint.setColor(org.telegram.ui.ActionBar.k6.v(org.telegram.ui.ActionBar.k6.l1(0.55f, textPaint.getColor()), org.telegram.ui.ActionBar.k6.l1(0.4f, ((bj0) this.f32713b).F)));
                 return;
             default:
-                textPaint.setColor(org.telegram.ui.ActionBar.k6.v(org.telegram.ui.ActionBar.k6.l1(0.55f, textPaint.getColor()), org.telegram.ui.ActionBar.k6.l1(0.4f, org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Oh, ((wh.v5) this.f32713b).f50109a))));
+                textPaint.setColor(org.telegram.ui.ActionBar.k6.v(org.telegram.ui.ActionBar.k6.l1(0.55f, textPaint.getColor()), org.telegram.ui.ActionBar.k6.l1(0.4f, org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.Oh, ((wh.v5) this.f32713b).f50110a))));
                 return;
         }
     }

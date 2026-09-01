@@ -428,7 +428,7 @@ public class TelegramMediaSession {
         iVar.x((long) (messageObject.getDuration() * 1000.0d), "android.media.metadata.DURATION");
         iVar.A("android.media.metadata.TITLE", messageObject.getMusicTitle());
         if (aVar != null && messageObject.isMusic()) {
-            str = aVar.f49497f;
+            str = aVar.f49498f;
         } else {
             str = null;
         }

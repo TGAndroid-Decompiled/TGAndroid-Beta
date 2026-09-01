@@ -21,7 +21,7 @@ public final class k10 implements org.telegram.ui.ActionBar.s0, xd.i, org.telegr
     public void e(xd.j jVar) {
         FragmentContextView fragmentContextView = this.f28250a;
         xd.j jVar2 = fragmentContextView.H0;
-        float f10 = 1.0f - jVar2.f50528a.d.f50519c.f50529a;
+        float f10 = 1.0f - jVar2.f50529a.d.f50520c.f50530a;
         fragmentContextView.d.setAlpha(f10);
         fragmentContextView.d.setScaleX(AndroidUtilities.lerp(0.7f, 1.0f, f10));
         fragmentContextView.d.setScaleY(AndroidUtilities.lerp(0.7f, 1.0f, f10));
@@ -29,7 +29,7 @@ public final class k10 implements org.telegram.ui.ActionBar.s0, xd.i, org.telegr
         while (it.hasNext()) {
             xd.e eVar = (xd.e) it.next();
             float c3 = eVar.c();
-            Object obj = eVar.f50512a;
+            Object obj = eVar.f50513a;
             float lerp = AndroidUtilities.lerp(0.7f, 1.0f, c3);
             zg.c cVar = ((v10) obj).f31777b;
             cVar.setAlpha(eVar.c());

@@ -42,8 +42,8 @@ public final class cp extends f2.b0 {
                 view2.setPressed(false);
                 if (view2.getBackground() instanceof wh.w1) {
                     wh.w1 w1Var = (wh.w1) view2.getBackground();
-                    if (w1Var.f50129c) {
-                        w1Var.f50129c = false;
+                    if (w1Var.f50130c) {
+                        w1Var.f50130c = false;
                         w1Var.invalidateSelf();
                     }
                 }
@@ -476,8 +476,8 @@ public final class cp extends f2.b0 {
                     view.setPressed(true);
                     if (view.getBackground() instanceof wh.w1) {
                         wh.w1 w1Var = (wh.w1) view.getBackground();
-                        if (!w1Var.f50129c) {
-                            w1Var.f50129c = true;
+                        if (!w1Var.f50130c) {
+                            w1Var.f50130c = true;
                             w1Var.invalidateSelf();
                         }
                     }

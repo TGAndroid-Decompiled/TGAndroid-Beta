@@ -10,33 +10,33 @@ import r3.m;
 import r3.p;
 import r3.v;
 public final class d implements k {
-    public final int f50719a;
-    public final long f50720b;
-    public final w f50721c;
+    public final int f50720a;
+    public final long f50721b;
+    public final w f50722c;
     public final o0 d;
-    public final p f50722e;
-    public final ai f50723f;
-    public final j f50724g;
+    public final p f50723e;
+    public final ai f50724f;
+    public final j f50725g;
     public m h;
-    public v f50725i;
-    public v f50726j;
-    public int f50727k;
-    public e4.c f50728l;
-    public long f50729m;
-    public long f50730n;
-    public long f50731o;
-    public int f50732p;
-    public f f50733q;
-    public boolean f50734r;
-    public boolean f50735s;
-    public long f50736t;
+    public v f50726i;
+    public v f50727j;
+    public int f50728k;
+    public e4.c f50729l;
+    public long f50730m;
+    public long f50731n;
+    public long f50732o;
+    public int f50733p;
+    public f f50734q;
+    public boolean f50735r;
+    public boolean f50736s;
+    public long f50737t;
 
     public d(int i10) {
         this(i10, -9223372036854775807L);
     }
 
     public final a a(l lVar, boolean z4) {
-        w wVar = this.f50721c;
+        w wVar = this.f50722c;
         lVar.b(0, 4, wVar.f7308a);
         wVar.F(0);
         int g10 = wVar.g();
@@ -55,15 +55,15 @@ public final class d implements k {
 
     @Override
     public final void d(long j10, long j11) {
-        this.f50727k = 0;
-        this.f50729m = -9223372036854775807L;
-        this.f50730n = 0L;
-        this.f50732p = 0;
-        this.f50736t = j11;
-        f fVar = this.f50733q;
+        this.f50728k = 0;
+        this.f50730m = -9223372036854775807L;
+        this.f50731n = 0L;
+        this.f50733p = 0;
+        this.f50737t = j11;
+        f fVar = this.f50734q;
         if ((fVar instanceof b) && !((b) fVar).d(j11)) {
-            this.f50735s = true;
-            this.f50726j = this.f50724g;
+            this.f50736s = true;
+            this.f50727j = this.f50725g;
         }
     }
 
@@ -71,8 +71,8 @@ public final class d implements k {
     public final void e(m mVar) {
         this.h = mVar;
         v i22 = mVar.i2(0, 1);
-        this.f50725i = i22;
-        this.f50726j = i22;
+        this.f50726i = i22;
+        this.f50727j = i22;
         this.h.i1();
     }
 
@@ -87,16 +87,16 @@ public final class d implements k {
     }
 
     public d(int i10, long j10) {
-        this.f50719a = i10;
-        this.f50720b = j10;
-        this.f50721c = new w(10);
+        this.f50720a = i10;
+        this.f50721b = j10;
+        this.f50722c = new w(10);
         this.d = new Object();
-        this.f50722e = new p();
-        this.f50729m = -9223372036854775807L;
-        this.f50723f = new ai(9);
+        this.f50723e = new p();
+        this.f50730m = -9223372036854775807L;
+        this.f50724f = new ai(9);
         j jVar = new j();
-        this.f50724g = jVar;
-        this.f50726j = jVar;
+        this.f50725g = jVar;
+        this.f50727j = jVar;
     }
 
     @Override

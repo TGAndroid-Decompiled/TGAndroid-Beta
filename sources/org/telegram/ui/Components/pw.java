@@ -27,7 +27,7 @@ public final class pw extends FrameLayout {
             if (view == rwVar) {
                 y10 = Math.max(y10, uwVar.getY() + uwVar.getMeasuredHeight() + 1.0f);
             }
-            canvas.clipRect(0.0f, y10 - (AndroidUtilities.dp(16.0f) * mzVar.f29263a.f50504e), getMeasuredWidth(), getMeasuredHeight());
+            canvas.clipRect(0.0f, y10 - (AndroidUtilities.dp(16.0f) * mzVar.f29263a.f50505e), getMeasuredWidth(), getMeasuredHeight());
             boolean drawChild = super.drawChild(canvas, view, j10);
             canvas.restore();
             return drawChild;

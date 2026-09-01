@@ -178,10 +178,10 @@ public final class r31 implements View.OnClickListener {
                 return;
             case 5:
                 vf.e eVar = (vf.e) this.f30584b;
-                q70 F2 = q70.F(((org.telegram.ui.xn) this.f30585c).getLayoutContainer(), (org.telegram.ui.ActionBar.g6) this.d, eVar.f49026n);
+                q70 F2 = q70.F(((org.telegram.ui.xn) this.f30585c).getLayoutContainer(), (org.telegram.ui.ActionBar.g6) this.d, eVar.f49027n);
                 F2.c(R.drawable.msg_cancel, LocaleController.getString(R.string.BizBotRemove), new vf.d(eVar, 1), true);
                 F2.E();
-                if (eVar.f49030x != null) {
+                if (eVar.f49031x != null) {
                     F2.c(R.drawable.msg_settings, LocaleController.getString(R.string.BizBotManage), new vf.d(eVar, 2), false);
                 }
                 F2.a0(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f));

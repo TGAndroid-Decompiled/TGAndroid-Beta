@@ -839,7 +839,7 @@ public final class ha1 extends org.telegram.ui.ActionBar.p2 implements Notificat
         for (int i10 = 0; i10 < childCount; i10++) {
             View childAt = ha1Var.P.getChildAt(i10);
             if (childAt instanceof s91) {
-                ((s91) childAt).f40868b.f49569q0.d(false, true);
+                ((s91) childAt).f40868b.f49570q0.d(false, true);
             }
         }
     }
@@ -865,17 +865,17 @@ public final class ha1 extends org.telegram.ui.ActionBar.p2 implements Notificat
         }
         if (i10 == 2) {
             ?? bVar = new xf.b(jSONObject);
-            int length = ((xf.a) bVar.d.get(0)).f50539a.length;
+            int length = ((xf.a) bVar.d.get(0)).f50540a.length;
             int size = bVar.d.size();
-            bVar.f50556l = new long[length];
+            bVar.f50557l = new long[length];
             for (int i11 = 0; i11 < length; i11++) {
-                bVar.f50556l[i11] = 0;
+                bVar.f50557l[i11] = 0;
                 for (int i12 = 0; i12 < size; i12++) {
-                    long[] jArr = bVar.f50556l;
-                    jArr[i11] = jArr[i11] + ((xf.a) bVar.d.get(i12)).f50539a[i11];
+                    long[] jArr = bVar.f50557l;
+                    jArr[i11] = jArr[i11] + ((xf.a) bVar.d.get(i12)).f50540a[i11];
                 }
             }
-            bVar.f50557m = new SegmentTree(bVar.f50556l);
+            bVar.f50558m = new SegmentTree(bVar.f50557l);
             return bVar;
         } else if (i10 == 4) {
             ?? bVar2 = new xf.b(jSONObject);
@@ -884,9 +884,9 @@ public final class ha1 extends org.telegram.ui.ActionBar.p2 implements Notificat
                 int[] iArr = new int[bVar2.d.size()];
                 long j10 = 0;
                 for (int i13 = 0; i13 < bVar2.d.size(); i13++) {
-                    int length2 = bVar2.f50546a.length;
+                    int length2 = bVar2.f50547a.length;
                     for (int i14 = 0; i14 < length2; i14++) {
-                        long j11 = ((xf.a) bVar2.d.get(i13)).f50539a[i14];
+                        long j11 = ((xf.a) bVar2.d.get(i13)).f50540a[i14];
                         jArr2[i13] = jArr2[i13] + j11;
                         if (j11 == 0) {
                             iArr[i13] = iArr[i13] + 1;
@@ -896,7 +896,7 @@ public final class ha1 extends org.telegram.ui.ActionBar.p2 implements Notificat
                 }
                 ArrayList arrayList = new ArrayList();
                 for (int i15 = 0; i15 < bVar2.d.size(); i15++) {
-                    if (jArr2[i15] / j10 < 0.01d && iArr[i15] > bVar2.f50546a.length / 2.0f) {
+                    if (jArr2[i15] / j10 < 0.01d && iArr[i15] > bVar2.f50547a.length / 2.0f) {
                         arrayList.add((xf.a) bVar2.d.get(i15));
                     }
                 }
@@ -908,17 +908,17 @@ public final class ha1 extends org.telegram.ui.ActionBar.p2 implements Notificat
                     bVar2.d.remove((xf.a) obj);
                 }
             }
-            int length3 = ((xf.a) bVar2.d.get(0)).f50539a.length;
+            int length3 = ((xf.a) bVar2.d.get(0)).f50540a.length;
             int size3 = bVar2.d.size();
-            bVar2.f50558l = new long[length3];
+            bVar2.f50559l = new long[length3];
             for (int i17 = 0; i17 < length3; i17++) {
-                bVar2.f50558l[i17] = 0;
+                bVar2.f50559l[i17] = 0;
                 for (int i18 = 0; i18 < size3; i18++) {
-                    long[] jArr3 = bVar2.f50558l;
-                    jArr3[i17] = jArr3[i17] + ((xf.a) bVar2.d.get(i18)).f50539a[i17];
+                    long[] jArr3 = bVar2.f50559l;
+                    jArr3[i17] = jArr3[i17] + ((xf.a) bVar2.d.get(i18)).f50540a[i17];
                 }
             }
-            new SegmentTree(bVar2.f50558l);
+            new SegmentTree(bVar2.f50559l);
             return bVar2;
         } else {
             return null;
@@ -941,10 +941,10 @@ public final class ha1 extends org.telegram.ui.ActionBar.p2 implements Notificat
                     e02.h = statsGraph.rate;
                 }
                 t91Var.f41547g = ((TL_stats.TL_statsGraph) statsGraph).zoom_token;
-                if (e02 == null || (jArr2 = e02.f50546a) == null || jArr2.length < 2) {
+                if (e02 == null || (jArr2 = e02.f50547a) == null || jArr2.length < 2) {
                     t91Var.f41551l = true;
                 }
-                if (i10 == 4 && e02 != null && (jArr = e02.f50546a) != null && jArr.length > 0) {
+                if (i10 == 4 && e02 != null && (jArr = e02.f50547a) != null && jArr.length > 0) {
                     long j10 = jArr[jArr.length - 1];
                     t91Var.f41545e = new xf.e(e02, j10);
                     t91Var.f41544c = j10;
@@ -971,19 +971,19 @@ public final class ha1 extends org.telegram.ui.ActionBar.p2 implements Notificat
                 Object obj = arrayList2.get(i11);
                 i11++;
                 xf.a aVar = (xf.a) obj;
-                int i12 = aVar.f50544g;
+                int i12 = aVar.f50545g;
                 if (i12 >= 0) {
                     if (!org.telegram.ui.ActionBar.k6.c1(i12)) {
-                        int i13 = aVar.f50544g;
+                        int i13 = aVar.f50545g;
                         if (org.telegram.ui.ActionBar.k6.I == org.telegram.ui.ActionBar.k6.J) {
-                            i10 = aVar.f50545i;
+                            i10 = aVar.f50546i;
                         } else {
                             i10 = aVar.h;
                         }
                         org.telegram.ui.ActionBar.k6.u1(i13, i10, false);
-                        org.telegram.ui.ActionBar.k6.nl[aVar.f50544g] = aVar.h;
+                        org.telegram.ui.ActionBar.k6.nl[aVar.f50545g] = aVar.h;
                     }
-                    arrayList.add(new org.telegram.ui.ActionBar.m6(null, 0, null, null, null, l6Var, aVar.f50544g));
+                    arrayList.add(new org.telegram.ui.ActionBar.m6(null, 0, null, null, null, l6Var, aVar.f50545g));
                 }
             }
         }

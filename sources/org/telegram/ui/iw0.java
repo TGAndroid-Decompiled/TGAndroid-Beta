@@ -105,7 +105,7 @@ public final class iw0 extends View {
                 super.onDraw(canvas);
                 th.i0 i0Var = (th.i0) this.f37946b;
                 lf.b0 b0Var = i0Var.H;
-                float max = Math.max(i0Var.f48132b.f50504e, i0Var.f48133c.f50504e);
+                float max = Math.max(i0Var.f48132b.f50505e, i0Var.f48133c.f50505e);
                 lf.b0 b0Var2 = i0Var.G;
                 b0Var2.c(AndroidUtilities.dp(42.0f) + i0Var.R.f7758b, 0);
                 b0Var2.setBounds(0, 0, getWidth(), AndroidUtilities.dp(56.0f) + i0Var.R.f7758b);
@@ -126,7 +126,7 @@ public final class iw0 extends View {
             case 12:
                 canvas.save();
                 canvas.translate(AndroidUtilities.dpf2(22.6f), AndroidUtilities.dpf2(21.66f));
-                ((wh.r0) this.f37946b).f49962c.draw(canvas);
+                ((wh.r0) this.f37946b).f49963c.draw(canvas);
                 canvas.restore();
                 return;
             case 13:

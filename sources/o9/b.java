@@ -109,7 +109,7 @@ public final class b implements g, c2, MessagesController.ErrorDelegate, Message
                 t0 t0Var = (t0) this.f16669c;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
                 o3 o3Var = (o3) this.f16670e;
-                int i11 = o3Var.f49899b;
+                int i11 = o3Var.f49900b;
                 if (!z12) {
                     t0Var.run();
                     return;

@@ -200,7 +200,7 @@ public final class h4 implements e9, org.telegram.ui.Components.y4, og.g, h71, k
     public void H(CharSequence charSequence) {
         wh.y2 y2Var = ((wh.i5) this.f17180b).B;
         if (y2Var != null && charSequence != null && charSequence.length() > 0) {
-            y2Var.f50170a.t4(charSequence.toString());
+            y2Var.f50171a.t4(charSequence.toString());
         }
     }
 
@@ -282,14 +282,14 @@ public final class h4 implements e9, org.telegram.ui.Components.y4, og.g, h71, k
     @Override
     public void O(Editable editable) {
         wh.i5 i5Var = (wh.i5) this.f17180b;
-        wh.a aVar = i5Var.f50174a;
+        wh.a aVar = i5Var.f50175a;
         if (aVar != null) {
-            aVar.f49631s = true;
-            aVar.f49630r = i5Var.f49797r.B;
+            aVar.f49632s = true;
+            aVar.f49631r = i5Var.f49798r.B;
         }
         i5Var.u();
         wh.y2 y2Var = i5Var.B;
-        if (y2Var != null && i5Var.f50174a != null) {
+        if (y2Var != null && i5Var.f50175a != null) {
             y2Var.a();
         }
     }
@@ -412,9 +412,9 @@ public final class h4 implements e9, org.telegram.ui.Components.y4, og.g, h71, k
     public void c(wh.e1 e1Var) {
         wh.y2 y2Var = ((wh.i5) this.f17180b).B;
         if (y2Var != null) {
-            wh.r3 r3Var = y2Var.f50170a;
+            wh.r3 r3Var = y2Var.f50171a;
             wh.r3.M1(r3Var, e1Var);
-            r3Var.f49979e3.h(e1Var, true);
+            r3Var.f49980e3.h(e1Var, true);
         }
     }
 
@@ -450,8 +450,8 @@ public final class h4 implements e9, org.telegram.ui.Components.y4, og.g, h71, k
     public boolean e() {
         wh.i5 i5Var = (wh.i5) this.f17180b;
         wh.y2 y2Var = i5Var.B;
-        if (y2Var != null && i5Var.f50174a != null) {
-            return y2Var.f50170a.S4();
+        if (y2Var != null && i5Var.f50175a != null) {
+            return y2Var.f50171a.S4();
         }
         return false;
     }
@@ -716,7 +716,7 @@ public final class h4 implements e9, org.telegram.ui.Components.y4, og.g, h71, k
         wh.d2 d2Var;
         wh.i5 i5Var = (wh.i5) this.f17180b;
         wh.y2 y2Var = i5Var.B;
-        if (y2Var != null && i5Var.f50174a != null && (d2Var = y2Var.f50170a.G3) != null) {
+        if (y2Var != null && i5Var.f50175a != null && (d2Var = y2Var.f50171a.G3) != null) {
             d2Var.f(i10, i11);
         }
     }
@@ -988,7 +988,7 @@ public final class h4 implements e9, org.telegram.ui.Components.y4, og.g, h71, k
         wh.y2 y2Var;
         org.telegram.ui.Cells.m9 textSelectionHelper;
         wh.i5 i5Var = (wh.i5) this.f17180b;
-        if (!i5Var.D && i10 != i11 && (y2Var = i5Var.B) != null && (textSelectionHelper = y2Var.f50170a.getTextSelectionHelper()) != null) {
+        if (!i5Var.D && i10 != i11 && (y2Var = i5Var.B) != null && (textSelectionHelper = y2Var.f50171a.getTextSelectionHelper()) != null) {
             if (!textSelectionHelper.y() || textSelectionHelper.W != i5Var) {
                 i5Var.post(new org.telegram.messenger.p6(this, e1Var, i11, textSelectionHelper, i10, 6));
             }

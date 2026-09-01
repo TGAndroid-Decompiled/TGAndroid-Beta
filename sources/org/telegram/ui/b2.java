@@ -94,12 +94,12 @@ public final class b2 extends HorizontalScrollView implements org.telegram.ui.Ac
         float f11 = 36;
         this.d = AndroidUtilities.dp(f11);
         if (pageblockmath != null && (a2 = wh.r.a(pageblockmath.source, AndroidUtilities.dp(20.0f), false)) != null) {
-            imageView.setImageBitmap(a2.f49957a);
-            int i10 = a2.f49958b;
+            imageView.setImageBitmap(a2.f49958a);
+            int i10 = a2.f49959b;
             o70Var.getClass();
             int dp2 = AndroidUtilities.dp(f11) + i10;
             this.d = dp2;
-            imageView.setLayoutParams(new FrameLayout.LayoutParams(dp2, a2.f49959c));
+            imageView.setLayoutParams(new FrameLayout.LayoutParams(dp2, a2.f49960c));
         }
     }
 }

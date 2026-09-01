@@ -192,7 +192,7 @@ public final class d80 extends org.telegram.ui.ActionBar.p2 implements Notificat
     }
 
     public final void a0() {
-        this.h.setPadding(0, AndroidUtilities.dp(4.0f) + this.actionBar.getMeasuredHeight() + AndroidUtilities.dp(this.f36132a) + ((int) this.f36133b.f50509e), 0, this.G);
+        this.h.setPadding(0, AndroidUtilities.dp(4.0f) + this.actionBar.getMeasuredHeight() + AndroidUtilities.dp(this.f36132a) + ((int) this.f36133b.f50510e), 0, this.G);
         this.f36138r.setPadding(0, 0, 0, this.G);
     }
 

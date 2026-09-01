@@ -67,7 +67,7 @@ public final class g extends View {
         super.onDraw(canvas);
         float width = getWidth() / 2.0f;
         float height = getHeight() / 2.0f;
-        float f10 = this.f5635b.f50504e;
+        float f10 = this.f5635b.f50505e;
         if (f10 < 1.0f) {
             canvas.save();
             float f11 = 1.0f - f10;

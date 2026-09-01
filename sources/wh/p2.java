@@ -3,12 +3,12 @@ package wh;
 import android.view.KeyEvent;
 import org.telegram.messenger.Utilities;
 public final class p2 implements Utilities.Callback2 {
-    public final int f49924a;
-    public final KeyEvent.Callback f49925b;
+    public final int f49925a;
+    public final KeyEvent.Callback f49926b;
 
     public p2(KeyEvent.Callback callback, int i10) {
-        this.f49924a = i10;
-        this.f49925b = callback;
+        this.f49925a = i10;
+        this.f49926b = callback;
     }
 
     @Override

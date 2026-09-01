@@ -6,14 +6,14 @@ import java.util.concurrent.Executor;
 import l8.j;
 import ld.y0;
 public final class h implements c9.e, t {
-    public static final h f49459b = new h(0);
-    public static final h f49460c = new h(1);
+    public static final h f49460b = new h(0);
+    public static final h f49461c = new h(1);
     public static final h d = new h(2);
-    public static final h f49461e = new h(3);
-    public final int f49462a;
+    public static final h f49462e = new h(3);
+    public final int f49463a;
 
     public h(int i10) {
-        this.f49462a = i10;
+        this.f49463a = i10;
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class h implements c9.e, t {
 
     @Override
     public Object e0(c5.j jVar) {
-        switch (this.f49462a) {
+        switch (this.f49463a) {
             case 0:
                 Object f10 = jVar.f(new c9.t(y8.a.class, Executor.class));
                 kotlin.jvm.internal.j.d(f10, "c.get(Qualified.qualifie…a, Executor::class.java))");

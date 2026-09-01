@@ -421,10 +421,6 @@ public class v0 extends sa implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public static g6 U0(v0 v0Var) {
-        return v0Var.resourcesProvider;
-    }
-
     public static void V(v0 v0Var, Context context) {
         int i10;
         org.telegram.ui.ActionBar.p2 p2Var = v0Var.H0;

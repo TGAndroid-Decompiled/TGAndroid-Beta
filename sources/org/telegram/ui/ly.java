@@ -214,7 +214,7 @@ public final class ly extends org.telegram.ui.Components.aa implements oh.a7 {
         float S3 = pyVar.S3(false);
         org.telegram.ui.Components.ls lsVar = pyVar.G1;
         if (lsVar != null) {
-            f10 = lsVar.getMetadata().f50519c.f50529a;
+            f10 = lsVar.getMetadata().f50520c.f50530a;
         } else {
             f10 = 0.0f;
         }

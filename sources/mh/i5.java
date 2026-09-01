@@ -103,7 +103,7 @@ public final class i5 {
 
     public final void a(Canvas canvas) {
         xd.c cVar = this.Q;
-        float f10 = cVar.f50509e;
+        float f10 = cVar.f50510e;
         float f11 = f10 / 2.0f;
         RectF rectF = this.f14245n;
         rectF.set(0.0f, 0.0f, f10, this.M);
@@ -149,10 +149,10 @@ public final class i5 {
             l1 = stargiftattributebackdrop3.text_color | (-16777216);
         }
         int i10 = l1;
-        this.f14249r.f28532p = cVar.f50509e - AndroidUtilities.dp(12.0f);
+        this.f14249r.f28532p = cVar.f50510e - AndroidUtilities.dp(12.0f);
         l01 l01Var = this.f14249r;
         l01Var.c(f11 - (l01Var.f28521c / 2.0f), this.f14248q, 1.0f, -1, canvas);
-        this.f14251t.f28532p = cVar.f50509e - AndroidUtilities.dp(12.0f);
+        this.f14251t.f28532p = cVar.f50510e - AndroidUtilities.dp(12.0f);
         l01 l01Var2 = this.f14251t;
         Canvas canvas2 = canvas;
         int i11 = i10;
@@ -239,7 +239,7 @@ public final class i5 {
     }
 
     public final float c() {
-        return this.Q.f50509e;
+        return this.Q.f50510e;
     }
 
     public final boolean d() {

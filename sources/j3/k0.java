@@ -509,9 +509,9 @@ public final class k0 implements Handler.Callback, o4.s {
         f5.c[] cVarArr;
         this.K.a(z10 ? 1 : 0);
         ye.f fVar = this.K;
-        fVar.f50866b = true;
-        fVar.f50869f = true;
-        fVar.f50870g = i11;
+        fVar.f50867b = true;
+        fVar.f50870f = true;
+        fVar.f50871g = i11;
         this.J = this.J.d(i10, z4);
         this.O = false;
         for (f1 f1Var = this.E.h; f1Var != null; f1Var = f1Var.f9146l) {
@@ -1598,7 +1598,7 @@ public final class k0 implements Handler.Callback, o4.s {
         List list2 = list;
         if (z4) {
             ye.f fVar = this.K;
-            if (fVar.d && fVar.f50868e != 5) {
+            if (fVar.d && fVar.f50869e != 5) {
                 if (i10 == 5) {
                     z11 = true;
                 } else {
@@ -1606,9 +1606,9 @@ public final class k0 implements Handler.Callback, o4.s {
                 }
                 h5.a.f(z11);
             } else {
-                fVar.f50866b = true;
+                fVar.f50867b = true;
                 fVar.d = true;
-                fVar.f50868e = i10;
+                fVar.f50869e = i10;
             }
         }
         u1 u1Var2 = this.J;
@@ -1700,14 +1700,14 @@ public final class k0 implements Handler.Callback, o4.s {
         boolean z4;
         ye.f fVar = this.K;
         u1 u1Var = this.J;
-        boolean z10 = fVar.f50866b;
+        boolean z10 = fVar.f50867b;
         if (((u1) fVar.h) != u1Var) {
             z4 = true;
         } else {
             z4 = false;
         }
         boolean z11 = z10 | z4;
-        fVar.f50866b = z11;
+        fVar.f50867b = z11;
         fVar.h = u1Var;
         if (z11) {
             f0 f0Var = this.D.f9423a;

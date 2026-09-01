@@ -10,26 +10,26 @@ import k7.j8;
 import v2.c;
 import y2.k;
 public final class a implements k {
-    public static final String f49323c;
+    public static final String f49324c;
     public static final Set d;
-    public static final a f49324e;
-    public static final a f49325f;
-    public final String f49326a;
-    public final String f49327b;
+    public static final a f49325e;
+    public static final a f49326f;
+    public final String f49327a;
+    public final String f49328b;
 
     static {
         String a2 = j8.a("hts/frbslgiggolai.o/0clgbthfra=snpoo", "tp:/ieaeogn.ogepscmvc/o/ac?omtjo_rt3");
-        f49323c = a2;
+        f49324c = a2;
         String a10 = j8.a("hts/frbslgigp.ogepscmv/ieo/eaybtho", "tp:/ieaeogn-agolai.o/1frlglgc/aclg");
         String a11 = j8.a("AzSCki82AwsLzKd5O8zo", "IayckHiZRO1EFl1aGoK");
         d = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(new c("proto"), new c("json"))));
-        f49324e = new a(a2, null);
-        f49325f = new a(a10, a11);
+        f49325e = new a(a2, null);
+        f49326f = new a(a10, a11);
     }
 
     public a(String str, String str2) {
-        this.f49326a = str;
-        this.f49327b = str2;
+        this.f49327a = str;
+        this.f49328b = str2;
     }
 
     public static a a(byte[] bArr) {

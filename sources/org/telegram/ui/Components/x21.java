@@ -2050,7 +2050,7 @@ public final class x21 extends FrameLayout implements NotificationCenter.Notific
         int i11;
         int i12;
         xd.a aVar = this.G;
-        float f10 = aVar.f50504e;
+        float f10 = aVar.f50505e;
         ImageView imageView = this.f32936w;
         imageView.setAlpha(f10);
         imageView.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, f10));
@@ -2073,7 +2073,7 @@ public final class x21 extends FrameLayout implements NotificationCenter.Notific
             i11 = 8;
         }
         imageView2.setVisibility(i11);
-        float f11 = 1.0f - aVar.f50504e;
+        float f11 = 1.0f - aVar.f50505e;
         ImageView imageView3 = this.f32938y;
         imageView3.setAlpha(f11);
         imageView3.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, f11));
@@ -2106,7 +2106,7 @@ public final class x21 extends FrameLayout implements NotificationCenter.Notific
     }
 
     public float getSideMenuT() {
-        return this.O * this.f32926a.f50504e;
+        return this.O * this.f32926a.f50505e;
     }
 
     public final void h() {
@@ -2114,7 +2114,7 @@ public final class x21 extends FrameLayout implements NotificationCenter.Notific
         float lerp = AndroidUtilities.lerp(1.0f, 0.0f, this.O);
         FrameLayout frameLayout = this.f32934r;
         frameLayout.setAlpha(lerp);
-        if ((1.0f - this.O) * this.f32926a.f50504e > 0.0f) {
+        if ((1.0f - this.O) * this.f32926a.f50505e > 0.0f) {
             i10 = 0;
         } else {
             i10 = 8;
@@ -2129,7 +2129,7 @@ public final class x21 extends FrameLayout implements NotificationCenter.Notific
 
     public final float j(t21 t21Var) {
         float f10;
-        float f11 = this.f32926a.f50504e;
+        float f11 = this.f32926a.f50505e;
         if (t21Var == t21.f31254b) {
             f10 = this.O;
         } else if ((t21Var == t21.f31253a && !this.M) || (t21Var == t21.f31255c && this.M)) {

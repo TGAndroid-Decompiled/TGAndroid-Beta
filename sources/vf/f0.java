@@ -37,17 +37,17 @@ import qh.d4;
 import qh.r8;
 import qh.v9;
 public final class f0 extends sa {
-    public static final int f49043d0 = -1;
-    public static final int f49044e0 = -2;
+    public static final int f49044d0 = -1;
+    public static final int f49045e0 = -2;
     public final TL_account.TL_connectedBot U;
     public final TLRPC.User V;
     public final v W;
     public final LinearLayout X;
     public final qh.d Y;
     public final qh.d Z;
-    public x51 f49045a0;
-    public boolean f49046b0;
-    public Boolean f49047c0;
+    public x51 f49046a0;
+    public boolean f49047b0;
+    public Boolean f49048c0;
 
     public f0(Activity activity, TL_account.TL_connectedBot tL_connectedBot, jm jmVar, g6 g6Var) {
         super(activity, null, false, false, false, 2, g6Var);
@@ -59,7 +59,7 @@ public final class f0 extends sa {
         v vVar = new v(activity, this.currentAccount, new v9(this, 20), g6Var);
         this.W = vVar;
         TL_account.TL_businessBotRecipients tL_businessBotRecipients = tL_connectedBot.recipients;
-        this.f49046b0 = tL_businessBotRecipients.exclude_selected;
+        this.f49047b0 = tL_businessBotRecipients.exclude_selected;
         vVar.i(tL_businessBotRecipients);
         LinearLayout linearLayout = new LinearLayout(activity);
         this.X = linearLayout;
@@ -130,7 +130,7 @@ public final class f0 extends sa {
         lVar.o(pr.h);
         lVar.n(350L);
         this.d.setItemAnimator(lVar);
-        x51 x51Var = this.f49045a0;
+        x51 x51Var = this.f49046a0;
         if (x51Var != null) {
             x51Var.N(false);
         }
@@ -204,11 +204,11 @@ public final class f0 extends sa {
         } else {
             z10 = false;
         }
-        Boolean bool = this.f49047c0;
+        Boolean bool = this.f49048c0;
         if (bool != null && bool.booleanValue() == z10) {
             return;
         }
-        this.f49047c0 = Boolean.valueOf(z10);
+        this.f49048c0 = Boolean.valueOf(z10);
         float f18 = 0.0f;
         qh.d dVar = this.Y;
         qh.d dVar2 = this.Z;
@@ -282,10 +282,10 @@ public final class f0 extends sa {
         ViewPropertyAnimator duration = scaleX.scaleY(f12).setDuration(320L);
         pr prVar = pr.h;
         duration.setInterpolator(prVar).withEndAction(new Runnable(this) {
-            public final f0 f49033b;
+            public final f0 f49034b;
 
             {
-                this.f49033b = this;
+                this.f49034b = this;
             }
 
             @Override
@@ -293,7 +293,7 @@ public final class f0 extends sa {
                 switch (r3) {
                     case 0:
                         boolean z11 = z10;
-                        f0 f0Var = this.f49033b;
+                        f0 f0Var = this.f49034b;
                         if (!z11) {
                             f0Var.Z.setVisibility(8);
                             return;
@@ -303,7 +303,7 @@ public final class f0 extends sa {
                         }
                     default:
                         boolean z12 = z10;
-                        f0 f0Var2 = this.f49033b;
+                        f0 f0Var2 = this.f49034b;
                         if (z12) {
                             f0Var2.Y.setVisibility(8);
                             return;
@@ -330,10 +330,10 @@ public final class f0 extends sa {
             f19 = 1.0f;
         }
         scaleX2.scaleY(f19).setDuration(320L).setInterpolator(prVar).withEndAction(new Runnable(this) {
-            public final f0 f49033b;
+            public final f0 f49034b;
 
             {
-                this.f49033b = this;
+                this.f49034b = this;
             }
 
             @Override
@@ -341,7 +341,7 @@ public final class f0 extends sa {
                 switch (r3) {
                     case 0:
                         boolean z11 = z10;
-                        f0 f0Var = this.f49033b;
+                        f0 f0Var = this.f49034b;
                         if (!z11) {
                             f0Var.Z.setVisibility(8);
                             return;
@@ -351,7 +351,7 @@ public final class f0 extends sa {
                         }
                     default:
                         boolean z12 = z10;
-                        f0 f0Var2 = this.f49033b;
+                        f0 f0Var2 = this.f49034b;
                         if (z12) {
                             f0Var2.Y.setVisibility(8);
                             return;
@@ -385,7 +385,7 @@ public final class f0 extends sa {
     @Override
     public final sl0 v(tl0 tl0Var) {
         x51 x51Var = new x51(tl0Var, getContext(), this.currentAccount, 0, true, new d4(this, 18), this.resourcesProvider);
-        this.f49045a0 = x51Var;
+        this.f49046a0 = x51Var;
         x51Var.f32957r = false;
         return x51Var;
     }

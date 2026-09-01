@@ -40,8 +40,8 @@ public final class d {
             }
             this.f16606g.getClass();
             x1.a aVar = this.f16606g;
-            aVar.f50232c.set(true);
-            if (aVar.f50230a.cancel(false)) {
+            aVar.f50233c.set(true);
+            if (aVar.f50231a.cancel(false)) {
                 this.h = this.f16606g;
             }
             this.f16606g = null;
@@ -56,8 +56,8 @@ public final class d {
             }
             x1.a aVar = this.f16606g;
             Executor executor = this.f16605f;
-            if (aVar.f50231b != 1) {
-                int c3 = m1.j.c(aVar.f50231b);
+            if (aVar.f50232b != 1) {
+                int c3 = m1.j.c(aVar.f50232b);
                 if (c3 != 1) {
                     if (c3 != 2) {
                         throw new IllegalStateException("We should never reach this state");
@@ -66,8 +66,8 @@ public final class d {
                 }
                 throw new IllegalStateException("Cannot execute task: the task is already running.");
             }
-            aVar.f50231b = 2;
-            executor.execute(aVar.f50230a);
+            aVar.f50232b = 2;
+            executor.execute(aVar.f50231a);
         }
     }
 

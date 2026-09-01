@@ -289,8 +289,8 @@ public abstract class f0 extends FrameLayout {
         this.f45279s = f10;
         this.f45275e.invalidate();
         a0 a0Var = this.h;
-        CropAreaView cropAreaView = a0Var.f51165a;
-        CropAreaView cropAreaView2 = a0Var.f51165a;
+        CropAreaView cropAreaView = a0Var.f51166a;
+        CropAreaView cropAreaView2 = a0Var.f51166a;
         cropAreaView.setDimAlpha(0.5f * f10);
         cropAreaView2.setFrameAlpha(f10);
         cropAreaView2.invalidate();
