@@ -201,6 +201,10 @@ public final class i0 extends h3 implements NotificationCenter.NotificationCente
         }
     }
 
+    public static ViewGroup M(i0 i0Var) {
+        return i0Var.containerView;
+    }
+
     public static void m(i0 i0Var, boolean z4, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             if (TextUtils.equals("COMMUNITY_REQUEST_CREATED", tL_error.text)) {

@@ -146,7 +146,6 @@ public final class nb0 extends f2.a1 {
         boolean z10;
         qh.s1 s1Var2;
         float f10;
-        ViewGroup viewGroup3;
         switch (this.f29448a) {
             case 0:
                 sb0 sb0Var = (sb0) this.f29449b;
@@ -368,8 +367,7 @@ public final class nb0 extends f2.a1 {
                 qVar.v.b(qVar.d);
                 return;
             case 17:
-                viewGroup3 = ((org.telegram.ui.ActionBar.h3) ((th.f0) this.f29449b).f48118f).containerView;
-                viewGroup3.invalidate();
+                th.i0.M(((th.f0) this.f29449b).f48118f).invalidate();
                 return;
             case 18:
                 th.h0 h0Var = (th.h0) this.f29449b;

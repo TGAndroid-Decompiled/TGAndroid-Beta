@@ -34,6 +34,8 @@ public final class t61 implements Runnable {
 
     @Override
     public final void run() {
+        org.telegram.ui.ActionBar.g6 g6Var;
+        int i10;
         org.telegram.ui.web.v1 v1Var;
         switch (this.f41505a) {
             case 0:
@@ -61,19 +63,21 @@ public final class t61 implements Runnable {
                 if (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl) {
                     org.telegram.ui.Components.lr[] lrVarArr = new org.telegram.ui.Components.lr[1];
                     Context context = x7Var.getContext();
-                    int W = qh.d8.W(d8Var);
+                    i10 = ((org.telegram.ui.ActionBar.h3) d8Var).currentAccount;
                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
                     if (d8Var.I) {
                         v1Var = null;
                     } else {
                         v1Var = new org.telegram.ui.web.v1(7, x7Var, lrVarArr);
                     }
-                    org.telegram.ui.Components.lr lrVar = new org.telegram.ui.Components.lr(context, W, getgroupcallstreamrtmpurl, groupcallstreamrtmpurl, v1Var, new oh.b());
+                    org.telegram.ui.Components.lr lrVar = new org.telegram.ui.Components.lr(context, i10, getgroupcallstreamrtmpurl, groupcallstreamrtmpurl, v1Var, new oh.b());
                     lrVarArr[0] = lrVar;
                     lrVar.show();
                     return;
                 } else if (tL_error2 != null) {
-                    new org.telegram.ui.Components.qc(d8Var.container, qh.d8.X(d8Var)).d0(tL_error2, true);
+                    org.telegram.ui.ActionBar.f3 f3Var = d8Var.container;
+                    g6Var = ((org.telegram.ui.ActionBar.h3) d8Var).resourcesProvider;
+                    new org.telegram.ui.Components.qc(f3Var, g6Var).d0(tL_error2, true);
                     return;
                 } else {
                     return;
@@ -95,8 +99,8 @@ public final class t61 implements Runnable {
                         TLRPC.TL_messages_stickers tL_messages_stickers = (TLRPC.TL_messages_stickers) tLObject3;
                         int size = arrayList.size();
                         int size2 = tL_messages_stickers.stickers.size();
-                        for (int i10 = 0; i10 < size2; i10++) {
-                            TLRPC.Document document = tL_messages_stickers.stickers.get(i10);
+                        for (int i11 = 0; i11 < size2; i11++) {
+                            TLRPC.Document document = tL_messages_stickers.stickers.get(i11);
                             if (longSparseArray.indexOfKey(document.f20849id) < 0) {
                                 arrayList.add(document);
                             }
@@ -118,9 +122,9 @@ public final class t61 implements Runnable {
                 vf.p1 p1Var = (vf.p1) this.d;
                 Runnable runnable = (Runnable) this.f41509f;
                 p1Var.f49174e = false;
-                int i11 = p1Var.f49171a;
-                MessagesController.getInstance(i11).putUsers((ArrayList) this.f41507c, true);
-                MessagesController.getInstance(i11).putChats((ArrayList) this.f41506b, true);
+                int i12 = p1Var.f49171a;
+                MessagesController.getInstance(i12).putUsers((ArrayList) this.f41507c, true);
+                MessagesController.getInstance(i12).putChats((ArrayList) this.f41506b, true);
                 ArrayList arrayList2 = p1Var.f49172b;
                 arrayList2.clear();
                 arrayList2.addAll((ArrayList) this.f41508e);
@@ -129,21 +133,21 @@ public final class t61 implements Runnable {
                 } else {
                     p1Var.i(null, false);
                 }
-                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
+                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                 return;
             case 5:
                 vf.p1 p1Var2 = (vf.p1) this.d;
                 vf.o1 o1Var = (vf.o1) this.f41508e;
                 MessageObject messageObject = (MessageObject) this.f41509f;
-                int i12 = p1Var2.f49171a;
-                MessagesController.getInstance(i12).putUsers((ArrayList) this.f41507c, true);
-                MessagesController.getInstance(i12).putChats((ArrayList) this.f41506b, true);
+                int i13 = p1Var2.f49171a;
+                MessagesController.getInstance(i13).putUsers((ArrayList) this.f41507c, true);
+                MessagesController.getInstance(i13).putChats((ArrayList) this.f41506b, true);
                 o1Var.f49163e = messageObject;
                 if (messageObject != null) {
                     messageObject.applyQuickReply(o1Var.f49161b, o1Var.f49160a);
                 }
                 p1Var2.l();
-                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
+                NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                 return;
             default:
                 vf.p1 p1Var3 = (vf.p1) this.d;
@@ -156,14 +160,14 @@ public final class t61 implements Runnable {
                     ArrayList<TLRPC.Message> arrayList4 = ((TLRPC.TL_messages_messages) tLObject4).messages;
                     arrayList3.clear();
                     int size3 = arrayList4.size();
-                    int i13 = 0;
-                    while (i13 < size3) {
-                        TLRPC.Message message = arrayList4.get(i13);
-                        i13++;
+                    int i14 = 0;
+                    while (i14 < size3) {
+                        TLRPC.Message message = arrayList4.get(i14);
+                        i14++;
                         arrayList3.add(Integer.valueOf(message.f20864id));
                     }
                     tL_messages_sendQuickReplyMessages.f20958id = arrayList3;
-                    for (int i14 = 0; i14 < arrayList3.size(); i14++) {
+                    for (int i15 = 0; i15 < arrayList3.size(); i15++) {
                         tL_messages_sendQuickReplyMessages.random_id.add(Long.valueOf(Utilities.random.nextLong()));
                     }
                     ConnectionsManager.getInstance(p1Var3.f49171a).sendRequest(tL_messages_sendQuickReplyMessages, null);

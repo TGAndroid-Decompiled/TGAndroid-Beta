@@ -132,10 +132,8 @@ public final class q1 extends FrameLayout {
     @Override
     public void dispatchDraw(Canvas canvas) {
         Paint e6;
-        float globalXOffset;
         ValueAnimator valueAnimator;
         ValueAnimator valueAnimator2;
-        float globalXOffset2;
         Drawable drawable;
         int i10;
         Drawable drawable2;
@@ -192,18 +190,10 @@ public final class q1 extends FrameLayout {
                         for (View view = this; view != viewGroup; view = (View) view.getParent()) {
                             f10 += view.getY();
                         }
-                        fg.q1 d = fg.q1.d();
-                        int measuredWidth = viewGroup.getMeasuredWidth();
-                        int measuredHeight = viewGroup.getMeasuredHeight();
-                        globalXOffset2 = limitPreviewView.getGlobalXOffset();
-                        d.f(globalXOffset2 - getLeft(), -f10, measuredWidth, measuredHeight);
+                        fg.q1.d().f(limitPreviewView.getGlobalXOffset() - getLeft(), -f10, viewGroup.getMeasuredWidth(), viewGroup.getMeasuredHeight());
                     }
                 } else {
-                    fg.q1 d10 = fg.q1.d();
-                    int measuredWidth2 = limitPreviewView.getMeasuredWidth();
-                    int measuredHeight2 = limitPreviewView.getMeasuredHeight();
-                    globalXOffset = limitPreviewView.getGlobalXOffset();
-                    d10.f(globalXOffset - getLeft(), -getTop(), measuredWidth2, measuredHeight2);
+                    fg.q1.d().f(limitPreviewView.getGlobalXOffset() - getLeft(), -getTop(), limitPreviewView.getMeasuredWidth(), limitPreviewView.getMeasuredHeight());
                 }
                 int alpha = e6.getAlpha();
                 if (limitPreviewView.S && (valueAnimator2 = limitPreviewView.f24954f0) != null) {
@@ -273,10 +263,10 @@ public final class q1 extends FrameLayout {
                 g5 g5Var = (g5) this.f5446e;
                 g5Var.H(canvas, this);
                 canvas.save();
-                float d11 = d();
+                float d = d();
                 float dp = AndroidUtilities.dp(12.0f);
                 RectF rectF3 = (RectF) this.f5444b;
-                rectF3.set(g5.n1(g5Var), d11, getWidth() - g5.o1(g5Var), getHeight() + dp);
+                rectF3.set(g5.n1(g5Var), d, getWidth() - g5.o1(g5Var), getHeight() + dp);
                 Paint paint3 = (Paint) this.f5445c;
                 paint3.setColor(g5Var.getThemedColor(k6.f21731h5));
                 Path path = (Path) this.d;

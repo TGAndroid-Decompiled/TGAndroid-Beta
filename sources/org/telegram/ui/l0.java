@@ -529,6 +529,9 @@ public final class l0 extends FrameLayout {
     @Override
     public void onMeasure(int i10, int i11) {
         org.telegram.ui.Components.wv0[] wv0VarArr;
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        org.telegram.ui.ActionBar.k kVar3;
         switch (this.f38539a) {
             case 1:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
@@ -644,9 +647,12 @@ public final class l0 extends FrameLayout {
                 int size8 = View.MeasureSpec.getSize(i11);
                 setMeasuredDimension(size7, size8);
                 ed1 ed1Var = (ed1) this.f38540b;
-                measureChildWithMargins(ed1.t0(ed1Var), i10, 0, i11, 0);
-                int measuredHeight2 = ed1.v0(ed1Var).getMeasuredHeight();
-                if (ed1.w0(ed1Var).getVisibility() == 0) {
+                kVar = ((org.telegram.ui.ActionBar.p2) ed1Var).actionBar;
+                measureChildWithMargins(kVar, i10, 0, i11, 0);
+                kVar2 = ((org.telegram.ui.ActionBar.p2) ed1Var).actionBar;
+                int measuredHeight2 = kVar2.getMeasuredHeight();
+                kVar3 = ((org.telegram.ui.ActionBar.p2) ed1Var).actionBar;
+                if (kVar3.getVisibility() == 0) {
                     size8 -= measuredHeight2;
                 }
                 ((FrameLayout.LayoutParams) ed1Var.f36517k0.getLayoutParams()).topMargin = measuredHeight2;

@@ -217,14 +217,6 @@ public final class d8 extends org.telegram.ui.ActionBar.h3 implements Notificati
         return h12;
     }
 
-    public static int W(d8 d8Var) {
-        return d8Var.currentAccount;
-    }
-
-    public static org.telegram.ui.ActionBar.g6 X(d8 d8Var) {
-        return d8Var.resourcesProvider;
-    }
-
     public static org.telegram.ui.ActionBar.g6 Y(d8 d8Var) {
         return d8Var.resourcesProvider;
     }
